@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/example_package",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Sample package",
   "main": "build/index.js",
   "module": "build/module.js",
