@@ -2,11 +2,11 @@
   "name": "@scaleway/example_package",
   "version": "0.2.0",
   "description": "Sample package",
-  "main": "build/index.js",
-  "module": "build/module.js",
+  "main": "dist/index.js",
+  "module": "dist/module.js",
   "browser": {
-    "build/index.js": "build/index.browser.js",
-    "build/module.js": "build/module.browser.js"
+    "dist/index.js": "dist/index.browser.js",
+    "dist/module.js": "dist/module.browser.js"
   },
   "repository": {
     "type": "git",

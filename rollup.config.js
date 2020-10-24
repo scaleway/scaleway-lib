@@ -48,11 +48,11 @@ const getConfig = (pkg, isBrowser = false) => {
       {
         format: "umd",
         name: pkg.name,
-        file: isBrowser ? "build/index.browser.js" : "build/index.js",
+        file: isBrowser ? "dist/index.browser.js" : "dist/index.js",
       },
       {
         format: "es",
-        file: isBrowser ? "build/module.browser.js" : "build/module.js",
+        file: isBrowser ? "dist/module.browser.js" : "dist/module.js",
       },
     ],
   };

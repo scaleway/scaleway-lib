@@ -67,8 +67,8 @@ We target by default Node@14 but you can add a browser output by adding a `brows
 
 ```js
   "browser": {
-    "build/index.js": "build/index.browser.js",
-    "build/module.js": "build/module.browser.js"
+    "dist/index.js": "dist/index.browser.js",
+    "dist/module.js": "dist/module.browser.js"
   }
 ```
 
