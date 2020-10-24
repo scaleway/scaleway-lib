@@ -1,5 +1,5 @@
 node_modules
 .eslintcache
-build
+dist
 coverage
 *.log

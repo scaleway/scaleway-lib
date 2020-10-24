@@ -1,6 +1,6 @@
 # From .gitignore
 node_modules/
-build/
+dist/
 
 # Specific to prettier
 package.json
