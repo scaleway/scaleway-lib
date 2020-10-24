@@ -1,0 +1,20 @@
+{
+  "name": "@scaleway/example_package",
+  "version": "0.1.0",
+  "description": "Sample package",
+  "main": "build/index.js",
+  "module": "build/module.js",
+  "browser": {
+    "build/index.js": "build/index.browser.js",
+    "build/module.js": "build/module.browser.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scaleway/scaleway-lib",
+    "directory": "packages/example_package"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "lodash": "4.17.20"
+  }
+}
