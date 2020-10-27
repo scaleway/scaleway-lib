@@ -1,0 +1,20 @@
+{
+  "name": "@scaleway/random-name",
+  "version": "1.0.0",
+  "description": "A small utility to generate a random name",
+  "main": "dist/index.js",
+  "module": "dist/module.js",
+  "browser": {
+    "dist/index.js": "dist/index.browser.js",
+    "dist/module.js": "dist/module.browser.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scaleway/scaleway-lib",
+    "directory": "packages/random-name"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "docker-names": "^1.1.1"
+  }
+}
