@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@1.1.0...@scaleway/eslint-config-react@1.1.1) (2020-10-27)
+
+
+### Bug Fixes
+
+* **eslint-config-react:** correct dependencies ([fb30d29](https://github.com/scaleway/scaleway-lib/commit/fb30d29d976fff6730acfe4757fd792c3735725e))
+
+
+
+
+
 # 1.1.0 (2020-10-27)
 
 
