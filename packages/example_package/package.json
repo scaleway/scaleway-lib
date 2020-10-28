@@ -5,8 +5,8 @@
   "main": "dist/index.js",
   "module": "dist/module.js",
   "browser": {
-    "dist/index.js": "dist/index.browser.js",
-    "dist/module.js": "dist/module.browser.js"
+    "dist/index.js": "./dist/index.browser.js",
+    "dist/module.js": "./dist/module.browser.js"
   },
   "repository": {
     "type": "git",
