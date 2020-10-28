@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/random-name",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A small utility to generate a random name",
   "main": "dist/index.js",
   "module": "dist/module.js",

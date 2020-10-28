@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.3](https://github.com/scaleway/scaleway-lib/compare/@scaleway/example_package@0.2.2...@scaleway/example_package@0.2.3) (2020-10-28)
+
+
+### Bug Fixes
+
+* correct browser entrypoints ([8a7d0b5](https://github.com/scaleway/scaleway-lib/commit/8a7d0b503ee22eedb07d5021b3a3fd4e059e627a))
+
+
+
+
+
 ## [0.2.2](https://github.com/scaleway/scaleway-lib/compare/@scaleway/example_package@0.2.1...@scaleway/example_package@0.2.2) (2020-10-24)
 
 **Note:** Version bump only for package @scaleway/example_package

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2](https://github.com/scaleway/scaleway-lib/compare/@scaleway/random-name@1.1.1...@scaleway/random-name@1.1.2) (2020-10-28)
+
+
+### Bug Fixes
+
+* correct browser entrypoints ([8a7d0b5](https://github.com/scaleway/scaleway-lib/commit/8a7d0b503ee22eedb07d5021b3a3fd4e059e627a))
+
+
+
+
+
 ## [1.1.1](https://github.com/scaleway/scaleway-lib/compare/@scaleway/random-name@1.1.0...@scaleway/random-name@1.1.1) (2020-10-28)
 
 
