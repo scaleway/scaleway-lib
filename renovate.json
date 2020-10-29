@@ -4,7 +4,8 @@
     ":separateMultipleMajorReleases",
     "group:monorepos",
     "group:recommended",
-    "helpers:disableTypesNodeMajor"
+    "helpers:disableTypesNodeMajor",
+    "packages:linters"
   ],
   "assignees": ["aphilibeaux", "mprost", "vaudebert", "echambon"],
   "assigneesSampleSize": 1,
@@ -44,6 +45,38 @@
     },
     {
       "labels": ["UPDATE-PATCH"],
+      "stabilityDays": 1,
+      "updateTypes": ["patch"]
+    },
+    {
+      "packagePatterns": [
+        "commitlint",
+        "cz-conventional-changelog",
+        "eslint",
+        "husky",
+        "lint-staged"
+      ],
+      "automerge": true,
+      "automergeType": "branch",
+      "semanticCommits": true,
+      "semanticCommitScope": "minor-deps",
+      "semanticCommitType": "chore",
+      "stabilityDays": 5,
+      "updateTypes": ["minor"]
+    },
+    {
+      "packagePatterns": [
+        "commitlint",
+        "cz-conventional-changelog",
+        "eslint",
+        "husky",
+        "lint-staged"
+      ],
+      "automerge": true,
+      "automergeType": "branch",
+      "semanticCommits": true,
+      "semanticCommitScope": "patch-deps",
+      "semanticCommitType": "chore",
       "stabilityDays": 1,
       "updateTypes": ["patch"]
     }
