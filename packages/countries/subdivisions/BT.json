@@ -1,0 +1,142 @@
+[
+  {
+    "code": "BT-11",
+    "country_code": "BT",
+    "name": "Paro",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BT-12",
+    "country_code": "BT",
+    "name": "Chhukha",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BT-13",
+    "country_code": "BT",
+    "name": "Ha",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BT-14",
+    "country_code": "BT",
+    "name": "Samtee",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BT-15",
+    "country_code": "BT",
+    "name": "Thimphu",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BT-21",
+    "country_code": "BT",
+    "name": "Tsirang",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BT-22",
+    "country_code": "BT",
+    "name": "Dagana",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BT-23",
+    "country_code": "BT",
+    "name": "Punakha",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BT-24",
+    "country_code": "BT",
+    "name": "Wangdue Phodrang",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BT-31",
+    "country_code": "BT",
+    "name": "Sarpang",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BT-32",
+    "country_code": "BT",
+    "name": "Trongsa",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BT-33",
+    "country_code": "BT",
+    "name": "Bumthang",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BT-34",
+    "country_code": "BT",
+    "name": "Zhemgang",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BT-41",
+    "country_code": "BT",
+    "name": "Trashigang",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BT-42",
+    "country_code": "BT",
+    "name": "Monggar",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BT-43",
+    "country_code": "BT",
+    "name": "Pemagatshel",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BT-44",
+    "country_code": "BT",
+    "name": "Lhuentse",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BT-45",
+    "country_code": "BT",
+    "name": "Samdrup Jongkha",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BT-GA",
+    "country_code": "BT",
+    "name": "Gasa",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BT-TY",
+    "country_code": "BT",
+    "name": "Trashi Yangtse",
+    "parent_code": null,
+    "type": "District"
+  }
+]

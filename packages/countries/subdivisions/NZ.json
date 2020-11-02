@@ -1,0 +1,135 @@
+[
+  {
+    "code": "NZ-AUK",
+    "country_code": "NZ",
+    "name": "Auckland",
+    "parent_code": "NZ-N",
+    "type": "Regional council"
+  },
+  {
+    "code": "NZ-BOP",
+    "country_code": "NZ",
+    "name": "Bay of Plenty",
+    "parent_code": "NZ-N",
+    "type": "Regional council"
+  },
+  {
+    "code": "NZ-CAN",
+    "country_code": "NZ",
+    "name": "Canterbury",
+    "parent_code": "NZ-S",
+    "type": "Regional council"
+  },
+  {
+    "code": "NZ-CIT",
+    "country_code": "NZ",
+    "name": "Chatham Islands Territory",
+    "parent_code": null,
+    "type": "Special island authority"
+  },
+  {
+    "code": "NZ-GIS",
+    "country_code": "NZ",
+    "name": "Gisborne District",
+    "parent_code": "NZ-N",
+    "type": "Unitary authority"
+  },
+  {
+    "code": "NZ-HKB",
+    "country_code": "NZ",
+    "name": "Hawke's Bay",
+    "parent_code": "NZ-N",
+    "type": "Regional council"
+  },
+  {
+    "code": "NZ-MBH",
+    "country_code": "NZ",
+    "name": "Marlborough District",
+    "parent_code": "NZ-S",
+    "type": "Unitary authority"
+  },
+  {
+    "code": "NZ-MWT",
+    "country_code": "NZ",
+    "name": "Manawatu-Wanganui",
+    "parent_code": "NZ-N",
+    "type": "Regional council"
+  },
+  {
+    "code": "NZ-N",
+    "country_code": "NZ",
+    "name": "North Island",
+    "parent_code": null,
+    "type": "Island"
+  },
+  {
+    "code": "NZ-NSN",
+    "country_code": "NZ",
+    "name": "Nelson City",
+    "parent_code": "NZ-S",
+    "type": "Unitary authority"
+  },
+  {
+    "code": "NZ-NTL",
+    "country_code": "NZ",
+    "name": "Northland",
+    "parent_code": "NZ-N",
+    "type": "Regional council"
+  },
+  {
+    "code": "NZ-OTA",
+    "country_code": "NZ",
+    "name": "Otago",
+    "parent_code": "NZ-S",
+    "type": "Regional council"
+  },
+  {
+    "code": "NZ-S",
+    "country_code": "NZ",
+    "name": "South Island",
+    "parent_code": null,
+    "type": "Island"
+  },
+  {
+    "code": "NZ-STL",
+    "country_code": "NZ",
+    "name": "Southland",
+    "parent_code": "NZ-S",
+    "type": "Regional council"
+  },
+  {
+    "code": "NZ-TAS",
+    "country_code": "NZ",
+    "name": "Tasman District",
+    "parent_code": "NZ-S",
+    "type": "Unitary authority"
+  },
+  {
+    "code": "NZ-TKI",
+    "country_code": "NZ",
+    "name": "Taranaki",
+    "parent_code": "NZ-N",
+    "type": "Regional council"
+  },
+  {
+    "code": "NZ-WGN",
+    "country_code": "NZ",
+    "name": "Wellington",
+    "parent_code": "NZ-N",
+    "type": "Regional council"
+  },
+  {
+    "code": "NZ-WKO",
+    "country_code": "NZ",
+    "name": "Waikato",
+    "parent_code": "NZ-N",
+    "type": "Regional council"
+  },
+  {
+    "code": "NZ-WTC",
+    "country_code": "NZ",
+    "name": "West Coast",
+    "parent_code": "NZ-S",
+    "type": "Regional council"
+  }
+]

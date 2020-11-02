@@ -1,0 +1,23 @@
+[
+  {
+    "code": "SH-AC",
+    "country_code": "SH",
+    "name": "Ascension",
+    "parent_code": null,
+    "type": "Geographical Entity"
+  },
+  {
+    "code": "SH-HL",
+    "country_code": "SH",
+    "name": "Saint Helena",
+    "parent_code": null,
+    "type": "Geographical Entity"
+  },
+  {
+    "code": "SH-TA",
+    "country_code": "SH",
+    "name": "Tristan da Cunha",
+    "parent_code": null,
+    "type": "Geographical Entity"
+  }
+]

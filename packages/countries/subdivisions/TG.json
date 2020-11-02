@@ -1,0 +1,37 @@
+[
+  {
+    "code": "TG-C",
+    "country_code": "TG",
+    "name": "R\u00e9gion du Centre",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TG-K",
+    "country_code": "TG",
+    "name": "R\u00e9gion de la Kara",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TG-M",
+    "country_code": "TG",
+    "name": "R\u00e9gion Maritime",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TG-P",
+    "country_code": "TG",
+    "name": "R\u00e9gion des Plateaux",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TG-S",
+    "country_code": "TG",
+    "name": "R\u00e9gion des Savannes",
+    "parent_code": null,
+    "type": "Region"
+  }
+]

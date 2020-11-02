@@ -1,0 +1,37 @@
+[
+  {
+    "code": "DK-81",
+    "country_code": "DK",
+    "name": "Nordjylland",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "DK-82",
+    "country_code": "DK",
+    "name": "Midtjylland",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "DK-83",
+    "country_code": "DK",
+    "name": "Syddanmark",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "DK-84",
+    "country_code": "DK",
+    "name": "Hovedstaden",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "DK-85",
+    "country_code": "DK",
+    "name": "Sj\u00e6lland",
+    "parent_code": null,
+    "type": "Region"
+  }
+]

@@ -1,0 +1,121 @@
+[
+  {
+    "code": "SD-DC",
+    "country_code": "SD",
+    "name": "Zalingei",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "SD-DE",
+    "country_code": "SD",
+    "name": "Sharq D\u0101rf\u016br",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "SD-DN",
+    "country_code": "SD",
+    "name": "Sham\u0101l D\u0101rf\u016br",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "SD-DS",
+    "country_code": "SD",
+    "name": "Jan\u016bb D\u0101rf\u016br",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "SD-DW",
+    "country_code": "SD",
+    "name": "Gharb D\u0101rf\u016br",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "SD-GD",
+    "country_code": "SD",
+    "name": "Al Qa\u1e11\u0101rif",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "SD-GZ",
+    "country_code": "SD",
+    "name": "Al Jaz\u012brah",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "SD-KA",
+    "country_code": "SD",
+    "name": "Kassal\u0101",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "SD-KH",
+    "country_code": "SD",
+    "name": "Al Khar\u0163\u016bm",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "SD-KN",
+    "country_code": "SD",
+    "name": "Sham\u0101l Kurduf\u0101n",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "SD-KS",
+    "country_code": "SD",
+    "name": "Jan\u016bb Kurduf\u0101n",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "SD-NB",
+    "country_code": "SD",
+    "name": "An N\u012bl al Azraq",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "SD-NO",
+    "country_code": "SD",
+    "name": "Ash Sham\u0101l\u012byah",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "SD-NR",
+    "country_code": "SD",
+    "name": "An N\u012bl",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "SD-NW",
+    "country_code": "SD",
+    "name": "An N\u012bl al Abya\u1e11",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "SD-RS",
+    "country_code": "SD",
+    "name": "Al Ba\u1e29r al A\u1e29mar",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "SD-SI",
+    "country_code": "SD",
+    "name": "Sinn\u0101r",
+    "parent_code": null,
+    "type": "State"
+  }
+]

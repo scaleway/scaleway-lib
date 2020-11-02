@@ -1,0 +1,114 @@
+[
+  {
+    "code": "TT-ARI",
+    "country_code": "TT",
+    "name": "Arima",
+    "parent_code": null,
+    "type": "Borough"
+  },
+  {
+    "code": "TT-CHA",
+    "country_code": "TT",
+    "name": "Chaguanas",
+    "parent_code": null,
+    "type": "Borough"
+  },
+  {
+    "code": "TT-CTT",
+    "country_code": "TT",
+    "name": "Couva-Tabaquite-Talparo",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TT-DMN",
+    "country_code": "TT",
+    "name": "Diego Martin",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TT-ETO",
+    "country_code": "TT",
+    "name": "Eastern Tobago",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TT-PED",
+    "country_code": "TT",
+    "name": "Penal-Debe",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TT-POS",
+    "country_code": "TT",
+    "name": "Port of Spain",
+    "parent_code": null,
+    "type": "City"
+  },
+  {
+    "code": "TT-PRT",
+    "country_code": "TT",
+    "name": "Princes Town",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TT-PTF",
+    "country_code": "TT",
+    "name": "Point Fortin",
+    "parent_code": null,
+    "type": "Borough"
+  },
+  {
+    "code": "TT-RCM",
+    "country_code": "TT",
+    "name": "Rio Claro-Mayaro",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TT-SFO",
+    "country_code": "TT",
+    "name": "San Fernando",
+    "parent_code": null,
+    "type": "City"
+  },
+  {
+    "code": "TT-SGE",
+    "country_code": "TT",
+    "name": "Sangre Grande",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TT-SIP",
+    "country_code": "TT",
+    "name": "Siparia",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TT-SJL",
+    "country_code": "TT",
+    "name": "San Juan-Laventille",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TT-TUP",
+    "country_code": "TT",
+    "name": "Tunapuna-Piarco",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TT-WTO",
+    "country_code": "TT",
+    "name": "Western Tobago",
+    "parent_code": null,
+    "type": "Region"
+  }
+]

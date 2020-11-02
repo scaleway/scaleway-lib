@@ -1,0 +1,51 @@
+[
+  {
+    "code": "CR-A",
+    "country_code": "CR",
+    "name": "Alajuela",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CR-C",
+    "country_code": "CR",
+    "name": "Cartago",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CR-G",
+    "country_code": "CR",
+    "name": "Guanacaste",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CR-H",
+    "country_code": "CR",
+    "name": "Heredia",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CR-L",
+    "country_code": "CR",
+    "name": "Lim\u00f3n",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CR-P",
+    "country_code": "CR",
+    "name": "Puntarenas",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CR-SJ",
+    "country_code": "CR",
+    "name": "San Jos\u00e9",
+    "parent_code": null,
+    "type": "Province"
+  }
+]

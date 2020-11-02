@@ -1,0 +1,170 @@
+[
+  {
+    "code": "KH-1",
+    "country_code": "KH",
+    "name": "Banteay Mean Chey",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "KH-10",
+    "country_code": "KH",
+    "name": "Krachoh",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "KH-11",
+    "country_code": "KH",
+    "name": "Mondol Kiri",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "KH-12",
+    "country_code": "KH",
+    "name": "Phnom Penh",
+    "parent_code": null,
+    "type": "Autonomous municipality"
+  },
+  {
+    "code": "KH-13",
+    "country_code": "KH",
+    "name": "Preah Vihear",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "KH-14",
+    "country_code": "KH",
+    "name": "Prey Veaeng",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "KH-15",
+    "country_code": "KH",
+    "name": "Pousaat",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "KH-16",
+    "country_code": "KH",
+    "name": "Rotanak Kiri",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "KH-17",
+    "country_code": "KH",
+    "name": "Siem Reab",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "KH-18",
+    "country_code": "KH",
+    "name": "Krong Preah Sihanouk",
+    "parent_code": null,
+    "type": "Autonomous municipality"
+  },
+  {
+    "code": "KH-19",
+    "country_code": "KH",
+    "name": "Stueng Traeng",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "KH-2",
+    "country_code": "KH",
+    "name": "Battambang",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "KH-20",
+    "country_code": "KH",
+    "name": "Svaay Rieng",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "KH-21",
+    "country_code": "KH",
+    "name": "Taakaev",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "KH-22",
+    "country_code": "KH",
+    "name": "Otdar Mean Chey",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "KH-23",
+    "country_code": "KH",
+    "name": "Krong Kaeb",
+    "parent_code": null,
+    "type": "Autonomous municipality"
+  },
+  {
+    "code": "KH-24",
+    "country_code": "KH",
+    "name": "Krong Pailin",
+    "parent_code": null,
+    "type": "Autonomous municipality"
+  },
+  {
+    "code": "KH-3",
+    "country_code": "KH",
+    "name": "Kampong Cham",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "KH-4",
+    "country_code": "KH",
+    "name": "Kampong Chhnang",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "KH-5",
+    "country_code": "KH",
+    "name": "Kampong Speu",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "KH-6",
+    "country_code": "KH",
+    "name": "Kampong Thom",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "KH-7",
+    "country_code": "KH",
+    "name": "Kampot",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "KH-8",
+    "country_code": "KH",
+    "name": "Kandal",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "KH-9",
+    "country_code": "KH",
+    "name": "Kach Kong",
+    "parent_code": null,
+    "type": "Province"
+  }
+]

@@ -1,0 +1,72 @@
+[
+  {
+    "code": "SB-CE",
+    "country_code": "SB",
+    "name": "Central",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "SB-CH",
+    "country_code": "SB",
+    "name": "Choiseul",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "SB-CT",
+    "country_code": "SB",
+    "name": "Capital Territory (Honiara)",
+    "parent_code": null,
+    "type": "Capital territory"
+  },
+  {
+    "code": "SB-GU",
+    "country_code": "SB",
+    "name": "Guadalcanal",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "SB-IS",
+    "country_code": "SB",
+    "name": "Isabel",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "SB-MK",
+    "country_code": "SB",
+    "name": "Makira",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "SB-ML",
+    "country_code": "SB",
+    "name": "Malaita",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "SB-RB",
+    "country_code": "SB",
+    "name": "Rennell and Bellona",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "SB-TE",
+    "country_code": "SB",
+    "name": "Temotu",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "SB-WE",
+    "country_code": "SB",
+    "name": "Western",
+    "parent_code": null,
+    "type": "Province"
+  }
+]

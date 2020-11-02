@@ -1,0 +1,184 @@
+[
+  {
+    "code": "CH-AG",
+    "country_code": "CH",
+    "name": "Aargau",
+    "parent_code": null,
+    "type": "Canton"
+  },
+  {
+    "code": "CH-AI",
+    "country_code": "CH",
+    "name": "Appenzell Innerrhoden",
+    "parent_code": null,
+    "type": "Canton"
+  },
+  {
+    "code": "CH-AR",
+    "country_code": "CH",
+    "name": "Appenzell Ausserrhoden",
+    "parent_code": null,
+    "type": "Canton"
+  },
+  {
+    "code": "CH-BE",
+    "country_code": "CH",
+    "name": "Bern",
+    "parent_code": null,
+    "type": "Canton"
+  },
+  {
+    "code": "CH-BL",
+    "country_code": "CH",
+    "name": "Basel-Landschaft",
+    "parent_code": null,
+    "type": "Canton"
+  },
+  {
+    "code": "CH-BS",
+    "country_code": "CH",
+    "name": "Basel-Stadt",
+    "parent_code": null,
+    "type": "Canton"
+  },
+  {
+    "code": "CH-FR",
+    "country_code": "CH",
+    "name": "Fribourg",
+    "parent_code": null,
+    "type": "Canton"
+  },
+  {
+    "code": "CH-GE",
+    "country_code": "CH",
+    "name": "Gen\u00e8ve",
+    "parent_code": null,
+    "type": "Canton"
+  },
+  {
+    "code": "CH-GL",
+    "country_code": "CH",
+    "name": "Glarus",
+    "parent_code": null,
+    "type": "Canton"
+  },
+  {
+    "code": "CH-GR",
+    "country_code": "CH",
+    "name": "Graub\u00fcnden",
+    "parent_code": null,
+    "type": "Canton"
+  },
+  {
+    "code": "CH-JU",
+    "country_code": "CH",
+    "name": "Jura",
+    "parent_code": null,
+    "type": "Canton"
+  },
+  {
+    "code": "CH-LU",
+    "country_code": "CH",
+    "name": "Luzern",
+    "parent_code": null,
+    "type": "Canton"
+  },
+  {
+    "code": "CH-NE",
+    "country_code": "CH",
+    "name": "Neuch\u00e2tel",
+    "parent_code": null,
+    "type": "Canton"
+  },
+  {
+    "code": "CH-NW",
+    "country_code": "CH",
+    "name": "Nidwalden",
+    "parent_code": null,
+    "type": "Canton"
+  },
+  {
+    "code": "CH-OW",
+    "country_code": "CH",
+    "name": "Obwalden",
+    "parent_code": null,
+    "type": "Canton"
+  },
+  {
+    "code": "CH-SG",
+    "country_code": "CH",
+    "name": "Sankt Gallen",
+    "parent_code": null,
+    "type": "Canton"
+  },
+  {
+    "code": "CH-SH",
+    "country_code": "CH",
+    "name": "Schaffhausen",
+    "parent_code": null,
+    "type": "Canton"
+  },
+  {
+    "code": "CH-SO",
+    "country_code": "CH",
+    "name": "Solothurn",
+    "parent_code": null,
+    "type": "Canton"
+  },
+  {
+    "code": "CH-SZ",
+    "country_code": "CH",
+    "name": "Schwyz",
+    "parent_code": null,
+    "type": "Canton"
+  },
+  {
+    "code": "CH-TG",
+    "country_code": "CH",
+    "name": "Thurgau",
+    "parent_code": null,
+    "type": "Canton"
+  },
+  {
+    "code": "CH-TI",
+    "country_code": "CH",
+    "name": "Ticino",
+    "parent_code": null,
+    "type": "Canton"
+  },
+  {
+    "code": "CH-UR",
+    "country_code": "CH",
+    "name": "Uri",
+    "parent_code": null,
+    "type": "Canton"
+  },
+  {
+    "code": "CH-VD",
+    "country_code": "CH",
+    "name": "Vaud",
+    "parent_code": null,
+    "type": "Canton"
+  },
+  {
+    "code": "CH-VS",
+    "country_code": "CH",
+    "name": "Valais",
+    "parent_code": null,
+    "type": "Canton"
+  },
+  {
+    "code": "CH-ZG",
+    "country_code": "CH",
+    "name": "Zug",
+    "parent_code": null,
+    "type": "Canton"
+  },
+  {
+    "code": "CH-ZH",
+    "country_code": "CH",
+    "name": "Z\u00fcrich",
+    "parent_code": null,
+    "type": "Canton"
+  }
+]

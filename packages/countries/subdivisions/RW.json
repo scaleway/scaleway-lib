@@ -1,0 +1,37 @@
+[
+  {
+    "code": "RW-01",
+    "country_code": "RW",
+    "name": "Ville de Kigali",
+    "parent_code": null,
+    "type": "Town council"
+  },
+  {
+    "code": "RW-02",
+    "country_code": "RW",
+    "name": "Est",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "RW-03",
+    "country_code": "RW",
+    "name": "Nord",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "RW-04",
+    "country_code": "RW",
+    "name": "Ouest",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "RW-05",
+    "country_code": "RW",
+    "name": "Sud",
+    "parent_code": null,
+    "type": "Province"
+  }
+]

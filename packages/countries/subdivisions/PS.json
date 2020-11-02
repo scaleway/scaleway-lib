@@ -1,0 +1,114 @@
+[
+  {
+    "code": "PS-BTH",
+    "country_code": "PS",
+    "name": "Bethlehem",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "PS-DEB",
+    "country_code": "PS",
+    "name": "Deir El Balah",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "PS-GZA",
+    "country_code": "PS",
+    "name": "Gaza",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "PS-HBN",
+    "country_code": "PS",
+    "name": "Hebron",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "PS-JEM",
+    "country_code": "PS",
+    "name": "Jerusalem",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "PS-JEN",
+    "country_code": "PS",
+    "name": "Jenin",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "PS-JRH",
+    "country_code": "PS",
+    "name": "Jericho - Al Aghwar",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "PS-KYS",
+    "country_code": "PS",
+    "name": "Khan Yunis",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "PS-NBS",
+    "country_code": "PS",
+    "name": "Nablus",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "PS-NGZ",
+    "country_code": "PS",
+    "name": "North Gaza",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "PS-QQA",
+    "country_code": "PS",
+    "name": "Qalqilya",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "PS-RBH",
+    "country_code": "PS",
+    "name": "Ramallah",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "PS-RFH",
+    "country_code": "PS",
+    "name": "Rafah",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "PS-SLT",
+    "country_code": "PS",
+    "name": "Salfit",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "PS-TBS",
+    "country_code": "PS",
+    "name": "Tubas",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "PS-TKM",
+    "country_code": "PS",
+    "name": "Tulkarm",
+    "parent_code": null,
+    "type": "Governorate"
+  }
+]

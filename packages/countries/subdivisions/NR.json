@@ -1,0 +1,100 @@
+[
+  {
+    "code": "NR-01",
+    "country_code": "NR",
+    "name": "Aiwo",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "NR-02",
+    "country_code": "NR",
+    "name": "Anabar",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "NR-03",
+    "country_code": "NR",
+    "name": "Anetan",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "NR-04",
+    "country_code": "NR",
+    "name": "Anibare",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "NR-05",
+    "country_code": "NR",
+    "name": "Baiti",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "NR-06",
+    "country_code": "NR",
+    "name": "Boe",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "NR-07",
+    "country_code": "NR",
+    "name": "Buada",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "NR-08",
+    "country_code": "NR",
+    "name": "Denigomodu",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "NR-09",
+    "country_code": "NR",
+    "name": "Ewa",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "NR-10",
+    "country_code": "NR",
+    "name": "Ijuw",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "NR-11",
+    "country_code": "NR",
+    "name": "Meneng",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "NR-12",
+    "country_code": "NR",
+    "name": "Nibok",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "NR-13",
+    "country_code": "NR",
+    "name": "Uaboe",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "NR-14",
+    "country_code": "NR",
+    "name": "Yaren",
+    "parent_code": null,
+    "type": "District"
+  }
+]

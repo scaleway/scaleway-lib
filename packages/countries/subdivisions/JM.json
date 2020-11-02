@@ -1,0 +1,100 @@
+[
+  {
+    "code": "JM-01",
+    "country_code": "JM",
+    "name": "Kingston",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "JM-02",
+    "country_code": "JM",
+    "name": "Saint Andrew",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "JM-03",
+    "country_code": "JM",
+    "name": "Saint Thomas",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "JM-04",
+    "country_code": "JM",
+    "name": "Portland",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "JM-05",
+    "country_code": "JM",
+    "name": "Saint Mary",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "JM-06",
+    "country_code": "JM",
+    "name": "Saint Ann",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "JM-07",
+    "country_code": "JM",
+    "name": "Trelawny",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "JM-08",
+    "country_code": "JM",
+    "name": "Saint James",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "JM-09",
+    "country_code": "JM",
+    "name": "Hanover",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "JM-10",
+    "country_code": "JM",
+    "name": "Westmoreland",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "JM-11",
+    "country_code": "JM",
+    "name": "Saint Elizabeth",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "JM-12",
+    "country_code": "JM",
+    "name": "Manchester",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "JM-13",
+    "country_code": "JM",
+    "name": "Clarendon",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "JM-14",
+    "country_code": "JM",
+    "name": "Saint Catherine",
+    "parent_code": null,
+    "type": "Parish"
+  }
+]

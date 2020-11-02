@@ -1,0 +1,331 @@
+[
+  {
+    "code": "JP-01",
+    "country_code": "JP",
+    "name": "Hokkaido",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-02",
+    "country_code": "JP",
+    "name": "Aomori",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-03",
+    "country_code": "JP",
+    "name": "Iwate",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-04",
+    "country_code": "JP",
+    "name": "Miyagi",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-05",
+    "country_code": "JP",
+    "name": "Akita",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-06",
+    "country_code": "JP",
+    "name": "Yamagata",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-07",
+    "country_code": "JP",
+    "name": "Fukushima",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-08",
+    "country_code": "JP",
+    "name": "Ibaraki",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-09",
+    "country_code": "JP",
+    "name": "Tochigi",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-10",
+    "country_code": "JP",
+    "name": "Gunma",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-11",
+    "country_code": "JP",
+    "name": "Saitama",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-12",
+    "country_code": "JP",
+    "name": "Chiba",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-13",
+    "country_code": "JP",
+    "name": "Tokyo",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-14",
+    "country_code": "JP",
+    "name": "Kanagawa",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-15",
+    "country_code": "JP",
+    "name": "Niigata",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-16",
+    "country_code": "JP",
+    "name": "Toyama",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-17",
+    "country_code": "JP",
+    "name": "Ishikawa",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-18",
+    "country_code": "JP",
+    "name": "Fukui",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-19",
+    "country_code": "JP",
+    "name": "Yamanashi",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-20",
+    "country_code": "JP",
+    "name": "Nagano",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-21",
+    "country_code": "JP",
+    "name": "Gifu",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-22",
+    "country_code": "JP",
+    "name": "Shizuoka",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-23",
+    "country_code": "JP",
+    "name": "Aichi",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-24",
+    "country_code": "JP",
+    "name": "Mie",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-25",
+    "country_code": "JP",
+    "name": "Shiga",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-26",
+    "country_code": "JP",
+    "name": "Kyoto",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-27",
+    "country_code": "JP",
+    "name": "Osaka",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-28",
+    "country_code": "JP",
+    "name": "Hyogo",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-29",
+    "country_code": "JP",
+    "name": "Nara",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-30",
+    "country_code": "JP",
+    "name": "Wakayama",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-31",
+    "country_code": "JP",
+    "name": "Tottori",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-32",
+    "country_code": "JP",
+    "name": "Shimane",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-33",
+    "country_code": "JP",
+    "name": "Okayama",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-34",
+    "country_code": "JP",
+    "name": "Hiroshima",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-35",
+    "country_code": "JP",
+    "name": "Yamaguchi",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-36",
+    "country_code": "JP",
+    "name": "Tokushima",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-37",
+    "country_code": "JP",
+    "name": "Kagawa",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-38",
+    "country_code": "JP",
+    "name": "Ehime",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-39",
+    "country_code": "JP",
+    "name": "Kochi",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-40",
+    "country_code": "JP",
+    "name": "Fukuoka",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-41",
+    "country_code": "JP",
+    "name": "Saga",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-42",
+    "country_code": "JP",
+    "name": "Nagasaki",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-43",
+    "country_code": "JP",
+    "name": "Kumamoto",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-44",
+    "country_code": "JP",
+    "name": "Oita",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-45",
+    "country_code": "JP",
+    "name": "Miyazaki",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-46",
+    "country_code": "JP",
+    "name": "Kagoshima",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "JP-47",
+    "country_code": "JP",
+    "name": "Okinawa",
+    "parent_code": null,
+    "type": "Prefecture"
+  }
+]

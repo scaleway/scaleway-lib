@@ -1,0 +1,226 @@
+[
+  {
+    "code": "MX-AGU",
+    "country_code": "MX",
+    "name": "Aguascalientes",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MX-BCN",
+    "country_code": "MX",
+    "name": "Baja California",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MX-BCS",
+    "country_code": "MX",
+    "name": "Baja California Sur",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MX-CAM",
+    "country_code": "MX",
+    "name": "Campeche",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MX-CHH",
+    "country_code": "MX",
+    "name": "Chihuahua",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MX-CHP",
+    "country_code": "MX",
+    "name": "Chiapas",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MX-CMX",
+    "country_code": "MX",
+    "name": "Ciudad de M\u00e9xico",
+    "parent_code": null,
+    "type": "Federal district"
+  },
+  {
+    "code": "MX-COA",
+    "country_code": "MX",
+    "name": "Coahuila de Zaragoza",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MX-COL",
+    "country_code": "MX",
+    "name": "Colima",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MX-DUR",
+    "country_code": "MX",
+    "name": "Durango",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MX-GRO",
+    "country_code": "MX",
+    "name": "Guerrero",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MX-GUA",
+    "country_code": "MX",
+    "name": "Guanajuato",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MX-HID",
+    "country_code": "MX",
+    "name": "Hidalgo",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MX-JAL",
+    "country_code": "MX",
+    "name": "Jalisco",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MX-MEX",
+    "country_code": "MX",
+    "name": "M\u00e9xico",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MX-MIC",
+    "country_code": "MX",
+    "name": "Michoac\u00e1n de Ocampo",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MX-MOR",
+    "country_code": "MX",
+    "name": "Morelos",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MX-NAY",
+    "country_code": "MX",
+    "name": "Nayarit",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MX-NLE",
+    "country_code": "MX",
+    "name": "Nuevo Le\u00f3n",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MX-OAX",
+    "country_code": "MX",
+    "name": "Oaxaca",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MX-PUE",
+    "country_code": "MX",
+    "name": "Puebla",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MX-QUE",
+    "country_code": "MX",
+    "name": "Quer\u00e9taro",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MX-ROO",
+    "country_code": "MX",
+    "name": "Quintana Roo",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MX-SIN",
+    "country_code": "MX",
+    "name": "Sinaloa",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MX-SLP",
+    "country_code": "MX",
+    "name": "San Luis Potos\u00ed",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MX-SON",
+    "country_code": "MX",
+    "name": "Sonora",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MX-TAB",
+    "country_code": "MX",
+    "name": "Tabasco",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MX-TAM",
+    "country_code": "MX",
+    "name": "Tamaulipas",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MX-TLA",
+    "country_code": "MX",
+    "name": "Tlaxcala",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MX-VER",
+    "country_code": "MX",
+    "name": "Veracruz de Ignacio de la Llave",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MX-YUC",
+    "country_code": "MX",
+    "name": "Yucat\u00e1n",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MX-ZAC",
+    "country_code": "MX",
+    "name": "Zacatecas",
+    "parent_code": null,
+    "type": "State"
+  }
+]

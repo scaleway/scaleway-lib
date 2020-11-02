@@ -1,0 +1,79 @@
+[
+  {
+    "code": "CG-11",
+    "country_code": "CG",
+    "name": "Bouenza",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CG-12",
+    "country_code": "CG",
+    "name": "Pool",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CG-13",
+    "country_code": "CG",
+    "name": "Sangha",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CG-14",
+    "country_code": "CG",
+    "name": "Plateaux",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CG-15",
+    "country_code": "CG",
+    "name": "Cuvette-Ouest",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CG-2",
+    "country_code": "CG",
+    "name": "L\u00e9koumou",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CG-5",
+    "country_code": "CG",
+    "name": "Kouilou",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CG-7",
+    "country_code": "CG",
+    "name": "Likouala",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CG-8",
+    "country_code": "CG",
+    "name": "Cuvette",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CG-9",
+    "country_code": "CG",
+    "name": "Niari",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CG-BZV",
+    "country_code": "CG",
+    "name": "Brazzaville",
+    "parent_code": null,
+    "type": "Capital District"
+  }
+]

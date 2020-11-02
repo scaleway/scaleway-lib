@@ -1,0 +1,331 @@
+[
+  {
+    "code": "KE-01",
+    "country_code": "KE",
+    "name": "Baringo",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-02",
+    "country_code": "KE",
+    "name": "Bomet",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-03",
+    "country_code": "KE",
+    "name": "Bungoma",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-04",
+    "country_code": "KE",
+    "name": "Busia",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-05",
+    "country_code": "KE",
+    "name": "Elgeyo/Marakwet",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-06",
+    "country_code": "KE",
+    "name": "Embu",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-07",
+    "country_code": "KE",
+    "name": "Garissa",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-08",
+    "country_code": "KE",
+    "name": "Homa Bay",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-09",
+    "country_code": "KE",
+    "name": "Isiolo",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-10",
+    "country_code": "KE",
+    "name": "Kajiado",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-11",
+    "country_code": "KE",
+    "name": "Kakamega",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-12",
+    "country_code": "KE",
+    "name": "Kericho",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-13",
+    "country_code": "KE",
+    "name": "Kiambu",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-14",
+    "country_code": "KE",
+    "name": "Kilifi",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-15",
+    "country_code": "KE",
+    "name": "Kirinyaga",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-16",
+    "country_code": "KE",
+    "name": "Kisii",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-17",
+    "country_code": "KE",
+    "name": "Kisumu",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-18",
+    "country_code": "KE",
+    "name": "Kitui",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-19",
+    "country_code": "KE",
+    "name": "Kwale",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-20",
+    "country_code": "KE",
+    "name": "Laikipia",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-21",
+    "country_code": "KE",
+    "name": "Lamu",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-22",
+    "country_code": "KE",
+    "name": "Machakos",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-23",
+    "country_code": "KE",
+    "name": "Makueni",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-24",
+    "country_code": "KE",
+    "name": "Mandera",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-25",
+    "country_code": "KE",
+    "name": "Marsabit",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-26",
+    "country_code": "KE",
+    "name": "Meru",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-27",
+    "country_code": "KE",
+    "name": "Migori",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-28",
+    "country_code": "KE",
+    "name": "Mombasa",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-29",
+    "country_code": "KE",
+    "name": "Murang'a",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-30",
+    "country_code": "KE",
+    "name": "Nairobi City",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-31",
+    "country_code": "KE",
+    "name": "Nakuru",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-32",
+    "country_code": "KE",
+    "name": "Nandi",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-33",
+    "country_code": "KE",
+    "name": "Narok",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-34",
+    "country_code": "KE",
+    "name": "Nyamira",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-35",
+    "country_code": "KE",
+    "name": "Nyandarua",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-36",
+    "country_code": "KE",
+    "name": "Nyeri",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-37",
+    "country_code": "KE",
+    "name": "Samburu",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-38",
+    "country_code": "KE",
+    "name": "Siaya",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-39",
+    "country_code": "KE",
+    "name": "Taita/Taveta",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-40",
+    "country_code": "KE",
+    "name": "Tana River",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-41",
+    "country_code": "KE",
+    "name": "Tharaka-Nithi",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-42",
+    "country_code": "KE",
+    "name": "Trans Nzoia",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-43",
+    "country_code": "KE",
+    "name": "Turkana",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-44",
+    "country_code": "KE",
+    "name": "Uasin Gishu",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-45",
+    "country_code": "KE",
+    "name": "Vihiga",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-46",
+    "country_code": "KE",
+    "name": "Wajir",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "KE-47",
+    "country_code": "KE",
+    "name": "West Pokot",
+    "parent_code": null,
+    "type": "County"
+  }
+]

@@ -1,0 +1,149 @@
+[
+  {
+    "code": "HR-01",
+    "country_code": "HR",
+    "name": "Zagreba\u010dka \u017eupanija",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "HR-02",
+    "country_code": "HR",
+    "name": "Krapinsko-zagorska \u017eupanija",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "HR-03",
+    "country_code": "HR",
+    "name": "Sisa\u010dko-moslava\u010dka \u017eupanija",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "HR-04",
+    "country_code": "HR",
+    "name": "Karlova\u010dka \u017eupanija",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "HR-05",
+    "country_code": "HR",
+    "name": "Vara\u017edinska \u017eupanija",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "HR-06",
+    "country_code": "HR",
+    "name": "Koprivni\u010dko-kri\u017eeva\u010dka \u017eupanija",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "HR-07",
+    "country_code": "HR",
+    "name": "Bjelovarsko-bilogorska \u017eupanija",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "HR-08",
+    "country_code": "HR",
+    "name": "Primorsko-goranska \u017eupanija",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "HR-09",
+    "country_code": "HR",
+    "name": "Li\u010dko-senjska \u017eupanija",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "HR-10",
+    "country_code": "HR",
+    "name": "Viroviti\u010dko-podravska \u017eupanija",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "HR-11",
+    "country_code": "HR",
+    "name": "Po\u017ee\u0161ko-slavonska \u017eupanija",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "HR-12",
+    "country_code": "HR",
+    "name": "Brodsko-posavska \u017eupanija",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "HR-13",
+    "country_code": "HR",
+    "name": "Zadarska \u017eupanija",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "HR-14",
+    "country_code": "HR",
+    "name": "Osje\u010dko-baranjska \u017eupanija",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "HR-15",
+    "country_code": "HR",
+    "name": "\u0160ibensko-kninska \u017eupanija",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "HR-16",
+    "country_code": "HR",
+    "name": "Vukovarsko-srijemska \u017eupanija",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "HR-17",
+    "country_code": "HR",
+    "name": "Splitsko-dalmatinska \u017eupanija",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "HR-18",
+    "country_code": "HR",
+    "name": "Istarska \u017eupanija",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "HR-19",
+    "country_code": "HR",
+    "name": "Dubrova\u010dko-neretvanska \u017eupanija",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "HR-20",
+    "country_code": "HR",
+    "name": "Me\u0111imurska \u017eupanija",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "HR-21",
+    "country_code": "HR",
+    "name": "Grad Zagreb",
+    "parent_code": null,
+    "type": "City"
+  }
+]

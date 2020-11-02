@@ -1,0 +1,114 @@
+[
+  {
+    "code": "KR-11",
+    "country_code": "KR",
+    "name": "Seoul Teugbyeolsi",
+    "parent_code": null,
+    "type": "Capital Metropolitan City"
+  },
+  {
+    "code": "KR-26",
+    "country_code": "KR",
+    "name": "Busan Gwang'yeogsi",
+    "parent_code": null,
+    "type": "Metropolitan cities"
+  },
+  {
+    "code": "KR-27",
+    "country_code": "KR",
+    "name": "Daegu Gwang'yeogsi",
+    "parent_code": null,
+    "type": "Metropolitan cities"
+  },
+  {
+    "code": "KR-28",
+    "country_code": "KR",
+    "name": "Incheon Gwang'yeogsi",
+    "parent_code": null,
+    "type": "Metropolitan cities"
+  },
+  {
+    "code": "KR-29",
+    "country_code": "KR",
+    "name": "Gwangju Gwang'yeogsi",
+    "parent_code": null,
+    "type": "Metropolitan cities"
+  },
+  {
+    "code": "KR-30",
+    "country_code": "KR",
+    "name": "Daejeon Gwang'yeogsi",
+    "parent_code": null,
+    "type": "Metropolitan cities"
+  },
+  {
+    "code": "KR-31",
+    "country_code": "KR",
+    "name": "Ulsan Gwang'yeogsi",
+    "parent_code": null,
+    "type": "Metropolitan cities"
+  },
+  {
+    "code": "KR-41",
+    "country_code": "KR",
+    "name": "Gyeonggido",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "KR-42",
+    "country_code": "KR",
+    "name": "Gang'weondo",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "KR-43",
+    "country_code": "KR",
+    "name": "Chungcheongbukdo",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "KR-44",
+    "country_code": "KR",
+    "name": "Chungcheongnamdo",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "KR-45",
+    "country_code": "KR",
+    "name": "Jeonrabukdo",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "KR-46",
+    "country_code": "KR",
+    "name": "Jeonranamdo",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "KR-47",
+    "country_code": "KR",
+    "name": "Gyeongsangbukdo",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "KR-48",
+    "country_code": "KR",
+    "name": "Gyeongsangnamdo",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "KR-49",
+    "country_code": "KR",
+    "name": "Jejudo",
+    "parent_code": null,
+    "type": "Province"
+  }
+]

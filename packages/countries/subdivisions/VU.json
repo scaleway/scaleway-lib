@@ -1,0 +1,44 @@
+[
+  {
+    "code": "VU-MAP",
+    "country_code": "VU",
+    "name": "Malampa",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VU-PAM",
+    "country_code": "VU",
+    "name": "P\u00e9nama",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VU-SAM",
+    "country_code": "VU",
+    "name": "Sanma",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VU-SEE",
+    "country_code": "VU",
+    "name": "Sh\u00e9fa",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VU-TAE",
+    "country_code": "VU",
+    "name": "Taf\u00e9a",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VU-TOB",
+    "country_code": "VU",
+    "name": "Torba",
+    "parent_code": null,
+    "type": "Province"
+  }
+]

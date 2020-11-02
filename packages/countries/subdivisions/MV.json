@@ -1,0 +1,198 @@
+[
+  {
+    "code": "MV-00",
+    "country_code": "MV",
+    "name": "Alifu Dhaalu",
+    "parent_code": "MV-NC",
+    "type": "Administrative atoll"
+  },
+  {
+    "code": "MV-01",
+    "country_code": "MV",
+    "name": "Seenu",
+    "parent_code": "MV-SU",
+    "type": "Administrative atoll"
+  },
+  {
+    "code": "MV-02",
+    "country_code": "MV",
+    "name": "Alifu Alifu",
+    "parent_code": "MV-NC",
+    "type": "Administrative atoll"
+  },
+  {
+    "code": "MV-03",
+    "country_code": "MV",
+    "name": "Lhaviyani",
+    "parent_code": "MV-NO",
+    "type": "Administrative atoll"
+  },
+  {
+    "code": "MV-04",
+    "country_code": "MV",
+    "name": "Vaavu",
+    "parent_code": "MV-NC",
+    "type": "Administrative atoll"
+  },
+  {
+    "code": "MV-05",
+    "country_code": "MV",
+    "name": "Laamu",
+    "parent_code": "MV-US",
+    "type": "Administrative atoll"
+  },
+  {
+    "code": "MV-07",
+    "country_code": "MV",
+    "name": "Haa Alifu",
+    "parent_code": "MV-UN",
+    "type": "Administrative atoll"
+  },
+  {
+    "code": "MV-08",
+    "country_code": "MV",
+    "name": "Thaa",
+    "parent_code": "MV-US",
+    "type": "Administrative atoll"
+  },
+  {
+    "code": "MV-12",
+    "country_code": "MV",
+    "name": "Meemu",
+    "parent_code": "MV-CE",
+    "type": "Administrative atoll"
+  },
+  {
+    "code": "MV-13",
+    "country_code": "MV",
+    "name": "Raa",
+    "parent_code": "MV-NO",
+    "type": "Administrative atoll"
+  },
+  {
+    "code": "MV-14",
+    "country_code": "MV",
+    "name": "Faafu",
+    "parent_code": "MV-CE",
+    "type": "Administrative atoll"
+  },
+  {
+    "code": "MV-17",
+    "country_code": "MV",
+    "name": "Dhaalu",
+    "parent_code": "MV-CE",
+    "type": "Administrative atoll"
+  },
+  {
+    "code": "MV-20",
+    "country_code": "MV",
+    "name": "Baa",
+    "parent_code": "MV-NO",
+    "type": "Administrative atoll"
+  },
+  {
+    "code": "MV-23",
+    "country_code": "MV",
+    "name": "Haa Dhaalu",
+    "parent_code": "MV-UN",
+    "type": "Administrative atoll"
+  },
+  {
+    "code": "MV-24",
+    "country_code": "MV",
+    "name": "Shaviyani",
+    "parent_code": "MV-UN",
+    "type": "Administrative atoll"
+  },
+  {
+    "code": "MV-25",
+    "country_code": "MV",
+    "name": "Noonu",
+    "parent_code": "MV-NO",
+    "type": "Administrative atoll"
+  },
+  {
+    "code": "MV-26",
+    "country_code": "MV",
+    "name": "Kaafu",
+    "parent_code": "MV-NC",
+    "type": "Administrative atoll"
+  },
+  {
+    "code": "MV-27",
+    "country_code": "MV",
+    "name": "Gaafu Alifu",
+    "parent_code": "MV-SC",
+    "type": "Administrative atoll"
+  },
+  {
+    "code": "MV-28",
+    "country_code": "MV",
+    "name": "Gaafu Dhaalu",
+    "parent_code": "MV-SC",
+    "type": "Administrative atoll"
+  },
+  {
+    "code": "MV-29",
+    "country_code": "MV",
+    "name": "Gnaviyani",
+    "parent_code": "MV-SU",
+    "type": "Administrative atoll"
+  },
+  {
+    "code": "MV-CE",
+    "country_code": "MV",
+    "name": "Central",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "MV-MLE",
+    "country_code": "MV",
+    "name": "Male",
+    "parent_code": null,
+    "type": "City"
+  },
+  {
+    "code": "MV-NC",
+    "country_code": "MV",
+    "name": "North Central",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "MV-NO",
+    "country_code": "MV",
+    "name": "North",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "MV-SC",
+    "country_code": "MV",
+    "name": "South Central",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "MV-SU",
+    "country_code": "MV",
+    "name": "South",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "MV-UN",
+    "country_code": "MV",
+    "name": "Upper North",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "MV-US",
+    "country_code": "MV",
+    "name": "Upper South",
+    "parent_code": null,
+    "type": "Province"
+  }
+]

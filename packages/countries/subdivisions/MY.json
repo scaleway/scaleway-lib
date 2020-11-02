@@ -1,0 +1,114 @@
+[
+  {
+    "code": "MY-01",
+    "country_code": "MY",
+    "name": "Johor",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MY-02",
+    "country_code": "MY",
+    "name": "Kedah",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MY-03",
+    "country_code": "MY",
+    "name": "Kelantan",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MY-04",
+    "country_code": "MY",
+    "name": "Melaka",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MY-05",
+    "country_code": "MY",
+    "name": "Negeri Sembilan",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MY-06",
+    "country_code": "MY",
+    "name": "Pahang",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MY-07",
+    "country_code": "MY",
+    "name": "Pulau Pinang",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MY-08",
+    "country_code": "MY",
+    "name": "Perak",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MY-09",
+    "country_code": "MY",
+    "name": "Perlis",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MY-10",
+    "country_code": "MY",
+    "name": "Selangor",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MY-11",
+    "country_code": "MY",
+    "name": "Terengganu",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MY-12",
+    "country_code": "MY",
+    "name": "Sabah",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MY-13",
+    "country_code": "MY",
+    "name": "Sarawak",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MY-14",
+    "country_code": "MY",
+    "name": "Wilayah Persekutuan Kuala Lumpur",
+    "parent_code": null,
+    "type": "Federal Territories"
+  },
+  {
+    "code": "MY-15",
+    "country_code": "MY",
+    "name": "Wilayah Persekutuan Labuan",
+    "parent_code": null,
+    "type": "Federal Territories"
+  },
+  {
+    "code": "MY-16",
+    "country_code": "MY",
+    "name": "Wilayah Persekutuan Putrajaya",
+    "parent_code": null,
+    "type": "Federal Territories"
+  }
+]

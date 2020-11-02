@@ -1,0 +1,121 @@
+[
+  {
+    "code": "MU-AG",
+    "country_code": "MU",
+    "name": "Agalega Islands",
+    "parent_code": null,
+    "type": "Dependency"
+  },
+  {
+    "code": "MU-BL",
+    "country_code": "MU",
+    "name": "Black River",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MU-BR",
+    "country_code": "MU",
+    "name": "Beau Bassin-Rose Hill",
+    "parent_code": null,
+    "type": "City"
+  },
+  {
+    "code": "MU-CC",
+    "country_code": "MU",
+    "name": "Cargados Carajos Shoals",
+    "parent_code": null,
+    "type": "Dependency"
+  },
+  {
+    "code": "MU-CU",
+    "country_code": "MU",
+    "name": "Curepipe",
+    "parent_code": null,
+    "type": "City"
+  },
+  {
+    "code": "MU-FL",
+    "country_code": "MU",
+    "name": "Flacq",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MU-GP",
+    "country_code": "MU",
+    "name": "Grand Port",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MU-MO",
+    "country_code": "MU",
+    "name": "Moka",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MU-PA",
+    "country_code": "MU",
+    "name": "Pamplemousses",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MU-PL",
+    "country_code": "MU",
+    "name": "Port Louis",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MU-PU",
+    "country_code": "MU",
+    "name": "Port Louis",
+    "parent_code": null,
+    "type": "City"
+  },
+  {
+    "code": "MU-PW",
+    "country_code": "MU",
+    "name": "Plaines Wilhems",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MU-QB",
+    "country_code": "MU",
+    "name": "Quatre Bornes",
+    "parent_code": null,
+    "type": "City"
+  },
+  {
+    "code": "MU-RO",
+    "country_code": "MU",
+    "name": "Rodrigues Island",
+    "parent_code": null,
+    "type": "Dependency"
+  },
+  {
+    "code": "MU-RP",
+    "country_code": "MU",
+    "name": "Rivi\u00e8re du Rempart",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MU-SA",
+    "country_code": "MU",
+    "name": "Savanne",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MU-VP",
+    "country_code": "MU",
+    "name": "Vacoas-Phoenix",
+    "parent_code": null,
+    "type": "City"
+  }
+]

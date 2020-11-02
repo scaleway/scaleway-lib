@@ -1,0 +1,177 @@
+[
+  {
+    "code": "SC-01",
+    "country_code": "SC",
+    "name": "Anse aux Pins",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "SC-02",
+    "country_code": "SC",
+    "name": "Anse Boileau",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "SC-03",
+    "country_code": "SC",
+    "name": "Anse Etoile",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "SC-04",
+    "country_code": "SC",
+    "name": "Anse Louis",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "SC-05",
+    "country_code": "SC",
+    "name": "Anse Royale",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "SC-06",
+    "country_code": "SC",
+    "name": "Baie Lazare",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "SC-07",
+    "country_code": "SC",
+    "name": "Baie Sainte Anne",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "SC-08",
+    "country_code": "SC",
+    "name": "Beau Vallon",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "SC-09",
+    "country_code": "SC",
+    "name": "Bel Air",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "SC-10",
+    "country_code": "SC",
+    "name": "Bel Ombre",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "SC-11",
+    "country_code": "SC",
+    "name": "Cascade",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "SC-12",
+    "country_code": "SC",
+    "name": "Glacis",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "SC-13",
+    "country_code": "SC",
+    "name": "Grand Anse Mahe",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "SC-14",
+    "country_code": "SC",
+    "name": "Grand Anse Praslin",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "SC-15",
+    "country_code": "SC",
+    "name": "La Digue",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "SC-16",
+    "country_code": "SC",
+    "name": "English River",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "SC-17",
+    "country_code": "SC",
+    "name": "Mont Buxton",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "SC-18",
+    "country_code": "SC",
+    "name": "Mont Fleuri",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "SC-19",
+    "country_code": "SC",
+    "name": "Plaisance",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "SC-20",
+    "country_code": "SC",
+    "name": "Pointe Larue",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "SC-21",
+    "country_code": "SC",
+    "name": "Port Glaud",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "SC-22",
+    "country_code": "SC",
+    "name": "Saint Louis",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "SC-23",
+    "country_code": "SC",
+    "name": "Takamaka",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "SC-24",
+    "country_code": "SC",
+    "name": "Les Mamelles",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "SC-25",
+    "country_code": "SC",
+    "name": "Roche Caiman",
+    "parent_code": null,
+    "type": "District"
+  }
+]

@@ -1,0 +1,37 @@
+[
+  {
+    "code": "TO-01",
+    "country_code": "TO",
+    "name": "'Eua",
+    "parent_code": null,
+    "type": "Division"
+  },
+  {
+    "code": "TO-02",
+    "country_code": "TO",
+    "name": "Ha'apai",
+    "parent_code": null,
+    "type": "Division"
+  },
+  {
+    "code": "TO-03",
+    "country_code": "TO",
+    "name": "Niuas",
+    "parent_code": null,
+    "type": "Division"
+  },
+  {
+    "code": "TO-04",
+    "country_code": "TO",
+    "name": "Tongatapu",
+    "parent_code": null,
+    "type": "Division"
+  },
+  {
+    "code": "TO-05",
+    "country_code": "TO",
+    "name": "Vava'u",
+    "parent_code": null,
+    "type": "Division"
+  }
+]

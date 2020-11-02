@@ -1,0 +1,72 @@
+[
+  {
+    "code": "LT-AL",
+    "country_code": "LT",
+    "name": "Alytaus Apskritis",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "LT-KL",
+    "country_code": "LT",
+    "name": "Klaip\u0117dos Apskritis",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "LT-KU",
+    "country_code": "LT",
+    "name": "Kauno Apskritis",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "LT-MR",
+    "country_code": "LT",
+    "name": "Marijampol\u0117s Apskritis",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "LT-PN",
+    "country_code": "LT",
+    "name": "Panev\u0117\u017eio Apskritis",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "LT-SA",
+    "country_code": "LT",
+    "name": "\u0160iauli\u0173 Apskritis",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "LT-TA",
+    "country_code": "LT",
+    "name": "Taurag\u00e9s Apskritis",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "LT-TE",
+    "country_code": "LT",
+    "name": "Tel\u0161i\u0173 Apskritis",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "LT-UT",
+    "country_code": "LT",
+    "name": "Utenos Apskritis",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "LT-VL",
+    "country_code": "LT",
+    "name": "Vilniaus Apskritis",
+    "parent_code": null,
+    "type": "County"
+  }
+]

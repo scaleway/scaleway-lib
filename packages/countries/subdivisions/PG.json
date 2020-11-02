@@ -1,0 +1,142 @@
+[
+  {
+    "code": "PG-CPK",
+    "country_code": "PG",
+    "name": "Chimbu",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PG-CPM",
+    "country_code": "PG",
+    "name": "Central",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PG-EBR",
+    "country_code": "PG",
+    "name": "East New Britain",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PG-EHG",
+    "country_code": "PG",
+    "name": "Eastern Highlands",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PG-EPW",
+    "country_code": "PG",
+    "name": "Enga",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PG-ESW",
+    "country_code": "PG",
+    "name": "East Sepik",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PG-GPK",
+    "country_code": "PG",
+    "name": "Gulf",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PG-MBA",
+    "country_code": "PG",
+    "name": "Milne Bay",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PG-MPL",
+    "country_code": "PG",
+    "name": "Morobe",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PG-MPM",
+    "country_code": "PG",
+    "name": "Madang",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PG-MRL",
+    "country_code": "PG",
+    "name": "Manus",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PG-NCD",
+    "country_code": "PG",
+    "name": "National Capital District (Port Moresby)",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "PG-NIK",
+    "country_code": "PG",
+    "name": "New Ireland",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PG-NPP",
+    "country_code": "PG",
+    "name": "Northern",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PG-NSB",
+    "country_code": "PG",
+    "name": "Bougainville",
+    "parent_code": null,
+    "type": "Autonomous region"
+  },
+  {
+    "code": "PG-SAN",
+    "country_code": "PG",
+    "name": "Sandaun",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PG-SHM",
+    "country_code": "PG",
+    "name": "Southern Highlands",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PG-WBK",
+    "country_code": "PG",
+    "name": "West New Britain",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PG-WHM",
+    "country_code": "PG",
+    "name": "Western Highlands",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PG-WPD",
+    "country_code": "PG",
+    "name": "Western",
+    "parent_code": null,
+    "type": "Province"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "code": "CA-AB",
+    "country_code": "CA",
+    "name": "Alberta",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CA-BC",
+    "country_code": "CA",
+    "name": "British Columbia",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CA-MB",
+    "country_code": "CA",
+    "name": "Manitoba",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CA-NB",
+    "country_code": "CA",
+    "name": "New Brunswick",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CA-NL",
+    "country_code": "CA",
+    "name": "Newfoundland and Labrador",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CA-NS",
+    "country_code": "CA",
+    "name": "Nova Scotia",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CA-NT",
+    "country_code": "CA",
+    "name": "Northwest Territories",
+    "parent_code": null,
+    "type": "Territory"
+  },
+  {
+    "code": "CA-NU",
+    "country_code": "CA",
+    "name": "Nunavut",
+    "parent_code": null,
+    "type": "Territory"
+  },
+  {
+    "code": "CA-ON",
+    "country_code": "CA",
+    "name": "Ontario",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CA-PE",
+    "country_code": "CA",
+    "name": "Prince Edward Island",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CA-QC",
+    "country_code": "CA",
+    "name": "Quebec",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CA-SK",
+    "country_code": "CA",
+    "name": "Saskatchewan",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CA-YT",
+    "country_code": "CA",
+    "name": "Yukon Territory",
+    "parent_code": null,
+    "type": "Territory"
+  }
+]

@@ -1,0 +1,135 @@
+[
+  {
+    "code": "CI-01",
+    "country_code": "CI",
+    "name": "Lagunes (R\u00e9gion des)",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CI-02",
+    "country_code": "CI",
+    "name": "Haut-Sassandra (R\u00e9gion du)",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CI-03",
+    "country_code": "CI",
+    "name": "Savanes (R\u00e9gion des)",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CI-04",
+    "country_code": "CI",
+    "name": "Vall\u00e9e du Bandama (R\u00e9gion de la)",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CI-05",
+    "country_code": "CI",
+    "name": "Moyen-Como\u00e9 (R\u00e9gion du)",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CI-06",
+    "country_code": "CI",
+    "name": "18 Montagnes (R\u00e9gion des)",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CI-07",
+    "country_code": "CI",
+    "name": "Lacs (R\u00e9gion des)",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CI-08",
+    "country_code": "CI",
+    "name": "Zanzan (R\u00e9gion du)",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CI-09",
+    "country_code": "CI",
+    "name": "Bas-Sassandra (R\u00e9gion du)",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CI-10",
+    "country_code": "CI",
+    "name": "Dengu\u00e9l\u00e9 (R\u00e9gion du)",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CI-11",
+    "country_code": "CI",
+    "name": "Nzi-Como\u00e9 (R\u00e9gion)",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CI-12",
+    "country_code": "CI",
+    "name": "Marahou\u00e9 (R\u00e9gion de la)",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CI-13",
+    "country_code": "CI",
+    "name": "Sud-Como\u00e9 (R\u00e9gion du)",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CI-14",
+    "country_code": "CI",
+    "name": "Worodouqou (R\u00e9gion du)",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CI-15",
+    "country_code": "CI",
+    "name": "Sud-Bandama (R\u00e9gion du)",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CI-16",
+    "country_code": "CI",
+    "name": "Agn\u00e9bi (R\u00e9gion de l')",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CI-17",
+    "country_code": "CI",
+    "name": "Bafing (R\u00e9gion du)",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CI-18",
+    "country_code": "CI",
+    "name": "Fromager (R\u00e9gion du)",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CI-19",
+    "country_code": "CI",
+    "name": "Moyen-Cavally (R\u00e9gion du)",
+    "parent_code": null,
+    "type": "Region"
+  }
+]

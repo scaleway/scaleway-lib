@@ -1,0 +1,163 @@
+[
+  {
+    "code": "TW-CHA",
+    "country_code": "TW",
+    "name": "Changhua",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "TW-CYI",
+    "country_code": "TW",
+    "name": "Chiay City",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "TW-CYQ",
+    "country_code": "TW",
+    "name": "Chiayi",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "TW-HSQ",
+    "country_code": "TW",
+    "name": "Hsinchu",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "TW-HSZ",
+    "country_code": "TW",
+    "name": "Hsinchui City",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "TW-HUA",
+    "country_code": "TW",
+    "name": "Hualien",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "TW-ILA",
+    "country_code": "TW",
+    "name": "Ilan",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "TW-KEE",
+    "country_code": "TW",
+    "name": "Keelung City",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "TW-KHH",
+    "country_code": "TW",
+    "name": "Kaohsiung City",
+    "parent_code": null,
+    "type": "Special Municipality"
+  },
+  {
+    "code": "TW-KHQ",
+    "country_code": "TW",
+    "name": "Kaohsiung",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "TW-MIA",
+    "country_code": "TW",
+    "name": "Miaoli",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "TW-NAN",
+    "country_code": "TW",
+    "name": "Nantou",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "TW-PEN",
+    "country_code": "TW",
+    "name": "Penghu",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "TW-PIF",
+    "country_code": "TW",
+    "name": "Pingtung",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "TW-TAO",
+    "country_code": "TW",
+    "name": "Taoyuan",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "TW-TNN",
+    "country_code": "TW",
+    "name": "Tainan City",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "TW-TNQ",
+    "country_code": "TW",
+    "name": "Tainan",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "TW-TPE",
+    "country_code": "TW",
+    "name": "Taipei City",
+    "parent_code": null,
+    "type": "Special Municipality"
+  },
+  {
+    "code": "TW-TPQ",
+    "country_code": "TW",
+    "name": "Taipei",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "TW-TTT",
+    "country_code": "TW",
+    "name": "Taitung",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "TW-TXG",
+    "country_code": "TW",
+    "name": "Taichung City",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "TW-TXQ",
+    "country_code": "TW",
+    "name": "Taichung",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "TW-YUN",
+    "country_code": "TW",
+    "name": "Yunlin",
+    "parent_code": null,
+    "type": "District"
+  }
+]

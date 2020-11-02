@@ -1,0 +1,44 @@
+[
+  {
+    "code": "CY-01",
+    "country_code": "CY",
+    "name": "Lefkos\u00eda",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "CY-02",
+    "country_code": "CY",
+    "name": "Lemes\u00f3s",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "CY-03",
+    "country_code": "CY",
+    "name": "L\u00e1rnaka",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "CY-04",
+    "country_code": "CY",
+    "name": "Amm\u00f3chostos",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "CY-05",
+    "country_code": "CY",
+    "name": "P\u00e1fos",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "CY-06",
+    "country_code": "CY",
+    "name": "Ker\u00fdneia",
+    "parent_code": null,
+    "type": "District"
+  }
+]

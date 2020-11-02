@@ -1,0 +1,177 @@
+[
+  {
+    "code": "VE-A",
+    "country_code": "VE",
+    "name": "Distrito Federal",
+    "parent_code": null,
+    "type": "Federal District"
+  },
+  {
+    "code": "VE-B",
+    "country_code": "VE",
+    "name": "Anzo\u00e1tegui",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "VE-C",
+    "country_code": "VE",
+    "name": "Apure",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "VE-D",
+    "country_code": "VE",
+    "name": "Aragua",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "VE-E",
+    "country_code": "VE",
+    "name": "Barinas",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "VE-F",
+    "country_code": "VE",
+    "name": "Bol\u00edvar",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "VE-G",
+    "country_code": "VE",
+    "name": "Carabobo",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "VE-H",
+    "country_code": "VE",
+    "name": "Cojedes",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "VE-I",
+    "country_code": "VE",
+    "name": "Falc\u00f3n",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "VE-J",
+    "country_code": "VE",
+    "name": "Gu\u00e1rico",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "VE-K",
+    "country_code": "VE",
+    "name": "Lara",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "VE-L",
+    "country_code": "VE",
+    "name": "M\u00e9rida",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "VE-M",
+    "country_code": "VE",
+    "name": "Miranda",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "VE-N",
+    "country_code": "VE",
+    "name": "Monagas",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "VE-O",
+    "country_code": "VE",
+    "name": "Nueva Esparta",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "VE-P",
+    "country_code": "VE",
+    "name": "Portuguesa",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "VE-R",
+    "country_code": "VE",
+    "name": "Sucre",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "VE-S",
+    "country_code": "VE",
+    "name": "T\u00e1chira",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "VE-T",
+    "country_code": "VE",
+    "name": "Trujillo",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "VE-U",
+    "country_code": "VE",
+    "name": "Yaracuy",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "VE-V",
+    "country_code": "VE",
+    "name": "Zulia",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "VE-W",
+    "country_code": "VE",
+    "name": "Dependencias Federales",
+    "parent_code": null,
+    "type": "Federal Dependency"
+  },
+  {
+    "code": "VE-X",
+    "country_code": "VE",
+    "name": "Vargas",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "VE-Y",
+    "country_code": "VE",
+    "name": "Delta Amacuro",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "VE-Z",
+    "country_code": "VE",
+    "name": "Amazonas",
+    "parent_code": null,
+    "type": "State"
+  }
+]

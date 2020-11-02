@@ -1,0 +1,65 @@
+[
+  {
+    "code": "GQ-AN",
+    "country_code": "GQ",
+    "name": "Annob\u00f3n",
+    "parent_code": "GQ-I",
+    "type": "Province"
+  },
+  {
+    "code": "GQ-BN",
+    "country_code": "GQ",
+    "name": "Bioko Norte",
+    "parent_code": "GQ-I",
+    "type": "Province"
+  },
+  {
+    "code": "GQ-BS",
+    "country_code": "GQ",
+    "name": "Bioko Sur",
+    "parent_code": "GQ-I",
+    "type": "Province"
+  },
+  {
+    "code": "GQ-C",
+    "country_code": "GQ",
+    "name": "Regi\u00f3n Continental",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "GQ-CS",
+    "country_code": "GQ",
+    "name": "Centro Sur",
+    "parent_code": "GQ-C",
+    "type": "Province"
+  },
+  {
+    "code": "GQ-I",
+    "country_code": "GQ",
+    "name": "Regi\u00f3n Insular",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "GQ-KN",
+    "country_code": "GQ",
+    "name": "Ki\u00e9-Ntem",
+    "parent_code": "GQ-C",
+    "type": "Province"
+  },
+  {
+    "code": "GQ-LI",
+    "country_code": "GQ",
+    "name": "Litoral",
+    "parent_code": "GQ-C",
+    "type": "Province"
+  },
+  {
+    "code": "GQ-WN",
+    "country_code": "GQ",
+    "name": "Wele-Nzas",
+    "parent_code": "GQ-C",
+    "type": "Province"
+  }
+]

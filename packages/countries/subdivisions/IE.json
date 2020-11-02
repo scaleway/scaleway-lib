@@ -1,0 +1,212 @@
+[
+  {
+    "code": "IE-C",
+    "country_code": "IE",
+    "name": "Connacht",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "IE-CE",
+    "country_code": "IE",
+    "name": "Clare",
+    "parent_code": "IE-M",
+    "type": "County"
+  },
+  {
+    "code": "IE-CN",
+    "country_code": "IE",
+    "name": "Cavan",
+    "parent_code": "IE-U",
+    "type": "County"
+  },
+  {
+    "code": "IE-CO",
+    "country_code": "IE",
+    "name": "Cork",
+    "parent_code": "IE-M",
+    "type": "County"
+  },
+  {
+    "code": "IE-CW",
+    "country_code": "IE",
+    "name": "Carlow",
+    "parent_code": "IE-L",
+    "type": "County"
+  },
+  {
+    "code": "IE-D",
+    "country_code": "IE",
+    "name": "Dublin",
+    "parent_code": "IE-L",
+    "type": "County"
+  },
+  {
+    "code": "IE-DL",
+    "country_code": "IE",
+    "name": "Donegal",
+    "parent_code": "IE-U",
+    "type": "County"
+  },
+  {
+    "code": "IE-G",
+    "country_code": "IE",
+    "name": "Galway",
+    "parent_code": "IE-C",
+    "type": "County"
+  },
+  {
+    "code": "IE-KE",
+    "country_code": "IE",
+    "name": "Kildare",
+    "parent_code": "IE-L",
+    "type": "County"
+  },
+  {
+    "code": "IE-KK",
+    "country_code": "IE",
+    "name": "Kilkenny",
+    "parent_code": "IE-L",
+    "type": "County"
+  },
+  {
+    "code": "IE-KY",
+    "country_code": "IE",
+    "name": "Kerry",
+    "parent_code": "IE-M",
+    "type": "County"
+  },
+  {
+    "code": "IE-L",
+    "country_code": "IE",
+    "name": "Leinster",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "IE-LD",
+    "country_code": "IE",
+    "name": "Longford",
+    "parent_code": "IE-L",
+    "type": "County"
+  },
+  {
+    "code": "IE-LH",
+    "country_code": "IE",
+    "name": "Louth",
+    "parent_code": "IE-L",
+    "type": "County"
+  },
+  {
+    "code": "IE-LK",
+    "country_code": "IE",
+    "name": "Limerick",
+    "parent_code": "IE-M",
+    "type": "County"
+  },
+  {
+    "code": "IE-LM",
+    "country_code": "IE",
+    "name": "Leitrim",
+    "parent_code": "IE-C",
+    "type": "County"
+  },
+  {
+    "code": "IE-LS",
+    "country_code": "IE",
+    "name": "Laois",
+    "parent_code": "IE-L",
+    "type": "County"
+  },
+  {
+    "code": "IE-M",
+    "country_code": "IE",
+    "name": "Munster",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "IE-MH",
+    "country_code": "IE",
+    "name": "Meath",
+    "parent_code": "IE-L",
+    "type": "County"
+  },
+  {
+    "code": "IE-MN",
+    "country_code": "IE",
+    "name": "Monaghan",
+    "parent_code": "IE-U",
+    "type": "County"
+  },
+  {
+    "code": "IE-MO",
+    "country_code": "IE",
+    "name": "Mayo",
+    "parent_code": "IE-C",
+    "type": "County"
+  },
+  {
+    "code": "IE-OY",
+    "country_code": "IE",
+    "name": "Offaly",
+    "parent_code": "IE-L",
+    "type": "County"
+  },
+  {
+    "code": "IE-RN",
+    "country_code": "IE",
+    "name": "Roscommon",
+    "parent_code": "IE-C",
+    "type": "County"
+  },
+  {
+    "code": "IE-SO",
+    "country_code": "IE",
+    "name": "Sligo",
+    "parent_code": "IE-C",
+    "type": "County"
+  },
+  {
+    "code": "IE-TA",
+    "country_code": "IE",
+    "name": "Tipperary",
+    "parent_code": "IE-M",
+    "type": "County"
+  },
+  {
+    "code": "IE-U",
+    "country_code": "IE",
+    "name": "Ulster",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "IE-WD",
+    "country_code": "IE",
+    "name": "Waterford",
+    "parent_code": "IE-M",
+    "type": "County"
+  },
+  {
+    "code": "IE-WH",
+    "country_code": "IE",
+    "name": "Westmeath",
+    "parent_code": "IE-L",
+    "type": "County"
+  },
+  {
+    "code": "IE-WW",
+    "country_code": "IE",
+    "name": "Wicklow",
+    "parent_code": "IE-L",
+    "type": "County"
+  },
+  {
+    "code": "IE-WX",
+    "country_code": "IE",
+    "name": "Wexford",
+    "parent_code": "IE-L",
+    "type": "County"
+  }
+]

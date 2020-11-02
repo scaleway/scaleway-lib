@@ -1,0 +1,15 @@
+{
+  "name": "@scaleway/countries",
+  "version": "1.0.0",
+  "description": "A package containing ISO 3166 and ISO 3166-2 codes",
+  "main": "./countries.json",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scaleway/scaleway-lib",
+    "directory": "packages/countries"
+  },
+  "scripts": {
+    "generate": "poetry install && poetry run python generate.py"
+  },
+  "license": "UNLICENSED"
+}

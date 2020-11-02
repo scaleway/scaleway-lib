@@ -1,0 +1,114 @@
+[
+  {
+    "code": "BI-BB",
+    "country_code": "BI",
+    "name": "Bubanza",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "BI-BL",
+    "country_code": "BI",
+    "name": "Bujumbura Rural",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "BI-BM",
+    "country_code": "BI",
+    "name": "Bujumbura Mairie",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "BI-BR",
+    "country_code": "BI",
+    "name": "Bururi",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "BI-CA",
+    "country_code": "BI",
+    "name": "Cankuzo",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "BI-CI",
+    "country_code": "BI",
+    "name": "Cibitoke",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "BI-GI",
+    "country_code": "BI",
+    "name": "Gitega",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "BI-KI",
+    "country_code": "BI",
+    "name": "Kirundo",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "BI-KR",
+    "country_code": "BI",
+    "name": "Karuzi",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "BI-KY",
+    "country_code": "BI",
+    "name": "Kayanza",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "BI-MA",
+    "country_code": "BI",
+    "name": "Makamba",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "BI-MU",
+    "country_code": "BI",
+    "name": "Muramvya",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "BI-MW",
+    "country_code": "BI",
+    "name": "Mwaro",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "BI-NG",
+    "country_code": "BI",
+    "name": "Ngozi",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "BI-RT",
+    "country_code": "BI",
+    "name": "Rutana",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "BI-RY",
+    "country_code": "BI",
+    "name": "Ruyigi",
+    "parent_code": null,
+    "type": "Province"
+  }
+]

@@ -1,0 +1,128 @@
+[
+  {
+    "code": "PY-1",
+    "country_code": "PY",
+    "name": "Concepci\u00f3n",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "PY-10",
+    "country_code": "PY",
+    "name": "Alto Paran\u00e1",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "PY-11",
+    "country_code": "PY",
+    "name": "Central",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "PY-12",
+    "country_code": "PY",
+    "name": "\u00d1eembuc\u00fa",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "PY-13",
+    "country_code": "PY",
+    "name": "Amambay",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "PY-14",
+    "country_code": "PY",
+    "name": "Canindey\u00fa",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "PY-15",
+    "country_code": "PY",
+    "name": "Presidente Hayes",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "PY-16",
+    "country_code": "PY",
+    "name": "Alto Paraguay",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "PY-19",
+    "country_code": "PY",
+    "name": "Boquer\u00f3n",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "PY-2",
+    "country_code": "PY",
+    "name": "San Pedro",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "PY-3",
+    "country_code": "PY",
+    "name": "Cordillera",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "PY-4",
+    "country_code": "PY",
+    "name": "Guair\u00e1",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "PY-5",
+    "country_code": "PY",
+    "name": "Caaguaz\u00fa",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "PY-6",
+    "country_code": "PY",
+    "name": "Caazap\u00e1",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "PY-7",
+    "country_code": "PY",
+    "name": "Itap\u00faa",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "PY-8",
+    "country_code": "PY",
+    "name": "Misiones",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "PY-9",
+    "country_code": "PY",
+    "name": "Paraguar\u00ed",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "PY-ASU",
+    "country_code": "PY",
+    "name": "Asunci\u00f3n",
+    "parent_code": null,
+    "type": "Capital district"
+  }
+]

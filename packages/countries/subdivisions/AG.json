@@ -1,0 +1,58 @@
+[
+  {
+    "code": "AG-03",
+    "country_code": "AG",
+    "name": "Saint George",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "AG-04",
+    "country_code": "AG",
+    "name": "Saint John",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "AG-05",
+    "country_code": "AG",
+    "name": "Saint Mary",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "AG-06",
+    "country_code": "AG",
+    "name": "Saint Paul",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "AG-07",
+    "country_code": "AG",
+    "name": "Saint Peter",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "AG-08",
+    "country_code": "AG",
+    "name": "Saint Philip",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "AG-10",
+    "country_code": "AG",
+    "name": "Barbuda",
+    "parent_code": null,
+    "type": "Dependency"
+  },
+  {
+    "code": "AG-11",
+    "country_code": "AG",
+    "name": "Redonda",
+    "parent_code": null,
+    "type": "Dependency"
+  }
+]

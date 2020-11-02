@@ -1,0 +1,198 @@
+[
+  {
+    "code": "EG-ALX",
+    "country_code": "EG",
+    "name": "Al Iskandar\u012byah",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "EG-ASN",
+    "country_code": "EG",
+    "name": "Asw\u0101n",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "EG-AST",
+    "country_code": "EG",
+    "name": "Asy\u016bt",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "EG-BA",
+    "country_code": "EG",
+    "name": "Al Bahr al Ahmar",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "EG-BH",
+    "country_code": "EG",
+    "name": "Al Buhayrah",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "EG-BNS",
+    "country_code": "EG",
+    "name": "Ban\u012b Suwayf",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "EG-C",
+    "country_code": "EG",
+    "name": "Al Q\u0101hirah",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "EG-DK",
+    "country_code": "EG",
+    "name": "Ad Daqahl\u012byah",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "EG-DT",
+    "country_code": "EG",
+    "name": "Dumy\u0101t",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "EG-FYM",
+    "country_code": "EG",
+    "name": "Al Fayy\u016bm",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "EG-GH",
+    "country_code": "EG",
+    "name": "Al Gharb\u012byah",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "EG-GZ",
+    "country_code": "EG",
+    "name": "Al J\u012bzah",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "EG-HU",
+    "country_code": "EG",
+    "name": "H\u0327ulw\u0101n",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "EG-IS",
+    "country_code": "EG",
+    "name": "Al Ism\u0101`\u012bl\u012byah",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "EG-JS",
+    "country_code": "EG",
+    "name": "Jan\u016bb S\u012bn\u0101'",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "EG-KB",
+    "country_code": "EG",
+    "name": "Al Qaly\u016bb\u012byah",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "EG-KFS",
+    "country_code": "EG",
+    "name": "Kafr ash Shaykh",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "EG-KN",
+    "country_code": "EG",
+    "name": "Qin\u0101",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "EG-MN",
+    "country_code": "EG",
+    "name": "Al Miny\u0101",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "EG-MNF",
+    "country_code": "EG",
+    "name": "Al Min\u016bf\u012byah",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "EG-MT",
+    "country_code": "EG",
+    "name": "Matr\u016bh",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "EG-PTS",
+    "country_code": "EG",
+    "name": "B\u016br Sa`\u012bd",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "EG-SHG",
+    "country_code": "EG",
+    "name": "S\u016bh\u0101j",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "EG-SHR",
+    "country_code": "EG",
+    "name": "Ash Sharq\u012byah",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "EG-SIN",
+    "country_code": "EG",
+    "name": "Shamal S\u012bn\u0101'",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "EG-SU",
+    "country_code": "EG",
+    "name": "As S\u0101dis min Ukt\u016bbar",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "EG-SUZ",
+    "country_code": "EG",
+    "name": "As Suways",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "EG-WAD",
+    "country_code": "EG",
+    "name": "Al W\u0101d\u012b al Jad\u012bd",
+    "parent_code": null,
+    "type": "Governorate"
+  }
+]

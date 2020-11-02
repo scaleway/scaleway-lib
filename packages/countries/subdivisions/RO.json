@@ -1,0 +1,296 @@
+[
+  {
+    "code": "RO-AB",
+    "country_code": "RO",
+    "name": "Alba",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-AG",
+    "country_code": "RO",
+    "name": "Arge\u0219",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-AR",
+    "country_code": "RO",
+    "name": "Arad",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-B",
+    "country_code": "RO",
+    "name": "Bucure\u0219ti",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "RO-BC",
+    "country_code": "RO",
+    "name": "Bac\u0103u",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-BH",
+    "country_code": "RO",
+    "name": "Bihor",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-BN",
+    "country_code": "RO",
+    "name": "Bistri\u021ba-N\u0103s\u0103ud",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-BR",
+    "country_code": "RO",
+    "name": "Br\u0103ila",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-BT",
+    "country_code": "RO",
+    "name": "Boto\u0219ani",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-BV",
+    "country_code": "RO",
+    "name": "Bra\u0219ov",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-BZ",
+    "country_code": "RO",
+    "name": "Buz\u0103u",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-CJ",
+    "country_code": "RO",
+    "name": "Cluj",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-CL",
+    "country_code": "RO",
+    "name": "C\u0103l\u0103ra\u0219i",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-CS",
+    "country_code": "RO",
+    "name": "Cara\u0219-Severin",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-CT",
+    "country_code": "RO",
+    "name": "Constan\u021ba",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-CV",
+    "country_code": "RO",
+    "name": "Covasna",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-DB",
+    "country_code": "RO",
+    "name": "D\u00e2mbovi\u021ba",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-DJ",
+    "country_code": "RO",
+    "name": "Dolj",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-GJ",
+    "country_code": "RO",
+    "name": "Gorj",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-GL",
+    "country_code": "RO",
+    "name": "Gala\u021bi",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-GR",
+    "country_code": "RO",
+    "name": "Giurgiu",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-HD",
+    "country_code": "RO",
+    "name": "Hunedoara",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-HR",
+    "country_code": "RO",
+    "name": "Harghita",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-IF",
+    "country_code": "RO",
+    "name": "Ilfov",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-IL",
+    "country_code": "RO",
+    "name": "Ialomi\u021ba",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-IS",
+    "country_code": "RO",
+    "name": "Ia\u0219i",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-MH",
+    "country_code": "RO",
+    "name": "Mehedin\u021bi",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-MM",
+    "country_code": "RO",
+    "name": "Maramure\u0219",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-MS",
+    "country_code": "RO",
+    "name": "Mure\u0219",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-NT",
+    "country_code": "RO",
+    "name": "Neam\u021b",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-OT",
+    "country_code": "RO",
+    "name": "Olt",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-PH",
+    "country_code": "RO",
+    "name": "Prahova",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-SB",
+    "country_code": "RO",
+    "name": "Sibiu",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-SJ",
+    "country_code": "RO",
+    "name": "S\u0103laj",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-SM",
+    "country_code": "RO",
+    "name": "Satu Mare",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-SV",
+    "country_code": "RO",
+    "name": "Suceava",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-TL",
+    "country_code": "RO",
+    "name": "Tulcea",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-TM",
+    "country_code": "RO",
+    "name": "Timi\u0219",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-TR",
+    "country_code": "RO",
+    "name": "Teleorman",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-VL",
+    "country_code": "RO",
+    "name": "V\u00e2lcea",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-VN",
+    "country_code": "RO",
+    "name": "Vrancea",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "RO-VS",
+    "country_code": "RO",
+    "name": "Vaslui",
+    "parent_code": null,
+    "type": "Department"
+  }
+]

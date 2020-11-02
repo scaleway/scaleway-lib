@@ -1,0 +1,219 @@
+[
+  {
+    "code": "BS-AK",
+    "country_code": "BS",
+    "name": "Acklins",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BS-BI",
+    "country_code": "BS",
+    "name": "Bimini",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BS-BP",
+    "country_code": "BS",
+    "name": "Black Point",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BS-BY",
+    "country_code": "BS",
+    "name": "Berry Islands",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BS-CE",
+    "country_code": "BS",
+    "name": "Central Eleuthera",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BS-CI",
+    "country_code": "BS",
+    "name": "Cat Island",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BS-CK",
+    "country_code": "BS",
+    "name": "Crooked Island and Long Cay",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BS-CO",
+    "country_code": "BS",
+    "name": "Central Abaco",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BS-CS",
+    "country_code": "BS",
+    "name": "Central Andros",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BS-EG",
+    "country_code": "BS",
+    "name": "East Grand Bahama",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BS-EX",
+    "country_code": "BS",
+    "name": "Exuma",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BS-FP",
+    "country_code": "BS",
+    "name": "City of Freeport",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BS-GC",
+    "country_code": "BS",
+    "name": "Grand Cay",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BS-HI",
+    "country_code": "BS",
+    "name": "Harbour Island",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BS-HT",
+    "country_code": "BS",
+    "name": "Hope Town",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BS-IN",
+    "country_code": "BS",
+    "name": "Inagua",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BS-LI",
+    "country_code": "BS",
+    "name": "Long Island",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BS-MC",
+    "country_code": "BS",
+    "name": "Mangrove Cay",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BS-MG",
+    "country_code": "BS",
+    "name": "Mayaguana",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BS-MI",
+    "country_code": "BS",
+    "name": "Moore's Island",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BS-NE",
+    "country_code": "BS",
+    "name": "North Eleuthera",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BS-NO",
+    "country_code": "BS",
+    "name": "North Abaco",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BS-NS",
+    "country_code": "BS",
+    "name": "North Andros",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BS-RC",
+    "country_code": "BS",
+    "name": "Rum Cay",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BS-RI",
+    "country_code": "BS",
+    "name": "Ragged Island",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BS-SA",
+    "country_code": "BS",
+    "name": "South Andros",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BS-SE",
+    "country_code": "BS",
+    "name": "South Eleuthera",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BS-SO",
+    "country_code": "BS",
+    "name": "South Abaco",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BS-SS",
+    "country_code": "BS",
+    "name": "San Salvador",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BS-SW",
+    "country_code": "BS",
+    "name": "Spanish Wells",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BS-WG",
+    "country_code": "BS",
+    "name": "West Grand Bahama",
+    "parent_code": null,
+    "type": "District"
+  }
+]

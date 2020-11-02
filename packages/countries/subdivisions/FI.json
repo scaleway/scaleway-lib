@@ -1,0 +1,135 @@
+[
+  {
+    "code": "FI-01",
+    "country_code": "FI",
+    "name": "Ahvenanmaan maakunta",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "FI-02",
+    "country_code": "FI",
+    "name": "Etel\u00e4-Karjala",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "FI-03",
+    "country_code": "FI",
+    "name": "Etel\u00e4-Pohjanmaa",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "FI-04",
+    "country_code": "FI",
+    "name": "Etel\u00e4-Savo",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "FI-05",
+    "country_code": "FI",
+    "name": "Kainuu",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "FI-06",
+    "country_code": "FI",
+    "name": "Kanta-H\u00e4me",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "FI-07",
+    "country_code": "FI",
+    "name": "Keski-Pohjanmaa",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "FI-08",
+    "country_code": "FI",
+    "name": "Keski-Suomi",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "FI-09",
+    "country_code": "FI",
+    "name": "Kymenlaakso",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "FI-10",
+    "country_code": "FI",
+    "name": "Lappi",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "FI-11",
+    "country_code": "FI",
+    "name": "Pirkanmaa",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "FI-12",
+    "country_code": "FI",
+    "name": "Pohjanmaa",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "FI-13",
+    "country_code": "FI",
+    "name": "Pohjois-Karjala",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "FI-14",
+    "country_code": "FI",
+    "name": "Pohjois-Pohjanmaa",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "FI-15",
+    "country_code": "FI",
+    "name": "Pohjois-Savo",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "FI-16",
+    "country_code": "FI",
+    "name": "P\u00e4ij\u00e4t-H\u00e4me",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "FI-17",
+    "country_code": "FI",
+    "name": "Satakunta",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "FI-18",
+    "country_code": "FI",
+    "name": "Uusimaa",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "FI-19",
+    "country_code": "FI",
+    "name": "Varsinais-Suomi",
+    "parent_code": null,
+    "type": "Region"
+  }
+]

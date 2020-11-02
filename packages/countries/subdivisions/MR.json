@@ -1,0 +1,93 @@
+[
+  {
+    "code": "MR-01",
+    "country_code": "MR",
+    "name": "Hodh ech Chargui",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "MR-02",
+    "country_code": "MR",
+    "name": "Hodh el Charbi",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "MR-03",
+    "country_code": "MR",
+    "name": "Assaba",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "MR-04",
+    "country_code": "MR",
+    "name": "Gorgol",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "MR-05",
+    "country_code": "MR",
+    "name": "Brakna",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "MR-06",
+    "country_code": "MR",
+    "name": "Trarza",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "MR-07",
+    "country_code": "MR",
+    "name": "Adrar",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "MR-08",
+    "country_code": "MR",
+    "name": "Dakhlet Nouadhibou",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "MR-09",
+    "country_code": "MR",
+    "name": "Tagant",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "MR-10",
+    "country_code": "MR",
+    "name": "Guidimaka",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "MR-11",
+    "country_code": "MR",
+    "name": "Tiris Zemmour",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "MR-12",
+    "country_code": "MR",
+    "name": "Inchiri",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "MR-NKC",
+    "country_code": "MR",
+    "name": "Nouakchott",
+    "parent_code": null,
+    "type": "District"
+  }
+]

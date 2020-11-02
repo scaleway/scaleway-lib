@@ -1,0 +1,835 @@
+[
+  {
+    "code": "LV-001",
+    "country_code": "LV",
+    "name": "Aglonas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-002",
+    "country_code": "LV",
+    "name": "Aizkraukles novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-003",
+    "country_code": "LV",
+    "name": "Aizputes novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-004",
+    "country_code": "LV",
+    "name": "Akn\u012bstes novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-005",
+    "country_code": "LV",
+    "name": "Alojas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-006",
+    "country_code": "LV",
+    "name": "Alsungas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-007",
+    "country_code": "LV",
+    "name": "Al\u016bksnes novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-008",
+    "country_code": "LV",
+    "name": "Amatas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-009",
+    "country_code": "LV",
+    "name": "Apes novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-010",
+    "country_code": "LV",
+    "name": "Auces novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-011",
+    "country_code": "LV",
+    "name": "\u0100da\u017eu novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-012",
+    "country_code": "LV",
+    "name": "Bab\u012btes novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-013",
+    "country_code": "LV",
+    "name": "Baldones novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-014",
+    "country_code": "LV",
+    "name": "Baltinavas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-015",
+    "country_code": "LV",
+    "name": "Balvu novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-016",
+    "country_code": "LV",
+    "name": "Bauskas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-017",
+    "country_code": "LV",
+    "name": "Bever\u012bnas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-018",
+    "country_code": "LV",
+    "name": "Broc\u0113nu novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-019",
+    "country_code": "LV",
+    "name": "Burtnieku novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-020",
+    "country_code": "LV",
+    "name": "Carnikavas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-021",
+    "country_code": "LV",
+    "name": "Cesvaines novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-022",
+    "country_code": "LV",
+    "name": "C\u0113su novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-023",
+    "country_code": "LV",
+    "name": "Ciblas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-024",
+    "country_code": "LV",
+    "name": "Dagdas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-025",
+    "country_code": "LV",
+    "name": "Daugavpils novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-026",
+    "country_code": "LV",
+    "name": "Dobeles novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-027",
+    "country_code": "LV",
+    "name": "Dundagas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-028",
+    "country_code": "LV",
+    "name": "Durbes novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-029",
+    "country_code": "LV",
+    "name": "Engures novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-030",
+    "country_code": "LV",
+    "name": "\u0112rg\u013cu novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-031",
+    "country_code": "LV",
+    "name": "Garkalnes novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-032",
+    "country_code": "LV",
+    "name": "Grobi\u0146as novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-033",
+    "country_code": "LV",
+    "name": "Gulbenes novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-034",
+    "country_code": "LV",
+    "name": "Iecavas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-035",
+    "country_code": "LV",
+    "name": "Ik\u0161\u0137iles novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-036",
+    "country_code": "LV",
+    "name": "Il\u016bkstes novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-037",
+    "country_code": "LV",
+    "name": "In\u010dukalna novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-038",
+    "country_code": "LV",
+    "name": "Jaunjelgavas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-039",
+    "country_code": "LV",
+    "name": "Jaunpiebalgas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-040",
+    "country_code": "LV",
+    "name": "Jaunpils novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-041",
+    "country_code": "LV",
+    "name": "Jelgavas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-042",
+    "country_code": "LV",
+    "name": "J\u0113kabpils novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-043",
+    "country_code": "LV",
+    "name": "Kandavas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-044",
+    "country_code": "LV",
+    "name": "K\u0101rsavas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-045",
+    "country_code": "LV",
+    "name": "Koc\u0113nu novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-046",
+    "country_code": "LV",
+    "name": "Kokneses novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-047",
+    "country_code": "LV",
+    "name": "Kr\u0101slavas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-048",
+    "country_code": "LV",
+    "name": "Krimuldas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-049",
+    "country_code": "LV",
+    "name": "Krustpils novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-050",
+    "country_code": "LV",
+    "name": "Kuld\u012bgas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-051",
+    "country_code": "LV",
+    "name": "\u0136eguma novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-052",
+    "country_code": "LV",
+    "name": "\u0136ekavas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-053",
+    "country_code": "LV",
+    "name": "Lielv\u0101rdes novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-054",
+    "country_code": "LV",
+    "name": "Limba\u017eu novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-055",
+    "country_code": "LV",
+    "name": "L\u012bgatnes novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-056",
+    "country_code": "LV",
+    "name": "L\u012bv\u0101nu novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-057",
+    "country_code": "LV",
+    "name": "Lub\u0101nas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-058",
+    "country_code": "LV",
+    "name": "Ludzas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-059",
+    "country_code": "LV",
+    "name": "Madonas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-060",
+    "country_code": "LV",
+    "name": "Mazsalacas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-061",
+    "country_code": "LV",
+    "name": "M\u0101lpils novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-062",
+    "country_code": "LV",
+    "name": "M\u0101rupes novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-063",
+    "country_code": "LV",
+    "name": "M\u0113rsraga novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-064",
+    "country_code": "LV",
+    "name": "Nauk\u0161\u0113nu novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-065",
+    "country_code": "LV",
+    "name": "Neretas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-066",
+    "country_code": "LV",
+    "name": "N\u012bcas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-067",
+    "country_code": "LV",
+    "name": "Ogres novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-068",
+    "country_code": "LV",
+    "name": "Olaines novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-069",
+    "country_code": "LV",
+    "name": "Ozolnieku novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-070",
+    "country_code": "LV",
+    "name": "P\u0101rgaujas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-071",
+    "country_code": "LV",
+    "name": "P\u0101vilostas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-072",
+    "country_code": "LV",
+    "name": "P\u013cavi\u0146u novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-073",
+    "country_code": "LV",
+    "name": "Prei\u013cu novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-074",
+    "country_code": "LV",
+    "name": "Priekules novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-075",
+    "country_code": "LV",
+    "name": "Prieku\u013cu novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-076",
+    "country_code": "LV",
+    "name": "Raunas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-077",
+    "country_code": "LV",
+    "name": "R\u0113zeknes novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-078",
+    "country_code": "LV",
+    "name": "Riebi\u0146u novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-079",
+    "country_code": "LV",
+    "name": "Rojas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-080",
+    "country_code": "LV",
+    "name": "Ropa\u017eu novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-081",
+    "country_code": "LV",
+    "name": "Rucavas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-082",
+    "country_code": "LV",
+    "name": "Rug\u0101ju novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-083",
+    "country_code": "LV",
+    "name": "Rund\u0101les novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-084",
+    "country_code": "LV",
+    "name": "R\u016bjienas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-085",
+    "country_code": "LV",
+    "name": "Salas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-086",
+    "country_code": "LV",
+    "name": "Salacgr\u012bvas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-087",
+    "country_code": "LV",
+    "name": "Salaspils novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-088",
+    "country_code": "LV",
+    "name": "Saldus novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-089",
+    "country_code": "LV",
+    "name": "Saulkrastu novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-090",
+    "country_code": "LV",
+    "name": "S\u0113jas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-091",
+    "country_code": "LV",
+    "name": "Siguldas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-092",
+    "country_code": "LV",
+    "name": "Skr\u012bveru novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-093",
+    "country_code": "LV",
+    "name": "Skrundas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-094",
+    "country_code": "LV",
+    "name": "Smiltenes novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-095",
+    "country_code": "LV",
+    "name": "Stopi\u0146u novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-096",
+    "country_code": "LV",
+    "name": "Stren\u010du novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-097",
+    "country_code": "LV",
+    "name": "Talsu novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-098",
+    "country_code": "LV",
+    "name": "T\u0113rvetes novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-099",
+    "country_code": "LV",
+    "name": "Tukuma novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-100",
+    "country_code": "LV",
+    "name": "Vai\u0146odes novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-101",
+    "country_code": "LV",
+    "name": "Valkas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-102",
+    "country_code": "LV",
+    "name": "Varak\u013c\u0101nu novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-103",
+    "country_code": "LV",
+    "name": "V\u0101rkavas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-104",
+    "country_code": "LV",
+    "name": "Vecpiebalgas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-105",
+    "country_code": "LV",
+    "name": "Vecumnieku novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-106",
+    "country_code": "LV",
+    "name": "Ventspils novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-107",
+    "country_code": "LV",
+    "name": "Vies\u012btes novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-108",
+    "country_code": "LV",
+    "name": "Vi\u013cakas novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-109",
+    "country_code": "LV",
+    "name": "Vi\u013c\u0101nu novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-110",
+    "country_code": "LV",
+    "name": "Zilupes novads",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "LV-DGV",
+    "country_code": "LV",
+    "name": "Daugavpils",
+    "parent_code": null,
+    "type": "Republican City"
+  },
+  {
+    "code": "LV-JEL",
+    "country_code": "LV",
+    "name": "Jelgava",
+    "parent_code": null,
+    "type": "Republican City"
+  },
+  {
+    "code": "LV-JKB",
+    "country_code": "LV",
+    "name": "J\u0113kabpils",
+    "parent_code": null,
+    "type": "Republican City"
+  },
+  {
+    "code": "LV-JUR",
+    "country_code": "LV",
+    "name": "J\u016brmala",
+    "parent_code": null,
+    "type": "Republican City"
+  },
+  {
+    "code": "LV-LPX",
+    "country_code": "LV",
+    "name": "Liep\u0101ja",
+    "parent_code": null,
+    "type": "Republican City"
+  },
+  {
+    "code": "LV-REZ",
+    "country_code": "LV",
+    "name": "R\u0113zekne",
+    "parent_code": null,
+    "type": "Republican City"
+  },
+  {
+    "code": "LV-RIX",
+    "country_code": "LV",
+    "name": "R\u012bga",
+    "parent_code": null,
+    "type": "Republican City"
+  },
+  {
+    "code": "LV-VEN",
+    "country_code": "LV",
+    "name": "Ventspils",
+    "parent_code": null,
+    "type": "Republican City"
+  },
+  {
+    "code": "LV-VMR",
+    "country_code": "LV",
+    "name": "Valmiera",
+    "parent_code": null,
+    "type": "Republican City"
+  }
+]

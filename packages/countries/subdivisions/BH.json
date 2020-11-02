@@ -1,0 +1,37 @@
+[
+  {
+    "code": "BH-13",
+    "country_code": "BH",
+    "name": "Al Man\u0101mah (Al \u2018\u0100\u015fimah)",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "BH-14",
+    "country_code": "BH",
+    "name": "Al Jan\u016bb\u012byah",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "BH-15",
+    "country_code": "BH",
+    "name": "Al Mu\u1e29arraq",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "BH-16",
+    "country_code": "BH",
+    "name": "Al Wus\u0163\u00e1",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "BH-17",
+    "country_code": "BH",
+    "name": "Ash Sham\u0101l\u012byah",
+    "parent_code": null,
+    "type": "Governorate"
+  }
+]

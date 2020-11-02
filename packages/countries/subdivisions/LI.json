@@ -1,0 +1,79 @@
+[
+  {
+    "code": "LI-01",
+    "country_code": "LI",
+    "name": "Balzers",
+    "parent_code": null,
+    "type": "Commune"
+  },
+  {
+    "code": "LI-02",
+    "country_code": "LI",
+    "name": "Eschen",
+    "parent_code": null,
+    "type": "Commune"
+  },
+  {
+    "code": "LI-03",
+    "country_code": "LI",
+    "name": "Gamprin",
+    "parent_code": null,
+    "type": "Commune"
+  },
+  {
+    "code": "LI-04",
+    "country_code": "LI",
+    "name": "Mauren",
+    "parent_code": null,
+    "type": "Commune"
+  },
+  {
+    "code": "LI-05",
+    "country_code": "LI",
+    "name": "Planken",
+    "parent_code": null,
+    "type": "Commune"
+  },
+  {
+    "code": "LI-06",
+    "country_code": "LI",
+    "name": "Ruggell",
+    "parent_code": null,
+    "type": "Commune"
+  },
+  {
+    "code": "LI-07",
+    "country_code": "LI",
+    "name": "Schaan",
+    "parent_code": null,
+    "type": "Commune"
+  },
+  {
+    "code": "LI-08",
+    "country_code": "LI",
+    "name": "Schellenberg",
+    "parent_code": null,
+    "type": "Commune"
+  },
+  {
+    "code": "LI-09",
+    "country_code": "LI",
+    "name": "Triesen",
+    "parent_code": null,
+    "type": "Commune"
+  },
+  {
+    "code": "LI-10",
+    "country_code": "LI",
+    "name": "Triesenberg",
+    "parent_code": null,
+    "type": "Commune"
+  },
+  {
+    "code": "LI-11",
+    "country_code": "LI",
+    "name": "Vaduz",
+    "parent_code": null,
+    "type": "Commune"
+  }
+]

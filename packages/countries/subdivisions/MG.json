@@ -1,0 +1,44 @@
+[
+  {
+    "code": "MG-A",
+    "country_code": "MG",
+    "name": "Toamasina",
+    "parent_code": null,
+    "type": "Autonomous province"
+  },
+  {
+    "code": "MG-D",
+    "country_code": "MG",
+    "name": "Antsiranana",
+    "parent_code": null,
+    "type": "Autonomous province"
+  },
+  {
+    "code": "MG-F",
+    "country_code": "MG",
+    "name": "Fianarantsoa",
+    "parent_code": null,
+    "type": "Autonomous province"
+  },
+  {
+    "code": "MG-M",
+    "country_code": "MG",
+    "name": "Mahajanga",
+    "parent_code": null,
+    "type": "Autonomous province"
+  },
+  {
+    "code": "MG-T",
+    "country_code": "MG",
+    "name": "Antananarivo",
+    "parent_code": null,
+    "type": "Autonomous province"
+  },
+  {
+    "code": "MG-U",
+    "country_code": "MG",
+    "name": "Toliara",
+    "parent_code": null,
+    "type": "Autonomous province"
+  }
+]

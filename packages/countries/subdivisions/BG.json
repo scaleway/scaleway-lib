@@ -1,0 +1,198 @@
+[
+  {
+    "code": "BG-01",
+    "country_code": "BG",
+    "name": "Blagoevgrad",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "BG-02",
+    "country_code": "BG",
+    "name": "Burgas",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "BG-03",
+    "country_code": "BG",
+    "name": "Varna",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "BG-04",
+    "country_code": "BG",
+    "name": "Veliko Tarnovo",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "BG-05",
+    "country_code": "BG",
+    "name": "Vidin",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "BG-06",
+    "country_code": "BG",
+    "name": "Vratsa",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "BG-07",
+    "country_code": "BG",
+    "name": "Gabrovo",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "BG-08",
+    "country_code": "BG",
+    "name": "Dobrich",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "BG-09",
+    "country_code": "BG",
+    "name": "Kardzhali",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "BG-10",
+    "country_code": "BG",
+    "name": "Kyustendil",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "BG-11",
+    "country_code": "BG",
+    "name": "Lovech",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "BG-12",
+    "country_code": "BG",
+    "name": "Montana",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "BG-13",
+    "country_code": "BG",
+    "name": "Pazardzhik",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "BG-14",
+    "country_code": "BG",
+    "name": "Pernik",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "BG-15",
+    "country_code": "BG",
+    "name": "Pleven",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "BG-16",
+    "country_code": "BG",
+    "name": "Plovdiv",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "BG-17",
+    "country_code": "BG",
+    "name": "Razgrad",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "BG-18",
+    "country_code": "BG",
+    "name": "Ruse",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "BG-19",
+    "country_code": "BG",
+    "name": "Silistra",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "BG-20",
+    "country_code": "BG",
+    "name": "Sliven",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "BG-21",
+    "country_code": "BG",
+    "name": "Smolyan",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "BG-22",
+    "country_code": "BG",
+    "name": "Sofia-Grad",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "BG-23",
+    "country_code": "BG",
+    "name": "Sofia",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "BG-24",
+    "country_code": "BG",
+    "name": "Stara Zagora",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "BG-25",
+    "country_code": "BG",
+    "name": "Targovishte",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "BG-26",
+    "country_code": "BG",
+    "name": "Haskovo",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "BG-27",
+    "country_code": "BG",
+    "name": "Shumen",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "BG-28",
+    "country_code": "BG",
+    "name": "Yambol",
+    "parent_code": null,
+    "type": "Region"
+  }
+]

@@ -1,0 +1,65 @@
+[
+  {
+    "code": "ML-1",
+    "country_code": "ML",
+    "name": "Kayes",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "ML-2",
+    "country_code": "ML",
+    "name": "Koulikoro",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "ML-3",
+    "country_code": "ML",
+    "name": "Sikasso",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "ML-4",
+    "country_code": "ML",
+    "name": "S\u00e9gou",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "ML-5",
+    "country_code": "ML",
+    "name": "Mopti",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "ML-6",
+    "country_code": "ML",
+    "name": "Tombouctou",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "ML-7",
+    "country_code": "ML",
+    "name": "Gao",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "ML-8",
+    "country_code": "ML",
+    "name": "Kidal",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "ML-BK0",
+    "country_code": "ML",
+    "name": "Bamako",
+    "parent_code": null,
+    "type": "District"
+  }
+]

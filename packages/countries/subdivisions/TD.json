@@ -1,0 +1,156 @@
+[
+  {
+    "code": "TD-BA",
+    "country_code": "TD",
+    "name": "Al Ba\u1e6dh\u0327ah",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TD-BG",
+    "country_code": "TD",
+    "name": "Bah\u0327r al Ghaz\u0101l",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TD-BO",
+    "country_code": "TD",
+    "name": "B\u016brk\u016b",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TD-CB",
+    "country_code": "TD",
+    "name": "Sh\u0101r\u012b B\u0101qirm\u012b",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TD-EN",
+    "country_code": "TD",
+    "name": "Inn\u012bd\u012b",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TD-GR",
+    "country_code": "TD",
+    "name": "Q\u012br\u0101",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TD-HL",
+    "country_code": "TD",
+    "name": "\u1e24ajjar Lam\u012bs",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TD-KA",
+    "country_code": "TD",
+    "name": "K\u0101nim",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TD-LC",
+    "country_code": "TD",
+    "name": "Al Buh\u0327ayrah",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TD-LO",
+    "country_code": "TD",
+    "name": "L\u016bq\u016bn al Gharb\u012b",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TD-LR",
+    "country_code": "TD",
+    "name": "L\u016bq\u016bn ash Sharq\u012b",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TD-MA",
+    "country_code": "TD",
+    "name": "M\u0101nd\u016bl",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TD-MC",
+    "country_code": "TD",
+    "name": "Sh\u0101r\u012b al Awsa\u1e6d",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TD-ME",
+    "country_code": "TD",
+    "name": "M\u0101y\u016b K\u012bbb\u012b ash Sharq\u012b",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TD-MO",
+    "country_code": "TD",
+    "name": "M\u0101y\u016b K\u012bbb\u012b al Gharb\u012b",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TD-ND",
+    "country_code": "TD",
+    "name": "Mad\u012bnat Injam\u012bn\u0101",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TD-OD",
+    "country_code": "TD",
+    "name": "Wadd\u0101y",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TD-SA",
+    "country_code": "TD",
+    "name": "Sal\u0101m\u0101t",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TD-SI",
+    "country_code": "TD",
+    "name": "S\u012bl\u0101",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TD-TA",
+    "country_code": "TD",
+    "name": "T\u0101njil\u012b",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TD-TI",
+    "country_code": "TD",
+    "name": "Tibast\u012b",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TD-WF",
+    "country_code": "TD",
+    "name": "W\u0101d\u012b F\u012br\u0101",
+    "parent_code": null,
+    "type": "Region"
+  }
+]

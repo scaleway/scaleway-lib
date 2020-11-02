@@ -1,0 +1,65 @@
+[
+  {
+    "code": "BO-B",
+    "country_code": "BO",
+    "name": "El Beni",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "BO-C",
+    "country_code": "BO",
+    "name": "Cochabamba",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "BO-H",
+    "country_code": "BO",
+    "name": "Chuquisaca",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "BO-L",
+    "country_code": "BO",
+    "name": "La Paz",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "BO-N",
+    "country_code": "BO",
+    "name": "Pando",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "BO-O",
+    "country_code": "BO",
+    "name": "Oruro",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "BO-P",
+    "country_code": "BO",
+    "name": "Potos\u00ed",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "BO-S",
+    "country_code": "BO",
+    "name": "Santa Cruz",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "BO-T",
+    "country_code": "BO",
+    "name": "Tarija",
+    "parent_code": null,
+    "type": "Department"
+  }
+]

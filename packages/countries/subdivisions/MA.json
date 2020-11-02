@@ -1,0 +1,611 @@
+[
+  {
+    "code": "MA-01",
+    "country_code": "MA",
+    "name": "Tanger-T\u00e9touan-Al Hoce\u00efma",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "MA-02",
+    "country_code": "MA",
+    "name": "L'Oriental",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "MA-03",
+    "country_code": "MA",
+    "name": "F\u00e8s-Mekn\u00e8s",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "MA-04",
+    "country_code": "MA",
+    "name": "Rabat-Sal\u00e9-K\u00e9nitra",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "MA-05",
+    "country_code": "MA",
+    "name": "B\u00e9ni Mellal-Kh\u00e9nifra",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "MA-06",
+    "country_code": "MA",
+    "name": "Casablanca-Settat",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "MA-07",
+    "country_code": "MA",
+    "name": "Marrakech-Safi",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "MA-08",
+    "country_code": "MA",
+    "name": "Dr\u00e2a-Tafilalet",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "MA-09",
+    "country_code": "MA",
+    "name": "Souss-Massa",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "MA-10",
+    "country_code": "MA",
+    "name": "Guelmim-Oued Noun (EH-partial)",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "MA-11",
+    "country_code": "MA",
+    "name": "La\u00e2youne-Sakia El Hamra (EH-partial)",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "MA-12",
+    "country_code": "MA",
+    "name": "Dakhla-Oued Ed-Dahab (EH)",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "MA-AGD",
+    "country_code": "MA",
+    "name": "Agadir-Ida-Ou-Tanane",
+    "parent_code": "MA-09",
+    "type": "Prefecture"
+  },
+  {
+    "code": "MA-AOU",
+    "country_code": "MA",
+    "name": "Aousserd (EH)",
+    "parent_code": "MA-12",
+    "type": "Province"
+  },
+  {
+    "code": "MA-ASZ",
+    "country_code": "MA",
+    "name": "Assa-Zag (EH-partial)",
+    "parent_code": "MA-10",
+    "type": "Province"
+  },
+  {
+    "code": "MA-AZI",
+    "country_code": "MA",
+    "name": "Azilal",
+    "parent_code": "MA-05",
+    "type": "Province"
+  },
+  {
+    "code": "MA-BEM",
+    "country_code": "MA",
+    "name": "B\u00e9ni Mellal",
+    "parent_code": "MA-05",
+    "type": "Province"
+  },
+  {
+    "code": "MA-BER",
+    "country_code": "MA",
+    "name": "Berkane",
+    "parent_code": "MA-02",
+    "type": "Province"
+  },
+  {
+    "code": "MA-BES",
+    "country_code": "MA",
+    "name": "Benslimane",
+    "parent_code": "MA-06",
+    "type": "Province"
+  },
+  {
+    "code": "MA-BOD",
+    "country_code": "MA",
+    "name": "Boujdour (EH)",
+    "parent_code": "MA-11",
+    "type": "Province"
+  },
+  {
+    "code": "MA-BOM",
+    "country_code": "MA",
+    "name": "Boulemane",
+    "parent_code": "MA-03",
+    "type": "Province"
+  },
+  {
+    "code": "MA-BRR",
+    "country_code": "MA",
+    "name": "Berrechid",
+    "parent_code": "MA-06",
+    "type": "Province"
+  },
+  {
+    "code": "MA-CAS",
+    "country_code": "MA",
+    "name": "Casablanca",
+    "parent_code": "MA-06",
+    "type": "Prefecture"
+  },
+  {
+    "code": "MA-CHE",
+    "country_code": "MA",
+    "name": "Chefchaouen",
+    "parent_code": "MA-01",
+    "type": "Province"
+  },
+  {
+    "code": "MA-CHI",
+    "country_code": "MA",
+    "name": "Chichaoua",
+    "parent_code": "MA-07",
+    "type": "Province"
+  },
+  {
+    "code": "MA-CHT",
+    "country_code": "MA",
+    "name": "Chtouka-Ait Baha",
+    "parent_code": "MA-06",
+    "type": "Province"
+  },
+  {
+    "code": "MA-DRI",
+    "country_code": "MA",
+    "name": "Driouch",
+    "parent_code": "MA-02",
+    "type": "Province"
+  },
+  {
+    "code": "MA-ERR",
+    "country_code": "MA",
+    "name": "Errachidia",
+    "parent_code": "MA-08",
+    "type": "Province"
+  },
+  {
+    "code": "MA-ESI",
+    "country_code": "MA",
+    "name": "Essaouira",
+    "parent_code": "MA-07",
+    "type": "Province"
+  },
+  {
+    "code": "MA-ESM",
+    "country_code": "MA",
+    "name": "Es-Semara (EH-partial)",
+    "parent_code": "MA-11",
+    "type": "Province"
+  },
+  {
+    "code": "MA-FAH",
+    "country_code": "MA",
+    "name": "Fahs-Anjra",
+    "parent_code": "MA-01",
+    "type": "Province"
+  },
+  {
+    "code": "MA-FES",
+    "country_code": "MA",
+    "name": "F\u00e8s",
+    "parent_code": "MA-03",
+    "type": "Prefecture"
+  },
+  {
+    "code": "MA-FIG",
+    "country_code": "MA",
+    "name": "Figuig",
+    "parent_code": "MA-02",
+    "type": "Province"
+  },
+  {
+    "code": "MA-FQH",
+    "country_code": "MA",
+    "name": "Fquih Ben Salah",
+    "parent_code": "MA-05",
+    "type": "Province"
+  },
+  {
+    "code": "MA-GUE",
+    "country_code": "MA",
+    "name": "Guelmim",
+    "parent_code": "MA-10",
+    "type": "Province"
+  },
+  {
+    "code": "MA-GUF",
+    "country_code": "MA",
+    "name": "Guercif",
+    "parent_code": "MA-02",
+    "type": "Province"
+  },
+  {
+    "code": "MA-HAJ",
+    "country_code": "MA",
+    "name": "El Hajeb",
+    "parent_code": "MA-03",
+    "type": "Province"
+  },
+  {
+    "code": "MA-HAO",
+    "country_code": "MA",
+    "name": "Al Haouz",
+    "parent_code": "MA-07",
+    "type": "Province"
+  },
+  {
+    "code": "MA-HOC",
+    "country_code": "MA",
+    "name": "Al Hoce\u00efma",
+    "parent_code": "MA-01",
+    "type": "Province"
+  },
+  {
+    "code": "MA-IFR",
+    "country_code": "MA",
+    "name": "Ifrane",
+    "parent_code": "MA-03",
+    "type": "Province"
+  },
+  {
+    "code": "MA-INE",
+    "country_code": "MA",
+    "name": "Inezgane-Ait Melloul",
+    "parent_code": "MA-09",
+    "type": "Prefecture"
+  },
+  {
+    "code": "MA-JDI",
+    "country_code": "MA",
+    "name": "El Jadida",
+    "parent_code": "MA-06",
+    "type": "Province"
+  },
+  {
+    "code": "MA-JRA",
+    "country_code": "MA",
+    "name": "Jerada",
+    "parent_code": "MA-02",
+    "type": "Province"
+  },
+  {
+    "code": "MA-KEN",
+    "country_code": "MA",
+    "name": "K\u00e9nitra",
+    "parent_code": "MA-04",
+    "type": "Province"
+  },
+  {
+    "code": "MA-KES",
+    "country_code": "MA",
+    "name": "El Kel\u00e2a des Sraghna",
+    "parent_code": "MA-07",
+    "type": "Province"
+  },
+  {
+    "code": "MA-KHE",
+    "country_code": "MA",
+    "name": "Khemisset",
+    "parent_code": "MA-04",
+    "type": "Province"
+  },
+  {
+    "code": "MA-KHN",
+    "country_code": "MA",
+    "name": "Khenifra",
+    "parent_code": "MA-05",
+    "type": "Province"
+  },
+  {
+    "code": "MA-KHO",
+    "country_code": "MA",
+    "name": "Khouribga",
+    "parent_code": "MA-05",
+    "type": "Province"
+  },
+  {
+    "code": "MA-LAA",
+    "country_code": "MA",
+    "name": "La\u00e2youne (EH)",
+    "parent_code": "MA-11",
+    "type": "Province"
+  },
+  {
+    "code": "MA-LAR",
+    "country_code": "MA",
+    "name": "Larache",
+    "parent_code": "MA-01",
+    "type": "Province"
+  },
+  {
+    "code": "MA-MAR",
+    "country_code": "MA",
+    "name": "Marrakech",
+    "parent_code": "MA-07",
+    "type": "Prefecture"
+  },
+  {
+    "code": "MA-MDF",
+    "country_code": "MA",
+    "name": "M\u2019diq-Fnideq",
+    "parent_code": "MA-01",
+    "type": "Prefecture"
+  },
+  {
+    "code": "MA-MED",
+    "country_code": "MA",
+    "name": "M\u00e9diouna",
+    "parent_code": "MA-06",
+    "type": "Province"
+  },
+  {
+    "code": "MA-MEK",
+    "country_code": "MA",
+    "name": "Mekn\u00e8s",
+    "parent_code": "MA-03",
+    "type": "Prefecture"
+  },
+  {
+    "code": "MA-MID",
+    "country_code": "MA",
+    "name": "Midelt",
+    "parent_code": "MA-08",
+    "type": "Province"
+  },
+  {
+    "code": "MA-MOH",
+    "country_code": "MA",
+    "name": "Mohammadia",
+    "parent_code": "MA-06",
+    "type": "Prefecture"
+  },
+  {
+    "code": "MA-MOU",
+    "country_code": "MA",
+    "name": "Moulay Yacoub",
+    "parent_code": "MA-03",
+    "type": "Province"
+  },
+  {
+    "code": "MA-NAD",
+    "country_code": "MA",
+    "name": "Nador",
+    "parent_code": "MA-02",
+    "type": "Province"
+  },
+  {
+    "code": "MA-NOU",
+    "country_code": "MA",
+    "name": "Nouaceur",
+    "parent_code": "MA-04",
+    "type": "Province"
+  },
+  {
+    "code": "MA-OUA",
+    "country_code": "MA",
+    "name": "Ouarzazate",
+    "parent_code": "MA-08",
+    "type": "Province"
+  },
+  {
+    "code": "MA-OUD",
+    "country_code": "MA",
+    "name": "Oued Ed-Dahab (EH)",
+    "parent_code": "MA-12",
+    "type": "Province"
+  },
+  {
+    "code": "MA-OUJ",
+    "country_code": "MA",
+    "name": "Oujda-Angad",
+    "parent_code": "MA-02",
+    "type": "Prefecture"
+  },
+  {
+    "code": "MA-OUZ",
+    "country_code": "MA",
+    "name": "Ouezzane",
+    "parent_code": "MA-01",
+    "type": "Province"
+  },
+  {
+    "code": "MA-RAB",
+    "country_code": "MA",
+    "name": "Rabat",
+    "parent_code": "MA-04",
+    "type": "Prefecture"
+  },
+  {
+    "code": "MA-REH",
+    "country_code": "MA",
+    "name": "Rehamna",
+    "parent_code": "MA-07",
+    "type": "Province"
+  },
+  {
+    "code": "MA-SAF",
+    "country_code": "MA",
+    "name": "Safi",
+    "parent_code": "MA-07",
+    "type": "Province"
+  },
+  {
+    "code": "MA-SAL",
+    "country_code": "MA",
+    "name": "Sal\u00e9",
+    "parent_code": "MA-04",
+    "type": "Prefecture"
+  },
+  {
+    "code": "MA-SEF",
+    "country_code": "MA",
+    "name": "Sefrou",
+    "parent_code": "MA-03",
+    "type": "Province"
+  },
+  {
+    "code": "MA-SET",
+    "country_code": "MA",
+    "name": "Settat",
+    "parent_code": "MA-06",
+    "type": "Province"
+  },
+  {
+    "code": "MA-SIB",
+    "country_code": "MA",
+    "name": "Sidi Bennour",
+    "parent_code": "MA-06",
+    "type": "Province"
+  },
+  {
+    "code": "MA-SIF",
+    "country_code": "MA",
+    "name": "Sidi Ifni",
+    "parent_code": "MA-10",
+    "type": "Province"
+  },
+  {
+    "code": "MA-SIK",
+    "country_code": "MA",
+    "name": "Sidi Kacem",
+    "parent_code": "MA-04",
+    "type": "Province"
+  },
+  {
+    "code": "MA-SIL",
+    "country_code": "MA",
+    "name": "Sidi Slimane",
+    "parent_code": "MA-04",
+    "type": "Province"
+  },
+  {
+    "code": "MA-SKH",
+    "country_code": "MA",
+    "name": "Skhirate-T\u00e9mara",
+    "parent_code": "MA-04",
+    "type": "Prefecture"
+  },
+  {
+    "code": "MA-TAF",
+    "country_code": "MA",
+    "name": "Tarfaya (EH-partial)",
+    "parent_code": "MA-11",
+    "type": "Province"
+  },
+  {
+    "code": "MA-TAI",
+    "country_code": "MA",
+    "name": "Taourirt",
+    "parent_code": "MA-02",
+    "type": "Province"
+  },
+  {
+    "code": "MA-TAO",
+    "country_code": "MA",
+    "name": "Taounate",
+    "parent_code": "MA-03",
+    "type": "Province"
+  },
+  {
+    "code": "MA-TAR",
+    "country_code": "MA",
+    "name": "Taroudant",
+    "parent_code": "MA-09",
+    "type": "Province"
+  },
+  {
+    "code": "MA-TAT",
+    "country_code": "MA",
+    "name": "Tata",
+    "parent_code": "MA-09",
+    "type": "Province"
+  },
+  {
+    "code": "MA-TAZ",
+    "country_code": "MA",
+    "name": "Taza",
+    "parent_code": "MA-03",
+    "type": "Province"
+  },
+  {
+    "code": "MA-TET",
+    "country_code": "MA",
+    "name": "T\u00e9touan",
+    "parent_code": "MA-01",
+    "type": "Province"
+  },
+  {
+    "code": "MA-TIN",
+    "country_code": "MA",
+    "name": "Tinghir",
+    "parent_code": "MA-08",
+    "type": "Province"
+  },
+  {
+    "code": "MA-TIZ",
+    "country_code": "MA",
+    "name": "Tiznit",
+    "parent_code": "MA-09",
+    "type": "Province"
+  },
+  {
+    "code": "MA-TNG",
+    "country_code": "MA",
+    "name": "Tanger-Assilah",
+    "parent_code": "MA-01",
+    "type": "Prefecture"
+  },
+  {
+    "code": "MA-TNT",
+    "country_code": "MA",
+    "name": "Tan-Tan (EH-partial)",
+    "parent_code": "MA-10",
+    "type": "Province"
+  },
+  {
+    "code": "MA-YUS",
+    "country_code": "MA",
+    "name": "Youssoufia",
+    "parent_code": "MA-07",
+    "type": "Province"
+  },
+  {
+    "code": "MA-ZAG",
+    "country_code": "MA",
+    "name": "Zagora",
+    "parent_code": "MA-08",
+    "type": "Province"
+  }
+]

@@ -1,0 +1,226 @@
+[
+  {
+    "code": "RS-00",
+    "country_code": "RS",
+    "name": "Beograd",
+    "parent_code": null,
+    "type": "City"
+  },
+  {
+    "code": "RS-01",
+    "country_code": "RS",
+    "name": "Severnoba\u010dki okrug",
+    "parent_code": "RS-VO",
+    "type": "District"
+  },
+  {
+    "code": "RS-02",
+    "country_code": "RS",
+    "name": "Srednjebanatski okrug",
+    "parent_code": "RS-VO",
+    "type": "District"
+  },
+  {
+    "code": "RS-03",
+    "country_code": "RS",
+    "name": "Severnobanatski okrug",
+    "parent_code": "RS-VO",
+    "type": "District"
+  },
+  {
+    "code": "RS-04",
+    "country_code": "RS",
+    "name": "Ju\u017enobanatski okrug",
+    "parent_code": "RS-VO",
+    "type": "District"
+  },
+  {
+    "code": "RS-05",
+    "country_code": "RS",
+    "name": "Zapadnoba\u010dki okrug",
+    "parent_code": "RS-VO",
+    "type": "District"
+  },
+  {
+    "code": "RS-06",
+    "country_code": "RS",
+    "name": "Ju\u017enoba\u010dki okrug",
+    "parent_code": "RS-VO",
+    "type": "District"
+  },
+  {
+    "code": "RS-07",
+    "country_code": "RS",
+    "name": "Sremski okrug",
+    "parent_code": "RS-VO",
+    "type": "District"
+  },
+  {
+    "code": "RS-08",
+    "country_code": "RS",
+    "name": "Ma\u010dvanski okrug",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "RS-09",
+    "country_code": "RS",
+    "name": "Kolubarski okrug",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "RS-10",
+    "country_code": "RS",
+    "name": "Podunavski okrug",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "RS-11",
+    "country_code": "RS",
+    "name": "Brani\u010devski okrug",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "RS-12",
+    "country_code": "RS",
+    "name": "\u0160umadijski okrug",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "RS-13",
+    "country_code": "RS",
+    "name": "Pomoravski okrug",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "RS-14",
+    "country_code": "RS",
+    "name": "Borski okrug",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "RS-15",
+    "country_code": "RS",
+    "name": "Zaje\u010darski okrug",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "RS-16",
+    "country_code": "RS",
+    "name": "Zlatiborski okrug",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "RS-17",
+    "country_code": "RS",
+    "name": "Moravi\u010dki okrug",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "RS-18",
+    "country_code": "RS",
+    "name": "Ra\u0161ki okrug",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "RS-19",
+    "country_code": "RS",
+    "name": "Rasinski okrug",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "RS-20",
+    "country_code": "RS",
+    "name": "Ni\u0161avski okrug",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "RS-21",
+    "country_code": "RS",
+    "name": "Topli\u010dki okrug",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "RS-22",
+    "country_code": "RS",
+    "name": "Pirotski okrug",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "RS-23",
+    "country_code": "RS",
+    "name": "Jablani\u010dki okrug",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "RS-24",
+    "country_code": "RS",
+    "name": "P\u010dinjski okrug",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "RS-25",
+    "country_code": "RS",
+    "name": "Kosovski okrug",
+    "parent_code": "RS-KM",
+    "type": "District"
+  },
+  {
+    "code": "RS-26",
+    "country_code": "RS",
+    "name": "Pe\u0107ki okrug",
+    "parent_code": "RS-KM",
+    "type": "District"
+  },
+  {
+    "code": "RS-27",
+    "country_code": "RS",
+    "name": "Prizrenski okrug",
+    "parent_code": "RS-KM",
+    "type": "District"
+  },
+  {
+    "code": "RS-28",
+    "country_code": "RS",
+    "name": "Kosovsko-Mitrova\u010dki okrug",
+    "parent_code": "RS-KM",
+    "type": "District"
+  },
+  {
+    "code": "RS-29",
+    "country_code": "RS",
+    "name": "Kosovsko-Pomoravski okrug",
+    "parent_code": "RS-KM",
+    "type": "District"
+  },
+  {
+    "code": "RS-KM",
+    "country_code": "RS",
+    "name": "Kosovo-Metohija",
+    "parent_code": null,
+    "type": "Autonomous province"
+  },
+  {
+    "code": "RS-VO",
+    "country_code": "RS",
+    "name": "Vojvodina",
+    "parent_code": null,
+    "type": "Autonomous province"
+  }
+]

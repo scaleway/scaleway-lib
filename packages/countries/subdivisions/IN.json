@@ -1,0 +1,254 @@
+[
+  {
+    "code": "IN-AN",
+    "country_code": "IN",
+    "name": "Andaman and Nicobar Islands",
+    "parent_code": null,
+    "type": "Union territory"
+  },
+  {
+    "code": "IN-AP",
+    "country_code": "IN",
+    "name": "Andhra Pradesh",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "IN-AR",
+    "country_code": "IN",
+    "name": "Arunachal Pradesh",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "IN-AS",
+    "country_code": "IN",
+    "name": "Assam",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "IN-BR",
+    "country_code": "IN",
+    "name": "Bihar",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "IN-CH",
+    "country_code": "IN",
+    "name": "Chandigarh",
+    "parent_code": null,
+    "type": "Union territory"
+  },
+  {
+    "code": "IN-CT",
+    "country_code": "IN",
+    "name": "Chhattisgarh",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "IN-DD",
+    "country_code": "IN",
+    "name": "Daman and Diu",
+    "parent_code": null,
+    "type": "Union territory"
+  },
+  {
+    "code": "IN-DL",
+    "country_code": "IN",
+    "name": "Delhi",
+    "parent_code": null,
+    "type": "Union territory"
+  },
+  {
+    "code": "IN-DN",
+    "country_code": "IN",
+    "name": "Dadra and Nagar Haveli",
+    "parent_code": null,
+    "type": "Union territory"
+  },
+  {
+    "code": "IN-GA",
+    "country_code": "IN",
+    "name": "Goa",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "IN-GJ",
+    "country_code": "IN",
+    "name": "Gujarat",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "IN-HP",
+    "country_code": "IN",
+    "name": "Himachal Pradesh",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "IN-HR",
+    "country_code": "IN",
+    "name": "Haryana",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "IN-JH",
+    "country_code": "IN",
+    "name": "Jharkhand",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "IN-JK",
+    "country_code": "IN",
+    "name": "Jammu and Kashmir",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "IN-KA",
+    "country_code": "IN",
+    "name": "Karnataka",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "IN-KL",
+    "country_code": "IN",
+    "name": "Kerala",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "IN-LD",
+    "country_code": "IN",
+    "name": "Lakshadweep",
+    "parent_code": null,
+    "type": "Union territory"
+  },
+  {
+    "code": "IN-MH",
+    "country_code": "IN",
+    "name": "Maharashtra",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "IN-ML",
+    "country_code": "IN",
+    "name": "Meghalaya",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "IN-MN",
+    "country_code": "IN",
+    "name": "Manipur",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "IN-MP",
+    "country_code": "IN",
+    "name": "Madhya Pradesh",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "IN-MZ",
+    "country_code": "IN",
+    "name": "Mizoram",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "IN-NL",
+    "country_code": "IN",
+    "name": "Nagaland",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "IN-OR",
+    "country_code": "IN",
+    "name": "Odisha",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "IN-PB",
+    "country_code": "IN",
+    "name": "Punjab",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "IN-PY",
+    "country_code": "IN",
+    "name": "Puducherry",
+    "parent_code": null,
+    "type": "Union territory"
+  },
+  {
+    "code": "IN-RJ",
+    "country_code": "IN",
+    "name": "Rajasthan",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "IN-SK",
+    "country_code": "IN",
+    "name": "Sikkim",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "IN-TG",
+    "country_code": "IN",
+    "name": "Telangana",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "IN-TN",
+    "country_code": "IN",
+    "name": "Tamil Nadu",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "IN-TR",
+    "country_code": "IN",
+    "name": "Tripura",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "IN-UP",
+    "country_code": "IN",
+    "name": "Uttar Pradesh",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "IN-UT",
+    "country_code": "IN",
+    "name": "Uttarakhand",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "IN-WB",
+    "country_code": "IN",
+    "name": "West Bengal",
+    "parent_code": null,
+    "type": "State"
+  }
+]

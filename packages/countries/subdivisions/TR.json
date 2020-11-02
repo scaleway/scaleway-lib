@@ -1,0 +1,569 @@
+[
+  {
+    "code": "TR-01",
+    "country_code": "TR",
+    "name": "Adana",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-02",
+    "country_code": "TR",
+    "name": "Ad\u0131yaman",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-03",
+    "country_code": "TR",
+    "name": "Afyonkarahisar",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-04",
+    "country_code": "TR",
+    "name": "A\u011fr\u0131",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-05",
+    "country_code": "TR",
+    "name": "Amasya",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-06",
+    "country_code": "TR",
+    "name": "Ankara",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-07",
+    "country_code": "TR",
+    "name": "Antalya",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-08",
+    "country_code": "TR",
+    "name": "Artvin",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-09",
+    "country_code": "TR",
+    "name": "Ayd\u0131n",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-10",
+    "country_code": "TR",
+    "name": "Bal\u0131kesir",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-11",
+    "country_code": "TR",
+    "name": "Bilecik",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-12",
+    "country_code": "TR",
+    "name": "Bing\u00f6l",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-13",
+    "country_code": "TR",
+    "name": "Bitlis",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-14",
+    "country_code": "TR",
+    "name": "Bolu",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-15",
+    "country_code": "TR",
+    "name": "Burdur",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-16",
+    "country_code": "TR",
+    "name": "Bursa",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-17",
+    "country_code": "TR",
+    "name": "\u00c7anakkale",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-18",
+    "country_code": "TR",
+    "name": "\u00c7ank\u0131r\u0131",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-19",
+    "country_code": "TR",
+    "name": "\u00c7orum",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-20",
+    "country_code": "TR",
+    "name": "Denizli",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-21",
+    "country_code": "TR",
+    "name": "Diyarbak\u0131r",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-22",
+    "country_code": "TR",
+    "name": "Edirne",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-23",
+    "country_code": "TR",
+    "name": "Elaz\u0131\u011f",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-24",
+    "country_code": "TR",
+    "name": "Erzincan",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-25",
+    "country_code": "TR",
+    "name": "Erzurum",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-26",
+    "country_code": "TR",
+    "name": "Eski\u015fehir",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-27",
+    "country_code": "TR",
+    "name": "Gaziantep",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-28",
+    "country_code": "TR",
+    "name": "Giresun",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-29",
+    "country_code": "TR",
+    "name": "G\u00fcm\u00fc\u015fhane",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-30",
+    "country_code": "TR",
+    "name": "Hakk\u00e2ri",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-31",
+    "country_code": "TR",
+    "name": "Hatay",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-32",
+    "country_code": "TR",
+    "name": "Isparta",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-33",
+    "country_code": "TR",
+    "name": "Mersin",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-34",
+    "country_code": "TR",
+    "name": "\u0130stanbul",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-35",
+    "country_code": "TR",
+    "name": "\u0130zmir",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-36",
+    "country_code": "TR",
+    "name": "Kars",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-37",
+    "country_code": "TR",
+    "name": "Kastamonu",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-38",
+    "country_code": "TR",
+    "name": "Kayseri",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-39",
+    "country_code": "TR",
+    "name": "K\u0131rklareli",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-40",
+    "country_code": "TR",
+    "name": "K\u0131r\u015fehir",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-41",
+    "country_code": "TR",
+    "name": "Kocaeli",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-42",
+    "country_code": "TR",
+    "name": "Konya",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-43",
+    "country_code": "TR",
+    "name": "K\u00fctahya",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-44",
+    "country_code": "TR",
+    "name": "Malatya",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-45",
+    "country_code": "TR",
+    "name": "Manisa",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-46",
+    "country_code": "TR",
+    "name": "Kahramanmara\u015f",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-47",
+    "country_code": "TR",
+    "name": "Mardin",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-48",
+    "country_code": "TR",
+    "name": "Mu\u011fla",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-49",
+    "country_code": "TR",
+    "name": "Mu\u015f",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-50",
+    "country_code": "TR",
+    "name": "Nev\u015fehir",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-51",
+    "country_code": "TR",
+    "name": "Ni\u011fde",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-52",
+    "country_code": "TR",
+    "name": "Ordu",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-53",
+    "country_code": "TR",
+    "name": "Rize",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-54",
+    "country_code": "TR",
+    "name": "Sakarya",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-55",
+    "country_code": "TR",
+    "name": "Samsun",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-56",
+    "country_code": "TR",
+    "name": "Siirt",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-57",
+    "country_code": "TR",
+    "name": "Sinop",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-58",
+    "country_code": "TR",
+    "name": "Sivas",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-59",
+    "country_code": "TR",
+    "name": "Tekirda\u011f",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-60",
+    "country_code": "TR",
+    "name": "Tokat",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-61",
+    "country_code": "TR",
+    "name": "Trabzon",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-62",
+    "country_code": "TR",
+    "name": "Tunceli",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-63",
+    "country_code": "TR",
+    "name": "\u015eanl\u0131urfa",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-64",
+    "country_code": "TR",
+    "name": "U\u015fak",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-65",
+    "country_code": "TR",
+    "name": "Van",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-66",
+    "country_code": "TR",
+    "name": "Yozgat",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-67",
+    "country_code": "TR",
+    "name": "Zonguldak",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-68",
+    "country_code": "TR",
+    "name": "Aksaray",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-69",
+    "country_code": "TR",
+    "name": "Bayburt",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-70",
+    "country_code": "TR",
+    "name": "Karaman",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-71",
+    "country_code": "TR",
+    "name": "K\u0131r\u0131kkale",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-72",
+    "country_code": "TR",
+    "name": "Batman",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-73",
+    "country_code": "TR",
+    "name": "\u015e\u0131rnak",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-74",
+    "country_code": "TR",
+    "name": "Bart\u0131n",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-75",
+    "country_code": "TR",
+    "name": "Ardahan",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-76",
+    "country_code": "TR",
+    "name": "I\u011fd\u0131r",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-77",
+    "country_code": "TR",
+    "name": "Yalova",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-78",
+    "country_code": "TR",
+    "name": "Karab\u00fck",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-79",
+    "country_code": "TR",
+    "name": "Kilis",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-80",
+    "country_code": "TR",
+    "name": "Osmaniye",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TR-81",
+    "country_code": "TR",
+    "name": "D\u00fczce",
+    "parent_code": null,
+    "type": "Province"
+  }
+]

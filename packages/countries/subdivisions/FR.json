@@ -1,0 +1,877 @@
+[
+  {
+    "code": "FR-01",
+    "country_code": "FR",
+    "name": "Ain",
+    "parent_code": "FR-ARA",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-02",
+    "country_code": "FR",
+    "name": "Aisne",
+    "parent_code": "FR-HDF",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-03",
+    "country_code": "FR",
+    "name": "Allier",
+    "parent_code": "FR-ARA",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-04",
+    "country_code": "FR",
+    "name": "Alpes-de-Haute-Provence",
+    "parent_code": "FR-PAC",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-05",
+    "country_code": "FR",
+    "name": "Hautes-Alpes",
+    "parent_code": "FR-PAC",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-06",
+    "country_code": "FR",
+    "name": "Alpes-Maritimes",
+    "parent_code": "FR-PAC",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-07",
+    "country_code": "FR",
+    "name": "Ard\u00e8che",
+    "parent_code": "FR-ARA",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-08",
+    "country_code": "FR",
+    "name": "Ardennes",
+    "parent_code": "FR-GES",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-09",
+    "country_code": "FR",
+    "name": "Ari\u00e8ge",
+    "parent_code": "FR-OCC",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-10",
+    "country_code": "FR",
+    "name": "Aube",
+    "parent_code": "FR-GES",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-11",
+    "country_code": "FR",
+    "name": "Aude",
+    "parent_code": "FR-OCC",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-12",
+    "country_code": "FR",
+    "name": "Aveyron",
+    "parent_code": "FR-OCC",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-13",
+    "country_code": "FR",
+    "name": "Bouches-du-Rh\u00f4ne",
+    "parent_code": "FR-PAC",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-14",
+    "country_code": "FR",
+    "name": "Calvados",
+    "parent_code": "FR-NOR",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-15",
+    "country_code": "FR",
+    "name": "Cantal",
+    "parent_code": "FR-ARA",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-16",
+    "country_code": "FR",
+    "name": "Charente",
+    "parent_code": "FR-NAQ",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-17",
+    "country_code": "FR",
+    "name": "Charente-Maritime",
+    "parent_code": "FR-NAQ",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-18",
+    "country_code": "FR",
+    "name": "Cher",
+    "parent_code": "FR-CVL",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-19",
+    "country_code": "FR",
+    "name": "Corr\u00e8ze",
+    "parent_code": "FR-NAQ",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-21",
+    "country_code": "FR",
+    "name": "C\u00f4te-d'Or",
+    "parent_code": "FR-BFC",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-22",
+    "country_code": "FR",
+    "name": "C\u00f4tes-d'Armor",
+    "parent_code": "FR-BRE",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-23",
+    "country_code": "FR",
+    "name": "Creuse",
+    "parent_code": "FR-NAQ",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-24",
+    "country_code": "FR",
+    "name": "Dordogne",
+    "parent_code": "FR-NAQ",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-25",
+    "country_code": "FR",
+    "name": "Doubs",
+    "parent_code": "FR-BFC",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-26",
+    "country_code": "FR",
+    "name": "Dr\u00f4me",
+    "parent_code": "FR-ARA",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-27",
+    "country_code": "FR",
+    "name": "Eure",
+    "parent_code": "FR-NOR",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-28",
+    "country_code": "FR",
+    "name": "Eure-et-Loir",
+    "parent_code": "FR-CVL",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-29",
+    "country_code": "FR",
+    "name": "Finist\u00e8re",
+    "parent_code": "FR-BRE",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-2A",
+    "country_code": "FR",
+    "name": "Corse-du-Sud",
+    "parent_code": "FR-COR",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-2B",
+    "country_code": "FR",
+    "name": "Haute-Corse",
+    "parent_code": "FR-COR",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-30",
+    "country_code": "FR",
+    "name": "Gard",
+    "parent_code": "FR-OCC",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-31",
+    "country_code": "FR",
+    "name": "Haute-Garonne",
+    "parent_code": "FR-OCC",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-32",
+    "country_code": "FR",
+    "name": "Gers",
+    "parent_code": "FR-OCC",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-33",
+    "country_code": "FR",
+    "name": "Gironde",
+    "parent_code": "FR-NAQ",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-34",
+    "country_code": "FR",
+    "name": "H\u00e9rault",
+    "parent_code": "FR-OCC",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-35",
+    "country_code": "FR",
+    "name": "Ille-et-Vilaine",
+    "parent_code": "FR-BRE",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-36",
+    "country_code": "FR",
+    "name": "Indre",
+    "parent_code": "FR-CVL",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-37",
+    "country_code": "FR",
+    "name": "Indre-et-Loire",
+    "parent_code": "FR-CVL",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-38",
+    "country_code": "FR",
+    "name": "Is\u00e8re",
+    "parent_code": "FR-ARA",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-39",
+    "country_code": "FR",
+    "name": "Jura",
+    "parent_code": "FR-BFC",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-40",
+    "country_code": "FR",
+    "name": "Landes",
+    "parent_code": "FR-NAQ",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-41",
+    "country_code": "FR",
+    "name": "Loir-et-Cher",
+    "parent_code": "FR-CVL",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-42",
+    "country_code": "FR",
+    "name": "Loire",
+    "parent_code": "FR-ARA",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-43",
+    "country_code": "FR",
+    "name": "Haute-Loire",
+    "parent_code": "FR-ARA",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-44",
+    "country_code": "FR",
+    "name": "Loire-Atlantique",
+    "parent_code": "FR-PDL",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-45",
+    "country_code": "FR",
+    "name": "Loiret",
+    "parent_code": "FR-CVL",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-46",
+    "country_code": "FR",
+    "name": "Lot",
+    "parent_code": "FR-OCC",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-47",
+    "country_code": "FR",
+    "name": "Lot-et-Garonne",
+    "parent_code": "FR-NAQ",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-48",
+    "country_code": "FR",
+    "name": "Loz\u00e8re",
+    "parent_code": "FR-OCC",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-49",
+    "country_code": "FR",
+    "name": "Maine-et-Loire",
+    "parent_code": "FR-PDL",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-50",
+    "country_code": "FR",
+    "name": "Manche",
+    "parent_code": "FR-NOR",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-51",
+    "country_code": "FR",
+    "name": "Marne",
+    "parent_code": "FR-GES",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-52",
+    "country_code": "FR",
+    "name": "Haute-Marne",
+    "parent_code": "FR-GES",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-53",
+    "country_code": "FR",
+    "name": "Mayenne",
+    "parent_code": "FR-PDL",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-54",
+    "country_code": "FR",
+    "name": "Meurthe-et-Moselle",
+    "parent_code": "FR-GES",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-55",
+    "country_code": "FR",
+    "name": "Meuse",
+    "parent_code": "FR-GES",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-56",
+    "country_code": "FR",
+    "name": "Morbihan",
+    "parent_code": "FR-BRE",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-57",
+    "country_code": "FR",
+    "name": "Moselle",
+    "parent_code": "FR-GES",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-58",
+    "country_code": "FR",
+    "name": "Ni\u00e8vre",
+    "parent_code": "FR-BFC",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-59",
+    "country_code": "FR",
+    "name": "Nord",
+    "parent_code": "FR-HDF",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-60",
+    "country_code": "FR",
+    "name": "Oise",
+    "parent_code": "FR-HDF",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-61",
+    "country_code": "FR",
+    "name": "Orne",
+    "parent_code": "FR-NOR",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-62",
+    "country_code": "FR",
+    "name": "Pas-de-Calais",
+    "parent_code": "FR-HDF",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-63",
+    "country_code": "FR",
+    "name": "Puy-de-D\u00f4me",
+    "parent_code": "FR-ARA",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-64",
+    "country_code": "FR",
+    "name": "Pyr\u00e9n\u00e9es-Atlantiques",
+    "parent_code": "FR-NAQ",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-65",
+    "country_code": "FR",
+    "name": "Hautes-Pyr\u00e9n\u00e9es",
+    "parent_code": "FR-OCC",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-66",
+    "country_code": "FR",
+    "name": "Pyr\u00e9n\u00e9es-Orientales",
+    "parent_code": "FR-OCC",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-67",
+    "country_code": "FR",
+    "name": "Bas-Rhin",
+    "parent_code": "FR-GES",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-68",
+    "country_code": "FR",
+    "name": "Haut-Rhin",
+    "parent_code": "FR-GES",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-69",
+    "country_code": "FR",
+    "name": "Rh\u00f4ne",
+    "parent_code": "FR-ARA",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-70",
+    "country_code": "FR",
+    "name": "Haute-Sa\u00f4ne",
+    "parent_code": "FR-BFC",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-71",
+    "country_code": "FR",
+    "name": "Sa\u00f4ne-et-Loire",
+    "parent_code": "FR-BFC",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-72",
+    "country_code": "FR",
+    "name": "Sarthe",
+    "parent_code": "FR-PDL",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-73",
+    "country_code": "FR",
+    "name": "Savoie",
+    "parent_code": "FR-ARA",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-74",
+    "country_code": "FR",
+    "name": "Haute-Savoie",
+    "parent_code": "FR-ARA",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-75",
+    "country_code": "FR",
+    "name": "Paris",
+    "parent_code": "FR-IDF",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-76",
+    "country_code": "FR",
+    "name": "Seine-Maritime",
+    "parent_code": "FR-NOR",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-77",
+    "country_code": "FR",
+    "name": "Seine-et-Marne",
+    "parent_code": "FR-IDF",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-78",
+    "country_code": "FR",
+    "name": "Yvelines",
+    "parent_code": "FR-IDF",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-79",
+    "country_code": "FR",
+    "name": "Deux-S\u00e8vres",
+    "parent_code": "FR-NAQ",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-80",
+    "country_code": "FR",
+    "name": "Somme",
+    "parent_code": "FR-HDF",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-81",
+    "country_code": "FR",
+    "name": "Tarn",
+    "parent_code": "FR-OCC",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-82",
+    "country_code": "FR",
+    "name": "Tarn-et-Garonne",
+    "parent_code": "FR-OCC",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-83",
+    "country_code": "FR",
+    "name": "Var",
+    "parent_code": "FR-PAC",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-84",
+    "country_code": "FR",
+    "name": "Vaucluse",
+    "parent_code": "FR-PAC",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-85",
+    "country_code": "FR",
+    "name": "Vend\u00e9e",
+    "parent_code": "FR-PDL",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-86",
+    "country_code": "FR",
+    "name": "Vienne",
+    "parent_code": "FR-NAQ",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-87",
+    "country_code": "FR",
+    "name": "Haute-Vienne",
+    "parent_code": "FR-NAQ",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-88",
+    "country_code": "FR",
+    "name": "Vosges",
+    "parent_code": "FR-GES",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-89",
+    "country_code": "FR",
+    "name": "Yonne",
+    "parent_code": "FR-BFC",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-90",
+    "country_code": "FR",
+    "name": "Territoire de Belfort",
+    "parent_code": "FR-BFC",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-91",
+    "country_code": "FR",
+    "name": "Essonne",
+    "parent_code": "FR-IDF",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-92",
+    "country_code": "FR",
+    "name": "Hauts-de-Seine",
+    "parent_code": "FR-IDF",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-93",
+    "country_code": "FR",
+    "name": "Seine-Saint-Denis",
+    "parent_code": "FR-IDF",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-94",
+    "country_code": "FR",
+    "name": "Val-de-Marne",
+    "parent_code": "FR-IDF",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-95",
+    "country_code": "FR",
+    "name": "Val-d'Oise",
+    "parent_code": "FR-IDF",
+    "type": "Metropolitan department"
+  },
+  {
+    "code": "FR-ARA",
+    "country_code": "FR",
+    "name": "Auvergne-Rh\u00f4ne-Alpes",
+    "parent_code": null,
+    "type": "Metropolitan region"
+  },
+  {
+    "code": "FR-BFC",
+    "country_code": "FR",
+    "name": "Bourgogne-Franche-Comt\u00e9",
+    "parent_code": null,
+    "type": "Metropolitan region"
+  },
+  {
+    "code": "FR-BL",
+    "country_code": "FR",
+    "name": "Saint-Barth\u00e9lemy",
+    "parent_code": null,
+    "type": "Overseas territorial collectivity"
+  },
+  {
+    "code": "FR-BRE",
+    "country_code": "FR",
+    "name": "Bretagne",
+    "parent_code": null,
+    "type": "Metropolitan region"
+  },
+  {
+    "code": "FR-COR",
+    "country_code": "FR",
+    "name": "Corse",
+    "parent_code": null,
+    "type": "Metropolitan region"
+  },
+  {
+    "code": "FR-CP",
+    "country_code": "FR",
+    "name": "Clipperton",
+    "parent_code": null,
+    "type": "Dependency"
+  },
+  {
+    "code": "FR-CVL",
+    "country_code": "FR",
+    "name": "Centre-Val de Loire",
+    "parent_code": null,
+    "type": "Metropolitan region"
+  },
+  {
+    "code": "FR-GES",
+    "country_code": "FR",
+    "name": "Grand-Est",
+    "parent_code": null,
+    "type": "Metropolitan region"
+  },
+  {
+    "code": "FR-GF",
+    "country_code": "FR",
+    "name": "Guyane (fran\u00e7aise)",
+    "parent_code": null,
+    "type": "Overseas territorial collectivity"
+  },
+  {
+    "code": "FR-GP",
+    "country_code": "FR",
+    "name": "Guadeloupe",
+    "parent_code": "FR-GUA",
+    "type": "Overseas department"
+  },
+  {
+    "code": "FR-GUA",
+    "country_code": "FR",
+    "name": "Guadeloupe",
+    "parent_code": null,
+    "type": "Overseas region"
+  },
+  {
+    "code": "FR-HDF",
+    "country_code": "FR",
+    "name": "Hauts-de-France",
+    "parent_code": null,
+    "type": "Metropolitan region"
+  },
+  {
+    "code": "FR-IDF",
+    "country_code": "FR",
+    "name": "\u00cele-de-France",
+    "parent_code": null,
+    "type": "Metropolitan region"
+  },
+  {
+    "code": "FR-LRE",
+    "country_code": "FR",
+    "name": "La R\u00e9union",
+    "parent_code": null,
+    "type": "Overseas region"
+  },
+  {
+    "code": "FR-MAY",
+    "country_code": "FR",
+    "name": "Mayotte",
+    "parent_code": null,
+    "type": "Overseas region"
+  },
+  {
+    "code": "FR-MF",
+    "country_code": "FR",
+    "name": "Saint-Martin",
+    "parent_code": null,
+    "type": "Overseas territorial collectivity"
+  },
+  {
+    "code": "FR-MQ",
+    "country_code": "FR",
+    "name": "Martinique",
+    "parent_code": null,
+    "type": "Overseas territorial collectivity"
+  },
+  {
+    "code": "FR-NAQ",
+    "country_code": "FR",
+    "name": "Nouvelle-Aquitaine",
+    "parent_code": null,
+    "type": "Metropolitan region"
+  },
+  {
+    "code": "FR-NC",
+    "country_code": "FR",
+    "name": "Nouvelle-Cal\u00e9donie",
+    "parent_code": null,
+    "type": "Overseas territorial collectivity"
+  },
+  {
+    "code": "FR-NOR",
+    "country_code": "FR",
+    "name": "Normandie",
+    "parent_code": null,
+    "type": "Metropolitan region"
+  },
+  {
+    "code": "FR-OCC",
+    "country_code": "FR",
+    "name": "Occitanie",
+    "parent_code": null,
+    "type": "Metropolitan region"
+  },
+  {
+    "code": "FR-PAC",
+    "country_code": "FR",
+    "name": "Provence-Alpes-C\u00f4te-d\u2019Azur",
+    "parent_code": null,
+    "type": "Metropolitan region"
+  },
+  {
+    "code": "FR-PDL",
+    "country_code": "FR",
+    "name": "Pays-de-la-Loire",
+    "parent_code": null,
+    "type": "Metropolitan region"
+  },
+  {
+    "code": "FR-PF",
+    "country_code": "FR",
+    "name": "Polyn\u00e9sie fran\u00e7aise",
+    "parent_code": null,
+    "type": "Overseas territorial collectivity"
+  },
+  {
+    "code": "FR-PM",
+    "country_code": "FR",
+    "name": "Saint-Pierre-et-Miquelon",
+    "parent_code": null,
+    "type": "Overseas territorial collectivity"
+  },
+  {
+    "code": "FR-RE",
+    "country_code": "FR",
+    "name": "La R\u00e9union",
+    "parent_code": "FR-LRE",
+    "type": "Overseas department"
+  },
+  {
+    "code": "FR-TF",
+    "country_code": "FR",
+    "name": "Terres australes fran\u00e7aises",
+    "parent_code": null,
+    "type": "Overseas territorial collectivity"
+  },
+  {
+    "code": "FR-WF",
+    "country_code": "FR",
+    "name": "Wallis-et-Futuna",
+    "parent_code": null,
+    "type": "Overseas territorial collectivity"
+  },
+  {
+    "code": "FR-YT",
+    "country_code": "FR",
+    "name": "Mayotte",
+    "parent_code": "FR-MAY",
+    "type": "Overseas department"
+  }
+]

@@ -1,0 +1,128 @@
+[
+  {
+    "code": "LA-AT",
+    "country_code": "LA",
+    "name": "Attapu",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "LA-BK",
+    "country_code": "LA",
+    "name": "Bok\u00e8o",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "LA-BL",
+    "country_code": "LA",
+    "name": "Bolikhamxai",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "LA-CH",
+    "country_code": "LA",
+    "name": "Champasak",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "LA-HO",
+    "country_code": "LA",
+    "name": "Houaphan",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "LA-KH",
+    "country_code": "LA",
+    "name": "Khammouan",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "LA-LM",
+    "country_code": "LA",
+    "name": "Louang Namtha",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "LA-LP",
+    "country_code": "LA",
+    "name": "Louangphabang",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "LA-OU",
+    "country_code": "LA",
+    "name": "Oud\u00f4mxai",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "LA-PH",
+    "country_code": "LA",
+    "name": "Ph\u00f4ngsali",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "LA-SL",
+    "country_code": "LA",
+    "name": "Salavan",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "LA-SV",
+    "country_code": "LA",
+    "name": "Savannakh\u00e9t",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "LA-VI",
+    "country_code": "LA",
+    "name": "Vientiane",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "LA-VT",
+    "country_code": "LA",
+    "name": "Vientiane",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "LA-XA",
+    "country_code": "LA",
+    "name": "Xaignabouli",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "LA-XE",
+    "country_code": "LA",
+    "name": "X\u00e9kong",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "LA-XI",
+    "country_code": "LA",
+    "name": "Xiangkhouang",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "LA-XS",
+    "country_code": "LA",
+    "name": "Xais\u00f4mboun",
+    "parent_code": null,
+    "type": "Province"
+  }
+]

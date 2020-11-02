@@ -1,0 +1,58 @@
+[
+  {
+    "code": "TV-FUN",
+    "country_code": "TV",
+    "name": "Funafuti",
+    "parent_code": null,
+    "type": "Town council"
+  },
+  {
+    "code": "TV-NIT",
+    "country_code": "TV",
+    "name": "Niutao",
+    "parent_code": null,
+    "type": "Island council"
+  },
+  {
+    "code": "TV-NKF",
+    "country_code": "TV",
+    "name": "Nukufetau",
+    "parent_code": null,
+    "type": "Island council"
+  },
+  {
+    "code": "TV-NKL",
+    "country_code": "TV",
+    "name": "Nukulaelae",
+    "parent_code": null,
+    "type": "Island council"
+  },
+  {
+    "code": "TV-NMA",
+    "country_code": "TV",
+    "name": "Nanumea",
+    "parent_code": null,
+    "type": "Island council"
+  },
+  {
+    "code": "TV-NMG",
+    "country_code": "TV",
+    "name": "Nanumanga",
+    "parent_code": null,
+    "type": "Island council"
+  },
+  {
+    "code": "TV-NUI",
+    "country_code": "TV",
+    "name": "Nui",
+    "parent_code": null,
+    "type": "Island council"
+  },
+  {
+    "code": "TV-VAI",
+    "country_code": "TV",
+    "name": "Vaitupu",
+    "parent_code": null,
+    "type": "Island council"
+  }
+]

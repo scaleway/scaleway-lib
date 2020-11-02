@@ -1,0 +1,30 @@
+[
+  {
+    "code": "FM-KSA",
+    "country_code": "FM",
+    "name": "Kosrae",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "FM-PNI",
+    "country_code": "FM",
+    "name": "Pohnpei",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "FM-TRK",
+    "country_code": "FM",
+    "name": "Chuuk",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "FM-YAP",
+    "country_code": "FM",
+    "name": "Yap",
+    "parent_code": null,
+    "type": "State"
+  }
+]

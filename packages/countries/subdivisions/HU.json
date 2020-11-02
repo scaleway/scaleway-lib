@@ -1,0 +1,303 @@
+[
+  {
+    "code": "HU-BA",
+    "country_code": "HU",
+    "name": "Baranya",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "HU-BC",
+    "country_code": "HU",
+    "name": "B\u00e9k\u00e9scsaba",
+    "parent_code": null,
+    "type": "City with county rights"
+  },
+  {
+    "code": "HU-BE",
+    "country_code": "HU",
+    "name": "B\u00e9k\u00e9s",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "HU-BK",
+    "country_code": "HU",
+    "name": "B\u00e1cs-Kiskun",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "HU-BU",
+    "country_code": "HU",
+    "name": "Budapest",
+    "parent_code": null,
+    "type": "Capital city"
+  },
+  {
+    "code": "HU-BZ",
+    "country_code": "HU",
+    "name": "Borsod-Aba\u00faj-Zempl\u00e9n",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "HU-CS",
+    "country_code": "HU",
+    "name": "Csongr\u00e1d",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "HU-DE",
+    "country_code": "HU",
+    "name": "Debrecen",
+    "parent_code": null,
+    "type": "City with county rights"
+  },
+  {
+    "code": "HU-DU",
+    "country_code": "HU",
+    "name": "Duna\u00fajv\u00e1ros",
+    "parent_code": null,
+    "type": "City with county rights"
+  },
+  {
+    "code": "HU-EG",
+    "country_code": "HU",
+    "name": "Eger",
+    "parent_code": null,
+    "type": "City with county rights"
+  },
+  {
+    "code": "HU-ER",
+    "country_code": "HU",
+    "name": "\u00c9rd",
+    "parent_code": null,
+    "type": "City with county rights"
+  },
+  {
+    "code": "HU-FE",
+    "country_code": "HU",
+    "name": "Fej\u00e9r",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "HU-GS",
+    "country_code": "HU",
+    "name": "Gy\u0151r-Moson-Sopron",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "HU-GY",
+    "country_code": "HU",
+    "name": "Gy\u0151r",
+    "parent_code": null,
+    "type": "City with county rights"
+  },
+  {
+    "code": "HU-HB",
+    "country_code": "HU",
+    "name": "Hajd\u00fa-Bihar",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "HU-HE",
+    "country_code": "HU",
+    "name": "Heves",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "HU-HV",
+    "country_code": "HU",
+    "name": "H\u00f3dmez\u0151v\u00e1s\u00e1rhely",
+    "parent_code": null,
+    "type": "City with county rights"
+  },
+  {
+    "code": "HU-JN",
+    "country_code": "HU",
+    "name": "J\u00e1sz-Nagykun-Szolnok",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "HU-KE",
+    "country_code": "HU",
+    "name": "Kom\u00e1rom-Esztergom",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "HU-KM",
+    "country_code": "HU",
+    "name": "Kecskem\u00e9t",
+    "parent_code": null,
+    "type": "City with county rights"
+  },
+  {
+    "code": "HU-KV",
+    "country_code": "HU",
+    "name": "Kaposv\u00e1r",
+    "parent_code": null,
+    "type": "City with county rights"
+  },
+  {
+    "code": "HU-MI",
+    "country_code": "HU",
+    "name": "Miskolc",
+    "parent_code": null,
+    "type": "City with county rights"
+  },
+  {
+    "code": "HU-NK",
+    "country_code": "HU",
+    "name": "Nagykanizsa",
+    "parent_code": null,
+    "type": "City with county rights"
+  },
+  {
+    "code": "HU-NO",
+    "country_code": "HU",
+    "name": "N\u00f3gr\u00e1d",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "HU-NY",
+    "country_code": "HU",
+    "name": "Ny\u00edregyh\u00e1za",
+    "parent_code": null,
+    "type": "City with county rights"
+  },
+  {
+    "code": "HU-PE",
+    "country_code": "HU",
+    "name": "Pest",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "HU-PS",
+    "country_code": "HU",
+    "name": "P\u00e9cs",
+    "parent_code": null,
+    "type": "City with county rights"
+  },
+  {
+    "code": "HU-SD",
+    "country_code": "HU",
+    "name": "Szeged",
+    "parent_code": null,
+    "type": "City with county rights"
+  },
+  {
+    "code": "HU-SF",
+    "country_code": "HU",
+    "name": "Sz\u00e9kesfeh\u00e9rv\u00e1r",
+    "parent_code": null,
+    "type": "City with county rights"
+  },
+  {
+    "code": "HU-SH",
+    "country_code": "HU",
+    "name": "Szombathely",
+    "parent_code": null,
+    "type": "City with county rights"
+  },
+  {
+    "code": "HU-SK",
+    "country_code": "HU",
+    "name": "Szolnok",
+    "parent_code": null,
+    "type": "City with county rights"
+  },
+  {
+    "code": "HU-SN",
+    "country_code": "HU",
+    "name": "Sopron",
+    "parent_code": null,
+    "type": "City with county rights"
+  },
+  {
+    "code": "HU-SO",
+    "country_code": "HU",
+    "name": "Somogy",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "HU-SS",
+    "country_code": "HU",
+    "name": "Szeksz\u00e1rd",
+    "parent_code": null,
+    "type": "City with county rights"
+  },
+  {
+    "code": "HU-ST",
+    "country_code": "HU",
+    "name": "Salg\u00f3tarj\u00e1n",
+    "parent_code": null,
+    "type": "City with county rights"
+  },
+  {
+    "code": "HU-SZ",
+    "country_code": "HU",
+    "name": "Szabolcs-Szatm\u00e1r-Bereg",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "HU-TB",
+    "country_code": "HU",
+    "name": "Tatab\u00e1nya",
+    "parent_code": null,
+    "type": "City with county rights"
+  },
+  {
+    "code": "HU-TO",
+    "country_code": "HU",
+    "name": "Tolna",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "HU-VA",
+    "country_code": "HU",
+    "name": "Vas",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "HU-VE",
+    "country_code": "HU",
+    "name": "Veszpr\u00e9m (county)",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "HU-VM",
+    "country_code": "HU",
+    "name": "Veszpr\u00e9m",
+    "parent_code": null,
+    "type": "City with county rights"
+  },
+  {
+    "code": "HU-ZA",
+    "country_code": "HU",
+    "name": "Zala",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "HU-ZE",
+    "country_code": "HU",
+    "name": "Zalaegerszeg",
+    "parent_code": null,
+    "type": "City with county rights"
+  }
+]

@@ -1,0 +1,65 @@
+[
+  {
+    "code": "BW-CE",
+    "country_code": "BW",
+    "name": "Central",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BW-GH",
+    "country_code": "BW",
+    "name": "Ghanzi",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BW-KG",
+    "country_code": "BW",
+    "name": "Kgalagadi",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BW-KL",
+    "country_code": "BW",
+    "name": "Kgatleng",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BW-KW",
+    "country_code": "BW",
+    "name": "Kweneng",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BW-NE",
+    "country_code": "BW",
+    "name": "North-East",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BW-NW",
+    "country_code": "BW",
+    "name": "North-West",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BW-SE",
+    "country_code": "BW",
+    "name": "South-East",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BW-SO",
+    "country_code": "BW",
+    "name": "Southern",
+    "parent_code": null,
+    "type": "District"
+  }
+]

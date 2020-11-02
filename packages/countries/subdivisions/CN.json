@@ -1,0 +1,240 @@
+[
+  {
+    "code": "CN-AH",
+    "country_code": "CN",
+    "name": "Anhui Sheng",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CN-BJ",
+    "country_code": "CN",
+    "name": "Beijing Shi",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "CN-CQ",
+    "country_code": "CN",
+    "name": "Chongqing Shi",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "CN-FJ",
+    "country_code": "CN",
+    "name": "Fujian Sheng",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CN-GD",
+    "country_code": "CN",
+    "name": "Guangdong Sheng",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CN-GS",
+    "country_code": "CN",
+    "name": "Gansu Sheng",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CN-GX",
+    "country_code": "CN",
+    "name": "Guangxi Zhuangzu Zizhiqu",
+    "parent_code": null,
+    "type": "Autonomous region"
+  },
+  {
+    "code": "CN-GZ",
+    "country_code": "CN",
+    "name": "Guizhou Sheng",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CN-HA",
+    "country_code": "CN",
+    "name": "Henan Sheng",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CN-HB",
+    "country_code": "CN",
+    "name": "Hubei Sheng",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CN-HE",
+    "country_code": "CN",
+    "name": "Hebei Sheng",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CN-HI",
+    "country_code": "CN",
+    "name": "Hainan Sheng",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CN-HK",
+    "country_code": "CN",
+    "name": "Hong Kong SAR (see also separate country code entry under HK)",
+    "parent_code": null,
+    "type": "Special administrative region"
+  },
+  {
+    "code": "CN-HL",
+    "country_code": "CN",
+    "name": "Heilongjiang Sheng",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CN-HN",
+    "country_code": "CN",
+    "name": "Hunan Sheng",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CN-JL",
+    "country_code": "CN",
+    "name": "Jilin Sheng",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CN-JS",
+    "country_code": "CN",
+    "name": "Jiangsu Sheng",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CN-JX",
+    "country_code": "CN",
+    "name": "Jiangxi Sheng",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CN-LN",
+    "country_code": "CN",
+    "name": "Liaoning Sheng",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CN-MO",
+    "country_code": "CN",
+    "name": "Macao SAR (see also separate country code entry under MO)",
+    "parent_code": null,
+    "type": "Special administrative region"
+  },
+  {
+    "code": "CN-NM",
+    "country_code": "CN",
+    "name": "Nei Mongol Zizhiqu",
+    "parent_code": null,
+    "type": "Autonomous region"
+  },
+  {
+    "code": "CN-NX",
+    "country_code": "CN",
+    "name": "Ningxia Huizi Zizhiqu",
+    "parent_code": null,
+    "type": "Autonomous region"
+  },
+  {
+    "code": "CN-QH",
+    "country_code": "CN",
+    "name": "Qinghai Sheng",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CN-SC",
+    "country_code": "CN",
+    "name": "Sichuan Sheng",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CN-SD",
+    "country_code": "CN",
+    "name": "Shandong Sheng",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CN-SH",
+    "country_code": "CN",
+    "name": "Shanghai Shi",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "CN-SN",
+    "country_code": "CN",
+    "name": "Shaanxi Sheng",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CN-SX",
+    "country_code": "CN",
+    "name": "Shanxi Sheng",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CN-TJ",
+    "country_code": "CN",
+    "name": "Tianjin Shi",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "CN-TW",
+    "country_code": "CN",
+    "name": "Taiwan Sheng (see also separate country code entry under TW)",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CN-XJ",
+    "country_code": "CN",
+    "name": "Xinjiang Uygur Zizhiqu",
+    "parent_code": null,
+    "type": "Autonomous region"
+  },
+  {
+    "code": "CN-XZ",
+    "country_code": "CN",
+    "name": "Xizang Zizhiqu",
+    "parent_code": null,
+    "type": "Autonomous region"
+  },
+  {
+    "code": "CN-YN",
+    "country_code": "CN",
+    "name": "Yunnan Sheng",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CN-ZJ",
+    "country_code": "CN",
+    "name": "Zhejiang Sheng",
+    "parent_code": null,
+    "type": "Province"
+  }
+]

@@ -1,0 +1,128 @@
+[
+  {
+    "code": "NL-AW",
+    "country_code": "NL",
+    "name": "Aruba",
+    "parent_code": null,
+    "type": "Country"
+  },
+  {
+    "code": "NL-BQ1",
+    "country_code": "NL",
+    "name": "Bonaire",
+    "parent_code": null,
+    "type": "Special municipality"
+  },
+  {
+    "code": "NL-BQ2",
+    "country_code": "NL",
+    "name": "Saba",
+    "parent_code": null,
+    "type": "Special municipality"
+  },
+  {
+    "code": "NL-BQ3",
+    "country_code": "NL",
+    "name": "Sint Eustatius",
+    "parent_code": null,
+    "type": "Special municipality"
+  },
+  {
+    "code": "NL-CW",
+    "country_code": "NL",
+    "name": "Cura\u00e7ao",
+    "parent_code": null,
+    "type": "Country"
+  },
+  {
+    "code": "NL-DR",
+    "country_code": "NL",
+    "name": "Drenthe",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "NL-FL",
+    "country_code": "NL",
+    "name": "Flevoland",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "NL-FR",
+    "country_code": "NL",
+    "name": "Friesland",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "NL-GE",
+    "country_code": "NL",
+    "name": "Gelderland",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "NL-GR",
+    "country_code": "NL",
+    "name": "Groningen",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "NL-LI",
+    "country_code": "NL",
+    "name": "Limburg",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "NL-NB",
+    "country_code": "NL",
+    "name": "Noord-Brabant",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "NL-NH",
+    "country_code": "NL",
+    "name": "Noord-Holland",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "NL-OV",
+    "country_code": "NL",
+    "name": "Overijssel",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "NL-SX",
+    "country_code": "NL",
+    "name": "Sint Maarten",
+    "parent_code": null,
+    "type": "Country"
+  },
+  {
+    "code": "NL-UT",
+    "country_code": "NL",
+    "name": "Utrecht",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "NL-ZE",
+    "country_code": "NL",
+    "name": "Zeeland",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "NL-ZH",
+    "country_code": "NL",
+    "name": "Zuid-Holland",
+    "parent_code": null,
+    "type": "Province"
+  }
+]

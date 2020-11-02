@@ -1,0 +1,51 @@
+[
+  {
+    "code": "AE-AJ",
+    "country_code": "AE",
+    "name": "'Ajm\u0101n",
+    "parent_code": null,
+    "type": "Emirate"
+  },
+  {
+    "code": "AE-AZ",
+    "country_code": "AE",
+    "name": "Ab\u016b \u0224aby [Abu Dhabi]",
+    "parent_code": null,
+    "type": "Emirate"
+  },
+  {
+    "code": "AE-DU",
+    "country_code": "AE",
+    "name": "Dubayy",
+    "parent_code": null,
+    "type": "Emirate"
+  },
+  {
+    "code": "AE-FU",
+    "country_code": "AE",
+    "name": "Al Fujayrah",
+    "parent_code": null,
+    "type": "Emirate"
+  },
+  {
+    "code": "AE-RK",
+    "country_code": "AE",
+    "name": "Ra\u2019s al Khaymah",
+    "parent_code": null,
+    "type": "Emirate"
+  },
+  {
+    "code": "AE-SH",
+    "country_code": "AE",
+    "name": "Ash Sh\u0101riqah",
+    "parent_code": null,
+    "type": "Emirate"
+  },
+  {
+    "code": "AE-UQ",
+    "country_code": "AE",
+    "name": "Umm al Qaywayn",
+    "parent_code": null,
+    "type": "Emirate"
+  }
+]

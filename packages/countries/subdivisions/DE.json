@@ -1,0 +1,114 @@
+[
+  {
+    "code": "DE-BB",
+    "country_code": "DE",
+    "name": "Brandenburg",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "DE-BE",
+    "country_code": "DE",
+    "name": "Berlin",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "DE-BW",
+    "country_code": "DE",
+    "name": "Baden-W\u00fcrttemberg",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "DE-BY",
+    "country_code": "DE",
+    "name": "Bayern",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "DE-HB",
+    "country_code": "DE",
+    "name": "Bremen",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "DE-HE",
+    "country_code": "DE",
+    "name": "Hessen",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "DE-HH",
+    "country_code": "DE",
+    "name": "Hamburg",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "DE-MV",
+    "country_code": "DE",
+    "name": "Mecklenburg-Vorpommern",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "DE-NI",
+    "country_code": "DE",
+    "name": "Niedersachsen",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "DE-NW",
+    "country_code": "DE",
+    "name": "Nordrhein-Westfalen",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "DE-RP",
+    "country_code": "DE",
+    "name": "Rheinland-Pfalz",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "DE-SH",
+    "country_code": "DE",
+    "name": "Schleswig-Holstein",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "DE-SL",
+    "country_code": "DE",
+    "name": "Saarland",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "DE-SN",
+    "country_code": "DE",
+    "name": "Sachsen",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "DE-ST",
+    "country_code": "DE",
+    "name": "Sachsen-Anhalt",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "DE-TH",
+    "country_code": "DE",
+    "name": "Th\u00fcringen",
+    "parent_code": null,
+    "type": "State"
+  }
+]

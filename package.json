@@ -30,7 +30,7 @@
   "scripts": {
     "lint": "eslint --cache .",
     "lint:fix": "yarn run lint --fix",
-    "build": "lerna exec --ignore @scaleway/eslint-* -- rollup -c ../../rollup.config.js",
+    "build": "lerna exec --ignore @scaleway/eslint-* --ignore @scaleway/countries -- rollup -c ../../rollup.config.js",
     "build:profile": "cross-env PROFILE=true yarn run build",
     "commit": "npx git-cz -a",
     "test": "jest",

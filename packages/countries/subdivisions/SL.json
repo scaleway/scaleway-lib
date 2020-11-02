@@ -1,0 +1,30 @@
+[
+  {
+    "code": "SL-E",
+    "country_code": "SL",
+    "name": "Eastern",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "SL-N",
+    "country_code": "SL",
+    "name": "Northern",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "SL-S",
+    "country_code": "SL",
+    "name": "Southern (Sierra Leone)",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "SL-W",
+    "country_code": "SL",
+    "name": "Western Area (Freetown)",
+    "parent_code": null,
+    "type": "Area"
+  }
+]

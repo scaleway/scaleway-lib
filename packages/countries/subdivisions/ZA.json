@@ -1,0 +1,65 @@
+[
+  {
+    "code": "ZA-EC",
+    "country_code": "ZA",
+    "name": "Eastern Cape",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "ZA-FS",
+    "country_code": "ZA",
+    "name": "Free State",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "ZA-GT",
+    "country_code": "ZA",
+    "name": "Gauteng",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "ZA-LP",
+    "country_code": "ZA",
+    "name": "Limpopo",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "ZA-MP",
+    "country_code": "ZA",
+    "name": "Mpumalanga",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "ZA-NC",
+    "country_code": "ZA",
+    "name": "Northern Cape",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "ZA-NL",
+    "country_code": "ZA",
+    "name": "Kwazulu-Natal",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "ZA-NW",
+    "country_code": "ZA",
+    "name": "North-West (South Africa)",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "ZA-WC",
+    "country_code": "ZA",
+    "name": "Western Cape",
+    "parent_code": null,
+    "type": "Province"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "code": "BE-BRU",
+    "country_code": "BE",
+    "name": "Bruxelles-Capitale, R\u00e9gion de;Brussels Hoofdstedelijk Gewest",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "BE-VAN",
+    "country_code": "BE",
+    "name": "Antwerpen",
+    "parent_code": "BE-VLG",
+    "type": "Province"
+  },
+  {
+    "code": "BE-VBR",
+    "country_code": "BE",
+    "name": "Vlaams-Brabant",
+    "parent_code": "BE-VLG",
+    "type": "Province"
+  },
+  {
+    "code": "BE-VLG",
+    "country_code": "BE",
+    "name": "Vlaams Gewest",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "BE-VLI",
+    "country_code": "BE",
+    "name": "Limburg",
+    "parent_code": "BE-VLG",
+    "type": "Province"
+  },
+  {
+    "code": "BE-VOV",
+    "country_code": "BE",
+    "name": "Oost-Vlaanderen",
+    "parent_code": "BE-VLG",
+    "type": "Province"
+  },
+  {
+    "code": "BE-VWV",
+    "country_code": "BE",
+    "name": "West-Vlaanderen",
+    "parent_code": "BE-VLG",
+    "type": "Province"
+  },
+  {
+    "code": "BE-WAL",
+    "country_code": "BE",
+    "name": "wallonne, R\u00e9gion",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "BE-WBR",
+    "country_code": "BE",
+    "name": "Brabant wallon",
+    "parent_code": "BE-WAL",
+    "type": "Province"
+  },
+  {
+    "code": "BE-WHT",
+    "country_code": "BE",
+    "name": "Hainaut",
+    "parent_code": "BE-WAL",
+    "type": "Province"
+  },
+  {
+    "code": "BE-WLG",
+    "country_code": "BE",
+    "name": "Li\u00e8ge",
+    "parent_code": "BE-WAL",
+    "type": "Province"
+  },
+  {
+    "code": "BE-WLX",
+    "country_code": "BE",
+    "name": "Luxembourg",
+    "parent_code": "BE-WAL",
+    "type": "Province"
+  },
+  {
+    "code": "BE-WNA",
+    "country_code": "BE",
+    "name": "Namur",
+    "parent_code": "BE-WAL",
+    "type": "Province"
+  }
+]

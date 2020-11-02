@@ -1,0 +1,478 @@
+[
+  {
+    "code": "MT-01",
+    "country_code": "MT",
+    "name": "Attard",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-02",
+    "country_code": "MT",
+    "name": "Balzan",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-03",
+    "country_code": "MT",
+    "name": "Birgu",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-04",
+    "country_code": "MT",
+    "name": "Birkirkara",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-05",
+    "country_code": "MT",
+    "name": "Bir\u017cebbu\u0121a",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-06",
+    "country_code": "MT",
+    "name": "Bormla",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-07",
+    "country_code": "MT",
+    "name": "Dingli",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-08",
+    "country_code": "MT",
+    "name": "Fgura",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-09",
+    "country_code": "MT",
+    "name": "Floriana",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-10",
+    "country_code": "MT",
+    "name": "Fontana",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-11",
+    "country_code": "MT",
+    "name": "Gudja",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-12",
+    "country_code": "MT",
+    "name": "G\u017cira",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-13",
+    "country_code": "MT",
+    "name": "G\u0127ajnsielem",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-14",
+    "country_code": "MT",
+    "name": "G\u0127arb",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-15",
+    "country_code": "MT",
+    "name": "G\u0127arg\u0127ur",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-16",
+    "country_code": "MT",
+    "name": "G\u0127asri",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-17",
+    "country_code": "MT",
+    "name": "G\u0127axaq",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-18",
+    "country_code": "MT",
+    "name": "\u0126amrun",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-19",
+    "country_code": "MT",
+    "name": "Iklin",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-20",
+    "country_code": "MT",
+    "name": "Isla",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-21",
+    "country_code": "MT",
+    "name": "Kalkara",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-22",
+    "country_code": "MT",
+    "name": "Ker\u010bem",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-23",
+    "country_code": "MT",
+    "name": "Kirkop",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-24",
+    "country_code": "MT",
+    "name": "Lija",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-25",
+    "country_code": "MT",
+    "name": "Luqa",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-26",
+    "country_code": "MT",
+    "name": "Marsa",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-27",
+    "country_code": "MT",
+    "name": "Marsaskala",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-28",
+    "country_code": "MT",
+    "name": "Marsaxlokk",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-29",
+    "country_code": "MT",
+    "name": "Mdina",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-30",
+    "country_code": "MT",
+    "name": "Mellie\u0127a",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-31",
+    "country_code": "MT",
+    "name": "M\u0121arr",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-32",
+    "country_code": "MT",
+    "name": "Mosta",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-33",
+    "country_code": "MT",
+    "name": "Mqabba",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-34",
+    "country_code": "MT",
+    "name": "Msida",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-35",
+    "country_code": "MT",
+    "name": "Mtarfa",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-36",
+    "country_code": "MT",
+    "name": "Munxar",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-37",
+    "country_code": "MT",
+    "name": "Nadur",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-38",
+    "country_code": "MT",
+    "name": "Naxxar",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-39",
+    "country_code": "MT",
+    "name": "Paola",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-40",
+    "country_code": "MT",
+    "name": "Pembroke",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-41",
+    "country_code": "MT",
+    "name": "Piet\u00e0",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-42",
+    "country_code": "MT",
+    "name": "Qala",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-43",
+    "country_code": "MT",
+    "name": "Qormi",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-44",
+    "country_code": "MT",
+    "name": "Qrendi",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-45",
+    "country_code": "MT",
+    "name": "Rabat G\u0127awdex",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-46",
+    "country_code": "MT",
+    "name": "Rabat Malta",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-47",
+    "country_code": "MT",
+    "name": "Safi",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-48",
+    "country_code": "MT",
+    "name": "San \u0120iljan",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-49",
+    "country_code": "MT",
+    "name": "San \u0120wann",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-50",
+    "country_code": "MT",
+    "name": "San Lawrenz",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-51",
+    "country_code": "MT",
+    "name": "San Pawl il-Ba\u0127ar",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-52",
+    "country_code": "MT",
+    "name": "Sannat",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-53",
+    "country_code": "MT",
+    "name": "Santa Lu\u010bija",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-54",
+    "country_code": "MT",
+    "name": "Santa Venera",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-55",
+    "country_code": "MT",
+    "name": "Si\u0121\u0121iewi",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-56",
+    "country_code": "MT",
+    "name": "Sliema",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-57",
+    "country_code": "MT",
+    "name": "Swieqi",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-58",
+    "country_code": "MT",
+    "name": "Ta\u2019 Xbiex",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-59",
+    "country_code": "MT",
+    "name": "Tarxien",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-60",
+    "country_code": "MT",
+    "name": "Valletta",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-61",
+    "country_code": "MT",
+    "name": "Xag\u0127ra",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-62",
+    "country_code": "MT",
+    "name": "Xewkija",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-63",
+    "country_code": "MT",
+    "name": "Xg\u0127ajra",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-64",
+    "country_code": "MT",
+    "name": "\u017babbar",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-65",
+    "country_code": "MT",
+    "name": "\u017bebbu\u0121 G\u0127awdex",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-66",
+    "country_code": "MT",
+    "name": "\u017bebbu\u0121 Malta",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-67",
+    "country_code": "MT",
+    "name": "\u017bejtun",
+    "parent_code": null,
+    "type": "Local council"
+  },
+  {
+    "code": "MT-68",
+    "country_code": "MT",
+    "name": "\u017burrieq",
+    "parent_code": null,
+    "type": "Local council"
+  }
+]

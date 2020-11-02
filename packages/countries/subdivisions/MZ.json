@@ -1,0 +1,79 @@
+[
+  {
+    "code": "MZ-A",
+    "country_code": "MZ",
+    "name": "Niassa",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "MZ-B",
+    "country_code": "MZ",
+    "name": "Manica",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "MZ-G",
+    "country_code": "MZ",
+    "name": "Gaza",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "MZ-I",
+    "country_code": "MZ",
+    "name": "Inhambane",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "MZ-L",
+    "country_code": "MZ",
+    "name": "Maputo",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "MZ-MPM",
+    "country_code": "MZ",
+    "name": "Maputo (city)",
+    "parent_code": null,
+    "type": "City"
+  },
+  {
+    "code": "MZ-N",
+    "country_code": "MZ",
+    "name": "Numpula",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "MZ-P",
+    "country_code": "MZ",
+    "name": "Cabo Delgado",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "MZ-Q",
+    "country_code": "MZ",
+    "name": "Zambezia",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "MZ-S",
+    "country_code": "MZ",
+    "name": "Sofala",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "MZ-T",
+    "country_code": "MZ",
+    "name": "Tete",
+    "parent_code": null,
+    "type": "Province"
+  }
+]

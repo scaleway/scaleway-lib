@@ -1,0 +1,261 @@
+[
+  {
+    "code": "NG-AB",
+    "country_code": "NG",
+    "name": "Abia",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "NG-AD",
+    "country_code": "NG",
+    "name": "Adamawa",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "NG-AK",
+    "country_code": "NG",
+    "name": "Akwa Ibom",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "NG-AN",
+    "country_code": "NG",
+    "name": "Anambra",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "NG-BA",
+    "country_code": "NG",
+    "name": "Bauchi",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "NG-BE",
+    "country_code": "NG",
+    "name": "Benue",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "NG-BO",
+    "country_code": "NG",
+    "name": "Borno",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "NG-BY",
+    "country_code": "NG",
+    "name": "Bayelsa",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "NG-CR",
+    "country_code": "NG",
+    "name": "Cross River",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "NG-DE",
+    "country_code": "NG",
+    "name": "Delta",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "NG-EB",
+    "country_code": "NG",
+    "name": "Ebonyi",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "NG-ED",
+    "country_code": "NG",
+    "name": "Edo",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "NG-EK",
+    "country_code": "NG",
+    "name": "Ekiti",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "NG-EN",
+    "country_code": "NG",
+    "name": "Enugu",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "NG-FC",
+    "country_code": "NG",
+    "name": "Abuja Capital Territory",
+    "parent_code": null,
+    "type": "Capital Territory"
+  },
+  {
+    "code": "NG-GO",
+    "country_code": "NG",
+    "name": "Gombe",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "NG-IM",
+    "country_code": "NG",
+    "name": "Imo",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "NG-JI",
+    "country_code": "NG",
+    "name": "Jigawa",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "NG-KD",
+    "country_code": "NG",
+    "name": "Kaduna",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "NG-KE",
+    "country_code": "NG",
+    "name": "Kebbi",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "NG-KN",
+    "country_code": "NG",
+    "name": "Kano",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "NG-KO",
+    "country_code": "NG",
+    "name": "Kogi",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "NG-KT",
+    "country_code": "NG",
+    "name": "Katsina",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "NG-KW",
+    "country_code": "NG",
+    "name": "Kwara",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "NG-LA",
+    "country_code": "NG",
+    "name": "Lagos",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "NG-NA",
+    "country_code": "NG",
+    "name": "Nassarawa",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "NG-NI",
+    "country_code": "NG",
+    "name": "Niger",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "NG-OG",
+    "country_code": "NG",
+    "name": "Ogun",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "NG-ON",
+    "country_code": "NG",
+    "name": "Ondo",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "NG-OS",
+    "country_code": "NG",
+    "name": "Osun",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "NG-OY",
+    "country_code": "NG",
+    "name": "Oyo",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "NG-PL",
+    "country_code": "NG",
+    "name": "Plateau",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "NG-RI",
+    "country_code": "NG",
+    "name": "Rivers",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "NG-SO",
+    "country_code": "NG",
+    "name": "Sokoto",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "NG-TA",
+    "country_code": "NG",
+    "name": "Taraba",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "NG-YO",
+    "country_code": "NG",
+    "name": "Yobe",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "NG-ZA",
+    "country_code": "NG",
+    "name": "Zamfara",
+    "parent_code": null,
+    "type": "State"
+  }
+]

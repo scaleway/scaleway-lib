@@ -1,0 +1,65 @@
+[
+  {
+    "code": "SM-01",
+    "country_code": "SM",
+    "name": "Acquaviva",
+    "parent_code": null,
+    "type": "Municipalities"
+  },
+  {
+    "code": "SM-02",
+    "country_code": "SM",
+    "name": "Chiesanuova",
+    "parent_code": null,
+    "type": "Municipalities"
+  },
+  {
+    "code": "SM-03",
+    "country_code": "SM",
+    "name": "Domagnano",
+    "parent_code": null,
+    "type": "Municipalities"
+  },
+  {
+    "code": "SM-04",
+    "country_code": "SM",
+    "name": "Faetano",
+    "parent_code": null,
+    "type": "Municipalities"
+  },
+  {
+    "code": "SM-05",
+    "country_code": "SM",
+    "name": "Fiorentino",
+    "parent_code": null,
+    "type": "Municipalities"
+  },
+  {
+    "code": "SM-06",
+    "country_code": "SM",
+    "name": "Borgo Maggiore",
+    "parent_code": null,
+    "type": "Municipalities"
+  },
+  {
+    "code": "SM-07",
+    "country_code": "SM",
+    "name": "San Marino",
+    "parent_code": null,
+    "type": "Municipalities"
+  },
+  {
+    "code": "SM-08",
+    "country_code": "SM",
+    "name": "Montegiardino",
+    "parent_code": null,
+    "type": "Municipalities"
+  },
+  {
+    "code": "SM-09",
+    "country_code": "SM",
+    "name": "Serravalle",
+    "parent_code": null,
+    "type": "Municipalities"
+  }
+]

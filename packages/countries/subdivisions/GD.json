@@ -1,0 +1,51 @@
+[
+  {
+    "code": "GD-01",
+    "country_code": "GD",
+    "name": "Saint Andrew",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "GD-02",
+    "country_code": "GD",
+    "name": "Saint David",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "GD-03",
+    "country_code": "GD",
+    "name": "Saint George",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "GD-04",
+    "country_code": "GD",
+    "name": "Saint John",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "GD-05",
+    "country_code": "GD",
+    "name": "Saint Mark",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "GD-06",
+    "country_code": "GD",
+    "name": "Saint Patrick",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "GD-10",
+    "country_code": "GD",
+    "name": "Southern Grenadine Islands",
+    "parent_code": null,
+    "type": "Dependency"
+  }
+]

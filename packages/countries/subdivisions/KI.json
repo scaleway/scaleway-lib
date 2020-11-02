@@ -1,0 +1,23 @@
+[
+  {
+    "code": "KI-G",
+    "country_code": "KI",
+    "name": "Gilbert Islands",
+    "parent_code": null,
+    "type": "Island group"
+  },
+  {
+    "code": "KI-L",
+    "country_code": "KI",
+    "name": "Line Islands",
+    "parent_code": null,
+    "type": "Island group"
+  },
+  {
+    "code": "KI-P",
+    "country_code": "KI",
+    "name": "Phoenix Islands",
+    "parent_code": null,
+    "type": "Island group"
+  }
+]

@@ -1,0 +1,338 @@
+[
+  {
+    "code": "AL-01",
+    "country_code": "AL",
+    "name": "Berat",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "AL-02",
+    "country_code": "AL",
+    "name": "Durr\u00ebs",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "AL-03",
+    "country_code": "AL",
+    "name": "Elbasan",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "AL-04",
+    "country_code": "AL",
+    "name": "Fier",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "AL-05",
+    "country_code": "AL",
+    "name": "Gjirokast\u00ebr",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "AL-06",
+    "country_code": "AL",
+    "name": "Kor\u00e7\u00eb",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "AL-07",
+    "country_code": "AL",
+    "name": "Kuk\u00ebs",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "AL-08",
+    "country_code": "AL",
+    "name": "Lezh\u00eb",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "AL-09",
+    "country_code": "AL",
+    "name": "Dib\u00ebr",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "AL-10",
+    "country_code": "AL",
+    "name": "Shkod\u00ebr",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "AL-11",
+    "country_code": "AL",
+    "name": "Tiran\u00eb",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "AL-12",
+    "country_code": "AL",
+    "name": "Vlor\u00eb",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "AL-BR",
+    "country_code": "AL",
+    "name": "Berat",
+    "parent_code": "AL-01",
+    "type": "District"
+  },
+  {
+    "code": "AL-BU",
+    "country_code": "AL",
+    "name": "Bulqiz\u00eb",
+    "parent_code": "AL-09",
+    "type": "District"
+  },
+  {
+    "code": "AL-DI",
+    "country_code": "AL",
+    "name": "Dib\u00ebr",
+    "parent_code": "AL-09",
+    "type": "District"
+  },
+  {
+    "code": "AL-DL",
+    "country_code": "AL",
+    "name": "Delvin\u00eb",
+    "parent_code": "AL-12",
+    "type": "District"
+  },
+  {
+    "code": "AL-DR",
+    "country_code": "AL",
+    "name": "Durr\u00ebs",
+    "parent_code": "AL-02",
+    "type": "District"
+  },
+  {
+    "code": "AL-DV",
+    "country_code": "AL",
+    "name": "Devoll",
+    "parent_code": "AL-06",
+    "type": "District"
+  },
+  {
+    "code": "AL-EL",
+    "country_code": "AL",
+    "name": "Elbasan",
+    "parent_code": "AL-03",
+    "type": "District"
+  },
+  {
+    "code": "AL-ER",
+    "country_code": "AL",
+    "name": "Kolonj\u00eb",
+    "parent_code": "AL-06",
+    "type": "District"
+  },
+  {
+    "code": "AL-FR",
+    "country_code": "AL",
+    "name": "Fier",
+    "parent_code": "AL-04",
+    "type": "District"
+  },
+  {
+    "code": "AL-GJ",
+    "country_code": "AL",
+    "name": "Gjirokast\u00ebr",
+    "parent_code": "AL-05",
+    "type": "District"
+  },
+  {
+    "code": "AL-GR",
+    "country_code": "AL",
+    "name": "Gramsh",
+    "parent_code": "AL-03",
+    "type": "District"
+  },
+  {
+    "code": "AL-HA",
+    "country_code": "AL",
+    "name": "Has",
+    "parent_code": "AL-07",
+    "type": "District"
+  },
+  {
+    "code": "AL-KA",
+    "country_code": "AL",
+    "name": "Kavaj\u00eb",
+    "parent_code": "AL-11",
+    "type": "District"
+  },
+  {
+    "code": "AL-KB",
+    "country_code": "AL",
+    "name": "Kurbin",
+    "parent_code": "AL-08",
+    "type": "District"
+  },
+  {
+    "code": "AL-KC",
+    "country_code": "AL",
+    "name": "Ku\u00e7ov\u00eb",
+    "parent_code": "AL-01",
+    "type": "District"
+  },
+  {
+    "code": "AL-KO",
+    "country_code": "AL",
+    "name": "Kor\u00e7\u00eb",
+    "parent_code": "AL-06",
+    "type": "District"
+  },
+  {
+    "code": "AL-KR",
+    "country_code": "AL",
+    "name": "Kruj\u00eb",
+    "parent_code": "AL-02",
+    "type": "District"
+  },
+  {
+    "code": "AL-KU",
+    "country_code": "AL",
+    "name": "Kuk\u00ebs",
+    "parent_code": "AL-07",
+    "type": "District"
+  },
+  {
+    "code": "AL-LB",
+    "country_code": "AL",
+    "name": "Librazhd",
+    "parent_code": "AL-03",
+    "type": "District"
+  },
+  {
+    "code": "AL-LE",
+    "country_code": "AL",
+    "name": "Lezh\u00eb",
+    "parent_code": "AL-08",
+    "type": "District"
+  },
+  {
+    "code": "AL-LU",
+    "country_code": "AL",
+    "name": "Lushnj\u00eb",
+    "parent_code": "AL-04",
+    "type": "District"
+  },
+  {
+    "code": "AL-MK",
+    "country_code": "AL",
+    "name": "Mallakast\u00ebr",
+    "parent_code": "AL-04",
+    "type": "District"
+  },
+  {
+    "code": "AL-MM",
+    "country_code": "AL",
+    "name": "Mal\u00ebsi e Madhe",
+    "parent_code": "AL-10",
+    "type": "District"
+  },
+  {
+    "code": "AL-MR",
+    "country_code": "AL",
+    "name": "Mirdit\u00eb",
+    "parent_code": "AL-08",
+    "type": "District"
+  },
+  {
+    "code": "AL-MT",
+    "country_code": "AL",
+    "name": "Mat",
+    "parent_code": "AL-09",
+    "type": "District"
+  },
+  {
+    "code": "AL-PG",
+    "country_code": "AL",
+    "name": "Pogradec",
+    "parent_code": "AL-06",
+    "type": "District"
+  },
+  {
+    "code": "AL-PQ",
+    "country_code": "AL",
+    "name": "Peqin",
+    "parent_code": "AL-03",
+    "type": "District"
+  },
+  {
+    "code": "AL-PR",
+    "country_code": "AL",
+    "name": "P\u00ebrmet",
+    "parent_code": "AL-05",
+    "type": "District"
+  },
+  {
+    "code": "AL-PU",
+    "country_code": "AL",
+    "name": "Puk\u00eb",
+    "parent_code": "AL-10",
+    "type": "District"
+  },
+  {
+    "code": "AL-SH",
+    "country_code": "AL",
+    "name": "Shkod\u00ebr",
+    "parent_code": "AL-10",
+    "type": "District"
+  },
+  {
+    "code": "AL-SK",
+    "country_code": "AL",
+    "name": "Skrapar",
+    "parent_code": "AL-01",
+    "type": "District"
+  },
+  {
+    "code": "AL-SR",
+    "country_code": "AL",
+    "name": "Sarand\u00eb",
+    "parent_code": "AL-12",
+    "type": "District"
+  },
+  {
+    "code": "AL-TE",
+    "country_code": "AL",
+    "name": "Tepelen\u00eb",
+    "parent_code": "AL-05",
+    "type": "District"
+  },
+  {
+    "code": "AL-TP",
+    "country_code": "AL",
+    "name": "Tropoj\u00eb",
+    "parent_code": "AL-07",
+    "type": "District"
+  },
+  {
+    "code": "AL-TR",
+    "country_code": "AL",
+    "name": "Tiran\u00eb",
+    "parent_code": "AL-11",
+    "type": "District"
+  },
+  {
+    "code": "AL-VL",
+    "country_code": "AL",
+    "name": "Vlor\u00eb",
+    "parent_code": "AL-12",
+    "type": "District"
+  }
+]

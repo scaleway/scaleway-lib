@@ -1,0 +1,72 @@
+[
+  {
+    "code": "DM-01",
+    "country_code": "DM",
+    "name": "Saint Peter",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "DM-02",
+    "country_code": "DM",
+    "name": "Saint Andrew",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "DM-03",
+    "country_code": "DM",
+    "name": "Saint David",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "DM-04",
+    "country_code": "DM",
+    "name": "Saint George",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "DM-05",
+    "country_code": "DM",
+    "name": "Saint John",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "DM-06",
+    "country_code": "DM",
+    "name": "Saint Joseph",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "DM-07",
+    "country_code": "DM",
+    "name": "Saint Luke",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "DM-08",
+    "country_code": "DM",
+    "name": "Saint Mark",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "DM-09",
+    "country_code": "DM",
+    "name": "Saint Patrick",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "DM-10",
+    "country_code": "DM",
+    "name": "Saint Paul",
+    "parent_code": null,
+    "type": "Parish"
+  }
+]

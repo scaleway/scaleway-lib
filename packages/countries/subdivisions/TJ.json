@@ -1,0 +1,23 @@
+[
+  {
+    "code": "TJ-GB",
+    "country_code": "TJ",
+    "name": "Gorno-Badakhshan",
+    "parent_code": null,
+    "type": "Autonomous region"
+  },
+  {
+    "code": "TJ-KT",
+    "country_code": "TJ",
+    "name": "Khatlon",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TJ-SU",
+    "country_code": "TJ",
+    "name": "Sughd",
+    "parent_code": null,
+    "type": "Region"
+  }
+]

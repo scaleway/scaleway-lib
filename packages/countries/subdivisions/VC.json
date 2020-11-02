@@ -1,0 +1,44 @@
+[
+  {
+    "code": "VC-01",
+    "country_code": "VC",
+    "name": "Charlotte",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "VC-02",
+    "country_code": "VC",
+    "name": "Saint Andrew",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "VC-03",
+    "country_code": "VC",
+    "name": "Saint David",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "VC-04",
+    "country_code": "VC",
+    "name": "Saint George",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "VC-05",
+    "country_code": "VC",
+    "name": "Saint Patrick",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "VC-06",
+    "country_code": "VC",
+    "name": "Grenadines",
+    "parent_code": null,
+    "type": "Parish"
+  }
+]

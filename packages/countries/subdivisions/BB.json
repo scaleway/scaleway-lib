@@ -1,0 +1,79 @@
+[
+  {
+    "code": "BB-01",
+    "country_code": "BB",
+    "name": "Christ Church",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "BB-02",
+    "country_code": "BB",
+    "name": "Saint Andrew",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "BB-03",
+    "country_code": "BB",
+    "name": "Saint George",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "BB-04",
+    "country_code": "BB",
+    "name": "Saint James",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "BB-05",
+    "country_code": "BB",
+    "name": "Saint John",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "BB-06",
+    "country_code": "BB",
+    "name": "Saint Joseph",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "BB-07",
+    "country_code": "BB",
+    "name": "Saint Lucy",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "BB-08",
+    "country_code": "BB",
+    "name": "Saint Michael",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "BB-09",
+    "country_code": "BB",
+    "name": "Saint Peter",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "BB-10",
+    "country_code": "BB",
+    "name": "Saint Philip",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "BB-11",
+    "country_code": "BB",
+    "name": "Saint Thomas",
+    "parent_code": null,
+    "type": "Parish"
+  }
+]

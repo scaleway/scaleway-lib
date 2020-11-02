@@ -1,0 +1,100 @@
+[
+  {
+    "code": "UZ-AN",
+    "country_code": "UZ",
+    "name": "Andijon",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "UZ-BU",
+    "country_code": "UZ",
+    "name": "Buxoro",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "UZ-FA",
+    "country_code": "UZ",
+    "name": "Farg'ona",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "UZ-JI",
+    "country_code": "UZ",
+    "name": "Jizzax",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "UZ-NG",
+    "country_code": "UZ",
+    "name": "Namangan",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "UZ-NW",
+    "country_code": "UZ",
+    "name": "Navoiy",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "UZ-QA",
+    "country_code": "UZ",
+    "name": "Qashqadaryo",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "UZ-QR",
+    "country_code": "UZ",
+    "name": "Qoraqalpog'iston Respublikasi",
+    "parent_code": null,
+    "type": "Republic"
+  },
+  {
+    "code": "UZ-SA",
+    "country_code": "UZ",
+    "name": "Samarqand",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "UZ-SI",
+    "country_code": "UZ",
+    "name": "Sirdaryo",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "UZ-SU",
+    "country_code": "UZ",
+    "name": "Surxondaryo",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "UZ-TK",
+    "country_code": "UZ",
+    "name": "Toshkent",
+    "parent_code": null,
+    "type": "City"
+  },
+  {
+    "code": "UZ-TO",
+    "country_code": "UZ",
+    "name": "Toshkent",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "UZ-XO",
+    "country_code": "UZ",
+    "name": "Xorazm",
+    "parent_code": null,
+    "type": "Region"
+  }
+]

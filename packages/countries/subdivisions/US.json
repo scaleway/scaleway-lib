@@ -1,0 +1,401 @@
+[
+  {
+    "code": "US-AK",
+    "country_code": "US",
+    "name": "Alaska",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-AL",
+    "country_code": "US",
+    "name": "Alabama",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-AR",
+    "country_code": "US",
+    "name": "Arkansas",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-AS",
+    "country_code": "US",
+    "name": "American Samoa",
+    "parent_code": null,
+    "type": "Outlying area"
+  },
+  {
+    "code": "US-AZ",
+    "country_code": "US",
+    "name": "Arizona",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-CA",
+    "country_code": "US",
+    "name": "California",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-CO",
+    "country_code": "US",
+    "name": "Colorado",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-CT",
+    "country_code": "US",
+    "name": "Connecticut",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-DC",
+    "country_code": "US",
+    "name": "District of Columbia",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "US-DE",
+    "country_code": "US",
+    "name": "Delaware",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-FL",
+    "country_code": "US",
+    "name": "Florida",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-GA",
+    "country_code": "US",
+    "name": "Georgia",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-GU",
+    "country_code": "US",
+    "name": "Guam",
+    "parent_code": null,
+    "type": "Outlying area"
+  },
+  {
+    "code": "US-HI",
+    "country_code": "US",
+    "name": "Hawaii",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-IA",
+    "country_code": "US",
+    "name": "Iowa",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-ID",
+    "country_code": "US",
+    "name": "Idaho",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-IL",
+    "country_code": "US",
+    "name": "Illinois",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-IN",
+    "country_code": "US",
+    "name": "Indiana",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-KS",
+    "country_code": "US",
+    "name": "Kansas",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-KY",
+    "country_code": "US",
+    "name": "Kentucky",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-LA",
+    "country_code": "US",
+    "name": "Louisiana",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-MA",
+    "country_code": "US",
+    "name": "Massachusetts",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-MD",
+    "country_code": "US",
+    "name": "Maryland",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-ME",
+    "country_code": "US",
+    "name": "Maine",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-MI",
+    "country_code": "US",
+    "name": "Michigan",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-MN",
+    "country_code": "US",
+    "name": "Minnesota",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-MO",
+    "country_code": "US",
+    "name": "Missouri",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-MP",
+    "country_code": "US",
+    "name": "Northern Mariana Islands",
+    "parent_code": null,
+    "type": "Outlying area"
+  },
+  {
+    "code": "US-MS",
+    "country_code": "US",
+    "name": "Mississippi",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-MT",
+    "country_code": "US",
+    "name": "Montana",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-NC",
+    "country_code": "US",
+    "name": "North Carolina",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-ND",
+    "country_code": "US",
+    "name": "North Dakota",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-NE",
+    "country_code": "US",
+    "name": "Nebraska",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-NH",
+    "country_code": "US",
+    "name": "New Hampshire",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-NJ",
+    "country_code": "US",
+    "name": "New Jersey",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-NM",
+    "country_code": "US",
+    "name": "New Mexico",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-NV",
+    "country_code": "US",
+    "name": "Nevada",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-NY",
+    "country_code": "US",
+    "name": "New York",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-OH",
+    "country_code": "US",
+    "name": "Ohio",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-OK",
+    "country_code": "US",
+    "name": "Oklahoma",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-OR",
+    "country_code": "US",
+    "name": "Oregon",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-PA",
+    "country_code": "US",
+    "name": "Pennsylvania",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-PR",
+    "country_code": "US",
+    "name": "Puerto Rico",
+    "parent_code": null,
+    "type": "Outlying area"
+  },
+  {
+    "code": "US-RI",
+    "country_code": "US",
+    "name": "Rhode Island",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-SC",
+    "country_code": "US",
+    "name": "South Carolina",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-SD",
+    "country_code": "US",
+    "name": "South Dakota",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-TN",
+    "country_code": "US",
+    "name": "Tennessee",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-TX",
+    "country_code": "US",
+    "name": "Texas",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-UM",
+    "country_code": "US",
+    "name": "United States Minor Outlying Islands",
+    "parent_code": null,
+    "type": "Outlying area"
+  },
+  {
+    "code": "US-UT",
+    "country_code": "US",
+    "name": "Utah",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-VA",
+    "country_code": "US",
+    "name": "Virginia",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-VI",
+    "country_code": "US",
+    "name": "Virgin Islands",
+    "parent_code": null,
+    "type": "Outlying area"
+  },
+  {
+    "code": "US-VT",
+    "country_code": "US",
+    "name": "Vermont",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-WA",
+    "country_code": "US",
+    "name": "Washington",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-WI",
+    "country_code": "US",
+    "name": "Wisconsin",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-WV",
+    "country_code": "US",
+    "name": "West Virginia",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "US-WY",
+    "country_code": "US",
+    "name": "Wyoming",
+    "parent_code": null,
+    "type": "State"
+  }
+]

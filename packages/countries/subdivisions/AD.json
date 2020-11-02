@@ -1,0 +1,51 @@
+[
+  {
+    "code": "AD-02",
+    "country_code": "AD",
+    "name": "Canillo",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "AD-03",
+    "country_code": "AD",
+    "name": "Encamp",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "AD-04",
+    "country_code": "AD",
+    "name": "La Massana",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "AD-05",
+    "country_code": "AD",
+    "name": "Ordino",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "AD-06",
+    "country_code": "AD",
+    "name": "Sant Juli\u00e0 de L\u00f2ria",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "AD-07",
+    "country_code": "AD",
+    "name": "Andorra la Vella",
+    "parent_code": null,
+    "type": "Parish"
+  },
+  {
+    "code": "AD-08",
+    "country_code": "AD",
+    "name": "Escaldes-Engordany",
+    "parent_code": null,
+    "type": "Parish"
+  }
+]

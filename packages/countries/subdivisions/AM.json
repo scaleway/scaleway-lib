@@ -1,0 +1,79 @@
+[
+  {
+    "code": "AM-AG",
+    "country_code": "AM",
+    "name": "Aragacotn",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AM-AR",
+    "country_code": "AM",
+    "name": "Ararat",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AM-AV",
+    "country_code": "AM",
+    "name": "Armavir",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AM-ER",
+    "country_code": "AM",
+    "name": "Erevan",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AM-GR",
+    "country_code": "AM",
+    "name": "Gegarkunik'",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AM-KT",
+    "country_code": "AM",
+    "name": "Kotayk'",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AM-LO",
+    "country_code": "AM",
+    "name": "Lory",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AM-SH",
+    "country_code": "AM",
+    "name": "Sirak",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AM-SU",
+    "country_code": "AM",
+    "name": "Syunik'",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AM-TV",
+    "country_code": "AM",
+    "name": "Tavus",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AM-VD",
+    "country_code": "AM",
+    "name": "Vayoc Jor",
+    "parent_code": null,
+    "type": "Province"
+  }
+]

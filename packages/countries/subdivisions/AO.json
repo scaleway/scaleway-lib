@@ -1,0 +1,128 @@
+[
+  {
+    "code": "AO-BGO",
+    "country_code": "AO",
+    "name": "Bengo",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AO-BGU",
+    "country_code": "AO",
+    "name": "Benguela",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AO-BIE",
+    "country_code": "AO",
+    "name": "Bi\u00e9",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AO-CAB",
+    "country_code": "AO",
+    "name": "Cabinda",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AO-CCU",
+    "country_code": "AO",
+    "name": "Cuando-Cubango",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AO-CNN",
+    "country_code": "AO",
+    "name": "Cunene",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AO-CNO",
+    "country_code": "AO",
+    "name": "Cuanza Norte",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AO-CUS",
+    "country_code": "AO",
+    "name": "Cuanza Sul",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AO-HUA",
+    "country_code": "AO",
+    "name": "Huambo",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AO-HUI",
+    "country_code": "AO",
+    "name": "Hu\u00edla",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AO-LNO",
+    "country_code": "AO",
+    "name": "Lunda Norte",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AO-LSU",
+    "country_code": "AO",
+    "name": "Lunda Sul",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AO-LUA",
+    "country_code": "AO",
+    "name": "Luanda",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AO-MAL",
+    "country_code": "AO",
+    "name": "Malange",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AO-MOX",
+    "country_code": "AO",
+    "name": "Moxico",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AO-NAM",
+    "country_code": "AO",
+    "name": "Namibe",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AO-UIG",
+    "country_code": "AO",
+    "name": "U\u00edge",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AO-ZAI",
+    "country_code": "AO",
+    "name": "Zaire",
+    "parent_code": null,
+    "type": "Province"
+  }
+]

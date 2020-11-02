@@ -1,0 +1,72 @@
+[
+  {
+    "code": "GH-AA",
+    "country_code": "GH",
+    "name": "Greater Accra",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "GH-AH",
+    "country_code": "GH",
+    "name": "Ashanti",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "GH-BA",
+    "country_code": "GH",
+    "name": "Brong-Ahafo",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "GH-CP",
+    "country_code": "GH",
+    "name": "Central",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "GH-EP",
+    "country_code": "GH",
+    "name": "Eastern",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "GH-NP",
+    "country_code": "GH",
+    "name": "Northern",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "GH-TV",
+    "country_code": "GH",
+    "name": "Volta",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "GH-UE",
+    "country_code": "GH",
+    "name": "Upper East",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "GH-UW",
+    "country_code": "GH",
+    "name": "Upper West",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "GH-WP",
+    "country_code": "GH",
+    "name": "Western",
+    "parent_code": null,
+    "type": "Region"
+  }
+]

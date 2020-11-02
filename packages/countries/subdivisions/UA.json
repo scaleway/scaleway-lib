@@ -1,0 +1,191 @@
+[
+  {
+    "code": "UA-05",
+    "country_code": "UA",
+    "name": "Vinnyts'ka Oblast'",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "UA-07",
+    "country_code": "UA",
+    "name": "Volyns'ka Oblast'",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "UA-09",
+    "country_code": "UA",
+    "name": "Luhans'ka Oblast'",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "UA-12",
+    "country_code": "UA",
+    "name": "Dnipropetrovs'ka Oblast'",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "UA-14",
+    "country_code": "UA",
+    "name": "Donets'ka Oblast'",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "UA-18",
+    "country_code": "UA",
+    "name": "Zhytomyrs'ka Oblast'",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "UA-21",
+    "country_code": "UA",
+    "name": "Zakarpats'ka Oblast'",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "UA-23",
+    "country_code": "UA",
+    "name": "Zaporiz'ka Oblast'",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "UA-26",
+    "country_code": "UA",
+    "name": "Ivano-Frankivs'ka Oblast'",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "UA-30",
+    "country_code": "UA",
+    "name": "Ky\u00efvs'ka mis'ka rada",
+    "parent_code": null,
+    "type": "City"
+  },
+  {
+    "code": "UA-32",
+    "country_code": "UA",
+    "name": "Ky\u00efvs'ka Oblast'",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "UA-35",
+    "country_code": "UA",
+    "name": "Kirovohrads'ka Oblast'",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "UA-40",
+    "country_code": "UA",
+    "name": "Sevastopol",
+    "parent_code": null,
+    "type": "City"
+  },
+  {
+    "code": "UA-43",
+    "country_code": "UA",
+    "name": "Respublika Krym",
+    "parent_code": null,
+    "type": "Autonomous republic"
+  },
+  {
+    "code": "UA-46",
+    "country_code": "UA",
+    "name": "L'vivs'ka Oblast'",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "UA-48",
+    "country_code": "UA",
+    "name": "Mykola\u00efvs'ka Oblast'",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "UA-51",
+    "country_code": "UA",
+    "name": "Odes'ka Oblast'",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "UA-53",
+    "country_code": "UA",
+    "name": "Poltavs'ka Oblast'",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "UA-56",
+    "country_code": "UA",
+    "name": "Rivnens'ka Oblast'",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "UA-59",
+    "country_code": "UA",
+    "name": "Sums 'ka Oblast'",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "UA-61",
+    "country_code": "UA",
+    "name": "Ternopil's'ka Oblast'",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "UA-63",
+    "country_code": "UA",
+    "name": "Kharkivs'ka Oblast'",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "UA-65",
+    "country_code": "UA",
+    "name": "Khersons'ka Oblast'",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "UA-68",
+    "country_code": "UA",
+    "name": "Khmel'nyts'ka Oblast'",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "UA-71",
+    "country_code": "UA",
+    "name": "Cherkas'ka Oblast'",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "UA-74",
+    "country_code": "UA",
+    "name": "Chernihivs'ka Oblast'",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "UA-77",
+    "country_code": "UA",
+    "name": "Chernivets'ka Oblast'",
+    "parent_code": null,
+    "type": "Province"
+  }
+]

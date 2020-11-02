@@ -1,0 +1,198 @@
+[
+  {
+    "code": "BR-AC",
+    "country_code": "BR",
+    "name": "Acre",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "BR-AL",
+    "country_code": "BR",
+    "name": "Alagoas",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "BR-AM",
+    "country_code": "BR",
+    "name": "Amazonas",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "BR-AP",
+    "country_code": "BR",
+    "name": "Amap\u00e1",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "BR-BA",
+    "country_code": "BR",
+    "name": "Bahia",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "BR-CE",
+    "country_code": "BR",
+    "name": "Cear\u00e1",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "BR-DF",
+    "country_code": "BR",
+    "name": "Distrito Federal",
+    "parent_code": null,
+    "type": "Federal District"
+  },
+  {
+    "code": "BR-ES",
+    "country_code": "BR",
+    "name": "Esp\u00edrito Santo",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "BR-FN",
+    "country_code": "BR",
+    "name": "Fernando de Noronha",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "BR-GO",
+    "country_code": "BR",
+    "name": "Goi\u00e1s",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "BR-MA",
+    "country_code": "BR",
+    "name": "Maranh\u00e3o",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "BR-MG",
+    "country_code": "BR",
+    "name": "Minas Gerais",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "BR-MS",
+    "country_code": "BR",
+    "name": "Mato Grosso do Sul",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "BR-MT",
+    "country_code": "BR",
+    "name": "Mato Grosso",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "BR-PA",
+    "country_code": "BR",
+    "name": "Par\u00e1",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "BR-PB",
+    "country_code": "BR",
+    "name": "Para\u00edba",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "BR-PE",
+    "country_code": "BR",
+    "name": "Pernambuco",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "BR-PI",
+    "country_code": "BR",
+    "name": "Piau\u00ed",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "BR-PR",
+    "country_code": "BR",
+    "name": "Paran\u00e1",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "BR-RJ",
+    "country_code": "BR",
+    "name": "Rio de Janeiro",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "BR-RN",
+    "country_code": "BR",
+    "name": "Rio Grande do Norte",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "BR-RO",
+    "country_code": "BR",
+    "name": "Rond\u00f4nia",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "BR-RR",
+    "country_code": "BR",
+    "name": "Roraima",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "BR-RS",
+    "country_code": "BR",
+    "name": "Rio Grande do Sul",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "BR-SC",
+    "country_code": "BR",
+    "name": "Santa Catarina",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "BR-SE",
+    "country_code": "BR",
+    "name": "Sergipe",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "BR-SP",
+    "country_code": "BR",
+    "name": "S\u00e3o Paulo",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "BR-TO",
+    "country_code": "BR",
+    "name": "Tocantins",
+    "parent_code": null,
+    "type": "State"
+  }
+]

@@ -1,0 +1,121 @@
+[
+  {
+    "code": "NI-AN",
+    "country_code": "NI",
+    "name": "Atl\u00e1ntico Norte",
+    "parent_code": null,
+    "type": "Autonomous Region"
+  },
+  {
+    "code": "NI-AS",
+    "country_code": "NI",
+    "name": "Atl\u00e1ntico Sur",
+    "parent_code": null,
+    "type": "Autonomous Region"
+  },
+  {
+    "code": "NI-BO",
+    "country_code": "NI",
+    "name": "Boaco",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "NI-CA",
+    "country_code": "NI",
+    "name": "Carazo",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "NI-CI",
+    "country_code": "NI",
+    "name": "Chinandega",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "NI-CO",
+    "country_code": "NI",
+    "name": "Chontales",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "NI-ES",
+    "country_code": "NI",
+    "name": "Estel\u00ed",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "NI-GR",
+    "country_code": "NI",
+    "name": "Granada",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "NI-JI",
+    "country_code": "NI",
+    "name": "Jinotega",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "NI-LE",
+    "country_code": "NI",
+    "name": "Le\u00f3n",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "NI-MD",
+    "country_code": "NI",
+    "name": "Madriz",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "NI-MN",
+    "country_code": "NI",
+    "name": "Managua",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "NI-MS",
+    "country_code": "NI",
+    "name": "Masaya",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "NI-MT",
+    "country_code": "NI",
+    "name": "Matagalpa",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "NI-NS",
+    "country_code": "NI",
+    "name": "Nueva Segovia",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "NI-RI",
+    "country_code": "NI",
+    "name": "Rivas",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "NI-SJ",
+    "country_code": "NI",
+    "name": "R\u00edo San Juan",
+    "parent_code": null,
+    "type": "Department"
+  }
+]

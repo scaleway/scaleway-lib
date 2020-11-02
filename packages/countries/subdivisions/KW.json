@@ -1,0 +1,44 @@
+[
+  {
+    "code": "KW-AH",
+    "country_code": "KW",
+    "name": "Al Ahmadi",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "KW-FA",
+    "country_code": "KW",
+    "name": "Al Farw\u0101n\u012byah",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "KW-HA",
+    "country_code": "KW",
+    "name": "Hawall\u012b",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "KW-JA",
+    "country_code": "KW",
+    "name": "Al Jahrr\u0101\u2019",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "KW-KU",
+    "country_code": "KW",
+    "name": "Al Kuwayt (Al \u2018\u0100\u015fimah)",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "KW-MU",
+    "country_code": "KW",
+    "name": "Mub\u0101rak al Kab\u012br",
+    "parent_code": null,
+    "type": "Governorate"
+  }
+]

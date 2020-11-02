@@ -1,0 +1,170 @@
+[
+  {
+    "code": "TN-11",
+    "country_code": "TN",
+    "name": "Tunis",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "TN-12",
+    "country_code": "TN",
+    "name": "Ariana",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "TN-13",
+    "country_code": "TN",
+    "name": "Ben Arous",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "TN-14",
+    "country_code": "TN",
+    "name": "La Manouba",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "TN-21",
+    "country_code": "TN",
+    "name": "Nabeul",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "TN-22",
+    "country_code": "TN",
+    "name": "Zaghouan",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "TN-23",
+    "country_code": "TN",
+    "name": "Bizerte",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "TN-31",
+    "country_code": "TN",
+    "name": "B\u00e9ja",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "TN-32",
+    "country_code": "TN",
+    "name": "Jendouba",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "TN-33",
+    "country_code": "TN",
+    "name": "Le Kef",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "TN-34",
+    "country_code": "TN",
+    "name": "Siliana",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "TN-41",
+    "country_code": "TN",
+    "name": "Kairouan",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "TN-42",
+    "country_code": "TN",
+    "name": "Kasserine",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "TN-43",
+    "country_code": "TN",
+    "name": "Sidi Bouzid",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "TN-51",
+    "country_code": "TN",
+    "name": "Sousse",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "TN-52",
+    "country_code": "TN",
+    "name": "Monastir",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "TN-53",
+    "country_code": "TN",
+    "name": "Mahdia",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "TN-61",
+    "country_code": "TN",
+    "name": "Sfax",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "TN-71",
+    "country_code": "TN",
+    "name": "Gafsa",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "TN-72",
+    "country_code": "TN",
+    "name": "Tozeur",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "TN-73",
+    "country_code": "TN",
+    "name": "Kebili",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "TN-81",
+    "country_code": "TN",
+    "name": "Gab\u00e8s",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "TN-82",
+    "country_code": "TN",
+    "name": "Medenine",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "TN-83",
+    "country_code": "TN",
+    "name": "Tataouine",
+    "parent_code": null,
+    "type": "Governorate"
+  }
+]

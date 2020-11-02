@@ -1,0 +1,107 @@
+[
+  {
+    "code": "CL-AI",
+    "country_code": "CL",
+    "name": "Ais\u00e9n del General Carlos Ib\u00e1\u00f1ez del Campo",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CL-AN",
+    "country_code": "CL",
+    "name": "Antofagasta",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CL-AP",
+    "country_code": "CL",
+    "name": "Arica y Parinacota",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CL-AR",
+    "country_code": "CL",
+    "name": "Araucan\u00eda",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CL-AT",
+    "country_code": "CL",
+    "name": "Atacama",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CL-BI",
+    "country_code": "CL",
+    "name": "B\u00edo-B\u00edo",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CL-CO",
+    "country_code": "CL",
+    "name": "Coquimbo",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CL-LI",
+    "country_code": "CL",
+    "name": "Libertador General Bernardo O'Higgins",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CL-LL",
+    "country_code": "CL",
+    "name": "Los Lagos",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CL-LR",
+    "country_code": "CL",
+    "name": "Los R\u00edos",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CL-MA",
+    "country_code": "CL",
+    "name": "Magallanes y Ant\u00e1rtica Chilena",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CL-ML",
+    "country_code": "CL",
+    "name": "Maule",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CL-RM",
+    "country_code": "CL",
+    "name": "Regi\u00f3n Metropolitana de Santiago",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CL-TA",
+    "country_code": "CL",
+    "name": "Tarapac\u00e1",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "CL-VS",
+    "country_code": "CL",
+    "name": "Valpara\u00edso",
+    "parent_code": null,
+    "type": "Region"
+  }
+]

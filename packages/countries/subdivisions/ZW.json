@@ -1,0 +1,72 @@
+[
+  {
+    "code": "ZW-BU",
+    "country_code": "ZW",
+    "name": "Bulawayo",
+    "parent_code": null,
+    "type": "City"
+  },
+  {
+    "code": "ZW-HA",
+    "country_code": "ZW",
+    "name": "Harare",
+    "parent_code": null,
+    "type": "City"
+  },
+  {
+    "code": "ZW-MA",
+    "country_code": "ZW",
+    "name": "Manicaland",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "ZW-MC",
+    "country_code": "ZW",
+    "name": "Mashonaland Central",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "ZW-ME",
+    "country_code": "ZW",
+    "name": "Mashonaland East",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "ZW-MI",
+    "country_code": "ZW",
+    "name": "Midlands",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "ZW-MN",
+    "country_code": "ZW",
+    "name": "Matabeleland North",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "ZW-MS",
+    "country_code": "ZW",
+    "name": "Matabeleland South",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "ZW-MV",
+    "country_code": "ZW",
+    "name": "Masvingo",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "ZW-MW",
+    "country_code": "ZW",
+    "name": "Mashonaland West",
+    "parent_code": null,
+    "type": "Province"
+  }
+]

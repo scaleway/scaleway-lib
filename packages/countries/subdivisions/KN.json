@@ -1,0 +1,114 @@
+[
+  {
+    "code": "KN-01",
+    "country_code": "KN",
+    "name": "Christ Church Nichola Town",
+    "parent_code": "KN-K",
+    "type": "Parish"
+  },
+  {
+    "code": "KN-02",
+    "country_code": "KN",
+    "name": "Saint Anne Sandy Point",
+    "parent_code": "KN-K",
+    "type": "Parish"
+  },
+  {
+    "code": "KN-03",
+    "country_code": "KN",
+    "name": "Saint George Basseterre",
+    "parent_code": "KN-K",
+    "type": "Parish"
+  },
+  {
+    "code": "KN-04",
+    "country_code": "KN",
+    "name": "Saint George Gingerland",
+    "parent_code": "KN-N",
+    "type": "Parish"
+  },
+  {
+    "code": "KN-05",
+    "country_code": "KN",
+    "name": "Saint James Windward",
+    "parent_code": "KN-N",
+    "type": "Parish"
+  },
+  {
+    "code": "KN-06",
+    "country_code": "KN",
+    "name": "Saint John Capisterre",
+    "parent_code": "KN-K",
+    "type": "Parish"
+  },
+  {
+    "code": "KN-07",
+    "country_code": "KN",
+    "name": "Saint John Figtree",
+    "parent_code": "KN-N",
+    "type": "Parish"
+  },
+  {
+    "code": "KN-08",
+    "country_code": "KN",
+    "name": "Saint Mary Cayon",
+    "parent_code": "KN-K",
+    "type": "Parish"
+  },
+  {
+    "code": "KN-09",
+    "country_code": "KN",
+    "name": "Saint Paul Capisterre",
+    "parent_code": "KN-K",
+    "type": "Parish"
+  },
+  {
+    "code": "KN-10",
+    "country_code": "KN",
+    "name": "Saint Paul Charlestown",
+    "parent_code": "KN-N",
+    "type": "Parish"
+  },
+  {
+    "code": "KN-11",
+    "country_code": "KN",
+    "name": "Saint Peter Basseterre",
+    "parent_code": "KN-K",
+    "type": "Parish"
+  },
+  {
+    "code": "KN-12",
+    "country_code": "KN",
+    "name": "Saint Thomas Lowland",
+    "parent_code": "KN-N",
+    "type": "Parish"
+  },
+  {
+    "code": "KN-13",
+    "country_code": "KN",
+    "name": "Saint Thomas Middle Island",
+    "parent_code": "KN-K",
+    "type": "Parish"
+  },
+  {
+    "code": "KN-15",
+    "country_code": "KN",
+    "name": "Trinity Palmetto Point",
+    "parent_code": "KN-K",
+    "type": "Parish"
+  },
+  {
+    "code": "KN-K",
+    "country_code": "KN",
+    "name": "Saint Kitts",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "KN-N",
+    "country_code": "KN",
+    "name": "Nevis",
+    "parent_code": null,
+    "type": "State"
+  }
+]
