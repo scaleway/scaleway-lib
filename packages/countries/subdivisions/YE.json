@@ -1,0 +1,142 @@
+[
+  {
+    "code": "YE-AB",
+    "country_code": "YE",
+    "name": "Aby\u0101n",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "YE-AD",
+    "country_code": "YE",
+    "name": "'Adan",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "YE-AM",
+    "country_code": "YE",
+    "name": "'Amr\u0101n",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "YE-BA",
+    "country_code": "YE",
+    "name": "Al Bay\u1e11\u0101'",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "YE-DA",
+    "country_code": "YE",
+    "name": "Ad\u0327 D\u0327\u0101li\u2018",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "YE-DH",
+    "country_code": "YE",
+    "name": "Dham\u0101r",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "YE-HD",
+    "country_code": "YE",
+    "name": "\u1e28a\u1e11ramawt",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "YE-HJ",
+    "country_code": "YE",
+    "name": "\u1e28ajjah",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "YE-IB",
+    "country_code": "YE",
+    "name": "Ibb",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "YE-JA",
+    "country_code": "YE",
+    "name": "Al Jawf",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "YE-LA",
+    "country_code": "YE",
+    "name": "La\u1e29ij",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "YE-MA",
+    "country_code": "YE",
+    "name": "Ma'rib",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "YE-MR",
+    "country_code": "YE",
+    "name": "Al Mahrah",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "YE-MU",
+    "country_code": "YE",
+    "name": "Al \u1e28udaydah",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "YE-MW",
+    "country_code": "YE",
+    "name": "Al Ma\u1e29w\u012bt",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "YE-RA",
+    "country_code": "YE",
+    "name": "Raymah",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "YE-SD",
+    "country_code": "YE",
+    "name": "\u015ea'dah",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "YE-SH",
+    "country_code": "YE",
+    "name": "Shabwah",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "YE-SN",
+    "country_code": "YE",
+    "name": "\u015ean'\u0101'",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "YE-TA",
+    "country_code": "YE",
+    "name": "T\u0101'izz",
+    "parent_code": null,
+    "type": "Governorate"
+  }
+]

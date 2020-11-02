@@ -1,0 +1,86 @@
+[
+  {
+    "code": "GE-AB",
+    "country_code": "GE",
+    "name": "Abkhazia",
+    "parent_code": null,
+    "type": "Autonomous republic"
+  },
+  {
+    "code": "GE-AJ",
+    "country_code": "GE",
+    "name": "Ajaria",
+    "parent_code": null,
+    "type": "Autonomous republic"
+  },
+  {
+    "code": "GE-GU",
+    "country_code": "GE",
+    "name": "Guria",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "GE-IM",
+    "country_code": "GE",
+    "name": "Imeret\u2019i",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "GE-KA",
+    "country_code": "GE",
+    "name": "Kakhet\u2019i",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "GE-KK",
+    "country_code": "GE",
+    "name": "K\u2019vemo K\u2019art\u2019li",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "GE-MM",
+    "country_code": "GE",
+    "name": "Mts\u2019khet\u2019a-Mt\u2019ianet\u2019i",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "GE-RL",
+    "country_code": "GE",
+    "name": "Racha-Lech\u2019khumi-K\u2019vemo Svanet\u2019i",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "GE-SJ",
+    "country_code": "GE",
+    "name": "Samts\u2019khe-Javakhet\u2019i",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "GE-SK",
+    "country_code": "GE",
+    "name": "Shida K\u2019art\u2019li",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "GE-SZ",
+    "country_code": "GE",
+    "name": "Samegrelo-Zemo Svanet\u2019i",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "GE-TB",
+    "country_code": "GE",
+    "name": "T\u2019bilisi",
+    "parent_code": null,
+    "type": "City"
+  }
+]

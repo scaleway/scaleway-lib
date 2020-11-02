@@ -1,0 +1,121 @@
+[
+  {
+    "code": "CF-AC",
+    "country_code": "CF",
+    "name": "Ouham",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "CF-BB",
+    "country_code": "CF",
+    "name": "Bamingui-Bangoran",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "CF-BGF",
+    "country_code": "CF",
+    "name": "Bangui",
+    "parent_code": null,
+    "type": "Commune"
+  },
+  {
+    "code": "CF-BK",
+    "country_code": "CF",
+    "name": "Basse-Kotto",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "CF-HK",
+    "country_code": "CF",
+    "name": "Haute-Kotto",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "CF-HM",
+    "country_code": "CF",
+    "name": "Haut-Mbomou",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "CF-HS",
+    "country_code": "CF",
+    "name": "Haute-Sangha / Mamb\u00e9r\u00e9-Kad\u00e9\u00ef",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "CF-KB",
+    "country_code": "CF",
+    "name": "Gribingui",
+    "parent_code": null,
+    "type": "Economic Prefecture"
+  },
+  {
+    "code": "CF-KG",
+    "country_code": "CF",
+    "name": "K\u00e9mo-Gribingui",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "CF-LB",
+    "country_code": "CF",
+    "name": "Lobaye",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "CF-MB",
+    "country_code": "CF",
+    "name": "Mbomou",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "CF-MP",
+    "country_code": "CF",
+    "name": "Ombella-M'poko",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "CF-NM",
+    "country_code": "CF",
+    "name": "Nana-Mamb\u00e9r\u00e9",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "CF-OP",
+    "country_code": "CF",
+    "name": "Ouham-Pend\u00e9",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "CF-SE",
+    "country_code": "CF",
+    "name": "Sangha",
+    "parent_code": null,
+    "type": "Economic Prefecture"
+  },
+  {
+    "code": "CF-UK",
+    "country_code": "CF",
+    "name": "Ouaka",
+    "parent_code": null,
+    "type": "Prefecture"
+  },
+  {
+    "code": "CF-VK",
+    "country_code": "CF",
+    "name": "Vakaga",
+    "parent_code": null,
+    "type": "Prefecture"
+  }
+]

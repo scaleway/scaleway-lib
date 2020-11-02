@@ -1,0 +1,58 @@
+[
+  {
+    "code": "LB-AK",
+    "country_code": "LB",
+    "name": "Aakk\u00e2r",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "LB-AS",
+    "country_code": "LB",
+    "name": "Liban-Nord",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "LB-BA",
+    "country_code": "LB",
+    "name": "Beyrouth",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "LB-BH",
+    "country_code": "LB",
+    "name": "Baalbek-Hermel",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "LB-BI",
+    "country_code": "LB",
+    "name": "B\u00e9qaa",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "LB-JA",
+    "country_code": "LB",
+    "name": "Liban-Sud",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "LB-JL",
+    "country_code": "LB",
+    "name": "Mont-Liban",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "LB-NA",
+    "country_code": "LB",
+    "name": "Nabat\u00eey\u00e9",
+    "parent_code": null,
+    "type": "Governorate"
+  }
+]

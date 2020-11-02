@@ -1,0 +1,338 @@
+[
+  {
+    "code": "DZ-01",
+    "country_code": "DZ",
+    "name": "Adrar",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-02",
+    "country_code": "DZ",
+    "name": "Chlef",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-03",
+    "country_code": "DZ",
+    "name": "Laghouat",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-04",
+    "country_code": "DZ",
+    "name": "Oum el Bouaghi",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-05",
+    "country_code": "DZ",
+    "name": "Batna",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-06",
+    "country_code": "DZ",
+    "name": "B\u00e9ja\u00efa",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-07",
+    "country_code": "DZ",
+    "name": "Biskra",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-08",
+    "country_code": "DZ",
+    "name": "B\u00e9char",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-09",
+    "country_code": "DZ",
+    "name": "Blida",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-10",
+    "country_code": "DZ",
+    "name": "Bouira",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-11",
+    "country_code": "DZ",
+    "name": "Tamanghasset",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-12",
+    "country_code": "DZ",
+    "name": "T\u00e9bessa",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-13",
+    "country_code": "DZ",
+    "name": "Tlemcen",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-14",
+    "country_code": "DZ",
+    "name": "Tiaret",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-15",
+    "country_code": "DZ",
+    "name": "Tizi Ouzou",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-16",
+    "country_code": "DZ",
+    "name": "Alger",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-17",
+    "country_code": "DZ",
+    "name": "Djelfa",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-18",
+    "country_code": "DZ",
+    "name": "Jijel",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-19",
+    "country_code": "DZ",
+    "name": "S\u00e9tif",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-20",
+    "country_code": "DZ",
+    "name": "Sa\u00efda",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-21",
+    "country_code": "DZ",
+    "name": "Skikda",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-22",
+    "country_code": "DZ",
+    "name": "Sidi Bel Abb\u00e8s",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-23",
+    "country_code": "DZ",
+    "name": "Annaba",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-24",
+    "country_code": "DZ",
+    "name": "Guelma",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-25",
+    "country_code": "DZ",
+    "name": "Constantine",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-26",
+    "country_code": "DZ",
+    "name": "M\u00e9d\u00e9a",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-27",
+    "country_code": "DZ",
+    "name": "Mostaganem",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-28",
+    "country_code": "DZ",
+    "name": "Msila",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-29",
+    "country_code": "DZ",
+    "name": "Mascara",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-30",
+    "country_code": "DZ",
+    "name": "Ouargla",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-31",
+    "country_code": "DZ",
+    "name": "Oran",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-32",
+    "country_code": "DZ",
+    "name": "El Bayadh",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-33",
+    "country_code": "DZ",
+    "name": "Illizi",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-34",
+    "country_code": "DZ",
+    "name": "Bordj Bou Arr\u00e9ridj",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-35",
+    "country_code": "DZ",
+    "name": "Boumerd\u00e8s",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-36",
+    "country_code": "DZ",
+    "name": "El Tarf",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-37",
+    "country_code": "DZ",
+    "name": "Tindouf",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-38",
+    "country_code": "DZ",
+    "name": "Tissemsilt",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-39",
+    "country_code": "DZ",
+    "name": "El Oued",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-40",
+    "country_code": "DZ",
+    "name": "Khenchela",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-41",
+    "country_code": "DZ",
+    "name": "Souk Ahras",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-42",
+    "country_code": "DZ",
+    "name": "Tipaza",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-43",
+    "country_code": "DZ",
+    "name": "Mila",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-44",
+    "country_code": "DZ",
+    "name": "A\u00efn Defla",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-45",
+    "country_code": "DZ",
+    "name": "Naama",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-46",
+    "country_code": "DZ",
+    "name": "A\u00efn T\u00e9mouchent",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-47",
+    "country_code": "DZ",
+    "name": "Gharda\u00efa",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DZ-48",
+    "country_code": "DZ",
+    "name": "Relizane",
+    "parent_code": null,
+    "type": "Province"
+  }
+]

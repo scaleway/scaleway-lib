@@ -1,0 +1,170 @@
+[
+  {
+    "code": "CV-B",
+    "country_code": "CV",
+    "name": "Ilhas de Barlavento",
+    "parent_code": null,
+    "type": "Geographical region"
+  },
+  {
+    "code": "CV-BR",
+    "country_code": "CV",
+    "name": "Brava",
+    "parent_code": "CV-S",
+    "type": "Municipality"
+  },
+  {
+    "code": "CV-BV",
+    "country_code": "CV",
+    "name": "Boa Vista",
+    "parent_code": "CV-B",
+    "type": "Municipality"
+  },
+  {
+    "code": "CV-CA",
+    "country_code": "CV",
+    "name": "Santa Catarina",
+    "parent_code": "CV-S",
+    "type": "Municipality"
+  },
+  {
+    "code": "CV-CF",
+    "country_code": "CV",
+    "name": "Santa Catarina de Fogo",
+    "parent_code": "CV-S",
+    "type": "Municipality"
+  },
+  {
+    "code": "CV-CR",
+    "country_code": "CV",
+    "name": "Santa Cruz",
+    "parent_code": "CV-S",
+    "type": "Municipality"
+  },
+  {
+    "code": "CV-MA",
+    "country_code": "CV",
+    "name": "Maio",
+    "parent_code": "CV-S",
+    "type": "Municipality"
+  },
+  {
+    "code": "CV-MO",
+    "country_code": "CV",
+    "name": "Mosteiros",
+    "parent_code": "CV-S",
+    "type": "Municipality"
+  },
+  {
+    "code": "CV-PA",
+    "country_code": "CV",
+    "name": "Paul",
+    "parent_code": "CV-B",
+    "type": "Municipality"
+  },
+  {
+    "code": "CV-PN",
+    "country_code": "CV",
+    "name": "Porto Novo",
+    "parent_code": "CV-B",
+    "type": "Municipality"
+  },
+  {
+    "code": "CV-PR",
+    "country_code": "CV",
+    "name": "Praia",
+    "parent_code": "CV-S",
+    "type": "Municipality"
+  },
+  {
+    "code": "CV-RB",
+    "country_code": "CV",
+    "name": "Ribeira Brava",
+    "parent_code": "CV-B",
+    "type": "Municipality"
+  },
+  {
+    "code": "CV-RG",
+    "country_code": "CV",
+    "name": "Ribeira Grande",
+    "parent_code": "CV-B",
+    "type": "Municipality"
+  },
+  {
+    "code": "CV-RS",
+    "country_code": "CV",
+    "name": "Ribeira Grande de Santiago",
+    "parent_code": "CV-S",
+    "type": "Municipality"
+  },
+  {
+    "code": "CV-S",
+    "country_code": "CV",
+    "name": "Ilhas de Sotavento",
+    "parent_code": null,
+    "type": "Geographical region"
+  },
+  {
+    "code": "CV-SD",
+    "country_code": "CV",
+    "name": "S\u00e3o Domingos",
+    "parent_code": "CV-S",
+    "type": "Municipality"
+  },
+  {
+    "code": "CV-SF",
+    "country_code": "CV",
+    "name": "S\u00e3o Filipe",
+    "parent_code": "CV-S",
+    "type": "Municipality"
+  },
+  {
+    "code": "CV-SL",
+    "country_code": "CV",
+    "name": "Sal",
+    "parent_code": "CV-B",
+    "type": "Municipality"
+  },
+  {
+    "code": "CV-SM",
+    "country_code": "CV",
+    "name": "S\u00e3o Miguel",
+    "parent_code": "CV-S",
+    "type": "Municipality"
+  },
+  {
+    "code": "CV-SO",
+    "country_code": "CV",
+    "name": "S\u00e3o Louren\u00e7o dos \u00d3rg\u00e3os",
+    "parent_code": "CV-S",
+    "type": "Municipality"
+  },
+  {
+    "code": "CV-SS",
+    "country_code": "CV",
+    "name": "S\u00e3o Salvador do Mundo",
+    "parent_code": "CV-S",
+    "type": "Municipality"
+  },
+  {
+    "code": "CV-SV",
+    "country_code": "CV",
+    "name": "S\u00e3o Vicente",
+    "parent_code": "CV-B",
+    "type": "Municipality"
+  },
+  {
+    "code": "CV-TA",
+    "country_code": "CV",
+    "name": "Tarrafal",
+    "parent_code": "CV-S",
+    "type": "Municipality"
+  },
+  {
+    "code": "CV-TS",
+    "country_code": "CV",
+    "name": "Tarrafal de S\u00e3o Nicolau",
+    "parent_code": "CV-S",
+    "type": "Municipality"
+  }
+]

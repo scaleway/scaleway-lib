@@ -1,0 +1,72 @@
+[
+  {
+    "code": "CM-AD",
+    "country_code": "CM",
+    "name": "Adamaoua",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CM-CE",
+    "country_code": "CM",
+    "name": "Centre",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CM-EN",
+    "country_code": "CM",
+    "name": "Far North",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CM-ES",
+    "country_code": "CM",
+    "name": "East",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CM-LT",
+    "country_code": "CM",
+    "name": "Littoral",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CM-NO",
+    "country_code": "CM",
+    "name": "North",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CM-NW",
+    "country_code": "CM",
+    "name": "North-West (Cameroon)",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CM-OU",
+    "country_code": "CM",
+    "name": "West",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CM-SU",
+    "country_code": "CM",
+    "name": "South",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CM-SW",
+    "country_code": "CM",
+    "name": "South-West",
+    "parent_code": null,
+    "type": "Province"
+  }
+]

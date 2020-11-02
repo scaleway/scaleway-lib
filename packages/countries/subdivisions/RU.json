@@ -1,0 +1,583 @@
+[
+  {
+    "code": "RU-AD",
+    "country_code": "RU",
+    "name": "Adygeya, Respublika",
+    "parent_code": null,
+    "type": "Republic"
+  },
+  {
+    "code": "RU-AL",
+    "country_code": "RU",
+    "name": "Altay, Respublika",
+    "parent_code": null,
+    "type": "Republic"
+  },
+  {
+    "code": "RU-ALT",
+    "country_code": "RU",
+    "name": "Altayskiy kray",
+    "parent_code": null,
+    "type": "Administrative Territory"
+  },
+  {
+    "code": "RU-AMU",
+    "country_code": "RU",
+    "name": "Amurskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-ARK",
+    "country_code": "RU",
+    "name": "Arkhangel'skaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-AST",
+    "country_code": "RU",
+    "name": "Astrakhanskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-BA",
+    "country_code": "RU",
+    "name": "Bashkortostan, Respublika",
+    "parent_code": null,
+    "type": "Republic"
+  },
+  {
+    "code": "RU-BEL",
+    "country_code": "RU",
+    "name": "Belgorodskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-BRY",
+    "country_code": "RU",
+    "name": "Bryanskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-BU",
+    "country_code": "RU",
+    "name": "Buryatiya, Respublika",
+    "parent_code": null,
+    "type": "Republic"
+  },
+  {
+    "code": "RU-CE",
+    "country_code": "RU",
+    "name": "Chechenskaya Respublika",
+    "parent_code": null,
+    "type": "Republic"
+  },
+  {
+    "code": "RU-CHE",
+    "country_code": "RU",
+    "name": "Chelyabinskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-CHU",
+    "country_code": "RU",
+    "name": "Chukotskiy avtonomnyy okrug",
+    "parent_code": null,
+    "type": "Autonomous District"
+  },
+  {
+    "code": "RU-CU",
+    "country_code": "RU",
+    "name": "Chuvashskaya Respublika",
+    "parent_code": null,
+    "type": "Republic"
+  },
+  {
+    "code": "RU-DA",
+    "country_code": "RU",
+    "name": "Dagestan, Respublika",
+    "parent_code": null,
+    "type": "Republic"
+  },
+  {
+    "code": "RU-IN",
+    "country_code": "RU",
+    "name": "Respublika Ingushetiya",
+    "parent_code": null,
+    "type": "Republic"
+  },
+  {
+    "code": "RU-IRK",
+    "country_code": "RU",
+    "name": "Irkutiskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-IVA",
+    "country_code": "RU",
+    "name": "Ivanovskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-KAM",
+    "country_code": "RU",
+    "name": "Kamchatskiy kray",
+    "parent_code": null,
+    "type": "Administrative Territory"
+  },
+  {
+    "code": "RU-KB",
+    "country_code": "RU",
+    "name": "Kabardino-Balkarskaya Respublika",
+    "parent_code": null,
+    "type": "Republic"
+  },
+  {
+    "code": "RU-KC",
+    "country_code": "RU",
+    "name": "Karachayevo-Cherkesskaya Respublika",
+    "parent_code": null,
+    "type": "Republic"
+  },
+  {
+    "code": "RU-KDA",
+    "country_code": "RU",
+    "name": "Krasnodarskiy kray",
+    "parent_code": null,
+    "type": "Administrative Territory"
+  },
+  {
+    "code": "RU-KEM",
+    "country_code": "RU",
+    "name": "Kemerovskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-KGD",
+    "country_code": "RU",
+    "name": "Kaliningradskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-KGN",
+    "country_code": "RU",
+    "name": "Kurganskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-KHA",
+    "country_code": "RU",
+    "name": "Khabarovskiy kray",
+    "parent_code": null,
+    "type": "Administrative Territory"
+  },
+  {
+    "code": "RU-KHM",
+    "country_code": "RU",
+    "name": "Khanty-Mansiysky avtonomnyy okrug-Yugra",
+    "parent_code": null,
+    "type": "Autonomous District"
+  },
+  {
+    "code": "RU-KIR",
+    "country_code": "RU",
+    "name": "Kirovskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-KK",
+    "country_code": "RU",
+    "name": "Khakasiya, Respublika",
+    "parent_code": null,
+    "type": "Republic"
+  },
+  {
+    "code": "RU-KL",
+    "country_code": "RU",
+    "name": "Kalmykiya, Respublika",
+    "parent_code": null,
+    "type": "Republic"
+  },
+  {
+    "code": "RU-KLU",
+    "country_code": "RU",
+    "name": "Kaluzhskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-KO",
+    "country_code": "RU",
+    "name": "Komi, Respublika",
+    "parent_code": null,
+    "type": "Republic"
+  },
+  {
+    "code": "RU-KOS",
+    "country_code": "RU",
+    "name": "Kostromskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-KR",
+    "country_code": "RU",
+    "name": "Kareliya, Respublika",
+    "parent_code": null,
+    "type": "Republic"
+  },
+  {
+    "code": "RU-KRS",
+    "country_code": "RU",
+    "name": "Kurskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-KYA",
+    "country_code": "RU",
+    "name": "Krasnoyarskiy kray",
+    "parent_code": null,
+    "type": "Administrative Territory"
+  },
+  {
+    "code": "RU-LEN",
+    "country_code": "RU",
+    "name": "Leningradskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-LIP",
+    "country_code": "RU",
+    "name": "Lipetskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-MAG",
+    "country_code": "RU",
+    "name": "Magadanskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-ME",
+    "country_code": "RU",
+    "name": "Mariy El, Respublika",
+    "parent_code": null,
+    "type": "Republic"
+  },
+  {
+    "code": "RU-MO",
+    "country_code": "RU",
+    "name": "Mordoviya, Respublika",
+    "parent_code": null,
+    "type": "Republic"
+  },
+  {
+    "code": "RU-MOS",
+    "country_code": "RU",
+    "name": "Moskovskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-MOW",
+    "country_code": "RU",
+    "name": "Moskva",
+    "parent_code": null,
+    "type": "Autonomous City"
+  },
+  {
+    "code": "RU-MUR",
+    "country_code": "RU",
+    "name": "Murmanskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-NEN",
+    "country_code": "RU",
+    "name": "Nenetskiy avtonomnyy okrug",
+    "parent_code": null,
+    "type": "Autonomous District"
+  },
+  {
+    "code": "RU-NGR",
+    "country_code": "RU",
+    "name": "Novgorodskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-NIZ",
+    "country_code": "RU",
+    "name": "Nizhegorodskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-NVS",
+    "country_code": "RU",
+    "name": "Novosibirskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-OMS",
+    "country_code": "RU",
+    "name": "Omskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-ORE",
+    "country_code": "RU",
+    "name": "Orenburgskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-ORL",
+    "country_code": "RU",
+    "name": "Orlovskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-PER",
+    "country_code": "RU",
+    "name": "Permskiy kray",
+    "parent_code": null,
+    "type": "Administrative Territory"
+  },
+  {
+    "code": "RU-PNZ",
+    "country_code": "RU",
+    "name": "Penzenskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-PRI",
+    "country_code": "RU",
+    "name": "Primorskiy kray",
+    "parent_code": null,
+    "type": "Administrative Territory"
+  },
+  {
+    "code": "RU-PSK",
+    "country_code": "RU",
+    "name": "Pskovskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-ROS",
+    "country_code": "RU",
+    "name": "Rostovskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-RYA",
+    "country_code": "RU",
+    "name": "Ryazanskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-SA",
+    "country_code": "RU",
+    "name": "Sakha, Respublika [Yakutiya]",
+    "parent_code": null,
+    "type": "Republic"
+  },
+  {
+    "code": "RU-SAK",
+    "country_code": "RU",
+    "name": "Sakhalinskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-SAM",
+    "country_code": "RU",
+    "name": "Samaraskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-SAR",
+    "country_code": "RU",
+    "name": "Saratovskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-SE",
+    "country_code": "RU",
+    "name": "Severnaya Osetiya-Alaniya, Respublika",
+    "parent_code": null,
+    "type": "Republic"
+  },
+  {
+    "code": "RU-SMO",
+    "country_code": "RU",
+    "name": "Smolenskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-SPE",
+    "country_code": "RU",
+    "name": "Sankt-Peterburg",
+    "parent_code": null,
+    "type": "Autonomous City"
+  },
+  {
+    "code": "RU-STA",
+    "country_code": "RU",
+    "name": "Stavropol'skiy kray",
+    "parent_code": null,
+    "type": "Administrative Territory"
+  },
+  {
+    "code": "RU-SVE",
+    "country_code": "RU",
+    "name": "Sverdlovskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-TA",
+    "country_code": "RU",
+    "name": "Tatarstan, Respublika",
+    "parent_code": null,
+    "type": "Republic"
+  },
+  {
+    "code": "RU-TAM",
+    "country_code": "RU",
+    "name": "Tambovskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-TOM",
+    "country_code": "RU",
+    "name": "Tomskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-TUL",
+    "country_code": "RU",
+    "name": "Tul'skaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-TVE",
+    "country_code": "RU",
+    "name": "Tverskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-TY",
+    "country_code": "RU",
+    "name": "Tyva, Respublika [Tuva]",
+    "parent_code": null,
+    "type": "Republic"
+  },
+  {
+    "code": "RU-TYU",
+    "country_code": "RU",
+    "name": "Tyumenskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-UD",
+    "country_code": "RU",
+    "name": "Udmurtskaya Respublika",
+    "parent_code": null,
+    "type": "Republic"
+  },
+  {
+    "code": "RU-ULY",
+    "country_code": "RU",
+    "name": "Ul'yanovskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-VGG",
+    "country_code": "RU",
+    "name": "Volgogradskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-VLA",
+    "country_code": "RU",
+    "name": "Vladimirskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-VLG",
+    "country_code": "RU",
+    "name": "Vologodskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-VOR",
+    "country_code": "RU",
+    "name": "Voronezhskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-YAN",
+    "country_code": "RU",
+    "name": "Yamalo-Nenetskiy avtonomnyy okrug",
+    "parent_code": null,
+    "type": "Autonomous District"
+  },
+  {
+    "code": "RU-YAR",
+    "country_code": "RU",
+    "name": "Yaroslavskaya oblast'",
+    "parent_code": null,
+    "type": "Administrative Region"
+  },
+  {
+    "code": "RU-YEV",
+    "country_code": "RU",
+    "name": "Yevreyskaya avtonomnaya oblast'",
+    "parent_code": null,
+    "type": "Autonomous Region"
+  },
+  {
+    "code": "RU-ZAB",
+    "country_code": "RU",
+    "name": "Zabajkal'skij kraj",
+    "parent_code": null,
+    "type": "Administrative Territory"
+  }
+]

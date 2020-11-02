@@ -1,0 +1,79 @@
+[
+  {
+    "code": "KP-01",
+    "country_code": "KP",
+    "name": "P\u2019y\u014fngyang",
+    "parent_code": null,
+    "type": "Capital city"
+  },
+  {
+    "code": "KP-02",
+    "country_code": "KP",
+    "name": "P\u2019y\u014fngan-namdo",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "KP-03",
+    "country_code": "KP",
+    "name": "P\u2019y\u014fngan-bukto",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "KP-04",
+    "country_code": "KP",
+    "name": "Chagang-do",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "KP-05",
+    "country_code": "KP",
+    "name": "Hwanghae-namdo",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "KP-06",
+    "country_code": "KP",
+    "name": "Hwanghae-bukto",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "KP-07",
+    "country_code": "KP",
+    "name": "Kangw\u014fn-do",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "KP-08",
+    "country_code": "KP",
+    "name": "Hamgy\u014fng-namdo",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "KP-09",
+    "country_code": "KP",
+    "name": "Hamgy\u014fng-bukto",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "KP-10",
+    "country_code": "KP",
+    "name": "Yanggang-do",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "KP-13",
+    "country_code": "KP",
+    "name": "Nas\u014fn (Najin-S\u014fnbong)",
+    "parent_code": null,
+    "type": "Special city"
+  }
+]

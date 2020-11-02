@@ -1,0 +1,128 @@
+[
+  {
+    "code": "SO-AW",
+    "country_code": "SO",
+    "name": "Awdal",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "SO-BK",
+    "country_code": "SO",
+    "name": "Bakool",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "SO-BN",
+    "country_code": "SO",
+    "name": "Banaadir",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "SO-BR",
+    "country_code": "SO",
+    "name": "Bari",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "SO-BY",
+    "country_code": "SO",
+    "name": "Bay",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "SO-GA",
+    "country_code": "SO",
+    "name": "Galguduud",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "SO-GE",
+    "country_code": "SO",
+    "name": "Gedo",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "SO-HI",
+    "country_code": "SO",
+    "name": "Hiirsan",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "SO-JD",
+    "country_code": "SO",
+    "name": "Jubbada Dhexe",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "SO-JH",
+    "country_code": "SO",
+    "name": "Jubbada Hoose",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "SO-MU",
+    "country_code": "SO",
+    "name": "Mudug",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "SO-NU",
+    "country_code": "SO",
+    "name": "Nugaal",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "SO-SA",
+    "country_code": "SO",
+    "name": "Saneag",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "SO-SD",
+    "country_code": "SO",
+    "name": "Shabeellaha Dhexe",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "SO-SH",
+    "country_code": "SO",
+    "name": "Shabeellaha Hoose",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "SO-SO",
+    "country_code": "SO",
+    "name": "Sool",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "SO-TO",
+    "country_code": "SO",
+    "name": "Togdheer",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "SO-WO",
+    "country_code": "SO",
+    "name": "Woqooyi Galbeed",
+    "parent_code": null,
+    "type": "Region"
+  }
+]

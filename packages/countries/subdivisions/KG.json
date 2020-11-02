@@ -1,0 +1,58 @@
+[
+  {
+    "code": "KG-B",
+    "country_code": "KG",
+    "name": "Batken",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "KG-C",
+    "country_code": "KG",
+    "name": "Ch\u00fc",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "KG-GB",
+    "country_code": "KG",
+    "name": "Bishkek",
+    "parent_code": null,
+    "type": "City"
+  },
+  {
+    "code": "KG-J",
+    "country_code": "KG",
+    "name": "Jalal-Abad",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "KG-N",
+    "country_code": "KG",
+    "name": "Naryn",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "KG-O",
+    "country_code": "KG",
+    "name": "Osh",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "KG-T",
+    "country_code": "KG",
+    "name": "Talas",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "KG-Y",
+    "country_code": "KG",
+    "name": "Ysyk-K\u00f6l",
+    "parent_code": null,
+    "type": "Region"
+  }
+]

@@ -1,0 +1,30 @@
+[
+  {
+    "code": "GL-KU",
+    "country_code": "GL",
+    "name": "Kommune Kujalleq",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "GL-QA",
+    "country_code": "GL",
+    "name": "Qaasuitsup Kommunia",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "GL-QE",
+    "country_code": "GL",
+    "name": "Qeqqata Kommunia",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "GL-SM",
+    "country_code": "GL",
+    "name": "Kommuneqarfik Sermersooq",
+    "parent_code": null,
+    "type": "Municipality"
+  }
+]

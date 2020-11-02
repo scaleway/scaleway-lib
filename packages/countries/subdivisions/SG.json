@@ -1,0 +1,37 @@
+[
+  {
+    "code": "SG-01",
+    "country_code": "SG",
+    "name": "Central Singapore",
+    "parent_code": null,
+    "type": "district"
+  },
+  {
+    "code": "SG-02",
+    "country_code": "SG",
+    "name": "North East",
+    "parent_code": null,
+    "type": "district"
+  },
+  {
+    "code": "SG-03",
+    "country_code": "SG",
+    "name": "North West",
+    "parent_code": null,
+    "type": "district"
+  },
+  {
+    "code": "SG-04",
+    "country_code": "SG",
+    "name": "South East",
+    "parent_code": null,
+    "type": "district"
+  },
+  {
+    "code": "SG-05",
+    "country_code": "SG",
+    "name": "South West",
+    "parent_code": null,
+    "type": "district"
+  }
+]

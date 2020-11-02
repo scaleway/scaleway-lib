@@ -1,0 +1,212 @@
+[
+  {
+    "code": "IR-01",
+    "country_code": "IR",
+    "name": "\u0100zarb\u0101yj\u0101n-e Sharq\u012b",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "IR-02",
+    "country_code": "IR",
+    "name": "\u0100zarb\u0101yj\u0101n-e Gharb\u012b",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "IR-03",
+    "country_code": "IR",
+    "name": "Ardab\u012bl",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "IR-04",
+    "country_code": "IR",
+    "name": "E\u015ffah\u0101n",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "IR-05",
+    "country_code": "IR",
+    "name": "\u012al\u0101m",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "IR-06",
+    "country_code": "IR",
+    "name": "B\u016bshehr",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "IR-07",
+    "country_code": "IR",
+    "name": "Tehr\u0101n",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "IR-08",
+    "country_code": "IR",
+    "name": "Chah\u0101r Mah\u0101ll va Bakht\u012b\u0101r\u012b",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "IR-10",
+    "country_code": "IR",
+    "name": "Kh\u016bzest\u0101n",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "IR-11",
+    "country_code": "IR",
+    "name": "Zanj\u0101n",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "IR-12",
+    "country_code": "IR",
+    "name": "Semn\u0101n",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "IR-13",
+    "country_code": "IR",
+    "name": "S\u012bst\u0101n va Bal\u016bchest\u0101n",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "IR-14",
+    "country_code": "IR",
+    "name": "F\u0101rs",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "IR-15",
+    "country_code": "IR",
+    "name": "Kerm\u0101n",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "IR-16",
+    "country_code": "IR",
+    "name": "Kordest\u0101n",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "IR-17",
+    "country_code": "IR",
+    "name": "Kerm\u0101nsh\u0101h",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "IR-18",
+    "country_code": "IR",
+    "name": "Kohg\u012bl\u016byeh va B\u016byer Ahmad",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "IR-19",
+    "country_code": "IR",
+    "name": "G\u012bl\u0101n",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "IR-20",
+    "country_code": "IR",
+    "name": "Lorest\u0101n",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "IR-21",
+    "country_code": "IR",
+    "name": "M\u0101zandar\u0101n",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "IR-22",
+    "country_code": "IR",
+    "name": "Markaz\u012b",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "IR-23",
+    "country_code": "IR",
+    "name": "Hormozg\u0101n",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "IR-24",
+    "country_code": "IR",
+    "name": "Hamad\u0101n",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "IR-25",
+    "country_code": "IR",
+    "name": "Yazd",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "IR-26",
+    "country_code": "IR",
+    "name": "Qom",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "IR-27",
+    "country_code": "IR",
+    "name": "Golest\u0101n",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "IR-28",
+    "country_code": "IR",
+    "name": "Qazv\u012bn",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "IR-29",
+    "country_code": "IR",
+    "name": "Khor\u0101s\u0101n-e Jan\u016bb\u012b",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "IR-30",
+    "country_code": "IR",
+    "name": "Khor\u0101s\u0101n-e Razav\u012b",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "IR-31",
+    "country_code": "IR",
+    "name": "Khor\u0101s\u0101n-e Shem\u0101l\u012b",
+    "parent_code": null,
+    "type": "Province"
+  }
+]

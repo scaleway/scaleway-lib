@@ -1,0 +1,184 @@
+[
+  {
+    "code": "MH-ALK",
+    "country_code": "MH",
+    "name": "Ailuk",
+    "parent_code": "MH-T",
+    "type": "Municipality"
+  },
+  {
+    "code": "MH-ALL",
+    "country_code": "MH",
+    "name": "Ailinglaplap",
+    "parent_code": "MH-L",
+    "type": "Municipality"
+  },
+  {
+    "code": "MH-ARN",
+    "country_code": "MH",
+    "name": "Arno",
+    "parent_code": "MH-T",
+    "type": "Municipality"
+  },
+  {
+    "code": "MH-AUR",
+    "country_code": "MH",
+    "name": "Aur",
+    "parent_code": "MH-T",
+    "type": "Municipality"
+  },
+  {
+    "code": "MH-EBO",
+    "country_code": "MH",
+    "name": "Ebon",
+    "parent_code": "MH-L",
+    "type": "Municipality"
+  },
+  {
+    "code": "MH-ENI",
+    "country_code": "MH",
+    "name": "Enewetak",
+    "parent_code": "MH-L",
+    "type": "Municipality"
+  },
+  {
+    "code": "MH-JAB",
+    "country_code": "MH",
+    "name": "Jabat",
+    "parent_code": "MH-L",
+    "type": "Municipality"
+  },
+  {
+    "code": "MH-JAL",
+    "country_code": "MH",
+    "name": "Jaluit",
+    "parent_code": "MH-L",
+    "type": "Municipality"
+  },
+  {
+    "code": "MH-KIL",
+    "country_code": "MH",
+    "name": "Kili",
+    "parent_code": "MH-L",
+    "type": "Municipality"
+  },
+  {
+    "code": "MH-KWA",
+    "country_code": "MH",
+    "name": "Kwajalein",
+    "parent_code": "MH-L",
+    "type": "Municipality"
+  },
+  {
+    "code": "MH-L",
+    "country_code": "MH",
+    "name": "Ralik chain",
+    "parent_code": null,
+    "type": "Chains (of islands)"
+  },
+  {
+    "code": "MH-LAE",
+    "country_code": "MH",
+    "name": "Lae",
+    "parent_code": "MH-L",
+    "type": "Municipality"
+  },
+  {
+    "code": "MH-LIB",
+    "country_code": "MH",
+    "name": "Lib",
+    "parent_code": "MH-L",
+    "type": "Municipality"
+  },
+  {
+    "code": "MH-LIK",
+    "country_code": "MH",
+    "name": "Likiep",
+    "parent_code": "MH-T",
+    "type": "Municipality"
+  },
+  {
+    "code": "MH-MAJ",
+    "country_code": "MH",
+    "name": "Majuro",
+    "parent_code": "MH-T",
+    "type": "Municipality"
+  },
+  {
+    "code": "MH-MAL",
+    "country_code": "MH",
+    "name": "Maloelap",
+    "parent_code": "MH-T",
+    "type": "Municipality"
+  },
+  {
+    "code": "MH-MEJ",
+    "country_code": "MH",
+    "name": "Mejit",
+    "parent_code": "MH-T",
+    "type": "Municipality"
+  },
+  {
+    "code": "MH-MIL",
+    "country_code": "MH",
+    "name": "Mili",
+    "parent_code": "MH-T",
+    "type": "Municipality"
+  },
+  {
+    "code": "MH-NMK",
+    "country_code": "MH",
+    "name": "Namdrik",
+    "parent_code": "MH-L",
+    "type": "Municipality"
+  },
+  {
+    "code": "MH-NMU",
+    "country_code": "MH",
+    "name": "Namu",
+    "parent_code": "MH-L",
+    "type": "Municipality"
+  },
+  {
+    "code": "MH-RON",
+    "country_code": "MH",
+    "name": "Rongelap",
+    "parent_code": "MH-L",
+    "type": "Municipality"
+  },
+  {
+    "code": "MH-T",
+    "country_code": "MH",
+    "name": "Ratak chain",
+    "parent_code": null,
+    "type": "Chains (of islands)"
+  },
+  {
+    "code": "MH-UJA",
+    "country_code": "MH",
+    "name": "Ujae",
+    "parent_code": "MH-L",
+    "type": "Municipality"
+  },
+  {
+    "code": "MH-UTI",
+    "country_code": "MH",
+    "name": "Utirik",
+    "parent_code": "MH-T",
+    "type": "Municipality"
+  },
+  {
+    "code": "MH-WTJ",
+    "country_code": "MH",
+    "name": "Wotje",
+    "parent_code": "MH-T",
+    "type": "Municipality"
+  },
+  {
+    "code": "MH-WTN",
+    "country_code": "MH",
+    "name": "Wotho",
+    "parent_code": "MH-L",
+    "type": "Municipality"
+  }
+]

@@ -1,0 +1,16 @@
+[
+  {
+    "code": "ST-P",
+    "country_code": "ST",
+    "name": "Pr\u00edncipe",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "ST-S",
+    "country_code": "ST",
+    "name": "S\u00e3o Tom\u00e9",
+    "parent_code": null,
+    "type": "Municipality"
+  }
+]

@@ -1,0 +1,30 @@
+[
+  {
+    "code": "BN-BE",
+    "country_code": "BN",
+    "name": "Belait",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BN-BM",
+    "country_code": "BN",
+    "name": "Brunei-Muara",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BN-TE",
+    "country_code": "BN",
+    "name": "Temburong",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BN-TU",
+    "country_code": "BN",
+    "name": "Tutong",
+    "parent_code": null,
+    "type": "District"
+  }
+]

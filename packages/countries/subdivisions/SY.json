@@ -1,0 +1,100 @@
+[
+  {
+    "code": "SY-DI",
+    "country_code": "SY",
+    "name": "Dimashq",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "SY-DR",
+    "country_code": "SY",
+    "name": "Dar'a",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "SY-DY",
+    "country_code": "SY",
+    "name": "Dayr az Zawr",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "SY-HA",
+    "country_code": "SY",
+    "name": "Al Hasakah",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "SY-HI",
+    "country_code": "SY",
+    "name": "Homs",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "SY-HL",
+    "country_code": "SY",
+    "name": "Halab",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "SY-HM",
+    "country_code": "SY",
+    "name": "Hamah",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "SY-ID",
+    "country_code": "SY",
+    "name": "Idlib",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "SY-LA",
+    "country_code": "SY",
+    "name": "Al Ladhiqiyah",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "SY-QU",
+    "country_code": "SY",
+    "name": "Al Qunaytirah",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "SY-RA",
+    "country_code": "SY",
+    "name": "Ar Raqqah",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "SY-RD",
+    "country_code": "SY",
+    "name": "Rif Dimashq",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "SY-SU",
+    "country_code": "SY",
+    "name": "As Suwayda'",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "SY-TA",
+    "country_code": "SY",
+    "name": "Tartus",
+    "parent_code": null,
+    "type": "Governorate"
+  }
+]

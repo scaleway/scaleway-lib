@@ -1,0 +1,114 @@
+[
+  {
+    "code": "PL-DS",
+    "country_code": "PL",
+    "name": "Dolno\u015bl\u0105skie",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PL-KP",
+    "country_code": "PL",
+    "name": "Kujawsko-pomorskie",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PL-LB",
+    "country_code": "PL",
+    "name": "Lubuskie",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PL-LD",
+    "country_code": "PL",
+    "name": "\u0141\u00f3dzkie",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PL-LU",
+    "country_code": "PL",
+    "name": "Lubelskie",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PL-MA",
+    "country_code": "PL",
+    "name": "Ma\u0142opolskie",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PL-MZ",
+    "country_code": "PL",
+    "name": "Mazowieckie",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PL-OP",
+    "country_code": "PL",
+    "name": "Opolskie",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PL-PD",
+    "country_code": "PL",
+    "name": "Podlaskie",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PL-PK",
+    "country_code": "PL",
+    "name": "Podkarpackie",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PL-PM",
+    "country_code": "PL",
+    "name": "Pomorskie",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PL-SK",
+    "country_code": "PL",
+    "name": "\u015awi\u0119tokrzyskie",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PL-SL",
+    "country_code": "PL",
+    "name": "\u015al\u0105skie",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PL-WN",
+    "country_code": "PL",
+    "name": "Warmi\u0144sko-mazurskie",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PL-WP",
+    "country_code": "PL",
+    "name": "Wielkopolskie",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PL-ZP",
+    "country_code": "PL",
+    "name": "Zachodniopomorskie",
+    "parent_code": null,
+    "type": "Province"
+  }
+]

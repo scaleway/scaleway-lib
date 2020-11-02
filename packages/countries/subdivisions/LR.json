@@ -1,0 +1,93 @@
+[
+  {
+    "code": "LR-BG",
+    "country_code": "LR",
+    "name": "Bong",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "LR-BM",
+    "country_code": "LR",
+    "name": "Bomi",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "LR-CM",
+    "country_code": "LR",
+    "name": "Grand Cape Mount",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "LR-GB",
+    "country_code": "LR",
+    "name": "Grand Bassa",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "LR-GG",
+    "country_code": "LR",
+    "name": "Grand Gedeh",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "LR-GK",
+    "country_code": "LR",
+    "name": "Grand Kru",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "LR-LO",
+    "country_code": "LR",
+    "name": "Lofa",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "LR-MG",
+    "country_code": "LR",
+    "name": "Margibi",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "LR-MO",
+    "country_code": "LR",
+    "name": "Montserrado",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "LR-MY",
+    "country_code": "LR",
+    "name": "Maryland",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "LR-NI",
+    "country_code": "LR",
+    "name": "Nimba",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "LR-RI",
+    "country_code": "LR",
+    "name": "Rivercess",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "LR-SI",
+    "country_code": "LR",
+    "name": "Sinoe",
+    "parent_code": null,
+    "type": "County"
+  }
+]

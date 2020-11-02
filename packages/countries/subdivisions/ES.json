@@ -1,0 +1,485 @@
+[
+  {
+    "code": "ES-A",
+    "country_code": "ES",
+    "name": "Alicante",
+    "parent_code": "ES-VC",
+    "type": "Province"
+  },
+  {
+    "code": "ES-AB",
+    "country_code": "ES",
+    "name": "Albacete",
+    "parent_code": "ES-CM",
+    "type": "Province"
+  },
+  {
+    "code": "ES-AL",
+    "country_code": "ES",
+    "name": "Almer\u00eda",
+    "parent_code": "ES-AN",
+    "type": "Province"
+  },
+  {
+    "code": "ES-AN",
+    "country_code": "ES",
+    "name": "Andaluc\u00eda",
+    "parent_code": null,
+    "type": "Autonomous community"
+  },
+  {
+    "code": "ES-AR",
+    "country_code": "ES",
+    "name": "Arag\u00f3n",
+    "parent_code": null,
+    "type": "Autonomous community"
+  },
+  {
+    "code": "ES-AS",
+    "country_code": "ES",
+    "name": "Asturias, Principado de",
+    "parent_code": null,
+    "type": "Autonomous community"
+  },
+  {
+    "code": "ES-AV",
+    "country_code": "ES",
+    "name": "\u00c1vila",
+    "parent_code": "ES-CL",
+    "type": "Province"
+  },
+  {
+    "code": "ES-B",
+    "country_code": "ES",
+    "name": "Barcelona",
+    "parent_code": "ES-CT",
+    "type": "Province"
+  },
+  {
+    "code": "ES-BA",
+    "country_code": "ES",
+    "name": "Badajoz",
+    "parent_code": "ES-EX",
+    "type": "Province"
+  },
+  {
+    "code": "ES-BI",
+    "country_code": "ES",
+    "name": "Bizkaia",
+    "parent_code": "ES-PV",
+    "type": "Province"
+  },
+  {
+    "code": "ES-BU",
+    "country_code": "ES",
+    "name": "Burgos",
+    "parent_code": "ES-CL",
+    "type": "Province"
+  },
+  {
+    "code": "ES-C",
+    "country_code": "ES",
+    "name": "A Coru\u00f1a",
+    "parent_code": "ES-GA",
+    "type": "Province"
+  },
+  {
+    "code": "ES-CA",
+    "country_code": "ES",
+    "name": "C\u00e1diz",
+    "parent_code": "ES-AN",
+    "type": "Province"
+  },
+  {
+    "code": "ES-CB",
+    "country_code": "ES",
+    "name": "Cantabria",
+    "parent_code": null,
+    "type": "Autonomous community"
+  },
+  {
+    "code": "ES-CC",
+    "country_code": "ES",
+    "name": "C\u00e1ceres",
+    "parent_code": "ES-EX",
+    "type": "Province"
+  },
+  {
+    "code": "ES-CE",
+    "country_code": "ES",
+    "name": "Ceuta",
+    "parent_code": null,
+    "type": "Autonomous city"
+  },
+  {
+    "code": "ES-CL",
+    "country_code": "ES",
+    "name": "Castilla y Le\u00f3n",
+    "parent_code": null,
+    "type": "Autonomous community"
+  },
+  {
+    "code": "ES-CM",
+    "country_code": "ES",
+    "name": "Castilla-La Mancha",
+    "parent_code": null,
+    "type": "Autonomous community"
+  },
+  {
+    "code": "ES-CN",
+    "country_code": "ES",
+    "name": "Canarias",
+    "parent_code": null,
+    "type": "Autonomous community"
+  },
+  {
+    "code": "ES-CO",
+    "country_code": "ES",
+    "name": "C\u00f3rdoba",
+    "parent_code": "ES-AN",
+    "type": "Province"
+  },
+  {
+    "code": "ES-CR",
+    "country_code": "ES",
+    "name": "Ciudad Real",
+    "parent_code": "ES-CM",
+    "type": "Province"
+  },
+  {
+    "code": "ES-CS",
+    "country_code": "ES",
+    "name": "Castell\u00f3n",
+    "parent_code": "ES-VC",
+    "type": "Province"
+  },
+  {
+    "code": "ES-CT",
+    "country_code": "ES",
+    "name": "Catalunya",
+    "parent_code": null,
+    "type": "Autonomous community"
+  },
+  {
+    "code": "ES-CU",
+    "country_code": "ES",
+    "name": "Cuenca",
+    "parent_code": "ES-CM",
+    "type": "Province"
+  },
+  {
+    "code": "ES-EX",
+    "country_code": "ES",
+    "name": "Extremadura",
+    "parent_code": null,
+    "type": "Autonomous community"
+  },
+  {
+    "code": "ES-GA",
+    "country_code": "ES",
+    "name": "Galicia",
+    "parent_code": null,
+    "type": "Autonomous community"
+  },
+  {
+    "code": "ES-GC",
+    "country_code": "ES",
+    "name": "Las Palmas",
+    "parent_code": "ES-CN",
+    "type": "Province"
+  },
+  {
+    "code": "ES-GI",
+    "country_code": "ES",
+    "name": "Girona",
+    "parent_code": "ES-CT",
+    "type": "Province"
+  },
+  {
+    "code": "ES-GR",
+    "country_code": "ES",
+    "name": "Granada",
+    "parent_code": "ES-AN",
+    "type": "Province"
+  },
+  {
+    "code": "ES-GU",
+    "country_code": "ES",
+    "name": "Guadalajara",
+    "parent_code": "ES-CM",
+    "type": "Province"
+  },
+  {
+    "code": "ES-H",
+    "country_code": "ES",
+    "name": "Huelva",
+    "parent_code": "ES-AN",
+    "type": "Province"
+  },
+  {
+    "code": "ES-HU",
+    "country_code": "ES",
+    "name": "Huesca",
+    "parent_code": "ES-AR",
+    "type": "Province"
+  },
+  {
+    "code": "ES-IB",
+    "country_code": "ES",
+    "name": "Illes Balears",
+    "parent_code": null,
+    "type": "Autonomous community"
+  },
+  {
+    "code": "ES-J",
+    "country_code": "ES",
+    "name": "Ja\u00e9n",
+    "parent_code": "ES-AN",
+    "type": "Province"
+  },
+  {
+    "code": "ES-L",
+    "country_code": "ES",
+    "name": "Lleida",
+    "parent_code": "ES-CT",
+    "type": "Province"
+  },
+  {
+    "code": "ES-LE",
+    "country_code": "ES",
+    "name": "Le\u00f3n",
+    "parent_code": "ES-CL",
+    "type": "Province"
+  },
+  {
+    "code": "ES-LO",
+    "country_code": "ES",
+    "name": "La Rioja",
+    "parent_code": "ES-RI",
+    "type": "Province"
+  },
+  {
+    "code": "ES-LU",
+    "country_code": "ES",
+    "name": "Lugo",
+    "parent_code": "ES-GA",
+    "type": "Province"
+  },
+  {
+    "code": "ES-M",
+    "country_code": "ES",
+    "name": "Madrid",
+    "parent_code": "ES-MD",
+    "type": "Province"
+  },
+  {
+    "code": "ES-MA",
+    "country_code": "ES",
+    "name": "M\u00e1laga",
+    "parent_code": "ES-AN",
+    "type": "Province"
+  },
+  {
+    "code": "ES-MC",
+    "country_code": "ES",
+    "name": "Murcia, Regi\u00f3n de",
+    "parent_code": null,
+    "type": "Autonomous community"
+  },
+  {
+    "code": "ES-MD",
+    "country_code": "ES",
+    "name": "Madrid, Comunidad de",
+    "parent_code": null,
+    "type": "Autonomous community"
+  },
+  {
+    "code": "ES-ML",
+    "country_code": "ES",
+    "name": "Melilla",
+    "parent_code": null,
+    "type": "Autonomous city"
+  },
+  {
+    "code": "ES-MU",
+    "country_code": "ES",
+    "name": "Murcia",
+    "parent_code": "ES-MC",
+    "type": "Province"
+  },
+  {
+    "code": "ES-NA",
+    "country_code": "ES",
+    "name": "Navarra / Nafarroa",
+    "parent_code": "ES-NC",
+    "type": "Province"
+  },
+  {
+    "code": "ES-NC",
+    "country_code": "ES",
+    "name": "Navarra, Comunidad Foral de / Nafarroako Foru Komunitatea",
+    "parent_code": null,
+    "type": "Autonomous community"
+  },
+  {
+    "code": "ES-O",
+    "country_code": "ES",
+    "name": "Asturias",
+    "parent_code": "ES-AS",
+    "type": "Province"
+  },
+  {
+    "code": "ES-OR",
+    "country_code": "ES",
+    "name": "Ourense",
+    "parent_code": "ES-GA",
+    "type": "Province"
+  },
+  {
+    "code": "ES-P",
+    "country_code": "ES",
+    "name": "Palencia",
+    "parent_code": "ES-CL",
+    "type": "Province"
+  },
+  {
+    "code": "ES-PM",
+    "country_code": "ES",
+    "name": "Balears",
+    "parent_code": "ES-IB",
+    "type": "Province"
+  },
+  {
+    "code": "ES-PO",
+    "country_code": "ES",
+    "name": "Pontevedra",
+    "parent_code": "ES-GA",
+    "type": "Province"
+  },
+  {
+    "code": "ES-PV",
+    "country_code": "ES",
+    "name": "Pa\u00eds Vasco / Euskal Herria",
+    "parent_code": null,
+    "type": "Autonomous community"
+  },
+  {
+    "code": "ES-RI",
+    "country_code": "ES",
+    "name": "La Rioja",
+    "parent_code": null,
+    "type": "Autonomous community"
+  },
+  {
+    "code": "ES-S",
+    "country_code": "ES",
+    "name": "Cantabria",
+    "parent_code": "ES-CB",
+    "type": "Province"
+  },
+  {
+    "code": "ES-SA",
+    "country_code": "ES",
+    "name": "Salamanca",
+    "parent_code": "ES-CL",
+    "type": "Province"
+  },
+  {
+    "code": "ES-SE",
+    "country_code": "ES",
+    "name": "Sevilla",
+    "parent_code": "ES-AN",
+    "type": "Province"
+  },
+  {
+    "code": "ES-SG",
+    "country_code": "ES",
+    "name": "Segovia",
+    "parent_code": "ES-CL",
+    "type": "Province"
+  },
+  {
+    "code": "ES-SO",
+    "country_code": "ES",
+    "name": "Soria",
+    "parent_code": "ES-CL",
+    "type": "Province"
+  },
+  {
+    "code": "ES-SS",
+    "country_code": "ES",
+    "name": "Gipuzkoa",
+    "parent_code": "ES-PV",
+    "type": "Province"
+  },
+  {
+    "code": "ES-T",
+    "country_code": "ES",
+    "name": "Tarragona",
+    "parent_code": "ES-CT",
+    "type": "Province"
+  },
+  {
+    "code": "ES-TE",
+    "country_code": "ES",
+    "name": "Teruel",
+    "parent_code": "ES-AR",
+    "type": "Province"
+  },
+  {
+    "code": "ES-TF",
+    "country_code": "ES",
+    "name": "Santa Cruz de Tenerife",
+    "parent_code": "ES-CN",
+    "type": "Province"
+  },
+  {
+    "code": "ES-TO",
+    "country_code": "ES",
+    "name": "Toledo",
+    "parent_code": "ES-CM",
+    "type": "Province"
+  },
+  {
+    "code": "ES-V",
+    "country_code": "ES",
+    "name": "Valencia / Val\u00e8ncia",
+    "parent_code": "ES-VC",
+    "type": "Province"
+  },
+  {
+    "code": "ES-VA",
+    "country_code": "ES",
+    "name": "Valladolid",
+    "parent_code": "ES-CL",
+    "type": "Province"
+  },
+  {
+    "code": "ES-VC",
+    "country_code": "ES",
+    "name": "Valenciana, Comunidad / Valenciana, Comunitat",
+    "parent_code": null,
+    "type": "Autonomous community"
+  },
+  {
+    "code": "ES-VI",
+    "country_code": "ES",
+    "name": "\u00c1lava",
+    "parent_code": "ES-PV",
+    "type": "Province"
+  },
+  {
+    "code": "ES-Z",
+    "country_code": "ES",
+    "name": "Zaragoza",
+    "parent_code": "ES-AR",
+    "type": "Province"
+  },
+  {
+    "code": "ES-ZA",
+    "country_code": "ES",
+    "name": "Zamora",
+    "parent_code": "ES-CL",
+    "type": "Province"
+  }
+]

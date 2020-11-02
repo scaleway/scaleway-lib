@@ -1,0 +1,65 @@
+[
+  {
+    "code": "AT-1",
+    "country_code": "AT",
+    "name": "Burgenland",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "AT-2",
+    "country_code": "AT",
+    "name": "K\u00e4rnten",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "AT-3",
+    "country_code": "AT",
+    "name": "Nieder\u00f6sterreich",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "AT-4",
+    "country_code": "AT",
+    "name": "Ober\u00f6sterreich",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "AT-5",
+    "country_code": "AT",
+    "name": "Salzburg",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "AT-6",
+    "country_code": "AT",
+    "name": "Steiermark",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "AT-7",
+    "country_code": "AT",
+    "name": "Tirol",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "AT-8",
+    "country_code": "AT",
+    "name": "Vorarlberg",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "AT-9",
+    "country_code": "AT",
+    "name": "Wien",
+    "parent_code": null,
+    "type": "State"
+  }
+]

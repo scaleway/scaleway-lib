@@ -1,0 +1,121 @@
+[
+  {
+    "code": "MC-CL",
+    "country_code": "MC",
+    "name": "La Colle",
+    "parent_code": null,
+    "type": "Quarter"
+  },
+  {
+    "code": "MC-CO",
+    "country_code": "MC",
+    "name": "La Condamine",
+    "parent_code": null,
+    "type": "Quarter"
+  },
+  {
+    "code": "MC-FO",
+    "country_code": "MC",
+    "name": "Fontvieille",
+    "parent_code": null,
+    "type": "Quarter"
+  },
+  {
+    "code": "MC-GA",
+    "country_code": "MC",
+    "name": "La Gare",
+    "parent_code": null,
+    "type": "Quarter"
+  },
+  {
+    "code": "MC-JE",
+    "country_code": "MC",
+    "name": "Jardin Exotique",
+    "parent_code": null,
+    "type": "Quarter"
+  },
+  {
+    "code": "MC-LA",
+    "country_code": "MC",
+    "name": "Larvotto",
+    "parent_code": null,
+    "type": "Quarter"
+  },
+  {
+    "code": "MC-MA",
+    "country_code": "MC",
+    "name": "Malbousquet",
+    "parent_code": null,
+    "type": "Quarter"
+  },
+  {
+    "code": "MC-MC",
+    "country_code": "MC",
+    "name": "Monte-Carlo",
+    "parent_code": null,
+    "type": "Quarter"
+  },
+  {
+    "code": "MC-MG",
+    "country_code": "MC",
+    "name": "Moneghetti",
+    "parent_code": null,
+    "type": "Quarter"
+  },
+  {
+    "code": "MC-MO",
+    "country_code": "MC",
+    "name": "Monaco-Ville",
+    "parent_code": null,
+    "type": "Quarter"
+  },
+  {
+    "code": "MC-MU",
+    "country_code": "MC",
+    "name": "Moulins",
+    "parent_code": null,
+    "type": "Quarter"
+  },
+  {
+    "code": "MC-PH",
+    "country_code": "MC",
+    "name": "Port-Hercule",
+    "parent_code": null,
+    "type": "Quarter"
+  },
+  {
+    "code": "MC-SD",
+    "country_code": "MC",
+    "name": "Sainte-D\u00e9vote",
+    "parent_code": null,
+    "type": "Quarter"
+  },
+  {
+    "code": "MC-SO",
+    "country_code": "MC",
+    "name": "La Source",
+    "parent_code": null,
+    "type": "Quarter"
+  },
+  {
+    "code": "MC-SP",
+    "country_code": "MC",
+    "name": "Sp\u00e9lugues",
+    "parent_code": null,
+    "type": "Quarter"
+  },
+  {
+    "code": "MC-SR",
+    "country_code": "MC",
+    "name": "Saint-Roman",
+    "parent_code": null,
+    "type": "Quarter"
+  },
+  {
+    "code": "MC-VR",
+    "country_code": "MC",
+    "name": "Vallon de la Rousse",
+    "parent_code": null,
+    "type": "Quarter"
+  }
+]

@@ -1,0 +1,114 @@
+[
+  {
+    "code": "KZ-AKM",
+    "country_code": "KZ",
+    "name": "Aqmola oblysy",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "KZ-AKT",
+    "country_code": "KZ",
+    "name": "Aqt\u00f6be oblysy",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "KZ-ALA",
+    "country_code": "KZ",
+    "name": "Almaty",
+    "parent_code": null,
+    "type": "City"
+  },
+  {
+    "code": "KZ-ALM",
+    "country_code": "KZ",
+    "name": "Almaty oblysy",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "KZ-AST",
+    "country_code": "KZ",
+    "name": "Astana",
+    "parent_code": null,
+    "type": "City"
+  },
+  {
+    "code": "KZ-ATY",
+    "country_code": "KZ",
+    "name": "Atyra\u016b oblysy",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "KZ-KAR",
+    "country_code": "KZ",
+    "name": "Qaraghandy oblysy",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "KZ-KUS",
+    "country_code": "KZ",
+    "name": "Qostanay oblysy",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "KZ-KZY",
+    "country_code": "KZ",
+    "name": "Qyzylorda oblysy",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "KZ-MAN",
+    "country_code": "KZ",
+    "name": "Mangghysta\u016b oblysy",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "KZ-PAV",
+    "country_code": "KZ",
+    "name": "Pavlodar oblysy",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "KZ-SEV",
+    "country_code": "KZ",
+    "name": "Solt\u00fcstik Quzaqstan oblysy",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "KZ-VOS",
+    "country_code": "KZ",
+    "name": "Shyghys Qazaqstan oblysy",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "KZ-YUZ",
+    "country_code": "KZ",
+    "name": "Ongt\u00fcstik Qazaqstan oblysy",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "KZ-ZAP",
+    "country_code": "KZ",
+    "name": "Batys Quzaqstan oblysy",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "KZ-ZHA",
+    "country_code": "KZ",
+    "name": "Zhambyl oblysy",
+    "parent_code": null,
+    "type": "Region"
+  }
+]

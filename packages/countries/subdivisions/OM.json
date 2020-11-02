@@ -1,0 +1,65 @@
+[
+  {
+    "code": "OM-BA",
+    "country_code": "OM",
+    "name": "Al B\u0101\u0163inah",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "OM-BU",
+    "country_code": "OM",
+    "name": "Al Buraym\u012b",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "OM-DA",
+    "country_code": "OM",
+    "name": "Ad D\u0101khil\u012bya",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "OM-MA",
+    "country_code": "OM",
+    "name": "Masqa\u0163",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "OM-MU",
+    "country_code": "OM",
+    "name": "Musandam",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "OM-SH",
+    "country_code": "OM",
+    "name": "Ash Sharq\u012byah",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "OM-WU",
+    "country_code": "OM",
+    "name": "Al Wus\u0163\u00e1",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "OM-ZA",
+    "country_code": "OM",
+    "name": "Az\u0327 Z\u0327\u0101hirah",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "OM-ZU",
+    "country_code": "OM",
+    "name": "Z\u0327uf\u0101r",
+    "parent_code": null,
+    "type": "Governorate"
+  }
+]

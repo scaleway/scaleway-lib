@@ -1,0 +1,240 @@
+[
+  {
+    "code": "AF-BAL",
+    "country_code": "AF",
+    "name": "Balkh",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AF-BAM",
+    "country_code": "AF",
+    "name": "B\u0101my\u0101n",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AF-BDG",
+    "country_code": "AF",
+    "name": "B\u0101dgh\u012bs",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AF-BDS",
+    "country_code": "AF",
+    "name": "Badakhsh\u0101n",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AF-BGL",
+    "country_code": "AF",
+    "name": "Baghl\u0101n",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AF-DAY",
+    "country_code": "AF",
+    "name": "D\u0101ykund\u012b",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AF-FRA",
+    "country_code": "AF",
+    "name": "Far\u0101h",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AF-FYB",
+    "country_code": "AF",
+    "name": "F\u0101ry\u0101b",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AF-GHA",
+    "country_code": "AF",
+    "name": "Ghazn\u012b",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AF-GHO",
+    "country_code": "AF",
+    "name": "Gh\u014dr",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AF-HEL",
+    "country_code": "AF",
+    "name": "Helmand",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AF-HER",
+    "country_code": "AF",
+    "name": "Her\u0101t",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AF-JOW",
+    "country_code": "AF",
+    "name": "Jowzj\u0101n",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AF-KAB",
+    "country_code": "AF",
+    "name": "K\u0101bul",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AF-KAN",
+    "country_code": "AF",
+    "name": "Kandah\u0101r",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AF-KAP",
+    "country_code": "AF",
+    "name": "K\u0101p\u012bs\u0101",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AF-KDZ",
+    "country_code": "AF",
+    "name": "Kunduz",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AF-KHO",
+    "country_code": "AF",
+    "name": "Kh\u014dst",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AF-KNR",
+    "country_code": "AF",
+    "name": "Kunar",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AF-LAG",
+    "country_code": "AF",
+    "name": "Laghm\u0101n",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AF-LOG",
+    "country_code": "AF",
+    "name": "L\u014dgar",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AF-NAN",
+    "country_code": "AF",
+    "name": "Nangarh\u0101r",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AF-NIM",
+    "country_code": "AF",
+    "name": "N\u012bmr\u014dz",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AF-NUR",
+    "country_code": "AF",
+    "name": "N\u016brist\u0101n",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AF-PAN",
+    "country_code": "AF",
+    "name": "Panjshayr",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AF-PAR",
+    "country_code": "AF",
+    "name": "Parw\u0101n",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AF-PIA",
+    "country_code": "AF",
+    "name": "Paktiy\u0101",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AF-PKA",
+    "country_code": "AF",
+    "name": "Pakt\u012bk\u0101",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AF-SAM",
+    "country_code": "AF",
+    "name": "Samang\u0101n",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AF-SAR",
+    "country_code": "AF",
+    "name": "Sar-e Pul",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AF-TAK",
+    "country_code": "AF",
+    "name": "Takh\u0101r",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AF-URU",
+    "country_code": "AF",
+    "name": "Uruzg\u0101n",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AF-WAR",
+    "country_code": "AF",
+    "name": "Wardak",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AF-ZAB",
+    "country_code": "AF",
+    "name": "Z\u0101bul",
+    "parent_code": null,
+    "type": "Province"
+  }
+]

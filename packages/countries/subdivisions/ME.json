@@ -1,0 +1,149 @@
+[
+  {
+    "code": "ME-01",
+    "country_code": "ME",
+    "name": "Andrijevica",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "ME-02",
+    "country_code": "ME",
+    "name": "Bar",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "ME-03",
+    "country_code": "ME",
+    "name": "Berane",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "ME-04",
+    "country_code": "ME",
+    "name": "Bijelo Polje",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "ME-05",
+    "country_code": "ME",
+    "name": "Budva",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "ME-06",
+    "country_code": "ME",
+    "name": "Cetinje",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "ME-07",
+    "country_code": "ME",
+    "name": "Danilovgrad",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "ME-08",
+    "country_code": "ME",
+    "name": "Herceg-Novi",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "ME-09",
+    "country_code": "ME",
+    "name": "Kola\u0161in",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "ME-10",
+    "country_code": "ME",
+    "name": "Kotor",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "ME-11",
+    "country_code": "ME",
+    "name": "Mojkovac",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "ME-12",
+    "country_code": "ME",
+    "name": "Nik\u0161i\u0107",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "ME-13",
+    "country_code": "ME",
+    "name": "Plav",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "ME-14",
+    "country_code": "ME",
+    "name": "Pljevlja",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "ME-15",
+    "country_code": "ME",
+    "name": "Plu\u017eine",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "ME-16",
+    "country_code": "ME",
+    "name": "Podgorica",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "ME-17",
+    "country_code": "ME",
+    "name": "Ro\u017eaje",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "ME-18",
+    "country_code": "ME",
+    "name": "\u0160avnik",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "ME-19",
+    "country_code": "ME",
+    "name": "Tivat",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "ME-20",
+    "country_code": "ME",
+    "name": "Ulcinj",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "ME-21",
+    "country_code": "ME",
+    "name": "\u017dabljak",
+    "parent_code": null,
+    "type": "Municipality"
+  }
+]

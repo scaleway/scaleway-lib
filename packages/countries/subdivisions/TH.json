@@ -1,0 +1,541 @@
+[
+  {
+    "code": "TH-10",
+    "country_code": "TH",
+    "name": "Krung Thep Maha Nakhon Bangkok",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "TH-11",
+    "country_code": "TH",
+    "name": "Samut Prakan",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-12",
+    "country_code": "TH",
+    "name": "Nonthaburi",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-13",
+    "country_code": "TH",
+    "name": "Pathum Thani",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-14",
+    "country_code": "TH",
+    "name": "Phra Nakhon Si Ayutthaya",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-15",
+    "country_code": "TH",
+    "name": "Ang Thong",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-16",
+    "country_code": "TH",
+    "name": "Lop Buri",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-17",
+    "country_code": "TH",
+    "name": "Sing Buri",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-18",
+    "country_code": "TH",
+    "name": "Chai Nat",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-19",
+    "country_code": "TH",
+    "name": "Saraburi",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-20",
+    "country_code": "TH",
+    "name": "Chon Buri",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-21",
+    "country_code": "TH",
+    "name": "Rayong",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-22",
+    "country_code": "TH",
+    "name": "Chanthaburi",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-23",
+    "country_code": "TH",
+    "name": "Trat",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-24",
+    "country_code": "TH",
+    "name": "Chachoengsao",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-25",
+    "country_code": "TH",
+    "name": "Prachin Buri",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-26",
+    "country_code": "TH",
+    "name": "Nakhon Nayok",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-27",
+    "country_code": "TH",
+    "name": "Sa Kaeo",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-30",
+    "country_code": "TH",
+    "name": "Nakhon Ratchasima",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-31",
+    "country_code": "TH",
+    "name": "Buri Ram",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-32",
+    "country_code": "TH",
+    "name": "Surin",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-33",
+    "country_code": "TH",
+    "name": "Si Sa Ket",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-34",
+    "country_code": "TH",
+    "name": "Ubon Ratchathani",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-35",
+    "country_code": "TH",
+    "name": "Yasothon",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-36",
+    "country_code": "TH",
+    "name": "Chaiyaphum",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-37",
+    "country_code": "TH",
+    "name": "Amnat Charoen",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-39",
+    "country_code": "TH",
+    "name": "Nong Bua Lam Phu",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-40",
+    "country_code": "TH",
+    "name": "Khon Kaen",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-41",
+    "country_code": "TH",
+    "name": "Udon Thani",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-42",
+    "country_code": "TH",
+    "name": "Loei",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-43",
+    "country_code": "TH",
+    "name": "Nong Khai",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-44",
+    "country_code": "TH",
+    "name": "Maha Sarakham",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-45",
+    "country_code": "TH",
+    "name": "Roi Et",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-46",
+    "country_code": "TH",
+    "name": "Kalasin",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-47",
+    "country_code": "TH",
+    "name": "Sakon Nakhon",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-48",
+    "country_code": "TH",
+    "name": "Nakhon Phanom",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-49",
+    "country_code": "TH",
+    "name": "Mukdahan",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-50",
+    "country_code": "TH",
+    "name": "Chiang Mai",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-51",
+    "country_code": "TH",
+    "name": "Lamphun",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-52",
+    "country_code": "TH",
+    "name": "Lampang",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-53",
+    "country_code": "TH",
+    "name": "Uttaradit",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-54",
+    "country_code": "TH",
+    "name": "Phrae",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-55",
+    "country_code": "TH",
+    "name": "Nan",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-56",
+    "country_code": "TH",
+    "name": "Phayao",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-57",
+    "country_code": "TH",
+    "name": "Chiang Rai",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-58",
+    "country_code": "TH",
+    "name": "Mae Hong Son",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-60",
+    "country_code": "TH",
+    "name": "Nakhon Sawan",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-61",
+    "country_code": "TH",
+    "name": "Uthai Thani",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-62",
+    "country_code": "TH",
+    "name": "Kamphaeng Phet",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-63",
+    "country_code": "TH",
+    "name": "Tak",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-64",
+    "country_code": "TH",
+    "name": "Sukhothai",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-65",
+    "country_code": "TH",
+    "name": "Phitsanulok",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-66",
+    "country_code": "TH",
+    "name": "Phichit",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-67",
+    "country_code": "TH",
+    "name": "Phetchabun",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-70",
+    "country_code": "TH",
+    "name": "Ratchaburi",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-71",
+    "country_code": "TH",
+    "name": "Kanchanaburi",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-72",
+    "country_code": "TH",
+    "name": "Suphan Buri",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-73",
+    "country_code": "TH",
+    "name": "Nakhon Pathom",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-74",
+    "country_code": "TH",
+    "name": "Samut Sakhon",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-75",
+    "country_code": "TH",
+    "name": "Samut Songkhram",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-76",
+    "country_code": "TH",
+    "name": "Phetchaburi",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-77",
+    "country_code": "TH",
+    "name": "Prachuap Khiri Khan",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-80",
+    "country_code": "TH",
+    "name": "Nakhon Si Thammarat",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-81",
+    "country_code": "TH",
+    "name": "Krabi",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-82",
+    "country_code": "TH",
+    "name": "Phangnga",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-83",
+    "country_code": "TH",
+    "name": "Phuket",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-84",
+    "country_code": "TH",
+    "name": "Surat Thani",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-85",
+    "country_code": "TH",
+    "name": "Ranong",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-86",
+    "country_code": "TH",
+    "name": "Chumphon",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-90",
+    "country_code": "TH",
+    "name": "Songkhla",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-91",
+    "country_code": "TH",
+    "name": "Satun",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-92",
+    "country_code": "TH",
+    "name": "Trang",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-93",
+    "country_code": "TH",
+    "name": "Phatthalung",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-94",
+    "country_code": "TH",
+    "name": "Pattani",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-95",
+    "country_code": "TH",
+    "name": "Yala",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-96",
+    "country_code": "TH",
+    "name": "Narathiwat",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "TH-S",
+    "country_code": "TH",
+    "name": "Phatthaya",
+    "parent_code": null,
+    "type": "Province"
+  }
+]

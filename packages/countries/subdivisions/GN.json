@@ -1,0 +1,289 @@
+[
+  {
+    "code": "GN-B",
+    "country_code": "GN",
+    "name": "Bok\u00e9",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "GN-BE",
+    "country_code": "GN",
+    "name": "Beyla",
+    "parent_code": "GN-N",
+    "type": "Prefecture"
+  },
+  {
+    "code": "GN-BF",
+    "country_code": "GN",
+    "name": "Boffa",
+    "parent_code": "GN-B",
+    "type": "Prefecture"
+  },
+  {
+    "code": "GN-BK",
+    "country_code": "GN",
+    "name": "Bok\u00e9",
+    "parent_code": "GN-B",
+    "type": "Prefecture"
+  },
+  {
+    "code": "GN-C",
+    "country_code": "GN",
+    "name": "Conakry",
+    "parent_code": null,
+    "type": "Special zone"
+  },
+  {
+    "code": "GN-CO",
+    "country_code": "GN",
+    "name": "Coyah",
+    "parent_code": "GN-D",
+    "type": "Prefecture"
+  },
+  {
+    "code": "GN-D",
+    "country_code": "GN",
+    "name": "Kindia",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "GN-DB",
+    "country_code": "GN",
+    "name": "Dabola",
+    "parent_code": "GN-F",
+    "type": "Prefecture"
+  },
+  {
+    "code": "GN-DI",
+    "country_code": "GN",
+    "name": "Dinguiraye",
+    "parent_code": "GN-F",
+    "type": "Prefecture"
+  },
+  {
+    "code": "GN-DL",
+    "country_code": "GN",
+    "name": "Dalaba",
+    "parent_code": "GN-M",
+    "type": "Prefecture"
+  },
+  {
+    "code": "GN-DU",
+    "country_code": "GN",
+    "name": "Dubr\u00e9ka",
+    "parent_code": "GN-D",
+    "type": "Prefecture"
+  },
+  {
+    "code": "GN-F",
+    "country_code": "GN",
+    "name": "Faranah",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "GN-FA",
+    "country_code": "GN",
+    "name": "Faranah",
+    "parent_code": "GN-F",
+    "type": "Prefecture"
+  },
+  {
+    "code": "GN-FO",
+    "country_code": "GN",
+    "name": "For\u00e9cariah",
+    "parent_code": "GN-D",
+    "type": "Prefecture"
+  },
+  {
+    "code": "GN-FR",
+    "country_code": "GN",
+    "name": "Fria",
+    "parent_code": "GN-B",
+    "type": "Prefecture"
+  },
+  {
+    "code": "GN-GA",
+    "country_code": "GN",
+    "name": "Gaoual",
+    "parent_code": "GN-B",
+    "type": "Prefecture"
+  },
+  {
+    "code": "GN-GU",
+    "country_code": "GN",
+    "name": "Gu\u00e9k\u00e9dou",
+    "parent_code": "GN-N",
+    "type": "Prefecture"
+  },
+  {
+    "code": "GN-K",
+    "country_code": "GN",
+    "name": "Kankan",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "GN-KA",
+    "country_code": "GN",
+    "name": "Kankan",
+    "parent_code": "GN-K",
+    "type": "Prefecture"
+  },
+  {
+    "code": "GN-KB",
+    "country_code": "GN",
+    "name": "Koubia",
+    "parent_code": "GN-L",
+    "type": "Prefecture"
+  },
+  {
+    "code": "GN-KD",
+    "country_code": "GN",
+    "name": "Kindia",
+    "parent_code": "GN-D",
+    "type": "Prefecture"
+  },
+  {
+    "code": "GN-KE",
+    "country_code": "GN",
+    "name": "K\u00e9rouan\u00e9",
+    "parent_code": "GN-K",
+    "type": "Prefecture"
+  },
+  {
+    "code": "GN-KN",
+    "country_code": "GN",
+    "name": "Koundara",
+    "parent_code": "GN-B",
+    "type": "Prefecture"
+  },
+  {
+    "code": "GN-KO",
+    "country_code": "GN",
+    "name": "Kouroussa",
+    "parent_code": "GN-K",
+    "type": "Prefecture"
+  },
+  {
+    "code": "GN-KS",
+    "country_code": "GN",
+    "name": "Kissidougou",
+    "parent_code": "GN-F",
+    "type": "Prefecture"
+  },
+  {
+    "code": "GN-L",
+    "country_code": "GN",
+    "name": "Lab\u00e9",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "GN-LA",
+    "country_code": "GN",
+    "name": "Lab\u00e9",
+    "parent_code": "GN-L",
+    "type": "Prefecture"
+  },
+  {
+    "code": "GN-LE",
+    "country_code": "GN",
+    "name": "L\u00e9louma",
+    "parent_code": "GN-L",
+    "type": "Prefecture"
+  },
+  {
+    "code": "GN-LO",
+    "country_code": "GN",
+    "name": "Lola",
+    "parent_code": "GN-N",
+    "type": "Prefecture"
+  },
+  {
+    "code": "GN-M",
+    "country_code": "GN",
+    "name": "Mamou",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "GN-MC",
+    "country_code": "GN",
+    "name": "Macenta",
+    "parent_code": "GN-N",
+    "type": "Prefecture"
+  },
+  {
+    "code": "GN-MD",
+    "country_code": "GN",
+    "name": "Mandiana",
+    "parent_code": "GN-K",
+    "type": "Prefecture"
+  },
+  {
+    "code": "GN-ML",
+    "country_code": "GN",
+    "name": "Mali",
+    "parent_code": "GN-L",
+    "type": "Prefecture"
+  },
+  {
+    "code": "GN-MM",
+    "country_code": "GN",
+    "name": "Mamou",
+    "parent_code": "GN-M",
+    "type": "Prefecture"
+  },
+  {
+    "code": "GN-N",
+    "country_code": "GN",
+    "name": "Nz\u00e9r\u00e9kor\u00e9",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "GN-NZ",
+    "country_code": "GN",
+    "name": "Nz\u00e9r\u00e9kor\u00e9",
+    "parent_code": "GN-N",
+    "type": "Prefecture"
+  },
+  {
+    "code": "GN-PI",
+    "country_code": "GN",
+    "name": "Pita",
+    "parent_code": "GN-M",
+    "type": "Prefecture"
+  },
+  {
+    "code": "GN-SI",
+    "country_code": "GN",
+    "name": "Siguiri",
+    "parent_code": "GN-K",
+    "type": "Prefecture"
+  },
+  {
+    "code": "GN-TE",
+    "country_code": "GN",
+    "name": "T\u00e9lim\u00e9l\u00e9",
+    "parent_code": "GN-D",
+    "type": "Prefecture"
+  },
+  {
+    "code": "GN-TO",
+    "country_code": "GN",
+    "name": "Tougu\u00e9",
+    "parent_code": "GN-L",
+    "type": "Prefecture"
+  },
+  {
+    "code": "GN-YO",
+    "country_code": "GN",
+    "name": "Yomou",
+    "parent_code": "GN-N",
+    "type": "Prefecture"
+  }
+]

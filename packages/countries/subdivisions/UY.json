@@ -1,0 +1,135 @@
+[
+  {
+    "code": "UY-AR",
+    "country_code": "UY",
+    "name": "Artigas",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "UY-CA",
+    "country_code": "UY",
+    "name": "Canelones",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "UY-CL",
+    "country_code": "UY",
+    "name": "Cerro Largo",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "UY-CO",
+    "country_code": "UY",
+    "name": "Colonia",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "UY-DU",
+    "country_code": "UY",
+    "name": "Durazno",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "UY-FD",
+    "country_code": "UY",
+    "name": "Florida",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "UY-FS",
+    "country_code": "UY",
+    "name": "Flores",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "UY-LA",
+    "country_code": "UY",
+    "name": "Lavalleja",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "UY-MA",
+    "country_code": "UY",
+    "name": "Maldonado",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "UY-MO",
+    "country_code": "UY",
+    "name": "Montevideo",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "UY-PA",
+    "country_code": "UY",
+    "name": "Paysand\u00fa",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "UY-RN",
+    "country_code": "UY",
+    "name": "R\u00edo Negro",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "UY-RO",
+    "country_code": "UY",
+    "name": "Rocha",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "UY-RV",
+    "country_code": "UY",
+    "name": "Rivera",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "UY-SA",
+    "country_code": "UY",
+    "name": "Salto",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "UY-SJ",
+    "country_code": "UY",
+    "name": "San Jos\u00e9",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "UY-SO",
+    "country_code": "UY",
+    "name": "Soriano",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "UY-TA",
+    "country_code": "UY",
+    "name": "Tacuaremb\u00f3",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "UY-TT",
+    "country_code": "UY",
+    "name": "Treinta y Tres",
+    "parent_code": null,
+    "type": "Department"
+  }
+]

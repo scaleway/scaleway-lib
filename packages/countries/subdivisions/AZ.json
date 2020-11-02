@@ -1,0 +1,548 @@
+[
+  {
+    "code": "AZ-ABS",
+    "country_code": "AZ",
+    "name": "Ab\u015feron",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-AGA",
+    "country_code": "AZ",
+    "name": "A\u011fstafa",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-AGC",
+    "country_code": "AZ",
+    "name": "A\u011fcab\u0259di",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-AGM",
+    "country_code": "AZ",
+    "name": "A\u011fdam",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-AGS",
+    "country_code": "AZ",
+    "name": "A\u011fda\u015f",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-AGU",
+    "country_code": "AZ",
+    "name": "A\u011fsu",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-AST",
+    "country_code": "AZ",
+    "name": "Astara",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-BA",
+    "country_code": "AZ",
+    "name": "Bak\u0131",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "AZ-BAB",
+    "country_code": "AZ",
+    "name": "Bab\u0259k",
+    "parent_code": "AZ-NX",
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-BAL",
+    "country_code": "AZ",
+    "name": "Balak\u0259n",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-BAR",
+    "country_code": "AZ",
+    "name": "B\u0259rd\u0259",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-BEY",
+    "country_code": "AZ",
+    "name": "Beyl\u0259qan",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-BIL",
+    "country_code": "AZ",
+    "name": "Bil\u0259suvar",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-CAB",
+    "country_code": "AZ",
+    "name": "C\u0259bray\u0131l",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-CAL",
+    "country_code": "AZ",
+    "name": "C\u0259lilabab",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-CUL",
+    "country_code": "AZ",
+    "name": "Culfa",
+    "parent_code": "AZ-NX",
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-DAS",
+    "country_code": "AZ",
+    "name": "Da\u015fk\u0259s\u0259n",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-FUZ",
+    "country_code": "AZ",
+    "name": "F\u00fczuli",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-GA",
+    "country_code": "AZ",
+    "name": "G\u0259nc\u0259",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "AZ-GAD",
+    "country_code": "AZ",
+    "name": "G\u0259d\u0259b\u0259y",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-GOR",
+    "country_code": "AZ",
+    "name": "Goranboy",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-GOY",
+    "country_code": "AZ",
+    "name": "G\u00f6y\u00e7ay",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-GYG",
+    "country_code": "AZ",
+    "name": "G\u00f6yg\u00f6l",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-HAC",
+    "country_code": "AZ",
+    "name": "Hac\u0131qabul",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-IMI",
+    "country_code": "AZ",
+    "name": "\u0130mi\u015fli",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-ISM",
+    "country_code": "AZ",
+    "name": "\u0130smay\u0131ll\u0131",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-KAL",
+    "country_code": "AZ",
+    "name": "K\u0259lb\u0259c\u0259r",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-KAN",
+    "country_code": "AZ",
+    "name": "K\u01ddng\u01ddrli",
+    "parent_code": "AZ-NX",
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-KUR",
+    "country_code": "AZ",
+    "name": "K\u00fcrd\u0259mir",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-LA",
+    "country_code": "AZ",
+    "name": "L\u0259nk\u0259ran",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "AZ-LAC",
+    "country_code": "AZ",
+    "name": "La\u00e7\u0131n",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-LAN",
+    "country_code": "AZ",
+    "name": "L\u0259nk\u0259ran",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-LER",
+    "country_code": "AZ",
+    "name": "Lerik",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-MAS",
+    "country_code": "AZ",
+    "name": "Masall\u0131",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-MI",
+    "country_code": "AZ",
+    "name": "Ming\u0259\u00e7evir",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "AZ-NA",
+    "country_code": "AZ",
+    "name": "Naftalan",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "AZ-NEF",
+    "country_code": "AZ",
+    "name": "Neft\u00e7ala",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-NV",
+    "country_code": "AZ",
+    "name": "Nax\u00e7\u0131van",
+    "parent_code": "AZ-NX",
+    "type": "Municipality"
+  },
+  {
+    "code": "AZ-NX",
+    "country_code": "AZ",
+    "name": "Nax\u00e7\u0131van",
+    "parent_code": null,
+    "type": "Autonomous republic"
+  },
+  {
+    "code": "AZ-OGU",
+    "country_code": "AZ",
+    "name": "O\u011fuz",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-ORD",
+    "country_code": "AZ",
+    "name": "Ordubad",
+    "parent_code": "AZ-NX",
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-QAB",
+    "country_code": "AZ",
+    "name": "Q\u0259b\u0259l\u0259",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-QAX",
+    "country_code": "AZ",
+    "name": "Qax",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-QAZ",
+    "country_code": "AZ",
+    "name": "Qazax",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-QBA",
+    "country_code": "AZ",
+    "name": "Quba",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-QBI",
+    "country_code": "AZ",
+    "name": "Qubadl\u0131",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-QOB",
+    "country_code": "AZ",
+    "name": "Qobustan",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-QUS",
+    "country_code": "AZ",
+    "name": "Qusar",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-SA",
+    "country_code": "AZ",
+    "name": "\u015e\u0259ki",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "AZ-SAB",
+    "country_code": "AZ",
+    "name": "Sabirabad",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-SAD",
+    "country_code": "AZ",
+    "name": "S\u0259d\u0259r\u0259k",
+    "parent_code": "AZ-NX",
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-SAH",
+    "country_code": "AZ",
+    "name": "\u015eahbuz",
+    "parent_code": "AZ-NX",
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-SAK",
+    "country_code": "AZ",
+    "name": "\u015e\u0259ki",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-SAL",
+    "country_code": "AZ",
+    "name": "Salyan",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-SAR",
+    "country_code": "AZ",
+    "name": "\u015e\u0259rur",
+    "parent_code": "AZ-NX",
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-SAT",
+    "country_code": "AZ",
+    "name": "Saatl\u0131",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-SBN",
+    "country_code": "AZ",
+    "name": "\u015eabran",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-SIY",
+    "country_code": "AZ",
+    "name": "Siy\u0259z\u0259n",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-SKR",
+    "country_code": "AZ",
+    "name": "\u015e\u0259mkir",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-SM",
+    "country_code": "AZ",
+    "name": "Sumqay\u0131t",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "AZ-SMI",
+    "country_code": "AZ",
+    "name": "\u015eamax\u0131",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-SMX",
+    "country_code": "AZ",
+    "name": "Samux",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-SR",
+    "country_code": "AZ",
+    "name": "\u015eirvan",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "AZ-SUS",
+    "country_code": "AZ",
+    "name": "\u015eu\u015fa",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-TAR",
+    "country_code": "AZ",
+    "name": "T\u0259rt\u0259r",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-TOV",
+    "country_code": "AZ",
+    "name": "Tovuz",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-UCA",
+    "country_code": "AZ",
+    "name": "Ucar",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-XA",
+    "country_code": "AZ",
+    "name": "Xank\u0259ndi",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "AZ-XAC",
+    "country_code": "AZ",
+    "name": "Xa\u00e7maz",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-XCI",
+    "country_code": "AZ",
+    "name": "Xocal\u0131",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-XIZ",
+    "country_code": "AZ",
+    "name": "X\u0131z\u0131",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-XVD",
+    "country_code": "AZ",
+    "name": "Xocav\u0259nd",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-YAR",
+    "country_code": "AZ",
+    "name": "Yard\u0131ml\u0131",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-YE",
+    "country_code": "AZ",
+    "name": "Yevlax",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "AZ-YEV",
+    "country_code": "AZ",
+    "name": "Yevlax",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-ZAN",
+    "country_code": "AZ",
+    "name": "Z\u0259ngilan",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-ZAQ",
+    "country_code": "AZ",
+    "name": "Zaqatala",
+    "parent_code": null,
+    "type": "Rayon"
+  },
+  {
+    "code": "AZ-ZAR",
+    "country_code": "AZ",
+    "name": "Z\u0259rdab",
+    "parent_code": null,
+    "type": "Rayon"
+  }
+]

@@ -1,0 +1,65 @@
+[
+  {
+    "code": "HT-AR",
+    "country_code": "HT",
+    "name": "Artibonite",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "HT-CE",
+    "country_code": "HT",
+    "name": "Centre",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "HT-GA",
+    "country_code": "HT",
+    "name": "Grande-Anse",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "HT-ND",
+    "country_code": "HT",
+    "name": "Nord",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "HT-NE",
+    "country_code": "HT",
+    "name": "Nord-Est",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "HT-NO",
+    "country_code": "HT",
+    "name": "Nord-Ouest",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "HT-OU",
+    "country_code": "HT",
+    "name": "Ouest",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "HT-SD",
+    "country_code": "HT",
+    "name": "Sud",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "HT-SE",
+    "country_code": "HT",
+    "name": "Sud-Est",
+    "parent_code": null,
+    "type": "Department"
+  }
+]

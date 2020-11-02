@@ -1,0 +1,44 @@
+[
+  {
+    "code": "IL-D",
+    "country_code": "IL",
+    "name": "HaDarom",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "IL-HA",
+    "country_code": "IL",
+    "name": "Hefa",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "IL-JM",
+    "country_code": "IL",
+    "name": "Yerushalayim Al Quds",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "IL-M",
+    "country_code": "IL",
+    "name": "HaMerkaz",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "IL-TA",
+    "country_code": "IL",
+    "name": "Tel-Aviv",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "IL-Z",
+    "country_code": "IL",
+    "name": "HaZafon",
+    "parent_code": null,
+    "type": "District"
+  }
+]

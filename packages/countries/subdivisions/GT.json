@@ -1,0 +1,156 @@
+[
+  {
+    "code": "GT-AV",
+    "country_code": "GT",
+    "name": "Alta Verapaz",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "GT-BV",
+    "country_code": "GT",
+    "name": "Baja Verapaz",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "GT-CM",
+    "country_code": "GT",
+    "name": "Chimaltenango",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "GT-CQ",
+    "country_code": "GT",
+    "name": "Chiquimula",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "GT-ES",
+    "country_code": "GT",
+    "name": "Escuintla",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "GT-GU",
+    "country_code": "GT",
+    "name": "Guatemala",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "GT-HU",
+    "country_code": "GT",
+    "name": "Huehuetenango",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "GT-IZ",
+    "country_code": "GT",
+    "name": "Izabal",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "GT-JA",
+    "country_code": "GT",
+    "name": "Jalapa",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "GT-JU",
+    "country_code": "GT",
+    "name": "Jutiapa",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "GT-PE",
+    "country_code": "GT",
+    "name": "Pet\u00e9n",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "GT-PR",
+    "country_code": "GT",
+    "name": "El Progreso",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "GT-QC",
+    "country_code": "GT",
+    "name": "Quich\u00e9",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "GT-QZ",
+    "country_code": "GT",
+    "name": "Quetzaltenango",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "GT-RE",
+    "country_code": "GT",
+    "name": "Retalhuleu",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "GT-SA",
+    "country_code": "GT",
+    "name": "Sacatep\u00e9quez",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "GT-SM",
+    "country_code": "GT",
+    "name": "San Marcos",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "GT-SO",
+    "country_code": "GT",
+    "name": "Solol\u00e1",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "GT-SR",
+    "country_code": "GT",
+    "name": "Santa Rosa",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "GT-SU",
+    "country_code": "GT",
+    "name": "Suchitep\u00e9quez",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "GT-TO",
+    "country_code": "GT",
+    "name": "Totonicap\u00e1n",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "GT-ZA",
+    "country_code": "GT",
+    "name": "Zacapa",
+    "parent_code": null,
+    "type": "Department"
+  }
+]

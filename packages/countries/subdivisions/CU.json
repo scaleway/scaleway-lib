@@ -1,0 +1,107 @@
+[
+  {
+    "code": "CU-01",
+    "country_code": "CU",
+    "name": "Pinar del Rio",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CU-02",
+    "country_code": "CU",
+    "name": "La Habana",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CU-03",
+    "country_code": "CU",
+    "name": "Ciudad de La Habana",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CU-04",
+    "country_code": "CU",
+    "name": "Matanzas",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CU-05",
+    "country_code": "CU",
+    "name": "Villa Clara",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CU-06",
+    "country_code": "CU",
+    "name": "Cienfuegos",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CU-07",
+    "country_code": "CU",
+    "name": "Sancti Sp\u00edritus",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CU-08",
+    "country_code": "CU",
+    "name": "Ciego de \u00c1vila",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CU-09",
+    "country_code": "CU",
+    "name": "Camag\u00fcey",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CU-10",
+    "country_code": "CU",
+    "name": "Las Tunas",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CU-11",
+    "country_code": "CU",
+    "name": "Holgu\u00edn",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CU-12",
+    "country_code": "CU",
+    "name": "Granma",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CU-13",
+    "country_code": "CU",
+    "name": "Santiago de Cuba",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CU-14",
+    "country_code": "CU",
+    "name": "Guant\u00e1namo",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "CU-99",
+    "country_code": "CU",
+    "name": "Isla de la Juventud",
+    "parent_code": null,
+    "type": "Special municipality"
+  }
+]

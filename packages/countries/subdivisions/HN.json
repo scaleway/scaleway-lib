@@ -1,0 +1,128 @@
+[
+  {
+    "code": "HN-AT",
+    "country_code": "HN",
+    "name": "Atl\u00e1ntida",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "HN-CH",
+    "country_code": "HN",
+    "name": "Choluteca",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "HN-CL",
+    "country_code": "HN",
+    "name": "Col\u00f3n",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "HN-CM",
+    "country_code": "HN",
+    "name": "Comayagua",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "HN-CP",
+    "country_code": "HN",
+    "name": "Cop\u00e1n",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "HN-CR",
+    "country_code": "HN",
+    "name": "Cort\u00e9s",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "HN-EP",
+    "country_code": "HN",
+    "name": "El Para\u00edso",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "HN-FM",
+    "country_code": "HN",
+    "name": "Francisco Moraz\u00e1n",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "HN-GD",
+    "country_code": "HN",
+    "name": "Gracias a Dios",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "HN-IB",
+    "country_code": "HN",
+    "name": "Islas de la Bah\u00eda",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "HN-IN",
+    "country_code": "HN",
+    "name": "Intibuc\u00e1",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "HN-LE",
+    "country_code": "HN",
+    "name": "Lempira",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "HN-LP",
+    "country_code": "HN",
+    "name": "La Paz",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "HN-OC",
+    "country_code": "HN",
+    "name": "Ocotepeque",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "HN-OL",
+    "country_code": "HN",
+    "name": "Olancho",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "HN-SB",
+    "country_code": "HN",
+    "name": "Santa B\u00e1rbara",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "HN-VA",
+    "country_code": "HN",
+    "name": "Valle",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "HN-YO",
+    "country_code": "HN",
+    "name": "Yoro",
+    "parent_code": null,
+    "type": "Department"
+  }
+]

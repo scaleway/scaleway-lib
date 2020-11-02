@@ -1,0 +1,135 @@
+[
+  {
+    "code": "NP-1",
+    "country_code": "NP",
+    "name": "Madhyamanchal",
+    "parent_code": null,
+    "type": "Development region"
+  },
+  {
+    "code": "NP-2",
+    "country_code": "NP",
+    "name": "Madhya Pashchimanchal",
+    "parent_code": null,
+    "type": "Development region"
+  },
+  {
+    "code": "NP-3",
+    "country_code": "NP",
+    "name": "Pashchimanchal",
+    "parent_code": null,
+    "type": "Development region"
+  },
+  {
+    "code": "NP-4",
+    "country_code": "NP",
+    "name": "Purwanchal",
+    "parent_code": null,
+    "type": "Development region"
+  },
+  {
+    "code": "NP-5",
+    "country_code": "NP",
+    "name": "Sudur Pashchimanchal",
+    "parent_code": null,
+    "type": "Development region"
+  },
+  {
+    "code": "NP-BA",
+    "country_code": "NP",
+    "name": "Bagmati",
+    "parent_code": "NP-1",
+    "type": "Zone"
+  },
+  {
+    "code": "NP-BH",
+    "country_code": "NP",
+    "name": "Bheri",
+    "parent_code": "NP-2",
+    "type": "Zone"
+  },
+  {
+    "code": "NP-DH",
+    "country_code": "NP",
+    "name": "Dhawalagiri",
+    "parent_code": "NP-3",
+    "type": "Zone"
+  },
+  {
+    "code": "NP-GA",
+    "country_code": "NP",
+    "name": "Gandaki",
+    "parent_code": "NP-3",
+    "type": "Zone"
+  },
+  {
+    "code": "NP-JA",
+    "country_code": "NP",
+    "name": "Janakpur",
+    "parent_code": "NP-1",
+    "type": "Zone"
+  },
+  {
+    "code": "NP-KA",
+    "country_code": "NP",
+    "name": "Karnali",
+    "parent_code": "NP-2",
+    "type": "Zone"
+  },
+  {
+    "code": "NP-KO",
+    "country_code": "NP",
+    "name": "Kosi",
+    "parent_code": "NP-4",
+    "type": "Zone"
+  },
+  {
+    "code": "NP-LU",
+    "country_code": "NP",
+    "name": "Lumbini",
+    "parent_code": "NP-3",
+    "type": "Zone"
+  },
+  {
+    "code": "NP-MA",
+    "country_code": "NP",
+    "name": "Mahakali",
+    "parent_code": "NP-5",
+    "type": "Zone"
+  },
+  {
+    "code": "NP-ME",
+    "country_code": "NP",
+    "name": "Mechi",
+    "parent_code": "NP-4",
+    "type": "Zone"
+  },
+  {
+    "code": "NP-NA",
+    "country_code": "NP",
+    "name": "Narayani",
+    "parent_code": "NP-1",
+    "type": "Zone"
+  },
+  {
+    "code": "NP-RA",
+    "country_code": "NP",
+    "name": "Rapti",
+    "parent_code": "NP-2",
+    "type": "Zone"
+  },
+  {
+    "code": "NP-SA",
+    "country_code": "NP",
+    "name": "Sagarmatha",
+    "parent_code": "NP-4",
+    "type": "Zone"
+  },
+  {
+    "code": "NP-SE",
+    "country_code": "NP",
+    "name": "Seti",
+    "parent_code": "NP-5",
+    "type": "Zone"
+  }
+]

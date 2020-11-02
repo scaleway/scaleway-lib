@@ -1,0 +1,219 @@
+[
+  {
+    "code": "MW-BA",
+    "country_code": "MW",
+    "name": "Balaka",
+    "parent_code": "MW-S",
+    "type": "District"
+  },
+  {
+    "code": "MW-BL",
+    "country_code": "MW",
+    "name": "Blantyre",
+    "parent_code": "MW-S",
+    "type": "District"
+  },
+  {
+    "code": "MW-C",
+    "country_code": "MW",
+    "name": "Central Region",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "MW-CK",
+    "country_code": "MW",
+    "name": "Chikwawa",
+    "parent_code": "MW-S",
+    "type": "District"
+  },
+  {
+    "code": "MW-CR",
+    "country_code": "MW",
+    "name": "Chiradzulu",
+    "parent_code": "MW-S",
+    "type": "District"
+  },
+  {
+    "code": "MW-CT",
+    "country_code": "MW",
+    "name": "Chitipa",
+    "parent_code": "MW-N",
+    "type": "District"
+  },
+  {
+    "code": "MW-DE",
+    "country_code": "MW",
+    "name": "Dedza",
+    "parent_code": "MW-C",
+    "type": "District"
+  },
+  {
+    "code": "MW-DO",
+    "country_code": "MW",
+    "name": "Dowa",
+    "parent_code": "MW-C",
+    "type": "District"
+  },
+  {
+    "code": "MW-KR",
+    "country_code": "MW",
+    "name": "Karonga",
+    "parent_code": "MW-N",
+    "type": "District"
+  },
+  {
+    "code": "MW-KS",
+    "country_code": "MW",
+    "name": "Kasungu",
+    "parent_code": "MW-C",
+    "type": "District"
+  },
+  {
+    "code": "MW-LI",
+    "country_code": "MW",
+    "name": "Lilongwe",
+    "parent_code": "MW-C",
+    "type": "District"
+  },
+  {
+    "code": "MW-LK",
+    "country_code": "MW",
+    "name": "Likoma",
+    "parent_code": "MW-N",
+    "type": "District"
+  },
+  {
+    "code": "MW-MC",
+    "country_code": "MW",
+    "name": "Mchinji",
+    "parent_code": "MW-C",
+    "type": "District"
+  },
+  {
+    "code": "MW-MG",
+    "country_code": "MW",
+    "name": "Mangochi",
+    "parent_code": "MW-S",
+    "type": "District"
+  },
+  {
+    "code": "MW-MH",
+    "country_code": "MW",
+    "name": "Machinga",
+    "parent_code": "MW-S",
+    "type": "District"
+  },
+  {
+    "code": "MW-MU",
+    "country_code": "MW",
+    "name": "Mulanje",
+    "parent_code": "MW-S",
+    "type": "District"
+  },
+  {
+    "code": "MW-MW",
+    "country_code": "MW",
+    "name": "Mwanza",
+    "parent_code": "MW-S",
+    "type": "District"
+  },
+  {
+    "code": "MW-MZ",
+    "country_code": "MW",
+    "name": "Mzimba",
+    "parent_code": "MW-N",
+    "type": "District"
+  },
+  {
+    "code": "MW-N",
+    "country_code": "MW",
+    "name": "Northern Region",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "MW-NB",
+    "country_code": "MW",
+    "name": "Nkhata Bay",
+    "parent_code": "MW-N",
+    "type": "District"
+  },
+  {
+    "code": "MW-NE",
+    "country_code": "MW",
+    "name": "Neno",
+    "parent_code": "MW-N",
+    "type": "District"
+  },
+  {
+    "code": "MW-NI",
+    "country_code": "MW",
+    "name": "Ntchisi",
+    "parent_code": "MW-C",
+    "type": "District"
+  },
+  {
+    "code": "MW-NK",
+    "country_code": "MW",
+    "name": "Nkhotakota",
+    "parent_code": "MW-C",
+    "type": "District"
+  },
+  {
+    "code": "MW-NS",
+    "country_code": "MW",
+    "name": "Nsanje",
+    "parent_code": "MW-S",
+    "type": "District"
+  },
+  {
+    "code": "MW-NU",
+    "country_code": "MW",
+    "name": "Ntcheu",
+    "parent_code": "MW-C",
+    "type": "District"
+  },
+  {
+    "code": "MW-PH",
+    "country_code": "MW",
+    "name": "Phalombe",
+    "parent_code": "MW-S",
+    "type": "District"
+  },
+  {
+    "code": "MW-RU",
+    "country_code": "MW",
+    "name": "Rumphi",
+    "parent_code": "MW-N",
+    "type": "District"
+  },
+  {
+    "code": "MW-S",
+    "country_code": "MW",
+    "name": "Southern Region",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "MW-SA",
+    "country_code": "MW",
+    "name": "Salima",
+    "parent_code": "MW-C",
+    "type": "District"
+  },
+  {
+    "code": "MW-TH",
+    "country_code": "MW",
+    "name": "Thyolo",
+    "parent_code": "MW-S",
+    "type": "District"
+  },
+  {
+    "code": "MW-ZO",
+    "country_code": "MW",
+    "name": "Zomba",
+    "parent_code": "MW-S",
+    "type": "District"
+  }
+]

@@ -1,0 +1,100 @@
+[
+  {
+    "code": "MM-01",
+    "country_code": "MM",
+    "name": "Sagaing",
+    "parent_code": null,
+    "type": "Division"
+  },
+  {
+    "code": "MM-02",
+    "country_code": "MM",
+    "name": "Bago",
+    "parent_code": null,
+    "type": "Division"
+  },
+  {
+    "code": "MM-03",
+    "country_code": "MM",
+    "name": "Magway",
+    "parent_code": null,
+    "type": "Division"
+  },
+  {
+    "code": "MM-04",
+    "country_code": "MM",
+    "name": "Mandalay",
+    "parent_code": null,
+    "type": "Division"
+  },
+  {
+    "code": "MM-05",
+    "country_code": "MM",
+    "name": "Tanintharyi",
+    "parent_code": null,
+    "type": "Division"
+  },
+  {
+    "code": "MM-06",
+    "country_code": "MM",
+    "name": "Yangon",
+    "parent_code": null,
+    "type": "Division"
+  },
+  {
+    "code": "MM-07",
+    "country_code": "MM",
+    "name": "Ayeyarwady",
+    "parent_code": null,
+    "type": "Division"
+  },
+  {
+    "code": "MM-11",
+    "country_code": "MM",
+    "name": "Kachin",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MM-12",
+    "country_code": "MM",
+    "name": "Kayah",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MM-13",
+    "country_code": "MM",
+    "name": "Kayin",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MM-14",
+    "country_code": "MM",
+    "name": "Chin",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MM-15",
+    "country_code": "MM",
+    "name": "Mon",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MM-16",
+    "country_code": "MM",
+    "name": "Rakhine",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "MM-17",
+    "country_code": "MM",
+    "name": "Shan",
+    "parent_code": null,
+    "type": "State"
+  }
+]

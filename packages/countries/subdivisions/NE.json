@@ -1,0 +1,58 @@
+[
+  {
+    "code": "NE-1",
+    "country_code": "NE",
+    "name": "Agadez",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "NE-2",
+    "country_code": "NE",
+    "name": "Diffa",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "NE-3",
+    "country_code": "NE",
+    "name": "Dosso",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "NE-4",
+    "country_code": "NE",
+    "name": "Maradi",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "NE-5",
+    "country_code": "NE",
+    "name": "Tahoua",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "NE-6",
+    "country_code": "NE",
+    "name": "Tillab\u00e9ri",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "NE-7",
+    "country_code": "NE",
+    "name": "Zinder",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "NE-8",
+    "country_code": "NE",
+    "name": "Niamey",
+    "parent_code": null,
+    "type": "Capital District"
+  }
+]

@@ -1,0 +1,65 @@
+[
+  {
+    "code": "IS-0",
+    "country_code": "IS",
+    "name": "Reykjav\u00edk",
+    "parent_code": null,
+    "type": "City"
+  },
+  {
+    "code": "IS-1",
+    "country_code": "IS",
+    "name": "H\u00f6fu\u00f0borgarsv\u00e6\u00f0i\u00f0",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "IS-2",
+    "country_code": "IS",
+    "name": "Su\u00f0urnes",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "IS-3",
+    "country_code": "IS",
+    "name": "Vesturland",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "IS-4",
+    "country_code": "IS",
+    "name": "Vestfir\u00f0ir",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "IS-5",
+    "country_code": "IS",
+    "name": "Nor\u00f0urland vestra",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "IS-6",
+    "country_code": "IS",
+    "name": "Nor\u00f0urland eystra",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "IS-7",
+    "country_code": "IS",
+    "name": "Austurland",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "IS-8",
+    "country_code": "IS",
+    "name": "Su\u00f0urland",
+    "parent_code": null,
+    "type": "Region"
+  }
+]

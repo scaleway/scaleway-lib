@@ -1,0 +1,261 @@
+[
+  {
+    "code": "MD-AN",
+    "country_code": "MD",
+    "name": "Anenii Noi",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MD-BA",
+    "country_code": "MD",
+    "name": "B\u0103l\u021bi",
+    "parent_code": null,
+    "type": "City"
+  },
+  {
+    "code": "MD-BD",
+    "country_code": "MD",
+    "name": "Tighina",
+    "parent_code": null,
+    "type": "City"
+  },
+  {
+    "code": "MD-BR",
+    "country_code": "MD",
+    "name": "Briceni",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MD-BS",
+    "country_code": "MD",
+    "name": "Basarabeasca",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MD-CA",
+    "country_code": "MD",
+    "name": "Cahul",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MD-CL",
+    "country_code": "MD",
+    "name": "C\u0103l\u0103ra\u0219i",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MD-CM",
+    "country_code": "MD",
+    "name": "Cimi\u0219lia",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MD-CR",
+    "country_code": "MD",
+    "name": "Criuleni",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MD-CS",
+    "country_code": "MD",
+    "name": "C\u0103u\u0219eni",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MD-CT",
+    "country_code": "MD",
+    "name": "Cantemir",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MD-CU",
+    "country_code": "MD",
+    "name": "Chi\u0219in\u0103u",
+    "parent_code": null,
+    "type": "City"
+  },
+  {
+    "code": "MD-DO",
+    "country_code": "MD",
+    "name": "Dondu\u0219eni",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MD-DR",
+    "country_code": "MD",
+    "name": "Drochia",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MD-DU",
+    "country_code": "MD",
+    "name": "Dub\u0103sari",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MD-ED",
+    "country_code": "MD",
+    "name": "Edine\u021b",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MD-FA",
+    "country_code": "MD",
+    "name": "F\u0103le\u0219ti",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MD-FL",
+    "country_code": "MD",
+    "name": "Flore\u0219ti",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MD-GA",
+    "country_code": "MD",
+    "name": "G\u0103g\u0103uzia, Unitatea teritorial\u0103 autonom\u0103",
+    "parent_code": null,
+    "type": "Autonomous territorial unit"
+  },
+  {
+    "code": "MD-GL",
+    "country_code": "MD",
+    "name": "Glodeni",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MD-HI",
+    "country_code": "MD",
+    "name": "H\u00eence\u0219ti",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MD-IA",
+    "country_code": "MD",
+    "name": "Ialoveni",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MD-LE",
+    "country_code": "MD",
+    "name": "Leova",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MD-NI",
+    "country_code": "MD",
+    "name": "Nisporeni",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MD-OC",
+    "country_code": "MD",
+    "name": "Ocni\u021ba",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MD-OR",
+    "country_code": "MD",
+    "name": "Orhei",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MD-RE",
+    "country_code": "MD",
+    "name": "Rezina",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MD-RI",
+    "country_code": "MD",
+    "name": "R\u00ee\u0219cani",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MD-SD",
+    "country_code": "MD",
+    "name": "\u0218old\u0103ne\u0219ti",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MD-SI",
+    "country_code": "MD",
+    "name": "S\u00eengerei",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MD-SN",
+    "country_code": "MD",
+    "name": "St\u00eenga Nistrului, unitatea teritorial\u0103 din",
+    "parent_code": null,
+    "type": "Territorial unit"
+  },
+  {
+    "code": "MD-SO",
+    "country_code": "MD",
+    "name": "Soroca",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MD-ST",
+    "country_code": "MD",
+    "name": "Str\u0103\u0219eni",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MD-SV",
+    "country_code": "MD",
+    "name": "\u0218tefan Vod\u0103",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MD-TA",
+    "country_code": "MD",
+    "name": "Taraclia",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MD-TE",
+    "country_code": "MD",
+    "name": "Telene\u0219ti",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "MD-UN",
+    "country_code": "MD",
+    "name": "Ungheni",
+    "parent_code": null,
+    "type": "District"
+  }
+]

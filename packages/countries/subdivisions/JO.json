@@ -1,0 +1,86 @@
+[
+  {
+    "code": "JO-AJ",
+    "country_code": "JO",
+    "name": "\u2018Ajl\u016bn",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "JO-AM",
+    "country_code": "JO",
+    "name": "\u2018Amm\u0101n (Al \u2018A\u015fimah)",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "JO-AQ",
+    "country_code": "JO",
+    "name": "Al \u2018Aqabah",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "JO-AT",
+    "country_code": "JO",
+    "name": "A\u0163 \u0162af\u012blah",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "JO-AZ",
+    "country_code": "JO",
+    "name": "Az Zarq\u0101'",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "JO-BA",
+    "country_code": "JO",
+    "name": "Al Balq\u0101'",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "JO-IR",
+    "country_code": "JO",
+    "name": "Irbid",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "JO-JA",
+    "country_code": "JO",
+    "name": "Jarash",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "JO-KA",
+    "country_code": "JO",
+    "name": "Al Karak",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "JO-MA",
+    "country_code": "JO",
+    "name": "Al Mafraq",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "JO-MD",
+    "country_code": "JO",
+    "name": "M\u0101dab\u0101",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "JO-MN",
+    "country_code": "JO",
+    "name": "Ma\u2018\u0101n",
+    "parent_code": null,
+    "type": "Governorate"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "code": "SA-01",
+    "country_code": "SA",
+    "name": "Ar Riy\u0101\u1e0d",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "SA-02",
+    "country_code": "SA",
+    "name": "Makkah",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "SA-03",
+    "country_code": "SA",
+    "name": "Al Mad\u012bnah",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "SA-04",
+    "country_code": "SA",
+    "name": "Ash Sharq\u012byah",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "SA-05",
+    "country_code": "SA",
+    "name": "Al Qa\u015f\u012bm",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "SA-06",
+    "country_code": "SA",
+    "name": "\u1e24\u0101'il",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "SA-07",
+    "country_code": "SA",
+    "name": "Tab\u016bk",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "SA-08",
+    "country_code": "SA",
+    "name": "Al \u1e24ud\u016bd ash Sham\u0101liyah",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "SA-09",
+    "country_code": "SA",
+    "name": "J\u012bzan",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "SA-10",
+    "country_code": "SA",
+    "name": "Najr\u0101n",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "SA-11",
+    "country_code": "SA",
+    "name": "Al B\u0101hah",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "SA-12",
+    "country_code": "SA",
+    "name": "Al Jawf",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "SA-14",
+    "country_code": "SA",
+    "name": "`As\u012br",
+    "parent_code": null,
+    "type": "Province"
+  }
+]

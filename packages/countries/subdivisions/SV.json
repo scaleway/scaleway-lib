@@ -1,0 +1,100 @@
+[
+  {
+    "code": "SV-AH",
+    "country_code": "SV",
+    "name": "Ahuachap\u00e1n",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "SV-CA",
+    "country_code": "SV",
+    "name": "Caba\u00f1as",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "SV-CH",
+    "country_code": "SV",
+    "name": "Chalatenango",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "SV-CU",
+    "country_code": "SV",
+    "name": "Cuscatl\u00e1n",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "SV-LI",
+    "country_code": "SV",
+    "name": "La Libertad",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "SV-MO",
+    "country_code": "SV",
+    "name": "Moraz\u00e1n",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "SV-PA",
+    "country_code": "SV",
+    "name": "La Paz",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "SV-SA",
+    "country_code": "SV",
+    "name": "Santa Ana",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "SV-SM",
+    "country_code": "SV",
+    "name": "San Miguel",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "SV-SO",
+    "country_code": "SV",
+    "name": "Sonsonate",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "SV-SS",
+    "country_code": "SV",
+    "name": "San Salvador",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "SV-SV",
+    "country_code": "SV",
+    "name": "San Vicente",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "SV-UN",
+    "country_code": "SV",
+    "name": "La Uni\u00f3n",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "SV-US",
+    "country_code": "SV",
+    "name": "Usulut\u00e1n",
+    "parent_code": null,
+    "type": "Department"
+  }
+]

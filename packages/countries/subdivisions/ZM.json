@@ -1,0 +1,65 @@
+[
+  {
+    "code": "ZM-01",
+    "country_code": "ZM",
+    "name": "Western",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "ZM-02",
+    "country_code": "ZM",
+    "name": "Central",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "ZM-03",
+    "country_code": "ZM",
+    "name": "Eastern",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "ZM-04",
+    "country_code": "ZM",
+    "name": "Luapula",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "ZM-05",
+    "country_code": "ZM",
+    "name": "Northern",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "ZM-06",
+    "country_code": "ZM",
+    "name": "North-Western",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "ZM-07",
+    "country_code": "ZM",
+    "name": "Southern (Zambia)",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "ZM-08",
+    "country_code": "ZM",
+    "name": "Copperbelt",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "ZM-09",
+    "country_code": "ZM",
+    "name": "Lusaka",
+    "parent_code": null,
+    "type": "Province"
+  }
+]

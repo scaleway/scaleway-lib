@@ -1,0 +1,44 @@
+[
+  {
+    "code": "DJ-AR",
+    "country_code": "DJ",
+    "name": "Arta",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "DJ-AS",
+    "country_code": "DJ",
+    "name": "Ali Sabieh",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "DJ-DI",
+    "country_code": "DJ",
+    "name": "Dikhil",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "DJ-DJ",
+    "country_code": "DJ",
+    "name": "Djibouti",
+    "parent_code": null,
+    "type": "City"
+  },
+  {
+    "code": "DJ-OB",
+    "country_code": "DJ",
+    "name": "Obock",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "DJ-TA",
+    "country_code": "DJ",
+    "name": "Tadjourah",
+    "parent_code": null,
+    "type": "Region"
+  }
+]

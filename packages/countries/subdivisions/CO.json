@@ -1,0 +1,233 @@
+[
+  {
+    "code": "CO-AMA",
+    "country_code": "CO",
+    "name": "Amazonas",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "CO-ANT",
+    "country_code": "CO",
+    "name": "Antioquia",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "CO-ARA",
+    "country_code": "CO",
+    "name": "Arauca",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "CO-ATL",
+    "country_code": "CO",
+    "name": "Atl\u00e1ntico",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "CO-BOL",
+    "country_code": "CO",
+    "name": "Bol\u00edvar",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "CO-BOY",
+    "country_code": "CO",
+    "name": "Boyac\u00e1",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "CO-CAL",
+    "country_code": "CO",
+    "name": "Caldas",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "CO-CAQ",
+    "country_code": "CO",
+    "name": "Caquet\u00e1",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "CO-CAS",
+    "country_code": "CO",
+    "name": "Casanare",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "CO-CAU",
+    "country_code": "CO",
+    "name": "Cauca",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "CO-CES",
+    "country_code": "CO",
+    "name": "Cesar",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "CO-CHO",
+    "country_code": "CO",
+    "name": "Choc\u00f3",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "CO-COR",
+    "country_code": "CO",
+    "name": "C\u00f3rdoba",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "CO-CUN",
+    "country_code": "CO",
+    "name": "Cundinamarca",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "CO-DC",
+    "country_code": "CO",
+    "name": "Distrito Capital de Bogot\u00e1",
+    "parent_code": null,
+    "type": "Capital district"
+  },
+  {
+    "code": "CO-GUA",
+    "country_code": "CO",
+    "name": "Guain\u00eda",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "CO-GUV",
+    "country_code": "CO",
+    "name": "Guaviare",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "CO-HUI",
+    "country_code": "CO",
+    "name": "Huila",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "CO-LAG",
+    "country_code": "CO",
+    "name": "La Guajira",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "CO-MAG",
+    "country_code": "CO",
+    "name": "Magdalena",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "CO-MET",
+    "country_code": "CO",
+    "name": "Meta",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "CO-NAR",
+    "country_code": "CO",
+    "name": "Nari\u00f1o",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "CO-NSA",
+    "country_code": "CO",
+    "name": "Norte de Santander",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "CO-PUT",
+    "country_code": "CO",
+    "name": "Putumayo",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "CO-QUI",
+    "country_code": "CO",
+    "name": "Quind\u00edo",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "CO-RIS",
+    "country_code": "CO",
+    "name": "Risaralda",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "CO-SAN",
+    "country_code": "CO",
+    "name": "Santander",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "CO-SAP",
+    "country_code": "CO",
+    "name": "San Andr\u00e9s, Providencia y Santa Catalina",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "CO-SUC",
+    "country_code": "CO",
+    "name": "Sucre",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "CO-TOL",
+    "country_code": "CO",
+    "name": "Tolima",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "CO-VAC",
+    "country_code": "CO",
+    "name": "Valle del Cauca",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "CO-VAU",
+    "country_code": "CO",
+    "name": "Vaup\u00e9s",
+    "parent_code": null,
+    "type": "Department"
+  },
+  {
+    "code": "CO-VID",
+    "country_code": "CO",
+    "name": "Vichada",
+    "parent_code": null,
+    "type": "Department"
+  }
+]

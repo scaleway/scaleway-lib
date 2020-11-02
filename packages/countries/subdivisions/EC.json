@@ -1,0 +1,170 @@
+[
+  {
+    "code": "EC-A",
+    "country_code": "EC",
+    "name": "Azuay",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "EC-B",
+    "country_code": "EC",
+    "name": "Bol\u00edvar",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "EC-C",
+    "country_code": "EC",
+    "name": "Carchi",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "EC-D",
+    "country_code": "EC",
+    "name": "Orellana",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "EC-E",
+    "country_code": "EC",
+    "name": "Esmeraldas",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "EC-F",
+    "country_code": "EC",
+    "name": "Ca\u00f1ar",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "EC-G",
+    "country_code": "EC",
+    "name": "Guayas",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "EC-H",
+    "country_code": "EC",
+    "name": "Chimborazo",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "EC-I",
+    "country_code": "EC",
+    "name": "Imbabura",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "EC-L",
+    "country_code": "EC",
+    "name": "Loja",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "EC-M",
+    "country_code": "EC",
+    "name": "Manab\u00ed",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "EC-N",
+    "country_code": "EC",
+    "name": "Napo",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "EC-O",
+    "country_code": "EC",
+    "name": "El Oro",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "EC-P",
+    "country_code": "EC",
+    "name": "Pichincha",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "EC-R",
+    "country_code": "EC",
+    "name": "Los R\u00edos",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "EC-S",
+    "country_code": "EC",
+    "name": "Morona-Santiago",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "EC-SD",
+    "country_code": "EC",
+    "name": "Santo Domingo de los Ts\u00e1chilas",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "EC-SE",
+    "country_code": "EC",
+    "name": "Santa Elena",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "EC-T",
+    "country_code": "EC",
+    "name": "Tungurahua",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "EC-U",
+    "country_code": "EC",
+    "name": "Sucumb\u00edos",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "EC-W",
+    "country_code": "EC",
+    "name": "Gal\u00e1pagos",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "EC-X",
+    "country_code": "EC",
+    "name": "Cotopaxi",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "EC-Y",
+    "country_code": "EC",
+    "name": "Pastaza",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "EC-Z",
+    "country_code": "EC",
+    "name": "Zamora-Chinchipe",
+    "parent_code": null,
+    "type": "Province"
+  }
+]

@@ -1,0 +1,163 @@
+[
+  {
+    "code": "AR-A",
+    "country_code": "AR",
+    "name": "Salta",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AR-B",
+    "country_code": "AR",
+    "name": "Buenos Aires",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AR-C",
+    "country_code": "AR",
+    "name": "Ciudad Aut\u00f3noma de Buenos Aires",
+    "parent_code": null,
+    "type": "City"
+  },
+  {
+    "code": "AR-D",
+    "country_code": "AR",
+    "name": "San Luis",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AR-E",
+    "country_code": "AR",
+    "name": "Entre Rios",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AR-G",
+    "country_code": "AR",
+    "name": "Santiago del Estero",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AR-H",
+    "country_code": "AR",
+    "name": "Chaco",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AR-J",
+    "country_code": "AR",
+    "name": "San Juan",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AR-K",
+    "country_code": "AR",
+    "name": "Catamarca",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AR-L",
+    "country_code": "AR",
+    "name": "La Pampa",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AR-M",
+    "country_code": "AR",
+    "name": "Mendoza",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AR-N",
+    "country_code": "AR",
+    "name": "Misiones",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AR-P",
+    "country_code": "AR",
+    "name": "Formosa",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AR-Q",
+    "country_code": "AR",
+    "name": "Neuquen",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AR-R",
+    "country_code": "AR",
+    "name": "Rio Negro",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AR-S",
+    "country_code": "AR",
+    "name": "Santa Fe",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AR-T",
+    "country_code": "AR",
+    "name": "Tucuman",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AR-U",
+    "country_code": "AR",
+    "name": "Chubut",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AR-V",
+    "country_code": "AR",
+    "name": "Tierra del Fuego",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AR-W",
+    "country_code": "AR",
+    "name": "Corrientes",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AR-X",
+    "country_code": "AR",
+    "name": "Cordoba",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AR-Y",
+    "country_code": "AR",
+    "name": "Jujuy",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "AR-Z",
+    "country_code": "AR",
+    "name": "Santa Cruz",
+    "parent_code": null,
+    "type": "Province"
+  }
+]

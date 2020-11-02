@@ -1,0 +1,184 @@
+[
+  {
+    "code": "TZ-01",
+    "country_code": "TZ",
+    "name": "Arusha",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TZ-02",
+    "country_code": "TZ",
+    "name": "Dar-es-Salaam",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TZ-03",
+    "country_code": "TZ",
+    "name": "Dodoma",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TZ-04",
+    "country_code": "TZ",
+    "name": "Iringa",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TZ-05",
+    "country_code": "TZ",
+    "name": "Kagera",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TZ-06",
+    "country_code": "TZ",
+    "name": "Kaskazini Pemba",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TZ-07",
+    "country_code": "TZ",
+    "name": "Kaskazini Unguja",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TZ-08",
+    "country_code": "TZ",
+    "name": "Kigoma",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TZ-09",
+    "country_code": "TZ",
+    "name": "Kilimanjaro",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TZ-10",
+    "country_code": "TZ",
+    "name": "Kusini Pemba",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TZ-11",
+    "country_code": "TZ",
+    "name": "Kusini Unguja",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TZ-12",
+    "country_code": "TZ",
+    "name": "Lindi",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TZ-13",
+    "country_code": "TZ",
+    "name": "Mara",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TZ-14",
+    "country_code": "TZ",
+    "name": "Mbeya",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TZ-15",
+    "country_code": "TZ",
+    "name": "Mjini Magharibi",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TZ-16",
+    "country_code": "TZ",
+    "name": "Morogoro",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TZ-17",
+    "country_code": "TZ",
+    "name": "Mtwara",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TZ-18",
+    "country_code": "TZ",
+    "name": "Mwanza",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TZ-19",
+    "country_code": "TZ",
+    "name": "Pwani",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TZ-20",
+    "country_code": "TZ",
+    "name": "Rukwa",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TZ-21",
+    "country_code": "TZ",
+    "name": "Ruvuma",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TZ-22",
+    "country_code": "TZ",
+    "name": "Shinyanga",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TZ-23",
+    "country_code": "TZ",
+    "name": "Singida",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TZ-24",
+    "country_code": "TZ",
+    "name": "Tabora",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TZ-25",
+    "country_code": "TZ",
+    "name": "Tanga",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TZ-26",
+    "country_code": "TZ",
+    "name": "Manyara",
+    "parent_code": null,
+    "type": "Region"
+  }
+]

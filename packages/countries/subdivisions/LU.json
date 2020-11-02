@@ -1,0 +1,23 @@
+[
+  {
+    "code": "LU-D",
+    "country_code": "LU",
+    "name": "Diekirch",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "LU-G",
+    "country_code": "LU",
+    "name": "Grevenmacher",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "LU-L",
+    "country_code": "LU",
+    "name": "Luxembourg",
+    "parent_code": null,
+    "type": "District"
+  }
+]

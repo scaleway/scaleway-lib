@@ -1,0 +1,1472 @@
+[
+  {
+    "code": "SI-001",
+    "country_code": "SI",
+    "name": "Ajdov\u0161\u010dina",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-002",
+    "country_code": "SI",
+    "name": "Beltinci",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-003",
+    "country_code": "SI",
+    "name": "Bled",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-004",
+    "country_code": "SI",
+    "name": "Bohinj",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-005",
+    "country_code": "SI",
+    "name": "Borovnica",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-006",
+    "country_code": "SI",
+    "name": "Bovec",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-007",
+    "country_code": "SI",
+    "name": "Brda",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-008",
+    "country_code": "SI",
+    "name": "Brezovica",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-009",
+    "country_code": "SI",
+    "name": "Bre\u017eice",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-010",
+    "country_code": "SI",
+    "name": "Ti\u0161ina",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-011",
+    "country_code": "SI",
+    "name": "Celje",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-012",
+    "country_code": "SI",
+    "name": "Cerklje na Gorenjskem",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-013",
+    "country_code": "SI",
+    "name": "Cerknica",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-014",
+    "country_code": "SI",
+    "name": "Cerkno",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-015",
+    "country_code": "SI",
+    "name": "\u010cren\u0161ovci",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-016",
+    "country_code": "SI",
+    "name": "\u010crna na Koro\u0161kem",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-017",
+    "country_code": "SI",
+    "name": "\u010crnomelj",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-018",
+    "country_code": "SI",
+    "name": "Destrnik",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-019",
+    "country_code": "SI",
+    "name": "Diva\u010da",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-020",
+    "country_code": "SI",
+    "name": "Dobrepolje",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-021",
+    "country_code": "SI",
+    "name": "Dobrova-Polhov Gradec",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-022",
+    "country_code": "SI",
+    "name": "Dol pri Ljubljani",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-023",
+    "country_code": "SI",
+    "name": "Dom\u017eale",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-024",
+    "country_code": "SI",
+    "name": "Dornava",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-025",
+    "country_code": "SI",
+    "name": "Dravograd",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-026",
+    "country_code": "SI",
+    "name": "Duplek",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-027",
+    "country_code": "SI",
+    "name": "Gorenja vas-Poljane",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-028",
+    "country_code": "SI",
+    "name": "Gori\u0161nica",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-029",
+    "country_code": "SI",
+    "name": "Gornja Radgona",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-030",
+    "country_code": "SI",
+    "name": "Gornji Grad",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-031",
+    "country_code": "SI",
+    "name": "Gornji Petrovci",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-032",
+    "country_code": "SI",
+    "name": "Grosuplje",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-033",
+    "country_code": "SI",
+    "name": "\u0160alovci",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-034",
+    "country_code": "SI",
+    "name": "Hrastnik",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-035",
+    "country_code": "SI",
+    "name": "Hrpelje-Kozina",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-036",
+    "country_code": "SI",
+    "name": "Idrija",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-037",
+    "country_code": "SI",
+    "name": "Ig",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-038",
+    "country_code": "SI",
+    "name": "Ilirska Bistrica",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-039",
+    "country_code": "SI",
+    "name": "Ivan\u010dna Gorica",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-040",
+    "country_code": "SI",
+    "name": "Izola/Isola",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-041",
+    "country_code": "SI",
+    "name": "Jesenice",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-042",
+    "country_code": "SI",
+    "name": "Jur\u0161inci",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-043",
+    "country_code": "SI",
+    "name": "Kamnik",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-044",
+    "country_code": "SI",
+    "name": "Kanal",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-045",
+    "country_code": "SI",
+    "name": "Kidri\u010devo",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-046",
+    "country_code": "SI",
+    "name": "Kobarid",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-047",
+    "country_code": "SI",
+    "name": "Kobilje",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-048",
+    "country_code": "SI",
+    "name": "Ko\u010devje",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-049",
+    "country_code": "SI",
+    "name": "Komen",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-050",
+    "country_code": "SI",
+    "name": "Koper/Capodistria",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-051",
+    "country_code": "SI",
+    "name": "Kozje",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-052",
+    "country_code": "SI",
+    "name": "Kranj",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-053",
+    "country_code": "SI",
+    "name": "Kranjska Gora",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-054",
+    "country_code": "SI",
+    "name": "Kr\u0161ko",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-055",
+    "country_code": "SI",
+    "name": "Kungota",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-056",
+    "country_code": "SI",
+    "name": "Kuzma",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-057",
+    "country_code": "SI",
+    "name": "La\u0161ko",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-058",
+    "country_code": "SI",
+    "name": "Lenart",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-059",
+    "country_code": "SI",
+    "name": "Lendava/Lendva",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-060",
+    "country_code": "SI",
+    "name": "Litija",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-061",
+    "country_code": "SI",
+    "name": "Ljubljana",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-062",
+    "country_code": "SI",
+    "name": "Ljubno",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-063",
+    "country_code": "SI",
+    "name": "Ljutomer",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-064",
+    "country_code": "SI",
+    "name": "Logatec",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-065",
+    "country_code": "SI",
+    "name": "Lo\u0161ka dolina",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-066",
+    "country_code": "SI",
+    "name": "Lo\u0161ki Potok",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-067",
+    "country_code": "SI",
+    "name": "Lu\u010de",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-068",
+    "country_code": "SI",
+    "name": "Lukovica",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-069",
+    "country_code": "SI",
+    "name": "Maj\u0161perk",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-070",
+    "country_code": "SI",
+    "name": "Maribor",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-071",
+    "country_code": "SI",
+    "name": "Medvode",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-072",
+    "country_code": "SI",
+    "name": "Menge\u0161",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-073",
+    "country_code": "SI",
+    "name": "Metlika",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-074",
+    "country_code": "SI",
+    "name": "Me\u017eica",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-075",
+    "country_code": "SI",
+    "name": "Miren-Kostanjevica",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-076",
+    "country_code": "SI",
+    "name": "Mislinja",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-077",
+    "country_code": "SI",
+    "name": "Morav\u010de",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-078",
+    "country_code": "SI",
+    "name": "Moravske Toplice",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-079",
+    "country_code": "SI",
+    "name": "Mozirje",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-080",
+    "country_code": "SI",
+    "name": "Murska Sobota",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-081",
+    "country_code": "SI",
+    "name": "Muta",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-082",
+    "country_code": "SI",
+    "name": "Naklo",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-083",
+    "country_code": "SI",
+    "name": "Nazarje",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-084",
+    "country_code": "SI",
+    "name": "Nova Gorica",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-085",
+    "country_code": "SI",
+    "name": "Novo mesto",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-086",
+    "country_code": "SI",
+    "name": "Odranci",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-087",
+    "country_code": "SI",
+    "name": "Ormo\u017e",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-088",
+    "country_code": "SI",
+    "name": "Osilnica",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-089",
+    "country_code": "SI",
+    "name": "Pesnica",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-090",
+    "country_code": "SI",
+    "name": "Piran/Pirano",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-091",
+    "country_code": "SI",
+    "name": "Pivka",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-092",
+    "country_code": "SI",
+    "name": "Pod\u010detrtek",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-093",
+    "country_code": "SI",
+    "name": "Podvelka",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-094",
+    "country_code": "SI",
+    "name": "Postojna",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-095",
+    "country_code": "SI",
+    "name": "Preddvor",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-096",
+    "country_code": "SI",
+    "name": "Ptuj",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-097",
+    "country_code": "SI",
+    "name": "Puconci",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-098",
+    "country_code": "SI",
+    "name": "Ra\u010de-Fram",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-099",
+    "country_code": "SI",
+    "name": "Rade\u010de",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-100",
+    "country_code": "SI",
+    "name": "Radenci",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-101",
+    "country_code": "SI",
+    "name": "Radlje ob Dravi",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-102",
+    "country_code": "SI",
+    "name": "Radovljica",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-103",
+    "country_code": "SI",
+    "name": "Ravne na Koro\u0161kem",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-104",
+    "country_code": "SI",
+    "name": "Ribnica",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-105",
+    "country_code": "SI",
+    "name": "Roga\u0161ovci",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-106",
+    "country_code": "SI",
+    "name": "Roga\u0161ka Slatina",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-107",
+    "country_code": "SI",
+    "name": "Rogatec",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-108",
+    "country_code": "SI",
+    "name": "Ru\u0161e",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-109",
+    "country_code": "SI",
+    "name": "Semi\u010d",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-110",
+    "country_code": "SI",
+    "name": "Sevnica",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-111",
+    "country_code": "SI",
+    "name": "Se\u017eana",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-112",
+    "country_code": "SI",
+    "name": "Slovenj Gradec",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-113",
+    "country_code": "SI",
+    "name": "Slovenska Bistrica",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-114",
+    "country_code": "SI",
+    "name": "Slovenske Konjice",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-115",
+    "country_code": "SI",
+    "name": "Star\u010de",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-116",
+    "country_code": "SI",
+    "name": "Sveti Jurij",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-117",
+    "country_code": "SI",
+    "name": "\u0160en\u010dur",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-118",
+    "country_code": "SI",
+    "name": "\u0160entilj",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-119",
+    "country_code": "SI",
+    "name": "\u0160entjernej",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-120",
+    "country_code": "SI",
+    "name": "\u0160entjur",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-121",
+    "country_code": "SI",
+    "name": "\u0160kocjan",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-122",
+    "country_code": "SI",
+    "name": "\u0160kofja Loka",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-123",
+    "country_code": "SI",
+    "name": "\u0160kofljica",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-124",
+    "country_code": "SI",
+    "name": "\u0160marje pri Jel\u0161ah",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-125",
+    "country_code": "SI",
+    "name": "\u0160martno ob Paki",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-126",
+    "country_code": "SI",
+    "name": "\u0160o\u0161tanj",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-127",
+    "country_code": "SI",
+    "name": "\u0160tore",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-128",
+    "country_code": "SI",
+    "name": "Tolmin",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-129",
+    "country_code": "SI",
+    "name": "Trbovlje",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-130",
+    "country_code": "SI",
+    "name": "Trebnje",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-131",
+    "country_code": "SI",
+    "name": "Tr\u017ei\u010d",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-132",
+    "country_code": "SI",
+    "name": "Turni\u0161\u010de",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-133",
+    "country_code": "SI",
+    "name": "Velenje",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-134",
+    "country_code": "SI",
+    "name": "Velike La\u0161\u010de",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-135",
+    "country_code": "SI",
+    "name": "Videm",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-136",
+    "country_code": "SI",
+    "name": "Vipava",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-137",
+    "country_code": "SI",
+    "name": "Vitanje",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-138",
+    "country_code": "SI",
+    "name": "Vodice",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-139",
+    "country_code": "SI",
+    "name": "Vojnik",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-140",
+    "country_code": "SI",
+    "name": "Vrhnika",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-141",
+    "country_code": "SI",
+    "name": "Vuzenica",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-142",
+    "country_code": "SI",
+    "name": "Zagorje ob Savi",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-143",
+    "country_code": "SI",
+    "name": "Zavr\u010d",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-144",
+    "country_code": "SI",
+    "name": "Zre\u010de",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-146",
+    "country_code": "SI",
+    "name": "\u017delezniki",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-147",
+    "country_code": "SI",
+    "name": "\u017diri",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-148",
+    "country_code": "SI",
+    "name": "Benedikt",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-149",
+    "country_code": "SI",
+    "name": "Bistrica ob Sotli",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-150",
+    "country_code": "SI",
+    "name": "Bloke",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-151",
+    "country_code": "SI",
+    "name": "Braslov\u010de",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-152",
+    "country_code": "SI",
+    "name": "Cankova",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-153",
+    "country_code": "SI",
+    "name": "Cerkvenjak",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-154",
+    "country_code": "SI",
+    "name": "Dobje",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-155",
+    "country_code": "SI",
+    "name": "Dobrna",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-156",
+    "country_code": "SI",
+    "name": "Dobrovnik/Dobronak",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-157",
+    "country_code": "SI",
+    "name": "Dolenjske Toplice",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-158",
+    "country_code": "SI",
+    "name": "Grad",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-159",
+    "country_code": "SI",
+    "name": "Hajdina",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-160",
+    "country_code": "SI",
+    "name": "Ho\u010de-Slivnica",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-161",
+    "country_code": "SI",
+    "name": "Hodo\u0161/Hodos",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-162",
+    "country_code": "SI",
+    "name": "Horjul",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-163",
+    "country_code": "SI",
+    "name": "Jezersko",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-164",
+    "country_code": "SI",
+    "name": "Komenda",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-165",
+    "country_code": "SI",
+    "name": "Kostel",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-166",
+    "country_code": "SI",
+    "name": "Kri\u017eevci",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-167",
+    "country_code": "SI",
+    "name": "Lovrenc na Pohorju",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-168",
+    "country_code": "SI",
+    "name": "Markovci",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-169",
+    "country_code": "SI",
+    "name": "Miklav\u017e na Dravskem polju",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-170",
+    "country_code": "SI",
+    "name": "Mirna Pe\u010d",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-171",
+    "country_code": "SI",
+    "name": "Oplotnica",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-172",
+    "country_code": "SI",
+    "name": "Podlehnik",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-173",
+    "country_code": "SI",
+    "name": "Polzela",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-174",
+    "country_code": "SI",
+    "name": "Prebold",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-175",
+    "country_code": "SI",
+    "name": "Prevalje",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-176",
+    "country_code": "SI",
+    "name": "Razkri\u017eje",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-177",
+    "country_code": "SI",
+    "name": "Ribnica na Pohorju",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-178",
+    "country_code": "SI",
+    "name": "Selnica ob Dravi",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-179",
+    "country_code": "SI",
+    "name": "Sodra\u017eica",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-180",
+    "country_code": "SI",
+    "name": "Sol\u010dava",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-181",
+    "country_code": "SI",
+    "name": "Sveta Ana",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-182",
+    "country_code": "SI",
+    "name": "Sveta Andra\u017e v Slovenskih Goricah",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-183",
+    "country_code": "SI",
+    "name": "\u0160empeter-Vrtojba",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-184",
+    "country_code": "SI",
+    "name": "Tabor",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-185",
+    "country_code": "SI",
+    "name": "Trnovska vas",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-186",
+    "country_code": "SI",
+    "name": "Trzin",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-187",
+    "country_code": "SI",
+    "name": "Velika Polana",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-188",
+    "country_code": "SI",
+    "name": "Ver\u017eej",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-189",
+    "country_code": "SI",
+    "name": "Vransko",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-190",
+    "country_code": "SI",
+    "name": "\u017dalec",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-191",
+    "country_code": "SI",
+    "name": "\u017detale",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-192",
+    "country_code": "SI",
+    "name": "\u017dirovnica",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-193",
+    "country_code": "SI",
+    "name": "\u017du\u017eemberk",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-194",
+    "country_code": "SI",
+    "name": "\u0160martno pri Litiji",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-195",
+    "country_code": "SI",
+    "name": "Apa\u010de",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-196",
+    "country_code": "SI",
+    "name": "Cirkulane",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-197",
+    "country_code": "SI",
+    "name": "Kosanjevica na Krki",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-198",
+    "country_code": "SI",
+    "name": "Makole",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-199",
+    "country_code": "SI",
+    "name": "Mokronog-Trebelno",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-200",
+    "country_code": "SI",
+    "name": "Polj\u010dane",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-201",
+    "country_code": "SI",
+    "name": "Ren\u010de-Vogrsko",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-202",
+    "country_code": "SI",
+    "name": "Sredi\u0161\u010de ob Dravi",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-203",
+    "country_code": "SI",
+    "name": "Stra\u017ea",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-204",
+    "country_code": "SI",
+    "name": "Sveta Trojica v Slovenskih Goricah",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-205",
+    "country_code": "SI",
+    "name": "Sveti Toma\u017e",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-206",
+    "country_code": "SI",
+    "name": "\u0160marjeske Topli\u010de",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-207",
+    "country_code": "SI",
+    "name": "Gorje",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-208",
+    "country_code": "SI",
+    "name": "Log-Dragomer",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-209",
+    "country_code": "SI",
+    "name": "Re\u010dica ob Savinji",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-210",
+    "country_code": "SI",
+    "name": "Sveti Jurij v Slovenskih Goricah",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "SI-211",
+    "country_code": "SI",
+    "name": "\u0160entrupert",
+    "parent_code": null,
+    "type": "Municipality"
+  }
+]

@@ -1,0 +1,212 @@
+[
+  {
+    "code": "DO-01",
+    "country_code": "DO",
+    "name": "Distrito Nacional (Santo Domingo)",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "DO-02",
+    "country_code": "DO",
+    "name": "Azua",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DO-03",
+    "country_code": "DO",
+    "name": "Bahoruco",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DO-04",
+    "country_code": "DO",
+    "name": "Barahona",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DO-05",
+    "country_code": "DO",
+    "name": "Dajab\u00f3n",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DO-06",
+    "country_code": "DO",
+    "name": "Duarte",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DO-07",
+    "country_code": "DO",
+    "name": "La Estrelleta [El\u00edas Pi\u00f1a]",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DO-08",
+    "country_code": "DO",
+    "name": "El Seybo [El Seibo]",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DO-09",
+    "country_code": "DO",
+    "name": "Espaillat",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DO-10",
+    "country_code": "DO",
+    "name": "Independencia",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DO-11",
+    "country_code": "DO",
+    "name": "La Altagracia",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DO-12",
+    "country_code": "DO",
+    "name": "La Romana",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DO-13",
+    "country_code": "DO",
+    "name": "La Vega",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DO-14",
+    "country_code": "DO",
+    "name": "Mar\u00eda Trinidad S\u00e1nchez",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DO-15",
+    "country_code": "DO",
+    "name": "Monte Cristi",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DO-16",
+    "country_code": "DO",
+    "name": "Pedernales",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DO-17",
+    "country_code": "DO",
+    "name": "Peravia",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DO-18",
+    "country_code": "DO",
+    "name": "Puerto Plata",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DO-19",
+    "country_code": "DO",
+    "name": "Salcedo",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DO-20",
+    "country_code": "DO",
+    "name": "Saman\u00e1",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DO-21",
+    "country_code": "DO",
+    "name": "San Crist\u00f3bal",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DO-22",
+    "country_code": "DO",
+    "name": "San Juan",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DO-23",
+    "country_code": "DO",
+    "name": "San Pedro de Macor\u00eds",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DO-24",
+    "country_code": "DO",
+    "name": "S\u00e1nchez Ram\u00edrez",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DO-25",
+    "country_code": "DO",
+    "name": "Santiago",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DO-26",
+    "country_code": "DO",
+    "name": "Santiago Rodr\u00edguez",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DO-27",
+    "country_code": "DO",
+    "name": "Valverde",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DO-28",
+    "country_code": "DO",
+    "name": "Monse\u00f1or Nouel",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DO-29",
+    "country_code": "DO",
+    "name": "Monte Plata",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "DO-30",
+    "country_code": "DO",
+    "name": "Hato Mayor",
+    "parent_code": null,
+    "type": "Province"
+  }
+]

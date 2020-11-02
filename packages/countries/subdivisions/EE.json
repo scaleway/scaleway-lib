@@ -1,0 +1,107 @@
+[
+  {
+    "code": "EE-37",
+    "country_code": "EE",
+    "name": "Harjumaa",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "EE-39",
+    "country_code": "EE",
+    "name": "Hiiumaa",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "EE-44",
+    "country_code": "EE",
+    "name": "Ida-Virumaa",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "EE-49",
+    "country_code": "EE",
+    "name": "J\u00f5gevamaa",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "EE-51",
+    "country_code": "EE",
+    "name": "J\u00e4rvamaa",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "EE-57",
+    "country_code": "EE",
+    "name": "L\u00e4\u00e4nemaa",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "EE-59",
+    "country_code": "EE",
+    "name": "L\u00e4\u00e4ne-Virumaa",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "EE-65",
+    "country_code": "EE",
+    "name": "P\u00f5lvamaa",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "EE-67",
+    "country_code": "EE",
+    "name": "P\u00e4rnumaa",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "EE-70",
+    "country_code": "EE",
+    "name": "Raplamaa",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "EE-74",
+    "country_code": "EE",
+    "name": "Saaremaa",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "EE-78",
+    "country_code": "EE",
+    "name": "Tartumaa",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "EE-82",
+    "country_code": "EE",
+    "name": "Valgamaa",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "EE-84",
+    "country_code": "EE",
+    "name": "Viljandimaa",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "EE-86",
+    "country_code": "EE",
+    "name": "V\u00f5rumaa",
+    "parent_code": null,
+    "type": "County"
+  }
+]

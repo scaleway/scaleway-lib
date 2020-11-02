@@ -1,0 +1,114 @@
+[
+  {
+    "code": "PW-002",
+    "country_code": "PW",
+    "name": "Aimeliik",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "PW-004",
+    "country_code": "PW",
+    "name": "Airai",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "PW-010",
+    "country_code": "PW",
+    "name": "Angaur",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "PW-050",
+    "country_code": "PW",
+    "name": "Hatobohei",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "PW-100",
+    "country_code": "PW",
+    "name": "Kayangel",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "PW-150",
+    "country_code": "PW",
+    "name": "Koror",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "PW-212",
+    "country_code": "PW",
+    "name": "Melekeok",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "PW-214",
+    "country_code": "PW",
+    "name": "Ngaraard",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "PW-218",
+    "country_code": "PW",
+    "name": "Ngarchelong",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "PW-222",
+    "country_code": "PW",
+    "name": "Ngardmau",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "PW-224",
+    "country_code": "PW",
+    "name": "Ngatpang",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "PW-226",
+    "country_code": "PW",
+    "name": "Ngchesar",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "PW-227",
+    "country_code": "PW",
+    "name": "Ngeremlengui",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "PW-228",
+    "country_code": "PW",
+    "name": "Ngiwal",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "PW-350",
+    "country_code": "PW",
+    "name": "Peleliu",
+    "parent_code": null,
+    "type": "State"
+  },
+  {
+    "code": "PW-370",
+    "country_code": "PW",
+    "name": "Sonsorol",
+    "parent_code": null,
+    "type": "State"
+  }
+]

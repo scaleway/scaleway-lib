@@ -1,0 +1,128 @@
+[
+  {
+    "code": "IQ-AN",
+    "country_code": "IQ",
+    "name": "Al Anbar",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "IQ-AR",
+    "country_code": "IQ",
+    "name": "Arbil",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "IQ-BA",
+    "country_code": "IQ",
+    "name": "Al Basrah",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "IQ-BB",
+    "country_code": "IQ",
+    "name": "Babil",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "IQ-BG",
+    "country_code": "IQ",
+    "name": "Baghdad",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "IQ-DA",
+    "country_code": "IQ",
+    "name": "Dahuk",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "IQ-DI",
+    "country_code": "IQ",
+    "name": "Diyala",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "IQ-DQ",
+    "country_code": "IQ",
+    "name": "Dhi Qar",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "IQ-KA",
+    "country_code": "IQ",
+    "name": "Karbala'",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "IQ-MA",
+    "country_code": "IQ",
+    "name": "Maysan",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "IQ-MU",
+    "country_code": "IQ",
+    "name": "Al Muthanna",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "IQ-NA",
+    "country_code": "IQ",
+    "name": "An Najef",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "IQ-NI",
+    "country_code": "IQ",
+    "name": "Ninawa",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "IQ-QA",
+    "country_code": "IQ",
+    "name": "Al Qadisiyah",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "IQ-SD",
+    "country_code": "IQ",
+    "name": "Salah ad Din",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "IQ-SW",
+    "country_code": "IQ",
+    "name": "As Sulaymaniyah",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "IQ-TS",
+    "country_code": "IQ",
+    "name": "At Ta'mim",
+    "parent_code": null,
+    "type": "Governorate"
+  },
+  {
+    "code": "IQ-WA",
+    "country_code": "IQ",
+    "name": "Wasit",
+    "parent_code": null,
+    "type": "Governorate"
+  }
+]

@@ -1,0 +1,44 @@
+[
+  {
+    "code": "BZ-BZ",
+    "country_code": "BZ",
+    "name": "Belize",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BZ-CY",
+    "country_code": "BZ",
+    "name": "Cayo",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BZ-CZL",
+    "country_code": "BZ",
+    "name": "Corozal",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BZ-OW",
+    "country_code": "BZ",
+    "name": "Orange Walk",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BZ-SC",
+    "country_code": "BZ",
+    "name": "Stann Creek",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BZ-TOL",
+    "country_code": "BZ",
+    "name": "Toledo",
+    "parent_code": null,
+    "type": "District"
+  }
+]

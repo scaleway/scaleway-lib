@@ -1,0 +1,184 @@
+[
+  {
+    "code": "PE-AMA",
+    "country_code": "PE",
+    "name": "Amazonas",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "PE-ANC",
+    "country_code": "PE",
+    "name": "Ancash",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "PE-APU",
+    "country_code": "PE",
+    "name": "Apur\u00edmac",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "PE-ARE",
+    "country_code": "PE",
+    "name": "Arequipa",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "PE-AYA",
+    "country_code": "PE",
+    "name": "Ayacucho",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "PE-CAJ",
+    "country_code": "PE",
+    "name": "Cajamarca",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "PE-CAL",
+    "country_code": "PE",
+    "name": "El Callao",
+    "parent_code": null,
+    "type": "Constitutional province"
+  },
+  {
+    "code": "PE-CUS",
+    "country_code": "PE",
+    "name": "Cusco [Cuzco]",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "PE-HUC",
+    "country_code": "PE",
+    "name": "Hu\u00e1nuco",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "PE-HUV",
+    "country_code": "PE",
+    "name": "Huancavelica",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "PE-ICA",
+    "country_code": "PE",
+    "name": "Ica",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "PE-JUN",
+    "country_code": "PE",
+    "name": "Jun\u00edn",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "PE-LAL",
+    "country_code": "PE",
+    "name": "La Libertad",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "PE-LAM",
+    "country_code": "PE",
+    "name": "Lambayeque",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "PE-LIM",
+    "country_code": "PE",
+    "name": "Lima",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "PE-LMA",
+    "country_code": "PE",
+    "name": "Municipalidad Metropolitana de Lima",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "PE-LOR",
+    "country_code": "PE",
+    "name": "Loreto",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "PE-MDD",
+    "country_code": "PE",
+    "name": "Madre de Dios",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "PE-MOQ",
+    "country_code": "PE",
+    "name": "Moquegua",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "PE-PAS",
+    "country_code": "PE",
+    "name": "Pasco",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "PE-PIU",
+    "country_code": "PE",
+    "name": "Piura",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "PE-PUN",
+    "country_code": "PE",
+    "name": "Puno",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "PE-SAM",
+    "country_code": "PE",
+    "name": "San Mart\u00edn",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "PE-TAC",
+    "country_code": "PE",
+    "name": "Tacna",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "PE-TUM",
+    "country_code": "PE",
+    "name": "Tumbes",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "PE-UCA",
+    "country_code": "PE",
+    "name": "Ucayali",
+    "parent_code": null,
+    "type": "Region"
+  }
+]

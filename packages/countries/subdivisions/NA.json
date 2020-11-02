@@ -1,0 +1,93 @@
+[
+  {
+    "code": "NA-CA",
+    "country_code": "NA",
+    "name": "Caprivi",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "NA-ER",
+    "country_code": "NA",
+    "name": "Erongo",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "NA-HA",
+    "country_code": "NA",
+    "name": "Hardap",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "NA-KA",
+    "country_code": "NA",
+    "name": "Karas",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "NA-KH",
+    "country_code": "NA",
+    "name": "Khomas",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "NA-KU",
+    "country_code": "NA",
+    "name": "Kunene",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "NA-OD",
+    "country_code": "NA",
+    "name": "Otjozondjupa",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "NA-OH",
+    "country_code": "NA",
+    "name": "Omaheke",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "NA-OK",
+    "country_code": "NA",
+    "name": "Okavango",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "NA-ON",
+    "country_code": "NA",
+    "name": "Oshana",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "NA-OS",
+    "country_code": "NA",
+    "name": "Omusati",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "NA-OT",
+    "country_code": "NA",
+    "name": "Oshikoto",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "NA-OW",
+    "country_code": "NA",
+    "name": "Ohangwena",
+    "parent_code": null,
+    "type": "Region"
+  }
+]

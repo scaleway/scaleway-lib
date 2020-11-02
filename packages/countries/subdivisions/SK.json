@@ -1,0 +1,58 @@
+[
+  {
+    "code": "SK-BC",
+    "country_code": "SK",
+    "name": "Banskobystrick\u00fd kraj",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "SK-BL",
+    "country_code": "SK",
+    "name": "Bratislavsk\u00fd kraj",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "SK-KI",
+    "country_code": "SK",
+    "name": "Ko\u0161ick\u00fd kraj",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "SK-NI",
+    "country_code": "SK",
+    "name": "Nitriansky kraj",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "SK-PV",
+    "country_code": "SK",
+    "name": "Pre\u0161ovsk\u00fd kraj",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "SK-TA",
+    "country_code": "SK",
+    "name": "Trnavsk\u00fd kraj",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "SK-TC",
+    "country_code": "SK",
+    "name": "Tren\u010diansky kraj",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "SK-ZI",
+    "country_code": "SK",
+    "name": "\u017dilinsk\u00fd kraj",
+    "parent_code": null,
+    "type": "Region"
+  }
+]

@@ -1,0 +1,86 @@
+[
+  {
+    "code": "GW-BA",
+    "country_code": "GW",
+    "name": "Bafat\u00e1",
+    "parent_code": "GW-L",
+    "type": "Region"
+  },
+  {
+    "code": "GW-BL",
+    "country_code": "GW",
+    "name": "Bolama",
+    "parent_code": "GW-S",
+    "type": "Region"
+  },
+  {
+    "code": "GW-BM",
+    "country_code": "GW",
+    "name": "Biombo",
+    "parent_code": "GW-N",
+    "type": "Region"
+  },
+  {
+    "code": "GW-BS",
+    "country_code": "GW",
+    "name": "Bissau",
+    "parent_code": null,
+    "type": "Autonomous sector"
+  },
+  {
+    "code": "GW-CA",
+    "country_code": "GW",
+    "name": "Cacheu",
+    "parent_code": "GW-N",
+    "type": "Region"
+  },
+  {
+    "code": "GW-GA",
+    "country_code": "GW",
+    "name": "Gab\u00fa",
+    "parent_code": "GW-L",
+    "type": "Region"
+  },
+  {
+    "code": "GW-L",
+    "country_code": "GW",
+    "name": "Leste",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "GW-N",
+    "country_code": "GW",
+    "name": "Norte",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "GW-OI",
+    "country_code": "GW",
+    "name": "Oio",
+    "parent_code": "GW-N",
+    "type": "Region"
+  },
+  {
+    "code": "GW-QU",
+    "country_code": "GW",
+    "name": "Quinara",
+    "parent_code": "GW-S",
+    "type": "Region"
+  },
+  {
+    "code": "GW-S",
+    "country_code": "GW",
+    "name": "Sul",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "GW-TO",
+    "country_code": "GW",
+    "name": "Tombali",
+    "parent_code": "GW-S",
+    "type": "Region"
+  }
+]

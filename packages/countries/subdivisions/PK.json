@@ -1,0 +1,58 @@
+[
+  {
+    "code": "PK-BA",
+    "country_code": "PK",
+    "name": "Balochistan",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PK-GB",
+    "country_code": "PK",
+    "name": "Gilgit-Baltistan",
+    "parent_code": null,
+    "type": "Area"
+  },
+  {
+    "code": "PK-IS",
+    "country_code": "PK",
+    "name": "Islamabad",
+    "parent_code": null,
+    "type": "Capital territory"
+  },
+  {
+    "code": "PK-JK",
+    "country_code": "PK",
+    "name": "Azad Kashmir",
+    "parent_code": null,
+    "type": "Area"
+  },
+  {
+    "code": "PK-KP",
+    "country_code": "PK",
+    "name": "Khyber Pakhtunkhwa",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PK-PB",
+    "country_code": "PK",
+    "name": "Punjab",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PK-SD",
+    "country_code": "PK",
+    "name": "Sindh",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PK-TA",
+    "country_code": "PK",
+    "name": "Federally Administered Tribal Areas",
+    "parent_code": null,
+    "type": "Territory"
+  }
+]

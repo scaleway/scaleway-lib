@@ -1,0 +1,142 @@
+[
+  {
+    "code": "NO-01",
+    "country_code": "NO",
+    "name": "\u00d8stfold",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "NO-02",
+    "country_code": "NO",
+    "name": "Akershus",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "NO-03",
+    "country_code": "NO",
+    "name": "Oslo",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "NO-04",
+    "country_code": "NO",
+    "name": "Hedmark",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "NO-05",
+    "country_code": "NO",
+    "name": "Oppland",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "NO-06",
+    "country_code": "NO",
+    "name": "Buskerud",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "NO-07",
+    "country_code": "NO",
+    "name": "Vestfold",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "NO-08",
+    "country_code": "NO",
+    "name": "Telemark",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "NO-09",
+    "country_code": "NO",
+    "name": "Aust-Agder",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "NO-10",
+    "country_code": "NO",
+    "name": "Vest-Agder",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "NO-11",
+    "country_code": "NO",
+    "name": "Rogaland",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "NO-12",
+    "country_code": "NO",
+    "name": "Hordaland",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "NO-14",
+    "country_code": "NO",
+    "name": "Sogn og Fjordane",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "NO-15",
+    "country_code": "NO",
+    "name": "M\u00f8re og Romsdal",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "NO-18",
+    "country_code": "NO",
+    "name": "Nordland",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "NO-19",
+    "country_code": "NO",
+    "name": "Troms",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "NO-20",
+    "country_code": "NO",
+    "name": "Finnmark",
+    "parent_code": null,
+    "type": "County"
+  },
+  {
+    "code": "NO-21",
+    "country_code": "NO",
+    "name": "Svalbard (Arctic Region)",
+    "parent_code": null,
+    "type": "Arctic Region"
+  },
+  {
+    "code": "NO-22",
+    "country_code": "NO",
+    "name": "Jan Mayen (Arctic Region)",
+    "parent_code": null,
+    "type": "Arctic Region"
+  },
+  {
+    "code": "NO-50",
+    "country_code": "NO",
+    "name": "Tr\u00f8ndelag",
+    "parent_code": null,
+    "type": "County"
+  }
+]

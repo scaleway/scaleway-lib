@@ -1,0 +1,156 @@
+[
+  {
+    "code": "MN-035",
+    "country_code": "MN",
+    "name": "Orhon",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "MN-037",
+    "country_code": "MN",
+    "name": "Darhan uul",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "MN-039",
+    "country_code": "MN",
+    "name": "Hentiy",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "MN-041",
+    "country_code": "MN",
+    "name": "H\u00f6vsg\u00f6l",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "MN-043",
+    "country_code": "MN",
+    "name": "Hovd",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "MN-046",
+    "country_code": "MN",
+    "name": "Uvs",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "MN-047",
+    "country_code": "MN",
+    "name": "T\u00f6v",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "MN-049",
+    "country_code": "MN",
+    "name": "Selenge",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "MN-051",
+    "country_code": "MN",
+    "name": "S\u00fchbaatar",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "MN-053",
+    "country_code": "MN",
+    "name": "\u00d6mn\u00f6govi",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "MN-055",
+    "country_code": "MN",
+    "name": "\u00d6v\u00f6rhangay",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "MN-057",
+    "country_code": "MN",
+    "name": "Dzavhan",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "MN-059",
+    "country_code": "MN",
+    "name": "Dundgovi",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "MN-061",
+    "country_code": "MN",
+    "name": "Dornod",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "MN-063",
+    "country_code": "MN",
+    "name": "Dornogovi",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "MN-064",
+    "country_code": "MN",
+    "name": "Govi-Sumber",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "MN-065",
+    "country_code": "MN",
+    "name": "Govi-Altay",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "MN-067",
+    "country_code": "MN",
+    "name": "Bulgan",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "MN-069",
+    "country_code": "MN",
+    "name": "Bayanhongor",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "MN-071",
+    "country_code": "MN",
+    "name": "Bayan-\u00d6lgiy",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "MN-073",
+    "country_code": "MN",
+    "name": "Arhangay",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "MN-1",
+    "country_code": "MN",
+    "name": "Ulanbaatar",
+    "parent_code": null,
+    "type": "Municipality"
+  }
+]

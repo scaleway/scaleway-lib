@@ -1,0 +1,450 @@
+[
+  {
+    "code": "VN-01",
+    "country_code": "VN",
+    "name": "Lai Ch\u00e2u",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-02",
+    "country_code": "VN",
+    "name": "L\u00e0o Cai",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-03",
+    "country_code": "VN",
+    "name": "H\u00e0 Giang",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-04",
+    "country_code": "VN",
+    "name": "Cao B\u1eb1ng",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-05",
+    "country_code": "VN",
+    "name": "S\u01a1n La",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-06",
+    "country_code": "VN",
+    "name": "Y\u00ean B\u00e1i",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-07",
+    "country_code": "VN",
+    "name": "Tuy\u00ean Quang",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-09",
+    "country_code": "VN",
+    "name": "L\u1ea1ng S\u01a1n",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-13",
+    "country_code": "VN",
+    "name": "Qu\u1ea3ng Ninh",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-14",
+    "country_code": "VN",
+    "name": "Ho\u00e0 B\u00ecnh",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-15",
+    "country_code": "VN",
+    "name": "H\u00e0 T\u00e2y",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-18",
+    "country_code": "VN",
+    "name": "Ninh B\u00ecnh",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-20",
+    "country_code": "VN",
+    "name": "Th\u00e1i B\u00ecnh",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-21",
+    "country_code": "VN",
+    "name": "Thanh H\u00f3a",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-22",
+    "country_code": "VN",
+    "name": "Ngh\u1ec7 An",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-23",
+    "country_code": "VN",
+    "name": "H\u00e0 T\u1ec9nh",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-24",
+    "country_code": "VN",
+    "name": "Qu\u1ea3ng B\u00ecnh",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-25",
+    "country_code": "VN",
+    "name": "Qu\u1ea3ng Tr\u1ecb",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-26",
+    "country_code": "VN",
+    "name": "Th\u1eeba Thi\u00ean-Hu\u1ebf",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-27",
+    "country_code": "VN",
+    "name": "Qu\u1ea3ng Nam",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-28",
+    "country_code": "VN",
+    "name": "Kon Tum",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-29",
+    "country_code": "VN",
+    "name": "Qu\u1ea3ng Ng\u00e3i",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-30",
+    "country_code": "VN",
+    "name": "Gia Lai",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-31",
+    "country_code": "VN",
+    "name": "B\u00ecnh \u0110\u1ecbnh",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-32",
+    "country_code": "VN",
+    "name": "Ph\u00fa Y\u00ean",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-33",
+    "country_code": "VN",
+    "name": "\u0110\u1eafc L\u1eafk",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-34",
+    "country_code": "VN",
+    "name": "Kh\u00e1nh H\u00f2a",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-35",
+    "country_code": "VN",
+    "name": "L\u00e2m \u0110\u1ed3ng",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-36",
+    "country_code": "VN",
+    "name": "Ninh Thu\u1eadn",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-37",
+    "country_code": "VN",
+    "name": "T\u00e2y Ninh",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-39",
+    "country_code": "VN",
+    "name": "\u0110\u1ed3ng Nai",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-40",
+    "country_code": "VN",
+    "name": "B\u00ecnh Thu\u1eadn",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-41",
+    "country_code": "VN",
+    "name": "Long An",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-43",
+    "country_code": "VN",
+    "name": "B\u00e0 R\u1ecba-V\u0169ng T\u00e0u",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-44",
+    "country_code": "VN",
+    "name": "An Giang",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-45",
+    "country_code": "VN",
+    "name": "\u0110\u1ed3ng Th\u00e1p",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-46",
+    "country_code": "VN",
+    "name": "Ti\u1ec1n Giang",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-47",
+    "country_code": "VN",
+    "name": "Ki\u00ean Giang",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-49",
+    "country_code": "VN",
+    "name": "V\u0129nh Long",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-50",
+    "country_code": "VN",
+    "name": "B\u1ebfn Tre",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-51",
+    "country_code": "VN",
+    "name": "Tr\u00e0 Vinh",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-52",
+    "country_code": "VN",
+    "name": "S\u00f3c Tr\u0103ng",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-53",
+    "country_code": "VN",
+    "name": "B\u1eafc K\u1ea1n",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-54",
+    "country_code": "VN",
+    "name": "B\u1eafc Giang",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-55",
+    "country_code": "VN",
+    "name": "B\u1ea1c Li\u00eau",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-56",
+    "country_code": "VN",
+    "name": "B\u1eafc Ninh",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-57",
+    "country_code": "VN",
+    "name": "B\u00ecnh D\u01b0\u01a1ng",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-58",
+    "country_code": "VN",
+    "name": "B\u00ecnh Ph\u01b0\u1edbc",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-59",
+    "country_code": "VN",
+    "name": "C\u00e0 Mau",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-61",
+    "country_code": "VN",
+    "name": "H\u1ea3i Duong",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-63",
+    "country_code": "VN",
+    "name": "H\u00e0 Nam",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-66",
+    "country_code": "VN",
+    "name": "H\u01b0ng Y\u00ean",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-67",
+    "country_code": "VN",
+    "name": "Nam \u0110\u1ecbnh",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-68",
+    "country_code": "VN",
+    "name": "Ph\u00fa Th\u1ecd",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-69",
+    "country_code": "VN",
+    "name": "Th\u00e1i Nguy\u00ean",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-70",
+    "country_code": "VN",
+    "name": "V\u0129nh Ph\u00fac",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-71",
+    "country_code": "VN",
+    "name": "\u0110i\u1ec7n Bi\u00ean",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-72",
+    "country_code": "VN",
+    "name": "\u0110\u1eafk N\u00f4ng",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-73",
+    "country_code": "VN",
+    "name": "H\u1eadu Giang",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "VN-CT",
+    "country_code": "VN",
+    "name": "C\u1ea7n Th\u01a1",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "VN-DN",
+    "country_code": "VN",
+    "name": "\u0110\u00e0 N\u1eb5ng",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "VN-HN",
+    "country_code": "VN",
+    "name": "H\u00e0 N\u1ed9i",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "VN-HP",
+    "country_code": "VN",
+    "name": "H\u1ea3i Ph\u00f2ng",
+    "parent_code": null,
+    "type": "Municipality"
+  },
+  {
+    "code": "VN-SG",
+    "country_code": "VN",
+    "name": "H\u1ed3 Ch\u00ed Minh [S\u00e0i G\u00f2n]",
+    "parent_code": null,
+    "type": "Municipality"
+  }
+]

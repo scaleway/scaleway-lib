@@ -1,0 +1,457 @@
+[
+  {
+    "code": "GR-01",
+    "country_code": "GR",
+    "name": "Aitolia kai Akarnania",
+    "parent_code": "GR-G",
+    "type": "Department"
+  },
+  {
+    "code": "GR-03",
+    "country_code": "GR",
+    "name": "Voiotia",
+    "parent_code": "GR-H",
+    "type": "Department"
+  },
+  {
+    "code": "GR-04",
+    "country_code": "GR",
+    "name": "Evvoias",
+    "parent_code": "GR-H",
+    "type": "Department"
+  },
+  {
+    "code": "GR-05",
+    "country_code": "GR",
+    "name": "Evrytania",
+    "parent_code": "GR-H",
+    "type": "Department"
+  },
+  {
+    "code": "GR-06",
+    "country_code": "GR",
+    "name": "Fthiotida",
+    "parent_code": "GR-H",
+    "type": "Department"
+  },
+  {
+    "code": "GR-07",
+    "country_code": "GR",
+    "name": "Fokida",
+    "parent_code": "GR-H",
+    "type": "Department"
+  },
+  {
+    "code": "GR-11",
+    "country_code": "GR",
+    "name": "Argolida",
+    "parent_code": "GR-J",
+    "type": "Department"
+  },
+  {
+    "code": "GR-12",
+    "country_code": "GR",
+    "name": "Arkadia",
+    "parent_code": "GR-J",
+    "type": "Department"
+  },
+  {
+    "code": "GR-13",
+    "country_code": "GR",
+    "name": "Acha\u00efa",
+    "parent_code": "GR-G",
+    "type": "Department"
+  },
+  {
+    "code": "GR-14",
+    "country_code": "GR",
+    "name": "Ileia",
+    "parent_code": "GR-G",
+    "type": "Department"
+  },
+  {
+    "code": "GR-15",
+    "country_code": "GR",
+    "name": "Korinthia",
+    "parent_code": "GR-J",
+    "type": "Department"
+  },
+  {
+    "code": "GR-16",
+    "country_code": "GR",
+    "name": "Lakonia",
+    "parent_code": "GR-J",
+    "type": "Department"
+  },
+  {
+    "code": "GR-17",
+    "country_code": "GR",
+    "name": "Messinia",
+    "parent_code": "GR-J",
+    "type": "Department"
+  },
+  {
+    "code": "GR-21",
+    "country_code": "GR",
+    "name": "Zakynthos",
+    "parent_code": "GR-F",
+    "type": "Department"
+  },
+  {
+    "code": "GR-22",
+    "country_code": "GR",
+    "name": "Kerkyra",
+    "parent_code": "GR-F",
+    "type": "Department"
+  },
+  {
+    "code": "GR-23",
+    "country_code": "GR",
+    "name": "Kefallonia",
+    "parent_code": "GR-F",
+    "type": "Department"
+  },
+  {
+    "code": "GR-24",
+    "country_code": "GR",
+    "name": "Lefkada",
+    "parent_code": "GR-F",
+    "type": "Department"
+  },
+  {
+    "code": "GR-31",
+    "country_code": "GR",
+    "name": "Arta",
+    "parent_code": "GR-F",
+    "type": "Department"
+  },
+  {
+    "code": "GR-32",
+    "country_code": "GR",
+    "name": "Thesprotia",
+    "parent_code": "GR-D",
+    "type": "Department"
+  },
+  {
+    "code": "GR-33",
+    "country_code": "GR",
+    "name": "Ioannina",
+    "parent_code": "GR-D",
+    "type": "Department"
+  },
+  {
+    "code": "GR-34",
+    "country_code": "GR",
+    "name": "Preveza",
+    "parent_code": "GR-D",
+    "type": "Department"
+  },
+  {
+    "code": "GR-41",
+    "country_code": "GR",
+    "name": "Karditsa",
+    "parent_code": "GR-E",
+    "type": "Department"
+  },
+  {
+    "code": "GR-42",
+    "country_code": "GR",
+    "name": "Larisa",
+    "parent_code": "GR-E",
+    "type": "Department"
+  },
+  {
+    "code": "GR-43",
+    "country_code": "GR",
+    "name": "Magnisia",
+    "parent_code": "GR-E",
+    "type": "Department"
+  },
+  {
+    "code": "GR-44",
+    "country_code": "GR",
+    "name": "Trikala",
+    "parent_code": "GR-E",
+    "type": "Department"
+  },
+  {
+    "code": "GR-51",
+    "country_code": "GR",
+    "name": "Grevena",
+    "parent_code": "GR-C",
+    "type": "Department"
+  },
+  {
+    "code": "GR-52",
+    "country_code": "GR",
+    "name": "Drama",
+    "parent_code": "GR-A",
+    "type": "Department"
+  },
+  {
+    "code": "GR-53",
+    "country_code": "GR",
+    "name": "Imathia",
+    "parent_code": "GR-B",
+    "type": "Department"
+  },
+  {
+    "code": "GR-54",
+    "country_code": "GR",
+    "name": "Thessaloniki",
+    "parent_code": "GR-B",
+    "type": "Department"
+  },
+  {
+    "code": "GR-55",
+    "country_code": "GR",
+    "name": "Kavala",
+    "parent_code": "GR-A",
+    "type": "Department"
+  },
+  {
+    "code": "GR-56",
+    "country_code": "GR",
+    "name": "Kastoria",
+    "parent_code": "GR-C",
+    "type": "Department"
+  },
+  {
+    "code": "GR-57",
+    "country_code": "GR",
+    "name": "Kilkis",
+    "parent_code": "GR-B",
+    "type": "Department"
+  },
+  {
+    "code": "GR-58",
+    "country_code": "GR",
+    "name": "Kozani",
+    "parent_code": "GR-C",
+    "type": "Department"
+  },
+  {
+    "code": "GR-59",
+    "country_code": "GR",
+    "name": "Pella",
+    "parent_code": "GR-B",
+    "type": "Department"
+  },
+  {
+    "code": "GR-61",
+    "country_code": "GR",
+    "name": "Pieria",
+    "parent_code": "GR-B",
+    "type": "Department"
+  },
+  {
+    "code": "GR-62",
+    "country_code": "GR",
+    "name": "Serres",
+    "parent_code": "GR-B",
+    "type": "Department"
+  },
+  {
+    "code": "GR-63",
+    "country_code": "GR",
+    "name": "Florina",
+    "parent_code": "GR-C",
+    "type": "Department"
+  },
+  {
+    "code": "GR-64",
+    "country_code": "GR",
+    "name": "Chalkidiki",
+    "parent_code": "GR-B",
+    "type": "Department"
+  },
+  {
+    "code": "GR-69",
+    "country_code": "GR",
+    "name": "Agio Oros",
+    "parent_code": null,
+    "type": "Self-governed part"
+  },
+  {
+    "code": "GR-71",
+    "country_code": "GR",
+    "name": "Evros",
+    "parent_code": "GR-A",
+    "type": "Department"
+  },
+  {
+    "code": "GR-72",
+    "country_code": "GR",
+    "name": "Xanthi",
+    "parent_code": "GR-A",
+    "type": "Department"
+  },
+  {
+    "code": "GR-73",
+    "country_code": "GR",
+    "name": "Rodopi",
+    "parent_code": "GR-A",
+    "type": "Department"
+  },
+  {
+    "code": "GR-81",
+    "country_code": "GR",
+    "name": "Dodekanisos",
+    "parent_code": "GR-L",
+    "type": "Department"
+  },
+  {
+    "code": "GR-82",
+    "country_code": "GR",
+    "name": "Kyklades",
+    "parent_code": "GR-L",
+    "type": "Department"
+  },
+  {
+    "code": "GR-83",
+    "country_code": "GR",
+    "name": "Lesvos",
+    "parent_code": "GR-K",
+    "type": "Department"
+  },
+  {
+    "code": "GR-84",
+    "country_code": "GR",
+    "name": "Samos",
+    "parent_code": "GR-K",
+    "type": "Department"
+  },
+  {
+    "code": "GR-85",
+    "country_code": "GR",
+    "name": "Chios",
+    "parent_code": "GR-K",
+    "type": "Department"
+  },
+  {
+    "code": "GR-91",
+    "country_code": "GR",
+    "name": "Irakleio",
+    "parent_code": "GR-M",
+    "type": "Department"
+  },
+  {
+    "code": "GR-92",
+    "country_code": "GR",
+    "name": "Lasithi",
+    "parent_code": "GR-M",
+    "type": "Department"
+  },
+  {
+    "code": "GR-93",
+    "country_code": "GR",
+    "name": "Rethymno",
+    "parent_code": "GR-M",
+    "type": "Department"
+  },
+  {
+    "code": "GR-94",
+    "country_code": "GR",
+    "name": "Chania",
+    "parent_code": "GR-M",
+    "type": "Department"
+  },
+  {
+    "code": "GR-A",
+    "country_code": "GR",
+    "name": "Anatoliki Makedonia kai Thraki",
+    "parent_code": null,
+    "type": "Administrative region"
+  },
+  {
+    "code": "GR-A1",
+    "country_code": "GR",
+    "name": "Attiki",
+    "parent_code": "GR-I",
+    "type": "Department"
+  },
+  {
+    "code": "GR-B",
+    "country_code": "GR",
+    "name": "Kentriki Makedonia",
+    "parent_code": null,
+    "type": "Administrative region"
+  },
+  {
+    "code": "GR-C",
+    "country_code": "GR",
+    "name": "Dytiki Makedonia",
+    "parent_code": null,
+    "type": "Administrative region"
+  },
+  {
+    "code": "GR-D",
+    "country_code": "GR",
+    "name": "Ipeiros",
+    "parent_code": null,
+    "type": "Administrative region"
+  },
+  {
+    "code": "GR-E",
+    "country_code": "GR",
+    "name": "Thessalia",
+    "parent_code": null,
+    "type": "Administrative region"
+  },
+  {
+    "code": "GR-F",
+    "country_code": "GR",
+    "name": "Ionia Nisia",
+    "parent_code": null,
+    "type": "Administrative region"
+  },
+  {
+    "code": "GR-G",
+    "country_code": "GR",
+    "name": "Dytiki Ellada",
+    "parent_code": null,
+    "type": "Administrative region"
+  },
+  {
+    "code": "GR-H",
+    "country_code": "GR",
+    "name": "Sterea Ellada",
+    "parent_code": null,
+    "type": "Administrative region"
+  },
+  {
+    "code": "GR-I",
+    "country_code": "GR",
+    "name": "Attiki",
+    "parent_code": null,
+    "type": "Administrative region"
+  },
+  {
+    "code": "GR-J",
+    "country_code": "GR",
+    "name": "Peloponnisos",
+    "parent_code": null,
+    "type": "Administrative region"
+  },
+  {
+    "code": "GR-K",
+    "country_code": "GR",
+    "name": "Voreio Aigaio",
+    "parent_code": null,
+    "type": "Administrative region"
+  },
+  {
+    "code": "GR-L",
+    "country_code": "GR",
+    "name": "Notio Aigaio",
+    "parent_code": null,
+    "type": "Administrative region"
+  },
+  {
+    "code": "GR-M",
+    "country_code": "GR",
+    "name": "Kriti",
+    "parent_code": null,
+    "type": "Administrative region"
+  }
+]

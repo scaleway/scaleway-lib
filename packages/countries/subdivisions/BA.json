@@ -1,0 +1,93 @@
+[
+  {
+    "code": "BA-01",
+    "country_code": "BA",
+    "name": "Unsko-sanski kanton",
+    "parent_code": "BA-BIH",
+    "type": "Canton"
+  },
+  {
+    "code": "BA-02",
+    "country_code": "BA",
+    "name": "Posavski kanton",
+    "parent_code": "BA-BIH",
+    "type": "Canton"
+  },
+  {
+    "code": "BA-03",
+    "country_code": "BA",
+    "name": "Tuzlanski kanton",
+    "parent_code": "BA-BIH",
+    "type": "Canton"
+  },
+  {
+    "code": "BA-04",
+    "country_code": "BA",
+    "name": "Zeni\u010dko-dobojski kanton",
+    "parent_code": "BA-BIH",
+    "type": "Canton"
+  },
+  {
+    "code": "BA-05",
+    "country_code": "BA",
+    "name": "Bosansko-podrinjski kanton",
+    "parent_code": "BA-BIH",
+    "type": "Canton"
+  },
+  {
+    "code": "BA-06",
+    "country_code": "BA",
+    "name": "Srednjobosanski kanton",
+    "parent_code": "BA-BIH",
+    "type": "Canton"
+  },
+  {
+    "code": "BA-07",
+    "country_code": "BA",
+    "name": "Hercegova\u010dko-neretvanski kanton",
+    "parent_code": "BA-BIH",
+    "type": "Canton"
+  },
+  {
+    "code": "BA-08",
+    "country_code": "BA",
+    "name": "Zapadnohercegova\u010dki kanton",
+    "parent_code": "BA-BIH",
+    "type": "Canton"
+  },
+  {
+    "code": "BA-09",
+    "country_code": "BA",
+    "name": "Kanton Sarajevo",
+    "parent_code": "BA-BIH",
+    "type": "Canton"
+  },
+  {
+    "code": "BA-10",
+    "country_code": "BA",
+    "name": "Kanton br. 10 (Livanjski kanton)",
+    "parent_code": "BA-BIH",
+    "type": "Canton"
+  },
+  {
+    "code": "BA-BIH",
+    "country_code": "BA",
+    "name": "Federacija Bosne i Hercegovine",
+    "parent_code": null,
+    "type": "Entity"
+  },
+  {
+    "code": "BA-BRC",
+    "country_code": "BA",
+    "name": "Br\u010dko distrikt",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "BA-SRP",
+    "country_code": "BA",
+    "name": "Republika Srpska",
+    "parent_code": null,
+    "type": "Entity"
+  }
+]

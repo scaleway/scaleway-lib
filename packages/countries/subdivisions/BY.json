@@ -1,0 +1,51 @@
+[
+  {
+    "code": "BY-BR",
+    "country_code": "BY",
+    "name": "Bresckaja voblas\u0107",
+    "parent_code": null,
+    "type": "Oblast"
+  },
+  {
+    "code": "BY-HM",
+    "country_code": "BY",
+    "name": "Horad Minsk",
+    "parent_code": null,
+    "type": "City"
+  },
+  {
+    "code": "BY-HO",
+    "country_code": "BY",
+    "name": "Homie\u013askaja voblas\u0107",
+    "parent_code": null,
+    "type": "Oblast"
+  },
+  {
+    "code": "BY-HR",
+    "country_code": "BY",
+    "name": "Hrodzienskaja voblas\u0107",
+    "parent_code": null,
+    "type": "Oblast"
+  },
+  {
+    "code": "BY-MA",
+    "country_code": "BY",
+    "name": "Mahilio\u016dskaja voblas\u0107",
+    "parent_code": null,
+    "type": "Oblast"
+  },
+  {
+    "code": "BY-MI",
+    "country_code": "BY",
+    "name": "Minskaja voblas\u0107",
+    "parent_code": null,
+    "type": "Oblast"
+  },
+  {
+    "code": "BY-VI",
+    "country_code": "BY",
+    "name": "Viciebskaja voblas\u0107",
+    "parent_code": null,
+    "type": "Oblast"
+  }
+]

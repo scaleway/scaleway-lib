@@ -1,0 +1,86 @@
+[
+  {
+    "code": "PA-1",
+    "country_code": "PA",
+    "name": "Bocas del Toro",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PA-2",
+    "country_code": "PA",
+    "name": "Cocl\u00e9",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PA-3",
+    "country_code": "PA",
+    "name": "Col\u00f3n",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PA-4",
+    "country_code": "PA",
+    "name": "Chiriqu\u00ed",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PA-5",
+    "country_code": "PA",
+    "name": "Dari\u00e9n",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PA-6",
+    "country_code": "PA",
+    "name": "Herrera",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PA-7",
+    "country_code": "PA",
+    "name": "Los Santos",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PA-8",
+    "country_code": "PA",
+    "name": "Panam\u00e1",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PA-9",
+    "country_code": "PA",
+    "name": "Veraguas",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "PA-EM",
+    "country_code": "PA",
+    "name": "Ember\u00e1",
+    "parent_code": null,
+    "type": "Indigenous region"
+  },
+  {
+    "code": "PA-KY",
+    "country_code": "PA",
+    "name": "Kuna Yala",
+    "parent_code": null,
+    "type": "Indigenous region"
+  },
+  {
+    "code": "PA-NB",
+    "country_code": "PA",
+    "name": "Ng\u00f6be-Bugl\u00e9",
+    "parent_code": null,
+    "type": "Indigenous region"
+  }
+]

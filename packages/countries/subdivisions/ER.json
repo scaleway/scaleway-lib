@@ -1,0 +1,44 @@
+[
+  {
+    "code": "ER-AN",
+    "country_code": "ER",
+    "name": "Ansab\u0101",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "ER-DK",
+    "country_code": "ER",
+    "name": "Jan\u016bb\u012b al Ba\u1e29r\u012b al A\u1e29mar",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "ER-DU",
+    "country_code": "ER",
+    "name": "Al Jan\u016bb\u012b",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "ER-GB",
+    "country_code": "ER",
+    "name": "Q\u0101sh-Barkah",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "ER-MA",
+    "country_code": "ER",
+    "name": "Al Awsa\u0163",
+    "parent_code": null,
+    "type": "Province"
+  },
+  {
+    "code": "ER-SK",
+    "country_code": "ER",
+    "name": "Shim\u0101l\u012b al Ba\u1e29r\u012b al A\u1e29mar",
+    "parent_code": null,
+    "type": "Province"
+  }
+]

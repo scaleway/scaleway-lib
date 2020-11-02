@@ -1,0 +1,786 @@
+[
+  {
+    "code": "CZ-10",
+    "country_code": "CZ",
+    "name": "Praha, Hlavn\u00ed me\u0161to",
+    "parent_code": null,
+    "type": "capital city"
+  },
+  {
+    "code": "CZ-101",
+    "country_code": "CZ",
+    "name": "Praha 1",
+    "parent_code": "CZ-10",
+    "type": "district"
+  },
+  {
+    "code": "CZ-102",
+    "country_code": "CZ",
+    "name": "Praha 2",
+    "parent_code": "CZ-10",
+    "type": "district"
+  },
+  {
+    "code": "CZ-103",
+    "country_code": "CZ",
+    "name": "Praha 3",
+    "parent_code": "CZ-10",
+    "type": "district"
+  },
+  {
+    "code": "CZ-104",
+    "country_code": "CZ",
+    "name": "Praha 4",
+    "parent_code": "CZ-10",
+    "type": "district"
+  },
+  {
+    "code": "CZ-105",
+    "country_code": "CZ",
+    "name": "Praha 5",
+    "parent_code": "CZ-10",
+    "type": "district"
+  },
+  {
+    "code": "CZ-106",
+    "country_code": "CZ",
+    "name": "Praha 6",
+    "parent_code": "CZ-10",
+    "type": "district"
+  },
+  {
+    "code": "CZ-107",
+    "country_code": "CZ",
+    "name": "Praha 7",
+    "parent_code": "CZ-10",
+    "type": "district"
+  },
+  {
+    "code": "CZ-108",
+    "country_code": "CZ",
+    "name": "Praha 8",
+    "parent_code": "CZ-10",
+    "type": "district"
+  },
+  {
+    "code": "CZ-109",
+    "country_code": "CZ",
+    "name": "Praha 9",
+    "parent_code": "CZ-10",
+    "type": "district"
+  },
+  {
+    "code": "CZ-110",
+    "country_code": "CZ",
+    "name": "Praha 10",
+    "parent_code": "CZ-10",
+    "type": "district"
+  },
+  {
+    "code": "CZ-111",
+    "country_code": "CZ",
+    "name": "Praha 11",
+    "parent_code": "CZ-10",
+    "type": "district"
+  },
+  {
+    "code": "CZ-112",
+    "country_code": "CZ",
+    "name": "Praha 12",
+    "parent_code": "CZ-10",
+    "type": "district"
+  },
+  {
+    "code": "CZ-113",
+    "country_code": "CZ",
+    "name": "Praha 13",
+    "parent_code": "CZ-10",
+    "type": "district"
+  },
+  {
+    "code": "CZ-114",
+    "country_code": "CZ",
+    "name": "Praha 14",
+    "parent_code": "CZ-10",
+    "type": "district"
+  },
+  {
+    "code": "CZ-115",
+    "country_code": "CZ",
+    "name": "Praha 15",
+    "parent_code": "CZ-10",
+    "type": "district"
+  },
+  {
+    "code": "CZ-116",
+    "country_code": "CZ",
+    "name": "Praha 16",
+    "parent_code": "CZ-10",
+    "type": "district"
+  },
+  {
+    "code": "CZ-117",
+    "country_code": "CZ",
+    "name": "Praha 17",
+    "parent_code": "CZ-10",
+    "type": "district"
+  },
+  {
+    "code": "CZ-118",
+    "country_code": "CZ",
+    "name": "Praha 18",
+    "parent_code": "CZ-10",
+    "type": "district"
+  },
+  {
+    "code": "CZ-119",
+    "country_code": "CZ",
+    "name": "Praha 19",
+    "parent_code": "CZ-10",
+    "type": "district"
+  },
+  {
+    "code": "CZ-120",
+    "country_code": "CZ",
+    "name": "Praha 20",
+    "parent_code": "CZ-10",
+    "type": "district"
+  },
+  {
+    "code": "CZ-121",
+    "country_code": "CZ",
+    "name": "Praha 21",
+    "parent_code": "CZ-10",
+    "type": "district"
+  },
+  {
+    "code": "CZ-122",
+    "country_code": "CZ",
+    "name": "Praha 22",
+    "parent_code": "CZ-10",
+    "type": "district"
+  },
+  {
+    "code": "CZ-20",
+    "country_code": "CZ",
+    "name": "St\u0159edo\u010desk\u00fd kraj",
+    "parent_code": null,
+    "type": "region"
+  },
+  {
+    "code": "CZ-201",
+    "country_code": "CZ",
+    "name": "Bene\u0161ov",
+    "parent_code": "CZ-20",
+    "type": "district"
+  },
+  {
+    "code": "CZ-202",
+    "country_code": "CZ",
+    "name": "Beroun",
+    "parent_code": "CZ-20",
+    "type": "district"
+  },
+  {
+    "code": "CZ-203",
+    "country_code": "CZ",
+    "name": "Kladno",
+    "parent_code": "CZ-20",
+    "type": "district"
+  },
+  {
+    "code": "CZ-204",
+    "country_code": "CZ",
+    "name": "Kol\u00edn",
+    "parent_code": "CZ-20",
+    "type": "district"
+  },
+  {
+    "code": "CZ-205",
+    "country_code": "CZ",
+    "name": "Kutn\u00e1 Hora",
+    "parent_code": "CZ-20",
+    "type": "district"
+  },
+  {
+    "code": "CZ-206",
+    "country_code": "CZ",
+    "name": "M\u011bln\u00edk",
+    "parent_code": "CZ-20",
+    "type": "district"
+  },
+  {
+    "code": "CZ-207",
+    "country_code": "CZ",
+    "name": "Mlad\u00e1 Boleslav",
+    "parent_code": "CZ-20",
+    "type": "district"
+  },
+  {
+    "code": "CZ-208",
+    "country_code": "CZ",
+    "name": "Nymburk",
+    "parent_code": "CZ-20",
+    "type": "district"
+  },
+  {
+    "code": "CZ-209",
+    "country_code": "CZ",
+    "name": "Praha-v\u00fdchod",
+    "parent_code": "CZ-20",
+    "type": "district"
+  },
+  {
+    "code": "CZ-20A",
+    "country_code": "CZ",
+    "name": "Praha-z\u00e1pad",
+    "parent_code": "CZ-20",
+    "type": "district"
+  },
+  {
+    "code": "CZ-20B",
+    "country_code": "CZ",
+    "name": "P\u0159\u00edbram",
+    "parent_code": "CZ-20",
+    "type": "district"
+  },
+  {
+    "code": "CZ-20C",
+    "country_code": "CZ",
+    "name": "Rakovn\u00edk",
+    "parent_code": "CZ-20",
+    "type": "district"
+  },
+  {
+    "code": "CZ-31",
+    "country_code": "CZ",
+    "name": "Jiho\u010desk\u00fd kraj",
+    "parent_code": null,
+    "type": "region"
+  },
+  {
+    "code": "CZ-311",
+    "country_code": "CZ",
+    "name": "\u010cesk\u00e9 Bud\u011bjovice",
+    "parent_code": "CZ-31",
+    "type": "district"
+  },
+  {
+    "code": "CZ-312",
+    "country_code": "CZ",
+    "name": "\u010cesk\u00fd Krumlov",
+    "parent_code": "CZ-31",
+    "type": "district"
+  },
+  {
+    "code": "CZ-313",
+    "country_code": "CZ",
+    "name": "Jind\u0159ich\u016fv Hradec",
+    "parent_code": "CZ-31",
+    "type": "district"
+  },
+  {
+    "code": "CZ-314",
+    "country_code": "CZ",
+    "name": "P\u00edsek",
+    "parent_code": "CZ-31",
+    "type": "district"
+  },
+  {
+    "code": "CZ-315",
+    "country_code": "CZ",
+    "name": "Prachatice",
+    "parent_code": "CZ-31",
+    "type": "district"
+  },
+  {
+    "code": "CZ-316",
+    "country_code": "CZ",
+    "name": "Strakonice",
+    "parent_code": "CZ-31",
+    "type": "district"
+  },
+  {
+    "code": "CZ-317",
+    "country_code": "CZ",
+    "name": "T\u00e1bor",
+    "parent_code": "CZ-31",
+    "type": "district"
+  },
+  {
+    "code": "CZ-32",
+    "country_code": "CZ",
+    "name": "Plze\u0148sk\u00fd kraj",
+    "parent_code": null,
+    "type": "region"
+  },
+  {
+    "code": "CZ-321",
+    "country_code": "CZ",
+    "name": "Doma\u017elice",
+    "parent_code": "CZ-32",
+    "type": "district"
+  },
+  {
+    "code": "CZ-322",
+    "country_code": "CZ",
+    "name": "Klatovy",
+    "parent_code": "CZ-32",
+    "type": "district"
+  },
+  {
+    "code": "CZ-323",
+    "country_code": "CZ",
+    "name": "Plze\u0148-m\u011bsto",
+    "parent_code": "CZ-32",
+    "type": "district"
+  },
+  {
+    "code": "CZ-324",
+    "country_code": "CZ",
+    "name": "Plze\u0148-jih",
+    "parent_code": "CZ-32",
+    "type": "district"
+  },
+  {
+    "code": "CZ-325",
+    "country_code": "CZ",
+    "name": "Plze\u0148-sever",
+    "parent_code": "CZ-32",
+    "type": "district"
+  },
+  {
+    "code": "CZ-326",
+    "country_code": "CZ",
+    "name": "Rokycany",
+    "parent_code": "CZ-32",
+    "type": "district"
+  },
+  {
+    "code": "CZ-327",
+    "country_code": "CZ",
+    "name": "Tachov",
+    "parent_code": "CZ-32",
+    "type": "district"
+  },
+  {
+    "code": "CZ-41",
+    "country_code": "CZ",
+    "name": "Karlovarsk\u00fd kraj",
+    "parent_code": null,
+    "type": "region"
+  },
+  {
+    "code": "CZ-411",
+    "country_code": "CZ",
+    "name": "Cheb",
+    "parent_code": "CZ-41",
+    "type": "district"
+  },
+  {
+    "code": "CZ-412",
+    "country_code": "CZ",
+    "name": "Karlovy Vary",
+    "parent_code": "CZ-41",
+    "type": "district"
+  },
+  {
+    "code": "CZ-413",
+    "country_code": "CZ",
+    "name": "Sokolov",
+    "parent_code": "CZ-41",
+    "type": "district"
+  },
+  {
+    "code": "CZ-42",
+    "country_code": "CZ",
+    "name": "\u00dasteck\u00fd kraj",
+    "parent_code": null,
+    "type": "region"
+  },
+  {
+    "code": "CZ-421",
+    "country_code": "CZ",
+    "name": "D\u011b\u010d\u00edn",
+    "parent_code": "CZ-42",
+    "type": "district"
+  },
+  {
+    "code": "CZ-422",
+    "country_code": "CZ",
+    "name": "Chomutov",
+    "parent_code": "CZ-42",
+    "type": "district"
+  },
+  {
+    "code": "CZ-423",
+    "country_code": "CZ",
+    "name": "Litom\u011b\u0159ice",
+    "parent_code": "CZ-42",
+    "type": "district"
+  },
+  {
+    "code": "CZ-424",
+    "country_code": "CZ",
+    "name": "Louny",
+    "parent_code": "CZ-42",
+    "type": "district"
+  },
+  {
+    "code": "CZ-425",
+    "country_code": "CZ",
+    "name": "Most",
+    "parent_code": "CZ-42",
+    "type": "district"
+  },
+  {
+    "code": "CZ-426",
+    "country_code": "CZ",
+    "name": "Teplice",
+    "parent_code": "CZ-42",
+    "type": "district"
+  },
+  {
+    "code": "CZ-427",
+    "country_code": "CZ",
+    "name": "\u00dast\u00ed nad Labem",
+    "parent_code": "CZ-42",
+    "type": "district"
+  },
+  {
+    "code": "CZ-51",
+    "country_code": "CZ",
+    "name": "Libereck\u00fd kraj",
+    "parent_code": null,
+    "type": "region"
+  },
+  {
+    "code": "CZ-511",
+    "country_code": "CZ",
+    "name": "\u010cesk\u00e1 L\u00edpa",
+    "parent_code": "CZ-51",
+    "type": "district"
+  },
+  {
+    "code": "CZ-512",
+    "country_code": "CZ",
+    "name": "Jablonec nad Nisou",
+    "parent_code": "CZ-51",
+    "type": "district"
+  },
+  {
+    "code": "CZ-513",
+    "country_code": "CZ",
+    "name": "Liberec",
+    "parent_code": "CZ-51",
+    "type": "district"
+  },
+  {
+    "code": "CZ-514",
+    "country_code": "CZ",
+    "name": "Semily",
+    "parent_code": "CZ-51",
+    "type": "district"
+  },
+  {
+    "code": "CZ-52",
+    "country_code": "CZ",
+    "name": "Kr\u00e1lov\u00e9hradeck\u00fd kraj",
+    "parent_code": null,
+    "type": "region"
+  },
+  {
+    "code": "CZ-521",
+    "country_code": "CZ",
+    "name": "Hradec Kr\u00e1lov\u00e9",
+    "parent_code": "CZ-52",
+    "type": "district"
+  },
+  {
+    "code": "CZ-522",
+    "country_code": "CZ",
+    "name": "Ji\u010d\u00edn",
+    "parent_code": "CZ-52",
+    "type": "district"
+  },
+  {
+    "code": "CZ-523",
+    "country_code": "CZ",
+    "name": "N\u00e1chod",
+    "parent_code": "CZ-52",
+    "type": "district"
+  },
+  {
+    "code": "CZ-524",
+    "country_code": "CZ",
+    "name": "Rychnov nad Kn\u011b\u017enou",
+    "parent_code": "CZ-52",
+    "type": "district"
+  },
+  {
+    "code": "CZ-525",
+    "country_code": "CZ",
+    "name": "Trutnov",
+    "parent_code": "CZ-52",
+    "type": "district"
+  },
+  {
+    "code": "CZ-53",
+    "country_code": "CZ",
+    "name": "Pardubick\u00fd kraj",
+    "parent_code": null,
+    "type": "region"
+  },
+  {
+    "code": "CZ-531",
+    "country_code": "CZ",
+    "name": "Chrudim",
+    "parent_code": "CZ-53",
+    "type": "district"
+  },
+  {
+    "code": "CZ-532",
+    "country_code": "CZ",
+    "name": "Pardubice",
+    "parent_code": "CZ-53",
+    "type": "district"
+  },
+  {
+    "code": "CZ-533",
+    "country_code": "CZ",
+    "name": "Svitavy",
+    "parent_code": "CZ-53",
+    "type": "district"
+  },
+  {
+    "code": "CZ-534",
+    "country_code": "CZ",
+    "name": "\u00dast\u00ed nad Orlic\u00ed",
+    "parent_code": "CZ-53",
+    "type": "district"
+  },
+  {
+    "code": "CZ-63",
+    "country_code": "CZ",
+    "name": "Kraj Vyso\u010dina",
+    "parent_code": null,
+    "type": "region"
+  },
+  {
+    "code": "CZ-631",
+    "country_code": "CZ",
+    "name": "Havl\u00ed\u010dk\u016fv Brod",
+    "parent_code": "CZ-63",
+    "type": "district"
+  },
+  {
+    "code": "CZ-632",
+    "country_code": "CZ",
+    "name": "Jihlava",
+    "parent_code": "CZ-63",
+    "type": "district"
+  },
+  {
+    "code": "CZ-633",
+    "country_code": "CZ",
+    "name": "Pelh\u0159imov",
+    "parent_code": "CZ-63",
+    "type": "district"
+  },
+  {
+    "code": "CZ-634",
+    "country_code": "CZ",
+    "name": "T\u0159eb\u00ed\u010d",
+    "parent_code": "CZ-63",
+    "type": "district"
+  },
+  {
+    "code": "CZ-635",
+    "country_code": "CZ",
+    "name": "\u017d\u010f\u00e1r nad S\u00e1zavou",
+    "parent_code": "CZ-63",
+    "type": "district"
+  },
+  {
+    "code": "CZ-64",
+    "country_code": "CZ",
+    "name": "Jihomoravsk\u00fd kraj",
+    "parent_code": null,
+    "type": "region"
+  },
+  {
+    "code": "CZ-641",
+    "country_code": "CZ",
+    "name": "Blansko",
+    "parent_code": "CZ-64",
+    "type": "district"
+  },
+  {
+    "code": "CZ-642",
+    "country_code": "CZ",
+    "name": "Brno-m\u011bsto",
+    "parent_code": "CZ-64",
+    "type": "district"
+  },
+  {
+    "code": "CZ-643",
+    "country_code": "CZ",
+    "name": "Brno-venkov",
+    "parent_code": "CZ-64",
+    "type": "district"
+  },
+  {
+    "code": "CZ-644",
+    "country_code": "CZ",
+    "name": "B\u0159eclav",
+    "parent_code": "CZ-64",
+    "type": "district"
+  },
+  {
+    "code": "CZ-645",
+    "country_code": "CZ",
+    "name": "Hodon\u00edn",
+    "parent_code": "CZ-64",
+    "type": "district"
+  },
+  {
+    "code": "CZ-646",
+    "country_code": "CZ",
+    "name": "Vy\u0161kov",
+    "parent_code": "CZ-64",
+    "type": "district"
+  },
+  {
+    "code": "CZ-647",
+    "country_code": "CZ",
+    "name": "Znojmo",
+    "parent_code": "CZ-64",
+    "type": "district"
+  },
+  {
+    "code": "CZ-71",
+    "country_code": "CZ",
+    "name": "Olomouck\u00fd kraj",
+    "parent_code": null,
+    "type": "region"
+  },
+  {
+    "code": "CZ-711",
+    "country_code": "CZ",
+    "name": "Jesen\u00edk",
+    "parent_code": "CZ-71",
+    "type": "district"
+  },
+  {
+    "code": "CZ-712",
+    "country_code": "CZ",
+    "name": "Olomouc",
+    "parent_code": "CZ-71",
+    "type": "district"
+  },
+  {
+    "code": "CZ-713",
+    "country_code": "CZ",
+    "name": "Prost\u011bjov",
+    "parent_code": "CZ-71",
+    "type": "district"
+  },
+  {
+    "code": "CZ-714",
+    "country_code": "CZ",
+    "name": "P\u0159erov",
+    "parent_code": "CZ-71",
+    "type": "district"
+  },
+  {
+    "code": "CZ-715",
+    "country_code": "CZ",
+    "name": "\u0160umperk",
+    "parent_code": "CZ-71",
+    "type": "district"
+  },
+  {
+    "code": "CZ-72",
+    "country_code": "CZ",
+    "name": "Zl\u00ednsk\u00fd kraj",
+    "parent_code": null,
+    "type": "region"
+  },
+  {
+    "code": "CZ-721",
+    "country_code": "CZ",
+    "name": "Krom\u011b\u0159\u00ed\u017e",
+    "parent_code": "CZ-72",
+    "type": "district"
+  },
+  {
+    "code": "CZ-722",
+    "country_code": "CZ",
+    "name": "Uhersk\u00e9 Hradi\u0161t\u011b",
+    "parent_code": "CZ-72",
+    "type": "district"
+  },
+  {
+    "code": "CZ-723",
+    "country_code": "CZ",
+    "name": "Vset\u00edn",
+    "parent_code": "CZ-72",
+    "type": "district"
+  },
+  {
+    "code": "CZ-724",
+    "country_code": "CZ",
+    "name": "Zl\u00edn",
+    "parent_code": "CZ-72",
+    "type": "district"
+  },
+  {
+    "code": "CZ-80",
+    "country_code": "CZ",
+    "name": "Moravskoslezsk\u00fd kraj",
+    "parent_code": null,
+    "type": "region"
+  },
+  {
+    "code": "CZ-801",
+    "country_code": "CZ",
+    "name": "Brunt\u00e1l",
+    "parent_code": "CZ-80",
+    "type": "district"
+  },
+  {
+    "code": "CZ-802",
+    "country_code": "CZ",
+    "name": "Fr\u00fddek M\u00edstek",
+    "parent_code": "CZ-80",
+    "type": "district"
+  },
+  {
+    "code": "CZ-803",
+    "country_code": "CZ",
+    "name": "Karvin\u00e1",
+    "parent_code": "CZ-80",
+    "type": "district"
+  },
+  {
+    "code": "CZ-804",
+    "country_code": "CZ",
+    "name": "Nov\u00fd Ji\u010d\u00edn",
+    "parent_code": "CZ-80",
+    "type": "district"
+  },
+  {
+    "code": "CZ-805",
+    "country_code": "CZ",
+    "name": "Opava",
+    "parent_code": "CZ-80",
+    "type": "district"
+  },
+  {
+    "code": "CZ-806",
+    "country_code": "CZ",
+    "name": "Ostrava-m\u011bsto",
+    "parent_code": "CZ-80",
+    "type": "district"
+  }
+]

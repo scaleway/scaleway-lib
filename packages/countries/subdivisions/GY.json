@@ -1,0 +1,72 @@
+[
+  {
+    "code": "GY-BA",
+    "country_code": "GY",
+    "name": "Barima-Waini",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "GY-CU",
+    "country_code": "GY",
+    "name": "Cuyuni-Mazaruni",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "GY-DE",
+    "country_code": "GY",
+    "name": "Demerara-Mahaica",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "GY-EB",
+    "country_code": "GY",
+    "name": "East Berbice-Corentyne",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "GY-ES",
+    "country_code": "GY",
+    "name": "Essequibo Islands-West Demerara",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "GY-MA",
+    "country_code": "GY",
+    "name": "Mahaica-Berbice",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "GY-PM",
+    "country_code": "GY",
+    "name": "Pomeroon-Supenaam",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "GY-PT",
+    "country_code": "GY",
+    "name": "Potaro-Siparuni",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "GY-UD",
+    "country_code": "GY",
+    "name": "Upper Demerara-Berbice",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "GY-UT",
+    "country_code": "GY",
+    "name": "Upper Takutu-Upper Essequibo",
+    "parent_code": null,
+    "type": "Region"
+  }
+]

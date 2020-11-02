@@ -1,0 +1,44 @@
+[
+  {
+    "code": "TM-A",
+    "country_code": "TM",
+    "name": "Ahal",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TM-B",
+    "country_code": "TM",
+    "name": "Balkan",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TM-D",
+    "country_code": "TM",
+    "name": "Da\u015foguz",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TM-L",
+    "country_code": "TM",
+    "name": "Lebap",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TM-M",
+    "country_code": "TM",
+    "name": "Mary",
+    "parent_code": null,
+    "type": "Region"
+  },
+  {
+    "code": "TM-S",
+    "country_code": "TM",
+    "name": "A\u015fgabat",
+    "parent_code": null,
+    "type": "City"
+  }
+]

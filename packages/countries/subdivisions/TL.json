@@ -1,0 +1,93 @@
+[
+  {
+    "code": "TL-AL",
+    "country_code": "TL",
+    "name": "Aileu",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "TL-AN",
+    "country_code": "TL",
+    "name": "Ainaro",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "TL-BA",
+    "country_code": "TL",
+    "name": "Baucau",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "TL-BO",
+    "country_code": "TL",
+    "name": "Bobonaro",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "TL-CO",
+    "country_code": "TL",
+    "name": "Cova Lima",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "TL-DI",
+    "country_code": "TL",
+    "name": "D\u00edli",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "TL-ER",
+    "country_code": "TL",
+    "name": "Ermera",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "TL-LA",
+    "country_code": "TL",
+    "name": "Lautem",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "TL-LI",
+    "country_code": "TL",
+    "name": "Liqui\u00e7a",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "TL-MF",
+    "country_code": "TL",
+    "name": "Manufahi",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "TL-MT",
+    "country_code": "TL",
+    "name": "Manatuto",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "TL-OE",
+    "country_code": "TL",
+    "name": "Oecussi",
+    "parent_code": null,
+    "type": "District"
+  },
+  {
+    "code": "TL-VI",
+    "country_code": "TL",
+    "name": "Viqueque",
+    "parent_code": null,
+    "type": "District"
+  }
+]
