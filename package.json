@@ -25,7 +25,8 @@
     "prettier": "^2.1.2",
     "read-pkg": "^5.2.0",
     "rollup": "^2.33.0",
-    "rollup-plugin-analyzer": "^3.3.0"
+    "rollup-plugin-analyzer": "^3.3.0",
+    "rollup-plugin-preserve-shebangs": "^0.2.0"
   },
   "scripts": {
     "lint": "eslint --cache .",

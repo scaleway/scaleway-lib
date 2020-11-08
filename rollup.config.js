@@ -4,6 +4,7 @@ import resolve from '@rollup/plugin-node-resolve'
 import builtins from 'builtin-modules'
 import readPkg from 'read-pkg'
 import analyze from 'rollup-plugin-analyzer'
+import { preserveShebangs } from 'rollup-plugin-preserve-shebangs';
 
 const PROFILE = !!process.env.PROFILE
 
@@ -22,7 +23,7 @@ const getConfig = (pkg, isBrowser = false) => {
       ...Object.keys(pkg.dependencies || {}),
       ...Object.keys(pkg.peerDependencies || {}),
       ...(isBrowser ? [] : builtins),
-    ].find(dep => new RegExp(dep).test(id))
+    ].find(dep => new RegExp(`^${dep}`).test(id))
 
   return {
     input: './src/index.js',
@@ -41,6 +42,7 @@ const getConfig = (pkg, isBrowser = false) => {
       commonjs({
         include: '**/node_modules/**',
       }),
+      preserveShebangs(),
       PROFILE && analyze({ summaryOnly: true }),
     ].filter(Boolean),
     external,
