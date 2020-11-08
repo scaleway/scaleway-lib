@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.3](https://github.com/scaleway/scaleway-lib/compare/@scaleway/random-name@1.1.2...@scaleway/random-name@1.1.3) (2020-11-08)
+
+**Note:** Version bump only for package @scaleway/random-name
+
+
+
+
+
 ## [1.1.2](https://github.com/scaleway/scaleway-lib/compare/@scaleway/random-name@1.1.1...@scaleway/random-name@1.1.2) (2020-10-28)
 
 
