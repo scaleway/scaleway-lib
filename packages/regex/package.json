@@ -1,0 +1,17 @@
+{
+  "name": "@scaleway/regex",
+  "version": "1.0.0",
+  "description": "A small utility to use regex",
+  "main": "dist/index.js",
+  "module": "dist/module.js",
+  "browser": {
+    "dist/index.js": "./dist/index.browser.js",
+    "dist/module.js": "./dist/module.browser.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scaleway/scaleway-lib",
+    "directory": "packages/regex"
+  },
+  "license": "UNLICENSED"
+}
