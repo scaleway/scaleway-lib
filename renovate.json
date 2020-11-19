@@ -7,9 +7,9 @@
     "helpers:disableTypesNodeMajor",
     "packages:linters"
   ],
-  "assignees": ["aphilibeaux", "mprost", "vaudebert", "echambon"],
+  "assignees": ["aphilibeaux", "mprost", "vaudebert", "echambon", "thuart"],
   "assigneesSampleSize": 1,
-  "reviewers": ["aphilibeaux", "mprost", "vaudebert", "echambon"],
+  "reviewers": ["aphilibeaux", "mprost", "vaudebert", "echambon", "thuart"],
   "reviewersSampleSize": 2,
   "branchPrefix": "renovate/",
   "updateNotScheduled": true,
