@@ -28,6 +28,7 @@ scaleway-lib is a set of NPM packgages used at Scaleway. These libraries are ava
 - [`@scaleway/eslint-config-react`](./packages/eslint-config-react/README.md): A shared eslint react opiniated configuration
 - [`@scaleway/random-name`](./packages/random-name/README.md): A tiny utility to generate random names
 - [`@scaleway/regex`](./packages/regex/README.md): usefull regex named
+- [`@scaleway/didiff-lib`](./packages/didiff-lib/README.md): diffing-s3-compatible lib for visual testing
 
 ## Development
 

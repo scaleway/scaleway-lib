@@ -1,0 +1,3 @@
+https://scaleway.com/en/saas,https://scaleway.com/en/saas
+https://scaleway.com/en/betas,https://scaleway.com/en/betas
+https://scaleway.com/en/startup,https://scaleway.com/en/startup
