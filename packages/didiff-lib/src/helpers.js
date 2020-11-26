@@ -37,8 +37,11 @@ function getImageInformations({ url = '', pathname = '', name = '' }) {
 }
 function getPathnameFromUrl(url = '') {
   const urlParts = url.split('/').filter(Boolean)
-  const langIndex = urlParts.findIndex(v => v === 'en' || v === 'fr') + 1
-  return urlParts.slice(langIndex, urlParts.length).join('!') || 'home'
+  const langIndex = urlParts.findIndex(v => v === 'en' || v === 'fr')
+  const slicedName = urlParts.slice(langIndex, urlParts.length) || []
+  return (slicedName.length > 1 ? slicedName : [...slicedName, 'index']).join(
+    '-',
+  )
 }
 
 export {

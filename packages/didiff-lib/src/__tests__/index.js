@@ -114,23 +114,25 @@ describe('didiff-lib', () => {
     describe('getPathnameFromUrl', () => {
       it('should get slug from basic url', () => {
         expect(getPathnameFromUrl('https://scaleway.com/en/saas')).toMatch(
-          'saas',
+          'en-saas',
         )
       })
       it('should get slug from complex url', () => {
         expect(
           getPathnameFromUrl('https://scaleway.com/fr/dedibox/start'),
-        ).toMatch('dedibox!start')
+        ).toMatch('fr-dedibox-start')
       })
       it('should get slug from home url', () => {
-        expect(getPathnameFromUrl('https://scaleway.com/en/')).toMatch('home')
+        expect(getPathnameFromUrl('https://scaleway.com/en/')).toMatch(
+          'en-index',
+        )
       })
     })
     describe('getImageInformations', () => {
       it('should get informations about image', () => {
         const infos = getImageInformations({
           url: 'https://scaleway.com/en/saas',
-          pathname: 'saas',
+          pathname: 'en-saas',
           name: 'original',
         })
         const fsPath = nodePath.resolve(__dirname, '../screenshots')
@@ -138,9 +140,9 @@ describe('didiff-lib', () => {
         expect(infos).toMatchObject({
           url: 'https://scaleway.com/en/saas',
           name: 'original',
-          fullName: 'saas-original.png',
-          fullPath: `${fsPath}/saas-original.png`,
-          path: `${fsPath}/saas`,
+          fullName: 'en-saas-original.png',
+          fullPath: `${fsPath}/en-saas-original.png`,
+          path: `${fsPath}/en-saas`,
         })
       })
     })
