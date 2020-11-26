@@ -83,8 +83,6 @@ async function capturePages({ original, sample }) {
     log.err('Fail during the screenshoting process ❌', error)
     process.exit(1)
   }
-
-  log.info('Capturing ✅')
 }
 
 export default capturePages

@@ -15,7 +15,6 @@ function getUrls(file = '') {
         const [o, s] = curr.split(',')
         return [...acc, [o, s]]
       }, [])
-    log.info('Getting urls done ✅')
     return urls || []
   } catch (error) {
     log.err(

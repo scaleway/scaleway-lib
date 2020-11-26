@@ -20,7 +20,6 @@ async function cropBiggerImage({ image, path }, dimensions) {
     width: dimensions.width,
     height: dimensions.height,
   })
-  log.info('Cropping ✅')
 }
 function getSmallestDimensions({ originalData, sampleData }) {
   if (sampleData.png.height > originalData.png.height) {
@@ -84,7 +83,7 @@ async function isCapturesDifferents({ original = {}, sample = {}, diff = {} }) {
       log.info('Diff was found ❗️')
       return true
     }
-    log.info('No diff ✅')
+    log.info('No diff, skipping')
     return false
   } catch (error) {
     log.err('Fail during the diffing process ❌', error)

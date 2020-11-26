@@ -18,9 +18,7 @@ dotenv.config()
 const TEST_DATE = new Date()
 
 function cleanCaptures(fsPaths = []) {
-  log.info('Cleaning screenshots ...')
   removeFiles(fsPaths)
-  log.info('Cleaning screenshots ✅')
 }
 function upload(pathname, { original, sample, diff }) {
   const dateString = TEST_DATE.toLocaleDateString('fr').replace(/\//g, '-')
@@ -65,7 +63,7 @@ async function startLoop(urls) {
   const nbUrls = urls.length
   let totalDiff = 0
 
-  log.info(`Didiff will now check ${nbUrls} urls 📸`)
+  log.info(`Didiff will now check ${nbUrls} urls 📸 \n`)
   for (let i = 0; i < nbUrls; i += 1) {
     const [original, sample] = urls[i]
     const pathname = getPathnameFromUrl(original)
@@ -106,11 +104,12 @@ async function startLoop(urls) {
 
     log.info(`Process for /${pathname} done.`)
     if (nbUrls - (i + 1) === 0) {
-      log.info(`All urls have been handled! (${nbUrls}) 📸`)
+      log.info(`\nAll urls have been handled! (${nbUrls}) 📸`)
       log.info(`Didiff found ${totalDiff} diffs.`)
       log.info(`Shutting down...`)
     } else {
       log.info(`Still ${nbUrls - (i + 1)} check to do.`)
+      log.info('---')
     }
   }
 }

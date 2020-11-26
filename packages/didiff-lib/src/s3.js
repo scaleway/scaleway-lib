@@ -21,7 +21,6 @@ function init() {
 }
 
 function upload({ key, body }) {
-  log.info('Uploading', key)
   const client = getClient()
   client.upload(
     {
@@ -38,6 +37,7 @@ function upload({ key, body }) {
 }
 
 async function uploadBatch(batch = []) {
+  log.info('Uploading...')
   batch.forEach(data => upload(data))
 }
 
