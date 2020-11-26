@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/scaleway/scaleway-lib/compare/@scaleway/didiff-lib@1.1.0...@scaleway/didiff-lib@1.1.1) (2020-11-26)
+
+
+### Bug Fixes
+
+* add lang to pathname ([980141c](https://github.com/scaleway/scaleway-lib/commit/980141c72336649628b4236ac089aa5f58f92192))
+
+
+
+
+
 # 1.1.0 (2020-11-19)
 
 
