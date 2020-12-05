@@ -14,7 +14,7 @@
     "didiff": "./dist/index.js"
   },
   "dependencies": {
-    "aws-sdk": "^2.793.0",
+    "aws-sdk": "^2.804.0",
     "dotenv": "^8.2.0",
     "fast-xml-parser": "^3.17.4",
     "lookpath": "^1.1.0",
