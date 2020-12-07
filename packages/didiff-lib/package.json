@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/didiff-lib",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "author": "@teamfrontweb",
   "description": "Lib comparing, diffing and uploading screenshots",
   "main": "dist/index.js",
