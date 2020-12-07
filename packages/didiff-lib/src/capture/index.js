@@ -47,9 +47,9 @@ async function capturePages({ original, sample }) {
         })
         await page.goto(infos.url)
 
-        const pageHeight = await page.evaluate(() => {
-          return document.getElementsByTagName('html')[0].scrollHeight
-        })
+        const pageHeight = await page.evaluate(
+          () => document.getElementsByTagName('html')[0].scrollHeight,
+        )
         const partHeight = Math.round(pageHeight / NB_SCREEN_PER_PAGE)
 
         const filesPath = Array.from({ length: NB_SCREEN_PER_PAGE }).map(
