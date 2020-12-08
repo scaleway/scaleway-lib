@@ -16,15 +16,13 @@
   "dependencies": {
     "aws-sdk": "^2.804.0",
     "dotenv": "^8.2.0",
-    "fast-xml-parser": "^3.17.4",
     "lookpath": "^1.1.0",
     "node-fetch": "^2.6.1",
     "path": "^0.12.7",
     "pixelmatch": "^5.2.1",
     "pngjs": "^5.0.0",
     "puppeteer": "^5.5.0",
-    "sharp": "^0.26.3",
-    "yargs": "^15.4.1"
+    "sharp": "^0.26.3"
   },
   "scripts": {
     "start": "node src/"
