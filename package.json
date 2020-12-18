@@ -24,7 +24,7 @@
     "lint-staged": "^10.5.2",
     "prettier": "^2.2.1",
     "read-pkg": "^5.2.0",
-    "rollup": "^2.33.3",
+    "rollup": "^2.35.1",
     "rollup-plugin-analyzer": "^3.3.0",
     "rollup-plugin-preserve-shebangs": "^0.2.0"
   },
