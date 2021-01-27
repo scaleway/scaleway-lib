@@ -22,7 +22,7 @@
     "pixelmatch": "^5.2.1",
     "pngjs": "^6.0.0",
     "puppeteer": "^5.5.0",
-    "sharp": "^0.26.3"
+    "sharp": "^0.27.1"
   },
   "scripts": {
     "start": "node src/"
