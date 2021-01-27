@@ -14,7 +14,7 @@
     "didiff": "./dist/index.js"
   },
   "dependencies": {
-    "aws-sdk": "^2.804.0",
+    "aws-sdk": "^2.832.0",
     "dotenv": "^8.2.0",
     "lookpath": "^1.1.0",
     "node-fetch": "^2.6.1",
