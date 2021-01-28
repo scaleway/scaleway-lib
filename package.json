@@ -63,8 +63,7 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "packages/*/src/*.{js,jsx}",
-      "!packages/didiff-lib/capture/screenshot.js"
+      "packages/*/src/*.{js,jsx}"
     ],
     "coverageReporters": [
       "text",
