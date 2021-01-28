@@ -1,6 +1,6 @@
 # scaleway-lib
 
-scaleway-lib is a set of NPM packgages used at Scaleway.
+scaleway-lib is a set of NPM packages used at Scaleway.
 
 ---
 
