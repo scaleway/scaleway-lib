@@ -34,7 +34,7 @@ scaleway-lib is a set of NPM packages used at Scaleway.
 ### Locally
 
 ```bash
-$ git clone git@github.com:chambo-e/scaleway-lib.git
+$ git clone git@github.com:scaleway/scaleway-lib.git
 $ cd scaleway-lib
 $ yarn
 $ # ... do your changes ...
