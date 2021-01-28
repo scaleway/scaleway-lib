@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.2.0 (2021-01-28)
+
+
+### Bug Fixes
+
+* **eslint-config-react:** correct dependencies ([fec5b45](https://github.com/scaleway/scaleway-lib/commit/fec5b45b75b4c19eb09e9070b837f2aa2ad2e758))
+
+
+### Features
+
+* **eslint-config-react:** add shared react eslint config ([44a5fc9](https://github.com/scaleway/scaleway-lib/commit/44a5fc9d38c58fae5c74026661de35a00a9584f4))
+
+
+
+
+
 ## [1.1.16](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@1.1.15...@scaleway/eslint-config-react@1.1.16) (2021-01-23)
 
 **Note:** Version bump only for package @scaleway/eslint-config-react

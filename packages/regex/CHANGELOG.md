@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.2.0 (2021-01-28)
+
+
+### Features
+
+* **regex:** add deploy package ([b288c6f](https://github.com/scaleway/scaleway-lib/commit/b288c6f06bd6107064f5ea74acb2207954ec08e2))
+
+
+
+
+
 # 1.1.0 (2020-11-09)
 
 
