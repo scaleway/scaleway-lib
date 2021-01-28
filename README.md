@@ -1,6 +1,6 @@
 # scaleway-lib
 
-scaleway-lib is a set of NPM packgages used at Scaleway. These libraries are available on our [private NPM registry](https://***REMOVED***).
+scaleway-lib is a set of NPM packgages used at Scaleway.
 
 ---
 
@@ -35,7 +35,7 @@ scaleway-lib is a set of NPM packgages used at Scaleway. These libraries are ava
 ### Locally
 
 ```bash
-$ git clone git@***REMOVED***/scaleway-lib.git
+$ git clone git@github.com:chambo-e/scaleway-lib.git
 $ cd scaleway-lib
 $ yarn
 $ # ... do your changes ...

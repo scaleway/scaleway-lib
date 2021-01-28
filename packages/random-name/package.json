@@ -8,6 +8,9 @@
     "dist/index.js": "./dist/index.browser.js",
     "dist/module.js": "./dist/module.browser.js"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/scaleway/scaleway-lib",
