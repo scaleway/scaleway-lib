@@ -6,6 +6,14 @@ module.exports = {
     jest: true,
   },
   rules: {
+    'sort-imports': [
+      'error',
+      {
+        ignoreDeclarationSort: true,
+        memberSyntaxSortOrder: ['single', 'multiple', 'all', 'none'],
+      },
+    ],
+
     'import/order': [
       'error',
       {
