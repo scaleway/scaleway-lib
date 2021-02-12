@@ -5,7 +5,6 @@ module.exports = {
     browser: true,
     jest: true,
   },
-  plugins: ['react-hooks'],
   rules: {
     'import/order': [
       'error',
