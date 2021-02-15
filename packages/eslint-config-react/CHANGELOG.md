@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@1.2.0...@scaleway/eslint-config-react@1.3.0) (2021-02-15)
+
+
+### Features
+
+* **eslint:** enable not yet enabled react plugin rules from airbnb ([#27](https://github.com/scaleway/scaleway-lib/issues/27)) ([78c9692](https://github.com/scaleway/scaleway-lib/commit/78c9692fe56ca308e49fb1bb9ac80b5a6217a6f3))
+
+
+
+
+
 # 1.2.0 (2021-01-28)
 
 
