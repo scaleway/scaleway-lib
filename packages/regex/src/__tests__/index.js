@@ -1,6 +1,10 @@
 import {
   alpha,
   alphanum,
+  alphanumLowercase,
+  alphanumSpacesDotsUnderscoreDash,
+  alphanumUnderscoreDash,
+  alphanumUnderscoreDollarDash,
   alphanumdash,
   alphanumdashdots,
   alphanumdashdotsorempty,
@@ -8,10 +12,6 @@ import {
   alphanumdashorempty,
   alphanumdashspaces,
   alphanumdots,
-  alphanumLowercase,
-  alphanumSpacesDotsUnderscoreDash,
-  alphanumUnderscoreDash,
-  alphanumUnderscoreDollarDash,
   ascii,
   backupKey,
   cron,
@@ -19,8 +19,8 @@ import {
   email,
   fourDigitsCode,
   phone,
-  spaces,
   sixDigitsCode,
+  spaces,
   url,
 } from '..'
 
