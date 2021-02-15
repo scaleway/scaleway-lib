@@ -14,5 +14,5 @@
   "scripts": {
     "generate": "poetry install && poetry run python generate.py"
   },
-  "license": "UNLICENSED"
+  "license": "MIT"
 }

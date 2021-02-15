@@ -16,7 +16,7 @@
     "url": "https://github.com/scaleway/scaleway-lib",
     "directory": "packages/random-name"
   },
-  "license": "UNLICENSED",
+  "license": "MIT",
   "dependencies": {
     "docker-names": "^1.1.1"
   }
