@@ -1,6 +1,5 @@
 module.exports = {
-  extends: ['airbnb', 'airbnb/hooks', 'prettier', 'prettier/react'],
-  parser: '@babel/eslint-parser',
+  extends: ['airbnb', 'airbnb/hooks', 'prettier'],
   env: {
     browser: true,
     jest: true,
@@ -36,6 +35,6 @@ module.exports = {
     'react/jsx-no-script-url': 'error',
     'react/jsx-no-useless-fragment': 'error',
     'react/no-adjacent-inline-elements': 'error',
-    'react/jsx-no-constructed-context-values': 'warn'
+    'react/jsx-no-constructed-context-values': 'warn',
   },
 }
