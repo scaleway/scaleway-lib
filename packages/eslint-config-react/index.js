@@ -32,6 +32,15 @@ module.exports = {
       },
     ],
 
+    'padding-line-between-statements': [
+      'error',
+      {
+        blankLine: 'always',
+        prev: '*',
+        next: 'return',
+      },
+    ],
+
     'react/jsx-filename-extension': ['error', { extensions: ['.js'] }],
     'react/jsx-no-script-url': 'error',
     'react/jsx-no-useless-fragment': 'error',
