@@ -5,4 +5,3 @@ coverage
 *.log
 .reports
 .env
-.idea
