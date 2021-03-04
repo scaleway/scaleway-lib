@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@1.3.2...@scaleway/eslint-config-react@1.4.0) (2021-03-04)
+
+
+### Features
+
+* updated eslint setting to force carriage return before return ([3514034](https://github.com/scaleway/scaleway-lib/commit/3514034804ae06083825adc3e57003ed8dba4933))
+
+
+
+
+
 ## [1.3.2](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@1.3.1...@scaleway/eslint-config-react@1.3.2) (2021-03-02)
 
 **Note:** Version bump only for package @scaleway/eslint-config-react
