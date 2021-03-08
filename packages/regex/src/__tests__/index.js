@@ -18,6 +18,7 @@ import {
   digits,
   email,
   fourDigitsCode,
+  macAddress,
   phone,
   sixDigitsCode,
   spaces,
@@ -44,6 +45,7 @@ const sixDigitsCodeTest = '123456'
 const url1 = 'http://console.scaleway.com'
 const url2 = 'https://www.scaleway.com'
 const whitespace = ' \t\n\r\x0b\x0c'
+const macAddress1 = '1F:B5:FA:47:CD:C4'
 
 describe('@regex', () => {
   describe('alpha', () => {
@@ -61,6 +63,7 @@ describe('@regex', () => {
       [punctuation, false],
       [whitespace, false],
       [cronTest, false],
+      [macAddress1, false],
     ].forEach(([string, result]) =>
       it(`should match regex ${string} to be ${result}`, () =>
         expect(alpha.test(string)).toBe(result)),
@@ -82,6 +85,7 @@ describe('@regex', () => {
       [punctuation, false],
       [whitespace, false],
       [cronTest, false],
+      [macAddress1, false],
     ].forEach(([string, result]) =>
       it(`should match regex ${string} to be ${result}`, () =>
         expect(alphanum.test(string)).toBe(result)),
@@ -103,6 +107,7 @@ describe('@regex', () => {
       [punctuation, false],
       [whitespace, false],
       [cronTest, false],
+      [macAddress1, false],
     ].forEach(([string, result]) =>
       it(`should match regex ${string} to be ${result}`, () =>
         expect(alphanumdash.test(string)).toBe(result)),
@@ -124,6 +129,7 @@ describe('@regex', () => {
       [punctuation, false],
       [whitespace, false],
       [cronTest, false],
+      [macAddress1, false],
     ].forEach(([string, result]) =>
       it(`should match regex ${string} to be ${result}`, () =>
         expect(alphanumdashdots.test(string)).toBe(result)),
@@ -145,6 +151,7 @@ describe('@regex', () => {
       [punctuation, false],
       [whitespace, false],
       [cronTest, false],
+      [macAddress1, false],
     ].forEach(([string, result]) =>
       it(`should match regex ${string} to be ${result}`, () =>
         expect(alphanumdashdotsorempty.test(string)).toBe(result)),
@@ -166,6 +173,7 @@ describe('@regex', () => {
       [punctuation, false],
       [whitespace, true],
       [cronTest, false],
+      [macAddress1, false],
     ].forEach(([string, result]) =>
       it(`should match regex ${string} to be ${result}`, () =>
         expect(alphanumdashdotsspaces.test(string)).toBe(result)),
@@ -187,6 +195,7 @@ describe('@regex', () => {
       [punctuation, false],
       [whitespace, false],
       [cronTest, false],
+      [macAddress1, false],
     ].forEach(([string, result]) =>
       it(`should match regex ${string} to be ${result}`, () =>
         expect(alphanumdashorempty.test(string)).toBe(result)),
@@ -208,6 +217,7 @@ describe('@regex', () => {
       [punctuation, false],
       [whitespace, true],
       [cronTest, false],
+      [macAddress1, false],
     ].forEach(([string, result]) =>
       it(`should match regex ${string} to be ${result}`, () =>
         expect(alphanumdashspaces.test(string)).toBe(result)),
@@ -229,6 +239,7 @@ describe('@regex', () => {
       [punctuation, false],
       [whitespace, false],
       [cronTest, false],
+      [macAddress1, false],
     ].forEach(([string, result]) =>
       it(`should match regex ${string} to be ${result}`, () =>
         expect(alphanumdots.test(string)).toBe(result)),
@@ -248,6 +259,7 @@ describe('@regex', () => {
       [punctuation, false],
       [whitespace, false],
       [cronTest, false],
+      [macAddress1, false],
     ].forEach(([string, result]) =>
       it(`should match regex ${string} to be ${result}`, () =>
         expect(alphanumLowercase.test(string)).toBe(result)),
@@ -267,6 +279,7 @@ describe('@regex', () => {
       [punctuation, false],
       [whitespace, true],
       [cronTest, false],
+      [macAddress1, false],
     ].forEach(([string, result]) =>
       it(`should match regex ${string} to be ${result}`, () =>
         expect(alphanumSpacesDotsUnderscoreDash.test(string)).toBe(result)),
@@ -286,6 +299,7 @@ describe('@regex', () => {
       [punctuation, false],
       [whitespace, false],
       [cronTest, false],
+      [macAddress1, false],
     ].forEach(([string, result]) =>
       it(`should match regex ${string} to be ${result}`, () =>
         expect(alphanumUnderscoreDash.test(string)).toBe(result)),
@@ -305,6 +319,7 @@ describe('@regex', () => {
       [punctuation, false],
       [whitespace, false],
       [cronTest, false],
+      [macAddress1, false],
     ].forEach(([string, result]) =>
       it(`should match regex ${string} to be ${result}`, () =>
         expect(alphanumUnderscoreDollarDash.test(string)).toBe(result)),
@@ -344,6 +359,7 @@ describe('@regex', () => {
       [punctuation, false],
       [whitespace, false],
       [cronTest, false],
+      [macAddress1, false],
     ].forEach(([string, result]) =>
       it(`should match regex ${string} to be ${result}`, () =>
         expect(backupKey.test(string)).toBe(result)),
@@ -382,6 +398,7 @@ describe('@regex', () => {
       [punctuation, false],
       [whitespace, false],
       [cronTest, false],
+      [macAddress1, false],
     ].forEach(([string, result]) =>
       it(`should match regex ${string} to be ${result}`, () =>
         expect(digits.test(string)).toBe(result)),
@@ -401,6 +418,7 @@ describe('@regex', () => {
       [punctuation, false],
       [whitespace, false],
       [cronTest, false],
+      [macAddress1, false],
     ].forEach(([string, result]) =>
       it(`should match regex ${string} to be ${result}`, () =>
         expect(email.test(string)).toBe(result)),
@@ -421,9 +439,31 @@ describe('@regex', () => {
       [punctuation, false],
       [whitespace, false],
       [cronTest, false],
+      [macAddress1, false],
     ].forEach(([string, result]) =>
       it(`should match regex ${string} to be ${result}`, () =>
         expect(fourDigitsCode.test(string)).toBe(result)),
+    )
+  })
+
+  describe('macAddress', () => {
+    ;[
+      [asciiLetters, false],
+      [asciiLowercase, false],
+      [asciiUppercase, false],
+      [digitsTest, false],
+      [emailTest, false],
+      [octdigits, false],
+      [fourDigitsTest, false],
+      [hexdigits, false],
+      [printable, false],
+      [punctuation, false],
+      [whitespace, false],
+      [cronTest, false],
+      [macAddress1, true],
+    ].forEach(([string, result]) =>
+      it(`should match regex ${string} to be ${result}`, () =>
+        expect(macAddress.test(string)).toBe(result)),
     )
   })
 
@@ -442,6 +482,7 @@ describe('@regex', () => {
       [punctuation, false],
       [whitespace, false],
       [cronTest, false],
+      [macAddress1, false],
     ].forEach(([string, result]) =>
       it(`should match regex ${string} to be ${result}`, () =>
         expect(phone.test(string)).toBe(result)),
@@ -463,6 +504,7 @@ describe('@regex', () => {
       [punctuation, false],
       [whitespace, true],
       [cronTest, false],
+      [macAddress1, false],
     ].forEach(([string, result]) =>
       it(`should match regex ${string} to be ${result}`, () =>
         expect(spaces.test(string)).toBe(result)),
@@ -485,6 +527,7 @@ describe('@regex', () => {
       [punctuation, false],
       [whitespace, false],
       [cronTest, false],
+      [macAddress1, false],
     ].forEach(([string, result]) =>
       it(`should match regex ${string} to be ${result}`, () =>
         expect(sixDigitsCode.test(string)).toBe(result)),
@@ -507,6 +550,7 @@ describe('@regex', () => {
       [punctuation, false],
       [whitespace, false],
       [cronTest, false],
+      [macAddress1, false],
       [url1, true],
       [url2, true],
     ].forEach(([string, result]) =>
