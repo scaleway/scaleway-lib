@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.4.0 (2021-03-12)
+
+
+### Features
+
+* add mac address regex ([#67](https://github.com/scaleway/scaleway-lib/issues/67)) ([a4d8c83](https://github.com/scaleway/scaleway-lib/commit/a4d8c8300f1d8503ca0f8bbfbb8a4595fc24123c))
+
+
+
+
+
 ## [1.3.1](https://github.com/scaleway/scaleway-lib/compare/@scaleway/regex@1.3.0...@scaleway/regex@1.3.1) (2021-02-15)
 
 **Note:** Version bump only for package @scaleway/regex
