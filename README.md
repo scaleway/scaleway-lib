@@ -1,3 +1,12 @@
+
+![Scaleway-Logo-Vertical-Purple-RGB](https://user-images.githubusercontent.com/14060273/111292512-89a52180-8648-11eb-909e-3bd109b1b97c.png)
+
+![Codecov](https://img.shields.io/codecov/c/github/scaleway/scaleway-lib)
+![GitHub closed issues](https://img.shields.io/github/issues-closed/scaleway/scaleway-lib)
+![dependencies](https://david-dm.org/scaleway/scaleway-lib.svg)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/scaleway/scaleway-lib)
+
+
 # scaleway-lib
 
 scaleway-lib is a set of NPM packages used at Scaleway.
@@ -23,12 +32,38 @@ scaleway-lib is a set of NPM packages used at Scaleway.
 ---
 
 ## Available packages
+## Available packages
 
-- [`@scaleway/countries`](./packages/countries/README.md): ISO 3166/3166-2 coutries JSON database
-- [`@scaleway/eslint-config-react`](./packages/eslint-config-react/README.md): A shared eslint react opiniated configuration
-- [`@scaleway/random-name`](./packages/random-name/README.md): A tiny utility to generate random names
-- [`@scaleway/use-query-params`](./packages/use-query-params/README.md): A tiny react hook to read and update URLs query parameters
-- [`@scaleway/regex`](./packages/regex/README.md): usefull regex named
+- [`@scaleway/countries`](./packages/countries/README.md): ISO 3166/3166-2 coutries JSON database.
+
+  ![npm](https://img.shields.io/npm/dm/@scaleway/countries)
+  ![npm bundle size](https://img.shields.io/bundlephobia/min/@scaleway/countries)
+  ![npm](https://img.shields.io/npm/v/@scaleway/countries)
+
+- [`@scaleway/eslint-config-react`](./packages/eslint-config-react/README.md): A shared eslint react opiniated configuration.
+
+  ![npm](https://img.shields.io/npm/dm/@scaleway/eslint-config-react)
+  ![npm bundle size](https://img.shields.io/bundlephobia/min/@scaleway/eslint-config-react)
+  ![npm](https://img.shields.io/npm/v/@scaleway/eslint-config-react)
+
+- [`@scaleway/random-name`](./packages/random-name/README.md): A tiny utility to generate random names.
+
+  ![npm](https://img.shields.io/npm/dm/@scaleway/random-name)
+  ![npm bundle size](https://img.shields.io/bundlephobia/min/@scaleway/random-name)
+  ![npm](https://img.shields.io/npm/v/@scaleway/random-name)
+
+- [`@scaleway/use-query-params`](./packages/use-query-params/README.md):
+ A tiny react hook to read and update URLs query parameters.
+
+  ![npm](https://img.shields.io/npm/dm/@scaleway/use-query-params)
+  ![npm bundle size](https://img.shields.io/bundlephobia/min/@scaleway/use-query-params)
+  ![npm](https://img.shields.io/npm/v/@scaleway/regex)
+
+- [`@scaleway/regex`](./packages/regex/README.md): usefull regex named.
+
+  ![npm](https://img.shields.io/npm/dm/@scaleway/regex)
+  ![npm bundle size](https://img.shields.io/bundlephobia/min/@scaleway/regex)
+  ![npm](https://img.shields.io/npm/v/@scaleway/regex)
 
 ## Development
 
