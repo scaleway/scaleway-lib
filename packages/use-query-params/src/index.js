@@ -1,62 +1,36 @@
 import { parse, stringify } from 'query-string'
 import { useCallback, useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
 
-const useQueryParams = (options = {}) => {
-  const { updater = {} } = options
-  const {
-    location: { search, pathname },
-    replace,
-  } = useHistory()
+const parseFormat = search =>
+  parse(search, {
+    parseNumbers: true,
+    parseBooleans: true,
+    arrayFormat: 'comma',
+  })
 
-  const parseFormat = useCallback(
-    () =>
-      parse(search, {
-        parseNumbers: true,
-        parseBooleans: true,
-        arrayFormat: 'comma',
-      }),
-    [search],
-  )
+const stringyFormat = params =>
+  stringify(params, {
+    arrayFormat: 'comma',
+    sort: (a, b) => a.localeCompare(b),
+  })
 
-  const stringyFormat = useCallback(
-    params =>
-      stringify(params, {
-        arrayFormat: 'comma',
-        sort: (a, b) => a.localeCompare(b),
-      }),
-    [],
-  )
+const useQueryParams = () => {
+  const { search, pathname } = window.location
 
-  const defaultFnUpdater = useCallback(
-    (currentQueryParams, nextQueryParams) => ({
-      ...currentQueryParams,
-      ...nextQueryParams,
-    }),
-    [],
-  )
-  const [state, setState] = useState(parseFormat())
+  const [state, setState] = useState(parseFormat(search))
 
-  const setQueryParams = useCallback(
-    nextParams => {
-      const currentQueryParams = parseFormat()
-      const params =
-        updater instanceof Function
-          ? updater(currentQueryParams, nextParams)
-          : defaultFnUpdater(currentQueryParams, nextParams)
-
-      setState(params)
-    },
-    [parseFormat, updater, defaultFnUpdater],
-  )
+  const setQueryParams = useCallback(nextParams => {
+    setState(prevState => ({ ...prevState, ...nextParams }))
+  }, [])
 
   useEffect(() => {
     const stringifiedParams = stringyFormat(state)
-    if (stringifiedParams !== search.replace('?', '')) {
-      replace(`${pathname}?${stringifiedParams}`)
-    }
-  }, [pathname, replace, search, state, stringyFormat])
-
+    window.history.replaceState(
+      window.history.state,
+      null,
+      `${pathname}?${stringifiedParams}`,
+    )
+  }, [pathname, state])
 
   return {
     queryParams: state,
