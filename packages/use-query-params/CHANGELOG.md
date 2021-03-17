@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-query-params@1.1.0...@scaleway/use-query-params@1.1.1) (2021-03-17)
+
+
+### Bug Fixes
+
+* **use-query-params:** re-render hooks ([#81](https://github.com/scaleway/scaleway-lib/issues/81)) ([732760d](https://github.com/scaleway/scaleway-lib/commit/732760dc769afecf29223e44de98329acbb4b776))
+
+
+
+
+
 # 1.1.0 (2021-03-12)
 
 
