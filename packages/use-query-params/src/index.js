@@ -35,10 +35,8 @@ const useQueryParams = () => {
 
   useEffect(() => {
     const stringifiedParams = stringyFormat(state)
-    if (stringifiedParams !== search.replace('?', '')) {
-      replace(`${pathname}?${stringifiedParams}`)
-    }
-  }, [pathname, replace, search, state, stringyFormat])
+    replace(`${pathname}?${stringifiedParams}`)
+  }, [pathname, replace, state, stringyFormat])
 
   return {
     queryParams: state,
