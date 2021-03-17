@@ -1,33 +1,23 @@
 import { parse, stringify } from 'query-string'
 import { useCallback, useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+
+const parseFormat = search =>
+  parse(search, {
+    parseNumbers: true,
+    parseBooleans: true,
+    arrayFormat: 'comma',
+  })
+
+const stringyFormat = params =>
+  stringify(params, {
+    arrayFormat: 'comma',
+    sort: (a, b) => a.localeCompare(b),
+  })
 
 const useQueryParams = () => {
-  const {
-    location: { search, pathname },
-    replace,
-  } = useHistory()
+  const { search, pathname } = window.location
 
-  const parseFormat = useCallback(
-    () =>
-      parse(search, {
-        parseNumbers: true,
-        parseBooleans: true,
-        arrayFormat: 'comma',
-      }),
-    [search],
-  )
-
-  const stringyFormat = useCallback(
-    params =>
-      stringify(params, {
-        arrayFormat: 'comma',
-        sort: (a, b) => a.localeCompare(b),
-      }),
-    [],
-  )
-
-  const [state, setState] = useState(parseFormat())
+  const [state, setState] = useState(parseFormat(search))
 
   const setQueryParams = useCallback(nextParams => {
     setState(prevState => ({ ...prevState, ...nextParams }))
@@ -35,8 +25,12 @@ const useQueryParams = () => {
 
   useEffect(() => {
     const stringifiedParams = stringyFormat(state)
-    replace(`${pathname}?${stringifiedParams}`)
-  }, [pathname, replace, state, stringyFormat])
+    window.history.replaceState(
+      window.history.state,
+      null,
+      `${pathname}?${stringifiedParams}`,
+    )
+  }, [pathname, state])
 
   return {
     queryParams: state,

@@ -7,7 +7,6 @@
     "react-dom",
     "reactjs",
     "hooks",
-    "react-router-dom",
     "params",
     "query-params"
   ],
@@ -31,15 +30,13 @@
   },
   "peerDependencies": {
     "react": "17.x",
-    "react-dom": "17.x",
-    "react-router-dom": "5.x"
+    "react-dom": "17.x"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/react-hooks": "^5.1.0",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-router-dom": "^5.2.0"
+    "react-dom": "^17.0.1"
   }
 }

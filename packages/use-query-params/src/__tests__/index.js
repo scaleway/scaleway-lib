@@ -1,18 +1,19 @@
-import { act, cleanup, renderHook } from '@testing-library/react-hooks'
-import React from 'react'
-import { MemoryRouter } from 'react-router-dom'
+import { act, renderHook } from '@testing-library/react-hooks'
 import useQueryParam from '../index'
 
 // eslint-disable-next-line react/prop-types
-const wrapper = ({ pathname = 'one', search }) => ({ children }) => (
-  <MemoryRouter initialIndex={0} initialEntries={[{ pathname, search }]}>
-    {children}
-  </MemoryRouter>
-)
+const wrapper = ({ pathname = 'one', search }) => ({ children }) => {
+  window.history.replaceState(
+    window.history.state,
+    null,
+    `${pathname}?${search}`,
+  )
+
+  return children
+}
 
 describe('useQueryParam', () => {
-  afterEach(cleanup)
-  it('should set one object', async () => {
+  it('should set one object', () => {
     const { result } = renderHook(() => useQueryParam(), {
       wrapper: wrapper({ search: 'user=john' }),
     })
@@ -23,7 +24,7 @@ describe('useQueryParam', () => {
     expect(result.current.queryParams).toEqual({ user: 'John' })
   })
 
-  it('should correctly set with different value', async () => {
+  it('should correctly set with different value', () => {
     const { result } = renderHook(() => useQueryParam(), {
       wrapper: wrapper({ search: 'user=john' }),
     })
@@ -47,7 +48,7 @@ describe('useQueryParam', () => {
     })
   })
 
-  it('should set one complexe object', async () => {
+  it('should set one complexe object', () => {
     const { result } = renderHook(() => useQueryParam(), {
       wrapper: wrapper({ search: 'user=john' }),
     })
@@ -77,6 +78,7 @@ describe('useQueryParam', () => {
 
     expect(result.current.queryParams).toEqual({ user: 'john' })
   })
+
   it('should should handle array, boolean, number and string from existing location', () => {
     const { result } = renderHook(() => useQueryParam(), {
       wrapper: wrapper({
