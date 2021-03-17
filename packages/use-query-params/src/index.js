@@ -2,8 +2,7 @@ import { parse, stringify } from 'query-string'
 import { useCallback, useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
-const useQueryParams = (options = {}) => {
-  const { updater = {} } = options
+const useQueryParams = () => {
   const {
     location: { search, pathname },
     replace,
@@ -28,27 +27,11 @@ const useQueryParams = (options = {}) => {
     [],
   )
 
-  const defaultFnUpdater = useCallback(
-    (currentQueryParams, nextQueryParams) => ({
-      ...currentQueryParams,
-      ...nextQueryParams,
-    }),
-    [],
-  )
   const [state, setState] = useState(parseFormat())
 
-  const setQueryParams = useCallback(
-    nextParams => {
-      const currentQueryParams = parseFormat()
-      const params =
-        updater instanceof Function
-          ? updater(currentQueryParams, nextParams)
-          : defaultFnUpdater(currentQueryParams, nextParams)
-
-      setState(params)
-    },
-    [parseFormat, updater, defaultFnUpdater],
-  )
+  const setQueryParams = useCallback(nextParams => {
+    setState(prevState => ({ ...prevState, ...nextParams }))
+  }, [])
 
   useEffect(() => {
     const stringifiedParams = stringyFormat(state)
@@ -56,7 +39,6 @@ const useQueryParams = (options = {}) => {
       replace(`${pathname}?${stringifiedParams}`)
     }
   }, [pathname, replace, search, state, stringyFormat])
-
 
   return {
     queryParams: state,
