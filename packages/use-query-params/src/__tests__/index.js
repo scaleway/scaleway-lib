@@ -1,4 +1,4 @@
-import { act, cleanup, renderHook } from '@testing-library/react-hooks'
+import { act, renderHook } from '@testing-library/react-hooks'
 import React from 'react'
 import { MemoryRouter } from 'react-router-dom'
 import useQueryParam from '../index'
@@ -11,10 +11,9 @@ const wrapper = ({ pathname = 'one', search }) => ({ children }) => (
 )
 
 describe('useQueryParam', () => {
-  afterEach(cleanup)
-  it('should set one object', async () => {
+  it('should set one object', () => {
     const { result } = renderHook(() => useQueryParam(), {
-      wrapper: MemoryRouter,
+      wrapper: wrapper({ search: 'user=john' }),
     })
 
     act(() => {
@@ -23,9 +22,9 @@ describe('useQueryParam', () => {
     expect(result.current.queryParams).toEqual({ user: 'John' })
   })
 
-  it('should correctly set with different value', async () => {
+  it('should correctly set with different value', () => {
     const { result } = renderHook(() => useQueryParam(), {
-      wrapper: MemoryRouter,
+      wrapper: wrapper({ search: 'user=john' }),
     })
 
     act(() => {
@@ -34,19 +33,22 @@ describe('useQueryParam', () => {
     expect(result.current.queryParams).toEqual({ user: 'John' })
 
     act(() => {
-      result.current.setQueryParams({ user: 'Doe' })
+      result.current.setQueryParams({ user: 'Doe', name: 'Doe' })
     })
-    expect(result.current.queryParams).toEqual({ user: 'Doe' })
+    expect(result.current.queryParams).toEqual({ user: 'Doe', name: 'Doe' })
 
     act(() => {
       result.current.setQueryParams({ user: 'Scaleway' })
     })
-    expect(result.current.queryParams).toEqual({ user: 'Scaleway' })
+    expect(result.current.queryParams).toEqual({
+      user: 'Scaleway',
+      name: 'Doe',
+    })
   })
 
-  it('should set one complexe object', async () => {
+  it('should set one complexe object', () => {
     const { result } = renderHook(() => useQueryParam(), {
-      wrapper: MemoryRouter,
+      wrapper: wrapper({ search: 'user=john' }),
     })
 
     act(() => {
@@ -74,6 +76,7 @@ describe('useQueryParam', () => {
 
     expect(result.current.queryParams).toEqual({ user: 'john' })
   })
+
   it('should should handle array, boolean, number and string from existing location', () => {
     const { result } = renderHook(() => useQueryParam(), {
       wrapper: wrapper({
@@ -112,47 +115,95 @@ describe('useQueryParam', () => {
     })
   })
 
-  it('should modify updater and erase old params', () => {
-    const updater = (prevState, nextState) => nextState
-    const { result } = renderHook(() => useQueryParam({ updater }), {
-      wrapper: wrapper({ search: 'user=john' }),
+  it('should correctly set different objects before rerender', () => {
+    const { result, rerender } = renderHook(() => useQueryParam(), {
+      wrapper: wrapper({ search: '' }),
     })
 
-    expect(result.current.queryParams).toEqual({ user: 'john' })
     act(() => {
-      result.current.setQueryParams({
-        lastName: 'Doe',
-      })
+      result.current.setQueryParams({ name: 'JOHN' })
+    })
+
+    act(() => {
+      result.current.setQueryParams({ lastName: 'Doe' })
     })
     expect(result.current.queryParams).toEqual({
+      name: 'JOHN',
       lastName: 'Doe',
+    })
+
+    rerender()
+
+    act(() => {
+      result.current.setQueryParams({ name: 'john' })
+    })
+
+    act(() => {
+      result.current.setQueryParams({ test: 'Scaleway' })
+    })
+
+    expect(result.current.queryParams).toEqual({
+      name: 'john',
+      lastName: 'Doe',
+      test: 'Scaleway',
     })
   })
 
-  it('should modify updater and uppercase all news params', () => {
-    const updater = (prevState, nextState) => ({
-      ...prevState,
-      ...Object.keys(nextState).reduce(
-        (acc, key) => ({ ...acc, [key]: nextState[key].toUpperCase() }),
-        {},
-      ),
+  test('should render good params with parallel changes', async () => {
+    jest.useFakeTimers()
+    const { result } = renderHook(() => useQueryParam(), {
+      wrapper: wrapper({ search: '' }),
     })
-
-    const { result } = renderHook(() => useQueryParam({ updater }), {
-      wrapper: wrapper({ search: 'user=john' }),
-    })
-
-    expect(result.current.queryParams).toEqual({ user: 'john' })
-
     act(() => {
-      result.current.setQueryParams({
-        lastName: 'Doe',
-      })
+      result.current.setQueryParams({ name: 'John' })
+      result.current.setQueryParams({ lastName: 'Doe' })
+      result.current.setQueryParams({ compagny: 'Scaleway' })
     })
+
+    jest.runAllTimers()
 
     expect(result.current.queryParams).toEqual({
-      user: 'john',
-      lastName: 'DOE',
+      name: 'John',
+      lastName: 'Doe',
+      compagny: 'Scaleway',
+    })
+
+    act(() => {
+      result.current.setQueryParams({ name: 'John' })
+    })
+
+    jest.runAllTimers()
+
+    expect(result.current.queryParams).toEqual({
+      name: 'John',
+      lastName: 'Doe',
+      compagny: 'Scaleway',
+    })
+  })
+
+  test('should erase params', () => {
+    const { result } = renderHook(() => useQueryParam(), {
+      wrapper: wrapper({ search: '' }),
+    })
+
+    act(() => {
+      result.current.setQueryParams({ name: 'John' })
+    })
+    expect(result.current.queryParams).toEqual({
+      name: 'John',
+    })
+    act(() => {
+      result.current.setQueryParams({ lastName: 'Doe' }, true)
+    })
+    expect(result.current.queryParams).toEqual({
+      name: 'John',
+      lastName: 'Doe',
+    })
+    act(() => {
+      result.current.setQueryParams({ compagny: 'Scaleway' }, false)
+    })
+    expect(result.current.queryParams).toEqual({
+      compagny: 'Scaleway',
     })
   })
 })

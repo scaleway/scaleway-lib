@@ -29,8 +29,17 @@ const useQueryParams = () => {
 
   const [state, setState] = useState(parseFormat())
 
-  const setQueryParams = nextParams => {
-    setState(prevState => ({ ...prevState, ...nextParams }))
+  /**
+   * Set query params in the url
+   * @param {Object} nextParams The params to set in the url as query params
+   * @param {boolean} merge Merge current params with the new ones. If false current params will be erased. If true, same keys are merged and the new value is keep
+   */
+  const setQueryParams = (nextParams, merge = true) => {
+    if (merge) {
+      setState(prevState => ({ ...prevState, ...nextParams }))
+    } else {
+      setState({ ...nextParams })
+    }
   }
 
   useEffect(() => {
