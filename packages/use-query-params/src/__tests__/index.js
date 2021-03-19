@@ -150,4 +150,25 @@ describe('useQueryParam', () => {
       test: 'Scaleway',
     })
   })
+
+  test('should render good params with parallel changes', async () => {
+    const { result } = renderHook(() => useQueryParam(), {
+      wrapper: wrapper({ search: '' }),
+    })
+    act(() => {
+      result.current.setQueryParams({ name: 'John' })
+    })
+    act(() => {
+      result.current.setQueryParams({ lastName: 'Doe' })
+    })
+    act(() => {
+      result.current.setQueryParams({ compagny: 'Scaleway' })
+    })
+
+    expect(result.current.queryParams).toEqual({
+      name: 'John',
+      lastName: 'Doe',
+      compagny: 'Scaleway',
+    })
+  })
 })

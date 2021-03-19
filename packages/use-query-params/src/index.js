@@ -19,9 +19,9 @@ const useQueryParams = () => {
 
   const [state, setState] = useState(parseFormat(search))
 
-  const setQueryParams = useCallback(nextParams => {
+  const setQueryParams = nextParams => {
     setState(prevState => ({ ...prevState, ...nextParams }))
-  }, [])
+  }
 
   useEffect(() => {
     const stringifiedParams = stringyFormat(state)
