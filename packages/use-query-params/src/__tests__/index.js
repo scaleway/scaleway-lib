@@ -1,16 +1,14 @@
 import { act, renderHook } from '@testing-library/react-hooks'
+import React from 'react'
+import { MemoryRouter } from 'react-router-dom'
 import useQueryParam from '../index'
 
 // eslint-disable-next-line react/prop-types
-const wrapper = ({ pathname = 'one', search }) => ({ children }) => {
-  window.history.replaceState(
-    window.history.state,
-    null,
-    `${pathname}?${search}`,
-  )
-
-  return children
-}
+const wrapper = ({ pathname = 'one', search }) => ({ children }) => (
+  <MemoryRouter initialIndex={0} initialEntries={[{ pathname, search }]}>
+    {children}
+  </MemoryRouter>
+)
 
 describe('useQueryParam', () => {
   it('should set one object', () => {
@@ -117,7 +115,7 @@ describe('useQueryParam', () => {
     })
   })
 
-  it('should correctly set different objects before rerender', async () => {
+  it('should correctly set different objects before rerender', () => {
     const { result, rerender } = renderHook(() => useQueryParam(), {
       wrapper: wrapper({ search: '' }),
     })
@@ -148,6 +146,64 @@ describe('useQueryParam', () => {
       name: 'john',
       lastName: 'Doe',
       test: 'Scaleway',
+    })
+  })
+
+  test('should render good params with parallel changes', async () => {
+    jest.useFakeTimers()
+    const { result } = renderHook(() => useQueryParam(), {
+      wrapper: wrapper({ search: '' }),
+    })
+    act(() => {
+      result.current.setQueryParams({ name: 'John' })
+      result.current.setQueryParams({ lastName: 'Doe' })
+      result.current.setQueryParams({ compagny: 'Scaleway' })
+    })
+
+    jest.runAllTimers()
+
+    expect(result.current.queryParams).toEqual({
+      name: 'John',
+      lastName: 'Doe',
+      compagny: 'Scaleway',
+    })
+
+    act(() => {
+      result.current.setQueryParams({ name: 'John' })
+    })
+
+    jest.runAllTimers()
+
+    expect(result.current.queryParams).toEqual({
+      name: 'John',
+      lastName: 'Doe',
+      compagny: 'Scaleway',
+    })
+  })
+
+  test('should erase params', () => {
+    const { result } = renderHook(() => useQueryParam(), {
+      wrapper: wrapper({ search: '' }),
+    })
+
+    act(() => {
+      result.current.setQueryParams({ name: 'John' })
+    })
+    expect(result.current.queryParams).toEqual({
+      name: 'John',
+    })
+    act(() => {
+      result.current.setQueryParams({ lastName: 'Doe' })
+    })
+    expect(result.current.queryParams).toEqual({
+      name: 'John',
+      lastName: 'Doe',
+    })
+    act(() => {
+      result.current.replaceQueryparams({ compagny: 'Scaleway' })
+    })
+    expect(result.current.queryParams).toEqual({
+      compagny: 'Scaleway',
     })
   })
 })
