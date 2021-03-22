@@ -1,7 +1,7 @@
 import { act, renderHook } from '@testing-library/react-hooks'
 import React from 'react'
-import { MemoryRouter } from 'react-router-dom'
-import useQueryParam from '../index'
+import { MemoryRouter, useHistory } from 'react-router-dom'
+import useQueryParam from '..'
 
 // eslint-disable-next-line react/prop-types
 const wrapper = ({ pathname = 'one', search }) => ({ children }) => (
@@ -204,6 +204,39 @@ describe('useQueryParam', () => {
     })
     expect(result.current.queryParams).toEqual({
       compagny: 'Scaleway',
+    })
+  })
+
+  test('should correctly set query params with array', () => {
+    jest.useFakeTimers()
+    const { result, rerender } = renderHook(
+      () => [useQueryParam(), useHistory()],
+      {
+        wrapper: wrapper({ search: '' }),
+      },
+    )
+
+    act(() => {
+      result.current[0].setQueryParams({
+        names: ['John', null, 'Jane', null, undefined, ''],
+      })
+    })
+    jest.runAllTimers()
+    expect(result.current[0].queryParams).toEqual({
+      names: ['John', null, 'Jane', null, undefined, ''],
+    })
+    expect(result.current[1].location.search).toEqual('?names=John,Jane')
+
+    rerender()
+  })
+
+  test('should correctly with existing array', () => {
+    const { result } = renderHook(() => useQueryParam(), {
+      wrapper: wrapper({ search: 'names=John,,Jane,,,' }),
+    })
+
+    expect(result.current.queryParams).toEqual({
+      names: ['John', '', 'Jane', '', '', ''],
     })
   })
 })

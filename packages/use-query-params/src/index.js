@@ -22,6 +22,8 @@ const useQueryParams = () => {
     params =>
       stringify(params, {
         arrayFormat: 'comma',
+        skipEmptyString: true,
+        skipNull: true,
         sort: (a, b) => a.localeCompare(b),
       }),
     [],
