@@ -193,14 +193,14 @@ describe('useQueryParam', () => {
       name: 'John',
     })
     act(() => {
-      result.current.setQueryParams({ lastName: 'Doe' }, true)
+      result.current.setQueryParams({ lastName: 'Doe' })
     })
     expect(result.current.queryParams).toEqual({
       name: 'John',
       lastName: 'Doe',
     })
     act(() => {
-      result.current.setQueryParams({ compagny: 'Scaleway' }, false)
+      result.current.replaceQueryparams({ compagny: 'Scaleway' })
     })
     expect(result.current.queryParams).toEqual({
       compagny: 'Scaleway',
