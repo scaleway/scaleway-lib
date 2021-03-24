@@ -239,4 +239,25 @@ describe('useQueryParam', () => {
       names: ['John', '', 'Jane', '', '', ''],
     })
   })
+
+  test('should work correctly when search is empty', () => {
+    jest.useFakeTimers()
+    const { result } = renderHook(() => useQueryParam(), {
+      wrapper: wrapper({ search: '' }),
+    })
+
+    act(() => {
+      result.current.setQueryParams({ name: 'John' })
+    })
+    jest.runAllTimers()
+    expect(result.current.queryParams).toEqual({
+      name: 'John',
+    })
+
+    act(() => {
+      result.current.replaceQueryparams({})
+    })
+    jest.runAllTimers()
+    expect(result.current.queryParams).toEqual({})
+  })
 })

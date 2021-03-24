@@ -50,8 +50,11 @@ const useQueryParams = () => {
   useEffect(() => {
     const handler = setTimeout(() => {
       const stringifiedParams = stringyFormat(state)
-      if (search !== `?${stringifiedParams}`)
+      const searchToCompare = search || '?'
+
+      if (searchToCompare !== `?${stringifiedParams}`) {
         replace(`${pathname}?${stringifiedParams}`)
+      }
     }, 500)
 
     return () => {
