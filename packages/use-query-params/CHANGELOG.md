@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.4](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-query-params@1.1.3...@scaleway/use-query-params@1.1.4) (2021-03-25)
+
+
+### Bug Fixes
+
+* **use-query-params:** correct infinite loop when search is empty ([#94](https://github.com/scaleway/scaleway-lib/issues/94)) ([7a5815e](https://github.com/scaleway/scaleway-lib/commit/7a5815eb74338b4bb8129f16a5918feb7223dd5d))
+
+
+
+
+
 ## [1.1.3](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-query-params@1.1.2...@scaleway/use-query-params@1.1.3) (2021-03-22)
 
 **Note:** Version bump only for package @scaleway/use-query-params
