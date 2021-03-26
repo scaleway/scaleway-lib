@@ -1,21 +1,19 @@
 import { parse, stringify } from 'query-string'
-import { useCallback, useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useCallback, useMemo } from 'react'
+import { useHistory, useLocation } from 'react-router-dom'
 
 const useQueryParams = () => {
-  const {
-    location: { search, pathname },
-    replace,
-  } = useHistory()
+  const { replace } = useHistory()
+  const location = useLocation()
 
-  const parseFormat = useCallback(
+  const currentState = useMemo(
     () =>
-      parse(search, {
+      parse(location.search, {
         parseNumbers: true,
         parseBooleans: true,
         arrayFormat: 'comma',
       }),
-    [search],
+    [location.search],
   )
 
   const stringyFormat = useCallback(
@@ -29,44 +27,44 @@ const useQueryParams = () => {
     [],
   )
 
-  const [state, setState] = useState(parseFormat())
+  const replaceInUrlIfNeeded = useCallback(
+    newState => {
+      const stringifiedParams = stringyFormat(newState)
+      const searchToCompare = location.search || '?'
+
+      if (searchToCompare !== `?${stringifiedParams}`) {
+        replace(`${location.pathname}?${stringifiedParams}`)
+      }
+    },
+    [replace, location.pathname, location.search, stringyFormat],
+  )
 
   /**
    * Set query params in the url. It merge the existing values with the new ones.
    * @param {Object} nextParams The params to set in the url as query params
    */
-  const setQueryParams = nextParams => {
-    setState(prevState => ({ ...prevState, ...nextParams }))
-  }
+  const setQueryParams = useCallback(
+    nextParams => {
+      replaceInUrlIfNeeded({ ...currentState, ...nextParams })
+    },
+    [currentState, replaceInUrlIfNeeded],
+  )
 
   /**
    * Replace the query params in the url. It erase all current values and put the new ones
    * @param {Object} newParams
    */
-  const replaceQueryparams = newParams => {
-    setState({ ...newParams })
-  }
-
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      const stringifiedParams = stringyFormat(state)
-      const searchToCompare = search || '?'
-
-      if (searchToCompare !== `?${stringifiedParams}`) {
-        replace(`${pathname}?${stringifiedParams}`)
-      }
-    }, 500)
-
-    return () => {
-      clearTimeout(handler)
-    }
-  }, [pathname, replace, state, search, stringyFormat])
+  const replaceQueryParams = useCallback(
+    newParams => {
+      replaceInUrlIfNeeded({ ...newParams })
+    },
+    [replaceInUrlIfNeeded],
+  )
 
   return {
-    queryParams: state,
-    replaceQueryparams,
+    queryParams: currentState,
+    replaceQueryParams,
     setQueryParams,
   }
 }
-
 export default useQueryParams
