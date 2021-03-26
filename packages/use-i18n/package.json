@@ -6,7 +6,9 @@
     "react",
     "reactjs",
     "hooks",
-    "i18n"
+    "i18n",
+    "intl",
+    "react-intl"
   ],
   "main": "dist/index.js",
   "module": "dist/module.js",
@@ -34,6 +36,8 @@
     "react": "17.x"
   },
   "devDependencies": {
+    "@testing-library/react-hooks": "^5.1.0",
+    "mockdate": "^3.0.5",
     "react": "17.0.2"
   }
 }

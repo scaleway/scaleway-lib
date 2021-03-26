@@ -12,9 +12,6 @@ import React, {
 } from 'react'
 import 'intl-pluralrules'
 
-const DEFAULT_LOCALE = 'en'
-const APP_LOCALES = ['en', 'fr']
-const ENABLE_DEFAULT_LOCAL = true
 const LOCALE_ITEM_STORAGE = 'locale'
 
 const prefixKeys = prefix => obj =>
@@ -24,18 +21,32 @@ const prefixKeys = prefix => obj =>
     return acc
   }, {})
 
-export const I18nContext = createContext()
-export const useI18n = () => useContext(I18nContext)
+const I18nContext = createContext()
 
-export const useTranslation = (namespaces = []) => {
-  const { loadTranslations, ...i18n } = useContext(I18nContext)
+export const useI18n = () => {
+  const context = useContext(I18nContext)
+  if (context === undefined) {
+    throw new Error('useI18n must be used within a I18nProvider')
+  }
+
+  return context
+}
+
+export const useTranslation = (namespaces = [], load) => {
+  const context = useContext(I18nContext)
+  if (context === undefined) {
+    throw new Error('useTranslation must be used within a I18nProvider')
+  }
+  const { loadTranslations } = context
+
   const key = namespaces.join(',')
   useEffect(
-    () => key.split(',').map(namespace => loadTranslations(namespace)),
-    [loadTranslations, key],
+    () =>
+      key.split(',').map(async namespace => loadTranslations(namespace, load)),
+    [loadTranslations, key, load],
   )
 
-  return { loadTranslations, ...i18n }
+  return context
 }
 
 // https://formatjs.io/docs/intl-messageformat/
@@ -44,47 +55,23 @@ const getNumberFormat = memoizeIntlConstructor(Intl.NumberFormat)
 const getDateTimeFormat = memoizeIntlConstructor(Intl.DateTimeFormat)
 const getListFormat = memoizeIntlConstructor(Intl.ListFormat)
 
-const loadDateFnsLocale = locale => import(`date-fns/locale/${locale}/index`)
-
-const loadNamespace = async (namespace, locale) =>
-  import(`../../pages/${namespace}/locales/${locale}`)
+const loadDateFnsLocale = async locale =>
+  import(`date-fns/locale/${locale}/index`)
 
 const I18nContextProvider = ({
   children,
-  enableDefaultLocal,
+  defaultLoad,
   defaultLocale,
-  defaultLocales,
   defaultTranslations,
+  enableDefaultLocale,
+  enableDebugKey,
   localeItemStorage,
+  supportedLocales,
 }) => {
   const [currentLocale, setCurrentLocale] = useState(defaultLocale)
-  const [locales, setLocales] = useState(defaultLocales)
+  const [locales, setLocales] = useState(supportedLocales)
   const [translations, setTranslations] = useState(defaultTranslations)
-  const [dateFnsLocal, setDateFnsLocal] = useState(defaultLocale)
-
-  const loadTranslations = useCallback(
-    async namespace => {
-      const result = {
-        defaultLocale: { default: {} },
-        [currentLocale]: { default: {} },
-      }
-      // load default en language
-      if (enableDefaultLocal && currentLocale !== defaultLocale) {
-        result.defaultLocale = await loadNamespace(namespace, defaultLocale)
-      }
-      result[currentLocale] = await loadNamespace(namespace, currentLocale)
-      const trad = {
-        ...result?.defaultLocale?.default,
-        ...result?.[currentLocale]?.default,
-      }
-      const { prefix, ...values } = trad
-      const preparedValues = prefix ? prefixKeys(`${prefix}.`)(values) : values
-      setTranslations(prevState => ({ ...prevState, ...preparedValues }))
-
-      return namespace
-    },
-    [currentLocale, defaultLocale, setTranslations, enableDefaultLocal],
-  )
+  const [dateFnsLocal, setDateFnsLocal] = useState()
 
   const getLocaleFallback = useCallback(
     locale => locale.split('-')[0].split('_')[0],
@@ -103,6 +90,44 @@ const I18nContextProvider = ({
     )
   }, [defaultLocale, getLocaleFallback, locales, localeItemStorage])
 
+  const loadTranslations = useCallback(
+    async (namespace, load = defaultLoad) => {
+      const result = {
+        defaultLocale: { default: {} },
+        [currentLocale]: { default: {} },
+      }
+      // load default en language
+      if (enableDefaultLocale && currentLocale !== defaultLocale) {
+        result.defaultLocale = await load({ namespace, locale: defaultLocale })
+      }
+      result[currentLocale] = await load({
+        namespace,
+        locale: currentLocale,
+      })
+
+      const trad = {
+        ...result.defaultLocale.default,
+        ...result[currentLocale].default,
+      }
+
+      const { prefix, ...values } = trad
+      const preparedValues = prefix ? prefixKeys(`${prefix}.`)(values) : values
+
+      setTranslations(prevState => ({
+        ...prevState,
+        ...{
+          [currentLocale]: {
+            ...prevState[currentLocale],
+            ...preparedValues,
+          },
+        },
+      }))
+
+      return namespace
+    },
+    [defaultLoad, currentLocale, enableDefaultLocale, defaultLocale],
+  )
+
   const switchLocale = useCallback(
     locale => {
       if (locales.includes(locale)) {
@@ -114,14 +139,7 @@ const I18nContextProvider = ({
   )
 
   const formatNumber = useCallback(
-    (
-      numb,
-      options = {
-        style: 'currency',
-        currency: 'EUR',
-        currencyDisplay: 'symbol',
-      },
-    ) => getNumberFormat(currentLocale, options).format(numb),
+    (numb, options) => getNumberFormat(currentLocale, options).format(numb),
     [currentLocale],
   )
 
@@ -162,45 +180,36 @@ const I18nContextProvider = ({
 
   const translate = useCallback(
     (key, context) => {
-      const value = translations[key]
-      if (context !== undefined) {
-        if (!value) {
-          return ''
-        }
-
-        return getTranslationFormat(value, currentLocale).format(context)
-      }
+      const value = translations[currentLocale]?.[key]
       if (!value) {
-        if (enableDefaultLocal) {
-          return ''
+        if (enableDebugKey) {
+          return key
         }
 
-        return key
+        return ''
+      }
+      if (context) {
+        return getTranslationFormat(value, currentLocale).format(context)
       }
 
       return value
     },
-    [currentLocale, translations, enableDefaultLocal],
+    [currentLocale, translations, enableDebugKey],
   )
 
   const namespaceTranslation = useCallback(
-    (namespace, __translate = translate) => (identifier, ...args) =>
-      __translate(`${namespace}.${identifier}`, ...args) ||
-      translate(identifier, ...args),
+    (namespace, t = translate) => (identifier, ...args) =>
+      t(`${namespace}.${identifier}`, ...args) || t(identifier, ...args),
     [translate],
   )
 
   useEffect(() => {
-    try {
-      loadDateFnsLocale(
-        currentLocale === 'en' ? 'en-GB' : currentLocale || 'en-GB',
-      ).then(setDateFnsLocal)
-    } catch (e) {
-      loadDateFnsLocale('en-GB').then(setDateFnsLocal)
-    }
+    loadDateFnsLocale(currentLocale === 'en' ? 'en-GB' : currentLocale)
+      .then(setDateFnsLocal)
+      .catch(() => loadDateFnsLocale('en-GB').then(setDateFnsLocal))
+
     setCurrentLocale(getCurrentLocale())
-    setTranslations(defaultTranslations)
-  }, [currentLocale, getCurrentLocale, defaultTranslations])
+  }, [currentLocale, getCurrentLocale])
 
   const value = useMemo(
     () => ({
@@ -243,20 +252,21 @@ const I18nContextProvider = ({
 }
 
 I18nContextProvider.defaultProps = {
-  defaultLocales: APP_LOCALES,
-  defaultLocale: DEFAULT_LOCALE,
-  enableDefaultLocal: ENABLE_DEFAULT_LOCAL,
   defaultTranslations: {},
+  enableDefaultLocale: false,
   localeItemStorage: LOCALE_ITEM_STORAGE,
+  enableDebugKey: false,
 }
 
 I18nContextProvider.propTypes = {
   children: PropTypes.node.isRequired,
-  defaultLocales: PropTypes.arrayOf(PropTypes.string),
-  defaultLocale: PropTypes.oneOf(APP_LOCALES),
-  enableDefaultLocal: PropTypes.bool,
+  defaultLoad: PropTypes.func.isRequired,
+  defaultLocale: PropTypes.string.isRequired,
   defaultTranslations: PropTypes.shape({}),
+  enableDebugKey: PropTypes.bool,
+  enableDefaultLocale: PropTypes.bool,
   localeItemStorage: PropTypes.string,
+  supportedLocales: PropTypes.arrayOf(PropTypes.string).isRequired,
 }
 
 export default I18nContextProvider

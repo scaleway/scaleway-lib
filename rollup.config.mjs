@@ -34,7 +34,6 @@ const getConfig = (pkg, isBrowser = false) => {
         exclude: 'node_modules/**',
         presets: [
           ['@babel/env', { modules: false, targets }],
-          '@babel/preset-react',
         ],
         plugins: [
           '@babel/plugin-transform-runtime',

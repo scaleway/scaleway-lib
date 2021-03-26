@@ -3,5 +3,5 @@ export default {
   subtitle: 'Here is a subtitle',
   plurals:
     'You have {numPhotos, plural, =0 {no photos.} =1 {one photo.} other {# photos.}}',
-  'tests.test.namespaces': 'test namespace',
+  'tests.test.namespaces': 'test',
 }
