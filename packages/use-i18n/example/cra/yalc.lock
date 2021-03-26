@@ -1,0 +1,9 @@
+{
+  "version": "v1",
+  "packages": {
+    "@scaleway/use-i18n": {
+      "signature": "4d66c9b6b650b688263997a49414349e",
+      "file": true
+    }
+  }
+}

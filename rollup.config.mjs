@@ -4,7 +4,7 @@ import { nodeResolve } from '@rollup/plugin-node-resolve'
 import builtins from 'builtin-modules'
 import { readPackageAsync } from 'read-pkg'
 import analyze from 'rollup-plugin-analyzer'
-import { preserveShebangs } from 'rollup-plugin-preserve-shebangs';
+import { preserveShebangs } from 'rollup-plugin-preserve-shebangs'
 
 const PROFILE = !!process.env.PROFILE
 
@@ -32,8 +32,14 @@ const getConfig = (pkg, isBrowser = false) => {
         babelHelpers: 'runtime',
         babelrc: false,
         exclude: 'node_modules/**',
-        presets: [['@babel/env', { modules: false, targets }]],
-        plugins: ['@babel/plugin-transform-runtime'],
+        presets: [
+          ['@babel/env', { modules: false, targets }],
+          '@babel/preset-react',
+        ],
+        plugins: [
+          '@babel/plugin-transform-runtime',
+          '@babel/plugin-transform-react-jsx',
+        ],
       }),
       nodeResolve({
         browser: isBrowser,
