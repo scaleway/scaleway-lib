@@ -1,11 +1,9 @@
-
 ![Scaleway-Logo-Vertical-Purple-RGB](https://user-images.githubusercontent.com/14060273/111292512-89a52180-8648-11eb-909e-3bd109b1b97c.png)
 
 ![Codecov](https://img.shields.io/codecov/c/github/scaleway/scaleway-lib)
 ![GitHub closed issues](https://img.shields.io/github/issues-closed/scaleway/scaleway-lib)
 ![dependencies](https://david-dm.org/scaleway/scaleway-lib.svg)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/scaleway/scaleway-lib)
-
 
 # scaleway-lib
 
@@ -32,6 +30,7 @@ scaleway-lib is a set of NPM packages used at Scaleway.
 ---
 
 ## Available packages
+
 ## Available packages
 
 - [`@scaleway/countries`](./packages/countries/README.md): ISO 3166/3166-2 coutries JSON database.
@@ -53,11 +52,11 @@ scaleway-lib is a set of NPM packages used at Scaleway.
   ![npm](https://img.shields.io/npm/v/@scaleway/random-name)
 
 - [`@scaleway/use-query-params`](./packages/use-query-params/README.md):
- A tiny react hook to read and update URLs query parameters.
+  A tiny react hook to read and update URLs query parameters.
 
   ![npm](https://img.shields.io/npm/dm/@scaleway/use-query-params)
   ![npm bundle size](https://img.shields.io/bundlephobia/min/@scaleway/use-query-params)
-  ![npm](https://img.shields.io/npm/v/@scaleway/regex)
+  ![npm](https://img.shields.io/npm/v/@scaleway/use-query-params)
 
 - [`@scaleway/regex`](./packages/regex/README.md): usefull regex named.
 

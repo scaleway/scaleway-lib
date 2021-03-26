@@ -250,4 +250,49 @@ describe('useQueryParam', () => {
     })
     expect(result.current.queryParams).toEqual({})
   })
+
+  test('should work correctly when have multiple useQueryParams', () => {
+    const { result } = renderHook(
+      () => ({
+        qp1: useQueryParams(),
+        qp2: useQueryParams(),
+      }),
+      {
+        wrapper: wrapper({ search: '' }),
+      },
+    )
+
+    act(() => {
+      result.current.qp1.setQueryParams({ name: 'John' })
+    })
+    expect(result.current.qp2.queryParams).toEqual({
+      name: 'John',
+    })
+    expect(result.current.qp1.queryParams).toEqual({
+      name: 'John',
+    })
+
+    act(() => {
+      result.current.qp2.replaceQueryParams({})
+    })
+
+    expect(result.current.qp1.queryParams).toEqual({})
+    expect(result.current.qp2.queryParams).toEqual({})
+
+    act(() => {
+      result.current.qp1.setQueryParams({ user: 'John' })
+    })
+    act(() => {
+      result.current.qp2.setQueryParams({ compagny: 'Scaleway' })
+    })
+
+    expect(result.current.qp1.queryParams).toEqual({
+      user: 'John',
+      compagny: 'Scaleway',
+    })
+    expect(result.current.qp2.queryParams).toEqual({
+      user: 'John',
+      compagny: 'Scaleway',
+    })
+  })
 })
