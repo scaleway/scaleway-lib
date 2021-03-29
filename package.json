@@ -36,19 +36,13 @@
     "commit": "npx git-cz -a",
     "test": "jest",
     "test:watch": "yarn run test --watch",
-    "test:coverage": "yarn run test --coverage"
+    "test:coverage": "yarn run test --coverage",
+    "prepare": "husky install"
   },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged",
-      "pre-push": "lint-staged"
-    }
   },
   "lint-staged": {
     "*.js": [
