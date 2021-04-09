@@ -38,7 +38,7 @@
     "test": "jest",
     "test:watch": "yarn run test --watch",
     "test:coverage": "yarn run test --coverage",
-    "prepare": "husky install"
+    "prepare": "is-ci || husky install"
   },
   "commitlint": {
     "extends": [
