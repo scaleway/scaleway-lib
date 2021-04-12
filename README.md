@@ -153,7 +153,7 @@ We target by default Node@14 but you can add a browser output by adding a `brows
   }
 ```
 
-The browserlist we are currently using is available in the [rollup.config.js](./rollup.config.js)
+The browserlist we are currently using is available in the [rollup.config.mjs](./rollup.config.mjs)
 
 > :warning: Bear in mind that we do not currently support different entrypoint per target as we don't have the use case
 
