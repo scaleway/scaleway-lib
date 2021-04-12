@@ -1,8 +1,8 @@
-import babel from '@rollup/plugin-babel'
+import { babel } from '@rollup/plugin-babel'
 import commonjs from '@rollup/plugin-commonjs'
-import resolve from '@rollup/plugin-node-resolve'
+import { nodeResolve } from '@rollup/plugin-node-resolve'
 import builtins from 'builtin-modules'
-import readPkg from 'read-pkg'
+import { readPackageAsync } from 'read-pkg'
 import analyze from 'rollup-plugin-analyzer'
 import { preserveShebangs } from 'rollup-plugin-preserve-shebangs';
 
@@ -35,7 +35,7 @@ const getConfig = (pkg, isBrowser = false) => {
         presets: [['@babel/env', { modules: false, targets }]],
         plugins: ['@babel/plugin-transform-runtime'],
       }),
-      resolve({
+      nodeResolve({
         browser: isBrowser,
         preferBuiltins: true,
       }),
@@ -61,7 +61,7 @@ const getConfig = (pkg, isBrowser = false) => {
 }
 
 export default async () => {
-  const pkg = await readPkg()
+  const pkg = await readPackageAsync()
 
   const doesAlsoTargetBrowser = 'browser' in pkg
 

@@ -4,6 +4,7 @@
   "workspaces": [
     "packages/*"
   ],
+  "type": "module",
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/plugin-transform-runtime": "^7.12.10",
@@ -32,7 +33,7 @@
   "scripts": {
     "lint": "eslint --cache .",
     "lint:fix": "yarn run lint --fix",
-    "build": "lerna exec --ignore @scaleway/eslint-* --ignore @scaleway/countries -- rollup -c ../../rollup.config.js",
+    "build": "lerna exec --ignore @scaleway/eslint-* --ignore @scaleway/countries -- rollup -c ../../rollup.config.mjs",
     "build:profile": "cross-env PROFILE=true yarn run build",
     "commit": "npx git-cz -a",
     "test": "jest",
