@@ -77,5 +77,6 @@ jobs:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     - run: yarn run lerna publish -y --create-release github --ignore-scripts
       env:
+        HUSKY: 0
         NPM_TOKEN: ${{secrets.NPM_TOKEN}}
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
