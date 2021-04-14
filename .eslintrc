@@ -1,4 +1,13 @@
 {
   "root": true,
-  "extends": "./packages/eslint-config-react/index.js"
+  "parser": "@babel/eslint-parser",
+  "extends": "./packages/eslint-config-react/index.js",
+  "rules": {
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": ["**/__tests__/*", "rollup.config.mjs"]
+      }
+    ]
+  }
 }

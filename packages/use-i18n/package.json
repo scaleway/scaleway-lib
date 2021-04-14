@@ -1,15 +1,14 @@
 {
-  "name": "@scaleway/use-query-params",
-  "version": "1.1.5",
-  "description": "A small hook to handle params",
+  "name": "@scaleway/use-i18n",
+  "version": "1.0.0",
+  "description": "A small hook to handle i18n",
   "keywords": [
     "react",
-    "react-dom",
     "reactjs",
     "hooks",
-    "params",
-    "react-router-dom",
-    "query-params"
+    "i18n",
+    "intl",
+    "react-intl"
   ],
   "main": "dist/index.js",
   "module": "dist/module.js",
@@ -23,21 +22,22 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/scaleway/scaleway-lib",
-    "directory": "packages/use-query-params"
+    "directory": "packages/use-i18n"
   },
   "license": "MIT",
   "dependencies": {
-    "query-string": "^7.0.0",
-    "react-router-dom": "^5.2.0"
+    "date-fns": "^2.19.0",
+    "intl-format-cache": "^4.3.1",
+    "intl-messageformat": "^9.5.3",
+    "intl-pluralrules": "^1.2.2",
+    "prop-types": "^15.7.2"
   },
   "peerDependencies": {
-    "react": "17.x",
-    "react-dom": "17.x",
-    "react-router-dom": "^5.2.0"
+    "react": "17.x"
   },
   "devDependencies": {
-    "@testing-library/react-hooks": "^5.1.1",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "@testing-library/react-hooks": "^5.1.0",
+    "mockdate": "^3.0.5",
+    "react": "17.0.2"
   }
 }
