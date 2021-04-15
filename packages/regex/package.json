@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/regex",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "A small utility to use regex",
   "main": "dist/index.js",
   "module": "dist/module.js",
