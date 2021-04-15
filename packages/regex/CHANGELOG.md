@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 1.4.1 (2021-04-15)
+
+
+### Bug Fixes
+
+* add hexa regex ([#130](https://github.com/scaleway/scaleway-lib/issues/130)) ([a67e2e6](https://github.com/scaleway/scaleway-lib/commit/a67e2e65db928816bfa745bcf6f9631811e7640d))
+
+
+
 # 1.4.0 (2021-03-12)
 
 
