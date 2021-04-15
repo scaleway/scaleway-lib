@@ -18,6 +18,7 @@ import {
   digits,
   email,
   fourDigitsCode,
+  hexadecimal,
   macAddress,
   phone,
   sixDigitsCode,
@@ -556,6 +557,28 @@ describe('@regex', () => {
     ].forEach(([string, result]) =>
       it(`should match regex ${string} to be ${result}`, () =>
         expect(url.test(string)).toBe(result)),
+    )
+  })
+
+  describe('hexadecimal', () => {
+    ;[
+      [asciiLetters, false],
+      [asciiLowercase, false],
+      [asciiUppercase, false],
+      [digitsTest, true],
+      [emailTest, false],
+      [octdigits, true],
+      [fourDigitsTest, true],
+      [printable, false],
+      [phoneTest, false],
+      [sixDigitsCodeTest, true],
+      [punctuation, false],
+      [whitespace, false],
+      [cronTest, false],
+      [hexdigits, true],
+    ].forEach(([string, result]) =>
+      it(`should match regex ${string} to be ${result}`, () =>
+        expect(hexadecimal.test(string)).toBe(result)),
     )
   })
 })
