@@ -1,0 +1,21 @@
+export const StatusEnum = {
+  LOADING: 'loading',
+  LOAD_MORE: 'load_more',
+  SUCCESS: 'success',
+  ERROR: 'error',
+  IDLE: 'idle',
+}
+
+export const ActionEnum = {
+  ON_STALLED: 'ON_STALLED',
+  ON_LOADING: 'ON_LOADING',
+  ON_LOAD_MORE: 'ON_LOAD_MORE',
+  ON_SUCCESS: 'ON_SUCCESS',
+  ON_UPDATE_DATA: 'ON_UPDATE_DATA',
+  ON_UPDATE_PAGE_DATA: 'ON_UPDATE_PAGE_DATA',
+  ON_ERROR: 'ON_ERROR',
+  CHANGE_PAGE: 'CHANGE_PAGE',
+  CHANGE_PAGE_SIZE: 'CHANGE_PAGE_SIZE',
+  ON_EMPTY_DATA: 'ON_EMPTY_DATA',
+  RESET: 'RESET',
+}
