@@ -498,7 +498,9 @@ describe('i18n hook', () => {
         supportedLocales: ['test'],
       }),
     })
+    expect(result.current.dateFnsLocale).toBe(undefined)
     await waitForNextUpdate()
-    expect(result.current.dateFnsLocal.default.code).toEqual('en-GB')
+
+    expect(result.current.dateFnsLocale.code).toEqual('en-GB')
   })
 })

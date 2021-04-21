@@ -71,7 +71,7 @@ const I18nContextProvider = ({
   const [currentLocale, setCurrentLocale] = useState(defaultLocale)
   const [locales, setLocales] = useState(supportedLocales)
   const [translations, setTranslations] = useState(defaultTranslations)
-  const [dateFnsLocal, setDateFnsLocal] = useState()
+  const [dateFnsLocale, setDateFnsLocale] = useState()
 
   const getLocaleFallback = useCallback(
     locale => locale.split('-')[0].split('_')[0],
@@ -159,11 +159,11 @@ const I18nContextProvider = ({
       const finalDate = new Date(date)
 
       return formatDistanceToNowStrict(finalDate, {
-        locale: dateFnsLocal,
+        locale: dateFnsLocale,
         ...options,
       })
     },
-    [dateFnsLocal],
+    [dateFnsLocale],
   )
 
   const relativeTime = useCallback(
@@ -171,11 +171,11 @@ const I18nContextProvider = ({
       const finalDate = new Date(date)
 
       return formatDistanceToNow(finalDate, {
-        locale: dateFnsLocal,
+        locale: dateFnsLocale,
         ...options,
       })
     },
-    [dateFnsLocal],
+    [dateFnsLocale],
   )
 
   const translate = useCallback(
@@ -205,8 +205,8 @@ const I18nContextProvider = ({
 
   useEffect(() => {
     loadDateFnsLocale(currentLocale === 'en' ? 'en-GB' : currentLocale)
-      .then(setDateFnsLocal)
-      .catch(() => loadDateFnsLocale('en-GB').then(setDateFnsLocal))
+      .then(setDateFnsLocale)
+      .catch(() => loadDateFnsLocale('en-GB').then(setDateFnsLocale))
 
     setCurrentLocale(getCurrentLocale())
   }, [currentLocale, getCurrentLocale])
@@ -214,7 +214,7 @@ const I18nContextProvider = ({
   const value = useMemo(
     () => ({
       currentLocale,
-      dateFnsLocal,
+      dateFnsLocale,
       datetime,
       formatNumber,
       formatList,
@@ -231,7 +231,7 @@ const I18nContextProvider = ({
     }),
     [
       currentLocale,
-      dateFnsLocal,
+      dateFnsLocale,
       datetime,
       formatNumber,
       formatList,
