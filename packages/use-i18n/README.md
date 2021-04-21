@@ -9,7 +9,9 @@ $ yarn add @scaleway/use-i18n
 ```
 
 ## Usage
+
 ### Loading locales
+
 Create a directory with your locales.
 Use of local `variables` and `namespace` to dynamically load locales.
 
@@ -24,34 +26,36 @@ Use of local `variables` and `namespace` to dynamically load locales.
  ┗ 📂fr
  ┃ ┗ 📜common.json
 ```
+
 your loader will be:
+
 ```js
 const load = ({ locale, namespace }) =>
   import(`./locales/${locale}/${namespace}`)
 ```
+
 Inside your app you will need to use useTranslation to load namespace locales.
 
 if you want to have pre-load locales you can use defaultTranslations.
 
 ```js
-import I18N from '@scaleway/use-i18n'
-import defaultTranslations from './locales/en/common';
+import I18n from '@scaleway/use-i18n'
+import defaultTranslations from './locales/en/common'
 
-<I18N
-  defaultLocale="en"
-  supportedLocales={['en']}
-  defaultTranslations={defaultTranslations}
->
-  <App />
-</I18N>
+const App = () => (
+  <I18n
+    defaultLocale="en"
+    supportedLocales={['en']}
+    defaultTranslations={defaultTranslations}
+  >
+    <App />
+  </I18n>
+)
 ```
-
-
 
 ```js
 import React from 'react'
 import I18n from '@scaleway/use-i18n'
-
 
 const Page = () => {
   // this will load locales based on `./locales/${currentLocale}/common.json`
@@ -91,11 +95,10 @@ Dynamique locale need to be loaded before using useI18n on an other file.
 import { useTranslation } from '@scaleway/use-i18n'
 
 const App = () => {
-  const i18n = useTranslation(['app','common'])
+  const i18n = useTranslation(['app', 'common'])
 
   return <>{i18n.t('app.user')}(</>
 }
-
 ```
 
 ```js
@@ -104,7 +107,7 @@ import { useI18n } from '@scaleway/use-i18n'
 const App = () => {
   const i18n = useTranslation()
   const { loadTranslations } = i18n
-  const namespaces = ['app','common']
+  const namespaces = ['app', 'common']
 
   const key = namespaces.join(',')
 
@@ -116,15 +119,12 @@ const App = () => {
 
   return <>{i18n.t('app.user')}(</>
 }
-
 ```
 
-
-
 ```js
-import {useI18n} from '@scaleway/use-i18n'
+import { useI18n } from '@scaleway/use-i18n'
 
-const { namespaceTranslation} = useI18n()
+const { namespaceTranslation } = useI18n()
 const t = namespaceTranslation('namespace.home.users.table.header')
 ```
 
@@ -134,8 +134,33 @@ Namespace translation help you when you have some very long key
 Exemple of your locale key: `namespace.home.users.table.header.link`
 
 ```js
-import {useI18n} from '@scaleway/use-i18n'
+import { useI18n } from '@scaleway/use-i18n'
 
-const { namespaceTranslation} = useI18n()
+const { namespaceTranslation } = useI18n()
 const t = namespaceTranslation('namespace.home.users.table.header')
+```
+
+### use locales from date-fns
+
+You will need sometimes to give locales to somes compoent
+In this example, we will use react-date-picker.js
+
+```js
+import { useI18n } from '@scaleway/use-i18n'
+import { DateInput } from '@scaleway/ui'
+
+const App = () => {
+  const { t, currentLocale, dateFnsLocale } = useI18n()
+
+  return (
+    <div>
+      <DateInput
+        currentLocale={currentLocale}
+        locale={dateFnsLocale}
+        label={t('form.fields.date.label')}
+        placeholder={t('form.fields.date.placeholder')}
+      />
+    </div>
+  )
+}
 ```
