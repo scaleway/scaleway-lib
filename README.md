@@ -1,4 +1,4 @@
-![Scaleway-Logo-Vertical-Purple-RGB](https://user-images.githubusercontent.com/14060273/111292512-89a52180-8648-11eb-909e-3bd109b1b97c.png)
+![scaleway](https://user-images.githubusercontent.com/14060273/115696039-96f9ae00-a362-11eb-8225-8daafc861e86.png)
 
 ![Codecov](https://img.shields.io/codecov/c/github/scaleway/scaleway-lib)
 ![GitHub closed issues](https://img.shields.io/github/issues-closed/scaleway/scaleway-lib)
