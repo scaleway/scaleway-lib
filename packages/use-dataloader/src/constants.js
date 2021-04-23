@@ -6,6 +6,7 @@ export const StatusEnum = {
 }
 
 export const ActionEnum = {
+  RESET: 'RESET',
   ON_LOADING: 'ON_LOADING',
   ON_SUCCESS: 'ON_SUCCESS',
   ON_UPDATE_DATA: 'ON_UPDATE_DATA',

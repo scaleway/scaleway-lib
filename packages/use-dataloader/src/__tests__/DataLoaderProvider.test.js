@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { act, renderHook } from '@testing-library/react-hooks'
 import React from 'react'
-import DataLoaderProvider, { useDataLoaderContext } from '..'
+import DataLoaderProvider, { useDataLoaderContext } from '../DataLoaderProvider'
 
 const wrapper = ({ children }) => (
   <DataLoaderProvider>{children}</DataLoaderProvider>
@@ -36,13 +36,14 @@ describe('DataLoaderProvider', () => {
     expect(result.current.getCachedData('testA')).toBe('testA')
 
     act(() => {
+      result.current.clearCachedData()
       result.current.clearCachedData('testA')
     })
     expect(Object.values(result.current.getCachedData()).length).toBe(4)
     expect(result.current.getCachedData().testA).toBe(undefined)
 
     act(() => {
-      result.current.clearCachedData()
+      result.current.clearAllCachedData()
     })
     expect(Object.values(result.current.getCachedData()).length).toBe(0)
     expect(result.current.getCachedData()).toStrictEqual({})
@@ -110,7 +111,7 @@ describe('DataLoaderProvider', () => {
     expect(result.current.getReloads().testA).toBe(undefined)
 
     act(() => {
-      result.current.clearReload()
+      result.current.clearAllReloads()
     })
     expect(Object.values(result.current.getReloads()).length).toBe(0)
   })
@@ -127,20 +128,26 @@ describe('DataLoaderProvider', () => {
 
     expect(Object.values(result.current.getReloads()).length).toBe(2)
     expect(Object.values(result.current.getReloads('testA'))).toBeDefined()
+    await result.current.reload()
     await result.current.reload('testA')
     expect(reloadFn).toBeCalledTimes(1)
+
+    act(() => {
+      result.current.clearReload()
+    })
+    expect(Object.values(result.current.getReloads()).length).toBe(2)
 
     const multipleReloads = jest.fn()
 
     act(() => {
-      result.current.clearReload()
+      result.current.clearAllReloads()
       result.current.addReload('testA', multipleReloads)
       result.current.addReload('testB', multipleReloads)
       result.current.addReload('testC', multipleReloads)
       result.current.addReload('testD', multipleReloads)
     })
 
-    await result.current.reload()
+    await result.current.reloadAll()
     expect(multipleReloads).toBeCalledTimes(4)
   })
 })

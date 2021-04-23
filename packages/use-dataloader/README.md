@@ -34,7 +34,7 @@ ReactDOM.render(
 )
 ```
 
-Now you can use `useDataLoader`, `useDataLoaderContext` and `usePaginatedDataLoader` in your App
+Now you can use `useDataLoader` and `useDataLoaderContext` in your App
 
 ### useDataLoader
 
@@ -72,32 +72,23 @@ function MyComponent() {
 export default MyComponent
 ```
 
-### usePaginatedDataLoader
+### useDataLoaderContext
 
 ```js
-import { usePaginatedDataLoader } from '@scaleway-lib/use-dataloader'
+import { useDataLoaderContext } from '@scaleway-lib/use-dataloader'
 
 const fakePromise = () =>
-  new Promise(resolve => setTimeout(resolve('test'), 1000))
-
-function MyComponent() {
-  // Use a key if you want to persist data in the DataLoaderProvider cache
-  const {
-    currentPage,
-    data,
-    isLoading,
-    isLoadingMore,
-    isSuccess,
-    isError,
-    error,
-    goToNextPage,
-    goToPreviousPage,
-    hasNextPage,
-    paginatedData,
-  } = usePaginatedDataLoader('cache-key', fakePromise, {
-    page: 1, // This value are the default one
-    pageSize: 25, // This value are the default one
+  new Promise(resolve => {
+    setTimeout(resolve('test'), 1000):
   })
+
+
+function MyComponentThatUseDataLoader({key}) {
+  // Use a key if you want to persist data in the DataLoaderProvider cache
+  const { data, isLoading, isSuccess, isError, error } = useDataLoader(
+    key,
+    fakePromise,
+  )
 
   // Will be true during the promise
   if (isLoading) {
@@ -107,23 +98,7 @@ function MyComponent() {
   // Will be true when the promise is resolved
   if (isSuccess) {
     // Will display "test" in the the div
-    return (
-      <div>
-        <div>Page data: {data.join(',')}</div>
-        <div>All data: {data.join(',')}</div>
-        <div>
-          <button onClick={goToPreviousPage}>Previous</button>
-          <div>Page: {currentPage}</div>
-          <button
-            onClick={hasNextPage ? goToNextPage : undefined}
-            disabled={!hasNextPage}
-          >
-            {hasNextPage ? 'Next' : 'No More page'}
-          </button>
-        </div>
-        {isLoadingMore && <div>Loading more data...</div>}
-      </div>
-    )
+    return <div>{data}</div>
   }
 
   // Will be false when the promise is rejected
@@ -133,62 +108,27 @@ function MyComponent() {
   }
 }
 
-export default MyComponent
-```
-
-### useDataLoaderContext
-
-```js
-import { usePaginatedDataLoader } from '@scaleway-lib/use-dataloader'
-
-const fakePromise = () =>
-  new Promise(resolve => {
-    console.log('Run promise')
-    setTimeout(resolve('test'), 1000):
-  })
 
 function MyComponent() {
-  const { getReloads, addReloads, addCachedData, clearCachedData, clearReloads } = useDataLoaderContext();
-  const [data, setData] = useState()
+  const { reloadAll, reload } = useDataLoaderContext();
 
-  const handleReload = () => {
-    const reload = getReloads('test') // Get the method with the test key
-    if (reload) {
-      const result = await reload() // Execute the method
-      addCachedData('test', result) // Add the result to the cache
-      setData(result)
+  const handleReload = (keyToReload) => () => {
+      await reload(keyToReload) // Execute the method
     }
   }
 
-  const handleLoad = async () => {
-    const cachedData = getCachedData('test') // Check if another component fetch a data with the test key
-    if (cachedData) {
-      setData(cachedData)
-    } else {
-      handleReload()
+  const handleReloadAll = () => {
+      await reloadAll()
     }
   }
-
-  const handleClearData = () => {
-    clearCachedData('test') // Clear only the cached data of the test key
-    clearCachedData() // Clear all cached data
-  }
-
-  useEffect(() => {
-    addReloads('test', fakePromise); // Add a reload in the context
-
-    return () => {
-      clearReloads('test') // Clear only the reload with the test key
-      clearReloads() // Clear all reloads
-    }
-  }, [])
 
   return (
     <div>
-      <div>{data}</div>
-      <button onClick={handleLoad}>Load data</button>
-      <button onClick={handleReload}>Force reload data</button>
-      <button onClick={handleClearData}>Clear reload data</button>
+      <MyComponentThatUseDataLoader key="test" />
+      <MyComponentThatUseDataLoader key="test-2" />
+      <button onClick={handleReload("test")}>Reload first</button>
+      <button onClick={handleReload("test-2")}>Reload second</button>
+      <button onClick={handleReloadAll}>Reload all</button>
     </div>
   )
 }

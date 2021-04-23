@@ -22,6 +22,12 @@ export default (state, action) => {
         ...state,
         data: action.data,
       }
+    case ActionEnum.RESET:
+      return {
+        status: StatusEnum.IDLE,
+        data: action.data,
+        error: undefined,
+      }
     case ActionEnum.ON_ERROR:
       return {
         ...state,

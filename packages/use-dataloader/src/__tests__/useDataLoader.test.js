@@ -1,9 +1,7 @@
 import { act, renderHook } from '@testing-library/react-hooks'
 import React from 'react'
-import useDataLoader from '..'
-import DataLoaderProvider, {
-  useDataLoaderContext,
-} from '../../DataLoaderProvider'
+import DataLoaderProvider, { useDataLoaderContext } from '../DataLoaderProvider'
+import useDataLoader from '../useDataLoader'
 
 const initialProps = {
   key: 'test',
@@ -13,6 +11,7 @@ const initialProps = {
     }),
   config: {
     enabled: true,
+    reloadOnKeyChange: false,
   },
 }
 // eslint-disable-next-line react/prop-types
@@ -21,8 +20,8 @@ const wrapper = ({ children }) => (
 )
 
 describe('useDataLoader', () => {
-  test('should render correctly with autoload true', async () => {
-    const { result, waitForNextUpdate } = renderHook(
+  test('should render correctly with enabled true', async () => {
+    const { result, waitForNextUpdate, rerender } = renderHook(
       props => useDataLoader(props.key, props.method, props.config),
       {
         wrapper,
@@ -31,6 +30,7 @@ describe('useDataLoader', () => {
     )
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBe(true)
+    rerender()
     await waitForNextUpdate()
     expect(result.current.data).toBe(true)
     expect(result.current.isSuccess).toBe(true)
@@ -81,14 +81,23 @@ describe('useDataLoader', () => {
     expect(result.current.isLoading).toBe(false)
   })
 
-  test('should updateData', async () => {
-    const { result, waitForNextUpdate } = renderHook(
-      props => useDataLoader(props.key, props.method, props.config),
+  test('should render correctly with key update', async () => {
+    let key = 'test'
+    const propsToPass = {
+      ...initialProps,
+      key,
+      config: {
+        reloadOnKeyChange: true,
+      },
+    }
+    const { result, waitForNextUpdate, rerender } = renderHook(
+      props => useDataLoader(key, props.method, props.config),
       {
         wrapper,
-        initialProps,
+        initialProps: propsToPass,
       },
     )
+
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBe(true)
     await waitForNextUpdate()
@@ -96,16 +105,19 @@ describe('useDataLoader', () => {
     expect(result.current.isSuccess).toBe(true)
     expect(result.current.isLoading).toBe(false)
 
-    act(() => {
-      result.current.updateData(11, true)
-      result.current.updateData(11)
-    })
-    expect(result.current.data).toBe(11)
+    key = 'new-test'
+    rerender()
 
-    act(() => {
-      result.current.updateData(true, false)
-    })
+    expect(result.current.data).toBe(undefined)
+    expect(result.current.isLoading).toBe(true)
+    key = 'new-new-test'
+    rerender()
+    expect(result.current.data).toBe(undefined)
+    expect(result.current.isLoading).toBe(true)
+    await waitForNextUpdate()
     expect(result.current.data).toBe(true)
+    expect(result.current.isSuccess).toBe(true)
+    expect(result.current.isLoading).toBe(false)
   })
 
   test('should render correctly with pooling', async () => {
@@ -137,8 +149,8 @@ describe('useDataLoader', () => {
       },
     )
     expect(result.current.data).toBe(undefined)
-    expect(result.current.isLoading).toBe(true)
     expect(result.current.isPolling).toBe(true)
+    expect(result.current.isLoading).toBe(true)
     expect(pollingProps.method).toBeCalledTimes(1)
     await waitForNextUpdate()
     expect(result.current.data).toBe(true)
@@ -241,8 +253,6 @@ describe('useDataLoader', () => {
     await waitForNextUpdate()
     expect(result.current.data).toBe(true)
     expect(result.current.isSuccess).toBe(true)
-    expect(result.current.isSuccess).toBe(true)
-
     expect(onSuccess).toBeCalledTimes(1)
   })
 
@@ -398,7 +408,7 @@ describe('useDataLoader', () => {
     expect(mockedFn).toBeCalledTimes(1)
 
     act(() => {
-      result.current[1].reload()
+      result.current[1].reloadAll()
     })
 
     expect(result.current[0].data).toBe(true)

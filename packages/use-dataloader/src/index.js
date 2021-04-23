@@ -3,4 +3,3 @@ export {
   useDataLoaderContext,
 } from './DataLoaderProvider'
 export { default as useDataLoader } from './useDataLoader'
-export { default as usePaginatedDataLoader } from './usePaginatedDataLoader'
