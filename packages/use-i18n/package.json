@@ -33,6 +33,7 @@
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
+    "date-fns": "2.x",
     "react": "17.x"
   },
   "devDependencies": {
