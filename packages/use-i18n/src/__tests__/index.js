@@ -10,6 +10,7 @@ import fr from './locales/fr'
 const LOCALE_ITEM_STORAGE = 'locales'
 
 const wrapper = ({
+  loadDateLocale = async locale => import(`date-fns/locale/${locale}/index`),
   defaultLoad = async ({ locale }) => import(`./locales/${locale}`),
   defaultLocale = 'en',
   defaultTranslations = {},
@@ -19,6 +20,7 @@ const wrapper = ({
   supportedLocales = ['en', 'fr', 'es'],
 } = {}) => ({ children }) => (
   <I18n
+    loadDateLocale={loadDateLocale}
     defaultLoad={defaultLoad}
     defaultLocale={defaultLocale}
     defaultTranslations={defaultTranslations}
