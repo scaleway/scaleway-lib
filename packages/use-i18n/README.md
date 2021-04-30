@@ -27,11 +27,11 @@ Use of local `variables` and `namespace` to dynamically load locales.
  ┃ ┗ 📜common.json
 ```
 
-your loader will be:
+your loaders will be:
 
 ```js
-const load = ({ locale, namespace }) =>
-  import(`./locales/${locale}/${namespace}`)
+const load = ({ locale, namespace }) => import(`./locales/${locale}/${namespace}`)
+const loadDateLocale = (locale) => import(`date-fns/locale/${locale}/index`)
 ```
 
 Inside your app you will need to use useTranslation to load namespace locales.
@@ -44,6 +44,7 @@ import defaultTranslations from './locales/en/common'
 
 const App = () => (
   <I18n
+    loadDateLocale={loadDateLocale}
     defaultLocale="en"
     supportedLocales={['en']}
     defaultTranslations={defaultTranslations}

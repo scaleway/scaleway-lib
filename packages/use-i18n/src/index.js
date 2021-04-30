@@ -55,12 +55,10 @@ const getNumberFormat = memoizeIntlConstructor(Intl.NumberFormat)
 const getDateTimeFormat = memoizeIntlConstructor(Intl.DateTimeFormat)
 const getListFormat = memoizeIntlConstructor(Intl.ListFormat)
 
-const loadDateFnsLocale = async locale =>
-  import(`date-fns/locale/${locale}/index`)
-
 const I18nContextProvider = ({
   children,
   defaultLoad,
+  loadDateLocale,
   defaultLocale,
   defaultTranslations,
   enableDefaultLocale,
@@ -204,12 +202,12 @@ const I18nContextProvider = ({
   )
 
   useEffect(() => {
-    loadDateFnsLocale(currentLocale === 'en' ? 'en-GB' : currentLocale)
+    loadDateLocale(currentLocale === 'en' ? 'en-GB' : currentLocale)
       .then(setDateFnsLocale)
-      .catch(() => loadDateFnsLocale('en-GB').then(setDateFnsLocale))
+      .catch(() => loadDateLocale('en-GB').then(setDateFnsLocale))
 
     setCurrentLocale(getCurrentLocale())
-  }, [currentLocale, getCurrentLocale])
+  }, [loadDateLocale, currentLocale, getCurrentLocale])
 
   const value = useMemo(
     () => ({
@@ -261,6 +259,7 @@ I18nContextProvider.defaultProps = {
 I18nContextProvider.propTypes = {
   children: PropTypes.node.isRequired,
   defaultLoad: PropTypes.func.isRequired,
+  loadDateLocale: PropTypes.func.isRequired,
   defaultLocale: PropTypes.string.isRequired,
   defaultTranslations: PropTypes.shape({}),
   enableDebugKey: PropTypes.bool,
