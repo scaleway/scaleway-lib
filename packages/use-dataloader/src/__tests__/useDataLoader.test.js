@@ -20,6 +20,23 @@ const wrapper = ({ children }) => (
 )
 
 describe('useDataLoader', () => {
+  test('should render correctly without options', async () => {
+    const { result, waitForNextUpdate, rerender } = renderHook(
+      props => useDataLoader(props.key, props.method),
+      {
+        wrapper,
+        initialProps,
+      },
+    )
+    expect(result.current.data).toBe(undefined)
+    expect(result.current.isLoading).toBe(true)
+    rerender()
+    await waitForNextUpdate()
+    expect(result.current.data).toBe(true)
+    expect(result.current.isSuccess).toBe(true)
+    expect(result.current.isLoading).toBe(false)
+  })
+
   test('should render correctly with enabled true', async () => {
     const { result, waitForNextUpdate, rerender } = renderHook(
       props => useDataLoader(props.key, props.method, props.config),

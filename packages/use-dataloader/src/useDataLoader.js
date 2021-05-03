@@ -22,7 +22,7 @@ const useDataLoader = (
     enabled = true,
     reloadOnKeyChange = true,
     keepPreviousData = true,
-  },
+  } = {},
 ) => {
   const {
     addCachedData,
