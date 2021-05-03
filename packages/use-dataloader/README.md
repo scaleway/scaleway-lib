@@ -135,3 +135,36 @@ function MyComponent() {
 
 export default MyComponent
 ```
+
+---
+
+## API
+
+### useDataLoader
+
+```js
+const useDataLoader = (
+  key, // A key to save the data fetched in a local cache
+  method, // A method that return a promise (ex: () => new Promise((resolve) => setTimeout(resolve, 2000))
+  {
+    onSuccess, // Callback when a request success
+    onError, // Callback when a error is occured
+    initialData, // Initial data if no one is present in the cache before the request
+    pollingInterval, // Relaunch the request after the last success
+    enabled = true, // Launch request automatically
+    keepPreviousData = true, // Do we need to keep the previous data after reload
+  } = {},
+)
+```
+
+|   Property   |                                                      Description                                                      |
+| :----------: | :-------------------------------------------------------------------------------------------------------------------: |
+|    isIdle    |                                         `true` if the request is not launched                                         |
+|  isLoading   |                                           `true` if the request is launched                                           |
+|  isSuccess   |                                      `true`if the request finished successfully                                       |
+|   isError    |                                         `true` if the request throw an error                                          |
+|  isPolling   | `true` if the request if `enabled` is true, `pollingInterval` is defined and the status is `isLoading` or `isSuccess` |
+| previousData |                             if `keepPreviousData` is true it return the last data fetched                             |
+|     data     |     return the `initialData` if no data is fetched or not present in the cache otherwise return the data fetched      |
+|    error     |                                      return the error occured during the request                                      |
+|    reload    |                            allow you to reload the data (it doesn't clear the actual data)                            |

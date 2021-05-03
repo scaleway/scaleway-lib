@@ -11,7 +11,7 @@ const initialProps = {
     }),
   config: {
     enabled: true,
-    reloadOnKeyChange: false,
+    keepPreviousData: true,
   },
 }
 // eslint-disable-next-line react/prop-types
@@ -37,30 +37,39 @@ describe('useDataLoader', () => {
     expect(result.current.isLoading).toBe(false)
   })
 
-  test('should render correctly with enabled true', async () => {
-    const { result, waitForNextUpdate, rerender } = renderHook(
-      props => useDataLoader(props.key, props.method, props.config),
+  test('should render correctly without valid key', async () => {
+    const { result, waitForNextUpdate } = renderHook(
+      props => useDataLoader(props.key, props.method),
       {
         wrapper,
-        initialProps,
+        initialProps: {
+          ...initialProps,
+          key: 2,
+        },
       },
     )
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBe(true)
-    rerender()
     await waitForNextUpdate()
-    expect(result.current.data).toBe(true)
+    expect(result.current.data).toBe(undefined)
     expect(result.current.isSuccess).toBe(true)
     expect(result.current.isLoading).toBe(false)
+  })
 
-    act(() => {
-      result.current.reload()
-    })
-    act(() => {
-      result.current.reload()
-    })
-
-    expect(result.current.data).toBe(true)
+  test('should render correctly without keepPreviousData', async () => {
+    const { result, waitForNextUpdate } = renderHook(
+      props => useDataLoader(props.key, props.method, props.config),
+      {
+        wrapper,
+        initialProps: {
+          ...initialProps,
+          config: {
+            keepPreviousData: false,
+          },
+        },
+      },
+    )
+    expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBe(true)
     await waitForNextUpdate()
     expect(result.current.data).toBe(true)
@@ -68,9 +77,29 @@ describe('useDataLoader', () => {
     expect(result.current.isLoading).toBe(false)
   })
 
-  test('should render correctly with bad key', async () => {
+  test('should render correctly with result null', async () => {
     const { result, waitForNextUpdate } = renderHook(
-      props => useDataLoader(undefined, props.method, props.config),
+      props => useDataLoader(props.key, props.method, props.config),
+      {
+        wrapper,
+        initialProps: {
+          ...initialProps,
+          method: () =>
+            new Promise(resolve => setTimeout(() => resolve(null), 100)),
+        },
+      },
+    )
+    expect(result.current.data).toBe(undefined)
+    expect(result.current.isLoading).toBe(true)
+    await waitForNextUpdate()
+    expect(result.current.data).toBe(undefined)
+    expect(result.current.isSuccess).toBe(true)
+    expect(result.current.isLoading).toBe(false)
+  })
+
+  test('should render correctly with enabled true', async () => {
+    const { result, waitForNextUpdate } = renderHook(
+      props => useDataLoader(props.key, props.method, props.config),
       {
         wrapper,
         initialProps,
@@ -99,35 +128,33 @@ describe('useDataLoader', () => {
   })
 
   test('should render correctly with key update', async () => {
-    let key = 'test'
     const propsToPass = {
       ...initialProps,
-      key,
+      key: 'test',
       config: {
         reloadOnKeyChange: true,
       },
     }
     const { result, waitForNextUpdate, rerender } = renderHook(
-      props => useDataLoader(key, props.method, props.config),
+      () =>
+        useDataLoader(propsToPass.key, propsToPass.method, propsToPass.config),
       {
         wrapper,
-        initialProps: propsToPass,
       },
     )
 
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBe(true)
     await waitForNextUpdate()
-    expect(result.current.data).toBe(true)
     expect(result.current.isSuccess).toBe(true)
     expect(result.current.isLoading).toBe(false)
+    expect(result.current.data).toBe(true)
 
-    key = 'new-test'
+    propsToPass.key = 'key-2'
     rerender()
-
-    expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBe(true)
-    key = 'new-new-test'
+    expect(result.current.data).toBe(undefined)
+    propsToPass.key = 'new-new-test'
     rerender()
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBe(true)
