@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.1.2](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-dataloader@1.1.1...@scaleway/use-dataloader@1.1.2) (2021-05-04)
+
+
+### Bug Fixes
+
+* DataLoaderProvider handle data return from useDataLoader  ([#150](https://github.com/scaleway/scaleway-lib/issues/150)) ([acd938f](https://github.com/scaleway/scaleway-lib/commit/acd938f48bef8856476e12cf421193d8c8eab284))
+
+
+
 ### [1.1.1](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-dataloader@1.1.0...@scaleway/use-dataloader@1.1.1) (2021-05-03)
 
 
