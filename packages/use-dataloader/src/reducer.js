@@ -14,18 +14,11 @@ export default (state, action) => {
       return {
         ...state,
         error: undefined,
-        data: action.data,
         status: StatusEnum.SUCCESS,
-      }
-    case ActionEnum.ON_UPDATE_DATA:
-      return {
-        ...state,
-        data: action.data,
       }
     case ActionEnum.RESET:
       return {
         status: StatusEnum.IDLE,
-        data: action.data,
         error: undefined,
       }
     case ActionEnum.ON_ERROR:
