@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.1.4](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-dataloader@1.1.3...@scaleway/use-dataloader@1.1.4) (2021-05-10)
+
+
+### Bug Fixes
+
+* bad condition inside handleRequest ([#165](https://github.com/scaleway/scaleway-lib/issues/165)) ([11cbd72](https://github.com/scaleway/scaleway-lib/commit/11cbd72344ce7feed8ed81680af4b29d76575ac0))
+
+
+
 ### 1.1.3 (2021-05-10)
 
 **Note:** Version bump only for package @scaleway/use-dataloader
