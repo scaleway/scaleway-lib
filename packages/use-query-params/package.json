@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/use-query-params",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A small hook to handle params",
   "keywords": [
     "react",
