@@ -5,7 +5,7 @@
   "module": "dist/module.js",
   "type": "module",
   "browser": {
-    "dist/index.js": "./dist/module.browser.js"
+    "dist/module.js": "./dist/module.browser.js"
   },
   "publishConfig": {
     "access": "public"
