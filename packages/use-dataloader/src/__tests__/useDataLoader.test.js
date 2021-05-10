@@ -154,10 +154,6 @@ describe('useDataLoader', () => {
     rerender()
     expect(result.current.isLoading).toBe(true)
     expect(result.current.data).toBe(undefined)
-    propsToPass.key = 'new-new-test'
-    rerender()
-    expect(result.current.data).toBe(undefined)
-    expect(result.current.isLoading).toBe(true)
     await waitForNextUpdate()
     expect(result.current.data).toBe(true)
     expect(result.current.isSuccess).toBe(true)

@@ -83,10 +83,6 @@ const useDataLoader = (
       dispatch(Actions.createOnLoading())
       const result = await methodRef.current?.()
 
-      if (keyRef.current && cacheKey && cacheKey !== keyRef.current) {
-        return
-      }
-
       if (keepPreviousData) {
         previousDataRef.current = getCachedData(cacheKey)
       }
