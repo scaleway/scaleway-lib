@@ -14,8 +14,7 @@
     "@commitlint/cli": "^12.0.0",
     "@commitlint/config-conventional": "^12.0.0",
     "@rollup/plugin-babel": "^5.2.2",
-    "@rollup/plugin-commonjs": "^18.0.0",
-    "@rollup/plugin-node-resolve": "^11.0.1",
+    "@rollup/plugin-node-resolve": "^13.0.0",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/react-hooks": "^5.1.0",
@@ -31,13 +30,12 @@
     "prettier": "^2.2.1",
     "read-pkg": "^6.0.0",
     "rollup": "^2.36.1",
-    "rollup-plugin-analyzer": "^4.0.0",
-    "rollup-plugin-preserve-shebangs": "^0.2.0"
+    "rollup-plugin-visualizer": "^5.5.0"
   },
   "scripts": {
     "lint": "eslint --cache .",
     "lint:fix": "yarn run lint --fix",
-    "build": "lerna exec --ignore @scaleway/eslint-* --ignore @scaleway/countries -- rollup -c ../../rollup.config.mjs",
+    "build": "lerna exec --stream --ignore @scaleway/eslint-* --ignore @scaleway/countries -- rollup -c ../../rollup.config.mjs",
     "build:profile": "cross-env PROFILE=true yarn run build",
     "commit": "npx git-cz -a",
     "test": "jest",

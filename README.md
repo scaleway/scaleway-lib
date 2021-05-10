@@ -155,7 +155,6 @@ We target by default Node@14 but you can add a browser output by adding a `brows
 
 ```js
   "browser": {
-    "dist/index.js": "dist/index.browser.js",
     "dist/module.js": "dist/module.browser.js"
   }
 ```
@@ -166,7 +165,7 @@ The browserlist we are currently using is available in the [rollup.config.mjs](.
 
 ### On build outputs
 
-We output both UMD and ESM files for each target.
+We only output ESM modules.
 
 ### On commits
 

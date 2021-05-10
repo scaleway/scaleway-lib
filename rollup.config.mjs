@@ -1,10 +1,8 @@
 import { babel } from '@rollup/plugin-babel'
-import commonjs from '@rollup/plugin-commonjs'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import builtins from 'builtin-modules'
 import { readPackageAsync } from 'read-pkg'
-import analyze from 'rollup-plugin-analyzer'
-import { preserveShebangs } from 'rollup-plugin-preserve-shebangs'
+import { visualizer } from 'rollup-plugin-visualizer'
 
 const PROFILE = !!process.env.PROFILE
 
@@ -44,24 +42,19 @@ const getConfig = (pkg, isBrowser = false) => {
         browser: isBrowser,
         preferBuiltins: true,
       }),
-      commonjs({
-        include: '**/node_modules/**',
-      }),
-      preserveShebangs(),
-      PROFILE && analyze({ summaryOnly: true }),
+      PROFILE &&
+        visualizer({
+          gzipSize: true,
+          brotliSize: true,
+          open: true,
+          filename: '.reports/report.html',
+        }),
     ].filter(Boolean),
     external,
-    output: [
-      {
-        format: 'umd',
-        name: pkg.name,
-        file: isBrowser ? 'dist/index.browser.js' : 'dist/index.js',
-      },
-      {
-        format: 'es',
-        file: isBrowser ? 'dist/module.browser.js' : 'dist/module.js',
-      },
-    ],
+    output: {
+      format: 'es',
+      file: isBrowser ? 'dist/module.browser.js' : 'dist/module.js',
+    },
   }
 }
 
