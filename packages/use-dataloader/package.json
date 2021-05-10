@@ -8,10 +8,9 @@
     "hooks",
     "dataloader"
   ],
-  "main": "dist/index.js",
+  "type": "module",
   "module": "dist/module.js",
   "browser": {
-    "dist/index.js": "./dist/index.browser.js",
     "dist/module.js": "./dist/module.browser.js"
   },
   "publishConfig": {

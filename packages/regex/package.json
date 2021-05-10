@@ -2,10 +2,9 @@
   "name": "@scaleway/regex",
   "version": "1.4.1",
   "description": "A small utility to use regex",
-  "main": "dist/index.js",
+  "type": "module",
   "module": "dist/module.js",
   "browser": {
-    "dist/index.js": "./dist/index.browser.js",
     "dist/module.js": "./dist/module.browser.js"
   },
   "publishConfig": {
