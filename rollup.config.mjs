@@ -1,4 +1,5 @@
 import { babel } from '@rollup/plugin-babel'
+import { nodeResolve } from '@rollup/plugin-node-resolve'
 import builtins from 'builtin-modules'
 import { readPackageAsync } from 'read-pkg'
 import { visualizer } from 'rollup-plugin-visualizer'
@@ -37,6 +38,10 @@ const getConfig = (pkg, isBrowser = false) => {
           '@babel/plugin-transform-react-jsx',
         ],
       }),
+      nodeResolve({
+        browser: isBrowser,
+        preferBuiltins: true,
+      }),
       PROFILE &&
         visualizer({
           gzipSize: true,
@@ -46,10 +51,10 @@ const getConfig = (pkg, isBrowser = false) => {
         }),
     ].filter(Boolean),
     external,
-    output: [{
+    output: {
       format: 'es',
       file: isBrowser ? 'dist/module.browser.js' : 'dist/module.js',
-    }],
+    },
   }
 }
 
