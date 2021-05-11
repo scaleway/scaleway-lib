@@ -3,12 +3,15 @@ import React from 'react'
 import { MemoryRouter } from 'react-router-dom'
 import useQueryParams from '..'
 
-// eslint-disable-next-line react/prop-types
-const wrapper = ({ pathname = 'one', search }) => ({ children }) => (
-  <MemoryRouter initialIndex={0} initialEntries={[{ pathname, search }]}>
-    {children}
-  </MemoryRouter>
-)
+const wrapper =
+  ({ pathname = 'one', search }) =>
+  // eslint-disable-next-line react/prop-types
+  ({ children }) =>
+    (
+      <MemoryRouter initialIndex={0} initialEntries={[{ pathname, search }]}>
+        {children}
+      </MemoryRouter>
+    )
 
 describe('useQueryParam', () => {
   it('should set one object', () => {
@@ -34,16 +37,22 @@ describe('useQueryParam', () => {
     expect(result.current.queryParams).toEqual({ user: 'John' })
 
     act(() => {
-      result.current.setQueryParams({ user: 'Doe', name: 'Doe' })
+      result.current.setQueryParams({
+        name: 'Doe',
+        user: 'Doe',
+      })
     })
-    expect(result.current.queryParams).toEqual({ user: 'Doe', name: 'Doe' })
+    expect(result.current.queryParams).toEqual({
+      name: 'Doe',
+      user: 'Doe',
+    })
 
     act(() => {
       result.current.setQueryParams({ user: 'Scaleway' })
     })
     expect(result.current.queryParams).toEqual({
-      user: 'Scaleway',
       name: 'Doe',
+      user: 'Scaleway',
     })
   })
 
@@ -54,19 +63,19 @@ describe('useQueryParam', () => {
 
     act(() => {
       result.current.setQueryParams({
-        user: 'John Doe',
-        name: 'John',
         lastName: 'Doe',
-        version: 1234,
         lib: 'useQueryParams',
+        name: 'John',
+        user: 'John Doe',
+        version: 1234,
       })
     })
     expect(result.current.queryParams).toEqual({
-      user: 'John Doe',
-      name: 'John',
       lastName: 'Doe',
-      version: 1234,
       lib: 'useQueryParams',
+      name: 'John',
+      user: 'John Doe',
+      version: 1234,
     })
   })
 
@@ -86,10 +95,10 @@ describe('useQueryParam', () => {
     })
 
     expect(result.current.queryParams).toEqual({
-      string: 'john',
+      array: ['handle', 'array', 'format'],
       boolean: true,
       number: 123,
-      array: ['handle', 'array', 'format'],
+      string: 'john',
     })
   })
 
@@ -103,16 +112,16 @@ describe('useQueryParam', () => {
     act(() => {
       result.current.setQueryParams({
         lastName: 'Doe',
-        version: 1234,
         lib: 'useQueryParams',
+        version: 1234,
       })
     })
 
     expect(result.current.queryParams).toEqual({
-      user: 'john',
       lastName: 'Doe',
-      version: 1234,
       lib: 'useQueryParams',
+      user: 'john',
+      version: 1234,
     })
   })
 
@@ -129,8 +138,8 @@ describe('useQueryParam', () => {
       result.current.setQueryParams({ lastName: 'Doe' })
     })
     expect(result.current.queryParams).toEqual({
-      name: 'JOHN',
       lastName: 'Doe',
+      name: 'JOHN',
     })
 
     rerender()
@@ -144,8 +153,8 @@ describe('useQueryParam', () => {
     })
 
     expect(result.current.queryParams).toEqual({
-      name: 'john',
       lastName: 'Doe',
+      name: 'john',
       test: 'Scaleway',
     })
   })
@@ -165,9 +174,9 @@ describe('useQueryParam', () => {
     })
 
     expect(result.current.queryParams).toEqual({
-      name: 'John',
-      lastName: 'Doe',
       compagny: 'Scaleway',
+      lastName: 'Doe',
+      name: 'John',
     })
 
     act(() => {
@@ -175,9 +184,9 @@ describe('useQueryParam', () => {
     })
 
     expect(result.current.queryParams).toEqual({
-      name: 'John',
-      lastName: 'Doe',
       compagny: 'Scaleway',
+      lastName: 'Doe',
+      name: 'John',
     })
   })
 
@@ -196,8 +205,8 @@ describe('useQueryParam', () => {
       result.current.setQueryParams({ lastName: 'Doe' })
     })
     expect(result.current.queryParams).toEqual({
-      name: 'John',
       lastName: 'Doe',
+      name: 'John',
     })
     act(() => {
       result.current.replaceQueryParams({ compagny: 'Scaleway' })
@@ -287,12 +296,12 @@ describe('useQueryParam', () => {
     })
 
     expect(result.current.qp1.queryParams).toEqual({
-      user: 'John',
       compagny: 'Scaleway',
+      user: 'John',
     })
     expect(result.current.qp2.queryParams).toEqual({
-      user: 'John',
       compagny: 'Scaleway',
+      user: 'John',
     })
   })
 })

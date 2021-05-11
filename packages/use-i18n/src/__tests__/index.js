@@ -9,29 +9,32 @@ import fr from './locales/fr'
 
 const LOCALE_ITEM_STORAGE = 'locales'
 
-const wrapper = ({
-  loadDateLocale = async locale => import(`date-fns/locale/${locale}/index`),
-  defaultLoad = async ({ locale }) => import(`./locales/${locale}`),
-  defaultLocale = 'en',
-  defaultTranslations = {},
-  enableDebugKey = false,
-  enableDefaultLocale = false,
-  localeItemStorage = LOCALE_ITEM_STORAGE,
-  supportedLocales = ['en', 'fr', 'es'],
-} = {}) => ({ children }) => (
-  <I18n
-    loadDateLocale={loadDateLocale}
-    defaultLoad={defaultLoad}
-    defaultLocale={defaultLocale}
-    defaultTranslations={defaultTranslations}
-    enableDebugKey={enableDebugKey}
-    enableDefaultLocale={enableDefaultLocale}
-    localeItemStorage={localeItemStorage}
-    supportedLocales={supportedLocales}
-  >
-    {children}
-  </I18n>
-)
+const wrapper =
+  ({
+    loadDateLocale = async locale => import(`date-fns/locale/${locale}/index`),
+    defaultLoad = async ({ locale }) => import(`./locales/${locale}`),
+    defaultLocale = 'en',
+    defaultTranslations = {},
+    enableDebugKey = false,
+    enableDefaultLocale = false,
+    localeItemStorage = LOCALE_ITEM_STORAGE,
+    supportedLocales = ['en', 'fr', 'es'],
+  } = {}) =>
+  ({ children }) =>
+    (
+      <I18n
+        loadDateLocale={loadDateLocale}
+        defaultLoad={defaultLoad}
+        defaultLocale={defaultLocale}
+        defaultTranslations={defaultTranslations}
+        enableDebugKey={enableDebugKey}
+        enableDefaultLocale={enableDefaultLocale}
+        localeItemStorage={localeItemStorage}
+        supportedLocales={supportedLocales}
+      >
+        {children}
+      </I18n>
+    )
 
 describe('i18n hook', () => {
   afterEach(() => {
@@ -98,11 +101,11 @@ describe('i18n hook', () => {
     await waitForNextUpdate()
     expect(result.current.translations).toStrictEqual({
       en: {
-        'user.name': 'Name',
-        'user.lastName': 'Last Name',
-        'user.languages': 'Languages',
-        'profile.name': 'Name',
         'profile.lastName': 'Last Name',
+        'profile.name': 'Name',
+        'user.languages': 'Languages',
+        'user.lastName': 'Last Name',
+        'user.name': 'Name',
       },
     })
 
@@ -118,17 +121,17 @@ describe('i18n hook', () => {
 
     expect(result.current.translations).toStrictEqual({
       en: {
-        'user.name': 'Name',
-        'user.lastName': 'Last Name',
-        'user.languages': 'Languages',
-        'profile.name': 'Name',
         'profile.lastName': 'Last Name',
+        'profile.name': 'Name',
+        'user.languages': 'Languages',
+        'user.lastName': 'Last Name',
+        'user.name': 'Name',
       },
       fr: {
-        'user.name': 'Prénom',
-        'user.lastName': 'Nom',
-        'profile.name': 'Prénom',
         'profile.lastName': 'Nom',
+        'profile.name': 'Prénom',
+        'user.lastName': 'Nom',
+        'user.name': 'Prénom',
       },
     })
 
@@ -148,8 +151,8 @@ describe('i18n hook', () => {
       () => useTranslation(['user'], load),
       {
         wrapper: wrapper({
-          enableDefaultLocale: true,
           defaultLocale: 'fr',
+          enableDefaultLocale: true,
           supportedLocales: ['en', 'fr'],
         }),
       },
@@ -158,9 +161,9 @@ describe('i18n hook', () => {
     await waitForNextUpdate()
     expect(result.current.translations).toStrictEqual({
       en: {
-        'user.name': 'Name',
-        'user.lastName': 'Last Name',
         'user.languages': 'Languages',
+        'user.lastName': 'Last Name',
+        'user.name': 'Name',
       },
       fr: {
         'user.lastName': 'Nom',
@@ -244,9 +247,9 @@ describe('i18n hook', () => {
     const { result, waitForNextUpdate } = renderHook(() => useI18n(), {
       wrapper: wrapper({
         defaultLocale: 'en',
-        supportedLocales: ['en', 'fr'],
         defaultTranslations: { en },
         enableDebugKey: true,
+        supportedLocales: ['en', 'fr'],
       }),
     })
     expect(result.current.t('test')).toEqual('test')
@@ -294,17 +297,17 @@ describe('i18n hook', () => {
     expect(result.current.formatNumber(2)).toEqual('2')
     expect(
       result.current.formatNumber(2, {
-        style: 'currency',
         currency: 'EUR',
         currencyDisplay: 'symbol',
+        style: 'currency',
       }),
     ).toEqual('€2.00')
 
     expect(
       result.current.formatNumber(2, {
-        style: 'currency',
         currency: 'USD',
         currencyDisplay: 'symbol',
+        style: 'currency',
       }),
     ).toEqual('$2.00')
 
@@ -321,11 +324,14 @@ describe('i18n hook', () => {
     // https://stackoverflow.com/questions/54242039/intl-numberformat-space-character-does-not-match
 
     expect(
-      result.current.formatNumber(2, { style: 'currency', currency: 'EUR' }),
+      result.current.formatNumber(2, {
+        currency: 'EUR',
+        style: 'currency',
+      }),
     ).toEqual('2,00\xa0€')
 
     expect(
-      result.current.formatNumber(2, { style: 'currency', currency: 'USD' }),
+      result.current.formatNumber(2, { currency: 'USD', style: 'currency' }),
     ).toEqual('2,00\xa0$US')
   })
 
@@ -399,8 +405,8 @@ describe('i18n hook', () => {
 
     expect(
       result.current.datetime(date, {
-        month: 'numeric',
         day: 'numeric',
+        month: 'numeric',
         year: 'numeric',
       }),
     ).toEqual('12/17/1995')
@@ -408,25 +414,25 @@ describe('i18n hook', () => {
     expect(
       result.current.datetime(date, {
         day: '2-digit',
+        era: 'short',
         month: 'short',
         year: 'numeric',
-        era: 'short',
       }),
     ).toEqual('Dec 17, 1995 AD')
 
     expect(
       result.current.datetime(date, {
         day: '2-digit',
+        era: 'long',
         month: 'long',
         year: 'numeric',
-        era: 'long',
       }),
     ).toEqual('December 17, 1995 Anno Domini')
 
     expect(
       result.current.datetime(date, {
-        month: 'numeric',
         day: 'numeric',
+        month: 'numeric',
         year: 'numeric',
       }),
     ).toEqual('12/17/1995')
@@ -440,8 +446,8 @@ describe('i18n hook', () => {
 
     expect(
       result.current.datetime(date, {
-        month: 'numeric',
         day: 'numeric',
+        month: 'numeric',
         year: 'numeric',
       }),
     ).toEqual('17/12/1995')
@@ -449,9 +455,9 @@ describe('i18n hook', () => {
     expect(
       result.current.datetime(date, {
         day: '2-digit',
+        era: 'long',
         month: 'long',
         year: 'numeric',
-        era: 'long',
       }),
     ).toEqual('17 décembre 1995 après Jésus-Christ')
   })

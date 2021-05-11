@@ -1,21 +1,17 @@
 module.exports = {
-  extends: ['airbnb', 'airbnb/hooks', 'prettier'],
   env: {
     browser: true,
     jest: true,
   },
+  extends: ['airbnb', 'airbnb/hooks', 'prettier'],
   rules: {
-    'sort-imports': [
-      'error',
-      {
-        ignoreDeclarationSort: true,
-        memberSyntaxSortOrder: ['single', 'multiple', 'all', 'none'],
-      },
-    ],
-
     'import/order': [
       'error',
       {
+        alphabetize: {
+          caseInsensitive: false,
+          order: 'asc',
+        },
         groups: [
           ['builtin', 'external'],
           'internal',
@@ -23,27 +19,33 @@ module.exports = {
           'sibling',
           'index',
         ],
-        alphabetize: {
-          order: 'asc',
-          caseInsensitive: false,
-        },
         'newlines-between': 'never',
       },
     ],
-
     'padding-line-between-statements': [
       'error',
       {
         blankLine: 'always',
-        prev: '*',
         next: 'return',
+        prev: '*',
       },
     ],
-
     'react/jsx-filename-extension': ['error', { extensions: ['.js'] }],
+    'react/jsx-no-constructed-context-values': 'warn',
     'react/jsx-no-script-url': 'error',
     'react/jsx-no-useless-fragment': 'error',
     'react/no-adjacent-inline-elements': 'error',
-    'react/jsx-no-constructed-context-values': 'warn',
+    'react/sort-prop-types': [
+      'error',
+      { ignoreCase: true, requiredFirst: false, sortShapeProp: true },
+    ],
+    'sort-imports': [
+      'error',
+      {
+        ignoreDeclarationSort: true,
+        memberSyntaxSortOrder: ['single', 'multiple', 'all', 'none'],
+      },
+    ],
+    'sort-keys': ['error', 'asc', { caseSensitive: true, natural: true }],
   },
 }

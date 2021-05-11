@@ -91,16 +91,19 @@ const I18nContextProvider = ({
   const loadTranslations = useCallback(
     async (namespace, load = defaultLoad) => {
       const result = {
-        defaultLocale: { default: {} },
         [currentLocale]: { default: {} },
+        defaultLocale: { default: {} },
       }
       // load default en language
       if (enableDefaultLocale && currentLocale !== defaultLocale) {
-        result.defaultLocale = await load({ namespace, locale: defaultLocale })
+        result.defaultLocale = await load({
+          locale: defaultLocale,
+          namespace,
+        })
       }
       result[currentLocale] = await load({
-        namespace,
         locale: currentLocale,
+        namespace,
       })
 
       const trad = {
@@ -196,8 +199,9 @@ const I18nContextProvider = ({
   )
 
   const namespaceTranslation = useCallback(
-    (namespace, t = translate) => (identifier, ...args) =>
-      t(`${namespace}.${identifier}`, ...args) || t(identifier, ...args),
+    (namespace, t = translate) =>
+      (identifier, ...args) =>
+        t(`${namespace}.${identifier}`, ...args) || t(identifier, ...args),
     [translate],
   )
 
@@ -214,8 +218,8 @@ const I18nContextProvider = ({
       currentLocale,
       dateFnsLocale,
       datetime,
-      formatNumber,
       formatList,
+      formatNumber,
       loadTranslations,
       locales,
       namespaceTranslation,
@@ -251,19 +255,19 @@ const I18nContextProvider = ({
 
 I18nContextProvider.defaultProps = {
   defaultTranslations: {},
+  enableDebugKey: false,
   enableDefaultLocale: false,
   localeItemStorage: LOCALE_ITEM_STORAGE,
-  enableDebugKey: false,
 }
 
 I18nContextProvider.propTypes = {
   children: PropTypes.node.isRequired,
   defaultLoad: PropTypes.func.isRequired,
-  loadDateLocale: PropTypes.func.isRequired,
   defaultLocale: PropTypes.string.isRequired,
   defaultTranslations: PropTypes.shape({}),
   enableDebugKey: PropTypes.bool,
   enableDefaultLocale: PropTypes.bool,
+  loadDateLocale: PropTypes.func.isRequired,
   localeItemStorage: PropTypes.string,
   supportedLocales: PropTypes.arrayOf(PropTypes.string).isRequired,
 }

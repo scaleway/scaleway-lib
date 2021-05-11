@@ -9,9 +9,9 @@ const useQueryParams = () => {
   const currentState = useMemo(
     () =>
       parse(location.search, {
-        parseNumbers: true,
-        parseBooleans: true,
         arrayFormat: 'comma',
+        parseBooleans: true,
+        parseNumbers: true,
       }),
     [location.search],
   )
