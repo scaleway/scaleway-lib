@@ -14,7 +14,7 @@ const getConfig = (pkg, isBrowser = false) => {
     not IE > 0,
     not IE_Mob > 0
   `
-    : { node: '14' }
+    : { node: 'current' }
 
   const external = id =>
     [
