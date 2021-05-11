@@ -18,8 +18,8 @@ export default (state, action) => {
       }
     case ActionEnum.RESET:
       return {
-        status: StatusEnum.IDLE,
         error: undefined,
+        status: StatusEnum.IDLE,
       }
     case ActionEnum.ON_ERROR:
       return {

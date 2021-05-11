@@ -119,14 +119,14 @@ const DataLoaderProvider = ({ children }) => {
   const value = useMemo(
     () => ({
       addCachedData,
-      clearCachedData,
-      getCachedData,
-      reload,
-      getReloads,
       addReload,
-      clearReload,
       clearAllCachedData,
       clearAllReloads,
+      clearCachedData,
+      clearReload,
+      getCachedData,
+      getReloads,
+      reload,
       reloadAll,
     }),
     [

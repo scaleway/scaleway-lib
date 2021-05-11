@@ -2,6 +2,10 @@
   "name": "@scaleway/eslint-config-react",
   "version": "1.4.0",
   "description": "Scaleway React eslint shared config",
+  "keywords": [
+    "eslint",
+    "eslintconfig"
+  ],
   "main": "index.js",
   "publishConfig": {
     "access": "public"

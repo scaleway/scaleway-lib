@@ -4,10 +4,10 @@ import { ActionEnum, StatusEnum } from './constants'
 import reducer from './reducer'
 
 const Actions = {
-  createReset: () => ({ type: ActionEnum.RESET }),
+  createOnError: error => ({ error, type: ActionEnum.ON_ERROR }),
   createOnLoading: () => ({ type: ActionEnum.ON_LOADING }),
   createOnSuccess: () => ({ type: ActionEnum.ON_SUCCESS }),
-  createOnError: error => ({ type: ActionEnum.ON_ERROR, error }),
+  createReset: () => ({ type: ActionEnum.RESET }),
 }
 
 /**
@@ -43,23 +43,19 @@ const useDataLoader = (
   key,
   method,
   {
-    onSuccess,
-    onError,
-    initialData,
-    pollingInterval,
     enabled = true,
+    initialData,
     keepPreviousData = true,
+    onError,
+    onSuccess,
+    pollingInterval,
   } = {},
 ) => {
-  const {
-    addCachedData,
-    addReload,
-    clearReload,
-    getCachedData,
-  } = useDataLoaderContext()
+  const { addCachedData, addReload, clearReload, getCachedData } =
+    useDataLoaderContext()
   const [{ status, error }, dispatch] = useReducer(reducer, {
-    status: StatusEnum.IDLE,
     error: undefined,
+    status: StatusEnum.IDLE,
   })
 
   const previousDataRef = useRef()
@@ -148,14 +144,14 @@ const useDataLoader = (
   }, [method])
 
   return {
-    isLoading,
-    isIdle,
-    isSuccess,
-    isError,
-    isPolling,
-    previousData: previousDataRef.current,
     data: getCachedData(key) || initialData,
     error,
+    isError,
+    isIdle,
+    isLoading,
+    isPolling,
+    isSuccess,
+    previousData: previousDataRef.current,
     reload: args => handleRequest.current(key, args),
   }
 }
