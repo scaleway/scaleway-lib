@@ -51,6 +51,13 @@ scaleway-lib is a set of NPM packages used at Scaleway.
   ![npm bundle size](https://img.shields.io/bundlephobia/min/@scaleway/random-name)
   ![npm](https://img.shields.io/npm/v/@scaleway/random-name)
 
+- [`@scaleway/use-dataloader`](./packages/use-dataloader/README.md):
+  A tiny react hook to to handle api requests.
+
+  ![npm](https://img.shields.io/npm/dm/@scaleway/use-dataloader)
+  ![npm bundle size](https://img.shields.io/bundlephobia/min/@scaleway/use-dataloader)
+  ![npm](https://img.shields.io/npm/v/@scaleway/use-dataloader)
+
 - [`@scaleway/use-query-params`](./packages/use-query-params/README.md):
   A tiny react hook to read and update URLs query parameters.
 
