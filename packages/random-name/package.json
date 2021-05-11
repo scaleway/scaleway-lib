@@ -2,8 +2,9 @@
   "name": "@scaleway/random-name",
   "version": "1.3.1",
   "description": "A small utility to generate a random name",
-  "module": "dist/module.js",
   "type": "module",
+  "main": "dist/module.js",
+  "module": "dist/module.js",
   "browser": {
     "dist/module.js": "./dist/module.browser.js"
   },
