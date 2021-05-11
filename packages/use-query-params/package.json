@@ -12,6 +12,7 @@
     "query-params"
   ],
   "type": "module",
+  "main": "dist/module.js",
   "module": "dist/module.js",
   "browser": {
     "dist/module.js": "./dist/module.browser.js"
