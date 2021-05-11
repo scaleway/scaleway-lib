@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.5.0 (2021-05-11)
+
+
+### Features
+
+* **eslint:** add sort-key, sort prop-types, no bind jsx ([#167](https://github.com/scaleway/scaleway-lib/issues/167)) ([41086e8](https://github.com/scaleway/scaleway-lib/commit/41086e88ee4fc040c1277e99cd65ead8f9d294e8))
+
+
+
 # [1.4.0](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@1.3.2...@scaleway/eslint-config-react@1.4.0) (2021-03-04)
 
 
