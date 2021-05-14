@@ -1,6 +1,6 @@
 import { act, renderHook } from '@testing-library/react-hooks'
-import React from 'react'
 import { MemoryRouter } from 'react-router-dom'
+import React from 'react'
 import useQueryParams from '..'
 
 const wrapper =

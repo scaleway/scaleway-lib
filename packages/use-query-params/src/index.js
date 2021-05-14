@@ -1,6 +1,6 @@
 import { parse, stringify } from 'query-string'
-import { useCallback, useMemo } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
+import { useCallback, useMemo } from 'react'
 
 const useQueryParams = () => {
   const { replace } = useHistory()

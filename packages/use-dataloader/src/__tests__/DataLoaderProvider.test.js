@@ -1,5 +1,5 @@
-import { render, screen } from '@testing-library/react'
 import { act, renderHook } from '@testing-library/react-hooks'
+import { render, screen } from '@testing-library/react'
 import React from 'react'
 import DataLoaderProvider, { useDataLoaderContext } from '../DataLoaderProvider'
 
