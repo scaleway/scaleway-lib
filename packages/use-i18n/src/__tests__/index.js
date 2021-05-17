@@ -157,8 +157,14 @@ describe('i18n hook', () => {
         }),
       },
     )
+
+    // current local will be 'en' based on navigator
     // await load of locales
+    act(() => {
+      result.current.switchLocale('fr')
+    })
     await waitForNextUpdate()
+
     expect(result.current.translations).toStrictEqual({
       en: {
         'user.languages': 'Languages',
@@ -170,10 +176,6 @@ describe('i18n hook', () => {
         'user.name': 'Prénom',
       },
     })
-    act(() => {
-      result.current.switchLocale('fr')
-    })
-    await waitForNextUpdate()
 
     expect(result.current.t('user.languages')).toEqual('')
     expect(result.current.t('user.lastName')).toEqual('Nom')
