@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.1.2](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@2.1.1...@scaleway/use-i18n@2.1.2) (2021-05-19)
+
+
+### Bug Fixes
+
+* **i18n:** add loaded namespace ([#183](https://github.com/scaleway/scaleway-lib/issues/183)) ([13e2ded](https://github.com/scaleway/scaleway-lib/commit/13e2ded931e5d5e78422fa4dcf4e6e2597c1cc32))
+
+
+
 ### [2.1.1](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@2.1.0...@scaleway/use-i18n@2.1.1) (2021-05-19)
 
 **Note:** Version bump only for package @scaleway/use-i18n
