@@ -30,8 +30,9 @@ Use of local `variables` and `namespace` to dynamically load locales.
 your loaders will be:
 
 ```js
-const load = ({ locale, namespace }) => import(`./locales/${locale}/${namespace}`)
-const loadDateLocale = (locale) => import(`date-fns/locale/${locale}/index`)
+const load = ({ locale, namespace }) =>
+  import(`./locales/${locale}/${namespace}`)
+const loadDateLocale = locale => import(`date-fns/locale/${locale}/index`)
 ```
 
 Inside your app you will need to use useTranslation to load namespace locales.
@@ -102,23 +103,16 @@ const App = () => {
 }
 ```
 
+In a case you will need to avoid somes useless re-render. you can wait that all your namespaces are loaded
+
 ```js
-import { useI18n } from '@scaleway/use-i18n'
+import { useTranslation } from '@scaleway/use-i18n'
 
 const App = () => {
-  const i18n = useTranslation()
-  const { loadTranslations } = i18n
   const namespaces = ['app', 'common']
+  const { t, isLoaded } = useTranslation(namespaces)
 
-  const key = namespaces.join(',')
-
-  useEffect(
-    () =>
-      key.split(',').map(async namespace => loadTranslations(namespace, load)),
-    [loadTranslations, key, load],
-  )
-
-  return <>{i18n.t('app.user')}(</>
+  return isLoaded ? <>{t('app.user')}(</> : null
 }
 ```
 

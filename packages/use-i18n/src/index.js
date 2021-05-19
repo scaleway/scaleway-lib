@@ -10,6 +10,7 @@ import React, {
   useMemo,
   useState,
 } from 'react'
+import ReactDOM from 'react-dom'
 import 'intl-pluralrules'
 
 const LOCALE_ITEM_STORAGE = 'locale'
@@ -20,6 +21,27 @@ const prefixKeys = prefix => obj =>
 
     return acc
   }, {})
+
+const areNamespacesLoaded = (namespaces, loadedNamespaces) =>
+  namespaces.every(n => loadedNamespaces.includes(n))
+
+const getLocaleFallback = locale => locale.split('-')[0].split('_')[0]
+
+const getCurrentLocale = ({
+  defaultLocale,
+  supportedLocales,
+  localeItemStorage,
+}) => {
+  const languages = navigator.languages || [navigator.language]
+  const browserLocales = [...new Set(languages.map(getLocaleFallback))]
+  const localeStorage = localStorage.getItem(localeItemStorage)
+
+  return (
+    localeStorage ||
+    browserLocales.find(locale => supportedLocales.includes(locale)) ||
+    defaultLocale
+  )
+}
 
 const I18nContext = createContext()
 
@@ -37,16 +59,19 @@ export const useTranslation = (namespaces = [], load) => {
   if (context === undefined) {
     throw new Error('useTranslation must be used within a I18nProvider')
   }
-  const { loadTranslations } = context
+  const { loadTranslations, namespaces: loadedNamespaces } = context
 
   const key = namespaces.join(',')
-  useEffect(
-    () =>
-      key.split(',').map(async namespace => loadTranslations(namespace, load)),
-    [loadTranslations, key, load],
+  useEffect(() => {
+    key.split(',').map(async namespace => loadTranslations(namespace, load))
+  }, [loadTranslations, key, load])
+
+  const isLoaded = useMemo(
+    () => areNamespacesLoaded(namespaces, loadedNamespaces),
+    [loadedNamespaces, namespaces],
   )
 
-  return context
+  return { ...context, isLoaded }
 }
 
 // https://formatjs.io/docs/intl-messageformat/
@@ -66,27 +91,18 @@ const I18nContextProvider = ({
   localeItemStorage,
   supportedLocales,
 }) => {
-  const [currentLocale, setCurrentLocale] = useState(defaultLocale)
-  const [locales, setLocales] = useState(supportedLocales)
+  const [currentLocale, setCurrentLocale] = useState(
+    getCurrentLocale({ defaultLocale, localeItemStorage, supportedLocales }),
+  )
   const [translations, setTranslations] = useState(defaultTranslations)
+  const [namespaces, setNamespaces] = useState([])
   const [dateFnsLocale, setDateFnsLocale] = useState()
 
-  const getLocaleFallback = useCallback(
-    locale => locale.split('-')[0].split('_')[0],
-    [],
-  )
-
-  const getCurrentLocale = useCallback(() => {
-    const languages = navigator.languages || [navigator.language]
-    const browserLocales = [...new Set(languages.map(getLocaleFallback))]
-    const localeStorage = localStorage.getItem(localeItemStorage)
-
-    return (
-      localeStorage ||
-      browserLocales.find(locale => locales.includes(locale)) ||
-      defaultLocale
-    )
-  }, [defaultLocale, getLocaleFallback, locales, localeItemStorage])
+  useEffect(() => {
+    loadDateLocale(currentLocale === 'en' ? 'en-GB' : currentLocale)
+      .then(setDateFnsLocale)
+      .catch(() => loadDateLocale('en-GB').then(setDateFnsLocale))
+  }, [loadDateLocale, currentLocale])
 
   const loadTranslations = useCallback(
     async (namespace, load = defaultLoad) => {
@@ -114,15 +130,22 @@ const I18nContextProvider = ({
       const { prefix, ...values } = trad
       const preparedValues = prefix ? prefixKeys(`${prefix}.`)(values) : values
 
-      setTranslations(prevState => ({
-        ...prevState,
-        ...{
-          [currentLocale]: {
-            ...prevState[currentLocale],
-            ...preparedValues,
+      // avoid a lot of render when async update
+      ReactDOM.unstable_batchedUpdates(() => {
+        setTranslations(prevState => ({
+          ...prevState,
+          ...{
+            [currentLocale]: {
+              ...prevState[currentLocale],
+              ...preparedValues,
+            },
           },
-        },
-      }))
+        }))
+
+        setNamespaces(prevState => [
+          ...new Set([...(prevState || []), namespace]),
+        ])
+      })
 
       return namespace
     },
@@ -131,12 +154,12 @@ const I18nContextProvider = ({
 
   const switchLocale = useCallback(
     locale => {
-      if (locales.includes(locale)) {
+      if (supportedLocales.includes(locale)) {
         localStorage.setItem(localeItemStorage, locale)
         setCurrentLocale(locale)
       }
     },
-    [setCurrentLocale, locales, localeItemStorage],
+    [localeItemStorage, setCurrentLocale, supportedLocales],
   )
 
   const formatNumber = useCallback(
@@ -205,14 +228,6 @@ const I18nContextProvider = ({
     [translate],
   )
 
-  useEffect(() => {
-    loadDateLocale(currentLocale === 'en' ? 'en-GB' : currentLocale)
-      .then(setDateFnsLocale)
-      .catch(() => loadDateLocale('en-GB').then(setDateFnsLocale))
-
-    setCurrentLocale(getCurrentLocale())
-  }, [loadDateLocale, currentLocale, getCurrentLocale])
-
   const value = useMemo(
     () => ({
       currentLocale,
@@ -221,11 +236,11 @@ const I18nContextProvider = ({
       formatList,
       formatNumber,
       loadTranslations,
-      locales,
+      locales: supportedLocales,
       namespaceTranslation,
+      namespaces,
       relativeTime,
       relativeTimeStrict,
-      setLocales,
       setTranslations,
       switchLocale,
       t: translate,
@@ -235,15 +250,15 @@ const I18nContextProvider = ({
       currentLocale,
       dateFnsLocale,
       datetime,
-      formatNumber,
       formatList,
+      formatNumber,
       loadTranslations,
-      locales,
       namespaceTranslation,
+      namespaces,
       relativeTime,
       relativeTimeStrict,
-      setLocales,
       setTranslations,
+      supportedLocales,
       switchLocale,
       translate,
       translations,
