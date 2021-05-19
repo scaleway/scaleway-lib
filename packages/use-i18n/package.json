@@ -37,7 +37,7 @@
     "react": "17.x"
   },
   "devDependencies": {
-    "@testing-library/react-hooks": "^5.1.0",
+    "@testing-library/react-hooks": "^6.0.0",
     "mockdate": "^3.0.5",
     "react": "17.0.2"
   }
