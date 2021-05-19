@@ -17,7 +17,7 @@
     "@rollup/plugin-node-resolve": "^13.0.0",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
-    "@testing-library/react-hooks": "^5.1.0",
+    "@testing-library/react-hooks": "^6.0.0",
     "builtin-modules": "^3.2.0",
     "cross-env": "^7.0.3",
     "eslint": "^7.18.0",
