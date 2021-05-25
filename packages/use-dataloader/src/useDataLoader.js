@@ -51,15 +51,17 @@ const useDataLoader = (
     pollingInterval,
   } = {},
 ) => {
-  const { addCachedData, addReload, clearReload, getCachedData } =
+  const { addReload, clearReload, getCachedData, addCachedData } =
     useDataLoaderContext()
   const [{ status, error }, dispatch] = useReducer(reducer, {
     error: undefined,
     status: StatusEnum.IDLE,
   })
 
+  const addReloadRef = useRef(addReload)
+  const clearReloadRef = useRef(clearReload)
   const previousDataRef = useRef()
-  const keyRef = useRef(key)
+  const isMountedRef = useRef(enabled)
   const methodRef = useRef(method)
   const onSuccessRef = useRef(onSuccess)
   const onErrorRef = useRef(onError)
@@ -96,52 +98,45 @@ const useDataLoader = (
 
   useEffect(() => {
     let handler
-    if (enabled) {
-      if (!isIdle && keyRef.current !== key) {
-        keyRef.current = key
-        dispatch(Actions.createReset())
-      } else {
-        if (isIdle) {
-          keyRef.current = key
-          handleRequest.current(key)
-        }
-        if (pollingInterval && isSuccess && !handler) {
-          handler = setTimeout(
-            () => handleRequest.current(key),
-            pollingInterval,
-          )
-        }
-        if (key && typeof key === 'string') {
-          addReload(key, reloadArgs => handleRequest.current(key, reloadArgs))
-        }
+    if (isMountedRef.current) {
+      if (isIdle) {
+        handleRequest.current(key)
+      }
+      if (pollingInterval && isSuccess) {
+        handler = setTimeout(() => handleRequest.current(key), pollingInterval)
       }
     }
 
     return () => {
-      if (key && typeof key === 'string') {
-        clearReload(key)
-      }
-      if (handler) {
-        clearTimeout(handler)
-        handler = undefined
-      }
+      if (handler) clearTimeout(handler)
     }
     // Why can't put empty array for componentDidMount, componentWillUnmount ??? No array act like componentDidMount and componentDidUpdate
-  }, [
-    enabled,
-    key,
-    clearReload,
-    addReload,
-    addCachedData,
-    getCachedData,
-    pollingInterval,
-    isIdle,
-    isSuccess,
-  ])
+  }, [key, pollingInterval, isIdle, isSuccess])
 
   useLayoutEffect(() => {
     methodRef.current = method
   }, [method])
+
+  useLayoutEffect(() => {
+    isMountedRef.current = enabled
+    dispatch(Actions.createReset())
+    if (key && typeof key === 'string') {
+      addReloadRef.current?.(key, reloadArgs =>
+        handleRequest.current(key, reloadArgs),
+      )
+    }
+
+    return () => {
+      if (key && typeof key === 'string') {
+        clearReloadRef.current?.(key)
+      }
+    }
+  }, [enabled, key])
+
+  useLayoutEffect(() => {
+    clearReloadRef.current = clearReload
+    addReloadRef.current = addReload
+  }, [clearReload, addReload])
 
   return {
     data: getCachedData(key) || initialData,
