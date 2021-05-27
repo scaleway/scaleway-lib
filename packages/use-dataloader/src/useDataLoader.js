@@ -40,7 +40,7 @@ const Actions = {
  * @returns {useDataLoaderResult} hook result containing data, request state, and method to reload the data
  */
 const useDataLoader = (
-  key,
+  fetchKey,
   method,
   {
     enabled = true,
@@ -51,8 +51,13 @@ const useDataLoader = (
     pollingInterval,
   } = {},
 ) => {
-  const { addReload, clearReload, getCachedData, addCachedData } =
-    useDataLoaderContext()
+  const {
+    addReload,
+    clearReload,
+    getCachedData,
+    addCachedData,
+    cacheKeyPrefix,
+  } = useDataLoaderContext()
   const [{ status, error }, dispatch] = useReducer(reducer, {
     error: undefined,
     status: StatusEnum.IDLE,
@@ -60,6 +65,12 @@ const useDataLoader = (
 
   const addReloadRef = useRef(addReload)
   const clearReloadRef = useRef(clearReload)
+
+  const key = useMemo(
+    () => `${cacheKeyPrefix ? `${cacheKeyPrefix}-` : ''}${fetchKey}`,
+    [cacheKeyPrefix, fetchKey],
+  )
+
   const previousDataRef = useRef()
   const isMountedRef = useRef(enabled)
   const methodRef = useRef(method)

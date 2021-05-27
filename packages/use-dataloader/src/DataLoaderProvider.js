@@ -34,11 +34,11 @@ const DataLoaderProvider = ({ children, cacheKeyPrefix }) => {
       if (key && typeof key === 'string' && newData) {
         setCachedData(actualCachedData => ({
           ...actualCachedData,
-          [`${cacheKeyPrefix ? `${cacheKeyPrefix}-` : ''}${key}`]: newData,
+          [key]: newData,
         }))
       }
     },
-    [setCachedData, cacheKeyPrefix],
+    [setCachedData],
   )
 
   const addReload = useCallback(
@@ -76,13 +76,13 @@ const DataLoaderProvider = ({ children, cacheKeyPrefix }) => {
       if (key && typeof key === 'string') {
         setCachedData(actualCachedData => {
           const tmp = actualCachedData
-          delete tmp[`${cacheKeyPrefix ? `${cacheKeyPrefix}-` : ''}${key}`]
+          delete tmp[key]
 
           return tmp
         })
       }
     },
-    [setCachedData, cacheKeyPrefix],
+    [setCachedData],
   )
   const clearAllCachedData = useCallback(() => {
     setCachedData({})
@@ -100,20 +100,13 @@ const DataLoaderProvider = ({ children, cacheKeyPrefix }) => {
     )
   }, [])
 
-  const getCachedData = useCallback(
-    key => {
-      if (key) {
-        return (
-          cachedData.current[
-            `${cacheKeyPrefix ? `${cacheKeyPrefix}-` : ''}${key}`
-          ] || undefined
-        )
-      }
+  const getCachedData = useCallback(key => {
+    if (key) {
+      return cachedData.current[key] || undefined
+    }
 
-      return cachedData.current
-    },
-    [cacheKeyPrefix],
-  )
+    return cachedData.current
+  }, [])
 
   const getReloads = useCallback(key => {
     if (key) {
@@ -127,6 +120,7 @@ const DataLoaderProvider = ({ children, cacheKeyPrefix }) => {
     () => ({
       addCachedData,
       addReload,
+      cacheKeyPrefix,
       clearAllCachedData,
       clearAllReloads,
       clearCachedData,
@@ -138,14 +132,15 @@ const DataLoaderProvider = ({ children, cacheKeyPrefix }) => {
     }),
     [
       addCachedData,
-      clearReload,
-      clearCachedData,
-      getCachedData,
-      getReloads,
       addReload,
-      reload,
+      cacheKeyPrefix,
       clearAllCachedData,
       clearAllReloads,
+      clearCachedData,
+      clearReload,
+      getCachedData,
+      getReloads,
+      reload,
       reloadAll,
     ],
   )
