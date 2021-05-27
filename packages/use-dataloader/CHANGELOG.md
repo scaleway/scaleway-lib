@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.0](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-dataloader@1.3.0...@scaleway/use-dataloader@1.4.0) (2021-05-27)
+
+
+### Features
+
+* **use-dataloader:** add cache key prefix on Provider ([#202](https://github.com/scaleway/scaleway-lib/issues/202)) ([e995550](https://github.com/scaleway/scaleway-lib/commit/e9955507074cc6e6c373961fd7d83dc332e23ce9))
+
+
+
 ## [1.3.0](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-dataloader@1.2.2...@scaleway/use-dataloader@1.3.0) (2021-05-25)
 
 
