@@ -19,6 +19,10 @@ const wrapper = ({ children }) => (
   <DataLoaderProvider>{children}</DataLoaderProvider>
 )
 
+const wrapperWithCacheKey = ({ children }) => (
+  <DataLoaderProvider cacheKeyPrefix="sample">{children}</DataLoaderProvider>
+)
+
 describe('useDataLoader', () => {
   test('should render correctly without options', async () => {
     const { result, waitForNextUpdate, rerender } = renderHook(
@@ -95,6 +99,40 @@ describe('useDataLoader', () => {
     expect(result.current.data).toBe(undefined)
     expect(result.current.isSuccess).toBe(true)
     expect(result.current.isLoading).toBe(false)
+  })
+
+  test('should render and cache correctly with cacheKeyPrefix', async () => {
+    const { result, waitForNextUpdate } = renderHook(
+      props => [
+        useDataLoader(props.key, props.method, props.config),
+        useDataLoader(props.key, props.method, {
+          ...props.config,
+          enabled: false,
+        }),
+      ],
+      {
+        initialProps,
+        wrapper: wrapperWithCacheKey,
+      },
+    )
+
+    expect(result.current[0].data).toBe(undefined)
+    expect(result.current[0].isLoading).toBe(true)
+    expect(result.current[1].data).toBe(undefined)
+    expect(result.current[1].isIdle).toBe(true)
+    await waitForNextUpdate()
+    expect(result.current[0].data).toBe(true)
+    expect(result.current[0].isSuccess).toBe(true)
+
+    act(() => {
+      result.current[1].reload()
+    })
+
+    expect(result.current[1].data).toBe(true)
+    expect(result.current[1].isLoading).toBe(true)
+
+    await waitForNextUpdate()
+    expect(result.current[1].isSuccess).toBe(true)
   })
 
   test('should render correctly with enabled true', async () => {

@@ -66,10 +66,13 @@ const useDataLoader = (
   const addReloadRef = useRef(addReload)
   const clearReloadRef = useRef(clearReload)
 
-  const key = useMemo(
-    () => `${cacheKeyPrefix ? `${cacheKeyPrefix}-` : ''}${fetchKey}`,
-    [cacheKeyPrefix, fetchKey],
-  )
+  const key = useMemo(() => {
+    if (!fetchKey || typeof fetchKey !== 'string') {
+      return fetchKey
+    }
+
+    return `${cacheKeyPrefix ? `${cacheKeyPrefix}-` : ''}${fetchKey}`
+  }, [cacheKeyPrefix, fetchKey])
 
   const previousDataRef = useRef()
   const isMountedRef = useRef(enabled)
