@@ -9,7 +9,7 @@ import React, {
 
 export const DataLoaderContext = createContext()
 
-const DataLoaderProvider = ({ children }) => {
+const DataLoaderProvider = ({ children, cacheKeyPrefix }) => {
   const cachedData = useRef({})
   const reloads = useRef({})
 
@@ -34,11 +34,11 @@ const DataLoaderProvider = ({ children }) => {
       if (key && typeof key === 'string' && newData) {
         setCachedData(actualCachedData => ({
           ...actualCachedData,
-          [key]: newData,
+          [`${cacheKeyPrefix ? `${cacheKeyPrefix}-` : ''}${key}`]: newData,
         }))
       }
     },
-    [setCachedData],
+    [setCachedData, cacheKeyPrefix],
   )
 
   const addReload = useCallback(
@@ -76,13 +76,13 @@ const DataLoaderProvider = ({ children }) => {
       if (key && typeof key === 'string') {
         setCachedData(actualCachedData => {
           const tmp = actualCachedData
-          delete tmp[key]
+          delete tmp[`${cacheKeyPrefix ? `${cacheKeyPrefix}-` : ''}${key}`]
 
           return tmp
         })
       }
     },
-    [setCachedData],
+    [setCachedData, cacheKeyPrefix],
   )
   const clearAllCachedData = useCallback(() => {
     setCachedData({})
@@ -100,13 +100,20 @@ const DataLoaderProvider = ({ children }) => {
     )
   }, [])
 
-  const getCachedData = useCallback(key => {
-    if (key) {
-      return cachedData.current[key] || undefined
-    }
+  const getCachedData = useCallback(
+    key => {
+      if (key) {
+        return (
+          cachedData.current[
+            `${cacheKeyPrefix ? `${cacheKeyPrefix}-` : ''}${key}`
+          ] || undefined
+        )
+      }
 
-    return cachedData.current
-  }, [])
+      return cachedData.current
+    },
+    [cacheKeyPrefix],
+  )
 
   const getReloads = useCallback(key => {
     if (key) {
@@ -151,7 +158,12 @@ const DataLoaderProvider = ({ children }) => {
 }
 
 DataLoaderProvider.propTypes = {
+  cacheKeyPrefix: PropTypes.string,
   children: PropTypes.node.isRequired,
+}
+
+DataLoaderProvider.defaultProps = {
+  cacheKeyPrefix: undefined,
 }
 
 export const useDataLoaderContext = () => useContext(DataLoaderContext)
