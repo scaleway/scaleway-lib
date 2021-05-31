@@ -7,10 +7,6 @@ const wrapper = ({ children }) => (
   <DataLoaderProvider>{children}</DataLoaderProvider>
 )
 
-const wrapperWithCacheKey = ({ children }) => (
-  <DataLoaderProvider cacheKeyPrefix="sample">{children}</DataLoaderProvider>
-)
-
 describe('DataLoaderProvider', () => {
   test('should render correctly', async () => {
     render(<DataLoaderProvider>Test</DataLoaderProvider>)
@@ -29,51 +25,8 @@ describe('DataLoaderProvider', () => {
     expect(result.current.getCachedData().test).toBe('test')
   })
 
-  test('should add cached data with cacheKeyPrefix', async () => {
-    const { result } = renderHook(useDataLoaderContext, {
-      wrapper: wrapperWithCacheKey,
-    })
-    expect(result.current.getCachedData()).toStrictEqual({})
-
-    act(() => {
-      result.current.addCachedData('test', 'test')
-      result.current.addCachedData(3, 'testWrong')
-    })
-
-    expect(Object.values(result.current.getCachedData()).length).toBe(1)
-    expect(result.current.getCachedData()['sample-test']).toBe('test')
-  })
-
   test('should delete cached data', async () => {
     const { result } = renderHook(useDataLoaderContext, { wrapper })
-
-    act(() => {
-      result.current.addCachedData('testA', 'testA')
-      result.current.addCachedData('testB', 'testB')
-      result.current.addCachedData('testC', 'testC')
-      result.current.addCachedData('testD', 'testD')
-      result.current.addCachedData('testE', 'testE')
-    })
-    expect(result.current.getCachedData('testA')).toBe('testA')
-
-    act(() => {
-      result.current.clearCachedData()
-      result.current.clearCachedData('testA')
-    })
-    expect(Object.values(result.current.getCachedData()).length).toBe(4)
-    expect(result.current.getCachedData().testA).toBe(undefined)
-
-    act(() => {
-      result.current.clearAllCachedData()
-    })
-    expect(Object.values(result.current.getCachedData()).length).toBe(0)
-    expect(result.current.getCachedData()).toStrictEqual({})
-  })
-
-  test('should delete cached data with cacheKeyPrefix', async () => {
-    const { result } = renderHook(useDataLoaderContext, {
-      wrapper: wrapperWithCacheKey,
-    })
 
     act(() => {
       result.current.addCachedData('testA', 'testA')
