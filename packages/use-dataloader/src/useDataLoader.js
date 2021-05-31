@@ -1,4 +1,11 @@
-import { useEffect, useLayoutEffect, useMemo, useReducer, useRef } from 'react'
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useReducer,
+  useRef,
+} from 'react'
 import { useDataLoaderContext } from './DataLoaderProvider'
 import { ActionEnum, StatusEnum } from './constants'
 import reducer from './reducer'
@@ -75,10 +82,6 @@ const useDataLoader = (
   }, [cacheKeyPrefix, fetchKey])
 
   const previousDataRef = useRef()
-  const isMountedRef = useRef(enabled)
-  const methodRef = useRef(method)
-  const onSuccessRef = useRef(onSuccess)
-  const onErrorRef = useRef(onError)
 
   const isLoading = useMemo(() => status === StatusEnum.LOADING, [status])
   const isIdle = useMemo(() => status === StatusEnum.IDLE, [status])
@@ -90,53 +93,62 @@ const useDataLoader = (
     [isSuccess, isLoading, enabled, pollingInterval],
   )
 
-  const handleRequest = useRef(async cacheKey => {
-    try {
-      dispatch(Actions.createOnLoading())
-      const result = await methodRef.current?.()
+  const handleRequest = useCallback(
+    async cacheKey => {
+      try {
+        dispatch(Actions.createOnLoading())
+        const result = await method()
 
-      if (keepPreviousData) {
-        previousDataRef.current = getCachedData(cacheKey)
+        if (keepPreviousData) {
+          previousDataRef.current = getCachedData(cacheKey)
+        }
+        if (result !== undefined && result !== null && cacheKey)
+          addCachedData(cacheKey, result)
+
+        dispatch(Actions.createOnSuccess())
+
+        await onSuccess?.(result)
+      } catch (err) {
+        dispatch(Actions.createOnError(err))
+        await onError?.(err)
       }
-      if (result !== undefined && result !== null && cacheKey)
-        addCachedData(cacheKey, result)
+    },
+    [
+      addCachedData,
+      getCachedData,
+      keepPreviousData,
+      method,
+      onError,
+      onSuccess,
+    ],
+  )
 
-      dispatch(Actions.createOnSuccess())
-
-      await onSuccessRef.current?.(result)
-    } catch (err) {
-      dispatch(Actions.createOnError(err))
-      await onErrorRef.current?.(err)
-    }
-  })
+  const handleRequestRef = useRef(handleRequest)
 
   useEffect(() => {
     let handler
-    if (isMountedRef.current) {
+    if (enabled) {
       if (isIdle) {
-        handleRequest.current(key)
+        handleRequestRef.current(key)
       }
-      if (pollingInterval && isSuccess) {
-        handler = setTimeout(() => handleRequest.current(key), pollingInterval)
+      if (pollingInterval && (isSuccess || isError)) {
+        handler = setTimeout(
+          () => handleRequestRef.current(key),
+          pollingInterval,
+        )
       }
     }
 
     return () => {
       if (handler) clearTimeout(handler)
     }
-    // Why can't put empty array for componentDidMount, componentWillUnmount ??? No array act like componentDidMount and componentDidUpdate
-  }, [key, pollingInterval, isIdle, isSuccess])
+  }, [key, pollingInterval, isIdle, isSuccess, isError, enabled])
 
   useLayoutEffect(() => {
-    methodRef.current = method
-  }, [method])
-
-  useLayoutEffect(() => {
-    isMountedRef.current = enabled
     dispatch(Actions.createReset())
     if (key && typeof key === 'string') {
       addReloadRef.current?.(key, reloadArgs =>
-        handleRequest.current(key, reloadArgs),
+        handleRequestRef.current(key, reloadArgs),
       )
     }
 
@@ -152,6 +164,10 @@ const useDataLoader = (
     addReloadRef.current = addReload
   }, [clearReload, addReload])
 
+  useLayoutEffect(() => {
+    handleRequestRef.current = handleRequest
+  }, [handleRequest])
+
   return {
     data: getCachedData(key) || initialData,
     error,
@@ -161,7 +177,7 @@ const useDataLoader = (
     isPolling,
     isSuccess,
     previousData: previousDataRef.current,
-    reload: args => handleRequest.current(key, args),
+    reload: args => handleRequestRef.current(key, args),
   }
 }
 
