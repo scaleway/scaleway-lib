@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.4.1](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-dataloader@1.4.0...@scaleway/use-dataloader@1.4.1) (2021-05-31)
+
+
+### Bug Fixes
+
+* **use-dataloader:** move cacheKeyPrefix logic into hook to trigger reload ([#203](https://github.com/scaleway/scaleway-lib/issues/203)) ([0d5e587](https://github.com/scaleway/scaleway-lib/commit/0d5e58790ed15fd5af0a3f7c28d5fefca4aedca2))
+
+
+
 ## [1.4.0](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-dataloader@1.3.0...@scaleway/use-dataloader@1.4.0) (2021-05-27)
 
 
