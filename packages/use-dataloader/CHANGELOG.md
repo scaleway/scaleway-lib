@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.4.2](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-dataloader@1.4.1...@scaleway/use-dataloader@1.4.2) (2021-05-31)
+
+
+### Bug Fixes
+
+* enabled effect and drop unecessary refs ([#213](https://github.com/scaleway/scaleway-lib/issues/213)) ([abe7409](https://github.com/scaleway/scaleway-lib/commit/abe7409c53657191481fa39d52d19bd7094aab1b))
+
+
+
 ### [1.4.1](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-dataloader@1.4.0...@scaleway/use-dataloader@1.4.1) (2021-05-31)
 
 
