@@ -21,7 +21,7 @@
     "builtin-modules": "^3.2.0",
     "cross-env": "^7.0.3",
     "eslint": "^7.18.0",
-    "husky": "^6.0.0",
+    "husky": "^7.0.0",
     "jest": "^27.0.4",
     "jest-junit": "^12.0.0",
     "jest-localstorage-mock": "^2.4.8",
