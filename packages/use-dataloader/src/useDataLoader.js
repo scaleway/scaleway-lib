@@ -94,10 +94,10 @@ const useDataLoader = (
   )
 
   const handleRequest = useCallback(
-    async cacheKey => {
+    async (cacheKey, params) => {
       try {
         dispatch(Actions.createOnLoading())
-        const result = await method()
+        const result = await method(params)
 
         if (keepPreviousData) {
           previousDataRef.current = getCachedData(cacheKey)
@@ -108,9 +108,13 @@ const useDataLoader = (
         dispatch(Actions.createOnSuccess())
 
         await onSuccess?.(result)
+
+        return result
       } catch (err) {
         dispatch(Actions.createOnError(err))
         await onError?.(err)
+
+        return undefined
       }
     },
     [
