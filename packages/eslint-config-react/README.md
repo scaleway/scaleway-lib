@@ -2,6 +2,8 @@
 
 A shared eslint react opiniated configuration
 
+Available in Javascript and Typescript
+
 ---
 
 ## Install
@@ -17,5 +19,15 @@ Add to your `.eslintrc`
 ```json
 {
   "extends": "@scaleway/react"
+}
+```
+
+Or for Typescript
+```json
+{
+  "extends": "@scaleway/react/typescript",
+  "parserOptions": {
+    "project": "./path/to/tsconfig.json"
+  }
 }
 ```
