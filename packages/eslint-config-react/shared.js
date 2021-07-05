@@ -41,6 +41,6 @@ module.exports = {
         memberSyntaxSortOrder: ['single', 'multiple', 'all', 'none'],
       },
     ],
-    'sort-keys': ['error', 'asc', { caseSensitive: true, natural: true }],
+    'sort-keys': ['error', 'asc', { caseSensitive: false, natural: true }],
   },
 }
