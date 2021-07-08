@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.0.0 (2021-07-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **eslint-config:** environments are not set anymore, need to be specified on a per project basis
+
+### Features
+
+* **eslint-config:** add typescript config ([#258](https://github.com/scaleway/scaleway-lib/issues/258)) ([a0e9151](https://github.com/scaleway/scaleway-lib/commit/a0e9151678304fa1ace94c14f0e856ce876e3e02))
+
+
+
 ## 1.5.0 (2021-05-11)
 
 
