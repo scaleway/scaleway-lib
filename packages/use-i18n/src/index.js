@@ -12,6 +12,7 @@ import React, {
 } from 'react'
 import ReactDOM from 'react-dom'
 import 'intl-pluralrules'
+import unitFormat from './formatUnit'
 
 const LOCALE_ITEM_STORAGE = 'locale'
 
@@ -173,6 +174,15 @@ const I18nContextProvider = ({
     [currentLocale],
   )
 
+  // This a temporary method
+  // Once https://github.com/tc39/proposal-smart-unit-preferences is stable we should
+  // be able to use formatNumber directly
+  const formatUnit = useCallback(
+    (value, options) =>
+      unitFormat(currentLocale, value, options, getTranslationFormat),
+    [currentLocale],
+  )
+
   const datetime = useCallback(
     (date, options) => getDateTimeFormat(currentLocale, options).format(date),
     [currentLocale],
@@ -235,6 +245,7 @@ const I18nContextProvider = ({
       datetime,
       formatList,
       formatNumber,
+      formatUnit,
       loadTranslations,
       locales: supportedLocales,
       namespaceTranslation,
@@ -252,6 +263,7 @@ const I18nContextProvider = ({
       datetime,
       formatList,
       formatNumber,
+      formatUnit,
       loadTranslations,
       namespaceTranslation,
       namespaces,
