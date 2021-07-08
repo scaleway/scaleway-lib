@@ -4,8 +4,6 @@ import formatUnit, { supportedUnits } from '../formatUnit'
 
 const locales = ['en', 'fr', 'ro']
 
-console.log(Object.keys(supportedUnits))
-
 const getTranslationFormat = memoizeIntlConstructor(IntlTranslationFormat)
 
 const tests = [
