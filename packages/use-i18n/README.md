@@ -145,7 +145,7 @@ import { useI18n } from '@scaleway/use-i18n'
 import { DateInput } from '@scaleway/ui'
 
 const App = () => {
-  const { t, currentLocale dateFnsLocale } = useI18n()
+  const { t, currentLocale, dateFnsLocale } = useI18n()
 
   return (
     <div>
