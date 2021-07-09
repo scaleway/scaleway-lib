@@ -501,6 +501,26 @@ describe('i18n hook', () => {
     expect(result.current.relativeTimeStrict(date)).toEqual('il y a 3499 jours')
   })
 
+  it('should formatUnit', async () => {
+    const { result, waitForNextUpdate } = renderHook(() => useI18n(), {
+      wrapper: wrapper({
+        defaultLocale: 'en',
+      }),
+    })
+
+    expect(
+      result.current.formatUnit(12, { short: false, unit: 'byte' }),
+    ).toEqual('12 bytes')
+    act(() => {
+      result.current.switchLocale('fr')
+    })
+    await waitForNextUpdate()
+
+    expect(
+      result.current.formatUnit(12, { short: false, unit: 'byte' }),
+    ).toEqual('12 octets')
+  })
+
   it('should load default datefns locales', async () => {
     const { result, waitForNextUpdate } = renderHook(() => useI18n(), {
       wrapper: wrapper({
