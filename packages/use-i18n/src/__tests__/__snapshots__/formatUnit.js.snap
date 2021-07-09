@@ -1027,3 +1027,117 @@ exports[`formatUnit should work with maximumFractionDigits { maximumFractionDigi
 exports[`formatUnit should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'zettabyte' } 1`] = `"12,56 Zo"`;
 
 exports[`formatUnit should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'zettabyte-humanized' } 1`] = `"0 Zo"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'bit' } 1`] = `"12,000 b"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'bit-humanized' } 1`] = `"12,000 b"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'bit-per-second' } 1`] = `"12,000 bps"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'bit-per-second-humanized' } 1`] = `"12,000 bps"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'bits-humanized' } 1`] = `"12,000 b"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'bits-per-second-humanized' } 1`] = `"12,000 bps"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'byte' } 1`] = `"12,000 o"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'byte-humanized' } 1`] = `"12,000 o"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'bytes-humanized' } 1`] = `"12,000 o"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'exabit' } 1`] = `"12,000 Eb"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'exabit-humanized' } 1`] = `"0,000 Eb"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'exabit-per-second' } 1`] = `"12,000 Ebps"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'exabit-per-second-humanized' } 1`] = `"0,000 Ebps"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'exabyte' } 1`] = `"12,000 Eo"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'exabyte-humanized' } 1`] = `"0,000 Eo"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'gigabit' } 1`] = `"12,000 Gb"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'gigabit-humanized' } 1`] = `"0,000 Gb"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'gigabit-per-second' } 1`] = `"12,000 Gbps"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'gigabit-per-second-humanized' } 1`] = `"0,000 Gbps"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'gigabyte' } 1`] = `"12,000 Go"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'gigabyte-humanized' } 1`] = `"0,000 Go"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'kilobit' } 1`] = `"12,000 Kb"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'kilobit-humanized' } 1`] = `"0,010 Kb"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'kilobit-per-second' } 1`] = `"12,000 Kbps"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'kilobit-per-second-humanized' } 1`] = `"0,010 Kbps"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'kilobyte' } 1`] = `"12,000 Ko"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'kilobyte-humanized' } 1`] = `"0,010 Ko"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'megabit' } 1`] = `"12,000 Mb"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'megabit-humanized' } 1`] = `"0,000 Mb"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'megabit-per-second' } 1`] = `"12,000 Mbps"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'megabit-per-second-humanized' } 1`] = `"0,000 Mbps"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'megabyte' } 1`] = `"12,000 Mo"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'megabyte-humanized' } 1`] = `"0,000 Mo"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'petabit' } 1`] = `"12,000 Pb"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'petabit-humanized' } 1`] = `"0,000 Pb"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'petabit-per-second' } 1`] = `"12,000 Pbps"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'petabit-per-second-humanized' } 1`] = `"0,000 Pbps"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'petabyte' } 1`] = `"12,000 Po"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'petabyte-humanized' } 1`] = `"0,000 Po"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'terabit' } 1`] = `"12,000 Tb"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'terabit-humanized' } 1`] = `"0,000 Tb"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'terabit-per-second' } 1`] = `"12,000 Tbps"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'terabit-per-second-humanized' } 1`] = `"0,000 Tbps"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'terabyte' } 1`] = `"12,000 To"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'terabyte-humanized' } 1`] = `"0,000 To"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'yottabit' } 1`] = `"12,000 Yb"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'yottabit-humanized' } 1`] = `"0,000 Yb"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'yottabit-per-second' } 1`] = `"12,000 Ybps"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'yottabit-per-second-humanized' } 1`] = `"0,000 Ybps"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'yottabyte' } 1`] = `"12,000 Yo"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'yottabyte-humanized' } 1`] = `"0,000 Yo"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'zettabit' } 1`] = `"12,000 Zb"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'zettabit-humanized' } 1`] = `"0,000 Zb"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'zettabit-per-second' } 1`] = `"12,000 Zbps"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'zettabit-per-second-humanized' } 1`] = `"0,000 Zbps"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'zettabyte' } 1`] = `"12,000 Zo"`;
+
+exports[`formatUnit should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'zettabyte-humanized' } 1`] = `"0,000 Zo"`;

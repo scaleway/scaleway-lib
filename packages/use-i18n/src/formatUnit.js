@@ -87,7 +87,12 @@ const formatLongUnit = (locale, exponent, unit, number, messageFormat) => {
 
 const format =
   ({ compoundUnit, exponent, unit, humanize = false }) =>
-  (locale, number, { maximumFractionDigits, short = true }, messageFormat) => {
+  (
+    locale,
+    number,
+    { maximumFractionDigits, minimumFractionDigits, short = true },
+    messageFormat,
+  ) => {
     let computedExponent = exponent
     let computedValue = number
 
@@ -113,9 +118,10 @@ const format =
       }
     }
 
-    return `${new Intl.NumberFormat(locale, { maximumFractionDigits }).format(
-      computedValue,
-    )} ${
+    return `${new Intl.NumberFormat(locale, {
+      maximumFractionDigits,
+      minimumFractionDigits,
+    }).format(computedValue)} ${
       short
         ? formatShortUnit(locale, computedExponent, unit, compoundUnit)
         : formatLongUnit(

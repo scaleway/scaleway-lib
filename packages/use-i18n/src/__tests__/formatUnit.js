@@ -40,6 +40,12 @@ const tests = [
     12.56,
   ]),
   ...Object.keys(supportedUnits).map(unit => [
+    'should work with minimumFractionDigits',
+    { minimumFractionDigits: 3, unit },
+    'fr',
+    12,
+  ]),
+  ...Object.keys(supportedUnits).map(unit => [
     'should work with large values',
     { unit },
     'fr',

@@ -164,9 +164,12 @@ const App = () => {
 
 This hook also exposes a `formatUnit` function which can be used to format bits/bytes until [ECMA-402 Unit Preferences](https://github.com/tc39/proposal-smart-unit-preferences) is standardised
 
+We follow the IEC standard (base 10) with SI units (kilo,mega,giga,...) [more info here](https://en.wikipedia.org/wiki/Binary_prefix)
+
 It accepts an `options` as second parameter:
 - `unit`: Manadatory (see below)
 - `maximumFractionDigits`: The maximum number of fraction digits to use
+- `minimumFractionDigits`: The minimum number of fraction digits to use
 - `short`: if it should output the short or long form of the unit (think `Kb` vs `kilobits`)
 
 
