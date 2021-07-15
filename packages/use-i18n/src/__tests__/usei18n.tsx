@@ -2,7 +2,7 @@
 import { act, renderHook } from '@testing-library/react-hooks'
 import mockdate from 'mockdate'
 import React from 'react'
-import I18n, { useI18n, useTranslation } from '..'
+import I18n, { useI18n, useTranslation } from '../usei18n'
 import en from './locales/en'
 import es from './locales/es'
 import fr from './locales/fr'
@@ -11,8 +11,8 @@ const LOCALE_ITEM_STORAGE = 'locales'
 
 const wrapper =
   ({
-    loadDateLocale = async locale => import(`date-fns/locale/${locale}/index`),
-    defaultLoad = async ({ locale }) => import(`./locales/${locale}`),
+    loadDateLocale = async (locale: string) => import(`date-fns/locale/${locale}/index`),
+    defaultLoad = async ({ locale }: { locale: string }) => import(`./locales/${locale}`),
     defaultLocale = 'en',
     defaultTranslations = {},
     enableDebugKey = false,
@@ -42,7 +42,7 @@ describe('i18n hook', () => {
     mockdate.reset()
     jest.clearAllMocks()
   })
-  it('useTranslation should not be defined without I18nProvider', async () => {
+  it.only('useTranslation should not be defined without I18nProvider', async () => {
     const { result } = renderHook(() => useTranslation(), {
       wrapper: ({ children }) => <div>{children}</div>,
     })

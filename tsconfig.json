@@ -1,15 +1,11 @@
 {
   "compilerOptions": {
-    "lib": [
-      "esnext"
-    ],
+    "allowJs": true,
     "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
+    "module": "esnext",
     "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "jsx": "preserve",
   },
   "include": ["**/*.ts", "**/*.js", "**/.*.js", "**/*.tsx"]
