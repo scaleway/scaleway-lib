@@ -11,7 +11,7 @@ import { ActionEnum, StatusEnum } from './constants'
 import reducer from './reducer'
 
 const Actions = {
-  createOnError: error => ({ error, type: ActionEnum.ON_ERROR }),
+  createOnError: (error: Error) => ({ error, type: ActionEnum.ON_ERROR }),
   createOnLoading: () => ({ type: ActionEnum.ON_LOADING }),
   createOnSuccess: () => ({ type: ActionEnum.ON_SUCCESS }),
   createReset: () => ({ type: ActionEnum.RESET }),
@@ -46,9 +46,9 @@ const Actions = {
  * @param {useDataLoaderConfig} config hook configuration
  * @returns {useDataLoaderResult} hook result containing data, request state, and method to reload the data
  */
-const useDataLoader = (
-  fetchKey,
-  method,
+const useDataLoader = <T>(
+  fetchKey: string,
+  method: () => Promise<T>,
   {
     enabled = true,
     initialData,
@@ -56,6 +56,13 @@ const useDataLoader = (
     onError,
     onSuccess,
     pollingInterval,
+  }: {
+    enabled?: boolean,
+    initialData?: T,
+    keepPreviousData?: boolean,
+    onError?: (err: Error) => void | Promise<void>,
+    onSuccess?: (data: T) => void | Promise<void>,
+    pollingInterval?: number,
   } = {},
 ) => {
   const {
@@ -123,10 +130,10 @@ const useDataLoader = (
     ],
   )
 
-  const handleRequestRef = useRef(handleRequest)
+  const handleRequestRef = useRef<(cacheKey: string, args?: unknown) => Promise<void>>(handleRequest)
 
   useEffect(() => {
-    let handler
+    let handler: ReturnType<typeof setTimeout>
     if (enabled) {
       if (isIdle) {
         handleRequestRef.current(key)
@@ -147,7 +154,7 @@ const useDataLoader = (
   useLayoutEffect(() => {
     dispatch(Actions.createReset())
     if (key && typeof key === 'string') {
-      addReloadRef.current?.(key, reloadArgs =>
+      addReloadRef.current?.(key, (reloadArgs: unknown) =>
         handleRequestRef.current(key, reloadArgs),
       )
     }
@@ -177,7 +184,7 @@ const useDataLoader = (
     isPolling,
     isSuccess,
     previousData: previousDataRef.current,
-    reload: args => handleRequestRef.current(key, args),
+    reload: (args: unknown) => handleRequestRef.current(key, args),
   }
 }
 

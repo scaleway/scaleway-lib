@@ -8,11 +8,11 @@ const wrapper = ({ children }) => (
 )
 
 describe('DataLoaderProvider', () => {
-  test('should render correctly', async () => {
+  test('should render correctly', () => {
     render(<DataLoaderProvider>Test</DataLoaderProvider>)
     expect(screen.getByText('Test')).toBeTruthy()
   })
-  test('should add cached data', async () => {
+  test('should add cached data', () => {
     const { result } = renderHook(useDataLoaderContext, { wrapper })
     expect(result.current.getCachedData()).toStrictEqual({})
 
@@ -25,7 +25,7 @@ describe('DataLoaderProvider', () => {
     expect(result.current.getCachedData().test).toBe('test')
   })
 
-  test('should delete cached data', async () => {
+  test('should delete cached data', () => {
     const { result } = renderHook(useDataLoaderContext, { wrapper })
 
     act(() => {
@@ -51,7 +51,7 @@ describe('DataLoaderProvider', () => {
     expect(result.current.getCachedData()).toStrictEqual({})
   })
 
-  test('should get cached data', async () => {
+  test('should get cached data', () => {
     const { result } = renderHook(useDataLoaderContext, { wrapper })
     expect(result.current.getCachedData()).toStrictEqual({})
 
@@ -66,41 +66,41 @@ describe('DataLoaderProvider', () => {
   })
 
   test('should add reload', async () => {
-    const fn = () => new Promise(resolve => resolve(true))
+    const fn = (): Promise<boolean> => new Promise(resolve => resolve(true))
     const { result } = renderHook(useDataLoaderContext, { wrapper })
     expect(result.current.getCachedData()).toStrictEqual({})
 
     act(() => {
       result.current.addReload('test', fn)
-      result.current.addReload(1, () => new Promise(resolve => resolve(true)))
+      result.current.addReload(1, (): Promise<void> => new Promise(resolve => resolve()))
     })
 
     expect(Object.values(result.current.getReloads()).length).toBe(1)
     expect(result.current.getReloads('test')).toBe(fn)
     expect(result.current.getReloads('testWrong')).toBe(undefined)
-    expect(await result.current.getReloads().test()).toBe(true)
+    expect(await (result.current.getReloads() as () => Promise<boolean>).test()).toBe(true)
   })
 
-  test('should clear reload', async () => {
+  test('should clear reload', () => {
     const { result } = renderHook(useDataLoaderContext, { wrapper })
     expect(result.current.getCachedData()).toStrictEqual({})
 
     act(() => {
       result.current.addReload(
         'testA',
-        () => new Promise(resolve => resolve('testA')),
+        (): Promise<void> => new Promise(resolve => resolve()),
       )
       result.current.addReload(
         'testB',
-        () => new Promise(resolve => resolve('testB')),
+        (): Promise<void> => new Promise(resolve => resolve()),
       )
       result.current.addReload(
         'testC',
-        () => new Promise(resolve => resolve('testC')),
+        (): Promise<void> => new Promise(resolve => resolve()),
       )
       result.current.addReload(
         'testD',
-        () => new Promise(resolve => resolve('testD')),
+        (): Promise<void> => new Promise(resolve => resolve()),
       )
     })
 

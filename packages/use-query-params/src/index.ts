@@ -1,10 +1,17 @@
-import { parse, stringify } from 'query-string'
+import { History } from 'history'
+import { ParsedQuery, parse, stringify } from 'query-string'
 import { useCallback, useMemo } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 
-const useQueryParams = () => {
-  const { replace } = useHistory()
-  const location = useLocation()
+const useQueryParams = (): {
+  queryParams: ParsedQuery<string | number | boolean>;
+  replaceQueryParams: (newParams: Record<string, unknown>) => void;
+  setQueryParams: (nextParams: Record<string, unknown>) => void;
+} => {
+  // eslint-disable-next-line @typescript-eslint/unbound-method
+  const { replace } = useHistory<History>()
+  // eslint-disable-next-line @typescript-eslint/unbound-method
+  const location = useLocation<History>()
 
   const currentState = useMemo(
     () =>
@@ -17,7 +24,7 @@ const useQueryParams = () => {
   )
 
   const stringyFormat = useCallback(
-    params =>
+    (params): string =>
       stringify(params, {
         arrayFormat: 'comma',
         skipEmptyString: true,
@@ -44,7 +51,7 @@ const useQueryParams = () => {
    * @param {Object} nextParams The params to set in the url as query params
    */
   const setQueryParams = useCallback(
-    nextParams => {
+    (nextParams: Record<string,unknown>): void => {
       replaceInUrlIfNeeded({ ...currentState, ...nextParams })
     },
     [currentState, replaceInUrlIfNeeded],
@@ -55,7 +62,7 @@ const useQueryParams = () => {
    * @param {Object} newParams
    */
   const replaceQueryParams = useCallback(
-    newParams => {
+    (newParams: Record<string,unknown>): void => {
       replaceInUrlIfNeeded({ ...newParams })
     },
     [replaceInUrlIfNeeded],
@@ -67,4 +74,5 @@ const useQueryParams = () => {
     setQueryParams,
   }
 }
+
 export default useQueryParams

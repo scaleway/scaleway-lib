@@ -13,5 +13,14 @@
         "devDependencies": ["**/__tests__/*", "rollup.config.mjs"]
       }
     ]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "parserOptions": {
+        "project": ["tsconfig.json"]
+      },
+      "extends": ["./packages/eslint-config-react/typescript.js"]
+    }
+  ]
 }

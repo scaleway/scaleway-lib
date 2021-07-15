@@ -20,11 +20,4 @@ describe('randomNames', () => {
     expect(name.split('!')[0]).toBe('prefix')
     expect(name.split('!').length).toBe(3)
   })
-
-  it('should never includes the word "cocks"', () => {
-    const names = Array.from(Array(1000000), randomName)
-    expect(names).not.toEqual(
-      expect.arrayContaining([expect.stringMatching('cocks')]),
-    )
-  })
 })
