@@ -22,7 +22,7 @@ describe('randomNames', () => {
   })
 
   it('should never includes the word "cocks"', () => {
-    const names = Array.from(Array(1000000), randomName)
+    const names = Array.from(Array(1000000), () => randomName())
     expect(names).not.toEqual(
       expect.arrayContaining([expect.stringMatching('cocks')]),
     )
