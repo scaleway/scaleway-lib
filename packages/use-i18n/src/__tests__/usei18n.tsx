@@ -11,8 +11,8 @@ const LOCALE_ITEM_STORAGE = 'locales'
 
 const wrapper =
   ({
-    loadDateLocale = async locale => import(`date-fns/locale/${locale}/index`),
-    defaultLoad = async ({ locale }) => import(`./locales/${locale}`),
+    loadDateLocale = async (locale: string) => import(`date-fns/locale/${locale}/index`),
+    defaultLoad = async ({ locale }: { locale: string }) => import(`./locales/${locale}`),
     defaultLocale = 'en',
     defaultTranslations = {},
     enableDebugKey = false,
@@ -20,7 +20,7 @@ const wrapper =
     localeItemStorage = LOCALE_ITEM_STORAGE,
     supportedLocales = ['en', 'fr', 'es'],
   } = {}) =>
-  ({ children }) =>
+  ({ children }: { children: React.ReactNode }) =>
     (
       <I18n
         loadDateLocale={loadDateLocale}
@@ -42,7 +42,8 @@ describe('i18n hook', () => {
     mockdate.reset()
     jest.clearAllMocks()
   })
-  it('useTranslation should not be defined without I18nProvider', async () => {
+
+  it('useTranslation should not be defined without I18nProvider', () => {
     const { result } = renderHook(() => useTranslation(), {
       wrapper: ({ children }) => <div>{children}</div>,
     })
@@ -85,7 +86,7 @@ describe('i18n hook', () => {
   })
 
   it('should use specific load on useTranslation', async () => {
-    const load = async ({ locale, namespace }) =>
+    const load = async ({ locale, namespace }: { locale: string, namespace: string }) =>
       import(`./locales/namespaces/${locale}/${namespace}.json`)
 
     const { result, waitForNextUpdate } = renderHook(
@@ -144,7 +145,7 @@ describe('i18n hook', () => {
   })
 
   it("should use specific load and fallback default local if the key doesn't exist", async () => {
-    const load = async ({ locale, namespace }) =>
+    const load = async ({ locale, namespace }: { locale: string, namespace: string }) =>
       import(`./locales/namespaces/${locale}/${namespace}.json`)
 
     const { result, waitForNextUpdate } = renderHook(

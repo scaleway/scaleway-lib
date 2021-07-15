@@ -1,5 +1,10 @@
 {
   "compilerOptions": {
+    "target": "esnext",
+    "lib": [
+      "DOM",
+      "ES2019"
+    ],
     "allowJs": true,
     "strict": true,
     "module": "esnext",
