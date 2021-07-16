@@ -102,7 +102,7 @@ describe('useDataLoader', () => {
   })
 
   test('should render and cache correctly with cacheKeyPrefix', async () => {
-    const { result, waitForNextUpdate } = renderHook(
+    const { result, waitForNextUpdate } = renderHook<unknown, (ReturnType<typeof useDataLoader>)[]>(
       props => [
         useDataLoader(props.key, props.method, props.config),
         useDataLoader(props.key, props.method, {
@@ -124,8 +124,9 @@ describe('useDataLoader', () => {
     expect(result.current[0].data).toBe(true)
     expect(result.current[0].isSuccess).toBe(true)
 
-    act(() => {
-      result.current[1].reload()
+    act((): void => {
+      // eslint-disable-next-line no-void
+      void result.current[1].reload()
     })
 
     expect(result.current[1].data).toBe(true)
@@ -136,7 +137,7 @@ describe('useDataLoader', () => {
   })
 
   test('should render correctly with enabled true', async () => {
-    const { result, waitForNextUpdate } = renderHook(
+    const { result, waitForNextUpdate } = renderHook<unknown, ReturnType<typeof useDataLoader>>(
       props => useDataLoader(props.key, props.method, props.config),
       {
         initialProps,
@@ -151,10 +152,12 @@ describe('useDataLoader', () => {
     expect(result.current.isLoading).toBe(false)
 
     act(() => {
-      result.current.reload()
+      // eslint-disable-next-line no-void
+      void result.current.reload()
     })
     act(() => {
-      result.current.reload()
+      // eslint-disable-next-line no-void
+      void result.current.reload()
     })
 
     expect(result.current.data).toBe(true)
@@ -219,7 +222,7 @@ describe('useDataLoader', () => {
         }),
     )
 
-    const { result, waitForNextUpdate, rerender } = renderHook(
+    const { result, waitForNextUpdate, rerender } = renderHook<unknown, ReturnType<typeof useDataLoader>>(
       props => useDataLoader(props.key, props.method, props.config),
       {
         initialProps: pollingProps,
@@ -250,7 +253,8 @@ describe('useDataLoader', () => {
       method: method2,
     })
     act(() => {
-      result.current.reload()
+      // eslint-disable-next-line no-void
+      void result.current.reload()
     })
     expect(result.current.data).toBe(true)
     expect(result.current.isPolling).toBe(true)
@@ -284,7 +288,7 @@ describe('useDataLoader', () => {
   })
 
   test('should render correctly with enabled off', async () => {
-    const { result, waitForNextUpdate } = renderHook(
+    const { result, waitForNextUpdate } = renderHook<unknown, ReturnType<typeof useDataLoader>>(
       props => useDataLoader(props.key, props.method, props.config),
       {
         initialProps: {
@@ -300,7 +304,8 @@ describe('useDataLoader', () => {
     expect(result.current.isIdle).toBe(true)
 
     act(() => {
-      result.current.reload()
+      // eslint-disable-next-line no-void
+      void result.current.reload()
     })
 
     expect(result.current.data).toBe(undefined)
@@ -375,7 +380,7 @@ describe('useDataLoader', () => {
       success = true
     })
     const error = new Error('Test error')
-    const { result, waitForNextUpdate } = renderHook(
+    const { result, waitForNextUpdate } = renderHook<unknown, ReturnType<typeof useDataLoader>>(
       props => useDataLoader(props.key, props.method, props.config),
       {
         initialProps: {
@@ -409,7 +414,8 @@ describe('useDataLoader', () => {
     expect(onSuccess).toBeCalledTimes(0)
 
     act(() => {
-      result.current.reload()
+      // eslint-disable-next-line no-void
+      void result.current.reload()
     })
 
     await waitForNextUpdate()
@@ -421,7 +427,7 @@ describe('useDataLoader', () => {
   })
 
   test('should use cached data', async () => {
-    const { result, waitForNextUpdate } = renderHook(
+    const { result, waitForNextUpdate } = renderHook<unknown, (ReturnType<typeof useDataLoader>[])>(
       props => [
         useDataLoader(props.key, props.method, props.config),
         useDataLoader(props.key, props.method, {
@@ -444,7 +450,8 @@ describe('useDataLoader', () => {
     expect(result.current[0].isSuccess).toBe(true)
 
     act(() => {
-      result.current[1].reload()
+      // eslint-disable-next-line no-void
+      void result.current[1].reload()
     })
 
     expect(result.current[1].data).toBe(true)
@@ -463,7 +470,7 @@ describe('useDataLoader', () => {
           }, 500)
         }),
     )
-    const { result, waitForNextUpdate } = renderHook(
+    const { result, waitForNextUpdate } = renderHook<unknown, ([ReturnType<typeof useDataLoader>, ReturnType<typeof useDataLoaderContext>])>(
       props => [
         useDataLoader(props.key, props.method, props.config),
         useDataLoaderContext(),
@@ -486,7 +493,8 @@ describe('useDataLoader', () => {
     expect(mockedFn).toBeCalledTimes(1)
 
     act(() => {
-      result.current[1].reloadAll()
+      // eslint-disable-next-line no-void
+      void result.current[1].reloadAll()
     })
 
     expect(result.current[0].data).toBe(true)

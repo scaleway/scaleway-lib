@@ -2,7 +2,18 @@
 /* eslint-disable default-case */
 import { ActionEnum, StatusEnum } from './constants'
 
-export default (state, action) => {
+interface Action {
+  type: typeof ActionEnum[keyof typeof ActionEnum];
+  error?: Error;
+}
+
+interface State {
+  error?: Error;
+  status: typeof StatusEnum[keyof typeof StatusEnum];
+  [key: string]: unknown
+}
+
+export default (state: State, action: Action): State => {
   switch (action.type) {
     case ActionEnum.ON_LOADING:
       return {
@@ -28,4 +39,6 @@ export default (state, action) => {
         status: StatusEnum.ERROR,
       }
   }
+
+  return state
 }
