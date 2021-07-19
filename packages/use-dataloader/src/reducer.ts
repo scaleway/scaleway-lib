@@ -13,6 +13,7 @@ interface State {
   [key: string]: unknown
 }
 
+// @ts-expect-error we have no default return
 export default (state: State, action: Action): State => {
   switch (action.type) {
     case ActionEnum.ON_LOADING:
@@ -39,6 +40,4 @@ export default (state: State, action: Action): State => {
         status: StatusEnum.ERROR,
       }
   }
-
-  return state
 }
