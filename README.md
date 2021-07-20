@@ -160,14 +160,6 @@ $ yarn workspace @scaleway/package_name remove old_dependency
 
 ### On build targets
 
-We target by default Node@14 but you can add a browser output by adding a `browser` (you can find the spec [here](https://github.com/defunctzombie/package-browser-field-spec)) target to your `package.json`.
-
-```js
-  "browser": {
-    "dist/module.js": "dist/module.browser.js"
-  }
-```
-
 The browserlist we are currently using is available in the [rollup.config.mjs](./rollup.config.mjs)
 
 > :warning: Bear in mind that we do not currently support different entrypoint per target as we don't have the use case
