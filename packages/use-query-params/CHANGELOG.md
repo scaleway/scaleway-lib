@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.0.0 (2021-07-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* migrate the codebase to typescript
+
+### Code Refactoring
+
+* migrate to typescript ([#272](https://github.com/scaleway/scaleway-lib/issues/272)) ([3923c68](https://github.com/scaleway/scaleway-lib/commit/3923c68d6f7feadee7e2e30e32c9ef5d1f3003b9))
+
+
+
 ### 1.3.2 (2021-05-25)
 
 **Note:** Version bump only for package @scaleway/use-query-params

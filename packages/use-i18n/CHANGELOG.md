@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.0](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@2.2.1...@scaleway/use-i18n@3.0.0) (2021-07-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* migrate the codebase to typescript
+
+### Code Refactoring
+
+* migrate to typescript ([#272](https://github.com/scaleway/scaleway-lib/issues/272)) ([3923c68](https://github.com/scaleway/scaleway-lib/commit/3923c68d6f7feadee7e2e30e32c9ef5d1f3003b9))
+
+
+
 ### [2.2.1](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@2.2.0...@scaleway/use-i18n@2.2.1) (2021-07-13)
 
 **Note:** Version bump only for package @scaleway/use-i18n
