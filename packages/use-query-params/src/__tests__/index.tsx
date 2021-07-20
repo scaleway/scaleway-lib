@@ -1,12 +1,12 @@
 import { act, renderHook } from '@testing-library/react-hooks'
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { MemoryRouter } from 'react-router-dom'
 import useQueryParams from '..'
 
 const wrapper =
-  ({ pathname = 'one', search }) =>
+  ({ pathname = 'one', search }: { pathname?: string, search: string }) =>
   // eslint-disable-next-line react/prop-types
-  ({ children }) =>
+  ({ children }: { children: ReactNode }) =>
     (
       <MemoryRouter initialIndex={0} initialEntries={[{ pathname, search }]}>
         {children}
@@ -159,7 +159,7 @@ describe('useQueryParam', () => {
     })
   })
 
-  it('should render good params with parallel changes', async () => {
+  it('should render good params with parallel changes', () => {
     const { result } = renderHook(() => useQueryParams(), {
       wrapper: wrapper({ search: '' }),
     })

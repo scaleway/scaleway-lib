@@ -1,6 +1,6 @@
 import dockerNames from 'docker-names'
 
-const randomName = (prefix = '', separator = '-') => {
+const randomName = (prefix = '', separator = '-'): string => {
   let random = dockerNames.getRandomName().replace(/_/g, separator)
   while (random.includes('cocks')) {
     random = dockerNames.getRandomName().replace(/_/g, separator)

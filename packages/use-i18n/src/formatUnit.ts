@@ -1,4 +1,5 @@
 import filesize from 'filesize'
+import { Options } from 'intl-messageformat'
 
 // We are on base 10, so we should use IEC standard here ...
 const exponents = [
@@ -12,6 +13,8 @@ const exponents = [
   { name: 'zetta', symbol: 'Z' },
   { name: 'yotta', symbol: 'Y' },
 ]
+
+type Exponent = typeof exponents[number]
 
 const frOctet = {
   plural: 'octets',
@@ -50,7 +53,11 @@ const compoundUnitsSymbols = {
   second: 'ps',
 }
 
-const formatShortUnit = (locale, exponent, unit, compoundUnit) => {
+type Unit = 'bit' | 'byte'
+type CompoundUnit = 'second'
+type FormatPlural = (message: string, locales?: string | string[] | undefined, overrideFormats?: undefined, opts?: Options | undefined) => { format: ({ amount }: { amount: number}) => string}
+
+const formatShortUnit = (locale: string, exponent: Exponent, unit: Unit, compoundUnit?: CompoundUnit) => {
   let shortenedUnit = symbols.short[unit]
 
   if (
@@ -65,14 +72,14 @@ const formatShortUnit = (locale, exponent, unit, compoundUnit) => {
   }`
 }
 
-const formatLongUnit = (locale, exponent, unit, number, messageFormat) => {
+const formatLongUnit = (locale: string, exponent: Exponent, unit: Unit, amount: number, messageFormat: FormatPlural) => {
   let translation = symbols.long[unit]
 
   if (
     unit === 'byte' &&
     Object.keys(localesWhoFavorOctetOverByte).includes(locale)
   ) {
-    translation = localesWhoFavorOctetOverByte[locale]
+    translation = localesWhoFavorOctetOverByte[locale as keyof typeof localesWhoFavorOctetOverByte]
   }
 
   return `${exponent.name}${messageFormat(
@@ -82,38 +89,43 @@ const formatLongUnit = (locale, exponent, unit, number, messageFormat) => {
       other {${translation.plural}}
   }`,
     locale,
-  ).format({ amount: number })}`
+  ).format({ amount })}`
 }
 
 const format =
-  ({ compoundUnit, exponent, unit, humanize = false }) =>
+  ({ compoundUnit, exponent, unit, humanize = false }: {
+    compoundUnit?: CompoundUnit,
+    unit: Unit,
+    exponent?: Exponent,
+    humanize?: boolean,
+  }) =>
   (
-    locale,
-    number,
-    { maximumFractionDigits, minimumFractionDigits, short = true },
-    messageFormat,
-  ) => {
+    locale: string,
+    amount: number,
+    { maximumFractionDigits, minimumFractionDigits, short = true }: { maximumFractionDigits?: number, minimumFractionDigits?: number, short?: boolean },
+    messageFormat: FormatPlural,
+  ): string => {
     let computedExponent = exponent
-    let computedValue = number
+    let computedValue = amount
 
     if (humanize) {
-      if (!exponent) {
-        const value = filesize(number, {
-          base: 10,
-          output: 'object',
-          round: maximumFractionDigits,
-        })
-        computedExponent = exponents[value.exponent]
-        computedValue = value.value
-      } else {
-        const value = filesize(number, {
+      if (computedExponent) {
+        const value = filesize(amount, {
           base: 10,
           exponent: exponents.findIndex(
-            exp => exp.name === computedExponent.name,
+            exp => exp.name === (computedExponent as Exponent).name,
           ),
           output: 'object',
           round: maximumFractionDigits,
-        })
+        }) as unknown as { value: number, symbol: string, exponent: number }
+        computedValue = value.value
+      } else {
+        const value = filesize(amount, {
+          base: 10,
+          output: 'object',
+          round: maximumFractionDigits,
+        }) as unknown as { value: number, symbol: string, exponent: number }
+        computedExponent = exponents[value.exponent]
         computedValue = value.value
       }
     }
@@ -123,10 +135,10 @@ const format =
       minimumFractionDigits,
     }).format(computedValue)} ${
       short
-        ? formatShortUnit(locale, computedExponent, unit, compoundUnit)
+        ? formatShortUnit(locale, computedExponent as Exponent, unit, compoundUnit)
         : formatLongUnit(
             locale,
-            computedExponent,
+            computedExponent as Exponent,
             unit,
             computedValue,
             messageFormat,
@@ -182,7 +194,12 @@ export const supportedUnits = {
   ),
 }
 
-const formatUnit = (locale, number, { unit, ...options }, messageFormat) =>
+export interface FormatUnitOptions {
+  unit: keyof typeof supportedUnits
+  short?: boolean
+}
+
+const formatUnit = (locale: string, number: number, { unit, ...options }: FormatUnitOptions, messageFormat: FormatPlural): string =>
   supportedUnits?.[unit]?.(locale, number, options, messageFormat) ?? ''
 
 export default formatUnit

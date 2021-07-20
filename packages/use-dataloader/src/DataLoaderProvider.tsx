@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types'
 import React, {
+  ReactElement,
+  ReactNode,
   createContext,
   useCallback,
   useContext,
@@ -7,13 +9,33 @@ import React, {
   useRef,
 } from 'react'
 
-export const DataLoaderContext = createContext()
+interface Context {
+  addCachedData: (key: string, newData: unknown) => void;
+  addReload: (key: string, method: () => Promise<void>) => void;
+  cacheKeyPrefix: string;
+  clearAllCachedData: () => void;
+  clearAllReloads: () => void;
+  clearCachedData: (key?: string | undefined) => void;
+  clearReload: (key?: string | undefined) => void;
+  getCachedData: (key?: string | undefined) => unknown;
+  getReloads: (key?: string | undefined) => (() => Promise<void>) | Reloads;
+  reload: (key?: string | undefined) => Promise<void>;
+  reloadAll: () => Promise<void>;
+}
 
-const DataLoaderProvider = ({ children, cacheKeyPrefix }) => {
-  const cachedData = useRef({})
-  const reloads = useRef({})
+type CachedData = Record<string, unknown>
+type Reloads = Record<string, () => Promise<void>>
 
-  const setCachedData = useCallback(compute => {
+// @ts-expect-error we force the context to undefined, should be corrected with default values
+export const DataLoaderContext = createContext<Context>(undefined)
+
+const DataLoaderProvider = ({ children, cacheKeyPrefix }: {
+  children: ReactNode, cacheKeyPrefix: string
+}): ReactElement => {
+  const cachedData = useRef<CachedData>({})
+  const reloads = useRef<Reloads>({})
+
+  const setCachedData = useCallback((compute: CachedData | ((data: CachedData) => CachedData)) => {
     if (typeof compute === 'function') {
       cachedData.current = compute(cachedData.current)
     } else {
@@ -21,7 +43,7 @@ const DataLoaderProvider = ({ children, cacheKeyPrefix }) => {
     }
   }, [])
 
-  const setReloads = useCallback(compute => {
+  const setReloads = useCallback((compute: Reloads | ((data: Reloads) => Reloads)) => {
     if (typeof compute === 'function') {
       reloads.current = compute(reloads.current)
     } else {
@@ -30,7 +52,7 @@ const DataLoaderProvider = ({ children, cacheKeyPrefix }) => {
   }, [])
 
   const addCachedData = useCallback(
-    (key, newData) => {
+    (key: string, newData: unknown) => {
       if (key && typeof key === 'string' && newData) {
         setCachedData(actualCachedData => ({
           ...actualCachedData,
@@ -42,7 +64,7 @@ const DataLoaderProvider = ({ children, cacheKeyPrefix }) => {
   )
 
   const addReload = useCallback(
-    (key, method) => {
+    (key: string, method: () => Promise<void>) => {
       if (key && typeof key === 'string' && method) {
         setReloads(actualReloads => ({
           ...actualReloads,
@@ -54,7 +76,7 @@ const DataLoaderProvider = ({ children, cacheKeyPrefix }) => {
   )
 
   const clearReload = useCallback(
-    key => {
+    (key?: string) => {
       if (key && typeof key === 'string') {
         setReloads(actualReloads => {
           const tmp = actualReloads
@@ -72,7 +94,7 @@ const DataLoaderProvider = ({ children, cacheKeyPrefix }) => {
   }, [setReloads])
 
   const clearCachedData = useCallback(
-    key => {
+    (key?: string) => {
       if (key && typeof key === 'string') {
         setCachedData(actualCachedData => {
           const tmp = actualCachedData
@@ -88,7 +110,7 @@ const DataLoaderProvider = ({ children, cacheKeyPrefix }) => {
     setCachedData({})
   }, [setCachedData])
 
-  const reload = useCallback(async key => {
+  const reload = useCallback(async (key?: string) => {
     if (key && typeof key === 'string') {
       await (reloads.current[key] && reloads.current[key]())
     }
@@ -100,7 +122,7 @@ const DataLoaderProvider = ({ children, cacheKeyPrefix }) => {
     )
   }, [])
 
-  const getCachedData = useCallback(key => {
+  const getCachedData = useCallback((key?: string) => {
     if (key) {
       return cachedData.current[key] || undefined
     }
@@ -108,7 +130,7 @@ const DataLoaderProvider = ({ children, cacheKeyPrefix }) => {
     return cachedData.current
   }, [])
 
-  const getReloads = useCallback(key => {
+  const getReloads = useCallback((key?: string) => {
     if (key) {
       return reloads.current[key] || undefined
     }
@@ -161,6 +183,6 @@ DataLoaderProvider.defaultProps = {
   cacheKeyPrefix: undefined,
 }
 
-export const useDataLoaderContext = () => useContext(DataLoaderContext)
+export const useDataLoaderContext = (): Context => useContext(DataLoaderContext)
 
 export default DataLoaderProvider

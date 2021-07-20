@@ -1,6 +1,6 @@
 import memoizeIntlConstructor from 'intl-format-cache'
 import IntlTranslationFormat from 'intl-messageformat'
-import formatUnit, { supportedUnits } from '../formatUnit'
+import formatUnit, { FormatUnitOptions, supportedUnits } from '../formatUnit'
 
 const locales = ['en', 'fr', 'ro']
 
@@ -56,13 +56,14 @@ const tests = [
 describe('formatUnit', () => {
   test('should return empty string for unknown unit', () => {
     expect(
+      // @ts-expect-error We test the use case when unit is unknown
       formatUnit('fr', 123, { unit: 'unknown' }, getTranslationFormat),
     ).toMatchSnapshot()
   })
 
   test.each(tests)('%s %o', (_, options, locale, amount) => {
     expect(
-      formatUnit(locale, amount, options, getTranslationFormat),
+      formatUnit(locale as string, amount as number, options as FormatUnitOptions, getTranslationFormat),
     ).toMatchSnapshot()
   })
 })

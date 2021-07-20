@@ -1,8 +1,10 @@
-import { formatDistanceToNow, formatDistanceToNowStrict } from 'date-fns'
+import { Locale, formatDistanceToNow, formatDistanceToNowStrict } from 'date-fns'
 import memoizeIntlConstructor from 'intl-format-cache'
 import IntlTranslationFormat from 'intl-messageformat'
 import PropTypes from 'prop-types'
 import React, {
+  ReactElement,
+  ReactNode,
   createContext,
   useCallback,
   useContext,
@@ -12,27 +14,36 @@ import React, {
 } from 'react'
 import ReactDOM from 'react-dom'
 import 'intl-pluralrules'
-import unitFormat from './formatUnit'
+import unitFormat, { FormatUnitOptions } from './formatUnit'
+
 
 const LOCALE_ITEM_STORAGE = 'locale'
 
-const prefixKeys = prefix => obj =>
-  Object.keys(obj).reduce((acc, key) => {
-    acc[prefix + key] = obj[key]
+type Translations = Record<string, string> & { prefix?: string }
+type TranslationsByLocales = Record<string, Translations>
+type TranslateFn = (key: string, context?: Record<string, PrimitiveType>) => string
+
+const prefixKeys = (prefix: string) => (obj: { [key: string]: string }) =>
+  Object.keys(obj).reduce((acc: { [key: string ]: string }, key) => {
+    acc[`${prefix}${key}`] = obj[key]
 
     return acc
   }, {})
 
-const areNamespacesLoaded = (namespaces, loadedNamespaces) =>
+const areNamespacesLoaded = (namespaces: string[], loadedNamespaces: string[] = []) =>
   namespaces.every(n => loadedNamespaces.includes(n))
 
-const getLocaleFallback = locale => locale.split('-')[0].split('_')[0]
+const getLocaleFallback = (locale: string) => locale.split('-')[0].split('_')[0]
 
 const getCurrentLocale = ({
   defaultLocale,
   supportedLocales,
   localeItemStorage,
-}) => {
+}: {
+  defaultLocale: string,
+  supportedLocales: string[],
+  localeItemStorage: string,
+}): string => {
   const languages = navigator.languages || [navigator.language]
   const browserLocales = [...new Set(languages.map(getLocaleFallback))]
   const localeStorage = localStorage.getItem(localeItemStorage)
@@ -44,9 +55,36 @@ const getCurrentLocale = ({
   )
 }
 
-const I18nContext = createContext()
+interface Context {
+  currentLocale: string
+  dateFnsLocale?: Locale,
+  datetime?: (date: Date | number, options?: Intl.DateTimeFormatOptions) => string,
+  formatList?: (listFormat: string[], options?: Intl.ListFormatOptions) => string,
+  formatNumber?: (numb: number, options?: Intl.NumberFormatOptions) => string,
+  formatUnit?: (value: number, options: FormatUnitOptions) => string,
+  loadTranslations?: (namespace: string, load?: LoadTranslationsFn) => Promise<string>,
+  locales?: string[],
+  namespaces?: string[],
+  namespaceTranslation?: (namespace: string, t?: TranslateFn) => TranslateFn
+  relativeTime?: (date: Date | number, options?: {
+    includeSeconds?: boolean;
+    addSuffix?: boolean;
+  }) => string,
+  relativeTimeStrict?: (date: Date | number, options?: {
+    addSuffix?: boolean;
+    unit?: 'second' | 'minute' | 'hour' | 'day' | 'month' | 'year';
+    roundingMethod?: 'floor' | 'ceil' | 'round';
+  }) => string,
+  setTranslations?: React.Dispatch<React.SetStateAction<TranslationsByLocales>>,
+  switchLocale?: (locale: string) => void,
+  t?: TranslateFn,
+  translations?: TranslationsByLocales,
+}
 
-export const useI18n = () => {
+// @ts-expect-error we force the context to undefined, should be corrected with default values
+const I18nContext = createContext<Context>(undefined)
+
+export const useI18n = (): Context => {
   const context = useContext(I18nContext)
   if (context === undefined) {
     throw new Error('useI18n must be used within a I18nProvider')
@@ -55,7 +93,7 @@ export const useI18n = () => {
   return context
 }
 
-export const useTranslation = (namespaces = [], load) => {
+export const useTranslation = (namespaces: string[] = [], load: LoadTranslationsFn): Context & { isLoaded: boolean } => {
   const context = useContext(I18nContext)
   if (context === undefined) {
     throw new Error('useTranslation must be used within a I18nProvider')
@@ -64,7 +102,7 @@ export const useTranslation = (namespaces = [], load) => {
 
   const key = namespaces.join(',')
   useEffect(() => {
-    key.split(',').map(async namespace => loadTranslations(namespace, load))
+    key.split(',').map(async (namespace: string) => loadTranslations?.(namespace, load))
   }, [loadTranslations, key, load])
 
   const isLoaded = useMemo(
@@ -81,6 +119,9 @@ const getNumberFormat = memoizeIntlConstructor(Intl.NumberFormat)
 const getDateTimeFormat = memoizeIntlConstructor(Intl.DateTimeFormat)
 const getListFormat = memoizeIntlConstructor(Intl.ListFormat)
 
+type LoadTranslationsFn = ({ namespace, locale }: { namespace: string, locale: string}) => Promise<{ default: Translations}>
+type LoadLocaleFn = (locale: string) => Promise<Locale>
+
 const I18nContextProvider = ({
   children,
   defaultLoad,
@@ -91,13 +132,23 @@ const I18nContextProvider = ({
   enableDebugKey,
   localeItemStorage,
   supportedLocales,
-}) => {
-  const [currentLocale, setCurrentLocale] = useState(
+}: {
+  children: ReactNode,
+  defaultLoad: LoadTranslationsFn,
+  loadDateLocale: LoadLocaleFn,
+  defaultLocale: string,
+  defaultTranslations: TranslationsByLocales,
+  enableDefaultLocale: boolean,
+  enableDebugKey: boolean,
+  localeItemStorage: string,
+  supportedLocales: string[],
+}): ReactElement => {
+  const [currentLocale, setCurrentLocale] = useState<string>(
     getCurrentLocale({ defaultLocale, localeItemStorage, supportedLocales }),
   )
-  const [translations, setTranslations] = useState(defaultTranslations)
-  const [namespaces, setNamespaces] = useState([])
-  const [dateFnsLocale, setDateFnsLocale] = useState()
+  const [translations, setTranslations] = useState<TranslationsByLocales>(defaultTranslations)
+  const [namespaces, setNamespaces] = useState<string[]>([])
+  const [dateFnsLocale, setDateFnsLocale] = useState<Locale>()
 
   useEffect(() => {
     loadDateLocale(currentLocale === 'en' ? 'en-GB' : currentLocale)
@@ -106,7 +157,7 @@ const I18nContextProvider = ({
   }, [loadDateLocale, currentLocale])
 
   const loadTranslations = useCallback(
-    async (namespace, load = defaultLoad) => {
+    async (namespace: string, load: LoadTranslationsFn = defaultLoad) => {
       const result = {
         [currentLocale]: { default: {} },
         defaultLocale: { default: {} },
@@ -123,7 +174,7 @@ const I18nContextProvider = ({
         namespace,
       })
 
-      const trad = {
+      const trad: Translations = {
         ...result.defaultLocale.default,
         ...result[currentLocale].default,
       }
@@ -154,7 +205,7 @@ const I18nContextProvider = ({
   )
 
   const switchLocale = useCallback(
-    locale => {
+    (locale: string) => {
       if (supportedLocales.includes(locale)) {
         localStorage.setItem(localeItemStorage, locale)
         setCurrentLocale(locale)
@@ -164,13 +215,17 @@ const I18nContextProvider = ({
   )
 
   const formatNumber = useCallback(
-    (numb, options) => getNumberFormat(currentLocale, options).format(numb),
+    // intl-format-chache does not forwrad return types
+    // eslint-disable-next-line
+    (numb: number, options?: Intl.NumberFormatOptions) => getNumberFormat(currentLocale, options).format(numb),
     [currentLocale],
   )
 
   const formatList = useCallback(
-    (listFormat, options) =>
-      getListFormat(currentLocale, options).format(listFormat),
+    (listFormat: string[], options?: Intl.ListFormatOptions) =>
+    // intl-format-chache does not forwrad return types
+    // eslint-disable-next-line
+    getListFormat(currentLocale, options).format(listFormat),
     [currentLocale],
   )
 
@@ -178,18 +233,24 @@ const I18nContextProvider = ({
   // Once https://github.com/tc39/proposal-smart-unit-preferences is stable we should
   // be able to use formatNumber directly
   const formatUnit = useCallback(
-    (value, options) =>
+    (value: number, options: FormatUnitOptions) =>
       unitFormat(currentLocale, value, options, getTranslationFormat),
     [currentLocale],
   )
 
   const datetime = useCallback(
-    (date, options) => getDateTimeFormat(currentLocale, options).format(date),
+    // intl-format-chache does not forwrad return types
+    // eslint-disable-next-line
+    (date: Date | number, options?: Intl.DateTimeFormatOptions): string => getDateTimeFormat(currentLocale, options).format(date),
     [currentLocale],
   )
 
   const relativeTimeStrict = useCallback(
-    (date, options = { addSuffix: true, unit: 'day' }) => {
+    (date: Date | number, options: {
+      addSuffix?: boolean
+      unit?: 'second' | 'minute' | 'hour' | 'day' | 'month' | 'year'
+      roundingMethod?: 'floor' | 'ceil' | 'round'
+    } = { addSuffix: true, unit: 'day' }) => {
       const finalDate = new Date(date)
 
       return formatDistanceToNowStrict(finalDate, {
@@ -201,7 +262,10 @@ const I18nContextProvider = ({
   )
 
   const relativeTime = useCallback(
-    (date, options = { addSuffix: true }) => {
+    (date: Date | number, options: {
+      includeSeconds?: boolean
+      addSuffix?: boolean
+    } = { addSuffix: true }) => {
       const finalDate = new Date(date)
 
       return formatDistanceToNow(finalDate, {
@@ -213,7 +277,7 @@ const I18nContextProvider = ({
   )
 
   const translate = useCallback(
-    (key, context) => {
+    (key: string, context?: Record<string, PrimitiveType>) => {
       const value = translations[currentLocale]?.[key]
       if (!value) {
         if (enableDebugKey) {
@@ -223,6 +287,8 @@ const I18nContextProvider = ({
         return ''
       }
       if (context) {
+        // intl-format-chache does not forwrad return types
+        // eslint-disable-next-line
         return getTranslationFormat(value, currentLocale).format(context)
       }
 
@@ -232,9 +298,9 @@ const I18nContextProvider = ({
   )
 
   const namespaceTranslation = useCallback(
-    (namespace, t = translate) =>
-      (identifier, ...args) =>
-        t(`${namespace}.${identifier}`, ...args) || t(identifier, ...args),
+    (namespace: string, t: TranslateFn = translate) =>
+      (identifier: string, context?: Record<string, PrimitiveType>) =>
+        t(`${namespace}.${identifier}`, context) || t(identifier, context),
     [translate],
   )
 
