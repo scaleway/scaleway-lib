@@ -12,10 +12,11 @@
     "query-params"
   ],
   "type": "module",
-  "main": "dist/module.js",
-  "module": "dist/module.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "browser": {
-    "dist/module.js": "./dist/module.browser.js"
+    "dist/index.js": "./dist/index.browser.js"
   },
   "publishConfig": {
     "access": "public"
