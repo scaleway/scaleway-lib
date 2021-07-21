@@ -15,12 +15,16 @@ const initialProps = {
     }),
 }
 // eslint-disable-next-line react/prop-types
-const wrapper = ({ children }) => (
+const wrapper = ({ children }: { children: React.ReactNode }) => (
   <DataLoaderProvider>{children}</DataLoaderProvider>
 )
 
-const wrapperWithCacheKey = ({ children }) => (
+const wrapperWithCacheKey = ({ children }: { children: React.ReactNode }) => (
   <DataLoaderProvider cacheKeyPrefix="sample">{children}</DataLoaderProvider>
+)
+
+const wrapperWithOnError = (onError: (err: Error) => void) => ({ children }: { children: React.ReactNode }) => (
+  <DataLoaderProvider onError={onError}>{children}</DataLoaderProvider>
 )
 
 describe('useDataLoader', () => {
@@ -370,6 +374,79 @@ describe('useDataLoader', () => {
     expect(result.current.isError).toBe(true)
 
     expect(onError).toBeCalledTimes(1)
+    expect(onError).toBeCalledWith(error)
+    expect(onSuccess).toBeCalledTimes(0)
+  })
+
+  test('should override onError from Provider', async () => {
+    const onSuccess = jest.fn()
+    const onError = jest.fn()
+    const error = new Error('Test error')
+    const onErrorProvider = jest.fn()
+    const { result, waitForNextUpdate } = renderHook(
+      props => useDataLoader(props.key, props.method, props.config),
+      {
+        initialProps: {
+          config: {
+            onError,
+            onSuccess,
+          },
+          key: 'test',
+          method: () =>
+            new Promise((resolve, reject) => {
+              setTimeout(() => {
+                reject(error)
+              }, 500)
+            }),
+        },
+        wrapper: wrapperWithOnError(onErrorProvider),
+      },
+    )
+    expect(result.current.data).toBe(undefined)
+    expect(result.current.isLoading).toBe(true)
+    await waitForNextUpdate()
+    expect(result.current.data).toBe(undefined)
+    expect(result.current.error).toBe(error)
+    expect(result.current.isError).toBe(true)
+
+    expect(onError).toBeCalledTimes(1)
+    expect(onError).toBeCalledWith(error)
+    expect(onErrorProvider).toBeCalledTimes(0)
+    expect(onSuccess).toBeCalledTimes(0)
+  })
+
+  test('should call onError from Provider', async () => {
+    const onSuccess = jest.fn()
+    const error = new Error('Test error')
+    const onErrorProvider = jest.fn()
+    const { result, waitForNextUpdate } = renderHook(
+      props => useDataLoader(props.key, props.method, props.config),
+      {
+        initialProps: {
+          config: {
+            onSuccess,
+          },
+          key: 'test',
+          method: () =>
+            new Promise((resolve, reject) => {
+              setTimeout(() => {
+                reject(error)
+              }, 500)
+            }),
+        },
+        wrapper: wrapperWithOnError(onErrorProvider),
+      },
+    )
+
+    expect(result.current.data).toBe(undefined)
+    expect(result.current.isLoading).toBe(true)
+    await waitForNextUpdate()
+    expect(result.current.data).toBe(undefined)
+    expect(result.current.error).toBe(error)
+    expect(result.current.isError).toBe(true)
+
+    expect(onErrorProvider).toBeCalledTimes(1)
+    expect(onErrorProvider).toBeCalledWith(error)
     expect(onSuccess).toBeCalledTimes(0)
   })
 

@@ -20,7 +20,7 @@ const Actions = {
 /**
  * @typedef {Object} UseDataLoaderConfig
  * @property {Function} [onSuccess] callback when a request success
- * @property {Function} [onError] callback when a error is occured
+ * @property {Function} [onError] callback when a error is occured, this will override the onError specified on the Provider if any
  * @property {*} [initialData] initial data if no one is present in the cache before the request
  * @property {number} [pollingInterval] relaunch the request after the last success
  * @property {boolean} [enabled=true] launch request automatically (default true)
@@ -30,8 +30,8 @@ interface UseDataLoaderConfig<T> {
   enabled?: boolean,
   initialData?: T,
   keepPreviousData?: boolean,
-  onError?: (err: Error) => Promise<void>,
-  onSuccess?: (data: T) => Promise<void>,
+  onError?: (err: Error) => void| Promise<void>,
+  onSuccess?: (data: T) => void | Promise<void>,
   pollingInterval?: number,
 }
 
@@ -83,6 +83,7 @@ const useDataLoader = <T>(
     getCachedData,
     addCachedData,
     cacheKeyPrefix,
+    onError: onErrorProvider,
   } = useDataLoaderContext()
   const [{ status, error }, dispatch] = useReducer(reducer, {
     error: undefined,
@@ -129,7 +130,7 @@ const useDataLoader = <T>(
         await onSuccess?.(result)
       } catch (err) {
         dispatch(Actions.createOnError(err))
-        await onError?.(err)
+        await ((onError ?? onErrorProvider)?.(err))
       }
     },
     [
@@ -138,6 +139,7 @@ const useDataLoader = <T>(
       keepPreviousData,
       method,
       onError,
+      onErrorProvider,
       onSuccess,
     ],
   )
