@@ -2,12 +2,14 @@
 
 A tiny utility to generate random names
 
+Fully inspired by [Moby name generator](https://github.com/moby/moby/blob/master/pkg/namesgenerator/names-generator.go)
+
 ---
 
 ## Install
 
 ```bash
-$ yarn add @scaleway/random-names
+$ yarn add @scaleway/random-name
 ```
 
 ## Usage
@@ -21,4 +23,18 @@ randomName() // => "admiring-allen"
 randomName('superb') // => "superb-admiring-allen"
 randomName('superb', '_') // => "superb_admiring_allen"
 randomName('', '_') // => "admiring_allen"
+```
+
+As a React hook
+```js
+import React from 'react'
+import { useRandomName } from '@scaleway/random-name'
+
+const Component = () => {
+  const name = useRandomName()
+
+  return (
+    <span>{name}</span>
+  )
+}
 ```

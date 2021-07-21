@@ -2378,7 +2378,7 @@
     lodash "^4.17.15"
     redent "^3.0.0"
 
-"@testing-library/react-hooks@^7.0.0":
+"@testing-library/react-hooks@^7.0.0", "@testing-library/react-hooks@^7.0.1":
   version "7.0.1"
   resolved "https://registry.yarnpkg.com/@testing-library/react-hooks/-/react-hooks-7.0.1.tgz#8429d8bf55bfe82e486bd582dd06457c2464900a"
   integrity sha512-bpEQ2SHSBSzBmfJ437NmnP+oArQ7aVmmULiAp6Ag2rtyLBLPNFSMmgltUbFGmQOJdPWo4Ub31kpUC5T46zXNwQ==
@@ -3856,11 +3856,6 @@ dir-glob@^3.0.1:
   integrity sha512-WkrWp9GR4KXfKGYzOLmTuGVi1UWFfws377n9cc55/tb6DuqyF6pcQ5AbiHEshaDpY9v6oaSr2XCDidGmMwdzIA==
   dependencies:
     path-type "^4.0.0"
-
-docker-names@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/docker-names/-/docker-names-1.1.1.tgz#19172629b51df77d682a77b297d786edf83f3329"
-  integrity sha512-YOEN1PvRKoUowilElZAvjtZTSq7KK03kR7RWqNzHigoPusa9q5/Hi3KJDQAHN94dpBdDIQ6ymM/h0Bzg4Ox73g==
 
 doctrine@^2.1.0:
   version "2.1.0"
@@ -7350,7 +7345,7 @@ react-router@5.2.0:
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
 
-react@17.0.2, react@^17.0.1:
+react@17.0.2, react@^17.0.1, react@^17.0.2:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react/-/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"
   integrity sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==
