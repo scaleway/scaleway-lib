@@ -3853,11 +3853,6 @@ dir-glob@^3.0.1:
   dependencies:
     path-type "^4.0.0"
 
-docker-names@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/docker-names/-/docker-names-1.1.1.tgz#19172629b51df77d682a77b297d786edf83f3329"
-  integrity sha512-YOEN1PvRKoUowilElZAvjtZTSq7KK03kR7RWqNzHigoPusa9q5/Hi3KJDQAHN94dpBdDIQ6ymM/h0Bzg4Ox73g==
-
 doctrine@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/doctrine/-/doctrine-2.1.0.tgz#5cd01fc101621b42c4cd7f5d1a66243716d3f39d"
