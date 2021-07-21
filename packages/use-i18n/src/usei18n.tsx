@@ -14,8 +14,8 @@ import React, {
 } from 'react'
 import ReactDOM from 'react-dom'
 import 'intl-pluralrules'
+import dateFormat, { FormatDateOptions } from './formatDate'
 import unitFormat, { FormatUnitOptions } from './formatUnit'
-
 
 const LOCALE_ITEM_STORAGE = 'locale'
 
@@ -59,6 +59,7 @@ interface Context {
   currentLocale: string
   dateFnsLocale?: Locale,
   datetime?: (date: Date | number, options?: Intl.DateTimeFormatOptions) => string,
+  formatDate?: (value: Date | number | string, options: FormatDateOptions) => string,
   formatList?: (listFormat: string[], options?: Intl.ListFormatOptions) => string,
   formatNumber?: (numb: number, options?: Intl.NumberFormatOptions) => string,
   formatUnit?: (value: number, options: FormatUnitOptions) => string,
@@ -238,6 +239,12 @@ const I18nContextProvider = ({
     [currentLocale],
   )
 
+  const formatDate = useCallback(
+    (value: Date | number | string, options: FormatDateOptions) =>
+      dateFormat(currentLocale, value, options),
+    [currentLocale],
+  )
+
   const datetime = useCallback(
     // intl-format-chache does not forwrad return types
     // eslint-disable-next-line
@@ -309,6 +316,7 @@ const I18nContextProvider = ({
       currentLocale,
       dateFnsLocale,
       datetime,
+      formatDate,
       formatList,
       formatNumber,
       formatUnit,
@@ -327,6 +335,7 @@ const I18nContextProvider = ({
       currentLocale,
       dateFnsLocale,
       datetime,
+      formatDate,
       formatList,
       formatNumber,
       formatUnit,
