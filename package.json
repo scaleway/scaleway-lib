@@ -42,7 +42,7 @@
     "build": "lerna exec --stream --ignore @scaleway/eslint-* --ignore @scaleway/countries -- rollup -c ../../rollup.config.mjs",
     "build:profile": "cross-env PROFILE=true yarn run build",
     "commit": "npx git-cz -a",
-    "test": "jest",
+    "test": "TZ=UTC jest",
     "test:watch": "yarn run test --watch",
     "test:coverage": "yarn run test --coverage",
     "prepare": "husky install"
