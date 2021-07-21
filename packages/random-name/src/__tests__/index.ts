@@ -1,6 +1,7 @@
-import randomName from '..'
+import { renderHook } from '@testing-library/react-hooks'
+import randomName, { useRandomName } from '..'
 
-describe('randomNames', () => {
+describe('randomName', () => {
   it('should return a random name separated by a dash', () => {
     expect(randomName().split('-').length).toBe(2)
   })
@@ -21,10 +22,26 @@ describe('randomNames', () => {
     expect(name.split('!').length).toBe(3)
   })
 
-  it('should never includes the word "cocks"', () => {
+  it('should never have boring-wozniak', () => {
     const names = Array.from(Array(1000000), () => randomName())
     expect(names).not.toEqual(
-      expect.arrayContaining([expect.stringMatching('cocks')]),
+      expect.arrayContaining([expect.stringMatching('boring-wozniak')]),
     )
   })
+
+  describe('useRandomName', () => {
+    beforeAll(() => {
+      jest.spyOn(global.Math, 'random').mockReturnValue(0.4155913669444804)
+    })
+
+    afterAll(() => {
+      jest.spyOn(global.Math, 'random').mockRestore()
+    })
+
+    it('useTranslation should not be defined without I18nProvider', () => {
+      const { result } = renderHook(() => useRandomName())
+      expect(result.current).toMatchSnapshot()
+    })
+  })
+
 })

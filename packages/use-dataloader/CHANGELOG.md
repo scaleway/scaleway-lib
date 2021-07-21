@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.0 (2021-07-21)
+
+
+### Features
+
+* **use-dataloader:** add global onError handler ([#286](https://github.com/scaleway/scaleway-lib/issues/286)) ([e881b5e](https://github.com/scaleway/scaleway-lib/commit/e881b5e5e1436cb0a1d2f19021be9544fa0c0d77))
+
+
+
 ## 2.0.0 (2021-07-20)
 
 

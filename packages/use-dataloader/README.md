@@ -36,6 +36,72 @@ ReactDOM.render(
 
 Now you can use `useDataLoader` and `useDataLoaderContext` in your App
 
+#### `cacheKeyPrefix`
+
+You can specify a global `cacheKeyPrefix` which will be inserted before each cache key
+
+This can be useful if you have a global context (eg: if you can switch account in your app, ...)
+
+```js
+import { DataLoaderProvider, useDataLoader } from '@scaleway-lib/use-dataloader'
+import React from 'react'
+import ReactDOM from 'react-dom'
+
+const App = () => {
+  useDataLoader('cache-key', () => 'response') // Real key will be prefixed-cache-key
+
+  return null
+}
+
+ReactDOM.render(
+  <React.StrictMode>
+    <DataLoaderProvider onError={globalOnError} cacheKeyPrefix="prefixed">
+      <App />
+    </DataLoaderProvider>
+  </React.StrictMode>,
+  document.getElementById('root'),
+)
+```
+
+#### `onError(err: Error): void | Promise<void>`
+
+This is a global `onError` handler. It will be overriden if you specify one in `useDataLoader`
+
+```js
+import { DataLoaderProvider, useDataLoader } from '@scaleway-lib/use-dataloader'
+import React from 'react'
+import ReactDOM from 'react-dom'
+
+const failingPromise = async () => {
+  throw new Error('error')
+}
+
+const App = () => {
+  useDataLoader('local-error',  failingPromise,  {
+    onError: (error) => {
+      console.log(`local onError: ${error}`)
+    }
+  })
+
+  useDataLoader('error', failingPromise)
+
+  return null
+}
+
+const globalOnError = (error) => {
+  console.log(`global onError: ${error}`)
+}
+
+ReactDOM.render(
+  <React.StrictMode>
+    <DataLoaderProvider onError={globalOnError}>
+      <App />
+    </DataLoaderProvider>
+  </React.StrictMode>,
+  document.getElementById('root'),
+)
+```
+
 ### useDataLoader
 
 ```js
