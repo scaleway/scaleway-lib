@@ -160,6 +160,55 @@ const App = () => {
 }
 ```
 
+### formatDate
+
+This hook exposes a `formatDate` function which can be used to format JS dates
+
+The first parameter is anything that can be accepted as a valid JS Date (Date, number, string)
+
+It accepts an `options` as second parameter which can eiter be one of predefined shorthand formats (see below) or an [Intl.DateTimeFormat `options` object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat)
+
+Shorthand formats:
+```
+"long" => "February 13, 2020"
+"short" => (default) "Feb 13, 2020"
+"hour" => "February 13, 2020, 4:28 PM"
+"hourOnly" => "4:28 PM"
+"shortWithoutDay" => "Feb 2020"
+"numeric" => "2020-02-13"
+"numericHour" => "2020-02-13 4:28 PM"
+```
+
+```js
+import { useI18n } from '@scaleway/use-i18n'
+
+const App = () => {
+  const { formatDate } = useI18n()
+
+  const units = [
+    formatDate(new Date(2020, 1, 13, 16, 28)) // "Feb 13, 2020"
+    formatDate(1581607680000, 'long') // "February 13, 2020"
+    formatDate('2020-02-13T15:28:00.000Z', {
+      day: "numeric",
+      era: "short",
+      hour: "2-digit",
+      minute: "numeric",
+      month: "narrow",
+      second: "2-digit",
+      timeZoneName: "long",
+      weekday: "long",
+      year: "2-digit",
+    }) // "Thursday, F 13, 20 AD, 04:28:00 PM Central European Standard Time""
+  ]
+
+  return (
+    <div>
+      {units}
+    </div>
+  )
+}
+```
+
 ### formatUnit
 
 This hook also exposes a `formatUnit` function which can be used to format bits/bytes until [ECMA-402 Unit Preferences](https://github.com/tc39/proposal-smart-unit-preferences) is standardised
@@ -175,15 +224,14 @@ It accepts an `options` as second parameter:
 
 ```js
 import { useI18n } from '@scaleway/use-i18n'
-import { DateInput } from '@scaleway/ui'
 
 const App = () => {
   const { formatUnit } = useI18n()
 
   const units = [
-    formatUnit(12 { unit: 'kilobyte' }) // "12 KB" or "12 Ko" in fr an ro
-    formatUnit(10 ** 8 { unit: 'bytes-humanized' }) // "100 MB" or "100 Mo" in fr an ro
-    formatUnit(10 ** 8 { unit: 'bits-per-second-humanized' }) // "100Mbs"
+    formatUnit(12, { unit: 'kilobyte' }) // "12 KB" or "12 Ko" in fr an ro
+    formatUnit(10 ** 8, { unit: 'bytes-humanized' }) // "100 MB" or "100 Mo" in fr an ro
+    formatUnit(10 ** 8, { unit: 'bits-per-second-humanized' }) // "100Mbs"
   ]
 
   return (

@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.0](https://github.com/scaleway/scaleway-lib/compare/@scaleway/random-name@2.0.0...@scaleway/random-name@2.1.0) (2021-07-21)
+
+
+### Features
+
+* **random-name:** base the generator on moby and expose react hook ([#281](https://github.com/scaleway/scaleway-lib/issues/281)) ([6e986be](https://github.com/scaleway/scaleway-lib/commit/6e986beb2609e533199a2b38b989c3b8b0c3c56b))
+
+
+
 ## 2.0.0 (2021-07-20)
 
 

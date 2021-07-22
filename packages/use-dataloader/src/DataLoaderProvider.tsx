@@ -13,6 +13,7 @@ interface Context {
   addCachedData: (key: string, newData: unknown) => void;
   addReload: (key: string, method: () => Promise<void>) => void;
   cacheKeyPrefix: string;
+  onError?: (error: Error) => void | Promise<void>
   clearAllCachedData: () => void;
   clearAllReloads: () => void;
   clearCachedData: (key?: string | undefined) => void;
@@ -29,8 +30,8 @@ type Reloads = Record<string, () => Promise<void>>
 // @ts-expect-error we force the context to undefined, should be corrected with default values
 export const DataLoaderContext = createContext<Context>(undefined)
 
-const DataLoaderProvider = ({ children, cacheKeyPrefix }: {
-  children: ReactNode, cacheKeyPrefix: string
+const DataLoaderProvider = ({ children, cacheKeyPrefix, onError }: {
+  children: ReactNode, cacheKeyPrefix: string, onError: (error: Error) => void | Promise<void>
 }): ReactElement => {
   const cachedData = useRef<CachedData>({})
   const reloads = useRef<Reloads>({})
@@ -149,6 +150,7 @@ const DataLoaderProvider = ({ children, cacheKeyPrefix }: {
       clearReload,
       getCachedData,
       getReloads,
+      onError,
       reload,
       reloadAll,
     }),
@@ -162,6 +164,7 @@ const DataLoaderProvider = ({ children, cacheKeyPrefix }: {
       clearReload,
       getCachedData,
       getReloads,
+      onError,
       reload,
       reloadAll,
     ],
@@ -177,10 +180,12 @@ const DataLoaderProvider = ({ children, cacheKeyPrefix }: {
 DataLoaderProvider.propTypes = {
   cacheKeyPrefix: PropTypes.string,
   children: PropTypes.node.isRequired,
+  onError: PropTypes.func,
 }
 
 DataLoaderProvider.defaultProps = {
   cacheKeyPrefix: undefined,
+  onError: undefined,
 }
 
 export const useDataLoaderContext = (): Context => useContext(DataLoaderContext)

@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.1.1](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@3.1.0...@scaleway/use-i18n@3.1.1) (2021-07-21)
+
+
+### Bug Fixes
+
+* **use-i18n:** correct Provider export default ([#287](https://github.com/scaleway/scaleway-lib/issues/287)) ([83d2364](https://github.com/scaleway/scaleway-lib/commit/83d2364413268f807add3b87f3d3876eb187055b))
+
+
+
+## 3.1.0 (2021-07-21)
+
+
+### Features
+
+* **use-i18n:** add formatDate ([#280](https://github.com/scaleway/scaleway-lib/issues/280)) ([0a080ba](https://github.com/scaleway/scaleway-lib/commit/0a080ba31f4a7a855a026323b9d4465708d36623))
+
+
+
 ## [3.0.0](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@2.2.1...@scaleway/use-i18n@3.0.0) (2021-07-20)
 
 

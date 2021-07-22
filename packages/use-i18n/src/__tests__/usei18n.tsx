@@ -2,7 +2,7 @@
 import { act, renderHook } from '@testing-library/react-hooks'
 import mockdate from 'mockdate'
 import React from 'react'
-import I18n, { useI18n, useTranslation } from '../usei18n'
+import I18n, { useI18n, useTranslation } from '..'
 import en from './locales/en'
 import es from './locales/es'
 import fr from './locales/fr'
@@ -520,6 +520,26 @@ describe('i18n hook', () => {
     expect(
       result.current.formatUnit(12, { short: false, unit: 'byte' }),
     ).toEqual('12 octets')
+  })
+
+  it('should formatDate', async () => {
+    const { result, waitForNextUpdate } = renderHook(() => useI18n(), {
+      wrapper: wrapper({
+        defaultLocale: 'en',
+      }),
+    })
+
+    expect(
+      result.current.formatDate(new Date(2020, 1, 13, 16, 28), 'numericHour'),
+    ).toEqual('2020-02-13 4:28 PM')
+    act(() => {
+      result.current.switchLocale('fr')
+    })
+    await waitForNextUpdate()
+
+    expect(
+      result.current.formatDate(new Date(2020, 1, 13, 16, 28), 'numericHour'),
+    ).toEqual('2020-02-13 16:28')
   })
 
   it('should load default datefns locales', async () => {
