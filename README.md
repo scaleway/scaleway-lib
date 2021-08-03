@@ -14,7 +14,7 @@ scaleway-lib is a set of NPM packages used at Scaleway.
 - [Available packages](#available-packages)
 - [Development](#development)
   - [Locally](#locally)
-  - [Link against another project (with `yalc`) => FAVORED](#link-against-another-project-with-yalc-favored)
+  - [Link against another project (with `yalc`) => FAVORED](#link-against-another-project-with-yalc--favored)
   - [Link against another project (with `yarn link`)](#link-against-another-project-with-yarn-link)
   - [Linting](#linting)
   - [Unit Test](#unit-test)
@@ -100,17 +100,19 @@ $ yarn global add yalc # Make sure to have the yalc binary
 ```
 
 ```bash
-$ yarn run build # Build the package
-$ cd packages/example_package && yalc publish
+$ cd scaleway-lib/packages/example_package
+$ yarn build && yalc publish
 $ # Now it's ready to install in your project
-$ cd ../project-something
+$ cd ../../../project-something
 $ yalc add @scaleway/package-name --yarn
+$ cd ../scaleway-lib/packages/example_package
 $ # If you do some changes into your package
-$ yarn run build
-$ cd packages/example_package && yalc publish --push # --push will automatically update the package on projects where it have been added
+$ yarn build && yalc publish --push --sig # --push will automatically update the package on projects where it have been added, --sig updates the signature hash to trigger webpack update
 ```
 
-> :warning: `yalc` create a `yalc.lock` and updates the `package.json` in the target project. Make sure to not commit these changes
+> :warning: since [1.0.0.pre.51 (2021-04-23)](https://github.com/wclr/yalc/blob/master/CHANGELOG.md#100pre51-2021-04-23), `yalc publish` needs the `--sig` option to trigger webpack module actual update.
+
+> :warning: `yalc` create a `yalc.lock` and updates the `package.json` in the target project. **Make sure to not commit these changes**
 
 ### Link against another project (with `yarn link`)
 
