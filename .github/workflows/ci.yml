@@ -8,7 +8,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2.3.4
     - name: Use Node.js
-      uses: actions/setup-node@v2.3.1
+      uses: actions/setup-node@v2.3.2
       with:
         node-version: 14
         cache: 'yarn'
@@ -19,7 +19,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2.3.4
     - name: Use Node.js
-      uses: actions/setup-node@v2.3.1
+      uses: actions/setup-node@v2.3.2
       with:
         node-version: 14
         cache: 'yarn'
@@ -32,7 +32,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2.3.4
     - name: Use Node.js
-      uses: actions/setup-node@v2.3.1
+      uses: actions/setup-node@v2.3.2
       with:
         node-version: 14
     - run: yarn --pure-lockfile
@@ -55,7 +55,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
     - name: Use Node.js
-      uses: actions/setup-node@v2.3.1
+      uses: actions/setup-node@v2.3.2
       with:
         node-version: 14
     - run: yarn --pure-lockfile
