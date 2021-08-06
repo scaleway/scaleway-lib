@@ -1,5 +1,4 @@
 import filesize from 'filesize'
-import { Options } from 'intl-messageformat'
 import formatters from './formatters'
 
 // We are on base 10, so we should use IEC standard here ...
@@ -16,6 +15,7 @@ const exponents = [
 ]
 
 type Exponent = typeof exponents[number]
+type ExponentName = '' | 'kilo' | 'mega' | 'giga' | 'tera' | 'peta' | 'exa' | 'zetta' | 'yotta'
 
 const frOctet = {
   plural: 'octets',
@@ -56,7 +56,6 @@ const compoundUnitsSymbols = {
 
 type Unit = 'bit' | 'byte'
 type CompoundUnit = 'second'
-type FormatPlural = (message: string, locales?: string | string[] | undefined, overrideFormats?: undefined, opts?: Options | undefined) => { format: ({ amount }: { amount: number}) => string}
 
 const formatShortUnit = (locale: string, exponent: Exponent, unit: Unit, compoundUnit?: CompoundUnit) => {
   let shortenedUnit = symbols.short[unit]
@@ -145,7 +144,12 @@ const format =
     }`
   }
 
-export const supportedUnits = {
+type SimpleUnits = `${ExponentName}${Unit}${'-humanized' | ''}`
+type ComplexUnits = `${Unit}${'s' | ''}${'-humanized' | ''}`
+type PerSecondUnit = `bit${'s' | ''}${'-per-second' | ''}${'-humanized' | ''}`
+type SupportedUnits = SimpleUnits | ComplexUnits | PerSecondUnit
+
+export const supportedUnits: Partial<Record<SupportedUnits, ReturnType<typeof format>>> = {
   // bits
   'bits-humanized': format({ humanize: true, unit: 'bit' }),
   'bits-per-second-humanized': format({
@@ -194,7 +198,7 @@ export const supportedUnits = {
 }
 
 export interface FormatUnitOptions {
-  unit: keyof typeof supportedUnits
+  unit: SupportedUnits
   short?: boolean
 }
 
