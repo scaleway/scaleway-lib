@@ -27,6 +27,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@formatjs/fast-memoize": "^1.1.2",
     "date-fns": "^2.19.0",
     "filesize": "^7.0.0",
     "intl-format-cache": "^4.3.1",
