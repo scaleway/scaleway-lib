@@ -209,16 +209,12 @@ const I18nContextProvider = ({
   )
 
   const formatNumber = useCallback(
-    // intl-format-chache does not forwrad return types
-    // eslint-disable-next-line
     (numb: number, options?: Intl.NumberFormatOptions) => formatters.getNumberFormat(currentLocale, options).format(numb),
     [currentLocale],
   )
 
   const formatList = useCallback(
     (listFormat: [string | undefined], options?: Intl.ListFormatOptions) =>
-    // intl-format-chache does not forwrad return types
-    // eslint-disable-next-line
     formatters.getListFormat(currentLocale, options).format(listFormat),
     [currentLocale],
   )
