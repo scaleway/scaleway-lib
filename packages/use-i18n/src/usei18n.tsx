@@ -1,6 +1,4 @@
 import { Locale, formatDistanceToNow, formatDistanceToNowStrict } from 'date-fns'
-import memoizeIntlConstructor from 'intl-format-cache'
-import IntlTranslationFormat from 'intl-messageformat'
 import PropTypes from 'prop-types'
 import React, {
   ReactElement,
@@ -16,6 +14,7 @@ import ReactDOM from 'react-dom'
 import 'intl-pluralrules'
 import dateFormat, { FormatDateOptions } from './formatDate'
 import unitFormat, { FormatUnitOptions } from './formatUnit'
+import formatters from './formatters'
 
 const LOCALE_ITEM_STORAGE = 'locale'
 
@@ -60,7 +59,7 @@ interface Context {
   dateFnsLocale?: Locale,
   datetime?: (date: Date | number, options?: Intl.DateTimeFormatOptions) => string,
   formatDate?: (value: Date | number | string, options: FormatDateOptions) => string,
-  formatList?: (listFormat: string[], options?: Intl.ListFormatOptions) => string,
+  formatList?: (listFormat: [string | undefined], options?: Intl.ListFormatOptions) => string,
   formatNumber?: (numb: number, options?: Intl.NumberFormatOptions) => string,
   formatUnit?: (value: number, options: FormatUnitOptions) => string,
   loadTranslations?: (namespace: string, load?: LoadTranslationsFn) => Promise<string>,
@@ -113,12 +112,6 @@ export const useTranslation = (namespaces: string[] = [], load: LoadTranslations
 
   return { ...context, isLoaded }
 }
-
-// https://formatjs.io/docs/intl-messageformat/
-const getTranslationFormat = memoizeIntlConstructor(IntlTranslationFormat)
-const getNumberFormat = memoizeIntlConstructor(Intl.NumberFormat)
-const getDateTimeFormat = memoizeIntlConstructor(Intl.DateTimeFormat)
-const getListFormat = memoizeIntlConstructor(Intl.ListFormat)
 
 type LoadTranslationsFn = ({ namespace, locale }: { namespace: string, locale: string}) => Promise<{ default: Translations}>
 type LoadLocaleFn = (locale: string) => Promise<Locale>
@@ -216,17 +209,13 @@ const I18nContextProvider = ({
   )
 
   const formatNumber = useCallback(
-    // intl-format-chache does not forwrad return types
-    // eslint-disable-next-line
-    (numb: number, options?: Intl.NumberFormatOptions) => getNumberFormat(currentLocale, options).format(numb),
+    (numb: number, options?: Intl.NumberFormatOptions) => formatters.getNumberFormat(currentLocale, options).format(numb),
     [currentLocale],
   )
 
   const formatList = useCallback(
-    (listFormat: string[], options?: Intl.ListFormatOptions) =>
-    // intl-format-chache does not forwrad return types
-    // eslint-disable-next-line
-    getListFormat(currentLocale, options).format(listFormat),
+    (listFormat: [string | undefined], options?: Intl.ListFormatOptions) =>
+    formatters.getListFormat(currentLocale, options).format(listFormat),
     [currentLocale],
   )
 
@@ -235,7 +224,7 @@ const I18nContextProvider = ({
   // be able to use formatNumber directly
   const formatUnit = useCallback(
     (value: number, options: FormatUnitOptions) =>
-      unitFormat(currentLocale, value, options, getTranslationFormat),
+      unitFormat(currentLocale, value, options),
     [currentLocale],
   )
 
@@ -248,7 +237,7 @@ const I18nContextProvider = ({
   const datetime = useCallback(
     // intl-format-chache does not forwrad return types
     // eslint-disable-next-line
-    (date: Date | number, options?: Intl.DateTimeFormatOptions): string => getDateTimeFormat(currentLocale, options).format(date),
+    (date: Date | number, options?: Intl.DateTimeFormatOptions): string => formatters.getDateTimeFormat(currentLocale, options).format(date),
     [currentLocale],
   )
 
@@ -283,7 +272,7 @@ const I18nContextProvider = ({
     [dateFnsLocale],
   )
 
-  const translate = useCallback(
+  const translate = useCallback<TranslateFn>(
     (key: string, context?: Record<string, PrimitiveType>) => {
       const value = translations[currentLocale]?.[key]
       if (!value) {
@@ -296,7 +285,7 @@ const I18nContextProvider = ({
       if (context) {
         // intl-format-chache does not forwrad return types
         // eslint-disable-next-line
-        return getTranslationFormat(value, currentLocale).format(context)
+        return formatters.getTranslationFormat(value, currentLocale).format(context) as string
       }
 
       return value

@@ -1,5 +1,5 @@
 import filesize from 'filesize'
-import { Options } from 'intl-messageformat'
+import formatters from './formatters'
 
 // We are on base 10, so we should use IEC standard here ...
 const exponents = [
@@ -15,6 +15,7 @@ const exponents = [
 ]
 
 type Exponent = typeof exponents[number]
+type ExponentName = '' | 'kilo' | 'mega' | 'giga' | 'tera' | 'peta' | 'exa' | 'zetta' | 'yotta'
 
 const frOctet = {
   plural: 'octets',
@@ -55,7 +56,6 @@ const compoundUnitsSymbols = {
 
 type Unit = 'bit' | 'byte'
 type CompoundUnit = 'second'
-type FormatPlural = (message: string, locales?: string | string[] | undefined, overrideFormats?: undefined, opts?: Options | undefined) => { format: ({ amount }: { amount: number}) => string}
 
 const formatShortUnit = (locale: string, exponent: Exponent, unit: Unit, compoundUnit?: CompoundUnit) => {
   let shortenedUnit = symbols.short[unit]
@@ -72,7 +72,7 @@ const formatShortUnit = (locale: string, exponent: Exponent, unit: Unit, compoun
   }`
 }
 
-const formatLongUnit = (locale: string, exponent: Exponent, unit: Unit, amount: number, messageFormat: FormatPlural) => {
+const formatLongUnit = (locale: string, exponent: Exponent, unit: Unit, amount: number) => {
   let translation = symbols.long[unit]
 
   if (
@@ -82,14 +82,14 @@ const formatLongUnit = (locale: string, exponent: Exponent, unit: Unit, amount: 
     translation = localesWhoFavorOctetOverByte[locale as keyof typeof localesWhoFavorOctetOverByte]
   }
 
-  return `${exponent.name}${messageFormat(
+  return `${exponent.name}${formatters.getTranslationFormat(
     `{amount, plural,
       =0 {${translation.singular}}
       =1 {${translation.singular}}
       other {${translation.plural}}
   }`,
     locale,
-  ).format({ amount })}`
+  ).format({ amount }) as string}`
 }
 
 const format =
@@ -103,7 +103,6 @@ const format =
     locale: string,
     amount: number,
     { maximumFractionDigits, minimumFractionDigits, short = true }: { maximumFractionDigits?: number, minimumFractionDigits?: number, short?: boolean },
-    messageFormat: FormatPlural,
   ): string => {
     let computedExponent = exponent
     let computedValue = amount
@@ -141,12 +140,16 @@ const format =
             computedExponent as Exponent,
             unit,
             computedValue,
-            messageFormat,
           )
     }`
   }
 
-export const supportedUnits = {
+type SimpleUnits = `${ExponentName}${Unit}${'-humanized' | ''}`
+type ComplexUnits = `${Unit}${'s' | ''}${'-humanized' | ''}`
+type PerSecondUnit = `bit${'s' | ''}${'-per-second' | ''}${'-humanized' | ''}`
+type SupportedUnits = SimpleUnits | ComplexUnits | PerSecondUnit
+
+export const supportedUnits: Partial<Record<SupportedUnits, ReturnType<typeof format>>> = {
   // bits
   'bits-humanized': format({ humanize: true, unit: 'bit' }),
   'bits-per-second-humanized': format({
@@ -195,11 +198,11 @@ export const supportedUnits = {
 }
 
 export interface FormatUnitOptions {
-  unit: keyof typeof supportedUnits
+  unit: SupportedUnits
   short?: boolean
 }
 
-const formatUnit = (locale: string, number: number, { unit, ...options }: FormatUnitOptions, messageFormat: FormatPlural): string =>
-  supportedUnits?.[unit]?.(locale, number, options, messageFormat) ?? ''
+const formatUnit = (locale: string, number: number, { unit, ...options }: FormatUnitOptions): string =>
+  supportedUnits?.[unit]?.(locale, number, options) ?? ''
 
 export default formatUnit
