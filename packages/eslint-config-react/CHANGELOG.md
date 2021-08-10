@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.0 (2021-08-10)
+
+
+### Features
+
+* **eslint-config-react:** enable for..of syntax and react/no-unstable-nested-components ([#320](https://github.com/scaleway/scaleway-lib/issues/320)) ([9c03f8c](https://github.com/scaleway/scaleway-lib/commit/9c03f8c4fc18278dd4e6646448c6ab0d9a3c6cb2))
+
+
+
 ## 2.0.0 (2021-07-05)
 
 
