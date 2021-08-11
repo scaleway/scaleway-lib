@@ -84,13 +84,16 @@ interface Context {
 // @ts-expect-error we force the context to undefined, should be corrected with default values
 const I18nContext = createContext<Context>(undefined)
 
-export const useI18n = (): Context => {
+export const useI18n = (prefix?: string): Context => {
   const context = useContext(I18nContext)
   if (context === undefined) {
     throw new Error('useI18n must be used within a I18nProvider')
   }
 
-  return context
+  return {
+    ...context,
+    t: prefix ? context.namespaceTranslation?.(prefix) : context.t,
+  }
 }
 
 export const useTranslation = (namespaces: string[] = [], load: LoadTranslationsFn): Context & { isLoaded: boolean } => {

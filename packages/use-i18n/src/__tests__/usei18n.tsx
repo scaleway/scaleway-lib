@@ -291,6 +291,19 @@ describe('i18n hook', () => {
     expect(translate2('namespaces')).toEqual(translate1('test.namespaces'))
   })
 
+  it('should use useI18n with prefix', async () => {
+    const { result, waitForNextUpdate } = renderHook(() => useI18n('tests.test'), {
+      wrapper: wrapper({
+        defaultLocale: 'en',
+        defaultTranslations: { en },
+      }),
+    })
+    await waitForNextUpdate()
+
+    expect(result.current.t('namespaces')).toEqual('test')
+    expect(result.current.t('title')).toEqual('Welcome on @scaelway/ui i18n hook')
+  })
+
   it('should use formatNumber', async () => {
     const { result, waitForNextUpdate } = renderHook(() => useI18n(), {
       wrapper: wrapper({
