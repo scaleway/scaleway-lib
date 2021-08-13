@@ -93,7 +93,7 @@ export const useI18n = (): Context => {
   return context
 }
 
-export const useTranslation = (namespaces: string[] = [], load: LoadTranslationsFn): Context & { isLoaded: boolean } => {
+export const useTranslation = (namespaces: string[] = [], load?: LoadTranslationsFn): Context & { isLoaded: boolean } => {
   const context = useContext(I18nContext)
   if (context === undefined) {
     throw new Error('useTranslation must be used within a I18nProvider')
