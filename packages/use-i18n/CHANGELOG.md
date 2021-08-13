@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 3.1.3 (2021-08-13)
+
+
+### Bug Fixes
+
+* **usei18n:** correct useTranslation type ([#328](https://github.com/scaleway/scaleway-lib/issues/328)) ([55f183d](https://github.com/scaleway/scaleway-lib/commit/55f183dd35cb51a19a4a7e3bbb00dc83c037955e))
+
+
+
 ### [3.1.2](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@3.1.1...@scaleway/use-i18n@3.1.2) (2021-08-09)
 
 **Note:** Version bump only for package @scaleway/use-i18n
