@@ -1,7 +1,7 @@
 import { babel } from '@rollup/plugin-babel'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import builtins from 'builtin-modules'
-import { readPackageAsync } from 'read-pkg'
+import { readPackage } from 'read-pkg'
 import dts from 'rollup-plugin-dts'
 import { visualizer } from 'rollup-plugin-visualizer'
 
@@ -63,7 +63,7 @@ const getConfig = (pkg, isBrowser = false) => {
 }
 
 export default async () => {
-  const pkg = await readPackageAsync()
+  const pkg = await readPackage()
 
   const doesAlsoTargetBrowser = 'browser' in pkg
 
