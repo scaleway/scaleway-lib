@@ -27,11 +27,6 @@ function createFastMemoizeCache<V>(): Cache<string, V> {
         get(key) {
           return store[key]
         },
-        // Can be removed once https://github.com/formatjs/formatjs/pull/3102 is merged
-        /* istanbul ignore next */
-        has(key) {
-          return key in store
-        },
         set(key, value) {
           store[key] = value
         },
