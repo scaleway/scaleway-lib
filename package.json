@@ -30,7 +30,7 @@
     "lerna": "4.0.0",
     "lint-staged": "^11.0.0",
     "prettier": "^2.2.1",
-    "read-pkg": "^6.0.0",
+    "read-pkg": "^7.0.0",
     "rollup": "^2.36.1",
     "rollup-plugin-dts": "^3.0.2",
     "rollup-plugin-visualizer": "^5.5.0",
