@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.1.5](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@3.1.4...@scaleway/use-i18n@3.1.5) (2021-08-20)
+
+**Note:** Version bump only for package @scaleway/use-i18n
+
+
+
+
+
 ### [3.1.4](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@3.1.3...@scaleway/use-i18n@3.1.4) (2021-08-16)
 
 **Note:** Version bump only for package @scaleway/use-i18n
