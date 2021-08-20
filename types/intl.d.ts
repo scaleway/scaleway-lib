@@ -1,12 +1,12 @@
 declare namespace Intl {
   interface ListFormatOptions {
-    localeMatcher: 'best fit' | 'lookup'
-    type: 'conjunction' | 'disjunction' | 'unit'
-    style: 'long' | 'short' | 'narrow'
+    localeMatcher?: 'best fit' | 'lookup'
+    type?: 'conjunction' | 'disjunction' | 'unit'
+    style?: 'long' | 'short' | 'narrow'
   }
 
   interface ListFormat {
-    format: (items: [string?]) => string;
+    format: (items: string[]) => string;
   }
 
   const ListFormat: {
