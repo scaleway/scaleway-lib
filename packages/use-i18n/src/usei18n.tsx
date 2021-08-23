@@ -57,32 +57,31 @@ const getCurrentLocale = ({
 interface Context {
   currentLocale: string
   dateFnsLocale?: Locale,
-  datetime?: (date: Date | number, options?: Intl.DateTimeFormatOptions) => string,
-  formatDate?: (value: Date | number | string, options: FormatDateOptions) => string,
-  formatList?: (listFormat: [string | undefined], options?: Intl.ListFormatOptions) => string,
-  formatNumber?: (numb: number, options?: Intl.NumberFormatOptions) => string,
-  formatUnit?: (value: number, options: FormatUnitOptions) => string,
-  loadTranslations?: (namespace: string, load?: LoadTranslationsFn) => Promise<string>,
-  locales?: string[],
-  namespaces?: string[],
-  namespaceTranslation?: (namespace: string, t?: TranslateFn) => TranslateFn
-  relativeTime?: (date: Date | number, options?: {
+  datetime: (date: Date | number, options?: Intl.DateTimeFormatOptions) => string,
+  formatDate: (value: Date | number | string, options: FormatDateOptions) => string,
+  formatList: (listFormat: string[], options?: Intl.ListFormatOptions) => string,
+  formatNumber: (numb: number, options?: Intl.NumberFormatOptions) => string,
+  formatUnit: (value: number, options: FormatUnitOptions) => string,
+  loadTranslations: (namespace: string, load?: LoadTranslationsFn) => Promise<string>,
+  locales: string[],
+  namespaces: string[],
+  namespaceTranslation: (namespace: string, t?: TranslateFn) => TranslateFn
+  relativeTime: (date: Date | number, options?: {
     includeSeconds?: boolean;
     addSuffix?: boolean;
   }) => string,
-  relativeTimeStrict?: (date: Date | number, options?: {
+  relativeTimeStrict: (date: Date | number, options?: {
     addSuffix?: boolean;
     unit?: 'second' | 'minute' | 'hour' | 'day' | 'month' | 'year';
     roundingMethod?: 'floor' | 'ceil' | 'round';
   }) => string,
-  setTranslations?: React.Dispatch<React.SetStateAction<TranslationsByLocales>>,
-  switchLocale?: (locale: string) => void,
-  t?: TranslateFn,
-  translations?: TranslationsByLocales,
+  setTranslations: React.Dispatch<React.SetStateAction<TranslationsByLocales>>,
+  switchLocale: (locale: string) => void,
+  t: TranslateFn,
+  translations: TranslationsByLocales,
 }
 
-// @ts-expect-error we force the context to undefined, should be corrected with default values
-const I18nContext = createContext<Context>(undefined)
+const I18nContext = createContext<Context | undefined>(undefined)
 
 export const useI18n = (): Context => {
   const context = useContext(I18nContext)
@@ -214,7 +213,7 @@ const I18nContextProvider = ({
   )
 
   const formatList = useCallback(
-    (listFormat: [string | undefined], options?: Intl.ListFormatOptions) =>
+    (listFormat: string[], options?: Intl.ListFormatOptions) =>
     formatters.getListFormat(currentLocale, options).format(listFormat),
     [currentLocale],
   )

@@ -314,10 +314,6 @@ describe('i18n hook', () => {
       }),
     ).toEqual('$2.00')
 
-    expect(
-      result.current.formatNumber(1.234, { style: 'unit', unit: 'kilobyte' }),
-    ).toEqual('1.234 kB')
-
     act(() => {
       result.current.switchLocale('fr')
     })
@@ -552,6 +548,6 @@ describe('i18n hook', () => {
     expect(result.current.dateFnsLocale).toBe(undefined)
     await waitForNextUpdate()
 
-    expect(result.current.dateFnsLocale.code).toEqual('en-GB')
+    expect(result.current.dateFnsLocale?.code).toEqual('en-GB')
   })
 })
