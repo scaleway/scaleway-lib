@@ -14,9 +14,11 @@ import ReactDOM from 'react-dom'
 import 'intl-pluralrules'
 import dateFormat, { FormatDateOptions } from './formatDate'
 import unitFormat, { FormatUnitOptions } from './formatUnit'
-import formatters from './formatters'
+import formatters, { IntlListFormatOptions } from './formatters'
 
 const LOCALE_ITEM_STORAGE = 'locale'
+
+type PrimitiveType = string | number | boolean | null | undefined | Date;
 
 type Translations = Record<string, string> & { prefix?: string }
 type TranslationsByLocales = Record<string, Translations>
@@ -59,7 +61,7 @@ interface Context {
   dateFnsLocale?: Locale,
   datetime: (date: Date | number, options?: Intl.DateTimeFormatOptions) => string,
   formatDate: (value: Date | number | string, options: FormatDateOptions) => string,
-  formatList: (listFormat: string[], options?: Intl.ListFormatOptions) => string,
+  formatList: (listFormat: string[], options?: IntlListFormatOptions) => string,
   formatNumber: (numb: number, options?: Intl.NumberFormatOptions) => string,
   formatUnit: (value: number, options: FormatUnitOptions) => string,
   loadTranslations: (namespace: string, load?: LoadTranslationsFn) => Promise<string>,
@@ -213,7 +215,7 @@ const I18nContextProvider = ({
   )
 
   const formatList = useCallback(
-    (listFormat: string[], options?: Intl.ListFormatOptions) =>
+    (listFormat: string[], options?: IntlListFormatOptions) =>
     formatters.getListFormat(currentLocale, options).format(listFormat),
     [currentLocale],
   )

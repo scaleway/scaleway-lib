@@ -3,6 +3,22 @@ import IntlTranslationFormat from 'intl-messageformat'
 
 // Deeply inspired by https://github.com/formatjs/formatjs/blob/7406e526a9c5666cee22cc2316dad1fa1d88697c/packages/intl-messageformat/src/core.ts
 
+// TS does not include non standard API
+// Intl.ListFormat in at TC39 stage 4 and is widely adopted in browsers
+// So we expose homegrown types
+// https://github.com/tc39/proposal-intl-list-format
+export interface IntlListFormatOptions {
+  localeMatcher?: 'best fit' | 'lookup'
+  type?: 'conjunction' | 'disjunction' | 'unit'
+  style?: 'long' | 'short' | 'narrow'
+}
+
+declare abstract class IntlListFormat {
+  constructor(locales?: string | string[], options?: IntlListFormatOptions);
+
+  format: (items: string[]) => string;
+}
+
 interface BaseFormatters {
   getNumberFormat(
     ...args: ConstructorParameters<typeof Intl.NumberFormat>
@@ -14,8 +30,8 @@ interface BaseFormatters {
     ...args: ConstructorParameters<typeof Intl.PluralRules>
   ): Intl.PluralRules
   getListFormat(
-    ...args: ConstructorParameters<typeof Intl.ListFormat>
-  ): Intl.ListFormat
+    ...args: ConstructorParameters<typeof IntlListFormat>
+  ): IntlListFormat
 }
 
 function createFastMemoizeCache<V>(): Cache<string, V> {
@@ -40,8 +56,9 @@ const baseFormatters: BaseFormatters = {
     cache: createFastMemoizeCache<Intl.DateTimeFormat>(),
     strategy: strategies.variadic,
   }),
+  // @ts-expect-error we assume Intl.ListFormat exists in our current context
   getListFormat: memoize((...args) => new Intl.ListFormat(...args), {
-    cache: createFastMemoizeCache<Intl.ListFormat>(),
+    cache: createFastMemoizeCache<IntlListFormat>(),
     strategy: strategies.variadic,
   }),
   getNumberFormat: memoize((...args) => new Intl.NumberFormat(...args), {
