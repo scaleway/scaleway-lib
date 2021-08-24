@@ -57,7 +57,8 @@ const baseFormatters: BaseFormatters = {
     strategy: strategies.variadic,
   }),
   // @ts-expect-error we assume Intl.ListFormat exists in our current context
-  getListFormat: memoize((...args) => new Intl.ListFormat(...args), {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+  getListFormat: memoize((...args) => new Intl.ListFormat(...args) as IntlListFormat, {
     cache: createFastMemoizeCache<IntlListFormat>(),
     strategy: strategies.variadic,
   }),
