@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 3.1.7 (2021-08-27)
+
+
+### Bug Fixes
+
+* **use-i18n:** do not use typescript global namespace ([#343](https://github.com/scaleway/scaleway-lib/issues/343)) ([c339adc](https://github.com/scaleway/scaleway-lib/commit/c339adce45734be5aab76de457320e76bba486a6))
+
+
+
 ### [3.1.6](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@3.1.5...@scaleway/use-i18n@3.1.6) (2021-08-23)
 
 
