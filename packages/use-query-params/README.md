@@ -86,3 +86,28 @@ const Component = () => {
   )
 }
 ```
+
+### Push onto the stack instead of replacing
+
+To avoid mutating history
+
+```js
+// In this exemple we assume that we have an URL that include : `?company=Scaleway".
+import React from 'react'
+import useQueryParams from '@scaleway/use-query-params'
+
+const Component = () => {
+  const { queryParams, setQueryParams } = useQueryParams()
+  const { user, company } = queryParams // user will be undefined and company will be "Scaleway"
+  const setUser = () => replaceQueryParams({ user: 'John' }, { push: true }) // user will be "John" and company will be undefined
+  // ?user=John
+
+  return (
+    <>
+      <h1>User: {user}</h1>
+      <h1>Company: {company}</h1>
+      <button onClick={setUser}>Set User John</button>
+    </>
+  )
+}
+```
