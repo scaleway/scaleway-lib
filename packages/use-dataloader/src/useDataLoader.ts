@@ -129,8 +129,8 @@ const useDataLoader = <T>(
 
         await onSuccess?.(result)
       } catch (err) {
-        dispatch(Actions.createOnError(err))
-        await ((onError ?? onErrorProvider)?.(err))
+        dispatch(Actions.createOnError(err as Error))
+        await ((onError ?? onErrorProvider)?.(err as Error))
       }
     },
     [
