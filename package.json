@@ -27,7 +27,7 @@
     "jest": "^27.0.4",
     "jest-junit": "^12.0.0",
     "jest-localstorage-mock": "^2.4.8",
-    "lerna": "4.0.0",
+    "lerna": "^4.0.0",
     "lint-staged": "^11.0.0",
     "prettier": "^2.2.1",
     "read-pkg": "^7.0.0",
