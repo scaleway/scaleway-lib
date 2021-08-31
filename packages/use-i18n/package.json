@@ -31,7 +31,6 @@
     "date-fns": "^2.19.0",
     "filesize": "^8.0.0",
     "intl-messageformat": "^9.9.0",
-    "intl-pluralrules": "^1.2.2",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
