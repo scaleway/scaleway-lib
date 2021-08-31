@@ -46,8 +46,6 @@ describe('useQueryParam', () => {
     })
     expect(result.current.queryParams).toEqual({ user: 'Jerry' })
     expect(history.length).toBe(2)
-
-    console.log(history)
   })
 
   it('should set one object', () => {
