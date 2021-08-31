@@ -1,19 +1,55 @@
 import { act, renderHook } from '@testing-library/react-hooks'
+import { History, createMemoryHistory } from 'history'
 import React, { ReactNode } from 'react'
-import { MemoryRouter } from 'react-router-dom'
+import { MemoryRouter, Router } from 'react-router-dom'
 import useQueryParams from '..'
 
 const wrapper =
-  ({ pathname = 'one', search }: { pathname?: string, search: string }) =>
+  ({ pathname = 'one', search, history }: { pathname?: string, search: string, history?: History }) =>
   // eslint-disable-next-line react/prop-types
   ({ children }: { children: ReactNode }) =>
     (
-      <MemoryRouter initialIndex={0} initialEntries={[{ pathname, search }]}>
-        {children}
-      </MemoryRouter>
+      history ? (
+        <Router history={history}>
+          {children}
+        </Router>
+      ) : (
+        <MemoryRouter initialIndex={0} initialEntries={[{ pathname, search }]}>
+          {children}
+        </MemoryRouter>
+      )
     )
 
 describe('useQueryParam', () => {
+  it('should correctly push instead of replacing history', () => {
+    const history = createMemoryHistory({
+      initialEntries: ['user=john'],
+      initialIndex: 0,
+    })
+
+    const { result } = renderHook(() => useQueryParams(), {
+      wrapper: wrapper({ history, search: '' }),
+    })
+
+    act(() => {
+      result.current.setQueryParams({ user: 'John' })
+    })
+    expect(result.current.queryParams).toEqual({ user: 'John' })
+    expect(history.length).toBe(1)
+    act(() => {
+      result.current.setQueryParams({ user: 'Jack' })
+    })
+    expect(result.current.queryParams).toEqual({ user: 'Jack' })
+    expect(history.length).toBe(1)
+    act(() => {
+      result.current.setQueryParams({ user: 'Jerry' }, { push: true })
+    })
+    expect(result.current.queryParams).toEqual({ user: 'Jerry' })
+    expect(history.length).toBe(2)
+
+    console.log(history)
+  })
+
   it('should set one object', () => {
     const { result } = renderHook(() => useQueryParams(), {
       wrapper: wrapper({ search: 'user=john' }),
