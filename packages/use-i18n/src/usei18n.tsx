@@ -11,7 +11,6 @@ import React, {
   useState,
 } from 'react'
 import ReactDOM from 'react-dom'
-import 'intl-pluralrules'
 import dateFormat, { FormatDateOptions } from './formatDate'
 import unitFormat, { FormatUnitOptions } from './formatUnit'
 import formatters, { IntlListFormatOptions } from './formatters'
