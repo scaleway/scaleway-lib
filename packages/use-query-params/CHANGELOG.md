@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.0 (2021-09-01)
+
+
+### Features
+
+* **use-query-params:** add ability to push instead of replacing current history ([#355](https://github.com/scaleway/scaleway-lib/issues/355)) ([2628127](https://github.com/scaleway/scaleway-lib/commit/26281277d7cce34f31050ae660514ff049df9092))
+
+
+
 ## 2.0.0 (2021-07-20)
 
 
