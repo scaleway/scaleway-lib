@@ -7,4 +7,7 @@ module.exports = {
     require.resolve('./shared'),
   ],
   plugins: ['@typescript-eslint'],
+  rules: {
+    '@typescript-eslint/no-unused-vars': ['error'],
+  },
 }
