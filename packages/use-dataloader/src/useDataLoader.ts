@@ -17,6 +17,10 @@ const Actions = {
   createReset: () => ({ type: ActionEnum.RESET }),
 }
 
+export class PromiseType<T = unknown> extends Promise<T> {
+  public cancel?: () => void
+}
+
 /**
  * @typedef {Object} UseDataLoaderConfig
  * @property {Function} [onSuccess] callback when a request success
@@ -26,13 +30,13 @@ const Actions = {
  * @property {boolean} [enabled=true] launch request automatically (default true)
  * @property {boolean} [keepPreviousData=true] do we need to keep the previous data after reload (default true)
  */
-interface UseDataLoaderConfig<T> {
-  enabled?: boolean,
-  initialData?: T,
-  keepPreviousData?: boolean,
-  onError?: (err: Error) => void| Promise<void>,
-  onSuccess?: (data: T) => void | Promise<void>,
-  pollingInterval?: number,
+export interface UseDataLoaderConfig<T = unknown> {
+  enabled?: boolean
+  initialData?: T
+  keepPreviousData?: boolean
+  onError?: (err: Error) => void | Promise<void>
+  onSuccess?: (data: T) => void | Promise<void>
+  pollingInterval?: number
 }
 
 /**
@@ -47,16 +51,16 @@ interface UseDataLoaderConfig<T> {
  * @property {string} error the error occured during the request
  * @property {Function} reload reload the data
  */
-interface UseDataLoaderResult<T> {
-  data?: T;
-  error?: Error;
-  isError: boolean;
-  isIdle: boolean;
-  isLoading: boolean;
-  isPolling: boolean;
-  isSuccess: boolean;
-  previousData?: T;
-  reload: () => Promise<void>;
+export interface UseDataLoaderResult<T = unknown> {
+  data?: T
+  error?: Error
+  isError: boolean
+  isIdle: boolean
+  isLoading: boolean
+  isPolling: boolean
+  isSuccess: boolean
+  previousData?: T
+  reload: () => Promise<void>
 }
 
 /**
@@ -67,7 +71,7 @@ interface UseDataLoaderResult<T> {
  */
 const useDataLoader = <T>(
   fetchKey: string,
-  method: () => Promise<T>,
+  method: () => PromiseType<T>,
   {
     enabled = true,
     initialData,
@@ -92,6 +96,9 @@ const useDataLoader = <T>(
 
   const addReloadRef = useRef(addReload)
   const clearReloadRef = useRef(clearReload)
+  const cancelMethodRef = useRef<(() => void) | undefined>(undefined)
+  const isMountedRef = useRef(false)
+  const isFetchingRef = useRef(false)
 
   const key = useMemo(() => {
     if (!fetchKey || typeof fetchKey !== 'string') {
@@ -107,9 +114,8 @@ const useDataLoader = <T>(
   const isIdle = useMemo(() => status === StatusEnum.IDLE, [status])
   const isSuccess = useMemo(() => status === StatusEnum.SUCCESS, [status])
   const isError = useMemo(() => status === StatusEnum.ERROR, [status])
-
   const isPolling = useMemo(
-    () => !!(enabled && pollingInterval && (isSuccess || isLoading)) ?? false,
+    () => !!(enabled && pollingInterval && (isSuccess || isLoading)),
     [isSuccess, isLoading, enabled, pollingInterval],
   )
 
@@ -117,20 +123,26 @@ const useDataLoader = <T>(
     async cacheKey => {
       try {
         dispatch(Actions.createOnLoading())
-        const result = await method()
+        const promise = method()
+        cancelMethodRef.current = promise.cancel
+        const result = await promise.then(res => res)
 
-        if (keepPreviousData) {
-          previousDataRef.current = getCachedData(cacheKey) as T
+        if (isMountedRef.current) {
+          if (keepPreviousData) {
+            previousDataRef.current = getCachedData(cacheKey) as T
+          }
+          if (result !== undefined && result !== null && cacheKey)
+            addCachedData(cacheKey, result)
+
+          dispatch(Actions.createOnSuccess())
+
+          await onSuccess?.(result)
         }
-        if (result !== undefined && result !== null && cacheKey)
-          addCachedData(cacheKey, result)
-
-        dispatch(Actions.createOnSuccess())
-
-        await onSuccess?.(result)
       } catch (err) {
-        dispatch(Actions.createOnError(err as Error))
-        await ((onError ?? onErrorProvider)?.(err as Error))
+        if (isMountedRef.current) {
+          dispatch(Actions.createOnError(err as Error))
+          await (onError ?? onErrorProvider)?.(err as Error)
+        }
       }
     },
     [
@@ -175,9 +187,7 @@ const useDataLoader = <T>(
   useLayoutEffect(() => {
     dispatch(Actions.createReset())
     if (key && typeof key === 'string') {
-      addReloadRef.current?.(key, () =>
-        handleRequestRef.current(key),
-      )
+      addReloadRef.current?.(key, () => handleRequestRef.current(key))
     }
 
     return () => {
@@ -195,6 +205,21 @@ const useDataLoader = <T>(
   useLayoutEffect(() => {
     handleRequestRef.current = handleRequest
   }, [handleRequest])
+
+  useEffect(() => {
+    isFetchingRef.current = isLoading || isPolling
+  }, [isLoading, isPolling])
+
+  useEffect(() => {
+    isMountedRef.current = true
+
+    return () => {
+      isMountedRef.current = false
+      if (isFetchingRef.current && cancelMethodRef.current) {
+        cancelMethodRef.current?.()
+      }
+    }
+  }, [])
 
   return {
     data: (getCachedData(key) || initialData) as T,
