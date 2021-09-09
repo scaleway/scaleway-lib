@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.2.0 (2021-09-09)
+
+
+### Features
+
+* **eslint-config-react:** enforce no-unused-vars on typescript config ([#361](https://github.com/scaleway/scaleway-lib/issues/361)) ([64e8226](https://github.com/scaleway/scaleway-lib/commit/64e8226b7851bb97eb4c82e62ceafa2e349ec464))
+
+
+
 ### [2.1.2](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@2.1.1...@scaleway/eslint-config-react@2.1.2) (2021-08-25)
 
 **Note:** Version bump only for package @scaleway/eslint-config-react
