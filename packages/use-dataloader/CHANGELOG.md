@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.2.0 (2021-09-09)
+
+
+### Features
+
+* request cancellation ([#369](https://github.com/scaleway/scaleway-lib/issues/369)) ([78d26b2](https://github.com/scaleway/scaleway-lib/commit/78d26b2b96ed614360171f28719f800a630488d8))
+
+
+
 ### 2.1.1 (2021-08-30)
 
 **Note:** Version bump only for package @scaleway/use-dataloader
