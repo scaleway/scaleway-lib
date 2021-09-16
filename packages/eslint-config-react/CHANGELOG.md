@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.2.1 (2021-09-16)
+
+
+### Bug Fixes
+
+* change no constructed context values to error ([#383](https://github.com/scaleway/scaleway-lib/issues/383)) ([94eb4e3](https://github.com/scaleway/scaleway-lib/commit/94eb4e3231ffd872280ae02f19ba294b1e39c99e))
+
+
+
 ## 2.2.0 (2021-09-09)
 
 
