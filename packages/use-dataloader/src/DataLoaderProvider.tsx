@@ -9,8 +9,9 @@ import React, {
   useRef,
   useState,
 } from 'react'
+import { KEY_IS_NOT_STRING_ERROR, StatusEnum } from './constants'
 import DataLoader from './dataloader'
-import { DataLoaderStatus, OnErrorFn, PromiseType } from './types'
+import { OnErrorFn, PromiseType } from './types'
 
 type RequestQueue = Record<string, DataLoader>
 type CachedData = Record<string, unknown>
@@ -19,7 +20,7 @@ type Reloads = Record<string, () => Promise<void | unknown>>
 type UseDataLoaderInitializerArgs<T = unknown> = {
   enabled?: boolean
   key: string
-  status?: DataLoaderStatus
+  status?: StatusEnum
   method: () => PromiseType<T>
   pollingInterval?: number
   keepPreviousData?: boolean
@@ -87,11 +88,13 @@ const DataLoaderProvider = ({
 
   const addCachedData = useCallback(
     (key: string, newData: unknown) => {
-      if (key && typeof key === 'string' && newData) {
-        setCachedData(actualCachedData => ({
-          ...actualCachedData,
-          [computeKey(key)]: newData,
-        }))
+      if (newData) {
+        if (key && typeof key === 'string') {
+          setCachedData(actualCachedData => ({
+            ...actualCachedData,
+            [computeKey(key)]: newData,
+          }))
+        } else throw new Error(KEY_IS_NOT_STRING_ERROR)
       }
     },
     [setCachedData, computeKey],
@@ -99,11 +102,13 @@ const DataLoaderProvider = ({
 
   const addReload = useCallback(
     (key: string, method: () => Promise<void | unknown>) => {
-      if (key && method && typeof key === 'string') {
-        setReloads(actualReloads => ({
-          ...actualReloads,
-          [computeKey(key)]: method,
-        }))
+      if (method) {
+        if (key && typeof key === 'string') {
+          setReloads(actualReloads => ({
+            ...actualReloads,
+            [computeKey(key)]: method,
+          }))
+        } else throw new Error(KEY_IS_NOT_STRING_ERROR)
       }
     },
     [setReloads, computeKey],
@@ -132,7 +137,7 @@ const DataLoaderProvider = ({
 
         return newRequest
       }
-      throw new Error('Key should be a string')
+      throw new Error(KEY_IS_NOT_STRING_ERROR)
     },
     [computeKey, addCachedData, addReload],
   )
@@ -151,7 +156,7 @@ const DataLoaderProvider = ({
 
           return tmp
         })
-      }
+      } else throw new Error(KEY_IS_NOT_STRING_ERROR)
     },
     [setReloads, computeKey],
   )
@@ -169,7 +174,7 @@ const DataLoaderProvider = ({
 
           return tmp
         })
-      }
+      } else throw new Error(KEY_IS_NOT_STRING_ERROR)
     },
     [setCachedData, computeKey],
   )
@@ -180,9 +185,8 @@ const DataLoaderProvider = ({
   const reload = useCallback(
     async (key?: string) => {
       if (key && typeof key === 'string') {
-        await (reloads.current[computeKey(key)] &&
-          reloads.current[computeKey(key)]())
-      }
+        await reloads.current[computeKey(key)]?.()
+      } else throw new Error(KEY_IS_NOT_STRING_ERROR)
     },
     [computeKey],
   )
@@ -196,7 +200,7 @@ const DataLoaderProvider = ({
   const getCachedData = useCallback(
     (key?: string) => {
       if (key) {
-        return cachedData[computeKey(key)] || undefined
+        return cachedData[computeKey(key)]
       }
 
       return cachedData
@@ -207,7 +211,7 @@ const DataLoaderProvider = ({
   const getReloads = useCallback(
     (key?: string) => {
       if (key) {
-        return reloads.current[computeKey(key)] || undefined
+        return reloads.current[computeKey(key)]
       }
 
       return reloads.current

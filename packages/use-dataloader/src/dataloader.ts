@@ -1,12 +1,5 @@
-/* eslint-disable no-void */
 import { StatusEnum } from './constants'
-import {
-  DataLoaderStatus,
-  OnCancelFn,
-  OnErrorFn,
-  OnSuccessFn,
-  PromiseType,
-} from './types'
+import { OnCancelFn, OnErrorFn, OnSuccessFn, PromiseType } from './types'
 
 export type DataLoaderConstructorArgs<T = unknown> = {
   enabled?: boolean
@@ -20,7 +13,7 @@ export type DataLoaderConstructorArgs<T = unknown> = {
 class DataLoader<T = unknown> {
   public key: string
 
-  public status: DataLoaderStatus
+  public status: StatusEnum
 
   public pollingInterval?: number
 
@@ -68,32 +61,29 @@ class DataLoader<T = unknown> {
       this.status = StatusEnum.SUCCESS
       this.error = undefined
       this.notify(this)
-      if (this.successListeners.length) {
-        this.successListeners.forEach(listener => void listener?.(result))
-      }
+      await Promise.all(
+        this.successListeners.map(listener => listener?.(result)),
+      )
     } catch (err) {
       this.status = StatusEnum.ERROR
       this.error = err as Error
       this.notify(this)
-      if (this.errorListeners?.length) {
-        this.errorListeners.forEach(
-          listener => void listener?.(this.error as Error),
-        )
-      }
+      await Promise.all(
+        this.errorListeners.map(listener => listener?.(err as Error)),
+      )
     }
     if (this.pollingInterval) {
       this.timeout = setTimeout(
-        () => void this.launch(),
+        // eslint-disable-next-line @typescript-eslint/no-misused-promises
+        this.launch,
         this.pollingInterval,
       ) as unknown as number
     }
   }
 
-  public cancel = (): void => {
+  public cancel = async (): Promise<void> => {
     this.cancelMethod?.()
-    if (this.cancelListeners.length) {
-      this.cancelListeners.forEach(listener => void listener?.())
-    }
+    await Promise.all(this.cancelListeners.map(listener => listener?.()))
   }
 
   public addOnSuccessListener(fn: OnSuccessFn<T>): void {

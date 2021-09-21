@@ -2,8 +2,6 @@ export class PromiseType<T = unknown> extends Promise<T> {
   public cancel?: () => void
 }
 
-export type DataLoaderStatus = 'error' | 'idle' | 'loading' | 'success'
-
 export type OnErrorFn = ((err: Error) => void | Promise<void>) | undefined
 export type OnSuccessFn<T = unknown> =
   | ((result: T) => void | Promise<void>)
