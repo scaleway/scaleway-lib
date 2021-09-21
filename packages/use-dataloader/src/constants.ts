@@ -1,4 +1,9 @@
-export const StatusEnum = {
+import { DataLoaderStatus } from './types'
+
+export const StatusEnum: Record<
+  'ERROR' | 'IDLE' | 'LOADING' | 'SUCCESS',
+  DataLoaderStatus
+> = {
   ERROR: 'error',
   IDLE: 'idle',
   LOADING: 'loading',

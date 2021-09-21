@@ -1,71 +1,11 @@
-import {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  useReducer,
-  useRef,
-} from 'react'
+import { useEffect, useLayoutEffect, useMemo, useRef } from 'react'
 import { useDataLoaderContext } from './DataLoaderProvider'
-import { ActionEnum, StatusEnum } from './constants'
-import reducer from './reducer'
-
-const Actions = {
-  createOnError: (error: Error) => ({ error, type: ActionEnum.ON_ERROR }),
-  createOnLoading: () => ({ type: ActionEnum.ON_LOADING }),
-  createOnSuccess: () => ({ type: ActionEnum.ON_SUCCESS }),
-  createReset: () => ({ type: ActionEnum.RESET }),
-}
-
-export class PromiseType<T = unknown> extends Promise<T> {
-  public cancel?: () => void
-}
-
-/**
- * @typedef {Object} UseDataLoaderConfig
- * @property {Function} [onSuccess] callback when a request success
- * @property {Function} [onError] callback when a error is occured, this will override the onError specified on the Provider if any
- * @property {*} [initialData] initial data if no one is present in the cache before the request
- * @property {number} [pollingInterval] relaunch the request after the last success
- * @property {boolean} [enabled=true] launch request automatically (default true)
- * @property {boolean} [keepPreviousData=true] do we need to keep the previous data after reload (default true)
- */
-export interface UseDataLoaderConfig<T = unknown> {
-  enabled?: boolean
-  initialData?: T
-  keepPreviousData?: boolean
-  onError?: (err: Error) => void | Promise<void>
-  onSuccess?: (data: T) => void | Promise<void>
-  pollingInterval?: number
-}
-
-/**
- * @typedef {Object} UseDataLoaderResult
- * @property {boolean} isIdle true if the hook in initial state
- * @property {boolean} isLoading true if the request is launched
- * @property {boolean} isSuccess true if the request success
- * @property {boolean} isError true if the request throw an error
- * @property {boolean} isPolling true if the request if enabled is true, pollingInterval is defined and the status is isLoading or isSuccess
- * @property {*} previousData if keepPreviousData is true it return the last data fetched
- * @property {*} data initialData if no data is fetched or not present in the cache otherwise return the data fetched
- * @property {string} error the error occured during the request
- * @property {Function} reload reload the data
- */
-export interface UseDataLoaderResult<T = unknown> {
-  data?: T
-  error?: Error
-  isError: boolean
-  isIdle: boolean
-  isLoading: boolean
-  isPolling: boolean
-  isSuccess: boolean
-  previousData?: T
-  reload: () => Promise<void>
-}
+import { StatusEnum } from './constants'
+import { PromiseType, UseDataLoaderConfig, UseDataLoaderResult } from './types'
 
 /**
  * @param {string} key key to save the data fetched in a local cache
- * @param {() => Promise} method a method that return a promise
+ * @param {() => PromiseType} method a method that return a promise
  * @param {useDataLoaderConfig} config hook configuration
  * @returns {useDataLoaderResult} hook result containing data, request state, and method to reload the data
  */
@@ -82,133 +22,82 @@ const useDataLoader = <T>(
   }: UseDataLoaderConfig<T> = {},
 ): UseDataLoaderResult<T> => {
   const {
-    addReload,
-    clearReload,
+    addRequest,
     getCachedData,
-    addCachedData,
-    cacheKeyPrefix,
+    getRequest,
     onError: onErrorProvider,
   } = useDataLoaderContext()
-  const [{ status, error }, dispatch] = useReducer(reducer, {
-    error: undefined,
-    status: StatusEnum.IDLE,
-  })
 
-  const addReloadRef = useRef(addReload)
-  const clearReloadRef = useRef(clearReload)
-  const cancelMethodRef = useRef<(() => void) | undefined>(undefined)
+  const data = useMemo(
+    () => (getCachedData(fetchKey) || initialData) as T,
+    [getCachedData, fetchKey, initialData],
+  )
+
+  const request = useMemo(
+    () =>
+      getRequest(fetchKey) ??
+      addRequest(fetchKey, {
+        key: fetchKey,
+        method,
+        pollingInterval,
+      }),
+    [addRequest, fetchKey, getRequest, method, pollingInterval],
+  )
+
+  useEffect(() => {
+    if (enabled && request.status === StatusEnum.IDLE) {
+      // eslint-disable-next-line no-void
+      void request.launch()
+    }
+  }, [request, enabled])
+
+  useEffect(() => {
+    if (request.method !== method) {
+      request.method = method
+    }
+    request.addOnErrorListener(onError ?? onErrorProvider)
+    request.addOnSuccessListener(onSuccess)
+
+    return () => {
+      request.removeOnErrorListener(onError ?? onErrorProvider)
+      request.removeOnSuccessListener(onSuccess)
+    }
+  }, [onSuccess, onError, onErrorProvider, method, request])
+
+  const cancelMethodRef = useRef<(() => void) | undefined>(request?.cancel)
   const isMountedRef = useRef(false)
   const isFetchingRef = useRef(false)
 
-  const key = useMemo(() => {
-    if (!fetchKey || typeof fetchKey !== 'string') {
-      return fetchKey
-    }
-
-    return `${cacheKeyPrefix ? `${cacheKeyPrefix}-` : ''}${fetchKey}`
-  }, [cacheKeyPrefix, fetchKey])
-
   const previousDataRef = useRef<T>()
 
-  const isLoading = useMemo(() => status === StatusEnum.LOADING, [status])
-  const isIdle = useMemo(() => status === StatusEnum.IDLE, [status])
-  const isSuccess = useMemo(() => status === StatusEnum.SUCCESS, [status])
-  const isError = useMemo(() => status === StatusEnum.ERROR, [status])
+  const isLoading = useMemo(
+    () => request.status === StatusEnum.LOADING,
+    [request.status],
+  )
+  const isIdle = useMemo(
+    () => request.status === StatusEnum.IDLE,
+    [request.status],
+  )
+  const isSuccess = useMemo(
+    () => request.status === StatusEnum.SUCCESS,
+    [request.status],
+  )
+  const isError = useMemo(
+    () => request.status === StatusEnum.ERROR,
+    [request.status],
+  )
   const isPolling = useMemo(
     () => !!(enabled && pollingInterval && (isSuccess || isLoading)),
     [isSuccess, isLoading, enabled, pollingInterval],
   )
 
-  const handleRequest = useCallback(
-    async cacheKey => {
-      try {
-        dispatch(Actions.createOnLoading())
-        const promise = method()
-        cancelMethodRef.current = promise.cancel
-        const result = await promise.then(res => res)
-
-        if (isMountedRef.current) {
-          if (keepPreviousData) {
-            previousDataRef.current = getCachedData(cacheKey) as T
-          }
-          if (result !== undefined && result !== null && cacheKey)
-            addCachedData(cacheKey, result)
-
-          dispatch(Actions.createOnSuccess())
-
-          await onSuccess?.(result)
-        }
-      } catch (err) {
-        if (isMountedRef.current) {
-          dispatch(Actions.createOnError(err as Error))
-          await (onError ?? onErrorProvider)?.(err as Error)
-        }
-      }
-    },
-    [
-      addCachedData,
-      getCachedData,
-      keepPreviousData,
-      method,
-      onError,
-      onErrorProvider,
-      onSuccess,
-    ],
-  )
-
-  const handleRequestRef = useRef(handleRequest)
-
-  useEffect(() => {
-    let handler: ReturnType<typeof setTimeout>
-
-    async function fetch() {
-      if (enabled) {
-        if (isIdle) {
-          await handleRequestRef.current(key)
-        }
-        if (pollingInterval && (isSuccess || isError)) {
-          handler = setTimeout(
-            // eslint-disable-next-line @typescript-eslint/no-misused-promises
-            () => handleRequestRef.current(key),
-            pollingInterval,
-          )
-        }
-      }
-    }
-
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    fetch()
-
-    return () => {
-      if (handler) clearTimeout(handler)
-    }
-  }, [key, pollingInterval, isIdle, isSuccess, isError, enabled])
-
-  useLayoutEffect(() => {
-    dispatch(Actions.createReset())
-    if (key && typeof key === 'string') {
-      addReloadRef.current?.(key, () => handleRequestRef.current(key))
-    }
-
-    return () => {
-      if (key && typeof key === 'string') {
-        clearReloadRef.current?.(key)
-      }
-    }
-  }, [enabled, key])
-
-  useLayoutEffect(() => {
-    clearReloadRef.current = clearReload
-    addReloadRef.current = addReload
-  }, [clearReload, addReload])
-
-  useLayoutEffect(() => {
-    handleRequestRef.current = handleRequest
-  }, [handleRequest])
-
   useEffect(() => {
     isFetchingRef.current = isLoading || isPolling
   }, [isLoading, isPolling])
+
+  useLayoutEffect(() => {
+    cancelMethodRef.current = request?.cancel
+  }, [request?.cancel])
 
   useEffect(() => {
     isMountedRef.current = true
@@ -216,21 +105,30 @@ const useDataLoader = <T>(
     return () => {
       isMountedRef.current = false
       if (isFetchingRef.current && cancelMethodRef.current) {
-        cancelMethodRef.current?.()
+        cancelMethodRef.current()
       }
     }
   }, [])
 
+  useEffect(
+    () => () => {
+      if (data !== previousDataRef.current) {
+        previousDataRef.current = data
+      }
+    },
+    [data, keepPreviousData],
+  )
+
   return {
-    data: (getCachedData(key) || initialData) as T,
-    error,
+    data: (getCachedData(fetchKey) || initialData) as T,
+    error: request?.error,
     isError,
     isIdle,
     isLoading,
     isPolling,
     isSuccess,
     previousData: previousDataRef.current,
-    reload: () => handleRequestRef.current(key),
+    reload: request.launch,
   }
 }
 
