@@ -2,11 +2,9 @@
 import { act, renderHook } from '@testing-library/react-hooks'
 import React from 'react'
 import DataLoaderProvider, { useDataLoaderContext } from '../DataLoaderProvider'
-import useDataLoader, {
-  PromiseType,
-  UseDataLoaderConfig,
-  UseDataLoaderResult,
-} from '../useDataLoader'
+import { KEY_IS_NOT_STRING_ERROR } from '../constants'
+import { PromiseType, UseDataLoaderConfig, UseDataLoaderResult } from '../types'
+import useDataLoader from '../useDataLoader'
 
 type UseDataLoaderHookProps = {
   config: UseDataLoaderConfig<unknown>
@@ -14,7 +12,7 @@ type UseDataLoaderHookProps = {
   method: () => Promise<unknown>
 }
 
-const PROMISE_TIMEOUT = 100
+const PROMISE_TIMEOUT = 5
 
 const initialProps = {
   config: {
@@ -60,25 +58,19 @@ describe('useDataLoader', () => {
     expect(result.current.isLoading).toBe(false)
   })
 
-  test('should render correctly without valid key', async () => {
-    const { result, waitForNextUpdate } = renderHook<
-      UseDataLoaderHookProps,
-      UseDataLoaderResult
-    >(props => useDataLoader(props.key, props.method), {
-      initialProps: {
-        ...initialProps,
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-expect-error
-        key: 2,
+  test('should render correctly without valid key', () => {
+    const { result } = renderHook<UseDataLoaderHookProps, UseDataLoaderResult>(
+      props => useDataLoader(props.key, props.method),
+      {
+        initialProps: {
+          ...initialProps,
+          // @ts-expect-error used because we test with bad key
+          key: 2,
+        },
+        wrapper,
       },
-      wrapper,
-    })
-    expect(result.current.data).toBe(undefined)
-    expect(result.current.isLoading).toBe(true)
-    await waitForNextUpdate()
-    expect(result.current.data).toBe(undefined)
-    expect(result.current.isSuccess).toBe(true)
-    expect(result.current.isLoading).toBe(false)
+    )
+    expect(result.error?.message).toBe(KEY_IS_NOT_STRING_ERROR)
   })
 
   test('should render correctly without keepPreviousData', async () => {
@@ -131,7 +123,7 @@ describe('useDataLoader', () => {
     >(
       props => [
         useDataLoader(props.key, props.method, props.config),
-        useDataLoader(props.key, props.method, {
+        useDataLoader('test-2', props.method, {
           ...props.config,
           enabled: false,
         }),
@@ -155,10 +147,11 @@ describe('useDataLoader', () => {
       void result.current[1].reload()
     })
 
-    expect(result.current[1].data).toBe(true)
+    expect(result.current[1].data).toBe(undefined)
     expect(result.current[1].isLoading).toBe(true)
 
     await waitForNextUpdate()
+    expect(result.current[1].data).toBe(true)
     expect(result.current[1].isSuccess).toBe(true)
   })
 
@@ -274,7 +267,7 @@ describe('useDataLoader', () => {
     rerender({
       ...pollingProps,
       config: {
-        pollingInterval: 800,
+        pollingInterval: 300,
       },
       method: method2,
     })
@@ -546,7 +539,8 @@ describe('useDataLoader', () => {
     expect(result.current[0].data).toBe(undefined)
     expect(result.current[0].isLoading).toBe(true)
     expect(result.current[1].data).toBe(undefined)
-    expect(result.current[1].isIdle).toBe(true)
+    expect(result.current[1].isIdle).toBe(false)
+    expect(result.current[1].isLoading).toBe(true)
     await waitForNextUpdate()
     expect(result.current[0].data).toBe(true)
     expect(result.current[0].isSuccess).toBe(true)
