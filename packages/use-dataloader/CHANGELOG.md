@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.3.0 (2021-09-27)
+
+
+### Features
+
+* concurrent request handle with dataloader ([#392](https://github.com/scaleway/scaleway-lib/issues/392)) ([7f6d50c](https://github.com/scaleway/scaleway-lib/commit/7f6d50c1f08c4a1ad851f2efefb781de6180653f))
+
+
+
 ## 2.2.0 (2021-09-09)
 
 
