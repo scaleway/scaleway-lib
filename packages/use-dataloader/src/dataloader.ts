@@ -6,6 +6,7 @@ export type DataLoaderConstructorArgs<T = unknown> = {
   key: string
   method: () => PromiseType<T>
   pollingInterval?: number
+  maxDataLifetime?: number
   keepPreviousData?: boolean
   notify: (updatedRequest: DataLoader<T>) => void
 }
@@ -17,11 +18,17 @@ class DataLoader<T = unknown> {
 
   public pollingInterval?: number
 
+  public maxDataLifetime?: number
+
+  public isDataOutdated = false
+
   private notify: (updatedRequest: DataLoader<T>) => void
 
   public method: () => PromiseType<T>
 
   private cancelMethod?: () => void
+
+  private canceled = false
 
   public keepPreviousData?: boolean
 
@@ -33,6 +40,8 @@ class DataLoader<T = unknown> {
 
   public error?: Error
 
+  private dataOutdatedTimeout?: number
+
   public timeout?: number
 
   public constructor(args: DataLoaderConstructorArgs<T>) {
@@ -42,15 +51,27 @@ class DataLoader<T = unknown> {
     this.pollingInterval = args?.pollingInterval
     this.keepPreviousData = args?.keepPreviousData
     this.notify = args.notify
+    this.maxDataLifetime = args.maxDataLifetime
   }
 
-  public launch = async (): Promise<void> => {
-    try {
+  public load = async (force = false): Promise<void> => {
+    if (
+      force ||
+      this.status !== StatusEnum.SUCCESS ||
+      (this.status === StatusEnum.SUCCESS && this.isDataOutdated)
+    ) {
       if (this.timeout) {
         // Prevent multiple call at the same time
         clearTimeout(this.timeout)
       }
+      await this.launch()
+    }
+  }
+
+  private launch = async (): Promise<void> => {
+    try {
       if (this.status !== StatusEnum.LOADING) {
+        this.canceled = false
         this.status = StatusEnum.LOADING
         this.notify(this)
       }
@@ -61,16 +82,31 @@ class DataLoader<T = unknown> {
       this.status = StatusEnum.SUCCESS
       this.error = undefined
       this.notify(this)
-      await Promise.all(
-        this.successListeners.map(listener => listener?.(result)),
-      )
+      if (!this.canceled) {
+        await Promise.all(
+          this.successListeners.map(listener => listener?.(result)),
+        )
+
+        this.isDataOutdated = false
+        if (this.dataOutdatedTimeout) {
+          clearTimeout(this.dataOutdatedTimeout)
+          this.dataOutdatedTimeout = undefined
+        }
+        if (this.maxDataLifetime) {
+          this.dataOutdatedTimeout = setTimeout(() => {
+            this.isDataOutdated = true
+          }, this.maxDataLifetime) as unknown as number
+        }
+      }
     } catch (err) {
       this.status = StatusEnum.ERROR
       this.error = err as Error
       this.notify(this)
-      await Promise.all(
-        this.errorListeners.map(listener => listener?.(err as Error)),
-      )
+      if (!this.canceled) {
+        await Promise.all(
+          this.errorListeners.map(listener => listener?.(err as Error)),
+        )
+      }
     }
     if (this.pollingInterval) {
       this.timeout = setTimeout(
@@ -82,6 +118,7 @@ class DataLoader<T = unknown> {
   }
 
   public cancel = async (): Promise<void> => {
+    this.canceled = true
     this.cancelMethod?.()
     await Promise.all(this.cancelListeners.map(listener => listener?.()))
   }

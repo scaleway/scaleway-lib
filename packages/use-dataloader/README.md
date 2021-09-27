@@ -77,10 +77,10 @@ const failingPromise = async () => {
 }
 
 const App = () => {
-  useDataLoader('local-error',  failingPromise,  {
-    onError: (error) => {
+  useDataLoader('local-error', failingPromise, {
+    onError: error => {
       console.log(`local onError: ${error}`)
-    }
+    },
   })
 
   useDataLoader('error', failingPromise)
@@ -88,7 +88,7 @@ const App = () => {
   return null
 }
 
-const globalOnError = (error) => {
+const globalOnError = error => {
   console.log(`global onError: ${error}`)
 }
 
@@ -219,6 +219,7 @@ const useDataLoader = (
     pollingInterval, // Relaunch the request after the last success
     enabled = true, // Launch request automatically
     keepPreviousData = true, // Do we need to keep the previous data after reload
+    maxDataLifetime, // Max time before previous success data is outdated (in millisecond)
   } = {},
 )
 ```
