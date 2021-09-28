@@ -14,8 +14,11 @@ import json
 
 
 def main():
-    with open("./countries.json") as f:
-        data = json.load(f)
+    with open("./countries.json") as out:
+        data = json.load(out)
+    with open("./countries.d.ts", "w") as out:
+        countries_list = "' | '".join(list(map(lambda country: country["code"], data)))
+        out.write(f"export type AvailableCountries = '{countries_list}'")
 
     for countries in data:
         sub_countries = pycountry.subdivisions.get(country_code=countries["code"])
