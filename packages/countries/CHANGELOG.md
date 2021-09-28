@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.3.0 (2021-09-28)
+
+
+### Features
+
+* **countries:** add typescript definitions ([#406](https://github.com/scaleway/scaleway-lib/issues/406)) ([cfa6858](https://github.com/scaleway/scaleway-lib/commit/cfa6858476a1fb7bfadd72577adc5f989d508d13))
+
+
+
 ## 1.2.1 (2021-02-15)
 
 **Note:** Version bump only for package @scaleway/countries
