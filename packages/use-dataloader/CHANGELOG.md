@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.0](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-dataloader@2.3.0...@scaleway/use-dataloader@2.4.0) (2021-09-28)
+
+
+### Features
+
+* refresh data on max lifetime reached ([#399](https://github.com/scaleway/scaleway-lib/issues/399)) ([152642b](https://github.com/scaleway/scaleway-lib/commit/152642bc521f9e84a4de236ea58b8cc0dfdaaf0b))
+
+
+
 ## 2.3.0 (2021-09-27)
 
 
