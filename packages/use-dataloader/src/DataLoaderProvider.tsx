@@ -24,6 +24,10 @@ type UseDataLoaderInitializerArgs<T = unknown> = {
   method: () => PromiseType<T>
   pollingInterval?: number
   keepPreviousData?: boolean
+  /**
+   * Max time before data from previous success is considered as outdated (in millisecond)
+   */
+  maxDataLifetime?: number
 }
 
 interface Context {
@@ -133,7 +137,7 @@ const DataLoaderProvider = ({
           [computeKey(key)]: newRequest,
         }))
 
-        addReload(key, newRequest.launch)
+        addReload(key, () => newRequest.load(true))
 
         return newRequest
       }

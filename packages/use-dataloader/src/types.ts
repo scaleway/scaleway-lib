@@ -24,6 +24,10 @@ export interface UseDataLoaderConfig<T = unknown> {
   onError?: OnErrorFn
   onSuccess?: OnSuccessFn
   pollingInterval?: number
+  /**
+   * Max time before data from previous success is considered as outdated (in millisecond)
+   */
+  maxDataLifetime?: number
 }
 
 /**

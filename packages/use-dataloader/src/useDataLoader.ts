@@ -19,6 +19,7 @@ const useDataLoader = <T>(
     onError,
     onSuccess,
     pollingInterval,
+    maxDataLifetime,
   }: UseDataLoaderConfig<T> = {},
 ): UseDataLoaderResult<T> => {
   const {
@@ -38,16 +39,24 @@ const useDataLoader = <T>(
       getRequest(fetchKey) ??
       addRequest(fetchKey, {
         key: fetchKey,
+        maxDataLifetime,
         method,
         pollingInterval,
       }),
-    [addRequest, fetchKey, getRequest, method, pollingInterval],
+    [
+      addRequest,
+      fetchKey,
+      getRequest,
+      method,
+      pollingInterval,
+      maxDataLifetime,
+    ],
   )
 
   useEffect(() => {
     if (enabled && request.status === StatusEnum.IDLE) {
       // eslint-disable-next-line no-void
-      void request.launch()
+      void request.load()
     }
   }, [request, enabled])
 
@@ -128,7 +137,7 @@ const useDataLoader = <T>(
     isPolling,
     isSuccess,
     previousData: previousDataRef.current,
-    reload: request.launch,
+    reload: () => request.load(true),
   }
 }
 
