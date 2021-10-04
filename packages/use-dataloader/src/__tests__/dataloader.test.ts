@@ -8,6 +8,15 @@ const fakeSuccessPromise = () =>
     setTimeout(() => resolve(true), PROMISE_TIMEOUT)
   })
 
+const fakeNullPromise = () =>
+  new Promise(resolve => {
+    setTimeout(() => resolve(null), PROMISE_TIMEOUT)
+  })
+const fakeUndefinedPromise = () =>
+  new Promise(resolve => {
+    setTimeout(() => resolve(undefined), PROMISE_TIMEOUT)
+  })
+
 const fakeErrorPromise = () =>
   new Promise((_, reject) => {
     setTimeout(() => reject(new Error('test')), PROMISE_TIMEOUT)
@@ -31,9 +40,9 @@ describe('Dataloader class', () => {
     instance.destroy()
   })
 
-  test('should create instance enabled then load', async () => {
+  test('should create instance enabled with cancel', async () => {
     const notify = jest.fn()
-    const method = jest.fn()
+    const method = jest.fn(fakeSuccessPromise)
     const instance = new DataLoader({
       enabled: true,
       key: 'test',
@@ -42,12 +51,77 @@ describe('Dataloader class', () => {
     })
     expect(instance.status).toBe(StatusEnum.LOADING)
     expect(notify).toBeCalledTimes(0)
-    expect(method).toBeCalledTimes(0)
-    await instance.load()
-    // This does nothing because no cancel listener is set
-    await instance.cancel()
     expect(method).toBeCalledTimes(1)
-    expect(notify).toBeCalledTimes(1)
+    await instance.cancel()
+    await new Promise(resolve =>
+      setTimeout(() => {
+        expect(notify).toBeCalledTimes(1)
+        resolve(true)
+      }, PROMISE_TIMEOUT),
+    )
+    expect(instance.data).toBe(undefined)
+  })
+
+  test('should create instance enabled without cancel', async () => {
+    const notify = jest.fn()
+    const method = jest.fn(fakeSuccessPromise)
+    const instance = new DataLoader({
+      enabled: true,
+      key: 'test',
+      method,
+      notify,
+    })
+    expect(instance.status).toBe(StatusEnum.LOADING)
+    expect(notify).toBeCalledTimes(0)
+    expect(method).toBeCalledTimes(1)
+    await new Promise(resolve =>
+      setTimeout(() => {
+        expect(notify).toBeCalledTimes(1)
+        resolve(true)
+      }, PROMISE_TIMEOUT),
+    )
+    expect(instance.data).toBe(true)
+  })
+
+  test('should create instance enabled with null data', async () => {
+    const notify = jest.fn()
+    const method = jest.fn(fakeNullPromise)
+    const instance = new DataLoader({
+      enabled: true,
+      key: 'test',
+      method,
+      notify,
+    })
+    expect(instance.status).toBe(StatusEnum.LOADING)
+    expect(notify).toBeCalledTimes(0)
+    expect(method).toBeCalledTimes(1)
+    await new Promise(resolve =>
+      setTimeout(() => {
+        expect(notify).toBeCalledTimes(1)
+        resolve(true)
+      }, PROMISE_TIMEOUT),
+    )
+    expect(instance.data).toBe(null)
+  })
+  test('should create instance enabled with undefined data', async () => {
+    const notify = jest.fn()
+    const method = jest.fn(fakeUndefinedPromise)
+    const instance = new DataLoader({
+      enabled: true,
+      key: 'test',
+      method,
+      notify,
+    })
+    expect(instance.status).toBe(StatusEnum.LOADING)
+    expect(notify).toBeCalledTimes(0)
+    expect(method).toBeCalledTimes(1)
+    await new Promise(resolve =>
+      setTimeout(() => {
+        expect(notify).toBeCalledTimes(1)
+        resolve(true)
+      }, PROMISE_TIMEOUT),
+    )
+    expect(instance.data).toBe(undefined)
   })
 
   test('should create instance with cancel listener and success', async () => {
@@ -161,10 +235,8 @@ describe('Dataloader class', () => {
     })
     instance.addOnSuccessListener(onSuccess)
     expect(instance.status).toBe(StatusEnum.LOADING)
-    expect(method).toBeCalledTimes(0)
-    expect(onSuccess).toBeCalledTimes(0)
-    await instance.load()
     expect(method).toBeCalledTimes(1)
+    await new Promise(resolve => setTimeout(resolve, PROMISE_TIMEOUT))
     expect(onSuccess).toBeCalledTimes(1)
     await instance.load()
     expect(method).toBeCalledTimes(1)
@@ -173,5 +245,23 @@ describe('Dataloader class', () => {
     await instance.load()
     expect(method).toBeCalledTimes(2)
     expect(onSuccess).toBeCalledTimes(2)
+  })
+
+  test('should launch 2 concurrent requests', async () => {
+    const notify = jest.fn()
+    const method = jest.fn(fakeSuccessPromise)
+    DataLoader.maxConcurrent = 2
+    for (let i = 0; i < 5; i += 1) {
+      const instance = new DataLoader({
+        enabled: true,
+        key: `test-${i}`,
+        method,
+        notify,
+      })
+      expect(instance.status).toBe(StatusEnum.LOADING)
+    }
+    // Because wait for setTimeout tryLaunch in dataloader.ts
+    await new Promise(resolve => setTimeout(resolve))
+    expect(method).toBeCalledTimes(2)
   })
 })

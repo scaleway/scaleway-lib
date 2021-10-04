@@ -1,4 +1,4 @@
-import { StatusEnum } from './constants'
+import { DEFAULT_MAX_CONCURRENT_REQUESTS, StatusEnum } from './constants'
 import { OnCancelFn, OnErrorFn, OnSuccessFn, PromiseType } from './types'
 
 export type DataLoaderConstructorArgs<T = unknown> = {
@@ -12,6 +12,10 @@ export type DataLoaderConstructorArgs<T = unknown> = {
 }
 
 class DataLoader<T = unknown> {
+  public static started = 0
+
+  public static maxConcurrent = DEFAULT_MAX_CONCURRENT_REQUESTS
+
   public key: string
 
   public status: StatusEnum
@@ -44,6 +48,8 @@ class DataLoader<T = unknown> {
 
   public timeout?: number
 
+  public data?: T
+
   public constructor(args: DataLoaderConstructorArgs<T>) {
     this.key = args.key
     this.status = args.enabled ? StatusEnum.LOADING : StatusEnum.IDLE
@@ -52,6 +58,17 @@ class DataLoader<T = unknown> {
     this.keepPreviousData = args?.keepPreviousData
     this.notify = args.notify
     this.maxDataLifetime = args.maxDataLifetime
+    if (args.enabled) {
+      const tryLaunch = () => {
+        if (DataLoader.started < DataLoader.maxConcurrent) {
+          // eslint-disable-next-line no-void
+          void this.load()
+        } else {
+          setTimeout(tryLaunch)
+        }
+      }
+      tryLaunch()
+    }
   }
 
   public load = async (force = false): Promise<void> => {
@@ -68,21 +85,23 @@ class DataLoader<T = unknown> {
     }
   }
 
-  private launch = async (): Promise<void> => {
+  public launch = async (): Promise<void> => {
     try {
       if (this.status !== StatusEnum.LOADING) {
         this.canceled = false
         this.status = StatusEnum.LOADING
         this.notify(this)
       }
+      DataLoader.started += 1
       const promise = this.method()
       this.cancelMethod = promise.cancel
       const result = await promise.then(res => res)
 
       this.status = StatusEnum.SUCCESS
       this.error = undefined
-      this.notify(this)
       if (!this.canceled) {
+        this.data = result
+
         await Promise.all(
           this.successListeners.map(listener => listener?.(result)),
         )
@@ -92,12 +111,15 @@ class DataLoader<T = unknown> {
           clearTimeout(this.dataOutdatedTimeout)
           this.dataOutdatedTimeout = undefined
         }
+
         if (this.maxDataLifetime) {
           this.dataOutdatedTimeout = setTimeout(() => {
             this.isDataOutdated = true
+            this.notify(this)
           }, this.maxDataLifetime) as unknown as number
         }
       }
+      this.notify(this)
     } catch (err) {
       this.status = StatusEnum.ERROR
       this.error = err as Error
@@ -108,6 +130,7 @@ class DataLoader<T = unknown> {
         )
       }
     }
+    DataLoader.started -= 1
     if (this.pollingInterval) {
       this.timeout = setTimeout(
         // eslint-disable-next-line @typescript-eslint/no-misused-promises

@@ -6,10 +6,13 @@ import React, {
   useCallback,
   useContext,
   useMemo,
-  useRef,
   useState,
 } from 'react'
-import { KEY_IS_NOT_STRING_ERROR, StatusEnum } from './constants'
+import {
+  DEFAULT_MAX_CONCURRENT_REQUESTS,
+  KEY_IS_NOT_STRING_ERROR,
+  StatusEnum,
+} from './constants'
 import DataLoader from './dataloader'
 import { OnErrorFn, PromiseType } from './types'
 
@@ -19,7 +22,6 @@ type Reloads = Record<string, () => Promise<void | unknown>>
 
 type UseDataLoaderInitializerArgs<T = unknown> = {
   enabled?: boolean
-  key: string
   status?: StatusEnum
   method: () => PromiseType<T>
   pollingInterval?: number
@@ -30,209 +32,185 @@ type UseDataLoaderInitializerArgs<T = unknown> = {
   maxDataLifetime?: number
 }
 
-interface Context {
-  addCachedData: (key: string, newData: unknown) => void
-  addReload: (key: string, method: () => Promise<void | unknown>) => void
+type GetCachedDataFn = {
+  (): CachedData
+  (key?: string): unknown | undefined
+}
+
+type GetReloadsFn = {
+  (): Reloads
+  (key?: string): (() => Promise<void | unknown>) | undefined
+}
+
+export interface IDataLoaderContext {
   addRequest: (key: string, args: UseDataLoaderInitializerArgs) => DataLoader
-  cacheKeyPrefix: string
+  cacheKeyPrefix?: string
   onError?: (error: Error) => void | Promise<void>
   clearAllCachedData: () => void
-  clearAllReloads: () => void
-  clearCachedData: (key?: string) => void
-  clearReload: (key?: string) => void
-  getCachedData: (key?: string) => unknown | CachedData
-  getReloads: (key?: string) => (() => Promise<void | unknown>) | Reloads
+  clearCachedData: (key: string) => void
+  clearRequest: (key: string) => void
+  getCachedData: GetCachedDataFn
+  getReloads: GetReloadsFn
   getRequest: (key: string) => DataLoader | undefined
   reload: (key?: string) => Promise<void>
   reloadAll: () => Promise<void>
 }
 
 // @ts-expect-error we force the context to undefined, should be corrected with default values
-export const DataLoaderContext = createContext<Context>(undefined)
+export const DataLoaderContext = createContext<IDataLoaderContext>(undefined)
 
 const DataLoaderProvider = ({
   children,
   cacheKeyPrefix,
   onError,
+  maxConcurrentRequests,
 }: {
   children: ReactNode
   cacheKeyPrefix: string
   onError: OnErrorFn
+  maxConcurrentRequests?: number
 }): ReactElement => {
-  const [requestQueue, setRequestQueue] = useState({} as RequestQueue)
-  const [cachedData, setCachedDataPrivate] = useState<CachedData>({})
-  const reloads = useRef<Reloads>({})
+  const [requests, setRequests] = useState<RequestQueue>({})
 
   const computeKey = useCallback(
     (key: string) => `${cacheKeyPrefix ? `${cacheKeyPrefix}-` : ''}${key}`,
     [cacheKeyPrefix],
   )
 
-  const setCachedData = useCallback(
-    (compute: CachedData | ((data: CachedData) => CachedData)) => {
-      if (typeof compute === 'function') {
-        setCachedDataPrivate(current => compute(current))
-      } else {
-        setCachedDataPrivate(compute)
-      }
-    },
-    [],
-  )
-
-  const setReloads = useCallback(
-    (compute: Reloads | ((data: Reloads) => Reloads)) => {
-      if (typeof compute === 'function') {
-        reloads.current = compute(reloads.current)
-      } else {
-        reloads.current = compute
-      }
-    },
-    [],
-  )
-
-  const addCachedData = useCallback(
-    (key: string, newData: unknown) => {
-      if (newData) {
-        if (key && typeof key === 'string') {
-          setCachedData(actualCachedData => ({
-            ...actualCachedData,
-            [computeKey(key)]: newData,
-          }))
-        } else throw new Error(KEY_IS_NOT_STRING_ERROR)
-      }
-    },
-    [setCachedData, computeKey],
-  )
-
-  const addReload = useCallback(
-    (key: string, method: () => Promise<void | unknown>) => {
-      if (method) {
-        if (key && typeof key === 'string') {
-          setReloads(actualReloads => ({
-            ...actualReloads,
-            [computeKey(key)]: method,
-          }))
-        } else throw new Error(KEY_IS_NOT_STRING_ERROR)
-      }
-    },
-    [setReloads, computeKey],
-  )
-
   const addRequest = useCallback(
     (key: string, args: UseDataLoaderInitializerArgs) => {
+      if (DataLoader.maxConcurrent !== maxConcurrentRequests) {
+        DataLoader.maxConcurrent = maxConcurrentRequests as number
+      }
       if (key && typeof key === 'string') {
         const notifyChanges = (updatedRequest: DataLoader) => {
-          setRequestQueue(current => ({
+          setRequests(current => ({
             ...current,
-            [computeKey(updatedRequest.key)]: updatedRequest,
+            [updatedRequest.key]: updatedRequest,
           }))
         }
-        const newRequest = new DataLoader({ ...args, notify: notifyChanges })
-        newRequest.addOnSuccessListener(result => {
-          if (result !== undefined && result !== null)
-            addCachedData(key, result)
+        const newRequest = new DataLoader({
+          ...args,
+          key: computeKey(key),
+          notify: notifyChanges,
         })
-        setRequestQueue(current => ({
+        setRequests(current => ({
           ...current,
-          [computeKey(key)]: newRequest,
+          [newRequest.key]: newRequest,
         }))
-
-        addReload(key, () => newRequest.load(true))
 
         return newRequest
       }
       throw new Error(KEY_IS_NOT_STRING_ERROR)
     },
-    [computeKey, addCachedData, addReload],
+    [computeKey, maxConcurrentRequests],
   )
 
-  const getRequest = useCallback(
-    (key: string) => requestQueue[computeKey(key)],
-    [computeKey, requestQueue],
-  )
-
-  const clearReload = useCallback(
-    (key?: string) => {
+  const clearRequest = useCallback(
+    (key: string) => {
       if (key && typeof key === 'string') {
-        setReloads(actualReloads => {
-          const tmp = actualReloads
-          delete tmp[computeKey(key)]
+        setRequests(current => {
+          const newRequests = { ...current }
+          delete newRequests[computeKey(key)]
 
-          return tmp
+          return newRequests
         })
-      } else throw new Error(KEY_IS_NOT_STRING_ERROR)
-    },
-    [setReloads, computeKey],
-  )
-
-  const clearAllReloads = useCallback(() => {
-    setReloads({})
-  }, [setReloads])
-
-  const clearCachedData = useCallback(
-    (key?: string) => {
-      if (key && typeof key === 'string') {
-        setCachedData(actualCachedData => {
-          const tmp = actualCachedData
-          delete tmp[computeKey(key)]
-
-          return tmp
-        })
-      } else throw new Error(KEY_IS_NOT_STRING_ERROR)
-    },
-    [setCachedData, computeKey],
-  )
-  const clearAllCachedData = useCallback(() => {
-    setCachedData({})
-  }, [setCachedData])
-
-  const reload = useCallback(
-    async (key?: string) => {
-      if (key && typeof key === 'string') {
-        await reloads.current[computeKey(key)]?.()
       } else throw new Error(KEY_IS_NOT_STRING_ERROR)
     },
     [computeKey],
   )
 
-  const reloadAll = useCallback(async () => {
-    await Promise.all(
-      Object.values(reloads.current).map(reloadFn => reloadFn()),
+  const getRequest = useCallback(
+    (key: string) => requests[computeKey(key)],
+    [computeKey, requests],
+  )
+
+  const clearCachedData = useCallback(
+    (key: string) => {
+      if (typeof key === 'string') {
+        setRequests(current => ({
+          ...current,
+          [computeKey(key)]: {
+            ...current[computeKey(key)],
+            data: undefined,
+          } as DataLoader,
+        }))
+      } else throw new Error(KEY_IS_NOT_STRING_ERROR)
+    },
+    [computeKey],
+  )
+  const clearAllCachedData = useCallback(() => {
+    setRequests(current =>
+      Object.entries(current).reduce(
+        (acc, [key, request]) =>
+          ({
+            ...acc,
+            [key]: {
+              ...request,
+              data: undefined,
+            } as DataLoader,
+          } as RequestQueue),
+        {},
+      ),
     )
   }, [])
+
+  const reload = useCallback(
+    async (key?: string) => {
+      if (key && typeof key === 'string') {
+        await getRequest(key)?.load(true)
+      } else throw new Error(KEY_IS_NOT_STRING_ERROR)
+    },
+    [getRequest],
+  )
+
+  const reloadAll = useCallback(async () => {
+    await Promise.all(
+      Object.values(requests).map(request => request.load(true)),
+    )
+  }, [requests])
 
   const getCachedData = useCallback(
     (key?: string) => {
       if (key) {
-        return cachedData[computeKey(key)]
+        return getRequest(key)?.data
       }
 
-      return cachedData
+      return Object.entries(requests).reduce(
+        (acc, [requestKey, { data }]) => ({
+          ...acc,
+          [requestKey]: data,
+        }),
+        {} as CachedData,
+      )
     },
-    [computeKey, cachedData],
+    [getRequest, requests],
   )
 
   const getReloads = useCallback(
     (key?: string) => {
       if (key) {
-        return reloads.current[computeKey(key)]
+        return getRequest(key) ? () => getRequest(key).load(true) : undefined
       }
 
-      return reloads.current
+      return Object.entries(requests).reduce(
+        (acc, [requestKey, { load }]) => ({
+          ...acc,
+          [requestKey]: () => load(true),
+        }),
+        {} as Reloads,
+      )
     },
-    [computeKey],
+    [getRequest, requests],
   )
 
   const value = useMemo(
     () => ({
-      addCachedData,
-      addReload,
       addRequest,
       cacheKeyPrefix,
       clearAllCachedData,
-      clearAllReloads,
       clearCachedData,
-      clearReload,
+      clearRequest,
       getCachedData,
       getReloads,
       getRequest,
@@ -241,25 +219,22 @@ const DataLoaderProvider = ({
       reloadAll,
     }),
     [
-      addCachedData,
-      addReload,
       addRequest,
       cacheKeyPrefix,
       clearAllCachedData,
-      clearAllReloads,
       clearCachedData,
-      clearReload,
       getCachedData,
       getRequest,
       getReloads,
       onError,
       reload,
       reloadAll,
+      clearRequest,
     ],
   )
 
   return (
-    <DataLoaderContext.Provider value={value}>
+    <DataLoaderContext.Provider value={value as IDataLoaderContext}>
       {children}
     </DataLoaderContext.Provider>
   )
@@ -268,14 +243,17 @@ const DataLoaderProvider = ({
 DataLoaderProvider.propTypes = {
   cacheKeyPrefix: PropTypes.string,
   children: PropTypes.node.isRequired,
+  maxConcurrentRequests: PropTypes.number,
   onError: PropTypes.func,
 }
 
 DataLoaderProvider.defaultProps = {
   cacheKeyPrefix: undefined,
+  maxConcurrentRequests: DEFAULT_MAX_CONCURRENT_REQUESTS,
   onError: undefined,
 }
 
-export const useDataLoaderContext = (): Context => useContext(DataLoaderContext)
+export const useDataLoaderContext = (): IDataLoaderContext =>
+  useContext(DataLoaderContext)
 
 export default DataLoaderProvider

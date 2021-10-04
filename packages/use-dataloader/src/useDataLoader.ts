@@ -24,21 +24,15 @@ const useDataLoader = <T>(
 ): UseDataLoaderResult<T> => {
   const {
     addRequest,
-    getCachedData,
     getRequest,
     onError: onErrorProvider,
   } = useDataLoaderContext()
-
-  const data = useMemo(
-    () => (getCachedData(fetchKey) || initialData) as T,
-    [getCachedData, fetchKey, initialData],
-  )
 
   const request = useMemo(
     () =>
       getRequest(fetchKey) ??
       addRequest(fetchKey, {
-        key: fetchKey,
+        enabled,
         maxDataLifetime,
         method,
         pollingInterval,
@@ -50,15 +44,21 @@ const useDataLoader = <T>(
       method,
       pollingInterval,
       maxDataLifetime,
+      enabled,
     ],
   )
 
   useEffect(() => {
-    if (enabled && request.status === StatusEnum.IDLE) {
+    if (request.status === StatusEnum.IDLE && enabled) {
       // eslint-disable-next-line no-void
       void request.load()
     }
-  }, [request, enabled])
+  })
+
+  const data = useMemo(
+    () => (request.data || initialData) as T,
+    [request.data, initialData],
+  )
 
   useEffect(() => {
     if (request.method !== method) {
@@ -129,7 +129,7 @@ const useDataLoader = <T>(
   )
 
   return {
-    data: (getCachedData(fetchKey) || initialData) as T,
+    data,
     error: request?.error,
     isError,
     isIdle,
