@@ -5,8 +5,9 @@ import React, {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
-  useState,
+  useRef,
 } from 'react'
 import {
   DEFAULT_MAX_CONCURRENT_REQUESTS,
@@ -16,7 +17,6 @@ import {
 import DataLoader from './dataloader'
 import { OnErrorFn, PromiseType } from './types'
 
-type RequestQueue = Record<string, DataLoader>
 type CachedData = Record<string, unknown>
 type Reloads = Record<string, () => Promise<void | unknown>>
 
@@ -44,14 +44,17 @@ type GetReloadsFn = {
 
 export interface IDataLoaderContext {
   addRequest: (key: string, args: UseDataLoaderInitializerArgs) => DataLoader
+  getOrAddRequest: (
+    key: string,
+    args: UseDataLoaderInitializerArgs,
+  ) => DataLoader
   cacheKeyPrefix?: string
   onError?: (error: Error) => void | Promise<void>
   clearAllCachedData: () => void
   clearCachedData: (key: string) => void
-  clearRequest: (key: string) => void
   getCachedData: GetCachedDataFn
   getReloads: GetReloadsFn
-  getRequest: (key: string) => DataLoader | undefined
+  getRequest: (key: string) => DataLoader
   reload: (key?: string) => Promise<void>
   reloadAll: () => Promise<void>
 }
@@ -70,11 +73,15 @@ const DataLoaderProvider = ({
   onError: OnErrorFn
   maxConcurrentRequests?: number
 }): ReactElement => {
-  const [requests, setRequests] = useState<RequestQueue>({})
-
+  const requestsRef = useRef<Record<string, DataLoader>>({})
   const computeKey = useCallback(
     (key: string) => `${cacheKeyPrefix ? `${cacheKeyPrefix}-` : ''}${key}`,
     [cacheKeyPrefix],
+  )
+
+  const getRequest = useCallback(
+    (key: string) => requestsRef.current[computeKey(key)],
+    [computeKey],
   )
 
   const addRequest = useCallback(
@@ -83,21 +90,12 @@ const DataLoaderProvider = ({
         DataLoader.maxConcurrent = maxConcurrentRequests as number
       }
       if (key && typeof key === 'string') {
-        const notifyChanges = (updatedRequest: DataLoader) => {
-          setRequests(current => ({
-            ...current,
-            [updatedRequest.key]: updatedRequest,
-          }))
-        }
         const newRequest = new DataLoader({
           ...args,
           key: computeKey(key),
-          notify: notifyChanges,
         })
-        setRequests(current => ({
-          ...current,
-          [newRequest.key]: newRequest,
-        }))
+
+        requestsRef.current[newRequest.key] = newRequest
 
         return newRequest
       }
@@ -106,53 +104,32 @@ const DataLoaderProvider = ({
     [computeKey, maxConcurrentRequests],
   )
 
-  const clearRequest = useCallback(
-    (key: string) => {
-      if (key && typeof key === 'string') {
-        setRequests(current => {
-          const newRequests = { ...current }
-          delete newRequests[computeKey(key)]
+  const getOrAddRequest = useCallback(
+    (key: string, args: UseDataLoaderInitializerArgs) => {
+      const requestFound = getRequest(key)
+      if (!requestFound) {
+        return addRequest(key, args)
+      }
 
-          return newRequests
-        })
-      } else throw new Error(KEY_IS_NOT_STRING_ERROR)
+      return requestFound
     },
-    [computeKey],
-  )
-
-  const getRequest = useCallback(
-    (key: string) => requests[computeKey(key)],
-    [computeKey, requests],
+    [addRequest, getRequest],
   )
 
   const clearCachedData = useCallback(
     (key: string) => {
       if (typeof key === 'string') {
-        setRequests(current => ({
-          ...current,
-          [computeKey(key)]: {
-            ...current[computeKey(key)],
-            data: undefined,
-          } as DataLoader,
-        }))
+        if (requestsRef.current[computeKey(key)]) {
+          requestsRef.current[computeKey(key)].clearData()
+        }
       } else throw new Error(KEY_IS_NOT_STRING_ERROR)
     },
     [computeKey],
   )
   const clearAllCachedData = useCallback(() => {
-    setRequests(current =>
-      Object.entries(current).reduce(
-        (acc, [key, request]) =>
-          ({
-            ...acc,
-            [key]: {
-              ...request,
-              data: undefined,
-            } as DataLoader,
-          } as RequestQueue),
-        {},
-      ),
-    )
+    Object.values(requestsRef.current).forEach(request => {
+      request.clearData()
+    })
   }, [])
 
   const reload = useCallback(
@@ -166,25 +143,25 @@ const DataLoaderProvider = ({
 
   const reloadAll = useCallback(async () => {
     await Promise.all(
-      Object.values(requests).map(request => request.load(true)),
+      Object.values(requestsRef.current).map(request => request.load(true)),
     )
-  }, [requests])
+  }, [])
 
   const getCachedData = useCallback(
     (key?: string) => {
       if (key) {
-        return getRequest(key)?.data
+        return getRequest(key)?.getData()
       }
 
-      return Object.entries(requests).reduce(
-        (acc, [requestKey, { data }]) => ({
+      return Object.values(requestsRef.current).reduce(
+        (acc, request) => ({
           ...acc,
-          [requestKey]: data,
+          [request.key]: request.getData(),
         }),
         {} as CachedData,
       )
     },
-    [getRequest, requests],
+    [getRequest],
   )
 
   const getReloads = useCallback(
@@ -193,7 +170,7 @@ const DataLoaderProvider = ({
         return getRequest(key) ? () => getRequest(key).load(true) : undefined
       }
 
-      return Object.entries(requests).reduce(
+      return Object.entries(requestsRef.current).reduce(
         (acc, [requestKey, { load }]) => ({
           ...acc,
           [requestKey]: () => load(true),
@@ -201,8 +178,24 @@ const DataLoaderProvider = ({
         {} as Reloads,
       )
     },
-    [getRequest, requests],
+    [getRequest],
   )
+
+  useEffect(() => {
+    const cleanRequest = () => {
+      setTimeout(() => {
+        Object.keys(requestsRef.current).forEach(key => {
+          if (requestsRef.current[key].getObserversCount() === 0) {
+            requestsRef.current[key].destroy()
+            delete requestsRef.current[key]
+          }
+        })
+        cleanRequest()
+      }, 300)
+    }
+
+    cleanRequest()
+  }, [])
 
   const value = useMemo(
     () => ({
@@ -210,8 +203,8 @@ const DataLoaderProvider = ({
       cacheKeyPrefix,
       clearAllCachedData,
       clearCachedData,
-      clearRequest,
       getCachedData,
+      getOrAddRequest,
       getReloads,
       getRequest,
       onError,
@@ -224,12 +217,12 @@ const DataLoaderProvider = ({
       clearAllCachedData,
       clearCachedData,
       getCachedData,
+      getOrAddRequest,
       getRequest,
       getReloads,
       onError,
       reload,
       reloadAll,
-      clearRequest,
     ],
   )
 
