@@ -1,4 +1,4 @@
-import { StatusEnum } from './constants'
+import { DEFAULT_MAX_CONCURRENT_REQUESTS, StatusEnum } from './constants'
 import { OnCancelFn, OnErrorFn, OnSuccessFn, PromiseType } from './types'
 
 export type DataLoaderConstructorArgs<T = unknown> = {
@@ -8,10 +8,15 @@ export type DataLoaderConstructorArgs<T = unknown> = {
   pollingInterval?: number
   maxDataLifetime?: number
   keepPreviousData?: boolean
-  notify: (updatedRequest: DataLoader<T>) => void
 }
 
 class DataLoader<T = unknown> {
+  public static started = 0
+
+  public static maxConcurrent = DEFAULT_MAX_CONCURRENT_REQUESTS
+
+  public static cachedData = {} as Record<string, unknown | undefined>
+
   public key: string
 
   public status: StatusEnum
@@ -21,8 +26,6 @@ class DataLoader<T = unknown> {
   public maxDataLifetime?: number
 
   public isDataOutdated = false
-
-  private notify: (updatedRequest: DataLoader<T>) => void
 
   public method: () => PromiseType<T>
 
@@ -38,11 +41,15 @@ class DataLoader<T = unknown> {
 
   private cancelListeners: Array<OnCancelFn> = []
 
+  private observerListeners: Array<(dataloader: DataLoader<T>) => void> = []
+
   public error?: Error
 
   private dataOutdatedTimeout?: number
 
   public timeout?: number
+
+  private destroyed = false
 
   public constructor(args: DataLoaderConstructorArgs<T>) {
     this.key = args.key
@@ -50,8 +57,29 @@ class DataLoader<T = unknown> {
     this.method = args.method
     this.pollingInterval = args?.pollingInterval
     this.keepPreviousData = args?.keepPreviousData
-    this.notify = args.notify
     this.maxDataLifetime = args.maxDataLifetime
+    if (args.enabled) {
+      const tryLaunch = () => {
+        if (DataLoader.started < DataLoader.maxConcurrent) {
+          // Because we want to launch the request directly without waiting the return
+          // eslint-disable-next-line no-void
+          void this.load()
+        } else {
+          setTimeout(tryLaunch)
+        }
+      }
+      tryLaunch()
+    } else {
+      this.notifyChanges()
+    }
+  }
+
+  public getData(): T | undefined {
+    return (DataLoader.cachedData[this.key] as T) ?? undefined
+  }
+
+  private notifyChanges(): void {
+    this.observerListeners.forEach(observerListener => observerListener(this))
   }
 
   public load = async (force = false): Promise<void> => {
@@ -68,21 +96,23 @@ class DataLoader<T = unknown> {
     }
   }
 
-  private launch = async (): Promise<void> => {
+  public launch = async (): Promise<void> => {
     try {
       if (this.status !== StatusEnum.LOADING) {
         this.canceled = false
         this.status = StatusEnum.LOADING
-        this.notify(this)
+        this.notifyChanges()
       }
+      DataLoader.started += 1
       const promise = this.method()
       this.cancelMethod = promise.cancel
       const result = await promise.then(res => res)
 
       this.status = StatusEnum.SUCCESS
       this.error = undefined
-      this.notify(this)
       if (!this.canceled) {
+        DataLoader.cachedData[this.key] = result
+
         await Promise.all(
           this.successListeners.map(listener => listener?.(result)),
         )
@@ -92,23 +122,27 @@ class DataLoader<T = unknown> {
           clearTimeout(this.dataOutdatedTimeout)
           this.dataOutdatedTimeout = undefined
         }
+
         if (this.maxDataLifetime) {
           this.dataOutdatedTimeout = setTimeout(() => {
             this.isDataOutdated = true
+            this.notifyChanges()
           }, this.maxDataLifetime) as unknown as number
         }
       }
+      this.notifyChanges()
     } catch (err) {
       this.status = StatusEnum.ERROR
       this.error = err as Error
-      this.notify(this)
+      this.notifyChanges()
       if (!this.canceled) {
         await Promise.all(
           this.errorListeners.map(listener => listener?.(err as Error)),
         )
       }
     }
-    if (this.pollingInterval) {
+    DataLoader.started -= 1
+    if (this.pollingInterval && !this.destroyed) {
       this.timeout = setTimeout(
         // eslint-disable-next-line @typescript-eslint/no-misused-promises
         this.launch,
@@ -162,10 +196,32 @@ class DataLoader<T = unknown> {
     }
   }
 
+  public addObserver(fn: (args: DataLoader<T>) => void): void {
+    this.observerListeners.push(fn)
+  }
+
+  public removeObserver(fn: (args: DataLoader<T>) => void): void {
+    const index = this.observerListeners.indexOf(fn)
+    if (index > -1) {
+      this.observerListeners.splice(index, 1)
+    }
+  }
+
+  public clearData(): void {
+    DataLoader.cachedData[this.key] = undefined
+    this.notifyChanges()
+  }
+
   public destroy(): void {
+    this.cancel?.()
     if (this.timeout) {
       clearTimeout(this.timeout)
     }
+    this.destroyed = true
+  }
+
+  public getObserversCount(): number {
+    return this.observerListeners.length
   }
 }
 

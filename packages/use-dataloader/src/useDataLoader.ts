@@ -1,6 +1,14 @@
-import { useEffect, useLayoutEffect, useMemo, useRef } from 'react'
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 import { useDataLoaderContext } from './DataLoaderProvider'
 import { StatusEnum } from './constants'
+import DataLoader from './dataloader'
 import { PromiseType, UseDataLoaderConfig, UseDataLoaderResult } from './types'
 
 /**
@@ -22,43 +30,43 @@ const useDataLoader = <T>(
     maxDataLifetime,
   }: UseDataLoaderConfig<T> = {},
 ): UseDataLoaderResult<T> => {
-  const {
-    addRequest,
-    getCachedData,
-    getRequest,
-    onError: onErrorProvider,
-  } = useDataLoaderContext()
+  const isMountedRef = useRef(false)
+  const isFetchingRef = useRef(false)
+  const unsubscribeRequestRef = useRef<() => void>()
+  const previousDataRef = useRef<T>()
+  const { getOrAddRequest, onError: onErrorProvider } = useDataLoaderContext()
+  const [, forceReload] = useState(0)
+  const subscribeFn = useCallback(() => {
+    forceReload(x => x + 1)
+  }, [])
 
-  const data = useMemo(
-    () => (getCachedData(fetchKey) || initialData) as T,
-    [getCachedData, fetchKey, initialData],
-  )
+  const request = useMemo(() => {
+    if (unsubscribeRequestRef.current) {
+      unsubscribeRequestRef.current()
+    }
 
-  const request = useMemo(
-    () =>
-      getRequest(fetchKey) ??
-      addRequest(fetchKey, {
-        key: fetchKey,
-        maxDataLifetime,
-        method,
-        pollingInterval,
-      }),
-    [
-      addRequest,
-      fetchKey,
-      getRequest,
+    const newRequest = getOrAddRequest(fetchKey, {
+      enabled,
+      keepPreviousData,
+      maxDataLifetime,
       method,
       pollingInterval,
-      maxDataLifetime,
-    ],
-  )
+    }) as DataLoader<T>
 
-  useEffect(() => {
-    if (enabled && request.status === StatusEnum.IDLE) {
-      // eslint-disable-next-line no-void
-      void request.load()
-    }
-  }, [request, enabled])
+    unsubscribeRequestRef.current = () => newRequest.removeObserver(subscribeFn)
+    newRequest.addObserver(subscribeFn)
+
+    return newRequest
+  }, [
+    enabled,
+    fetchKey,
+    getOrAddRequest,
+    maxDataLifetime,
+    method,
+    pollingInterval,
+    keepPreviousData,
+    subscribeFn,
+  ])
 
   useEffect(() => {
     if (request.method !== method) {
@@ -74,10 +82,6 @@ const useDataLoader = <T>(
   }, [onSuccess, onError, onErrorProvider, method, request])
 
   const cancelMethodRef = useRef<(() => void) | undefined>(request?.cancel)
-  const isMountedRef = useRef(false)
-  const isFetchingRef = useRef(false)
-
-  const previousDataRef = useRef<T>()
 
   const isLoading = useMemo(
     () => request.status === StatusEnum.LOADING,
@@ -116,20 +120,18 @@ const useDataLoader = <T>(
       if (isFetchingRef.current && cancelMethodRef.current) {
         cancelMethodRef.current()
       }
+      unsubscribeRequestRef.current?.()
     }
   }, [])
 
-  useEffect(
-    () => () => {
-      if (data !== previousDataRef.current) {
-        previousDataRef.current = data
-      }
-    },
-    [data, keepPreviousData],
-  )
+  useEffect(() => () => {
+    if (request.getData() !== previousDataRef.current && keepPreviousData) {
+      previousDataRef.current = request.getData()
+    }
+  })
 
   return {
-    data: (getCachedData(fetchKey) || initialData) as T,
+    data: request.getData() || (initialData as T),
     error: request?.error,
     isError,
     isIdle,
