@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.5.0 (2021-10-11)
+
+
+### Features
+
+* max concurrent request usedataloader ([#413](https://github.com/scaleway/scaleway-lib/issues/413)) ([ef91862](https://github.com/scaleway/scaleway-lib/commit/ef918626d889037289833372e084eff4233efd26))
+
+
+
 ## [2.4.0](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-dataloader@2.3.0...@scaleway/use-dataloader@2.4.0) (2021-09-28)
 
 
