@@ -20,10 +20,12 @@ const initialProps = {
     keepPreviousData: true,
   },
   key: 'test',
-  method: () =>
-    new Promise(resolve => {
-      setTimeout(() => resolve(true), PROMISE_TIMEOUT)
-    }),
+  method: jest.fn(
+    () =>
+      new Promise(resolve => {
+        setTimeout(() => resolve(true), PROMISE_TIMEOUT)
+      }),
+  ),
 }
 // eslint-disable-next-line react/prop-types
 const wrapper = ({ children }: { children?: React.ReactNode }) => (
@@ -42,7 +44,7 @@ const wrapperWithOnError =
 
 describe('useDataLoader', () => {
   test('should render correctly without options', async () => {
-    const { result, waitForNextUpdate, rerender } = renderHook<
+    const { result, waitForNextUpdate } = renderHook<
       UseDataLoaderHookProps,
       UseDataLoaderResult
     >(props => useDataLoader(props.key, props.method), {
@@ -51,11 +53,13 @@ describe('useDataLoader', () => {
     })
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBe(true)
-    rerender()
+    expect(result.current.previousData).toBe(undefined)
     await waitForNextUpdate()
-    expect(result.current.data).toBe(true)
-    expect(result.current.isSuccess).toBe(true)
+    expect(initialProps.method).toBeCalledTimes(1)
     expect(result.current.isLoading).toBe(false)
+    expect(result.current.isSuccess).toBe(true)
+    expect(result.current.previousData).toBe(undefined)
+    expect(result.current.data).toBe(true)
   })
 
   test('should render correctly without valid key', () => {
@@ -83,6 +87,7 @@ describe('useDataLoader', () => {
         config: {
           keepPreviousData: false,
         },
+        key: 'test-2',
       },
       wrapper,
     })
@@ -101,6 +106,7 @@ describe('useDataLoader', () => {
     >(props => useDataLoader(props.key, props.method, props.config), {
       initialProps: {
         ...initialProps,
+        key: 'test-3',
         method: () =>
           new Promise(resolve =>
             setTimeout(() => resolve(null), PROMISE_TIMEOUT),
@@ -123,7 +129,7 @@ describe('useDataLoader', () => {
     >(
       props => [
         useDataLoader(props.key, props.method, props.config),
-        useDataLoader('test-2', props.method, {
+        useDataLoader('test-4', props.method, {
           ...props.config,
           enabled: false,
         }),
@@ -160,7 +166,10 @@ describe('useDataLoader', () => {
       UseDataLoaderHookProps,
       ReturnType<typeof useDataLoader>
     >(props => useDataLoader(props.key, props.method, props.config), {
-      initialProps,
+      initialProps: {
+        ...initialProps,
+        key: 'test-5',
+      },
       wrapper,
     })
     expect(result.current.data).toBe(undefined)
@@ -190,7 +199,7 @@ describe('useDataLoader', () => {
   test('should render correctly with key update', async () => {
     const propsToPass = {
       ...initialProps,
-      key: 'test',
+      key: 'test-key-update',
     }
     const { result, waitForNextUpdate, rerender } = renderHook<
       UseDataLoaderHookProps,
@@ -225,7 +234,7 @@ describe('useDataLoader', () => {
       config: {
         pollingInterval: PROMISE_TIMEOUT,
       },
-      key: 'test',
+      key: 'test-6',
       method: jest.fn(
         () =>
           new Promise(resolve => {
@@ -316,6 +325,7 @@ describe('useDataLoader', () => {
         config: {
           enabled: false,
         },
+        key: 'test-7',
       },
       wrapper,
     })
@@ -347,6 +357,7 @@ describe('useDataLoader', () => {
         config: {
           onSuccess,
         },
+        key: 'test-8',
       },
       wrapper,
     })
@@ -371,7 +382,7 @@ describe('useDataLoader', () => {
           onError,
           onSuccess,
         },
-        key: 'test',
+        key: 'test-9',
         method: () =>
           new Promise((resolve, reject) => {
             setTimeout(() => {
@@ -384,9 +395,9 @@ describe('useDataLoader', () => {
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBe(true)
     await waitForNextUpdate()
-    expect(result.current.data).toBe(undefined)
     expect(result.current.error).toBe(error)
     expect(result.current.isError).toBe(true)
+    expect(result.current.data).toBe(undefined)
 
     expect(onError).toBeCalledTimes(1)
     expect(onError).toBeCalledWith(error)
@@ -407,7 +418,7 @@ describe('useDataLoader', () => {
           onError,
           onSuccess,
         },
-        key: 'test',
+        key: 'test-10',
         method: () =>
           new Promise((_, reject) => {
             setTimeout(() => {
@@ -442,7 +453,7 @@ describe('useDataLoader', () => {
         config: {
           onSuccess,
         },
-        key: 'test',
+        key: 'test-11',
         method: () =>
           new Promise((_, reject) => {
             setTimeout(() => {
@@ -481,7 +492,7 @@ describe('useDataLoader', () => {
           onError,
           onSuccess,
         },
-        key: 'test',
+        key: 'test-12',
         method: () =>
           new Promise((resolve, reject) => {
             setTimeout(() => {
@@ -498,9 +509,9 @@ describe('useDataLoader', () => {
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBe(true)
     await waitForNextUpdate()
-    expect(result.current.data).toBe(undefined)
     expect(result.current.error).toBe(error)
     expect(result.current.isError).toBe(true)
+    expect(result.current.data).toBe(undefined)
 
     expect(onError).toBeCalledTimes(1)
     expect(onSuccess).toBeCalledTimes(0)
@@ -531,7 +542,10 @@ describe('useDataLoader', () => {
         }),
       ],
       {
-        initialProps,
+        initialProps: {
+          ...initialProps,
+          key: 'test-13',
+        },
         wrapper,
       },
     )
@@ -539,8 +553,8 @@ describe('useDataLoader', () => {
     expect(result.current[0].data).toBe(undefined)
     expect(result.current[0].isLoading).toBe(true)
     expect(result.current[1].data).toBe(undefined)
-    expect(result.current[1].isIdle).toBe(false)
     expect(result.current[1].isLoading).toBe(true)
+    expect(result.current[1].isIdle).toBe(false)
     await waitForNextUpdate()
     expect(result.current[0].data).toBe(true)
     expect(result.current[0].isSuccess).toBe(true)
@@ -580,6 +594,7 @@ describe('useDataLoader', () => {
       {
         initialProps: {
           ...initialProps,
+          key: 'test-15',
           method: mockedFn,
         },
         wrapper,
@@ -630,7 +645,10 @@ describe('useDataLoader', () => {
           props.config,
         ),
       {
-        initialProps,
+        initialProps: {
+          ...initialProps,
+          key: 'test-16',
+        },
         wrapper,
       },
     )
@@ -667,7 +685,10 @@ describe('useDataLoader', () => {
           props.config,
         ),
       {
-        initialProps,
+        initialProps: {
+          ...initialProps,
+          key: 'test-17',
+        },
         wrapper,
       },
     )

@@ -63,6 +63,12 @@ ReactDOM.render(
 )
 ```
 
+#### `maxConcurrentRequests`
+
+You can specify a `maxConcurrentRequests` which will prevent DataLoader to launch request simultaneously and wait some to finish before start next ones.
+
+This can be useful if you want to limit the number of concurrent requests.
+
 #### `onError(err: Error): void | Promise<void>`
 
 This is a global `onError` handler. It will be overriden if you specify one in `useDataLoader`
