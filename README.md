@@ -78,6 +78,12 @@ scaleway-lib is a set of NPM packages used at Scaleway.
   ![npm bundle size](https://img.shields.io/bundlephobia/min/@scaleway/regex)
   ![npm](https://img.shields.io/npm/v/@scaleway/regex)
 
+- [`@scaleway/jest-helpers`](./packages/jest-helpers/README.md): utilities jest functions.
+
+  ![npm](https://img.shields.io/npm/dm/@scaleway/jest-helpers)
+  ![npm bundle size](https://img.shields.io/bundlephobia/min/@scaleway/jest-helpers)
+  ![npm](https://img.shields.io/npm/v/@scaleway/jest-helpers)
+
 ## Development
 
 ### Locally
