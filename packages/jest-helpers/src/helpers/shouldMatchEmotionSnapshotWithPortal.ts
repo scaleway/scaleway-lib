@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { RenderOptions, render } from '@testing-library/react'
 import { ReactNode } from 'react'
 import { RenderWithThemeFn } from './renderWithTheme'
