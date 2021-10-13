@@ -69,9 +69,9 @@ Automatically uses `CacheProvider` from `@emotion/cache`. Use it with a componen
 
 ```tsx
 const renderWithTheme = (
-  component: ReactNode,
-  options?: RenderOptions,
-  theme?: Theme,
+  component: ReactNode, // The component to render
+  options?: RenderOptions, // RenderOptions from @testing-library/react
+  theme?: Theme, // Optional theme to use which will be passed to the Wrapper above
 ) => ReturnType<typeof render>
 ```
 
@@ -81,11 +81,11 @@ Internally it uses the `renderWithTheme` generated from above.
 
 ```tsx
 const shouldMatchEmotionSnapshot = (
-  component: ReactNode,
-  options: {
-    options?: RenderOptions
-    transform?: (node: ReturnType<typeof render>) => Promise<void> | void
-    theme?: Theme
+  component: ReactNode, // The component to render
+  options: { // In an object to make it backward-compatible and don't introduce any API breaking changes
+    options?: RenderOptions // RenderOptions from @testing-library/react
+    transform?: (node: ReturnType<typeof render>) => Promise<void> | void // (a)sync function execute between the render and the expect. You can use this if you need mockAllIsIntersecting
+    theme?: Theme // Optional theme to use which will be passed to the Wrapper above
   },
 ) => Promise<void>
 ```
