@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/jsx-props-no-spreading */
 import createCache from '@emotion/cache'
 import { CacheProvider } from '@emotion/react'
