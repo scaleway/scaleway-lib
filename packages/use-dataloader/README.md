@@ -241,3 +241,5 @@ const useDataLoader = (
 |     data     |     return the `initialData` if no data is fetched or not present in the cache otherwise return the data fetched      |
 |    error     |                                      return the error occured during the request                                      |
 |    reload    |                            allow you to reload the data (it doesn't clear the actual data)                            |
+
+
