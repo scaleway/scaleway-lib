@@ -1,0 +1,30 @@
+{
+  "name": "@scaleway/jest-helpers",
+  "version": "1.0.0",
+  "description": "A package for utilities jest functions",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scaleway/scaleway-lib",
+    "directory": "packages/jest-helpers"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@emotion/cache": "^11.1.3",
+    "@emotion/jest": "^11.3.0",
+    "@emotion/react": "^11.1.4",
+    "@testing-library/react": "^12.1.2"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.27"
+  },
+  "peerDependencies": {
+    "react": "^17.0.1"
+  }
+}
