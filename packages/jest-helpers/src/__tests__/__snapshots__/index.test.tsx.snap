@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@jest-helpers should call tranform with shouldMatchEmotionSnapshot 1`] = `
+<DocumentFragment>
+  <div
+    id="wrapper"
+  >
+    <div
+      id="test"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`@jest-helpers should call transform with shouldMatchEmotionSnapshot 1`] = `
+<DocumentFragment>
+  <div
+    id="wrapper"
+  >
+    <div
+      id="test"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`@jest-helpers should render with renderWithTheme 1`] = `
+<div
+  data-testid="test"
+/>
+`;
+
+exports[`@jest-helpers should render with shouldMatchEmotionSnapshot 1`] = `
+<DocumentFragment>
+  <div
+    id="wrapper"
+  >
+    <div
+      id="test"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`@jest-helpers should render with shouldMatchEmotionSnapshotWithPortal 1`] = `
+<DocumentFragment>
+  <div
+    id="wrapper"
+  >
+    <div
+      id="test"
+    />
+  </div>
+</DocumentFragment>
+`;
