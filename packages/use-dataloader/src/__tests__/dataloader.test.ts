@@ -189,21 +189,22 @@ describe('Dataloader class', () => {
     const instance = new DataLoader({
       key: 'test',
       method,
-      pollingInterval: PROMISE_TIMEOUT,
+      pollingInterval: PROMISE_TIMEOUT * 2,
     })
     await instance.load()
     expect(method).toBeCalledTimes(1)
-    await new Promise(resolve => setTimeout(resolve, PROMISE_TIMEOUT * 2))
+    await new Promise(resolve => setTimeout(resolve, PROMISE_TIMEOUT * 3))
     expect(method).toBeCalledTimes(2)
-    await new Promise(resolve => setTimeout(resolve, PROMISE_TIMEOUT * 2))
+    await new Promise(resolve => setTimeout(resolve, PROMISE_TIMEOUT * 3))
     expect(method).toBeCalledTimes(3)
     await instance.load()
     await instance.load()
-    await instance.load()
+    await new Promise(resolve => setTimeout(resolve))
     expect(method).toBeCalledTimes(4)
     await instance.load()
     await instance.load()
     await instance.load(true)
+    await new Promise(resolve => setTimeout(resolve))
     expect(method).toBeCalledTimes(6)
     instance.destroy()
   })
