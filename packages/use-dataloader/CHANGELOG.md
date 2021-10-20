@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.5.2 (2021-10-20)
+
+
+### Bug Fixes
+
+* useeffect that handle enable change ([#440](https://github.com/scaleway/scaleway-lib/issues/440)) ([9be4809](https://github.com/scaleway/scaleway-lib/commit/9be48092aa40910d57b60ca1f6eb854638677ecc))
+
+
+
 ### [2.5.1](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-dataloader@2.5.0...@scaleway/use-dataloader@2.5.1) (2021-10-13)
 
 
