@@ -62,6 +62,46 @@ describe('useDataLoader', () => {
     expect(result.current.data).toBe(true)
   })
 
+  test('should render correctly without requets enabled then enable it', async () => {
+    const method = jest.fn(
+      () =>
+        new Promise(resolve => {
+          setTimeout(() => resolve(true), PROMISE_TIMEOUT)
+        }),
+    )
+    let enabled = false
+    const { rerender, result, waitForNextUpdate } = renderHook<
+      UseDataLoaderHookProps,
+      UseDataLoaderResult
+    >(
+      props =>
+        useDataLoader(props.key, props.method, {
+          enabled,
+        }),
+      {
+        initialProps: {
+          ...initialProps,
+          key: 'test-not-enabled-then-reload',
+          method,
+        },
+        wrapper,
+      },
+    )
+    expect(result.current.data).toBe(undefined)
+    expect(result.current.isLoading).toBe(false)
+    expect(method).toBeCalledTimes(0)
+    enabled = true
+    rerender()
+    expect(method).toBeCalledTimes(1)
+    expect(result.current.data).toBe(undefined)
+    expect(result.current.isLoading).toBe(true)
+    await waitForNextUpdate()
+    expect(result.current.isLoading).toBe(false)
+    expect(result.current.isSuccess).toBe(true)
+    expect(result.current.previousData).toBe(undefined)
+    expect(result.current.data).toBe(true)
+  })
+
   test('should render correctly without valid key', () => {
     const { result } = renderHook<UseDataLoaderHookProps, UseDataLoaderResult>(
       props => useDataLoader(props.key, props.method),

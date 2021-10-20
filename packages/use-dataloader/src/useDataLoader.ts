@@ -105,6 +105,12 @@ const useDataLoader = <T>(
   )
 
   useEffect(() => {
+    if (enabled && isIdle) {
+      request.launch?.()
+    }
+  }, [request, enabled, isIdle])
+
+  useEffect(() => {
     isFetchingRef.current = isLoading || isPolling
   }, [isLoading, isPolling])
 
