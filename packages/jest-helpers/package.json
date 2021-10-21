@@ -21,9 +21,6 @@
     "@emotion/react": "^11.1.4",
     "@testing-library/react": "^12.1.2"
   },
-  "devDependencies": {
-    "@types/react": "^17.0.27"
-  },
   "peerDependencies": {
     "react": "^17.0.1"
   }
