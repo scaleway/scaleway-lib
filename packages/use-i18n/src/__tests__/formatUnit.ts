@@ -41,12 +41,6 @@ const tests = [
     'fr',
     12,
   ]),
-  ...Object.keys(supportedUnits).map(unit => [
-    'should work with large values',
-    { unit },
-    'fr',
-    13876876883167813487687341,
-  ]),
 ]
 
 describe('formatUnit', () => {

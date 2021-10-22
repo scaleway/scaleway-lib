@@ -41,7 +41,7 @@ const useQueryParams = (): {
   )
 
   const stringyFormat = useCallback(
-    (params): string =>
+    (params: Record<string, unknown>): string =>
       stringify(params, {
         arrayFormat: 'comma',
         skipEmptyString: true,
