@@ -52,7 +52,7 @@ function createFastMemoizeCache<V>(): Cache<string, V> {
 }
 
 const baseFormatters: BaseFormatters = {
-  getDateTimeFormat: memoize((...args) => new Intl.DateTimeFormat(...args), {
+  getDateTimeFormat: memoize((...args: ConstructorParameters<typeof Intl.DateTimeFormat>) => new Intl.DateTimeFormat(...args), {
     cache: createFastMemoizeCache<Intl.DateTimeFormat>(),
     strategy: strategies.variadic,
   }),
@@ -62,11 +62,11 @@ const baseFormatters: BaseFormatters = {
     cache: createFastMemoizeCache<IntlListFormat>(),
     strategy: strategies.variadic,
   }),
-  getNumberFormat: memoize((...args) => new Intl.NumberFormat(...args), {
+  getNumberFormat: memoize((...args: ConstructorParameters<typeof Intl.NumberFormat>) => new Intl.NumberFormat(...args), {
     cache: createFastMemoizeCache<Intl.NumberFormat>(),
     strategy: strategies.variadic,
   }),
-  getPluralRules: memoize((...args) => new Intl.PluralRules(...args), {
+  getPluralRules: memoize((...args: ConstructorParameters<typeof Intl.PluralRules>) => new Intl.PluralRules(...args), {
     cache: createFastMemoizeCache<Intl.PluralRules>(),
     strategy: strategies.variadic,
   }),
