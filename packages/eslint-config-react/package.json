@@ -28,6 +28,6 @@
     "eslint-plugin-react-hooks": "4.2.0"
   },
   "peerDependencies": {
-    "eslint": "7.x"
+    "eslint": "7.x || 8.x"
   }
 }
