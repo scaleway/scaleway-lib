@@ -111,6 +111,12 @@ const useDataLoader = <T>(
   }, [request, enabled, isIdle])
 
   useEffect(() => {
+    if (pollingInterval !== request.pollingInterval) {
+      request.setPollingInterval(pollingInterval)
+    }
+  }, [pollingInterval, request])
+
+  useEffect(() => {
     isFetchingRef.current = isLoading || isPolling
   }, [isLoading, isPolling])
 
