@@ -19,6 +19,8 @@ class DataLoader<T = unknown> {
 
   public key: string
 
+  private enabled: boolean
+
   public status: StatusEnum
 
   public pollingInterval?: number
@@ -53,24 +55,26 @@ class DataLoader<T = unknown> {
 
   public constructor(args: DataLoaderConstructorArgs<T>) {
     this.key = args.key
+    this.enabled = args.enabled ?? false
     this.status = args.enabled ? StatusEnum.LOADING : StatusEnum.IDLE
     this.method = args.method
     this.pollingInterval = args?.pollingInterval
     this.keepPreviousData = args?.keepPreviousData
     this.maxDataLifetime = args.maxDataLifetime
     if (args.enabled) {
-      const tryLaunch = () => {
-        if (DataLoader.started < DataLoader.maxConcurrent) {
-          // Because we want to launch the request directly without waiting the return
-          // eslint-disable-next-line no-void
-          void this.load()
-        } else {
-          setTimeout(tryLaunch)
-        }
-      }
-      tryLaunch()
+      this.tryLaunch()
     } else {
       this.notifyChanges()
+    }
+  }
+
+  private tryLaunch(): void {
+    if (DataLoader.started < DataLoader.maxConcurrent) {
+      // Because we want to launch the request directly without waiting the return
+      // eslint-disable-next-line no-void
+      void this.load()
+    } else {
+      setTimeout(() => this.tryLaunch())
     }
   }
 
@@ -222,6 +226,13 @@ class DataLoader<T = unknown> {
 
   public getObserversCount(): number {
     return this.observerListeners.length
+  }
+
+  public setPollingInterval(newPollingInterval?: number): void {
+    this.pollingInterval = newPollingInterval
+    if (this.enabled) {
+      this.tryLaunch()
+    }
   }
 }
 

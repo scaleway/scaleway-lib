@@ -206,6 +206,7 @@ describe('Dataloader class', () => {
     await instance.load(true)
     await new Promise(resolve => setTimeout(resolve))
     expect(method).toBeCalledTimes(6)
+    instance.setPollingInterval(PROMISE_TIMEOUT * 4)
     instance.destroy()
   })
 

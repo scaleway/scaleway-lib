@@ -320,10 +320,7 @@ describe('useDataLoader', () => {
       },
       method: method2,
     })
-    act(() => {
-      // eslint-disable-next-line no-void
-      void result.current.reload()
-    })
+    await waitForNextUpdate()
     expect(result.current.data).toBe(true)
     expect(result.current.isPolling).toBe(true)
     expect(result.current.isLoading).toBe(true)
