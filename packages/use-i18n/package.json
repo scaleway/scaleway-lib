@@ -29,7 +29,7 @@
   "dependencies": {
     "@formatjs/fast-memoize": "1.2.0",
     "date-fns": "2.25.0",
-    "filesize": "8.0.3",
+    "filesize": "8.0.6",
     "intl-messageformat": "9.9.4",
     "prop-types": "15.7.2"
   },
