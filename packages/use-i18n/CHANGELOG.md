@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 3.1.13 (2021-11-03)
+
+
+### Bug Fixes
+
+* **deps:** update dependency filesize to v8.0.6 ([#461](https://github.com/scaleway/scaleway-lib/issues/461)) ([ede6966](https://github.com/scaleway/scaleway-lib/commit/ede69667dd04f01a9a137c3561649fc7e4e6eb01))
+
+
+
 ### 3.1.12 (2021-10-25)
 
 
