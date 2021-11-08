@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.3.1 (2021-11-08)
+
+
+### Bug Fixes
+
+* **deps:** update dependency eslint-config-airbnb-typescript to v15 ([#470](https://github.com/scaleway/scaleway-lib/issues/470)) ([ff026cb](https://github.com/scaleway/scaleway-lib/commit/ff026cb6beec29086efafe960af6dbd7d29e1bbc))
+* **deps:** update typescript-eslint monorepo to v5.3.0 ([#457](https://github.com/scaleway/scaleway-lib/issues/457)) ([528f1f0](https://github.com/scaleway/scaleway-lib/commit/528f1f0ee01aec7e8c87887932319edd66197766))
+
+
+
 ## [2.3.0](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@2.2.5...@scaleway/eslint-config-react@2.3.0) (2021-10-22)
 
 
