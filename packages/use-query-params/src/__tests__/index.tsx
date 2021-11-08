@@ -33,7 +33,7 @@ const wrapper =
 
 
 describe('useQueryParam', () => {
-  it.only('should correctly push instead of replacing history', () => {
+  it('should correctly push instead of replacing history', () => {
     const history = createMemoryHistory({
       initialEntries: ['/one?user=john'],
       initialIndex: 1,
