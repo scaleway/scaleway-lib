@@ -42,8 +42,8 @@ const getConfig = (pkg, isBrowser = false) => {
           '@babel/plugin-transform-react-jsx',
         ],
         presets: [
-          '@babel/preset-typescript',
           ['@babel/env', { modules: false, targets }],
+          '@babel/preset-typescript',
         ],
       }),
       nodeResolve({
