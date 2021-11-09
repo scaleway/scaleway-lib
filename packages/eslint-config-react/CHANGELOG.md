@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.3.2 (2021-11-09)
+
+
+### Bug Fixes
+
+* **deps:** update dependency eslint-plugin-react-hooks to v4.3.0 ([#482](https://github.com/scaleway/scaleway-lib/issues/482)) ([da0e98b](https://github.com/scaleway/scaleway-lib/commit/da0e98b7a4630d34616fcae35aaa21b437cf35c0))
+* **deps:** update typescript-eslint monorepo to v5.3.1 ([#481](https://github.com/scaleway/scaleway-lib/issues/481)) ([ab41d48](https://github.com/scaleway/scaleway-lib/commit/ab41d4874d6484fe0b73be9ed25ca9e6b8f4a47d))
+
+
+
 ### 2.3.1 (2021-11-08)
 
 
