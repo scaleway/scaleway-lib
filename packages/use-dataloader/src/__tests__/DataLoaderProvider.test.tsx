@@ -7,10 +7,10 @@ import { KEY_IS_NOT_STRING_ERROR, StatusEnum } from '../constants'
 const TEST_KEY = 'test'
 const PROMISE_TIMEOUT = 5
 const fakePromise = () =>
-  new Promise(resolve => setTimeout(() => resolve(true), PROMISE_TIMEOUT))
+  new Promise(resolve => { setTimeout(() => resolve(true), PROMISE_TIMEOUT) })
 
 const fakeNullPromise = () =>
-  new Promise(resolve => setTimeout(() => resolve(null), PROMISE_TIMEOUT))
+  new Promise(resolve => { setTimeout(() => resolve(null), PROMISE_TIMEOUT) })
 
 const wrapper = ({ children }: { children: ReactNode }) => (
   <DataLoaderProvider>{children}</DataLoaderProvider>
@@ -180,7 +180,7 @@ describe('DataLoaderProvider', () => {
 
   test('should delay max concurrent request', async () => {
     const method = jest.fn(
-      () => new Promise(resolve => setTimeout(() => resolve(true), 100)),
+      () => new Promise(resolve => { setTimeout(() => resolve(true), 100) }),
     )
     const { result, waitFor } = renderHook(useDataLoaderContext, {
       wrapper: wrapperWith2ConcurrentRequests,

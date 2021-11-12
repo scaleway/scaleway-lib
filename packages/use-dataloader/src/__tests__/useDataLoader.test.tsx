@@ -148,9 +148,9 @@ describe('useDataLoader', () => {
         ...initialProps,
         key: 'test-3',
         method: () =>
-          new Promise(resolve =>
-            setTimeout(() => resolve(null), PROMISE_TIMEOUT),
-          ),
+          new Promise(resolve => {
+            setTimeout(() => resolve(null), PROMISE_TIMEOUT)
+          })
       },
       wrapper,
     })
