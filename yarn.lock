@@ -4993,10 +4993,10 @@ internal-slot@^1.0.3:
     has "^1.0.3"
     side-channel "^1.0.4"
 
-intl-messageformat@9.9.4:
-  version "9.9.4"
-  resolved "https://registry.yarnpkg.com/intl-messageformat/-/intl-messageformat-9.9.4.tgz#e4a9c06a2036efcc2c6a20f30d13bcc77da6c6f0"
-  integrity sha512-+Mz5LMTV+JCybFBym69z+XnE47wnIjHC31Jz7We6SE0yKyjf/neaWAFz8teuT6OUw/AW3Orr5LO4SHVNXl5keg==
+intl-messageformat@9.9.5:
+  version "9.9.5"
+  resolved "https://registry.yarnpkg.com/intl-messageformat/-/intl-messageformat-9.9.5.tgz#3a00b93a6830aa09649b37d5ef2d995393b358f5"
+  integrity sha512-pdKpqhiD0P8yqblu1qetOOL8SnJ62SGdvxwYPvSmuYMN3BawEV5UnJuRcsIwwXYJAGYoICiOJl3gexuuH+RLXw==
   dependencies:
     "@formatjs/fast-memoize" "1.2.0"
     "@formatjs/icu-messageformat-parser" "2.0.14"
