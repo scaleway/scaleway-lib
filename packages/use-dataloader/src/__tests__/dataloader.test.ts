@@ -51,12 +51,12 @@ describe('Dataloader class', () => {
     expect(notify).toBeCalledTimes(0)
     expect(method).toBeCalledTimes(1)
     await instance.cancel()
-    await new Promise(resolve =>
+    await new Promise(resolve => {
       setTimeout(() => {
         expect(notify).toBeCalledTimes(1)
         resolve(true)
-      }, PROMISE_TIMEOUT),
-    )
+      }, PROMISE_TIMEOUT)
+    })
     expect(instance.getData()).toBe(undefined)
     instance.clearData()
   })
@@ -73,12 +73,12 @@ describe('Dataloader class', () => {
     expect(instance.status).toBe(StatusEnum.LOADING)
     expect(notify).toBeCalledTimes(0)
     expect(method).toBeCalledTimes(1)
-    await new Promise(resolve =>
+    await new Promise(resolve => {
       setTimeout(() => {
         expect(notify).toBeCalledTimes(1)
         resolve(true)
-      }, PROMISE_TIMEOUT),
-    )
+      }, PROMISE_TIMEOUT)
+    })
     expect(instance.getData()).toBe(true)
     instance.getObserversCount()
     instance.removeObserver(notify)
@@ -95,11 +95,11 @@ describe('Dataloader class', () => {
     })
     expect(instance.status).toBe(StatusEnum.LOADING)
     expect(method).toBeCalledTimes(1)
-    await new Promise(resolve =>
+    await new Promise(resolve => {
       setTimeout(() => {
         resolve(true)
-      }, PROMISE_TIMEOUT),
-    )
+      }, PROMISE_TIMEOUT)
+    })
     expect(instance.getData()).toBe(undefined)
   })
   test('should create instance enabled with undefined data', async () => {
@@ -111,11 +111,11 @@ describe('Dataloader class', () => {
     })
     expect(instance.status).toBe(StatusEnum.LOADING)
     expect(method).toBeCalledTimes(1)
-    await new Promise(resolve =>
+    await new Promise(resolve => {
       setTimeout(() => {
         resolve(true)
-      }, PROMISE_TIMEOUT),
-    )
+      }, PROMISE_TIMEOUT)
+    })
     expect(instance.getData()).toBe(undefined)
   })
 
@@ -193,18 +193,18 @@ describe('Dataloader class', () => {
     })
     await instance.load()
     expect(method).toBeCalledTimes(1)
-    await new Promise(resolve => setTimeout(resolve, PROMISE_TIMEOUT * 3))
+    await new Promise(resolve => { setTimeout(resolve, PROMISE_TIMEOUT * 3) })
     expect(method).toBeCalledTimes(2)
-    await new Promise(resolve => setTimeout(resolve, PROMISE_TIMEOUT * 3))
+    await new Promise(resolve => { setTimeout(resolve, PROMISE_TIMEOUT * 3) })
     expect(method).toBeCalledTimes(3)
     await instance.load()
     await instance.load()
-    await new Promise(resolve => setTimeout(resolve))
+    await new Promise(resolve => { setTimeout(resolve) })
     expect(method).toBeCalledTimes(4)
     await instance.load()
     await instance.load()
     await instance.load(true)
-    await new Promise(resolve => setTimeout(resolve))
+    await new Promise(resolve => { setTimeout(resolve) })
     expect(method).toBeCalledTimes(6)
     instance.setPollingInterval(PROMISE_TIMEOUT * 4)
     instance.destroy()
@@ -222,12 +222,12 @@ describe('Dataloader class', () => {
     instance.addOnSuccessListener(onSuccess)
     expect(instance.status).toBe(StatusEnum.LOADING)
     expect(method).toBeCalledTimes(1)
-    await new Promise(resolve => setTimeout(resolve, PROMISE_TIMEOUT))
+    await new Promise(resolve => { setTimeout(resolve, PROMISE_TIMEOUT) })
     expect(onSuccess).toBeCalledTimes(1)
     await instance.load()
     expect(method).toBeCalledTimes(1)
     expect(onSuccess).toBeCalledTimes(1)
-    await new Promise(resolve => setTimeout(resolve, PROMISE_TIMEOUT * 2))
+    await new Promise(resolve => { setTimeout(resolve, PROMISE_TIMEOUT * 2) })
     await instance.load()
     expect(method).toBeCalledTimes(2)
     expect(onSuccess).toBeCalledTimes(2)
@@ -245,7 +245,7 @@ describe('Dataloader class', () => {
       expect(instance.status).toBe(StatusEnum.LOADING)
     }
     // Because wait for setTimeout tryLaunch in dataloader.ts
-    await new Promise(resolve => setTimeout(resolve))
+    await new Promise(resolve => { setTimeout(resolve) })
     expect(method).toBeCalledTimes(2)
   })
 })
