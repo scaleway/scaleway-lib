@@ -1,5 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks'
-import randomName, { useRandomName } from '..'
+import randomName from '..'
 
 describe('randomName', () => {
   it('should return a random name separated by a dash', () => {
@@ -28,20 +27,4 @@ describe('randomName', () => {
       expect.arrayContaining([expect.stringMatching('boring-wozniak')]),
     )
   })
-
-  describe('useRandomName', () => {
-    beforeAll(() => {
-      jest.spyOn(global.Math, 'random').mockReturnValue(0.4155913669444804)
-    })
-
-    afterAll(() => {
-      jest.spyOn(global.Math, 'random').mockRestore()
-    })
-
-    it('useTranslation should not be defined without I18nProvider', () => {
-      const { result } = renderHook(() => useRandomName())
-      expect(result.current).toMatchSnapshot()
-    })
-  })
-
 })

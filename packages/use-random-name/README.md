@@ -9,13 +9,28 @@ Fully inspired by [Moby name generator](https://github.com/moby/moby/blob/master
 ## Install
 
 ```bash
-$ yarn add @scaleway/random-name
+$ yarn add @scaleway/use-random-name
 ```
 
 ## Usage
 
+As a React hook
 ```js
-import randomName from '@scaleway/random-name'
+import React from 'react'
+import useRandomName from '@scaleway/random-name'
+
+const Component = () => {
+  const name = useRandomName()
+
+  return (
+    <span>{name}</span>
+  )
+}
+```
+
+You can also access the underlying @scaleway/random-name package with a named export
+```js
+import { randomName } from '@scaleway/use-random-name'
 
 // randomName(prefix: string = '', separator: string = '-'): string
 

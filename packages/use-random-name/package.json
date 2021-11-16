@@ -1,7 +1,7 @@
 {
-  "name": "@scaleway/random-name",
-  "version": "2.1.1",
-  "description": "A small utility to generate a random name",
+  "name": "@scaleway/use-random-name",
+  "version": "0.1.0",
+  "description": "A small react utility to generate a random name",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -15,7 +15,13 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/scaleway/scaleway-lib",
-    "directory": "packages/random-name"
+    "directory": "packages/use-random-name"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=16.8"
+  },
+  "dependencies": {
+    "@scaleway/random-name": "^2.1.1"
+  }
 }
