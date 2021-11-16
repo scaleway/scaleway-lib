@@ -6,7 +6,6 @@ import useQueryParams from '..'
 
 const wrapper =
   ({ pathname = '/one', search, history }: { pathname?: string, search: string, history?: History }) =>
-  // eslint-disable-next-line react/prop-types
   ({ children }: { children: ReactNode }) => {
 
     if (history) {
