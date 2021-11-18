@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.0.0 (2021-11-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* support react-router-dom v6 (#479)
+
+### Features
+
+* support react-router-dom v6 ([#479](https://github.com/scaleway/scaleway-lib/issues/479)) ([bf8fad2](https://github.com/scaleway/scaleway-lib/commit/bf8fad2c6e743def73cfde6688c883ecd0dfe149))
+
+
+
 ### 2.1.3 (2021-10-22)
 
 **Note:** Version bump only for package @scaleway/use-query-params
