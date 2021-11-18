@@ -1,7 +1,6 @@
-import { History } from 'history'
 import { ParsedQuery, parse, stringify } from 'query-string'
 import { useCallback, useMemo } from 'react'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 interface Options {
   /** Set to true to push a new entry onto the history stack */
@@ -25,10 +24,8 @@ const useQueryParams = (): {
    */
   setQueryParams: typeof setQueryParams
 } => {
-  // eslint-disable-next-line @typescript-eslint/unbound-method
-  const { replace, push } = useHistory<History>()
-  // eslint-disable-next-line @typescript-eslint/unbound-method
-  const location = useLocation<History>()
+  const navigate = useNavigate()
+  const location = useLocation()
 
   const currentState = useMemo(
     () =>
@@ -57,11 +54,10 @@ const useQueryParams = (): {
       const searchToCompare = location.search || '?'
 
       if (searchToCompare !== `?${stringifiedParams}`) {
-        const fn = options?.push ? push : replace
-        fn(`${location.pathname}?${stringifiedParams}`)
+        navigate(`${location.pathname}?${stringifiedParams}`, { replace: !options?.push })
       }
     },
-    [push, replace, location.pathname, location.search, stringyFormat],
+    [navigate, location.pathname, location.search, stringyFormat],
   )
 
   const setQueryParams = useCallback(
