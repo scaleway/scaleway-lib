@@ -1,5 +1,3 @@
-import { useCallback } from 'react'
-
 const ADJECTIVES = [
   'admiring',
   'adoring',
@@ -839,8 +837,4 @@ const randomName = (prefix = '', separator = '-'): string => {
   return prefix.length > 0 ? `${prefix}${separator}${name}` : name
 }
 
-const useRandomName = (prefix = '', separator = '-'): string =>
-  useCallback(() => randomName(prefix, separator), [prefix, separator])()
-
-export { useRandomName }
 export default randomName
