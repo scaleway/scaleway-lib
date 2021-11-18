@@ -1,30 +1,41 @@
 import { act, renderHook } from '@testing-library/react-hooks'
 import { History, createMemoryHistory } from 'history'
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useLayoutEffect, useState } from 'react'
 import { MemoryRouter, Router } from 'react-router-dom'
 import useQueryParams from '..'
 
 const wrapper =
-  ({ pathname = 'one', search, history }: { pathname?: string, search: string, history?: History }) =>
-  // eslint-disable-next-line react/prop-types
-  ({ children }: { children: ReactNode }) =>
-    (
-      history ? (
-        <Router history={history}>
+  ({ pathname = '/one', search, history }: { pathname?: string, search: string, history?: History }) =>
+  ({ children }: { children: ReactNode }) => {
+
+    if (history) {
+      const [state, setState] = useState({
+        action: history.action,
+        location: history.location
+      });
+
+      useLayoutEffect(() => history.listen(setState), []);
+
+      return (
+        <Router navigator={history} location={state.location} navigationType={state.action}>
           {children}
         </Router>
-      ) : (
-        <MemoryRouter initialIndex={0} initialEntries={[{ pathname, search }]}>
-          {children}
-        </MemoryRouter>
       )
+    }
+
+    return (
+      <MemoryRouter initialIndex={0} initialEntries={[{ pathname, search }]}>
+        {children}
+      </MemoryRouter>
     )
+  }
+
 
 describe('useQueryParam', () => {
   it('should correctly push instead of replacing history', () => {
     const history = createMemoryHistory({
-      initialEntries: ['user=john'],
-      initialIndex: 0,
+      initialEntries: ['/one?user=john'],
+      initialIndex: 1,
     })
 
     const { result } = renderHook(() => useQueryParams(), {
@@ -35,17 +46,17 @@ describe('useQueryParam', () => {
       result.current.setQueryParams({ user: 'John' })
     })
     expect(result.current.queryParams).toEqual({ user: 'John' })
-    expect(history.length).toBe(1)
+    expect(history.index).toBe(0)
     act(() => {
       result.current.setQueryParams({ user: 'Jack' })
     })
     expect(result.current.queryParams).toEqual({ user: 'Jack' })
-    expect(history.length).toBe(1)
+    expect(history.index).toBe(0)
     act(() => {
       result.current.setQueryParams({ user: 'Jerry' }, { push: true })
     })
     expect(result.current.queryParams).toEqual({ user: 'Jerry' })
-    expect(history.length).toBe(2)
+    expect(history.index).toBe(1)
   })
 
   it('should set one object', () => {

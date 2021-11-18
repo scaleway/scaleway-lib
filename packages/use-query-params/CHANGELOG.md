@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.0.1](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-query-params@3.0.0...@scaleway/use-query-params@3.0.1) (2021-11-18)
+
+
+### Bug Fixes
+
+* **deps:** update dependency react-router-dom to v6.0.2 ([#506](https://github.com/scaleway/scaleway-lib/issues/506)) ([bcf0938](https://github.com/scaleway/scaleway-lib/commit/bcf09381a4a62df74f8b170df3c2667415f941e9))
+
+
+
+## 3.0.0 (2021-11-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* support react-router-dom v6 (#479)
+
+### Features
+
+* support react-router-dom v6 ([#479](https://github.com/scaleway/scaleway-lib/issues/479)) ([bf8fad2](https://github.com/scaleway/scaleway-lib/commit/bf8fad2c6e743def73cfde6688c883ecd0dfe149))
+
+
+
 ### 2.1.3 (2021-10-22)
 
 **Note:** Version bump only for package @scaleway/use-query-params
