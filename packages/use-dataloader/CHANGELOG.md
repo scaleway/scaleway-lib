@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.5.6 (2021-11-16)
+
+
+### Bug Fixes
+
+* correct some eslint errors ([#490](https://github.com/scaleway/scaleway-lib/issues/490)) ([e8aecf6](https://github.com/scaleway/scaleway-lib/commit/e8aecf66db19e55623ff39d34a6d20076f151584))
+
+
+
 ### 2.5.5 (2021-10-27)
 
 
