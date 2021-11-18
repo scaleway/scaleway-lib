@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.2.0 (2021-11-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **random-name:** split package in two to offer a raw and a react hook version (#500)
+
+### Features
+
+* **random-name:** split package in two to offer a raw and a react hook version ([#500](https://github.com/scaleway/scaleway-lib/issues/500)) ([cf57f2e](https://github.com/scaleway/scaleway-lib/commit/cf57f2ed949198b68b73af0ee43945bebe59f39b))
+
+
+
 ### 2.1.1 (2021-10-21)
 
 **Note:** Version bump only for package @scaleway/random-name
