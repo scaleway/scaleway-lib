@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.1.23](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@3.1.22...@scaleway/use-i18n@3.1.23) (2021-11-22)
+
+
+### Bug Fixes
+
+* **deps:** update dependency date-fns to v2.26.0 ([#507](https://github.com/scaleway/scaleway-lib/issues/507)) ([2f1f58b](https://github.com/scaleway/scaleway-lib/commit/2f1f58b03ea8ce26c48c9417b09ebdf005724174))
+
+
+
 ### 3.1.22 (2021-11-18)
 
 
