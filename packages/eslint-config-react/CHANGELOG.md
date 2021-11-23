@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.0.0 (2021-11-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* update to eslint-airbnb v19 (#491)
+
+### Features
+
+* update to eslint-airbnb v19 ([#491](https://github.com/scaleway/scaleway-lib/issues/491)) ([d0e1385](https://github.com/scaleway/scaleway-lib/commit/d0e138501ae3c7fb59b8e5924504e8cef434070e))
+
+
+
 ### 2.3.2 (2021-11-09)
 
 
