@@ -51,13 +51,12 @@ module.exports = {
         prev: '*',
       },
     ],
+    // As we don't really care about the function type
+    'react/function-component-definition': 'off',
+
     // These are rules soon to be enabled by airbnb react config
     // We're getting a head start
-    'react/jsx-no-constructed-context-values': 'error', // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-constructed-context-values.md
-    'react/jsx-no-script-url': 'error', // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-script-url.md
-    'react/jsx-no-useless-fragment': 'error', // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-useless-fragment.md
     'react/no-adjacent-inline-elements': 'error', // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-adjacent-inline-elements.md
-    'react/no-unstable-nested-components': 'error', // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-unstable-nested-components.md
 
     // To have consistent ordering in proptypes
     'react/sort-prop-types': [
