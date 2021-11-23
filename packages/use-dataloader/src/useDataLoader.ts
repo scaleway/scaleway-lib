@@ -106,6 +106,8 @@ const useDataLoader = <T>(
 
   useEffect(() => {
     if (enabled && isIdle) {
+      // launch should never throw
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       request.launch?.()
     }
   }, [request, enabled, isIdle])

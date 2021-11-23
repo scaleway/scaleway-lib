@@ -186,6 +186,8 @@ const DataLoaderProvider = ({
       setTimeout(() => {
         Object.keys(requestsRef.current).forEach(key => {
           if (requestsRef.current[key].getObserversCount() === 0) {
+            // Worst case there is a memleak
+            // eslint-disable-next-line @typescript-eslint/no-floating-promises
             requestsRef.current[key].destroy()
             delete requestsRef.current[key]
           }

@@ -52,6 +52,8 @@ describe('DataLoaderProvider', () => {
     expect(testRequest).toBeDefined()
     expect(testRequest?.status).toBe(StatusEnum.IDLE)
     act(() => {
+      // launch should never throw
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       testRequest?.launch()
     })
     expect(method).toBeCalledTimes(1)
@@ -88,6 +90,8 @@ describe('DataLoaderProvider', () => {
     expect(testRequest).toBeDefined()
     expect(testRequest?.status).toBe(StatusEnum.IDLE)
     act(() => {
+      // launch should never throw
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       testRequest?.launch()
     })
     expect(method).toBeCalledTimes(1)
