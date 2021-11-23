@@ -3123,7 +3123,7 @@ __metadata:
   dependencies:
     "@typescript-eslint/eslint-plugin": 5.4.0
     "@typescript-eslint/parser": 5.4.0
-    eslint-config-airbnb: 19.0.0
+    eslint-config-airbnb: 19.0.1
     eslint-config-airbnb-typescript: 16.0.0
     eslint-config-prettier: 8.3.0
     eslint-plugin-import: 2.25.3
@@ -5450,9 +5450,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-airbnb@npm:19.0.0":
-  version: 19.0.0
-  resolution: "eslint-config-airbnb@npm:19.0.0"
+"eslint-config-airbnb@npm:19.0.1":
+  version: 19.0.1
+  resolution: "eslint-config-airbnb@npm:19.0.1"
   dependencies:
     eslint-config-airbnb-base: ^15.0.0
     object.assign: ^4.1.2
@@ -5461,9 +5461,9 @@ __metadata:
     eslint: ^7.32.0 || ^8.2.0
     eslint-plugin-import: ^2.25.3
     eslint-plugin-jsx-a11y: ^6.5.1
-    eslint-plugin-react: ^7.27.0
+    eslint-plugin-react: ^7.27.1
     eslint-plugin-react-hooks: ^4.3.0
-  checksum: e42dcc743d0e741c466dceaa26d7f92ba8d3ae110752694e4dedf9fdcab6b4390580817a315409b8f7c850892244fd18a337a1d5d4d2da8f529320cdb855548a
+  checksum: 87683958a0872954cdf59b51a1592f2ec3ad0dcb0a6321a1c5839b72c6cefbd03125f28a2452168052dee24be10fd20a70be73ee09b5b4ba93362491dc6eeb5a
   languageName: node
   linkType: hard
 
