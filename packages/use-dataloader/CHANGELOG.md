@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.5.7 (2021-11-23)
+
+
+### Bug Fixes
+
+* **use-dataloader:** ignore some eslint v8 errors ([#513](https://github.com/scaleway/scaleway-lib/issues/513)) ([8a53696](https://github.com/scaleway/scaleway-lib/commit/8a53696ce1fe178ebf14142f21448d79d023f6ae))
+
+
+
 ### 2.5.6 (2021-11-16)
 
 
