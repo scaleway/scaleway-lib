@@ -216,8 +216,8 @@ class DataLoader<T = unknown> {
     this.notifyChanges()
   }
 
-  public destroy(): void {
-    this.cancel?.()
+  public async destroy(): Promise<void> {
+    await this.cancel?.()
     if (this.timeout) {
       clearTimeout(this.timeout)
     }

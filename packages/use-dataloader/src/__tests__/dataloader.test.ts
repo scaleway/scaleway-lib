@@ -33,7 +33,7 @@ describe('Dataloader class', () => {
     expect(method).toBeCalledTimes(0)
     await instance.load()
     expect(method).toBeCalledTimes(1)
-    instance.destroy()
+    await instance.destroy()
     instance.clearData()
   })
 
@@ -207,7 +207,7 @@ describe('Dataloader class', () => {
     await new Promise(resolve => { setTimeout(resolve) })
     expect(method).toBeCalledTimes(6)
     instance.setPollingInterval(PROMISE_TIMEOUT * 4)
-    instance.destroy()
+    await instance.destroy()
   })
 
   test('should update outdated data', async () => {
