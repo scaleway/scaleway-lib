@@ -11,17 +11,22 @@ export const alphanumLowercase = /^[a-z0-9]+$/
 export const alphanumSpacesDotsUnderscoreDash = /^[a-zA-Z0-9-.\s_]*$/
 export const alphanumUnderscoreDash = /^[a-zA-Z0-9_-]*$/
 export const alphanumUnderscoreDollarDash = /^[a-zA-Z0-9_$-]*$/
+export const absoluteLinuxPath = /(^\/$|^(\/[a-zA-Z0-9_]+)*$)/
+
 // eslint-disable-next-line no-control-regex
 export const ascii = /^[\x00-\x7F]+$/
 export const backupKey = /^[A-Z0-9]{32}$/
 export const cron = /^[0-9,/*-]+$/
 export const digits = /^[0-9]*$/
-export const macAddress = /^([0-9a-fA-F][0-9a-fA-F]:){5}([0-9a-fA-F][0-9a-fA-F])$/
+export const macAddress =
+  /^([0-9a-fA-F][0-9a-fA-F]:){5}([0-9a-fA-F][0-9a-fA-F])$/
 // Used by W3C
-export const email = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+export const email =
+  /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 export const fourDigitsCode = /^[0-9]{4}$/
 export const phone = /^\+[0-9]*/
 export const spaces = /^\s*$/
 export const sixDigitsCode = /^[0-9]{6}$/
-export const url = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([-.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/
+export const url =
+  /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([-.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/
 export const hexadecimal = /^[0-9a-fA-F]+$/
