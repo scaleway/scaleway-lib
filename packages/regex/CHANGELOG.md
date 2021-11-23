@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.0 (2021-11-23)
+
+
+### Features
+
+* add absolute path regex ([#514](https://github.com/scaleway/scaleway-lib/issues/514)) ([f271d72](https://github.com/scaleway/scaleway-lib/commit/f271d7251198f2119480a02dce844a283452e061))
+
+
+
 ## 2.0.0 (2021-07-20)
 
 
