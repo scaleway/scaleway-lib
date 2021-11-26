@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 1.1.5 (2021-11-26)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @emotion/react to v11.7.0 ([#517](https://github.com/scaleway/scaleway-lib/issues/517)) ([a68b84b](https://github.com/scaleway/scaleway-lib/commit/a68b84b476e455d86036a2ddb59529183a99faf6))
+
+
+
 ### 1.1.4 (2021-11-18)
 
 
