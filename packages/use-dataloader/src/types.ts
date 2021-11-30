@@ -7,6 +7,7 @@ export type OnSuccessFn<T = unknown> =
   | ((result: T) => void | Promise<void>)
   | undefined
 export type OnCancelFn = (() => void | Promise<void>) | undefined
+export type NeedPollingType<T = unknown> = boolean | ((data: T) => boolean)
 
 /**
  * @typedef {Object} UseDataLoaderConfig
@@ -16,6 +17,7 @@ export type OnCancelFn = (() => void | Promise<void>) | undefined
  * @property {number} [pollingInterval] relaunch the request after the last success
  * @property {boolean} [enabled=true] launch request automatically (default true)
  * @property {boolean} [keepPreviousData=true] do we need to keep the previous data after reload (default true)
+ * @property {NeedPollingType} [needPolling=true] When pollingInterval is set you can set a set a custom callback to know if polling is enabled
  */
 export interface UseDataLoaderConfig<T = unknown> {
   enabled?: boolean
@@ -28,6 +30,7 @@ export interface UseDataLoaderConfig<T = unknown> {
    * Max time before data from previous success is considered as outdated (in millisecond)
    */
   maxDataLifetime?: number
+  needPolling?: NeedPollingType
 }
 
 /**

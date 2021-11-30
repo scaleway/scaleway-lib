@@ -193,20 +193,81 @@ describe('Dataloader class', () => {
     })
     await instance.load()
     expect(method).toBeCalledTimes(1)
-    await new Promise(resolve => { setTimeout(resolve, PROMISE_TIMEOUT * 3) })
+    await new Promise(resolve => {
+      setTimeout(resolve, PROMISE_TIMEOUT * 3)
+    })
     expect(method).toBeCalledTimes(2)
-    await new Promise(resolve => { setTimeout(resolve, PROMISE_TIMEOUT * 3) })
+    await new Promise(resolve => {
+      setTimeout(resolve, PROMISE_TIMEOUT * 3)
+    })
     expect(method).toBeCalledTimes(3)
     await instance.load()
     await instance.load()
-    await new Promise(resolve => { setTimeout(resolve) })
+    await new Promise(resolve => {
+      setTimeout(resolve)
+    })
     expect(method).toBeCalledTimes(4)
     await instance.load()
     await instance.load()
     await instance.load(true)
-    await new Promise(resolve => { setTimeout(resolve) })
+    await new Promise(resolve => {
+      setTimeout(resolve)
+    })
     expect(method).toBeCalledTimes(6)
     instance.setPollingInterval(PROMISE_TIMEOUT * 4)
+    await instance.destroy()
+  })
+
+  test('should create instance with polling and needPolling', async () => {
+    const method = jest.fn(fakeSuccessPromise)
+    const instance = new DataLoader({
+      key: 'test',
+      method,
+      needPolling: () => true,
+      pollingInterval: PROMISE_TIMEOUT * 2,
+    })
+    await instance.load()
+    expect(method).toBeCalledTimes(1)
+    await new Promise(resolve => {
+      setTimeout(resolve, PROMISE_TIMEOUT * 3)
+    })
+    expect(method).toBeCalledTimes(2)
+    await new Promise(resolve => {
+      setTimeout(resolve, PROMISE_TIMEOUT * 3)
+    })
+    expect(method).toBeCalledTimes(3)
+    await instance.load()
+    await instance.load()
+    await new Promise(resolve => {
+      setTimeout(resolve)
+    })
+    expect(method).toBeCalledTimes(4)
+    await instance.load()
+    await instance.load()
+    await instance.load(true)
+    await new Promise(resolve => {
+      setTimeout(resolve)
+    })
+    expect(method).toBeCalledTimes(6)
+    instance.setPollingInterval(PROMISE_TIMEOUT * 4)
+    await instance.destroy()
+  })
+
+  test('should create instance with polling and needPolling that return false', async () => {
+    const method = jest.fn(fakeSuccessPromise)
+    const instance = new DataLoader({
+      key: 'test',
+      method,
+      needPolling: () => false,
+      pollingInterval: PROMISE_TIMEOUT * 2,
+    })
+    await instance.load()
+    expect(method).toBeCalledTimes(1)
+    await new Promise(resolve => {
+      setTimeout(resolve, PROMISE_TIMEOUT * 3)
+    })
+    expect(method).toBeCalledTimes(1)
+    instance.setNeedPolling(true)
     await instance.destroy()
   })
 
@@ -222,12 +283,16 @@ describe('Dataloader class', () => {
     instance.addOnSuccessListener(onSuccess)
     expect(instance.status).toBe(StatusEnum.LOADING)
     expect(method).toBeCalledTimes(1)
-    await new Promise(resolve => { setTimeout(resolve, PROMISE_TIMEOUT) })
+    await new Promise(resolve => {
+      setTimeout(resolve, PROMISE_TIMEOUT)
+    })
     expect(onSuccess).toBeCalledTimes(1)
     await instance.load()
     expect(method).toBeCalledTimes(1)
     expect(onSuccess).toBeCalledTimes(1)
-    await new Promise(resolve => { setTimeout(resolve, PROMISE_TIMEOUT * 2) })
+    await new Promise(resolve => {
+      setTimeout(resolve, PROMISE_TIMEOUT * 2)
+    })
     await instance.load()
     expect(method).toBeCalledTimes(2)
     expect(onSuccess).toBeCalledTimes(2)
@@ -245,7 +310,9 @@ describe('Dataloader class', () => {
       expect(instance.status).toBe(StatusEnum.LOADING)
     }
     // Because wait for setTimeout tryLaunch in dataloader.ts
-    await new Promise(resolve => { setTimeout(resolve) })
+    await new Promise(resolve => {
+      setTimeout(resolve)
+    })
     expect(method).toBeCalledTimes(2)
   })
 })
