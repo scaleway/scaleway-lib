@@ -1,11 +1,18 @@
 import { DEFAULT_MAX_CONCURRENT_REQUESTS, StatusEnum } from './constants'
-import { OnCancelFn, OnErrorFn, OnSuccessFn, PromiseType } from './types'
+import {
+  NeedPollingType,
+  OnCancelFn,
+  OnErrorFn,
+  OnSuccessFn,
+  PromiseType,
+} from './types'
 
 export type DataLoaderConstructorArgs<T = unknown> = {
   enabled?: boolean
   key: string
   method: () => PromiseType<T>
   pollingInterval?: number
+  needPolling?: NeedPollingType<T>
   maxDataLifetime?: number
   keepPreviousData?: boolean
 }
@@ -24,6 +31,8 @@ class DataLoader<T = unknown> {
   public status: StatusEnum
 
   public pollingInterval?: number
+
+  public needPolling: NeedPollingType<T> = true
 
   public maxDataLifetime?: number
 
@@ -61,6 +70,7 @@ class DataLoader<T = unknown> {
     this.pollingInterval = args?.pollingInterval
     this.keepPreviousData = args?.keepPreviousData
     this.maxDataLifetime = args.maxDataLifetime
+    this.needPolling = args.needPolling ?? true
     if (args.enabled) {
       this.tryLaunch()
     } else {
@@ -146,7 +156,13 @@ class DataLoader<T = unknown> {
       }
     }
     DataLoader.started -= 1
-    if (this.pollingInterval && !this.destroyed) {
+    if (
+      this.pollingInterval &&
+      !this.destroyed &&
+      (typeof this.needPolling === 'function'
+        ? this.needPolling(DataLoader.cachedData[this.key] as T)
+        : this.needPolling)
+    ) {
       this.timeout = setTimeout(
         // eslint-disable-next-line @typescript-eslint/no-misused-promises
         this.launch,
@@ -217,6 +233,7 @@ class DataLoader<T = unknown> {
   }
 
   public async destroy(): Promise<void> {
+    DataLoader.cachedData[this.key] = undefined
     await this.cancel?.()
     if (this.timeout) {
       clearTimeout(this.timeout)
@@ -233,6 +250,10 @@ class DataLoader<T = unknown> {
     if (this.enabled) {
       this.tryLaunch()
     }
+  }
+
+  public setNeedPolling(needPolling: NeedPollingType<T>): void {
+    this.needPolling = needPolling
   }
 }
 

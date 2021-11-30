@@ -15,7 +15,7 @@ import {
   StatusEnum,
 } from './constants'
 import DataLoader from './dataloader'
-import { OnErrorFn, PromiseType } from './types'
+import { NeedPollingType, OnErrorFn, PromiseType } from './types'
 
 type CachedData = Record<string, unknown>
 type Reloads = Record<string, () => Promise<void | unknown>>
@@ -30,6 +30,7 @@ type UseDataLoaderInitializerArgs<T = unknown> = {
    * Max time before data from previous success is considered as outdated (in millisecond)
    */
   maxDataLifetime?: number
+  needPolling?: NeedPollingType<T>
 }
 
 type GetCachedDataFn = {

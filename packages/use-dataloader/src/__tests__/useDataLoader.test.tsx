@@ -150,7 +150,7 @@ describe('useDataLoader', () => {
         method: () =>
           new Promise(resolve => {
             setTimeout(() => resolve(null), PROMISE_TIMEOUT)
-          })
+          }),
       },
       wrapper,
     })
@@ -272,6 +272,7 @@ describe('useDataLoader', () => {
   test('should render correctly with pooling', async () => {
     const pollingProps = {
       config: {
+        needPolling: () => true,
         pollingInterval: PROMISE_TIMEOUT,
       },
       key: 'test-6',

@@ -28,6 +28,7 @@ const useDataLoader = <T>(
     onSuccess,
     pollingInterval,
     maxDataLifetime,
+    needPolling,
   }: UseDataLoaderConfig<T> = {},
 ): UseDataLoaderResult<T> => {
   const isMountedRef = useRef(false)
@@ -50,6 +51,7 @@ const useDataLoader = <T>(
       keepPreviousData,
       maxDataLifetime,
       method,
+      needPolling,
       pollingInterval,
     }) as DataLoader<T>
 
@@ -63,6 +65,7 @@ const useDataLoader = <T>(
     getOrAddRequest,
     maxDataLifetime,
     method,
+    needPolling,
     pollingInterval,
     keepPreviousData,
     subscribeFn,
@@ -117,6 +120,12 @@ const useDataLoader = <T>(
       request.setPollingInterval(pollingInterval)
     }
   }, [pollingInterval, request])
+
+  useEffect(() => {
+    if (needPolling !== request.needPolling) {
+      request.setNeedPolling(needPolling ?? true)
+    }
+  }, [needPolling, request])
 
   useEffect(() => {
     isFetchingRef.current = isLoading || isPolling
