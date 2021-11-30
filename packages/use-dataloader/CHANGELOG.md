@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.6.0 (2021-11-30)
+
+
+### Features
+
+* add needPolling callback ([#520](https://github.com/scaleway/scaleway-lib/issues/520)) ([fc28e6d](https://github.com/scaleway/scaleway-lib/commit/fc28e6df063bb0235874a219a48081283c3e23e3))
+
+
+
 ### 2.5.7 (2021-11-23)
 
 
