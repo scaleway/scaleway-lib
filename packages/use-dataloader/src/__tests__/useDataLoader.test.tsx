@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { act, renderHook } from '@testing-library/react-hooks'
 import React from 'react'
 import DataLoaderProvider, { useDataLoaderContext } from '../DataLoaderProvider'
@@ -661,6 +660,8 @@ describe('useDataLoader', () => {
     expect(mockedFn).toBeCalledTimes(2)
   })
 
+  /* eslint-disable no-console */
+
   test('should cancel request', async () => {
     const originalError = console.error
     console.error = jest.fn()
@@ -741,4 +742,6 @@ describe('useDataLoader', () => {
     expect(result.current.isError).toBe(false)
     console.error = originalError
   })
+
+  /* eslint-enable no-console */
 })
