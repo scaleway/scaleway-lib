@@ -235,8 +235,6 @@ const I18nContextProvider = ({
   )
 
   const datetime = useCallback(
-    // intl-format-chache does not forwrad return types
-    // eslint-disable-next-line
     (date: Date | number, options?: Intl.DateTimeFormatOptions): string => formatters.getDateTimeFormat(currentLocale, options).format(date),
     [currentLocale],
   )
@@ -283,8 +281,6 @@ const I18nContextProvider = ({
         return ''
       }
       if (context) {
-        // intl-format-chache does not forwrad return types
-        // eslint-disable-next-line
         return formatters.getTranslationFormat(value, currentLocale).format(context) as string
       }
 

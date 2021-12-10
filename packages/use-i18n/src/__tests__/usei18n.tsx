@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { act, renderHook } from '@testing-library/react-hooks'
 import mockdate from 'mockdate'
 import React from 'react'
