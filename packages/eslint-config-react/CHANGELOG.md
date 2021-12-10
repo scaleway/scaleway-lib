@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.1.0 (2021-12-10)
+
+
+### Features
+
+* **eslint-config:** add eslint-comments plugin ([#534](https://github.com/scaleway/scaleway-lib/issues/534)) ([15504d3](https://github.com/scaleway/scaleway-lib/commit/15504d38d151ee54cf44f30bb69cd605bf769277))
+
+
+
 ### 3.0.1 (2021-12-06)
 
 
