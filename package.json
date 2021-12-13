@@ -23,7 +23,7 @@
     "cross-env": "7.0.3",
     "eslint": "8.4.1",
     "husky": "7.0.4",
-    "jest": "27.4.4",
+    "jest": "27.4.5",
     "jest-junit": "13.0.0",
     "jest-localstorage-mock": "2.4.18",
     "lerna": "4.0.0",
