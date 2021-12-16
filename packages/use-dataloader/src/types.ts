@@ -56,3 +56,43 @@ export interface UseDataLoaderResult<T = unknown> {
   previousData?: T
   reload: () => Promise<void>
 }
+
+/**
+ * Params send to the method
+ */
+export type UsePaginatedDataLoaderMethodParams = {
+  page: number
+  perPage: number
+}
+
+export type UsePaginatedDataLoaderConfig<T = unknown> = {
+  enabled?: boolean
+  initialData?: T
+  keepPreviousData?: boolean
+  onError?: OnErrorFn
+  onSuccess?: OnSuccessFn
+  pollingInterval?: number
+  /**
+   * Max time before data from previous success is considered as outdated (in millisecond)
+   */
+  maxDataLifetime?: number
+  needPolling?: NeedPollingType
+  initialPage?: number
+  perPage?: number
+}
+
+export type UsePaginatedDataLoaderResult<T = unknown> = {
+  pageData?: T
+  data?: Record<number, T | undefined>
+  error?: Error
+  isError: boolean
+  isIdle: boolean
+  isLoading: boolean
+  isPolling: boolean
+  isSuccess: boolean
+  reload: () => Promise<void>
+  goToPage: (page: number) => void
+  goToNextPage: () => void
+  goToPreviousPage: () => void
+  page: number
+}
