@@ -344,13 +344,13 @@ const I18nContextProvider = ({
 
 I18nContextProvider.propTypes = {
   children: PropTypes.node.isRequired,
+  defaultDateLocale: PropTypes.shape({}),
   defaultLoad: PropTypes.func.isRequired,
   defaultLocale: PropTypes.string.isRequired,
   defaultTranslations: PropTypes.shape({}),
   enableDebugKey: PropTypes.bool,
   enableDefaultLocale: PropTypes.bool,
   loadDateLocale: PropTypes.func,
-  defaultDateLocale: PropTypes.shape({}),
   localeItemStorage: PropTypes.string,
   supportedLocales: PropTypes.arrayOf(PropTypes.string).isRequired,
 }
