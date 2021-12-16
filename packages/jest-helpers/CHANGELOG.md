@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 1.1.6 (2021-12-16)
+
+
+### Bug Fixes
+
+* **deps:** update emotion monorepo to v11.7.1 ([#540](https://github.com/scaleway/scaleway-lib/issues/540)) ([851260e](https://github.com/scaleway/scaleway-lib/commit/851260e92787c174e7fad0de68f85dafddab8d41))
+
+
+
 ### 1.1.5 (2021-11-26)
 
 
