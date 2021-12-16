@@ -59,7 +59,7 @@ interface Context {
   currentLocale: string
   dateFnsLocale?: Locale,
   datetime: (date: Date | number, options?: Intl.DateTimeFormatOptions) => string,
-  formatDate: (value: Date | number | string, options: FormatDateOptions) => string,
+  formatDate: (value: Date | number | string, options?: FormatDateOptions) => string,
   formatList: (listFormat: string[], options?: IntlListFormatOptions) => string,
   formatNumber: (numb: number, options?: Intl.NumberFormatOptions) => string,
   formatUnit: (value: number, options: FormatUnitOptions) => string,
@@ -229,7 +229,7 @@ const I18nContextProvider = ({
   )
 
   const formatDate = useCallback(
-    (value: Date | number | string, options: FormatDateOptions) =>
+    (value: Date | number | string, options: FormatDateOptions = 'short') =>
       dateFormat(currentLocale, value, options),
     [currentLocale],
   )
