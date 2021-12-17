@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 3.0.2 (2021-12-17)
+
+
+### Bug Fixes
+
+* **deps:** update dependency react-router-dom to v6.1.1 ([#537](https://github.com/scaleway/scaleway-lib/issues/537)) ([f0129ed](https://github.com/scaleway/scaleway-lib/commit/f0129ed12cbc94d483f590352a277f855c2c60c4))
+
+
+
 ### [3.0.1](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-query-params@3.0.0...@scaleway/use-query-params@3.0.1) (2021-11-18)
 
 

@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.7.0 (2021-12-17)
+
+
+### Features
+
+* add paginated dataloader ([#524](https://github.com/scaleway/scaleway-lib/issues/524)) ([a440e71](https://github.com/scaleway/scaleway-lib/commit/a440e717a717a7639563671986eba0b2af8a5451))
+
+
+
 ### 2.6.1 (2021-12-10)
 
 **Note:** Version bump only for package @scaleway/use-dataloader
