@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.2.0 (2021-12-20)
+
+
+### Features
+
+* **eslint-config-react:** disable react/require-default-props in ts projects ([#546](https://github.com/scaleway/scaleway-lib/issues/546)) ([7301d14](https://github.com/scaleway/scaleway-lib/commit/7301d1441a5993113f9b61925ea94f8326b24f35))
+
+
+
 ### 3.1.2 (2021-12-16)
 
 
