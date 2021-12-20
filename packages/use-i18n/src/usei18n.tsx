@@ -144,7 +144,7 @@ const I18nContextProvider = ({
   )
   const [translations, setTranslations] = useState<TranslationsByLocales>(defaultTranslations)
   const [namespaces, setNamespaces] = useState<string[]>([])
-  const [dateFnsLocale, setDateFnsLocale] = useState<Locale>(defaultDateLocale ?? {})
+  const [dateFnsLocale, setDateFnsLocale] = useState<Locale | undefined>(defaultDateLocale ?? undefined)
 
   useEffect(() => {
     loadDateLocale?.(currentLocale === 'en' ? 'en-GB' : currentLocale)
