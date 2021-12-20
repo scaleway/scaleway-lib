@@ -3204,7 +3204,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@scaleway/use-query-params@workspace:packages/use-query-params"
   dependencies:
-    history: 5.1.0
+    history: 5.2.0
     query-string: 7.0.1
     react-router-dom: 6.1.1
   peerDependencies:
@@ -6387,12 +6387,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"history@npm:5.1.0, history@npm:^5.1.0":
-  version: 5.1.0
-  resolution: "history@npm:5.1.0"
+"history@npm:5.2.0, history@npm:^5.1.0":
+  version: 5.2.0
+  resolution: "history@npm:5.2.0"
   dependencies:
     "@babel/runtime": ^7.7.6
-  checksum: c978710a188ee5ad5d2acf55721c77e27469578c891a66311e71e8920d1390d14476e39a6db07e0ab0f5f8d594f1f62eb55a1059c7549cde7795a36367df5869
+  checksum: 2c6a05aa86793e0a0857013457f34474c17f81a012c6bdb00bf30862389ac6a8c2df113d82176f67af2fd534ea9dc4e1218470c5526355b6fc1aefcc971f2eb2
   languageName: node
   linkType: hard
 
