@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 3.1.26 (2021-12-20)
+
+
+### Bug Fixes
+
+* **use-i18n:** optional options type on formatDate ([#545](https://github.com/scaleway/scaleway-lib/issues/545)) ([88bb172](https://github.com/scaleway/scaleway-lib/commit/88bb17247e5bedea6e22456618405ed502bd9064))
+
+
+
 ### [3.1.25](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@3.1.24...@scaleway/use-i18n@3.1.25) (2021-12-10)
 
 **Note:** Version bump only for package @scaleway/use-i18n
