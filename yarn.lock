@@ -3178,7 +3178,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@scaleway/use-dataloader@workspace:packages/use-dataloader"
   dependencies:
-    prop-types: 15.7.2
+    prop-types: 15.8.0
   peerDependencies:
     react: 17.x
   languageName: unknown
@@ -3192,7 +3192,7 @@ __metadata:
     date-fns: 2.27.0
     filesize: 8.0.6
     intl-messageformat: 9.9.6
-    prop-types: 15.7.2
+    prop-types: 15.8.0
   peerDependencies:
     date-fns: 2.x
     react: 17.x
@@ -9411,14 +9411,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:15.7.2, prop-types@npm:^15.7.2":
-  version: 15.7.2
-  resolution: "prop-types@npm:15.7.2"
+"prop-types@npm:15.8.0, prop-types@npm:^15.7.2":
+  version: 15.8.0
+  resolution: "prop-types@npm:15.8.0"
   dependencies:
     loose-envify: ^1.4.0
     object-assign: ^4.1.1
-    react-is: ^16.8.1
-  checksum: 5eef82fdda64252c7e75aa5c8cc28a24bbdece0f540adb60ce67c205cf978a5bd56b83e4f269f91c6e4dcfd80b36f2a2dec24d362e278913db2086ca9c6f9430
+    react-is: ^16.13.1
+  checksum: d8d51cf55d70cab207dd1e80df2dc093b8288a4519598a28d25d32d6e02319b2fd66712caa979040451656185f7393341185b0b081158520557aa4cbdcaa4b3a
   languageName: node
   linkType: hard
 
@@ -9535,7 +9535,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-is@npm:^16.7.0, react-is@npm:^16.8.1":
+"react-is@npm:^16.13.1, react-is@npm:^16.7.0":
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
   checksum: f7a19ac3496de32ca9ae12aa030f00f14a3d45374f1ceca0af707c831b2a6098ef0d6bdae51bd437b0a306d7f01d4677fcc8de7c0d331eb47ad0f46130e53c5f
