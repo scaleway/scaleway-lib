@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.7.1 (2021-12-24)
+
+
+### Bug Fixes
+
+* **deps:** update dependency prop-types to v15.8.0 ([#556](https://github.com/scaleway/scaleway-lib/issues/556)) ([24bede8](https://github.com/scaleway/scaleway-lib/commit/24bede8b2174d2b470e8bc7653789bb72158185f))
+
+
+
 ## 2.7.0 (2021-12-17)
 
 

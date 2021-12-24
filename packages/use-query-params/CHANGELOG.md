@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 3.0.3 (2021-12-24)
+
+
+### Bug Fixes
+
+* **deps:** update dependency history to v5.2.0 ([#549](https://github.com/scaleway/scaleway-lib/issues/549)) ([8b26d70](https://github.com/scaleway/scaleway-lib/commit/8b26d70143e8589a35bf0653197de811693241ff))
+
+
+
 ### 3.0.2 (2021-12-17)
 
 
