@@ -59,7 +59,7 @@ module.exports = {
     // These are rules soon to be enabled by airbnb react config
     // We're getting a head start
     'react/no-adjacent-inline-elements': 'error', // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-adjacent-inline-elements.md
-    'prefer-object-has-own': 'off', // https://eslint.org/docs/rules/prefer-object-has-own
+    'prefer-object-has-own': 'error', // https://eslint.org/docs/rules/prefer-object-has-own
 
     // To have consistent ordering in proptypes
     'react/sort-prop-types': [
