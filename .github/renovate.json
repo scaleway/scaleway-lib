@@ -4,9 +4,9 @@
     "config:base",
     ":combinePatchMinorReleases"
   ],
-  "assignees:": "team:console",
+  "assignees:": ["team:console"],
   "assigneesSampleSize": 1,
-  "reviewers:": "team:console",
+  "reviewers:": ["team:console"],
   "reviewersSampleSize": 2,
   "prHourlyLimit": 5,
   "prConcurrentLimit": 10,
