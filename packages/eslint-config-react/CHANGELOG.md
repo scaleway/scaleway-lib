@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.0](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@3.2.2...@scaleway/eslint-config-react@3.3.0) (2021-12-28)
+
+
+### Features
+
+* **eslint-config:** enable prefer-object-has-own ([#564](https://github.com/scaleway/scaleway-lib/issues/564)) ([a0b11ca](https://github.com/scaleway/scaleway-lib/commit/a0b11ca9bd6ea10d6e08e0257b8209bdca2a60a0))
+
+
+
 ### [3.2.2](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@3.2.1...@scaleway/eslint-config-react@3.2.2) (2021-12-28)
 
 
