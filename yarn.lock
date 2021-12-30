@@ -10146,7 +10146,7 @@ __metadata:
     rollup-plugin-dts: 4.1.0
     rollup-plugin-visualizer: 5.5.2
     typescript: 4.5.4
-    wait-for-expect: ^3.0.2
+    wait-for-expect: 3.0.2
   languageName: unknown
   linkType: soft
 
@@ -11450,7 +11450,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wait-for-expect@npm:^3.0.2":
+"wait-for-expect@npm:3.0.2":
   version: 3.0.2
   resolution: "wait-for-expect@npm:3.0.2"
   checksum: 2ec1ebd78023fa10bdcf53d78bbd65feea68fdfa0de0b00f3a72f3df089118b91517839ff3926e5ef6cfd1ede65085326d85b0378d4db62c266cc9c859c2de56
