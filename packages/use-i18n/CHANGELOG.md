@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.2.0 (2022-01-03)
+
+
+### Features
+
+* **use-i18n:** allow default date-fns locale instead of lazy loading ([#547](https://github.com/scaleway/scaleway-lib/issues/547)) ([77606c7](https://github.com/scaleway/scaleway-lib/commit/77606c782ca946d6f5b71c43073f0707ca54f803))
+
+
+### Bug Fixes
+
+* **deps:** update dependency date-fns to v2.28.0 ([#569](https://github.com/scaleway/scaleway-lib/issues/569)) ([acc5dbe](https://github.com/scaleway/scaleway-lib/commit/acc5dbe121a7661b4afdf0421a5293d1ee2432f4))
+
+
+
 ### [3.1.27](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@3.1.26...@scaleway/use-i18n@3.1.27) (2021-12-24)
 
 
