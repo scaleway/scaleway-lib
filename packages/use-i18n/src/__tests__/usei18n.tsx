@@ -186,7 +186,7 @@ describe('i18n hook', () => {
     jest.spyOn(window, 'navigator', 'get').mockImplementation(() => ({
       language: 'en-US',
       languages: ['en-US', 'en'],
-    }))
+    }) as unknown as Navigator)
     const { result, waitForNextUpdate } = renderHook(() => useI18n(), {
       wrapper: wrapper({
         defaultLocale: 'fr',
@@ -201,7 +201,7 @@ describe('i18n hook', () => {
     jest.spyOn(window, 'navigator', 'get').mockImplementation(() => ({
       language: 'en',
       languages: undefined,
-    }))
+    }) as unknown as Navigator)
     const { result, waitForNextUpdate } = renderHook(() => useI18n(), {
       wrapper: wrapper({
         defaultLocale: 'fr',
@@ -278,7 +278,7 @@ describe('i18n hook', () => {
       }),
     })
     await waitForNextUpdate()
-    const identiqueTranslate = result.current.namespaceTranslation()
+    const identiqueTranslate = result.current.namespaceTranslation('')
     expect(identiqueTranslate('title')).toEqual(result.current.t('title'))
 
     const translate = result.current.namespaceTranslation('tests.test')
