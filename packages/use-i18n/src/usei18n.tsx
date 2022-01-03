@@ -120,16 +120,18 @@ const I18nContextProvider = ({
   children,
   defaultLoad,
   loadDateLocale,
+  defaultDateLocale,
   defaultLocale,
-  defaultTranslations,
-  enableDefaultLocale,
-  enableDebugKey,
-  localeItemStorage,
+  defaultTranslations = {},
+  enableDefaultLocale = false,
+  enableDebugKey = false,
+  localeItemStorage = LOCALE_ITEM_STORAGE,
   supportedLocales,
 }: {
   children: ReactNode,
   defaultLoad: LoadTranslationsFn,
-  loadDateLocale: LoadLocaleFn,
+  loadDateLocale?: LoadLocaleFn,
+  defaultDateLocale?: Locale,
   defaultLocale: string,
   defaultTranslations: TranslationsByLocales,
   enableDefaultLocale: boolean,
@@ -142,10 +144,10 @@ const I18nContextProvider = ({
   )
   const [translations, setTranslations] = useState<TranslationsByLocales>(defaultTranslations)
   const [namespaces, setNamespaces] = useState<string[]>([])
-  const [dateFnsLocale, setDateFnsLocale] = useState<Locale>()
+  const [dateFnsLocale, setDateFnsLocale] = useState<Locale | undefined>(defaultDateLocale ?? undefined)
 
   useEffect(() => {
-    loadDateLocale(currentLocale === 'en' ? 'en-GB' : currentLocale)
+    loadDateLocale?.(currentLocale === 'en' ? 'en-GB' : currentLocale)
       .then(setDateFnsLocale)
       .catch(() => loadDateLocale('en-GB').then(setDateFnsLocale))
   }, [loadDateLocale, currentLocale])
@@ -340,21 +342,15 @@ const I18nContextProvider = ({
   return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>
 }
 
-I18nContextProvider.defaultProps = {
-  defaultTranslations: {},
-  enableDebugKey: false,
-  enableDefaultLocale: false,
-  localeItemStorage: LOCALE_ITEM_STORAGE,
-}
-
 I18nContextProvider.propTypes = {
   children: PropTypes.node.isRequired,
+  defaultDateLocale: PropTypes.shape({}),
   defaultLoad: PropTypes.func.isRequired,
   defaultLocale: PropTypes.string.isRequired,
   defaultTranslations: PropTypes.shape({}),
   enableDebugKey: PropTypes.bool,
   enableDefaultLocale: PropTypes.bool,
-  loadDateLocale: PropTypes.func.isRequired,
+  loadDateLocale: PropTypes.func,
   localeItemStorage: PropTypes.string,
   supportedLocales: PropTypes.arrayOf(PropTypes.string).isRequired,
 }
