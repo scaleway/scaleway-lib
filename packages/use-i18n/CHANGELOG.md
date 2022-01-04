@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 3.2.1 (2022-01-04)
+
+
+### Bug Fixes
+
+* **deps:** pin dependency @formatjs/ecma402-abstract to 1.11.1 ([#577](https://github.com/scaleway/scaleway-lib/issues/577)) ([21a076a](https://github.com/scaleway/scaleway-lib/commit/21a076aa4822294dc182201d654274a0ebae45e4))
+* **deps:** update formatjs monorepo ([#527](https://github.com/scaleway/scaleway-lib/issues/527)) ([4b54f61](https://github.com/scaleway/scaleway-lib/commit/4b54f611759a1ca7f9b1762966222ef2143ea38d))
+
+
+
 ## 3.2.0 (2022-01-03)
 
 

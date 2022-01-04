@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.7.3 (2022-01-04)
+
+
+### Bug Fixes
+
+* **deps:** update formatjs monorepo ([#527](https://github.com/scaleway/scaleway-lib/issues/527)) ([4b54f61](https://github.com/scaleway/scaleway-lib/commit/4b54f611759a1ca7f9b1762966222ef2143ea38d))
+
+
+
 ### 2.7.2 (2022-01-03)
 
 **Note:** Version bump only for package @scaleway/use-dataloader
