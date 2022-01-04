@@ -1,4 +1,3 @@
-import { nextTick } from 'process';
 import waitForExpect from 'wait-for-expect'
 import { StatusEnum } from '../constants'
 import DataLoader from '../dataloader'
@@ -205,16 +204,15 @@ describe('Dataloader class', () => {
     expect(method).toBeCalledTimes(3)
     await instance.load()
     await instance.load()
-    await new Promise(nextTick)
-    expect(method).toBeCalledTimes(4)
+    await waitForExpect(() => {
+      expect(method).toBeCalledTimes(4)
+    })
     await instance.load()
     await instance.load()
     await instance.load(true)
-    await new Promise(resolve => {
-      setTimeout(resolve)
+    await waitForExpect(() => {
+      expect(method).toBeCalledTimes(6)
     })
-    await new Promise(nextTick)
-    expect(method).toBeCalledTimes(6)
     instance.setPollingInterval(PROMISE_TIMEOUT * 4)
     await instance.destroy()
   })

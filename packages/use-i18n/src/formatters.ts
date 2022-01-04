@@ -1,3 +1,4 @@
+import type { NumberFormatOptions } from '@formatjs/ecma402-abstract'
 import memoize, { Cache, strategies } from '@formatjs/fast-memoize'
 import IntlTranslationFormat from 'intl-messageformat'
 
@@ -21,7 +22,7 @@ declare abstract class IntlListFormat {
 
 interface BaseFormatters {
   getNumberFormat(
-    ...args: ConstructorParameters<typeof Intl.NumberFormat>
+    locales?: string | string[], opts?: NumberFormatOptions
   ): Intl.NumberFormat
   getDateTimeFormat(
     ...args: ConstructorParameters<typeof Intl.DateTimeFormat>
