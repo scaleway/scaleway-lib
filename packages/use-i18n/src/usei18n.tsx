@@ -1,3 +1,4 @@
+import type { NumberFormatOptions } from '@formatjs/ecma402-abstract'
 import { Locale, formatDistanceToNow, formatDistanceToNowStrict } from 'date-fns'
 import PropTypes from 'prop-types'
 import React, {
@@ -61,7 +62,7 @@ interface Context {
   datetime: (date: Date | number, options?: Intl.DateTimeFormatOptions) => string,
   formatDate: (value: Date | number | string, options?: FormatDateOptions) => string,
   formatList: (listFormat: string[], options?: IntlListFormatOptions) => string,
-  formatNumber: (numb: number, options?: Intl.NumberFormatOptions) => string,
+  formatNumber: (numb: number, options?: NumberFormatOptions) => string,
   formatUnit: (value: number, options: FormatUnitOptions) => string,
   loadTranslations: (namespace: string, load?: LoadTranslationsFn) => Promise<string>,
   locales: string[],
@@ -211,7 +212,7 @@ const I18nContextProvider = ({
   )
 
   const formatNumber = useCallback(
-    (numb: number, options?: Intl.NumberFormatOptions) => formatters.getNumberFormat(currentLocale, options).format(numb),
+    (numb: number, options?: NumberFormatOptions) => formatters.getNumberFormat(currentLocale, options).format(numb),
     [currentLocale],
   )
 

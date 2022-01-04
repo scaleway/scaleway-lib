@@ -1755,7 +1755,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/ecma402-abstract@npm:1.11.1":
+"@formatjs/ecma402-abstract@npm:1.11.1, @formatjs/ecma402-abstract@npm:^1.11.1":
   version: 1.11.1
   resolution: "@formatjs/ecma402-abstract@npm:1.11.1"
   dependencies:
@@ -3204,6 +3204,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@scaleway/use-i18n@workspace:packages/use-i18n"
   dependencies:
+    "@formatjs/ecma402-abstract": ^1.11.1
     "@formatjs/fast-memoize": 1.2.1
     date-fns: 2.28.0
     filesize: 8.0.6

@@ -27,6 +27,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@formatjs/ecma402-abstract": "^1.11.1",
     "@formatjs/fast-memoize": "1.2.1",
     "date-fns": "2.28.0",
     "filesize": "8.0.6",
