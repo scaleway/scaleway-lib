@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.7.4](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-dataloader@2.7.3...@scaleway/use-dataloader@2.7.4) (2022-01-06)
+
+
+### Bug Fixes
+
+* **deps:** update dependency prop-types to v15.8.1 ([#579](https://github.com/scaleway/scaleway-lib/issues/579)) ([b4379ec](https://github.com/scaleway/scaleway-lib/commit/b4379eceffb075b1b4dc03eaa6da835e1433ce6e))
+
+
+
 ### 2.7.3 (2022-01-04)
 
 

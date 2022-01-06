@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.2.2](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@3.2.1...@scaleway/use-i18n@3.2.2) (2022-01-06)
+
+
+### Bug Fixes
+
+* **deps:** update dependency prop-types to v15.8.1 ([#579](https://github.com/scaleway/scaleway-lib/issues/579)) ([b4379ec](https://github.com/scaleway/scaleway-lib/commit/b4379eceffb075b1b4dc03eaa6da835e1433ce6e))
+
+
+
 ### 3.2.1 (2022-01-04)
 
 
