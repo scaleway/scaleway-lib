@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.2.3](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@3.2.2...@scaleway/use-i18n@3.2.3) (2022-01-07)
+
+
+### Bug Fixes
+
+* correct last typescript errors + add ci check ([#578](https://github.com/scaleway/scaleway-lib/issues/578)) ([93df790](https://github.com/scaleway/scaleway-lib/commit/93df7902730514649d5a8e8a4a6f66d1ddd62abd))
+
+
+
 ### [3.2.2](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@3.2.1...@scaleway/use-i18n@3.2.2) (2022-01-06)
 
 
