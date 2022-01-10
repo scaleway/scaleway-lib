@@ -11,7 +11,7 @@ const wrapper =
     writeKey,
     onError = e => log(e),
     events = defaultEvents,
-  }: SegmentProviderProps) =>
+  }: SegmentProviderProps<typeof defaultEvents>) =>
   ({ children }: { children: ReactNode }) =>
     (
       <SegmentProvider writeKey={writeKey} onError={onError} events={events}>
