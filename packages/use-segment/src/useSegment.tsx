@@ -11,9 +11,7 @@ import React, {
 type EventFunction = (...args: unknown[]) => Promise<void>
 type Events = Record<string, (analytics?: Analytics) => EventFunction>
 
-interface SegmentContextInterface<
-  T extends Events = Events
-> {
+interface SegmentContextInterface<T extends Events = Events> {
   analytics: Analytics | undefined
   events: { [K in keyof T]: ReturnType<T[K]> }
   writeKey?: string
@@ -27,12 +25,9 @@ const initialContext = {
   writeKey: undefined,
 }
 
-const SegmentContext =
-  createContext<SegmentContextInterface>(initialContext)
+const SegmentContext = createContext<SegmentContextInterface>(initialContext)
 
-export function useSegment<
-  T extends Events,
->(): SegmentContextInterface<T> {
+export function useSegment<T extends Events>(): SegmentContextInterface<T> {
   // @ts-expect-error Here we force cast the generic onto the useContext because the context is a
   // global variable and cannot be generic
   const context = useContext<SegmentContextInterface<T>>(SegmentContext)
@@ -50,9 +45,12 @@ export type SegmentProviderProps<T> = {
   children: ReactNode
 }
 
-function SegmentProvider<
-  T extends Events,
->({ children, writeKey, onError, events }: SegmentProviderProps<T>) {
+function SegmentProvider<T extends Events>({
+  children,
+  writeKey,
+  onError,
+  events,
+}: SegmentProviderProps<T>) {
   const [analytics, setAnalytics] = useState<Analytics | undefined>(undefined)
 
   useEffect(() => {
