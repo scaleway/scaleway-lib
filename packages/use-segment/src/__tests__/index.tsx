@@ -6,12 +6,14 @@ import * as defaultEvents from './events'
 
 const { log } = console
 
+type DefaultEvents = typeof defaultEvents
+
 const wrapper =
   ({
     writeKey,
     onError = e => log(e),
     events = defaultEvents,
-  }: SegmentProviderProps) =>
+  }: SegmentProviderProps<typeof defaultEvents>) =>
   ({ children }: { children: ReactNode }) =>
     (
       <SegmentProvider writeKey={writeKey} onError={onError} events={events}>
@@ -30,14 +32,13 @@ describe('segment hook', () => {
   })
 
   it('useSegment should not load without key', () => {
-    const { result } = renderHook(() => useSegment(), {
+    const { result } = renderHook(() => useSegment<DefaultEvents>(), {
       wrapper: wrapper({
         events: defaultEvents,
         onError: e => log(e),
         writeKey: undefined,
       }),
     })
-    console.log(result.current)
     expect(result.current.analytics).toBe(undefined)
   })
 })

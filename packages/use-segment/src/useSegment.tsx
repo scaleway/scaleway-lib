@@ -1,7 +1,6 @@
 import { Analytics, AnalyticsBrowser } from '@segment/analytics-next'
 import React, {
-  FunctionComponent,
-  ReactElement,
+  ReactNode,
   createContext,
   useContext,
   useEffect,
@@ -9,9 +8,12 @@ import React, {
   useState,
 } from 'react'
 
-interface SegmentContextInteface {
+type EventFunction = (...args: unknown[]) => Promise<void>
+type Events = Record<string, (analytics?: Analytics) => EventFunction>
+
+interface SegmentContextInterface<T extends Events = Events> {
   analytics: Analytics | undefined
-  events: Record<string, unknown>
+  events: { [K in keyof T]: ReturnType<T[K]> }
   writeKey?: string
   onError?: (err: Error) => void
 }
@@ -23,10 +25,12 @@ const initialContext = {
   writeKey: undefined,
 }
 
-const SegmentContext = createContext<SegmentContextInteface>(initialContext)
+const SegmentContext = createContext<SegmentContextInterface>(initialContext)
 
-export const useSegment = (): SegmentContextInteface => {
-  const context = useContext(SegmentContext)
+export function useSegment<T extends Events>(): SegmentContextInterface<T> {
+  // @ts-expect-error Here we force cast the generic onto the useContext because the context is a
+  // global variable and cannot be generic
+  const context = useContext<SegmentContextInterface<T>>(SegmentContext)
   if (context === undefined) {
     throw new Error('useSegment must be used within a SegmentProvider')
   }
@@ -34,18 +38,19 @@ export const useSegment = (): SegmentContextInteface => {
   return context
 }
 
-export type SegmentProviderProps = {
+export type SegmentProviderProps<T> = {
   writeKey?: string
   onError: (err: Error) => void
-  events: Record<string, unknown>
+  events: T
+  children: ReactNode
 }
 
-const SegmentProvider: FunctionComponent<SegmentProviderProps> = ({
+function SegmentProvider<T extends Events>({
   children,
   writeKey,
   onError,
   events,
-}): ReactElement => {
+}: SegmentProviderProps<T>) {
   const [analytics, setAnalytics] = useState<Analytics | undefined>(undefined)
 
   useEffect(() => {
@@ -63,13 +68,20 @@ const SegmentProvider: FunctionComponent<SegmentProviderProps> = ({
     }
   }, [onError, writeKey])
 
-  const value = useMemo<SegmentContextInteface>(
-    () => ({
+  const value = useMemo<SegmentContextInterface<T>>(() => {
+    const curiedEvents = Object.entries(events).reduce(
+      (acc, [eventName, eventFn]) => ({
+        ...acc,
+        [eventName]: eventFn(analytics),
+      }),
+      {},
+    ) as { [K in keyof T]: ReturnType<T[K]> }
+
+    return {
       analytics,
-      events,
-    }),
-    [analytics, events],
-  )
+      events: curiedEvents,
+    }
+  }, [analytics, events])
 
   return (
     <SegmentContext.Provider value={value}>{children}</SegmentContext.Provider>
