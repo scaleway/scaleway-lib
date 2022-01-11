@@ -1,4 +1,5 @@
-import { Analytics, AnalyticsBrowser } from '@segment/analytics-next'
+import {  AnalyticsBrowser, } from '@segment/analytics-next'
+import type { Analytics ,InitOptions} from '@segment/analytics-next'
 import React, {
   ReactNode,
   createContext,
@@ -8,7 +9,7 @@ import React, {
   useState,
 } from 'react'
 
-type EventFunction = (...args: unknown[]) => Promise<void>
+type EventFunction = (...args: never[]) => Promise<void>
 type Events = Record<string, (analytics?: Analytics) => EventFunction>
 
 interface SegmentContextInterface<T extends Events = Events> {
@@ -18,14 +19,7 @@ interface SegmentContextInterface<T extends Events = Events> {
   onError?: (err: Error) => void
 }
 
-const initialContext = {
-  analytics: undefined,
-  events: {},
-  onError: () => undefined,
-  writeKey: undefined,
-}
-
-const SegmentContext = createContext<SegmentContextInterface>(initialContext)
+const SegmentContext = createContext<SegmentContextInterface | undefined>(undefined)
 
 export function useSegment<T extends Events>(): SegmentContextInterface<T> {
   // @ts-expect-error Here we force cast the generic onto the useContext because the context is a
@@ -40,14 +34,18 @@ export function useSegment<T extends Events>(): SegmentContextInterface<T> {
 
 export type SegmentProviderProps<T> = {
   writeKey?: string
+  initOptions?: InitOptions,
   onError: (err: Error) => void
   events: T
   children: ReactNode
 }
 
+export { Analytics }
+
 function SegmentProvider<T extends Events>({
   children,
   writeKey,
+  initOptions,
   onError,
   events,
 }: SegmentProviderProps<T>) {
@@ -56,17 +54,19 @@ function SegmentProvider<T extends Events>({
   useEffect(() => {
     if (writeKey) {
       const loadAnalytics = async () => {
-        const [response] = await AnalyticsBrowser.load({ writeKey })
+        const [analitycsResponse, Context] = await AnalyticsBrowser.load({ writeKey }, initOptions)
 
-        return response
+        console.log('loadAnalytics Context =>',Context)
+
+        return analitycsResponse
       }
       loadAnalytics()
-        .then(res => setAnalytics(res))
+        .then((res) => setAnalytics(res))
         .catch((err: Error) => {
           onError(err)
         })
     }
-  }, [onError, writeKey])
+  }, [onError, writeKey,initOptions])
 
   const value = useMemo<SegmentContextInterface<T>>(() => {
     const curiedEvents = Object.entries(events).reduce(
