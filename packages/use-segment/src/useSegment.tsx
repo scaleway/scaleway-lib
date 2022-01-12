@@ -37,7 +37,7 @@ export function useSegment<T extends Events>(): SegmentContextInterface<T> {
 }
 
 export type SegmentProviderProps<T> = {
-  cdn?: string,
+  cdn?: string
   settings?: AnalyticsSettings
   initOptions?: InitOptions
   onError?: (err: Error) => void
@@ -46,7 +46,6 @@ export type SegmentProviderProps<T> = {
 }
 
 export { Analytics }
-
 
 declare global {
   interface Window {
@@ -62,27 +61,24 @@ function SegmentProvider<T extends Events>({
   events,
   cdn,
 }: SegmentProviderProps<T>) {
-  const [internalAnalytics, setAnalytics] = useState<Analytics | undefined>(undefined)
-  
+  const [internalAnalytics, setAnalytics] = useState<Analytics | undefined>(
+    undefined,
+  )
 
-  if(cdn ){
+  if (cdn) {
+    window.analytics = window.analytics ?? {}
     // https://github.com/segmentio/analytics-next/issues/362
     // eslint-disable-next-line no-underscore-dangle
-    window.analytics._cdn = cdn 
+    window.analytics._cdn = cdn
   }
-  
+
   useEffect(() => {
     if (settings?.writeKey) {
-      const loadAnalytics = async () => {
-        const [response] = await AnalyticsBrowser.load(
-          settings,
-          initOptions,
-        )
+      const loadAnalytics = async () =>
+        AnalyticsBrowser.load(settings, initOptions)
 
-        return response
-      }
       loadAnalytics()
-        .then(res => setAnalytics(res))
+        .then(([res]) => setAnalytics(res))
         .catch((err: Error) => {
           onError?.(err)
         })

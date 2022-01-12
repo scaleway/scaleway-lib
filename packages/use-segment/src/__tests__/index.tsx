@@ -5,7 +5,6 @@ import waitForExpect from 'wait-for-expect'
 import SegmentProvider, { useSegment } from '..'
 import type { Analytics, SegmentProviderProps } from '..'
 
-const { log } = console
 
 const defaultEvents = {
   pageVisited:
@@ -35,7 +34,7 @@ const wrapper =
   ({
     settings,
     initOptions,
-    onError = e => log(e),
+    onError,
     events = defaultEvents,
   }: Omit<SegmentProviderProps<DefaultEvents>, 'children'>) =>
   ({ children }: { children: ReactNode }) =>
@@ -54,6 +53,7 @@ describe('segment hook', () => {
   beforeEach(() => {
     jest.restoreAllMocks()
   })
+
   it('useSegment should not be defined without SegmentProvider', () => {
     const { result } = renderHook(() => useSegment(), {
       wrapper: ({ children }) => <div>{children}</div>,
@@ -64,11 +64,9 @@ describe('segment hook', () => {
   })
 
   it('useSegment should not load without settings', () => {
-    const onError = jest.fn()
     const { result } = renderHook(() => useSegment<DefaultEvents>(), {
       wrapper: wrapper({
         events: defaultEvents,
-        onError,
         settings: undefined,
       }),
     })
@@ -76,17 +74,33 @@ describe('segment hook', () => {
   })
 
   it('useSegment should correctly infer types', async () => {
-    const onError = jest.fn()
+
     const { result } = renderHook(() => useSegment<DefaultEvents>(), {
       wrapper: wrapper({
         events: defaultEvents,
-        onError,
         settings: undefined,
       }),
     })
 
     // @ts-expect-error if type infering works this should be an error
     expect(await result.current.events.pageVisited()).toBe(undefined)
+  })
+
+  it('useSegment should correctly set cdn into  windows.analitycs', async () => {
+    // this test should be remove in the same time as this issues is solve
+     // https://github.com/segmentio/analytics-next/issues/362
+
+    const cdn = 'https://cdn.segment.com/analytics.js'
+
+    const { result } = renderHook(() => useSegment<DefaultEvents>(), {
+      wrapper: wrapper({
+        cdn,
+        events: defaultEvents,
+        settings: undefined,
+      }),
+    })
+
+    expect(result.current.analytics).not.toBeNull()
   })
 
   it('Provider should load with key', async () => {
@@ -138,5 +152,34 @@ describe('segment hook', () => {
       expect(onError).toHaveBeenCalledTimes(1)
       expect(onError).toHaveBeenCalledWith(new Error('not good'))
     })
+    
   })
+
+  it('Provider should load with settings and initOptions', async () => {
+    const mock = jest
+      .spyOn(AnalyticsBrowser, 'load')
+      .mockResolvedValue([{} as Analytics, {} as Context])
+
+    const settings = { writeKey: 'helloworld' }
+    const initOptions = {
+      initialPageview: false,
+     }
+
+    const { result, waitForNextUpdate } = renderHook(
+      () => useSegment<DefaultEvents>(),
+      {
+        wrapper: wrapper({
+          events: defaultEvents,
+          initOptions,
+          settings,
+        }),
+      },
+    )
+
+    await waitForNextUpdate()
+    expect(mock).toHaveBeenCalledTimes(1)
+    expect(mock).toHaveBeenCalledWith(settings, initOptions)
+    expect(result.current.analytics).toStrictEqual({})
+  })
+
 })
