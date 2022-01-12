@@ -5,7 +5,6 @@ import waitForExpect from 'wait-for-expect'
 import SegmentProvider, { useSegment } from '..'
 import type { Analytics, SegmentProviderProps } from '..'
 
-
 const defaultEvents = {
   pageVisited:
     (analytics?: Analytics) =>
@@ -36,6 +35,7 @@ const wrapper =
     initOptions,
     onError,
     events = defaultEvents,
+    cdn,
   }: Omit<SegmentProviderProps<DefaultEvents>, 'children'>) =>
   ({ children }: { children: ReactNode }) =>
     (
@@ -44,6 +44,7 @@ const wrapper =
         initOptions={initOptions}
         onError={onError}
         events={events}
+        cdn={cdn}
       >
         {children}
       </SegmentProvider>
@@ -73,36 +74,6 @@ describe('segment hook', () => {
     expect(result.current.analytics).not.toBeNull()
   })
 
-  it('useSegment should correctly infer types', async () => {
-
-    const { result } = renderHook(() => useSegment<DefaultEvents>(), {
-      wrapper: wrapper({
-        events: defaultEvents,
-        settings: undefined,
-      }),
-    })
-
-    // @ts-expect-error if type infering works this should be an error
-    expect(await result.current.events.pageVisited()).toBe(undefined)
-  })
-
-  it('useSegment should correctly set cdn into  windows.analitycs', async () => {
-    // this test should be remove in the same time as this issues is solve
-     // https://github.com/segmentio/analytics-next/issues/362
-
-    const cdn = 'https://cdn.segment.com/analytics.js'
-
-    const { result } = renderHook(() => useSegment<DefaultEvents>(), {
-      wrapper: wrapper({
-        cdn,
-        events: defaultEvents,
-        settings: undefined,
-      }),
-    })
-
-    expect(result.current.analytics).not.toBeNull()
-  })
-
   it('Provider should load with key', async () => {
     const mock = jest
       .spyOn(AnalyticsBrowser, 'load')
@@ -126,33 +97,55 @@ describe('segment hook', () => {
     expect(result.current.analytics).toStrictEqual({})
   })
 
+  it('Provider should load with key and cdn', async () => {
+    const mock = jest
+      .spyOn(AnalyticsBrowser, 'load')
+      .mockResolvedValue([{} as Analytics, {} as Context])
+
+    const cdn = 'https://cdn.proxy'
+    const settings = { writeKey: 'helloworld' }
+
+    const { result, waitForNextUpdate } = renderHook(
+      () => useSegment<DefaultEvents>(),
+      {
+        wrapper: wrapper({
+          cdn,
+          events: defaultEvents,
+          settings,
+        }),
+      },
+    )
+
+    await waitForNextUpdate()
+    expect(mock).toHaveBeenCalledTimes(1)
+    expect(mock).toHaveBeenCalledWith(settings, undefined)
+    expect(result.current.analytics).toStrictEqual({})
+    expect(window.analytics).toStrictEqual({ _cdn: cdn })
+  })
+
   it('Provider should load and call onError on analytics load error', async () => {
     const mock = jest
       .spyOn(AnalyticsBrowser, 'load')
       .mockRejectedValue(new Error('not good'))
 
     const onError = jest.fn()
-    const settings= { writeKey: 'pleasethrow' }
+    const settings = { writeKey: 'pleasethrow' }
 
     renderHook(() => useSegment<DefaultEvents>(), {
       wrapper: wrapper({
         events: defaultEvents,
         onError,
-        settings
+        settings,
       }),
     })
 
     expect(mock).toHaveBeenCalledTimes(1)
-    expect(mock).toHaveBeenCalledWith(
-      settings,
-      undefined,
-    )
+    expect(mock).toHaveBeenCalledWith(settings, undefined)
 
     await waitForExpect(() => {
       expect(onError).toHaveBeenCalledTimes(1)
       expect(onError).toHaveBeenCalledWith(new Error('not good'))
     })
-    
   })
 
   it('Provider should load with settings and initOptions', async () => {
@@ -163,7 +156,7 @@ describe('segment hook', () => {
     const settings = { writeKey: 'helloworld' }
     const initOptions = {
       initialPageview: false,
-     }
+    }
 
     const { result, waitForNextUpdate } = renderHook(
       () => useSegment<DefaultEvents>(),
@@ -182,4 +175,32 @@ describe('segment hook', () => {
     expect(result.current.analytics).toStrictEqual({})
   })
 
+  it('useSegment should correctly infer types', async () => {
+    const { result } = renderHook(() => useSegment<DefaultEvents>(), {
+      wrapper: wrapper({
+        events: defaultEvents,
+        settings: undefined,
+      }),
+    })
+
+    // @ts-expect-error if type infering works this should be an error
+    expect(await result.current.events.pageVisited()).toBe(undefined)
+  })
+
+  it('useSegment should correctly set cdn into  windows.analitycs', async () => {
+    // this test should be remove in the same time as this issues is solve
+    // https://github.com/segmentio/analytics-next/issues/362
+
+    const cdn = 'https://cdn.segment.com/analytics.js'
+
+    const { result } = renderHook(() => useSegment<DefaultEvents>(), {
+      wrapper: wrapper({
+        cdn,
+        events: defaultEvents,
+        settings: undefined,
+      }),
+    })
+
+    expect(result.current.analytics).not.toBeNull()
+  })
 })

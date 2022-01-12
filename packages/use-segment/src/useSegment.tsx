@@ -74,10 +74,7 @@ function SegmentProvider<T extends Events>({
 
   useEffect(() => {
     if (settings?.writeKey) {
-      const loadAnalytics = async () =>
-        AnalyticsBrowser.load(settings, initOptions)
-
-      loadAnalytics()
+      AnalyticsBrowser.load(settings, initOptions)
         .then(([res]) => setAnalytics(res))
         .catch((err: Error) => {
           onError?.(err)

@@ -66,7 +66,8 @@ import events from './events'
 
 const App = () => (
   <SegmentProvider
-    writeKey={config.writeKey} // check your segment writeKey
+    settings={{ writeKey: 'WRITE_KEY' }} // check your segment writeKey
+    cdn="https://cdn.url" // In case you are using a proxy cdn
     events={events}
     onError={e => captureMessage(`Error on Segment: ${e.message}`)}
   >
