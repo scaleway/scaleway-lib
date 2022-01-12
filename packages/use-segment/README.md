@@ -39,6 +39,21 @@ const pageVisited =
 export default pageVisited
 ```
 
+
+
+```typescript
+
+import pageTypes from './pageTypes'
+import testEvents from './testEvents'
+
+export default {
+    pageTypes,
+    testEvents,
+}
+
+```
+
+
 ### Context Load
 
 Inside you global app you have to use our Segment Provider to allow loading of segment from your settting app.
@@ -47,7 +62,7 @@ This will trigger a load and return analitycs function inside you provider.
 ```javascript
 import SegmentProvider from '@scaleway/use-segment'
 import { captureMessage } from '@sentry/browser'
-import * as events from './events'
+import events from './events'
 
 const App = () => (
   <SegmentProvider

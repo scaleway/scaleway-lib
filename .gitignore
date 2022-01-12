@@ -17,9 +17,8 @@ package-lock.json
 /.vscode
 .idea/
 .eslintcache
-dist/
+dist
 coverage
-storybook-static
 .reports
 
 

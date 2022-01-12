@@ -1,5 +1,9 @@
-import {  AnalyticsBrowser, } from '@segment/analytics-next'
-import type { Analytics ,InitOptions} from '@segment/analytics-next'
+import { AnalyticsBrowser } from '@segment/analytics-next'
+import type {
+  Analytics,
+  AnalyticsSettings,
+  InitOptions,
+} from '@segment/analytics-next'
 import React, {
   ReactNode,
   createContext,
@@ -15,11 +19,11 @@ type Events = Record<string, (analytics?: Analytics) => EventFunction>
 interface SegmentContextInterface<T extends Events = Events> {
   analytics: Analytics | undefined
   events: { [K in keyof T]: ReturnType<T[K]> }
-  writeKey?: string
-  onError?: (err: Error) => void
 }
 
-const SegmentContext = createContext<SegmentContextInterface | undefined>(undefined)
+const SegmentContext = createContext<SegmentContextInterface | undefined>(
+  undefined,
+)
 
 export function useSegment<T extends Events>(): SegmentContextInterface<T> {
   // @ts-expect-error Here we force cast the generic onto the useContext because the context is a
@@ -33,55 +37,72 @@ export function useSegment<T extends Events>(): SegmentContextInterface<T> {
 }
 
 export type SegmentProviderProps<T> = {
-  writeKey?: string
-  initOptions?: InitOptions,
-  onError: (err: Error) => void
+  cdn?: string,
+  settings?: AnalyticsSettings
+  initOptions?: InitOptions
+  onError?: (err: Error) => void
   events: T
   children: ReactNode
 }
 
 export { Analytics }
 
+
+declare global {
+  interface Window {
+    analytics: Analytics & { _cdn: string }
+  }
+}
+
 function SegmentProvider<T extends Events>({
   children,
-  writeKey,
+  settings,
   initOptions,
   onError,
   events,
+  cdn,
 }: SegmentProviderProps<T>) {
-  const [analytics, setAnalytics] = useState<Analytics | undefined>(undefined)
+  const [internalAnalytics, setAnalytics] = useState<Analytics | undefined>(undefined)
+  
 
+  if(cdn ){
+    // https://github.com/segmentio/analytics-next/issues/362
+    // eslint-disable-next-line no-underscore-dangle
+    window.analytics._cdn = cdn 
+  }
+  
   useEffect(() => {
-    if (writeKey) {
+    if (settings?.writeKey) {
       const loadAnalytics = async () => {
-        const [analitycsResponse, Context] = await AnalyticsBrowser.load({ writeKey }, initOptions)
+        const [response] = await AnalyticsBrowser.load(
+          settings,
+          initOptions,
+        )
 
-        console.log('loadAnalytics Context =>',Context)
-
-        return analitycsResponse
+        return response
       }
       loadAnalytics()
-        .then((res) => setAnalytics(res))
+        .then(res => setAnalytics(res))
         .catch((err: Error) => {
-          onError(err)
+          onError?.(err)
         })
     }
-  }, [onError, writeKey,initOptions])
+  }, [onError, settings, initOptions])
 
   const value = useMemo<SegmentContextInterface<T>>(() => {
     const curiedEvents = Object.entries(events).reduce(
       (acc, [eventName, eventFn]) => ({
         ...acc,
-        [eventName]: eventFn(analytics),
+        [eventName]: eventFn(internalAnalytics),
       }),
       {},
     ) as { [K in keyof T]: ReturnType<T[K]> }
 
     return {
-      analytics,
+      analytics: internalAnalytics,
       events: curiedEvents,
     }
-  }, [analytics, events])
+  }, [internalAnalytics, events])
 
   return (
     <SegmentContext.Provider value={value}>{children}</SegmentContext.Provider>
