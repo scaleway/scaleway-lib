@@ -187,7 +187,7 @@ describe('segment hook', () => {
     expect(await result.current.events.pageVisited()).toBe(undefined)
   })
 
-  it('useSegment should correctly set cdn into  windows.analitycs', async () => {
+  it('useSegment should correctly set cdn into  windows.analitycs', () => {
     // this test should be remove in the same time as this issues is solve
     // https://github.com/segmentio/analytics-next/issues/362
 
