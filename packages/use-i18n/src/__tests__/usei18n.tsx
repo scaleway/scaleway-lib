@@ -2,16 +2,16 @@ import { act, renderHook } from '@testing-library/react-hooks'
 import mockdate from 'mockdate'
 import React from 'react'
 import I18n, { useI18n, useTranslation } from '..'
-import en from './locales/en'
-import es from './locales/es'
-import fr from './locales/fr'
+import en from './locales/en.json'
+import es from './locales/es.json'
+import fr from './locales/fr.json'
 
 const LOCALE_ITEM_STORAGE = 'locales'
 
 const wrapper =
   ({
     loadDateLocale = async (locale: string) => import(`date-fns/locale/${locale}/index`),
-    defaultLoad = async ({ locale }: { locale: string }) => import(`./locales/${locale}`),
+    defaultLoad = async ({ locale }: { locale: string }) => import(`./locales/${locale}.json`),
     defaultLocale = 'en',
     defaultTranslations = {},
     enableDebugKey = false,
