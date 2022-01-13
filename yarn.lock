@@ -3261,13 +3261,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@scaleway/use-segment@workspace:packages/use-segment"
   dependencies:
-    "@segment/analytics-next": ^1.33.0
+    "@segment/analytics-next": 1.33.0
   peerDependencies:
     react: 17.x
   languageName: unknown
   linkType: soft
 
-"@segment/analytics-next@npm:^1.33.0":
+"@segment/analytics-next@npm:1.33.0":
   version: 1.33.0
   resolution: "@segment/analytics-next@npm:1.33.0"
   dependencies:
