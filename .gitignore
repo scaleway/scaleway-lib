@@ -1,3 +1,4 @@
+# dependencies
 node_modules
 .yarn/*
 !.yarn/patches
@@ -7,10 +8,31 @@ node_modules
 !.yarn/versions
 .pnp.*
 
+# we are using yarn here
+package-lock.json
+
+# misc
+.DS_Store
+.env
+/.vscode
+.idea/
 .eslintcache
 dist
 coverage
-*.log
 .reports
-.env
-build
+
+
+# VSCode extension "Local History"
+.history
+
+# Npm/Yarn debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+
+
+# Yalc
+yalc.lock
+.yalc/

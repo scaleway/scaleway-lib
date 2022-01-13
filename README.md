@@ -65,6 +65,13 @@ scaleway-lib is a set of NPM packages used at Scaleway.
   ![npm bundle size](https://img.shields.io/bundlephobia/min/@scaleway/use-query-params)
   ![npm](https://img.shields.io/npm/v/@scaleway/use-query-params)
 
+- [`@scaleway/use-segment`](./packages/use-segment/README.md):
+   A tiny hooks to handle segment events.
+
+  ![npm](https://img.shields.io/npm/dm/@scaleway/use-segment)
+  ![npm bundle size](https://img.shields.io/bundlephobia/min/@scaleway/use-segment)
+  ![npm](https://img.shields.io/npm/v/@scaleway/use-segment)
+
 - [`@scaleway/use-i18n`](./packages/use-i18n/README.md):
   A tiny hook to handle i18n.
 
