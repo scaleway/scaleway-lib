@@ -3224,7 +3224,7 @@ __metadata:
     "@formatjs/fast-memoize": 1.2.1
     date-fns: 2.28.0
     filesize: 8.0.6
-    intl-messageformat: 9.11.1
+    intl-messageformat: 9.11.2
     prop-types: 15.8.1
   peerDependencies:
     date-fns: 2.x
@@ -7032,15 +7032,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"intl-messageformat@npm:9.11.1":
-  version: 9.11.1
-  resolution: "intl-messageformat@npm:9.11.1"
+"intl-messageformat@npm:9.11.2":
+  version: 9.11.2
+  resolution: "intl-messageformat@npm:9.11.2"
   dependencies:
     "@formatjs/ecma402-abstract": 1.11.1
     "@formatjs/fast-memoize": 1.2.1
     "@formatjs/icu-messageformat-parser": 2.0.16
     tslib: ^2.1.0
-  checksum: 93062f9409e1201bb9857020986c0c1a15e589b21bc45c69f02d68a838c47c2a5f4fe4db4d9b7b576d415041e863476c26122732c1efbce2b4dda7542129fb8c
+  checksum: 285636af87b26fe377160d02261fdec97799d4148a99f9b0f9eab5edc1a23d2b61febdad9481c1660a3ecb6da98f1ca94278413ef75b5f925180709e2bf1b7e0
   languageName: node
   linkType: hard
 
