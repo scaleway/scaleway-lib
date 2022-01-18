@@ -7,10 +7,14 @@ import { KEY_IS_NOT_STRING_ERROR, StatusEnum } from '../constants'
 const TEST_KEY = 'test'
 const PROMISE_TIMEOUT = 5
 const fakePromise = () =>
-  new Promise(resolve => { setTimeout(() => resolve(true), PROMISE_TIMEOUT) })
+  new Promise(resolve => {
+    setTimeout(() => resolve(true), PROMISE_TIMEOUT)
+  })
 
 const fakeNullPromise = () =>
-  new Promise(resolve => { setTimeout(() => resolve(null), PROMISE_TIMEOUT) })
+  new Promise(resolve => {
+    setTimeout(() => resolve(null), PROMISE_TIMEOUT)
+  })
 
 const wrapper = ({ children }: { children: ReactNode }) => (
   <DataLoaderProvider>{children}</DataLoaderProvider>
@@ -108,7 +112,11 @@ describe('DataLoaderProvider', () => {
       wrapper,
     })
     act(() => {
-      result.current.addRequest(TEST_KEY, {
+      result.current.getOrAddRequest(TEST_KEY, {
+        enabled: true,
+        method,
+      })
+      result.current.getOrAddRequest(TEST_KEY, {
         enabled: true,
         method,
       })
@@ -125,6 +133,8 @@ describe('DataLoaderProvider', () => {
     expect(result.current.getCachedData(TEST_KEY)).toBe(undefined)
     expect(result.current.getCachedData()).toStrictEqual({ test: undefined })
     expect(result.current.getRequest(TEST_KEY)).toBeDefined()
+    const unknownReload = result.current.getReloads('unknown')
+    expect(unknownReload).toBeUndefined()
     await act(async () => {
       await reloads.test()
     })
@@ -141,9 +151,6 @@ describe('DataLoaderProvider', () => {
     expect(result.current.getCachedData(TEST_KEY)).toBeUndefined()
     act(() => result.current.clearAllCachedData())
     expect(result.current.getCachedData()).toStrictEqual({ test: undefined })
-    await waitFor(() =>
-      expect(result.current.getRequest(TEST_KEY)).toBeUndefined(),
-    )
 
     try {
       // @ts-expect-error Should throw an error
@@ -151,10 +158,8 @@ describe('DataLoaderProvider', () => {
     } catch (e) {
       expect((e as Error).message).toBe(KEY_IS_NOT_STRING_ERROR)
     }
-    expect(result.current.getReloads()).not.toHaveProperty(TEST_KEY)
-    expect(result.current.getReloads(TEST_KEY)).not.toBeDefined()
     expect(result.current.getCachedData(TEST_KEY)).toBe(undefined)
-    expect(result.current.getCachedData()).not.toStrictEqual({
+    expect(result.current.getCachedData()).toStrictEqual({
       test: undefined,
     })
     try {
@@ -184,7 +189,10 @@ describe('DataLoaderProvider', () => {
 
   test('should delay max concurrent request', async () => {
     const method = jest.fn(
-      () => new Promise(resolve => { setTimeout(() => resolve(true), 100) }),
+      () =>
+        new Promise(resolve => {
+          setTimeout(() => resolve(true), 100)
+        }),
     )
     const { result, waitFor } = renderHook(useDataLoaderContext, {
       wrapper: wrapperWith2ConcurrentRequests,
