@@ -1,6 +1,7 @@
 import {
   absoluteLinuxPath,
   alpha,
+  alphaLower,
   alphanum,
   alphanumLowercase,
   alphanumSpacesDotsUnderscoreDash,
@@ -15,6 +16,7 @@ import {
   alphanumdots,
   ascii,
   backupKey,
+  basicDomain,
   cron,
   digits,
   email,
@@ -33,6 +35,9 @@ const asciiLetters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 const asciiLowercase = 'abcdefghijklmnopqrstuvwxyz'
 const asciiUppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 const backupKeyTest = '123456789ABCEDFGHIJIKLMNOPQRSTUV'
+const domain = 'another-example.com'
+const subDomain = 'sub.another-example.com'
+const longTldDomain = 'sub.another-example.verylongtld'
 const cronTest = '0/15*-'
 const digitsTest = '0123456789'
 const emailTest = 'test@scaleway.com'
@@ -77,8 +82,29 @@ describe('@regex', () => {
       [whitespace, false],
       [cronTest, false],
       [macAddress1, false],
-    ])('should match regex %s to be %s)', (string, expected) => {
+    ])('should match regex %s to be %s', (string, expected) => {
       expect(alpha.test(string)).toBe(expected)
+    })
+  })
+
+  describe('alphaLower', () => {
+    test.each([
+      [alphanumdashText, false],
+      [alphanumdashdotsText, false],
+      [asciiLetters, false],
+      [asciiLowercase, true],
+      [asciiUppercase, false],
+      [digitsTest, false],
+      [emailTest, false],
+      [octdigits, false],
+      [hexdigits, false],
+      [printable, false],
+      [punctuation, false],
+      [whitespace, false],
+      [cronTest, false],
+      [macAddress1, false],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(alphaLower.test(string)).toBe(expected)
     })
   })
 
@@ -98,7 +124,7 @@ describe('@regex', () => {
       [whitespace, false],
       [cronTest, false],
       [macAddress1, false],
-    ])('should match regex %s to be %s)', (string, expected) => {
+    ])('should match regex %s to be %s', (string, expected) => {
       expect(alphanum.test(string)).toBe(expected)
     })
   })
@@ -119,7 +145,7 @@ describe('@regex', () => {
       [whitespace, false],
       [cronTest, false],
       [macAddress1, false],
-    ])('should match regex %s to be %s)', (string, expected) => {
+    ])('should match regex %s to be %s', (string, expected) => {
       expect(alphanumdash.test(string)).toBe(expected)
     })
   })
@@ -140,7 +166,7 @@ describe('@regex', () => {
       [whitespace, false],
       [cronTest, false],
       [macAddress1, false],
-    ])('should match regex %s to be %s)', (string, expected) => {
+    ])('should match regex %s to be %s', (string, expected) => {
       expect(alphanumdashdots.test(string)).toBe(expected)
     })
   })
@@ -161,7 +187,7 @@ describe('@regex', () => {
       [whitespace, false],
       [cronTest, false],
       [macAddress1, false],
-    ])('should match regex %s to be %s)', (string, expected) => {
+    ])('should match regex %s to be %s', (string, expected) => {
       expect(alphanumdashdotsorempty.test(string)).toBe(expected)
     })
   })
@@ -182,7 +208,7 @@ describe('@regex', () => {
       [whitespace, true],
       [cronTest, false],
       [macAddress1, false],
-    ])('should match regex %s to be %s)', (string, expected) => {
+    ])('should match regex %s to be %s', (string, expected) => {
       expect(alphanumdashdotsspaces.test(string)).toBe(expected)
     })
   })
@@ -203,7 +229,7 @@ describe('@regex', () => {
       [whitespace, false],
       [cronTest, false],
       [macAddress1, false],
-    ])('should match regex %s to be %s)', (string, expected) => {
+    ])('should match regex %s to be %s', (string, expected) => {
       expect(alphanumdashorempty.test(string)).toBe(expected)
     })
   })
@@ -224,7 +250,7 @@ describe('@regex', () => {
       [whitespace, true],
       [cronTest, false],
       [macAddress1, false],
-    ])('should match regex %s to be %s)', (string, expected) => {
+    ])('should match regex %s to be %s', (string, expected) => {
       expect(alphanumdashspaces.test(string)).toBe(expected)
     })
   })
@@ -245,7 +271,7 @@ describe('@regex', () => {
       [whitespace, false],
       [cronTest, false],
       [macAddress1, false],
-    ])('should match regex %s to be %s)', (string, expected) => {
+    ])('should match regex %s to be %s', (string, expected) => {
       expect(alphanumdots.test(string)).toBe(expected)
     })
   })
@@ -264,7 +290,7 @@ describe('@regex', () => {
       [whitespace, false],
       [cronTest, false],
       [macAddress1, false],
-    ])('should match regex %s to be %s)', (string, expected) => {
+    ])('should match regex %s to be %s', (string, expected) => {
       expect(alphanumLowercase.test(string)).toBe(expected)
     })
   })
@@ -283,7 +309,7 @@ describe('@regex', () => {
       [whitespace, true],
       [cronTest, false],
       [macAddress1, false],
-    ])('should match regex %s to be %s)', (string, expected) => {
+    ])('should match regex %s to be %s', (string, expected) => {
       expect(alphanumSpacesDotsUnderscoreDash.test(string)).toBe(expected)
     })
   })
@@ -302,7 +328,7 @@ describe('@regex', () => {
       [whitespace, false],
       [cronTest, false],
       [macAddress1, false],
-    ])('should match regex %s to be %s)', (string, expected) => {
+    ])('should match regex %s to be %s', (string, expected) => {
       expect(alphanumUnderscoreDash.test(string)).toBe(expected)
     })
   })
@@ -321,7 +347,7 @@ describe('@regex', () => {
       [whitespace, false],
       [cronTest, false],
       [macAddress1, false],
-    ])('should match regex %s to be %s)', (string, expected) => {
+    ])('should match regex %s to be %s', (string, expected) => {
       expect(alphanumUnderscoreDollarDash.test(string)).toBe(expected)
     })
   })
@@ -352,7 +378,7 @@ describe('@regex', () => {
       [punctuation, true],
       [whitespace, true],
       [cronTest, true],
-    ])('should match regex %s to be %s)', (string, expected) => {
+    ])('should match regex %s to be %s', (string, expected) => {
       expect(ascii.test(string)).toBe(expected)
     })
   })
@@ -372,10 +398,35 @@ describe('@regex', () => {
       [whitespace, false],
       [cronTest, false],
       [macAddress1, false],
-    ])('should match regex %s to be %s)', (string, expected) => {
+    ])('should match regex %s to be %s', (string, expected) => {
       expect(backupKey.test(string)).toBe(expected)
     })
   })
+  describe('basicDomain', () => {
+    test.each([
+      [asciiLetters, false],
+      [asciiLowercase, false],
+      [asciiUppercase, false],
+      [backupKeyTest, false],
+      [domain, true],
+      [subDomain, true],
+      [longTldDomain, true],
+      [digitsTest, false],
+      [emailTest, false],
+      [octdigits, false],
+      [hexdigits, false],
+      [printable, false],
+      [punctuation, false],
+      [whitespace, false],
+      [cronTest, false],
+      [macAddress1, false],
+      [url1, false],
+      [url2, false],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(basicDomain.test(string)).toBe(expected)
+    })
+  })
+
 
   describe('cron', () => {
     test.each([
@@ -390,7 +441,7 @@ describe('@regex', () => {
       [punctuation, false],
       [whitespace, false],
       [cronTest, true],
-    ])('should match regex %s to be %s)', (string, expected) => {
+    ])('should match regex %s to be %s', (string, expected) => {
       expect(cron.test(string)).toBe(expected)
     })
   })
@@ -409,7 +460,7 @@ describe('@regex', () => {
       [whitespace, false],
       [cronTest, false],
       [macAddress1, false],
-    ])('should match regex %s to be %s)', (string, expected) => {
+    ])('should match regex %s to be %s', (string, expected) => {
       expect(digits.test(string)).toBe(expected)
     })
   })
@@ -428,7 +479,7 @@ describe('@regex', () => {
       [whitespace, false],
       [cronTest, false],
       [macAddress1, false],
-    ])('should match regex %s to be %s)', (string, expected) => {
+    ])('should match regex %s to be %s', (string, expected) => {
       expect(email.test(string)).toBe(expected)
     })
   })
@@ -448,7 +499,7 @@ describe('@regex', () => {
       [whitespace, false],
       [cronTest, false],
       [macAddress1, false],
-    ])('should match regex %s to be %s)', (string, expected) => {
+    ])('should match regex %s to be %s', (string, expected) => {
       expect(fourDigitsCode.test(string)).toBe(expected)
     })
   })
@@ -468,7 +519,7 @@ describe('@regex', () => {
       [whitespace, false],
       [cronTest, false],
       [macAddress1, true],
-    ])('should match regex %s to be %s)', (string, expected) => {
+    ])('should match regex %s to be %s', (string, expected) => {
       expect(macAddress.test(string)).toBe(expected)
     })
   })
@@ -489,7 +540,7 @@ describe('@regex', () => {
       [whitespace, false],
       [cronTest, false],
       [macAddress1, false],
-    ])('should match regex %s to be %s)', (string, expected) => {
+    ])('should match regex %s to be %s', (string, expected) => {
       expect(phone.test(string)).toBe(expected)
     })
   })
@@ -510,7 +561,7 @@ describe('@regex', () => {
       [whitespace, true],
       [cronTest, false],
       [macAddress1, false],
-    ])('should match regex %s to be %s)', (string, expected) => {
+    ])('should match regex %s to be %s', (string, expected) => {
       expect(spaces.test(string)).toBe(expected)
     })
   })
@@ -532,7 +583,7 @@ describe('@regex', () => {
       [whitespace, false],
       [cronTest, false],
       [macAddress1, false],
-    ])('should match regex %s to be %s)', (string, expected) => {
+    ])('should match regex %s to be %s', (string, expected) => {
       expect(sixDigitsCode.test(string)).toBe(expected)
     })
   })
@@ -556,7 +607,7 @@ describe('@regex', () => {
       [macAddress1, false],
       [url1, true],
       [url2, true],
-    ])('should match regex %s to be %s)', (string, expected) => {
+    ])('should match regex %s to be %s', (string, expected) => {
       expect(url.test(string)).toBe(expected)
     })
   })
@@ -577,7 +628,7 @@ describe('@regex', () => {
       [whitespace, false],
       [cronTest, false],
       [hexdigits, true],
-    ])('should match regex %s to be %s)', (string, expected) => {
+    ])('should match regex %s to be %s', (string, expected) => {
       expect(hexadecimal.test(string)).toBe(expected)
     })
   })
