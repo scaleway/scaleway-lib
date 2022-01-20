@@ -3261,15 +3261,15 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@scaleway/use-segment@workspace:packages/use-segment"
   dependencies:
-    "@segment/analytics-next": 1.33.2
+    "@segment/analytics-next": 1.33.3
   peerDependencies:
     react: 17.x
   languageName: unknown
   linkType: soft
 
-"@segment/analytics-next@npm:1.33.2":
-  version: 1.33.2
-  resolution: "@segment/analytics-next@npm:1.33.2"
+"@segment/analytics-next@npm:1.33.3":
+  version: 1.33.3
+  resolution: "@segment/analytics-next@npm:1.33.3"
   dependencies:
     "@lukeed/uuid": ^2.0.0
     "@segment/analytics.js-video-plugins": ^0.2.1
@@ -3281,7 +3281,7 @@ __metadata:
     spark-md5: ^3.0.1
     tslib: ^2.1.0
     unfetch: ^4.1.0
-  checksum: 25f8e251f29cd59239aaa347e117856fc4f54469b4851cb2800ead74352727d359099c45deba149fc4c4c49bac606acfe26a5e4b520dbc2e2528397b9567d0e6
+  checksum: cc6bbed1e2eea19c98e1013c0f7564cbc730895f4e40a579eaf98e00f06c9a86a6c001863bc6a7bd881ca5e35fcf8a8e7063fad2ef80ee5229da078446b593de
   languageName: node
   linkType: hard
 
