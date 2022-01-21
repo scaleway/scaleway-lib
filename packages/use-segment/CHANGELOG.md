@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.0](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-segment@0.2.2...@scaleway/use-segment@0.3.0) (2022-01-21)
+
+
+### Features
+
+* **segment:** add on event error to handle all your events from provider ([#598](https://github.com/scaleway/scaleway-lib/issues/598)) ([781f1d0](https://github.com/scaleway/scaleway-lib/commit/781f1d02035aca0a8d582126c99631b9b68d74d0))
+
+
+
 ### 0.2.2 (2022-01-20)
 
 
