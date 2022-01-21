@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.8.0 (2022-01-18)
+
+
+### Features
+
+* dont clear cached data when no observer ([#599](https://github.com/scaleway/scaleway-lib/issues/599)) ([7acff81](https://github.com/scaleway/scaleway-lib/commit/7acff8190a8c115faab84213ea74e1bfb5b54592))
+
+
+
 ### [2.7.4](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-dataloader@2.7.3...@scaleway/use-dataloader@2.7.4) (2022-01-06)
 
 

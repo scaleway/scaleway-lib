@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/use-i18n",
-  "version": "3.2.5",
+  "version": "3.2.7",
   "description": "A small hook to handle i18n",
   "keywords": [
     "react",
@@ -30,8 +30,8 @@
     "@formatjs/ecma402-abstract": "1.11.1",
     "@formatjs/fast-memoize": "1.2.1",
     "date-fns": "2.28.0",
-    "filesize": "8.0.6",
-    "intl-messageformat": "9.11.1",
+    "filesize": "8.0.7",
+    "intl-messageformat": "9.11.2",
     "prop-types": "15.8.1"
   },
   "peerDependencies": {

@@ -5,7 +5,6 @@ import React, {
   createContext,
   useCallback,
   useContext,
-  useEffect,
   useMemo,
   useRef,
 } from 'react'
@@ -181,24 +180,6 @@ const DataLoaderProvider = ({
     },
     [getRequest],
   )
-
-  useEffect(() => {
-    const cleanRequest = () => {
-      setTimeout(() => {
-        Object.keys(requestsRef.current).forEach(key => {
-          if (requestsRef.current[key].getObserversCount() === 0) {
-            // Worst case there is a memleak
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises
-            requestsRef.current[key].destroy()
-            delete requestsRef.current[key]
-          }
-        })
-        cleanRequest()
-      }, 300)
-    }
-
-    cleanRequest()
-  }, [])
 
   const value = useMemo(
     () => ({

@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.2.0 (2022-01-19)
+
+
+### Features
+
+* add alphaLower and basicDomain regex ([#600](https://github.com/scaleway/scaleway-lib/issues/600)) ([418bda9](https://github.com/scaleway/scaleway-lib/commit/418bda9db7c3c342565e01433461d78079bb1b76))
+
+
+
 ## 2.1.0 (2021-11-23)
 
 

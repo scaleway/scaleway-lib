@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 3.2.7 (2022-01-20)
+
+
+### Bug Fixes
+
+* **deps:** update dependency filesize to v8.0.7 ([#601](https://github.com/scaleway/scaleway-lib/issues/601)) ([ea1e378](https://github.com/scaleway/scaleway-lib/commit/ea1e3782b96f950c57678bf91ccdc94aeee663e7))
+
+
+
+### 3.2.6 (2022-01-18)
+
+
+### Bug Fixes
+
+* **deps:** update dependency intl-messageformat to v9.11.2 ([#595](https://github.com/scaleway/scaleway-lib/issues/595)) ([b6bb0e0](https://github.com/scaleway/scaleway-lib/commit/b6bb0e08eb4c12607f27cc44f4372a790380656d))
+
+
+
 ### 3.2.5 (2022-01-12)
 
 **Note:** Version bump only for package @scaleway/use-i18n
