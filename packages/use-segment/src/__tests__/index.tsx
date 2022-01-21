@@ -3,9 +3,20 @@ import { renderHook } from '@testing-library/react-hooks'
 import React, { ReactNode } from 'react'
 import waitForExpect from 'wait-for-expect'
 import SegmentProvider, { useSegment } from '..'
-import type { Analytics, SegmentProviderProps } from '..'
+import type { Analytics, OnEventError, SegmentProviderProps } from '..'
+
+const eventError = new Error('Error Event')
 
 const defaultEvents = {
+  errorEvent: (_?: Analytics, onEventError?: OnEventError) => async () => {
+    try {
+      await new Promise((resolve, reject) => {
+        reject(eventError)
+      })
+    } catch (error) {
+      await onEventError?.(error as Error)
+    }
+  },
   pageVisited:
     (analytics?: Analytics) =>
     async (
@@ -34,6 +45,7 @@ const wrapper =
     settings,
     initOptions,
     onError,
+    onEventError,
     events = defaultEvents,
     cdn,
   }: Omit<SegmentProviderProps<DefaultEvents>, 'children'>) =>
@@ -43,6 +55,7 @@ const wrapper =
         settings={settings}
         initOptions={initOptions}
         onError={onError}
+        onEventError={onEventError}
         events={events}
         cdn={cdn}
       >
@@ -124,9 +137,8 @@ describe('segment hook', () => {
   })
 
   it('Provider should load and call onError on analytics load error', async () => {
-    const mock = jest
-      .spyOn(AnalyticsBrowser, 'load')
-      .mockRejectedValue(new Error('not good'))
+    const error = new Error('not good')
+    const mock = jest.spyOn(AnalyticsBrowser, 'load').mockRejectedValue(error)
 
     const onError = jest.fn()
     const settings = { writeKey: 'pleasethrow' }
@@ -144,7 +156,41 @@ describe('segment hook', () => {
 
     await waitForExpect(() => {
       expect(onError).toHaveBeenCalledTimes(1)
-      expect(onError).toHaveBeenCalledWith(new Error('not good'))
+      expect(onError).toHaveBeenCalledWith(error)
+    })
+  })
+
+  it('Provider call onEventError when an event is trigger with an error', async () => {
+    const mock = jest
+      .spyOn(AnalyticsBrowser, 'load')
+      .mockResolvedValue([{} as Analytics, {} as Context])
+
+    const onEventError = jest.fn()
+    const onError = jest.fn()
+
+    const settings = { writeKey: 'pleasethrow' }
+
+    const { result, waitForNextUpdate } = renderHook(
+      () => useSegment<DefaultEvents>(),
+      {
+        wrapper: wrapper({
+          events: defaultEvents,
+          onError,
+          onEventError,
+          settings,
+        }),
+      },
+    )
+
+    expect(mock).toHaveBeenCalledTimes(1)
+
+    await waitForNextUpdate()
+
+    await result.current.events.errorEvent()
+
+    await waitForExpect(() => {
+      expect(onEventError).toHaveBeenCalledTimes(1)
+      expect(onEventError).toHaveBeenCalledWith(eventError)
     })
   })
 

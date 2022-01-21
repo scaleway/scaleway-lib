@@ -13,8 +13,12 @@ import React, {
   useState,
 } from 'react'
 
+export type OnEventError = (error: Error) => Promise<void> | void
 type EventFunction = (...args: never[]) => Promise<void>
-type Events = Record<string, (analytics?: Analytics) => EventFunction>
+type Events = Record<
+  string,
+  (analytics?: Analytics, onEventError?: OnEventError) => EventFunction
+>
 
 interface SegmentContextInterface<T extends Events = Events> {
   analytics: Analytics | undefined
@@ -41,6 +45,7 @@ export type SegmentProviderProps<T> = {
   settings?: AnalyticsSettings
   initOptions?: InitOptions
   onError?: (err: Error) => void
+  onEventError?: OnEventError
   events: T
   children: ReactNode
 }
@@ -58,6 +63,7 @@ function SegmentProvider<T extends Events>({
   settings,
   initOptions,
   onError,
+  onEventError,
   events,
   cdn,
 }: SegmentProviderProps<T>) {
@@ -86,7 +92,7 @@ function SegmentProvider<T extends Events>({
     const curiedEvents = Object.entries(events).reduce(
       (acc, [eventName, eventFn]) => ({
         ...acc,
-        [eventName]: eventFn(internalAnalytics),
+        [eventName]: eventFn(internalAnalytics, onEventError),
       }),
       {},
     ) as { [K in keyof T]: ReturnType<T[K]> }
@@ -95,7 +101,7 @@ function SegmentProvider<T extends Events>({
       analytics: internalAnalytics,
       events: curiedEvents,
     }
-  }, [internalAnalytics, events])
+  }, [internalAnalytics, events, onEventError])
 
   return (
     <SegmentContext.Provider value={value}>{children}</SegmentContext.Provider>
