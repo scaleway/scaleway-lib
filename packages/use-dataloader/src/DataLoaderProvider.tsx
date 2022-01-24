@@ -20,7 +20,6 @@ type CachedData = Record<string, unknown>
 type Reloads = Record<string, () => Promise<void | unknown>>
 
 type UseDataLoaderInitializerArgs<T = unknown> = {
-  enabled?: boolean
   status?: StatusEnum
   method: () => PromiseType<T>
   pollingInterval?: number

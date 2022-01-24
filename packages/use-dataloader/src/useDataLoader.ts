@@ -47,7 +47,6 @@ const useDataLoader = <T>(
     }
 
     const newRequest = getOrAddRequest(fetchKey, {
-      enabled,
       keepPreviousData,
       maxDataLifetime,
       method,
@@ -60,7 +59,6 @@ const useDataLoader = <T>(
 
     return newRequest
   }, [
-    enabled,
     fetchKey,
     getOrAddRequest,
     maxDataLifetime,
@@ -107,11 +105,16 @@ const useDataLoader = <T>(
     [isSuccess, isLoading, enabled, pollingInterval],
   )
 
+  const isFirstLoad = useMemo(
+    () => (enabled && isIdle) || isLoading,
+    [isLoading, isIdle, enabled],
+  )
+
   useEffect(() => {
-    if (enabled && isIdle) {
+    if (enabled) {
       // launch should never throw
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      request.launch?.()
+      request.load()
     }
   }, [request, enabled, isIdle])
 
@@ -157,6 +160,7 @@ const useDataLoader = <T>(
     data: request.getData() || (initialData as T),
     error: request?.error,
     isError,
+    isFirstLoad,
     isIdle,
     isLoading,
     isPolling,

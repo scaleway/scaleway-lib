@@ -8,7 +8,6 @@ import {
 } from './types'
 
 export type DataLoaderConstructorArgs<T = unknown> = {
-  enabled?: boolean
   key: string
   method: () => PromiseType<T>
   pollingInterval?: number
@@ -25,8 +24,6 @@ class DataLoader<T = unknown> {
   public static cachedData = {} as Record<string, unknown | undefined>
 
   public key: string
-
-  private enabled: boolean
 
   public status: StatusEnum
 
@@ -64,28 +61,13 @@ class DataLoader<T = unknown> {
 
   public constructor(args: DataLoaderConstructorArgs<T>) {
     this.key = args.key
-    this.enabled = args.enabled ?? false
-    this.status = args.enabled ? StatusEnum.LOADING : StatusEnum.IDLE
+    this.status = StatusEnum.IDLE
     this.method = args.method
     this.pollingInterval = args?.pollingInterval
     this.keepPreviousData = args?.keepPreviousData
     this.maxDataLifetime = args.maxDataLifetime
     this.needPolling = args.needPolling ?? true
-    if (args.enabled) {
-      this.tryLaunch()
-    } else {
-      this.notifyChanges()
-    }
-  }
-
-  private tryLaunch(): void {
-    if (DataLoader.started < DataLoader.maxConcurrent) {
-      // Because we want to launch the request directly without waiting the return
-      // eslint-disable-next-line no-void
-      void this.load()
-    } else {
-      setTimeout(() => this.tryLaunch())
-    }
+    this.notifyChanges()
   }
 
   public getData(): T | undefined {
@@ -99,18 +81,26 @@ class DataLoader<T = unknown> {
   public load = async (force = false): Promise<void> => {
     if (
       force ||
-      this.status !== StatusEnum.SUCCESS ||
+      this.status === StatusEnum.IDLE ||
+      this.status === StatusEnum.ERROR ||
       (this.status === StatusEnum.SUCCESS && this.isDataOutdated)
     ) {
-      if (this.timeout) {
-        // Prevent multiple call at the same time
-        clearTimeout(this.timeout)
+      if (DataLoader.started < DataLoader.maxConcurrent) {
+        // Because we want to launch the request directly without waiting the return
+        if (this.timeout) {
+          // Prevent multiple call at the same time
+          clearTimeout(this.timeout)
+        }
+        await this.launch()
+      } else {
+        await new Promise(resolve => {
+          setTimeout(resolve)
+        }).then(() => this.load(force))
       }
-      await this.launch()
     }
   }
 
-  public launch = async (): Promise<void> => {
+  private launch = async (): Promise<void> => {
     try {
       if (this.status !== StatusEnum.LOADING) {
         this.canceled = false
@@ -142,6 +132,8 @@ class DataLoader<T = unknown> {
             this.isDataOutdated = true
             this.notifyChanges()
           }, this.maxDataLifetime) as unknown as number
+        } else {
+          this.isDataOutdated = true
         }
       }
       this.notifyChanges()
@@ -247,9 +239,6 @@ class DataLoader<T = unknown> {
 
   public setPollingInterval(newPollingInterval?: number): void {
     this.pollingInterval = newPollingInterval
-    if (this.enabled) {
-      this.tryLaunch()
-    }
   }
 
   public setNeedPolling(needPolling: NeedPollingType<T>): void {
