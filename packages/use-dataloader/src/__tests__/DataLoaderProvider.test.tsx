@@ -54,11 +54,11 @@ describe('DataLoaderProvider', () => {
     expect(Object.values(result.current.getReloads()).length).toBe(1)
     const testRequest = result.current.getRequest(TEST_KEY)
     expect(testRequest).toBeDefined()
-    expect(testRequest?.status).toBe(StatusEnum.IDLE)
+    expect(testRequest.status).toBe(StatusEnum.IDLE)
     act(() => {
       // launch should never throw
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      testRequest?.launch()
+      testRequest.load()
     })
     expect(method).toBeCalledTimes(1)
     expect(testRequest.status).toBe(StatusEnum.LOADING)
@@ -92,11 +92,11 @@ describe('DataLoaderProvider', () => {
     const testRequest = result.current.getRequest(TEST_KEY)
     expect(Object.values(result.current.getReloads()).length).toBe(1)
     expect(testRequest).toBeDefined()
-    expect(testRequest?.status).toBe(StatusEnum.IDLE)
+    expect(testRequest.status).toBe(StatusEnum.IDLE)
     act(() => {
       // launch should never throw
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      testRequest?.launch()
+      testRequest.load()
     })
     expect(method).toBeCalledTimes(1)
     await waitFor(() => expect(testRequest.getData()).toBe(true))
@@ -112,14 +112,14 @@ describe('DataLoaderProvider', () => {
       wrapper,
     })
     act(() => {
-      result.current.getOrAddRequest(TEST_KEY, {
-        enabled: true,
+      const request = result.current.getOrAddRequest(TEST_KEY, {
         method,
       })
       result.current.getOrAddRequest(TEST_KEY, {
-        enabled: true,
         method,
       })
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      request.load()
     })
     expect(method).toBeCalledTimes(1)
     await waitFor(() =>
@@ -198,25 +198,25 @@ describe('DataLoaderProvider', () => {
       wrapper: wrapperWith2ConcurrentRequests,
     })
     act(() => {
-      result.current.addRequest(TEST_KEY, {
-        enabled: true,
-        method,
-      })
-      result.current.addRequest(`${TEST_KEY}-2`, {
-        enabled: true,
-        method,
-      })
-      result.current.addRequest(`${TEST_KEY}-3`, {
-        enabled: true,
-        method,
-      })
-      result.current.addRequest(`${TEST_KEY}-4`, {
-        enabled: true,
-        method,
-      })
-      result.current.addRequest(`${TEST_KEY}-5`, {
-        enabled: true,
-        method,
+      ;[
+        result.current.addRequest(TEST_KEY, {
+          method,
+        }),
+        result.current.addRequest(`${TEST_KEY}-2`, {
+          method,
+        }),
+        result.current.addRequest(`${TEST_KEY}-3`, {
+          method,
+        }),
+        result.current.addRequest(`${TEST_KEY}-4`, {
+          method,
+        }),
+        result.current.addRequest(`${TEST_KEY}-5`, {
+          method,
+        }),
+      ].forEach(request => {
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        request.load()
       })
     })
     expect(method).toBeCalledTimes(2)

@@ -24,7 +24,7 @@ const fakeErrorPromise = () =>
   })
 
 describe('Dataloader class', () => {
-  test('should create instance not enabled then load then destroy', async () => {
+  test('should create instance then load then destroy', async () => {
     const method = jest.fn(fakeSuccessPromise)
     const instance = new DataLoader({
       key: 'test',
@@ -33,53 +33,44 @@ describe('Dataloader class', () => {
     expect(instance.status).toBe(StatusEnum.IDLE)
     expect(method).toBeCalledTimes(0)
     await instance.load()
+    expect(instance.status).toBe(StatusEnum.SUCCESS)
     expect(method).toBeCalledTimes(1)
     await instance.destroy()
     instance.clearData()
   })
 
-  test('should create instance enabled with cancel', async () => {
+  test('should create instance with cancel', async () => {
     const notify = jest.fn()
     const method = jest.fn(fakeSuccessPromise)
     const instance = new DataLoader({
-      enabled: true,
       key: 'test',
       method,
     })
     instance.addObserver(notify)
-    expect(instance.status).toBe(StatusEnum.LOADING)
     expect(instance.getData()).toBe(undefined)
     expect(notify).toBeCalledTimes(0)
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    instance.load()
     expect(method).toBeCalledTimes(1)
     await instance.cancel()
-    await new Promise(resolve => {
-      setTimeout(() => {
-        expect(notify).toBeCalledTimes(1)
-        resolve(true)
-      }, PROMISE_TIMEOUT)
-    })
+    expect(notify).toBeCalledTimes(1)
     expect(instance.getData()).toBe(undefined)
     instance.clearData()
   })
 
-  test('should create instance enabled without cancel', async () => {
+  test('should create instance without cancel', async () => {
     const notify = jest.fn()
     const method = jest.fn(fakeSuccessPromise)
     const instance = new DataLoader({
-      enabled: true,
       key: 'test',
       method,
     })
     instance.addObserver(notify)
-    expect(instance.status).toBe(StatusEnum.LOADING)
     expect(notify).toBeCalledTimes(0)
+    expect(instance.status).toBe(StatusEnum.IDLE)
+    await instance.load()
+    expect(notify).toBeCalledTimes(2)
     expect(method).toBeCalledTimes(1)
-    await new Promise(resolve => {
-      setTimeout(() => {
-        expect(notify).toBeCalledTimes(1)
-        resolve(true)
-      }, PROMISE_TIMEOUT)
-    })
     expect(instance.getData()).toBe(true)
     instance.getObserversCount()
     instance.removeObserver(notify)
@@ -87,36 +78,26 @@ describe('Dataloader class', () => {
     instance.clearData()
   })
 
-  test('should create instance enabled with null data', async () => {
+  test('should create instance with null data', async () => {
     const method = jest.fn(fakeNullPromise)
     const instance = new DataLoader({
-      enabled: true,
       key: 'test',
       method,
     })
-    expect(instance.status).toBe(StatusEnum.LOADING)
+    expect(instance.status).toBe(StatusEnum.IDLE)
+    await instance.load()
     expect(method).toBeCalledTimes(1)
-    await new Promise(resolve => {
-      setTimeout(() => {
-        resolve(true)
-      }, PROMISE_TIMEOUT)
-    })
     expect(instance.getData()).toBe(undefined)
   })
-  test('should create instance enabled with undefined data', async () => {
+  test('should create instance with undefined data', async () => {
     const method = jest.fn(fakeUndefinedPromise)
     const instance = new DataLoader({
-      enabled: true,
       key: 'test',
       method,
     })
-    expect(instance.status).toBe(StatusEnum.LOADING)
+    expect(instance.status).toBe(StatusEnum.IDLE)
+    await instance.load()
     expect(method).toBeCalledTimes(1)
-    await new Promise(resolve => {
-      setTimeout(() => {
-        resolve(true)
-      }, PROMISE_TIMEOUT)
-    })
     expect(instance.getData()).toBe(undefined)
   })
 
@@ -129,8 +110,8 @@ describe('Dataloader class', () => {
     })
     instance.addOnCancelListener(onCancel)
     instance.addOnCancelListener(onCancel)
-    // eslint-disable-next-line no-void
-    void instance.load()
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    instance.load()
     await instance.cancel()
     expect(onCancel).toBeCalledTimes(1)
     instance.removeOnCancelListener(onCancel)
@@ -146,8 +127,8 @@ describe('Dataloader class', () => {
     })
     instance.addOnCancelListener(onCancel)
     instance.addOnCancelListener(onCancel)
-    // eslint-disable-next-line no-void
-    void instance.load()
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    instance.load()
     await instance.cancel()
     expect(onCancel).toBeCalledTimes(1)
     instance.removeOnCancelListener(onCancel)
@@ -190,22 +171,23 @@ describe('Dataloader class', () => {
     const instance = new DataLoader({
       key: 'test',
       method,
-      pollingInterval: PROMISE_TIMEOUT * 2,
+      pollingInterval: PROMISE_TIMEOUT,
     })
     await instance.load()
     expect(method).toBeCalledTimes(1)
-    await new Promise(resolve => {
-      setTimeout(resolve, PROMISE_TIMEOUT * 3)
+    await waitForExpect(() => {
+      expect(method).toBeCalledTimes(2)
     })
-    expect(method).toBeCalledTimes(2)
-    await new Promise(resolve => {
-      setTimeout(resolve, PROMISE_TIMEOUT * 3)
+    await waitForExpect(() => {
+      expect(method).toBeCalledTimes(3)
     })
-    expect(method).toBeCalledTimes(3)
     await instance.load()
     await instance.load()
     await waitForExpect(() => {
       expect(method).toBeCalledTimes(4)
+    })
+    await waitForExpect(() => {
+      expect(method).toBeCalledTimes(5)
     })
     await instance.load()
     await instance.load()
@@ -213,7 +195,7 @@ describe('Dataloader class', () => {
     await waitForExpect(() => {
       expect(method).toBeCalledTimes(6)
     })
-    instance.setPollingInterval(PROMISE_TIMEOUT * 4)
+    instance.setPollingInterval(PROMISE_TIMEOUT * 2)
     await instance.destroy()
   })
 
@@ -227,16 +209,14 @@ describe('Dataloader class', () => {
     })
     await instance.load()
     expect(method).toBeCalledTimes(1)
-    await new Promise(resolve => {
-      setTimeout(resolve, PROMISE_TIMEOUT * 3)
-    })
-    expect(method).toBeCalledTimes(2)
-    await new Promise(resolve => {
-      setTimeout(resolve, PROMISE_TIMEOUT * 3)
-    })
-    expect(method).toBeCalledTimes(3)
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     await instance.load()
-    await instance.load()
+    await waitForExpect(() => {
+      expect(method).toBeCalledTimes(2)
+    })
+    await waitForExpect(() => {
+      expect(method).toBeCalledTimes(3)
+    })
     await waitForExpect(() => {
       expect(method).toBeCalledTimes(4)
     })
@@ -244,7 +224,7 @@ describe('Dataloader class', () => {
     await instance.load()
     await instance.load(true)
     await waitForExpect(() => {
-      expect(method).toBeCalledTimes(6)
+      expect(method).toBeCalledTimes(5)
     })
     instance.setPollingInterval(PROMISE_TIMEOUT * 4)
     await instance.destroy()
@@ -272,24 +252,20 @@ describe('Dataloader class', () => {
     const method = jest.fn(fakeSuccessPromise)
     const onSuccess = jest.fn()
     const instance = new DataLoader({
-      enabled: true,
       key: 'test',
-      maxDataLifetime: PROMISE_TIMEOUT,
+      maxDataLifetime: PROMISE_TIMEOUT * 3,
       method,
     })
     instance.addOnSuccessListener(onSuccess)
-    expect(instance.status).toBe(StatusEnum.LOADING)
+    expect(instance.status).toBe(StatusEnum.IDLE)
+    await instance.load()
     expect(method).toBeCalledTimes(1)
-    await new Promise(resolve => {
-      setTimeout(resolve, PROMISE_TIMEOUT)
-    })
     expect(onSuccess).toBeCalledTimes(1)
     await instance.load()
     expect(method).toBeCalledTimes(1)
     expect(onSuccess).toBeCalledTimes(1)
-    await new Promise(resolve => {
-      setTimeout(resolve, PROMISE_TIMEOUT * 2)
-    })
+    // Wait until data is outdated
+    await waitForExpect(() => expect(instance.isDataOutdated).toBeTruthy())
     await instance.load()
     expect(method).toBeCalledTimes(2)
     expect(onSuccess).toBeCalledTimes(2)
@@ -300,11 +276,11 @@ describe('Dataloader class', () => {
     DataLoader.maxConcurrent = 2
     for (let i = 0; i < 5; i += 1) {
       const instance = new DataLoader({
-        enabled: true,
         key: `test-${i}`,
         method,
       })
-      expect(instance.status).toBe(StatusEnum.LOADING)
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      instance.load()
     }
     // Because wait for setTimeout tryLaunch in dataloader.ts
     await waitForExpect(() => {

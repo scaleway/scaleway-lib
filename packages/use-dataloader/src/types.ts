@@ -53,6 +53,7 @@ export interface UseDataLoaderResult<T = unknown> {
   isLoading: boolean
   isPolling: boolean
   isSuccess: boolean
+  isFirstLoad: boolean
   previousData?: T
   reload: () => Promise<void>
 }
