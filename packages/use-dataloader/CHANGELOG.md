@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.9.0 (2022-01-24)
+
+
+### Features
+
+* improve dataloader refetch handling ([#608](https://github.com/scaleway/scaleway-lib/issues/608)) ([fbdf8e8](https://github.com/scaleway/scaleway-lib/commit/fbdf8e8f49a84655d92914fb4822938e453b3ba3))
+
+
+
 ## 2.8.0 (2022-01-18)
 
 
