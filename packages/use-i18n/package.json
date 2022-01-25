@@ -27,11 +27,11 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@formatjs/ecma402-abstract": "1.11.1",
+    "@formatjs/ecma402-abstract": "1.11.2",
     "@formatjs/fast-memoize": "1.2.1",
     "date-fns": "2.28.0",
     "filesize": "8.0.7",
-    "intl-messageformat": "9.11.2",
+    "intl-messageformat": "9.11.3",
     "prop-types": "15.8.1"
   },
   "peerDependencies": {
