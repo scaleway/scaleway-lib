@@ -85,8 +85,10 @@ const useDataLoader = <T>(
   const cancelMethodRef = useRef<(() => void) | undefined>(request?.cancel)
 
   const isLoading = useMemo(
-    () => request.status === StatusEnum.LOADING,
-    [request.status],
+    () =>
+      (enabled && request.status === StatusEnum.IDLE) ||
+      request.status === StatusEnum.LOADING,
+    [request.status, enabled],
   )
   const isIdle = useMemo(
     () => request.status === StatusEnum.IDLE,
@@ -103,11 +105,6 @@ const useDataLoader = <T>(
   const isPolling = useMemo(
     () => !!(enabled && pollingInterval && (isSuccess || isLoading)),
     [isSuccess, isLoading, enabled, pollingInterval],
-  )
-
-  const isFirstLoad = useMemo(
-    () => (enabled && isIdle) || isLoading,
-    [isLoading, isIdle, enabled],
   )
 
   useEffect(() => {
@@ -160,7 +157,6 @@ const useDataLoader = <T>(
     data: request.getData() || (initialData as T),
     error: request?.error,
     isError,
-    isFirstLoad,
     isIdle,
     isLoading,
     isPolling,

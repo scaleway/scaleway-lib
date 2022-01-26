@@ -123,9 +123,14 @@ function MyComponent() {
     fakePromise,
   )
 
-  // Will be true during the promise
-  if (isLoading) {
+  // This is the first time we load the data
+  if (isLoading && !data) {
     return <div>Loading...</div>
+  }
+
+  // This happen when you already load the data but want to reload it
+  if (isLoading && data) {
+    return <div>Reloading...</div>
   }
 
   // Will be true when the promise is resolved
@@ -233,7 +238,7 @@ const useDataLoader = (
 |   Property   |                                                      Description                                                      |
 | :----------: | :-------------------------------------------------------------------------------------------------------------------: |
 |    isIdle    |                                         `true` if the request is not launched                                         |
-|  isLoading   |                                           `true` if the request is launched                                           |
+|  isLoading   |                    `true` if the request is launched **or** enabled is `true` and isIdle is `true`                    |
 |  isSuccess   |                                      `true`if the request finished successfully                                       |
 |   isError    |                                         `true` if the request throw an error                                          |
 |  isPolling   | `true` if the request if `enabled` is true, `pollingInterval` is defined and the status is `isLoading` or `isSuccess` |
@@ -241,5 +246,3 @@ const useDataLoader = (
 |     data     |     return the `initialData` if no data is fetched or not present in the cache otherwise return the data fetched      |
 |    error     |                                      return the error occured during the request                                      |
 |    reload    |                            allow you to reload the data (it doesn't clear the actual data)                            |
-
-
