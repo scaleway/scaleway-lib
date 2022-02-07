@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 3.0.5 (2022-02-07)
+
+
+### Bug Fixes
+
+* **deps:** update dependency query-string to v7.1.1 ([#621](https://github.com/scaleway/scaleway-lib/issues/621)) ([051567b](https://github.com/scaleway/scaleway-lib/commit/051567bd2d750fc7027558dd6ca83022dad6f3b0))
+
+
+
 ### 3.0.4 (2022-01-06)
 
 
