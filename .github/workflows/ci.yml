@@ -31,8 +31,7 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        # 17.2 seems to have a bug with Intl.DateTimeFormat
-        node: [ '14', '16', '17.1' ]
+        node: [ '14', '16', '17' ]
     steps:
     - uses: actions/checkout@v2.3.5
     - name: Use Node.js
