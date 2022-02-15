@@ -13,6 +13,7 @@ jobs:
       uses: actions/setup-node@v2.4.1
       with:
         node-version: 17
+        check-latest: true
         cache: 'yarn'
     - run: yarn
     - run: echo '${{ github.event.pull_request.title }}' | yarn run commitlint
