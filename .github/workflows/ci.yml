@@ -11,6 +11,7 @@ jobs:
       uses: actions/setup-node@v2.4.1
       with:
         node-version: 17
+        check-latest: true
         cache: 'yarn'
     - run: yarn
     - run: yarn run build
@@ -23,6 +24,7 @@ jobs:
       uses: actions/setup-node@v2.4.1
       with:
         node-version: 17
+        check-latest: true
         cache: 'yarn'
     - run: yarn
     - run: yarn run build
@@ -38,6 +40,7 @@ jobs:
       uses: actions/setup-node@v2.4.1
       with:
         node-version: ${{ matrix.node }}
+        check-latest: true
         cache: 'yarn'
     - run: yarn
     - run: yarn run build
@@ -64,6 +67,7 @@ jobs:
       uses: actions/setup-node@v2.4.1
       with:
         node-version: 17
+        check-latest: true
     - run: yarn --immutable --inline-builds
     - run: yarn run build
     - run: echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} > .npmrc
