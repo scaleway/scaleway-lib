@@ -223,9 +223,6 @@ import { useI18n } from '@scaleway/use-i18n'
 const App = () => {
   const { formatList } = useI18n()
 
-  const cities = formatList(['Paris', 'New York', 'London'])
-  // Paris, New Yo
-
   const cities = [
     formatList(['Paris', 'New York', 'London']), // Paris, New York and London
     formatList(['Paris', 'New York', 'London'], {
