@@ -186,8 +186,8 @@ const App = () => {
   const { formatDate } = useI18n()
 
   const units = [
-    formatDate(new Date(2020, 1, 13, 16, 28)) // "Feb 13, 2020"
-    formatDate(1581607680000, 'long') // "February 13, 2020"
+    formatDate(new Date(2020, 1, 13, 16, 28)), // "Feb 13, 2020"
+    formatDate(1581607680000, 'long'), // "February 13, 2020"
     formatDate('2020-02-13T15:28:00.000Z', {
       day: "numeric",
       era: "short",
@@ -204,6 +204,35 @@ const App = () => {
   return (
     <div>
       {units}
+    </div>
+  )
+}
+```
+
+### formatList
+
+This hook exposes a `formatList` function which can be used to format lists of strings.
+
+The first parameter is an array of strings to format.
+
+It accepts an `options` as second parameter which is an [Intl.ListFormat `options` object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/ListFormat/ListFormat).
+
+```js
+import { useI18n } from '@scaleway/use-i18n'
+
+const App = () => {
+  const { formatList } = useI18n()
+
+  const cities = [
+    formatList(['Paris', 'New York', 'London']), // Paris, New York and London
+    formatList(['Paris', 'New York', 'London'], {
+      type: 'disjunction'
+    }) // Paris, New York or London
+  ]
+
+  return (
+    <div>
+      {cities}
     </div>
   )
 }
@@ -229,8 +258,8 @@ const App = () => {
   const { formatUnit } = useI18n()
 
   const units = [
-    formatUnit(12, { unit: 'kilobyte' }) // "12 KB" or "12 Ko" in fr an ro
-    formatUnit(10 ** 8, { unit: 'bytes-humanized' }) // "100 MB" or "100 Mo" in fr an ro
+    formatUnit(12, { unit: 'kilobyte' }), // "12 KB" or "12 Ko" in fr an ro
+    formatUnit(10 ** 8, { unit: 'bytes-humanized' }), // "100 MB" or "100 Mo" in fr an ro
     formatUnit(10 ** 8, { unit: 'bits-per-second-humanized' }) // "100Mbs"
   ]
 
