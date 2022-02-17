@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.4.0 (2022-02-17)
+
+
+### Features
+
+* **eslint-config-react:** enforce class fields for react class ([#636](https://github.com/scaleway/scaleway-lib/issues/636)) ([56a3aaa](https://github.com/scaleway/scaleway-lib/commit/56a3aaa360ca18e27eb2abf038e1e976a11b3bd5))
+
+
+
 ### 3.3.8 (2022-02-15)
 
 
