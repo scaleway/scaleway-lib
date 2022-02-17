@@ -61,6 +61,10 @@ module.exports = {
     'react/no-adjacent-inline-elements': 'error', // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-adjacent-inline-elements.md
     'prefer-object-has-own': 'error', // https://eslint.org/docs/rules/prefer-object-has-own
 
+    // We don't use babel-preset-airbnb so we can make those changes
+    'react/static-property-placement': ['error', 'static public field'],
+    'react/state-in-constructor': ['error', 'never'],
+
     // To have consistent ordering in proptypes
     'react/sort-prop-types': [
       // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/sort-prop-types.md
