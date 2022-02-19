@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.4.1](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@3.4.0...@scaleway/eslint-config-react@3.4.1) (2022-02-19)
+
+
+### Bug Fixes
+
+* **deps:** update dependency eslint-config-prettier to v8.4.0 ([#643](https://github.com/scaleway/scaleway-lib/issues/643)) ([616464c](https://github.com/scaleway/scaleway-lib/commit/616464cce2dd9e27a4164c2e65b17944f0713431))
+
+
+
 ## 3.4.0 (2022-02-17)
 
 

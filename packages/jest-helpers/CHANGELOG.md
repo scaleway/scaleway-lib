@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 1.1.8 (2022-02-19)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @emotion/react to v11.8.1 ([#645](https://github.com/scaleway/scaleway-lib/issues/645)) ([aa9e9fc](https://github.com/scaleway/scaleway-lib/commit/aa9e9fc5e02fb57e36f5deff77aee882a7a9a5ce))
+* **deps:** update emotion monorepo to v11.8.0 ([#644](https://github.com/scaleway/scaleway-lib/issues/644)) ([c341aec](https://github.com/scaleway/scaleway-lib/commit/c341aecc98bf0eb7a5996b571abf7ba672bef851))
+
+
+
 ### 1.1.7 (2022-02-16)
 
 
