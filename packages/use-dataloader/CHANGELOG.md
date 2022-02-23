@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.9.2 (2022-02-23)
+
+
+### Bug Fixes
+
+* when data is false return initialData instead of data ([#649](https://github.com/scaleway/scaleway-lib/issues/649)) ([b72440e](https://github.com/scaleway/scaleway-lib/commit/b72440e4033dc2f9e0551b241ad3de66f5c8e2fa))
+
+
+
 ### 2.9.1 (2022-01-26)
 
 **Note:** Version bump only for package @scaleway/use-dataloader
