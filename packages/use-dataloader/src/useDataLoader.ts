@@ -154,7 +154,7 @@ const useDataLoader = <T>(
   })
 
   return {
-    data: request.getData() || (initialData as T),
+    data: request.getData() ?? (initialData as T),
     error: request?.error,
     isError,
     isIdle,
