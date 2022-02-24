@@ -8,7 +8,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2.4.0
     - name: Use Node.js
-      uses: actions/setup-node@v2.5.1
+      uses: actions/setup-node@v3.0.0
       with:
         node-version: 17
         check-latest: true
@@ -21,7 +21,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2.4.0
     - name: Use Node.js
-      uses: actions/setup-node@v2.5.1
+      uses: actions/setup-node@v3.0.0
       with:
         node-version: 17
         check-latest: true
@@ -37,7 +37,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2.4.0
     - name: Use Node.js
-      uses: actions/setup-node@v2.5.1
+      uses: actions/setup-node@v3.0.0
       with:
         node-version: ${{ matrix.node }}
         check-latest: true
@@ -64,7 +64,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
     - name: Use Node.js
-      uses: actions/setup-node@v2.5.1
+      uses: actions/setup-node@v3.0.0
       with:
         node-version: 17
         check-latest: true
