@@ -11398,9 +11398,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup@npm:2.67.3":
-  version: 2.67.3
-  resolution: "rollup@npm:2.67.3"
+"rollup@npm:2.68.0":
+  version: 2.68.0
+  resolution: "rollup@npm:2.68.0"
   dependencies:
     fsevents: ~2.3.2
   dependenciesMeta:
@@ -11408,7 +11408,7 @@ __metadata:
       optional: true
   bin:
     rollup: dist/bin/rollup
-  checksum: c4013a2ceef6918375fd07a6548e05d0f3df1db9f0a0281aebe6e993a45c0e667c5a06f53b55c0ffaf72f72266c1879bc181b13199aace97d93f0fc47691d4a9
+  checksum: c883f6fb2e10e1c79a32527da0c50ef47a7beb8ddacfdae4197ff2d1911fb8d10bb2704496cf878d3048fbf3524d613bc87f25c5be0afc667fe30b7d04fa8092
   languageName: node
   linkType: hard
 
@@ -11443,7 +11443,7 @@ __metadata:
     react: 17.0.2
     react-dom: 17.0.2
     read-pkg: 7.1.0
-    rollup: 2.67.3
+    rollup: 2.68.0
     rollup-plugin-dts: 4.1.0
     rollup-plugin-visualizer: 5.5.4
     typescript: 4.5.5
