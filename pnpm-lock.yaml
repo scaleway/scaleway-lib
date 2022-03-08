@@ -32,7 +32,7 @@ importers:
       react-dom: 17.0.2
       read-pkg: 7.1.0
       rollup: 2.68.0
-      rollup-plugin-dts: 4.1.0
+      rollup-plugin-dts: 4.2.0
       rollup-plugin-visualizer: 5.6.0
       typescript: 4.6.2
       wait-for-expect: 3.0.2
@@ -65,7 +65,7 @@ importers:
       react-dom: 17.0.2_react@17.0.2
       read-pkg: 7.1.0
       rollup: 2.68.0
-      rollup-plugin-dts: 4.1.0_rollup@2.68.0+typescript@4.6.2
+      rollup-plugin-dts: 4.2.0_rollup@2.68.0+typescript@4.6.2
       rollup-plugin-visualizer: 5.6.0_rollup@2.68.0
       typescript: 4.6.2
       wait-for-expect: 3.0.2
@@ -7677,8 +7677,9 @@ packages:
     resolution: {integrity: sha1-wNjq82BZ9wV5bh40SBHPTEmNOiY=}
     hasBin: true
 
-  /magic-string/0.25.9:
-    resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
+  /magic-string/0.26.1:
+    resolution: {integrity: sha512-ndThHmvgtieXe8J/VGPjG+Apu7v7ItcD5mhEIvOscWjPF/ccOiLxHaSuCAS2G+3x4GKsAbT8u7zdyamupui8Tg==}
+    engines: {node: '>=12'}
     dependencies:
       sourcemap-codec: 1.4.8
     dev: true
@@ -9073,14 +9074,14 @@ packages:
       glob: 7.2.0
     dev: true
 
-  /rollup-plugin-dts/4.1.0_rollup@2.68.0+typescript@4.6.2:
-    resolution: {integrity: sha512-rriXIm3jdUiYeiAAd1Fv+x2AxK6Kq6IybB2Z/IdoAW95fb4uRUurYsEYKa8L1seedezDeJhy8cfo8FEL9aZzqg==}
-    engines: {node: '>=v12.22.7'}
+  /rollup-plugin-dts/4.2.0_rollup@2.68.0+typescript@4.6.2:
+    resolution: {integrity: sha512-lx6irWVhz/x4//tIqRhzk4FOqGQ0n37ZM2wpPCn4uafl/EmiV92om7ZdAsq7Bzho6C+Xh5GfsyuP9H+Udv72Lg==}
+    engines: {node: '>=v12.22.10'}
     peerDependencies:
       rollup: ^2.55
-      typescript: ~4.1 || ~4.2 || ~4.3 || ~4.4 || ~4.5
+      typescript: ^4.1
     dependencies:
-      magic-string: 0.25.9
+      magic-string: 0.26.1
       rollup: 2.68.0
       typescript: 4.6.2
     optionalDependencies:
