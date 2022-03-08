@@ -41,13 +41,13 @@
   },
   "scripts": {
     "lint": "eslint --ext js,ts,tsx --cache .",
-    "lint:fix": "yarn run lint --fix",
+    "lint:fix": "pnpm run lint -- --fix",
     "build": "lerna exec --stream --ignore @scaleway/eslint-config-react --ignore @scaleway/countries -- rollup -c ../../rollup.config.mjs",
-    "build:profile": "cross-env PROFILE=true yarn run build",
+    "build:profile": "cross-env PROFILE=true pnpm run build",
     "commit": "npx git-cz -a",
     "test": "TZ=UTC jest",
-    "test:watch": "yarn run test --watch",
-    "test:coverage": "yarn run test --coverage",
+    "test:watch": "pnpm run test -- --watch",
+    "test:coverage": "pnpm run test -- --coverage",
     "prepare": "husky install"
   },
   "commitlint": {
@@ -92,5 +92,5 @@
       ]
     ]
   },
-  "packageManager": "yarn@3.2.0"
+  "packageManager": "pnpm@6"
 }

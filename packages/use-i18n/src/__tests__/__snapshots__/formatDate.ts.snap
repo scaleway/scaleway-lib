@@ -18,17 +18,17 @@ exports[`formatDate should work with custom format and locale en 2`] = `"Thursda
 
 exports[`formatDate should work with custom format and locale en 3`] = `"Thursday, F 13, 20 AD, 03:28:00 PM Coordinated Universal Time"`;
 
-exports[`formatDate should work with custom format and locale es 1`] = `"jueves, 13 F 20 d. C., 16:28:00 (tiempo universal coordinado)"`;
+exports[`formatDate should work with custom format and locale es 1`] = `"jueves, 13 F 20 d. C. 16:28:00 (tiempo universal coordinado)"`;
 
-exports[`formatDate should work with custom format and locale es 2`] = `"jueves, 13 F 20 d. C., 15:28:00 (tiempo universal coordinado)"`;
+exports[`formatDate should work with custom format and locale es 2`] = `"jueves, 13 F 20 d. C. 15:28:00 (tiempo universal coordinado)"`;
 
-exports[`formatDate should work with custom format and locale es 3`] = `"jueves, 13 F 20 d. C., 15:28:00 (tiempo universal coordinado)"`;
+exports[`formatDate should work with custom format and locale es 3`] = `"jueves, 13 F 20 d. C. 15:28:00 (tiempo universal coordinado)"`;
 
-exports[`formatDate should work with custom format and locale fr 1`] = `"jeudi 13 F 20 ap. J.-C., 16:28:00 temps universel coordonné"`;
+exports[`formatDate should work with custom format and locale fr 1`] = `"jeudi 13 F 20 ap. J.-C., 16:28:00 Temps universel coordonné"`;
 
-exports[`formatDate should work with custom format and locale fr 2`] = `"jeudi 13 F 20 ap. J.-C., 15:28:00 temps universel coordonné"`;
+exports[`formatDate should work with custom format and locale fr 2`] = `"jeudi 13 F 20 ap. J.-C., 15:28:00 Temps universel coordonné"`;
 
-exports[`formatDate should work with custom format and locale fr 3`] = `"jeudi 13 F 20 ap. J.-C., 15:28:00 temps universel coordonné"`;
+exports[`formatDate should work with custom format and locale fr 3`] = `"jeudi 13 F 20 ap. J.-C., 15:28:00 Temps universel coordonné"`;
 
 exports[`formatDate should work with custom format and locale ro 1`] = `"joi, 13 F 20 d.Hr., 16:28:00 Timpul universal coordonat"`;
 
@@ -40,7 +40,7 @@ exports[`formatDate should work with format "hour", for date = "2020-02-13T15:28
 
 exports[`formatDate should work with format "hour", for date = "2020-02-13T15:28:00.000Z" and locale "en" 1`] = `"February 13, 2020, 3:28 PM"`;
 
-exports[`formatDate should work with format "hour", for date = "2020-02-13T15:28:00.000Z" and locale "es" 1`] = `"13 de febrero de 2020, 15:28"`;
+exports[`formatDate should work with format "hour", for date = "2020-02-13T15:28:00.000Z" and locale "es" 1`] = `"13 de febrero de 2020 15:28"`;
 
 exports[`formatDate should work with format "hour", for date = "2020-02-13T15:28:00.000Z" and locale "fr" 1`] = `"13 février 2020, 15:28"`;
 
@@ -50,7 +50,7 @@ exports[`formatDate should work with format "hour", for date = "1581607680000" a
 
 exports[`formatDate should work with format "hour", for date = "1581607680000" and locale "en" 1`] = `"February 13, 2020, 3:28 PM"`;
 
-exports[`formatDate should work with format "hour", for date = "1581607680000" and locale "es" 1`] = `"13 de febrero de 2020, 15:28"`;
+exports[`formatDate should work with format "hour", for date = "1581607680000" and locale "es" 1`] = `"13 de febrero de 2020 15:28"`;
 
 exports[`formatDate should work with format "hour", for date = "1581607680000" and locale "fr" 1`] = `"13 février 2020, 15:28"`;
 
@@ -60,7 +60,7 @@ exports[`formatDate should work with format "hour", for date = "new Date(2020, 1
 
 exports[`formatDate should work with format "hour", for date = "new Date(2020, 1, 13, 16, 28)" and locale "en" 1`] = `"February 13, 2020, 4:28 PM"`;
 
-exports[`formatDate should work with format "hour", for date = "new Date(2020, 1, 13, 16, 28)" and locale "es" 1`] = `"13 de febrero de 2020, 16:28"`;
+exports[`formatDate should work with format "hour", for date = "new Date(2020, 1, 13, 16, 28)" and locale "es" 1`] = `"13 de febrero de 2020 16:28"`;
 
 exports[`formatDate should work with format "hour", for date = "new Date(2020, 1, 13, 16, 28)" and locale "fr" 1`] = `"13 février 2020, 16:28"`;
 
