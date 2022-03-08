@@ -1,9 +1,6 @@
 {
   "name": "root",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
   "type": "module",
   "devDependencies": {
     "@babel/core": "7.17.5",
