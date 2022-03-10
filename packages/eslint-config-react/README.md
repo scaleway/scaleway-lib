@@ -9,7 +9,7 @@ Available in Javascript and Typescript
 ## Install
 
 ```bash
-$ yarn add --dev @scaleway/eslint-config-react
+$ pnpm add --dev @scaleway/eslint-config-react
 ```
 
 ## Usage

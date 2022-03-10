@@ -5,7 +5,7 @@
 ## Install
 
 ```bash
-$ yarn add @scaleway/use-i18n
+$ pnpm add @scaleway/use-i18n
 ```
 
 ## Usage

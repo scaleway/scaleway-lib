@@ -5,7 +5,7 @@
 ## Install
 
 ```bash
-$ yarn add @scaleway/jest-functions
+$ pnpm add @scaleway/jest-functions
 ```
 
 ## How to use
