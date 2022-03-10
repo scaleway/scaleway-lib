@@ -92,5 +92,5 @@
       ]
     ]
   },
-  "packageManager": "pnpm@6"
+  "packageManager": "pnpm@6.16.0"
 }
