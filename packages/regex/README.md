@@ -7,7 +7,7 @@ A tiny utility to use named regex
 ## Install
 
 ```bash
-$ yarn add @scaleway/regex
+$ pnpm add @scaleway/regex
 ```
 
 ## Usage

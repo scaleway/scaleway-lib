@@ -15,7 +15,7 @@ scaleway-lib is a set of NPM packages used at Scaleway.
 - [Development](#development)
   - [Locally](#locally)
   - [Link against another project (with `yalc`) => FAVORED](#link-against-another-project-with-yalc--favored)
-  - [Link against another project (with `yarn link`)](#link-against-another-project-with-yarn-link)
+  - [Link against another project (with `pnpm link`)](#link-against-another-project-with-pnpm-link)
   - [Linting](#linting)
   - [Unit Test](#unit-test)
 - [Lerna](#lerna)
@@ -98,75 +98,75 @@ scaleway-lib is a set of NPM packages used at Scaleway.
 ```bash
 $ git clone git@github.com:scaleway/scaleway-lib.git
 $ cd scaleway-lib
-$ yarn
+$ pnpm install
 $ # ... do your changes ...
-$ yarn run lint
-$ yarn run test
+$ pnpm run lint
+$ pnpm run test
 ```
 
 ### Link against another project (with `yalc`) => FAVORED
 
-> [`yalc`](https://github.com/whitecolor/yalc) is a tool aiming to simplify working with local npm packages by providing a different workflow than `npm/yarn link`, hence avoiding most of their issues with module resolving.
+> [`yalc`](https://github.com/whitecolor/yalc) is a tool aiming to simplify working with local npm packages by providing a different workflow than `npm/yarn/pnpm link`, hence avoiding most of their issues with module resolving.
 
 ```bash
-$ yarn global add yalc # Make sure to have the yalc binary
+$ pnpm install -g yalc # Make sure to have the yalc binary
 ```
 
 ```bash
 $ cd scaleway-lib/packages/example_package
-$ yarn build && yalc publish
+$ pnpm run build && yalc publish
 $ # Now it's ready to install in your project
 $ cd ../../../project-something
-$ yalc add @scaleway/package-name --yarn
+$ yalc add @scaleway/package-name
 $ cd ../scaleway-lib/packages/example_package
 $ # If you do some changes into your package
-$ yarn build && yalc publish --push --sig # --push will automatically update the package on projects where it have been added, --sig updates the signature hash to trigger webpack update
+$ pnpm run build && yalc publish --push --sig # --push will automatically update the package on projects where it have been added, --sig updates the signature hash to trigger webpack update
 ```
 
 > :warning: since [1.0.0.pre.51 (2021-04-23)](https://github.com/wclr/yalc/blob/master/CHANGELOG.md#100pre51-2021-04-23), `yalc publish` needs the `--sig` option to trigger webpack module actual update.
 
 > :warning: `yalc` create a `yalc.lock` and updates the `package.json` in the target project. **Make sure to not commit these changes**
 
-### Link against another project (with `yarn link`)
+### Link against another project (with `pnpm link`)
 
 ```bash
-$ cd packages/example_package && yarn link
-$ cd - && yarn run build # rebuild the package
+$ cd packages/example_package && pnpm link
+$ cd - && pnpm run build # rebuild the package
 $ # Now it's ready to link into your project
 $ cd ../project-something
-$ yarn link @scaleway/example_package
+$ pnpm link @scaleway/example_package
 ```
 
 ### Linting
 
 ```bash
-$ yarn run lint
-$ yarn run lint:fix
+$ pnpm run lint
+$ pnpm run lint:fix
 ```
 
 ### Unit Test
 
 ```bash
-$ yarn run test # Will run all tests
-$ yarn run test --updateSnapshot # Will update all snapshots
-$ yarn run test:watch # Will watch tests and only rerun the one who are modified
-$ yarn run test:coverage # Will generate a coverage report
+$ pnpm run test # Will run all tests
+$ pnpm run test -- --updateSnapshot # Will update all snapshots
+$ pnpm run test:watch # Will watch tests and only rerun the one who are modified
+$ pnpm run test:coverage # Will generate a coverage report
 ```
 
 ## Lerna
 
 This project is managed with [Lerna](https://lerna.js.org). Lerna is a tool to manage multiple NPM packages inside the same repository.
 
-Lerna also allows us to use [Yarn workspaces](https://classic.yarnpkg.com/en/docs/workspaces/) to manage our dependencies. This implies a few things:
+Lerna also allows us to use [PNPM workspaces](https://pnpm.io/workspaces) to manage our dependencies. This implies a few things:
 
 - devDependencies should be included in top package.json
-- There should be no `node_modules` or `yarn.lock` in sub-packages
+- There should be no `node_modules` or `pnpm-lock.yml` in sub-packages
 - There is a special syntax to manage sub-packages dependencies:
 
 ```bash
-$ yarn add -W -D new_dependency # Add a new devDependency to root project
-$ yarn workspace @scaleway/package_name add new_dependency
-$ yarn workspace @scaleway/package_name remove old_dependency
+$ pnpm add -W -D new_dependency # Add a new devDependency to root project
+$ cd packages/package_name && pnpm add new_dependency
+$ cd packages/package_name && pnpm remove old_dependency
 ```
 
 ## Notes

@@ -7,28 +7,30 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v3.0.0
+    - uses: pnpm/action-setup@v2.2.1
     - name: Use Node.js
       uses: actions/setup-node@v3.0.0
       with:
         node-version: 17
         check-latest: true
-        cache: 'yarn'
-    - run: yarn
-    - run: yarn run build
-    - run: yarn run tsc --noEmit
+        cache: 'pnpm'
+    - run: pnpm install
+    - run: pnpm run build
+    - run: pnpm tsc --noEmit
   lint:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v3.0.0
+    - uses: pnpm/action-setup@v2.2.1
     - name: Use Node.js
       uses: actions/setup-node@v3.0.0
       with:
         node-version: 17
         check-latest: true
-        cache: 'yarn'
-    - run: yarn
-    - run: yarn run build
-    - run: yarn run lint
+        cache: 'pnpm'
+    - run: pnpm install
+    - run: pnpm run build
+    - run: pnpm run lint
   test:
     runs-on: ubuntu-20.04
     strategy:
@@ -36,15 +38,16 @@ jobs:
         node: [ '14', '16', '17' ]
     steps:
     - uses: actions/checkout@v3.0.0
+    - uses: pnpm/action-setup@v2.2.1
     - name: Use Node.js
       uses: actions/setup-node@v3.0.0
       with:
         node-version: ${{ matrix.node }}
         check-latest: true
-        cache: 'yarn'
-    - run: yarn
-    - run: yarn run build
-    - run: yarn run test:coverage
+        cache: 'pnpm'
+    - run: pnpm install
+    - run: pnpm run build
+    - run: pnpm run test:coverage
     - uses: codecov/codecov-action@v2.1.0
   deploy:
     runs-on: ubuntu-20.04
@@ -63,17 +66,18 @@ jobs:
         git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/$GITHUB_REPOSITORY
       env:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+    - uses: pnpm/action-setup@v2.2.1
     - name: Use Node.js
       uses: actions/setup-node@v3.0.0
       with:
         node-version: 17
         check-latest: true
-    - run: yarn --immutable --inline-builds
-    - run: yarn run build
+    - run: pnpm install
+    - run: pnpm run build
     - run: echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} > .npmrc
       env:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-    - run: yarn run lerna publish -y --create-release github --ignore-scripts --no-verify-access
+    - run: pnpm lerna publish -y --create-release github --ignore-scripts --no-verify-access
       env:
         HUSKY: 0
         GH_TOKEN: ${{ secrets.GH_TOKEN }}

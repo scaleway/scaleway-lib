@@ -5,7 +5,7 @@
 ## Install
 
 ```bash
-$ yarn add @scaleway/use-query-params react-router-dom
+$ pnpm add @scaleway/use-query-params react-router-dom
 ```
 
 ## Usage

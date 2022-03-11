@@ -7,7 +7,7 @@ use [@segment/analytics-next](https://github.com/segmentio/analytics-next)
 ## Install
 
 ```bash
-$ yarn add @scaleway/use-segment
+$ pnpm add @scaleway/use-segment
 ```
 
 ## Usage

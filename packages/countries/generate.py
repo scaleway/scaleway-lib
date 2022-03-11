@@ -7,7 +7,7 @@
 # Usage:
 #   $ poetry install && poetry run python generate.py
 # Or simply from the package.json
-#   $ yarn run generate
+#   $ pnpm run generate
 
 import pycountry
 import json

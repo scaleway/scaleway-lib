@@ -9,7 +9,7 @@ This package only holds and publish json files
 ## Install
 
 ```bash
-$ yarn add @scaleway/countries
+$ pnpm add @scaleway/countries
 ```
 
 ## Usage
@@ -34,5 +34,5 @@ To update the database, first make sure that you have:
 And then:
 
 ```bash
-$ yarn run generate
+$ pnpm run generate
 ```

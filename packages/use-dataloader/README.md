@@ -9,7 +9,7 @@
 ## Install
 
 ```bash
-$ yarn add @scaleway/use-dataloader
+$ pnpm add @scaleway/use-dataloader
 ```
 
 ## How to use

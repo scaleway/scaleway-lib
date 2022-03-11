@@ -9,7 +9,7 @@ Fully inspired by [Moby name generator](https://github.com/moby/moby/blob/master
 ## Install
 
 ```bash
-$ yarn add @scaleway/random-name
+$ pnpm add @scaleway/random-name
 ```
 
 ## Usage
