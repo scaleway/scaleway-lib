@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.1.10](https://github.com/scaleway/scaleway-lib/compare/@scaleway/jest-helpers@1.1.9...@scaleway/jest-helpers@1.1.10) (2022-03-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @emotion/react to v11.8.2 ([#667](https://github.com/scaleway/scaleway-lib/issues/667)) ([80e5f4b](https://github.com/scaleway/scaleway-lib/commit/80e5f4b38f621badafa85bc797d5e2c44f47a495))
+
+
+
 ### 1.1.9 (2022-03-11)
 
 
