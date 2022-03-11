@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 1.1.9 (2022-03-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @testing-library/react to v12.1.4 ([#665](https://github.com/scaleway/scaleway-lib/issues/665)) ([c737810](https://github.com/scaleway/scaleway-lib/commit/c7378108887573246af20cd1f2f9d8b321e76966))
+
+
+
 ### 1.1.8 (2022-02-19)
 
 
