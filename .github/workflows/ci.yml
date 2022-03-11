@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v3.0.0
-    - uses: pnpm/action-setup@646cdf48217256a3d0b80361c5a50727664284f2
+    - uses: pnpm/action-setup@v2.2.1
       with:
         version: 6.16.0
     - name: Use Node.js
@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v3.0.0
-    - uses: pnpm/action-setup@646cdf48217256a3d0b80361c5a50727664284f2
+    - uses: pnpm/action-setup@v2.2.1
       with:
         version: 6.16.0
     - name: Use Node.js
@@ -42,7 +42,7 @@ jobs:
         node: [ '14', '16', '17' ]
     steps:
     - uses: actions/checkout@v3.0.0
-    - uses: pnpm/action-setup@646cdf48217256a3d0b80361c5a50727664284f2
+    - uses: pnpm/action-setup@v2.2.1
       with:
         version: 6.16.0
     - name: Use Node.js
@@ -72,7 +72,7 @@ jobs:
         git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/$GITHUB_REPOSITORY
       env:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-    - uses: pnpm/action-setup@646cdf48217256a3d0b80361c5a50727664284f2
+    - uses: pnpm/action-setup@v2.2.1
       with:
         version: 6.16.0
     - name: Use Node.js
