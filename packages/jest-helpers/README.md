@@ -63,7 +63,7 @@ export const {
 } = makeHelpers(Wrapper, { classNameReplacer: className => className })
 ```
 
-### renderWithTheme
+### `renderWithTheme`
 
 Automatically uses `CacheProvider` from `@emotion/cache`. Use it with a component, optional options & optional theme.
 
@@ -75,7 +75,7 @@ const renderWithTheme = (
 ) => ReturnType<typeof render>
 ```
 
-### shouldMatchEmotionSnapshot / shouldMatchEmotionSnapshotWithPortal
+### `shouldMatchEmotionSnapshot` / `shouldMatchEmotionSnapshotWithPortal`
 
 Internally it uses the `renderWithTheme` generated from above.
 
