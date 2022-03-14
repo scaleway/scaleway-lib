@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.4.8](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@3.4.7...@scaleway/eslint-config-react@3.4.8) (2022-03-14)
+
+
+### Bug Fixes
+
+* **deps:** update dependency eslint-config-airbnb-typescript to v16.1.2 ([#670](https://github.com/scaleway/scaleway-lib/issues/670)) ([70c023f](https://github.com/scaleway/scaleway-lib/commit/70c023fd8ce5b68b3a80d905852f9a4785be6eaf))
+
+
+
 ### [3.4.7](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@3.4.6...@scaleway/eslint-config-react@3.4.7) (2022-03-14)
 
 
