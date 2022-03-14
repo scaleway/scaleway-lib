@@ -83,18 +83,18 @@ importers:
       eslint-plugin-eslint-comments: 3.2.0
       eslint-plugin-import: 2.25.4
       eslint-plugin-jsx-a11y: 6.5.1
-      eslint-plugin-react: 7.29.3
+      eslint-plugin-react: 7.29.4
       eslint-plugin-react-hooks: 4.3.0
     dependencies:
       '@typescript-eslint/eslint-plugin': 5.12.1_6b05f697e81cf0a9121baa10b52e55d1
       '@typescript-eslint/parser': 5.12.1_eslint@8.10.0+typescript@4.6.2
-      eslint-config-airbnb: 19.0.4_c7d04ecf5eaa64250a4220a14895c52e
+      eslint-config-airbnb: 19.0.4_1a200a0ef4d49ba6b286d48d7621cc60
       eslint-config-airbnb-typescript: 16.1.1_61c78c095eafb8fa2228c10a15e248b4
       eslint-config-prettier: 8.5.0_eslint@8.10.0
       eslint-plugin-eslint-comments: 3.2.0_eslint@8.10.0
       eslint-plugin-import: 2.25.4_eslint@8.10.0
       eslint-plugin-jsx-a11y: 6.5.1_eslint@8.10.0
-      eslint-plugin-react: 7.29.3_eslint@8.10.0
+      eslint-plugin-react: 7.29.4_eslint@8.10.0
       eslint-plugin-react-hooks: 4.3.0_eslint@8.10.0
 
   packages/jest-helpers:
@@ -5634,7 +5634,7 @@ packages:
       - eslint-plugin-import
     dev: false
 
-  /eslint-config-airbnb/19.0.4_c7d04ecf5eaa64250a4220a14895c52e:
+  /eslint-config-airbnb/19.0.4_1a200a0ef4d49ba6b286d48d7621cc60:
     resolution: {integrity: sha512-T75QYQVQX57jiNgpF9r1KegMICE94VYwoFQyMGhrvc+lB8YF2E/M/PYDaQe1AJcWaEgqLE+ErXV1Og/+6Vyzew==}
     engines: {node: ^10.12.0 || ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
@@ -5648,7 +5648,7 @@ packages:
       eslint-config-airbnb-base: 15.0.0_8b406960a2a06af75ddac353adbd0cfd
       eslint-plugin-import: 2.25.4_eslint@8.10.0
       eslint-plugin-jsx-a11y: 6.5.1_eslint@8.10.0
-      eslint-plugin-react: 7.29.3_eslint@8.10.0
+      eslint-plugin-react: 7.29.4_eslint@8.10.0
       eslint-plugin-react-hooks: 4.3.0_eslint@8.10.0
       object.assign: 4.1.2
       object.entries: 1.1.5
@@ -5741,8 +5741,8 @@ packages:
       eslint: 8.10.0
     dev: false
 
-  /eslint-plugin-react/7.29.3_eslint@8.10.0:
-    resolution: {integrity: sha512-MzW6TuCnDOcta67CkpDyRfRsEVx9FNMDV8wZsDqe1luHPdGTrQIUaUXD27Ja3gHsdOIs/cXzNchWGlqm+qRVRg==}
+  /eslint-plugin-react/7.29.4_eslint@8.10.0:
+    resolution: {integrity: sha512-CVCXajliVh509PcZYRFyu/BoUEz452+jtQJq2b3Bae4v3xBUWPLCmtmBM+ZinG4MzwmxJgJ2M5rMqhqLVn7MtQ==}
     engines: {node: '>=4'}
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8
