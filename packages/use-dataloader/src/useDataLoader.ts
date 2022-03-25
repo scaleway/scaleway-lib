@@ -82,7 +82,7 @@ const useDataLoader = <T>(
     }
   }, [onSuccess, onError, onErrorProvider, method, request])
 
-  const cancelMethodRef = useRef<(() => void) | undefined>(request?.cancel)
+  const cancelMethodRef = useRef<(() => Promise<void>) | undefined>(request?.cancel)
 
   const isLoading = useMemo(
     () =>
@@ -141,7 +141,7 @@ const useDataLoader = <T>(
     return () => {
       isMountedRef.current = false
       if (isFetchingRef.current && cancelMethodRef.current) {
-        cancelMethodRef.current()
+        cancelMethodRef.current().catch(undefined)
       }
       unsubscribeRequestRef.current?.()
     }
