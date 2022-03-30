@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.4.11](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@3.4.10...@scaleway/eslint-config-react@3.4.11) (2022-03-30)
+
+
+### Bug Fixes
+
+* **deps:** update dependency eslint-plugin-react-hooks to v4.4.0 ([#688](https://github.com/scaleway/scaleway-lib/issues/688)) ([2a676c2](https://github.com/scaleway/scaleway-lib/commit/2a676c2f155ee0f1a4f479e9782cfc80dfd26c0b))
+
+
+
 ### [3.4.10](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@3.4.9...@scaleway/eslint-config-react@3.4.10) (2022-03-21)
 
 
