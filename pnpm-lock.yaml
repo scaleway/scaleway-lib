@@ -78,7 +78,7 @@ importers:
       '@typescript-eslint/eslint-plugin': 5.12.1
       '@typescript-eslint/parser': 5.12.1
       eslint-config-airbnb: 19.0.4
-      eslint-config-airbnb-typescript: 16.1.4
+      eslint-config-airbnb-typescript: 16.2.0
       eslint-config-prettier: 8.5.0
       eslint-plugin-eslint-comments: 3.2.0
       eslint-plugin-import: 2.25.4
@@ -89,7 +89,7 @@ importers:
       '@typescript-eslint/eslint-plugin': 5.12.1_f8c59ce224ac86f07606d7f8949a6f79
       '@typescript-eslint/parser': 5.12.1_eslint@8.12.0+typescript@4.6.3
       eslint-config-airbnb: 19.0.4_0e8add1558a5db1c8c27993badaaf9fd
-      eslint-config-airbnb-typescript: 16.1.4_a29858e2bba45725ca029d2d72e376f3
+      eslint-config-airbnb-typescript: 16.2.0_a29858e2bba45725ca029d2d72e376f3
       eslint-config-prettier: 8.5.0_eslint@8.12.0
       eslint-plugin-eslint-comments: 3.2.0_eslint@8.12.0
       eslint-plugin-import: 2.25.4_eslint@8.12.0
@@ -5638,8 +5638,8 @@ packages:
       semver: 6.3.0
     dev: false
 
-  /eslint-config-airbnb-typescript/16.1.4_a29858e2bba45725ca029d2d72e376f3:
-    resolution: {integrity: sha512-dfm2cEaYXh4mCYd+RyJO8+PQfd5/zp8WwrCeRznly5qD9W5tal3KTjgdInYWuEAdwWnNJxWcmQ/HFiA4bfkM1g==}
+  /eslint-config-airbnb-typescript/16.2.0_a29858e2bba45725ca029d2d72e376f3:
+    resolution: {integrity: sha512-OUaMPZpTOZGKd5tXOjJ9PRU4iYNW/Z5DoHIynjsVK/FpkWdiY5+nxQW6TiJAlLwVI1l53xUOrnlZWtVBVQzuWA==}
     peerDependencies:
       '@typescript-eslint/eslint-plugin': ^5.0.0
       '@typescript-eslint/parser': ^5.0.0
