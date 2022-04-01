@@ -12,7 +12,9 @@
       {
         "devDependencies": ["**/__tests__/*", "rollup.config.mjs"]
       }
-    ]
+    ],
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off"
   },
   "overrides": [
     {

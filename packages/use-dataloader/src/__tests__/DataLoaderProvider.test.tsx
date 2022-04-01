@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { act, renderHook } from '@testing-library/react-hooks'
-import React, { ReactNode } from 'react'
+import { ReactNode } from 'react'
 import DataLoaderProvider, { useDataLoaderContext } from '../DataLoaderProvider'
 import { KEY_IS_NOT_STRING_ERROR, StatusEnum } from '../constants'
 

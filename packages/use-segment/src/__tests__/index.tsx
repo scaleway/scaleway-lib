@@ -1,6 +1,6 @@
 import { AnalyticsBrowser, Context } from '@segment/analytics-next'
 import { renderHook } from '@testing-library/react-hooks'
-import React, { ReactNode } from 'react'
+import { ReactNode } from 'react'
 import waitForExpect from 'wait-for-expect'
 import SegmentProvider, { useSegment } from '..'
 import type { Analytics, OnEventError, SegmentProviderProps } from '..'

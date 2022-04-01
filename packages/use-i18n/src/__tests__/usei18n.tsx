@@ -1,6 +1,5 @@
 import { act, renderHook } from '@testing-library/react-hooks'
 import mockdate from 'mockdate'
-import React from 'react'
 import I18n, { useI18n, useTranslation } from '..'
 import en from './locales/en.json'
 import es from './locales/es.json'

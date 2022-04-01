@@ -5,7 +5,7 @@ import {
   formatDistanceToNowStrict,
 } from 'date-fns'
 import PropTypes from 'prop-types'
-import React, {
+import {
   ReactElement,
   ReactNode,
   createContext,

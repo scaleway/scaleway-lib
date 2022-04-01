@@ -1,6 +1,6 @@
 import { act, renderHook } from '@testing-library/react-hooks'
 import { History, createMemoryHistory } from 'history'
-import React, { ReactNode, useLayoutEffect, useState } from 'react'
+import { ReactNode, useLayoutEffect, useState } from 'react'
 import { MemoryRouter, Router } from 'react-router-dom'
 import useQueryParams from '..'
 

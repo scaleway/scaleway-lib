@@ -44,6 +44,12 @@ const getConfig = (pkg, isBrowser = false) => {
         presets: [
           ['@babel/env', { modules: false, targets }],
           '@babel/preset-typescript',
+          [
+            '@babel/preset-react',
+            {
+              runtime: 'automatic',
+            },
+          ],
         ],
       }),
       nodeResolve({
