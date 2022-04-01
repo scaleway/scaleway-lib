@@ -13,8 +13,7 @@ $ pnpm add @scaleway/regex
 ## Usage
 
 ```js
-import { fourDigitsCode } from '@scaleway/regex'
+import { fourDigitsCode } from '@scaleway/regex'
 
 const isFourDigit = fourDigitsCode.test('1234')
-
 ```

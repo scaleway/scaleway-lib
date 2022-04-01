@@ -53,7 +53,11 @@ describe('formatUnit', () => {
 
   test.each(tests)('%s %o', (_, options, locale, amount) => {
     expect(
-      formatUnit(locale as string, amount as number, options as FormatUnitOptions),
+      formatUnit(
+        locale as string,
+        amount as number,
+        options as FormatUnitOptions,
+      ),
     ).toMatchSnapshot()
   })
 })

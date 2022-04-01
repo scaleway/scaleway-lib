@@ -10,8 +10,10 @@ const LOCALE_ITEM_STORAGE = 'locales'
 
 const wrapper =
   ({
-    loadDateLocale = async (locale: string) => import(`date-fns/locale/${locale}/index`),
-    defaultLoad = async ({ locale }: { locale: string }) => import(`./locales/${locale}.json`),
+    loadDateLocale = async (locale: string) =>
+      import(`date-fns/locale/${locale}/index`),
+    defaultLoad = async ({ locale }: { locale: string }) =>
+      import(`./locales/${locale}.json`),
     defaultLocale = 'en',
     defaultTranslations = {},
     enableDebugKey = false,
@@ -85,8 +87,13 @@ describe('i18n hook', () => {
   })
 
   it('should use specific load on useTranslation', async () => {
-    const load = async ({ locale, namespace }: { locale: string, namespace: string }) =>
-      import(`./locales/namespaces/${locale}/${namespace}.json`)
+    const load = async ({
+      locale,
+      namespace,
+    }: {
+      locale: string
+      namespace: string
+    }) => import(`./locales/namespaces/${locale}/${namespace}.json`)
 
     const { result, waitForNextUpdate } = renderHook(
       () => useTranslation(['user', 'profile'], load),
@@ -144,8 +151,13 @@ describe('i18n hook', () => {
   })
 
   it("should use specific load and fallback default local if the key doesn't exist", async () => {
-    const load = async ({ locale, namespace }: { locale: string, namespace: string }) =>
-      import(`./locales/namespaces/${locale}/${namespace}.json`)
+    const load = async ({
+      locale,
+      namespace,
+    }: {
+      locale: string
+      namespace: string
+    }) => import(`./locales/namespaces/${locale}/${namespace}.json`)
 
     const { result, waitForNextUpdate } = renderHook(
       () => useTranslation(['user'], load),
@@ -183,10 +195,13 @@ describe('i18n hook', () => {
   })
 
   it('should set current locale from navigator languages', async () => {
-    jest.spyOn(window, 'navigator', 'get').mockImplementation(() => ({
-      language: 'en-US',
-      languages: ['en-US', 'en'],
-    }) as unknown as Navigator)
+    jest.spyOn(window, 'navigator', 'get').mockImplementation(
+      () =>
+        ({
+          language: 'en-US',
+          languages: ['en-US', 'en'],
+        } as unknown as Navigator),
+    )
     const { result, waitForNextUpdate } = renderHook(() => useI18n(), {
       wrapper: wrapper({
         defaultLocale: 'fr',
@@ -198,10 +213,13 @@ describe('i18n hook', () => {
   })
 
   it('should set current locale from navigator language', async () => {
-    jest.spyOn(window, 'navigator', 'get').mockImplementation(() => ({
-      language: 'en',
-      languages: undefined,
-    }) as unknown as Navigator)
+    jest.spyOn(window, 'navigator', 'get').mockImplementation(
+      () =>
+        ({
+          language: 'en',
+          languages: undefined,
+        } as unknown as Navigator),
+    )
     const { result, waitForNextUpdate } = renderHook(() => useI18n(), {
       wrapper: wrapper({
         defaultLocale: 'fr',

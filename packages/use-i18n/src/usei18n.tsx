@@ -1,5 +1,9 @@
 import type { NumberFormatOptions } from '@formatjs/ecma402-abstract'
-import { Locale, formatDistanceToNow, formatDistanceToNowStrict } from 'date-fns'
+import {
+  Locale,
+  formatDistanceToNow,
+  formatDistanceToNowStrict,
+} from 'date-fns'
 import PropTypes from 'prop-types'
 import React, {
   ReactElement,
@@ -18,21 +22,26 @@ import formatters, { IntlListFormatOptions } from './formatters'
 
 const LOCALE_ITEM_STORAGE = 'locale'
 
-type PrimitiveType = string | number | boolean | null | undefined | Date;
+type PrimitiveType = string | number | boolean | null | undefined | Date
 
 type Translations = Record<string, string> & { prefix?: string }
 type TranslationsByLocales = Record<string, Translations>
-type TranslateFn = (key: string, context?: Record<string, PrimitiveType>) => string
+type TranslateFn = (
+  key: string,
+  context?: Record<string, PrimitiveType>,
+) => string
 
 const prefixKeys = (prefix: string) => (obj: { [key: string]: string }) =>
-  Object.keys(obj).reduce((acc: { [key: string ]: string }, key) => {
+  Object.keys(obj).reduce((acc: { [key: string]: string }, key) => {
     acc[`${prefix}${key}`] = obj[key]
 
     return acc
   }, {})
 
-const areNamespacesLoaded = (namespaces: string[], loadedNamespaces: string[] = []) =>
-  namespaces.every(n => loadedNamespaces.includes(n))
+const areNamespacesLoaded = (
+  namespaces: string[],
+  loadedNamespaces: string[] = [],
+) => namespaces.every(n => loadedNamespaces.includes(n))
 
 const getLocaleFallback = (locale: string) => locale.split('-')[0].split('_')[0]
 
@@ -41,9 +50,9 @@ const getCurrentLocale = ({
   supportedLocales,
   localeItemStorage,
 }: {
-  defaultLocale: string,
-  supportedLocales: string[],
-  localeItemStorage: string,
+  defaultLocale: string
+  supportedLocales: string[]
+  localeItemStorage: string
 }): string => {
   const languages = navigator.languages || [navigator.language]
   const browserLocales = [...new Set(languages.map(getLocaleFallback))]
@@ -58,29 +67,44 @@ const getCurrentLocale = ({
 
 interface Context {
   currentLocale: string
-  dateFnsLocale?: Locale,
-  datetime: (date: Date | number, options?: Intl.DateTimeFormatOptions) => string,
-  formatDate: (value: Date | number | string, options?: FormatDateOptions) => string,
-  formatList: (listFormat: string[], options?: IntlListFormatOptions) => string,
-  formatNumber: (numb: number, options?: NumberFormatOptions) => string,
-  formatUnit: (value: number, options: FormatUnitOptions) => string,
-  loadTranslations: (namespace: string, load?: LoadTranslationsFn) => Promise<string>,
-  locales: string[],
-  namespaces: string[],
+  dateFnsLocale?: Locale
+  datetime: (
+    date: Date | number,
+    options?: Intl.DateTimeFormatOptions,
+  ) => string
+  formatDate: (
+    value: Date | number | string,
+    options?: FormatDateOptions,
+  ) => string
+  formatList: (listFormat: string[], options?: IntlListFormatOptions) => string
+  formatNumber: (numb: number, options?: NumberFormatOptions) => string
+  formatUnit: (value: number, options: FormatUnitOptions) => string
+  loadTranslations: (
+    namespace: string,
+    load?: LoadTranslationsFn,
+  ) => Promise<string>
+  locales: string[]
+  namespaces: string[]
   namespaceTranslation: (namespace: string, t?: TranslateFn) => TranslateFn
-  relativeTime: (date: Date | number, options?: {
-    includeSeconds?: boolean;
-    addSuffix?: boolean;
-  }) => string,
-  relativeTimeStrict: (date: Date | number, options?: {
-    addSuffix?: boolean;
-    unit?: 'second' | 'minute' | 'hour' | 'day' | 'month' | 'year';
-    roundingMethod?: 'floor' | 'ceil' | 'round';
-  }) => string,
-  setTranslations: React.Dispatch<React.SetStateAction<TranslationsByLocales>>,
-  switchLocale: (locale: string) => void,
-  t: TranslateFn,
-  translations: TranslationsByLocales,
+  relativeTime: (
+    date: Date | number,
+    options?: {
+      includeSeconds?: boolean
+      addSuffix?: boolean
+    },
+  ) => string
+  relativeTimeStrict: (
+    date: Date | number,
+    options?: {
+      addSuffix?: boolean
+      unit?: 'second' | 'minute' | 'hour' | 'day' | 'month' | 'year'
+      roundingMethod?: 'floor' | 'ceil' | 'round'
+    },
+  ) => string
+  setTranslations: React.Dispatch<React.SetStateAction<TranslationsByLocales>>
+  switchLocale: (locale: string) => void
+  t: TranslateFn
+  translations: TranslationsByLocales
 }
 
 const I18nContext = createContext<Context | undefined>(undefined)
@@ -94,7 +118,10 @@ export const useI18n = (): Context => {
   return context
 }
 
-export const useTranslation = (namespaces: string[] = [], load: LoadTranslationsFn | undefined = undefined): Context & { isLoaded: boolean } => {
+export const useTranslation = (
+  namespaces: string[] = [],
+  load: LoadTranslationsFn | undefined = undefined,
+): Context & { isLoaded: boolean } => {
   const context = useContext(I18nContext)
   if (context === undefined) {
     throw new Error('useTranslation must be used within a I18nProvider')
@@ -103,7 +130,9 @@ export const useTranslation = (namespaces: string[] = [], load: LoadTranslations
 
   const key = namespaces.join(',')
   useEffect(() => {
-    key.split(',').map(async (namespace: string) => loadTranslations?.(namespace, load))
+    key
+      .split(',')
+      .map(async (namespace: string) => loadTranslations?.(namespace, load))
   }, [loadTranslations, key, load])
 
   const isLoaded = useMemo(
@@ -114,7 +143,13 @@ export const useTranslation = (namespaces: string[] = [], load: LoadTranslations
   return { ...context, isLoaded }
 }
 
-type LoadTranslationsFn = ({ namespace, locale }: { namespace: string, locale: string}) => Promise<{ default: Translations}>
+type LoadTranslationsFn = ({
+  namespace,
+  locale,
+}: {
+  namespace: string
+  locale: string
+}) => Promise<{ default: Translations }>
 type LoadLocaleFn = (locale: string) => Promise<Locale>
 
 const I18nContextProvider = ({
@@ -129,23 +164,26 @@ const I18nContextProvider = ({
   localeItemStorage = LOCALE_ITEM_STORAGE,
   supportedLocales,
 }: {
-  children: ReactNode,
-  defaultLoad: LoadTranslationsFn,
-  loadDateLocale?: LoadLocaleFn,
-  defaultDateLocale?: Locale,
-  defaultLocale: string,
-  defaultTranslations: TranslationsByLocales,
-  enableDefaultLocale: boolean,
-  enableDebugKey: boolean,
-  localeItemStorage: string,
-  supportedLocales: string[],
+  children: ReactNode
+  defaultLoad: LoadTranslationsFn
+  loadDateLocale?: LoadLocaleFn
+  defaultDateLocale?: Locale
+  defaultLocale: string
+  defaultTranslations: TranslationsByLocales
+  enableDefaultLocale: boolean
+  enableDebugKey: boolean
+  localeItemStorage: string
+  supportedLocales: string[]
 }): ReactElement => {
   const [currentLocale, setCurrentLocale] = useState<string>(
     getCurrentLocale({ defaultLocale, localeItemStorage, supportedLocales }),
   )
-  const [translations, setTranslations] = useState<TranslationsByLocales>(defaultTranslations)
+  const [translations, setTranslations] =
+    useState<TranslationsByLocales>(defaultTranslations)
   const [namespaces, setNamespaces] = useState<string[]>([])
-  const [dateFnsLocale, setDateFnsLocale] = useState<Locale | undefined>(defaultDateLocale ?? undefined)
+  const [dateFnsLocale, setDateFnsLocale] = useState<Locale | undefined>(
+    defaultDateLocale ?? undefined,
+  )
 
   useEffect(() => {
     loadDateLocale?.(currentLocale === 'en' ? 'en-GB' : currentLocale)
@@ -212,13 +250,14 @@ const I18nContextProvider = ({
   )
 
   const formatNumber = useCallback(
-    (numb: number, options?: NumberFormatOptions) => formatters.getNumberFormat(currentLocale, options).format(numb),
+    (numb: number, options?: NumberFormatOptions) =>
+      formatters.getNumberFormat(currentLocale, options).format(numb),
     [currentLocale],
   )
 
   const formatList = useCallback(
     (listFormat: string[], options?: IntlListFormatOptions) =>
-    formatters.getListFormat(currentLocale, options).format(listFormat),
+      formatters.getListFormat(currentLocale, options).format(listFormat),
     [currentLocale],
   )
 
@@ -238,16 +277,20 @@ const I18nContextProvider = ({
   )
 
   const datetime = useCallback(
-    (date: Date | number, options?: Intl.DateTimeFormatOptions): string => formatters.getDateTimeFormat(currentLocale, options).format(date),
+    (date: Date | number, options?: Intl.DateTimeFormatOptions): string =>
+      formatters.getDateTimeFormat(currentLocale, options).format(date),
     [currentLocale],
   )
 
   const relativeTimeStrict = useCallback(
-    (date: Date | number, options: {
-      addSuffix?: boolean
-      unit?: 'second' | 'minute' | 'hour' | 'day' | 'month' | 'year'
-      roundingMethod?: 'floor' | 'ceil' | 'round'
-    } = { addSuffix: true, unit: 'day' }) => {
+    (
+      date: Date | number,
+      options: {
+        addSuffix?: boolean
+        unit?: 'second' | 'minute' | 'hour' | 'day' | 'month' | 'year'
+        roundingMethod?: 'floor' | 'ceil' | 'round'
+      } = { addSuffix: true, unit: 'day' },
+    ) => {
       const finalDate = new Date(date)
 
       return formatDistanceToNowStrict(finalDate, {
@@ -259,10 +302,13 @@ const I18nContextProvider = ({
   )
 
   const relativeTime = useCallback(
-    (date: Date | number, options: {
-      includeSeconds?: boolean
-      addSuffix?: boolean
-    } = { addSuffix: true }) => {
+    (
+      date: Date | number,
+      options: {
+        includeSeconds?: boolean
+        addSuffix?: boolean
+      } = { addSuffix: true },
+    ) => {
       const finalDate = new Date(date)
 
       return formatDistanceToNow(finalDate, {
@@ -284,7 +330,9 @@ const I18nContextProvider = ({
         return ''
       }
       if (context) {
-        return formatters.getTranslationFormat(value, currentLocale).format(context) as string
+        return formatters
+          .getTranslationFormat(value, currentLocale)
+          .format(context) as string
       }
 
       return value

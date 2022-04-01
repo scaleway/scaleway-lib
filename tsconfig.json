@@ -2,10 +2,7 @@
   "compilerOptions": {
     "noEmit": true,
     "target": "esnext",
-    "lib": [
-      "DOM",
-      "ES2019"
-    ],
+    "lib": ["DOM", "ES2019"],
     "allowJs": true,
     "strict": true,
     "module": "esnext",
@@ -13,7 +10,7 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
-    "jsx": "preserve",
+    "jsx": "preserve"
   },
   "include": ["**/*.ts", "**/*.js", "**/.*.js", "**/*.tsx"]
 }
