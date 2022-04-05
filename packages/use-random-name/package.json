@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/use-random-name",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A small react utility to generate a random name",
   "type": "module",
   "main": "dist/index.js",
