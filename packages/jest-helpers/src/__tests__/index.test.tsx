@@ -1,4 +1,3 @@
-import React from 'react'
 import makeHelpers from '..'
 import { RenderWithThemeFn } from '../helpers/renderWithTheme'
 import { ShouldMatchEmotionSnapshotFn } from '../helpers/shouldMatchEmotionSnapshot'

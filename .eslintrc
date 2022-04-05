@@ -12,7 +12,9 @@
       {
         "devDependencies": ["**/__tests__/*", "rollup.config.mjs"]
       }
-    ]
+    ],
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off"
   },
   "overrides": [
     {
@@ -20,7 +22,11 @@
       "parserOptions": {
         "project": ["tsconfig.json"]
       },
-      "extends": ["./packages/eslint-config-react/typescript.js"]
+      "extends": ["./packages/eslint-config-react/typescript.js"],
+      "rules": {
+        "react/jsx-uses-react": "off",
+        "react/react-in-jsx-scope": "off"
+      }
     }
   ]
 }

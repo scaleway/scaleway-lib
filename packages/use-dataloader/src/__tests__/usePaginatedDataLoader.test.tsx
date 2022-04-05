@@ -1,6 +1,5 @@
 import { act } from '@testing-library/react'
 import { renderHook } from '@testing-library/react-hooks'
-import React from 'react'
 import DataLoaderProvider from '../DataLoaderProvider'
 import { KEY_IS_NOT_STRING_ERROR } from '../constants'
 import {

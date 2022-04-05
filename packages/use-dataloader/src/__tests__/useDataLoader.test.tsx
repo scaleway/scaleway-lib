@@ -1,5 +1,4 @@
 import { act, renderHook } from '@testing-library/react-hooks'
-import React from 'react'
 import DataLoaderProvider, { useDataLoaderContext } from '../DataLoaderProvider'
 import { KEY_IS_NOT_STRING_ERROR } from '../constants'
 import { PromiseType, UseDataLoaderConfig, UseDataLoaderResult } from '../types'

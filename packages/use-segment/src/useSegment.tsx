@@ -4,7 +4,7 @@ import type {
   AnalyticsSettings,
   InitOptions,
 } from '@segment/analytics-next'
-import React, {
+import {
   ReactNode,
   createContext,
   useContext,

@@ -39,11 +39,16 @@ const getConfig = (pkg, isBrowser = false) => {
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.es', '.mjs'],
         plugins: [
           '@babel/plugin-transform-runtime',
-          '@babel/plugin-transform-react-jsx',
         ],
         presets: [
           ['@babel/env', { modules: false, targets }],
           '@babel/preset-typescript',
+          [
+            '@babel/preset-react',
+            {
+              runtime: 'automatic',
+            },
+          ],
         ],
       }),
       nodeResolve({
