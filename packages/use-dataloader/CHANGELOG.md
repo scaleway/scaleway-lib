@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.10.0 (2022-04-05)
+
+
+### Features
+
+* **react:** new automatic runtime ([#695](https://github.com/scaleway/scaleway-lib/issues/695)) ([8238a62](https://github.com/scaleway/scaleway-lib/commit/8238a6258999141c585d8051b18c1076b0a5fae5))
+
+
+
 ### 2.9.3 (2022-03-11)
 
 **Note:** Version bump only for package @scaleway/use-dataloader

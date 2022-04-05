@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.0](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@3.2.14...@scaleway/use-i18n@3.3.0) (2022-04-05)
+
+
+### Features
+
+* **react:** new automatic runtime ([#695](https://github.com/scaleway/scaleway-lib/issues/695)) ([8238a62](https://github.com/scaleway/scaleway-lib/commit/8238a6258999141c585d8051b18c1076b0a5fae5))
+
+
+
 ### 3.2.14 (2022-04-05)
 
 **Note:** Version bump only for package @scaleway/use-i18n
