@@ -141,7 +141,8 @@ const useDataLoader = <T>(
     return () => {
       isMountedRef.current = false
       if (isFetchingRef.current && cancelMethodRef.current) {
-        cancelMethodRef.current().catch(undefined)
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        cancelMethodRef.current()
       }
       unsubscribeRequestRef.current?.()
     }
