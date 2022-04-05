@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.10.1](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-dataloader@2.10.0...@scaleway/use-dataloader@2.10.1) (2022-04-05)
+
+
+### Bug Fixes
+
+* **deps:** update typescript-eslint monorepo to v5.16.0 ([#683](https://github.com/scaleway/scaleway-lib/issues/683)) ([abf59fc](https://github.com/scaleway/scaleway-lib/commit/abf59fc3c9e0fc6cdd766ac453cc5a6c2dc0e578))
+
+
+
 ## 2.10.0 (2022-04-05)
 
 
