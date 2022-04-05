@@ -82,7 +82,7 @@ const useDataLoader = <T>(
     }
   }, [onSuccess, onError, onErrorProvider, method, request])
 
-  const cancelMethodRef = useRef<(() => void) | undefined>(request?.cancel)
+  const cancelMethodRef = useRef<(() => Promise<void>) | undefined>(request?.cancel)
 
   const isLoading = useMemo(
     () =>
@@ -141,6 +141,7 @@ const useDataLoader = <T>(
     return () => {
       isMountedRef.current = false
       if (isFetchingRef.current && cancelMethodRef.current) {
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         cancelMethodRef.current()
       }
       unsubscribeRequestRef.current?.()
