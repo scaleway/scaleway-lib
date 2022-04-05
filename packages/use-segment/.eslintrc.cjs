@@ -6,7 +6,5 @@ module.exports = {
       'error',
       { packageDir: [__dirname, join(__dirname, '../../')] },
     ],
-    "react/jsx-uses-react": "off",
-    "react/react-in-jsx-scope": "off"
   },
 }
