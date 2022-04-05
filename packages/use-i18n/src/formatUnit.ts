@@ -15,7 +15,16 @@ const exponents = [
 ]
 
 type Exponent = typeof exponents[number]
-type ExponentName = '' | 'kilo' | 'mega' | 'giga' | 'tera' | 'peta' | 'exa' | 'zetta' | 'yotta'
+type ExponentName =
+  | ''
+  | 'kilo'
+  | 'mega'
+  | 'giga'
+  | 'tera'
+  | 'peta'
+  | 'exa'
+  | 'zetta'
+  | 'yotta'
 
 const frOctet = {
   plural: 'octets',
@@ -57,7 +66,12 @@ const compoundUnitsSymbols = {
 type Unit = 'bit' | 'byte'
 type CompoundUnit = 'second'
 
-const formatShortUnit = (locale: string, exponent: Exponent, unit: Unit, compoundUnit?: CompoundUnit) => {
+const formatShortUnit = (
+  locale: string,
+  exponent: Exponent,
+  unit: Unit,
+  compoundUnit?: CompoundUnit,
+) => {
   let shortenedUnit = symbols.short[unit]
 
   if (
@@ -72,37 +86,62 @@ const formatShortUnit = (locale: string, exponent: Exponent, unit: Unit, compoun
   }`
 }
 
-const formatLongUnit = (locale: string, exponent: Exponent, unit: Unit, amount: number) => {
+const formatLongUnit = (
+  locale: string,
+  exponent: Exponent,
+  unit: Unit,
+  amount: number,
+) => {
   let translation = symbols.long[unit]
 
   if (
     unit === 'byte' &&
     Object.keys(localesWhoFavorOctetOverByte).includes(locale)
   ) {
-    translation = localesWhoFavorOctetOverByte[locale as keyof typeof localesWhoFavorOctetOverByte]
+    translation =
+      localesWhoFavorOctetOverByte[
+        locale as keyof typeof localesWhoFavorOctetOverByte
+      ]
   }
 
-  return `${exponent.name}${formatters.getTranslationFormat(
-    `{amount, plural,
+  return `${exponent.name}${
+    formatters
+      .getTranslationFormat(
+        `{amount, plural,
       =0 {${translation.singular}}
       =1 {${translation.singular}}
       other {${translation.plural}}
   }`,
-    locale,
-  ).format({ amount }) as string}`
+        locale,
+      )
+      .format({ amount }) as string
+  }`
 }
 
 const format =
-  ({ compoundUnit, exponent, unit, humanize = false }: {
-    compoundUnit?: CompoundUnit,
-    unit: Unit,
-    exponent?: Exponent,
-    humanize?: boolean,
+  ({
+    compoundUnit,
+    exponent,
+    unit,
+    humanize = false,
+  }: {
+    compoundUnit?: CompoundUnit
+    unit: Unit
+    exponent?: Exponent
+    humanize?: boolean
   }) =>
   (
     locale: string,
     amount: number,
-    { maximumFractionDigits, minimumFractionDigits, short = true }: { maximumFractionDigits?: number, minimumFractionDigits?: number, short?: boolean },
+    {
+      maximumFractionDigits,
+      minimumFractionDigits,
+      short = true,
+    }: {
+      maximumFractionDigits?: number
+      minimumFractionDigits?: number
+      short?: boolean
+    },
   ): string => {
     let computedExponent = exponent
     let computedValue = amount
@@ -116,14 +155,14 @@ const format =
           ),
           output: 'object',
           round: maximumFractionDigits,
-        }) as unknown as { value: number, symbol: string, exponent: number }
+        }) as unknown as { value: number; symbol: string; exponent: number }
         computedValue = value.value
       } else {
         const value = filesize(amount, {
           base: 10,
           output: 'object',
           round: maximumFractionDigits,
-        }) as unknown as { value: number, symbol: string, exponent: number }
+        }) as unknown as { value: number; symbol: string; exponent: number }
         computedExponent = exponents[value.exponent]
         computedValue = value.value
       }
@@ -134,7 +173,12 @@ const format =
       minimumFractionDigits,
     }).format(computedValue)} ${
       short
-        ? formatShortUnit(locale, computedExponent as Exponent, unit, compoundUnit)
+        ? formatShortUnit(
+            locale,
+            computedExponent as Exponent,
+            unit,
+            compoundUnit,
+          )
         : formatLongUnit(
             locale,
             computedExponent as Exponent,
@@ -149,7 +193,9 @@ type ComplexUnits = `${Unit}${'s' | ''}${'-humanized' | ''}`
 type PerSecondUnit = `bit${'s' | ''}${'-per-second' | ''}${'-humanized' | ''}`
 type SupportedUnits = SimpleUnits | ComplexUnits | PerSecondUnit
 
-export const supportedUnits: Partial<Record<SupportedUnits, ReturnType<typeof format>>> = {
+export const supportedUnits: Partial<
+  Record<SupportedUnits, ReturnType<typeof format>>
+> = {
   // bits
   'bits-humanized': format({ humanize: true, unit: 'bit' }),
   'bits-per-second-humanized': format({
@@ -202,7 +248,10 @@ export interface FormatUnitOptions {
   short?: boolean
 }
 
-const formatUnit = (locale: string, number: number, { unit, ...options }: FormatUnitOptions): string =>
-  supportedUnits?.[unit]?.(locale, number, options) ?? ''
+const formatUnit = (
+  locale: string,
+  number: number,
+  { unit, ...options }: FormatUnitOptions,
+): string => supportedUnits?.[unit]?.(locale, number, options) ?? ''
 
 export default formatUnit

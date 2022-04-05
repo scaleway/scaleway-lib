@@ -15,14 +15,15 @@ export interface IntlListFormatOptions {
 }
 
 declare abstract class IntlListFormat {
-  constructor(locales?: string | string[], options?: IntlListFormatOptions);
+  constructor(locales?: string | string[], options?: IntlListFormatOptions)
 
-  format: (items: string[]) => string;
+  format: (items: string[]) => string
 }
 
 interface BaseFormatters {
   getNumberFormat(
-    locales?: string | string[], opts?: NumberFormatOptions
+    locales?: string | string[],
+    opts?: NumberFormatOptions,
   ): Intl.NumberFormat
   getDateTimeFormat(
     ...args: ConstructorParameters<typeof Intl.DateTimeFormat>
@@ -53,24 +54,40 @@ function createFastMemoizeCache<V>(): Cache<string, V> {
 }
 
 const baseFormatters: BaseFormatters = {
-  getDateTimeFormat: memoize((...args: ConstructorParameters<typeof Intl.DateTimeFormat>) => new Intl.DateTimeFormat(...args), {
-    cache: createFastMemoizeCache<Intl.DateTimeFormat>(),
-    strategy: strategies.variadic,
-  }),
-  // @ts-expect-error we assume Intl.ListFormat exists in our current context
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-  getListFormat: memoize((...args) => new Intl.ListFormat(...args) as IntlListFormat, {
-    cache: createFastMemoizeCache<IntlListFormat>(),
-    strategy: strategies.variadic,
-  }),
-  getNumberFormat: memoize((...args: ConstructorParameters<typeof Intl.NumberFormat>) => new Intl.NumberFormat(...args), {
-    cache: createFastMemoizeCache<Intl.NumberFormat>(),
-    strategy: strategies.variadic,
-  }),
-  getPluralRules: memoize((...args: ConstructorParameters<typeof Intl.PluralRules>) => new Intl.PluralRules(...args), {
-    cache: createFastMemoizeCache<Intl.PluralRules>(),
-    strategy: strategies.variadic,
-  }),
+  getDateTimeFormat: memoize(
+    (...args: ConstructorParameters<typeof Intl.DateTimeFormat>) =>
+      new Intl.DateTimeFormat(...args),
+    {
+      cache: createFastMemoizeCache<Intl.DateTimeFormat>(),
+      strategy: strategies.variadic,
+    },
+  ),
+
+  getListFormat: memoize(
+    // @ts-expect-error we assume Intl.ListFormat exists in our current context
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    (...args) => new Intl.ListFormat(...args) as IntlListFormat,
+    {
+      cache: createFastMemoizeCache<IntlListFormat>(),
+      strategy: strategies.variadic,
+    },
+  ),
+  getNumberFormat: memoize(
+    (...args: ConstructorParameters<typeof Intl.NumberFormat>) =>
+      new Intl.NumberFormat(...args),
+    {
+      cache: createFastMemoizeCache<Intl.NumberFormat>(),
+      strategy: strategies.variadic,
+    },
+  ),
+  getPluralRules: memoize(
+    (...args: ConstructorParameters<typeof Intl.PluralRules>) =>
+      new Intl.PluralRules(...args),
+    {
+      cache: createFastMemoizeCache<Intl.PluralRules>(),
+      strategy: strategies.variadic,
+    },
+  ),
 }
 
 type Formatters = BaseFormatters & {
@@ -79,17 +96,28 @@ type Formatters = BaseFormatters & {
   ): IntlTranslationFormat
 }
 
-type TranslationFormatParameter = ConstructorParameters<typeof IntlTranslationFormat>
+type TranslationFormatParameter = ConstructorParameters<
+  typeof IntlTranslationFormat
+>
 
 const formatters: Formatters = {
   ...baseFormatters,
-  getTranslationFormat: memoize((message: TranslationFormatParameter[0], locales: TranslationFormatParameter[1], overrideFormats: TranslationFormatParameter[2], opts: TranslationFormatParameter[3]) => new IntlTranslationFormat(message, locales, overrideFormats, {
-    formatters: baseFormatters,
-    ...opts,
-  }), {
-    cache: createFastMemoizeCache<IntlTranslationFormat>(),
-    strategy: strategies.variadic,
-  }),
+  getTranslationFormat: memoize(
+    (
+      message: TranslationFormatParameter[0],
+      locales: TranslationFormatParameter[1],
+      overrideFormats: TranslationFormatParameter[2],
+      opts: TranslationFormatParameter[3],
+    ) =>
+      new IntlTranslationFormat(message, locales, overrideFormats, {
+        formatters: baseFormatters,
+        ...opts,
+      }),
+    {
+      cache: createFastMemoizeCache<IntlTranslationFormat>(),
+      strategy: strategies.variadic,
+    },
+  ),
 }
 
 export default formatters

@@ -15,6 +15,7 @@ $ pnpm add @scaleway/use-random-name
 ## Usage
 
 As a React hook
+
 ```js
 import React from 'react'
 import useRandomName from '@scaleway/random-name'
@@ -22,13 +23,12 @@ import useRandomName from '@scaleway/random-name'
 const Component = () => {
   const name = useRandomName()
 
-  return (
-    <span>{name}</span>
-  )
+  return <span>{name}</span>
 }
 ```
 
 You can also access the underlying @scaleway/random-name package with a named export
+
 ```js
 import { randomName } from '@scaleway/use-random-name'
 

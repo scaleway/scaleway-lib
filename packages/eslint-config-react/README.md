@@ -23,6 +23,7 @@ Add to your `.eslintrc`
 ```
 
 Or for Typescript
+
 ```json
 {
   "extends": "@scaleway/react/typescript",

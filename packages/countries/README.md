@@ -28,6 +28,7 @@ console.log(frenchSubdivisions) // => [{ "code": "FR-01", "country_code": "FR", 
 This package is generated manually from a pypi library [pycountry](https://pypi.org/project/pycountry/)
 
 To update the database, first make sure that you have:
+
 - [python](https://www.python.org) >= 3.0
 - [poetry](https://python-poetry.org) >= 1.0
 

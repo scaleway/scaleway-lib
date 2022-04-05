@@ -4,3 +4,4 @@ dist/
 
 # Specific to prettier
 package.json
+CHANGELOG.md

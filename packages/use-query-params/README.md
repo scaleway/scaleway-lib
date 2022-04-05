@@ -9,10 +9,11 @@ $ pnpm add @scaleway/use-query-params react-router-dom
 ```
 
 ## Usage
+
 ```js
 import React from 'react'
 import { render } from 'react-dom'
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router } from 'react-router-dom'
 import useQueryParams from '@scaleway/use-query-params'
 
 const App = () => {

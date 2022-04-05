@@ -39,20 +39,15 @@ const pageVisited =
 export default pageVisited
 ```
 
-
-
 ```typescript
-
 import pageTypes from './pageTypes'
 import testEvents from './testEvents'
 
 export default {
-    pageTypes,
-    testEvents,
+  pageTypes,
+  testEvents,
 }
-
 ```
-
 
 ### Context Load
 

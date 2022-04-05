@@ -5,19 +5,30 @@ import { MemoryRouter, Router } from 'react-router-dom'
 import useQueryParams from '..'
 
 const wrapper =
-  ({ pathname = '/one', search, history }: { pathname?: string, search: string, history?: History }) =>
+  ({
+    pathname = '/one',
+    search,
+    history,
+  }: {
+    pathname?: string
+    search: string
+    history?: History
+  }) =>
   ({ children }: { children: ReactNode }) => {
-
     if (history) {
       const [state, setState] = useState({
         action: history.action,
-        location: history.location
-      });
+        location: history.location,
+      })
 
-      useLayoutEffect(() => history.listen(setState), []);
+      useLayoutEffect(() => history.listen(setState), [])
 
       return (
-        <Router navigator={history} location={state.location} navigationType={state.action}>
+        <Router
+          navigator={history}
+          location={state.location}
+          navigationType={state.action}
+        >
           {children}
         </Router>
       )
@@ -29,7 +40,6 @@ const wrapper =
       </MemoryRouter>
     )
   }
-
 
 describe('useQueryParam', () => {
   it('should correctly push instead of replacing history', () => {

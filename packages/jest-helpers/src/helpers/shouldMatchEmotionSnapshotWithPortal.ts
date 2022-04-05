@@ -8,9 +8,14 @@ interface Options<Theme> {
   theme?: Theme
 }
 
-export type ShouldMatchEmotionSnapshotWithPortalFn<Theme> = (component: ReactNode, options?: Options<Theme>) => Promise<void>
+export type ShouldMatchEmotionSnapshotWithPortalFn<Theme> = (
+  component: ReactNode,
+  options?: Options<Theme>,
+) => Promise<void>
 
-export default function makeShouldMatchEmotionSnapshotWithPortal<Theme>(renderWithTheme: RenderWithThemeFn<Theme>): ShouldMatchEmotionSnapshotWithPortalFn<Theme> {
+export default function makeShouldMatchEmotionSnapshotWithPortal<Theme>(
+  renderWithTheme: RenderWithThemeFn<Theme>,
+): ShouldMatchEmotionSnapshotWithPortalFn<Theme> {
   return async (component, { options, transform, theme } = {}) => {
     // Save the instance of console (disable warning about adding element directly to document.body which is necessary when testing portal components)
     const { console } = global

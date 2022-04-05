@@ -427,7 +427,6 @@ describe('@regex', () => {
     })
   })
 
-
   describe('cron', () => {
     test.each([
       [asciiLetters, false],

@@ -8,7 +8,7 @@ interface Options {
 }
 
 const useQueryParams = (): {
-  queryParams: ParsedQuery<string | number | boolean>;
+  queryParams: ParsedQuery<string | number | boolean>
   /**
    * Replace the query params in the url. It erase all current values and put the new ones
    *
@@ -49,26 +49,28 @@ const useQueryParams = (): {
   )
 
   const replaceInUrlIfNeeded = useCallback(
-    (newState: Record<string,unknown>, options?: Options) => {
+    (newState: Record<string, unknown>, options?: Options) => {
       const stringifiedParams = stringyFormat(newState)
       const searchToCompare = location.search || '?'
 
       if (searchToCompare !== `?${stringifiedParams}`) {
-        navigate(`${location.pathname}?${stringifiedParams}`, { replace: !options?.push })
+        navigate(`${location.pathname}?${stringifiedParams}`, {
+          replace: !options?.push,
+        })
       }
     },
     [navigate, location.pathname, location.search, stringyFormat],
   )
 
   const setQueryParams = useCallback(
-    (nextParams: Record<string,unknown>, options?: Options): void => {
+    (nextParams: Record<string, unknown>, options?: Options): void => {
       replaceInUrlIfNeeded({ ...currentState, ...nextParams }, options)
     },
     [currentState, replaceInUrlIfNeeded],
   )
 
   const replaceQueryParams = useCallback(
-    (newParams: Record<string,unknown>, options?: Options): void => {
+    (newParams: Record<string, unknown>, options?: Options): void => {
       replaceInUrlIfNeeded(newParams, options)
     },
     [replaceInUrlIfNeeded],

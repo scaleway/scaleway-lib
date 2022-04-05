@@ -1,6 +1,6 @@
 import React from 'react'
-import makeHelpers from ".."
-import { RenderWithThemeFn } from "../helpers/renderWithTheme"
+import makeHelpers from '..'
+import { RenderWithThemeFn } from '../helpers/renderWithTheme'
 import { ShouldMatchEmotionSnapshotFn } from '../helpers/shouldMatchEmotionSnapshot'
 import { ShouldMatchEmotionSnapshotWithPortalFn } from '../helpers/shouldMatchEmotionSnapshotWithPortal'
 
@@ -11,19 +11,18 @@ describe('@jest-helpers', () => {
 
   beforeAll(() => {
     const helpers = makeHelpers(({ children }) => (
-      <div id="wrapper">
-        {children}
-      </div>
+      <div id="wrapper">{children}</div>
     ))
 
     renderWithTheme = helpers.renderWithTheme
     shouldMatchEmotionSnapshot = helpers.shouldMatchEmotionSnapshot
-    shouldMatchEmotionSnapshotWithPortal = helpers.shouldMatchEmotionSnapshotWithPortal
+    shouldMatchEmotionSnapshotWithPortal =
+      helpers.shouldMatchEmotionSnapshotWithPortal
   })
 
   test('should render with renderWithTheme', () => {
     const node = renderWithTheme(<div data-testid="test" />)
-    const element = node.getByTestId("test")
+    const element = node.getByTestId('test')
 
     expect(element).toMatchSnapshot()
   })

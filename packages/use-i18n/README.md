@@ -169,6 +169,7 @@ The first parameter is anything that can be accepted as a valid JS Date (Date, n
 It accepts an `options` as second parameter which can eiter be one of predefined shorthand formats (see below) or an [Intl.DateTimeFormat `options` object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat)
 
 Shorthand formats:
+
 ```
 "long" => "February 13, 2020"
 "short" => (default) "Feb 13, 2020"
@@ -189,23 +190,19 @@ const App = () => {
     formatDate(new Date(2020, 1, 13, 16, 28)), // "Feb 13, 2020"
     formatDate(1581607680000, 'long'), // "February 13, 2020"
     formatDate('2020-02-13T15:28:00.000Z', {
-      day: "numeric",
-      era: "short",
-      hour: "2-digit",
-      minute: "numeric",
-      month: "narrow",
-      second: "2-digit",
-      timeZoneName: "long",
-      weekday: "long",
-      year: "2-digit",
-    }) // "Thursday, F 13, 20 AD, 04:28:00 PM Central European Standard Time""
+      day: 'numeric',
+      era: 'short',
+      hour: '2-digit',
+      minute: 'numeric',
+      month: 'narrow',
+      second: '2-digit',
+      timeZoneName: 'long',
+      weekday: 'long',
+      year: '2-digit',
+    }), // "Thursday, F 13, 20 AD, 04:28:00 PM Central European Standard Time""
   ]
 
-  return (
-    <div>
-      {units}
-    </div>
-  )
+  return <div>{units}</div>
 }
 ```
 
@@ -226,15 +223,11 @@ const App = () => {
   const cities = [
     formatList(['Paris', 'New York', 'London']), // Paris, New York and London
     formatList(['Paris', 'New York', 'London'], {
-      type: 'disjunction'
-    }) // Paris, New York or London
+      type: 'disjunction',
+    }), // Paris, New York or London
   ]
 
-  return (
-    <div>
-      {cities}
-    </div>
-  )
+  return <div>{cities}</div>
 }
 ```
 
@@ -245,11 +238,11 @@ This hook also exposes a `formatUnit` function which can be used to format bits/
 We follow the IEC standard (base 10) with SI units (kilo,mega,giga,...) [more info here](https://en.wikipedia.org/wiki/Binary_prefix)
 
 It accepts an `options` as second parameter:
+
 - `unit`: Manadatory (see below)
 - `maximumFractionDigits`: The maximum number of fraction digits to use
 - `minimumFractionDigits`: The minimum number of fraction digits to use
 - `short`: if it should output the short or long form of the unit (think `Kb` vs `kilobits`)
-
 
 ```js
 import { useI18n } from '@scaleway/use-i18n'
@@ -260,22 +253,20 @@ const App = () => {
   const units = [
     formatUnit(12, { unit: 'kilobyte' }), // "12 KB" or "12 Ko" in fr an ro
     formatUnit(10 ** 8, { unit: 'bytes-humanized' }), // "100 MB" or "100 Mo" in fr an ro
-    formatUnit(10 ** 8, { unit: 'bits-per-second-humanized' }) // "100Mbs"
+    formatUnit(10 ** 8, { unit: 'bits-per-second-humanized' }), // "100Mbs"
   ]
 
-  return (
-    <div>
-      {units}
-    </div>
-  )
+  return <div>{units}</div>
 }
 ```
 
 We currently support two different unit:
+
 - byte
 - bit
 
 With each some variants :
+
 - `(kilo|mega|giga|tera|peta|exa|zetta|yotta)(bit|byte)`: This is the bare unit
   - `formatUnit(12, { unit: 'megabyte' })` => `"12 MB"` or `"12 Mo"` (in fr/ro)
   - `formatUnit(12, { unit: 'kilobit' })` => `"12 Kb"`
@@ -288,6 +279,7 @@ With each some variants :
   - `formatUnit(123456789, { unit: 'kilobyte-humanized' })` => `"123456.78 KB"` or `"123456.78 Ko"` (in fr/ro)
 
 There is also a compound variant which can only be used with bits:
+
 - `(kilo|mega|giga|tera|peta|exa|zetta|yotta)bit-per-second`
   - `formatUnit(1.6, { unit: 'gigabit-per-second' })` => `1.6 Gbps`
   - `formatUnit(1.6, { unit: 'bit-per-second' })` => `1.6 bps`
@@ -297,8 +289,8 @@ There is also a compound variant which can only be used with bits:
   - `formatUnit(123456789, { unit: 'gigabit-per-second-humanized' })` => `0.12 Gbps`
   - `formatUnit(123456789, { unit: 'kilobit-per-second-humanized' })` => `123456.78 Kbps`
 
-
 Here is the full list of available units:
+
 ```
 bits-humanized
 bits-per-second-humanized

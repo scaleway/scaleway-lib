@@ -45,6 +45,7 @@
     "build": "lerna exec --stream --ignore @scaleway/eslint-config-react --ignore @scaleway/countries -- rollup -c ../../rollup.config.mjs",
     "build:profile": "cross-env PROFILE=true pnpm run build",
     "commit": "npx git-cz -a",
+    "format": "prettier --write '**/*.{ts,tsx,js,json,md,mdx}'",
     "test": "TZ=UTC jest",
     "test:watch": "pnpm run test -- --watch",
     "test:coverage": "pnpm run test -- --coverage",
@@ -56,9 +57,15 @@
     ]
   },
   "lint-staged": {
-    "*.js": [
+    "*.(j|t)s?(x)": [
       "prettier --write",
       "eslint --fix"
+    ],
+    "*.json": [
+      "prettier --write"
+    ],
+    "*.mdx": [
+      "prettier --write"
     ]
   },
   "config": {

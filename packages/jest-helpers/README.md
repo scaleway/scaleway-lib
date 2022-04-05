@@ -15,9 +15,7 @@ $ pnpm add @scaleway/jest-functions
 ```tsx
 import makeHelpers from '@scaleway/jest-helpers'
 
-const Wrapper = ({ children }) => (
-  <ThemeProvider>{children}</ThemeProvider>
-)
+const Wrapper = ({ children }) => <ThemeProvider>{children}</ThemeProvider>
 
 export const {
   renderWithTheme,
@@ -52,9 +50,7 @@ export const {
 ```tsx
 import makeHelpers from '@scaleway/jest-helpers'
 
-const Wrapper = ({ children }) => (
-  <ThemeProvider>{children}</ThemeProvider>
-)
+const Wrapper = ({ children }) => <ThemeProvider>{children}</ThemeProvider>
 
 export const {
   renderWithTheme,

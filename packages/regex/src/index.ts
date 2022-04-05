@@ -1,5 +1,5 @@
 export const alpha = /^[a-zA-Z]*$/
-export const alphaLower =  /^[a-z]+$/
+export const alphaLower = /^[a-z]+$/
 export const alphanum = /^[a-zA-Z0-9]*$/
 export const alphanumdash = /^[a-zA-Z0-9-]*$/
 export const alphanumdashdots = /^[a-zA-Z0-9-.]*$/
