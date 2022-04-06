@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 1.2.1 (2022-04-06)
+
+
+### Bug Fixes
+
+* **deps:** update emotion monorepo to v11.9.0 ([#703](https://github.com/scaleway/scaleway-lib/issues/703)) ([ff342b4](https://github.com/scaleway/scaleway-lib/commit/ff342b467111d7c8c65d82023d017634715ec826))
+
+
+
 ## [1.2.0](https://github.com/scaleway/scaleway-lib/compare/@scaleway/jest-helpers@1.1.13...@scaleway/jest-helpers@1.2.0) (2022-04-05)
 
 
