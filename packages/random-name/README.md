@@ -1,6 +1,6 @@
 # `@scaleway/random-name`
 
-A tiny utility to generate random names
+A tiny utility to generate random names.
 
 Fully inspired by [Moby name generator](https://github.com/moby/moby/blob/master/pkg/namesgenerator/names-generator.go)
 
