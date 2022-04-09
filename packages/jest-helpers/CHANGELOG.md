@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 1.2.2 (2022-04-09)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @emotion/jest to v11.9.1 ([#707](https://github.com/scaleway/scaleway-lib/issues/707)) ([0fdbfc7](https://github.com/scaleway/scaleway-lib/commit/0fdbfc73a8e100adac538e0422c361c6450356ec))
+
+
+
 ### 1.2.1 (2022-04-06)
 
 
