@@ -22,7 +22,7 @@ importers:
       eslint: 8.12.0
       husky: 7.0.4
       jest: 27.5.1
-      jest-junit: 13.0.0
+      jest-junit: 13.1.0
       jest-localstorage-mock: 2.4.19
       lerna: 4.0.0
       lint-staged: 12.3.7
@@ -55,7 +55,7 @@ importers:
       eslint: 8.12.0
       husky: 7.0.4
       jest: 27.5.1
-      jest-junit: 13.0.0
+      jest-junit: 13.1.0
       jest-localstorage-mock: 2.4.19
       lerna: 4.0.0
       lint-staged: 12.3.7
@@ -7040,8 +7040,8 @@ packages:
       - supports-color
     dev: true
 
-  /jest-junit/13.0.0:
-    resolution: {integrity: sha512-JSHR+Dhb32FGJaiKkqsB7AR3OqWKtldLd6ZH2+FJ8D4tsweb8Id8zEVReU4+OlrRO1ZluqJLQEETm+Q6/KilBg==}
+  /jest-junit/13.1.0:
+    resolution: {integrity: sha512-ECbhzEG3Oe2IH3Mnwcv2vAXM4qTbcObN/gTUzwKPlpaNsf2G/zlj/teEUqRGV17YQiQ4AqzTf3pCO7W59DKVIw==}
     engines: {node: '>=10.12.0'}
     dependencies:
       mkdirp: 1.0.4
