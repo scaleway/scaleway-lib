@@ -24,7 +24,7 @@
     "eslint": "8.12.0",
     "husky": "7.0.4",
     "jest": "27.5.1",
-    "jest-junit": "13.0.0",
+    "jest-junit": "13.1.0",
     "jest-localstorage-mock": "2.4.19",
     "lerna": "4.0.0",
     "lint-staged": "12.3.7",
