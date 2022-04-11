@@ -1,7 +1,7 @@
 import { AnalyticsBrowser } from '@segment/analytics-next'
 import type {
   Analytics,
-  AnalyticsSettings,
+  AnalyticsBrowserSettings,
   InitOptions,
 } from '@segment/analytics-next'
 import {
@@ -41,8 +41,7 @@ export function useSegment<T extends Events>(): SegmentContextInterface<T> {
 }
 
 export type SegmentProviderProps<T> = {
-  cdn?: string
-  settings?: AnalyticsSettings
+  settings?: AnalyticsBrowserSettings
   initOptions?: InitOptions
   onError?: (err: Error) => void
   onEventError?: OnEventError
@@ -65,18 +64,10 @@ function SegmentProvider<T extends Events>({
   onError,
   onEventError,
   events,
-  cdn,
 }: SegmentProviderProps<T>) {
   const [internalAnalytics, setAnalytics] = useState<Analytics | undefined>(
     undefined,
   )
-
-  if (cdn) {
-    window.analytics = window.analytics ?? {}
-    // https://github.com/segmentio/analytics-next/issues/362
-    // eslint-disable-next-line no-underscore-dangle
-    window.analytics._cdn = cdn
-  }
 
   useEffect(() => {
     if (settings?.writeKey) {

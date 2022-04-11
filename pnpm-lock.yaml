@@ -156,9 +156,9 @@ importers:
 
   packages/use-segment:
     specifiers:
-      '@segment/analytics-next': 1.34.0
+      '@segment/analytics-next': 1.35.1
     dependencies:
-      '@segment/analytics-next': 1.34.0
+      '@segment/analytics-next': 1.35.1
 
 packages:
 
@@ -2995,13 +2995,13 @@ packages:
       rollup: 2.70.1
     dev: true
 
-  /@segment/analytics-next/1.34.0:
-    resolution: {integrity: sha512-3hbpLhMqgBrdv8WWB+qZY34F0SE4qx+zbx28D5YHpI5U1u0dEd34IjNSoBigkEHVNOV2Z1Rkyr1UBbQtZVb6Xw==}
+  /@segment/analytics-next/1.35.1:
+    resolution: {integrity: sha512-NXdbH6SGBQHZj+bZlpBnbx9DnSq2OVQ6OqLzWzPy2s91+YLJS/UyVPH/WqZ8qcMz/ut5W1FHd0vSrNJ/DGpBnA==}
     dependencies:
       '@lukeed/uuid': 2.0.0
       '@segment/analytics.js-video-plugins': 0.2.1
-      '@segment/facade': 3.4.8
-      '@segment/tsub': 0.1.10
+      '@segment/facade': 3.4.9
+      '@segment/tsub': 0.1.11
       dset: 3.1.1
       js-cookie: 2.2.1
       node-fetch: 2.6.7
@@ -3018,8 +3018,8 @@ packages:
       unfetch: 3.1.2
     dev: false
 
-  /@segment/facade/3.4.8:
-    resolution: {integrity: sha512-WFtyFUcDPHaUB1Rikrn8dZVCLPkdJmkkHSTgL5gwI8qKuZzRkpsKyeFUmmehmYbF1Jw+sESzKXzf23DFkKFm3A==}
+  /@segment/facade/3.4.9:
+    resolution: {integrity: sha512-0RTLB0g4HiJASc6pTD2/Tru+Qz+VPGL1W+/EvkBGhY6WYk00cZhTjLsMJ8X5BO6iPqLb3vsxtfjVM/RREG5oQQ==}
     dependencies:
       '@segment/isodate-traverse': 1.1.1
       inherits: 2.0.4
@@ -3037,8 +3037,8 @@ packages:
     resolution: {integrity: sha512-BtanDuvJqnACFkeeYje7pWULVv8RgZaqKHWwGFnL/g/TH/CcZjkIVTfGDp/MAxmilYHUkrX70SqwnYSTNEaN7A==}
     dev: false
 
-  /@segment/tsub/0.1.10:
-    resolution: {integrity: sha512-3Ov132lcoMYU6N9QtLncUjvhD80QhikLPhLAWg6zPkOijfv4AI0x8MNaXcuDEHRfPtF2rri4vZ3EsRlleTifew==}
+  /@segment/tsub/0.1.11:
+    resolution: {integrity: sha512-0kshyW2Sem9llQcqqvny7odnVxnaDmXV3GgwOQEkLlUf/rtJHGzifYYCupNnGw7yfo+PvHLQPePAC/+Bi0vYVA==}
     hasBin: true
     dependencies:
       '@stdlib/math-base-special-ldexp': 0.0.5
@@ -3401,7 +3401,7 @@ packages:
     dependencies:
       '@stdlib/utils-define-nonenumerable-read-only-property': 0.0.7
       '@stdlib/utils-noop': 0.0.10
-      minimist: 1.2.5
+      minimist: 1.2.6
     dev: false
 
   /@stdlib/complex-float32/0.0.7:
@@ -7850,6 +7850,7 @@ packages:
 
   /minimist/1.2.5:
     resolution: {integrity: sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==}
+    dev: true
 
   /minimist/1.2.6:
     resolution: {integrity: sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==}
