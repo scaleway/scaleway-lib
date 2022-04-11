@@ -47,7 +47,6 @@ const wrapper =
     onError,
     onEventError,
     events = defaultEvents,
-    cdn,
   }: Omit<SegmentProviderProps<DefaultEvents>, 'children'>) =>
   ({ children }: { children: ReactNode }) =>
     (
@@ -57,7 +56,6 @@ const wrapper =
         onError={onError}
         onEventError={onEventError}
         events={events}
-        cdn={cdn}
       >
         {children}
       </SegmentProvider>
@@ -69,9 +67,7 @@ describe('segment hook', () => {
   })
 
   it('useSegment should not be defined without SegmentProvider', () => {
-    const { result } = renderHook(() => useSegment(), {
-      wrapper: ({ children }) => <div>{children}</div>,
-    })
+    const { result } = renderHook(() => useSegment())
     expect(() => {
       expect(result.current).toBe(undefined)
     }).toThrow(Error('useSegment must be used within a SegmentProvider'))
@@ -115,14 +111,12 @@ describe('segment hook', () => {
       .spyOn(AnalyticsBrowser, 'load')
       .mockResolvedValue([{} as Analytics, {} as Context])
 
-    const cdn = 'https://cdn.proxy'
-    const settings = { writeKey: 'helloworld' }
+    const settings = { cdn: 'https://cdn.proxy', writeKey: 'helloworld' }
 
     const { result, waitForNextUpdate } = renderHook(
       () => useSegment<DefaultEvents>(),
       {
         wrapper: wrapper({
-          cdn,
           events: defaultEvents,
           settings,
         }),
@@ -133,7 +127,6 @@ describe('segment hook', () => {
     expect(mock).toHaveBeenCalledTimes(1)
     expect(mock).toHaveBeenCalledWith(settings, undefined)
     expect(result.current.analytics).toStrictEqual({})
-    expect(window.analytics).toStrictEqual({ _cdn: cdn })
   })
 
   it('Provider should load and call onError on analytics load error', async () => {
@@ -231,22 +224,5 @@ describe('segment hook', () => {
 
     // @ts-expect-error if type infering works this should be an error
     expect(await result.current.events.pageVisited()).toBe(undefined)
-  })
-
-  it('useSegment should correctly set cdn into  windows.analitycs', () => {
-    // this test should be remove in the same time as this issues is solve
-    // https://github.com/segmentio/analytics-next/issues/362
-
-    const cdn = 'https://cdn.segment.com/analytics.js'
-
-    const { result } = renderHook(() => useSegment<DefaultEvents>(), {
-      wrapper: wrapper({
-        cdn,
-        events: defaultEvents,
-        settings: undefined,
-      }),
-    })
-
-    expect(result.current.analytics).not.toBeNull()
   })
 })
