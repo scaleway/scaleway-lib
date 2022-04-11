@@ -1,5 +1,6 @@
 import { fireEvent } from '@testing-library/react'
 import { renderHook } from '@testing-library/react-hooks'
+import mockdate from 'mockdate'
 import { ReactNode } from 'react'
 import GTMProvider, { SendGTM, useGTM } from '..'
 import { GTMProviderProps } from '../useGTM'
@@ -36,6 +37,11 @@ const wrapper =
 
 describe('GTM hook', () => {
   beforeEach(() => {
+    mockdate.set('4/13/2021')
+  })
+
+  afterEach(() => {
+    mockdate.reset()
     document.head.innerHTML = ''
     window.dataLayer = undefined
     jest.restoreAllMocks()

@@ -49,7 +49,7 @@ exports[`GTM hook Provider should load with events when provided 1`] = `
 Array [
   Object {
     "event": "gtm.js",
-    "gtm.start": 1649710634339,
+    "gtm.start": 1618272000000,
   },
   Object {
     "event": "sampleEvent",
