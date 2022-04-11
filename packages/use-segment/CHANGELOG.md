@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.5.0 (2022-04-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* favor settings instead of explicit dns props (#712)
+
+### Features
+
+* favor settings instead of explicit dns props ([#712](https://github.com/scaleway/scaleway-lib/issues/712)) ([5e657f0](https://github.com/scaleway/scaleway-lib/commit/5e657f0f2483c2aa64b0c4ab6032c60df2fb0de2))
+
+
+
 ## [0.4.0](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-segment@0.3.4...@scaleway/use-segment@0.4.0) (2022-04-05)
 
 
