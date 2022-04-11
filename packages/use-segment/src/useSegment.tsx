@@ -51,12 +51,6 @@ export type SegmentProviderProps<T> = {
 
 export { Analytics }
 
-declare global {
-  interface Window {
-    analytics: Analytics & { _cdn: string }
-  }
-}
-
 function SegmentProvider<T extends Events>({
   children,
   settings,

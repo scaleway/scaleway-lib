@@ -61,8 +61,7 @@ import events from './events'
 
 const App = () => (
   <SegmentProvider
-    settings={{ writeKey: 'WRITE_KEY' }} // check your segment writeKey
-    cdn="https://cdn.url" // In case you are using a proxy cdn
+    settings={{ cdn: 'https://cdn.url', writeKey: 'WRITE_KEY' }} // check your gtm writeKey
     events={events}
     onError={e => captureMessage(`Error on Segment: ${e.message}`)}
   >
