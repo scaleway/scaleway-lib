@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 0.5.1 (2022-04-12)
+
+
+### Bug Fixes
+
+* remove cdn leftovers ([#714](https://github.com/scaleway/scaleway-lib/issues/714)) ([e577678](https://github.com/scaleway/scaleway-lib/commit/e577678813d47adcb3abdfdc24d55ec3b3cdd31b))
+
+
+
 ## 0.5.0 (2022-04-11)
 
 
