@@ -1,0 +1,32 @@
+{
+  "name": "@scaleway/use-gtm",
+  "version": "1.0.0",
+  "description": "A small hook to handle gtm in a react app",
+  "keywords": [
+    "react",
+    "reactjs",
+    "hooks",
+    "google",
+    "google tag manager",
+    "gtm"
+  ],
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "browser": {
+    "dist/index.js": "./dist/index.browser.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scaleway/scaleway-lib",
+    "directory": "packages/use-gtm"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "17.x"
+  }
+}
