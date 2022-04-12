@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 1.2.3 (2022-04-12)
+
+
+### Bug Fixes
+
+* **types:** add react18 types ([#718](https://github.com/scaleway/scaleway-lib/issues/718)) ([58765ae](https://github.com/scaleway/scaleway-lib/commit/58765aee470a66211f36540cd95e8bd578877ebf))
+
+
+
 ### 1.2.2 (2022-04-09)
 
 
