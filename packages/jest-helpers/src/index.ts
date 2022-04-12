@@ -1,5 +1,5 @@
 import { CreateSerializerOptions, createSerializer } from '@emotion/jest'
-import { FC } from 'react'
+import { FC, ReactNode } from 'react'
 import makeRenderWithTheme, {
   RenderWithThemeFn,
 } from './helpers/renderWithTheme'
@@ -19,7 +19,7 @@ type Helpers<Theme> = {
 }
 
 export default function makeHelpers<Theme>(
-  Wrapper: FC<{ theme?: Theme }>,
+  Wrapper: FC<{ theme?: Theme; children: ReactNode }>,
   createSerializerOptions?: CreateSerializerOptions,
 ): Helpers<Theme> {
   expect.addSnapshotSerializer(createSerializer(createSerializerOptions))
