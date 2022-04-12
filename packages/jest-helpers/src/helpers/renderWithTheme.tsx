@@ -16,7 +16,7 @@ export type RenderWithThemeFn<Theme> = (
 ) => ReturnType<typeof render>
 
 export default function makeRenderWithTheme<Theme>(
-  Wrapper: FC<{ theme?: Theme }>,
+  Wrapper: FC<{ theme?: Theme; children: ReactNode }>,
 ): RenderWithThemeFn<Theme> {
   return (component, options, theme) =>
     render(
