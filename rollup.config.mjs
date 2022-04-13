@@ -35,6 +35,7 @@ const getConfig = (pkg, isBrowser = false) => {
       babel({
         babelHelpers: 'runtime',
         babelrc: false,
+        comments: false,
         exclude: 'node_modules/**',
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.es', '.mjs'],
         plugins: [
