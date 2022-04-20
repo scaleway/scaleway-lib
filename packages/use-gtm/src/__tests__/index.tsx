@@ -88,6 +88,20 @@ describe('GTM hook', () => {
     expect(document.head.innerHTML).toMatchSnapshot()
   })
 
+  it('Provider should load env when environment auth is missing', () => {
+    renderHook(() => useGTM<DefaultEvents>(), {
+      wrapper: wrapper({
+        // @ts-expect-error we test a failing case
+        environment: {
+          preview: 'world',
+        },
+        id: 'testId',
+      }),
+    })
+
+    expect(document.head.innerHTML).toMatchSnapshot()
+  })
+
   it('Provider should load with events when provided', () => {
     const { result } = renderHook(() => useGTM<DefaultEvents>(), {
       wrapper: wrapper({
