@@ -80,7 +80,62 @@ describe('segment hook', () => {
         settings: undefined,
       }),
     })
-    expect(result.current.analytics).not.toBeNull()
+    expect(result.current.analytics).toBe(undefined)
+  })
+
+  it('useSegment should not load when All integrations disabled', () => {
+    const { result } = renderHook(() => useSegment<DefaultEvents>(), {
+      wrapper: wrapper({
+        events: defaultEvents,
+        initOptions: { integrations: { All: false } },
+        settings: { writeKey: 'sample ' },
+      }),
+    })
+    expect(result.current.analytics).toBe(undefined)
+  })
+
+  it('useSegment should not load when all of integrations disabled', () => {
+    const { result } = renderHook(() => useSegment<DefaultEvents>(), {
+      wrapper: wrapper({
+        events: defaultEvents,
+        initOptions: {
+          integrations: {
+            testInteg: false,
+            testInteg2: false,
+            testInteg3: false,
+          },
+        },
+        settings: { writeKey: 'sample ' },
+      }),
+    })
+    expect(result.current.analytics).toBe(undefined)
+  })
+
+  it('useSegment should load when at least one integrations enabled', async () => {
+    const mock = jest
+      .spyOn(AnalyticsBrowser, 'load')
+      .mockResolvedValue([{} as Analytics, {} as Context])
+
+    const { result, waitForNextUpdate } = renderHook(
+      () => useSegment<DefaultEvents>(),
+      {
+        wrapper: wrapper({
+          events: defaultEvents,
+          initOptions: {
+            integrations: {
+              testInteg: false,
+              testInteg2: true,
+              testInteg3: false,
+            },
+          },
+          settings: { writeKey: 'sample ' },
+        }),
+      },
+    )
+
+    await waitForNextUpdate()
+    expect(mock).toHaveBeenCalledTimes(1)
+    expect(result.current.analytics).toStrictEqual({})
   })
 
   it('Provider should load with key', async () => {

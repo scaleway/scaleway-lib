@@ -31,7 +31,7 @@ export function useGTM<T extends Events>(): GTMContextInterface<T> {
 }
 
 export type GTMProviderProps<T> = {
-  id: string
+  id?: string
   environment?: GTMEnvironment
   children: ReactNode
   onLoadError?: () => void
@@ -45,20 +45,29 @@ function GTMProvider<T extends Events>({
   onLoadError,
   events,
 }: GTMProviderProps<T>) {
+  const shouldLoad = !!id
+
   useEffect(() => {
-    const { noScript, script, dataLayerInit } = generateScripts(id, environment)
+    if (shouldLoad) {
+      const { noScript, script, dataLayerInit } = generateScripts(
+        id,
+        environment,
+      )
 
-    document.head.insertBefore(dataLayerInit, document.head.childNodes[0])
-    document.head.insertBefore(script, document.head.childNodes[1])
-    document.body.insertBefore(noScript, document.body.childNodes[0])
+      document.head.insertBefore(dataLayerInit, document.head.childNodes[0])
+      document.head.insertBefore(script, document.head.childNodes[1])
+      document.body.insertBefore(noScript, document.body.childNodes[0])
 
-    if (onLoadError) document.addEventListener(LOAD_ERROR_EVENT, onLoadError)
+      if (onLoadError) document.addEventListener(LOAD_ERROR_EVENT, onLoadError)
 
-    return () => {
-      if (onLoadError)
-        document.removeEventListener(LOAD_ERROR_EVENT, onLoadError)
+      return () => {
+        if (onLoadError)
+          document.removeEventListener(LOAD_ERROR_EVENT, onLoadError)
+      }
     }
-  }, [environment, id, onLoadError])
+
+    return () => {}
+  }, [environment, id, onLoadError, shouldLoad])
 
   const value = useMemo<GTMContextInterface<T>>(() => {
     const curiedEvents = Object.entries(events || {}).reduce(
