@@ -48,7 +48,7 @@ jobs:
     - run: pnpm install
     - run: pnpm run build
     - run: pnpm run test:coverage
-    - uses: codecov/codecov-action@v3.0.0
+    - uses: codecov/codecov-action@v3.1.0
   deploy:
     runs-on: ubuntu-20.04
     needs: [test]
