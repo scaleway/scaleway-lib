@@ -64,6 +64,14 @@ describe('GTM hook', () => {
     expect(document.head.innerHTML).toMatchSnapshot()
   })
 
+  it('Provider should not load when no id is provided', () => {
+    renderHook(() => useGTM<DefaultEvents>(), {
+      wrapper: wrapper({}),
+    })
+
+    expect(document.head.innerHTML).toMatchSnapshot()
+  })
+
   it('Provider should load when id is provided', () => {
     renderHook(() => useGTM<DefaultEvents>(), {
       wrapper: wrapper({

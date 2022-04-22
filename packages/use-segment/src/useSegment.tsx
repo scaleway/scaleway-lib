@@ -63,15 +63,28 @@ function SegmentProvider<T extends Events>({
     undefined,
   )
 
+  const shouldLoad = useMemo(() => {
+    const hasNoIntegrationsSettings = !initOptions?.integrations
+    const isAllEnabled = !!initOptions?.integrations?.All
+    const isAnyIntegrationEnabled = Object.values(
+      initOptions?.integrations ?? {},
+    ).reduce<boolean>((acc, integration) => !!acc || !!integration, false)
+
+    return (
+      !!settings?.writeKey &&
+      (hasNoIntegrationsSettings || isAllEnabled || isAnyIntegrationEnabled)
+    )
+  }, [initOptions?.integrations, settings?.writeKey])
+
   useEffect(() => {
-    if (settings?.writeKey) {
+    if (shouldLoad && settings) {
       AnalyticsBrowser.load(settings, initOptions)
         .then(([res]) => setAnalytics(res))
         .catch((err: Error) => {
           onError?.(err)
         })
     }
-  }, [onError, settings, initOptions])
+  }, [onError, settings, initOptions, shouldLoad])
 
   const value = useMemo<SegmentContextInterface<T>>(() => {
     const curiedEvents = Object.entries(events).reduce(

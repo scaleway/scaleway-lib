@@ -72,3 +72,5 @@ Array [
   },
 ]
 `;
+
+exports[`GTM hook Provider should not load when no id is provided 1`] = `""`;
