@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.6.0 (2022-04-22)
+
+
+### Features
+
+* do not load snippets if settings not provided ([#731](https://github.com/scaleway/scaleway-lib/issues/731)) ([bfb0809](https://github.com/scaleway/scaleway-lib/commit/bfb0809472392d606a9f5218ec2e335517b5c0a8))
+
+
+
 ### 0.5.1 (2022-04-12)
 
 

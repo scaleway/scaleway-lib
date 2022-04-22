@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/use-gtm",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "A small hook to handle gtm in a react app",
   "keywords": [
     "react",
