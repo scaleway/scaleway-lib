@@ -30,5 +30,5 @@ export const phone = /^\+[0-9]*/
 export const spaces = /^\s*$/
 export const sixDigitsCode = /^[0-9]{6}$/
 export const url =
-  /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w.-]+)+[\w\-._~:/?#[\]@!$&'()*+,;=.]+$/
+  /^http(s)?:\/\/?[\w.-]+(?:\.[\w.-]+)+[\w\-._~:/?#[\]@!$&'()*+,;=.]+$/
 export const hexadecimal = /^[0-9a-fA-F]+$/
