@@ -51,6 +51,9 @@ const punctuation = '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'
 const sixDigitsCodeTest = '123456'
 const url1 = 'http://console.scaleway.com'
 const url2 = 'https://www.scaleway.com'
+const url3 = 'https://www.scaleway.online'
+const url4 = 'http://www.scaleway.com:8080'
+const url5 = 'http://255.255.255.255'
 const whitespace = ' \t\n\r\x0b\x0c'
 const macAddress1 = '1F:B5:FA:47:CD:C4'
 const linuxPaths = {
@@ -606,6 +609,9 @@ describe('@regex', () => {
       [macAddress1, false],
       [url1, true],
       [url2, true],
+      [url3, true],
+      [url4, true],
+      [url5, true],
     ])('should match regex %s to be %s', (string, expected) => {
       expect(url.test(string)).toBe(expected)
     })
