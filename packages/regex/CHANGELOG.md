@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.2.3 (2022-04-26)
+
+
+### Bug Fixes
+
+* **regex:** improve url regex ([#736](https://github.com/scaleway/scaleway-lib/issues/736)) ([c340227](https://github.com/scaleway/scaleway-lib/commit/c340227da34141c978237e7659404df84e680d7a))
+
+
+
 ### 2.2.2 (2022-04-05)
 
 **Note:** Version bump only for package @scaleway/regex
