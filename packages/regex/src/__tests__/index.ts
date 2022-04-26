@@ -49,8 +49,16 @@ const printable =
   '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~ \t\n\r\x0b\x0c'
 const punctuation = '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'
 const sixDigitsCodeTest = '123456'
-const url1 = 'http://console.scaleway.com'
-const url2 = 'https://www.scaleway.com'
+const urls = [
+  'http://console.scaleway.com',
+  'https://www.scaleway.com',
+  'https://www.scaleway.online',
+  'http://www.scaleway.com:8080',
+  'http://255.255.255.255',
+  'http://www.example.com/product',
+  'http://www.example.com/products?id=1&page=2',
+  'http://www.example.com#up',
+]
 const whitespace = ' \t\n\r\x0b\x0c'
 const macAddress1 = '1F:B5:FA:47:CD:C4'
 const linuxPaths = {
@@ -420,8 +428,7 @@ describe('@regex', () => {
       [whitespace, false],
       [cronTest, false],
       [macAddress1, false],
-      [url1, false],
-      [url2, false],
+      ...(urls.map(urlString => [urlString, false]) as [string, boolean][]),
     ])('should match regex %s to be %s', (string, expected) => {
       expect(basicDomain.test(string)).toBe(expected)
     })
@@ -604,8 +611,9 @@ describe('@regex', () => {
       [whitespace, false],
       [cronTest, false],
       [macAddress1, false],
-      [url1, true],
-      [url2, true],
+      [domain, false],
+      [subDomain, false],
+      ...(urls.map(urlString => [urlString, true]) as [string, boolean][]),
     ])('should match regex %s to be %s', (string, expected) => {
       expect(url.test(string)).toBe(expected)
     })
