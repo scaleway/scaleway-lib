@@ -8,7 +8,6 @@ import {
 } from 'react'
 import { useDataLoaderContext } from './DataLoaderProvider'
 import { StatusEnum } from './constants'
-import DataLoader from './dataloader'
 import { PromiseType, UseDataLoaderConfig, UseDataLoaderResult } from './types'
 
 /**
@@ -52,7 +51,7 @@ const useDataLoader = <T>(
       method,
       needPolling,
       pollingInterval,
-    }) as DataLoader<T>
+    })
 
     unsubscribeRequestRef.current = () => newRequest.removeObserver(subscribeFn)
     newRequest.addObserver(subscribeFn)
@@ -82,7 +81,9 @@ const useDataLoader = <T>(
     }
   }, [onSuccess, onError, onErrorProvider, method, request])
 
-  const cancelMethodRef = useRef<(() => Promise<void>) | undefined>(request?.cancel)
+  const cancelMethodRef = useRef<(() => Promise<void>) | undefined>(
+    request?.cancel,
+  )
 
   const isLoading = useMemo(
     () =>

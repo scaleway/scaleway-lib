@@ -43,10 +43,10 @@ type GetReloadsFn = {
 
 export interface IDataLoaderContext {
   addRequest: (key: string, args: UseDataLoaderInitializerArgs) => DataLoader
-  getOrAddRequest: (
+  getOrAddRequest: <T>(
     key: string,
-    args: UseDataLoaderInitializerArgs,
-  ) => DataLoader
+    args: UseDataLoaderInitializerArgs<T>,
+  ) => DataLoader<T>
   cacheKeyPrefix?: string
   onError?: (error: Error) => void | Promise<void>
   clearAllCachedData: () => void
