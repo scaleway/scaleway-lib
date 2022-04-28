@@ -30,7 +30,7 @@ export interface UseDataLoaderConfig<T = unknown> {
    * Max time before data from previous success is considered as outdated (in millisecond)
    */
   maxDataLifetime?: number
-  needPolling?: NeedPollingType
+  needPolling?: NeedPollingType<T>
 }
 
 /**
@@ -76,7 +76,7 @@ export type UsePaginatedDataLoaderConfig<T = unknown> = {
    * Max time before data from previous success is considered as outdated (in millisecond)
    */
   maxDataLifetime?: number
-  needPolling?: NeedPollingType
+  needPolling?: NeedPollingType<T>
   initialPage?: number
   perPage?: number
 }
