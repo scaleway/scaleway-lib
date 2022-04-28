@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 3.3.1 (2022-04-28)
+
+
+### Bug Fixes
+
+* **deps:** update dependency intl-messageformat to v9.13.0 ([#744](https://github.com/scaleway/scaleway-lib/issues/744)) ([40df5b1](https://github.com/scaleway/scaleway-lib/commit/40df5b1166af2113bc11970dfb44d534ae11ba02))
+
+
+
 ## [3.3.0](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@3.2.14...@scaleway/use-i18n@3.3.0) (2022-04-05)
 
 
