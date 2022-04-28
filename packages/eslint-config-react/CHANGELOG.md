@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 3.4.19 (2022-04-27)
+
+
+### Bug Fixes
+
+* **deps:** update dependency eslint-plugin-react-hooks to v4.5.0 ([#742](https://github.com/scaleway/scaleway-lib/issues/742)) ([c1f88b4](https://github.com/scaleway/scaleway-lib/commit/c1f88b44a9b0c9b8a38a5d60f75d17c81e03546a))
+
+
+
 ### 3.4.18 (2022-04-26)
 
 
