@@ -27,7 +27,7 @@
     "jest-junit": "13.2.0",
     "jest-localstorage-mock": "2.4.21",
     "lerna": "4.0.0",
-    "lint-staged": "12.4.0",
+    "lint-staged": "12.4.1",
     "mockdate": "3.0.5",
     "prettier": "2.6.2",
     "react": "17.0.2",
