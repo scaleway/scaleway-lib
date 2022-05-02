@@ -19,6 +19,7 @@
     "@testing-library/jest-dom": "5.16.4",
     "@testing-library/react": "12.1.5",
     "@testing-library/react-hooks": "8.0.0",
+    "@types/jest": "27.4.1",
     "builtin-modules": "3.2.0",
     "cross-env": "7.0.3",
     "eslint": "8.14.0",
@@ -41,14 +42,14 @@
   },
   "scripts": {
     "lint": "eslint --ext js,ts,tsx --cache .",
-    "lint:fix": "pnpm run lint -- --fix",
+    "lint:fix": "pnpm run lint --fix",
     "build": "lerna exec --stream --ignore @scaleway/eslint-config-react --ignore @scaleway/countries -- rollup -c ../../rollup.config.mjs",
     "build:profile": "cross-env PROFILE=true pnpm run build",
     "commit": "npx git-cz -a",
     "format": "prettier --write '**/*.{ts,tsx,js,json,md,mdx}'",
     "test": "TZ=UTC jest",
-    "test:watch": "pnpm run test -- --watch",
-    "test:coverage": "pnpm run test -- --coverage",
+    "test:watch": "pnpm run test --watch",
+    "test:coverage": "pnpm run test --coverage",
     "prepare": "husky install"
   },
   "commitlint": {

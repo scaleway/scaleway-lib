@@ -23,5 +23,8 @@
   },
   "dependencies": {
     "@scaleway/random-name": "^3.0.2"
+  },
+  "devDependencies": {
+    "@types/react": "17.x"
   }
 }
