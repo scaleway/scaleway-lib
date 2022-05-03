@@ -155,7 +155,7 @@ $ pnpm run lint:fix
 
 ```bash
 $ pnpm run test # Will run all tests
-$ pnpm run test -- --updateSnapshot # Will update all snapshots
+$ pnpm run test --updateSnapshot # Will update all snapshots
 $ pnpm run test:watch # Will watch tests and only rerun the one who are modified
 $ pnpm run test:coverage # Will generate a coverage report
 ```
