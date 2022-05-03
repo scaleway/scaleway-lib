@@ -37,7 +37,6 @@
     "react-router-dom": "^6.0.0"
   },
   "devDependencies": {
-    "@types/react": "17.x",
     "react-router-dom": "6.3.0"
   }
 }

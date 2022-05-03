@@ -29,9 +29,5 @@
   },
   "peerDependencies": {
     "react": "17.x"
-  },
-  "devDependencies": {
-    "@types/prop-types": "15.7.3",
-    "@types/react": "17.x"
   }
 }
