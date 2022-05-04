@@ -21,7 +21,7 @@ importers:
       '@types/node': 17.0.31
       '@types/prop-types': 15.7.5
       '@types/react': 17.0.44
-      '@types/react-dom': 17.0.16
+      '@types/react-dom': 18.0.3
       builtin-modules: 3.2.0
       cross-env: 7.0.3
       eslint: 8.14.0
@@ -59,7 +59,7 @@ importers:
       '@types/node': 17.0.31
       '@types/prop-types': 15.7.5
       '@types/react': 17.0.44
-      '@types/react-dom': 17.0.16
+      '@types/react-dom': 18.0.3
       builtin-modules: 3.2.0
       cross-env: 7.0.3
       eslint: 8.14.0
@@ -4161,6 +4161,12 @@ packages:
     resolution: {integrity: sha512-DWcXf8EbMrO/gWnQU7Z88Ws/p16qxGpPyjTKTpmBSFKeE+HveVubqGO1CVK7FrwlWD5MuOcvh8gtd0/XO38NdQ==}
     dependencies:
       '@types/react': 17.0.44
+
+  /@types/react-dom/18.0.3:
+    resolution: {integrity: sha512-1RRW9kst+67gveJRYPxGmVy8eVJ05O43hg77G2j5m76/RFJtMbcfAs2viQ2UNsvvDg8F7OfQZx8qQcl6ymygaQ==}
+    dependencies:
+      '@types/react': 17.0.44
+    dev: true
 
   /@types/react/17.0.44:
     resolution: {integrity: sha512-Ye0nlw09GeMp2Suh8qoOv0odfgCoowfM/9MG6WeRD60Gq9wS90bdkdRtYbRkNhXOpG4H+YXGvj4wOWhAC0LJ1g==}
