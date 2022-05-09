@@ -185,9 +185,9 @@ importers:
 
   packages/use-segment:
     specifiers:
-      '@segment/analytics-next': 1.35.1
+      '@segment/analytics-next': 1.36.0
     dependencies:
-      '@segment/analytics-next': 1.35.1
+      '@segment/analytics-next': 1.36.0
 
 packages:
 
@@ -3013,8 +3013,8 @@ packages:
       rollup: 2.71.1
     dev: true
 
-  /@segment/analytics-next/1.35.1:
-    resolution: {integrity: sha512-NXdbH6SGBQHZj+bZlpBnbx9DnSq2OVQ6OqLzWzPy2s91+YLJS/UyVPH/WqZ8qcMz/ut5W1FHd0vSrNJ/DGpBnA==}
+  /@segment/analytics-next/1.36.0:
+    resolution: {integrity: sha512-4sBn8D/abcUZrocgTVdmy7kbxvRR9VhbCE95uLe55uD5NXysByPQO4T4RMyTiCSRYJKB2wZdikDh6SkItSKNsw==}
     dependencies:
       '@lukeed/uuid': 2.0.0
       '@segment/analytics.js-video-plugins': 0.2.1
