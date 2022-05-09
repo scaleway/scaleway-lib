@@ -8,6 +8,15 @@ module.exports = {
   ],
   plugins: ['@typescript-eslint'],
   rules: {
+    // https://github.com/typescript-eslint/typescript-eslint/issues/4619
+    '@typescript-eslint/no-misused-promises': [
+      'error',
+      {
+        checksVoidReturn: {
+          attributes: false,
+        },
+      },
+    ],
     '@typescript-eslint/no-unused-vars': ['error'],
     // We favor object defaults instead of default props in TS
     // https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/default_props/#you-may-not-need-defaultprops
