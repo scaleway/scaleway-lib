@@ -20,14 +20,14 @@ const wrapper = ({ children }: { children: ReactNode }) => (
   <DataLoaderProvider>{children}</DataLoaderProvider>
 )
 
-const wrapperWithCacheKey = ({ children }: { children?: React.ReactNode }) => (
+const wrapperWithCacheKey = ({ children }: { children?: ReactNode }) => (
   <DataLoaderProvider cacheKeyPrefix="sample">{children}</DataLoaderProvider>
 )
 
 const wrapperWith2ConcurrentRequests = ({
   children,
 }: {
-  children?: React.ReactNode
+  children?: ReactNode
 }) => (
   <DataLoaderProvider maxConcurrentRequests={2}>{children}</DataLoaderProvider>
 )

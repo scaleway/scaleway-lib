@@ -1,5 +1,6 @@
 import { act } from '@testing-library/react'
 import { renderHook } from '@testing-library/react-hooks'
+import { ReactNode } from 'react'
 import DataLoaderProvider from '../DataLoaderProvider'
 import { KEY_IS_NOT_STRING_ERROR } from '../constants'
 import {
@@ -13,6 +14,7 @@ type UseDataLoaderHookProps = {
   config: UsePaginatedDataLoaderConfig<unknown>
   key: string
   method: (params: UsePaginatedDataLoaderMethodParams) => Promise<unknown>
+  children?: ReactNode
 }
 
 const PROMISE_TIMEOUT = 5
@@ -30,7 +32,7 @@ const initialProps = {
   ),
 }
 // eslint-disable-next-line react/prop-types
-const wrapper = ({ children }: { children?: React.ReactNode }) => (
+const wrapper = ({ children }: { children?: ReactNode }) => (
   <DataLoaderProvider>{children}</DataLoaderProvider>
 )
 

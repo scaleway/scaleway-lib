@@ -1,5 +1,6 @@
 import { act, renderHook } from '@testing-library/react-hooks'
 import mockdate from 'mockdate'
+import { ReactNode } from 'react'
 import I18n, { useI18n, useTranslation } from '..'
 import en from './locales/en.json'
 import es from './locales/es.json'
@@ -20,7 +21,7 @@ const wrapper =
     localeItemStorage = LOCALE_ITEM_STORAGE,
     supportedLocales = ['en', 'fr', 'es'],
   } = {}) =>
-  ({ children }: { children: React.ReactNode }) =>
+  ({ children }: { children: ReactNode }) =>
     (
       <I18n
         loadDateLocale={loadDateLocale}
@@ -45,7 +46,7 @@ describe('i18n hook', () => {
 
   it('useTranslation should not be defined without I18nProvider', () => {
     const { result } = renderHook(() => useTranslation(), {
-      wrapper: ({ children }) => <div>{children}</div>,
+      wrapper: ({ children }: { children: ReactNode }) => <div>{children}</div>,
     })
     expect(() => {
       expect(result.current).toBe(undefined)
@@ -54,7 +55,7 @@ describe('i18n hook', () => {
 
   it('useI18n should not be defined without I18nProvider', () => {
     const { result } = renderHook(() => useI18n(), {
-      wrapper: ({ children }) => <div>{children}</div>,
+      wrapper: ({ children }: { children: ReactNode }) => <div>{children}</div>,
     })
     expect(() => {
       expect(result.current).toBe(undefined)
