@@ -22,7 +22,8 @@ const createUseMedia =
     effect(() => {
       let mounted = true
       const mediaQueryList: MediaQueryList =
-        typeof window === 'undefined'
+        typeof window === 'undefined' ||
+        typeof window.matchMedia === 'undefined'
           ? mockMediaQueryList
           : window.matchMedia(query)
 
@@ -34,12 +35,12 @@ const createUseMedia =
         setState(Boolean(mediaQueryList.matches))
       }
 
-      mediaQueryList.addListener(onChange)
+      mediaQueryList.addEventListener('change', onChange)
       setState(mediaQueryList.matches)
 
       return () => {
         mounted = false
-        mediaQueryList.removeListener(onChange)
+        mediaQueryList.removeEventListener('change', onChange)
       }
     }, [query])
 
