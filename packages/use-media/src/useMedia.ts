@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useState } from 'react'
-import { Effect, MediaQueryObject } from './types'
-import { noop, queryObjectToString } from './utilities'
+import { Effect } from './types'
+import { noop } from './utilities'
 
 export const mockMediaQueryList: MediaQueryList = {
   addEventListener: noop,
@@ -15,9 +15,8 @@ export const mockMediaQueryList: MediaQueryList = {
 
 const createUseMedia =
   (effect: Effect) =>
-  (rawQuery: string | MediaQueryObject, defaultState = false) => {
+  (query: string, defaultState = false) => {
     const [state, setState] = useState(defaultState)
-    const query = queryObjectToString(rawQuery)
 
     effect(() => {
       let mounted = true
