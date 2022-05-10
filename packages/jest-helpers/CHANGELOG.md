@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.0.0 (2022-05-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* **jest-helpers:** support react 18 (#769)
+
+### Features
+
+* **jest-helpers:** support react 18 ([#769](https://github.com/scaleway/scaleway-lib/issues/769)) ([df15b1b](https://github.com/scaleway/scaleway-lib/commit/df15b1bda08af170a2aa6d0d935d05c482178c3b))
+
+
+
 ### [1.2.6](https://github.com/scaleway/scaleway-lib/compare/@scaleway/jest-helpers@1.2.5...@scaleway/jest-helpers@1.2.6) (2022-05-04)
 
 **Note:** Version bump only for package @scaleway/jest-helpers
