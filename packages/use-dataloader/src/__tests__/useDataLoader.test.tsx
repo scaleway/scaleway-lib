@@ -1,4 +1,5 @@
 import { act, renderHook } from '@testing-library/react-hooks'
+import { ReactNode } from 'react'
 import DataLoaderProvider, { useDataLoaderContext } from '../DataLoaderProvider'
 import { KEY_IS_NOT_STRING_ERROR } from '../constants'
 import { PromiseType, UseDataLoaderConfig, UseDataLoaderResult } from '../types'
@@ -8,6 +9,7 @@ type UseDataLoaderHookProps = {
   config: UseDataLoaderConfig<unknown>
   key: string
   method: () => Promise<unknown>
+  children?: ReactNode
 }
 
 const PROMISE_TIMEOUT = 5
@@ -25,19 +27,17 @@ const initialProps = {
       }),
   ),
 }
-// eslint-disable-next-line react/prop-types
-const wrapper = ({ children }: { children?: React.ReactNode }) => (
+const wrapper = ({ children }: { children?: ReactNode }) => (
   <DataLoaderProvider>{children}</DataLoaderProvider>
 )
 
-const wrapperWithCacheKey = ({ children }: { children?: React.ReactNode }) => (
+const wrapperWithCacheKey = ({ children }: { children?: ReactNode }) => (
   <DataLoaderProvider cacheKeyPrefix="sample">{children}</DataLoaderProvider>
 )
 
 const wrapperWithOnError =
   (onError: (err: Error) => void) =>
-  // eslint-disable-next-line react/require-default-props
-  ({ children }: { children?: React.ReactNode }) =>
+  ({ children }: { children?: ReactNode }) =>
     <DataLoaderProvider onError={onError}>{children}</DataLoaderProvider>
 
 describe('useDataLoader', () => {

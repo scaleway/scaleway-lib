@@ -218,6 +218,8 @@ const I18nContextProvider = ({
       const preparedValues = prefix ? prefixKeys(`${prefix}.`)(values) : values
 
       // avoid a lot of render when async update
+      // This is handled automatically in react 18, but we leave it here for compat
+      // https://github.com/reactwg/react-18/discussions/21#discussioncomment-801703
       ReactDOM.unstable_batchedUpdates(() => {
         setTranslations(prevState => ({
           ...prevState,
