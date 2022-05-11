@@ -57,6 +57,15 @@
     "test:coverage": "pnpm run test --coverage",
     "prepare": "husky install"
   },
+  "pnpm": {
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "react": "18",
+        "react-dom": "18",
+        "@types/react": "18"
+      }
+    }
+  },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
