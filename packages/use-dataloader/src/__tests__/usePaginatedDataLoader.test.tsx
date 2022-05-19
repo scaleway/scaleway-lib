@@ -1,21 +1,10 @@
-import { act } from '@testing-library/react'
-import { renderHook } from '@testing-library/react-hooks'
+/* eslint-disable no-console */
+import { act, renderHook, waitFor } from '@testing-library/react'
 import { ReactNode } from 'react'
 import DataLoaderProvider from '../DataLoaderProvider'
 import { KEY_IS_NOT_STRING_ERROR } from '../constants'
-import {
-  UsePaginatedDataLoaderConfig,
-  UsePaginatedDataLoaderMethodParams,
-  UsePaginatedDataLoaderResult,
-} from '../types'
+import { UsePaginatedDataLoaderMethodParams } from '../types'
 import usePaginatedDataLoader from '../usePaginatedDataLoader'
-
-type UseDataLoaderHookProps = {
-  config: UsePaginatedDataLoaderConfig<unknown>
-  key: string
-  method: (params: UsePaginatedDataLoaderMethodParams) => Promise<unknown>
-  children?: ReactNode
-}
 
 const PROMISE_TIMEOUT = 5
 
@@ -36,22 +25,21 @@ const wrapper = ({ children }: { children?: ReactNode }) => (
   <DataLoaderProvider>{children}</DataLoaderProvider>
 )
 
-describe('useDataLoader', () => {
+describe('usePaginatedDataLoader', () => {
   test('should render correctly without options', async () => {
-    const { result, waitForNextUpdate } = renderHook<
-      UseDataLoaderHookProps,
-      UsePaginatedDataLoaderResult
-    >(props => usePaginatedDataLoader(props.key, props.method), {
-      initialProps,
-      wrapper,
-    })
+    const { result } = renderHook(
+      props => usePaginatedDataLoader(props.key, props.method),
+      {
+        initialProps,
+        wrapper,
+      },
+    )
     expect(result.current.data).toStrictEqual({})
     expect(result.current.pageData).toBe(undefined)
     expect(result.current.isLoading).toBe(true)
-    await waitForNextUpdate()
+    await waitFor(() => expect(result.current.isSuccess).toBe(true))
     expect(initialProps.method).toBeCalledTimes(1)
     expect(result.current.isLoading).toBe(false)
-    expect(result.current.isSuccess).toBe(true)
     expect(result.current.data).toStrictEqual({ 1: '1-1' })
     expect(result.current.pageData).toBe('1-1')
   })
@@ -60,95 +48,97 @@ describe('useDataLoader', () => {
     const method = jest.fn(
       () =>
         new Promise(resolve => {
-          setTimeout(() => resolve(true), PROMISE_TIMEOUT)
+          setTimeout(() => resolve(true), 500)
         }),
     )
-    let enabled = false
-    const { rerender, result, waitForNextUpdate } = renderHook<
-      UseDataLoaderHookProps,
-      UsePaginatedDataLoaderResult
-    >(
-      props =>
-        usePaginatedDataLoader(props.key, props.method, {
-          enabled,
-        }),
+    const testProps = {
+      ...initialProps,
+      config: {
+        enabled: false,
+      },
+      key: 'test-not-enabled-then-reload',
+      method,
+    }
+
+    const { rerender, result } = renderHook(
+      props => usePaginatedDataLoader(props.key, props.method, props.config),
+      {
+        initialProps: testProps,
+        wrapper,
+      },
+    )
+
+    expect(result.current.pageData).toBe(undefined)
+    expect(result.current.isLoading).toBe(false)
+    expect(method).toBeCalledTimes(0)
+    testProps.config.enabled = true
+
+    rerender({ ...testProps })
+    expect(method).toBeCalledTimes(1)
+    await waitFor(() => expect(result.current.isSuccess).toBe(true))
+    expect(result.current.isLoading).toBe(false)
+    expect(result.current.pageData).toBe(true)
+  })
+
+  test('should render correctly without valid key', () => {
+    const orignalConsoleError = console.error
+    console.error = jest.fn
+    try {
+      renderHook(
+        // @ts-expect-error used because we test with bad key
+        props => usePaginatedDataLoader(props.key, props.method),
+        {
+          initialProps: {
+            ...initialProps,
+            key: 2,
+          },
+          wrapper,
+        },
+      )
+      fail('It shoulded fail with a bad key')
+    } catch (error) {
+      expect((error as Error)?.message).toBe(KEY_IS_NOT_STRING_ERROR)
+    }
+    console.error = orignalConsoleError
+  })
+
+  test('should render correctly with result null', async () => {
+    const { result } = renderHook(
+      props => usePaginatedDataLoader(props.key, props.method, props.config),
       {
         initialProps: {
           ...initialProps,
-          key: 'test-not-enabled-then-reload',
-          method,
+          key: 'test-3',
+          method: () =>
+            new Promise(resolve => {
+              setTimeout(() => resolve(null), PROMISE_TIMEOUT)
+            }),
         },
         wrapper,
       },
     )
     expect(result.current.pageData).toBe(undefined)
-    expect(result.current.isLoading).toBe(false)
-    expect(method).toBeCalledTimes(0)
-    enabled = true
-    rerender()
-    await waitForNextUpdate()
-    expect(method).toBeCalledTimes(1)
-    expect(result.current.pageData).toBe(undefined)
     expect(result.current.isLoading).toBe(true)
-    await waitForNextUpdate()
-    expect(result.current.isLoading).toBe(false)
-    expect(result.current.isSuccess).toBe(true)
-    expect(result.current.pageData).toBe(true)
-  })
-
-  test('should render correctly without valid key', () => {
-    const { result } = renderHook<
-      UseDataLoaderHookProps,
-      UsePaginatedDataLoaderResult
-    >(props => usePaginatedDataLoader(props.key, props.method), {
-      initialProps: {
-        ...initialProps,
-        // @ts-expect-error used because we test with bad key
-        key: 2,
-      },
-      wrapper,
-    })
-    expect(result.error?.message).toBe(KEY_IS_NOT_STRING_ERROR)
-  })
-
-  test('should render correctly with result null', async () => {
-    const { result, waitForNextUpdate } = renderHook<
-      UseDataLoaderHookProps,
-      UsePaginatedDataLoaderResult
-    >(props => usePaginatedDataLoader(props.key, props.method, props.config), {
-      initialProps: {
-        ...initialProps,
-        key: 'test-3',
-        method: () =>
-          new Promise(resolve => {
-            setTimeout(() => resolve(null), PROMISE_TIMEOUT)
-          }),
-      },
-      wrapper,
-    })
-    expect(result.current.pageData).toBe(undefined)
-    expect(result.current.isLoading).toBe(true)
-    await waitForNextUpdate()
+    await waitFor(() => expect(result.current.isSuccess).toBe(true))
     expect(result.current.pageData).toBe(null)
-    expect(result.current.isSuccess).toBe(true)
     expect(result.current.isLoading).toBe(false)
   })
 
   test('should render correctly then change page', async () => {
-    const { result, waitForNextUpdate } = renderHook<
-      UseDataLoaderHookProps,
-      UsePaginatedDataLoaderResult
-    >(props => usePaginatedDataLoader(props.key, props.method), {
-      initialProps: {
-        ...initialProps,
-        key: 'test-4',
+    const { result } = renderHook(
+      props => usePaginatedDataLoader(props.key, props.method),
+      {
+        initialProps: {
+          ...initialProps,
+          key: 'test-4',
+        },
+        wrapper,
       },
-      wrapper,
-    })
+    )
     expect(result.current.data).toStrictEqual({})
     expect(result.current.pageData).toBe(undefined)
     expect(result.current.isLoading).toBe(true)
-    await waitForNextUpdate()
+    await waitFor(() => expect(result.current.isSuccess).toBe(true))
     expect(result.current.isLoading).toBe(false)
     expect(result.current.isSuccess).toBe(true)
     expect(result.current.data).toStrictEqual({ 1: '1-1' })
@@ -160,9 +150,8 @@ describe('useDataLoader', () => {
     expect(result.current.page).toBe(2)
     expect(result.current.pageData).toBe(undefined)
     expect(result.current.isLoading).toBe(true)
-    await waitForNextUpdate()
+    await waitFor(() => expect(result.current.isSuccess).toBe(true))
     expect(result.current.isLoading).toBe(false)
-    expect(result.current.isSuccess).toBe(true)
     expect(result.current.data).toStrictEqual({ 1: '1-1', 2: '2-1' })
     expect(result.current.pageData).toBe('2-1')
     act(() => {
@@ -187,28 +176,29 @@ describe('useDataLoader', () => {
       ...initialProps,
       key: 'test-5',
     }
-    const { rerender, result, waitForNextUpdate } = renderHook<
-      UseDataLoaderHookProps,
-      UsePaginatedDataLoaderResult
-    >(props => usePaginatedDataLoader(props.key, props.method), {
-      initialProps: hookProps,
-      wrapper,
-    })
-    await waitForNextUpdate()
+    const { rerender, result } = renderHook(
+      props => usePaginatedDataLoader(props.key, props.method),
+      {
+        initialProps: hookProps,
+        wrapper,
+      },
+    )
+    await waitFor(() => expect(result.current.data).toStrictEqual({ 1: '1-1' }))
     act(() => {
       result.current.goToNextPage()
     })
-    await waitForNextUpdate()
-    expect(result.current.data).toStrictEqual({ 1: '1-1', 2: '2-1' })
+    await waitFor(() =>
+      expect(result.current.data).toStrictEqual({ 1: '1-1', 2: '2-1' }),
+    )
     hookProps.key = 'test-5-bis'
-    rerender()
+    rerender(hookProps)
     expect(result.current.isLoading).toBe(true)
     expect(result.current.pageData).toBe(undefined)
     expect(result.current.data).toStrictEqual({})
-    await waitForNextUpdate()
+    await waitFor(() => expect(result.current.isSuccess).toBe(true))
     expect(result.current.data).toStrictEqual({ 1: '1-1' })
     expect(result.current.pageData).toBe('1-1')
-    expect(result.current.isSuccess).toBe(true)
     expect(result.current.isLoading).toBe(false)
   })
 })
+/* eslint-enable no-console */

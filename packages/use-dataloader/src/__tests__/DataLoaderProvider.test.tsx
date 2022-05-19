@@ -1,5 +1,4 @@
-import { render, screen } from '@testing-library/react'
-import { act, renderHook } from '@testing-library/react-hooks'
+import { render, renderHook, screen, waitFor } from '@testing-library/react'
 import { ReactNode } from 'react'
 import DataLoaderProvider, { useDataLoaderContext } from '../DataLoaderProvider'
 import { KEY_IS_NOT_STRING_ERROR, StatusEnum } from '../constants'
@@ -40,12 +39,9 @@ describe('DataLoaderProvider', () => {
 
   test('should add request', async () => {
     const method = jest.fn(fakePromise)
-    const { result, waitForNextUpdate, rerender } = renderHook(
-      useDataLoaderContext,
-      {
-        wrapper,
-      },
-    )
+    const { result, rerender } = renderHook(useDataLoaderContext, {
+      wrapper,
+    })
     expect(result.current.getRequest(TEST_KEY)).toBeUndefined()
 
     result.current.addRequest(TEST_KEY, {
@@ -59,18 +55,18 @@ describe('DataLoaderProvider', () => {
     expect(testRequest).toBeDefined()
     expect(testRequest.status).toBe(StatusEnum.IDLE)
     testRequest.load().catch(undefined)
-    await waitForNextUpdate()
     expect(testRequest.status).toBe(StatusEnum.LOADING)
     expect(method).toBeCalledTimes(1)
-    await waitForNextUpdate()
-    expect(testRequest.status).toBe(StatusEnum.SUCCESS)
+    await waitFor(() => expect(testRequest.status).toBe(StatusEnum.SUCCESS))
     expect(result.current.getCachedData(TEST_KEY)).toBe(true)
-    await result.current.reload(TEST_KEY)
+    result.current.reload(TEST_KEY).catch(undefined)
+    await waitFor(() => expect(testRequest.status).toBe(StatusEnum.LOADING))
+    await waitFor(() => expect(testRequest.status).toBe(StatusEnum.SUCCESS))
   })
 
   test('should add request with cache key prefix', async () => {
     const method = jest.fn(fakePromise)
-    const { result, waitFor } = renderHook(useDataLoaderContext, {
+    const { result } = renderHook(useDataLoaderContext, {
       wrapper: wrapperWithCacheKey,
     })
     expect(result.current.getRequest(TEST_KEY)).toBeUndefined()
@@ -84,10 +80,13 @@ describe('DataLoaderProvider', () => {
     expect(testRequest).toBeDefined()
     expect(testRequest.status).toBe(StatusEnum.IDLE)
     testRequest.load().catch(undefined)
+    await waitFor(() => expect(testRequest.status).toBe(StatusEnum.SUCCESS))
     expect(method).toBeCalledTimes(1)
-    await waitFor(() => expect(testRequest.getData()).toBe(true))
+    expect(testRequest.data).toBe(true)
     expect(result.current.getCachedData(TEST_KEY)).toBe(true)
-    await result.current.reload(TEST_KEY)
+    result.current.reload(TEST_KEY).catch(undefined)
+    await waitFor(() => expect(testRequest.status).toBe(StatusEnum.LOADING))
+    await waitFor(() => expect(testRequest.status).toBe(StatusEnum.SUCCESS))
   })
 
   test('should add request with result is null', async () => {
@@ -112,7 +111,7 @@ describe('DataLoaderProvider', () => {
     expect(unknownReload).toBeUndefined()
     await reloads.test()
     expect(method).toBeCalledTimes(2)
-    await act(result.current.reloadAll)
+    await result.current.reloadAll()
     expect(method).toBeCalledTimes(3)
     result.current.clearCachedData(TEST_KEY)
     result.current.clearCachedData('unknown')
@@ -143,7 +142,7 @@ describe('DataLoaderProvider', () => {
           setTimeout(() => resolve(true), 100)
         }),
     )
-    const { result, waitFor } = renderHook(useDataLoaderContext, {
+    const { result } = renderHook(useDataLoaderContext, {
       wrapper: wrapperWith2ConcurrentRequests,
     })
     ;[

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useDataLoaderContext } from './DataLoaderProvider'
 import { StatusEnum } from './constants'
 import DataLoader from './dataloader'
@@ -26,14 +26,10 @@ function useDataLoaderV2<ResultType, ErrorType = Error>(
     setCounter(current => current + 1)
   }, [])
 
-  const request = useMemo(
-    () =>
-      getOrAddRequest(fetchKey, {
-        enabled,
-        method: methodRef.current,
-      }) as DataLoader<ResultType, ErrorType>,
-    [getOrAddRequest, fetchKey, enabled],
-  )
+  const request = getOrAddRequest(fetchKey, {
+    enabled,
+    method: methodRef.current,
+  }) as DataLoader<ResultType, ErrorType>
 
   useEffect(() => {
     request.addObserver(forceRerender)
