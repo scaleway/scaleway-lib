@@ -59,9 +59,24 @@ describe('DataLoaderProvider', () => {
     expect(method).toBeCalledTimes(1)
     await waitFor(() => expect(testRequest.status).toBe(StatusEnum.SUCCESS))
     expect(result.current.getCachedData(TEST_KEY)).toBe(true)
+    try {
+      // @ts-expect-error Should throw an error
+      await result.current.reload(3).catch(undefined)
+      fail('It should throw an error')
+    } catch (error) {
+      expect((error as Error).message).toBe(KEY_IS_NOT_STRING_ERROR)
+    }
     result.current.reload(TEST_KEY).catch(undefined)
     await waitFor(() => expect(testRequest.status).toBe(StatusEnum.LOADING))
     await waitFor(() => expect(testRequest.status).toBe(StatusEnum.SUCCESS))
+    try {
+      // @ts-expect-error Should throw an error
+      result.current.clearCachedData(3)
+      fail('It should throw an error')
+    } catch (error) {
+      expect((error as Error).message).toBe(KEY_IS_NOT_STRING_ERROR)
+      expect(result.current.getCachedData(TEST_KEY)).toBe(true)
+    }
   })
 
   test('should add request with cache key prefix', async () => {
