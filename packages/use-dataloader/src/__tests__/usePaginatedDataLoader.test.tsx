@@ -86,6 +86,7 @@ describe('useDataLoader', () => {
     expect(method).toBeCalledTimes(0)
     enabled = true
     rerender()
+    await waitForNextUpdate()
     expect(method).toBeCalledTimes(1)
     expect(result.current.pageData).toBe(undefined)
     expect(result.current.isLoading).toBe(true)
@@ -128,7 +129,7 @@ describe('useDataLoader', () => {
     expect(result.current.pageData).toBe(undefined)
     expect(result.current.isLoading).toBe(true)
     await waitForNextUpdate()
-    expect(result.current.pageData).toBe(undefined)
+    expect(result.current.pageData).toBe(null)
     expect(result.current.isSuccess).toBe(true)
     expect(result.current.isLoading).toBe(false)
   })

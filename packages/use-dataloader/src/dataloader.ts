@@ -1,248 +1,143 @@
 import { DEFAULT_MAX_CONCURRENT_REQUESTS, StatusEnum } from './constants'
-import {
-  NeedPollingType,
-  OnCancelFn,
-  OnErrorFn,
-  OnSuccessFn,
-  PromiseType,
-} from './types'
+import { PromiseType } from './types'
 
 export type DataLoaderConstructorArgs<T = unknown> = {
   key: string
   method: () => PromiseType<T>
-  pollingInterval?: number
-  needPolling?: NeedPollingType<T>
-  maxDataLifetime?: number
-  keepPreviousData?: boolean
+  enabled?: boolean
+  notifyChanges?: () => void
 }
 
-class DataLoader<T = unknown> {
-  public static started = 0
-
+class DataLoader<ResultType = unknown, ErrorType = unknown> {
   public static maxConcurrent = DEFAULT_MAX_CONCURRENT_REQUESTS
+
+  public static started = 0
 
   public static cachedData = {} as Record<string, unknown | undefined>
 
+  public static queue = {} as Record<string, PromiseType>
+
   public key: string
 
-  public status: StatusEnum
+  public method: () => PromiseType<ResultType>
 
-  public pollingInterval?: number
+  public isCalled = false
 
-  public needPolling: NeedPollingType<T> = true
+  public isCancelled = true
 
-  public maxDataLifetime?: number
+  public status: StatusEnum = StatusEnum.IDLE
 
-  public isDataOutdated = false
+  public error?: ErrorType
 
-  public method: () => PromiseType<T>
+  public data?: ResultType
 
-  private cancelMethod?: () => void
-
-  private canceled = false
-
-  public keepPreviousData?: boolean
-
-  private errorListeners: Array<OnErrorFn> = []
-
-  private successListeners: Array<OnSuccessFn<T>> = []
-
-  private cancelListeners: Array<OnCancelFn> = []
-
-  private observerListeners: Array<(dataloader: DataLoader<T>) => void> = []
-
-  public error?: Error
-
-  private dataOutdatedTimeout?: number
+  public observers: Array<() => void> = []
 
   public timeout?: number
 
-  private destroyed = false
+  public loadCount = 0
 
-  public constructor(args: DataLoaderConstructorArgs<T>) {
+  public constructor(args: DataLoaderConstructorArgs<ResultType>) {
     this.key = args.key
-    this.status = StatusEnum.IDLE
     this.method = args.method
-    this.pollingInterval = args?.pollingInterval
-    this.keepPreviousData = args?.keepPreviousData
-    this.maxDataLifetime = args.maxDataLifetime
-    this.needPolling = args.needPolling ?? true
-    this.notifyChanges()
-  }
-
-  public getData(): T | undefined {
-    return (DataLoader.cachedData[this.key] as T) ?? undefined
-  }
-
-  private notifyChanges(): void {
-    this.observerListeners.forEach(observerListener => observerListener(this))
-  }
-
-  public load = async (force = false): Promise<void> => {
-    if (
-      force ||
-      this.status === StatusEnum.IDLE ||
-      this.status === StatusEnum.ERROR ||
-      (this.status === StatusEnum.SUCCESS && this.isDataOutdated)
-    ) {
-      if (DataLoader.started < DataLoader.maxConcurrent) {
-        // Because we want to launch the request directly without waiting the return
-        if (this.timeout) {
-          // Prevent multiple call at the same time
-          clearTimeout(this.timeout)
-        }
-        await this.launch()
-      } else {
-        await new Promise(resolve => {
-          setTimeout(resolve)
-        }).then(() => this.load(force))
-      }
+    if (args.enabled) {
+      this.status = StatusEnum.LOADING
     }
+    this.data = DataLoader.cachedData[this.key] as ResultType
+    if (args.notifyChanges) this.observers.push(args.notifyChanges)
   }
 
-  private launch = async (): Promise<void> => {
-    try {
+  public notifyChanges() {
+    if (this.timeout) {
+      clearTimeout(this.timeout)
+    }
+    this.timeout = setTimeout(() => {
+      this.observers.forEach(observer => observer())
+    }) as unknown as number
+  }
+
+  public getData(): ResultType | undefined {
+    return DataLoader.cachedData[this.key] as ResultType
+  }
+
+  private tryLaunch = async (): Promise<ResultType> => {
+    if (DataLoader.started < DataLoader.maxConcurrent) {
+      DataLoader.started += 1
+      DataLoader.queue[this.key] = this.launch()
+    } else {
+      DataLoader.queue[this.key] = new Promise(resolve => {
+        setTimeout(resolve)
+      }).then(() => this.tryLaunch())
+    }
+
+    return DataLoader.queue[this.key] as Promise<ResultType>
+  }
+
+  public load = async (force = false): Promise<ResultType> => {
+    if (force || !this.isCalled) {
+      this.isCalled = true
+
       if (this.status !== StatusEnum.LOADING) {
-        this.canceled = false
         this.status = StatusEnum.LOADING
         this.notifyChanges()
       }
-      DataLoader.started += 1
-      const promise = this.method()
-      this.cancelMethod = promise.cancel
-      const result = await promise.then(res => res)
 
-      this.status = StatusEnum.SUCCESS
-      this.error = undefined
-      if (!this.canceled) {
-        DataLoader.cachedData[this.key] = result
+      DataLoader.queue[this.key] = this.tryLaunch()
+    }
 
-        await Promise.all(
-          this.successListeners.map(listener => listener?.(result)),
-        )
+    return DataLoader.queue[this.key] as Promise<ResultType>
+  }
 
-        this.isDataOutdated = false
-        if (this.dataOutdatedTimeout) {
-          clearTimeout(this.dataOutdatedTimeout)
-          this.dataOutdatedTimeout = undefined
-        }
+  public launch = async (): Promise<ResultType> => {
+    try {
+      this.isCancelled = false
+      this.loadCount += 1
 
-        if (this.maxDataLifetime) {
-          this.dataOutdatedTimeout = setTimeout(() => {
-            this.isDataOutdated = true
-            this.notifyChanges()
-          }, this.maxDataLifetime) as unknown as number
-        } else {
-          this.isDataOutdated = true
-        }
+      const data = await this.method()
+
+      if (!this.isCancelled) {
+        DataLoader.cachedData[this.key] = data
+        this.status = StatusEnum.SUCCESS
+        this.data = data
+        this.error = undefined
       }
+      this.isCalled = false
+      DataLoader.started -= 1
+      delete DataLoader.queue[this.key]
       this.notifyChanges()
-    } catch (err) {
-      this.status = StatusEnum.ERROR
-      this.error = err as Error
-      this.notifyChanges()
-      if (!this.canceled) {
-        await Promise.all(
-          this.errorListeners.map(listener => listener?.(err as Error)),
-        )
+
+      return data
+    } catch (error) {
+      if (!this.isCancelled) {
+        this.status = StatusEnum.ERROR
+        this.error = error as ErrorType
       }
-    }
-    DataLoader.started -= 1
-    if (
-      this.pollingInterval &&
-      !this.destroyed &&
-      (typeof this.needPolling === 'function'
-        ? this.needPolling(DataLoader.cachedData[this.key] as T)
-        : this.needPolling)
-    ) {
-      this.timeout = setTimeout(
-        // eslint-disable-next-line @typescript-eslint/no-misused-promises
-        this.launch,
-        this.pollingInterval,
-      ) as unknown as number
-    }
-  }
+      this.isCalled = false
+      DataLoader.started -= 1
+      delete DataLoader.queue[this.key]
+      this.notifyChanges()
 
-  public cancel = async (): Promise<void> => {
-    this.canceled = true
-    this.cancelMethod?.()
-    await Promise.all(this.cancelListeners.map(listener => listener?.()))
-  }
-
-  public addOnSuccessListener(fn: OnSuccessFn<T>): void {
-    if (!this.successListeners.includes(fn)) {
-      this.successListeners.push(fn)
-    }
-  }
-
-  public addOnErrorListener(fn: OnErrorFn): void {
-    if (!this.errorListeners.includes(fn)) {
-      this.errorListeners.push(fn)
-    }
-  }
-
-  public addOnCancelListener(fn: OnCancelFn): void {
-    if (!this.cancelListeners.includes(fn)) {
-      this.cancelListeners.push(fn)
-    }
-  }
-
-  public removeOnSuccessListener(fn: OnSuccessFn<T>): void {
-    const index = this.successListeners.indexOf(fn)
-    if (index > -1) {
-      this.successListeners.splice(index, 1)
-    }
-  }
-
-  public removeOnErrorListener(fn: OnErrorFn): void {
-    const index = this.errorListeners.indexOf(fn)
-    if (index > -1) {
-      this.errorListeners.splice(index, 1)
-    }
-  }
-
-  public removeOnCancelListener(fn: OnCancelFn): void {
-    const index = this.cancelListeners.indexOf(fn)
-    if (index > -1) {
-      this.cancelListeners.splice(index, 1)
-    }
-  }
-
-  public addObserver(fn: (args: DataLoader<T>) => void): void {
-    this.observerListeners.push(fn)
-  }
-
-  public removeObserver(fn: (args: DataLoader<T>) => void): void {
-    const index = this.observerListeners.indexOf(fn)
-    if (index > -1) {
-      this.observerListeners.splice(index, 1)
+      throw error
     }
   }
 
   public clearData(): void {
     DataLoader.cachedData[this.key] = undefined
-    this.notifyChanges()
   }
 
-  public async destroy(): Promise<void> {
-    DataLoader.cachedData[this.key] = undefined
-    await this.cancel?.()
-    if (this.timeout) {
-      clearTimeout(this.timeout)
-    }
-    this.destroyed = true
+  public cancel(): void {
+    DataLoader.started -= 1
+    delete DataLoader.queue[this.key]
+    this.isCancelled = true
   }
 
-  public getObserversCount(): number {
-    return this.observerListeners.length
+  public addObserver(observer: () => void) {
+    this.observers.push(observer)
   }
 
-  public setPollingInterval(newPollingInterval?: number): void {
-    this.pollingInterval = newPollingInterval
-  }
-
-  public setNeedPolling(needPolling: NeedPollingType<T>): void {
-    this.needPolling = needPolling
+  public removeObserver(observer: () => void) {
+    const index = this.observers.indexOf(observer)
+    if (index > -1) this.observers.splice(index, 1)
   }
 }
 

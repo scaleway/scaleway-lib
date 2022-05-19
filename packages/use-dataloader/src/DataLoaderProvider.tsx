@@ -11,24 +11,21 @@ import {
 import {
   DEFAULT_MAX_CONCURRENT_REQUESTS,
   KEY_IS_NOT_STRING_ERROR,
-  StatusEnum,
 } from './constants'
 import DataLoader from './dataloader'
-import { NeedPollingType, OnErrorFn, PromiseType } from './types'
+import { OnErrorFn, PromiseType } from './types'
 
 type CachedData = Record<string, unknown>
 type Reloads = Record<string, () => Promise<void | unknown>>
+type Requests = Record<string, DataLoader>
 
 type UseDataLoaderInitializerArgs<T = unknown> = {
-  status?: StatusEnum
   method: () => PromiseType<T>
-  pollingInterval?: number
-  keepPreviousData?: boolean
   /**
    * Max time before data from previous success is considered as outdated (in millisecond)
    */
   maxDataLifetime?: number
-  needPolling?: NeedPollingType<T>
+  enabled?: boolean
 }
 
 type GetCachedDataFn = {
@@ -72,7 +69,8 @@ const DataLoaderProvider = ({
   onError: OnErrorFn
   maxConcurrentRequests?: number
 }): ReactElement => {
-  const requestsRef = useRef<Record<string, DataLoader>>({})
+  const requestsRef = useRef<Requests>({})
+
   const computeKey = useCallback(
     (key: string) => `${cacheKeyPrefix ? `${cacheKeyPrefix}-` : ''}${key}`,
     [cacheKeyPrefix],

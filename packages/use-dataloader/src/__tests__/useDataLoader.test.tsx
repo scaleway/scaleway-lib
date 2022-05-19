@@ -1,8 +1,9 @@
-import { act, renderHook } from '@testing-library/react-hooks'
+/* eslint-disable no-console */
+import { renderHook } from '@testing-library/react-hooks'
 import { ReactNode } from 'react'
 import DataLoaderProvider, { useDataLoaderContext } from '../DataLoaderProvider'
 import { KEY_IS_NOT_STRING_ERROR } from '../constants'
-import { PromiseType, UseDataLoaderConfig, UseDataLoaderResult } from '../types'
+import { UseDataLoaderConfig, UseDataLoaderResult } from '../types'
 import useDataLoader from '../useDataLoader'
 
 type UseDataLoaderHookProps = {
@@ -12,7 +13,7 @@ type UseDataLoaderHookProps = {
   children?: ReactNode
 }
 
-const PROMISE_TIMEOUT = 5
+const PROMISE_TIMEOUT = 50
 
 const initialProps = {
   config: {
@@ -52,15 +53,16 @@ describe('useDataLoader', () => {
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBe(true)
     expect(result.current.previousData).toBe(undefined)
+    expect(initialProps.method).toBeCalledTimes(1)
     await waitForNextUpdate()
     expect(initialProps.method).toBeCalledTimes(1)
+    expect(result.current.data).toBe(true)
     expect(result.current.isLoading).toBe(false)
     expect(result.current.isSuccess).toBe(true)
     expect(result.current.previousData).toBe(undefined)
-    expect(result.current.data).toBe(true)
   })
 
-  test('should render correctly without requets enabled then enable it', async () => {
+  test('should render correctly without request enabled then enable it', async () => {
     const method = jest.fn(
       () =>
         new Promise(resolve => {
@@ -90,6 +92,7 @@ describe('useDataLoader', () => {
     expect(method).toBeCalledTimes(0)
     enabled = true
     rerender()
+    await waitForNextUpdate()
     expect(method).toBeCalledTimes(1)
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBe(true)
@@ -155,7 +158,7 @@ describe('useDataLoader', () => {
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBe(true)
     await waitForNextUpdate()
-    expect(result.current.data).toBe(undefined)
+    expect(result.current.data).toBe(null)
     expect(result.current.isSuccess).toBe(true)
     expect(result.current.isLoading).toBe(false)
   })
@@ -186,11 +189,8 @@ describe('useDataLoader', () => {
     expect(result.current[0].data).toBe(true)
     expect(result.current[0].isSuccess).toBe(true)
 
-    act((): void => {
-      // eslint-disable-next-line no-void
-      void result.current[1].reload()
-    })
-
+    result.current[1].reload().catch(undefined)
+    await waitForNextUpdate()
     expect(result.current[1].data).toBe(undefined)
     expect(result.current[1].isLoading).toBe(true)
 
@@ -216,16 +216,9 @@ describe('useDataLoader', () => {
     expect(result.current.data).toBe(true)
     expect(result.current.isSuccess).toBe(true)
     expect(result.current.isLoading).toBe(false)
-
-    act(() => {
-      // eslint-disable-next-line no-void
-      void result.current.reload()
-    })
-    act(() => {
-      // eslint-disable-next-line no-void
-      void result.current.reload()
-    })
-
+    result.current.reload().catch(undefined)
+    result.current.reload().catch(undefined)
+    await waitForNextUpdate()
     expect(result.current.data).toBe(true)
     expect(result.current.isLoading).toBe(true)
     await waitForNextUpdate()
@@ -319,9 +312,11 @@ describe('useDataLoader', () => {
       },
       method: method2,
     })
-    await waitForNextUpdate()
     expect(result.current.data).toBe(true)
     expect(result.current.isPolling).toBe(true)
+    expect(result.current.isSuccess).toBe(true)
+    expect(result.current.isLoading).toBe(false)
+    await waitForNextUpdate()
     expect(result.current.isLoading).toBe(true)
     expect(result.current.isSuccess).toBe(false)
     await waitForNextUpdate()
@@ -367,17 +362,11 @@ describe('useDataLoader', () => {
     })
     expect(result.current.data).toBe(undefined)
     expect(result.current.isIdle).toBe(true)
-
-    act(() => {
-      // eslint-disable-next-line no-void
-      void result.current.reload()
-    })
-
+    result.current.reload().catch(undefined)
+    await waitForNextUpdate()
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBe(true)
-
     await waitForNextUpdate()
-
     expect(result.current.data).toBe(true)
     expect(result.current.isSuccess).toBe(true)
   })
@@ -420,7 +409,7 @@ describe('useDataLoader', () => {
         },
         key: 'test-9',
         method: () =>
-          new Promise((resolve, reject) => {
+          new Promise((_, reject) => {
             setTimeout(() => {
               reject(error)
             }, PROMISE_TIMEOUT)
@@ -552,11 +541,8 @@ describe('useDataLoader', () => {
     expect(onError).toBeCalledTimes(1)
     expect(onSuccess).toBeCalledTimes(0)
 
-    act(() => {
-      // eslint-disable-next-line no-void
-      void result.current.reload()
-    })
-
+    result.current.reload().catch(undefined)
+    await waitForNextUpdate()
     await waitForNextUpdate()
 
     expect(result.current.data).toBe(true)
@@ -566,6 +552,7 @@ describe('useDataLoader', () => {
   })
 
   test('should use cached data', async () => {
+    const fakePromise = jest.fn(initialProps.method)
     const { result, waitForNextUpdate } = renderHook<
       UseDataLoaderHookProps,
       UseDataLoaderResult[]
@@ -581,6 +568,7 @@ describe('useDataLoader', () => {
         initialProps: {
           ...initialProps,
           key: 'test-13',
+          method: fakePromise,
         },
         wrapper,
       },
@@ -588,23 +576,24 @@ describe('useDataLoader', () => {
 
     expect(result.current[0].data).toBe(undefined)
     expect(result.current[0].isLoading).toBe(true)
+    expect(result.current[0].isIdle).toBe(false)
+    expect(result.current[0].isSuccess).toBe(false)
     expect(result.current[1].data).toBe(undefined)
-    expect(result.current[1].isLoading).toBe(true)
     expect(result.current[1].isIdle).toBe(false)
+    expect(result.current[1].isSuccess).toBe(false)
+    expect(result.current[1].isLoading).toBe(true)
     await waitForNextUpdate()
     expect(result.current[0].data).toBe(true)
     expect(result.current[0].isSuccess).toBe(true)
 
-    act(() => {
-      // eslint-disable-next-line no-void
-      void result.current[1].reload()
-    })
-
+    result.current[1].reload().catch(undefined)
+    await waitForNextUpdate()
     expect(result.current[1].data).toBe(true)
     expect(result.current[1].isLoading).toBe(true)
 
     await waitForNextUpdate()
     expect(result.current[1].isSuccess).toBe(true)
+    expect(fakePromise).toBeCalledTimes(2)
   })
 
   test('should be reloaded from dataloader context', async () => {
@@ -645,11 +634,8 @@ describe('useDataLoader', () => {
     expect(result.current[0].isSuccess).toBe(true)
     expect(mockedFn).toBeCalledTimes(1)
 
-    act(() => {
-      // eslint-disable-next-line no-void
-      void result.current[1].reloadAll()
-    })
-
+    result.current[1].reloadAll().catch(undefined)
+    await waitForNextUpdate()
     expect(result.current[0].data).toBe(true)
     expect(Object.values(result.current[1].getReloads()).length).toBe(1)
     expect(result.current[0].isLoading).toBe(true)
@@ -658,89 +644,5 @@ describe('useDataLoader', () => {
     expect(result.current[0].isSuccess).toBe(true)
     expect(mockedFn).toBeCalledTimes(2)
   })
-
-  /* eslint-disable no-console */
-
-  test('should cancel request', async () => {
-    const originalError = console.error
-    console.error = jest.fn()
-    const onCancel = jest.fn()
-    const { result, unmount } = renderHook<
-      UseDataLoaderHookProps,
-      UseDataLoaderResult
-    >(
-      props =>
-        useDataLoader(
-          props.key,
-          () => {
-            const promise = new Promise(resolve => {
-              setTimeout(() => resolve(true), PROMISE_TIMEOUT)
-            }) as PromiseType
-            promise.cancel = onCancel
-
-            return promise
-          },
-          props.config,
-        ),
-      {
-        initialProps: {
-          ...initialProps,
-          key: 'test-16',
-        },
-        wrapper,
-      },
-    )
-    expect(result.current.data).toBe(undefined)
-    expect(result.current.isLoading).toBe(true)
-    unmount()
-    await act(result.current.reload)
-    expect(onCancel).toHaveBeenCalledTimes(1)
-    expect(result.current.data).toBe(undefined)
-    expect(result.current.isSuccess).toBe(false)
-    expect(result.current.isError).toBe(false)
-    console.error = originalError
-  })
-
-  test('should cancel request with Error', async () => {
-    const originalError = console.error
-    console.error = jest.fn()
-    const onCancel = jest.fn()
-    const { result, unmount } = renderHook<
-      UseDataLoaderHookProps,
-      UseDataLoaderResult
-    >(
-      props =>
-        useDataLoader(
-          props.key,
-          () => {
-            const promise = new Promise((_, reject) => {
-              setTimeout(() => reject(new Error('Test')), PROMISE_TIMEOUT)
-            }) as PromiseType
-            promise.cancel = onCancel
-
-            return promise
-          },
-          props.config,
-        ),
-      {
-        initialProps: {
-          ...initialProps,
-          key: 'test-17',
-        },
-        wrapper,
-      },
-    )
-    expect(result.current.data).toBe(undefined)
-    expect(result.current.isLoading).toBe(true)
-    unmount()
-    await act(result.current.reload)
-    expect(onCancel).toHaveBeenCalledTimes(1)
-    expect(result.current.data).toBe(undefined)
-    expect(result.current.error).toBe(undefined)
-    expect(result.current.isSuccess).toBe(false)
-    expect(result.current.isError).toBe(false)
-    console.error = originalError
-  })
-
-  /* eslint-enable no-console */
 })
+/* eslint-enable no-console */

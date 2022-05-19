@@ -45,9 +45,9 @@ export interface UseDataLoaderConfig<T = unknown> {
  * @property {string} error the error occured during the request
  * @property {Function} reload reload the data
  */
-export interface UseDataLoaderResult<T = unknown> {
+export interface UseDataLoaderResult<T = unknown, ErrorType = Error> {
   data?: T
-  error?: Error
+  error?: ErrorType
   isError: boolean
   isIdle: boolean
   isLoading: boolean
@@ -65,21 +65,11 @@ export type UsePaginatedDataLoaderMethodParams = {
   perPage: number
 }
 
-export type UsePaginatedDataLoaderConfig<T = unknown> = {
-  enabled?: boolean
-  initialData?: T
-  keepPreviousData?: boolean
-  onError?: OnErrorFn
-  onSuccess?: OnSuccessFn
-  pollingInterval?: number
-  /**
-   * Max time before data from previous success is considered as outdated (in millisecond)
-   */
-  maxDataLifetime?: number
-  needPolling?: NeedPollingType<T>
-  initialPage?: number
-  perPage?: number
-}
+export type UsePaginatedDataLoaderConfig<T = unknown> =
+  UseDataLoaderConfig<T> & {
+    initialPage?: number
+    perPage?: number
+  }
 
 export type UsePaginatedDataLoaderResult<T = unknown> = {
   pageData?: T
