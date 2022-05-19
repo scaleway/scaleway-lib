@@ -88,7 +88,7 @@ class DataLoader<ResultType = unknown, ErrorType = unknown> {
     return DataLoader.queue[this.key] as Promise<ResultType>
   }
 
-  public launch = async (): Promise<ResultType> => {
+  public launch = async (): Promise<ResultType | undefined> => {
     try {
       this.isCancelled = false
       this.loadCount += 1
@@ -117,7 +117,11 @@ class DataLoader<ResultType = unknown, ErrorType = unknown> {
       delete DataLoader.queue[this.key]
       this.notifyChanges()
 
-      throw error
+      if (!this.isCancelled) {
+        throw error
+      }
+
+      return undefined
     }
   }
 
@@ -129,6 +133,7 @@ class DataLoader<ResultType = unknown, ErrorType = unknown> {
     DataLoader.started -= 1
     delete DataLoader.queue[this.key]
     this.isCancelled = true
+    this.status = StatusEnum.IDLE
   }
 
   public addObserver(observer: () => void) {

@@ -1,3 +1,5 @@
+import waitForExpect from 'wait-for-expect'
+import { StatusEnum } from '../constants'
 import DataLoader from '../dataloader'
 
 const PROMISE_TIMEOUT = 100
@@ -26,11 +28,28 @@ describe('Dataloader class', () => {
     const method = jest.fn(fakeSuccessPromise)
     const notifyChanges = jest.fn()
     const instance = new DataLoader({
-      key: 'test',
+      key: 'test-destroy',
+      method,
+      notifyChanges,
+    })
+    instance.removeObserver(() => {})
+    expect(method).toBeCalledTimes(0)
+    await instance.load()
+    expect(method).toBeCalledTimes(1)
+    instance.clearData()
+  })
+
+  test('should create instance then load multiple times', async () => {
+    const method = jest.fn(fakeSuccessPromise)
+    const notifyChanges = jest.fn()
+    const instance = new DataLoader({
+      key: 'test-load',
       method,
       notifyChanges,
     })
     expect(method).toBeCalledTimes(0)
+    instance.load().catch(undefined)
+    instance.load().catch(undefined)
     await instance.load()
     expect(method).toBeCalledTimes(1)
     instance.clearData()
@@ -40,7 +59,7 @@ describe('Dataloader class', () => {
     const notify = jest.fn()
     const method = jest.fn(fakeSuccessPromise)
     const instance = new DataLoader({
-      key: 'test',
+      key: 'test-cancel',
       method,
       notifyChanges: notify,
     })
@@ -58,7 +77,7 @@ describe('Dataloader class', () => {
     const notify = jest.fn()
     const method = jest.fn(fakeSuccessPromise)
     const instance = new DataLoader({
-      key: 'test',
+      key: 'test-without-cancel',
       method,
       notifyChanges: notify,
     })
@@ -74,7 +93,7 @@ describe('Dataloader class', () => {
     const method = jest.fn(fakeNullPromise)
     const notifyChanges = jest.fn()
     const instance = new DataLoader({
-      key: 'test',
+      key: 'test-null',
       method,
       notifyChanges,
     })
@@ -87,7 +106,7 @@ describe('Dataloader class', () => {
     const notifyChanges = jest.fn()
 
     const instance = new DataLoader({
-      key: 'test',
+      key: 'test-undefined',
       method,
       notifyChanges,
     })
@@ -96,18 +115,68 @@ describe('Dataloader class', () => {
     expect(instance.getData()).toBe(undefined)
   })
 
-  test('should create instance with cancel listener and error', async () => {
+  test('should create instance with error', async () => {
     const method = jest.fn(fakeErrorPromise)
     const notifyChanges = jest.fn()
     const onError = jest.fn()
 
     const instance = new DataLoader({
-      key: 'test',
+      key: 'test-error',
       method,
       notifyChanges,
     })
     await instance.load().catch(onError)
     expect(notifyChanges).toBeCalledTimes(1)
     expect(onError).toBeCalledTimes(1)
+  })
+
+  test('should create instance with cancel', async () => {
+    const method = jest.fn(fakeSuccessPromise)
+    const notifyChanges = jest.fn()
+
+    const instance = new DataLoader({
+      key: 'test-cancel',
+      method,
+      notifyChanges,
+    })
+    instance.load().catch(undefined)
+    instance.cancel()
+    await waitForExpect(() => expect(instance.status).toBe(StatusEnum.IDLE))
+    expect(notifyChanges).toBeCalledTimes(1)
+  })
+
+  test.only('should create instance with error and cancel', async () => {
+    const method = jest.fn(fakeErrorPromise)
+    const notifyChanges = jest.fn()
+    const onError = jest.fn()
+
+    const instance = new DataLoader({
+      key: 'test-error-cancel',
+      method,
+      notifyChanges,
+    })
+    instance.load().catch(onError)
+    instance.cancel()
+    await waitForExpect(() => expect(instance.status).toBe(StatusEnum.IDLE))
+    expect(notifyChanges).toBeCalledTimes(1)
+    expect(onError).toBeCalledTimes(0)
+  })
+
+  test('should launch multiple dataloader', async () => {
+    const method = jest.fn(fakeErrorPromise)
+    const notifyChanges = jest.fn()
+
+    const instances = Array.from({ length: 5 }, (_, index) => index).map(
+      index =>
+        new DataLoader({
+          key: `test-${index}`,
+          method,
+          notifyChanges,
+        }),
+    )
+    instances.forEach(instance => {
+      instance.load().catch(undefined)
+    })
+    await waitForExpect(() => expect(method).toBeCalledTimes(5))
   })
 })

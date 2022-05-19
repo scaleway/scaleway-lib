@@ -329,6 +329,129 @@ describe('useDataLoader', () => {
     expect(result.current.data).toBe(2)
   })
 
+  test('should render correctly without pooling and needPolling', async () => {
+    const pollingProps = {
+      config: {
+        needPolling: () => true,
+        pollingInterval: undefined,
+      },
+      key: 'test-needpolling-no-interval',
+      method: jest.fn(
+        () =>
+          new Promise(resolve => {
+            setTimeout(() => resolve(true), PROMISE_TIMEOUT)
+          }),
+      ),
+    } as UseDataLoaderHookProps
+
+    const { result } = renderHook(
+      props => useDataLoader(props.key, props.method, props.config),
+      {
+        initialProps: pollingProps,
+        wrapper,
+      },
+    )
+    expect(result.current.data).toBe(undefined)
+    expect(result.current.isPolling).toBe(false)
+    expect(result.current.isLoading).toBe(true)
+    expect(pollingProps.method).toBeCalledTimes(1)
+    await waitFor(() => expect(result.current.isSuccess).toBe(true))
+    expect(result.current.data).toBe(true)
+    expect(result.current.isSuccess).toBe(true)
+  })
+  test('should render correctly with pooling and needPolling true', async () => {
+    const pollingProps = {
+      config: {
+        needPolling: true,
+        pollingInterval: PROMISE_TIMEOUT,
+      },
+      key: 'test-needpolling-no-interval',
+      method: jest.fn(
+        () =>
+          new Promise(resolve => {
+            setTimeout(() => resolve(true), PROMISE_TIMEOUT)
+          }),
+      ),
+    } as UseDataLoaderHookProps
+
+    const { result } = renderHook(
+      props => useDataLoader(props.key, props.method, props.config),
+      {
+        initialProps: pollingProps,
+        wrapper,
+      },
+    )
+    expect(result.current.data).toBe(undefined)
+    expect(result.current.isPolling).toBe(true)
+    expect(result.current.isLoading).toBe(true)
+    expect(pollingProps.method).toBeCalledTimes(1)
+    await waitFor(() => expect(result.current.isSuccess).toBe(true))
+    expect(result.current.data).toBe(true)
+    expect(result.current.isSuccess).toBe(true)
+  })
+
+  test('should render correctly with pooling and needPolling false', async () => {
+    const pollingProps = {
+      config: {
+        needPolling: false,
+        pollingInterval: PROMISE_TIMEOUT,
+      },
+      key: 'test-needpolling-no-interval',
+      method: jest.fn(
+        () =>
+          new Promise(resolve => {
+            setTimeout(() => resolve(true), PROMISE_TIMEOUT)
+          }),
+      ),
+    } as UseDataLoaderHookProps
+
+    const { result } = renderHook(
+      props => useDataLoader(props.key, props.method, props.config),
+      {
+        initialProps: pollingProps,
+        wrapper,
+      },
+    )
+    expect(result.current.data).toBe(undefined)
+    expect(result.current.isPolling).toBe(false)
+    expect(result.current.isLoading).toBe(true)
+    expect(pollingProps.method).toBeCalledTimes(1)
+    await waitFor(() => expect(result.current.isSuccess).toBe(true))
+    expect(result.current.data).toBe(true)
+    expect(result.current.isSuccess).toBe(true)
+  })
+
+  test('should render correctly with pooling and needPolling function false', async () => {
+    const pollingProps = {
+      config: {
+        needPolling: () => false,
+        pollingInterval: PROMISE_TIMEOUT,
+      },
+      key: 'test-needpolling-no-interval',
+      method: jest.fn(
+        () =>
+          new Promise(resolve => {
+            setTimeout(() => resolve(true), PROMISE_TIMEOUT)
+          }),
+      ),
+    } as UseDataLoaderHookProps
+
+    const { result } = renderHook(
+      props => useDataLoader(props.key, props.method, props.config),
+      {
+        initialProps: pollingProps,
+        wrapper,
+      },
+    )
+    expect(result.current.data).toBe(undefined)
+    expect(result.current.isPolling).toBe(false)
+    expect(result.current.isLoading).toBe(true)
+    expect(pollingProps.method).toBeCalledTimes(1)
+    await waitFor(() => expect(result.current.isSuccess).toBe(true))
+    expect(result.current.data).toBe(true)
+    expect(result.current.isSuccess).toBe(true)
+  })
+
   test('should render correctly with enabled off', async () => {
     const { result } = renderHook(
       props => useDataLoader(props.key, props.method, props.config),
