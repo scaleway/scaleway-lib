@@ -7,7 +7,7 @@ export type OnSuccessFn<T = unknown> =
   | ((result: T) => void | Promise<void>)
   | undefined
 export type OnCancelFn = (() => void | Promise<void>) | undefined
-export type NeedPollingType<T = unknown> = boolean | ((data: T) => boolean)
+export type NeedPollingType<T = unknown> = boolean | ((data?: T) => boolean)
 
 /**
  * @typedef {Object} UseDataLoaderConfig

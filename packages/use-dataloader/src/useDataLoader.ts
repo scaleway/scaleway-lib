@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useDataLoaderContext } from './DataLoaderProvider'
 import { StatusEnum } from './constants'
+import DataLoader from './dataloader'
 import { PromiseType, UseDataLoaderConfig, UseDataLoaderResult } from './types'
 
-function useDataLoaderV2<T, ErrorType = Error>(
+function useDataLoaderV2<ResultType, ErrorType = Error>(
   fetchKey: string,
-  method: () => PromiseType<T>,
+  method: () => PromiseType<ResultType>,
   {
     enabled = true,
     onError,
@@ -14,8 +15,8 @@ function useDataLoaderV2<T, ErrorType = Error>(
     needPolling = true,
     pollingInterval,
     initialData,
-  }: UseDataLoaderConfig<T> = {},
-): UseDataLoaderResult<T, ErrorType> {
+  }: UseDataLoaderConfig<ResultType> = {},
+): UseDataLoaderResult<ResultType, ErrorType> {
   const { getOrAddRequest, onError: onGlobalError } = useDataLoaderContext()
   const methodRef = useRef(method)
   const onSuccessRef = useRef(onSuccess)
@@ -30,7 +31,7 @@ function useDataLoaderV2<T, ErrorType = Error>(
       getOrAddRequest(fetchKey, {
         enabled,
         method: methodRef.current,
-      }) as DataLoader<T, ErrorType>,
+      }) as DataLoader<ResultType, ErrorType>,
     [getOrAddRequest, fetchKey, enabled],
   )
 
