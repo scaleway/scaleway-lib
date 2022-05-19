@@ -187,9 +187,9 @@ importers:
 
   packages/use-segment:
     specifiers:
-      '@segment/analytics-next': 1.36.0
+      '@segment/analytics-next': 1.37.0
     dependencies:
-      '@segment/analytics-next': 1.36.0
+      '@segment/analytics-next': 1.37.0
 
 packages:
 
@@ -3037,13 +3037,13 @@ packages:
       rollup: 2.74.1
     dev: true
 
-  /@segment/analytics-next/1.36.0:
-    resolution: {integrity: sha512-4sBn8D/abcUZrocgTVdmy7kbxvRR9VhbCE95uLe55uD5NXysByPQO4T4RMyTiCSRYJKB2wZdikDh6SkItSKNsw==}
+  /@segment/analytics-next/1.37.0:
+    resolution: {integrity: sha512-gFrHAVHgRGO7CA/byXOwiATck0C+dzvRrBot70PU8gTqHXOtJmmV10d2mrM84yp0jH3qq9Z+qUOh5CYDeAXqPQ==}
     dependencies:
       '@lukeed/uuid': 2.0.0
       '@segment/analytics.js-video-plugins': 0.2.1
       '@segment/facade': 3.4.9
-      '@segment/tsub': 0.1.11
+      '@segment/tsub': 0.1.12
       dset: 3.1.2
       js-cookie: 2.2.1
       node-fetch: 2.6.7
@@ -3080,13 +3080,13 @@ packages:
     resolution: {integrity: sha512-BtanDuvJqnACFkeeYje7pWULVv8RgZaqKHWwGFnL/g/TH/CcZjkIVTfGDp/MAxmilYHUkrX70SqwnYSTNEaN7A==}
     dev: false
 
-  /@segment/tsub/0.1.11:
-    resolution: {integrity: sha512-0kshyW2Sem9llQcqqvny7odnVxnaDmXV3GgwOQEkLlUf/rtJHGzifYYCupNnGw7yfo+PvHLQPePAC/+Bi0vYVA==}
+  /@segment/tsub/0.1.12:
+    resolution: {integrity: sha512-35JB0+HuMZrn7mus/s4yOHAcuid+MzaOYxV8YAogTR4Z7AsHwn/Zn/y9XdoHp2kKdn54s6jO4IaO826v0j7qmw==}
     hasBin: true
     dependencies:
       '@stdlib/math-base-special-ldexp': 0.0.5
       dlv: 1.1.3
-      dset: 3.1.1
+      dset: 3.1.2
       tiny-hashes: 1.0.1
     transitivePeerDependencies:
       - supports-color
@@ -5630,11 +5630,6 @@ packages:
     dependencies:
       is-obj: 2.0.0
     dev: true
-
-  /dset/3.1.1:
-    resolution: {integrity: sha512-hYf+jZNNqJBD2GiMYb+5mqOIX4R4RRHXU3qWMWYN+rqcR2/YpRL2bUHr8C8fU+5DNvqYjJ8YvMGSLuVPWU1cNg==}
-    engines: {node: '>=4'}
-    dev: false
 
   /dset/3.1.2:
     resolution: {integrity: sha512-g/M9sqy3oHe477Ar4voQxWtaPIFw1jTdKZuomOjhCcBx9nHUNn0pu6NopuFFrTh/TRZIKEj+76vLWFu9BNKk+Q==}
