@@ -1,4 +1,3 @@
-import waitForExpect from 'wait-for-expect'
 import DataLoader from '../dataloader'
 
 const PROMISE_TIMEOUT = 100
@@ -6,11 +5,6 @@ const PROMISE_TIMEOUT = 100
 const fakeSuccessPromise = () =>
   new Promise(resolve => {
     setTimeout(() => resolve(true), PROMISE_TIMEOUT)
-  })
-
-const fakeLongSuccessPromise = () =>
-  new Promise(resolve => {
-    setTimeout(() => resolve(true), 200)
   })
 
 const fakeNullPromise = () =>
@@ -115,28 +109,5 @@ describe('Dataloader class', () => {
     await instance.load().catch(onError)
     expect(notifyChanges).toBeCalledTimes(1)
     expect(onError).toBeCalledTimes(1)
-  })
-
-  test.only('should launch 2 concurrent requests', async () => {
-    const method = jest.fn(fakeLongSuccessPromise)
-    const notifyChanges = jest.fn()
-    DataLoader.maxConcurrent = 2
-    for (let i = 0; i < 5; i += 1) {
-      const instance = new DataLoader({
-        key: `test-${i}`,
-        method,
-        notifyChanges,
-      })
-      instance.load().catch(undefined)
-    }
-    await waitForExpect(() => {
-      expect(method).toBeCalledTimes(2)
-    })
-    await waitForExpect(() => {
-      expect(method).toBeCalledTimes(4)
-    })
-    await waitForExpect(() => {
-      expect(method).toBeCalledTimes(5)
-    })
   })
 })
