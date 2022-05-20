@@ -37,6 +37,8 @@ class DataLoader<ResultType = unknown, ErrorType = unknown> {
 
   public loadCount = 0
 
+  public isFirstLoading = true
+
   public constructor(args: DataLoaderConstructorArgs<ResultType>) {
     this.key = args.key
     this.method = args.method
@@ -102,6 +104,7 @@ class DataLoader<ResultType = unknown, ErrorType = unknown> {
         this.error = undefined
       }
       this.isCalled = false
+      this.isFirstLoading = false
       DataLoader.started -= 1
       delete DataLoader.queue[this.key]
       this.notifyChanges()
@@ -113,6 +116,7 @@ class DataLoader<ResultType = unknown, ErrorType = unknown> {
         this.error = error as ErrorType
       }
       this.isCalled = false
+      this.isFirstLoading = false
       DataLoader.started -= 1
       delete DataLoader.queue[this.key]
       this.notifyChanges()

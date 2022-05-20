@@ -110,7 +110,7 @@ function useDataLoaderV2<ResultType, ErrorType = Error>(
   }, [pollingInterval, needPolling, request, request.status, request.data])
 
   return {
-    data: request.loadCount > 0 ? request.data : initialData,
+    data: !request.isFirstLoading ? request.data : initialData,
     error: request.error,
     isError,
     isIdle,
