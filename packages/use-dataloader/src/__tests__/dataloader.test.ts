@@ -23,6 +23,11 @@ const fakeErrorPromise = () =>
     setTimeout(() => reject(new Error('test')), PROMISE_TIMEOUT)
   })
 
+const fakeLongErrorPromise = () =>
+  new Promise((_, reject) => {
+    setTimeout(() => reject(new Error('test')), 1000)
+  })
+
 describe('Dataloader class', () => {
   test('should create instance then load then destroy', async () => {
     const method = jest.fn(fakeSuccessPromise)
@@ -145,8 +150,8 @@ describe('Dataloader class', () => {
     expect(notifyChanges).toBeCalledTimes(1)
   })
 
-  test.only('should create instance with error and cancel', async () => {
-    const method = jest.fn(fakeErrorPromise)
+  test('should create instance with error and cancel', async () => {
+    const method = jest.fn(fakeLongErrorPromise)
     const notifyChanges = jest.fn()
     const onError = jest.fn()
 
@@ -155,11 +160,12 @@ describe('Dataloader class', () => {
       method,
       notifyChanges,
     })
-    instance.load().catch(onError)
+    const res = instance.load().catch(onError)
     instance.cancel()
     await waitForExpect(() => expect(instance.status).toBe(StatusEnum.IDLE))
     expect(notifyChanges).toBeCalledTimes(1)
     expect(onError).toBeCalledTimes(0)
+    await waitForExpect(async () => expect(await res).toBeUndefined())
   })
 
   test('should launch multiple dataloader', async () => {

@@ -119,15 +119,20 @@ describe('DataLoaderProvider', () => {
     expect(reloads).toHaveProperty(TEST_KEY)
     const testReload = result.current.getReloads(TEST_KEY)
     expect(testReload).toBeDefined()
+    if (testReload) {
+      expect(await testReload()).toBeNull()
+    } else {
+      fail('It shoulded be defined')
+    }
     expect(result.current.getCachedData(TEST_KEY)).toBe(null)
     expect(result.current.getCachedData()).toStrictEqual({ test: null })
     expect(result.current.getRequest(TEST_KEY)).toBeDefined()
     const unknownReload = result.current.getReloads('unknown')
     expect(unknownReload).toBeUndefined()
     await reloads.test()
-    expect(method).toBeCalledTimes(2)
-    await result.current.reloadAll()
     expect(method).toBeCalledTimes(3)
+    await result.current.reloadAll()
+    expect(method).toBeCalledTimes(4)
     result.current.clearCachedData(TEST_KEY)
     result.current.clearCachedData('unknown')
     expect(result.current.getCachedData(TEST_KEY)).toBeUndefined()
