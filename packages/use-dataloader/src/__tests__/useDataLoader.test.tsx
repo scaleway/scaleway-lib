@@ -444,11 +444,12 @@ describe('useDataLoader', () => {
       },
     )
     expect(result.current.data).toBe(undefined)
-    expect(result.current.isPolling).toBe(false)
+    expect(result.current.isPolling).toBe(true)
     expect(result.current.isLoading).toBe(true)
     expect(pollingProps.method).toBeCalledTimes(1)
     await waitFor(() => expect(result.current.isSuccess).toBe(true))
     expect(result.current.data).toBe(true)
+    expect(result.current.isPolling).toBe(false)
     expect(result.current.isSuccess).toBe(true)
   })
 
