@@ -51,7 +51,8 @@ function useDataLoaderV2<ResultType, ErrorType = Error>(
 
   const isPolling = !!(
     pollingInterval &&
-    ((typeof needPolling === 'function' && needPolling(request.data)) ||
+    ((typeof needPolling === 'function' &&
+      (!request.data || needPolling(request.data))) ||
       (typeof needPolling !== 'function' && needPolling))
   )
 
