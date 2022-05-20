@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/use-segment",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "A small hook to handle segment",
   "keywords": [
     "react",
