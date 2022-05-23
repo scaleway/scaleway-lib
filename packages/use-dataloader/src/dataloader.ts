@@ -13,9 +13,9 @@ class DataLoader<ResultType = unknown, ErrorType = unknown> {
 
   public static started = 0
 
-  public static cachedData = {} as Record<string, unknown | undefined>
+  public static cachedData: Record<string, unknown | undefined> = {}
 
-  public static queue = {} as Record<string, PromiseType>
+  public static queue: Record<string, PromiseType> = {}
 
   public key: string
 
@@ -69,7 +69,7 @@ class DataLoader<ResultType = unknown, ErrorType = unknown> {
     } else {
       DataLoader.queue[this.key] = new Promise(resolve => {
         setTimeout(resolve)
-      }).then(() => this.tryLaunch())
+      }).then(this.tryLaunch)
     }
 
     return DataLoader.queue[this.key] as Promise<ResultType>
