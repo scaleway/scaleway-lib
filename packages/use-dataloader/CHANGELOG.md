@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.11.0 (2022-05-23)
+
+
+### Features
+
+* dataloader v2 ([#786](https://github.com/scaleway/scaleway-lib/issues/786)) ([850a23a](https://github.com/scaleway/scaleway-lib/commit/850a23acc36e75be6dc737e1bffddea6f1351635))
+
+
+
 ### 2.10.3 (2022-05-11)
 
 **Note:** Version bump only for package @scaleway/use-dataloader
