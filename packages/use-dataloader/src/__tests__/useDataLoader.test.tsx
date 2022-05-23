@@ -1,8 +1,9 @@
-import { act, renderHook } from '@testing-library/react-hooks'
+/* eslint-disable no-console */
+import { renderHook, waitFor } from '@testing-library/react'
 import { ReactNode } from 'react'
 import DataLoaderProvider, { useDataLoaderContext } from '../DataLoaderProvider'
 import { KEY_IS_NOT_STRING_ERROR } from '../constants'
-import { PromiseType, UseDataLoaderConfig, UseDataLoaderResult } from '../types'
+import { UseDataLoaderConfig } from '../types'
 import useDataLoader from '../useDataLoader'
 
 type UseDataLoaderHookProps = {
@@ -12,7 +13,7 @@ type UseDataLoaderHookProps = {
   children?: ReactNode
 }
 
-const PROMISE_TIMEOUT = 5
+const PROMISE_TIMEOUT = 50
 
 const initialProps = {
   config: {
@@ -42,129 +43,126 @@ const wrapperWithOnError =
 
 describe('useDataLoader', () => {
   test('should render correctly without options', async () => {
-    const { result, waitForNextUpdate } = renderHook<
-      UseDataLoaderHookProps,
-      UseDataLoaderResult
-    >(props => useDataLoader(props.key, props.method), {
-      initialProps,
-      wrapper,
-    })
+    const { result } = renderHook(
+      props => useDataLoader(props.key, props.method),
+      {
+        initialProps,
+        wrapper,
+      },
+    )
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBe(true)
     expect(result.current.previousData).toBe(undefined)
-    await waitForNextUpdate()
     expect(initialProps.method).toBeCalledTimes(1)
-    expect(result.current.isLoading).toBe(false)
-    expect(result.current.isSuccess).toBe(true)
-    expect(result.current.previousData).toBe(undefined)
+    await waitFor(() => expect(result.current.isSuccess).toBe(true))
+    expect(initialProps.method).toBeCalledTimes(1)
     expect(result.current.data).toBe(true)
+    expect(result.current.isLoading).toBe(false)
+    expect(result.current.previousData).toBe(undefined)
   })
 
-  test('should render correctly without requets enabled then enable it', async () => {
+  test('should render correctly without request enabled then enable it', async () => {
     const method = jest.fn(
       () =>
         new Promise(resolve => {
           setTimeout(() => resolve(true), PROMISE_TIMEOUT)
         }),
     )
-    let enabled = false
-    const { rerender, result, waitForNextUpdate } = renderHook<
-      UseDataLoaderHookProps,
-      UseDataLoaderResult
-    >(
-      props =>
-        useDataLoader(props.key, props.method, {
-          enabled,
-        }),
+    const testProps = {
+      config: {
+        enabled: false,
+      },
+      key: 'test-not-enabled-then-reload',
+      method,
+    }
+    const { rerender, result } = renderHook(
+      props => useDataLoader(props.key, props.method, props.config),
       {
-        initialProps: {
-          ...initialProps,
-          key: 'test-not-enabled-then-reload',
-          method,
-        },
+        initialProps: testProps,
         wrapper,
       },
     )
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBe(false)
     expect(method).toBeCalledTimes(0)
-    enabled = true
-    rerender()
+    testProps.config.enabled = true
+    rerender({ ...testProps })
+    await waitFor(() => expect(result.current.isLoading).toBe(true))
     expect(method).toBeCalledTimes(1)
     expect(result.current.data).toBe(undefined)
-    expect(result.current.isLoading).toBe(true)
-    await waitForNextUpdate()
+    await waitFor(() => expect(result.current.isSuccess).toBe(true))
     expect(result.current.isLoading).toBe(false)
-    expect(result.current.isSuccess).toBe(true)
     expect(result.current.previousData).toBe(undefined)
     expect(result.current.data).toBe(true)
   })
 
   test('should render correctly without valid key', () => {
-    const { result } = renderHook<UseDataLoaderHookProps, UseDataLoaderResult>(
-      props => useDataLoader(props.key, props.method),
+    const orignalConsoleError = console.error
+    console.error = jest.fn
+    try {
+      renderHook(
+        // @ts-expect-error used because we test with bad key
+        props => useDataLoader(props.key, props.method),
+        {
+          initialProps: {
+            ...initialProps,
+            key: 2,
+          },
+          wrapper,
+        },
+      )
+      fail('It shoulded fail with a bad key')
+    } catch (error) {
+      expect((error as Error)?.message).toBe(KEY_IS_NOT_STRING_ERROR)
+    }
+    console.error = orignalConsoleError
+  })
+
+  test('should render correctly without keepPreviousData', async () => {
+    const { result } = renderHook(
+      props => useDataLoader(props.key, props.method, props.config),
       {
         initialProps: {
           ...initialProps,
-          // @ts-expect-error used because we test with bad key
-          key: 2,
+          config: {
+            keepPreviousData: false,
+          },
+          key: 'test-2',
         },
         wrapper,
       },
     )
-    expect(result.error?.message).toBe(KEY_IS_NOT_STRING_ERROR)
-  })
-
-  test('should render correctly without keepPreviousData', async () => {
-    const { result, waitForNextUpdate } = renderHook<
-      UseDataLoaderHookProps,
-      UseDataLoaderResult
-    >(props => useDataLoader(props.key, props.method, props.config), {
-      initialProps: {
-        ...initialProps,
-        config: {
-          keepPreviousData: false,
-        },
-        key: 'test-2',
-      },
-      wrapper,
-    })
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBe(true)
-    await waitForNextUpdate()
+    await waitFor(() => expect(result.current.isSuccess).toBe(true))
     expect(result.current.data).toBe(true)
-    expect(result.current.isSuccess).toBe(true)
     expect(result.current.isLoading).toBe(false)
   })
 
   test('should render correctly with result null', async () => {
-    const { result, waitForNextUpdate } = renderHook<
-      UseDataLoaderHookProps,
-      UseDataLoaderResult
-    >(props => useDataLoader(props.key, props.method, props.config), {
-      initialProps: {
-        ...initialProps,
-        key: 'test-3',
-        method: () =>
-          new Promise(resolve => {
-            setTimeout(() => resolve(null), PROMISE_TIMEOUT)
-          }),
+    const { result } = renderHook(
+      props => useDataLoader(props.key, props.method, props.config),
+      {
+        initialProps: {
+          ...initialProps,
+          key: 'test-3',
+          method: () =>
+            new Promise(resolve => {
+              setTimeout(() => resolve(null), PROMISE_TIMEOUT)
+            }),
+        },
+        wrapper,
       },
-      wrapper,
-    })
+    )
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBe(true)
-    await waitForNextUpdate()
-    expect(result.current.data).toBe(undefined)
-    expect(result.current.isSuccess).toBe(true)
+    await waitFor(() => expect(result.current.isSuccess).toBe(true))
+    expect(result.current.data).toBe(null)
     expect(result.current.isLoading).toBe(false)
   })
 
   test('should render and cache correctly with cacheKeyPrefix', async () => {
-    const { result, waitForNextUpdate } = renderHook<
-      UseDataLoaderHookProps,
-      ReturnType<typeof useDataLoader>[]
-    >(
+    const { result } = renderHook(
       props => [
         useDataLoader(props.key, props.method, props.config),
         useDataLoader('test-4', props.method, {
@@ -182,53 +180,38 @@ describe('useDataLoader', () => {
     expect(result.current[0].isLoading).toBe(true)
     expect(result.current[1].data).toBe(undefined)
     expect(result.current[1].isIdle).toBe(true)
-    await waitForNextUpdate()
+    await waitFor(() => expect(result.current[0].isSuccess).toBe(true))
     expect(result.current[0].data).toBe(true)
-    expect(result.current[0].isSuccess).toBe(true)
 
-    act((): void => {
-      // eslint-disable-next-line no-void
-      void result.current[1].reload()
-    })
-
+    result.current[1].reload().catch(undefined)
+    await waitFor(() => expect(result.current[1].isLoading).toBe(true))
     expect(result.current[1].data).toBe(undefined)
-    expect(result.current[1].isLoading).toBe(true)
 
-    await waitForNextUpdate()
+    await waitFor(() => expect(result.current[1].isSuccess).toBe(true))
     expect(result.current[1].data).toBe(true)
-    expect(result.current[1].isSuccess).toBe(true)
   })
 
   test('should render correctly with enabled true', async () => {
-    const { result, waitForNextUpdate } = renderHook<
-      UseDataLoaderHookProps,
-      ReturnType<typeof useDataLoader>
-    >(props => useDataLoader(props.key, props.method, props.config), {
-      initialProps: {
-        ...initialProps,
-        key: 'test-5',
+    const { result } = renderHook(
+      props => useDataLoader(props.key, props.method, props.config),
+      {
+        initialProps: {
+          ...initialProps,
+          key: 'test-5',
+        },
+        wrapper,
       },
-      wrapper,
-    })
+    )
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBe(true)
-    await waitForNextUpdate()
+    await waitFor(() => expect(result.current.isSuccess).toBe(true))
     expect(result.current.data).toBe(true)
-    expect(result.current.isSuccess).toBe(true)
     expect(result.current.isLoading).toBe(false)
-
-    act(() => {
-      // eslint-disable-next-line no-void
-      void result.current.reload()
-    })
-    act(() => {
-      // eslint-disable-next-line no-void
-      void result.current.reload()
-    })
-
+    result.current.reload().catch(undefined)
+    result.current.reload().catch(undefined)
+    await waitFor(() => expect(result.current.isLoading).toBe(true))
     expect(result.current.data).toBe(true)
-    expect(result.current.isLoading).toBe(true)
-    await waitForNextUpdate()
+    await waitFor(() => expect(result.current.isSuccess).toBe(true))
     expect(result.current.data).toBe(true)
     expect(result.current.isSuccess).toBe(true)
     expect(result.current.isLoading).toBe(false)
@@ -239,10 +222,7 @@ describe('useDataLoader', () => {
       ...initialProps,
       key: 'test-key-update',
     }
-    const { result, waitForNextUpdate, rerender } = renderHook<
-      UseDataLoaderHookProps,
-      UseDataLoaderResult
-    >(
+    const { result, rerender } = renderHook(
       () =>
         useDataLoader(propsToPass.key, propsToPass.method, propsToPass.config),
       {
@@ -252,7 +232,7 @@ describe('useDataLoader', () => {
 
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBe(true)
-    await waitForNextUpdate()
+    await waitFor(() => expect(result.current.isSuccess).toBe(true))
     expect(result.current.isSuccess).toBe(true)
     expect(result.current.isLoading).toBe(false)
     expect(result.current.data).toBe(true)
@@ -261,7 +241,7 @@ describe('useDataLoader', () => {
     rerender()
     expect(result.current.isLoading).toBe(true)
     expect(result.current.data).toBe(undefined)
-    await waitForNextUpdate()
+    await waitFor(() => expect(result.current.isSuccess).toBe(true))
     expect(result.current.data).toBe(true)
     expect(result.current.isSuccess).toBe(true)
     expect(result.current.isLoading).toBe(false)
@@ -280,7 +260,7 @@ describe('useDataLoader', () => {
             setTimeout(() => resolve(true), PROMISE_TIMEOUT)
           }),
       ),
-    }
+    } as UseDataLoaderHookProps
 
     const method2 = jest.fn(
       () =>
@@ -289,26 +269,26 @@ describe('useDataLoader', () => {
         }),
     )
 
-    const { result, waitForNextUpdate, rerender } = renderHook<
-      UseDataLoaderHookProps,
-      ReturnType<typeof useDataLoader>
-    >(props => useDataLoader(props.key, props.method, props.config), {
-      initialProps: pollingProps,
-      wrapper,
-    })
+    const { result, rerender } = renderHook(
+      props => useDataLoader(props.key, props.method, props.config),
+      {
+        initialProps: pollingProps,
+        wrapper,
+      },
+    )
     expect(result.current.data).toBe(undefined)
     expect(result.current.isPolling).toBe(true)
     expect(result.current.isLoading).toBe(true)
     expect(pollingProps.method).toBeCalledTimes(1)
-    await waitForNextUpdate()
+    await waitFor(() => expect(result.current.isSuccess).toBe(true))
     expect(result.current.data).toBe(true)
     expect(result.current.isSuccess).toBe(true)
     expect(result.current.isPolling).toBe(true)
-    await waitForNextUpdate()
+    await waitFor(() => expect(result.current.isLoading).toBe(true))
     expect(pollingProps.method).toBeCalledTimes(2)
     expect(result.current.isPolling).toBe(true)
-    expect(result.current.isLoading).toBe(true)
-    await waitForNextUpdate()
+
+    await waitFor(() => expect(result.current.isSuccess).toBe(true))
     expect(result.current.data).toBe(true)
     expect(result.current.isSuccess).toBe(true)
     expect(result.current.isLoading).toBe(false)
@@ -319,16 +299,16 @@ describe('useDataLoader', () => {
       },
       method: method2,
     })
-    await waitForNextUpdate()
     expect(result.current.data).toBe(true)
     expect(result.current.isPolling).toBe(true)
-    expect(result.current.isLoading).toBe(true)
+    expect(result.current.isSuccess).toBe(true)
+    expect(result.current.isLoading).toBe(false)
+    await waitFor(() => expect(result.current.isLoading).toBe(true))
     expect(result.current.isSuccess).toBe(false)
-    await waitForNextUpdate()
+    await waitFor(() => expect(result.current.isSuccess).toBe(true))
     expect(method2).toBeCalledTimes(1)
     expect(result.current.isPolling).toBe(true)
     expect(result.current.isLoading).toBe(false)
-    expect(result.current.isSuccess).toBe(true)
     expect(result.current.data).toBe(2)
 
     rerender({
@@ -338,70 +318,183 @@ describe('useDataLoader', () => {
       },
       method: method2,
     })
-    await waitForNextUpdate()
+    await waitFor(() => expect(result.current.isLoading).toBe(true))
     expect(result.current.data).toBe(2)
     expect(result.current.isPolling).toBe(true)
-    expect(result.current.isLoading).toBe(true)
     expect(result.current.isSuccess).toBe(false)
     expect(method2).toBeCalledTimes(2)
-    await waitForNextUpdate()
+    await waitFor(() => expect(result.current.isSuccess).toBe(true))
     expect(result.current.isPolling).toBe(true)
     expect(result.current.isLoading).toBe(false)
-    expect(result.current.isSuccess).toBe(true)
     expect(result.current.data).toBe(2)
   })
 
-  test('should render correctly with enabled off', async () => {
-    const { result, waitForNextUpdate } = renderHook<
-      UseDataLoaderHookProps,
-      ReturnType<typeof useDataLoader>
-    >(props => useDataLoader(props.key, props.method, props.config), {
-      initialProps: {
-        ...initialProps,
-        config: {
-          enabled: false,
-        },
-        key: 'test-7',
+  test('should render correctly without pooling and needPolling', async () => {
+    const pollingProps = {
+      config: {
+        needPolling: () => true,
+        pollingInterval: undefined,
       },
-      wrapper,
-    })
-    expect(result.current.data).toBe(undefined)
-    expect(result.current.isIdle).toBe(true)
+      key: 'test-needpolling-no-interval',
+      method: jest.fn(
+        () =>
+          new Promise(resolve => {
+            setTimeout(() => resolve(true), PROMISE_TIMEOUT)
+          }),
+      ),
+    } as UseDataLoaderHookProps
 
-    act(() => {
-      // eslint-disable-next-line no-void
-      void result.current.reload()
-    })
-
+    const { result } = renderHook(
+      props => useDataLoader(props.key, props.method, props.config),
+      {
+        initialProps: pollingProps,
+        wrapper,
+      },
+    )
     expect(result.current.data).toBe(undefined)
+    expect(result.current.isPolling).toBe(false)
     expect(result.current.isLoading).toBe(true)
-
-    await waitForNextUpdate()
-
+    expect(pollingProps.method).toBeCalledTimes(1)
+    await waitFor(() => expect(result.current.isSuccess).toBe(true))
     expect(result.current.data).toBe(true)
     expect(result.current.isSuccess).toBe(true)
+  })
+  test('should render correctly with pooling and needPolling true', async () => {
+    const pollingProps = {
+      config: {
+        needPolling: true,
+        pollingInterval: PROMISE_TIMEOUT,
+      },
+      key: 'test-needpolling-no-interval',
+      method: jest.fn(
+        () =>
+          new Promise(resolve => {
+            setTimeout(() => resolve(true), PROMISE_TIMEOUT)
+          }),
+      ),
+    } as UseDataLoaderHookProps
+
+    const { result } = renderHook(
+      props => useDataLoader(props.key, props.method, props.config),
+      {
+        initialProps: pollingProps,
+        wrapper,
+      },
+    )
+    expect(result.current.data).toBe(undefined)
+    expect(result.current.isPolling).toBe(true)
+    expect(result.current.isLoading).toBe(true)
+    expect(pollingProps.method).toBeCalledTimes(1)
+    await waitFor(() => expect(result.current.isSuccess).toBe(true))
+    expect(result.current.data).toBe(true)
+    expect(result.current.isSuccess).toBe(true)
+  })
+
+  test('should render correctly with pooling and needPolling false', async () => {
+    const pollingProps = {
+      config: {
+        needPolling: false,
+        pollingInterval: PROMISE_TIMEOUT,
+      },
+      key: 'test-needpolling-no-interval',
+      method: jest.fn(
+        () =>
+          new Promise(resolve => {
+            setTimeout(() => resolve(true), PROMISE_TIMEOUT)
+          }),
+      ),
+    } as UseDataLoaderHookProps
+
+    const { result } = renderHook(
+      props => useDataLoader(props.key, props.method, props.config),
+      {
+        initialProps: pollingProps,
+        wrapper,
+      },
+    )
+    expect(result.current.data).toBe(undefined)
+    expect(result.current.isPolling).toBe(false)
+    expect(result.current.isLoading).toBe(true)
+    expect(pollingProps.method).toBeCalledTimes(1)
+    await waitFor(() => expect(result.current.isSuccess).toBe(true))
+    expect(result.current.data).toBe(true)
+    expect(result.current.isSuccess).toBe(true)
+  })
+
+  test('should render correctly with pooling and needPolling function false', async () => {
+    const pollingProps = {
+      config: {
+        needPolling: () => false,
+        pollingInterval: PROMISE_TIMEOUT,
+      },
+      key: 'test-needpolling-no-interval',
+      method: jest.fn(
+        () =>
+          new Promise(resolve => {
+            setTimeout(() => resolve(true), PROMISE_TIMEOUT)
+          }),
+      ),
+    } as UseDataLoaderHookProps
+
+    const { result } = renderHook(
+      props => useDataLoader(props.key, props.method, props.config),
+      {
+        initialProps: pollingProps,
+        wrapper,
+      },
+    )
+    expect(result.current.data).toBe(undefined)
+    expect(result.current.isPolling).toBe(true)
+    expect(result.current.isLoading).toBe(true)
+    expect(pollingProps.method).toBeCalledTimes(1)
+    await waitFor(() => expect(result.current.isSuccess).toBe(true))
+    expect(result.current.data).toBe(true)
+    expect(result.current.isPolling).toBe(false)
+    expect(result.current.isSuccess).toBe(true)
+  })
+
+  test('should render correctly with enabled off', async () => {
+    const { result } = renderHook(
+      props => useDataLoader(props.key, props.method, props.config),
+      {
+        initialProps: {
+          ...initialProps,
+          config: {
+            enabled: false,
+          },
+          key: 'test-7',
+        },
+        wrapper,
+      },
+    )
+    expect(result.current.data).toBe(undefined)
+    expect(result.current.isIdle).toBe(true)
+    result.current.reload().catch(undefined)
+    await waitFor(() => expect(result.current.isLoading).toBe(true))
+    expect(result.current.data).toBe(undefined)
+    await waitFor(() => expect(result.current.isSuccess).toBe(true))
+    expect(result.current.data).toBe(true)
   })
 
   test('should call onSuccess', async () => {
     const onSuccess = jest.fn()
-    const { result, waitForNextUpdate } = renderHook<
-      UseDataLoaderHookProps,
-      UseDataLoaderResult
-    >(props => useDataLoader(props.key, props.method, props.config), {
-      initialProps: {
-        ...initialProps,
-        config: {
-          onSuccess,
+    const { result } = renderHook(
+      props => useDataLoader(props.key, props.method, props.config),
+      {
+        initialProps: {
+          ...initialProps,
+          config: {
+            onSuccess,
+          },
+          key: 'test-8',
         },
-        key: 'test-8',
+        wrapper,
       },
-      wrapper,
-    })
+    )
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBe(true)
-    await waitForNextUpdate()
+    await waitFor(() => expect(result.current.isSuccess).toBe(true))
     expect(result.current.data).toBe(true)
-    expect(result.current.isSuccess).toBe(true)
     expect(onSuccess).toBeCalledTimes(1)
   })
 
@@ -409,30 +502,29 @@ describe('useDataLoader', () => {
     const onSuccess = jest.fn()
     const onError = jest.fn()
     const error = new Error('Test error')
-    const { result, waitForNextUpdate } = renderHook<
-      UseDataLoaderHookProps,
-      UseDataLoaderResult
-    >(props => useDataLoader(props.key, props.method, props.config), {
-      initialProps: {
-        config: {
-          onError,
-          onSuccess,
+    const { result } = renderHook(
+      props => useDataLoader(props.key, props.method, props.config),
+      {
+        initialProps: {
+          config: {
+            onError,
+            onSuccess,
+          },
+          key: 'test-9',
+          method: () =>
+            new Promise((_, reject) => {
+              setTimeout(() => {
+                reject(error)
+              }, PROMISE_TIMEOUT)
+            }),
         },
-        key: 'test-9',
-        method: () =>
-          new Promise((resolve, reject) => {
-            setTimeout(() => {
-              reject(error)
-            }, PROMISE_TIMEOUT)
-          }),
+        wrapper,
       },
-      wrapper,
-    })
+    )
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBe(true)
-    await waitForNextUpdate()
+    await waitFor(() => expect(result.current.isError).toBe(true))
     expect(result.current.error).toBe(error)
-    expect(result.current.isError).toBe(true)
     expect(result.current.data).toBe(undefined)
 
     expect(onError).toBeCalledTimes(1)
@@ -445,31 +537,30 @@ describe('useDataLoader', () => {
     const onError = jest.fn()
     const error = new Error('Test error')
     const onErrorProvider = jest.fn()
-    const { result, waitForNextUpdate } = renderHook<
-      UseDataLoaderHookProps,
-      UseDataLoaderResult
-    >(props => useDataLoader(props.key, props.method, props.config), {
-      initialProps: {
-        config: {
-          onError,
-          onSuccess,
+    const { result } = renderHook(
+      props => useDataLoader(props.key, props.method, props.config),
+      {
+        initialProps: {
+          config: {
+            onError,
+            onSuccess,
+          },
+          key: 'test-10',
+          method: () =>
+            new Promise((_, reject) => {
+              setTimeout(() => {
+                reject(error)
+              }, PROMISE_TIMEOUT)
+            }),
         },
-        key: 'test-10',
-        method: () =>
-          new Promise((_, reject) => {
-            setTimeout(() => {
-              reject(error)
-            }, PROMISE_TIMEOUT)
-          }),
+        wrapper: wrapperWithOnError(onErrorProvider),
       },
-      wrapper: wrapperWithOnError(onErrorProvider),
-    })
+    )
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBe(true)
-    await waitForNextUpdate()
+    await waitFor(() => expect(result.current.isError).toBe(true))
     expect(result.current.data).toBe(undefined)
     expect(result.current.error).toBe(error)
-    expect(result.current.isError).toBe(true)
 
     expect(onError).toBeCalledTimes(1)
     expect(onError).toBeCalledWith(error)
@@ -481,28 +572,28 @@ describe('useDataLoader', () => {
     const onSuccess = jest.fn()
     const error = new Error('Test error')
     const onErrorProvider = jest.fn()
-    const { result, waitForNextUpdate } = renderHook<
-      UseDataLoaderHookProps,
-      UseDataLoaderResult
-    >(props => useDataLoader(props.key, props.method, props.config), {
-      initialProps: {
-        config: {
-          onSuccess,
+    const { result } = renderHook(
+      props => useDataLoader(props.key, props.method, props.config),
+      {
+        initialProps: {
+          config: {
+            onSuccess,
+          },
+          key: 'test-11',
+          method: () =>
+            new Promise((_, reject) => {
+              setTimeout(() => {
+                reject(error)
+              }, PROMISE_TIMEOUT)
+            }),
         },
-        key: 'test-11',
-        method: () =>
-          new Promise((_, reject) => {
-            setTimeout(() => {
-              reject(error)
-            }, PROMISE_TIMEOUT)
-          }),
+        wrapper: wrapperWithOnError(onErrorProvider),
       },
-      wrapper: wrapperWithOnError(onErrorProvider),
-    })
+    )
 
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBe(true)
-    await waitForNextUpdate()
+    await waitFor(() => expect(result.current.isError).toBe(true))
     expect(result.current.data).toBe(undefined)
     expect(result.current.error).toBe(error)
     expect(result.current.isError).toBe(true)
@@ -519,32 +610,32 @@ describe('useDataLoader', () => {
       success = true
     })
     const error = new Error('Test error')
-    const { result, waitForNextUpdate } = renderHook<
-      UseDataLoaderHookProps,
-      UseDataLoaderResult
-    >(props => useDataLoader(props.key, props.method, props.config), {
-      initialProps: {
-        config: {
-          onError,
-          onSuccess,
+    const { result } = renderHook(
+      props => useDataLoader(props.key, props.method, props.config),
+      {
+        initialProps: {
+          config: {
+            onError,
+            onSuccess,
+          },
+          key: 'test-12',
+          method: () =>
+            new Promise((resolve, reject) => {
+              setTimeout(() => {
+                if (success) {
+                  resolve(true)
+                } else {
+                  reject(error)
+                }
+              }, PROMISE_TIMEOUT)
+            }),
         },
-        key: 'test-12',
-        method: () =>
-          new Promise((resolve, reject) => {
-            setTimeout(() => {
-              if (success) {
-                resolve(true)
-              } else {
-                reject(error)
-              }
-            }, PROMISE_TIMEOUT)
-          }),
+        wrapper,
       },
-      wrapper,
-    })
+    )
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBe(true)
-    await waitForNextUpdate()
+    await waitFor(() => expect(result.current.isError).toBe(true))
     expect(result.current.error).toBe(error)
     expect(result.current.isError).toBe(true)
     expect(result.current.data).toBe(undefined)
@@ -552,24 +643,16 @@ describe('useDataLoader', () => {
     expect(onError).toBeCalledTimes(1)
     expect(onSuccess).toBeCalledTimes(0)
 
-    act(() => {
-      // eslint-disable-next-line no-void
-      void result.current.reload()
-    })
-
-    await waitForNextUpdate()
-
+    result.current.reload().catch(undefined)
+    await waitFor(() => expect(result.current.isSuccess).toBe(true))
     expect(result.current.data).toBe(true)
     expect(result.current.error).toBe(undefined)
     expect(result.current.isError).toBe(false)
-    expect(result.current.isSuccess).toBe(true)
   })
 
   test('should use cached data', async () => {
-    const { result, waitForNextUpdate } = renderHook<
-      UseDataLoaderHookProps,
-      UseDataLoaderResult[]
-    >(
+    const fakePromise = jest.fn(initialProps.method)
+    const { result } = renderHook(
       props => [
         useDataLoader(props.key, props.method, props.config),
         useDataLoader(props.key, props.method, {
@@ -581,6 +664,7 @@ describe('useDataLoader', () => {
         initialProps: {
           ...initialProps,
           key: 'test-13',
+          method: fakePromise,
         },
         wrapper,
       },
@@ -588,23 +672,22 @@ describe('useDataLoader', () => {
 
     expect(result.current[0].data).toBe(undefined)
     expect(result.current[0].isLoading).toBe(true)
+    expect(result.current[0].isIdle).toBe(false)
+    expect(result.current[0].isSuccess).toBe(false)
     expect(result.current[1].data).toBe(undefined)
-    expect(result.current[1].isLoading).toBe(true)
     expect(result.current[1].isIdle).toBe(false)
-    await waitForNextUpdate()
-    expect(result.current[0].data).toBe(true)
-    expect(result.current[0].isSuccess).toBe(true)
-
-    act(() => {
-      // eslint-disable-next-line no-void
-      void result.current[1].reload()
-    })
-
-    expect(result.current[1].data).toBe(true)
+    expect(result.current[1].isSuccess).toBe(false)
     expect(result.current[1].isLoading).toBe(true)
+    await waitFor(() => expect(result.current[0].isSuccess).toBe(true))
+    expect(result.current[0].data).toBe(true)
 
-    await waitForNextUpdate()
+    result.current[1].reload().catch(undefined)
+    await waitFor(() => expect(result.current[1].isLoading).toBe(true))
+    expect(result.current[1].data).toBe(true)
+
+    await waitFor(() => expect(result.current[1].isSuccess).toBe(true))
     expect(result.current[1].isSuccess).toBe(true)
+    expect(fakePromise).toBeCalledTimes(2)
   })
 
   test('should be reloaded from dataloader context', async () => {
@@ -616,12 +699,12 @@ describe('useDataLoader', () => {
           }, PROMISE_TIMEOUT)
         }),
     )
-    const { result, waitForNextUpdate } = renderHook<
-      UseDataLoaderHookProps,
+    const { result } = renderHook<
       [
         ReturnType<typeof useDataLoader>,
         ReturnType<typeof useDataLoaderContext>,
-      ]
+      ],
+      UseDataLoaderHookProps
     >(
       props => [
         useDataLoader(props.key, props.method, props.config),
@@ -640,107 +723,17 @@ describe('useDataLoader', () => {
     expect(result.current[0].data).toBe(undefined)
     expect(result.current[0].isLoading).toBe(true)
     expect(Object.values(result.current[1].getReloads()).length).toBe(1)
-    await waitForNextUpdate()
+    await waitFor(() => expect(result.current[0].isSuccess).toBe(true))
     expect(result.current[0].data).toBe(true)
-    expect(result.current[0].isSuccess).toBe(true)
     expect(mockedFn).toBeCalledTimes(1)
 
-    act(() => {
-      // eslint-disable-next-line no-void
-      void result.current[1].reloadAll()
-    })
-
+    result.current[1].reloadAll().catch(undefined)
+    await waitFor(() => expect(result.current[0].isLoading).toBe(true))
     expect(result.current[0].data).toBe(true)
     expect(Object.values(result.current[1].getReloads()).length).toBe(1)
-    expect(result.current[0].isLoading).toBe(true)
 
-    await waitForNextUpdate()
-    expect(result.current[0].isSuccess).toBe(true)
+    await waitFor(() => expect(result.current[0].isSuccess).toBe(true))
     expect(mockedFn).toBeCalledTimes(2)
   })
-
-  /* eslint-disable no-console */
-
-  test('should cancel request', async () => {
-    const originalError = console.error
-    console.error = jest.fn()
-    const onCancel = jest.fn()
-    const { result, unmount } = renderHook<
-      UseDataLoaderHookProps,
-      UseDataLoaderResult
-    >(
-      props =>
-        useDataLoader(
-          props.key,
-          () => {
-            const promise = new Promise(resolve => {
-              setTimeout(() => resolve(true), PROMISE_TIMEOUT)
-            }) as PromiseType
-            promise.cancel = onCancel
-
-            return promise
-          },
-          props.config,
-        ),
-      {
-        initialProps: {
-          ...initialProps,
-          key: 'test-16',
-        },
-        wrapper,
-      },
-    )
-    expect(result.current.data).toBe(undefined)
-    expect(result.current.isLoading).toBe(true)
-    unmount()
-    await act(result.current.reload)
-    expect(onCancel).toHaveBeenCalledTimes(1)
-    expect(result.current.data).toBe(undefined)
-    expect(result.current.isSuccess).toBe(false)
-    expect(result.current.isError).toBe(false)
-    console.error = originalError
-  })
-
-  test('should cancel request with Error', async () => {
-    const originalError = console.error
-    console.error = jest.fn()
-    const onCancel = jest.fn()
-    const { result, unmount } = renderHook<
-      UseDataLoaderHookProps,
-      UseDataLoaderResult
-    >(
-      props =>
-        useDataLoader(
-          props.key,
-          () => {
-            const promise = new Promise((_, reject) => {
-              setTimeout(() => reject(new Error('Test')), PROMISE_TIMEOUT)
-            }) as PromiseType
-            promise.cancel = onCancel
-
-            return promise
-          },
-          props.config,
-        ),
-      {
-        initialProps: {
-          ...initialProps,
-          key: 'test-17',
-        },
-        wrapper,
-      },
-    )
-    expect(result.current.data).toBe(undefined)
-    expect(result.current.isLoading).toBe(true)
-    unmount()
-    await act(result.current.reload)
-    expect(onCancel).toHaveBeenCalledTimes(1)
-    expect(result.current.data).toBe(undefined)
-    expect(result.current.error).toBe(undefined)
-    expect(result.current.isSuccess).toBe(false)
-    expect(result.current.isError).toBe(false)
-    console.error = originalError
-  })
-
-  /* eslint-enable no-console */
 })
+/* eslint-enable no-console */
