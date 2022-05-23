@@ -4,7 +4,7 @@ import { StatusEnum } from './constants'
 import DataLoader from './dataloader'
 import { PromiseType, UseDataLoaderConfig, UseDataLoaderResult } from './types'
 
-function useDataLoaderV2<ResultType, ErrorType = Error>(
+function useDataLoader<ResultType, ErrorType = Error>(
   fetchKey: string,
   method: () => PromiseType<ResultType>,
   {
@@ -123,4 +123,4 @@ function useDataLoaderV2<ResultType, ErrorType = Error>(
   }
 }
 
-export default useDataLoaderV2
+export default useDataLoader
