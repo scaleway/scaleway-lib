@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.13.0](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-dataloader@2.12.0...@scaleway/use-dataloader@2.13.0) (2022-05-24)
+
+
+### Features
+
+* use interval instead of timeout ([#796](https://github.com/scaleway/scaleway-lib/issues/796)) ([6c02b39](https://github.com/scaleway/scaleway-lib/commit/6c02b39412b7cdf59e7d50a2a1759d0d8da1d94e))
+
+
+
 ## 2.12.0 (2022-05-24)
 
 
