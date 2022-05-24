@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 3.3.3 (2022-05-24)
+
+
+### Bug Fixes
+
+* **deps:** update formatjs monorepo ([#788](https://github.com/scaleway/scaleway-lib/issues/788)) ([d0c0f0c](https://github.com/scaleway/scaleway-lib/commit/d0c0f0c85354c8777dc93486a2b3d649e525a47c))
+
+
+
 ### 3.3.2 (2022-05-11)
 
 **Note:** Version bump only for package @scaleway/use-i18n
