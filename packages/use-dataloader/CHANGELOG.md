@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.12.0 (2022-05-24)
+
+
+### Features
+
+* improve polling timeout effect and enabled refetching ([#795](https://github.com/scaleway/scaleway-lib/issues/795)) ([1ed1cbc](https://github.com/scaleway/scaleway-lib/commit/1ed1cbcef9964ee1d25e8fca9a517bfb8d73b689))
+
+
+
 ## 2.11.0 (2022-05-23)
 
 
