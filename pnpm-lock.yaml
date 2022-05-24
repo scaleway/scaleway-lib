@@ -150,15 +150,15 @@ importers:
 
   packages/use-i18n:
     specifiers:
-      '@formatjs/ecma402-abstract': 1.11.4
-      '@formatjs/fast-memoize': 1.2.1
+      '@formatjs/ecma402-abstract': 1.11.6
+      '@formatjs/fast-memoize': 1.2.3
       date-fns: 2.28.0
       filesize: 8.0.7
       intl-messageformat: 9.13.0
       prop-types: 15.8.1
     dependencies:
-      '@formatjs/ecma402-abstract': 1.11.4
-      '@formatjs/fast-memoize': 1.2.1
+      '@formatjs/ecma402-abstract': 1.11.6
+      '@formatjs/fast-memoize': 1.2.3
       date-fns: 2.28.0
       filesize: 8.0.7
       intl-messageformat: 9.13.0
@@ -1771,8 +1771,21 @@ packages:
       tslib: 2.4.0
     dev: false
 
+  /@formatjs/ecma402-abstract/1.11.6:
+    resolution: {integrity: sha512-6TcI+IroIK+GTWXBJ643LBJklmCBsqLt1sUTGWfzdBcI5Y6b1L1iamrJB1B5OAQLnhzWveLbmzPYHYsFEZfeig==}
+    dependencies:
+      '@formatjs/intl-localematcher': 0.2.27
+      tslib: 2.4.0
+    dev: false
+
   /@formatjs/fast-memoize/1.2.1:
     resolution: {integrity: sha512-Rg0e76nomkz3vF9IPlKeV+Qynok0r7YZjL6syLz4/urSg0IbjPZCB/iYUMNsYA643gh4mgrX3T7KEIFIxJBQeg==}
+    dependencies:
+      tslib: 2.4.0
+    dev: false
+
+  /@formatjs/fast-memoize/1.2.3:
+    resolution: {integrity: sha512-RVI3e4M7mIxAhKbbyS78H8++fsoiSRZgxh0zReHfvV6p1cpfgG2/k2qJYhJq0RXh6orVtUEsQ3xK9i4tDfsOSg==}
     dependencies:
       tslib: 2.4.0
     dev: false
@@ -1794,6 +1807,12 @@ packages:
 
   /@formatjs/intl-localematcher/0.2.25:
     resolution: {integrity: sha512-YmLcX70BxoSopLFdLr1Ds99NdlTI2oWoLbaUW2M406lxOIPzE1KQhRz2fPUkq34xVZQaihCoU29h0KK7An3bhA==}
+    dependencies:
+      tslib: 2.4.0
+    dev: false
+
+  /@formatjs/intl-localematcher/0.2.27:
+    resolution: {integrity: sha512-XHYcVas2ebDTh3VtfdluvbTjqyMUHqFHARnuJo5KYF/0MKOTmozVSK7PJGnu1IEHdmRdTWuG6TB+2RnkasaxVw==}
     dependencies:
       tslib: 2.4.0
     dev: false
