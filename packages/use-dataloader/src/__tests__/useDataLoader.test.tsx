@@ -251,7 +251,7 @@ describe('useDataLoader', () => {
     const pollingProps = {
       config: {
         needPolling: () => true,
-        pollingInterval: PROMISE_TIMEOUT,
+        pollingInterval: 1000,
       },
       key: 'test-6',
       method: jest.fn(
@@ -295,7 +295,7 @@ describe('useDataLoader', () => {
     rerender({
       ...pollingProps,
       config: {
-        pollingInterval: 300,
+        pollingInterval: 1000,
       },
       method: method2,
     })
@@ -314,7 +314,7 @@ describe('useDataLoader', () => {
     rerender({
       ...pollingProps,
       config: {
-        pollingInterval: PROMISE_TIMEOUT,
+        pollingInterval: 1000,
       },
       method: method2,
     })
@@ -363,7 +363,7 @@ describe('useDataLoader', () => {
     const pollingProps = {
       config: {
         needPolling: true,
-        pollingInterval: PROMISE_TIMEOUT,
+        pollingInterval: 1000,
       },
       key: 'test-needpolling-no-interval',
       method: jest.fn(

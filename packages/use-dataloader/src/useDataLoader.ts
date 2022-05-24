@@ -1,10 +1,4 @@
-import {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useDataLoaderContext } from './DataLoaderProvider'
 import { StatusEnum } from './constants'
 import DataLoader from './dataloader'
@@ -27,19 +21,11 @@ function useDataLoader<ResultType, ErrorType = Error>(
   const methodRef = useRef(method)
   const onSuccessRef = useRef(onSuccess)
   const onErrorRef = useRef(onError ?? onGlobalError)
-  const isMountedRef = useRef(false)
+  const needPollingRef = useRef(needPolling)
   const [, setCounter] = useState(0)
   const forceRerender = useCallback(() => {
     setCounter(current => current + 1)
   }, [])
-
-  useLayoutEffect(() => {
-    isMountedRef.current = true
-
-    return () => {
-      isMountedRef.current = false
-    }
-  })
 
   const request = getOrAddRequest(fetchKey, {
     enabled,
@@ -78,6 +64,10 @@ function useDataLoader<ResultType, ErrorType = Error>(
   )
 
   useEffect(() => {
+    needPollingRef.current = needPolling
+  }, [needPolling])
+
+  useEffect(() => {
     request.method = method
   }, [method, request])
 
@@ -102,33 +92,30 @@ function useDataLoader<ResultType, ErrorType = Error>(
   }, [enabled, request, keepPreviousData])
 
   useEffect(() => {
-    let timeout: NodeJS.Timeout
+    let interval: NodeJS.Timer
 
-    if (
-      isMountedRef.current &&
-      request &&
-      pollingInterval &&
-      needPolling &&
-      (request.status === StatusEnum.SUCCESS ||
-        request.status === StatusEnum.ERROR)
-    ) {
-      if (
-        (typeof needPolling === 'function' && needPolling(request.data)) ||
-        (typeof needPolling !== 'function' && needPolling)
-      ) {
-        timeout = setTimeout(() => {
+    if (pollingInterval) {
+      interval = setInterval(() => {
+        if (
+          (needPollingRef.current &&
+            typeof needPollingRef.current === 'function' &&
+            needPollingRef.current(request.data)) ||
+          (typeof needPollingRef.current !== 'function' &&
+            needPollingRef.current &&
+            !request.isCalled)
+        ) {
           request
             .load(true)
             .then(onSuccessRef.current)
             .catch(onErrorRef.current)
-        }, pollingInterval)
-      }
+        }
+      }, pollingInterval)
     }
 
     return () => {
-      if (timeout && !isMountedRef.current) clearTimeout(timeout)
+      if (interval) clearInterval(interval)
     }
-  }, [pollingInterval, needPolling, request, request.status, request.data])
+  }, [pollingInterval, request])
 
   return {
     data: !request.isFirstLoading ? request.data : initialData,
