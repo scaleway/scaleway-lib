@@ -1,4 +1,10 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react'
 import { useDataLoaderContext } from './DataLoaderProvider'
 import { StatusEnum } from './constants'
 import DataLoader from './dataloader'
@@ -21,10 +27,19 @@ function useDataLoader<ResultType, ErrorType = Error>(
   const methodRef = useRef(method)
   const onSuccessRef = useRef(onSuccess)
   const onErrorRef = useRef(onError ?? onGlobalError)
+  const isMountedRef = useRef(false)
   const [, setCounter] = useState(0)
   const forceRerender = useCallback(() => {
     setCounter(current => current + 1)
   }, [])
+
+  useLayoutEffect(() => {
+    isMountedRef.current = true
+
+    return () => {
+      isMountedRef.current = false
+    }
+  })
 
   const request = getOrAddRequest(fetchKey, {
     enabled,
@@ -75,10 +90,13 @@ function useDataLoader<ResultType, ErrorType = Error>(
   }, [onError, onGlobalError])
 
   useEffect(() => {
-    if (enabled && request.loadCount === 0) {
-      if (keepPreviousData) {
-        previousDataRef.current = request.data
-      }
+    if (keepPreviousData) {
+      previousDataRef.current = request.data
+    }
+  }, [request.data, keepPreviousData])
+
+  useEffect(() => {
+    if (enabled && !request.isCalled) {
       request.load().then(onSuccessRef.current).catch(onErrorRef.current)
     }
   }, [enabled, request, keepPreviousData])
@@ -87,6 +105,8 @@ function useDataLoader<ResultType, ErrorType = Error>(
     let timeout: NodeJS.Timeout
 
     if (
+      isMountedRef.current &&
+      request &&
       pollingInterval &&
       needPolling &&
       (request.status === StatusEnum.SUCCESS ||
@@ -106,7 +126,7 @@ function useDataLoader<ResultType, ErrorType = Error>(
     }
 
     return () => {
-      if (timeout) clearTimeout(timeout)
+      if (timeout && !isMountedRef.current) clearTimeout(timeout)
     }
   }, [pollingInterval, needPolling, request, request.status, request.data])
 
