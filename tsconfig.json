@@ -12,5 +12,6 @@
     "resolveJsonModule": true,
     "jsx": "preserve"
   },
-  "include": ["**/*.ts", "**/*.js", "**/.*.js", "**/*.tsx"]
+  "include": ["**/*.ts", "**/*.js", "**/.*.js", "**/*.tsx"],
+  "exclude": ["**/dist/*.ts"]
 }
