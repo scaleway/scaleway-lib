@@ -31,7 +31,7 @@ const formatOptions = {
     month: 'short',
     year: 'numeric',
   },
-}
+} as const
 
 const complexFormatOptions = {
   // Expected output format: 2020-02-13
@@ -40,10 +40,10 @@ const complexFormatOptions = {
   numericHour: (date: Date, locale: string): string =>
     `${formatISO(date, { representation: 'date' })} ${intlFormat(
       date,
-      formatOptions.hourOnly as Intl.DateTimeFormatOptions,
+      formatOptions.hourOnly,
       { locale },
     )}`,
-}
+} as const
 
 export const supportedFormats = [
   ...Object.keys(formatOptions),
@@ -87,7 +87,7 @@ const formatDate = (
       : format
 
   if (properDate instanceof Date) {
-    return intlFormat(properDate, options as Intl.DateTimeFormatOptions, {
+    return intlFormat(properDate, options as Parameters<typeof intlFormat>[1], {
       locale,
     })
   }
