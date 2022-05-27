@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.4.29](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@3.4.28...@scaleway/eslint-config-react@3.4.29) (2022-05-27)
+
+**Note:** Version bump only for package @scaleway/eslint-config-react
+
+
+
+
+
 ### 3.4.28 (2022-05-25)
 
 **Note:** Version bump only for package @scaleway/eslint-config-react
