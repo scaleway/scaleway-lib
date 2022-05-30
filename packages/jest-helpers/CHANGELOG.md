@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.0.2 (2022-05-30)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @testing-library/react to v13.3.0 ([#807](https://github.com/scaleway/scaleway-lib/issues/807)) ([2619a9e](https://github.com/scaleway/scaleway-lib/commit/2619a9ea14f3faea56d836d4c71fd7dbbc24736e))
+
+
+
 ### 2.0.1 (2022-05-24)
 
 **Note:** Version bump only for package @scaleway/jest-helpers
