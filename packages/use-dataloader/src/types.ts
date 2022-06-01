@@ -17,6 +17,7 @@ export type NeedPollingType<T = unknown> = boolean | ((data?: T) => boolean)
  * @property {number} [pollingInterval] relaunch the request after the last success
  * @property {boolean} [enabled=true] launch request automatically (default true)
  * @property {boolean} [keepPreviousData=true] do we need to keep the previous data after reload (default true)
+ * @property {number} [dataLifetime=undefined]  Time before data from previous success is considered as outdated (in millisecond)
  * @property {NeedPollingType} [needPolling=true] When pollingInterval is set you can set a set a custom callback to know if polling is enabled
  */
 export interface UseDataLoaderConfig<T = unknown> {
@@ -26,10 +27,7 @@ export interface UseDataLoaderConfig<T = unknown> {
   onError?: OnErrorFn
   onSuccess?: OnSuccessFn
   pollingInterval?: number
-  /**
-   * Max time before data from previous success is considered as outdated (in millisecond)
-   */
-  maxDataLifetime?: number
+  dataLifetime?: number
   needPolling?: NeedPollingType<T>
 }
 

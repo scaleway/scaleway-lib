@@ -15,18 +15,18 @@ type UseDataLoaderHookProps = {
 
 const PROMISE_TIMEOUT = 50
 
+const fakeSuccessPromise = () =>
+  new Promise(resolve => {
+    setTimeout(() => resolve(true), PROMISE_TIMEOUT)
+  })
+
 const initialProps = {
   config: {
     enabled: true,
     keepPreviousData: true,
   },
   key: 'test',
-  method: jest.fn(
-    () =>
-      new Promise(resolve => {
-        setTimeout(() => resolve(true), PROMISE_TIMEOUT)
-      }),
-  ),
+  method: jest.fn(fakeSuccessPromise),
 }
 const wrapper = ({ children }: { children?: ReactNode }) => (
   <DataLoaderProvider>{children}</DataLoaderProvider>
@@ -734,6 +734,86 @@ describe('useDataLoader', () => {
 
     await waitFor(() => expect(result.current[0].isSuccess).toBe(true))
     expect(mockedFn).toBeCalledTimes(2)
+  })
+
+  test('should render correctly with dataLifetime prevent double call', async () => {
+    const testingProps = {
+      config: {
+        dataLifetime: 1000,
+        enabled: true,
+      },
+      config2: {
+        dataLifetime: 1000,
+        enabled: false,
+      },
+      key: 'test-datalifetime',
+      method: jest.fn(fakeSuccessPromise),
+    }
+    const { result, rerender } = renderHook(
+      props => [
+        useDataLoader(props.key, props.method, props.config),
+        useDataLoader(props.key, props.method, props.config2),
+      ],
+      {
+        initialProps: testingProps,
+        wrapper,
+      },
+    )
+    expect(result.current[0].data).toBe(undefined)
+    expect(result.current[0].isLoading).toBe(true)
+    expect(result.current[0].previousData).toBe(undefined)
+    expect(testingProps.method).toBeCalledTimes(1)
+    await waitFor(() => expect(result.current[0].isSuccess).toBe(true))
+    testingProps.config2.enabled = true
+    rerender(testingProps)
+    expect(testingProps.method).toBeCalledTimes(1)
+    expect(result.current[0].data).toBe(true)
+    expect(result.current[1].data).toBe(true)
+    expect(result.current[0].isLoading).toBe(false)
+    expect(result.current[1].isLoading).toBe(false)
+    expect(result.current[0].previousData).toBe(undefined)
+    expect(result.current[1].previousData).toBe(undefined)
+  })
+
+  test('should render correctly with dataLifetime dont prevent double call', async () => {
+    const testingProps = {
+      config: {
+        enabled: true,
+      },
+      config2: {
+        enabled: false,
+      },
+      key: 'test-no-datalifetime',
+      method: jest.fn(fakeSuccessPromise),
+    }
+    const { result, rerender } = renderHook(
+      props => [
+        useDataLoader(props.key, props.method, props.config),
+        useDataLoader(props.key, props.method, props.config2),
+      ],
+      {
+        initialProps: testingProps,
+        wrapper,
+      },
+    )
+    expect(result.current[0].data).toBe(undefined)
+    expect(result.current[0].isLoading).toBe(true)
+    expect(result.current[0].previousData).toBe(undefined)
+    expect(testingProps.method).toBeCalledTimes(1)
+    await waitFor(() => expect(result.current[0].isSuccess).toBe(true))
+    testingProps.config2.enabled = true
+    rerender(testingProps)
+    await waitFor(() => expect(result.current[0].isLoading).toBe(true))
+    await waitFor(() => expect(result.current[1].isLoading).toBe(true))
+    expect(testingProps.method).toBeCalledTimes(2)
+    expect(result.current[0].data).toBe(true)
+    expect(result.current[0].isLoading).toBe(true)
+    expect(result.current[0].previousData).toBe(undefined)
+    expect(result.current[1].data).toBe(true)
+    expect(result.current[1].isLoading).toBe(true)
+    expect(result.current[1].previousData).toBe(undefined)
+    await waitFor(() => expect(result.current[0].isSuccess).toBe(true))
+    await waitFor(() => expect(result.current[1].isSuccess).toBe(true))
   })
 })
 /* eslint-enable no-console */
