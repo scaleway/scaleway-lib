@@ -20,7 +20,7 @@ importers:
       '@types/jest': 28.1.0
       '@types/node': 17.0.31
       '@types/prop-types': 15.7.5
-      '@types/react': 18.0.10
+      '@types/react': 18.0.12
       '@types/react-dom': 18.0.5
       builtin-modules: 3.3.0
       cross-env: 7.0.3
@@ -55,11 +55,11 @@ importers:
       '@rollup/plugin-node-resolve': 13.3.0_rollup@2.75.5
       '@testing-library/jest-dom': 5.16.4
       '@testing-library/react': 13.3.0_ef5jwxihqo6n7gxfmzogljlgcm
-      '@testing-library/react-hooks': 8.0.0_4hkwgow5356cdmtz5c5vaxngqm
+      '@testing-library/react-hooks': 8.0.0_eurjwfem4ie5nnznw6gmhlbswe
       '@types/jest': 28.1.0
       '@types/node': 17.0.31
       '@types/prop-types': 15.7.5
-      '@types/react': 18.0.10
+      '@types/react': 18.0.12
       '@types/react-dom': 18.0.5
       builtin-modules: 3.3.0
       cross-env: 7.0.3
@@ -4284,7 +4284,7 @@ packages:
       redent: 3.0.0
     dev: true
 
-  /@testing-library/react-hooks/8.0.0_4hkwgow5356cdmtz5c5vaxngqm:
+  /@testing-library/react-hooks/8.0.0_eurjwfem4ie5nnznw6gmhlbswe:
     resolution: {integrity: sha512-uZqcgtcUUtw7Z9N32W13qQhVAD+Xki2hxbTR461MKax8T6Jr8nsUvZB+vcBTkzY2nFvsUet434CsgF0ncW2yFw==}
     engines: {node: '>=12'}
     peerDependencies:
@@ -4301,7 +4301,7 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.17.9
-      '@types/react': 18.0.10
+      '@types/react': 18.0.12
       react: 18.1.0
       react-dom: 18.1.0_react@18.1.0
       react-error-boundary: 3.1.4_react@18.1.0
@@ -4411,6 +4411,13 @@ packages:
       pretty-format: 27.5.1
     dev: true
 
+  /@types/jest/28.1.1:
+    resolution: {integrity: sha512-C2p7yqleUKtCkVjlOur9BWVA4HgUQmEj/HWCt5WzZ5mLXrWnyIfl0wGuArc+kBXsy0ZZfLp+7dywB4HtSVYGVA==}
+    dependencies:
+      jest-matcher-utils: 27.5.1
+      pretty-format: 27.5.1
+    dev: true
+
   /@types/jsdom/16.2.14:
     resolution: {integrity: sha512-6BAy1xXEmMuHeAJ4Fv4yXKwBDTGTOseExKE3OaHiNycdHdZw59KfYzrt0DkDluvwmik1HRt6QS7bImxUmpSy+w==}
     dependencies:
@@ -4460,10 +4467,10 @@ packages:
   /@types/react-dom/18.0.5:
     resolution: {integrity: sha512-OWPWTUrY/NIrjsAPkAk1wW9LZeIjSvkXRhclsFO8CZcZGCOg2G0YZy4ft+rOyYxy8B7ui5iZzi9OkDebZ7/QSA==}
     dependencies:
-      '@types/react': 18.0.10
+      '@types/react': 18.0.12
 
-  /@types/react/18.0.10:
-    resolution: {integrity: sha512-dIugadZuIPrRzvIEevIu7A1smqOAjkSMv8qOfwPt9Ve6i6JT/FQcCHyk2qIAxwsQNKZt5/oGR0T4z9h2dXRAkg==}
+  /@types/react/18.0.12:
+    resolution: {integrity: sha512-duF1OTASSBQtcigUvhuiTB1Ya3OvSy+xORCiEf20H0P0lzx+/KeVsA99U5UjLXSbyo1DRJDlLKqTeM1ngosqtg==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
@@ -4485,7 +4492,7 @@ packages:
   /@types/testing-library__jest-dom/5.14.3:
     resolution: {integrity: sha512-oKZe+Mf4ioWlMuzVBaXQ9WDnEm1+umLx0InILg+yvZVBBDmzV5KfZyLrCvadtWcx8+916jLmHafcmqqffl+iIw==}
     dependencies:
-      '@types/jest': 28.1.0
+      '@types/jest': 28.1.1
     dev: true
 
   /@types/tough-cookie/4.0.2:
