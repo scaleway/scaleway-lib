@@ -1,5 +1,4 @@
-import { fireEvent } from '@testing-library/react'
-import { renderHook } from '@testing-library/react-hooks'
+import { fireEvent, renderHook } from '@testing-library/react'
 import mockdate from 'mockdate'
 import { ReactNode } from 'react'
 import GTMProvider, { SendGTM, useGTM } from '..'
@@ -48,8 +47,9 @@ describe('GTM hook', () => {
   })
 
   it('useGTM should not be defined without GTMProvider', () => {
-    const { result } = renderHook(() => useGTM())
     expect(() => {
+      const { result } = renderHook(() => useGTM())
+
       expect(result.current).toBe(undefined)
     }).toThrow(Error('useGTM must be used within a GTMProvider'))
   })

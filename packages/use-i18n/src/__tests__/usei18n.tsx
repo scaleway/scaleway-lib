@@ -1,4 +1,4 @@
-import { act, renderHook } from '@testing-library/react-hooks'
+import { act, renderHook, waitFor } from '@testing-library/react'
 import mockdate from 'mockdate'
 import { ReactNode } from 'react'
 import I18n, { useI18n, useTranslation } from '..'
@@ -45,45 +45,52 @@ describe('i18n hook', () => {
   })
 
   it('useTranslation should not be defined without I18nProvider', () => {
-    const { result } = renderHook(() => useTranslation(), {
-      wrapper: ({ children }: { children: ReactNode }) => <div>{children}</div>,
-    })
     expect(() => {
+      const { result } = renderHook(() => useTranslation(), {
+        wrapper: ({ children }: { children: ReactNode }) => <div>{children}</div>,
+      })
+
       expect(result.current).toBe(undefined)
     }).toThrow(Error('useTranslation must be used within a I18nProvider'))
   })
 
   it('useI18n should not be defined without I18nProvider', () => {
-    const { result } = renderHook(() => useI18n(), {
-      wrapper: ({ children }: { children: ReactNode }) => <div>{children}</div>,
-    })
     expect(() => {
+      const { result } = renderHook(() => useI18n(), {
+        wrapper: ({ children }: { children: ReactNode }) => <div>{children}</div>,
+      })
+
       expect(result.current).toBe(undefined)
     }).toThrow(Error('useI18n must be used within a I18nProvider'))
   })
 
   it('should use defaultLoad, useTranslation, switch local and translate', async () => {
-    const { result, waitForNextUpdate } = renderHook(() => useTranslation([]), {
+    const { result } = renderHook(() => useTranslation([]), {
       wrapper: wrapper({ defaultLocale: 'en' }),
     })
     // first render there is no load
     expect(result.current.t('title')).toEqual('')
-    // after load of en locale
-    await waitForNextUpdate()
-    expect(result.current.t('title')).toEqual(en.title)
+
+    await waitFor(() => {
+      // after load of en locale
+      expect(result.current.t('title')).toEqual(en.title)
+    })
+
     act(() => {
       result.current.switchLocale('fr')
     })
-    await waitForNextUpdate()
 
-    expect(result.current.t('title')).toEqual(fr.title)
+    await waitFor(() => {
+      expect(result.current.t('title')).toEqual(fr.title)
+    })
 
     act(() => {
       result.current.switchLocale('es')
     })
-    await waitForNextUpdate()
 
-    expect(result.current.t('title')).toEqual(es.title)
+    await waitFor(() => {
+      expect(result.current.t('title')).toEqual(es.title)
+    })
   })
 
   it('should use specific load on useTranslation', async () => {
@@ -95,7 +102,7 @@ describe('i18n hook', () => {
       namespace: string
     }) => import(`./locales/namespaces/${locale}/${namespace}.json`)
 
-    const { result, waitForNextUpdate } = renderHook(
+    const { result } = renderHook(
       () => useTranslation(['user', 'profile'], load),
       {
         wrapper: wrapper({
@@ -104,16 +111,17 @@ describe('i18n hook', () => {
         }),
       },
     )
-    // await load of locales
-    await waitForNextUpdate()
-    expect(result.current.translations).toStrictEqual({
-      en: {
-        'profile.lastName': 'Last Name',
-        'profile.name': 'Name',
-        'user.languages': 'Languages',
-        'user.lastName': 'Last Name',
-        'user.name': 'Name',
-      },
+
+    await waitFor(() => {
+      expect(result.current.translations).toStrictEqual({
+        en: {
+          'profile.lastName': 'Last Name',
+          'profile.name': 'Name',
+          'user.languages': 'Languages',
+          'user.lastName': 'Last Name',
+          'user.name': 'Name',
+        },
+      })
     })
 
     expect(result.current.t('user.name')).toEqual('Name')
@@ -124,22 +132,22 @@ describe('i18n hook', () => {
       result.current.switchLocale('fr')
     })
 
-    await waitForNextUpdate()
-
-    expect(result.current.translations).toStrictEqual({
-      en: {
-        'profile.lastName': 'Last Name',
-        'profile.name': 'Name',
-        'user.languages': 'Languages',
-        'user.lastName': 'Last Name',
-        'user.name': 'Name',
-      },
-      fr: {
-        'profile.lastName': 'Nom',
-        'profile.name': 'Prénom',
-        'user.lastName': 'Nom',
-        'user.name': 'Prénom',
-      },
+    await waitFor(() => {
+      expect(result.current.translations).toStrictEqual({
+        en: {
+          'profile.lastName': 'Last Name',
+          'profile.name': 'Name',
+          'user.languages': 'Languages',
+          'user.lastName': 'Last Name',
+          'user.name': 'Name',
+        },
+        fr: {
+          'profile.lastName': 'Nom',
+          'profile.name': 'Prénom',
+          'user.lastName': 'Nom',
+          'user.name': 'Prénom',
+        },
+      })
     })
 
     expect(result.current.t('user.name')).toEqual('Prénom')
@@ -159,7 +167,7 @@ describe('i18n hook', () => {
       namespace: string
     }) => import(`./locales/namespaces/${locale}/${namespace}.json`)
 
-    const { result, waitForNextUpdate } = renderHook(
+    const { result } = renderHook(
       () => useTranslation(['user'], load),
       {
         wrapper: wrapper({
@@ -175,23 +183,24 @@ describe('i18n hook', () => {
     act(() => {
       result.current.switchLocale('fr')
     })
-    await waitForNextUpdate()
 
-    expect(result.current.translations).toStrictEqual({
-      en: {
-        'user.languages': 'Languages',
-        'user.lastName': 'Last Name',
-        'user.name': 'Name',
-      },
-      fr: {
-        'user.lastName': 'Nom',
-        'user.name': 'Prénom',
-      },
+    await waitFor(() => {
+      expect(result.current.translations).toStrictEqual({
+        en: {
+          'user.languages': 'Languages',
+          'user.lastName': 'Last Name',
+          'user.name': 'Name',
+        },
+        fr: {
+          'user.lastName': 'Nom',
+          'user.name': 'Prénom',
+        },
+      })
+
+      expect(result.current.t('user.languages')).toEqual('')
+      expect(result.current.t('user.lastName')).toEqual('Nom')
+      expect(result.current.t('user.name')).toEqual('Prénom')
     })
-
-    expect(result.current.t('user.languages')).toEqual('')
-    expect(result.current.t('user.lastName')).toEqual('Nom')
-    expect(result.current.t('user.name')).toEqual('Prénom')
   })
 
   it('should set current locale from navigator languages', async () => {
@@ -202,14 +211,16 @@ describe('i18n hook', () => {
           languages: ['en-US', 'en'],
         } as unknown as Navigator),
     )
-    const { result, waitForNextUpdate } = renderHook(() => useI18n(), {
+    const { result } = renderHook(() => useI18n(), {
       wrapper: wrapper({
         defaultLocale: 'fr',
         supportedLocales: ['en', 'fr', 'es'],
       }),
     })
-    await waitForNextUpdate()
-    expect(result.current.currentLocale).toEqual('en')
+
+    await waitFor(() => {
+      expect(result.current.currentLocale).toEqual('en')
+    })
   })
 
   it('should set current locale from navigator language', async () => {
@@ -220,18 +231,20 @@ describe('i18n hook', () => {
           languages: undefined,
         } as unknown as Navigator),
     )
-    const { result, waitForNextUpdate } = renderHook(() => useI18n(), {
+    const { result } = renderHook(() => useI18n(), {
       wrapper: wrapper({
         defaultLocale: 'fr',
         supportedLocales: ['en', 'fr', 'es'],
       }),
     })
-    await waitForNextUpdate()
-    expect(result.current.currentLocale).toEqual('en')
+
+    await waitFor(() => {
+      expect(result.current.currentLocale).toEqual('en')
+    })
   })
 
   it('should switch locale', async () => {
-    const { result, waitForNextUpdate } = renderHook(() => useI18n(), {
+    const { result } = renderHook(() => useI18n(), {
       wrapper: wrapper({
         defaultLocale: 'en',
         supportedLocales: ['en', 'fr', 'es'],
@@ -243,18 +256,20 @@ describe('i18n hook', () => {
     act(() => {
       result.current.switchLocale('fr')
     })
-    await waitForNextUpdate()
 
-    expect(result.current.currentLocale).toEqual('fr')
-    expect(localStorage.getItem(LOCALE_ITEM_STORAGE)).toBe('fr')
+    await waitFor(() => {
+      expect(result.current.currentLocale).toEqual('fr')
+      expect(localStorage.getItem(LOCALE_ITEM_STORAGE)).toBe('fr')
+    })
 
     act(() => {
       result.current.switchLocale('es')
     })
-    await waitForNextUpdate()
 
-    expect(result.current.currentLocale).toEqual('es')
-    expect(localStorage.getItem(LOCALE_ITEM_STORAGE)).toBe('es')
+    await waitFor(() => {
+      expect(result.current.currentLocale).toEqual('es')
+      expect(localStorage.getItem(LOCALE_ITEM_STORAGE)).toBe('es')
+    })
 
     act(() => {
       result.current.switchLocale('test')
@@ -264,7 +279,7 @@ describe('i18n hook', () => {
   })
 
   it('should translate correctly with enableDebugKey', async () => {
-    const { result, waitForNextUpdate } = renderHook(() => useI18n(), {
+    const { result } = renderHook(() => useI18n(), {
       wrapper: wrapper({
         defaultLocale: 'en',
         defaultTranslations: { en },
@@ -273,31 +288,33 @@ describe('i18n hook', () => {
       }),
     })
     expect(result.current.t('test')).toEqual('test')
-    await waitForNextUpdate()
 
-    expect(result.current.t('title')).toEqual(en.title)
-    expect(result.current.t('subtitle')).toEqual(en.subtitle)
-    expect(result.current.t('plurals', { numPhotos: 0 })).toEqual(
-      'You have no photos.',
-    )
-    expect(result.current.t('plurals', { numPhotos: 1 })).toEqual(
-      'You have one photo.',
-    )
-    expect(result.current.t('plurals', { numPhotos: 2 })).toEqual(
-      'You have 2 photos.',
-    )
+    await waitFor(() => {
+      expect(result.current.t('title')).toEqual(en.title)
+      expect(result.current.t('subtitle')).toEqual(en.subtitle)
+      expect(result.current.t('plurals', { numPhotos: 0 })).toEqual(
+        'You have no photos.',
+      )
+      expect(result.current.t('plurals', { numPhotos: 1 })).toEqual(
+        'You have one photo.',
+      )
+      expect(result.current.t('plurals', { numPhotos: 2 })).toEqual(
+        'You have 2 photos.',
+      )
+    })
   })
 
   it('should use namespaceTranslation', async () => {
-    const { result, waitForNextUpdate } = renderHook(() => useI18n(), {
+    const { result } = renderHook(() => useI18n(), {
       wrapper: wrapper({
         defaultLocale: 'en',
         defaultTranslations: { en },
       }),
     })
-    await waitForNextUpdate()
-    const identiqueTranslate = result.current.namespaceTranslation('')
-    expect(identiqueTranslate('title')).toEqual(result.current.t('title'))
+    await waitFor(() => {
+      const identiqueTranslate = result.current.namespaceTranslation('')
+      expect(identiqueTranslate('title')).toEqual(result.current.t('title'))
+    })
 
     const translate = result.current.namespaceTranslation('tests.test')
     expect(translate('namespaces')).toEqual('test')
@@ -309,7 +326,7 @@ describe('i18n hook', () => {
   })
 
   it('should use formatNumber', async () => {
-    const { result, waitForNextUpdate } = renderHook(() => useI18n(), {
+    const { result } = renderHook(() => useI18n(), {
       wrapper: wrapper({
         defaultLocale: 'en',
       }),
@@ -334,17 +351,18 @@ describe('i18n hook', () => {
     act(() => {
       result.current.switchLocale('fr')
     })
-    await waitForNextUpdate()
 
     // https://stackoverflow.com/questions/58769806/identical-strings-not-matching-in-jest
     // https://stackoverflow.com/questions/54242039/intl-numberformat-space-character-does-not-match
 
-    expect(
-      result.current.formatNumber(2, {
-        currency: 'EUR',
-        style: 'currency',
-      }),
-    ).toEqual('2,00\xa0€')
+    await waitFor(() => {
+      expect(
+        result.current.formatNumber(2, {
+          currency: 'EUR',
+          style: 'currency',
+        }),
+      ).toEqual('2,00\xa0€')
+    })
 
     expect(
       result.current.formatNumber(2, { currency: 'USD', style: 'currency' }),
@@ -352,7 +370,7 @@ describe('i18n hook', () => {
   })
 
   it('should use formatList', async () => {
-    const { result, waitForNextUpdate } = renderHook(() => useI18n(), {
+    const { result } = renderHook(() => useI18n(), {
       wrapper: wrapper({
         defaultLocale: 'en',
       }),
@@ -384,14 +402,14 @@ describe('i18n hook', () => {
       result.current.switchLocale('fr')
     })
 
-    await waitForNextUpdate()
-
-    expect(
-      result.current.formatList(vehicles, {
-        style: 'long',
-        type: 'conjunction',
-      }),
-    ).toEqual('Motorcycle, Bus et Car')
+    await waitFor(() => {
+      expect(
+        result.current.formatList(vehicles, {
+          style: 'long',
+          type: 'conjunction',
+        }),
+      ).toEqual('Motorcycle, Bus et Car')
+    })
 
     expect(
       result.current.formatList(vehicles, {
@@ -409,15 +427,16 @@ describe('i18n hook', () => {
   })
 
   it('should use datetime', async () => {
-    const { result, waitForNextUpdate } = renderHook(() => useI18n(), {
+    const { result } = renderHook(() => useI18n(), {
       wrapper: wrapper({
         defaultLocale: 'en',
       }),
     })
-    await waitForNextUpdate()
     const date = new Date('December 17, 1995 03:24:00')
 
-    expect(result.current.datetime(date)).toEqual('12/17/1995')
+    await waitFor(() => {
+      expect(result.current.datetime(date)).toEqual('12/17/1995')
+    })
 
     expect(
       result.current.datetime(date, {
@@ -456,9 +475,10 @@ describe('i18n hook', () => {
     act(() => {
       result.current.switchLocale('fr')
     })
-    await waitForNextUpdate()
 
-    expect(result.current.datetime(date)).toEqual('17/12/1995')
+    await waitFor(() => {
+      expect(result.current.datetime(date)).toEqual('17/12/1995')
+    })
 
     expect(
       result.current.datetime(date, {
@@ -479,7 +499,7 @@ describe('i18n hook', () => {
   })
 
   it('should relativeTime', async () => {
-    const { result, waitForNextUpdate } = renderHook(() => useI18n(), {
+    const { result } = renderHook(() => useI18n(), {
       wrapper: wrapper({
         defaultLocale: 'en',
       }),
@@ -492,13 +512,14 @@ describe('i18n hook', () => {
     act(() => {
       result.current.switchLocale('fr')
     })
-    await waitForNextUpdate()
 
-    expect(result.current.relativeTime(date)).toEqual('il y a plus de 20 ans')
+    await waitFor(() => {
+      expect(result.current.relativeTime(date)).toEqual('il y a plus de 20 ans')
+    })
   })
 
   it('should relativeTimeStrict', async () => {
-    const { result, waitForNextUpdate } = renderHook(() => useI18n(), {
+    const { result } = renderHook(() => useI18n(), {
       wrapper: wrapper({
         defaultLocale: 'en',
       }),
@@ -510,13 +531,14 @@ describe('i18n hook', () => {
     act(() => {
       result.current.switchLocale('fr')
     })
-    await waitForNextUpdate()
 
-    expect(result.current.relativeTimeStrict(date)).toEqual('il y a 3499 jours')
+    await waitFor(() => {
+      expect(result.current.relativeTimeStrict(date)).toEqual('il y a 3499 jours')
+    })
   })
 
   it('should formatUnit', async () => {
-    const { result, waitForNextUpdate } = renderHook(() => useI18n(), {
+    const { result } = renderHook(() => useI18n(), {
       wrapper: wrapper({
         defaultLocale: 'en',
       }),
@@ -528,15 +550,16 @@ describe('i18n hook', () => {
     act(() => {
       result.current.switchLocale('fr')
     })
-    await waitForNextUpdate()
 
-    expect(
-      result.current.formatUnit(12, { short: false, unit: 'byte' }),
-    ).toEqual('12 octets')
+    await waitFor(() => {
+      expect(
+        result.current.formatUnit(12, { short: false, unit: 'byte' }),
+      ).toEqual('12 octets')
+    })
   })
 
   it('should formatDate', async () => {
-    const { result, waitForNextUpdate } = renderHook(() => useI18n(), {
+    const { result } = renderHook(() => useI18n(), {
       wrapper: wrapper({
         defaultLocale: 'en',
       }),
@@ -548,23 +571,25 @@ describe('i18n hook', () => {
     act(() => {
       result.current.switchLocale('fr')
     })
-    await waitForNextUpdate()
 
-    expect(
-      result.current.formatDate(new Date(2020, 1, 13, 16, 28), 'numericHour'),
-    ).toEqual('2020-02-13 16:28')
+    await waitFor(() => {
+      expect(
+        result.current.formatDate(new Date(2020, 1, 13, 16, 28), 'numericHour'),
+      ).toEqual('2020-02-13 16:28')
+    })
   })
 
   it('should load default datefns locales', async () => {
-    const { result, waitForNextUpdate } = renderHook(() => useI18n(), {
+    const { result } = renderHook(() => useI18n(), {
       wrapper: wrapper({
         defaultLocale: 'test',
         supportedLocales: ['test'],
       }),
     })
     expect(result.current.dateFnsLocale).toBe(undefined)
-    await waitForNextUpdate()
 
-    expect(result.current.dateFnsLocale?.code).toEqual('en-GB')
+    await waitFor(() => {
+      expect(result.current.dateFnsLocale?.code).toEqual('en-GB')
+    })
   })
 })

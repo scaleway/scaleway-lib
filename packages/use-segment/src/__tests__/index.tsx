@@ -1,5 +1,5 @@
 import { AnalyticsBrowser, Context } from '@segment/analytics-next'
-import { renderHook } from '@testing-library/react-hooks'
+import { renderHook, waitFor } from '@testing-library/react'
 import { ReactNode } from 'react'
 import waitForExpect from 'wait-for-expect'
 import SegmentProvider, { useSegment } from '..'
@@ -67,8 +67,9 @@ describe('segment hook', () => {
   })
 
   it('useSegment should not be defined without SegmentProvider', () => {
-    const { result } = renderHook(() => useSegment())
     expect(() => {
+      const { result } = renderHook(() => useSegment())
+
       expect(result.current).toBe(undefined)
     }).toThrow(Error('useSegment must be used within a SegmentProvider'))
   })
@@ -116,7 +117,7 @@ describe('segment hook', () => {
       .spyOn(AnalyticsBrowser, 'load')
       .mockResolvedValue([{} as Analytics, {} as Context])
 
-    const { result, waitForNextUpdate } = renderHook(
+    const { result } = renderHook(
       () => useSegment<DefaultEvents>(),
       {
         wrapper: wrapper({
@@ -133,9 +134,11 @@ describe('segment hook', () => {
       },
     )
 
-    await waitForNextUpdate()
     expect(mock).toHaveBeenCalledTimes(1)
-    expect(result.current.analytics).toStrictEqual({})
+
+    await waitFor(() => {
+      expect(result.current.analytics).toStrictEqual({})
+    })
   })
 
   it('Provider should load with key', async () => {
@@ -145,7 +148,7 @@ describe('segment hook', () => {
 
     const settings = { writeKey: 'helloworld' }
 
-    const { result, waitForNextUpdate } = renderHook(
+    const { result } = renderHook(
       () => useSegment<DefaultEvents>(),
       {
         wrapper: wrapper({
@@ -155,10 +158,12 @@ describe('segment hook', () => {
       },
     )
 
-    await waitForNextUpdate()
     expect(mock).toHaveBeenCalledTimes(1)
     expect(mock).toHaveBeenCalledWith(settings, undefined)
-    expect(result.current.analytics).toStrictEqual({})
+
+    await waitFor(() => {
+      expect(result.current.analytics).toStrictEqual({})
+    })
   })
 
   it('Provider should load with key and cdn', async () => {
@@ -168,7 +173,7 @@ describe('segment hook', () => {
 
     const settings = { cdn: 'https://cdn.proxy', writeKey: 'helloworld' }
 
-    const { result, waitForNextUpdate } = renderHook(
+    const { result } = renderHook(
       () => useSegment<DefaultEvents>(),
       {
         wrapper: wrapper({
@@ -178,10 +183,12 @@ describe('segment hook', () => {
       },
     )
 
-    await waitForNextUpdate()
     expect(mock).toHaveBeenCalledTimes(1)
     expect(mock).toHaveBeenCalledWith(settings, undefined)
-    expect(result.current.analytics).toStrictEqual({})
+
+    await waitFor(() => {
+      expect(result.current.analytics).toStrictEqual({})
+    })
   })
 
   it('Provider should load and call onError on analytics load error', async () => {
@@ -218,7 +225,7 @@ describe('segment hook', () => {
 
     const settings = { writeKey: 'pleasethrow' }
 
-    const { result, waitForNextUpdate } = renderHook(
+    const { result } = renderHook(
       () => useSegment<DefaultEvents>(),
       {
         wrapper: wrapper({
@@ -232,9 +239,9 @@ describe('segment hook', () => {
 
     expect(mock).toHaveBeenCalledTimes(1)
 
-    await waitForNextUpdate()
-
-    await result.current.events.errorEvent()
+    await waitFor(async () => {
+      await result.current.events.errorEvent()
+    })
 
     await waitForExpect(() => {
       expect(onEventError).toHaveBeenCalledTimes(1)
@@ -252,7 +259,7 @@ describe('segment hook', () => {
       initialPageview: false,
     }
 
-    const { result, waitForNextUpdate } = renderHook(
+    const { result } = renderHook(
       () => useSegment<DefaultEvents>(),
       {
         wrapper: wrapper({
@@ -263,10 +270,12 @@ describe('segment hook', () => {
       },
     )
 
-    await waitForNextUpdate()
     expect(mock).toHaveBeenCalledTimes(1)
     expect(mock).toHaveBeenCalledWith(settings, initOptions)
-    expect(result.current.analytics).toStrictEqual({})
+
+    await waitFor(() => {
+      expect(result.current.analytics).toStrictEqual({})
+    })
   })
 
   it('useSegment should correctly infer types', async () => {
