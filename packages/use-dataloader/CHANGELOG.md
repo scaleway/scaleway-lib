@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.14.0 (2022-06-06)
+
+
+### Features
+
+* introduce datalifetime in dataloader ([#817](https://github.com/scaleway/scaleway-lib/issues/817)) ([7b39c50](https://github.com/scaleway/scaleway-lib/commit/7b39c50b24bf8232644c6e5fef4d2252ec821076))
+
+
+
 ## [2.13.0](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-dataloader@2.12.0...@scaleway/use-dataloader@2.13.0) (2022-05-24)
 
 
