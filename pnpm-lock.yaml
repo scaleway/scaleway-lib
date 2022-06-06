@@ -17,7 +17,7 @@ importers:
       '@testing-library/jest-dom': 5.16.4
       '@testing-library/react': 13.3.0
       '@testing-library/react-hooks': 8.0.0
-      '@types/jest': 28.1.0
+      '@types/jest': 28.1.1
       '@types/node': 17.0.31
       '@types/prop-types': 15.7.5
       '@types/react': 18.0.12
@@ -56,7 +56,7 @@ importers:
       '@testing-library/jest-dom': 5.16.4
       '@testing-library/react': 13.3.0_ef5jwxihqo6n7gxfmzogljlgcm
       '@testing-library/react-hooks': 8.0.0_eurjwfem4ie5nnznw6gmhlbswe
-      '@types/jest': 28.1.0
+      '@types/jest': 28.1.1
       '@types/node': 17.0.31
       '@types/prop-types': 15.7.5
       '@types/react': 18.0.12
@@ -4402,13 +4402,6 @@ packages:
     resolution: {integrity: sha512-c3mAZEuK0lvBp8tmuL74XRKn1+y2dcwOUpH7x4WrF6gk1GIgiluDRgMYQtw2OFcBvAJWlt6ASU3tSqxp0Uu0Aw==}
     dependencies:
       '@types/istanbul-lib-report': 3.0.0
-    dev: true
-
-  /@types/jest/28.1.0:
-    resolution: {integrity: sha512-ITfF6JJIl9zbEi2k6NmhNE/BiDqfsI/ceqfvdaWaPbcrCpYyyRq4KtDQIWh6vQUru6SqwppODiom/Zhid+np6A==}
-    dependencies:
-      jest-matcher-utils: 27.5.1
-      pretty-format: 27.5.1
     dev: true
 
   /@types/jest/28.1.1:
