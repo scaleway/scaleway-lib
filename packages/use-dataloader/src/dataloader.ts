@@ -39,6 +39,8 @@ class DataLoader<ResultType = unknown, ErrorType = unknown> {
 
   public isFirstLoading = true
 
+  public dataUpdatedAt?: number
+
   public constructor(args: DataLoaderConstructorArgs<ResultType>) {
     this.key = args.key
     this.method = args.method
@@ -102,6 +104,7 @@ class DataLoader<ResultType = unknown, ErrorType = unknown> {
         this.status = StatusEnum.SUCCESS
         this.data = data
         this.error = undefined
+        this.dataUpdatedAt = Date.now()
       }
       this.isCalled = false
       this.isFirstLoading = false

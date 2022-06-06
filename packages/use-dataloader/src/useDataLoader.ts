@@ -15,6 +15,7 @@ function useDataLoader<ResultType, ErrorType = Error>(
     needPolling = true,
     pollingInterval,
     initialData,
+    dataLifetime,
   }: UseDataLoaderConfig<ResultType> = {},
 ): UseDataLoaderResult<ResultType, ErrorType> {
   const { getOrAddRequest, onError: onGlobalError } = useDataLoaderContext()
@@ -86,10 +87,18 @@ function useDataLoader<ResultType, ErrorType = Error>(
   }, [request.data, keepPreviousData])
 
   useEffect(() => {
-    if (enabled && !request.isCalled) {
+    // If this request is enabled and not already called
+    if (
+      enabled &&
+      (!request.dataUpdatedAt ||
+        !dataLifetime ||
+        (request.dataUpdatedAt &&
+          dataLifetime &&
+          request.dataUpdatedAt + dataLifetime < Date.now()))
+    ) {
       request.load().then(onSuccessRef.current).catch(onErrorRef.current)
     }
-  }, [enabled, request, keepPreviousData])
+  }, [enabled, request, keepPreviousData, dataLifetime])
 
   useEffect(() => {
     let interval: NodeJS.Timer

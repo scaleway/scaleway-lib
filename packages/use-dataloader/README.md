@@ -228,21 +228,22 @@ const useDataLoader = (
     onError, // Callback when a error is occured
     initialData, // Initial data if no one is present in the cache before the request
     pollingInterval, // Relaunch the request after the last success
+    needPolling = true, // If true or function return true it will execute the polling
     enabled = true, // Launch request automatically
     keepPreviousData = true, // Do we need to keep the previous data after reload
-    maxDataLifetime, // Max time before previous success data is outdated (in millisecond)
+    dataLifetime, // Max time before previous success data is outdated (in millisecond). By default refetch on every mount
   } = {},
 )
 ```
 
-|   Property   |                                                      Description                                                      |
-| :----------: | :-------------------------------------------------------------------------------------------------------------------: |
-|    isIdle    |                                         `true` if the request is not launched                                         |
-|  isLoading   |                    `true` if the request is launched **or** enabled is `true` and isIdle is `true`                    |
-|  isSuccess   |                                      `true`if the request finished successfully                                       |
-|   isError    |                                         `true` if the request throw an error                                          |
-|  isPolling   | `true` if the request if `enabled` is true, `pollingInterval` is defined and the status is `isLoading` or `isSuccess` |
-| previousData |                             if `keepPreviousData` is true it return the last data fetched                             |
-|     data     |     return the `initialData` if no data is fetched or not present in the cache otherwise return the data fetched      |
-|    error     |                                      return the error occured during the request                                      |
-|    reload    |                            allow you to reload the data (it doesn't clear the actual data)                            |
+|   Property   |                                                                 Description                                                                  |
+| :----------: | :------------------------------------------------------------------------------------------------------------------------------------------: |
+|    isIdle    |                                                    `true` if the request is not launched                                                     |
+|  isLoading   |                               `true` if the request is launched **or** enabled is `true` and isIdle is `true`                                |
+|  isSuccess   |                                                  `true`if the request finished successfully                                                  |
+|   isError    |                                                     `true` if the request throw an error                                                     |
+|  isPolling   | `true` if the request if `enabled` is true, `pollingInterval` is defined and the status is `isLoading`,`isSuccess` or during the first fetch |
+| previousData |                                        if `keepPreviousData` is true it return the last data fetched                                         |
+|     data     |                 return the `initialData` if no data is fetched or not present in the cache otherwise return the data fetched                 |
+|    error     |                                                 return the error occured during the request                                                  |
+|    reload    |                                       allow you to reload the data (it doesn't clear the actual data)                                        |
