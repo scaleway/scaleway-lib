@@ -61,7 +61,8 @@ describe('useMedia hook', () => {
     )
 
     unmount()
-    callback?.()
+    // @ts-expect-error variable is assigned inside mockAddEventListener
+    callback()
 
     expect(result.current).toBe(false)
   })
