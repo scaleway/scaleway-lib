@@ -1,11 +1,12 @@
 import { useEffect, useLayoutEffect, useState } from 'react'
 import { Effect } from './types'
-import { noop } from './utilities'
+
+function noop() {}
 
 export const mockMediaQueryList: MediaQueryList = {
   addEventListener: noop,
   addListener: noop,
-  dispatchEvent: () => true,
+  dispatchEvent: /* istanbul ignore next */ () => true,
   matches: false,
   media: '',
   onchange: noop,
