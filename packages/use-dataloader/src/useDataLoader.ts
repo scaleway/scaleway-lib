@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useDataLoaderContext } from './DataLoaderProvider'
 import { StatusEnum } from './constants'
 import DataLoader from './dataloader'
@@ -41,9 +41,25 @@ function useDataLoader<ResultType, ErrorType = Error>(
     }
   }, [request, forceRerender])
 
+  const needLoad = useMemo(
+    () =>
+      !!(
+        enabled &&
+        (!request.dataUpdatedAt ||
+          !dataLifetime ||
+          (request.dataUpdatedAt &&
+            dataLifetime &&
+            request.dataUpdatedAt + dataLifetime < Date.now()))
+      ),
+    [enabled, request.dataUpdatedAt, dataLifetime],
+  )
+
+  const optimisticIsLoadingRef = useRef(needLoad)
+
   const previousDataRef = useRef(request.data)
 
-  const isLoading = request.status === StatusEnum.LOADING
+  const isLoading =
+    request.status === StatusEnum.LOADING || optimisticIsLoadingRef.current
 
   const isSuccess = request.status === StatusEnum.SUCCESS
 
@@ -87,18 +103,11 @@ function useDataLoader<ResultType, ErrorType = Error>(
   }, [request.data, keepPreviousData])
 
   useEffect(() => {
-    // If this request is enabled and not already called
-    if (
-      enabled &&
-      (!request.dataUpdatedAt ||
-        !dataLifetime ||
-        (request.dataUpdatedAt &&
-          dataLifetime &&
-          request.dataUpdatedAt + dataLifetime < Date.now()))
-    ) {
+    if (needLoad) {
       request.load().then(onSuccessRef.current).catch(onErrorRef.current)
     }
-  }, [enabled, request, keepPreviousData, dataLifetime])
+    optimisticIsLoadingRef.current = false
+  }, [needLoad, request])
 
   useEffect(() => {
     let interval: NodeJS.Timer

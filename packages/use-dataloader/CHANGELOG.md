@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.14.1 (2022-06-07)
+
+
+### Bug Fixes
+
+* optimistic isloading value on hook mount ([#831](https://github.com/scaleway/scaleway-lib/issues/831)) ([3e57d55](https://github.com/scaleway/scaleway-lib/commit/3e57d55721b6d2157d4bf53b925146b9fd8b550e))
+
+
+
 ## 2.14.0 (2022-06-06)
 
 

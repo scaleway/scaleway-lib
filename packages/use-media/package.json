@@ -1,12 +1,13 @@
 {
-  "name": "@scaleway/use-dataloader",
-  "version": "2.14.1",
-  "description": "A small hook to handle api requests",
+  "name": "@scaleway/use-media",
+  "version": "1.1.0",
+  "description": "A small hook to track CSS media query state",
   "keywords": [
     "react",
     "reactjs",
     "hooks",
-    "dataloader"
+    "media",
+    "media queries"
   ],
   "type": "module",
   "main": "dist/index.js",
@@ -21,12 +22,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/scaleway/scaleway-lib",
-    "directory": "packages/use-dataloader"
+    "directory": "packages/use-media"
   },
   "license": "MIT",
-  "dependencies": {
-    "prop-types": "15.8.1"
-  },
   "peerDependencies": {
     "react": "17.x || 18.x"
   }
