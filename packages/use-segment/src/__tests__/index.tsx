@@ -67,11 +67,18 @@ describe('segment hook', () => {
   })
 
   it('useSegment should not be defined without SegmentProvider', () => {
-    expect(() => {
-      const { result } = renderHook(() => useSegment())
+    const orignalConsoleError = console.error
+    console.error = jest.fn
 
-      expect(result.current).toBe(undefined)
-    }).toThrow(Error('useSegment must be used within a SegmentProvider'))
+    try {
+      renderHook(() => useSegment())
+    } catch (error) {
+      expect((error as Error)?.message).toBe(
+        'useSegment must be used within a SegmentProvider',
+      )
+    }
+
+    console.error = orignalConsoleError
   })
 
   it('useSegment should not load without settings', () => {
@@ -117,22 +124,19 @@ describe('segment hook', () => {
       .spyOn(AnalyticsBrowser, 'load')
       .mockResolvedValue([{} as Analytics, {} as Context])
 
-    const { result } = renderHook(
-      () => useSegment<DefaultEvents>(),
-      {
-        wrapper: wrapper({
-          events: defaultEvents,
-          initOptions: {
-            integrations: {
-              testInteg: false,
-              testInteg2: true,
-              testInteg3: false,
-            },
+    const { result } = renderHook(() => useSegment<DefaultEvents>(), {
+      wrapper: wrapper({
+        events: defaultEvents,
+        initOptions: {
+          integrations: {
+            testInteg: false,
+            testInteg2: true,
+            testInteg3: false,
           },
-          settings: { writeKey: 'sample ' },
-        }),
-      },
-    )
+        },
+        settings: { writeKey: 'sample ' },
+      }),
+    })
 
     expect(mock).toHaveBeenCalledTimes(1)
 
@@ -148,15 +152,12 @@ describe('segment hook', () => {
 
     const settings = { writeKey: 'helloworld' }
 
-    const { result } = renderHook(
-      () => useSegment<DefaultEvents>(),
-      {
-        wrapper: wrapper({
-          events: defaultEvents,
-          settings,
-        }),
-      },
-    )
+    const { result } = renderHook(() => useSegment<DefaultEvents>(), {
+      wrapper: wrapper({
+        events: defaultEvents,
+        settings,
+      }),
+    })
 
     expect(mock).toHaveBeenCalledTimes(1)
     expect(mock).toHaveBeenCalledWith(settings, undefined)
@@ -173,15 +174,12 @@ describe('segment hook', () => {
 
     const settings = { cdn: 'https://cdn.proxy', writeKey: 'helloworld' }
 
-    const { result } = renderHook(
-      () => useSegment<DefaultEvents>(),
-      {
-        wrapper: wrapper({
-          events: defaultEvents,
-          settings,
-        }),
-      },
-    )
+    const { result } = renderHook(() => useSegment<DefaultEvents>(), {
+      wrapper: wrapper({
+        events: defaultEvents,
+        settings,
+      }),
+    })
 
     expect(mock).toHaveBeenCalledTimes(1)
     expect(mock).toHaveBeenCalledWith(settings, undefined)
@@ -225,17 +223,14 @@ describe('segment hook', () => {
 
     const settings = { writeKey: 'pleasethrow' }
 
-    const { result } = renderHook(
-      () => useSegment<DefaultEvents>(),
-      {
-        wrapper: wrapper({
-          events: defaultEvents,
-          onError,
-          onEventError,
-          settings,
-        }),
-      },
-    )
+    const { result } = renderHook(() => useSegment<DefaultEvents>(), {
+      wrapper: wrapper({
+        events: defaultEvents,
+        onError,
+        onEventError,
+        settings,
+      }),
+    })
 
     expect(mock).toHaveBeenCalledTimes(1)
 
@@ -259,16 +254,13 @@ describe('segment hook', () => {
       initialPageview: false,
     }
 
-    const { result } = renderHook(
-      () => useSegment<DefaultEvents>(),
-      {
-        wrapper: wrapper({
-          events: defaultEvents,
-          initOptions,
-          settings,
-        }),
-      },
-    )
+    const { result } = renderHook(() => useSegment<DefaultEvents>(), {
+      wrapper: wrapper({
+        events: defaultEvents,
+        initOptions,
+        settings,
+      }),
+    })
 
     expect(mock).toHaveBeenCalledTimes(1)
     expect(mock).toHaveBeenCalledWith(settings, initOptions)

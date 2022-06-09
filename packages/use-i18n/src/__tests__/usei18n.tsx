@@ -45,23 +45,41 @@ describe('i18n hook', () => {
   })
 
   it('useTranslation should not be defined without I18nProvider', () => {
-    expect(() => {
-      const { result } = renderHook(() => useTranslation(), {
-        wrapper: ({ children }: { children: ReactNode }) => <div>{children}</div>,
-      })
+    const orignalConsoleError = console.error
+    console.error = jest.fn
 
-      expect(result.current).toBe(undefined)
-    }).toThrow(Error('useTranslation must be used within a I18nProvider'))
+    try {
+      renderHook(() => useTranslation(), {
+        wrapper: ({ children }: { children: ReactNode }) => (
+          <div>{children}</div>
+        ),
+      })
+    } catch (error) {
+      expect((error as Error)?.message).toBe(
+        'useTranslation must be used within a I18nProvider',
+      )
+    }
+
+    console.error = orignalConsoleError
   })
 
   it('useI18n should not be defined without I18nProvider', () => {
-    expect(() => {
-      const { result } = renderHook(() => useI18n(), {
-        wrapper: ({ children }: { children: ReactNode }) => <div>{children}</div>,
-      })
+    const orignalConsoleError = console.error
+    console.error = jest.fn
 
-      expect(result.current).toBe(undefined)
-    }).toThrow(Error('useI18n must be used within a I18nProvider'))
+    try {
+      renderHook(() => useI18n(), {
+        wrapper: ({ children }: { children: ReactNode }) => (
+          <div>{children}</div>
+        ),
+      })
+    } catch (error) {
+      expect((error as Error)?.message).toBe(
+        'useI18n must be used within a I18nProvider',
+      )
+    }
+
+    console.error = orignalConsoleError
   })
 
   it('should use defaultLoad, useTranslation, switch local and translate', async () => {
@@ -167,16 +185,13 @@ describe('i18n hook', () => {
       namespace: string
     }) => import(`./locales/namespaces/${locale}/${namespace}.json`)
 
-    const { result } = renderHook(
-      () => useTranslation(['user'], load),
-      {
-        wrapper: wrapper({
-          defaultLocale: 'fr',
-          enableDefaultLocale: true,
-          supportedLocales: ['en', 'fr'],
-        }),
-      },
-    )
+    const { result } = renderHook(() => useTranslation(['user'], load), {
+      wrapper: wrapper({
+        defaultLocale: 'fr',
+        enableDefaultLocale: true,
+        supportedLocales: ['en', 'fr'],
+      }),
+    })
 
     // current local will be 'en' based on navigator
     // await load of locales
@@ -533,7 +548,9 @@ describe('i18n hook', () => {
     })
 
     await waitFor(() => {
-      expect(result.current.relativeTimeStrict(date)).toEqual('il y a 3499 jours')
+      expect(result.current.relativeTimeStrict(date)).toEqual(
+        'il y a 3499 jours',
+      )
     })
   })
 

@@ -47,11 +47,18 @@ describe('GTM hook', () => {
   })
 
   it('useGTM should not be defined without GTMProvider', () => {
-    expect(() => {
-      const { result } = renderHook(() => useGTM())
+    const orignalConsoleError = console.error
+    console.error = jest.fn
 
-      expect(result.current).toBe(undefined)
-    }).toThrow(Error('useGTM must be used within a GTMProvider'))
+    try {
+      renderHook(() => useGTM())
+    } catch (error) {
+      expect((error as Error)?.message).toBe(
+        'useGTM must be used within a GTMProvider',
+      )
+    }
+
+    console.error = orignalConsoleError
   })
 
   it('Provider should call onLoadError if script fail to load', () => {
