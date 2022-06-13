@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.10](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@3.3.9...@scaleway/use-i18n@3.3.10) (2022-06-13)
+
+
+### Bug Fixes
+
+* **deps:** update dependency filesize to v9.0.2 ([#837](https://github.com/scaleway/scaleway-lib/issues/837)) ([c27143c](https://github.com/scaleway/scaleway-lib/commit/c27143c3ffad0d277740f16da45bcdbcaafaaf78))
+
+
+
 ## 3.3.9 (2022-06-09)
 
 **Note:** Version bump only for package @scaleway/use-i18n
