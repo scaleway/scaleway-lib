@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.6](https://github.com/scaleway/scaleway-lib/compare/@scaleway/jest-helpers@2.0.5...@scaleway/jest-helpers@2.0.6) (2022-06-16)
+
+
+### Bug Fixes
+
+* **deps:** update react monorepo ([#841](https://github.com/scaleway/scaleway-lib/issues/841)) ([1b0fc30](https://github.com/scaleway/scaleway-lib/commit/1b0fc30564c01994551722e8dff1e35d78205091))
+
+
+
 ## [2.0.5](https://github.com/scaleway/scaleway-lib/compare/@scaleway/jest-helpers@2.0.4...@scaleway/jest-helpers@2.0.5) (2022-06-14)
 
 **Note:** Version bump only for package @scaleway/jest-helpers

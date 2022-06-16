@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.1.5 (2022-06-16)
+
+
+### Bug Fixes
+
+* **deps:** update react monorepo ([#841](https://github.com/scaleway/scaleway-lib/issues/841)) ([1b0fc30](https://github.com/scaleway/scaleway-lib/commit/1b0fc30564c01994551722e8dff1e35d78205091))
+
+
+
 ## 3.1.4 (2022-06-09)
 
 **Note:** Version bump only for package @scaleway/use-query-params
