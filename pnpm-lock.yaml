@@ -30,7 +30,7 @@ importers:
       jest-junit: 13.2.0
       jest-localstorage-mock: 2.4.21
       lerna: 5.0.0
-      lint-staged: 13.0.1
+      lint-staged: 13.0.2
       mockdate: 3.0.5
       prettier: 2.6.2
       react: 18.2.0
@@ -68,7 +68,7 @@ importers:
       jest-junit: 13.2.0
       jest-localstorage-mock: 2.4.21
       lerna: 5.0.0
-      lint-staged: 13.0.1
+      lint-staged: 13.0.2
       mockdate: 3.0.5
       prettier: 2.6.2
       react: 18.2.0
@@ -7841,8 +7841,8 @@ packages:
   /lines-and-columns/1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
 
-  /lint-staged/13.0.1:
-    resolution: {integrity: sha512-Ykaf4QTi0a02BF7cnq7JIPGOJxH4TkNMWhSlJdH9wOekd0X+gog47Jfh/0L31DqZe5AiydLGC7LkPqpaNm+Kvg==}
+  /lint-staged/13.0.2:
+    resolution: {integrity: sha512-qQLfLTh9z34eMzfEHENC+QBskZfxjomrf+snF3xJ4BzilORbD989NLqQ00ughsF/A+PT41e87+WsMFabf9++pQ==}
     engines: {node: ^14.13.1 || >=16.0.0}
     hasBin: true
     dependencies:
@@ -9967,7 +9967,7 @@ packages:
     dev: true
 
   /through/2.3.8:
-    resolution: {integrity: sha1-DdTJ/6q8NXlgsbckEV1+Doai4fU=}
+    resolution: {integrity: sha512-w89qg7PI8wAdvX60bMDP+bFoD5Dvhm9oLheFp5O4a2QF0cSBGsBX4qZmadPMvVqlLJBBci+WqGGOAPvcDeNSVg==}
     dev: true
 
   /through2/2.0.5:
