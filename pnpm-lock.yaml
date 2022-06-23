@@ -151,14 +151,14 @@ importers:
       '@formatjs/ecma402-abstract': 1.11.7
       '@formatjs/fast-memoize': 1.2.4
       date-fns: 2.28.0
-      filesize: 9.0.4
+      filesize: 9.0.9
       intl-messageformat: 10.1.0
       prop-types: 15.8.1
     dependencies:
       '@formatjs/ecma402-abstract': 1.11.7
       '@formatjs/fast-memoize': 1.2.4
       date-fns: 2.28.0
-      filesize: 9.0.4
+      filesize: 9.0.9
       intl-messageformat: 10.1.0
       prop-types: 15.8.1
 
@@ -6255,8 +6255,8 @@ packages:
     dependencies:
       flat-cache: 3.0.4
 
-  /filesize/9.0.4:
-    resolution: {integrity: sha512-Of44P0Jjd5iM51i2Fnzw+cQT8gR/rW6A6GOiM+jgXWkzeexDdFEHL2ySXg90YFh6XHwouU2jg+yCCxblLlrn6A==}
+  /filesize/9.0.9:
+    resolution: {integrity: sha512-1p0ZaDrILQ9fmkDnxITzF9O+EjnsEsr+aNEC45DL+3dxO2g5ypmhf9+b2i1hg264F+glTLQBM4bK/sadk8KVrA==}
     engines: {node: '>= 0.4.0'}
     dev: false
 
