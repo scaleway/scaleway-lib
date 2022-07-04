@@ -188,9 +188,9 @@ importers:
 
   packages/use-segment:
     specifiers:
-      '@segment/analytics-next': 1.38.0
+      '@segment/analytics-next': 1.39.0
     dependencies:
-      '@segment/analytics-next': 1.38.0
+      '@segment/analytics-next': 1.39.0
 
 packages:
 
@@ -3183,15 +3183,15 @@ packages:
       rollup: 2.75.7
     dev: true
 
-  /@segment/analytics-next/1.38.0:
-    resolution: {integrity: sha512-904AYNi6wekvAVcaVGQhcH5Jeif98JvN5YEmsuiDuw+j6oiWijdJN6krY4QLh703zPIJvZVf5j+JSh13mZNaiA==}
+  /@segment/analytics-next/1.39.0:
+    resolution: {integrity: sha512-kkWFRctzlN0sa5s+V6UUh+iJ0TwCTHSNvo36x151nMVmK/74oW9Ilqyh6Gfsox5sghdFsZJRp1B0E98OIAnpCQ==}
     dependencies:
       '@lukeed/uuid': 2.0.0
       '@segment/analytics.js-video-plugins': 0.2.1
       '@segment/facade': 3.4.9
       '@segment/tsub': 0.1.12
       dset: 3.1.2
-      js-cookie: 2.2.1
+      js-cookie: 3.0.1
       node-fetch: 2.6.7
       spark-md5: 3.0.2
       tslib: 2.4.0
@@ -7547,8 +7547,9 @@ packages:
       - ts-node
     dev: true
 
-  /js-cookie/2.2.1:
-    resolution: {integrity: sha512-HvdH2LzI/EAZcUwA8+0nKNtWHqS+ZmijLA30RwZA0bo7ToCckjK5MkGhjED9KoRcXO6BaGI3I9UIzSA1FKFPOQ==}
+  /js-cookie/3.0.1:
+    resolution: {integrity: sha512-+0rgsUXZu4ncpPxRL+lNEptWMOWl9etvPHc/koSRp6MPwpRYAhmk0dUG00J4bxVV3r9uUzfo24wW0knS07SKSw==}
+    engines: {node: '>=12'}
     dev: false
 
   /js-tokens/4.0.0:
@@ -8223,7 +8224,7 @@ packages:
     dev: true
 
   /ms/2.0.0:
-    resolution: {integrity: sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g=}
+    resolution: {integrity: sha512-Tpp60P6IUJDTuOq/5Z8cdskzJujfwqfOTkrwIwj7IRISpnkJnT6SyJ4PCPnGMoFjC9ddhal5KVIYtAt97ix05A==}
     dev: false
 
   /ms/2.1.2:
@@ -9934,7 +9935,7 @@ packages:
     dev: true
 
   /tr46/0.0.3:
-    resolution: {integrity: sha1-gYT9NH2snNwYWZLzpmIuFLnZq2o=}
+    resolution: {integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==}
 
   /tr46/2.1.0:
     resolution: {integrity: sha512-15Ih7phfcdP5YxqiB+iDtLoaTz4Nd35+IiAv0kQ5FNKHzXgdWqPoTIqEDDJmXceQt4JZk6lVPT8lnDlPpGDppw==}
@@ -10246,7 +10247,7 @@ packages:
     dev: true
 
   /webidl-conversions/3.0.1:
-    resolution: {integrity: sha1-JFNCdeKnvGvnvIZhHMFq4KVlSHE=}
+    resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
 
   /webidl-conversions/6.1.0:
     resolution: {integrity: sha512-qBIvFLGiBpLjfwmYAaHPXsn+ho5xZnGvyGvsarywGNc8VyQJUMHJ8OBKGGrPER0okBeMDaan4mNBlgBROxuI8w==}
@@ -10287,7 +10288,7 @@ packages:
     dev: true
 
   /whatwg-url/5.0.0:
-    resolution: {integrity: sha1-lmRU6HZUYuN2RNNib2dCzotwll0=}
+    resolution: {integrity: sha512-saE57nupxk6v3HY35+jzBwYa0rKSy0XR8JSxZPwgLr7ys0IBzhGviA1/TUGJLmSVqs8pb9AnvICXEuOHLprYTw==}
     dependencies:
       tr46: 0.0.3
       webidl-conversions: 3.0.1
