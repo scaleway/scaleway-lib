@@ -27,10 +27,10 @@ type PrimitiveType = string | number | boolean | null | undefined | Date
 
 type Translations = Record<string, string> & { prefix?: string }
 type TranslationsByLocales = Record<string, Translations>
-// type TranslateFn = (
-//   key: string,
-//   context?: Record<string, PrimitiveType>,
-// ) => string
+type InitialTranslateFn = (
+  key: string,
+  context?: Record<string, PrimitiveType>,
+) => string
 
 const prefixKeys = (prefix: string) => (obj: { [key: string]: string }) =>
   Object.keys(obj).reduce((acc: { [key: string]: string }, key) => {
@@ -67,7 +67,7 @@ const getCurrentLocale = ({
 }
 
 interface Context<
-  Locale extends Record<string, string> = Record<string, string>,
+  Locale extends Record<string, string> | undefined = undefined,
 > {
   currentLocale: string
   dateFnsLocale?: DateFnsLocale
@@ -88,7 +88,9 @@ interface Context<
   ) => Promise<string>
   locales: string[]
   namespaces: string[]
-  namespaceTranslation: ScopedTranslateFn<Locale>
+  namespaceTranslation: Locale extends Record<string, string>
+    ? ScopedTranslateFn<Locale>
+    : (namespace: string, t?: TranslateFn) => TranslateFn
   relativeTime: (
     date: Date | number,
     options?: {
@@ -106,14 +108,16 @@ interface Context<
   ) => string
   setTranslations: React.Dispatch<React.SetStateAction<TranslationsByLocales>>
   switchLocale: (locale: string) => void
-  t: TranslateFn<Locale>
+  t: Locale extends Record<string, string>
+    ? TranslateFn<Locale>
+    : InitialTranslateFn
   translations: TranslationsByLocales
 }
 
 const I18nContext = createContext<Context | undefined>(undefined)
 
 export function useI18n<
-  Locale extends Record<string, string> = Record<string, string>,
+  Locale extends Record<string, string> | undefined = undefined,
 >(): Context<Locale> {
   const context = useContext(I18nContext)
   if (context === undefined) {
