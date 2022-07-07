@@ -31,6 +31,10 @@ type InitialTranslateFn = (
   key: string,
   context?: Record<string, PrimitiveType>,
 ) => string
+type InitialScopedTranslateFn = (
+  namespace: string,
+  t?: InitialTranslateFn,
+) => InitialTranslateFn
 
 const prefixKeys = (prefix: string) => (obj: { [key: string]: string }) =>
   Object.keys(obj).reduce((acc: { [key: string]: string }, key) => {
@@ -90,7 +94,7 @@ interface Context<
   namespaces: string[]
   namespaceTranslation: Locale extends Record<string, string>
     ? ScopedTranslateFn<Locale>
-    : (namespace: string, t?: TranslateFn) => TranslateFn
+    : InitialScopedTranslateFn
   relativeTime: (
     date: Date | number,
     options?: {
@@ -330,7 +334,7 @@ const I18nContextProvider = ({
     [dateFnsLocale],
   )
 
-  const translate = useCallback<TranslateFn>(
+  const translate = useCallback<InitialTranslateFn>(
     (key: string, context?: Record<string, PrimitiveType>) => {
       const value = translations[currentLocale]?.[key]
       if (!value) {
@@ -351,8 +355,8 @@ const I18nContextProvider = ({
     [currentLocale, translations, enableDebugKey],
   )
 
-  const namespaceTranslation = useCallback<ScopedTranslateFn>(
-    (namespace: string, t: TranslateFn = translate) =>
+  const namespaceTranslation = useCallback<InitialScopedTranslateFn>(
+    (namespace: string, t: InitialTranslateFn = translate) =>
       (identifier: string, context?: Record<string, PrimitiveType>) =>
         t(`${namespace}.${identifier}`, context) || t(identifier, context),
     [translate],
