@@ -16,7 +16,7 @@ jobs:
         cache: 'pnpm'
     - run: pnpm install
     - run: pnpm run build
-    - run: pnpm tsc --noEmit
+    - run: pnpm tsc --noEmit --project ./tsconfig.typecheck.json
   lint:
     runs-on: ubuntu-20.04
     steps:
