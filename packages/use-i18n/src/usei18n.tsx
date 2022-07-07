@@ -1,6 +1,6 @@
 import type { NumberFormatOptions } from '@formatjs/ecma402-abstract'
 import {
-  Locale,
+  Locale as DateFnsLocale,
   formatDistanceToNow,
   formatDistanceToNowStrict,
 } from 'date-fns'
@@ -19,6 +19,7 @@ import ReactDOM from 'react-dom'
 import dateFormat, { FormatDateOptions } from './formatDate'
 import unitFormat, { FormatUnitOptions } from './formatUnit'
 import formatters, { IntlListFormatOptions } from './formatters'
+import { ScopedTranslateFn, TranslateFn } from './types'
 
 const LOCALE_ITEM_STORAGE = 'locale'
 
@@ -26,10 +27,10 @@ type PrimitiveType = string | number | boolean | null | undefined | Date
 
 type Translations = Record<string, string> & { prefix?: string }
 type TranslationsByLocales = Record<string, Translations>
-type TranslateFn = (
-  key: string,
-  context?: Record<string, PrimitiveType>,
-) => string
+// type TranslateFn = (
+//   key: string,
+//   context?: Record<string, PrimitiveType>,
+// ) => string
 
 const prefixKeys = (prefix: string) => (obj: { [key: string]: string }) =>
   Object.keys(obj).reduce((acc: { [key: string]: string }, key) => {
@@ -65,9 +66,11 @@ const getCurrentLocale = ({
   )
 }
 
-interface Context {
+interface Context<
+  Locale extends Record<string, string> = Record<string, string>,
+> {
   currentLocale: string
-  dateFnsLocale?: Locale
+  dateFnsLocale?: DateFnsLocale
   datetime: (
     date: Date | number,
     options?: Intl.DateTimeFormatOptions,
@@ -85,7 +88,7 @@ interface Context {
   ) => Promise<string>
   locales: string[]
   namespaces: string[]
-  namespaceTranslation: (namespace: string, t?: TranslateFn) => TranslateFn
+  namespaceTranslation: ScopedTranslateFn<Locale>
   relativeTime: (
     date: Date | number,
     options?: {
@@ -103,19 +106,21 @@ interface Context {
   ) => string
   setTranslations: React.Dispatch<React.SetStateAction<TranslationsByLocales>>
   switchLocale: (locale: string) => void
-  t: TranslateFn
+  t: TranslateFn<Locale>
   translations: TranslationsByLocales
 }
 
 const I18nContext = createContext<Context | undefined>(undefined)
 
-export const useI18n = (): Context => {
+export function useI18n<
+  Locale extends Record<string, string> = Record<string, string>,
+>(): Context<Locale> {
   const context = useContext(I18nContext)
   if (context === undefined) {
     throw new Error('useI18n must be used within a I18nProvider')
   }
 
-  return context
+  return context as unknown as Context<Locale>
 }
 
 export const useTranslation = (
@@ -342,7 +347,7 @@ const I18nContextProvider = ({
     [currentLocale, translations, enableDebugKey],
   )
 
-  const namespaceTranslation = useCallback(
+  const namespaceTranslation = useCallback<ScopedTranslateFn>(
     (namespace: string, t: TranslateFn = translate) =>
       (identifier: string, context?: Record<string, PrimitiveType>) =>
         t(`${namespace}.${identifier}`, context) || t(identifier, context),
