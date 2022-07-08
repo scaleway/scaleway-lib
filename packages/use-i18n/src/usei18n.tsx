@@ -19,14 +19,14 @@ import ReactDOM from 'react-dom'
 import dateFormat, { FormatDateOptions } from './formatDate'
 import unitFormat, { FormatUnitOptions } from './formatUnit'
 import formatters, { IntlListFormatOptions } from './formatters'
-import { ScopedTranslateFn, TranslateFn } from './types'
+import { LocaleObject, ScopedTranslateFn, TranslateFn } from './types'
 
 const LOCALE_ITEM_STORAGE = 'locale'
 
 type PrimitiveType = string | number | boolean | null | undefined | Date
 
-type Translations = Record<string, string> & { prefix?: string }
-type TranslationsByLocales = Record<string, Translations>
+// type Translations = Record<string, string> & { prefix?: string }
+type TranslationsByLocales = Record<string, LocaleObject>
 type InitialTranslateFn = (
   key: string,
   context?: Record<string, PrimitiveType>,
@@ -70,9 +70,7 @@ const getCurrentLocale = ({
   )
 }
 
-interface Context<
-  Locale extends Record<string, string> | undefined = undefined,
-> {
+interface Context<Locale extends LocaleObject | undefined = undefined> {
   currentLocale: string
   dateFnsLocale?: DateFnsLocale
   datetime: (
@@ -92,7 +90,7 @@ interface Context<
   ) => Promise<string>
   locales: string[]
   namespaces: string[]
-  namespaceTranslation: Locale extends Record<string, string>
+  namespaceTranslation: Locale extends LocaleObject
     ? ScopedTranslateFn<Locale>
     : InitialScopedTranslateFn
   relativeTime: (
@@ -112,16 +110,14 @@ interface Context<
   ) => string
   setTranslations: React.Dispatch<React.SetStateAction<TranslationsByLocales>>
   switchLocale: (locale: string) => void
-  t: Locale extends Record<string, string>
-    ? TranslateFn<Locale>
-    : InitialTranslateFn
+  t: Locale extends LocaleObject ? TranslateFn<Locale> : InitialTranslateFn
   translations: TranslationsByLocales
 }
 
 const I18nContext = createContext<Context | undefined>(undefined)
 
 export function useI18n<
-  Locale extends Record<string, string> | undefined = undefined,
+  Locale extends LocaleObject | undefined = undefined,
 >(): Context<Locale> {
   const context = useContext(I18nContext)
   if (context === undefined) {
@@ -162,7 +158,7 @@ type LoadTranslationsFn = ({
 }: {
   namespace: string
   locale: string
-}) => Promise<{ default: Translations }>
+}) => Promise<{ default: LocaleObject }>
 type LoadLocaleFn = (locale: string) => Promise<Locale>
 
 const I18nContextProvider = ({
@@ -222,7 +218,7 @@ const I18nContextProvider = ({
         namespace,
       })
 
-      const trad: Translations = {
+      const trad: LocaleObject = {
         ...result.defaultLocale.default,
         ...result[currentLocale].default,
       }

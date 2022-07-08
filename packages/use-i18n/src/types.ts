@@ -1,7 +1,29 @@
 /**
- * Each `Locale` generic in this file is the current locale object, represented as
- * a `Record` of `key: value` pairs.
+ * A locale object which is a record of string:string, with an optional `prefix` with is
+ * also a string.
  */
+export type LocaleObject = Record<string, string> & {
+  prefix?: string
+}
+
+type ExcludePrefix<
+  Locale extends LocaleObject,
+  Key = keyof Locale,
+> = Key extends 'prefix' ? never : Key
+
+/**
+ * PrefixedKey is used to generate the keys of the locale object, optionaly prefixed with
+ * `prefix`.
+ *
+ * @see LocaleObject
+ */
+export type PrefixedKey<
+  Locale extends LocaleObject,
+  Key = ExcludePrefix<Locale>,
+> = Locale extends { prefix: string }
+  ? // @ts-expect-error Key is string | number | Symbol but should be a string
+    `${Locale['prefix']}.${Key}`
+  : Key
 
 /**
  * LocaleParam is the type that allows to extract params in a locale  value, represented
@@ -28,7 +50,7 @@ export type LocaleParam<Value extends string> = Value extends ''
  * JoinScope<Locale, "my", "awesome.key"> = "my.awesome.key"
  */
 export type JoinScoped<
-  Locale extends Record<string, string>,
+  Locale extends LocaleObject,
   Scope extends PossibleScopes<Locale>,
   Key extends PossibleKeys<Locale, Scope>,
 > = `${Scope}.${Key}`
@@ -64,8 +86,8 @@ export type JoinScopeWithPrev<
  * @see PossibleScopes
  */
 export type PossibleScopesTuple<
-  Locale extends Record<string, string>,
-  Key = keyof Locale,
+  Locale extends LocaleObject,
+  Key = PrefixedKey<Locale>,
   PrevScope extends string = '',
 > = Key extends `${infer Scope}.${infer EndValue}`
   ? [
@@ -89,8 +111,10 @@ export type PossibleScopesTuple<
  *
  * @see PossibleScopesTuple
  */
-export type PossibleScopes<Locale extends Record<string, string>> =
-  PossibleScopesTuple<Locale, keyof Locale>[number]
+export type PossibleScopes<Locale extends LocaleObject> = PossibleScopesTuple<
+  Locale,
+  PrefixedKey<Locale>
+>[number]
 
 /**
  * Based on the PossibleScopes union, PossibleKeys generate an union of the possible scoped
@@ -107,9 +131,9 @@ export type PossibleScopes<Locale extends Record<string, string>> =
  * PossibleKeys<Locale, "hello.world"> = "again"
  */
 export type PossibleKeys<
-  Locale extends Record<string, string>,
+  Locale extends LocaleObject,
   Scope extends PossibleScopes<Locale>,
-  Key = keyof Locale,
+  Key = PrefixedKey<Locale>,
 > = Key extends `${Scope}.${infer EndValue}` ? EndValue : never
 
 /**
@@ -119,8 +143,8 @@ export type PossibleKeys<
  *
  * @see LocaleParam
  */
-export type TranslateFn<Locale extends Record<string, string>> = <
-  Key extends keyof Locale,
+export type TranslateFn<Locale extends LocaleObject> = <
+  Key extends PrefixedKey<Locale>,
   Param extends Record<LocaleParam<Locale[Key]>[number], string>,
 >(
   key: Key,
@@ -136,7 +160,7 @@ export type TranslateFn<Locale extends Record<string, string>> = <
  * @see LocaleParam
  * @see JoinScoped
  */
-export type ScopedTranslateFn<Locale extends Record<string, string>> = <
+export type ScopedTranslateFn<Locale extends LocaleObject> = <
   Scope extends PossibleScopes<Locale>,
 >(
   scope: Scope,
