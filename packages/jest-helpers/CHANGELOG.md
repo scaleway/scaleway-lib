@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.0.7 (2022-07-11)
+
+**Note:** Version bump only for package @scaleway/jest-helpers
+
+
+
+
+
 ## [2.0.6](https://github.com/scaleway/scaleway-lib/compare/@scaleway/jest-helpers@2.0.5...@scaleway/jest-helpers@2.0.6) (2022-06-16)
 
 
