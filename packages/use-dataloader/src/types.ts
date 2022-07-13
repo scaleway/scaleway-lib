@@ -2,12 +2,16 @@ export class PromiseType<T = unknown> extends Promise<T> {
   public cancel?: () => void
 }
 
-export type OnErrorFn = ((err: Error) => void | Promise<void>) | undefined
-export type OnSuccessFn<T = unknown> =
-  | ((result: T) => void | Promise<void>)
+export type OnErrorFn<ErrorType = Error> =
+  | ((err: ErrorType) => void | Promise<void>)
+  | undefined
+export type OnSuccessFn<ResultType> =
+  | ((result: ResultType) => void | Promise<void>)
   | undefined
 export type OnCancelFn = (() => void | Promise<void>) | undefined
-export type NeedPollingType<T = unknown> = boolean | ((data?: T) => boolean)
+export type NeedPollingType<ResultType> =
+  | boolean
+  | ((data?: ResultType) => boolean)
 
 /**
  * @typedef {Object} UseDataLoaderConfig
@@ -20,15 +24,15 @@ export type NeedPollingType<T = unknown> = boolean | ((data?: T) => boolean)
  * @property {number} [dataLifetime=undefined]  Time before data from previous success is considered as outdated (in millisecond)
  * @property {NeedPollingType} [needPolling=true] When pollingInterval is set you can set a set a custom callback to know if polling is enabled
  */
-export interface UseDataLoaderConfig<T = unknown> {
+export interface UseDataLoaderConfig<ResultType, ErrorType> {
   enabled?: boolean
-  initialData?: T
+  initialData?: ResultType
   keepPreviousData?: boolean
-  onError?: OnErrorFn
-  onSuccess?: OnSuccessFn
+  onError?: OnErrorFn<ErrorType>
+  onSuccess?: OnSuccessFn<ResultType>
   pollingInterval?: number
   dataLifetime?: number
-  needPolling?: NeedPollingType<T>
+  needPolling?: NeedPollingType<ResultType>
 }
 
 /**
@@ -43,15 +47,15 @@ export interface UseDataLoaderConfig<T = unknown> {
  * @property {string} error the error occured during the request
  * @property {Function} reload reload the data
  */
-export interface UseDataLoaderResult<T = unknown, ErrorType = Error> {
-  data?: T
+export interface UseDataLoaderResult<ResultType, ErrorType> {
+  data?: ResultType
   error?: ErrorType
   isError: boolean
   isIdle: boolean
   isLoading: boolean
   isPolling: boolean
   isSuccess: boolean
-  previousData?: T
+  previousData?: ResultType
   reload: () => Promise<void>
 }
 
@@ -63,16 +67,16 @@ export type UsePaginatedDataLoaderMethodParams = {
   perPage: number
 }
 
-export type UsePaginatedDataLoaderConfig<T = unknown> =
-  UseDataLoaderConfig<T> & {
+export type UsePaginatedDataLoaderConfig<ResultType, ErrorType> =
+  UseDataLoaderConfig<ResultType, ErrorType> & {
     initialPage?: number
     perPage?: number
   }
 
-export type UsePaginatedDataLoaderResult<T = unknown> = {
-  pageData?: T
-  data?: Record<number, T | undefined>
-  error?: Error
+export type UsePaginatedDataLoaderResult<ResultType, ErrorType> = {
+  pageData?: ResultType
+  data?: Record<number, ResultType | undefined>
+  error?: ErrorType
   isError: boolean
   isIdle: boolean
   isLoading: boolean

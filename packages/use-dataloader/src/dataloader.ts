@@ -1,14 +1,14 @@
 import { DEFAULT_MAX_CONCURRENT_REQUESTS, StatusEnum } from './constants'
 import { PromiseType } from './types'
 
-export type DataLoaderConstructorArgs<T = unknown> = {
+export type DataLoaderConstructorArgs<ResultType> = {
   key: string
-  method: () => PromiseType<T>
+  method: () => PromiseType<ResultType>
   enabled?: boolean
   notifyChanges?: () => void
 }
 
-class DataLoader<ResultType = unknown, ErrorType = unknown> {
+class DataLoader<ResultType, ErrorType> {
   public static maxConcurrent = DEFAULT_MAX_CONCURRENT_REQUESTS
 
   public static started = 0
