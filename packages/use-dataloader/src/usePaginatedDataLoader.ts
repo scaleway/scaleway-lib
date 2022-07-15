@@ -14,9 +14,11 @@ import useDataLoader from './useDataLoader'
  * @param {useDataLoaderConfig} config hook configuration
  * @returns {useDataLoaderResult} hook result containing data, request state, and method to reload the data
  */
-const usePaginatedDataLoader = <T>(
+const usePaginatedDataLoader = <ResultType, ErrorType>(
   baseFetchKey: string,
-  method: (params: UsePaginatedDataLoaderMethodParams) => PromiseType<T>,
+  method: (
+    params: UsePaginatedDataLoaderMethodParams,
+  ) => PromiseType<ResultType>,
   {
     enabled = true,
     initialData,
@@ -28,13 +30,13 @@ const usePaginatedDataLoader = <T>(
     needPolling,
     initialPage,
     perPage = 1,
-  }: UsePaginatedDataLoaderConfig<T> = {},
-): UsePaginatedDataLoaderResult<T> => {
+  }: UsePaginatedDataLoaderConfig<ResultType, ErrorType> = {},
+): UsePaginatedDataLoaderResult<ResultType, ErrorType> => {
   if (typeof baseFetchKey !== 'string') {
     throw new Error(KEY_IS_NOT_STRING_ERROR)
   }
 
-  const [data, setData] = useState<Record<number, T | undefined>>({})
+  const [data, setData] = useState<Record<number, ResultType | undefined>>({})
   const [page, setPage] = useState<number>(initialPage ?? 1)
 
   const pageMethod = useCallback(

@@ -17,10 +17,10 @@ import { OnErrorFn, PromiseType } from './types'
 
 type CachedData = Record<string, unknown>
 type Reloads = Record<string, () => Promise<void | unknown>>
-type Requests = Record<string, DataLoader>
+type Requests = Record<string, DataLoader<unknown, unknown>>
 
-type UseDataLoaderInitializerArgs<T = unknown> = {
-  method: () => PromiseType<T>
+type UseDataLoaderInitializerArgs<ResultType = unknown> = {
+  method: () => PromiseType<ResultType>
   /**
    * Max time before data from previous success is considered as outdated (in millisecond)
    */
@@ -38,19 +38,24 @@ type GetReloadsFn = {
   (key?: string): (() => Promise<void | unknown>) | undefined
 }
 
-export interface IDataLoaderContext {
-  addRequest: (key: string, args: UseDataLoaderInitializerArgs) => DataLoader
-  getOrAddRequest: <T>(
+export type IDataLoaderContext = {
+  addRequest: <ResultType, ErrorType>(
     key: string,
-    args: UseDataLoaderInitializerArgs<T>,
-  ) => DataLoader<T>
+    args: UseDataLoaderInitializerArgs<ResultType>,
+  ) => DataLoader<ResultType, ErrorType>
+  getOrAddRequest: <ResultType, ErrorType>(
+    key: string,
+    args: UseDataLoaderInitializerArgs<ResultType>,
+  ) => DataLoader<ResultType, ErrorType>
   cacheKeyPrefix?: string
   onError?: (error: Error) => void | Promise<void>
   clearAllCachedData: () => void
   clearCachedData: (key: string) => void
   getCachedData: GetCachedDataFn
   getReloads: GetReloadsFn
-  getRequest: (key: string) => DataLoader
+  getRequest: <ResultType, ErrorType>(
+    key: string,
+  ) => DataLoader<ResultType, ErrorType>
   reload: (key?: string) => Promise<void>
   reloadAll: () => Promise<void>
 }

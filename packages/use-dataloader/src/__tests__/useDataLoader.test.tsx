@@ -7,7 +7,7 @@ import { UseDataLoaderConfig } from '../types'
 import useDataLoader from '../useDataLoader'
 
 type UseDataLoaderHookProps = {
-  config: UseDataLoaderConfig<unknown>
+  config: UseDataLoaderConfig<unknown, unknown>
   key: string
   method: () => Promise<unknown>
   children?: ReactNode

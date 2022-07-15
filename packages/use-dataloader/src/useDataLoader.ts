@@ -1,10 +1,9 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useDataLoaderContext } from './DataLoaderProvider'
 import { StatusEnum } from './constants'
-import DataLoader from './dataloader'
 import { PromiseType, UseDataLoaderConfig, UseDataLoaderResult } from './types'
 
-function useDataLoader<ResultType, ErrorType = Error>(
+function useDataLoader<ResultType = unknown, ErrorType = Error>(
   fetchKey: string,
   method: () => PromiseType<ResultType>,
   {
@@ -16,7 +15,7 @@ function useDataLoader<ResultType, ErrorType = Error>(
     pollingInterval,
     initialData,
     dataLifetime,
-  }: UseDataLoaderConfig<ResultType> = {},
+  }: UseDataLoaderConfig<ResultType, ErrorType> = {},
 ): UseDataLoaderResult<ResultType, ErrorType> {
   const { getOrAddRequest, onError: onGlobalError } = useDataLoaderContext()
   const methodRef = useRef(method)
@@ -28,10 +27,10 @@ function useDataLoader<ResultType, ErrorType = Error>(
     setCounter(current => current + 1)
   }, [])
 
-  const request = getOrAddRequest(fetchKey, {
+  const request = getOrAddRequest<ResultType, ErrorType>(fetchKey, {
     enabled,
     method: methodRef.current,
-  }) as DataLoader<ResultType, ErrorType>
+  })
 
   useEffect(() => {
     request.addObserver(forceRerender)
