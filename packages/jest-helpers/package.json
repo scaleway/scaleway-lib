@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/jest-helpers",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "description": "A package for utilities jest functions",
   "type": "module",
   "main": "dist/index.js",
@@ -17,7 +17,7 @@
   "license": "MIT",
   "dependencies": {
     "@emotion/cache": "11.9.3",
-    "@emotion/jest": "11.9.3",
+    "@emotion/jest": "11.9.4",
     "@emotion/react": "11.9.3",
     "@testing-library/react": "13.3.0"
   },
