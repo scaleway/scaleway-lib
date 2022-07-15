@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.14.2 (2022-07-15)
+
+
+### Bug Fixes
+
+* use-dataloader types improvement ([#880](https://github.com/scaleway/scaleway-lib/issues/880)) ([25fb1a5](https://github.com/scaleway/scaleway-lib/commit/25fb1a5a7917a51721de738268aba8b024611b4e))
+
+
+
 ## 2.14.1 (2022-06-07)
 
 
