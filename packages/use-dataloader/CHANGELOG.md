@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.14.3](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-dataloader@2.14.2...@scaleway/use-dataloader@2.14.3) (2022-07-18)
+
+
+### Bug Fixes
+
+* paginated typing ([#886](https://github.com/scaleway/scaleway-lib/issues/886)) ([e2816c5](https://github.com/scaleway/scaleway-lib/commit/e2816c5ee61f5841b69603bbe63400e2b6240df9))
+
+
+
 ## 2.14.2 (2022-07-15)
 
 
