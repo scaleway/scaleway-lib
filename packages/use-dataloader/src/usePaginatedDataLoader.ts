@@ -14,7 +14,7 @@ import useDataLoader from './useDataLoader'
  * @param {useDataLoaderConfig} config hook configuration
  * @returns {useDataLoaderResult} hook result containing data, request state, and method to reload the data
  */
-const usePaginatedDataLoader = <ResultType, ErrorType>(
+const usePaginatedDataLoader = <ResultType = unknown, ErrorType = Error>(
   baseFetchKey: string,
   method: (
     params: UsePaginatedDataLoaderMethodParams,
