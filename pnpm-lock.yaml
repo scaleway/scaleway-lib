@@ -188,9 +188,9 @@ importers:
 
   packages/use-segment:
     specifiers:
-      '@segment/analytics-next': 1.40.0
+      '@segment/analytics-next': 1.41.0
     dependencies:
-      '@segment/analytics-next': 1.40.0
+      '@segment/analytics-next': 1.41.0
 
 packages:
 
@@ -3202,10 +3202,17 @@ packages:
       rollup: 2.76.0
     dev: true
 
-  /@segment/analytics-next/1.40.0:
-    resolution: {integrity: sha512-Kg5C55BCB+/jRcFTWU2vEZdUb7nPaKutkAHobSQRld/RQWX24RcMzx20jtspZ8m0FCXQrg0Mm8Khpk2sNvh3Hg==}
+  /@segment/analytics-core/1.0.0:
+    resolution: {integrity: sha512-oLa2vHy2AkxU+M8lPPkb8rZT+REeiB6OWsnKv2DC8/Ctcuq10bzyUJVg1onZhB+kwSHbRvonYdQgsBNDom5veg==}
+    dependencies:
+      tslib: 2.4.0
+    dev: false
+
+  /@segment/analytics-next/1.41.0:
+    resolution: {integrity: sha512-pey8VuEbcmL3oLwe7prl/xnt0H4cGAz/YGVJj2hnVadt38ujhCjmNEXMogi22ZR7Zj2R9cf5Vag077wij2D4FA==}
     dependencies:
       '@lukeed/uuid': 2.0.0
+      '@segment/analytics-core': 1.0.0
       '@segment/analytics.js-video-plugins': 0.2.1
       '@segment/facade': 3.4.9
       '@segment/tsub': 0.1.12
