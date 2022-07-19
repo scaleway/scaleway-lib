@@ -8,7 +8,7 @@ export type LocaleObject = Record<string, string> & {
 
 type ExcludePrefix<
   Locale extends LocaleObject,
-  Key = keyof Locale,
+  Key extends string = Extract<keyof Locale, string>,
 > = Key extends 'prefix' ? never : Key
 
 /**
@@ -19,11 +19,8 @@ type ExcludePrefix<
  */
 export type PrefixedKey<
   Locale extends LocaleObject,
-  Key = ExcludePrefix<Locale>,
-> = Locale extends { prefix: string }
-  ? // @ts-expect-error Key is string | number | Symbol but should be a string
-    `${Locale['prefix']}.${Key}`
-  : Key
+  Key extends string = ExcludePrefix<Locale>,
+> = Locale extends { prefix: string } ? `${Locale['prefix']}.${Key}` : Key
 
 /**
  * LocaleParam is the type that allows to extract params in a locale  value, represented
