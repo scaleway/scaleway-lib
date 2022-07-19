@@ -145,10 +145,10 @@ export type PossibleKeys<
  */
 export type TranslateFn<Locale extends LocaleObject> = <
   Key extends PrefixedKey<Locale>,
-  Param extends Record<LocaleParam<Locale[Key]>[number], string>,
+  Param extends LocaleParam<Locale[Key]>,
 >(
   key: Key,
-  params?: Param,
+  ...params: Param['length'] extends 0 ? [] : [Record<Param[number], string>]
 ) => string
 
 /**
@@ -166,11 +166,12 @@ export type ScopedTranslateFn<Locale extends LocaleObject> = <
   scope: Scope,
 ) => <
   ScopedKey extends PossibleKeys<Locale, Scope>,
-  Param extends Record<
-    LocaleParam<Locale[JoinScoped<Locale, Scope, ScopedKey>]>[number],
-    string
-  >,
+  Param extends LocaleParam<Locale[JoinScoped<Locale, Scope, ScopedKey>]>,
+  // Param extends Record<
+  //   LocaleParam<Locale[JoinScoped<Locale, Scope, ScopedKey>]>[number],
+  //   string
+  // >,
 >(
   key: ScopedKey,
-  params?: Param,
+  ...params: Param['length'] extends 0 ? [] : [Record<Param[number], string>]
 ) => string

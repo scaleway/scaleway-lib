@@ -21,6 +21,7 @@ expectError(scopedT1('doesnotexists'))
 
 // With a param
 const scopedT2 = namespaceTranslation('doe')
+expectError(scopedT2('child'))
 expectType<string>(
   scopedT2('child', {
     name: 'Name',

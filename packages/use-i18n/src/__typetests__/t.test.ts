@@ -19,6 +19,7 @@ expectType<string>(t('doe.john'))
 expectError(t('doe.doesnotexists'))
 
 // With a param
+expectError(t('doe.child'))
 expectType<string>(
   t('doe.child', {
     name: 'Name',
