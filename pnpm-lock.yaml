@@ -38,7 +38,7 @@ importers:
       read-pkg: 7.1.0
       rollup: 2.77.0
       rollup-plugin-dts: 4.2.2
-      rollup-plugin-visualizer: 5.6.0
+      rollup-plugin-visualizer: 5.7.1
       typescript: 4.7.4
       wait-for-expect: 3.0.2
     devDependencies:
@@ -76,7 +76,7 @@ importers:
       read-pkg: 7.1.0
       rollup: 2.77.0
       rollup-plugin-dts: 4.2.2_55kiftncucr43pz4hskma6yi2q
-      rollup-plugin-visualizer: 5.6.0_rollup@2.77.0
+      rollup-plugin-visualizer: 5.7.1_rollup@2.77.0
       typescript: 4.7.4
       wait-for-expect: 3.0.2
 
@@ -7201,7 +7201,7 @@ packages:
       jest-util: 28.1.3
       jest-validate: 28.1.3
       prompts: 2.4.2
-      yargs: 17.4.1
+      yargs: 17.5.1
     transitivePeerDependencies:
       - '@types/node'
       - supports-color
@@ -9377,9 +9377,9 @@ packages:
       '@babel/code-frame': 7.18.6
     dev: true
 
-  /rollup-plugin-visualizer/5.6.0_rollup@2.77.0:
-    resolution: {integrity: sha512-CKcc8GTUZjC+LsMytU8ocRr/cGZIfMR7+mdy4YnlyetlmIl/dM8BMnOEpD4JPIGt+ZVW7Db9ZtSsbgyeBH3uTA==}
-    engines: {node: '>=12'}
+  /rollup-plugin-visualizer/5.7.1_rollup@2.77.0:
+    resolution: {integrity: sha512-E/IgOMnmXKlc6ICyf53ok1b6DxPeNVUs3R0kYYPuDpGfofT4bkiG+KtSMlGjMACFmfwbbqTVDZBIF7sMZVKJbA==}
+    engines: {node: '>=14'}
     hasBin: true
     peerDependencies:
       rollup: ^2.0.0
@@ -9388,7 +9388,7 @@ packages:
       open: 8.4.0
       rollup: 2.77.0
       source-map: 0.7.3
-      yargs: 17.4.1
+      yargs: 17.5.1
     dev: true
 
   /rollup/2.77.0:
@@ -10507,6 +10507,19 @@ packages:
 
   /yargs/17.4.1:
     resolution: {integrity: sha512-WSZD9jgobAg3ZKuCQZSa3g9QOJeCCqLoLAykiWgmXnDo9EPnn4RPf5qVTtzgOx66o6/oqhcA5tHtJXpG8pMt3g==}
+    engines: {node: '>=12'}
+    dependencies:
+      cliui: 7.0.4
+      escalade: 3.1.1
+      get-caller-file: 2.0.5
+      require-directory: 2.1.1
+      string-width: 4.2.3
+      y18n: 5.0.8
+      yargs-parser: 21.0.1
+    dev: true
+
+  /yargs/17.5.1:
+    resolution: {integrity: sha512-t6YAJcxDkNX7NFYiVtKvWUz8l+PaKTLiL63mJYWR2GnHq2gjEWISzsLp9wg3aY36dY1j+gfIEL3pIF+XlJJfbA==}
     engines: {node: '>=12'}
     dependencies:
       cliui: 7.0.4
