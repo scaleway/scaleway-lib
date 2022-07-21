@@ -38,6 +38,7 @@ expectError(
   }),
 )
 expectError(scopedT2('child', {}))
+expectError(scopedT2('child'))
 
 // With multiple params
 const scopedT3 = namespaceTranslation('describe')
@@ -48,3 +49,4 @@ expectType<string>(
   }),
 )
 expectError(scopedT3('john', {}))
+expectError(scopedT3('john'))

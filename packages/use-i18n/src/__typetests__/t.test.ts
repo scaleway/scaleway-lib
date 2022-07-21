@@ -36,6 +36,7 @@ expectError(
   }),
 )
 expectError(t('doe.child', {}))
+expectError(t('doe.child'))
 
 // With multiple params
 expectType<string>(
@@ -45,3 +46,4 @@ expectType<string>(
   }),
 )
 expectError(t('describe.john', {}))
+expectError(t('describe.john'))

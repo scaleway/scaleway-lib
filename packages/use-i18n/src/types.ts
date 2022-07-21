@@ -40,7 +40,7 @@ export type LocaleParam<Value extends string> = Value extends ''
   : []
 
 /**
- * Join a scope and a key with a dot.
+ * Join a scope and a key with a dot, excluding the prefix.
  *
  * @example
  * JoinScope<Locale, "my.scope", "key"> = "my.scope.key"
@@ -50,7 +50,12 @@ export type JoinScoped<
   Locale extends LocaleObject,
   Scope extends PossibleScopes<Locale>,
   Key extends PossibleKeys<Locale, Scope>,
-> = `${Scope}.${Key}`
+> = Locale extends { prefix: string }
+  ? // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    Scope extends `${infer Prefix}.${infer Rest}`
+    ? `${Rest}.${Key}`
+    : Key
+  : `${Scope}.${Key}`
 
 /**
  * JoinScopeWithPrev is an utility type to join the previous scope with the current
@@ -164,10 +169,6 @@ export type ScopedTranslateFn<Locale extends LocaleObject> = <
 ) => <
   ScopedKey extends PossibleKeys<Locale, Scope>,
   Param extends LocaleParam<Locale[JoinScoped<Locale, Scope, ScopedKey>]>,
-  // Param extends Record<
-  //   LocaleParam<Locale[JoinScoped<Locale, Scope, ScopedKey>]>[number],
-  //   string
-  // >,
 >(
   key: ScopedKey,
   ...params: Param['length'] extends 0 ? [] : [Record<Param[number], string>]
