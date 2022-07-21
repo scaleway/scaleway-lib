@@ -68,7 +68,7 @@ export type JoinScoped<
 export type JoinScopeWithPrev<
   Scope extends string,
   PrevScope extends string,
-> = PrevScope extends '' ? Scope : `${PrevScope}.${Scope}`
+> = PrevScope extends '' ? Scope : `${PrevScope}.${Scope}` | Scope
 
 /**
  * PossibleScopesTuple is a tuple of all the possible scopes for a locale. It's called
