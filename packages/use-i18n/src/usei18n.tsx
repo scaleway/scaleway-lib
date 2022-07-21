@@ -25,7 +25,6 @@ const LOCALE_ITEM_STORAGE = 'locale'
 
 type PrimitiveType = string | number | boolean | null | undefined | Date
 
-// type Translations = Record<string, string> & { prefix?: string }
 type TranslationsByLocales = Record<string, LocaleObject>
 type InitialTranslateFn = (
   key: string,
