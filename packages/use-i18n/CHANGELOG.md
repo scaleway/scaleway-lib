@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.3.15 (2022-07-25)
+
+
+### Bug Fixes
+
+* **deps:** update dependency date-fns to v2.29.1 ([#894](https://github.com/scaleway/scaleway-lib/issues/894)) ([df86eff](https://github.com/scaleway/scaleway-lib/commit/df86eff386f559754659a6926d849445f90632d4))
+
+
+
 ## 3.3.14 (2022-07-11)
 
 
