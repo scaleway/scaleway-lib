@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.6.10 (2022-07-28)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @segment/analytics-next to v1.41.1 ([#897](https://github.com/scaleway/scaleway-lib/issues/897)) ([54d241f](https://github.com/scaleway/scaleway-lib/commit/54d241f7d2f85f110ca024f763de38d0670a96fb))
+
+
+
 ## 0.6.9 (2022-07-19)
 
 
