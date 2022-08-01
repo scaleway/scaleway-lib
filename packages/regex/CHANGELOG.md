@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.3.0 (2022-08-01)
+
+
+### Features
+
+* add new regex `alphaDashes` to the list ([#901](https://github.com/scaleway/scaleway-lib/issues/901)) ([608f823](https://github.com/scaleway/scaleway-lib/commit/608f8230badb68dcbcb5eab95c1661f97652a042))
+
+
+
 ### 2.2.3 (2022-04-26)
 
 
