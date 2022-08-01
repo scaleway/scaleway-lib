@@ -169,8 +169,8 @@ importers:
       filesize: 9.0.11
       intl-messageformat: 10.1.1
       prop-types: 15.8.1
-    devDependencies:
       react: 18.2.0
+    devDependencies:
       react-dom: 18.2.0_react@18.2.0
 
   packages/use-media:
@@ -200,7 +200,6 @@ importers:
       react: '>=16.8 || 18'
     dependencies:
       '@scaleway/random-name': link:../random-name
-    devDependencies:
       react: 18.2.0
 
   packages/use-segment:
@@ -209,7 +208,6 @@ importers:
       react: 17.x || 18.x || 18
     dependencies:
       '@segment/analytics-next': 1.41.1
-    devDependencies:
       react: 18.2.0
 
 packages:
