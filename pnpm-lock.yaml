@@ -143,13 +143,12 @@ importers:
       react: 17.x || 18.x || 18
     dependencies:
       prop-types: 15.8.1
-    devDependencies:
       react: 18.2.0
 
   packages/use-gtm:
     specifiers:
       react: 17.x || 18.x || 18
-    devDependencies:
+    dependencies:
       react: 18.2.0
 
   packages/use-i18n:
@@ -176,7 +175,7 @@ importers:
   packages/use-media:
     specifiers:
       react: 17.x || 18.x || 18
-    devDependencies:
+    dependencies:
       react: 18.2.0
 
   packages/use-query-params:
