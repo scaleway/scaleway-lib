@@ -43,7 +43,7 @@ const events = {
       event: 'sampleEvent',
       hello: message,
     })
-  }
+  },
 }
 
 const Page = () => {
