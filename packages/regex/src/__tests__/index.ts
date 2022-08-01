@@ -1,9 +1,9 @@
 import {
   absoluteLinuxPath,
   alpha,
+  alphaDashes,
   alphaLower,
   alphanum,
-  alphaDashes,
   alphanumLowercase,
   alphanumSpacesDotsUnderscoreDash,
   alphanumUnderscoreDash,

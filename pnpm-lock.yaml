@@ -140,11 +140,17 @@ importers:
   packages/use-dataloader:
     specifiers:
       prop-types: 15.8.1
+      react: 17.x || 18.x || 18
     dependencies:
       prop-types: 15.8.1
+    devDependencies:
+      react: 18.2.0
 
   packages/use-gtm:
-    specifiers: {}
+    specifiers:
+      react: 17.x || 18.x || 18
+    devDependencies:
+      react: 18.2.0
 
   packages/use-i18n:
     specifiers:
@@ -154,6 +160,8 @@ importers:
       filesize: 9.0.11
       intl-messageformat: 10.1.1
       prop-types: 15.8.1
+      react: 17.x || 18.x || 18
+      react-dom: 17.x || 18.x || 18
     dependencies:
       '@formatjs/ecma402-abstract': 1.11.8
       '@formatjs/fast-memoize': 1.2.4
@@ -161,9 +169,15 @@ importers:
       filesize: 9.0.11
       intl-messageformat: 10.1.1
       prop-types: 15.8.1
+    devDependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
 
   packages/use-media:
-    specifiers: {}
+    specifiers:
+      react: 17.x || 18.x || 18
+    devDependencies:
+      react: 18.2.0
 
   packages/use-query-params:
     specifiers:
@@ -183,14 +197,20 @@ importers:
   packages/use-random-name:
     specifiers:
       '@scaleway/random-name': ^3.0.2
+      react: '>=16.8 || 18'
     dependencies:
       '@scaleway/random-name': link:../random-name
+    devDependencies:
+      react: 18.2.0
 
   packages/use-segment:
     specifiers:
       '@segment/analytics-next': 1.41.1
+      react: 17.x || 18.x || 18
     dependencies:
       '@segment/analytics-next': 1.41.1
+    devDependencies:
+      react: 18.2.0
 
 packages:
 
