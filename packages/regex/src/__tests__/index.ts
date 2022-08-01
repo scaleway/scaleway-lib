@@ -3,6 +3,7 @@ import {
   alpha,
   alphaLower,
   alphanum,
+  alphaDashes,
   alphanumLowercase,
   alphanumSpacesDotsUnderscoreDash,
   alphanumUnderscoreDash,
@@ -134,6 +135,27 @@ describe('@regex', () => {
       [macAddress1, false],
     ])('should match regex %s to be %s', (string, expected) => {
       expect(alphanum.test(string)).toBe(expected)
+    })
+  })
+
+  describe('alphaDashes', () => {
+    test.each([
+      [alphanumdashText, true],
+      [alphanumdashdotsText, false],
+      [asciiLetters, true],
+      [asciiLowercase, true],
+      [asciiUppercase, true],
+      [digitsTest, false],
+      [emailTest, false],
+      [octdigits, false],
+      [hexdigits, false],
+      [printable, false],
+      [punctuation, false],
+      [whitespace, false],
+      [cronTest, false],
+      [macAddress1, false],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(alphaDashes.test(string)).toBe(expected)
     })
   })
 
