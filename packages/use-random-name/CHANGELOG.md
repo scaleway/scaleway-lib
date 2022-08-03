@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.2.5 (2022-08-03)
+
+
+### Bug Fixes
+
+* **use-random-name:** use useMemo insteand of iife useCallback ([#906](https://github.com/scaleway/scaleway-lib/issues/906)) ([1217b30](https://github.com/scaleway/scaleway-lib/commit/1217b3069e2cca86abf80075a6ae6d30cb28de17))
+
+
+
 ## 0.2.4 (2022-06-09)
 
 **Note:** Version bump only for package @scaleway/use-random-name
