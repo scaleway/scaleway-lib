@@ -1,8 +1,8 @@
 import randomName from '@scaleway/random-name'
-import { useCallback } from 'react'
+import { useMemo } from 'react'
 
 const useRandomName = (prefix = '', separator = '-'): string =>
-  useCallback(() => randomName(prefix, separator), [prefix, separator])()
+  useMemo(() => randomName(prefix, separator), [prefix, separator])
 
 export default useRandomName
 export { randomName }
