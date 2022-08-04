@@ -16,7 +16,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@emotion/cache": "11.10.0",
+    "@emotion/cache": "11.10.1",
     "@emotion/jest": "11.10.0",
     "@emotion/react": "11.10.0",
     "@testing-library/react": "13.3.0"
