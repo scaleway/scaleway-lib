@@ -115,14 +115,14 @@ importers:
   packages/jest-helpers:
     specifiers:
       '@babel/core': 7.18.10
-      '@emotion/cache': 11.10.0
+      '@emotion/cache': 11.10.1
       '@emotion/jest': 11.10.0
       '@emotion/react': 11.10.0
       '@testing-library/react': 13.3.0
       react: 18.2.0
       react-dom: 18.2.0
     dependencies:
-      '@emotion/cache': 11.10.0
+      '@emotion/cache': 11.10.1
       '@emotion/jest': 11.10.0
       '@emotion/react': 11.10.0_byq7oc57qftat37gkdlgphtura
       '@testing-library/react': 13.3.0_biqbaboplfbrettd7655fr4n2y
@@ -1702,8 +1702,8 @@ packages:
       stylis: 4.0.13
     dev: false
 
-  /@emotion/cache/11.10.0:
-    resolution: {integrity: sha512-3FoUWnDbHWg/pXGCvL46jvpOSJP0xvRZLY8khUcUHGOBcp0S/MCIk+osp84/dby2Ctahw/Ev4KTHWkY3i0g39g==}
+  /@emotion/cache/11.10.1:
+    resolution: {integrity: sha512-uZTj3Yz5D69GE25iFZcIQtibnVCFsc/6+XIozyL3ycgWvEdif2uEw9wlUt6umjLr4Keg9K6xRPHmD8LGi+6p1A==}
     dependencies:
       '@emotion/memoize': 0.8.0
       '@emotion/sheet': 1.2.0
@@ -1760,7 +1760,7 @@ packages:
       '@babel/core': 7.18.10
       '@babel/runtime': 7.18.9
       '@emotion/babel-plugin': 11.10.0_@babel+core@7.18.10
-      '@emotion/cache': 11.10.0
+      '@emotion/cache': 11.10.1
       '@emotion/serialize': 1.1.0
       '@emotion/utils': 1.2.0
       '@emotion/weak-memoize': 0.3.0
