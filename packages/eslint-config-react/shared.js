@@ -21,6 +21,8 @@ module.exports = {
         'newlines-between': 'never',
       },
     ],
+    // We allow named and default export
+    'import/prefer-default-export': 'off',
     // This allows us to reenable ForOfStatement.
     // While this has been disabled in airbnb configuration it's native to the browsers we support
     // so the original argument about weight is no up to date https://github.com/airbnb/javascript/issues/1271
