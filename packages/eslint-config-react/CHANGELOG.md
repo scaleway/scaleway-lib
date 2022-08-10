@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.0](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@3.4.50...@scaleway/eslint-config-react@3.5.0) (2022-08-10)
+
+
+### Features
+
+* **eslint-config:** disable prefer-default-export ([#913](https://github.com/scaleway/scaleway-lib/issues/913)) ([7d311a6](https://github.com/scaleway/scaleway-lib/commit/7d311a64d03d5d600d429f4b70d011319134a92b))
+
+
+
 ## [3.4.50](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@3.4.49...@scaleway/eslint-config-react@3.4.50) (2022-08-09)
 
 
