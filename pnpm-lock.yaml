@@ -188,9 +188,9 @@ importers:
 
   packages/use-segment:
     specifiers:
-      '@segment/analytics-next': 1.42.1
+      '@segment/analytics-next': 1.42.3
     dependencies:
-      '@segment/analytics-next': 1.42.1
+      '@segment/analytics-next': 1.42.3
 
 packages:
 
@@ -3238,8 +3238,8 @@ packages:
       tslib: 2.4.0
     dev: false
 
-  /@segment/analytics-next/1.42.1:
-    resolution: {integrity: sha512-KvAwGJMUpEuFT3+5Y2CY18j27SilGw6eAbvDf3tt0Btw/HSx8VlY9gE1wvFe3/nTtBQBHJKA4GOm98n+6Oe0rQ==}
+  /@segment/analytics-next/1.42.3:
+    resolution: {integrity: sha512-/H0f+inK/3XSyvngUUG2CxSpIWuCiRh7/386mXr5aV2ZBSzUzAW7w2PsexU4MiR1zvXYey5uDNhgTTQ/CdsiVQ==}
     dependencies:
       '@lukeed/uuid': 2.0.0
       '@segment/analytics-core': 1.0.1
