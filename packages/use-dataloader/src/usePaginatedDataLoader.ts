@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import {
+  KeyType,
   PromiseType,
   UsePaginatedDataLoaderConfig,
   UsePaginatedDataLoaderMethodParams,
