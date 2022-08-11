@@ -1,10 +1,15 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useDataLoaderContext } from './DataLoaderProvider'
 import { StatusEnum } from './constants'
-import { PromiseType, UseDataLoaderConfig, UseDataLoaderResult } from './types'
+import {
+  KeyType,
+  PromiseType,
+  UseDataLoaderConfig,
+  UseDataLoaderResult,
+} from './types'
 
 function useDataLoader<ResultType = unknown, ErrorType = Error>(
-  fetchKey: string,
+  fetchKey: KeyType,
   method: () => PromiseType<ResultType>,
   {
     enabled = true,
@@ -27,7 +32,14 @@ function useDataLoader<ResultType = unknown, ErrorType = Error>(
     setCounter(current => current + 1)
   }, [])
 
-  const request = getOrAddRequest<ResultType, ErrorType>(fetchKey, {
+  const marshalKey = Array.isArray(fetchKey)
+    ? fetchKey
+        .filter(Boolean)
+        .map(subKey => subKey?.toString())
+        .join('.')
+    : fetchKey?.toString()
+
+  const request = getOrAddRequest<ResultType, ErrorType>(marshalKey, {
     enabled,
     method: methodRef.current,
   })

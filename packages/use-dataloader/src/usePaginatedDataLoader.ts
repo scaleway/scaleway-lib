@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from 'react'
-import { KEY_IS_NOT_STRING_ERROR } from './constants'
 import {
   PromiseType,
   UsePaginatedDataLoaderConfig,
@@ -15,7 +14,7 @@ import useDataLoader from './useDataLoader'
  * @returns {useDataLoaderResult} hook result containing data, request state, and method to reload the data
  */
 const usePaginatedDataLoader = <ResultType = unknown, ErrorType = Error>(
-  baseFetchKey: string,
+  baseFetchKey: KeyType,
   method: (
     params: UsePaginatedDataLoaderMethodParams,
   ) => PromiseType<ResultType>,
@@ -32,10 +31,6 @@ const usePaginatedDataLoader = <ResultType = unknown, ErrorType = Error>(
     perPage = 1,
   }: UsePaginatedDataLoaderConfig<ResultType, ErrorType> = {},
 ): UsePaginatedDataLoaderResult<ResultType, ErrorType> => {
-  if (typeof baseFetchKey !== 'string') {
-    throw new Error(KEY_IS_NOT_STRING_ERROR)
-  }
-
   const [data, setData] = useState<Record<number, ResultType | undefined>>({})
   const [page, setPage] = useState<number>(initialPage ?? 1)
 
@@ -52,7 +47,7 @@ const usePaginatedDataLoader = <ResultType = unknown, ErrorType = Error>(
     isSuccess,
     reload,
     error,
-  } = useDataLoader(`${baseFetchKey}-page-${page}`, pageMethod, {
+  } = useDataLoader([...baseFetchKey, 'page', page], pageMethod, {
     dataLifetime,
     enabled,
     initialData,
