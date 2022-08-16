@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.15.0 (2022-08-16)
+
+
+### Features
+
+* **use-dataloader:** handle primitive array key ([#920](https://github.com/scaleway/scaleway-lib/issues/920)) ([13958ae](https://github.com/scaleway/scaleway-lib/commit/13958aedd41838de95afa94b7852b5474b833110))
+
+
+
 ## [2.14.3](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-dataloader@2.14.2...@scaleway/use-dataloader@2.14.3) (2022-07-18)
 
 
