@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import {
   KeyType,
   PromiseType,
@@ -32,13 +32,10 @@ const usePaginatedDataLoader = <ResultType = unknown, ErrorType = Error>(
     perPage = 1,
   }: UsePaginatedDataLoaderConfig<ResultType, ErrorType> = {},
 ): UsePaginatedDataLoaderResult<ResultType, ErrorType> => {
-  const flatKey = useCallback(
-    (page: number) => [key, ['page', page]].flat(),
-    [key],
-  )
-
   const [data, setData] = useState<Record<number, ResultType | undefined>>({})
   const [page, setPage] = useState<number>(initialPage ?? 1)
+
+  const keyPage = useMemo(() => [key, ['page', page]].flat(), [key, page])
 
   const pageMethod = useCallback(
     () => method({ page, perPage }),
@@ -53,7 +50,7 @@ const usePaginatedDataLoader = <ResultType = unknown, ErrorType = Error>(
     isSuccess,
     reload,
     error,
-  } = useDataLoader(flatKey(page), pageMethod, {
+  } = useDataLoader(keyPage, pageMethod, {
     dataLifetime,
     enabled,
     initialData,
