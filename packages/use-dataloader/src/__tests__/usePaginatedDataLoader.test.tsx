@@ -2,7 +2,6 @@
 import { act, renderHook, waitFor } from '@testing-library/react'
 import { ReactNode } from 'react'
 import DataLoaderProvider from '../DataLoaderProvider'
-import { KEY_IS_NOT_STRING_ERROR } from '../constants'
 import { UsePaginatedDataLoaderMethodParams } from '../types'
 import usePaginatedDataLoader from '../usePaginatedDataLoader'
 
@@ -78,28 +77,6 @@ describe('usePaginatedDataLoader', () => {
     await waitFor(() => expect(result.current.isSuccess).toBe(true))
     expect(result.current.isLoading).toBe(false)
     expect(result.current.pageData).toBe(true)
-  })
-
-  test('should render correctly without valid key', () => {
-    const orignalConsoleError = console.error
-    console.error = jest.fn
-    try {
-      renderHook(
-        // @ts-expect-error used because we test with bad key
-        props => usePaginatedDataLoader(props.key, props.method),
-        {
-          initialProps: {
-            ...initialProps,
-            key: 2,
-          },
-          wrapper,
-        },
-      )
-      fail('It shoulded fail with a bad key')
-    } catch (error) {
-      expect((error as Error)?.message).toBe(KEY_IS_NOT_STRING_ERROR)
-    }
-    console.error = orignalConsoleError
   })
 
   test('should render correctly with result null', async () => {

@@ -1,10 +1,16 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useDataLoaderContext } from './DataLoaderProvider'
 import { StatusEnum } from './constants'
-import { PromiseType, UseDataLoaderConfig, UseDataLoaderResult } from './types'
+import { marshalQueryKey } from './helpers'
+import {
+  KeyType,
+  PromiseType,
+  UseDataLoaderConfig,
+  UseDataLoaderResult,
+} from './types'
 
 function useDataLoader<ResultType = unknown, ErrorType = Error>(
-  fetchKey: string,
+  key: KeyType,
   method: () => PromiseType<ResultType>,
   {
     enabled = true,
@@ -23,11 +29,14 @@ function useDataLoader<ResultType = unknown, ErrorType = Error>(
   const onErrorRef = useRef(onError ?? onGlobalError)
   const needPollingRef = useRef(needPolling)
   const [, setCounter] = useState(0)
+
   const forceRerender = useCallback(() => {
     setCounter(current => current + 1)
   }, [])
 
-  const request = getOrAddRequest<ResultType, ErrorType>(fetchKey, {
+  const queryKey = useMemo(() => marshalQueryKey(key), [key])
+
+  const request = getOrAddRequest<ResultType, ErrorType>(queryKey, {
     enabled,
     method: methodRef.current,
   })
