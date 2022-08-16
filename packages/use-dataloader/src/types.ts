@@ -1,3 +1,6 @@
+type PrimitiveType = string | number | boolean | null | undefined | Date
+export type KeyType = string | number | PrimitiveType[]
+
 export class PromiseType<T = unknown> extends Promise<T> {
   public cancel?: () => void
 }

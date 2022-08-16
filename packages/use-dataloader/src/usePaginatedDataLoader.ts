@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useState } from 'react'
-import { KEY_IS_NOT_STRING_ERROR } from './constants'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import {
+  KeyType,
   PromiseType,
   UsePaginatedDataLoaderConfig,
   UsePaginatedDataLoaderMethodParams,
@@ -9,13 +9,13 @@ import {
 import useDataLoader from './useDataLoader'
 
 /**
- * @param {string} baseFetchKey base key used to cache data. Hook append -page-X to that key for each page you load
+ * @param {KeyType} key base key used to cache data. Hook append -page-X to that key for each page you load
  * @param {() => PromiseType} method a method that return a promise
  * @param {useDataLoaderConfig} config hook configuration
  * @returns {useDataLoaderResult} hook result containing data, request state, and method to reload the data
  */
 const usePaginatedDataLoader = <ResultType = unknown, ErrorType = Error>(
-  baseFetchKey: string,
+  key: KeyType,
   method: (
     params: UsePaginatedDataLoaderMethodParams,
   ) => PromiseType<ResultType>,
@@ -32,12 +32,10 @@ const usePaginatedDataLoader = <ResultType = unknown, ErrorType = Error>(
     perPage = 1,
   }: UsePaginatedDataLoaderConfig<ResultType, ErrorType> = {},
 ): UsePaginatedDataLoaderResult<ResultType, ErrorType> => {
-  if (typeof baseFetchKey !== 'string') {
-    throw new Error(KEY_IS_NOT_STRING_ERROR)
-  }
-
   const [data, setData] = useState<Record<number, ResultType | undefined>>({})
   const [page, setPage] = useState<number>(initialPage ?? 1)
+
+  const keyPage = useMemo(() => [key, ['page', page]].flat(), [key, page])
 
   const pageMethod = useCallback(
     () => method({ page, perPage }),
@@ -52,7 +50,7 @@ const usePaginatedDataLoader = <ResultType = unknown, ErrorType = Error>(
     isSuccess,
     reload,
     error,
-  } = useDataLoader(`${baseFetchKey}-page-${page}`, pageMethod, {
+  } = useDataLoader(keyPage, pageMethod, {
     dataLifetime,
     enabled,
     initialData,
@@ -88,7 +86,7 @@ const usePaginatedDataLoader = <ResultType = unknown, ErrorType = Error>(
   useEffect(() => {
     setPage(1)
     setData({})
-  }, [baseFetchKey])
+  }, [key])
 
   return {
     data,

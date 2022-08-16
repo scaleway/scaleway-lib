@@ -2,13 +2,12 @@
 import { renderHook, waitFor } from '@testing-library/react'
 import { ReactNode } from 'react'
 import DataLoaderProvider, { useDataLoaderContext } from '../DataLoaderProvider'
-import { KEY_IS_NOT_STRING_ERROR } from '../constants'
-import { UseDataLoaderConfig } from '../types'
+import { KeyType, UseDataLoaderConfig } from '../types'
 import useDataLoader from '../useDataLoader'
 
 type UseDataLoaderHookProps = {
   config: UseDataLoaderConfig<unknown, unknown>
-  key: string
+  key: KeyType
   method: () => Promise<unknown>
   children?: ReactNode
 }
@@ -61,6 +60,52 @@ describe('useDataLoader', () => {
     expect(result.current.previousData).toBe(undefined)
   })
 
+  test('should render correctly with a complexe key', async () => {
+    const key = [
+      'baseKey',
+      ['null', null],
+      ['boolean', false],
+      ['number', 10],
+    ].flat()
+
+    const method = jest.fn(
+      () =>
+        new Promise(resolve => {
+          setTimeout(() => resolve(true), PROMISE_TIMEOUT)
+        }),
+    )
+
+    const initProps = {
+      ...initialProps,
+      key,
+      method,
+    }
+
+    const { result, rerender } = renderHook(
+      props => useDataLoader(props.key, props.method),
+      {
+        initialProps: initProps,
+        wrapper,
+      },
+    )
+    expect(result.current.data).toBe(undefined)
+    expect(result.current.isLoading).toBe(true)
+    expect(result.current.previousData).toBe(undefined)
+    expect(initialProps.method).toBeCalledTimes(1)
+    await waitFor(() => expect(result.current.isSuccess).toBe(true))
+    expect(initialProps.method).toBeCalledTimes(1)
+    expect(result.current.data).toBe(true)
+    expect(result.current.isLoading).toBe(false)
+    expect(result.current.previousData).toBe(undefined)
+
+    rerender({ ...initProps })
+
+    expect(initialProps.method).toBeCalledTimes(1)
+    expect(result.current.data).toBe(true)
+    expect(result.current.isLoading).toBe(false)
+    expect(result.current.previousData).toBe(undefined)
+  })
+
   test('should render correctly without request enabled then enable it', async () => {
     const method = jest.fn(
       () =>
@@ -94,28 +139,6 @@ describe('useDataLoader', () => {
     expect(result.current.isLoading).toBe(false)
     expect(result.current.previousData).toBe(undefined)
     expect(result.current.data).toBe(true)
-  })
-
-  test('should render correctly without valid key', () => {
-    const orignalConsoleError = console.error
-    console.error = jest.fn
-    try {
-      renderHook(
-        // @ts-expect-error used because we test with bad key
-        props => useDataLoader(props.key, props.method),
-        {
-          initialProps: {
-            ...initialProps,
-            key: 2,
-          },
-          wrapper,
-        },
-      )
-      fail('It shoulded fail with a bad key')
-    } catch (error) {
-      expect((error as Error)?.message).toBe(KEY_IS_NOT_STRING_ERROR)
-    }
-    console.error = orignalConsoleError
   })
 
   test('should render correctly without keepPreviousData', async () => {
