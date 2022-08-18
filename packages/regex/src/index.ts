@@ -33,3 +33,4 @@ export const sixDigitsCode = /^[0-9]{6}$/
 export const url =
   /^http(s)?:\/\/?[\w.-]+(?:\.[\w.-]+)+[\w\-._~:/?#[\]@!$&'()*+,;=.]+$/
 export const hexadecimal = /^[0-9a-fA-F]+$/
+export const notHaveSpecialCharacter = /^[^\W][a-zA-Z0-9-_.]+$/

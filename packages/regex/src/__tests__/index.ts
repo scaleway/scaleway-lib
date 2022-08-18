@@ -661,4 +661,25 @@ describe('@regex', () => {
       expect(hexadecimal.test(string)).toBe(expected)
     })
   })
+
+  describe('notHaveSpecialCharacter', () => {
+    test.each([
+      [asciiLetters, true],
+      [asciiLowercase, true],
+      [asciiUppercase, true],
+      [digitsTest, true],
+      [emailTest, false],
+      [octdigits, true],
+      [fourDigitsTest, true],
+      [printable, false],
+      [phoneTest, false],
+      [sixDigitsCodeTest, true],
+      [punctuation, false],
+      [whitespace, false],
+      [cronTest, false],
+      [hexdigits, true],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(hexadecimal.test(string)).toBe(expected)
+    })
+  })
 })
