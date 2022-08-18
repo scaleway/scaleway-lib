@@ -15,6 +15,7 @@ import {
   alphanumdashorempty,
   alphanumdashspaces,
   alphanumdots,
+  alphnumDashDot,
   ascii,
   backupKey,
   basicDomain,
@@ -662,7 +663,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('notHaveSpecialCharacter', () => {
+  describe('alphnumDashDot', () => {
     test.each([
       [asciiLetters, true],
       [asciiLowercase, true],
@@ -679,7 +680,7 @@ describe('@regex', () => {
       [cronTest, false],
       [hexdigits, true],
     ])('should match regex %s to be %s', (string, expected) => {
-      expect(hexadecimal.test(string)).toBe(expected)
+      expect(alphnumDashDot.test(string)).toBe(expected)
     })
   })
 })
