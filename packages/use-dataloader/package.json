@@ -28,6 +28,6 @@
     "prop-types": "15.8.1"
   },
   "peerDependencies": {
-    "react": "17.x || 18.x"
+    "react": "18.x"
   }
 }

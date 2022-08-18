@@ -28,6 +28,6 @@
     "@segment/analytics-next": "1.42.3"
   },
   "peerDependencies": {
-    "react": "17.x || 18.x"
+    "react": "18.x"
   }
 }
