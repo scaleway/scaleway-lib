@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.2.0 (2022-08-19)
+
+
+### Features
+
+* react 18 only ([#925](https://github.com/scaleway/scaleway-lib/issues/925)) ([f46adf6](https://github.com/scaleway/scaleway-lib/commit/f46adf6f4e38dc6fbabedaef8faad3ee654444a6))
+
+
+
 ## 3.1.5 (2022-06-16)
 
 
