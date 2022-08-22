@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.4.3](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@3.4.2...@scaleway/use-i18n@3.4.3) (2022-08-22)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @formatjs/fast-memoize to v1.2.6 ([#930](https://github.com/scaleway/scaleway-lib/issues/930)) ([36ea380](https://github.com/scaleway/scaleway-lib/commit/36ea3805ae7c654cb68026063e06285b6274ee43))
+
+
+
 ## [3.4.2](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@3.4.1...@scaleway/use-i18n@3.4.2) (2022-08-22)
 
 
