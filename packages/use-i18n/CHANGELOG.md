@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.4.2](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@3.4.1...@scaleway/use-i18n@3.4.2) (2022-08-22)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @formatjs/ecma402-abstract to v1.11.10 ([#929](https://github.com/scaleway/scaleway-lib/issues/929)) ([fcb9e50](https://github.com/scaleway/scaleway-lib/commit/fcb9e501b9190ff89b4b0b0a134db078ed12ec02))
+* **deps:** update dependency intl-messageformat to v10.1.3 ([#931](https://github.com/scaleway/scaleway-lib/issues/931)) ([5894089](https://github.com/scaleway/scaleway-lib/commit/5894089c1b9513654891798030f09a03398344ad))
+
+
+
 ## [3.4.1](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@3.4.0...@scaleway/use-i18n@3.4.1) (2022-08-19)
 
 
