@@ -34,13 +34,6 @@ export type InitialScopedTranslateFn = (
   t?: InitialTranslateFn,
 ) => InitialTranslateFn
 
-const prefixKeys = (prefix: string) => (obj: { [key: string]: string }) =>
-  Object.keys(obj).reduce((acc: { [key: string]: string }, key) => {
-    acc[`${prefix}${key}`] = obj[key]
-
-    return acc
-  }, {})
-
 const areNamespacesLoaded = (
   namespaces: string[],
   loadedNamespaces: string[] = [],
@@ -216,13 +209,10 @@ const I18nContextProvider = ({
         namespace,
       })
 
-      const trad: Record<string, string> = {
+      const trad = {
         ...result.defaultLocale.default,
         ...result[currentLocale].default,
       }
-
-      const { prefix, ...values } = trad
-      const preparedValues = prefix ? prefixKeys(`${prefix}.`)(values) : values
 
       // avoid a lot of render when async update
       // This is handled automatically in react 18, but we leave it here for compat
@@ -233,7 +223,7 @@ const I18nContextProvider = ({
           ...{
             [currentLocale]: {
               ...prevState[currentLocale],
-              ...preparedValues,
+              ...trad,
             },
           },
         }))
