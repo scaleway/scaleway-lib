@@ -25,6 +25,7 @@ import type { ScopedTranslateFn, TranslateFn } from './types'
 const LOCALE_ITEM_STORAGE = 'locale'
 
 type TranslationsByLocales = Record<string, BaseLocale>
+
 export type InitialTranslateFn = (
   key: string,
   context?: Record<string, LocaleValue>,
