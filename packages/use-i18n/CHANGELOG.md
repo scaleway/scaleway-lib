@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.5.0 (2022-08-26)
+
+
+### Features
+
+* **use-i18n:** add type safety ([#865](https://github.com/scaleway/scaleway-lib/issues/865)) ([c6b0d07](https://github.com/scaleway/scaleway-lib/commit/c6b0d07fc8195d8ee1fc2f70d39731c4ed6e4573))
+
+
+
 ## [3.4.3](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@3.4.2...@scaleway/use-i18n@3.4.3) (2022-08-22)
 
 
