@@ -96,12 +96,12 @@
     "setupFiles": [
       "jest-localstorage-mock"
     ],
-    "testMatch": ["**/__tests__/*.ts"],
     "collectCoverageFrom": [
       "packages/*/src/**/*.{ts,tsx,js,jsx}"
     ],
     "modulePathIgnorePatterns": [
-      "locales"
+      "locales",
+      "__typetests__"
     ],
     "coverageReporters": [
       "text",
