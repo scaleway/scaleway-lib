@@ -41,7 +41,7 @@
     "rollup": "2.78.1",
     "rollup-plugin-dts": "4.2.2",
     "rollup-plugin-visualizer": "5.7.1",
-    "typescript": "4.7.4",
+    "typescript": "4.8.2",
     "wait-for-expect": "3.0.2"
   },
   "scripts": {
