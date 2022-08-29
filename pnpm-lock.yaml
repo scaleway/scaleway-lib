@@ -40,7 +40,7 @@ importers:
       read-pkg: 7.1.0
       rollup: 2.78.1
       rollup-plugin-dts: 4.2.2
-      rollup-plugin-visualizer: 5.7.1
+      rollup-plugin-visualizer: 5.8.0
       tsd-lite: 0.6.0
       typescript: 4.8.2
       wait-for-expect: 3.0.2
@@ -81,7 +81,7 @@ importers:
       read-pkg: 7.1.0
       rollup: 2.78.1
       rollup-plugin-dts: 4.2.2_rusrl3yqfuqle4tcyjzane2tmq
-      rollup-plugin-visualizer: 5.7.1_rollup@2.78.1
+      rollup-plugin-visualizer: 5.8.0_rollup@2.78.1
       tsd-lite: 0.6.0_@tsd+typescript@4.8.2
       typescript: 4.8.2
       wait-for-expect: 3.0.2
@@ -9655,8 +9655,8 @@ packages:
       '@babel/code-frame': 7.18.6
     dev: true
 
-  /rollup-plugin-visualizer/5.7.1_rollup@2.78.1:
-    resolution: {integrity: sha512-E/IgOMnmXKlc6ICyf53ok1b6DxPeNVUs3R0kYYPuDpGfofT4bkiG+KtSMlGjMACFmfwbbqTVDZBIF7sMZVKJbA==}
+  /rollup-plugin-visualizer/5.8.0_rollup@2.78.1:
+    resolution: {integrity: sha512-pY6j/7qHz5I9rB7d/bQoA5gX+2FbV3MBG055wrsFxDn550bgl0FNViRj6wDHh85PMswv+JVdZjhnMBzz/hdAHA==}
     engines: {node: '>=14'}
     hasBin: true
     peerDependencies:
