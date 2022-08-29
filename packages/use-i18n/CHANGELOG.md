@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.5.3 (2022-08-29)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @formatjs/ecma402-abstract to v1.12.0 ([#951](https://github.com/scaleway/scaleway-lib/issues/951)) ([8d7ceeb](https://github.com/scaleway/scaleway-lib/commit/8d7ceebfa376cb81ef0bc988c2022c3a93f81cc6))
+
+
+
 ## 3.5.2 (2022-08-29)
 
 **Note:** Version bump only for package @scaleway/use-i18n
