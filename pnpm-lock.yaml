@@ -41,7 +41,7 @@ importers:
       rollup: 2.78.1
       rollup-plugin-dts: 4.2.2
       rollup-plugin-visualizer: 5.7.1
-      tsd-lite: 0.5.6
+      tsd-lite: 0.6.0
       typescript: 4.8.2
       wait-for-expect: 3.0.2
     devDependencies:
@@ -82,7 +82,7 @@ importers:
       rollup: 2.78.1
       rollup-plugin-dts: 4.2.2_rusrl3yqfuqle4tcyjzane2tmq
       rollup-plugin-visualizer: 5.7.1_rollup@2.78.1
-      tsd-lite: 0.5.6_@tsd+typescript@4.8.2
+      tsd-lite: 0.6.0_@tsd+typescript@4.8.2
       typescript: 4.8.2
       wait-for-expect: 3.0.2
 
@@ -10294,6 +10294,15 @@ packages:
 
   /tsd-lite/0.5.6_@tsd+typescript@4.8.2:
     resolution: {integrity: sha512-njyGiT8s6F19TIr4Fwlau3IX6fVNgmSgmM0j5u97+csQAp5BMtzMHNsPABBC8bp6m+XQ0itKfym6HvfCmzEIpA==}
+    engines: {node: '>=12'}
+    peerDependencies:
+      '@tsd/typescript': ^3.8.3 || ^4.0.7
+    dependencies:
+      '@tsd/typescript': 4.8.2
+    dev: true
+
+  /tsd-lite/0.6.0_@tsd+typescript@4.8.2:
+    resolution: {integrity: sha512-jmFgQjXbiqbHn/zvShB/ND9NfnCFgiRED8F8xVVdQP58b/QylvxbWf01ofrwhvBpU0mTgN4jTs06laKpE9KEqA==}
     engines: {node: '>=12'}
     peerDependencies:
       '@tsd/typescript': ^3.8.3 || ^4.0.7
