@@ -32,7 +32,7 @@
     "jest-environment-jsdom": "29.0.1",
     "jest-junit": "14.0.1",
     "jest-localstorage-mock": "2.4.22",
-    "jest-runner-tsd": "3.1.1",
+    "jest-runner-tsd": "4.0.0",
     "lerna": "5.4.3",
     "lint-staged": "13.0.3",
     "mockdate": "3.0.5",
