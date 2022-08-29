@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`GTM hook Provider should call onLoadError if script fail to load 1`] = `
-"<script src=\\"https://www.googletagmanager.com/gtm.js?id=testId\\"></script><script>window.dataLayer = window.dataLayer || [];</script><script>(function(w,d,s,l,i){w[l]=w[l]||[];
+"<script src="https://www.googletagmanager.com/gtm.js?id=testId"></script><script>window.dataLayer = window.dataLayer || [];</script><script>(function(w,d,s,l,i){w[l]=w[l]||[];
     w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
     var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
     j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl+'';
@@ -16,7 +16,7 @@ exports[`GTM hook Provider should call onLoadError if script fail to load 1`] = 
 `;
 
 exports[`GTM hook Provider should load env when environment auth is missing 1`] = `
-"<script src=\\"https://www.googletagmanager.com/gtm.js?id=testId\\"></script><script>window.dataLayer = window.dataLayer || [];</script><script>(function(w,d,s,l,i){w[l]=w[l]||[];
+"<script src="https://www.googletagmanager.com/gtm.js?id=testId"></script><script>window.dataLayer = window.dataLayer || [];</script><script>(function(w,d,s,l,i){w[l]=w[l]||[];
     w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
     var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
     j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl+'';
@@ -31,7 +31,7 @@ exports[`GTM hook Provider should load env when environment auth is missing 1`] 
 `;
 
 exports[`GTM hook Provider should load when id and environment is provided 1`] = `
-"<script src=\\"https://www.googletagmanager.com/gtm.js?id=testId&amp;gtm_auth=gtm&amp;gtm_preview=world&amp;gtm_cookies_win=x\\"></script><script>window.dataLayer = window.dataLayer || [];</script><script>(function(w,d,s,l,i){w[l]=w[l]||[];
+"<script src="https://www.googletagmanager.com/gtm.js?id=testId&amp;gtm_auth=gtm&amp;gtm_preview=world&amp;gtm_cookies_win=x"></script><script>window.dataLayer = window.dataLayer || [];</script><script>(function(w,d,s,l,i){w[l]=w[l]||[];
     w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
     var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
     j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl+'&gtm_auth=gtm&gtm_preview=world&gtm_cookies_win=x';
@@ -46,7 +46,7 @@ exports[`GTM hook Provider should load when id and environment is provided 1`] =
 `;
 
 exports[`GTM hook Provider should load when id is provided 1`] = `
-"<script src=\\"https://www.googletagmanager.com/gtm.js?id=testId\\"></script><script>window.dataLayer = window.dataLayer || [];</script><script>(function(w,d,s,l,i){w[l]=w[l]||[];
+"<script src="https://www.googletagmanager.com/gtm.js?id=testId"></script><script>window.dataLayer = window.dataLayer || [];</script><script>(function(w,d,s,l,i){w[l]=w[l]||[];
     w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
     var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
     j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl+'';
@@ -61,12 +61,12 @@ exports[`GTM hook Provider should load when id is provided 1`] = `
 `;
 
 exports[`GTM hook Provider should load with events when provided 1`] = `
-Array [
-  Object {
+[
+  {
     "event": "gtm.js",
     "gtm.start": 1618272000000,
   },
-  Object {
+  {
     "event": "sampleEvent",
     "extra": "test",
   },
