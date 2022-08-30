@@ -18,7 +18,7 @@
   "dependencies": {
     "@emotion/cache": "11.10.3",
     "@emotion/jest": "11.10.0",
-    "@emotion/react": "11.10.0",
+    "@emotion/react": "11.10.4",
     "@testing-library/react": "13.3.0"
   },
   "peerDependencies": {
