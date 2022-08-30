@@ -126,10 +126,12 @@ export function useI18n<
   return context as unknown as Context<Locale>
 }
 
-export const useTranslation = (
+export function useTranslation<
+  Locale extends BaseLocale | undefined = undefined,
+>(
   namespaces: string[] = [],
   load: LoadTranslationsFn | undefined = undefined,
-): Context & { isLoaded: boolean } => {
+): Context<Locale> & { isLoaded: boolean } {
   const context = useContext(I18nContext)
   if (context === undefined) {
     throw new Error('useTranslation must be used within a I18nProvider')
@@ -148,7 +150,9 @@ export const useTranslation = (
     [loadedNamespaces, namespaces],
   )
 
-  return { ...context, isLoaded }
+  return { ...context, isLoaded } as unknown as Context<Locale> & {
+    isLoaded: boolean
+  }
 }
 
 type LoadTranslationsFn = ({
