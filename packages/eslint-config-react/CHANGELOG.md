@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.5.7 (2022-08-30)
+
+
+### Bug Fixes
+
+* **deps:** update typescript-eslint monorepo to v5.36.0 ([#954](https://github.com/scaleway/scaleway-lib/issues/954)) ([f2ea7aa](https://github.com/scaleway/scaleway-lib/commit/f2ea7aacaa8b334f65a9b7272dc48966d282ff92))
+
+
+
 ## 3.5.6 (2022-08-29)
 
 
