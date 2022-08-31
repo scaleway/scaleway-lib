@@ -111,6 +111,104 @@ describe('i18n hook', () => {
     })
   })
 
+  it('should use specific load on useTranslation', async () => {
+    const load = async ({
+      locale,
+      namespace,
+    }: {
+      locale: string
+      namespace: string
+    }) => import(`./locales/namespaces/${locale}/${namespace}.json`)
+
+    const { result } = renderHook(
+      () => useTranslation(['user', 'profile'], load),
+      {
+        wrapper: wrapper({
+          defaultLocale: 'en',
+          supportedLocales: ['en', 'fr'],
+        }),
+      },
+    )
+
+    await waitFor(() => {
+      expect(result.current.translations).toStrictEqual({
+        en: {
+          languages: 'Languages',
+          lastName: 'Last Name',
+          name: 'Name',
+        },
+      })
+    })
+
+    expect(result.current.t('name')).toEqual('Name')
+    expect(result.current.t('lastName')).toEqual('Last Name')
+    expect(result.current.t('languages')).toEqual('Languages')
+
+    act(() => {
+      result.current.switchLocale('fr')
+    })
+
+    await waitFor(() => {
+      expect(result.current.translations).toStrictEqual({
+        en: {
+          languages: 'Languages',
+          lastName: 'Last Name',
+          name: 'Name',
+        },
+        fr: {
+          lastName: 'Nom',
+          name: 'Prénom',
+        },
+      })
+    })
+
+    expect(result.current.t('name')).toEqual('Prénom')
+    expect(result.current.t('lastName')).toEqual('Nom')
+    expect(result.current.t('languages')).toEqual('')
+  })
+
+  it("should use specific load and fallback default local if the key doesn't exist", async () => {
+    const load = async ({
+      locale,
+      namespace,
+    }: {
+      locale: string
+      namespace: string
+    }) => import(`./locales/namespaces/${locale}/${namespace}.json`)
+
+    const { result } = renderHook(() => useTranslation(['user'], load), {
+      wrapper: wrapper({
+        defaultLocale: 'fr',
+        enableDefaultLocale: true,
+        supportedLocales: ['en', 'fr'],
+      }),
+    })
+
+    // current local will be 'en' based on navigator
+    // await load of locales
+    act(() => {
+      result.current.switchLocale('fr')
+    })
+
+    await waitFor(() => {
+      expect(result.current.translations).toStrictEqual({
+        en: {
+          languages: 'Languages',
+          lastName: 'Last Name',
+          name: 'Name',
+        },
+        fr: {
+          lastName: 'Nom',
+          name: 'Prénom',
+        },
+      })
+
+      expect(result.current.t('languages')).toEqual('')
+      expect(result.current.t('lastName')).toEqual('Nom')
+      expect(result.current.t('name')).toEqual('Prénom')
+    })
+  })
+
   it('should set current locale from navigator languages', async () => {
     jest.spyOn(window, 'navigator', 'get').mockImplementation(
       () =>
