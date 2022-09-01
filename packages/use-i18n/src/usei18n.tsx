@@ -35,13 +35,6 @@ export type InitialScopedTranslateFn = (
   t?: InitialTranslateFn,
 ) => InitialTranslateFn
 
-const prefixKeys = (prefix: string) => (obj: { [key: string]: string }) =>
-  Object.keys(obj).reduce((acc: { [key: string]: string }, key) => {
-    acc[`${prefix}${key}`] = obj[key]
-
-    return acc
-  }, {})
-
 const areNamespacesLoaded = (
   namespaces: string[],
   loadedNamespaces: string[] = [],
@@ -126,10 +119,12 @@ export function useI18n<
   return context as unknown as Context<Locale>
 }
 
-export const useTranslation = (
+export function useTranslation<
+  Locale extends BaseLocale | undefined = undefined,
+>(
   namespaces: string[] = [],
   load: LoadTranslationsFn | undefined = undefined,
-): Context & { isLoaded: boolean } => {
+): Context<Locale> & { isLoaded: boolean } {
   const context = useContext(I18nContext)
   if (context === undefined) {
     throw new Error('useTranslation must be used within a I18nProvider')
@@ -148,7 +143,9 @@ export const useTranslation = (
     [loadedNamespaces, namespaces],
   )
 
-  return { ...context, isLoaded }
+  return { ...context, isLoaded } as unknown as Context<Locale> & {
+    isLoaded: boolean
+  }
 }
 
 type LoadTranslationsFn = ({
@@ -222,9 +219,6 @@ const I18nContextProvider = ({
         ...result[currentLocale].default,
       }
 
-      const { prefix, ...values } = trad
-      const preparedValues = prefix ? prefixKeys(`${prefix}.`)(values) : values
-
       // avoid a lot of render when async update
       // This is handled automatically in react 18, but we leave it here for compat
       // https://github.com/reactwg/react-18/discussions/21#discussioncomment-801703
@@ -234,7 +228,7 @@ const I18nContextProvider = ({
           ...{
             [currentLocale]: {
               ...prevState[currentLocale],
-              ...preparedValues,
+              ...trad,
             },
           },
         }))
