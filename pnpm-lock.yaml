@@ -158,7 +158,7 @@ importers:
       '@formatjs/fast-memoize': 1.2.6
       date-fns: 2.29.2
       filesize: 9.0.11
-      international-types: 0.3.4
+      international-types: 0.3.5
       intl-messageformat: 10.1.4
       prop-types: 15.8.1
     dependencies:
@@ -166,7 +166,7 @@ importers:
       '@formatjs/fast-memoize': 1.2.6
       date-fns: 2.29.2
       filesize: 9.0.11
-      international-types: 0.3.4
+      international-types: 0.3.5
       intl-messageformat: 10.1.4
       prop-types: 15.8.1
 
@@ -6998,8 +6998,8 @@ packages:
       side-channel: 1.0.4
     dev: false
 
-  /international-types/0.3.4:
-    resolution: {integrity: sha512-4zGZ1Co7H8kfYF4a2a3hpIZL0EqRlxzTGqI0johcyrlg7sKZel4Yi8mZY0TUClRREzNR3L50MjMD2GEx0PRDfg==}
+  /international-types/0.3.5:
+    resolution: {integrity: sha512-PsNtqKgYDSBdGGbh39khLlWL8gJ2yRGCn2eR48SV59S0WtvqoB+va+UFRneP69Sm+wyGLr+TPaihBB2t4i2ggg==}
     dev: false
 
   /intl-messageformat/10.1.4:

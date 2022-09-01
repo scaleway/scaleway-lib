@@ -31,13 +31,13 @@
     "@formatjs/fast-memoize": "1.2.6",
     "date-fns": "2.29.2",
     "filesize": "9.0.11",
-    "international-types": "0.3.4",
+    "international-types": "0.3.5",
     "intl-messageformat": "10.1.4",
     "prop-types": "15.8.1"
   },
   "peerDependencies": {
     "date-fns": "2.x",
-    "international-types": "0.3.4",
+    "international-types": "0.3.5",
     "react": "18.x",
     "react-dom": "18.x"
   }
