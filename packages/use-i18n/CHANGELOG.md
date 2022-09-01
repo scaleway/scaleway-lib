@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.6.0 (2022-09-01)
+
+
+### Features
+
+* **use-i18:** typesafe useTranslation ([#956](https://github.com/scaleway/scaleway-lib/issues/956)) ([cfe9757](https://github.com/scaleway/scaleway-lib/commit/cfe97578eba1393d311fcb8773654a2bef99cdff))
+
+
+
 ## 3.5.3 (2022-08-29)
 
 
