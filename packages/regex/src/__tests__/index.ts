@@ -25,6 +25,7 @@ import {
   hexadecimal,
   macAddress,
   phone,
+  port,
   sixDigitsCode,
   spaces,
   url,
@@ -659,6 +660,17 @@ describe('@regex', () => {
       [hexdigits, true],
     ])('should match regex %s to be %s', (string, expected) => {
       expect(hexadecimal.test(string)).toBe(expected)
+    })
+  })
+
+  describe('port', () => {
+    test.each([
+      ['8080', true],
+      ['3000', true],
+      ['65535', true],
+      ['65536', false],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(port.test(string)).toBe(expected)
     })
   })
 })

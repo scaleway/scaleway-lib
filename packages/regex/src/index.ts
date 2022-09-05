@@ -33,3 +33,6 @@ export const sixDigitsCode = /^[0-9]{6}$/
 export const url =
   /^http(s)?:\/\/?[\w.-]+(?:\.[\w.-]+)+[\w\-._~:/?#[\]@!$&'()*+,;=.]+$/
 export const hexadecimal = /^[0-9a-fA-F]+$/
+// Port Regex: https://ihateregex.io/expr/port/
+export const port =
+  /^((6553[0-5])|(655[0-2][0-9])|(65[0-4][0-9]{2})|(6[0-4][0-9]{3})|([1-5][0-9]{4})|([0-5]{0,5})|([0-9]{1,4}))$/
