@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/jest-helpers",
-  "version": "2.0.15",
+  "version": "2.0.16",
   "description": "A package for utilities jest functions",
   "type": "module",
   "main": "dist/index.js",
