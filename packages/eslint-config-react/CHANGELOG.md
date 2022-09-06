@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.10](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@3.5.9...@scaleway/eslint-config-react@3.5.10) (2022-09-06)
+
+
+### Bug Fixes
+
+* **deps:** update typescript-eslint monorepo to v5.36.2 ([#969](https://github.com/scaleway/scaleway-lib/issues/969)) ([674312d](https://github.com/scaleway/scaleway-lib/commit/674312d9c55463c8f351ff3a6f2ca6344424a3e6))
+
+
+
 ## 3.5.9 (2022-09-06)
 
 **Note:** Version bump only for package @scaleway/eslint-config-react
