@@ -40,7 +40,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "read-pkg": "7.1.0",
-    "rollup": "2.78.1",
+    "rollup": "2.79.0",
     "rollup-plugin-dts": "4.2.2",
     "rollup-plugin-visualizer": "5.8.0",
     "tsd-lite": "0.6.0",
@@ -118,5 +118,5 @@
       ]
     ]
   },
-  "packageManager": "pnpm@7.9.5"
+  "packageManager": "pnpm@7.11.0"
 }
