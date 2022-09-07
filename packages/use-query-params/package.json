@@ -34,11 +34,11 @@
   "peerDependencies": {
     "react": "18.x",
     "react-dom": "18.x",
-    "react-router-dom": "^6.0.0"
+    "react-router-dom": "5.x"
   },
   "devDependencies": {
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-router-dom": "6.3.0"
+    "react-router-dom": "5.3.3"
   }
 }
