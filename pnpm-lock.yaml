@@ -175,6 +175,7 @@ importers:
 
   packages/use-query-params:
     specifiers:
+      '@types/react-router-dom': ^5.3.3
       history: 5.3.0
       query-string: 7.1.1
       react: 18.2.0
@@ -184,6 +185,7 @@ importers:
       history: 5.3.0
       query-string: 7.1.1
     devDependencies:
+      '@types/react-router-dom': 5.3.3
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-router-dom: 5.3.3_react@18.2.0
@@ -4396,6 +4398,10 @@ packages:
       '@types/node': 17.0.31
     dev: true
 
+  /@types/history/4.7.11:
+    resolution: {integrity: sha512-qjDJRrmvBMiTx+jyLxvLfJU7UznFuokDv4f3WRuriHKERccVpFU+8XMQUAbDzoiJCsmexxRExQeMwwCdamSKDA==}
+    dev: true
+
   /@types/istanbul-lib-coverage/2.0.4:
     resolution: {integrity: sha512-z/QT1XN4K4KYuslS23k62yDIDLwLFkzxOuMplDtObz0+y7VqJCaO2o+SPwHCvLFZh7xazvvoor2tA/hPz9ee7g==}
     dev: true
@@ -4468,6 +4474,21 @@ packages:
     resolution: {integrity: sha512-/5OFZgfIPSwy+YuIBP/FgJnQnsxhZhjjrnxudMddeblOouIodEQ75X14Rr4wGSG/bknL+Omy9iWlLo1u/9GzAA==}
     dependencies:
       '@types/react': 18.0.18
+
+  /@types/react-router-dom/5.3.3:
+    resolution: {integrity: sha512-kpqnYK4wcdm5UaWI3fLcELopqLrHgLqNsdpHauzlQktfkHL3npOSwtj1Uz9oKBAzs7lFtVkV8j83voAz2D8fhw==}
+    dependencies:
+      '@types/history': 4.7.11
+      '@types/react': 18.0.18
+      '@types/react-router': 5.1.18
+    dev: true
+
+  /@types/react-router/5.1.18:
+    resolution: {integrity: sha512-YYknwy0D0iOwKQgz9v8nOzt2J6l4gouBmDnWqUUznltOTaon+r8US8ky8HvN0tXvc38U9m6z/t2RsVsnd1zM0g==}
+    dependencies:
+      '@types/history': 4.7.11
+      '@types/react': 18.0.18
+    dev: true
 
   /@types/react/18.0.18:
     resolution: {integrity: sha512-6hI08umYs6NaiHFEEGioXnxJ+oEhY3eRz8VCUaudZmGdtvPviCJB8mgaMxaDWAdPSYd4eFavrPk2QIolwbLYrg==}

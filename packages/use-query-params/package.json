@@ -37,6 +37,7 @@
     "react-router-dom": "5.x"
   },
   "devDependencies": {
+    "@types/react-router-dom": "^5.3.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-router-dom": "5.3.3"
