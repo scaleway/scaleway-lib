@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.4.0 (2022-09-08)
+
+
+### Features
+
+* **regex:** add ip regexes ([#972](https://github.com/scaleway/scaleway-lib/issues/972)) ([98c6ded](https://github.com/scaleway/scaleway-lib/commit/98c6deda557af0cd41b1a6064946af2dea6680c2))
+
+
+
 ## 2.3.0 (2022-08-01)
 
 
