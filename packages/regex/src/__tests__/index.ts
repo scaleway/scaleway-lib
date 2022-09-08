@@ -23,6 +23,9 @@ import {
   email,
   fourDigitsCode,
   hexadecimal,
+  ip,
+  ipv4,
+  ipv6,
   macAddress,
   phone,
   sixDigitsCode,
@@ -659,6 +662,56 @@ describe('@regex', () => {
       [hexdigits, true],
     ])('should match regex %s to be %s', (string, expected) => {
       expect(hexadecimal.test(string)).toBe(expected)
+    })
+  })
+
+  describe('ipv4', () => {
+    test.each([
+      ['192.168.1.1', true],
+      ['127.0.0.1', true],
+      ['0.0.0.0', true],
+      ['255.255.255.255', true],
+      ['1.2.3.4 hi', false],
+      ['256.256.256.256', false],
+      ['999.999.999.999', false],
+      ['1.2.3', false],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(ipv4.test(string)).toBe(expected)
+    })
+  })
+
+  describe('ipv6', () => {
+    test.each([
+      ['1:2:3:4:5:6:7::', true],
+      ['1:2:3:4:5:6::8', true],
+      ['1:2::4:5:6:7:8', true],
+      ['1::3:4:5:6:7:8', true],
+      ['::2:3:4:5:6:7:8', true],
+      ['::1.2.3.4', true],
+      ['1:2::4:5:6:7:8 hi', false],
+      ['192.168.1.1', false],
+      ['127.0.0.1', false],
+      ['typebot.io', false],
+      ['256.256.256.256', false],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(ipv6.test(string)).toBe(expected)
+    })
+  })
+
+  describe('ip', () => {
+    test.each([
+      ['1:2:3:4:5:6:7::', true],
+      ['1:2:3:4:5:6::8', true],
+      ['::2:3:4:5:6:7:8', true],
+      ['::1.2.3.4', true],
+      ['192.168.1.1', true],
+      ['127.0.0.1', true],
+      ['0.0.0.0', true],
+      ['255.255.255.255', true],
+      ['256.256.256.256', false],
+      ['1:2:3::5:6:7:900.2.3.4', false],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(ip.test(string)).toBe(expected)
     })
   })
 })
