@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.5.0 (2022-09-13)
+
+
+### Features
+
+* **regex:** add cidr regex ([#982](https://github.com/scaleway/scaleway-lib/issues/982)) ([dc32290](https://github.com/scaleway/scaleway-lib/commit/dc3229007463f7f1ab5267a2efd9851bb629b625))
+
+
+
 ## 2.4.0 (2022-09-08)
 
 
