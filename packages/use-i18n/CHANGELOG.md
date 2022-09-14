@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.6.2 (2022-09-14)
+
+
+### Bug Fixes
+
+* **deps:** update dependency date-fns to v2.29.3 ([#983](https://github.com/scaleway/scaleway-lib/issues/983)) ([f900779](https://github.com/scaleway/scaleway-lib/commit/f9007793be5e4046104dfe3862174d1995860ace))
+
+
+
 ## [3.6.1](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@3.6.0...@scaleway/use-i18n@3.6.1) (2022-09-01)
 
 **Note:** Version bump only for package @scaleway/use-i18n
