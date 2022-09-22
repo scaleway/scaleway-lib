@@ -1,5 +1,5 @@
 import { History } from 'history'
-import { ParsedQuery, parse, stringify } from 'query-string'
+import { parse, stringify } from 'query-string'
 import { useCallback, useMemo } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 
@@ -8,12 +8,18 @@ interface Options {
   push: boolean
 }
 
-const useQueryParams = (): {
-  queryParams: ParsedQuery<string | number | boolean>;
+type QueryParamValue = string | number | boolean | null | undefined
+
+type QueryParams = {
+  [key: string]: QueryParamValue | Array<QueryParamValue>
+}
+
+const useQueryParams = <T extends QueryParams>(): {
+  queryParams: T
   /**
    * Replace the query params in the url. It erase all current values and put the new ones
    *
-   * @param newParams - The values to set in the query string, overweriting existing one
+   * @param newParams - The values to set in the query string, overwriting existing one
    * @param options - Options to define behavior
    */
   replaceQueryParams: typeof replaceQueryParams
@@ -36,12 +42,12 @@ const useQueryParams = (): {
         arrayFormat: 'comma',
         parseBooleans: true,
         parseNumbers: true,
-      }),
+      }) as T,
     [location.search],
   )
 
   const stringyFormat = useCallback(
-    (params: Record<string, unknown>): string =>
+    (params: Partial<T>): string =>
       stringify(params, {
         arrayFormat: 'comma',
         skipEmptyString: true,
@@ -52,7 +58,7 @@ const useQueryParams = (): {
   )
 
   const replaceInUrlIfNeeded = useCallback(
-    (newState: Record<string,unknown>, options?: Options) => {
+    (newState: T, options?: Options) => {
       const stringifiedParams = stringyFormat(newState)
       const searchToCompare = location.search || '?'
 
@@ -65,14 +71,14 @@ const useQueryParams = (): {
   )
 
   const setQueryParams = useCallback(
-    (nextParams: Record<string,unknown>, options?: Options): void => {
+    (nextParams: Partial<T>, options?: Options): void => {
       replaceInUrlIfNeeded({ ...currentState, ...nextParams }, options)
     },
     [currentState, replaceInUrlIfNeeded],
   )
 
   const replaceQueryParams = useCallback(
-    (newParams: Record<string,unknown>, options?: Options): void => {
+    (newParams: T, options?: Options): void => {
       replaceInUrlIfNeeded(newParams, options)
     },
     [replaceInUrlIfNeeded],
