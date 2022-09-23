@@ -18,7 +18,6 @@ import {
   ascii,
   backupKey,
   basicDomain,
-  basicDomainNotStrict,
   cron,
   digits,
   email,
@@ -28,6 +27,7 @@ import {
   phone,
   sixDigitsCode,
   spaces,
+  uppercaseBasicDomain,
   url,
 } from '..'
 
@@ -458,7 +458,7 @@ describe('@regex', () => {
       expect(basicDomain.test(string)).toBe(expected)
     })
   })
-  describe('basicDomainNotStrict', () => {
+  describe('uppercaseBasicDomain', () => {
     test.each([
       [asciiLetters, false],
       [asciiLowercase, false],
@@ -480,7 +480,7 @@ describe('@regex', () => {
       [macAddress1, false],
       ...(urls.map(urlString => [urlString, false]) as [string, boolean][]),
     ])('should match regex %s to be %s', (string, expected) => {
-      expect(basicDomainNotStrict.test(string)).toBe(expected)
+      expect(uppercaseBasicDomain.test(string)).toBe(expected)
     })
   })
 
