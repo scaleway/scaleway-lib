@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.0.18 (2022-09-20)
+
+**Note:** Version bump only for package @scaleway/jest-helpers
+
+
+
+
+
+## 2.0.17 (2022-09-12)
+
+**Note:** Version bump only for package @scaleway/jest-helpers
+
+
+
+
+
+## 2.0.16 (2022-09-06)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @testing-library/react to v13.4.0 ([#967](https://github.com/scaleway/scaleway-lib/issues/967)) ([fed74a0](https://github.com/scaleway/scaleway-lib/commit/fed74a074340f7608b6fa9f60ecdc36bb8817d27))
+
+
+
+## [2.0.15](https://github.com/scaleway/scaleway-lib/compare/@scaleway/jest-helpers@2.0.14...@scaleway/jest-helpers@2.0.15) (2022-08-30)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @emotion/react to v11.10.4 ([#955](https://github.com/scaleway/scaleway-lib/issues/955)) ([9baa969](https://github.com/scaleway/scaleway-lib/commit/9baa9699f4ea9c05539ee139fe323f316980066a))
+
+
+
+## 2.0.14 (2022-08-30)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @emotion/cache to v11.10.3 ([#933](https://github.com/scaleway/scaleway-lib/issues/933)) ([491643e](https://github.com/scaleway/scaleway-lib/commit/491643ea5c11546dac123da4b741158a88f423d3))
+
+
+
+## 2.0.13 (2022-08-29)
+
+**Note:** Version bump only for package @scaleway/jest-helpers
+
+
+
+
+
 ## [2.0.12](https://github.com/scaleway/scaleway-lib/compare/@scaleway/jest-helpers@2.0.11...@scaleway/jest-helpers@2.0.12) (2022-08-04)
 
 

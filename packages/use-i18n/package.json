@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/use-i18n",
-  "version": "3.3.16",
+  "version": "3.6.2",
   "description": "A small hook to handle i18n",
   "keywords": [
     "react",
@@ -27,16 +27,18 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@formatjs/ecma402-abstract": "1.11.8",
-    "@formatjs/fast-memoize": "1.2.4",
-    "date-fns": "2.29.1",
+    "@formatjs/ecma402-abstract": "1.12.0",
+    "@formatjs/fast-memoize": "1.2.6",
+    "date-fns": "2.29.3",
     "filesize": "9.0.11",
-    "intl-messageformat": "10.1.1",
+    "international-types": "0.3.5",
+    "intl-messageformat": "10.1.4",
     "prop-types": "15.8.1"
   },
   "peerDependencies": {
     "date-fns": "2.x",
-    "react": "17.x || 18.x",
-    "react-dom": "17.x || 18.x"
+    "international-types": "0.3.5",
+    "react": "18.x",
+    "react-dom": "18.x"
   }
 }

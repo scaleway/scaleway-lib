@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.7.1 (2022-08-29)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @segment/analytics-next to v1.43.0 ([#942](https://github.com/scaleway/scaleway-lib/issues/942)) ([1d98fe5](https://github.com/scaleway/scaleway-lib/commit/1d98fe55b76d90f791f2019195e4d8c77661b164))
+
+
+
+## 0.7.0 (2022-08-19)
+
+
+### Features
+
+* react 18 only ([#925](https://github.com/scaleway/scaleway-lib/issues/925)) ([f46adf6](https://github.com/scaleway/scaleway-lib/commit/f46adf6f4e38dc6fbabedaef8faad3ee654444a6))
+
+
+
 ## 0.6.13 (2022-08-11)
 
 

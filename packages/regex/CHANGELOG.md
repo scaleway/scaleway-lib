@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.5.1 (2022-09-19)
+
+**Note:** Version bump only for package @scaleway/regex
+
+
+
+
+
+## 2.5.0 (2022-09-13)
+
+
+### Features
+
+* **regex:** add cidr regex ([#982](https://github.com/scaleway/scaleway-lib/issues/982)) ([dc32290](https://github.com/scaleway/scaleway-lib/commit/dc3229007463f7f1ab5267a2efd9851bb629b625))
+
+
+
+## 2.4.0 (2022-09-08)
+
+
+### Features
+
+* **regex:** add ip regexes ([#972](https://github.com/scaleway/scaleway-lib/issues/972)) ([98c6ded](https://github.com/scaleway/scaleway-lib/commit/98c6deda557af0cd41b1a6064946af2dea6680c2))
+
+
+
 ## 2.3.0 (2022-08-01)
 
 

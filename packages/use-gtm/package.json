@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/use-gtm",
-  "version": "1.2.3",
+  "version": "1.3.1",
   "description": "A small hook to handle gtm in a react app",
   "keywords": [
     "react",
@@ -27,6 +27,6 @@
   },
   "license": "MIT",
   "peerDependencies": {
-    "react": "17.x || 18.x"
+    "react": "18.x"
   }
 }

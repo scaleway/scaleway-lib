@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.0](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-query-params@3.2.1...@scaleway/use-query-params@3.3.0) (2022-09-15)
+
+
+### Features
+
+* **useQueryParams:** add generic typing ([#985](https://github.com/scaleway/scaleway-lib/issues/985)) ([8a47239](https://github.com/scaleway/scaleway-lib/commit/8a47239d1f9280bd48cbff1cc9cb31a7eef17e2c))
+
+
+
+## 3.2.1 (2022-09-14)
+
+**Note:** Version bump only for package @scaleway/use-query-params
+
+
+
+
+
+## 3.2.0 (2022-08-19)
+
+
+### Features
+
+* react 18 only ([#925](https://github.com/scaleway/scaleway-lib/issues/925)) ([f46adf6](https://github.com/scaleway/scaleway-lib/commit/f46adf6f4e38dc6fbabedaef8faad3ee654444a6))
+
+
+
 ## 3.1.5 (2022-06-16)
 
 

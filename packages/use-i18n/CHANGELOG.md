@@ -3,6 +3,104 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.6.2 (2022-09-14)
+
+
+### Bug Fixes
+
+* **deps:** update dependency date-fns to v2.29.3 ([#983](https://github.com/scaleway/scaleway-lib/issues/983)) ([f900779](https://github.com/scaleway/scaleway-lib/commit/f9007793be5e4046104dfe3862174d1995860ace))
+
+
+
+## [3.6.1](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@3.6.0...@scaleway/use-i18n@3.6.1) (2022-09-01)
+
+**Note:** Version bump only for package @scaleway/use-i18n
+
+
+
+
+
+## 3.6.0 (2022-09-01)
+
+
+### Features
+
+* **use-i18:** typesafe useTranslation ([#956](https://github.com/scaleway/scaleway-lib/issues/956)) ([cfe9757](https://github.com/scaleway/scaleway-lib/commit/cfe97578eba1393d311fcb8773654a2bef99cdff))
+
+
+
+## 3.5.3 (2022-08-29)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @formatjs/ecma402-abstract to v1.12.0 ([#951](https://github.com/scaleway/scaleway-lib/issues/951)) ([8d7ceeb](https://github.com/scaleway/scaleway-lib/commit/8d7ceebfa376cb81ef0bc988c2022c3a93f81cc6))
+
+
+
+## 3.5.2 (2022-08-29)
+
+**Note:** Version bump only for package @scaleway/use-i18n
+
+
+
+
+
+## [3.5.1](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@3.5.0...@scaleway/use-i18n@3.5.1) (2022-08-29)
+
+
+### Bug Fixes
+
+* **deps:** update dependency intl-messageformat to v10.1.4 ([#947](https://github.com/scaleway/scaleway-lib/issues/947)) ([b41d260](https://github.com/scaleway/scaleway-lib/commit/b41d26084a1b9d12383455394dd446bc40c9151f))
+
+
+
+## 3.5.0 (2022-08-26)
+
+
+### Features
+
+* **use-i18n:** add type safety ([#865](https://github.com/scaleway/scaleway-lib/issues/865)) ([c6b0d07](https://github.com/scaleway/scaleway-lib/commit/c6b0d07fc8195d8ee1fc2f70d39731c4ed6e4573))
+
+
+
+## [3.4.3](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@3.4.2...@scaleway/use-i18n@3.4.3) (2022-08-22)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @formatjs/fast-memoize to v1.2.6 ([#930](https://github.com/scaleway/scaleway-lib/issues/930)) ([36ea380](https://github.com/scaleway/scaleway-lib/commit/36ea3805ae7c654cb68026063e06285b6274ee43))
+
+
+
+## [3.4.2](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@3.4.1...@scaleway/use-i18n@3.4.2) (2022-08-22)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @formatjs/ecma402-abstract to v1.11.10 ([#929](https://github.com/scaleway/scaleway-lib/issues/929)) ([fcb9e50](https://github.com/scaleway/scaleway-lib/commit/fcb9e501b9190ff89b4b0b0a134db078ed12ec02))
+* **deps:** update dependency intl-messageformat to v10.1.3 ([#931](https://github.com/scaleway/scaleway-lib/issues/931)) ([5894089](https://github.com/scaleway/scaleway-lib/commit/5894089c1b9513654891798030f09a03398344ad))
+
+
+
+## [3.4.1](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@3.4.0...@scaleway/use-i18n@3.4.1) (2022-08-19)
+
+
+### Bug Fixes
+
+* **deps:** update dependency date-fns to v2.29.2 ([#924](https://github.com/scaleway/scaleway-lib/issues/924)) ([ad707e6](https://github.com/scaleway/scaleway-lib/commit/ad707e659e5fa7ea26c1afcdae4f27c31dbef435))
+
+
+
+## 3.4.0 (2022-08-19)
+
+
+### Features
+
+* react 18 only ([#925](https://github.com/scaleway/scaleway-lib/issues/925)) ([f46adf6](https://github.com/scaleway/scaleway-lib/commit/f46adf6f4e38dc6fbabedaef8faad3ee654444a6))
+
+
+
 ## 3.3.16 (2022-08-01)
 
 **Note:** Version bump only for package @scaleway/use-i18n

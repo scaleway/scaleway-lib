@@ -133,18 +133,16 @@ describe('i18n hook', () => {
     await waitFor(() => {
       expect(result.current.translations).toStrictEqual({
         en: {
-          'profile.lastName': 'Last Name',
-          'profile.name': 'Name',
-          'user.languages': 'Languages',
-          'user.lastName': 'Last Name',
-          'user.name': 'Name',
+          languages: 'Languages',
+          lastName: 'Last Name',
+          name: 'Name',
         },
       })
     })
 
-    expect(result.current.t('user.name')).toEqual('Name')
-    expect(result.current.t('user.lastName')).toEqual('Last Name')
-    expect(result.current.t('user.languages')).toEqual('Languages')
+    expect(result.current.t('name')).toEqual('Name')
+    expect(result.current.t('lastName')).toEqual('Last Name')
+    expect(result.current.t('languages')).toEqual('Languages')
 
     act(() => {
       result.current.switchLocale('fr')
@@ -153,27 +151,20 @@ describe('i18n hook', () => {
     await waitFor(() => {
       expect(result.current.translations).toStrictEqual({
         en: {
-          'profile.lastName': 'Last Name',
-          'profile.name': 'Name',
-          'user.languages': 'Languages',
-          'user.lastName': 'Last Name',
-          'user.name': 'Name',
+          languages: 'Languages',
+          lastName: 'Last Name',
+          name: 'Name',
         },
         fr: {
-          'profile.lastName': 'Nom',
-          'profile.name': 'Prénom',
-          'user.lastName': 'Nom',
-          'user.name': 'Prénom',
+          lastName: 'Nom',
+          name: 'Prénom',
         },
       })
     })
 
-    expect(result.current.t('user.name')).toEqual('Prénom')
-    expect(result.current.t('user.lastName')).toEqual('Nom')
-    expect(result.current.t('user.languages')).toEqual('')
-
-    expect(result.current.t('user')).toEqual('')
-    expect(result.current.t('user', { test: 'toto' })).toEqual('')
+    expect(result.current.t('name')).toEqual('Prénom')
+    expect(result.current.t('lastName')).toEqual('Nom')
+    expect(result.current.t('languages')).toEqual('')
   })
 
   it("should use specific load and fallback default local if the key doesn't exist", async () => {
@@ -202,19 +193,19 @@ describe('i18n hook', () => {
     await waitFor(() => {
       expect(result.current.translations).toStrictEqual({
         en: {
-          'user.languages': 'Languages',
-          'user.lastName': 'Last Name',
-          'user.name': 'Name',
+          languages: 'Languages',
+          lastName: 'Last Name',
+          name: 'Name',
         },
         fr: {
-          'user.lastName': 'Nom',
-          'user.name': 'Prénom',
+          lastName: 'Nom',
+          name: 'Prénom',
         },
       })
 
-      expect(result.current.t('user.languages')).toEqual('')
-      expect(result.current.t('user.lastName')).toEqual('Nom')
-      expect(result.current.t('user.name')).toEqual('Prénom')
+      expect(result.current.t('languages')).toEqual('')
+      expect(result.current.t('lastName')).toEqual('Nom')
+      expect(result.current.t('name')).toEqual('Prénom')
     })
   })
 
