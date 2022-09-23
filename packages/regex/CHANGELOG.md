@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.5.2 (2022-09-23)
+
+**Note:** Version bump only for package @scaleway/regex
+
+
+
+
+
 ## 2.5.1 (2022-09-19)
 
 **Note:** Version bump only for package @scaleway/regex
