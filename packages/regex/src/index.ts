@@ -19,6 +19,9 @@ export const absoluteLinuxPath = /(^\/$|^(\/[a-zA-Z0-9_]+)*$)/
 export const ascii = /^[\x00-\x7F]+$/
 export const backupKey = /^[A-Z0-9]{32}$/
 export const basicDomain = /^[a-z0-9-]+(\.[a-z0-9-]{1,63})+$/
+export const uppercaseBasicDomain =
+  /^(?![-])+[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]{1,63})+$/
+
 export const cron = /^[0-9,/*-]+$/
 export const digits = /^[0-9]*$/
 export const macAddress =

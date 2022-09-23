@@ -33,6 +33,7 @@ import {
   phone,
   sixDigitsCode,
   spaces,
+  uppercaseBasicDomain,
   url,
 } from '..'
 
@@ -44,6 +45,8 @@ const asciiUppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 const backupKeyTest = '123456789ABCEDFGHIJIKLMNOPQRSTUV'
 const domain = 'another-example.com'
 const subDomain = 'sub.another-example.com'
+const dashStartDomain = '-sub.another-example.com'
+const uppercaseDomain = 'SUB.another-example.com'
 const longTldDomain = 'sub.another-example.verylongtld'
 const cronTest = '0/15*-'
 const digitsTest = '0123456789'
@@ -459,6 +462,31 @@ describe('@regex', () => {
       ...(urls.map(urlString => [urlString, false]) as [string, boolean][]),
     ])('should match regex %s to be %s', (string, expected) => {
       expect(basicDomain.test(string)).toBe(expected)
+    })
+  })
+  describe('uppercaseBasicDomain', () => {
+    test.each([
+      [asciiLetters, false],
+      [asciiLowercase, false],
+      [asciiUppercase, false],
+      [backupKeyTest, false],
+      [domain, true],
+      [subDomain, true],
+      [dashStartDomain, false],
+      [uppercaseDomain, true],
+      [longTldDomain, true],
+      [digitsTest, false],
+      [emailTest, false],
+      [octdigits, false],
+      [hexdigits, false],
+      [printable, false],
+      [punctuation, false],
+      [whitespace, false],
+      [cronTest, false],
+      [macAddress1, false],
+      ...(urls.map(urlString => [urlString, false]) as [string, boolean][]),
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(uppercaseBasicDomain.test(string)).toBe(expected)
     })
   })
 
