@@ -1,7 +1,12 @@
 /* eslint-disable sort-keys */
 
 module.exports = {
-  extends: ['airbnb/hooks', 'prettier', 'plugin:eslint-comments/recommended'],
+  extends: [
+    'airbnb/hooks',
+    'prettier',
+    'plugin:eslint-comments/recommended',
+    'plugin:react/jsx-runtime',
+  ],
   rules: {
     'import/order': [
       // https://github.com/import-js/eslint-plugin-import/blob/master/docs/rules/order.md
