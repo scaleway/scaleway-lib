@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.6.0 (2022-09-26)
+
+
+### Features
+
+* **eslint:** add jsx-runtime react ([#974](https://github.com/scaleway/scaleway-lib/issues/974)) ([e409e64](https://github.com/scaleway/scaleway-lib/commit/e409e64230af403121a6c0ff6f28632c29135eb1))
+
+
+
 ## 3.5.15 (2022-09-21)
 
 
