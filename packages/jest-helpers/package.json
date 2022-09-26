@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/jest-helpers",
-  "version": "2.0.16",
+  "version": "2.0.18",
   "description": "A package for utilities jest functions",
   "type": "module",
   "main": "dist/index.js",
@@ -25,7 +25,7 @@
     "react": "^18.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.18.13",
+    "@babel/core": "7.19.1",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   }

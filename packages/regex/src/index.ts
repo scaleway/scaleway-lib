@@ -19,6 +19,9 @@ export const absoluteLinuxPath = /(^\/$|^(\/[a-zA-Z0-9_]+)*$)/
 export const ascii = /^[\x00-\x7F]+$/
 export const backupKey = /^[A-Z0-9]{32}$/
 export const basicDomain = /^[a-z0-9-]+(\.[a-z0-9-]{1,63})+$/
+export const uppercaseBasicDomain =
+  /^(?![-])+[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]{1,63})+$/
+
 export const cron = /^[0-9,/*-]+$/
 export const digits = /^[0-9]*$/
 export const macAddress =
@@ -54,6 +57,13 @@ const v6 = `
   .replace(/\n/g, '')
   .trim()
 
+// Pasted from `cidr-regex` package (https://github.com/silverwind/cidr-regex/blob/master/index.js)
+const cidrv4 = `${v4}\\/(3[0-2]|[12]?[0-9])`
+const cidrv6 = `${v6}\\/(12[0-8]|1[01][0-9]|[1-9]?[0-9])`
+
 export const ip = new RegExp(`^(?:${v4}|${v6})$`)
 export const ipv4 = new RegExp(`^${v4}$`)
 export const ipv6 = new RegExp(`^${v6}$`)
+export const ipCidr = new RegExp(`(?:^${cidrv4}$)|(?:^${cidrv6}$)`)
+export const ipv4Cidr = new RegExp(`^${cidrv4}$`)
+export const ipv6Cidr = new RegExp(`^${cidrv6}$`)

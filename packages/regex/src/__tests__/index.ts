@@ -24,12 +24,16 @@ import {
   fourDigitsCode,
   hexadecimal,
   ip,
+  ipCidr,
   ipv4,
+  ipv4Cidr,
   ipv6,
+  ipv6Cidr,
   macAddress,
   phone,
   sixDigitsCode,
   spaces,
+  uppercaseBasicDomain,
   url,
 } from '..'
 
@@ -41,6 +45,8 @@ const asciiUppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 const backupKeyTest = '123456789ABCEDFGHIJIKLMNOPQRSTUV'
 const domain = 'another-example.com'
 const subDomain = 'sub.another-example.com'
+const dashStartDomain = '-sub.another-example.com'
+const uppercaseDomain = 'SUB.another-example.com'
 const longTldDomain = 'sub.another-example.verylongtld'
 const cronTest = '0/15*-'
 const digitsTest = '0123456789'
@@ -458,6 +464,31 @@ describe('@regex', () => {
       expect(basicDomain.test(string)).toBe(expected)
     })
   })
+  describe('uppercaseBasicDomain', () => {
+    test.each([
+      [asciiLetters, false],
+      [asciiLowercase, false],
+      [asciiUppercase, false],
+      [backupKeyTest, false],
+      [domain, true],
+      [subDomain, true],
+      [dashStartDomain, false],
+      [uppercaseDomain, true],
+      [longTldDomain, true],
+      [digitsTest, false],
+      [emailTest, false],
+      [octdigits, false],
+      [hexdigits, false],
+      [printable, false],
+      [punctuation, false],
+      [whitespace, false],
+      [cronTest, false],
+      [macAddress1, false],
+      ...(urls.map(urlString => [urlString, false]) as [string, boolean][]),
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(uppercaseBasicDomain.test(string)).toBe(expected)
+    })
+  })
 
   describe('cron', () => {
     test.each([
@@ -712,6 +743,56 @@ describe('@regex', () => {
       ['1:2:3::5:6:7:900.2.3.4', false],
     ])('should match regex %s to be %s', (string, expected) => {
       expect(ip.test(string)).toBe(expected)
+    })
+  })
+
+  describe('ipCidr', () => {
+    test.each([
+      ['1:2:3:4:5:6:7::/48', true],
+      ['1:2:3:4:5:6::8/44', true],
+      ['::2:3:4:5:6:7:8/64', true],
+      ['::1.2.3.4/32', true],
+      ['192.168.1.1/32', true],
+      ['127.0.0.1/24', true],
+      ['127.0.0.1/64', false],
+      ['0.0.0.0/0', true],
+      ['255.255.255.255/32', true],
+      ['256.256.256.256/0', false],
+      ['1:2:3::5:6:7:900.2.3.4/0', false],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(ipCidr.test(string)).toBe(expected)
+    })
+  })
+
+  describe('ipv4Cidr', () => {
+    test.each([
+      ['192.168.1.1/24', true],
+      ['127.0.0.1/32', true],
+      ['0.0.0.0/0', true],
+      ['255.255.255.255/32', true],
+      ['1.2.3.4/0 hi', false],
+      ['256.256.256.256/32', false],
+      ['999.999.999.999/999', false],
+      ['1.2.3/0', false],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(ipv4Cidr.test(string)).toBe(expected)
+    })
+  })
+
+  describe('ipv6Cidr', () => {
+    test.each([
+      ['1:2:3:4:5:6:7::/48', true],
+      ['1:2:3:4:5:6::8/48', true],
+      ['1:2::4:5:6:7:8/36', true],
+      ['1::3:4:5:6:7:8/32', true],
+      ['::2:3:4:5:6:7:8/24', true],
+      ['::1.2.3.4/64', true],
+      ['1:2::4:5:6:7:8/48 hi', false],
+      ['192.168.1.1/0', false],
+      ['127.0.0.1/32', false],
+      ['256.256.256.256/32', false],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(ipv6Cidr.test(string)).toBe(expected)
     })
   })
 })
