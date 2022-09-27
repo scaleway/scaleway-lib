@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.7.0](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@3.6.0...@scaleway/eslint-config-react@3.7.0) (2022-09-27)
+
+
+### Features
+
+* **eslint-config:** disable sort-keys ([#1000](https://github.com/scaleway/scaleway-lib/issues/1000)) ([63750c0](https://github.com/scaleway/scaleway-lib/commit/63750c0dcaf332bb7794a112623faccdd0449d12))
+
+
+
 ## 3.6.0 (2022-09-26)
 
 
