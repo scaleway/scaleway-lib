@@ -1,5 +1,3 @@
-/* eslint-disable sort-keys */
-
 module.exports = {
   extends: [
     'airbnb/hooks',
@@ -87,8 +85,6 @@ module.exports = {
         memberSyntaxSortOrder: ['single', 'multiple', 'all', 'none'],
       },
     ],
-    'sort-keys': ['error', 'asc', { caseSensitive: false, natural: true }],
+    'sort-keys': 'off',
   },
 }
-
-/* eslint-enable sort-keys */
