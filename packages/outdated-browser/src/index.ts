@@ -76,3 +76,5 @@ if (
   element.innerHTML = content
   document.body.prepend(element)
 }
+
+export {}

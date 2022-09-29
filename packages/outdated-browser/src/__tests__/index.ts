@@ -24,7 +24,6 @@ describe('@outdated-browser', () => {
     // @ts-expect-error global mock
     global.SUPPORTED_BROWSERS = ''
 
-    // @ts-expect-error we know it's no a module
     return import('..').then(() => {
       expect(document.documentElement.innerHTML).toMatchSnapshot()
     })
@@ -35,7 +34,6 @@ describe('@outdated-browser', () => {
     // @ts-expect-error global mock
     global.SUPPORTED_BROWSERS = 'a'
 
-    // @ts-expect-error we know it's no a module
     return import('..').then(() => {
       expect(document.documentElement.innerHTML).toMatchSnapshot()
     })
@@ -46,7 +44,6 @@ describe('@outdated-browser', () => {
     // @ts-expect-error global mock
     global.SUPPORTED_BROWSERS = 'a'
 
-    // @ts-expect-error we know it's no a module
     return import('..').then(() => {
       expect(document.documentElement.innerHTML).toMatchSnapshot()
     })
