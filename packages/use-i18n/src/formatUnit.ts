@@ -1,4 +1,4 @@
-import { filesize } from 'filesize'
+import filesize from 'filesize'
 import formatters from './formatters'
 
 // We are on base 10, so we should use IEC standard here ...
