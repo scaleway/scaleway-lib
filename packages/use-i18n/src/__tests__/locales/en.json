@@ -1,4 +1,5 @@
 {
+  "with.identifier": "Are you sure you want to delete {identifier}?",
   "plurals": "You have {numPhotos, plural, =0 {no photos.} =1 {one photo.} other {# photos.}}",
   "subtitle": "Here is a subtitle",
   "tests.test.namespaces": "test",
