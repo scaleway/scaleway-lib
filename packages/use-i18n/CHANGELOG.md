@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.7.0 (2022-09-29)
+
+
+### Features
+
+* **i18n:** enable jsx element as prop value ([#1008](https://github.com/scaleway/scaleway-lib/issues/1008)) ([46241f0](https://github.com/scaleway/scaleway-lib/commit/46241f09f96a67446d6671298b8c1c000be6dee5))
+
+
+
 ## 3.6.2 (2022-09-14)
 
 
