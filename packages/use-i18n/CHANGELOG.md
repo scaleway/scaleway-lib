@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.7.3](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@3.7.2...@scaleway/use-i18n@3.7.3) (2022-09-29)
+
+
+### Reverts
+
+* Revert "fix(deps): update dependency filesize to v10 (#1009)" (#1011) ([5e64bd1](https://github.com/scaleway/scaleway-lib/commit/5e64bd139787039dc41a019053ac7fbeb6702a1c)), closes [#1009](https://github.com/scaleway/scaleway-lib/issues/1009) [#1011](https://github.com/scaleway/scaleway-lib/issues/1011)
+
+
+
 ## 3.7.2 (2022-09-29)
 
 
