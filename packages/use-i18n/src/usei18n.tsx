@@ -28,7 +28,7 @@ type TranslationsByLocales = Record<string, BaseLocale>
 
 export type InitialTranslateFn = (
   key: string,
-  context?: Record<string, LocaleValue>,
+  context?: Record<string, LocaleValue | JSX.Element>,
 ) => string
 export type InitialScopedTranslateFn = (
   namespace: string,

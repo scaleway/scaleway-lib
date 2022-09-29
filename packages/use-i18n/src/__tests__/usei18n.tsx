@@ -600,4 +600,28 @@ describe('i18n hook', () => {
       expect(result.current.dateFnsLocale?.code).toEqual('en-GB')
     })
   })
+
+  it('should work with a component', async () => {
+    const { result } = renderHook(() => useTranslation([]), {
+      wrapper: wrapper({ defaultLocale: 'en' }),
+    })
+    const CustomComponent = ({ children }: { children: ReactNode }) => (
+      <p style={{ fontWeight: 'bold' }}>{children}</p>
+    )
+
+    await waitFor(() => {
+      expect(
+        result.current.t('with.identifier', { identifier: <b>My resource</b> }),
+      ).toEqual(['Are you sure you want to delete ', <b>My resource</b>, '?'])
+      expect(
+        result.current.t('with.identifier', {
+          identifier: <CustomComponent>My resource</CustomComponent>,
+        }),
+      ).toEqual([
+        'Are you sure you want to delete ',
+        <CustomComponent>My resource</CustomComponent>,
+        '?',
+      ])
+    })
+  })
 })
