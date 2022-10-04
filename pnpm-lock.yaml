@@ -137,6 +137,9 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
 
+  packages/outdated-browser:
+    specifiers: {}
+
   packages/random-name:
     specifiers: {}
 
@@ -157,7 +160,7 @@ importers:
       '@formatjs/ecma402-abstract': 1.12.0
       '@formatjs/fast-memoize': 1.2.6
       date-fns: 2.29.3
-      filesize: 9.0.11
+      filesize: 10.0.5
       international-types: 0.3.5
       intl-messageformat: 10.1.5
       prop-types: 15.8.1
@@ -165,7 +168,7 @@ importers:
       '@formatjs/ecma402-abstract': 1.12.0
       '@formatjs/fast-memoize': 1.2.6
       date-fns: 2.29.3
-      filesize: 9.0.11
+      filesize: 10.0.5
       international-types: 0.3.5
       intl-messageformat: 10.1.5
       prop-types: 15.8.1
@@ -6435,9 +6438,9 @@ packages:
     dependencies:
       flat-cache: 3.0.4
 
-  /filesize/9.0.11:
-    resolution: {integrity: sha512-gTAiTtI0STpKa5xesyTA9hA3LX4ga8sm2nWRcffEa1L/5vQwb4mj2MdzMkoHoGv4QzfDshQZuYscQSf8c4TKOA==}
-    engines: {node: '>= 0.4.0'}
+  /filesize/10.0.5:
+    resolution: {integrity: sha512-qrzyt8gLh86nsyYiC3ibI5KyIYRCWg2yqIklYrWF4a0qNfekik4OQfn7AoPJG2hRrPMSlH6fET4VEITweZAzjA==}
+    engines: {node: '>= 14.0.0'}
     dev: false
 
   /fill-range/7.0.1:
