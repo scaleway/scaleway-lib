@@ -98,6 +98,12 @@ scaleway-lib is a set of NPM packages used at Scaleway.
   ![npm bundle size](https://img.shields.io/bundlephobia/min/@scaleway/jest-helpers)
   ![npm](https://img.shields.io/npm/v/@scaleway/jest-helpers)
 
+- [`@scaleway/outdated-browser`](./packages/outdated-browser/README.md): A small web script to display outdated banne
+
+  ![npm](https://img.shields.io/npm/dm/@scaleway/outdated-browser)
+  ![npm bundle size](https://img.shields.io/bundlephobia/min/@scaleway/outdated-browser)
+  ![npm](https://img.shields.io/npm/v/@scaleway/outdated-browser)
+
 ## Development
 
 ### Locally
