@@ -1,6 +1,7 @@
 # From .gitignore
 node_modules/
 dist/
+pnpm-lock.yaml
 
 # Specific to prettier
 package.json
