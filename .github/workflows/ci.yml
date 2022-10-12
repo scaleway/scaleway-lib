@@ -53,6 +53,8 @@ jobs:
     runs-on: ubuntu-20.04
     needs: [test]
     if: github.ref == 'refs/heads/main'
+    env:
+      HUSKY: 0
     steps:
     - uses: actions/checkout@v3.1.0
       with:
@@ -79,5 +81,4 @@ jobs:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     - run: pnpm lerna publish -y --create-release github --ignore-scripts --no-verify-access
       env:
-        HUSKY: 0
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
