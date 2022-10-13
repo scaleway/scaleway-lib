@@ -602,9 +602,12 @@ describe('i18n hook', () => {
   })
 
   it('should work with a component', async () => {
-    const { result } = renderHook(() => useTranslation([]), {
-      wrapper: wrapper({ defaultLocale: 'en' }),
-    })
+    const { result } = renderHook(
+      () => useTranslation<{ 'with.identifier': 'Hello {identifier}' }>([]),
+      {
+        wrapper: wrapper({ defaultLocale: 'en' }),
+      },
+    )
     const CustomComponent = ({ children }: { children: ReactNode }) => (
       <p style={{ fontWeight: 'bold' }}>{children}</p>
     )

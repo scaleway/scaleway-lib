@@ -13,5 +13,9 @@
     "jsx": "preserve"
   },
   "include": ["**/*.ts", "**/*.js", "**/.*.js", "**/*.tsx"],
-  "exclude": ["**/dist/*.ts", "**/__typetests__/*.test.ts"]
+  "exclude": [
+    "**/dist/*.ts",
+    "**/__typetests__/*.test.ts",
+    "**/__typetests__/*.test.tsx"
+  ]
 }
