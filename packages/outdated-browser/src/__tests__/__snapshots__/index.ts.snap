@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`@outdated-browser render banner if SUPPORTED_BROWSER is defined and does not mtch userAgen  1`] = `
+exports[`@outdated-browser render banner if SUPPORTED_BROWSER is defined and does not match userAgent 1`] = `
 "<head><style>
   #outdated {
     position: fixed;
@@ -57,6 +57,10 @@ exports[`@outdated-browser render banner if SUPPORTED_BROWSER is defined and doe
   <button type="button" onclick="closeOutdated()">×</button>
 </div></body>"
 `;
+
+exports[`@outdated-browser render nothing if SUPPORTED_BROWSER is defined and does not match userAgent and user click on button 1`] = `"<head></head><body></body>"`;
+
+exports[`@outdated-browser render nothing if SUPPORTED_BROWSER is defined and does not match userAgent and user has already ignored banner 1`] = `"<head></head><body></body>"`;
 
 exports[`@outdated-browser render nothing if SUPPORTED_BROWSER is defined and match userAgent  1`] = `"<head></head><body></body>"`;
 
