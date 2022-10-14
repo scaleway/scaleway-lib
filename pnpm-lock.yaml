@@ -157,7 +157,7 @@ importers:
 
   packages/use-i18n:
     specifiers:
-      '@formatjs/ecma402-abstract': 1.12.0
+      '@formatjs/ecma402-abstract': 1.13.0
       '@formatjs/fast-memoize': 1.2.6
       date-fns: 2.29.3
       filesize: 10.0.5
@@ -165,7 +165,7 @@ importers:
       intl-messageformat: 10.2.0
       prop-types: 15.8.1
     dependencies:
-      '@formatjs/ecma402-abstract': 1.12.0
+      '@formatjs/ecma402-abstract': 1.13.0
       '@formatjs/fast-memoize': 1.2.6
       date-fns: 2.29.3
       filesize: 10.0.5
@@ -1814,13 +1814,6 @@ packages:
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
       - supports-color
-
-  /@formatjs/ecma402-abstract/1.12.0:
-    resolution: {integrity: sha512-0/wm9b7brUD40kx7KSE0S532T8EfH06Zc41rGlinoNyYXnuusR6ull2x63iFJgVXgwahm42hAW7dcYdZ+llZzA==}
-    dependencies:
-      '@formatjs/intl-localematcher': 0.2.31
-      tslib: 2.4.0
-    dev: false
 
   /@formatjs/ecma402-abstract/1.13.0:
     resolution: {integrity: sha512-CQ8Ykd51jYD1n05dtoX6ns6B9n/+6ZAxnWUAonvHC4kkuAemROYBhHkEB4tm1uVrRlE7gLDqXkAnY51Y0pRCWQ==}
