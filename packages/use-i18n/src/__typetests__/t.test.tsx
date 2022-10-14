@@ -47,3 +47,14 @@ expectType<string>(
 )
 expectError(t('describe.john', {}))
 expectError(t('describe.john'))
+
+// With react components as param value
+expectType<string>(
+  t('doe.child', {
+    name: (
+      <p>
+        My name is<b>John</b>
+      </p>
+    ),
+  }),
+)

@@ -3,17 +3,22 @@ import type {
   LocaleKeys,
   LocaleValue,
   Params,
-  ParamsObject,
   ScopedValue,
   Scopes,
 } from 'international-types'
+import type { ReactNode } from 'react'
+
+export type ReactParamsObject<Value extends LocaleValue> = Record<
+  Params<Value>[number],
+  LocaleValue | ReactNode
+>
 
 export type TranslateFn<Locale extends BaseLocale> = <
   Key extends LocaleKeys<Locale, undefined>,
   Value extends LocaleValue = ScopedValue<Locale, undefined, Key>,
 >(
   key: Key,
-  ...params: Params<Value>['length'] extends 0 ? [] : [ParamsObject<Value>]
+  ...params: Params<Value>['length'] extends 0 ? [] : [ReactParamsObject<Value>]
 ) => string
 
 export type ScopedTranslateFn<Locale extends BaseLocale> = <
@@ -25,5 +30,5 @@ export type ScopedTranslateFn<Locale extends BaseLocale> = <
   Value extends LocaleValue = ScopedValue<Locale, Scope, Key>,
 >(
   key: Key,
-  ...params: Params<Value>['length'] extends 0 ? [] : [ParamsObject<Value>]
+  ...params: Params<Value>['length'] extends 0 ? [] : [ReactParamsObject<Value>]
 ) => string
