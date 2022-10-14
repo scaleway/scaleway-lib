@@ -7,7 +7,7 @@ importers:
       '@babel/core': 7.19.3
       '@babel/eslint-parser': 7.19.1
       '@babel/plugin-transform-runtime': 7.19.1
-      '@babel/preset-env': 7.19.4
+      '@babel/preset-env': 7.19.3
       '@babel/preset-react': 7.18.6
       '@babel/preset-typescript': 7.18.6
       '@commitlint/cli': 17.1.2
@@ -48,7 +48,7 @@ importers:
       '@babel/core': 7.19.3
       '@babel/eslint-parser': 7.19.1_v37dtiefj2fmp2s4n57pt7n35y
       '@babel/plugin-transform-runtime': 7.19.1_@babel+core@7.19.3
-      '@babel/preset-env': 7.19.4_@babel+core@7.19.3
+      '@babel/preset-env': 7.19.3_@babel+core@7.19.3
       '@babel/preset-react': 7.18.6_@babel+core@7.19.3
       '@babel/preset-typescript': 7.18.6_@babel+core@7.19.3
       '@commitlint/cli': 17.1.2
@@ -1322,8 +1322,8 @@ packages:
       '@babel/helper-plugin-utils': 7.19.0
     dev: true
 
-  /@babel/preset-env/7.19.4_@babel+core@7.19.3:
-    resolution: {integrity: sha512-5QVOTXUdqTCjQuh2GGtdd7YEhoRXBMVGROAtsBeLGIbIz3obCBIfRMT1I3ZKkMgNzwkyCkftDXSSkHxnfVf4qg==}
+  /@babel/preset-env/7.19.3_@babel+core@7.19.3:
+    resolution: {integrity: sha512-ziye1OTc9dGFOAXSWKUqQblYHNlBOaDl8wzqf2iKXJAltYiR3hKHUKmkt+S9PppW7RQpq4fFCrwwpIDj/f5P4w==}
     engines: {node: '>=6.9.0'}
     peerDependencies:
       '@babel/core': ^7.0.0-0
