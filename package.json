@@ -40,7 +40,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "read-pkg": "7.1.0",
-    "rollup": "2.79.1",
+    "rollup": "3.2.2",
     "rollup-plugin-dts": "4.2.3",
     "rollup-plugin-visualizer": "5.8.2",
     "tsd-lite": "0.6.0",
