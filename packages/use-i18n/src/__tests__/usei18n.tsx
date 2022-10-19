@@ -8,6 +8,15 @@ import fr from './locales/fr.json'
 
 const LOCALE_ITEM_STORAGE = 'locales'
 
+type Locale = {
+  test: 'Test'
+  'with.identifier': 'Are you sure you want to delete {identifier}?'
+  plurals: '{numPhotos, plural, =0 {You have one photo.} other {You have # photos.}}'
+  subtitle: 'Here is a subtitle'
+  'tests.test.namespaces': 'test'
+  title: 'Welcome on @scaelway/ui i18n hook'
+}
+
 const wrapper =
   ({
     loadDateLocale = async (locale: string) =>
@@ -285,7 +294,7 @@ describe('i18n hook', () => {
   })
 
   it('should translate correctly with enableDebugKey', async () => {
-    const { result } = renderHook(() => useI18n(), {
+    const { result } = renderHook(() => useI18n<Locale>(), {
       wrapper: wrapper({
         defaultLocale: 'en',
         defaultTranslations: { en },
