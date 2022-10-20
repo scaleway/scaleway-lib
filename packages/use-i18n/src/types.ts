@@ -8,38 +8,27 @@ import type {
 } from 'international-types'
 import type { ReactNode } from 'react'
 
-export type ReactParamsObject<
-  Value extends LocaleValue,
-  ReactParams extends boolean = true,
-> = Record<
+export type ReactParamsObject<Value extends LocaleValue> = Record<
   Params<Value>[number],
-  ReactParams extends true ? LocaleValue | ReactNode : LocaleValue
+  LocaleValue | ReactNode
 >
 
-export type TranslateFn<
-  Locale extends BaseLocale,
-  ReactParams extends boolean = true,
-> = <
+export type TranslateFn<Locale extends BaseLocale> = <
   Key extends LocaleKeys<Locale, undefined>,
   Value extends LocaleValue = ScopedValue<Locale, undefined, Key>,
 >(
   key: Key,
-  ...params: Params<Value>['length'] extends 0
-    ? []
-    : [ReactParamsObject<Value, ReactParams>]
+  ...params: Params<Value>['length'] extends 0 ? [] : [ReactParamsObject<Value>]
 ) => string
 
-export type ScopedTranslateFn<
-  Locale extends BaseLocale,
-  ReactParams extends boolean = true,
-> = <Scope extends Scopes<Locale>>(
+export type ScopedTranslateFn<Locale extends BaseLocale> = <
+  Scope extends Scopes<Locale>,
+>(
   scope: Scope,
 ) => <
   Key extends LocaleKeys<Locale, Scope>,
   Value extends LocaleValue = ScopedValue<Locale, Scope, Key>,
 >(
   key: Key,
-  ...params: Params<Value>['length'] extends 0
-    ? []
-    : [ReactParamsObject<Value, ReactParams>]
+  ...params: Params<Value>['length'] extends 0 ? [] : [ReactParamsObject<Value>]
 ) => string

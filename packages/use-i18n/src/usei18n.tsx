@@ -20,7 +20,7 @@ import ReactDOM from 'react-dom'
 import dateFormat, { FormatDateOptions } from './formatDate'
 import unitFormat, { FormatUnitOptions } from './formatUnit'
 import formatters, { IntlListFormatOptions } from './formatters'
-import type { ScopedTranslateFn, TranslateFn } from './types'
+import type { ReactParamsObject, ScopedTranslateFn, TranslateFn } from './types'
 
 const LOCALE_ITEM_STORAGE = 'locale'
 
@@ -73,7 +73,7 @@ interface Context<Locale extends BaseLocale> {
   ) => Promise<string>
   locales: string[]
   namespaces: string[]
-  namespaceTranslation: ScopedTranslateFn<Locale, false>
+  namespaceTranslation: ScopedTranslateFn<Locale>
   relativeTime: (
     date: Date | number,
     options?: {
@@ -91,7 +91,7 @@ interface Context<Locale extends BaseLocale> {
   ) => string
   setTranslations: React.Dispatch<React.SetStateAction<TranslationsByLocales>>
   switchLocale: (locale: string) => void
-  t: TranslateFn<Locale, false>
+  t: TranslateFn<Locale>
   translations: TranslationsByLocales
 }
 
@@ -310,8 +310,8 @@ const I18nContextProvider = ({
     [dateFnsLocale],
   )
 
-  const translate = useCallback<TranslateFn<any, false>>(
-    (key, ...context) => {
+  const translate = useCallback(
+    (key: string, context?: ReactParamsObject<any>) => {
       const value = translations[currentLocale]?.[key] as string
       if (!value) {
         if (enableDebugKey) {
@@ -323,7 +323,7 @@ const I18nContextProvider = ({
       if (context) {
         return formatters
           .getTranslationFormat(value, currentLocale)
-          .format(...context) as string
+          .format(context) as string
       }
 
       return value
@@ -331,11 +331,9 @@ const I18nContextProvider = ({
     [currentLocale, translations, enableDebugKey],
   )
 
-  const namespaceTranslation = useCallback<ScopedTranslateFn<any, false>>(
-    namespace =>
-      (identifier, ...context) =>
-        translate(`${namespace}.${identifier}`, ...context) ||
-        translate(identifier, ...context),
+  const namespaceTranslation = useCallback(
+    (scope: string) => (key: string, context?: ReactParamsObject<any>) =>
+      translate(`${scope}.${key}`, context) || translate(key, context),
     [translate],
   )
 
