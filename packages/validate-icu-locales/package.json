@@ -1,0 +1,28 @@
+{
+  "name": "@scaleway/validate-icu-locales",
+  "version": "0.0.0",
+  "description": "A small cli to handle icu errors on locales files",
+  "keywords": [
+    "icu",
+    "i18n",
+    "cli"
+  ],
+  "type": "module",
+  "bin": "dist/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scaleway/scaleway-lib",
+    "directory": "packages/validate-icu-locales"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@formatjs/icu-messageformat-parser": "^2.1.10",
+    "glob": "^8.0.3"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.0.0"
+  }
+}
