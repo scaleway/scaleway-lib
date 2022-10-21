@@ -8,6 +8,15 @@ import fr from './locales/fr.json'
 
 const LOCALE_ITEM_STORAGE = 'locales'
 
+type Locale = {
+  test: 'Test'
+  'with.identifier': 'Are you sure you want to delete {identifier}?'
+  plurals: '{numPhotos, plural, =0 {You have one photo.} other {You have # photos.}}'
+  subtitle: 'Here is a subtitle'
+  'tests.test.namespaces': 'test'
+  title: 'Welcome on @scaelway/ui i18n hook'
+}
+
 const wrapper =
   ({
     loadDateLocale = async (locale: string) =>
@@ -285,7 +294,7 @@ describe('i18n hook', () => {
   })
 
   it('should translate correctly with enableDebugKey', async () => {
-    const { result } = renderHook(() => useI18n(), {
+    const { result } = renderHook(() => useI18n<Locale>(), {
       wrapper: wrapper({
         defaultLocale: 'en',
         defaultTranslations: { en },
@@ -311,24 +320,21 @@ describe('i18n hook', () => {
   })
 
   it('should use namespaceTranslation', async () => {
-    const { result } = renderHook(() => useI18n(), {
+    const { result } = renderHook(() => useI18n<Locale>(), {
       wrapper: wrapper({
         defaultLocale: 'en',
         defaultTranslations: { en },
       }),
     })
     await waitFor(() => {
-      const identiqueTranslate = result.current.namespaceTranslation('')
-      expect(identiqueTranslate('title')).toEqual(result.current.t('title'))
+      const identiqueTranslate = result.current.namespaceTranslation('tests')
+      expect(identiqueTranslate('test.namespaces')).toEqual(
+        result.current.t('tests.test.namespaces'),
+      )
     })
 
     const translate = result.current.namespaceTranslation('tests.test')
     expect(translate('namespaces')).toEqual('test')
-
-    // inception
-    const translate1 = result.current.namespaceTranslation('tests')
-    const translate2 = result.current.namespaceTranslation('test', translate1)
-    expect(translate2('namespaces')).toEqual(translate1('test.namespaces'))
   })
 
   it('should use formatNumber', async () => {

@@ -4,7 +4,7 @@ import {
   formatDistanceToNow,
   formatDistanceToNowStrict,
 } from 'date-fns'
-import type { BaseLocale, LocaleValue } from 'international-types'
+import type { BaseLocale } from 'international-types'
 import PropTypes from 'prop-types'
 import {
   ReactElement,
@@ -20,20 +20,11 @@ import ReactDOM from 'react-dom'
 import dateFormat, { FormatDateOptions } from './formatDate'
 import unitFormat, { FormatUnitOptions } from './formatUnit'
 import formatters, { IntlListFormatOptions } from './formatters'
-import type { ScopedTranslateFn, TranslateFn } from './types'
+import type { ReactParamsObject, ScopedTranslateFn, TranslateFn } from './types'
 
 const LOCALE_ITEM_STORAGE = 'locale'
 
 type TranslationsByLocales = Record<string, BaseLocale>
-
-export type InitialTranslateFn = (
-  key: string,
-  context?: Record<string, LocaleValue | JSX.Element>,
-) => string
-export type InitialScopedTranslateFn = (
-  namespace: string,
-  t?: InitialTranslateFn,
-) => InitialTranslateFn
 
 const areNamespacesLoaded = (
   namespaces: string[],
@@ -62,7 +53,7 @@ const getCurrentLocale = ({
   )
 }
 
-interface Context<Locale extends BaseLocale | undefined = undefined> {
+interface Context<Locale extends BaseLocale> {
   currentLocale: string
   dateFnsLocale?: DateFnsLocale
   datetime: (
@@ -82,9 +73,7 @@ interface Context<Locale extends BaseLocale | undefined = undefined> {
   ) => Promise<string>
   locales: string[]
   namespaces: string[]
-  namespaceTranslation: Locale extends BaseLocale
-    ? ScopedTranslateFn<Locale>
-    : InitialScopedTranslateFn
+  namespaceTranslation: ScopedTranslateFn<Locale>
   relativeTime: (
     date: Date | number,
     options?: {
@@ -102,15 +91,15 @@ interface Context<Locale extends BaseLocale | undefined = undefined> {
   ) => string
   setTranslations: React.Dispatch<React.SetStateAction<TranslationsByLocales>>
   switchLocale: (locale: string) => void
-  t: Locale extends BaseLocale ? TranslateFn<Locale> : InitialTranslateFn
+  t: TranslateFn<Locale>
   translations: TranslationsByLocales
 }
 
-const I18nContext = createContext<Context | undefined>(undefined)
+// It's safe to use any here because the Locale can be anything at this point:
+// useI18n / useTranslation requires to explicitely give a Locale to use.
+const I18nContext = createContext<Context<any> | undefined>(undefined)
 
-export function useI18n<
-  Locale extends BaseLocale | undefined = undefined,
->(): Context<Locale> {
+export function useI18n<Locale extends BaseLocale>(): Context<Locale> {
   const context = useContext(I18nContext)
   if (context === undefined) {
     throw new Error('useI18n must be used within a I18nProvider')
@@ -119,9 +108,7 @@ export function useI18n<
   return context as unknown as Context<Locale>
 }
 
-export function useTranslation<
-  Locale extends BaseLocale | undefined = undefined,
->(
+export function useTranslation<Locale extends BaseLocale>(
   namespaces: string[] = [],
   load: LoadTranslationsFn | undefined = undefined,
 ): Context<Locale> & { isLoaded: boolean } {
@@ -323,8 +310,8 @@ const I18nContextProvider = ({
     [dateFnsLocale],
   )
 
-  const translate = useCallback<InitialTranslateFn>(
-    (key, context) => {
+  const translate = useCallback(
+    (key: string, context?: ReactParamsObject<any>) => {
       const value = translations[currentLocale]?.[key] as string
       if (!value) {
         if (enableDebugKey) {
@@ -344,10 +331,9 @@ const I18nContextProvider = ({
     [currentLocale, translations, enableDebugKey],
   )
 
-  const namespaceTranslation = useCallback<InitialScopedTranslateFn>(
-    (namespace, t = translate) =>
-      (identifier, context) =>
-        t(`${namespace}.${identifier}`, context) || t(identifier, context),
+  const namespaceTranslation = useCallback(
+    (scope: string) => (key: string, context?: ReactParamsObject<any>) =>
+      translate(`${scope}.${key}`, context) || translate(key, context),
     [translate],
   )
 
