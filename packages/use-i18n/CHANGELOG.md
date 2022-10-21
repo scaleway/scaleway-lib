@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.9.1](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@3.9.0...@scaleway/use-i18n@3.9.1) (2022-10-21)
+
+### Bug Fixes
+
+- **use-i18n:** add back custom translate function for namespaceTranslation ([#1048](https://github.com/scaleway/scaleway-lib/issues/1048)) ([3223c77](https://github.com/scaleway/scaleway-lib/commit/3223c77650a4435f94efbe944d9f7964d74858bb))
+
 ## 3.9.0 (2022-10-21)
 
 ### Features
