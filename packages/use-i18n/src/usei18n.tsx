@@ -332,8 +332,9 @@ const I18nContextProvider = ({
   )
 
   const namespaceTranslation = useCallback(
-    (scope: string) => (key: string, context?: ReactParamsObject<any>) =>
-      translate(`${scope}.${key}`, context) || translate(key, context),
+    (scope: string, t = translate) =>
+      (key: string, context?: ReactParamsObject<any>) =>
+        t(`${scope}.${key}`, context) || t(key, context),
     [translate],
   )
 
