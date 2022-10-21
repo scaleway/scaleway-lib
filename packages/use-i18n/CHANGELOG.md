@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.9.0 (2022-10-21)
+
+### Features
+
+- **i18n:** always required Locale generic ([#1044](https://github.com/scaleway/scaleway-lib/issues/1044)) ([849da5c](https://github.com/scaleway/scaleway-lib/commit/849da5cb758cd3f6e8a5f4ddf01da57665601bcc))
+
 ## 3.8.0 (2022-10-14)
 
 ### Features
