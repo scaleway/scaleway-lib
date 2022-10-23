@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/use-segment",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "description": "A small hook to handle segment",
   "keywords": [
     "react",
@@ -28,6 +28,6 @@
     "@segment/analytics-next": "1.45.0"
   },
   "peerDependencies": {
-    "react": "18.x"
+    "react": "18.x || 18"
   }
 }
