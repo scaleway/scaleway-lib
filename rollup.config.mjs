@@ -74,7 +74,7 @@ export default async () => {
   const doesAlsoTargetBrowser = 'browser' in pkg
 
   return [
-    getConfig(pkg, false),
+    getConfig(pkg),
     doesAlsoTargetBrowser && getConfig(pkg, true),
     {
       input: './src/index.ts',

@@ -15,34 +15,34 @@ We can parse JSON, TS and JS if theses files use default export.
 
 
 ```
-@scaleway/validate-icu-locales "../**/en.json"
+validate-icu "../**/en.json"
 ```
 
 If there is an error on a local, the CLI will throw an Error and print all errors.
 
 
 ## Error
-````
+```
 export default from:  ../src/__tests__/locales/en-1.js  is not an object
 {
   errors: [
     {
-      err: [SyntaxError],
+      message: 'EXPECT_ARGUMENT_CLOSING_BRACE',
       value: '{count, plural, =0 {Minute} =1 {Minute} other {Minutes',
       key: 'units.minutes.label',
-      filePath: '../src/__tests__/locales/en.js'
+      filePath: '../../packages/validate-icu-locales/src/__tests__/locales/en.js'
     },
     {
-      err: [SyntaxError],
+      message: 'EXPECT_ARGUMENT_CLOSING_BRACE',
       value: '{count, plural, =0 {Minute} =1 {Minute} other {Minutes',
       key: 'units.minutes.label',
-      filePath: '../src/__tests__/locales/en.json'
+      filePath: '../../packages/validate-icu-locales/src/__tests__/locales/en.json'
     },
     {
-      err: [SyntaxError],
+      message: 'EXPECT_ARGUMENT_CLOSING_BRACE',
       value: '{count, plural, =0 {Minute} =1 {Minute} other {Minutes',
       key: 'units.minutes.label',
-      filePath: '../src/__tests__/locales/en.ts'
+      filePath: '../../packages/validate-icu-locales/src/__tests__/locales/en.ts'
     }
   ]
 }

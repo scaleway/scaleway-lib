@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { parse } from '@formatjs/icu-messageformat-parser'
-import { info } from 'console'
+import { ParserError } from '@formatjs/icu-messageformat-parser/error'
 import { readFile } from 'fs/promises'
 import { globby } from 'globby'
 import { importFromString } from 'module-from-string'
@@ -10,27 +10,52 @@ const args = process.argv.slice(2)
 const pattern = args[0]
 const { error, table } = console
 
-let isICUError = false
-
-const findICUError = (locales: { [key: string]: string }, filePath: string) => {
-  Object.keys(locales).forEach(key => {
-    const value = locales[key]
-
-    try {
-      parse(value)
-    } catch (err) {
-      isICUError = true
-      error({
-        err,
-        value,
-        key,
-        filePath,
-      })
-    }
-  })
+type Locales = Record<string, string>
+type ErrorICU = {
+  message: ParserError['message']
+  value: string
+  key: string
+  filePath: string
 }
 
-const readFiles = async (files: string[]) => {
+type ErrorsICU = (ErrorICU | undefined)[]
+
+const isObject = (obj: unknown): obj is Record<string, unknown> =>
+  obj === Object(obj)
+
+const findICUErrors = (
+  locales: { [key: string]: string },
+  filePath: string,
+): ErrorsICU => {
+  const keys = Object.keys(locales)
+
+  const errors = keys
+    .map(key => {
+      const value = locales[key]
+
+      try {
+        parse(value)
+
+        return undefined
+      } catch (err) {
+        const { message } = err as ParserError
+
+        return {
+          message,
+          value,
+          key,
+          filePath,
+        }
+      }
+    })
+    .filter(Boolean)
+
+  return errors
+}
+
+const readFiles = async (files: string[]): Promise<ErrorsICU> => {
+  const errors = []
+
   for await (const file of files) {
     const extension = file.split('.').pop()
 
@@ -39,9 +64,10 @@ const readFiles = async (files: string[]) => {
         const data = await readFile(file)
         const jsonFile = data.toString()
 
-        const locales = JSON.parse(jsonFile) as Record<string, string>
+        const locales = JSON.parse(jsonFile) as Locales
 
-        findICUError(locales, file)
+        const ICUErrors = findICUErrors(locales, file)
+        errors.push(...ICUErrors)
       } catch (err) {
         error({ file, err })
       }
@@ -52,37 +78,45 @@ const readFiles = async (files: string[]) => {
         const data = await readFile(file)
         const javascriptFile = data.toString()
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        const d: { default: Record<string, string> } = await importFromString(
-          javascriptFile,
-          { transformOptions: { loader: 'ts' } },
-        )
+        const mod: unknown = await importFromString(javascriptFile, {
+          transformOptions: { loader: 'ts' },
+        })
 
-        if (typeof d.default === 'object') {
-          findICUError(d.default, file)
+        if (isObject(mod)) {
+          if ('default' in mod) {
+            const { default: locales } = mod as { default: Locales }
+
+            const ICUErrors = findICUErrors(locales, file)
+            errors.push(...ICUErrors)
+          } else {
+            error('export default from: ', file, ' is not an object')
+          }
         } else {
-          error('export default from: ', file, ' is not an object')
+          error(file, ' is not an object')
         }
       } catch (err) {
         error({ err, file })
       }
     }
   }
+
+  return errors
 }
 
 const files = await globby(pattern)
 
-if (files.length > 0) {
-  table(files)
-  await readFiles(files)
-}
-
 if (files.length === 0) {
-  info('There is no files matching this pattern', pattern)
+  error('There is no files matching this pattern', pattern)
+  process.exit(1)
 }
 
-if (isICUError) {
+table(files)
+
+const errors = await readFiles(files)
+
+if (errors.length > 0) {
+  error({
+    errors,
+  })
   process.exit(1)
-} else {
-  process.exit(0)
 }

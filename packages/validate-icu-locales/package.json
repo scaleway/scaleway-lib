@@ -8,7 +8,9 @@
     "cli"
   ],
   "type": "module",
-  "bin": "dist/index.js",
+  "bin": {
+    "validate-icu": "dist/index.js"
+   },
   "publishConfig": {
     "access": "public"
   },
