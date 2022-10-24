@@ -3,6 +3,9 @@
 ## A tiny cli to handle ICU errors on locales files.
 ## Install
 
+Requirements
+- Node should be installed
+
 ```bash
 $ pnpm add -D @scaleway/validate-icu-locales
 ```

@@ -57,10 +57,6 @@ const getConfig = (pkg, isBrowser = false) => {
         preferBuiltins: true,
       }),
       preserveShebangs(),
-      // shebang({
-      //   include: ['**/index.js'],
-      //   shebang: '#!/usr/bin/env node'
-      // }),
       PROFILE &&
         visualizer({
           brotliSize: true,

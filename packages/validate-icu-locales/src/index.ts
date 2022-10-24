@@ -2,22 +2,15 @@
 
 import { parse } from '@formatjs/icu-messageformat-parser'
 import { info } from 'console'
-import fs from 'fs'
+import { readFile } from 'fs/promises'
 import { globby } from 'globby'
-import { importFromStringSync } from 'module-from-string'
+import { importFromString } from 'module-from-string'
 
 const args = process.argv.slice(2)
 const pattern = args[0]
-
 const { error, table } = console
 
-type Err = {
-  err: unknown
-  value: string
-  key: string
-  filePath: string
-}
-const errors: Err[] = []
+let isICUError = false
 
 const findICUError = (locales: { [key: string]: string }, filePath: string) => {
   Object.keys(locales).forEach(key => {
@@ -26,7 +19,8 @@ const findICUError = (locales: { [key: string]: string }, filePath: string) => {
     try {
       parse(value)
     } catch (err) {
-      errors.push({
+      isICUError = true
+      error({
         err,
         value,
         key,
@@ -36,49 +30,59 @@ const findICUError = (locales: { [key: string]: string }, filePath: string) => {
   })
 }
 
-const readFiles = (files: string[]) =>
-  files.forEach(file => {
+const readFiles = async (files: string[]) => {
+  for await (const file of files) {
     const extension = file.split('.').pop()
 
     if (extension === 'json') {
-      const json = fs.readFileSync(file).toString()
       try {
-        const locales = JSON.parse(json) as Record<string, string>
+        const data = await readFile(file)
+        const jsonFile = data.toString()
+
+        const locales = JSON.parse(jsonFile) as Record<string, string>
 
         findICUError(locales, file)
       } catch (err) {
-        error(err)
+        error({ file, err })
       }
     }
 
     if (extension === 'ts' || extension === 'js') {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      const d: { default: Record<string, string> } = importFromStringSync(
-        fs.readFileSync(file).toString(),
-        { transformOptions: { loader: 'ts' } },
-      )
+      try {
+        const data = await readFile(file)
+        const javascriptFile = data.toString()
 
-      if (typeof d.default === 'object') {
-        findICUError(d.default, file)
-      } else {
-        error('export default from: ', file, ' is not an object')
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        const d: { default: Record<string, string> } = await importFromString(
+          javascriptFile,
+          { transformOptions: { loader: 'ts' } },
+        )
+
+        if (typeof d.default === 'object') {
+          findICUError(d.default, file)
+        } else {
+          error('export default from: ', file, ' is not an object')
+        }
+      } catch (err) {
+        error({ err, file })
       }
     }
-  })
+  }
+}
 
 const files = await globby(pattern)
 
 if (files.length > 0) {
   table(files)
-  readFiles(files)
+  await readFiles(files)
 }
 
 if (files.length === 0) {
   info('There is no files matching this pattern', pattern)
 }
 
-if (errors.length > 1) {
-  error({ errors })
-  info(new Error('There is somes ICU error'))
+if (isICUError) {
   process.exit(1)
+} else {
+  process.exit(0)
 }
