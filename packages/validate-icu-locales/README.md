@@ -12,7 +12,7 @@ We can parse JSON, TS and JS if theses files use default export.
 
 
 ```
-node @scaleway/validate-icu-locales "../**/en.json"
+@scaleway/validate-icu-locales "../**/en.json"
 ```
 
 If there is an error on a local, the CLI will throw an Error and print all errors.

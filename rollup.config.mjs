@@ -3,6 +3,7 @@ import { nodeResolve } from '@rollup/plugin-node-resolve'
 import builtins from 'builtin-modules'
 import { readPackage } from 'read-pkg'
 import dts from 'rollup-plugin-dts'
+import { preserveShebangs } from 'rollup-plugin-preserve-shebangs'
 import { visualizer } from 'rollup-plugin-visualizer'
 
 const PROFILE = !!process.env.PROFILE
@@ -38,9 +39,7 @@ const getConfig = (pkg, isBrowser = false) => {
         comments: false,
         exclude: 'node_modules/**',
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.es', '.mjs'],
-        plugins: [
-          '@babel/plugin-transform-runtime',
-        ],
+        plugins: ['@babel/plugin-transform-runtime'],
         presets: [
           ['@babel/env', { modules: false, targets }],
           '@babel/preset-typescript',
@@ -54,9 +53,14 @@ const getConfig = (pkg, isBrowser = false) => {
       }),
       nodeResolve({
         browser: isBrowser,
-        extensions: [ '.mjs', '.js', '.json', '.ts', '.tsx' ],
+        extensions: ['.mjs', '.js', '.json', '.ts', '.tsx'],
         preferBuiltins: true,
       }),
+      preserveShebangs(),
+      // shebang({
+      //   include: ['**/index.js'],
+      //   shebang: '#!/usr/bin/env node'
+      // }),
       PROFILE &&
         visualizer({
           brotliSize: true,
@@ -74,7 +78,7 @@ export default async () => {
   const doesAlsoTargetBrowser = 'browser' in pkg
 
   return [
-    getConfig(pkg),
+    getConfig(pkg, false),
     doesAlsoTargetBrowser && getConfig(pkg, true),
     {
       input: './src/index.ts',

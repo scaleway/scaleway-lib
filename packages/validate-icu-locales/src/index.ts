@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { parse } from '@formatjs/icu-messageformat-parser'
 import { info } from 'console'
 import fs from 'fs'
