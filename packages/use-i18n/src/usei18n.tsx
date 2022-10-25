@@ -27,7 +27,7 @@ const LOCALE_ITEM_STORAGE = 'locale'
 type TranslationsByLocales = Record<string, BaseLocale>
 type RequiredGenericContext<Locale extends BaseLocale> =
   keyof Locale extends never
-    ? Context<Locale> & {
+    ? Omit<Context<Locale>, 't' | 'namespaceTranslation'> & {
         t: (str: 'You must pass a generic argument to useI18n()') => void
         namespaceTranslation: (
           str: 'You must pass a generic argument to useI18n()',
