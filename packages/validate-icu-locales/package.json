@@ -21,8 +21,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@formatjs/icu-messageformat-parser": "^2.1.10",
-    "globby": "^13.1.2",
-    "module-from-string": "^3.3.0"
+    "@formatjs/icu-messageformat-parser": "2.1.10",
+    "globby": "13.1.2",
+    "module-from-string": "3.3.0"
   }
 }
