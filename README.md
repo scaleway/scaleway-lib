@@ -104,6 +104,12 @@ scaleway-lib is a set of NPM packages used at Scaleway.
   ![npm bundle size](https://img.shields.io/bundlephobia/min/@scaleway/outdated-browser)
   ![npm](https://img.shields.io/npm/v/@scaleway/outdated-browser)
 
+- [`@scaleway/validate-icu-locales`](./packages/validate-icu-locales/README.md): A small cli to check ICU locales error
+
+  ![npm](https://img.shields.io/npm/dm/@scaleway/validate-icu-locales)
+  ![npm bundle size](https://img.shields.io/bundlephobia/min/@scaleway/validate-icu-locales)
+  ![npm](https://img.shields.io/npm/v/@scaleway/validate-icu-locales)
+
 ## Development
 
 ### Locally
