@@ -17,6 +17,12 @@ type Locale = {
   title: 'Welcome on @scaelway/ui i18n hook'
 }
 
+type NamespaceLocale = {
+  name: 'Name'
+  lastName: 'Last Name'
+  languages: 'Languages'
+}
+
 const wrapper =
   ({
     loadDateLocale = async (locale: string) =>
@@ -92,7 +98,7 @@ describe('i18n hook', () => {
   })
 
   it('should use defaultLoad, useTranslation, switch local and translate', async () => {
-    const { result } = renderHook(() => useTranslation([]), {
+    const { result } = renderHook(() => useTranslation<Locale>([]), {
       wrapper: wrapper({ defaultLocale: 'en' }),
     })
     // first render there is no load
@@ -130,7 +136,7 @@ describe('i18n hook', () => {
     }) => import(`./locales/namespaces/${locale}/${namespace}.json`)
 
     const { result } = renderHook(
-      () => useTranslation(['user', 'profile'], load),
+      () => useTranslation<NamespaceLocale>(['user', 'profile'], load),
       {
         wrapper: wrapper({
           defaultLocale: 'en',
@@ -185,13 +191,16 @@ describe('i18n hook', () => {
       namespace: string
     }) => import(`./locales/namespaces/${locale}/${namespace}.json`)
 
-    const { result } = renderHook(() => useTranslation(['user'], load), {
-      wrapper: wrapper({
-        defaultLocale: 'fr',
-        enableDefaultLocale: true,
-        supportedLocales: ['en', 'fr'],
-      }),
-    })
+    const { result } = renderHook(
+      () => useTranslation<NamespaceLocale>(['user'], load),
+      {
+        wrapper: wrapper({
+          defaultLocale: 'fr',
+          enableDefaultLocale: true,
+          supportedLocales: ['en', 'fr'],
+        }),
+      },
+    )
 
     // current local will be 'en' based on navigator
     // await load of locales
