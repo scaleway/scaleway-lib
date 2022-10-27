@@ -25,15 +25,6 @@ import type { ReactParamsObject, ScopedTranslateFn, TranslateFn } from './types'
 const LOCALE_ITEM_STORAGE = 'locale'
 
 type TranslationsByLocales = Record<string, BaseLocale>
-type RequiredGenericContext<Locale extends BaseLocale> =
-  keyof Locale extends never
-    ? Omit<Context<Locale>, 't' | 'namespaceTranslation'> & {
-        t: (str: 'You must pass a generic argument to useI18n()') => void
-        namespaceTranslation: (
-          str: 'You must pass a generic argument to useI18n()',
-        ) => void
-      }
-    : Context<Locale>
 
 const areNamespacesLoaded = (
   namespaces: string[],
@@ -108,23 +99,19 @@ interface Context<Locale extends BaseLocale> {
 // useI18n / useTranslation requires to explicitely give a Locale to use.
 const I18nContext = createContext<Context<any> | undefined>(undefined)
 
-export function useI18n<
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  Locale extends BaseLocale = {},
->(): RequiredGenericContext<Locale> {
+export function useI18n<Locale extends BaseLocale>(): Context<Locale> {
   const context = useContext(I18nContext)
   if (context === undefined) {
     throw new Error('useI18n must be used within a I18nProvider')
   }
 
-  return context as unknown as RequiredGenericContext<Locale>
+  return context as unknown as Context<Locale>
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-export function useTranslation<Locale extends BaseLocale = {}>(
+export function useTranslation<Locale extends BaseLocale>(
   namespaces: string[] = [],
   load: LoadTranslationsFn | undefined = undefined,
-): RequiredGenericContext<Locale> & { isLoaded: boolean } {
+): Context<Locale> & { isLoaded: boolean } {
   const context = useContext(I18nContext)
   if (context === undefined) {
     throw new Error('useTranslation must be used within a I18nProvider')
@@ -143,10 +130,7 @@ export function useTranslation<Locale extends BaseLocale = {}>(
     [loadedNamespaces, namespaces],
   )
 
-  return {
-    ...context,
-    isLoaded,
-  } as unknown as RequiredGenericContext<Locale> & {
+  return { ...context, isLoaded } as unknown as Context<Locale> & {
     isLoaded: boolean
   }
 }
