@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.0](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@3.10.1...@scaleway/use-i18n@4.0.0) (2022-10-27)
+
+### ⚠ BREAKING CHANGES
+
+- **use-i18n:** required generic (#1061)
+
+### Features
+
+- **use-i18n:** required generic ([#1061](https://github.com/scaleway/scaleway-lib/issues/1061)) ([04b2451](https://github.com/scaleway/scaleway-lib/commit/04b2451ab0b6e4bb56042a3ef7dbb36eb9a7911b))
+
 ## [3.10.1](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@3.10.0...@scaleway/use-i18n@3.10.1) (2022-10-27)
 
 ### Reverts
