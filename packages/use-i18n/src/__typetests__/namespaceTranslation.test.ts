@@ -1,7 +1,7 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import { expectError, expectType } from 'tsd-lite'
 import { useI18n } from '../usei18n'
 
+// eslint-disable-next-line react-hooks/rules-of-hooks
 const { namespaceTranslation } = useI18n<{
   hello: 'world'
   'doe.john': 'John Doe'
@@ -50,7 +50,3 @@ expectType<string>(
 )
 expectError(scopedT3('john', {}))
 expectError(scopedT3('john'))
-
-// Required generic
-const { namespaceTranslation: namespaceTranslation2 } = useI18n()
-expectError(namespaceTranslation2('test'))
