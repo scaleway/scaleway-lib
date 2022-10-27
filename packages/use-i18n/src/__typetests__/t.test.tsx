@@ -1,7 +1,7 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import { expectError, expectType } from 'tsd-lite'
-import { useI18n, useTranslation } from '../usei18n'
+import { useI18n } from '../usei18n'
 
+// eslint-disable-next-line react-hooks/rules-of-hooks
 const { t } = useI18n<{
   hello: 'world'
   'doe.john': 'John Doe'
@@ -58,7 +58,3 @@ expectType<string>(
     ),
   }),
 )
-
-// Required generic
-const { t: t2 } = useI18n()
-expectError(t2('test'))
