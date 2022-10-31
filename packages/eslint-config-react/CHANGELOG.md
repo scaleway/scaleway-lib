@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.8.0 (2022-10-31)
+
+### Features
+
+- **eslint-config:** add eslint-plugin-deprecation to typescript config ([#1064](https://github.com/scaleway/scaleway-lib/issues/1064)) ([3f2cc25](https://github.com/scaleway/scaleway-lib/commit/3f2cc25802d60982f4691dc121c3d455e7c05b92))
+
 ## 3.7.10 (2022-10-24)
 
 ### Bug Fixes
