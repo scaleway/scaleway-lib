@@ -52,7 +52,7 @@
   "scripts": {
     "lint": "eslint --ext js,ts,tsx --cache .",
     "lint:fix": "pnpm run lint --fix",
-    "build": "pnpm recursive --filter='!@scaleway/countries' --filter='!@scaleway/eslint-config-react' exec -- rollup -c ../../rollup.config.mjs",
+    "build": "pnpm recursive --filter='!@scaleway/eslint-config-react' exec -- rollup -c ../../rollup.config.mjs",
     "build:profile": "cross-env PROFILE=true pnpm run build",
     "commit": "npx git-cz -a",
     "format": "prettier --write '**/*.{ts,tsx,js,json,md,mdx}'",
