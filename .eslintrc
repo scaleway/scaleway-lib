@@ -1,11 +1,9 @@
 {
   "root": true,
-  "parser": "@babel/eslint-parser",
   "env": {
     "browser": true,
     "jest": true
   },
-  "extends": "./packages/eslint-config-react/index.js",
   "rules": {
     "import/no-extraneous-dependencies": [
       "error",
@@ -15,6 +13,11 @@
     ]
   },
   "overrides": [
+    {
+      "parser": "@babel/eslint-parser",
+      "files": ["*.js", "*.mjs"],
+      "extends": "./packages/eslint-config-react/index.js"
+    },
     {
       "files": ["*.ts", "*.tsx"],
       "parserOptions": {
