@@ -24,7 +24,7 @@
     "@types/node": "18.11.3",
     "@types/prop-types": "15.7.5",
     "@types/react": "18.0.23",
-    "@types/react-dom": "18.0.6",
+    "@types/react-dom": "18.0.8",
     "builtin-modules": "3.3.0",
     "cross-env": "7.0.3",
     "eslint": "8.26.0",
