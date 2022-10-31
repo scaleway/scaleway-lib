@@ -6,8 +6,9 @@ module.exports = {
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
     require.resolve('./shared'),
   ],
-  plugins: ['@typescript-eslint'],
+  plugins: ['deprecation', '@typescript-eslint'],
   rules: {
+    'deprecation/deprecation': 'warn',
     // https://github.com/typescript-eslint/typescript-eslint/issues/4619
     '@typescript-eslint/no-misused-promises': [
       'error',
