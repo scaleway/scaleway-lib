@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/use-query-params",
-  "version": "3.3.2",
+  "version": "3.3.3",
   "description": "A small hook to handle params",
   "keywords": [
     "react",
@@ -32,8 +32,8 @@
     "query-string": "7.1.1"
   },
   "peerDependencies": {
-    "react": "18.x",
-    "react-dom": "18.x",
+    "react": "18.x || 18",
+    "react-dom": "18.x || 18",
     "react-router-dom": "^6.0.0"
   },
   "devDependencies": {
