@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.8.4 (2022-11-17)
+
+### Bug Fixes
+
+- **deps:** update dependency eslint-plugin-deprecation to v1.3.3 ([#1077](https://github.com/scaleway/scaleway-lib/issues/1077)) ([d0e0085](https://github.com/scaleway/scaleway-lib/commit/d0e00857dd9d4cbf27b947bd51a687935b814054))
+
 ## [3.8.3](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@3.8.2...@scaleway/eslint-config-react@3.8.3) (2022-11-15)
 
 ### Bug Fixes
