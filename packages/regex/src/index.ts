@@ -22,7 +22,7 @@ export const basicDomain = /^[a-z0-9-]+(\.[a-z0-9-]{1,63})+$/
 export const uppercaseBasicDomain =
   /^(?![-])+[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]{1,63})+$/
 
-export const cron = /^[0-9,/*-]+$/
+export const cron = /^((((\d+,)+\d+|(\d+(\/|-)\d+)|\d+|\*) ?){5,7})$/
 export const digits = /^[0-9]*$/
 export const macAddress =
   /^([0-9a-fA-F][0-9a-fA-F]:){5}([0-9a-fA-F][0-9a-fA-F])$/
