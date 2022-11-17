@@ -48,8 +48,7 @@ const subDomain = 'sub.another-example.com'
 const dashStartDomain = '-sub.another-example.com'
 const uppercaseDomain = 'SUB.another-example.com'
 const longTldDomain = 'sub.another-example.verylongtld'
-const cronTest = '0/15*-'
-const cronScheduleExample = '1 * * * *'
+const cronTest = '0 0 0 * * 0 1-4'
 const digitsTest = '0123456789'
 const emailTest = 'test@scaleway.com'
 const fourDigitsTest = '2345'
@@ -502,8 +501,7 @@ describe('@regex', () => {
       [hexdigits, false],
       [printable, false],
       [punctuation, false],
-      [whitespace, true],
-      [cronScheduleExample, true],
+      [whitespace, false],
       [cronTest, true],
     ])('should match regex %s to be %s', (string, expected) => {
       expect(cron.test(string)).toBe(expected)
