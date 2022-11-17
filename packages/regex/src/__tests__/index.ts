@@ -501,7 +501,7 @@ describe('@regex', () => {
       [hexdigits, false],
       [printable, false],
       [punctuation, false],
-      [whitespace, false],
+      [whitespace, true],
       [cronTest, true],
     ])('should match regex %s to be %s', (string, expected) => {
       expect(cron.test(string)).toBe(expected)
