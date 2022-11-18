@@ -6,6 +6,7 @@ module.exports = {
     'plugin:react/jsx-runtime',
   ],
   rules: {
+    curly: 'error',
     'import/order': [
       // https://github.com/import-js/eslint-plugin-import/blob/master/docs/rules/order.md
       'error',
