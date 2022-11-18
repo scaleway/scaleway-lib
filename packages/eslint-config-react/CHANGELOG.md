@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.9.0 (2022-11-18)
+
+### Features
+
+- **eslint:** disabled usage of export \* ([#1080](https://github.com/scaleway/scaleway-lib/issues/1080)) ([bb5a796](https://github.com/scaleway/scaleway-lib/commit/bb5a796131c50d1958750c08c0522dedfeb2365e))
+
 ## 3.8.4 (2022-11-17)
 
 ### Bug Fixes
