@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.10.0 (2022-11-18)
+
+### Features
+
+- add curly rule ([#1083](https://github.com/scaleway/scaleway-lib/issues/1083)) ([3afc32a](https://github.com/scaleway/scaleway-lib/commit/3afc32a1122b62a8b7423240ffaa546a31f1e469))
+
 ## 3.9.0 (2022-11-18)
 
 ### Features
