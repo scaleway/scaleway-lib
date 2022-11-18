@@ -61,8 +61,9 @@ function GTMProvider<T extends Events>({
       if (onLoadError) document.addEventListener(LOAD_ERROR_EVENT, onLoadError)
 
       return () => {
-        if (onLoadError)
+        if (onLoadError) {
           document.removeEventListener(LOAD_ERROR_EVENT, onLoadError)
+        }
       }
     }
 
