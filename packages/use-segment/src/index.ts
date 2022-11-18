@@ -1,10 +1,10 @@
 import SegmentProvider from './useSegment'
 
-export {
+export { useSegment } from './useSegment'
+export type {
   Analytics,
   OnEventError,
   SegmentProviderProps,
-  useSegment,
 } from './useSegment'
 
 export default SegmentProvider

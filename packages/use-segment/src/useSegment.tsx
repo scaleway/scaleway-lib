@@ -49,7 +49,7 @@ export type SegmentProviderProps<T> = {
   children: ReactNode
 }
 
-export { Analytics }
+export type { Analytics }
 
 function SegmentProvider<T extends Events>({
   children,
