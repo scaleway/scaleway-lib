@@ -47,6 +47,10 @@ module.exports = {
           '`with` is disallowed in strict mode because it makes code impossible to predict and optimize.',
         selector: 'WithStatement',
       },
+      {
+        message: '`export *` is forbidden.',
+        selector: 'ExportAllDeclaration',
+      },
     ],
     // This is to have a more breathable codebase
     'padding-line-between-statements': [
