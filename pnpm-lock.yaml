@@ -43,7 +43,7 @@ importers:
       rollup-plugin-preserve-shebangs: 0.2.0
       rollup-plugin-visualizer: 5.8.3
       tsd-lite: 0.6.0
-      typescript: 4.9.3
+      typescript: 4.8.4
       wait-for-expect: 3.0.2
     devDependencies:
       '@babel/core': 7.20.2
@@ -81,11 +81,11 @@ importers:
       react-dom: 18.2.0_react@18.2.0
       read-pkg: 7.1.0
       rollup: 3.2.5
-      rollup-plugin-dts: 5.0.0_q7xopg4ixddffldasoi2pgaqr4
+      rollup-plugin-dts: 5.0.0_oa2candk7eitu7usnsurwiyuuu
       rollup-plugin-preserve-shebangs: 0.2.0_rollup@3.2.5
       rollup-plugin-visualizer: 5.8.3_rollup@3.2.5
       tsd-lite: 0.6.0_@tsd+typescript@4.8.4
-      typescript: 4.9.3
+      typescript: 4.8.4
       wait-for-expect: 3.0.2
 
   packages/eslint-config-react:
@@ -10243,7 +10243,7 @@ packages:
     dependencies:
       glob: 7.2.3
 
-  /rollup-plugin-dts/5.0.0_q7xopg4ixddffldasoi2pgaqr4:
+  /rollup-plugin-dts/5.0.0_oa2candk7eitu7usnsurwiyuuu:
     resolution: {integrity: sha512-OO8ayCvuJCKaQSShyVTARxGurVVk4ulzbuvz+0zFd1f93vlnWFU5pBMT7HFeS6uj7MvvZLx4kUAarGATSU1+Ng==}
     engines: {node: '>=v14'}
     peerDependencies:
@@ -10252,7 +10252,7 @@ packages:
     dependencies:
       magic-string: 0.26.7
       rollup: 3.2.5
-      typescript: 4.9.3
+      typescript: 4.8.4
     optionalDependencies:
       '@babel/code-frame': 7.18.6
     dev: true
