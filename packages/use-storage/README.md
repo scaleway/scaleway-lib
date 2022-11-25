@@ -49,3 +49,22 @@ const Component = () => {
   )
 }
 ```
+
+With initialValue
+
+```js
+import React from 'react'
+import { useLocalStorage } from '@scaleway/use-storage'
+
+const Component = () => {
+  const [value, setValue] = useLocalStorage('key', 'initial')
+
+  return (
+    <div>
+      <span>{value}</span> // Will be "initial" of no other value is already set
+      <button onClick={() => setValue('test from hook')}>Click me to set value to "test from hook"</button>
+      <button onClick={() => localStorage.setItem('key', 'test from window')}>Click me to set value to "test from window"</button>
+    </div>
+  )
+}
+```

@@ -5,7 +5,6 @@ import {
   useState,
   useSyncExternalStore,
 } from 'react'
-import { flushSync } from 'react-dom'
 
 declare global {
   interface WindowEventMap {
@@ -65,12 +64,12 @@ const useStorage = <T>(
     (val: T | undefined) => {
       if (val) {
         if (canUseDOM) {
-          flushSync(() => storage.setItem(key, JSON.stringify(val)))
+          storage.setItem(key, JSON.stringify(val))
         }
         setLocaleValue(JSON.stringify(val))
       } else {
         if (canUseDOM) {
-          flushSync(() => storage.removeItem(key))
+          storage.removeItem(key)
         }
         setLocaleValue(null)
       }
