@@ -83,5 +83,44 @@ describe('useStorage - Client side', () => {
       expect(window.sessionStorage.getItem(KEY)).toBeNull()
       expect(result.current[0]).toBeNull()
     })
+
+    it('works already set value', () => {
+      act(() => window.sessionStorage.setItem(KEY, '"previous"'))
+
+      const { result } = renderHook(() => useSessionStorage<string>(KEY))
+      expect(result.current[0]).toBe('previous')
+    })
+
+    it('works already set invalid value', () => {
+      act(() => window.sessionStorage.setItem(KEY, 'previous'))
+
+      const { result } = renderHook(() => useSessionStorage<string>(KEY))
+      expect(result.current[0]).toBeNull()
+    })
+
+    it('works with initialValue', () => {
+      const { result } = renderHook(() =>
+        useSessionStorage<string>(KEY, 'initial'),
+      )
+      expect(result.current[0]).toBe('initial')
+    })
+
+    it('works with initialValue and already set value', () => {
+      act(() => window.sessionStorage.setItem(KEY, '"previous"'))
+
+      const { result } = renderHook(() =>
+        useSessionStorage<string>(KEY, 'initial'),
+      )
+      expect(result.current[0]).toBe('previous')
+    })
+
+    it('works with initialValue and already set invalid value', () => {
+      act(() => window.sessionStorage.setItem(KEY, 'previous'))
+
+      const { result } = renderHook(() =>
+        useSessionStorage<string>(KEY, 'initial'),
+      )
+      expect(result.current[0]).toBe('initial')
+    })
   })
 })
