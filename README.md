@@ -110,6 +110,12 @@ scaleway-lib is a set of NPM packages used at Scaleway.
   ![npm bundle size](https://img.shields.io/bundlephobia/min/@scaleway/validate-icu-locales)
   ![npm](https://img.shields.io/npm/v/@scaleway/validate-icu-locales)
 
+- [`@scaleway/use-storage`](./packages/use-storage/README.md): A React hook to interact with local/session storage in reactive way with the same API as setState
+
+  ![npm](https://img.shields.io/npm/dm/@scaleway/use-storage)
+  ![npm bundle size](https://img.shields.io/bundlephobia/min/@scaleway/use-storage)
+  ![npm](https://img.shields.io/npm/v/@scaleway/use-storage)
+
 ## Development
 
 ### Locally
