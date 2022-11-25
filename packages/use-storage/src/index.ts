@@ -8,6 +8,9 @@ import {
 
 declare global {
   interface WindowEventMap {
+    // native storage event is not broadcasted on the current page
+    // https://developer.mozilla.org/en-US/docs/Web/API/Window/storage_event
+    // So we also emit a custom one to allow current page handling
     'event-storage': CustomEvent
   }
 }
