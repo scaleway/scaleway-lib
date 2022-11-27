@@ -38,7 +38,7 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0
       read-pkg: 7.1.0
-      rollup: 3.2.5
+      rollup: 3.4.0
       rollup-plugin-dts: 5.0.0
       rollup-plugin-preserve-shebangs: 0.2.0
       rollup-plugin-visualizer: 5.8.3
@@ -54,8 +54,8 @@ importers:
       '@babel/preset-typescript': 7.18.6_@babel+core@7.20.2
       '@commitlint/cli': 17.2.0
       '@commitlint/config-conventional': 17.2.0
-      '@rollup/plugin-babel': 6.0.2_zucauindkcyhxxjiyrjjpnsffm
-      '@rollup/plugin-node-resolve': 15.0.1_rollup@3.2.5
+      '@rollup/plugin-babel': 6.0.2_ecxuj7zm5zl7qcys7nvyfh7ewm
+      '@rollup/plugin-node-resolve': 15.0.1_rollup@3.4.0
       '@testing-library/jest-dom': 5.16.5
       '@testing-library/react': 13.4.0_biqbaboplfbrettd7655fr4n2y
       '@tsd/typescript': 4.8.4
@@ -80,10 +80,10 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       read-pkg: 7.1.0
-      rollup: 3.2.5
-      rollup-plugin-dts: 5.0.0_oa2candk7eitu7usnsurwiyuuu
-      rollup-plugin-preserve-shebangs: 0.2.0_rollup@3.2.5
-      rollup-plugin-visualizer: 5.8.3_rollup@3.2.5
+      rollup: 3.4.0
+      rollup-plugin-dts: 5.0.0_gxoaovnvpo6lnrm23rwbc2cac4
+      rollup-plugin-preserve-shebangs: 0.2.0_rollup@3.4.0
+      rollup-plugin-visualizer: 5.8.3_rollup@3.4.0
       tsd-lite: 0.6.0_@tsd+typescript@4.8.4
       typescript: 4.8.4
       wait-for-expect: 3.0.2
@@ -3353,7 +3353,7 @@ packages:
     engines: {node: '>=14'}
     dev: true
 
-  /@rollup/plugin-babel/6.0.2_zucauindkcyhxxjiyrjjpnsffm:
+  /@rollup/plugin-babel/6.0.2_ecxuj7zm5zl7qcys7nvyfh7ewm:
     resolution: {integrity: sha512-Vnt8XIWYwCf3MD7qhBWYlP9pjSZvcE++nlPXhQYw6YNehl5742AzFbrV6h4BHb20VAOVUlIksVLymQCTwVCGDg==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -3368,11 +3368,11 @@ packages:
     dependencies:
       '@babel/core': 7.20.2
       '@babel/helper-module-imports': 7.18.6
-      '@rollup/pluginutils': 5.0.2_rollup@3.2.5
-      rollup: 3.2.5
+      '@rollup/pluginutils': 5.0.2_rollup@3.4.0
+      rollup: 3.4.0
     dev: true
 
-  /@rollup/plugin-node-resolve/15.0.1_rollup@3.2.5:
+  /@rollup/plugin-node-resolve/15.0.1_rollup@3.4.0:
     resolution: {integrity: sha512-ReY88T7JhJjeRVbfCyNj+NXAG3IIsVMsX9b5/9jC98dRP8/yxlZdz7mHZbHk5zHr24wZZICS5AcXsFZAXYUQEg==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -3381,16 +3381,16 @@ packages:
       rollup:
         optional: true
     dependencies:
-      '@rollup/pluginutils': 5.0.2_rollup@3.2.5
+      '@rollup/pluginutils': 5.0.2_rollup@3.4.0
       '@types/resolve': 1.20.2
       deepmerge: 4.2.2
       is-builtin-module: 3.2.0
       is-module: 1.0.0
       resolve: 1.22.1
-      rollup: 3.2.5
+      rollup: 3.4.0
     dev: true
 
-  /@rollup/pluginutils/5.0.2_rollup@3.2.5:
+  /@rollup/pluginutils/5.0.2_rollup@3.4.0:
     resolution: {integrity: sha512-pTd9rIsP92h+B6wWwFbW8RkZv4hiR/xKsqre4SIuAOaOEQRxi0lqLke9k2/7WegC85GgUs9pjmOjCUi3In4vwA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -3402,7 +3402,7 @@ packages:
       '@types/estree': 1.0.0
       estree-walker: 2.0.2
       picomatch: 2.3.1
-      rollup: 3.2.5
+      rollup: 3.4.0
     dev: true
 
   /@segment/analytics-core/1.1.2:
@@ -10243,7 +10243,7 @@ packages:
     dependencies:
       glob: 7.2.3
 
-  /rollup-plugin-dts/5.0.0_oa2candk7eitu7usnsurwiyuuu:
+  /rollup-plugin-dts/5.0.0_gxoaovnvpo6lnrm23rwbc2cac4:
     resolution: {integrity: sha512-OO8ayCvuJCKaQSShyVTARxGurVVk4ulzbuvz+0zFd1f93vlnWFU5pBMT7HFeS6uj7MvvZLx4kUAarGATSU1+Ng==}
     engines: {node: '>=v14'}
     peerDependencies:
@@ -10251,22 +10251,22 @@ packages:
       typescript: ^4.1
     dependencies:
       magic-string: 0.26.7
-      rollup: 3.2.5
+      rollup: 3.4.0
       typescript: 4.8.4
     optionalDependencies:
       '@babel/code-frame': 7.18.6
     dev: true
 
-  /rollup-plugin-preserve-shebangs/0.2.0_rollup@3.2.5:
+  /rollup-plugin-preserve-shebangs/0.2.0_rollup@3.4.0:
     resolution: {integrity: sha512-OEyTIfZwUJ7yUAVAbegac/bNvp1WJzgZcQNCFprWX42wwwOqlJwrev9lUmzZdYVgCWct+03xUPvZg4RfgkM9oQ==}
     peerDependencies:
       rollup: '*'
     dependencies:
       magic-string: 0.25.9
-      rollup: 3.2.5
+      rollup: 3.4.0
     dev: true
 
-  /rollup-plugin-visualizer/5.8.3_rollup@3.2.5:
+  /rollup-plugin-visualizer/5.8.3_rollup@3.4.0:
     resolution: {integrity: sha512-QGJk4Bqe4AOat5AjipOh8esZH1nck5X2KFpf4VytUdSUuuuSwvIQZjMGgjcxe/zXexltqaXp5Vx1V3LmnQH15Q==}
     engines: {node: '>=14'}
     hasBin: true
@@ -10277,13 +10277,13 @@ packages:
         optional: true
     dependencies:
       open: 8.4.0
-      rollup: 3.2.5
+      rollup: 3.4.0
       source-map: 0.7.4
       yargs: 17.6.0
     dev: true
 
-  /rollup/3.2.5:
-    resolution: {integrity: sha512-/Ha7HhVVofduy+RKWOQJrxe4Qb3xyZo+chcpYiD8SoQa4AG7llhupUtyfKSSrdBM2mWJjhM8wZwmbY23NmlIYw==}
+  /rollup/3.4.0:
+    resolution: {integrity: sha512-4g8ZrEFK7UbDvy3JF+d5bLiC8UKkS3n/27/cnVeESwB1LVPl6MoPL32/6+SCQ1vHTp6Mvp2veIHtwELhi+uXEw==}
     engines: {node: '>=14.18.0', npm: '>=8.0.0'}
     hasBin: true
     optionalDependencies:
