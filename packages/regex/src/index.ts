@@ -36,6 +36,7 @@ export const sixDigitsCode = /^[0-9]{6}$/
 export const url =
   /^http(s)?:\/\/?[\w.-]+(?:\.[\w.-]+)+[\w\-._~:/?#[\]@!$&'()*+,;=.]+$/
 export const hexadecimal = /^[0-9a-fA-F]+$/
+export const s3BucketName = /^[a-z0-9._-]{3,}$/
 
 // Pasted from `ip-regex` package (https://github.com/sindresorhus/ip-regex/blob/main/index.js)
 const v4 =
