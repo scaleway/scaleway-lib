@@ -31,6 +31,7 @@ import {
   ipv6Cidr,
   macAddress,
   phone,
+  s3BucketName,
   sixDigitsCode,
   spaces,
   uppercaseBasicDomain,
@@ -693,6 +694,26 @@ describe('@regex', () => {
       [hexdigits, true],
     ])('should match regex %s to be %s', (string, expected) => {
       expect(hexadecimal.test(string)).toBe(expected)
+    })
+  })
+  describe('s3BucketName', () => {
+    test.each([
+      [asciiLetters, false],
+      [asciiLowercase, true],
+      [asciiUppercase, false],
+      [digitsTest, true],
+      [emailTest, false],
+      [octdigits, true],
+      [fourDigitsTest, true],
+      [printable, false],
+      [phoneTest, false],
+      [sixDigitsCodeTest, true],
+      [punctuation, false],
+      [whitespace, false],
+      [cronTest, false],
+      [hexdigits, false],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(s3BucketName.test(string)).toBe(expected)
     })
   })
 
