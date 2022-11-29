@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.6.0 (2022-11-29)
+
+### Features
+
+- **regex:** add s3 bucket name regex ([#1093](https://github.com/scaleway/scaleway-lib/issues/1093)) ([deff2ca](https://github.com/scaleway/scaleway-lib/commit/deff2ca550807f2195184ec1f529ec1b3170b4d4))
+
 ## 2.5.3 (2022-11-17)
 
 ### Bug Fixes
