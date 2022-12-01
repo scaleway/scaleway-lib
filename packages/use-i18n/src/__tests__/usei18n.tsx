@@ -109,7 +109,7 @@ describe('i18n hook', () => {
       expect(result.current.t('title')).toEqual(en.title)
     })
 
-    act(() => {
+    await act(() => {
       result.current.switchLocale('fr')
     })
 
@@ -117,7 +117,7 @@ describe('i18n hook', () => {
       expect(result.current.t('title')).toEqual(fr.title)
     })
 
-    act(() => {
+    await act(() => {
       result.current.switchLocale('es')
     })
 
@@ -159,7 +159,7 @@ describe('i18n hook', () => {
     expect(result.current.t('lastName')).toEqual('Last Name')
     expect(result.current.t('languages')).toEqual('Languages')
 
-    act(() => {
+    await act(() => {
       result.current.switchLocale('fr')
     })
 
@@ -204,7 +204,7 @@ describe('i18n hook', () => {
 
     // current local will be 'en' based on navigator
     // await load of locales
-    act(() => {
+    await act(() => {
       result.current.switchLocale('fr')
     })
 
@@ -277,7 +277,7 @@ describe('i18n hook', () => {
     expect(result.current.currentLocale).toEqual('en')
     expect(localStorage.getItem(LOCALE_ITEM_STORAGE)).toBe(null)
 
-    act(() => {
+    await act(() => {
       result.current.switchLocale('fr')
     })
 
@@ -286,7 +286,7 @@ describe('i18n hook', () => {
       expect(localStorage.getItem(LOCALE_ITEM_STORAGE)).toBe('fr')
     })
 
-    act(() => {
+    await act(() => {
       result.current.switchLocale('es')
     })
 
@@ -295,7 +295,7 @@ describe('i18n hook', () => {
       expect(localStorage.getItem(LOCALE_ITEM_STORAGE)).toBe('es')
     })
 
-    act(() => {
+    await act(() => {
       result.current.switchLocale('test')
     })
     expect(result.current.currentLocale).toEqual('es')
@@ -369,7 +369,7 @@ describe('i18n hook', () => {
       }),
     ).toEqual('$2.00')
 
-    act(() => {
+    await act(() => {
       result.current.switchLocale('fr')
     })
 
@@ -419,7 +419,7 @@ describe('i18n hook', () => {
       }),
     ).toEqual('Motorcycle Bus Car')
 
-    act(() => {
+    await act(() => {
       result.current.switchLocale('fr')
     })
 
@@ -493,7 +493,7 @@ describe('i18n hook', () => {
       }),
     ).toEqual('12/17/1995')
 
-    act(() => {
+    await act(() => {
       result.current.switchLocale('fr')
     })
 
@@ -530,7 +530,7 @@ describe('i18n hook', () => {
 
     expect(result.current.relativeTime(date)).toEqual('over 20 years ago')
 
-    act(() => {
+    await act(() => {
       result.current.switchLocale('fr')
     })
 
@@ -549,7 +549,7 @@ describe('i18n hook', () => {
     const date = new Date('September 13, 2011 15:15:00')
 
     expect(result.current.relativeTimeStrict(date)).toEqual('3499 days ago')
-    act(() => {
+    await act(() => {
       result.current.switchLocale('fr')
     })
 
@@ -570,7 +570,7 @@ describe('i18n hook', () => {
     expect(
       result.current.formatUnit(12, { short: false, unit: 'byte' }),
     ).toEqual('12 bytes')
-    act(() => {
+    await act(() => {
       result.current.switchLocale('fr')
     })
 
@@ -591,7 +591,7 @@ describe('i18n hook', () => {
     expect(
       result.current.formatDate(new Date(2020, 1, 13, 16, 28), 'numericHour'),
     ).toEqual('2020-02-13 4:28 PM')
-    act(() => {
+    await act(() => {
       result.current.switchLocale('fr')
     })
 
