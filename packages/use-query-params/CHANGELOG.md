@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.6](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-query-params@3.3.5...@scaleway/use-query-params@3.3.6) (2022-12-06)
+
+### Bug Fixes
+
+- **deps:** update dependency query-string to v7.1.3 ([#1098](https://github.com/scaleway/scaleway-lib/issues/1098)) ([b2867e2](https://github.com/scaleway/scaleway-lib/commit/b2867e2b0405cae7b1b137dc16bfadcde3a755a0))
+
 ## 3.3.5 (2022-12-06)
 
 **Note:** Version bump only for package @scaleway/use-query-params
