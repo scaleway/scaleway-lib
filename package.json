@@ -20,7 +20,7 @@
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "13.4.0",
     "@tsd/typescript": "4.9.3",
-    "@types/jest": "29.2.3",
+    "@types/jest": "29.2.4",
     "@types/node": "18.11.10",
     "@types/prop-types": "15.7.5",
     "@types/react": "18.0.26",
