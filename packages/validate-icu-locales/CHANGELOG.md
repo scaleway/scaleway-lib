@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.1 (2022-12-07)
+
+### Bug Fixes
+
+- **deps:** update formatjs monorepo ([#1096](https://github.com/scaleway/scaleway-lib/issues/1096)) ([775cacd](https://github.com/scaleway/scaleway-lib/commit/775cacd387257768d90f27419769f3034abb7ce0))
+
 ## 1.1.0 (2022-10-27)
 
 ### Features
