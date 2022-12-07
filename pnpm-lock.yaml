@@ -200,9 +200,9 @@ importers:
 
   packages/use-segment:
     specifiers:
-      '@segment/analytics-next': 1.47.0
+      '@segment/analytics-next': 1.47.1
     dependencies:
-      '@segment/analytics-next': 1.47.0
+      '@segment/analytics-next': 1.47.1
 
   packages/validate-icu-locales:
     specifiers:
@@ -3383,19 +3383,19 @@ packages:
       rollup: 3.6.0
     dev: true
 
-  /@segment/analytics-core/1.1.4:
-    resolution: {integrity: sha512-qW6NkxFArqiURiJv7f0BV+bN14ZBiDj1ir3QkYf/CKrtRCu4ct85LxkPNTBIwq3GDACUkwVwCH251Nl5yjrjcg==}
+  /@segment/analytics-core/1.1.5:
+    resolution: {integrity: sha512-kjNv2YNYTdRgkxkIi4qT8bwc6iyFeN/44t//Eu21hfORAU8/6DAakUO7k4xzLRWiwupPVudhhjGTKuyX0jAIDg==}
     dependencies:
       '@lukeed/uuid': 2.0.0
       dset: 3.1.2
       tslib: 2.4.1
     dev: false
 
-  /@segment/analytics-next/1.47.0:
-    resolution: {integrity: sha512-1X4A8EZ3k2UjOIj/Il+aCbz+OpZr1o/B8FRG9IKMmQS1QxTHP3WKXMITHek+5YIuWb3g9SuzLAYrXR1zCjreqw==}
+  /@segment/analytics-next/1.47.1:
+    resolution: {integrity: sha512-Xy/qz/trCW0/4zyRTfyw3mgZZmpxtfPz4o+MDMDLxzBUDANN2lVR7bRPuBUkqfQoCiVAdxYKJ+qaUhOPIOcv0Q==}
     dependencies:
       '@lukeed/uuid': 2.0.0
-      '@segment/analytics-core': 1.1.4
+      '@segment/analytics-core': 1.1.5
       '@segment/analytics.js-video-plugins': 0.2.1
       '@segment/facade': 3.4.9
       '@segment/tsub': 1.0.1
