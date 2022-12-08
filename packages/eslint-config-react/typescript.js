@@ -20,6 +20,8 @@ module.exports = {
     ],
     '@typescript-eslint/no-unused-vars': 'error',
     '@typescript-eslint/consistent-type-imports': 'error',
+    '@typescript-eslint/consistent-type-exports': 'error',
+    '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
     // We favor object defaults instead of default props in TS
     // https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/default_props/#you-may-not-need-defaultprops
     // https://twitter.com/dan_abramov/status/1133878326358171650
