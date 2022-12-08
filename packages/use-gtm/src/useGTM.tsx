@@ -1,6 +1,7 @@
-import { ReactNode, createContext, useContext, useEffect, useMemo } from 'react'
+import type { ReactNode } from 'react'
+import { createContext, useContext, useEffect, useMemo } from 'react'
 import generateScripts, { DATALAYER_NAME, LOAD_ERROR_EVENT } from './scripts'
-import { DataLayerEvent, Events, GTMEnvironment, SendGTM } from './types'
+import type { DataLayerEvent, Events, GTMEnvironment, SendGTM } from './types'
 
 interface GTMContextInterface<T extends Events = Events> {
   sendGTM: SendGTM | undefined

@@ -1,5 +1,5 @@
 import { DEFAULT_MAX_CONCURRENT_REQUESTS, StatusEnum } from './constants'
-import { PromiseType } from './types'
+import type { PromiseType } from './types'
 
 export type DataLoaderConstructorArgs<ResultType> = {
   key: string

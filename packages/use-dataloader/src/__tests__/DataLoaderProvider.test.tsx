@@ -1,5 +1,5 @@
 import { render, renderHook, screen, waitFor } from '@testing-library/react'
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import DataLoaderProvider, { useDataLoaderContext } from '../DataLoaderProvider'
 import { KEY_IS_NOT_STRING_ERROR, StatusEnum } from '../constants'
 

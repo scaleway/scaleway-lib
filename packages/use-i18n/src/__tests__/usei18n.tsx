@@ -1,6 +1,6 @@
 import { act, renderHook, waitFor } from '@testing-library/react'
 import mockdate from 'mockdate'
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import I18n, { useI18n, useTranslation } from '..'
 import en from './locales/en.json'
 import es from './locales/es.json'

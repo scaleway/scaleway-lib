@@ -1,4 +1,5 @@
-import formatDate, { FormatDateOptions, supportedFormats } from '../formatDate'
+import type { FormatDateOptions } from '../formatDate'
+import formatDate, { supportedFormats } from '../formatDate'
 
 const locales = ['en', 'fr', 'de', 'ro', 'es']
 

@@ -24,5 +24,3 @@ declare module './subdivisions/*.json' {
   const SubDivisionList: SubDivisions
   export default SubDivisionList
 }
-
-export type AvailableCountries = import('./countries').AvailableCountries

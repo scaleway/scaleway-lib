@@ -4,14 +4,8 @@ import type {
   AnalyticsBrowserSettings,
   InitOptions,
 } from '@segment/analytics-next'
-import {
-  ReactNode,
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react'
+import type { ReactNode } from 'react'
+import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 
 export type OnEventError = (error: Error) => Promise<void> | void
 type EventFunction = (...args: never[]) => Promise<void>

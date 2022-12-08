@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useDataLoaderContext } from './DataLoaderProvider'
 import { StatusEnum } from './constants'
 import { marshalQueryKey } from './helpers'
-import {
+import type {
   KeyType,
   PromiseType,
   UseDataLoaderConfig,

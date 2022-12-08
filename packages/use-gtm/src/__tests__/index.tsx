@@ -1,8 +1,9 @@
 import { fireEvent, renderHook } from '@testing-library/react'
 import mockdate from 'mockdate'
-import { ReactNode } from 'react'
-import GTMProvider, { SendGTM, useGTM } from '..'
-import { GTMProviderProps } from '../useGTM'
+import type { ReactNode } from 'react'
+import type { SendGTM } from '..'
+import GTMProvider, { useGTM } from '..'
+import type { GTMProviderProps } from '../useGTM'
 
 const defaultEvents = {
   sampleEvent: (sendGTM?: SendGTM) => (extraValue: string) => {

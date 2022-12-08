@@ -1,19 +1,12 @@
 import PropTypes from 'prop-types'
-import {
-  ReactElement,
-  ReactNode,
-  createContext,
-  useCallback,
-  useContext,
-  useMemo,
-  useRef,
-} from 'react'
+import type { ReactElement, ReactNode } from 'react'
+import { createContext, useCallback, useContext, useMemo, useRef } from 'react'
 import {
   DEFAULT_MAX_CONCURRENT_REQUESTS,
   KEY_IS_NOT_STRING_ERROR,
 } from './constants'
 import DataLoader from './dataloader'
-import { OnErrorFn, PromiseType } from './types'
+import type { OnErrorFn, PromiseType } from './types'
 
 type CachedData = Record<string, unknown>
 type Reloads = Record<string, () => Promise<void | unknown>>

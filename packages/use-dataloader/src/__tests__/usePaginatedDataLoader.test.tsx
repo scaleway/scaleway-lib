@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
 import { act, renderHook, waitFor } from '@testing-library/react'
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import DataLoaderProvider from '../DataLoaderProvider'
-import { UsePaginatedDataLoaderMethodParams } from '../types'
+import type { UsePaginatedDataLoaderMethodParams } from '../types'
 import usePaginatedDataLoader from '../usePaginatedDataLoader'
 
 const PROMISE_TIMEOUT = 5

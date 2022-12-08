@@ -1,7 +1,8 @@
 import createCache from '@emotion/cache'
 import { CacheProvider } from '@emotion/react'
-import { RenderOptions, render } from '@testing-library/react'
-import { FC, ReactNode } from 'react'
+import type { RenderOptions } from '@testing-library/react'
+import { render } from '@testing-library/react'
+import type { FC, ReactNode } from 'react'
 
 const emotionCache = createCache({
   key: 'cache',

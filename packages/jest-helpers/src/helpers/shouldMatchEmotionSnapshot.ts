@@ -1,6 +1,6 @@
-import { RenderOptions, render } from '@testing-library/react'
-import { ReactNode } from 'react'
-import { RenderWithThemeFn } from './renderWithTheme'
+import type { RenderOptions, render } from '@testing-library/react'
+import type { ReactNode } from 'react'
+import type { RenderWithThemeFn } from './renderWithTheme'
 
 interface Options<Theme> {
   options?: RenderOptions
