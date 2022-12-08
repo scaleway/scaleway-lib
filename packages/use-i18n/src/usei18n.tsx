@@ -61,7 +61,7 @@ const getCurrentLocale = ({
   )
 }
 
-interface Context<Locale extends BaseLocale> {
+type Context<Locale extends BaseLocale> = {
   currentLocale: string
   dateFnsLocale?: DateFnsLocale
   datetime: (

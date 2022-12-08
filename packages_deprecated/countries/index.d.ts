@@ -1,4 +1,4 @@
-export interface Country {
+export type Country = {
   name: string
   dial_code: string
   code: string
@@ -7,7 +7,7 @@ export interface Country {
 
 export type Countries = Country[]
 
-export interface SubDivision {
+export type SubDivision = {
   code: string
   country_code: string
   name: string

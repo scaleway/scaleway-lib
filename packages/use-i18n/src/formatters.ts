@@ -9,7 +9,7 @@ import IntlTranslationFormat from 'intl-messageformat'
 // Intl.ListFormat in at TC39 stage 4 and is widely adopted in browsers
 // So we expose homegrown types
 // https://github.com/tc39/proposal-intl-list-format
-export interface IntlListFormatOptions {
+export type IntlListFormatOptions = {
   localeMatcher?: 'best fit' | 'lookup'
   type?: 'conjunction' | 'disjunction' | 'unit'
   style?: 'long' | 'short' | 'narrow'
@@ -21,7 +21,7 @@ declare abstract class IntlListFormat {
   format: (items: string[]) => string
 }
 
-interface BaseFormatters {
+type BaseFormatters = {
   getNumberFormat(
     locales?: string | string[],
     opts?: NumberFormatOptions,

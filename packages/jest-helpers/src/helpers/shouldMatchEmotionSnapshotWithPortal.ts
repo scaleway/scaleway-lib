@@ -2,7 +2,7 @@ import type { RenderOptions, render } from '@testing-library/react'
 import type { ReactNode } from 'react'
 import type { RenderWithThemeFn } from './renderWithTheme'
 
-interface Options<Theme> {
+type Options<Theme> = {
   options?: RenderOptions
   transform?: (node: ReturnType<typeof render>) => Promise<void> | void
   theme?: Theme

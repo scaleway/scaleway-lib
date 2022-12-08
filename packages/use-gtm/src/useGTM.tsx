@@ -3,12 +3,13 @@ import { createContext, useContext, useEffect, useMemo } from 'react'
 import generateScripts, { DATALAYER_NAME, LOAD_ERROR_EVENT } from './scripts'
 import type { DataLayerEvent, Events, GTMEnvironment, SendGTM } from './types'
 
-interface GTMContextInterface<T extends Events = Events> {
+type GTMContextInterface<T extends Events = Events> = {
   sendGTM: SendGTM | undefined
   events: { [K in keyof T]: ReturnType<T[K]> }
 }
 
 declare global {
+  // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
   interface Window {
     dataLayer: DataLayerEvent[] | undefined
   }

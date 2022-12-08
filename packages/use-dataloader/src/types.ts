@@ -27,7 +27,7 @@ export type NeedPollingType<ResultType> =
  * @property {number} [dataLifetime=undefined]  Time before data from previous success is considered as outdated (in millisecond)
  * @property {NeedPollingType} [needPolling=true] When pollingInterval is set you can set a set a custom callback to know if polling is enabled
  */
-export interface UseDataLoaderConfig<ResultType, ErrorType> {
+export type UseDataLoaderConfig<ResultType, ErrorType> = {
   enabled?: boolean
   initialData?: ResultType
   keepPreviousData?: boolean
@@ -50,7 +50,7 @@ export interface UseDataLoaderConfig<ResultType, ErrorType> {
  * @property {string} error the error occured during the request
  * @property {Function} reload reload the data
  */
-export interface UseDataLoaderResult<ResultType, ErrorType> {
+export type UseDataLoaderResult<ResultType, ErrorType> = {
   data?: ResultType
   error?: ErrorType
   isError: boolean

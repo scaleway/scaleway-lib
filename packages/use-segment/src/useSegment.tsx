@@ -14,7 +14,7 @@ type Events = Record<
   (analytics?: Analytics, onEventError?: OnEventError) => EventFunction
 >
 
-interface SegmentContextInterface<T extends Events = Events> {
+type SegmentContextInterface<T extends Events = Events> = {
   analytics: Analytics | undefined
   events: { [K in keyof T]: ReturnType<T[K]> }
 }

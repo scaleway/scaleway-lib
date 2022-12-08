@@ -243,7 +243,7 @@ export const supportedUnits: Partial<
   ),
 }
 
-export interface FormatUnitOptions {
+export type FormatUnitOptions = {
   unit: SupportedUnits
   short?: boolean
 }
