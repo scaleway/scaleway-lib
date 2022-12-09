@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/use-media",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A small hook to track CSS media query state",
   "keywords": [
     "react",
