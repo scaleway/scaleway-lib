@@ -1,4 +1,4 @@
-import { GTMEnvironment } from './types'
+import type { GTMEnvironment } from './types'
 
 export const DATALAYER_NAME = 'dataLayer'
 export const LOAD_ERROR_EVENT = 'gtm_loading_error'

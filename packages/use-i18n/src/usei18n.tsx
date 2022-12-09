@@ -1,14 +1,10 @@
 import type { NumberFormatOptions } from '@formatjs/ecma402-abstract'
-import {
-  Locale as DateFnsLocale,
-  formatDistanceToNow,
-  formatDistanceToNowStrict,
-} from 'date-fns'
+import type { Locale as DateFnsLocale } from 'date-fns'
+import { formatDistanceToNow, formatDistanceToNowStrict } from 'date-fns'
 import type { BaseLocale } from 'international-types'
 import PropTypes from 'prop-types'
+import type { ReactElement, ReactNode } from 'react'
 import {
-  ReactElement,
-  ReactNode,
   createContext,
   useCallback,
   useContext,
@@ -17,9 +13,12 @@ import {
   useState,
 } from 'react'
 import ReactDOM from 'react-dom'
-import dateFormat, { FormatDateOptions } from './formatDate'
-import unitFormat, { FormatUnitOptions } from './formatUnit'
-import formatters, { IntlListFormatOptions } from './formatters'
+import type { FormatDateOptions } from './formatDate'
+import dateFormat from './formatDate'
+import type { FormatUnitOptions } from './formatUnit'
+import unitFormat from './formatUnit'
+import type { IntlListFormatOptions } from './formatters'
+import formatters from './formatters'
 import type { ReactParamsObject, ScopedTranslateFn, TranslateFn } from './types'
 
 const LOCALE_ITEM_STORAGE = 'locale'
@@ -62,7 +61,7 @@ const getCurrentLocale = ({
   )
 }
 
-interface Context<Locale extends BaseLocale> {
+type Context<Locale extends BaseLocale> = {
   currentLocale: string
   dateFnsLocale?: DateFnsLocale
   datetime: (

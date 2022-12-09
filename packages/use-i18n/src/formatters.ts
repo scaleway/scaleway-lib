@@ -1,5 +1,6 @@
 import type { NumberFormatOptions } from '@formatjs/ecma402-abstract'
-import memoize, { Cache, strategies } from '@formatjs/fast-memoize'
+import type { Cache } from '@formatjs/fast-memoize'
+import memoize, { strategies } from '@formatjs/fast-memoize'
 import IntlTranslationFormat from 'intl-messageformat'
 
 // Deeply inspired by https://github.com/formatjs/formatjs/blob/7406e526a9c5666cee22cc2316dad1fa1d88697c/packages/intl-messageformat/src/core.ts
@@ -8,7 +9,7 @@ import IntlTranslationFormat from 'intl-messageformat'
 // Intl.ListFormat in at TC39 stage 4 and is widely adopted in browsers
 // So we expose homegrown types
 // https://github.com/tc39/proposal-intl-list-format
-export interface IntlListFormatOptions {
+export type IntlListFormatOptions = {
   localeMatcher?: 'best fit' | 'lookup'
   type?: 'conjunction' | 'disjunction' | 'unit'
   style?: 'long' | 'short' | 'narrow'
@@ -20,7 +21,7 @@ declare abstract class IntlListFormat {
   format: (items: string[]) => string
 }
 
-interface BaseFormatters {
+type BaseFormatters = {
   getNumberFormat(
     locales?: string | string[],
     opts?: NumberFormatOptions,

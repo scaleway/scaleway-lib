@@ -1,7 +1,7 @@
 import makeHelpers from '..'
-import { RenderWithThemeFn } from '../helpers/renderWithTheme'
-import { ShouldMatchEmotionSnapshotFn } from '../helpers/shouldMatchEmotionSnapshot'
-import { ShouldMatchEmotionSnapshotWithPortalFn } from '../helpers/shouldMatchEmotionSnapshotWithPortal'
+import type { RenderWithThemeFn } from '../helpers/renderWithTheme'
+import type { ShouldMatchEmotionSnapshotFn } from '../helpers/shouldMatchEmotionSnapshot'
+import type { ShouldMatchEmotionSnapshotWithPortalFn } from '../helpers/shouldMatchEmotionSnapshotWithPortal'
 
 describe('@jest-helpers', () => {
   let renderWithTheme: RenderWithThemeFn<unknown>

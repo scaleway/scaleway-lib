@@ -4,14 +4,8 @@ import type {
   AnalyticsBrowserSettings,
   InitOptions,
 } from '@segment/analytics-next'
-import {
-  ReactNode,
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react'
+import type { ReactNode } from 'react'
+import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 
 export type OnEventError = (error: Error) => Promise<void> | void
 type EventFunction = (...args: never[]) => Promise<void>
@@ -20,7 +14,7 @@ type Events = Record<
   (analytics?: Analytics, onEventError?: OnEventError) => EventFunction
 >
 
-interface SegmentContextInterface<T extends Events = Events> {
+type SegmentContextInterface<T extends Events = Events> = {
   analytics: Analytics | undefined
   events: { [K in keyof T]: ReturnType<T[K]> }
 }

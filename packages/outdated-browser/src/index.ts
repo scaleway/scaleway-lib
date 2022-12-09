@@ -62,6 +62,7 @@ const STORAGE_KEY = '__outdated'
 const ignore = sessionStorage.getItem(STORAGE_KEY) || 'false'
 
 declare global {
+  // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
   interface Window {
     closeOutdated: () => void
   }

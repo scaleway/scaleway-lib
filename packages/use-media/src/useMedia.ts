@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useState } from 'react'
-import { Effect } from './types'
+import type { Effect } from './types'
 
 function noop() {}
 

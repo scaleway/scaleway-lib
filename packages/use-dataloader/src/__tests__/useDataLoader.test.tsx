@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
 import { renderHook, waitFor } from '@testing-library/react'
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import DataLoaderProvider, { useDataLoaderContext } from '../DataLoaderProvider'
-import { KeyType, UseDataLoaderConfig } from '../types'
+import type { KeyType, UseDataLoaderConfig } from '../types'
 import useDataLoader from '../useDataLoader'
 
 type UseDataLoaderHookProps = {

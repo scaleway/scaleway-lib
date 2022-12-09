@@ -2,7 +2,7 @@ import { parse, stringify } from 'query-string'
 import { useCallback, useMemo } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-interface Options {
+type Options = {
   /** Set to true to push a new entry onto the history stack */
   push: boolean
 }
