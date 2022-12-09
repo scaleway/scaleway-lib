@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.11.0 (2022-12-09)
+
+### Features
+
+- **eslint-config-react:** enforce consistent type imports/exports/definition ([#1108](https://github.com/scaleway/scaleway-lib/issues/1108)) ([fce8882](https://github.com/scaleway/scaleway-lib/commit/fce8882d79b51acaf45b13d1d0a7562b3f0cee32))
+
 ## 3.10.5 (2022-12-07)
 
 ### Bug Fixes
