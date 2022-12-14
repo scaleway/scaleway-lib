@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.7.0 (2022-12-14)
+
+### Features
+
+- new regex for alphanum dash lowercase ([#1117](https://github.com/scaleway/scaleway-lib/issues/1117)) ([08ccc99](https://github.com/scaleway/scaleway-lib/commit/08ccc995bce2cb355e75d3b36fac1ba5c1d89e2c))
+
 ## 2.6.0 (2022-11-29)
 
 ### Features
