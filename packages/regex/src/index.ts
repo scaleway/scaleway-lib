@@ -10,6 +10,7 @@ export const alphanumdashorempty = /^$|^[a-zA-Z0-9-]*$/
 export const alphanumdashspaces = /^[a-zA-Z0-9-\s]*$/
 export const alphanumdots = /^[a-zA-Z0-9.]*$/
 export const alphanumLowercase = /^[a-z0-9]+$/
+export const alphanumdashLowercase = /^[a-z0-9-]+$/
 export const alphanumSpacesDotsUnderscoreDash = /^[a-zA-Z0-9-.\s_]*$/
 export const alphanumUnderscoreDash = /^[a-zA-Z0-9_-]*$/
 export const alphanumUnderscoreDollarDash = /^[a-zA-Z0-9_$-]*$/

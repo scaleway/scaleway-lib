@@ -9,6 +9,7 @@ import {
   alphanumUnderscoreDash,
   alphanumUnderscoreDollarDash,
   alphanumdash,
+  alphanumdashLowercase,
   alphanumdashdots,
   alphanumdashdotsorempty,
   alphanumdashdotsspaces,
@@ -318,6 +319,7 @@ describe('@regex', () => {
 
   describe('alphanumLowercase', () => {
     test.each([
+      [alphanumdashText, false],
       [asciiLetters, false],
       [asciiLowercase, true],
       [asciiUppercase, false],
@@ -332,6 +334,26 @@ describe('@regex', () => {
       [macAddress1, false],
     ])('should match regex %s to be %s', (string, expected) => {
       expect(alphanumLowercase.test(string)).toBe(expected)
+    })
+  })
+
+  describe('alphanumdashLowercase', () => {
+    test.each([
+      [asciiLetters, false],
+      [asciiLowercase, true],
+      [alphanumdashText, true],
+      [asciiUppercase, false],
+      [digitsTest, true],
+      [emailTest, false],
+      [octdigits, true],
+      [hexdigits, false],
+      [printable, false],
+      [punctuation, false],
+      [whitespace, false],
+      [cronTest, false],
+      [macAddress1, false],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(alphanumdashLowercase.test(string)).toBe(expected)
     })
   })
 
