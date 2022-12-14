@@ -1,17 +1,13 @@
 {
+  "extends": "./packages/tsconfig/tsconfig.json",
   "compilerOptions": {
-    "noEmit": true,
-    "target": "esnext",
     "lib": ["DOM", "ES2019"],
-    "allowJs": true,
-    "strict": true,
     "module": "esnext",
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true,
-    "jsx": "preserve",
-    "noPropertyAccessFromIndexSignature": true
+    "target": "esnext",
+
+    "noEmit": true,
+    "allowJs": true,
+    "jsx": "preserve"
   },
   "include": ["**/*.ts", "**/*.js", "**/.*.js", "**/*.tsx"],
   "exclude": [
