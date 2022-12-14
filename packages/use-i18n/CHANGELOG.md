@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 4.1.5 (2022-12-14)
+
+### Bug Fixes
+
+- **deps:** update dependency filesize to v10.0.6 ([#1115](https://github.com/scaleway/scaleway-lib/issues/1115)) ([461afd2](https://github.com/scaleway/scaleway-lib/commit/461afd2d60cbd3bc22156bdb9dd1686ba5026c30))
+
 ## 4.1.4 (2022-12-09)
 
 **Note:** Version bump only for package @scaleway/use-i18n
