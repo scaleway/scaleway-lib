@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.3 (2022-12-14)
+
+### Bug Fixes
+
+- **deps:** update dependency globby to v13.1.3 ([#1116](https://github.com/scaleway/scaleway-lib/issues/1116)) ([93a38b3](https://github.com/scaleway/scaleway-lib/commit/93a38b37611e9e94c71b0f1a3a2067a53127a488))
+
 ## 1.1.2 (2022-12-09)
 
 **Note:** Version bump only for package @scaleway/validate-icu-locales
