@@ -129,7 +129,7 @@ describe('DataLoaderProvider', () => {
     expect(result.current.getRequest(TEST_KEY)).toBeDefined()
     const unknownReload = result.current.getReloads('unknown')
     expect(unknownReload).toBeUndefined()
-    await reloads.test()
+    await reloads?.test()
     expect(method).toBeCalledTimes(3)
     await result.current.reloadAll()
     expect(method).toBeCalledTimes(4)
