@@ -7,7 +7,10 @@
 
     "noEmit": true,
     "allowJs": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+
+    // Should be removed once we clear all errors
+    "noUncheckedIndexedAccess": false
   },
   "include": ["**/*.ts", "**/*.js", "**/.*.js", "**/*.tsx"],
   "exclude": [
