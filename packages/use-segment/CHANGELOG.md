@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.6](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-segment@0.8.5...@scaleway/use-segment@0.8.6) (2022-12-15)
+
+**Note:** Version bump only for package @scaleway/use-segment
+
 ## 0.8.5 (2022-12-15)
 
 ### Bug Fixes
