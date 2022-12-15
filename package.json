@@ -17,6 +17,8 @@
     "@commitlint/config-conventional": "17.3.0",
     "@rollup/plugin-babel": "6.0.3",
     "@rollup/plugin-node-resolve": "15.0.1",
+    "@scaleway/tsconfig": "workspace:*",
+    "@scaleway/eslint-config-react": "workspace:*",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "13.4.0",
     "@tsd/typescript": "4.9.3",
@@ -52,7 +54,7 @@
   "scripts": {
     "lint": "eslint --ext js,ts,tsx --cache .",
     "lint:fix": "pnpm run lint --fix",
-    "build": "pnpm recursive --filter='!@scaleway/eslint-config-react' exec -- rollup -c ../../rollup.config.mjs",
+    "build": "pnpm recursive --filter='!@scaleway/eslint-config-react' --filter='!@scaleway/tsconfig' exec -- rollup -c ../../rollup.config.mjs",
     "build:profile": "cross-env PROFILE=true pnpm run build",
     "commit": "npx git-cz -a",
     "format": "prettier --write '**/*.{ts,tsx,js,json,md,mdx}'",

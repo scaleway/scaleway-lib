@@ -1,0 +1,20 @@
+{
+  "name": "@scaleway/tsconfig",
+  "version": "1.0.0",
+  "description": "Scaleway shared tsconfig",
+  "keywords": [
+    "typescript",
+    "tsconfig",
+    "shared typescript config"
+  ],
+  "main": "tsconfig.json",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scaleway/scaleway-lib",
+    "directory": "packages/tsconfig"
+  },
+  "license": "MIT"
+}
