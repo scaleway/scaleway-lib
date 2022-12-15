@@ -18,6 +18,7 @@
     "@rollup/plugin-babel": "6.0.3",
     "@rollup/plugin-node-resolve": "15.0.1",
     "@scaleway/tsconfig": "workspace:*",
+    "@scaleway/eslint-config-react": "workspace:*",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "13.4.0",
     "@tsd/typescript": "4.9.3",

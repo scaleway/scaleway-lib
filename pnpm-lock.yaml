@@ -14,6 +14,7 @@ importers:
       '@commitlint/config-conventional': 17.3.0
       '@rollup/plugin-babel': 6.0.3
       '@rollup/plugin-node-resolve': 15.0.1
+      '@scaleway/eslint-config-react': workspace:*
       '@scaleway/tsconfig': workspace:*
       '@testing-library/jest-dom': 5.16.5
       '@testing-library/react': 13.4.0
@@ -57,6 +58,7 @@ importers:
       '@commitlint/config-conventional': 17.3.0
       '@rollup/plugin-babel': 6.0.3_6fu2qgbbhfkoj7hoxs2776q6ay
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.7.0
+      '@scaleway/eslint-config-react': link:packages/eslint-config-react
       '@scaleway/tsconfig': link:packages/tsconfig
       '@testing-library/jest-dom': 5.16.5
       '@testing-library/react': 13.4.0_biqbaboplfbrettd7655fr4n2y
