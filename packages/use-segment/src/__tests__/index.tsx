@@ -11,7 +11,7 @@ const eventError = new Error('Error Event')
 const defaultEvents = {
   errorEvent: (_?: Analytics, onEventError?: OnEventError) => async () => {
     try {
-      await new Promise((resolve, reject) => {
+      await new Promise((__, reject) => {
         reject(eventError)
       })
     } catch (error) {
