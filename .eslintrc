@@ -16,14 +16,14 @@
     {
       "parser": "@babel/eslint-parser",
       "files": ["*.js", "*.mjs"],
-      "extends": "@scaleway/react/index.js"
+      "extends": "@scaleway/react"
     },
     {
       "files": ["*.ts", "*.tsx"],
       "parserOptions": {
         "project": ["tsconfig.json"]
       },
-      "extends": ["@scaleway/react/typescript.js"]
+      "extends": ["@scaleway/react/typescript"]
     }
   ]
 }
