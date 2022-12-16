@@ -27,5 +27,6 @@ module.exports = {
     // https://twitter.com/dan_abramov/status/1133878326358171650
     'react/require-default-props': 'off',
     'react/jsx-no-useless-fragment': ['error', { allowExpressions: true }],
+    'react/prop-types': 'off',
   },
 }
