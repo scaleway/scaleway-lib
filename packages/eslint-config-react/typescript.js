@@ -26,6 +26,5 @@ module.exports = {
     // https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/default_props/#you-may-not-need-defaultprops
     // https://twitter.com/dan_abramov/status/1133878326358171650
     'react/require-default-props': 'off',
-    'react/prop-types': 'off',
   },
 }
