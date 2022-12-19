@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.12.0 (2022-12-19)
+
+### Features
+
+- **eslint-config-react:** add standalone emotion configuration ([#1121](https://github.com/scaleway/scaleway-lib/issues/1121)) ([4aa5474](https://github.com/scaleway/scaleway-lib/commit/4aa5474f357c8a00e9c81d6be7591da3002c0ddc))
+
 ## [3.11.2](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@3.11.1...@scaleway/eslint-config-react@3.11.2) (2022-12-14)
 
 ### Bug Fixes
