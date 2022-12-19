@@ -25,6 +25,33 @@ module.exports = {
         'newlines-between': 'never',
       },
     ],
+    // Here we override airbnb default with our repos dev patterns
+    // https://github.com/airbnb/javascript/blob/81157eec2309449b31f36bf8940493623f2530c6/packages/eslint-config-airbnb-base/rules/imports.js#L71
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: [
+          '**/.jest/**',
+          '**/.storybook/**',
+          'test/**', // tape, common npm pattern
+          'tests/**', // also common npm pattern
+          'spec/**', // mocha, rspec-like pattern
+          '**/__tests__/**', // jest pattern
+          '**/__mocks__/**', // jest pattern
+          '**/__stories__/**', // stories pattern
+          'test.{js,jsx}', // repos with a single test file
+          'test-*.{js,jsx}', // repos with multiple top-level test files
+          '**/*{.,_}{test,spec}.{js,jsx}', // tests where the extension or filename suffix denotes that it is a test
+          '**/jest.config.{js,ts,mjs,mts}', // jest config
+          '**/jest.setup.{js,ts,mjs,mts}', // jest setup
+          '**/webpack.config.{js,ts,mjs,mts}', // webpack config
+          '**/webpack.config.*.{js,ts,mjs,mts}', // webpack config
+          '**/rollup.config.{js,ts,mjs,mts}', // rollup config
+          '**/rollup.config.*.{js,ts,mjs,mts}', // rollup config
+        ],
+        optionalDependencies: false,
+      },
+    ],
     // We allow named and default export
     'import/prefer-default-export': 'off',
     // This allows us to reenable ForOfStatement.

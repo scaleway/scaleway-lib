@@ -4,14 +4,6 @@
     "browser": true,
     "jest": true
   },
-  "rules": {
-    "import/no-extraneous-dependencies": [
-      "error",
-      {
-        "devDependencies": ["**/__tests__/*", "rollup.config.mjs"]
-      }
-    ]
-  },
   "overrides": [
     {
       "parser": "@babel/eslint-parser",
