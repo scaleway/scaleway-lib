@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.13.0](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@3.12.2...@scaleway/eslint-config-react@3.13.0) (2022-12-19)
+
+### Features
+
+- **eslint-config-react:** consistent import/no-extraneous-dependencies rule ([#1124](https://github.com/scaleway/scaleway-lib/issues/1124)) ([99f23a8](https://github.com/scaleway/scaleway-lib/commit/99f23a8dc89592c4b627990e6705f73c065d47f7))
+
 ## [3.12.2](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@3.12.1...@scaleway/eslint-config-react@3.12.2) (2022-12-19)
 
 ### Bug Fixes
