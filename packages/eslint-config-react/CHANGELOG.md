@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.12.1](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@3.12.0...@scaleway/eslint-config-react@3.12.1) (2022-12-19)
+
+### Bug Fixes
+
+- **eslint-config-react/typescript:** disable useless fragment when expression ([#1123](https://github.com/scaleway/scaleway-lib/issues/1123)) ([e876488](https://github.com/scaleway/scaleway-lib/commit/e8764881f605aded9bf33a406fef26f1c0f211be))
+
 ## 3.12.0 (2022-12-19)
 
 ### Features
