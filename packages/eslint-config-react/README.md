@@ -18,7 +18,7 @@ Add to your `.eslintrc`
 
 ```json
 {
-  "extends": "@scaleway/react"
+  "extends": ["@scaleway/react]"
 }
 ```
 
@@ -26,9 +26,17 @@ Or for Typescript
 
 ```json
 {
-  "extends": "@scaleway/react/typescript",
+  "extends": ["@scaleway/react/typescript"],
   "parserOptions": {
     "project": "./path/to/tsconfig.json"
   }
+}
+```
+
+We also have a standalong emotion configuration
+
+```json
+{
+  "extends": ["@scaleway/react", "@scaleway/react/emotion"]
 }
 ```
