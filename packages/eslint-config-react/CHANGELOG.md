@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.12.2](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@3.12.1...@scaleway/eslint-config-react@3.12.2) (2022-12-19)
+
+### Bug Fixes
+
+- **eslint-config-react/typescript:** full disable proptypes in ts files ([#1122](https://github.com/scaleway/scaleway-lib/issues/1122)) ([8f6d2dc](https://github.com/scaleway/scaleway-lib/commit/8f6d2dcd93216827aa717db16bd45c26bb1f766c))
+
 ## [3.12.1](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@3.12.0...@scaleway/eslint-config-react@3.12.1) (2022-12-19)
 
 ### Bug Fixes
