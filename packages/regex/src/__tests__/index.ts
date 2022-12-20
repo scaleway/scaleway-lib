@@ -15,6 +15,7 @@ import {
   alphanumdashdotsspaces,
   alphanumdashorempty,
   alphanumdashspaces,
+  alphanumdashunderscoredotsspacesparenthesis,
   alphanumdots,
   ascii,
   backupKey,
@@ -40,6 +41,7 @@ import {
 } from '..'
 
 const alphanumdashdotsText = 'testwithdashdots-.'
+const alphanumdashunderscoredotsparenthesisText = 'testwithdashdots-_. ()'
 const alphanumdashText = 'testwithdash-'
 const asciiLetters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 const asciiLowercase = 'abcdefghijklmnopqrstuvwxyz'
@@ -251,6 +253,30 @@ describe('@regex', () => {
       [macAddress1, false],
     ])('should match regex %s to be %s', (string, expected) => {
       expect(alphanumdashdotsspaces.test(string)).toBe(expected)
+    })
+  })
+
+  describe('alphanumdashunderscoredotsspacesparenthesis', () => {
+    test.each([
+      [alphanumdashText, true],
+      [alphanumdashdotsText, true],
+      [alphanumdashunderscoredotsparenthesisText, true],
+      [asciiLetters, true],
+      [asciiLowercase, true],
+      [asciiUppercase, true],
+      [digitsTest, true],
+      [emailTest, false],
+      [octdigits, true],
+      [hexdigits, true],
+      [printable, false],
+      [punctuation, false],
+      [whitespace, true],
+      [cronTest, false],
+      [macAddress1, false],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(alphanumdashunderscoredotsspacesparenthesis.test(string)).toBe(
+        expected,
+      )
     })
   })
 
