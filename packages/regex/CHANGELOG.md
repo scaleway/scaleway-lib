@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.8.0 (2022-12-20)
+
+### Features
+
+- **regex:** add alphanumdashunderscoredotsparenthesis regex ([#1126](https://github.com/scaleway/scaleway-lib/issues/1126)) ([f7c0dda](https://github.com/scaleway/scaleway-lib/commit/f7c0ddab694e02d443c9c1c3fae788be4c1bd5b1))
+
 ## 2.7.0 (2022-12-14)
 
 ### Features
