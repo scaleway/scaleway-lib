@@ -3,14 +3,16 @@ import formatUnit, { supportedUnits } from '../formatUnit'
 
 const locales = ['en', 'fr', 'ro']
 
-const tests = [
-  ...Object.keys(supportedUnits).map(unit => [
+type TestType = [string, FormatUnitOptions, string, number]
+
+const tests: TestType[] = [
+  ...(Object.keys(supportedUnits).map(unit => [
     'should work with',
     { unit },
     'fr',
     12.56,
-  ]),
-  ...Object.keys(supportedUnits)
+  ]) as TestType[]),
+  ...(Object.keys(supportedUnits)
     .map(unit =>
       locales.map(locale => [
         `should work with locale ${locale} and`,
@@ -19,8 +21,8 @@ const tests = [
         12.56,
       ]),
     )
-    .flat(),
-  ...Object.keys(supportedUnits)
+    .flat() as TestType[]),
+  ...(Object.keys(supportedUnits)
     .map(unit =>
       locales.map(locale => [
         `should work with long format, locale ${locale} and`,
@@ -29,19 +31,19 @@ const tests = [
         12.56,
       ]),
     )
-    .flat(),
-  ...Object.keys(supportedUnits).map(unit => [
+    .flat() as TestType[]),
+  ...(Object.keys(supportedUnits).map(unit => [
     'should work with maximumFractionDigits',
     { maximumFractionDigits: 3, unit },
     'fr',
     12.56,
-  ]),
-  ...Object.keys(supportedUnits).map(unit => [
+  ]) as TestType[]),
+  ...(Object.keys(supportedUnits).map(unit => [
     'should work with minimumFractionDigits',
     { minimumFractionDigits: 3, unit },
     'fr',
     12,
-  ]),
+  ]) as TestType[]),
 ]
 
 describe('formatUnit', () => {
@@ -53,12 +55,6 @@ describe('formatUnit', () => {
   })
 
   test.each(tests)('%s %o', (_, options, locale, amount) => {
-    expect(
-      formatUnit(
-        locale as string,
-        amount as number,
-        options as FormatUnitOptions,
-      ),
-    ).toMatchSnapshot()
+    expect(formatUnit(locale, amount, options)).toMatchSnapshot()
   })
 })
