@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 4.1.6 (2022-12-23)
+
+### Bug Fixes
+
+- **use-i18n:** correct formatUnit type ([#1128](https://github.com/scaleway/scaleway-lib/issues/1128)) ([9697775](https://github.com/scaleway/scaleway-lib/commit/9697775fd173da91b331bb9975663bb33d0976fd))
+
 ## 4.1.5 (2022-12-14)
 
 ### Bug Fixes
