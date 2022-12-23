@@ -5,45 +5,45 @@ const locales = ['en', 'fr', 'ro']
 
 type TestType = [string, FormatUnitOptions, string, number]
 
+const SUPPORTED_UNITS = Object.keys(
+  supportedUnits,
+) as FormatUnitOptions['unit'][]
+
 const tests: TestType[] = [
-  ...(Object.keys(supportedUnits).map(unit => [
+  ...SUPPORTED_UNITS.map<TestType>(unit => [
     'should work with',
     { unit },
     'fr',
     12.56,
-  ]) as TestType[]),
-  ...(Object.keys(supportedUnits)
-    .map(unit =>
-      locales.map(locale => [
-        `should work with locale ${locale} and`,
-        { unit },
-        locale,
-        12.56,
-      ]),
-    )
-    .flat() as TestType[]),
-  ...(Object.keys(supportedUnits)
-    .map(unit =>
-      locales.map(locale => [
-        `should work with long format, locale ${locale} and`,
-        { short: false, unit },
-        locale,
-        12.56,
-      ]),
-    )
-    .flat() as TestType[]),
-  ...(Object.keys(supportedUnits).map(unit => [
+  ]),
+  ...SUPPORTED_UNITS.map(unit =>
+    locales.map<TestType>(locale => [
+      `should work with locale ${locale} and`,
+      { unit },
+      locale,
+      12.56,
+    ]),
+  ).flat(),
+  ...SUPPORTED_UNITS.map(unit =>
+    locales.map<TestType>(locale => [
+      `should work with long format, locale ${locale} and`,
+      { short: false, unit },
+      locale,
+      12.56,
+    ]),
+  ).flat(),
+  ...SUPPORTED_UNITS.map<TestType>(unit => [
     'should work with maximumFractionDigits',
     { maximumFractionDigits: 3, unit },
     'fr',
     12.56,
-  ]) as TestType[]),
-  ...(Object.keys(supportedUnits).map(unit => [
+  ]),
+  ...SUPPORTED_UNITS.map<TestType>(unit => [
     'should work with minimumFractionDigits',
     { minimumFractionDigits: 3, unit },
     'fr',
     12,
-  ]) as TestType[]),
+  ]),
 ]
 
 describe('formatUnit', () => {
