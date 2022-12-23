@@ -190,7 +190,9 @@ const format =
 
 type SimpleUnits = `${ExponentName}${Unit}${'-humanized' | ''}`
 type ComplexUnits = `${Unit}${'s' | ''}${'-humanized' | ''}`
-type PerSecondUnit = `bit${'s' | ''}${'-per-second' | ''}${'-humanized' | ''}`
+type PerSecondUnit = `${ExponentName | ''}bit${'s' | ''}${'-per-second' | ''}${
+  | '-humanized'
+  | ''}`
 type SupportedUnits = SimpleUnits | ComplexUnits | PerSecondUnit
 
 export const supportedUnits: Partial<

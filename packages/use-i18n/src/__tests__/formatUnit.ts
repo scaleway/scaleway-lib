@@ -3,40 +3,42 @@ import formatUnit, { supportedUnits } from '../formatUnit'
 
 const locales = ['en', 'fr', 'ro']
 
-const tests = [
-  ...Object.keys(supportedUnits).map(unit => [
+type TestType = [string, FormatUnitOptions, string, number]
+
+const SUPPORTED_UNITS = Object.keys(
+  supportedUnits,
+) as FormatUnitOptions['unit'][]
+
+const tests: TestType[] = [
+  ...SUPPORTED_UNITS.map<TestType>(unit => [
     'should work with',
     { unit },
     'fr',
     12.56,
   ]),
-  ...Object.keys(supportedUnits)
-    .map(unit =>
-      locales.map(locale => [
-        `should work with locale ${locale} and`,
-        { unit },
-        locale,
-        12.56,
-      ]),
-    )
-    .flat(),
-  ...Object.keys(supportedUnits)
-    .map(unit =>
-      locales.map(locale => [
-        `should work with long format, locale ${locale} and`,
-        { short: false, unit },
-        locale,
-        12.56,
-      ]),
-    )
-    .flat(),
-  ...Object.keys(supportedUnits).map(unit => [
+  ...SUPPORTED_UNITS.map(unit =>
+    locales.map<TestType>(locale => [
+      `should work with locale ${locale} and`,
+      { unit },
+      locale,
+      12.56,
+    ]),
+  ).flat(),
+  ...SUPPORTED_UNITS.map(unit =>
+    locales.map<TestType>(locale => [
+      `should work with long format, locale ${locale} and`,
+      { short: false, unit },
+      locale,
+      12.56,
+    ]),
+  ).flat(),
+  ...SUPPORTED_UNITS.map<TestType>(unit => [
     'should work with maximumFractionDigits',
     { maximumFractionDigits: 3, unit },
     'fr',
     12.56,
   ]),
-  ...Object.keys(supportedUnits).map(unit => [
+  ...SUPPORTED_UNITS.map<TestType>(unit => [
     'should work with minimumFractionDigits',
     { minimumFractionDigits: 3, unit },
     'fr',
@@ -53,12 +55,6 @@ describe('formatUnit', () => {
   })
 
   test.each(tests)('%s %o', (_, options, locale, amount) => {
-    expect(
-      formatUnit(
-        locale as string,
-        amount as number,
-        options as FormatUnitOptions,
-      ),
-    ).toMatchSnapshot()
+    expect(formatUnit(locale, amount, options)).toMatchSnapshot()
   })
 })
