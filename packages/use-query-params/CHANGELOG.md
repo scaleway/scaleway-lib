@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.3.10 (2022-12-27)
+
+**Note:** Version bump only for package @scaleway/use-query-params
+
 ## 3.3.9 (2022-12-23)
 
 **Note:** Version bump only for package @scaleway/use-query-params
