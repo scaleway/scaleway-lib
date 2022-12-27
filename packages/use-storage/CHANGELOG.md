@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-storage@1.1.0...@scaleway/use-storage@1.1.1) (2022-12-27)
+
+### Bug Fixes
+
+- **use-storage:** accept falsy values ([bd246f8](https://github.com/scaleway/scaleway-lib/commit/bd246f8d48b9186a968f66026ea867df6a72ead4))
+
 ## 1.1.0 (2022-12-27)
 
 ### Features
