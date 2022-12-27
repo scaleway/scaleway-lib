@@ -21,6 +21,7 @@ import {
   backupKey,
   basicDomain,
   cron,
+  dashedIpv4,
   digits,
   email,
   fourDigitsCode,
@@ -33,6 +34,7 @@ import {
   ipv6Cidr,
   macAddress,
   phone,
+  reverseDNS,
   s3BucketName,
   sixDigitsCode,
   spaces,
@@ -862,6 +864,25 @@ describe('@regex', () => {
       ['256.256.256.256/32', false],
     ])('should match regex %s to be %s', (string, expected) => {
       expect(ipv6Cidr.test(string)).toBe(expected)
+    })
+  })
+
+  describe('reverseDNS', () => {
+    test.each([
+      ['fr.example.test.', true],
+      ['fr.exemple.', true],
+      ['wrong.fr', false],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(reverseDNS.test(string)).toBe(expected)
+    })
+  })
+
+  describe('dashedIpv4', () => {
+    test.each([
+      ['192-168-1-0', true],
+      ['192.168.1.0', false],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(dashedIpv4.test(string)).toBe(expected)
     })
   })
 })
