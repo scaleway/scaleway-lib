@@ -56,6 +56,7 @@ const useStorage = <T>(
   const value = useSyncExternalStore(
     subscribeStorage,
     () => storage.getItem(key),
+    /* istanbul ignore next */
     () => localValue,
   )
 
