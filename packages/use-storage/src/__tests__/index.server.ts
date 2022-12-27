@@ -11,15 +11,15 @@ const KEY = 'test'
 // https://github.com/testing-library/react-testing-library/issues/1120
 describe.skip('useStorage - Server side', () => {
   describe('useLocalStorage', () => {
-    it('works', async () => {
+    it('works', () => {
       const { result } = renderHook(() => useLocalStorage<string>(KEY))
       expect(result.current[0]).toBeNull()
 
-      await act(() => result.current[1]('hello'))
+      act(() => result.current[1]('hello'))
 
       expect(result.current[0]).toBe('hello')
 
-      await act(() => result.current[1](undefined))
+      act(() => result.current[1](undefined))
 
       expect(result.current[0]).toBeNull()
     })
@@ -33,16 +33,16 @@ describe.skip('useStorage - Server side', () => {
   })
 
   describe('useSessionStorage', () => {
-    it('works', async () => {
+    it('works', () => {
       const { result } = renderHook(() => useSessionStorage<string>(KEY))
       expect(result.current[0]).toBeNull()
 
-      await act(() => result.current[1]('hello'))
+      act(() => result.current[1]('hello'))
 
       expect(window.sessionStorage.getItem(KEY)).toBe('"hello"')
       expect(result.current[0]).toBe('hello')
 
-      await act(() => result.current[1](undefined))
+      act(() => result.current[1](undefined))
 
       expect(window.sessionStorage.getItem(KEY)).toBeNull()
       expect(result.current[0]).toBeNull()

@@ -121,7 +121,7 @@ describe('usePaginatedDataLoader', () => {
     expect(result.current.data).toStrictEqual({ 1: '1-1' })
     expect(result.current.pageData).toBe('1-1')
 
-    await act(() => {
+    act(() => {
       result.current.goToNextPage()
     })
     expect(result.current.page).toBe(2)
@@ -131,7 +131,7 @@ describe('usePaginatedDataLoader', () => {
     expect(result.current.isLoading).toBe(false)
     expect(result.current.data).toStrictEqual({ 1: '1-1', 2: '2-1' })
     expect(result.current.pageData).toBe('2-1')
-    await act(() => {
+    act(() => {
       result.current.goToPreviousPage()
       result.current.goToPreviousPage()
       result.current.goToPreviousPage()
@@ -139,7 +139,7 @@ describe('usePaginatedDataLoader', () => {
     })
     expect(result.current.page).toBe(1)
     expect(result.current.pageData).toBe('1-1')
-    await act(() => {
+    act(() => {
       result.current.goToPage(2)
       result.current.goToPage(-21)
       result.current.goToPage(0)
@@ -161,7 +161,7 @@ describe('usePaginatedDataLoader', () => {
       },
     )
     await waitFor(() => expect(result.current.data).toStrictEqual({ 1: '1-1' }))
-    await act(() => {
+    act(() => {
       result.current.goToNextPage()
     })
     await waitFor(() =>
