@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.9.0 (2022-12-27)
+
+### Features
+
+- add reverse dns and dashed ip ([#1131](https://github.com/scaleway/scaleway-lib/issues/1131)) ([3673084](https://github.com/scaleway/scaleway-lib/commit/367308431ba55770782bc7baf68829ddbb28bb59))
+
 ## 2.8.0 (2022-12-20)
 
 ### Features
