@@ -67,7 +67,7 @@ const useStorage = <T>(
 
   const setValue = useCallback(
     (val: T | undefined) => {
-      if (val) {
+      if (val !== undefined) {
         if (canUseDOM) {
           storage.setItem(key, JSON.stringify(val))
         }
