@@ -44,7 +44,7 @@ const wrapper =
   }
 
 describe('useQueryParam', () => {
-  it('should correctly push instead of replacing history', async () => {
+  it('should correctly push instead of replacing history', () => {
     const history = createMemoryHistory({
       initialEntries: ['/one?user=john'],
       initialIndex: 1,
@@ -54,46 +54,46 @@ describe('useQueryParam', () => {
       wrapper: wrapper({ history, search: '' }),
     })
 
-    await act(() => {
+    act(() => {
       result.current.setQueryParams({ user: 'John' })
     })
     expect(result.current.queryParams).toEqual({ user: 'John' })
     expect(history.index).toBe(0)
-    await act(() => {
+    act(() => {
       result.current.setQueryParams({ user: 'Jack' })
     })
     expect(result.current.queryParams).toEqual({ user: 'Jack' })
     expect(history.index).toBe(0)
-    await act(() => {
+    act(() => {
       result.current.setQueryParams({ user: 'Jerry' }, { push: true })
     })
     expect(result.current.queryParams).toEqual({ user: 'Jerry' })
     expect(history.index).toBe(1)
   })
 
-  it('should set one object', async () => {
+  it('should set one object', () => {
     const { result } = renderHook(() => useQueryParams(), {
       wrapper: wrapper({ search: 'user=john' }),
     })
 
-    await act(() => {
+    act(() => {
       result.current.setQueryParams({ user: 'John' })
     })
 
     expect(result.current.queryParams).toEqual({ user: 'John' })
   })
 
-  it('should correctly set with different value', async () => {
+  it('should correctly set with different value', () => {
     const { result } = renderHook(() => useQueryParams(), {
       wrapper: wrapper({ search: 'user=john' }),
     })
 
-    await act(() => {
+    act(() => {
       result.current.setQueryParams({ user: 'John' })
     })
     expect(result.current.queryParams).toEqual({ user: 'John' })
 
-    await act(() => {
+    act(() => {
       result.current.setQueryParams({
         name: 'Doe',
         user: 'Doe',
@@ -104,7 +104,7 @@ describe('useQueryParam', () => {
       user: 'Doe',
     })
 
-    await act(() => {
+    act(() => {
       result.current.setQueryParams({ user: 'Scaleway' })
     })
     expect(result.current.queryParams).toEqual({
@@ -113,12 +113,12 @@ describe('useQueryParam', () => {
     })
   })
 
-  it('should set one complexe object', async () => {
+  it('should set one complexe object', () => {
     const { result } = renderHook(() => useQueryParams(), {
       wrapper: wrapper({ search: 'user=john' }),
     })
 
-    await act(() => {
+    act(() => {
       result.current.setQueryParams({
         lastName: 'Doe',
         lib: 'useQueryParams',
@@ -159,14 +159,14 @@ describe('useQueryParam', () => {
     })
   })
 
-  it('should get queryParams from existing location and set new params', async () => {
+  it('should get queryParams from existing location and set new params', () => {
     const { result } = renderHook(() => useQueryParams(), {
       wrapper: wrapper({ search: 'user=john' }),
     })
 
     expect(result.current.queryParams).toEqual({ user: 'john' })
 
-    await act(() => {
+    act(() => {
       result.current.setQueryParams({
         lastName: 'Doe',
         lib: 'useQueryParams',
@@ -182,16 +182,16 @@ describe('useQueryParam', () => {
     })
   })
 
-  it('should correctly set different objects before rerender', async () => {
+  it('should correctly set different objects before rerender', () => {
     const { result, rerender } = renderHook(() => useQueryParams(), {
       wrapper: wrapper({ search: '' }),
     })
 
-    await act(() => {
+    act(() => {
       result.current.setQueryParams({ name: 'JOHN' })
     })
 
-    await act(() => {
+    act(() => {
       result.current.setQueryParams({ lastName: 'Doe' })
     })
     expect(result.current.queryParams).toEqual({
@@ -201,11 +201,11 @@ describe('useQueryParam', () => {
 
     rerender()
 
-    await act(() => {
+    act(() => {
       result.current.setQueryParams({ name: 'john' })
     })
 
-    await act(() => {
+    act(() => {
       result.current.setQueryParams({ test: 'Scaleway' })
     })
 
@@ -216,17 +216,17 @@ describe('useQueryParam', () => {
     })
   })
 
-  it('should render good params with parallel changes', async () => {
+  it('should render good params with parallel changes', () => {
     const { result } = renderHook(() => useQueryParams(), {
       wrapper: wrapper({ search: '' }),
     })
-    await act(() => {
+    act(() => {
       result.current.setQueryParams({ name: 'John' })
     })
-    await act(() => {
+    act(() => {
       result.current.setQueryParams({ lastName: 'Doe' })
     })
-    await act(() => {
+    act(() => {
       result.current.setQueryParams({ compagny: 'Scaleway' })
     })
 
@@ -236,7 +236,7 @@ describe('useQueryParam', () => {
       name: 'John',
     })
 
-    await act(() => {
+    act(() => {
       result.current.setQueryParams({ name: 'John' })
     })
 
@@ -247,25 +247,25 @@ describe('useQueryParam', () => {
     })
   })
 
-  test('should erase params', async () => {
+  test('should erase params', () => {
     const { result } = renderHook(() => useQueryParams(), {
       wrapper: wrapper({ search: '' }),
     })
 
-    await act(() => {
+    act(() => {
       result.current.setQueryParams({ name: 'John' })
     })
     expect(result.current.queryParams).toEqual({
       name: 'John',
     })
-    await act(() => {
+    act(() => {
       result.current.setQueryParams({ lastName: 'Doe' })
     })
     expect(result.current.queryParams).toEqual({
       lastName: 'Doe',
       name: 'John',
     })
-    await act(() => {
+    act(() => {
       result.current.replaceQueryParams({ compagny: 'Scaleway' })
     })
     expect(result.current.queryParams).toEqual({
@@ -273,12 +273,12 @@ describe('useQueryParam', () => {
     })
   })
 
-  test('should correctly set query params with array', async () => {
+  test('should correctly set query params with array', () => {
     const { result, rerender } = renderHook(() => useQueryParams(), {
       wrapper: wrapper({ search: '' }),
     })
 
-    await act(() => {
+    act(() => {
       result.current.setQueryParams({
         names: ['John', null, 'Jane', null, undefined, ''],
       })
@@ -299,25 +299,25 @@ describe('useQueryParam', () => {
     })
   })
 
-  test('should work correctly when search is empty', async () => {
+  test('should work correctly when search is empty', () => {
     const { result } = renderHook(() => useQueryParams(), {
       wrapper: wrapper({ search: '' }),
     })
 
-    await act(() => {
+    act(() => {
       result.current.setQueryParams({ name: 'John' })
     })
     expect(result.current.queryParams).toEqual({
       name: 'John',
     })
 
-    await act(() => {
+    act(() => {
       result.current.replaceQueryParams({})
     })
     expect(result.current.queryParams).toEqual({})
   })
 
-  test('should work correctly when have multiple useQueryParams', async () => {
+  test('should work correctly when have multiple useQueryParams', () => {
     const { result } = renderHook(
       () => ({
         qp1: useQueryParams(),
@@ -328,7 +328,7 @@ describe('useQueryParam', () => {
       },
     )
 
-    await act(() => {
+    act(() => {
       result.current.qp1.setQueryParams({ name: 'John' })
     })
     expect(result.current.qp2.queryParams).toEqual({
@@ -338,17 +338,17 @@ describe('useQueryParam', () => {
       name: 'John',
     })
 
-    await act(() => {
+    act(() => {
       result.current.qp2.replaceQueryParams({})
     })
 
     expect(result.current.qp1.queryParams).toEqual({})
     expect(result.current.qp2.queryParams).toEqual({})
 
-    await act(() => {
+    act(() => {
       result.current.qp1.setQueryParams({ user: 'John' })
     })
-    await act(() => {
+    act(() => {
       result.current.qp2.setQueryParams({ compagny: 'Scaleway' })
     })
 
