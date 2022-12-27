@@ -7,6 +7,7 @@ import {
 } from 'react'
 
 declare global {
+  // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
   interface WindowEventMap {
     // native storage event is not broadcasted on the current page
     // https://developer.mozilla.org/en-US/docs/Web/API/Window/storage_event
