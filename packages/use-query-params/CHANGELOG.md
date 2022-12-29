@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.3.11 (2022-12-29)
+
+### Bug Fixes
+
+- specify sideEffect free packages ([#1134](https://github.com/scaleway/scaleway-lib/issues/1134)) ([20510f0](https://github.com/scaleway/scaleway-lib/commit/20510f0f66fde99e682529db28fe85d580efe474))
+
 ## 3.3.10 (2022-12-27)
 
 **Note:** Version bump only for package @scaleway/use-query-params
