@@ -6,6 +6,10 @@
   ],
   "type": "module",
   "packageManager": "pnpm@7.21.0",
+  "engines": {
+    "node": ">=18.x",
+    "pnpm": ">=7.x"
+  },
   "devDependencies": {
     "@babel/core": "7.20.7",
     "@babel/eslint-parser": "7.19.1",
