@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import type { ReactElement, ReactNode } from 'react'
 import { createContext, useCallback, useContext, useMemo, useRef } from 'react'
 import {
@@ -56,17 +55,19 @@ export type IDataLoaderContext = {
 // @ts-expect-error we force the context to undefined, should be corrected with default values
 export const DataLoaderContext = createContext<IDataLoaderContext>(undefined)
 
+type DataLoaderProviderProps = {
+  children: ReactNode
+  cacheKeyPrefix?: string
+  onError?: OnErrorFn
+  maxConcurrentRequests?: number
+}
+
 const DataLoaderProvider = ({
   children,
-  cacheKeyPrefix,
+  cacheKeyPrefix = '',
   onError,
-  maxConcurrentRequests,
-}: {
-  children: ReactNode
-  cacheKeyPrefix: string
-  onError: OnErrorFn
-  maxConcurrentRequests?: number
-}): ReactElement => {
+  maxConcurrentRequests = DEFAULT_MAX_CONCURRENT_REQUESTS,
+}: DataLoaderProviderProps): ReactElement => {
   const requestsRef = useRef<Requests>({})
 
   const computeKey = useCallback(
@@ -82,7 +83,7 @@ const DataLoaderProvider = ({
   const addRequest = useCallback(
     (key: string, args: UseDataLoaderInitializerArgs) => {
       if (DataLoader.maxConcurrent !== maxConcurrentRequests) {
-        DataLoader.maxConcurrent = maxConcurrentRequests as number
+        DataLoader.maxConcurrent = maxConcurrentRequests
       }
       if (key && typeof key === 'string') {
         const newRequest = new DataLoader({
@@ -210,19 +211,6 @@ const DataLoaderProvider = ({
       {children}
     </DataLoaderContext.Provider>
   )
-}
-
-DataLoaderProvider.propTypes = {
-  cacheKeyPrefix: PropTypes.string,
-  children: PropTypes.node.isRequired,
-  maxConcurrentRequests: PropTypes.number,
-  onError: PropTypes.func,
-}
-
-DataLoaderProvider.defaultProps = {
-  cacheKeyPrefix: undefined,
-  maxConcurrentRequests: DEFAULT_MAX_CONCURRENT_REQUESTS,
-  onError: undefined,
 }
 
 export const useDataLoaderContext = (): IDataLoaderContext =>

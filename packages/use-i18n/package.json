@@ -33,8 +33,7 @@
     "date-fns": "2.29.3",
     "filesize": "10.0.6",
     "international-types": "0.3.6",
-    "intl-messageformat": "10.2.5",
-    "prop-types": "15.8.1"
+    "intl-messageformat": "10.2.5"
   },
   "peerDependencies": {
     "date-fns": "2.x",

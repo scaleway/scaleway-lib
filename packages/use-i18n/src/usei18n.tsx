@@ -2,7 +2,6 @@ import type { NumberFormatOptions } from '@formatjs/ecma402-abstract'
 import type { Locale as DateFnsLocale } from 'date-fns'
 import { formatDistanceToNow, formatDistanceToNowStrict } from 'date-fns'
 import type { BaseLocale } from 'international-types'
-import PropTypes from 'prop-types'
 import type { ReactElement, ReactNode } from 'react'
 import {
   createContext,
@@ -395,19 +394,6 @@ const I18nContextProvider = ({
   )
 
   return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>
-}
-
-I18nContextProvider.propTypes = {
-  children: PropTypes.node.isRequired,
-  defaultDateLocale: PropTypes.shape({}),
-  defaultLoad: PropTypes.func.isRequired,
-  defaultLocale: PropTypes.string.isRequired,
-  defaultTranslations: PropTypes.shape({}),
-  enableDebugKey: PropTypes.bool,
-  enableDefaultLocale: PropTypes.bool,
-  loadDateLocale: PropTypes.func,
-  localeItemStorage: PropTypes.string,
-  supportedLocales: PropTypes.arrayOf(PropTypes.string).isRequired,
 }
 
 export default I18nContextProvider

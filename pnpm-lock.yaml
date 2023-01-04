@@ -157,10 +157,7 @@ importers:
     specifiers: {}
 
   packages/use-dataloader:
-    specifiers:
-      prop-types: 15.8.1
-    dependencies:
-      prop-types: 15.8.1
+    specifiers: {}
 
   packages/use-gtm:
     specifiers: {}
@@ -173,7 +170,6 @@ importers:
       filesize: 10.0.6
       international-types: 0.3.6
       intl-messageformat: 10.2.5
-      prop-types: 15.8.1
     dependencies:
       '@formatjs/ecma402-abstract': 1.14.3
       '@formatjs/fast-memoize': 1.2.7
@@ -181,7 +177,6 @@ importers:
       filesize: 10.0.6
       international-types: 0.3.6
       intl-messageformat: 10.2.5
-      prop-types: 15.8.1
 
   packages/use-media:
     specifiers: {}
