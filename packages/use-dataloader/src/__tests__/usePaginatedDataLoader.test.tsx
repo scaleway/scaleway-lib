@@ -19,7 +19,6 @@ const initialProps = {
       }),
   ),
 }
-// eslint-disable-next-line react/prop-types
 const wrapper = ({ children }: { children?: ReactNode }) => (
   <DataLoaderProvider>{children}</DataLoaderProvider>
 )
