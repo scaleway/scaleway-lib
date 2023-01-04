@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.9](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@4.1.8...@scaleway/use-i18n@4.1.9) (2023-01-04)
+
+### Bug Fixes
+
+- **prop-types:** remove usage of proptypes ([#1140](https://github.com/scaleway/scaleway-lib/issues/1140)) ([f511af5](https://github.com/scaleway/scaleway-lib/commit/f511af5d81d765274b4b86cebd676229aea7bc8e))
+
 ## 4.1.8 (2022-12-29)
 
 ### Bug Fixes
