@@ -48,7 +48,7 @@
       "matchDepTypes": ["engines"],
       "matchPackageNames": ["node"],
       "matchManagers": ["pnpm"],
-      "dependencyDashboardApproval": true
+      "rangeStrategy": "widen"
     }
   ]
 }
