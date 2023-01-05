@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/use-dataloader",
-  "version": "2.16.6",
+  "version": "2.16.7",
   "description": "A small hook to handle api requests",
   "keywords": [
     "react",
@@ -25,9 +25,6 @@
     "directory": "packages/use-dataloader"
   },
   "license": "MIT",
-  "dependencies": {
-    "prop-types": "15.8.1"
-  },
   "peerDependencies": {
     "react": "18.x"
   }
