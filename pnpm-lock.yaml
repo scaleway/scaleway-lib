@@ -198,7 +198,7 @@ importers:
 
   packages/use-random-name:
     specifiers:
-      '@scaleway/random-name': ^3.0.3
+      '@scaleway/random-name': ^4.0.0
     dependencies:
       '@scaleway/random-name': link:../random-name
 

@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.0](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@4.1.10...@scaleway/use-i18n@5.0.0) (2023-01-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* packages are ESM only
+
+### :gear: Features
+
+* publish packages as ESM only ([#1145](https://github.com/scaleway/scaleway-lib/issues/1145)) ([4c25097](https://github.com/scaleway/scaleway-lib/commit/4c25097254a5ba7f0a5dbb6fdf5d6578a75f777a))
+
+
+
 ## [4.1.10](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@4.1.9...@scaleway/use-i18n@4.1.10) (2023-01-06)
 
 

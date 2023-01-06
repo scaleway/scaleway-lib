@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 4.0.0 (2023-01-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* packages are ESM only
+
+### :package: Chore
+
+* **release:** publish ([20c9d4f](https://github.com/scaleway/scaleway-lib/commit/20c9d4fb39822245252bf362bc7a8d26127e511d))
+
+
+### :gear: Features
+
+* publish packages as ESM only ([#1145](https://github.com/scaleway/scaleway-lib/issues/1145)) ([4c25097](https://github.com/scaleway/scaleway-lib/commit/4c25097254a5ba7f0a5dbb6fdf5d6578a75f777a))
+
+
+
 ## 3.3.11 (2022-12-29)
 
 ### Bug Fixes
