@@ -3,13 +3,13 @@
   "version": "0.2.6",
   "description": "A small react utility to generate a random name",
   "type": "module",
+  "engines": {
+    "node": ">=14.x"
+  },
+  "sideEffects": false,
   "main": "dist/index.js",
   "module": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "sideEffects": false,
-  "browser": {
-    "dist/index.js": "./dist/index.browser.js"
-  },
+  "jsnext:main": "dist/index.js",
   "publishConfig": {
     "access": "public"
   },

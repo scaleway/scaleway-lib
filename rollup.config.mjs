@@ -1,6 +1,5 @@
 import { babel } from '@rollup/plugin-babel'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
-import builtins from 'builtin-modules'
 import { readPackage } from 'read-pkg'
 import dts from 'rollup-plugin-dts'
 import { preserveShebangs } from 'rollup-plugin-preserve-shebangs'
@@ -8,29 +7,31 @@ import { visualizer } from 'rollup-plugin-visualizer'
 
 const PROFILE = !!process.env.PROFILE
 
-const getConfig = (pkg, isBrowser = false) => {
-  const targets = isBrowser
-    ? `
-    > 1%,
-    last 2 versions,
-    not IE > 0,
-    not IE_Mob > 0
-  `
-    : { node: 'current' }
+const pkg = await readPackage()
 
-  const external = id =>
-    [
-      ...Object.keys(pkg.dependencies || {}),
-      ...Object.keys(pkg.peerDependencies || {}),
-      ...(isBrowser ? [] : builtins),
-    ].find(dep => new RegExp(`^${dep}`).test(id))
+const targets = `
+  > 1%,
+  last 2 versions,
+  not IE > 0,
+  not IE_Mob > 0
+  node > 14
+`
 
-  return {
+const external = id =>
+  [
+    ...Object.keys(pkg.dependencies || {}),
+    ...Object.keys(pkg.peerDependencies || {}),
+    ...[],
+  ].find(dep => new RegExp(`^${dep}`).test(id))
+
+export default [
+  {
     external,
     input: './src/index.ts',
     output: {
-      file: isBrowser ? 'dist/index.browser.js' : 'dist/index.js',
+      dir: 'dist',
       format: 'es',
+      preserveModules: true
     },
     plugins: [
       babel({
@@ -52,7 +53,6 @@ const getConfig = (pkg, isBrowser = false) => {
         ],
       }),
       nodeResolve({
-        browser: isBrowser,
         extensions: ['.mjs', '.js', '.json', '.ts', '.tsx'],
         preferBuiltins: true,
       }),
@@ -65,21 +65,10 @@ const getConfig = (pkg, isBrowser = false) => {
           open: true,
         }),
     ].filter(Boolean),
-  }
-}
-
-export default async () => {
-  const pkg = await readPackage()
-
-  const doesAlsoTargetBrowser = 'browser' in pkg
-
-  return [
-    getConfig(pkg),
-    doesAlsoTargetBrowser && getConfig(pkg, true),
-    {
-      input: './src/index.ts',
-      output: [{ file: 'dist/index.d.ts', format: 'es' }],
-      plugins: [dts()],
-    },
-  ].filter(Boolean)
-}
+  },
+  {
+    input: './src/index.ts',
+    output: [{ file: 'dist/index.d.ts', format: 'es' }],
+    plugins: [dts()],
+  },
+]

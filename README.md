@@ -212,7 +212,9 @@ The browserlist we are currently using is available in the [rollup.config.mjs](.
 
 ### On build outputs
 
-We only output ESM modules.
+We only output ESM modules. Please [read this](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c).
+
+Compiled modules supports Node > 14, the last two versions of any browsers and any browsers with more than 1% of marketshare at the time of release.
 
 ### On commits
 
