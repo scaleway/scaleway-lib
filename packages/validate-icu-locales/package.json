@@ -8,6 +8,9 @@
     "cli"
   ],
   "type": "module",
+  "engines": {
+    "node": ">=14.x"
+  },
   "bin": {
     "validate-icu": "dist/index.js"
   },

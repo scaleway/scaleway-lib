@@ -9,13 +9,10 @@
     "segment"
   ],
   "type": "module",
+  "sideEffects": false,
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
-  "sideEffects": false,
-  "browser": {
-    "dist/index.js": "./dist/index.browser.js"
-  },
   "publishConfig": {
     "access": "public"
   },
