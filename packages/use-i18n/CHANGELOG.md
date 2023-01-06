@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.10](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@4.1.9...@scaleway/use-i18n@4.1.10) (2023-01-06)
+
+
+### :package: Chore
+
+* **devDeps:** upgrade deps ([#1144](https://github.com/scaleway/scaleway-lib/issues/1144)) ([8a2d30d](https://github.com/scaleway/scaleway-lib/commit/8a2d30d77c7a0047c733d3d0dc9f16ac8dd35a8c))
+
+
+
 ## [4.1.9](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@4.1.8...@scaleway/use-i18n@4.1.9) (2023-01-04)
 
 ### Bug Fixes

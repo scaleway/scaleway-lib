@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.13.4 (2023-01-06)
+
+
+### :package: Chore
+
+* **devDeps:** upgrade deps ([#1144](https://github.com/scaleway/scaleway-lib/issues/1144)) ([8a2d30d](https://github.com/scaleway/scaleway-lib/commit/8a2d30d77c7a0047c733d3d0dc9f16ac8dd35a8c))
+* **release:** publish ([d90ea8f](https://github.com/scaleway/scaleway-lib/commit/d90ea8fa24f5cba600b14842e4361563e9321709))
+
+
+
 ## [3.13.3](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@3.13.2...@scaleway/eslint-config-react@3.13.3) (2022-12-27)
 
 ### Bug Fixes
