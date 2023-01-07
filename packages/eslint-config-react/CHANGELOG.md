@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.13.5 (2023-01-07)
+
+
+### :package: Chore
+
+* **release:** publish ([e80144e](https://github.com/scaleway/scaleway-lib/commit/e80144e529c96b01905b0ee29029d0edbd916e61))
+
+
+### :bug: Bug Fixes
+
+* **deps:** update dependency eslint-config-prettier to v8.6.0 ([#1146](https://github.com/scaleway/scaleway-lib/issues/1146)) ([26cfe8b](https://github.com/scaleway/scaleway-lib/commit/26cfe8bf7d796172dba1ef7c0a10f39cc0ab45b7))
+
+
+
 ## 3.13.4 (2023-01-06)
 
 
