@@ -204,9 +204,9 @@ importers:
 
   packages/use-segment:
     specifiers:
-      '@segment/analytics-next': 1.48.0
+      '@segment/analytics-next': 1.49.1
     dependencies:
-      '@segment/analytics-next': 1.48.0
+      '@segment/analytics-next': 1.49.1
 
   packages/use-storage:
     specifiers: {}
@@ -3573,19 +3573,19 @@ packages:
       rollup: 3.9.1
     dev: true
 
-  /@segment/analytics-core/1.1.6:
-    resolution: {integrity: sha512-WwC9qXdiWPintFeDfJR9PN1+uLmbpDjnJtIp/XJrTsZrHDfb0acqHzIFa/Sl5QdUTnYQf3midLmRr/gaO8qFdw==}
+  /@segment/analytics-core/1.2.0:
+    resolution: {integrity: sha512-2BSliLJi1RWq8+eE+UKcMEiC5WfZZp3SHIA/fGhFftOg2s1OkFaQRHuKFzdgbDuKZMEsRwqek3EITNGSThJ5rg==}
     dependencies:
       '@lukeed/uuid': 2.0.0
       dset: 3.1.2
       tslib: 2.4.1
     dev: false
 
-  /@segment/analytics-next/1.48.0:
-    resolution: {integrity: sha512-zzcSWfOsQ02xNm+UnLtLqeUwkMdPZHcd8Rc4Cp5elrwmTf0FSwJHEg54FxcC50BIZi/VJi1XTvu7A6zd2Nf0QQ==}
+  /@segment/analytics-next/1.49.1:
+    resolution: {integrity: sha512-KOrYRcUH2N3cRmhfmRRbc9Si3aQ9IXRKaZ7TCkQrj9h7YuBqJs4zlQhO4vjqGcmOlEPk3unpiPEcrw1NZG/aJQ==}
     dependencies:
       '@lukeed/uuid': 2.0.0
-      '@segment/analytics-core': 1.1.6
+      '@segment/analytics-core': 1.2.0
       '@segment/analytics.js-video-plugins': 0.2.1
       '@segment/facade': 3.4.9
       '@segment/tsub': 1.0.1
@@ -4067,8 +4067,28 @@ packages:
       - supports-color
     dev: false
 
+  /@stdlib/constants-float64-high-word-abs-mask/0.0.1:
+    resolution: {integrity: sha512-1vy8SUyMHFBwqUUVaZFA7r4/E3cMMRKSwsaa/EZ15w7Kmc01W/ZmaaTLevRcIdACcNgK+8i8813c8H7LScXNcQ==}
+    engines: {node: '>=0.10.0', npm: '>2.7.0'}
+    os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
+    dependencies:
+      '@stdlib/utils-library-manifest': 0.0.8
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
   /@stdlib/constants-float64-high-word-exponent-mask/0.0.8:
     resolution: {integrity: sha512-z28/EQERc0VG7N36bqdvtrRWjFc8600PKkwvl/nqx6TpKAzMXNw55BS1xT4C28Sa9Z7uBWeUj3UbIFedbkoyMw==}
+    engines: {node: '>=0.10.0', npm: '>2.7.0'}
+    os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
+    dependencies:
+      '@stdlib/utils-library-manifest': 0.0.8
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
+  /@stdlib/constants-float64-high-word-sign-mask/0.0.1:
+    resolution: {integrity: sha512-hmTr5caK1lh1m0eyaQqt2Vt3y+eEdAx57ndbADEbXhxC9qSGd0b4bLSzt/Xp4MYBYdQkHAE/BlkgUiRThswhCg==}
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
     os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
     dependencies:
@@ -4251,21 +4271,23 @@ packages:
     os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
     dependencies:
       '@stdlib/math-base-napi-unary': 0.0.8
-      '@stdlib/number-float64-base-to-words': 0.0.6
+      '@stdlib/number-float64-base-to-words': 0.0.7
       '@stdlib/utils-library-manifest': 0.0.8
     transitivePeerDependencies:
       - supports-color
     dev: false
 
-  /@stdlib/math-base-special-copysign/0.0.6:
-    resolution: {integrity: sha512-2u2ariXtGK0c+Z8y0QHUrdP2aEvkKSZZ4GRNehVYMZT1cwDnZZOZRdTNKFquDldJ/C407upOvLpkzIeS9WmkUQ==}
+  /@stdlib/math-base-special-copysign/0.0.7:
+    resolution: {integrity: sha512-7Br7oeuVJSBKG8BiSk/AIRFTBd2sbvHdV3HaqRj8tTZHX8BQomZ3Vj4Qsiz3kPyO4d6PpBLBTYlGTkSDlGOZJA==}
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
     os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
     dependencies:
+      '@stdlib/constants-float64-high-word-abs-mask': 0.0.1
+      '@stdlib/constants-float64-high-word-sign-mask': 0.0.1
       '@stdlib/math-base-napi-binary': 0.0.8
       '@stdlib/number-float64-base-from-words': 0.0.6
       '@stdlib/number-float64-base-get-high-word': 0.0.6
-      '@stdlib/number-float64-base-to-words': 0.0.6
+      '@stdlib/number-float64-base-to-words': 0.0.7
       '@stdlib/utils-library-manifest': 0.0.8
     transitivePeerDependencies:
       - supports-color
@@ -4284,11 +4306,11 @@ packages:
       '@stdlib/constants-float64-pinf': 0.0.8
       '@stdlib/math-base-assert-is-infinite': 0.0.9
       '@stdlib/math-base-assert-is-nan': 0.0.8
-      '@stdlib/math-base-special-copysign': 0.0.6
+      '@stdlib/math-base-special-copysign': 0.0.7
       '@stdlib/number-float64-base-exponent': 0.0.6
       '@stdlib/number-float64-base-from-words': 0.0.6
       '@stdlib/number-float64-base-normalize': 0.0.9
-      '@stdlib/number-float64-base-to-words': 0.0.6
+      '@stdlib/number-float64-base-to-words': 0.0.7
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -4319,7 +4341,7 @@ packages:
       '@stdlib/array-float64': 0.0.6
       '@stdlib/array-uint32': 0.0.6
       '@stdlib/assert-is-little-endian': 0.0.7
-      '@stdlib/number-float64-base-to-words': 0.0.6
+      '@stdlib/number-float64-base-to-words': 0.0.7
       '@stdlib/utils-library-manifest': 0.0.8
     transitivePeerDependencies:
       - supports-color
@@ -4333,7 +4355,7 @@ packages:
       '@stdlib/array-float64': 0.0.6
       '@stdlib/array-uint32': 0.0.6
       '@stdlib/assert-is-little-endian': 0.0.7
-      '@stdlib/number-float64-base-to-words': 0.0.6
+      '@stdlib/number-float64-base-to-words': 0.0.7
       '@stdlib/utils-library-manifest': 0.0.8
     transitivePeerDependencies:
       - supports-color
@@ -4365,8 +4387,8 @@ packages:
       - supports-color
     dev: false
 
-  /@stdlib/number-float64-base-to-words/0.0.6:
-    resolution: {integrity: sha512-J7S0+yOBcrU9/gMTLE3oQUrtGvDj6uSxC8swOnXCLrCm0l3WItYlBl4PHPxJ+cgRiduHd1ol+ud7ctFI5/66sw==}
+  /@stdlib/number-float64-base-to-words/0.0.7:
+    resolution: {integrity: sha512-7wsYuq+2MGp9rAkTnQ985rah7EJI9TfgHrYSSd4UIu4qIjoYmWIKEhIDgu7/69PfGrls18C3PxKg1pD/v7DQTg==}
     engines: {node: '>=0.10.0', npm: '>2.7.0'}
     os: [aix, darwin, freebsd, linux, macos, openbsd, sunos, win32, windows]
     dependencies:
@@ -4376,6 +4398,7 @@ packages:
       '@stdlib/os-byte-order': 0.0.7
       '@stdlib/os-float-word-order': 0.0.7
       '@stdlib/types': 0.0.14
+      '@stdlib/utils-define-nonenumerable-read-only-property': 0.0.7
       '@stdlib/utils-library-manifest': 0.0.8
     transitivePeerDependencies:
       - supports-color
