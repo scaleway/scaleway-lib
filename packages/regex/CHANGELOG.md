@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.1.0 (2023-01-12)
+
+
+### :package: Chore
+
+* **release:** publish ([22abd68](https://github.com/scaleway/scaleway-lib/commit/22abd687033bcd8c7cd187c8a9370c02fe7c0ef4))
+
+
+### :gear: Features
+
+* **regex:** advanced domain regex for non ASCII characters ([#1156](https://github.com/scaleway/scaleway-lib/issues/1156)) ([6b896f8](https://github.com/scaleway/scaleway-lib/commit/6b896f824a773e0fa342357e11074551688429e3))
+
+
+
 ## 3.0.0 (2023-01-06)
 
 
