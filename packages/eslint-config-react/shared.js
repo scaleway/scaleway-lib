@@ -98,6 +98,10 @@ module.exports = {
     'react/no-adjacent-inline-elements': 'error', // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-adjacent-inline-elements.md
     'prefer-object-has-own': 'error', // https://eslint.org/docs/rules/prefer-object-has-own
 
+    // Prevent uneeded rerender with object as default props
+    // https://github.com/jsx-eslint/eslint-plugin-react/blob/c8f2813758dea1759ba5ab8caf1920cae9417a43/docs/rules/no-object-type-as-default-prop.md
+    'react/no-object-type-as-default-prop': 'error',
+
     // We don't use babel-preset-airbnb so we can make those changes
     'react/static-property-placement': ['error', 'static public field'],
     'react/state-in-constructor': ['error', 'never'],

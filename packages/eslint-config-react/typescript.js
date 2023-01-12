@@ -9,6 +9,26 @@ module.exports = {
   plugins: ['deprecation', '@typescript-eslint'],
   rules: {
     'deprecation/deprecation': 'warn',
+    // Enforce T[] instead of Array<T>
+    '@typescript-eslint/array-type': [
+      'error',
+      {
+        default: 'array',
+      },
+    ],
+    // Avoid toString which are going to generate [object Object]
+    '@typescript-eslint/no-base-to-string': 'error',
+    // (someCondition === true) => (someCondition)
+    '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'error',
+    '@typescript-eslint/no-unnecessary-condition': 'error',
+    '@typescript-eslint/no-unnecessary-type-arguments': 'error',
+    '@typescript-eslint/no-unsafe-declaration-merging': 'error',
+    '@typescript-eslint/prefer-for-of': 'error',
+    '@typescript-eslint/prefer-includes': 'error',
+    '@typescript-eslint/prefer-optional-chain': 'error',
+    '@typescript-eslint/prefer-reduce-type-parameter': 'error',
+    '@typescript-eslint/prefer-string-starts-ends-with': 'error',
+    '@typescript-eslint/prefer-ts-expect-error': 'error',
     // https://github.com/typescript-eslint/typescript-eslint/issues/4619
     '@typescript-eslint/no-misused-promises': [
       'error',
