@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.13.7 (2023-01-11)
+
+
+### :package: Chore
+
+* **release:** publish ([03ab099](https://github.com/scaleway/scaleway-lib/commit/03ab099e2ad498d7928925130bf59e6ee57283a6))
+
+
+### :bug: Bug Fixes
+
+* **deps:** update typescript-eslint monorepo to v5.48.1 ([#1154](https://github.com/scaleway/scaleway-lib/issues/1154)) ([c2f6ce0](https://github.com/scaleway/scaleway-lib/commit/c2f6ce06464f80b8014c1f927dfe1af9292826ee))
+
+
+
 ## [3.13.6](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@3.13.5...@scaleway/eslint-config-react@3.13.6) (2023-01-09)
 
 
