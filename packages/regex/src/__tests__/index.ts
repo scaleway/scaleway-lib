@@ -1,5 +1,6 @@
 import {
   absoluteLinuxPath,
+  advancedDomainName,
   alpha,
   alphaDashes,
   alphaLower,
@@ -46,6 +47,8 @@ const alphanumdashdotsText = 'testwithdashdots-.'
 const alphanumdashunderscoredotsparenthesisText = 'testwithdashdots-_. ()'
 const alphanumdashText = 'testwithdash-'
 const asciiLetters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+const nonAsciiLetters =
+  'ÀÁÂÃÄÅàáâãäåÇçÈÉÊËèéêëÌÍÎÏìíîïÑñÒÓÔÕÖòóôõöÙÚÛÜùúûüÝýÿĀāĈĉĜĝĤĥĴĵŜŝŴŵŶŷāăąǎćĉčċđēĕėęǝğōŏőǒśŝşšūŭůűǔüźżž'
 const asciiLowercase = 'abcdefghijklmnopqrstuvwxyz'
 const asciiUppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 const backupKeyTest = '123456789ABCEDFGHIJIKLMNOPQRSTUV'
@@ -538,6 +541,30 @@ describe('@regex', () => {
       ...(urls.map(urlString => [urlString, false]) as [string, boolean][]),
     ])('should match regex %s to be %s', (string, expected) => {
       expect(uppercaseBasicDomain.test(string)).toBe(expected)
+    })
+  })
+  describe('advancedDomain', () => {
+    test.each([
+      [asciiLetters, false],
+      [nonAsciiLetters, false],
+      [asciiLowercase, false],
+      [asciiUppercase, false],
+      [backupKeyTest, false],
+      [domain, true],
+      [subDomain, true],
+      [longTldDomain, true],
+      [digitsTest, false],
+      [emailTest, false],
+      [octdigits, false],
+      [hexdigits, false],
+      [printable, false],
+      [punctuation, false],
+      [whitespace, false],
+      [cronTest, false],
+      [macAddress1, false],
+      ...(urls.map(urlString => [urlString, false]) as [string, boolean][]),
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(advancedDomainName.test(string)).toBe(expected)
     })
   })
 
