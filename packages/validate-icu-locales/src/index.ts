@@ -27,12 +27,8 @@ const findICUErrors = (
   locales: { [key: string]: string },
   filePath: string,
 ): ErrorsICU => {
-  const keys = Object.keys(locales)
-
-  const errors = keys
-    .map(key => {
-      const value = locales[key]
-
+  const errors = Object.entries(locales)
+    .map(([key, value]) => {
       try {
         parse(value)
 
@@ -101,6 +97,11 @@ const readFiles = async (files: string[]): Promise<ErrorsICU> => {
   }
 
   return errors
+}
+
+if (!pattern) {
+  error('Missing pattern: validate-icu-locales [PATTERN]')
+  process.exit(1)
 }
 
 const files = await globby(pattern)

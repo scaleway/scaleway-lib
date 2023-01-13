@@ -38,7 +38,8 @@ const areNamespacesLoaded = (
   loadedNamespaces: string[] = [],
 ) => namespaces.every(n => loadedNamespaces.includes(n))
 
-const getLocaleFallback = (locale: string) => locale.split('-')[0].split('_')[0]
+const getLocaleFallback = (locale: string) =>
+  locale.split('-')[0]?.split('_')[0]
 
 const getCurrentLocale = ({
   defaultLocale,
@@ -49,13 +50,15 @@ const getCurrentLocale = ({
   supportedLocales: string[]
   localeItemStorage: string
 }): string => {
-  const languages = navigator.languages || [navigator.language]
+  const { languages } = navigator
   const browserLocales = [...new Set(languages.map(getLocaleFallback))]
   const localeStorage = localStorage.getItem(localeItemStorage)
 
   return (
     localeStorage ||
-    browserLocales.find(locale => supportedLocales.includes(locale)) ||
+    browserLocales.find(
+      locale => locale && supportedLocales.includes(locale),
+    ) ||
     defaultLocale
   )
 }
@@ -133,7 +136,7 @@ export function useTranslation<Locale extends BaseLocale = {}>(
   useEffect(() => {
     key
       .split(',')
-      .map(async (namespace: string) => loadTranslations?.(namespace, load))
+      .map(async (namespace: string) => loadTranslations(namespace, load))
   }, [loadTranslations, key, load])
 
   const isLoaded = useMemo(
@@ -158,13 +161,15 @@ type LoadTranslationsFn = ({
 }) => Promise<{ default: BaseLocale }>
 type LoadLocaleFn = (locale: string) => Promise<Locale>
 
+const initialDefaultTranslations = {}
+
 const I18nContextProvider = ({
   children,
   defaultLoad,
   loadDateLocale,
   defaultDateLocale,
   defaultLocale,
-  defaultTranslations = {},
+  defaultTranslations = initialDefaultTranslations,
   enableDefaultLocale = false,
   enableDebugKey = false,
   localeItemStorage = LOCALE_ITEM_STORAGE,
@@ -217,7 +222,7 @@ const I18nContextProvider = ({
 
       const trad: Record<string, string> = {
         ...result.defaultLocale.default,
-        ...result[currentLocale].default,
+        ...result[currentLocale]?.default,
       }
 
       // avoid a lot of render when async update
@@ -234,9 +239,7 @@ const I18nContextProvider = ({
           },
         }))
 
-        setNamespaces(prevState => [
-          ...new Set([...(prevState || []), namespace]),
-        ])
+        setNamespaces(prevState => [...new Set([...prevState, namespace])])
       })
 
       return namespace

@@ -76,7 +76,8 @@ const DataLoaderProvider = ({
   )
 
   const getRequest = useCallback(
-    (key: string) => requestsRef.current[computeKey(key)],
+    (key: string): DataLoader<unknown, unknown> | undefined =>
+      requestsRef.current[computeKey(key)],
     [computeKey],
   )
 
@@ -114,13 +115,11 @@ const DataLoaderProvider = ({
 
   const clearCachedData = useCallback(
     (key: string) => {
-      if (typeof key === 'string') {
-        if (requestsRef.current[computeKey(key)]) {
-          requestsRef.current[computeKey(key)].clearData()
-        }
+      if (key && typeof key === 'string') {
+        getRequest(key)?.clearData()
       } else throw new Error(KEY_IS_NOT_STRING_ERROR)
     },
-    [computeKey],
+    [getRequest],
   )
   const clearAllCachedData = useCallback(() => {
     Object.values(requestsRef.current).forEach(request => {
@@ -149,12 +148,12 @@ const DataLoaderProvider = ({
         return getRequest(key)?.getData()
       }
 
-      return Object.values(requestsRef.current).reduce(
+      return Object.values(requestsRef.current).reduce<CachedData>(
         (acc, request) => ({
           ...acc,
           [request.key]: request.getData(),
         }),
-        {} as CachedData,
+        {},
       )
     },
     [getRequest],
@@ -163,15 +162,15 @@ const DataLoaderProvider = ({
   const getReloads = useCallback(
     (key?: string) => {
       if (key) {
-        return getRequest(key) ? () => getRequest(key).load(true) : undefined
+        return getRequest(key) ? () => getRequest(key)?.load(true) : undefined
       }
 
-      return Object.entries(requestsRef.current).reduce(
+      return Object.entries(requestsRef.current).reduce<Reloads>(
         (acc, [requestKey, { load }]) => ({
           ...acc,
           [requestKey]: () => load(true),
         }),
-        {} as Reloads,
+        {},
       )
     },
     [getRequest],

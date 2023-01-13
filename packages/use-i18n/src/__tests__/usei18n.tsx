@@ -53,6 +53,16 @@ const wrapper =
     )
 
 describe('i18n hook', () => {
+  beforeEach(() => {
+    jest.spyOn(window, 'navigator', 'get').mockImplementation(
+      () =>
+        ({
+          language: 'en-US',
+          languages: ['en-US', 'en'],
+        } as unknown as Navigator),
+    )
+  })
+
   afterEach(() => {
     localStorage.clear()
     mockdate.reset()
@@ -70,7 +80,7 @@ describe('i18n hook', () => {
         ),
       })
     } catch (error) {
-      expect((error as Error)?.message).toBe(
+      expect((error as Error).message).toBe(
         'useTranslation must be used within a I18nProvider',
       )
     }
@@ -89,7 +99,7 @@ describe('i18n hook', () => {
         ),
       })
     } catch (error) {
-      expect((error as Error)?.message).toBe(
+      expect((error as Error).message).toBe(
         'useI18n must be used within a I18nProvider',
       )
     }
@@ -228,33 +238,6 @@ describe('i18n hook', () => {
   })
 
   it('should set current locale from navigator languages', async () => {
-    jest.spyOn(window, 'navigator', 'get').mockImplementation(
-      () =>
-        ({
-          language: 'en-US',
-          languages: ['en-US', 'en'],
-        } as unknown as Navigator),
-    )
-    const { result } = renderHook(() => useI18n(), {
-      wrapper: wrapper({
-        defaultLocale: 'fr',
-        supportedLocales: ['en', 'fr', 'es'],
-      }),
-    })
-
-    await waitFor(() => {
-      expect(result.current.currentLocale).toEqual('en')
-    })
-  })
-
-  it('should set current locale from navigator language', async () => {
-    jest.spyOn(window, 'navigator', 'get').mockImplementation(
-      () =>
-        ({
-          language: 'en',
-          languages: undefined,
-        } as unknown as Navigator),
-    )
     const { result } = renderHook(() => useI18n(), {
       wrapper: wrapper({
         defaultLocale: 'fr',

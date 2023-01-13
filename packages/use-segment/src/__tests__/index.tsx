@@ -74,7 +74,7 @@ describe('segment hook', () => {
     try {
       renderHook(() => useSegment())
     } catch (error) {
-      expect((error as Error)?.message).toBe(
+      expect((error as Error).message).toBe(
         'useSegment must be used within a SegmentProvider',
       )
     }

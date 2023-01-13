@@ -7,7 +7,7 @@ const localStorageMock = (() => {
 
   return {
     getItem(key: string): unknown {
-      return store?.[key] || null
+      return store[key] || null
     },
     setItem(key: string, value: unknown) {
       store[key] = value?.toString()
@@ -42,7 +42,10 @@ describe('@outdated-browser', () => {
     jest.restoreAllMocks()
     sessionStorage.clear()
     // Clear dom for next test
-    document.getElementsByTagName('html')[0].innerHTML = ''
+    const htmlDocument = document.getElementsByTagName('html')[0]
+    if (htmlDocument) {
+      htmlDocument.innerHTML = ''
+    }
     fakeUA = undefined
   })
 

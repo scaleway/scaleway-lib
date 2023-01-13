@@ -54,7 +54,7 @@ describe('GTM hook', () => {
     try {
       renderHook(() => useGTM())
     } catch (error) {
-      expect((error as Error)?.message).toBe(
+      expect((error as Error).message).toBe(
         'useGTM must be used within a GTMProvider',
       )
     }
