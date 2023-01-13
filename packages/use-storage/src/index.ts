@@ -18,9 +18,9 @@ declare global {
 
 const canUseDOM = !!(
   typeof window !== 'undefined' &&
-  typeof window?.document !== 'undefined' &&
-  typeof window?.localStorage !== 'undefined' &&
-  typeof window?.sessionStorage !== 'undefined'
+  typeof window.document !== 'undefined' &&
+  typeof window.localStorage !== 'undefined' &&
+  typeof window.sessionStorage !== 'undefined'
 )
 
 const subscribeStorage = (callback: () => void) => {
@@ -51,7 +51,7 @@ const useStorage = <T>(
   )
 
   const [localValue, setLocaleValue] = useState<string | null>(() =>
-    options?.initialValue ? JSON.stringify(options?.initialValue) : null,
+    options?.initialValue ? JSON.stringify(options.initialValue) : null,
   )
 
   const value = useSyncExternalStore(

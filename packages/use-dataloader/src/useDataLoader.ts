@@ -118,7 +118,7 @@ function useDataLoader<ResultType = unknown, ErrorType = Error>(
   }, [needLoad, request])
 
   useEffect(() => {
-    let interval: NodeJS.Timer
+    let interval: NodeJS.Timer | undefined
 
     if (pollingInterval) {
       interval = setInterval(() => {

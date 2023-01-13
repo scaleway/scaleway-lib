@@ -24,9 +24,11 @@ const SegmentContext = createContext<SegmentContextInterface | undefined>(
 )
 
 export function useSegment<T extends Events>(): SegmentContextInterface<T> {
-  // @ts-expect-error Here we force cast the generic onto the useContext because the context is a
-  // global variable and cannot be generic
-  const context = useContext<SegmentContextInterface<T>>(SegmentContext)
+  const context = useContext<SegmentContextInterface<T> | undefined>(
+    // @ts-expect-error Here we force cast the generic onto the useContext because the context is a
+    // global variable and cannot be generic
+    SegmentContext,
+  )
   if (context === undefined) {
     throw new Error('useSegment must be used within a SegmentProvider')
   }

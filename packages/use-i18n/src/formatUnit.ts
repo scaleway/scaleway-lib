@@ -14,7 +14,7 @@ const exponents = [
   { name: 'yotta', symbol: 'Y' },
 ]
 
-type Exponent = typeof exponents[number]
+type Exponent = (typeof exponents)[number]
 type ExponentName =
   | ''
   | 'kilo'
@@ -254,6 +254,6 @@ const formatUnit = (
   locale: string,
   number: number,
   { unit, ...options }: FormatUnitOptions,
-): string => supportedUnits?.[unit]?.(locale, number, options) ?? ''
+): string => supportedUnits[unit]?.(locale, number, options) ?? ''
 
 export default formatUnit

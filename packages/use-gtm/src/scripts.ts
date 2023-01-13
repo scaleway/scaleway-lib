@@ -4,7 +4,7 @@ export const DATALAYER_NAME = 'dataLayer'
 export const LOAD_ERROR_EVENT = 'gtm_loading_error'
 
 const flattenEnvironment = (environment?: GTMEnvironment) =>
-  environment && environment.auth
+  environment?.auth
     ? `&${Object.entries({ ...environment, cookies_win: 'x' })
         .filter(([, value]) => !!value)
         .map(([key, value]) => `gtm_${key}=${value}`, '')

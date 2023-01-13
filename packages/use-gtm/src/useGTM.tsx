@@ -16,7 +16,7 @@ declare global {
 }
 
 export const sendGTM = (data: DataLayerEvent) => {
-  window?.[DATALAYER_NAME]?.push(data)
+  window[DATALAYER_NAME]?.push(data)
 }
 
 const GTMContext = createContext<GTMContextInterface | undefined>(undefined)
@@ -56,9 +56,9 @@ function GTMProvider<T extends Events>({
         environment,
       )
 
-      document.head.insertBefore(dataLayerInit, document.head.childNodes[0])
-      document.head.insertBefore(script, document.head.childNodes[1])
-      document.body.insertBefore(noScript, document.body.childNodes[0])
+      document.head.prepend(script)
+      document.head.prepend(dataLayerInit)
+      document.body.prepend(noScript)
 
       if (onLoadError) document.addEventListener(LOAD_ERROR_EVENT, onLoadError)
 

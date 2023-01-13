@@ -826,8 +826,8 @@ const NAMES = [
 
 const randomName = (prefix = '', separator = '-'): string => {
   const name = `${
-    ADJECTIVES[Math.floor(Math.random() * ADJECTIVES.length)]
-  }${separator}${NAMES[Math.floor(Math.random() * NAMES.length)]}`
+    ADJECTIVES[Math.floor(Math.random() * ADJECTIVES.length)] ?? ''
+  }${separator}${NAMES[Math.floor(Math.random() * NAMES.length)] ?? ''}`
 
   /* Steve Wozniak is not boring. This is part of the docker names spec. */
   if (name === `boring${separator}wozniak`) {

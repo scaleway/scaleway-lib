@@ -41,6 +41,7 @@ function createFastMemoizeCache<V>(): Cache<string, V> {
   const store: Record<string, V> = {}
 
   return {
+    // @ts-expect-error waiting for https://github.com/formatjs/formatjs/pull/3964
     create() {
       return {
         get(key) {

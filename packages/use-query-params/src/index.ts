@@ -10,7 +10,7 @@ type Options = {
 type QueryParamValue = string | number | boolean | null | undefined
 
 type QueryParams = {
-  [key: string]: QueryParamValue | Array<QueryParamValue>
+  [key: string]: QueryParamValue | QueryParamValue[]
 }
 
 const useQueryParams = <T extends QueryParams>(): {

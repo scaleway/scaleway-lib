@@ -17,4 +17,4 @@ export const marshalQueryKey = (queryKey: KeyType) =>
           return subKey?.toString()
         })
         .join('.')
-    : queryKey?.toString()
+    : queryKey.toString()
