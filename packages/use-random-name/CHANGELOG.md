@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.3.1 (2023-01-13)
+
+
+### :package: Chore
+
+* **release:** publish ([9d6de7b](https://github.com/scaleway/scaleway-lib/commit/9d6de7b63065f53774cb64b0e5a46a868dc9933a))
+
+
+
 ## 0.3.0 (2023-01-06)
 
 
