@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.13.8 (2023-01-16)
+
+
+### :package: Chore
+
+* **release:** publish ([9ceabef](https://github.com/scaleway/scaleway-lib/commit/9ceabefec2875acd758518d475f0e60e05d731a0))
+
+
+### :bug: Bug Fixes
+
+* **deps:** update dependency eslint-plugin-jsx-a11y to v6.7.0 ([#1162](https://github.com/scaleway/scaleway-lib/issues/1162)) ([ea36599](https://github.com/scaleway/scaleway-lib/commit/ea3659925324bd580a8608f96a0ac7f8ec84a150))
+
+
+
 ## 3.13.7 (2023-01-11)
 
 
