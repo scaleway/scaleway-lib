@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.14.0](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@3.13.8...@scaleway/eslint-config-react@3.14.0) (2023-01-16)
+
+
+### :gear: Features
+
+* **eslint-config:** harden eslint config ([#1157](https://github.com/scaleway/scaleway-lib/issues/1157)) ([8087ac8](https://github.com/scaleway/scaleway-lib/commit/8087ac8cf8b06c23bbbf9f13d001468b61313cd6))
+
+
+
 ## 3.13.8 (2023-01-16)
 
 
