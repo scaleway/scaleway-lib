@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.0.1 (2023-01-17)
+
+
+### :package: Chore
+
+* **deps:** update @babel/core ([#1171](https://github.com/scaleway/scaleway-lib/issues/1171)) ([67ddfa1](https://github.com/scaleway/scaleway-lib/commit/67ddfa140fc64c18f3ec3838eb50f5584716a24f))
+* **release:** publish ([0cd4557](https://github.com/scaleway/scaleway-lib/commit/0cd45577abc2460552cf760d743300b4b3d1c3bb))
+
+
+
 ## 3.0.0 (2023-01-06)
 
 
