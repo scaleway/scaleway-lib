@@ -5,7 +5,7 @@
     "packages/*"
   ],
   "type": "module",
-  "packageManager": "pnpm@7.24.3",
+  "packageManager": "pnpm@7.25.0",
   "engines": {
     "node": ">=18.x",
     "pnpm": ">=7.x"
@@ -17,8 +17,8 @@
     "@babel/preset-env": "7.20.2",
     "@babel/preset-react": "7.18.6",
     "@babel/preset-typescript": "7.18.6",
-    "@commitlint/cli": "17.4.2",
-    "@commitlint/config-conventional": "17.4.2",
+    "@commitlint/cli": "17.4.1",
+    "@commitlint/config-conventional": "17.4.0",
     "@rollup/plugin-babel": "6.0.3",
     "@rollup/plugin-node-resolve": "15.0.1",
     "@scaleway/eslint-config-react": "workspace:*",
