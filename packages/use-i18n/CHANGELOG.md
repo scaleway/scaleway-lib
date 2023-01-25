@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 5.0.2 (2023-01-25)
+
+
+### :package: Chore
+
+* **deps:** bump international-types to 0.3.7 ([#1176](https://github.com/scaleway/scaleway-lib/issues/1176)) ([3a7902e](https://github.com/scaleway/scaleway-lib/commit/3a7902e49dff0c72a2c023f6d548637fa83fa695))
+* **release:** publish ([77af5ae](https://github.com/scaleway/scaleway-lib/commit/77af5ae4f229209825c587c643be0f43756cdebe))
+
+
+
 ## 5.0.1 (2023-01-13)
 
 
