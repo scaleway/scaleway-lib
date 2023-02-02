@@ -165,18 +165,18 @@ importers:
   packages/use-i18n:
     specifiers:
       '@formatjs/ecma402-abstract': 1.14.3
-      '@formatjs/fast-memoize': 1.2.7
+      '@formatjs/fast-memoize': 1.2.8
       date-fns: 2.29.3
       filesize: 10.0.6
       international-types: 0.3.8
-      intl-messageformat: 10.2.5
+      intl-messageformat: 10.2.6
     dependencies:
       '@formatjs/ecma402-abstract': 1.14.3
-      '@formatjs/fast-memoize': 1.2.7
+      '@formatjs/fast-memoize': 1.2.8
       date-fns: 2.29.3
       filesize: 10.0.6
       international-types: 0.3.8
-      intl-messageformat: 10.2.5
+      intl-messageformat: 10.2.6
 
   packages/use-media:
     specifiers: {}
@@ -1935,8 +1935,8 @@ packages:
       tslib: 2.4.1
     dev: false
 
-  /@formatjs/fast-memoize/1.2.7:
-    resolution: {integrity: sha512-hPeM5LXUUjtCKPybWOUAWpv8lpja8Xz+uKprFPJcg5F2Rd+/bf1E0UUsLRpaAgOReAf5HMRtoIgv/UcyPICrTQ==}
+  /@formatjs/fast-memoize/1.2.8:
+    resolution: {integrity: sha512-PemNUObyoIZcqdQ1ixTPugzAzhEj7j6AHIyrq/qR6x5BFTvOQeXHYsVZUqBEFduAIscUaDfou+U+xTqOiunJ3Q==}
     dependencies:
       tslib: 2.4.1
     dev: false
@@ -7753,11 +7753,11 @@ packages:
     resolution: {integrity: sha512-DeAFYOSA2wuUiSkFnAqrIM1UNVSAa8aP6hbXQOK4n74VuP/bCZPlZ7SEnCZ6+JBID/ekH1Ir5xTwsKA2Q++mKw==}
     dev: false
 
-  /intl-messageformat/10.2.5:
-    resolution: {integrity: sha512-AievYMN6WLLHwBeCTv4aRKG+w3ZNyZtkObwgsKk3Q7GNTq8zDRvDbJSBQkb2OPeVCcAKcIXvak9FF/bRNavoww==}
+  /intl-messageformat/10.2.6:
+    resolution: {integrity: sha512-qaTfGjXhdgDup5h3O8406GlQjEj0ky3q0cWWu/lL+H6vJA+sY2/8e4l4XrRPbi9vp38Pop0gO5dsrMO0DdEEBw==}
     dependencies:
       '@formatjs/ecma402-abstract': 1.14.3
-      '@formatjs/fast-memoize': 1.2.7
+      '@formatjs/fast-memoize': 1.2.8
       '@formatjs/icu-messageformat-parser': 2.1.14
       tslib: 2.4.1
     dev: false
