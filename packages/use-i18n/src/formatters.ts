@@ -38,17 +38,16 @@ type BaseFormatters = {
 }
 
 function createFastMemoizeCache<V>(): Cache<string, V> {
-  const store: Record<string, V> = {}
+  const store = new Map<string, V | undefined>()
 
   return {
-    // @ts-expect-error waiting for https://github.com/formatjs/formatjs/pull/3964
     create() {
       return {
         get(key) {
-          return store[key]
+          return store.get(key)
         },
         set(key, value) {
-          store[key] = value
+          return store.set(key, value)
         },
       }
     },
