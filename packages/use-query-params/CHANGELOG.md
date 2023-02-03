@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 4.0.3 (2023-02-03)
+
+
+### :package: Chore
+
+* **devdeps:** update dependency react-router-dom to v6.8.0 ([#1175](https://github.com/scaleway/scaleway-lib/issues/1175)) ([5b9e601](https://github.com/scaleway/scaleway-lib/commit/5b9e6010cbe097d48487aa64e1b6a3492440917a))
+* **release:** publish ([31ea49e](https://github.com/scaleway/scaleway-lib/commit/31ea49eb2cd246e631da901609025d7ff8a0bc5d))
+
+
+
 ## 4.0.2 (2023-01-13)
 
 
