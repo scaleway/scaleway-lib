@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.5](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@5.0.4...@scaleway/use-i18n@5.0.5) (2023-02-06)
+
+
+### :bug: Bug Fixes
+
+* **deps:** update formatjs monorepo ([#1185](https://github.com/scaleway/scaleway-lib/issues/1185)) ([76b6cc0](https://github.com/scaleway/scaleway-lib/commit/76b6cc00c39aee23a576f92487065eae5ad0cb6c))
+
+
+
 ## 5.0.4 (2023-02-03)
 
 
