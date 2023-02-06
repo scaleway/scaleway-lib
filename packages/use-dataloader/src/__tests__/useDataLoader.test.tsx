@@ -3,7 +3,7 @@ import { renderHook, waitFor } from '@testing-library/react'
 import type { ReactNode } from 'react'
 import DataLoaderProvider, { useDataLoaderContext } from '../DataLoaderProvider'
 import type { KeyType, UseDataLoaderConfig } from '../types'
-import useDataLoader from '../useDataLoader'
+import { useDataLoader } from '../useDataLoader'
 
 type UseDataLoaderHookProps = {
   config: UseDataLoaderConfig<unknown, unknown>

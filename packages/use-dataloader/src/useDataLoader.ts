@@ -9,7 +9,7 @@ import type {
   UseDataLoaderResult,
 } from './types'
 
-function useDataLoader<ResultType = unknown, ErrorType = Error>(
+export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
   key: KeyType,
   method: () => PromiseType<ResultType>,
   {
@@ -22,7 +22,7 @@ function useDataLoader<ResultType = unknown, ErrorType = Error>(
     initialData,
     dataLifetime,
   }: UseDataLoaderConfig<ResultType, ErrorType> = {},
-): UseDataLoaderResult<ResultType, ErrorType> {
+): UseDataLoaderResult<ResultType, ErrorType> => {
   const { getOrAddRequest, onError: onGlobalError } = useDataLoaderContext()
   const methodRef = useRef(method)
   const onSuccessRef = useRef(onSuccess)
@@ -155,5 +155,3 @@ function useDataLoader<ResultType = unknown, ErrorType = Error>(
     reload,
   }
 }
-
-export default useDataLoader
