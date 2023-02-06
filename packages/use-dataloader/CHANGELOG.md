@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 4.0.0 (2023-02-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* **paginated-dataloader:** BREAKING CHANGE: usePaginatedDataloader does no exist anymore 
+
+### :package: Chore
+
+* **release:** publish ([2ce37e3](https://github.com/scaleway/scaleway-lib/commit/2ce37e3b836aa8c957ef6fb31d96658f064c5b40))
+
+
+### :gear: Features
+
+* **paginated-dataloader:** BREAKING CHANGE: usePaginatedDataloader does no exist anymore  ([303cffc](https://github.com/scaleway/scaleway-lib/commit/303cffcd228c6eafcbd029bc08c958d8c17b1f41))
+
+
+
 ## 3.0.1 (2023-01-13)
 
 
