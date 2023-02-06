@@ -18,7 +18,7 @@ importers:
       '@scaleway/tsconfig': workspace:*
       '@testing-library/jest-dom': 5.16.5
       '@testing-library/react': 13.4.0
-      '@tsd/typescript': 4.9.4
+      '@tsd/typescript': 4.9.5
       '@types/jest': 29.4.0
       '@types/node': 18.11.19
       '@types/prop-types': 15.7.5
@@ -62,7 +62,7 @@ importers:
       '@scaleway/tsconfig': link:packages/tsconfig
       '@testing-library/jest-dom': 5.16.5
       '@testing-library/react': 13.4.0_biqbaboplfbrettd7655fr4n2y
-      '@tsd/typescript': 4.9.4
+      '@tsd/typescript': 4.9.5
       '@types/jest': 29.4.0
       '@types/node': 18.11.19
       '@types/prop-types': 15.7.5
@@ -76,7 +76,7 @@ importers:
       jest-environment-jsdom: 29.4.1
       jest-junit: 15.0.0
       jest-localstorage-mock: 2.4.26
-      jest-runner-tsd: 4.0.0_@tsd+typescript@4.9.4
+      jest-runner-tsd: 4.0.0_@tsd+typescript@4.9.5
       lerna: 6.4.1
       lint-staged: 13.1.0
       mockdate: 3.0.5
@@ -88,7 +88,7 @@ importers:
       rollup-plugin-dts: 5.1.1_yjrzni4zyr7xhg3xsvmmijxnvu
       rollup-plugin-preserve-shebangs: 0.2.0_rollup@3.11.0
       rollup-plugin-visualizer: 5.9.0_rollup@3.11.0
-      tsd-lite: 0.6.0_@tsd+typescript@4.9.4
+      tsd-lite: 0.6.0_@tsd+typescript@4.9.5
       typescript: 4.9.4
       wait-for-expect: 3.0.2
 
@@ -4590,8 +4590,8 @@ packages:
     resolution: {integrity: sha512-yOlFc+7UtL/89t2ZhjPvvB/DeAr3r+Dq58IgzsFkOAvVC6NMJXmCGjbptdXdR9qsX7pKcTL+s87FtYREi2dEEQ==}
     dev: true
 
-  /@tsd/typescript/4.9.4:
-    resolution: {integrity: sha512-70j1vy95LsMvciXWJLrQ9pQaaG1inJJ+gZ/dW/bPdzHUH1VTeSl3BBU6QxqFWh5IjPy6s7xHcUw45R71dw4J3w==}
+  /@tsd/typescript/4.9.5:
+    resolution: {integrity: sha512-+UgxOvJUl5rQdPFSSOOwhmSmpThm8DJ3HwHxAOq5XYe7CcmG1LcM2QeqWwILzUIT5tbeMqY8qABiCsRtIjk/2g==}
     dev: true
 
   /@types/aria-query/4.2.2:
@@ -8431,16 +8431,16 @@ packages:
       slash: 3.0.0
     dev: true
 
-  /jest-runner-tsd/4.0.0_@tsd+typescript@4.9.4:
+  /jest-runner-tsd/4.0.0_@tsd+typescript@4.9.5:
     resolution: {integrity: sha512-Xy9wrMT7J7cAypWZggoeEwflLYRO7/1A4cK59VxgdSJ94BJSxAiYdncO4IJkmTvi2Mz/G01ZpDu1yjW6c9EBcw==}
     peerDependencies:
       '@tsd/typescript': ^3.8.3 || ^4.0.7
     dependencies:
       '@babel/code-frame': 7.18.6
-      '@tsd/typescript': 4.9.4
+      '@tsd/typescript': 4.9.5
       chalk: 4.1.2
       create-jest-runner: 0.12.2
-      tsd-lite: 0.6.0_@tsd+typescript@4.9.4
+      tsd-lite: 0.6.0_@tsd+typescript@4.9.5
     transitivePeerDependencies:
       - '@jest/test-result'
       - jest-runner
@@ -11170,13 +11170,13 @@ packages:
       strip-bom: 3.0.0
     dev: true
 
-  /tsd-lite/0.6.0_@tsd+typescript@4.9.4:
+  /tsd-lite/0.6.0_@tsd+typescript@4.9.5:
     resolution: {integrity: sha512-jmFgQjXbiqbHn/zvShB/ND9NfnCFgiRED8F8xVVdQP58b/QylvxbWf01ofrwhvBpU0mTgN4jTs06laKpE9KEqA==}
     engines: {node: '>=12'}
     peerDependencies:
       '@tsd/typescript': ^3.8.3 || ^4.0.7
     dependencies:
-      '@tsd/typescript': 4.9.4
+      '@tsd/typescript': 4.9.5
     dev: true
 
   /tslib/1.14.1:
