@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.14.4 (2023-02-07)
+
+
+### :package: Chore
+
+* **devdeps:** update dependency typescript to v4.9.5 ([#1190](https://github.com/scaleway/scaleway-lib/issues/1190)) ([bbae918](https://github.com/scaleway/scaleway-lib/commit/bbae918d311f24492a99a7f45574774be25b2cb4))
+* **release:** publish ([ff76638](https://github.com/scaleway/scaleway-lib/commit/ff76638470e76f4a56c705772fa74a6102fb3888))
+
+
+
 ## 3.14.3 (2023-02-03)
 
 
