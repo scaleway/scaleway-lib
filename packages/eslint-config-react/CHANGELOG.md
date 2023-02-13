@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.15.0](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@3.14.6...@scaleway/eslint-config-react@3.15.0) (2023-02-13)
+
+
+### :gear: Features
+
+* **eslint-config:** exclude ts to no-extraneous-dependencies ([#1200](https://github.com/scaleway/scaleway-lib/issues/1200)) ([a9871a2](https://github.com/scaleway/scaleway-lib/commit/a9871a270ef2df1e07e9b1f4b0f21628cded18ac))
+
+
+
 ## 3.14.6 (2023-02-09)
 
 
