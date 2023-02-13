@@ -39,9 +39,9 @@ module.exports = {
           '**/__tests__/**', // jest pattern
           '**/__mocks__/**', // jest pattern
           '**/__stories__/**', // stories pattern
-          'test.{js,jsx}', // repos with a single test file
-          'test-*.{js,jsx}', // repos with multiple top-level test files
-          '**/*{.,_}{test,spec}.{js,jsx}', // tests where the extension or filename suffix denotes that it is a test
+          'test.{js,jsx,ts,tsx}', // repos with a single test file
+          'test-*.{js,jsx,ts,tsx}', // repos with multiple top-level test files
+          '**/*{.,_}{test,spec}.{js,jsx,ts,tsx}', // tests where the extension or filename suffix denotes that it is a test
           '**/jest.config.{js,ts,mjs,mts}', // jest config
           '**/jest.setup.{js,ts,mjs,mts}', // jest setup
           '**/webpack.config.{js,ts,mjs,mts}', // webpack config
