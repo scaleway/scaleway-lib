@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 5.0.6 (2023-02-17)
+
+
+### :package: Chore
+
+* **release:** publish ([9e09af9](https://github.com/scaleway/scaleway-lib/commit/9e09af9dd6e14e7ac6899b294028e14e54487032))
+
+
+### :bug: Bug Fixes
+
+* **use-i18n:** revert international-types to 0.3.7 ([#1201](https://github.com/scaleway/scaleway-lib/issues/1201)) ([9e7300a](https://github.com/scaleway/scaleway-lib/commit/9e7300a0aad14a96a9f36183d46376e53434847a))
+
+
+
 ## [5.0.5](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@5.0.4...@scaleway/use-i18n@5.0.5) (2023-02-06)
 
 
