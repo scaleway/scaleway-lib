@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.9.4 (2023-02-19)
+
+
+### :package: Chore
+
+* **release:** publish ([624e91d](https://github.com/scaleway/scaleway-lib/commit/624e91d6be46a3966292ec0b3bb688ca01e11738))
+
+
+### :bug: Bug Fixes
+
+* **deps:** update dependency @segment/analytics-next to v1.51.0 ([#1202](https://github.com/scaleway/scaleway-lib/issues/1202)) ([ad90ceb](https://github.com/scaleway/scaleway-lib/commit/ad90cebe7559772b5f0d00061eb4884cc5cfd222))
+
+
+
 ## [0.9.3](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-segment@0.9.2...@scaleway/use-segment@0.9.3) (2023-01-16)
 
 
