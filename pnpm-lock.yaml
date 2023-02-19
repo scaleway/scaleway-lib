@@ -168,14 +168,14 @@ importers:
       '@formatjs/fast-memoize': 1.2.8
       date-fns: 2.29.3
       filesize: 10.0.6
-      international-types: 0.3.7
+      international-types: 0.3.8
       intl-messageformat: 10.3.0
     dependencies:
       '@formatjs/ecma402-abstract': 1.14.3
       '@formatjs/fast-memoize': 1.2.8
       date-fns: 2.29.3
       filesize: 10.0.6
-      international-types: 0.3.7
+      international-types: 0.3.8
       intl-messageformat: 10.3.0
 
   packages/use-media:
@@ -7754,8 +7754,8 @@ packages:
       side-channel: 1.0.4
     dev: false
 
-  /international-types/0.3.7:
-    resolution: {integrity: sha512-A/pzi0upT3n1AJQSyIpp0ks4Dx1rPLzuI5qwSXD5d4rdEFbb3R1bzb1OrEgzJb57THcol4aRXu34Mj0t/XvQZA==}
+  /international-types/0.3.8:
+    resolution: {integrity: sha512-DeAFYOSA2wuUiSkFnAqrIM1UNVSAa8aP6hbXQOK4n74VuP/bCZPlZ7SEnCZ6+JBID/ekH1Ir5xTwsKA2Q++mKw==}
     dev: false
 
   /intl-messageformat/10.3.0:

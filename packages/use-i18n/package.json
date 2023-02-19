@@ -32,7 +32,7 @@
     "@formatjs/fast-memoize": "1.2.8",
     "date-fns": "2.29.3",
     "filesize": "10.0.6",
-    "international-types": "0.3.7",
+    "international-types": "0.3.8",
     "intl-messageformat": "10.3.0"
   },
   "peerDependencies": {
