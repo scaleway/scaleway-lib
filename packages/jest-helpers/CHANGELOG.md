@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.0.2 (2023-02-19)
+
+
+### :package: Chore
+
+* **release:** publish ([9039a24](https://github.com/scaleway/scaleway-lib/commit/9039a24045cd8cf95eb17474e6f6b551320fedb2))
+
+
+### :bug: Bug Fixes
+
+* **deps:** update dependency @emotion/react to v11.10.6 ([#1204](https://github.com/scaleway/scaleway-lib/issues/1204)) ([54b0d50](https://github.com/scaleway/scaleway-lib/commit/54b0d5080b18376d9be9ba3d8d8b8e2d5a22f733))
+
+
+
 ## 3.0.1 (2023-01-17)
 
 
