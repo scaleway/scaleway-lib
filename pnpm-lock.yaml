@@ -204,9 +204,9 @@ importers:
 
   packages/use-segment:
     specifiers:
-      '@segment/analytics-next': 1.49.2
+      '@segment/analytics-next': 1.51.0
     dependencies:
-      '@segment/analytics-next': 1.49.2
+      '@segment/analytics-next': 1.51.0
 
   packages/use-storage:
     specifiers: {}
@@ -3413,19 +3413,19 @@ packages:
       rollup: 3.13.0
     dev: true
 
-  /@segment/analytics-core/1.2.1:
-    resolution: {integrity: sha512-FaKE7uIBXsclO4GcA7cEgb4iyQ23aFHRcxqLpxaCGeB5nqIdVQHigmGgL3hAjCZeBqtojLEV6as27ozXHQXCkg==}
+  /@segment/analytics-core/1.2.2:
+    resolution: {integrity: sha512-zVWSDcyh7Rp32xL5v2fuEk2yZxxy+JA93vF1L3EF9XAYLSra/uEHJEswOWieXSdDHVRHes7APORp136usFE/tw==}
     dependencies:
       '@lukeed/uuid': 2.0.0
       dset: 3.1.2
       tslib: 2.4.1
     dev: false
 
-  /@segment/analytics-next/1.49.2:
-    resolution: {integrity: sha512-i1Z5OfapDQQkielF9Cz9q8PeLvRTgBMPxHn5SoIx3SZJEzWTzFkvrmg/v98P8TcyjzbSa6hsVySm4E0tVdj8mA==}
+  /@segment/analytics-next/1.51.0:
+    resolution: {integrity: sha512-aTMS9vSsi/tMXOr+RSM/VHt3e5txCHhyM/C5aPtq9HEFUw4EAODEAYXaTgWgzoWNYsTiOlTpw7410OG7T3CCZg==}
     dependencies:
       '@lukeed/uuid': 2.0.0
-      '@segment/analytics-core': 1.2.1
+      '@segment/analytics-core': 1.2.2
       '@segment/analytics.js-video-plugins': 0.2.1
       '@segment/facade': 3.4.9
       '@segment/tsub': 1.0.1
