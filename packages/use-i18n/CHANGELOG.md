@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 5.0.7 (2023-02-20)
+
+
+### :package: Chore
+
+* **release:** publish ([b76e45d](https://github.com/scaleway/scaleway-lib/commit/b76e45dff6602c566e69343c1ddddfc304d20f92))
+
+
+### :bug: Bug Fixes
+
+* **deps:** update formatjs monorepo ([#1208](https://github.com/scaleway/scaleway-lib/issues/1208)) ([390bc75](https://github.com/scaleway/scaleway-lib/commit/390bc75dfa2833b30c7ac85d76e0832b8aead5b6))
+
+
+
 ## 5.0.6 (2023-02-17)
 
 
