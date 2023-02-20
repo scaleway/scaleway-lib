@@ -169,14 +169,14 @@ importers:
       date-fns: 2.29.3
       filesize: 10.0.6
       international-types: 0.3.7
-      intl-messageformat: 10.3.0
+      intl-messageformat: 10.3.1
     dependencies:
       '@formatjs/ecma402-abstract': 1.14.3
       '@formatjs/fast-memoize': 1.2.8
       date-fns: 2.29.3
       filesize: 10.0.6
       international-types: 0.3.7
-      intl-messageformat: 10.3.0
+      intl-messageformat: 10.3.1
 
   packages/use-media:
     specifiers: {}
@@ -213,11 +213,11 @@ importers:
 
   packages/validate-icu-locales:
     specifiers:
-      '@formatjs/icu-messageformat-parser': 2.2.0
+      '@formatjs/icu-messageformat-parser': 2.3.0
       globby: 13.1.3
       module-from-string: 3.3.0
     dependencies:
-      '@formatjs/icu-messageformat-parser': 2.2.0
+      '@formatjs/icu-messageformat-parser': 2.3.0
       globby: 13.1.3
       module-from-string: 3.3.0
 
@@ -1944,8 +1944,8 @@ packages:
       tslib: 2.4.1
     dev: false
 
-  /@formatjs/icu-messageformat-parser/2.2.0:
-    resolution: {integrity: sha512-NT/jKI9nvqNIsosTm+Cxv3BHutB1RIDFa4rAa2b664Od4sBnXtK7afXvAqNa3XDFxljKTij9Cp+kRMJbXozUww==}
+  /@formatjs/icu-messageformat-parser/2.3.0:
+    resolution: {integrity: sha512-xqtlqYAbfJDF4b6e4O828LBNOWXrFcuYadqAbYORlDRwhyJ2bH+xpUBPldZbzRGUN2mxlZ4Ykhm7jvERtmI8NQ==}
     dependencies:
       '@formatjs/ecma402-abstract': 1.14.3
       '@formatjs/icu-skeleton-parser': 1.3.18
@@ -7773,12 +7773,12 @@ packages:
     resolution: {integrity: sha512-A/pzi0upT3n1AJQSyIpp0ks4Dx1rPLzuI5qwSXD5d4rdEFbb3R1bzb1OrEgzJb57THcol4aRXu34Mj0t/XvQZA==}
     dev: false
 
-  /intl-messageformat/10.3.0:
-    resolution: {integrity: sha512-FKeBZKH9T2Ue4RUXCuwY/hEaRHU8cgICevlGKog0qSBuz/amtRKNBLetBLmRxiHeEkF7JBBckC+56GIwshlRwA==}
+  /intl-messageformat/10.3.1:
+    resolution: {integrity: sha512-mqHc6arhbogrdImIsEscdjWnJcg2bvg3MiyGXDsTSGmPbbM2KtRUe7oNgDUbkM3HMn4KbyOct2JyJScmwRgGSQ==}
     dependencies:
       '@formatjs/ecma402-abstract': 1.14.3
       '@formatjs/fast-memoize': 1.2.8
-      '@formatjs/icu-messageformat-parser': 2.2.0
+      '@formatjs/icu-messageformat-parser': 2.3.0
       tslib: 2.4.1
     dev: false
 
