@@ -48,7 +48,7 @@
     "react-dom": "18.2.0",
     "read-pkg": "7.1.0",
     "rollup": "3.13.0",
-    "rollup-plugin-dts": "5.1.1",
+    "rollup-plugin-dts": "5.2.0",
     "rollup-plugin-preserve-shebangs": "0.2.0",
     "rollup-plugin-visualizer": "5.9.0",
     "tsd-lite": "0.6.0",
