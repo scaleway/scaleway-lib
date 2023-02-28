@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.15.2 (2023-02-28)
+
+
+### :package: Chore
+
+* **devdeps:** update depvdeps ([#1209](https://github.com/scaleway/scaleway-lib/issues/1209)) ([f23725b](https://github.com/scaleway/scaleway-lib/commit/f23725b34ee2cc3269d408c16dd574f7947851f1))
+* **release:** publish ([2c2a356](https://github.com/scaleway/scaleway-lib/commit/2c2a356753502509c8c3afbe245f71ab01744967))
+
+
+
 ## 3.15.1 (2023-02-20)
 
 
