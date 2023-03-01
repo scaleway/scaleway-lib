@@ -23,7 +23,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@segment/analytics-next": "1.51.0"
+    "@segment/analytics-next": "1.51.1"
   },
   "peerDependencies": {
     "react": "18.x || 18"
