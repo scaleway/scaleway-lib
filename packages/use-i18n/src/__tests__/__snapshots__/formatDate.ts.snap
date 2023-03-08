@@ -12,11 +12,11 @@ exports[`formatDate should work with custom format and locale de 2`] = `"Donners
 
 exports[`formatDate should work with custom format and locale de 3`] = `"Donnerstag, 13. F 20 n. Chr., 15:28:00 Koordinierte Weltzeit"`;
 
-exports[`formatDate should work with custom format and locale en 1`] = `"Thursday, F 13, 20 AD, 04:28:00 PM Coordinated Universal Time"`;
+exports[`formatDate should work with custom format and locale en 1`] = `"Thursday, F 13, 20 AD, 04:28:00 PM Coordinated Universal Time"`;
 
-exports[`formatDate should work with custom format and locale en 2`] = `"Thursday, F 13, 20 AD, 03:28:00 PM Coordinated Universal Time"`;
+exports[`formatDate should work with custom format and locale en 2`] = `"Thursday, F 13, 20 AD, 03:28:00 PM Coordinated Universal Time"`;
 
-exports[`formatDate should work with custom format and locale en 3`] = `"Thursday, F 13, 20 AD, 03:28:00 PM Coordinated Universal Time"`;
+exports[`formatDate should work with custom format and locale en 3`] = `"Thursday, F 13, 20 AD, 03:28:00 PM Coordinated Universal Time"`;
 
 exports[`formatDate should work with custom format and locale es 1`] = `"jueves, 13 F 20 d. C., 16:28:00 (tiempo universal coordinado)"`;
 
@@ -38,7 +38,7 @@ exports[`formatDate should work with custom format and locale ro 3`] = `"joi, 13
 
 exports[`formatDate should work with format "hour", for date = "2020-02-13T15:28:00.000Z" and locale "de" 1`] = `"13. Februar 2020 um 15:28"`;
 
-exports[`formatDate should work with format "hour", for date = "2020-02-13T15:28:00.000Z" and locale "en" 1`] = `"February 13, 2020 at 3:28 PM"`;
+exports[`formatDate should work with format "hour", for date = "2020-02-13T15:28:00.000Z" and locale "en" 1`] = `"February 13, 2020 at 3:28 PM"`;
 
 exports[`formatDate should work with format "hour", for date = "2020-02-13T15:28:00.000Z" and locale "es" 1`] = `"13 de febrero de 2020, 15:28"`;
 
@@ -48,7 +48,7 @@ exports[`formatDate should work with format "hour", for date = "2020-02-13T15:28
 
 exports[`formatDate should work with format "hour", for date = "1581607680000" and locale "de" 1`] = `"13. Februar 2020 um 15:28"`;
 
-exports[`formatDate should work with format "hour", for date = "1581607680000" and locale "en" 1`] = `"February 13, 2020 at 3:28 PM"`;
+exports[`formatDate should work with format "hour", for date = "1581607680000" and locale "en" 1`] = `"February 13, 2020 at 3:28 PM"`;
 
 exports[`formatDate should work with format "hour", for date = "1581607680000" and locale "es" 1`] = `"13 de febrero de 2020, 15:28"`;
 
@@ -58,7 +58,7 @@ exports[`formatDate should work with format "hour", for date = "1581607680000" a
 
 exports[`formatDate should work with format "hour", for date = "new Date(2020, 1, 13, 16, 28)" and locale "de" 1`] = `"13. Februar 2020 um 16:28"`;
 
-exports[`formatDate should work with format "hour", for date = "new Date(2020, 1, 13, 16, 28)" and locale "en" 1`] = `"February 13, 2020 at 4:28 PM"`;
+exports[`formatDate should work with format "hour", for date = "new Date(2020, 1, 13, 16, 28)" and locale "en" 1`] = `"February 13, 2020 at 4:28 PM"`;
 
 exports[`formatDate should work with format "hour", for date = "new Date(2020, 1, 13, 16, 28)" and locale "es" 1`] = `"13 de febrero de 2020, 16:28"`;
 
@@ -68,7 +68,7 @@ exports[`formatDate should work with format "hour", for date = "new Date(2020, 1
 
 exports[`formatDate should work with format "hourOnly", for date = "2020-02-13T15:28:00.000Z" and locale "de" 1`] = `"15:28"`;
 
-exports[`formatDate should work with format "hourOnly", for date = "2020-02-13T15:28:00.000Z" and locale "en" 1`] = `"3:28 PM"`;
+exports[`formatDate should work with format "hourOnly", for date = "2020-02-13T15:28:00.000Z" and locale "en" 1`] = `"3:28 PM"`;
 
 exports[`formatDate should work with format "hourOnly", for date = "2020-02-13T15:28:00.000Z" and locale "es" 1`] = `"15:28"`;
 
@@ -78,7 +78,7 @@ exports[`formatDate should work with format "hourOnly", for date = "2020-02-13T1
 
 exports[`formatDate should work with format "hourOnly", for date = "1581607680000" and locale "de" 1`] = `"15:28"`;
 
-exports[`formatDate should work with format "hourOnly", for date = "1581607680000" and locale "en" 1`] = `"3:28 PM"`;
+exports[`formatDate should work with format "hourOnly", for date = "1581607680000" and locale "en" 1`] = `"3:28 PM"`;
 
 exports[`formatDate should work with format "hourOnly", for date = "1581607680000" and locale "es" 1`] = `"15:28"`;
 
@@ -88,7 +88,7 @@ exports[`formatDate should work with format "hourOnly", for date = "158160768000
 
 exports[`formatDate should work with format "hourOnly", for date = "new Date(2020, 1, 13, 16, 28)" and locale "de" 1`] = `"16:28"`;
 
-exports[`formatDate should work with format "hourOnly", for date = "new Date(2020, 1, 13, 16, 28)" and locale "en" 1`] = `"4:28 PM"`;
+exports[`formatDate should work with format "hourOnly", for date = "new Date(2020, 1, 13, 16, 28)" and locale "en" 1`] = `"4:28 PM"`;
 
 exports[`formatDate should work with format "hourOnly", for date = "new Date(2020, 1, 13, 16, 28)" and locale "es" 1`] = `"16:28"`;
 
@@ -158,7 +158,7 @@ exports[`formatDate should work with format "numeric", for date = "new Date(2020
 
 exports[`formatDate should work with format "numericHour", for date = "2020-02-13T15:28:00.000Z" and locale "de" 1`] = `"2020-02-13 15:28"`;
 
-exports[`formatDate should work with format "numericHour", for date = "2020-02-13T15:28:00.000Z" and locale "en" 1`] = `"2020-02-13 3:28 PM"`;
+exports[`formatDate should work with format "numericHour", for date = "2020-02-13T15:28:00.000Z" and locale "en" 1`] = `"2020-02-13 3:28 PM"`;
 
 exports[`formatDate should work with format "numericHour", for date = "2020-02-13T15:28:00.000Z" and locale "es" 1`] = `"2020-02-13 15:28"`;
 
@@ -168,7 +168,7 @@ exports[`formatDate should work with format "numericHour", for date = "2020-02-1
 
 exports[`formatDate should work with format "numericHour", for date = "1581607680000" and locale "de" 1`] = `"2020-02-13 15:28"`;
 
-exports[`formatDate should work with format "numericHour", for date = "1581607680000" and locale "en" 1`] = `"2020-02-13 3:28 PM"`;
+exports[`formatDate should work with format "numericHour", for date = "1581607680000" and locale "en" 1`] = `"2020-02-13 3:28 PM"`;
 
 exports[`formatDate should work with format "numericHour", for date = "1581607680000" and locale "es" 1`] = `"2020-02-13 15:28"`;
 
@@ -178,7 +178,7 @@ exports[`formatDate should work with format "numericHour", for date = "158160768
 
 exports[`formatDate should work with format "numericHour", for date = "new Date(2020, 1, 13, 16, 28)" and locale "de" 1`] = `"2020-02-13 16:28"`;
 
-exports[`formatDate should work with format "numericHour", for date = "new Date(2020, 1, 13, 16, 28)" and locale "en" 1`] = `"2020-02-13 4:28 PM"`;
+exports[`formatDate should work with format "numericHour", for date = "new Date(2020, 1, 13, 16, 28)" and locale "en" 1`] = `"2020-02-13 4:28 PM"`;
 
 exports[`formatDate should work with format "numericHour", for date = "new Date(2020, 1, 13, 16, 28)" and locale "es" 1`] = `"2020-02-13 16:28"`;
 
