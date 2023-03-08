@@ -92,6 +92,12 @@ importers:
       typescript: 4.9.5
       wait-for-expect: 3.0.2
 
+  packages/changesets-renovate:
+    specifiers:
+      '@actions/exec': ^1.1.1
+    dependencies:
+      '@actions/exec': 1.1.1
+
   packages/eslint-config-react:
     specifiers:
       '@emotion/eslint-plugin': 11.10.0
@@ -220,6 +226,16 @@ importers:
       module-from-string: 3.3.0
 
 packages:
+
+  /@actions/exec/1.1.1:
+    resolution: {integrity: sha512-+sCcHHbVdk93a0XT19ECtO/gIXoxvdsgQLzb2fE2/5sIZmWQuluYyjPQtrtTHdU1YzTZ7bAPN4sITq2xi1679w==}
+    dependencies:
+      '@actions/io': 1.1.2
+    dev: false
+
+  /@actions/io/1.1.2:
+    resolution: {integrity: sha512-d+RwPlMp+2qmBfeLYPLXuSRykDIFEwdTA0MMxzS9kh4kvP1ftrc/9fzy6pX6qAjthdXruHQ6/6kjT/DNo5ALuw==}
+    dev: false
 
   /@adobe/css-tools/4.0.1:
     resolution: {integrity: sha512-+u76oB43nOHrF4DDWRLWDCtci7f3QJoEBigemIdIeTi1ODqjx6Tad9NCVnPRwewWlKkVab5PlK8DCtPTyX7S8g==}
