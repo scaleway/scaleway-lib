@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { exec, getExecOutput } from '@actions/exec'
 import fs from 'node:fs/promises'
 

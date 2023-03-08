@@ -12,7 +12,7 @@
     "node": ">=14.x"
   },
   "bin": {
-    "changesets-renovate": "bin/changesets-renovate.mjs"
+    "changesets-renovate": "dist/index.js"
   },
   "sideEffects": false,
   "publishConfig": {
