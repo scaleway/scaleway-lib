@@ -1,0 +1,30 @@
+{
+  "name": "@scaleway/changesets-renovate",
+  "version": "1.1.0",
+  "description": "Automatically create changesets for Renovate",
+  "keywords": [
+    "changesets",
+    "renovate",
+    "sync"
+  ],
+  "type": "module",
+  "engines": {
+    "node": ">=14.x"
+  },
+  "bin": {
+    "changesets-renovate": "dist/index.js"
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scaleway/scaleway-lib",
+    "directory": "packages/changesets-renovate"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "simple-git": "^3.17.0"
+  }
+}

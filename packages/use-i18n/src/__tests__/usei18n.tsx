@@ -573,7 +573,7 @@ describe('i18n hook', () => {
 
     expect(
       result.current.formatDate(new Date(2020, 1, 13, 16, 28), 'numericHour'),
-    ).toEqual('2020-02-13 4:28 PM')
+    ).toEqual('2020-02-13 4:28 PM')
     act(() => {
       result.current.switchLocale('fr')
     })
