@@ -16,4 +16,4 @@ This package is a very simple CLI:
 changesets-renovate
 ```
 
-It's heavily inspired by this GitHub Action from Backstage: https://github.com/backstage/backstage/blob/master/.github/workflows/sync_renovate-changesets.yml
+It's inspired by this GitHub Action from Backstage: https://github.com/backstage/backstage/blob/master/.github/workflows/sync_renovate-changesets.yml
