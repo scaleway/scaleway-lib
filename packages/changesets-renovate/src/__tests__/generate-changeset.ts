@@ -6,7 +6,7 @@ jest.mock('simple-git')
 jest.mock('node:fs/promises')
 
 beforeEach(() => {
-  jest.spyOn(console, 'log').mockImplementation(() => {})
+  jest.spyOn(console, 'log')
 })
 
 afterEach(() => {
@@ -15,6 +15,7 @@ afterEach(() => {
 
 describe('generate changeset file', () => {
   it('should skip if not in renovate branch', async () => {
+    // @ts-expect-error we mock at the top
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     simpleGit.mockReturnValue({
       branch: () => ({
@@ -28,6 +29,7 @@ describe('generate changeset file', () => {
   })
 
   it('should skip if .changeset is already modified', async () => {
+    // @ts-expect-error we mock at the top
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     simpleGit.mockReturnValue({
       branch: () => ({
@@ -50,6 +52,7 @@ describe('generate changeset file', () => {
   })
 
   it('should skip no package.json files have been modified', async () => {
+    // @ts-expect-error we mock at the top
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     simpleGit.mockReturnValue({
       branch: () => ({
@@ -76,6 +79,7 @@ describe('generate changeset file', () => {
     const commit = jest.fn()
     const push = jest.fn()
 
+    // @ts-expect-error we mock at the top
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     simpleGit.mockReturnValue({
       branch: () => ({
