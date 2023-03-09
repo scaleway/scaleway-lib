@@ -67,6 +67,7 @@
     "test:watch": "pnpm run test --watch",
     "test:coverage": "pnpm run test --coverage",
     "test:types": "jest -c jest.config.tsd.mjs",
+    "release": "pnpm build && pnpm changeset publish",
     "prepare": "husky install"
   },
   "pnpm": {
