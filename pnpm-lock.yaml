@@ -94,7 +94,7 @@ importers:
 
   packages/changesets-renovate:
     specifiers:
-      simple-git: ^3.17.0
+      simple-git: 3.17.0
     dependencies:
       simple-git: 3.17.0
 
