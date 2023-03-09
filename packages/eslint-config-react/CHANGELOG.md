@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.15.5](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@3.15.4...@scaleway/eslint-config-react@3.15.5) (2023-03-09)
+
+
+### :package: Chore
+
+* update deps ([#1218](https://github.com/scaleway/scaleway-lib/issues/1218)) ([100a060](https://github.com/scaleway/scaleway-lib/commit/100a0602c0ffee4a4265a93b64d943b240e3339a))
+
+
+
 ## 3.15.4 (2023-03-09)
 
 
