@@ -56,6 +56,8 @@ async function getBumps(files: string[]): Promise<Map<string, string>> {
 export async function run() {
   const branch = await simpleGit().branch(['--show-current'])
 
+  console.log('Detected branch:', branch)
+
   if (!branch.current.startsWith('renovate/')) {
     console.log('Not a renovate branch, skipping')
 
@@ -64,6 +66,8 @@ export async function run() {
 
   const diffOutput = await simpleGit().diffSummary(['--name-only', 'HEAD~1'])
   const diffFiles = diffOutput.files.map(file => file.file)
+
+  console.log('Found changed files:', diffFiles)
 
   if (diffFiles.find(f => f.startsWith('.changeset'))) {
     console.log('Changeset already exists, skipping')
