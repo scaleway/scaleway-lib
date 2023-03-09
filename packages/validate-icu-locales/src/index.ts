@@ -8,7 +8,6 @@ import { importFromString } from 'module-from-string'
 
 const args = process.argv.slice(2)
 const pattern = args[0]
-const { error, table } = console
 
 type Locales = Record<string, string>
 type ErrorICU = {
@@ -65,7 +64,7 @@ const readFiles = async (files: string[]): Promise<ErrorsICU> => {
         const ICUErrors = findICUErrors(locales, file)
         errors.push(...ICUErrors)
       } catch (err) {
-        error({ file, err })
+        console.error({ file, err })
       }
     }
 
@@ -85,13 +84,13 @@ const readFiles = async (files: string[]): Promise<ErrorsICU> => {
             const ICUErrors = findICUErrors(locales, file)
             errors.push(...ICUErrors)
           } else {
-            error('export default from: ', file, ' is not an object')
+            console.error('export default from: ', file, ' is not an object')
           }
         } else {
-          error(file, ' is not an object')
+          console.error(file, ' is not an object')
         }
       } catch (err) {
-        error({ err, file })
+        console.error({ err, file })
       }
     }
   }
@@ -100,23 +99,23 @@ const readFiles = async (files: string[]): Promise<ErrorsICU> => {
 }
 
 if (!pattern) {
-  error('Missing pattern: validate-icu-locales [PATTERN]')
+  console.error('Missing pattern: validate-icu-locales [PATTERN]')
   process.exit(1)
 }
 
 const files = await globby(pattern)
 
 if (files.length === 0) {
-  error('There is no files matching this pattern', pattern)
+  console.error('There is no files matching this pattern', pattern)
   process.exit(1)
 }
 
-table(files)
+console.table(files)
 
 const errors = await readFiles(files)
 
 if (errors.length > 0) {
-  error({
+  console.error({
     errors,
   })
   process.exit(1)

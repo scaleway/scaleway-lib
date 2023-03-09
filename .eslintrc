@@ -16,6 +16,16 @@
         "project": ["tsconfig.json"]
       },
       "extends": ["@scaleway/react/typescript"]
+    },
+    {
+      "files": ["packages/changesets-renovate/**/*.ts{x,}", "packages/validate-icu-locales/**/*.ts{x,}", "**/__tests__/**/*.ts{x,}"],
+      "parserOptions": {
+        "project": ["tsconfig.json"]
+      },
+      "extends": ["@scaleway/react/typescript"],
+      "rules": {
+        "no-console": "off"
+      }
     }
   ]
 }
