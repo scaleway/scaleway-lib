@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 5.1.0 (2023-03-09)
+
+
+### :package: Chore
+
+* **release:** publish ([cfa941f](https://github.com/scaleway/scaleway-lib/commit/cfa941f76446fe539b839f6d19cb8b5dcb6ff81a))
+
+
+### :gear: Features
+
+* introduce new @scaleway/changesets-renovate package ([#1216](https://github.com/scaleway/scaleway-lib/issues/1216)) ([db88cd0](https://github.com/scaleway/scaleway-lib/commit/db88cd04970fa234a1fb83b5f6f18f2dbbb3c635))
+
+
+
 ## 5.0.7 (2023-02-20)
 
 
