@@ -118,4 +118,37 @@ describe('generate changeset file', () => {
     })
     expect(push).toHaveBeenCalledWith(['--force'])
   })
+
+  it('should ignore workspace package.json', async () => {
+    const file = 'package.json'
+
+    // @ts-expect-error we mock at the top
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    simpleGit.mockReturnValue({
+      branch: () => ({
+        current: 'renovate/test',
+      }),
+      diffSummary: () => ({
+        files: [
+          {
+            file,
+          },
+        ],
+      }),
+      show: () => `
++ "package": "version"
++ "package2": "version2"
+`,
+    })
+
+    fs.readFile = jest
+      .fn()
+      .mockResolvedValue(`{"name":"packageName","workspaces":[]}`)
+    fs.writeFile = jest.fn()
+
+    await run()
+
+    expect(fs.readFile).toHaveBeenCalledWith(file, 'utf8')
+    expect(console.log).toHaveBeenCalledWith('No packages modified, skipping')
+  })
 })
