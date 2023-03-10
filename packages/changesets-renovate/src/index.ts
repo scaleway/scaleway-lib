@@ -91,7 +91,8 @@ export async function run() {
   await createChangeset(fileName, packageBumps, packageNames)
   await simpleGit().add(fileName)
   await simpleGit().commit([], undefined, {
-    '-C': 'HEAD',
+    '-C': null,
+    HEAD: null,
     '--amend': null,
     '--no-edit': null,
   })
