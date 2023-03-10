@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.1.4
+
+### Patch Changes
+
+- [#1230](https://github.com/scaleway/scaleway-lib/pull/1230) [`32ffb7c`](https://github.com/scaleway/scaleway-lib/commit/32ffb7c1dad41251a881f5eb58ca29d180c8a5d5) Thanks [@QuiiBz](https://github.com/QuiiBz)! - Fix commit command
+
 ## 1.1.3
 
 ### Patch Changes
