@@ -4,15 +4,22 @@ import fs from 'node:fs/promises'
 import { simpleGit } from 'simple-git'
 
 async function getPackagesNames(files: string[]): Promise<string[]> {
+  const packages: string[] = []
+
   const promises = files.map(async file => {
     const data = JSON.parse(await fs.readFile(file, 'utf8')) as {
       name: string
+      workspaces?: string[]
     }
 
-    return data.name
+    if (!data.workspaces) {
+      packages.push(data.name)
+    }
   })
 
-  return Promise.all(promises)
+  await Promise.all(promises)
+
+  return packages
 }
 
 async function createChangeset(
@@ -84,6 +91,13 @@ export async function run() {
   }
 
   const packageNames = await getPackagesNames(files)
+
+  if (packageNames.length === 0) {
+    console.log('No packages modified, skipping')
+
+    return
+  }
+
   const shortHash = await simpleGit().revparse(['--short', 'HEAD'])
   const fileName = `.changeset/renovate-${shortHash.trim()}.md`
   const packageBumps = await getBumps(files)
