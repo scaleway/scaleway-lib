@@ -54,7 +54,7 @@ async function getBumps(files: string[]): Promise<Map<string, string>> {
 }
 
 export async function run() {
-  const branch = await simpleGit().branch(['--show-current'])
+  const branch = await simpleGit().branch()
 
   console.log('Detected branch:', branch)
 
