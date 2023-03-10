@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.2.0
+
+### Minor Changes
+
+- [#1232](https://github.com/scaleway/scaleway-lib/pull/1232) [`00df173`](https://github.com/scaleway/scaleway-lib/commit/00df173821b759c5fd34b582142bafa8b86d276d) Thanks [@QuiiBz](https://github.com/QuiiBz)! - Ignore changes in workspace's root package.json
+
 ## 1.1.4
 
 ### Patch Changes
