@@ -111,7 +111,8 @@ describe('generate changeset file', () => {
     expect(fs.writeFile).toMatchSnapshot()
     expect(add).toHaveBeenCalledWith(fileName)
     expect(commit).toHaveBeenCalledWith([], undefined, {
-      '-C': 'HEAD',
+      '-C': null,
+      HEAD: null,
       '--amend': null,
       '--no-edit': null,
     })
