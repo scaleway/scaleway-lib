@@ -5,7 +5,7 @@
     "packages/*"
   ],
   "type": "module",
-  "packageManager": "pnpm@7.28.0",
+  "packageManager": "pnpm@7.29.1",
   "engines": {
     "node": ">=18.x",
     "pnpm": ">=7.x"
@@ -42,7 +42,7 @@
     "jest-junit": "15.0.0",
     "jest-localstorage-mock": "2.4.26",
     "jest-runner-tsd": "5.0.0",
-    "lint-staged": "13.1.4",
+    "lint-staged": "13.1.2",
     "mockdate": "3.0.5",
     "prettier": "2.8.4",
     "react": "18.2.0",
