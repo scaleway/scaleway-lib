@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.2.1
+
+### Patch Changes
+
+- [#1236](https://github.com/scaleway/scaleway-lib/pull/1236) [`3d05f84`](https://github.com/scaleway/scaleway-lib/commit/3d05f84b283859ef7ff336fc02e59a9ea1959d04) Thanks [@QuiiBz](https://github.com/QuiiBz)! - Create a new commit instead of amend + force push
+
 ## 1.2.0
 
 ### Minor Changes
