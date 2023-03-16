@@ -110,13 +110,8 @@ describe('generate changeset file', () => {
     expect(fs.readFile).toHaveBeenCalledWith(file, 'utf8')
     expect(fs.writeFile).toMatchSnapshot()
     expect(add).toHaveBeenCalledWith(fileName)
-    expect(commit).toHaveBeenCalledWith([], undefined, {
-      '-C': null,
-      HEAD: null,
-      '--amend': null,
-      '--no-edit': null,
-    })
-    expect(push).toHaveBeenCalledWith(['--force'])
+    expect(commit).toHaveBeenCalledWith(`Add changeset renovate-${rev}`)
+    expect(push).toHaveBeenCalledTimes(1)
   })
 
   it('should ignore workspace package.json', async () => {

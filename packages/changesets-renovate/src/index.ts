@@ -98,19 +98,14 @@ export async function run() {
     return
   }
 
-  const shortHash = await simpleGit().revparse(['--short', 'HEAD'])
-  const fileName = `.changeset/renovate-${shortHash.trim()}.md`
+  const shortHash = (await simpleGit().revparse(['--short', 'HEAD'])).trim()
+  const fileName = `.changeset/renovate-${shortHash}.md`
   const packageBumps = await getBumps(files)
 
   await createChangeset(fileName, packageBumps, packageNames)
   await simpleGit().add(fileName)
-  await simpleGit().commit([], undefined, {
-    '-C': null,
-    HEAD: null,
-    '--amend': null,
-    '--no-edit': null,
-  })
-  await simpleGit().push(['--force'])
+  await simpleGit().commit(`Add changeset renovate-${shortHash}`)
+  await simpleGit().push()
 }
 
 run().catch(console.error)
