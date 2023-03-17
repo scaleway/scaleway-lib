@@ -104,7 +104,7 @@ export async function run() {
 
   await createChangeset(fileName, packageBumps, packageNames)
   await simpleGit().add(fileName)
-  await simpleGit().commit(`Add changeset renovate-${shortHash}`)
+  await simpleGit().commit(`chore: add changeset renovate-${shortHash}`)
   await simpleGit().push()
 }
 
