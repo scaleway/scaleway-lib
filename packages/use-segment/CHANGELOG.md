@@ -1,104 +1,83 @@
 # Change Log
 
+## 0.9.7
+
+### Patch Changes
+
+- [#1235](https://github.com/scaleway/scaleway-lib/pull/1235) [`69d48e4`](https://github.com/scaleway/scaleway-lib/commit/69d48e4066bee9bfae95a6e775875967ef71fc19) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@segment/analytics-next` to `1.51.3`.
+
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## 0.9.6 (2023-03-09)
 
-
 ### :package: Chore
 
-* **release:** publish ([69cf44f](https://github.com/scaleway/scaleway-lib/commit/69cf44fa221c2365b340a9cc4c057ecbbab1369d))
-
+- **release:** publish ([69cf44f](https://github.com/scaleway/scaleway-lib/commit/69cf44fa221c2365b340a9cc4c057ecbbab1369d))
 
 ### :bug: Bug Fixes
 
-* **deps:** update dependency @segment/analytics-next to v1.51.2 ([#1215](https://github.com/scaleway/scaleway-lib/issues/1215)) ([d05057f](https://github.com/scaleway/scaleway-lib/commit/d05057fa6653b857c615f6309c67fbed9316424e))
-
-
+- **deps:** update dependency @segment/analytics-next to v1.51.2 ([#1215](https://github.com/scaleway/scaleway-lib/issues/1215)) ([d05057f](https://github.com/scaleway/scaleway-lib/commit/d05057fa6653b857c615f6309c67fbed9316424e))
 
 ## 0.9.5 (2023-03-01)
 
-
 ### :package: Chore
 
-* **release:** publish ([7838854](https://github.com/scaleway/scaleway-lib/commit/7838854d87a871cdb2431ddd62182e347a4e84ef))
-
+- **release:** publish ([7838854](https://github.com/scaleway/scaleway-lib/commit/7838854d87a871cdb2431ddd62182e347a4e84ef))
 
 ### :bug: Bug Fixes
 
-* **deps:** update dependency @segment/analytics-next to v1.51.1 ([#1210](https://github.com/scaleway/scaleway-lib/issues/1210)) ([fc55ce3](https://github.com/scaleway/scaleway-lib/commit/fc55ce39024a510eecb1cdfbcf8e4e53976a227b))
-
-
+- **deps:** update dependency @segment/analytics-next to v1.51.1 ([#1210](https://github.com/scaleway/scaleway-lib/issues/1210)) ([fc55ce3](https://github.com/scaleway/scaleway-lib/commit/fc55ce39024a510eecb1cdfbcf8e4e53976a227b))
 
 ## 0.9.4 (2023-02-19)
 
-
 ### :package: Chore
 
-* **release:** publish ([624e91d](https://github.com/scaleway/scaleway-lib/commit/624e91d6be46a3966292ec0b3bb688ca01e11738))
-
+- **release:** publish ([624e91d](https://github.com/scaleway/scaleway-lib/commit/624e91d6be46a3966292ec0b3bb688ca01e11738))
 
 ### :bug: Bug Fixes
 
-* **deps:** update dependency @segment/analytics-next to v1.51.0 ([#1202](https://github.com/scaleway/scaleway-lib/issues/1202)) ([ad90ceb](https://github.com/scaleway/scaleway-lib/commit/ad90cebe7559772b5f0d00061eb4884cc5cfd222))
-
-
+- **deps:** update dependency @segment/analytics-next to v1.51.0 ([#1202](https://github.com/scaleway/scaleway-lib/issues/1202)) ([ad90ceb](https://github.com/scaleway/scaleway-lib/commit/ad90cebe7559772b5f0d00061eb4884cc5cfd222))
 
 ## [0.9.3](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-segment@0.9.2...@scaleway/use-segment@0.9.3) (2023-01-16)
 
-
 ### :bug: Bug Fixes
 
-* **deps:** update dependency @segment/analytics-next to v1.49.2 ([#1161](https://github.com/scaleway/scaleway-lib/issues/1161)) ([7748a26](https://github.com/scaleway/scaleway-lib/commit/7748a26f5ca8aea0af4d64a83e437c6dcdf0dd48))
-
-
+- **deps:** update dependency @segment/analytics-next to v1.49.2 ([#1161](https://github.com/scaleway/scaleway-lib/issues/1161)) ([7748a26](https://github.com/scaleway/scaleway-lib/commit/7748a26f5ca8aea0af4d64a83e437c6dcdf0dd48))
 
 ## 0.9.2 (2023-01-13)
 
-
 ### :package: Chore
 
-* **release:** publish ([9d6de7b](https://github.com/scaleway/scaleway-lib/commit/9d6de7b63065f53774cb64b0e5a46a868dc9933a))
-
+- **release:** publish ([9d6de7b](https://github.com/scaleway/scaleway-lib/commit/9d6de7b63065f53774cb64b0e5a46a868dc9933a))
 
 ### :bug: Bug Fixes
 
-* harden ts code ([#1158](https://github.com/scaleway/scaleway-lib/issues/1158)) ([7e2130e](https://github.com/scaleway/scaleway-lib/commit/7e2130ea4c2a079c69ec49b27444daa8f6076d03))
-
-
+- harden ts code ([#1158](https://github.com/scaleway/scaleway-lib/issues/1158)) ([7e2130e](https://github.com/scaleway/scaleway-lib/commit/7e2130ea4c2a079c69ec49b27444daa8f6076d03))
 
 ## 0.9.1 (2023-01-10)
 
-
 ### :package: Chore
 
-* **release:** publish ([4dc1e18](https://github.com/scaleway/scaleway-lib/commit/4dc1e189262296109d08527b94c0f1fb5fb242c7))
-
+- **release:** publish ([4dc1e18](https://github.com/scaleway/scaleway-lib/commit/4dc1e189262296109d08527b94c0f1fb5fb242c7))
 
 ### :bug: Bug Fixes
 
-* **deps:** update dependency @segment/analytics-next to v1.49.0 ([#1151](https://github.com/scaleway/scaleway-lib/issues/1151)) ([a5c6291](https://github.com/scaleway/scaleway-lib/commit/a5c6291aee23de003fe1093d574454d7ca107cb8))
-
-
+- **deps:** update dependency @segment/analytics-next to v1.49.0 ([#1151](https://github.com/scaleway/scaleway-lib/issues/1151)) ([a5c6291](https://github.com/scaleway/scaleway-lib/commit/a5c6291aee23de003fe1093d574454d7ca107cb8))
 
 ## 0.9.0 (2023-01-06)
 
-
 ### ⚠ BREAKING CHANGES
 
-* packages are ESM only
+- packages are ESM only
 
 ### :package: Chore
 
-* **release:** publish ([20c9d4f](https://github.com/scaleway/scaleway-lib/commit/20c9d4fb39822245252bf362bc7a8d26127e511d))
-
+- **release:** publish ([20c9d4f](https://github.com/scaleway/scaleway-lib/commit/20c9d4fb39822245252bf362bc7a8d26127e511d))
 
 ### :gear: Features
 
-* publish packages as ESM only ([#1145](https://github.com/scaleway/scaleway-lib/issues/1145)) ([4c25097](https://github.com/scaleway/scaleway-lib/commit/4c25097254a5ba7f0a5dbb6fdf5d6578a75f777a))
-
-
+- publish packages as ESM only ([#1145](https://github.com/scaleway/scaleway-lib/issues/1145)) ([4c25097](https://github.com/scaleway/scaleway-lib/commit/4c25097254a5ba7f0a5dbb6fdf5d6578a75f777a))
 
 ## 0.8.7 (2022-12-29)
 
