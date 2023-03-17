@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.2.2
+
+### Patch Changes
+
+- [#1240](https://github.com/scaleway/scaleway-lib/pull/1240) [`51e15d2`](https://github.com/scaleway/scaleway-lib/commit/51e15d2ba75172b90736e48a827744490fdf9a51) Thanks [@QuiiBz](https://github.com/QuiiBz)! - Commit message respects commitlint
+
 ## 1.2.1
 
 ### Patch Changes

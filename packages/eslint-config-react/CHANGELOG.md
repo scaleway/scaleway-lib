@@ -1,213 +1,158 @@
 # Change Log
 
+## 3.15.6
+
+### Patch Changes
+
+- [#1219](https://github.com/scaleway/scaleway-lib/pull/1219) [`2740636`](https://github.com/scaleway/scaleway-lib/commit/274063620c2b028ce8f03a4b31698c42352ecf80) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@typescript-eslint/eslint-plugin` to `5.55.0`.
+  Updated dependency `@typescript-eslint/parser` to `5.55.0`.
+
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## [3.15.5](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@3.15.4...@scaleway/eslint-config-react@3.15.5) (2023-03-09)
 
-
 ### :package: Chore
 
-* update deps ([#1218](https://github.com/scaleway/scaleway-lib/issues/1218)) ([100a060](https://github.com/scaleway/scaleway-lib/commit/100a0602c0ffee4a4265a93b64d943b240e3339a))
-
-
+- update deps ([#1218](https://github.com/scaleway/scaleway-lib/issues/1218)) ([100a060](https://github.com/scaleway/scaleway-lib/commit/100a0602c0ffee4a4265a93b64d943b240e3339a))
 
 ## 3.15.4 (2023-03-09)
 
-
 ### :package: Chore
 
-* **release:** publish ([69cf44f](https://github.com/scaleway/scaleway-lib/commit/69cf44fa221c2365b340a9cc4c057ecbbab1369d))
-
+- **release:** publish ([69cf44f](https://github.com/scaleway/scaleway-lib/commit/69cf44fa221c2365b340a9cc4c057ecbbab1369d))
 
 ### :bug: Bug Fixes
 
-* **deps:** update typescript-eslint monorepo to v5.54.0 ([#1213](https://github.com/scaleway/scaleway-lib/issues/1213)) ([141cfdd](https://github.com/scaleway/scaleway-lib/commit/141cfdd3c323cb88d88d791ac47480ce36df8cb0))
-
-
+- **deps:** update typescript-eslint monorepo to v5.54.0 ([#1213](https://github.com/scaleway/scaleway-lib/issues/1213)) ([141cfdd](https://github.com/scaleway/scaleway-lib/commit/141cfdd3c323cb88d88d791ac47480ce36df8cb0))
 
 ## [3.15.3](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@3.15.2...@scaleway/eslint-config-react@3.15.3) (2023-03-01)
 
-
 ### :bug: Bug Fixes
 
-* **deps:** update typescript-eslint monorepo to v5.53.0 ([#1211](https://github.com/scaleway/scaleway-lib/issues/1211)) ([901885e](https://github.com/scaleway/scaleway-lib/commit/901885e7d4d643f651fba4f9d3b24226d4e7e1b6))
-
-
+- **deps:** update typescript-eslint monorepo to v5.53.0 ([#1211](https://github.com/scaleway/scaleway-lib/issues/1211)) ([901885e](https://github.com/scaleway/scaleway-lib/commit/901885e7d4d643f651fba4f9d3b24226d4e7e1b6))
 
 ## 3.15.2 (2023-02-28)
 
-
 ### :package: Chore
 
-* **devdeps:** update depvdeps ([#1209](https://github.com/scaleway/scaleway-lib/issues/1209)) ([f23725b](https://github.com/scaleway/scaleway-lib/commit/f23725b34ee2cc3269d408c16dd574f7947851f1))
-* **release:** publish ([2c2a356](https://github.com/scaleway/scaleway-lib/commit/2c2a356753502509c8c3afbe245f71ab01744967))
-
-
+- **devdeps:** update depvdeps ([#1209](https://github.com/scaleway/scaleway-lib/issues/1209)) ([f23725b](https://github.com/scaleway/scaleway-lib/commit/f23725b34ee2cc3269d408c16dd574f7947851f1))
+- **release:** publish ([2c2a356](https://github.com/scaleway/scaleway-lib/commit/2c2a356753502509c8c3afbe245f71ab01744967))
 
 ## 3.15.1 (2023-02-20)
 
-
 ### :package: Chore
 
-* **release:** publish ([43bb9f9](https://github.com/scaleway/scaleway-lib/commit/43bb9f9430c294b3cf892f9e82d117e14bbdebd7))
-
+- **release:** publish ([43bb9f9](https://github.com/scaleway/scaleway-lib/commit/43bb9f9430c294b3cf892f9e82d117e14bbdebd7))
 
 ### :bug: Bug Fixes
 
-* **deps:** update typescript-eslint monorepo to v5.52.0 ([#1206](https://github.com/scaleway/scaleway-lib/issues/1206)) ([6eda6c4](https://github.com/scaleway/scaleway-lib/commit/6eda6c4616579962443aec5a5778ba0c0ba47f8a))
-
-
+- **deps:** update typescript-eslint monorepo to v5.52.0 ([#1206](https://github.com/scaleway/scaleway-lib/issues/1206)) ([6eda6c4](https://github.com/scaleway/scaleway-lib/commit/6eda6c4616579962443aec5a5778ba0c0ba47f8a))
 
 ## [3.15.0](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@3.14.6...@scaleway/eslint-config-react@3.15.0) (2023-02-13)
 
-
 ### :gear: Features
 
-* **eslint-config:** exclude ts to no-extraneous-dependencies ([#1200](https://github.com/scaleway/scaleway-lib/issues/1200)) ([a9871a2](https://github.com/scaleway/scaleway-lib/commit/a9871a270ef2df1e07e9b1f4b0f21628cded18ac))
-
-
+- **eslint-config:** exclude ts to no-extraneous-dependencies ([#1200](https://github.com/scaleway/scaleway-lib/issues/1200)) ([a9871a2](https://github.com/scaleway/scaleway-lib/commit/a9871a270ef2df1e07e9b1f4b0f21628cded18ac))
 
 ## 3.14.6 (2023-02-09)
 
-
 ### :package: Chore
 
-* **release:** publish ([0244974](https://github.com/scaleway/scaleway-lib/commit/0244974596fa2fdb7eb780730a8424d5505e0b45))
-
+- **release:** publish ([0244974](https://github.com/scaleway/scaleway-lib/commit/0244974596fa2fdb7eb780730a8424d5505e0b45))
 
 ### :bug: Bug Fixes
 
-* **deps:** update typescript-eslint monorepo to v5.51.0 ([#1197](https://github.com/scaleway/scaleway-lib/issues/1197)) ([fcdbd2c](https://github.com/scaleway/scaleway-lib/commit/fcdbd2ca32b5a71c3fa7714b0f3acac560cd3cd0))
-
-
+- **deps:** update typescript-eslint monorepo to v5.51.0 ([#1197](https://github.com/scaleway/scaleway-lib/issues/1197)) ([fcdbd2c](https://github.com/scaleway/scaleway-lib/commit/fcdbd2ca32b5a71c3fa7714b0f3acac560cd3cd0))
 
 ## [3.14.5](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@3.14.4...@scaleway/eslint-config-react@3.14.5) (2023-02-07)
 
-
 ### :package: Chore
 
-* **devdeps:** update dependency eslint to v8.33.0 ([#1192](https://github.com/scaleway/scaleway-lib/issues/1192)) ([fd8f67c](https://github.com/scaleway/scaleway-lib/commit/fd8f67c5d739f959afd4e4587deedb5dcd69c385))
-
-
+- **devdeps:** update dependency eslint to v8.33.0 ([#1192](https://github.com/scaleway/scaleway-lib/issues/1192)) ([fd8f67c](https://github.com/scaleway/scaleway-lib/commit/fd8f67c5d739f959afd4e4587deedb5dcd69c385))
 
 ## 3.14.4 (2023-02-07)
 
-
 ### :package: Chore
 
-* **devdeps:** update dependency typescript to v4.9.5 ([#1190](https://github.com/scaleway/scaleway-lib/issues/1190)) ([bbae918](https://github.com/scaleway/scaleway-lib/commit/bbae918d311f24492a99a7f45574774be25b2cb4))
-* **release:** publish ([ff76638](https://github.com/scaleway/scaleway-lib/commit/ff76638470e76f4a56c705772fa74a6102fb3888))
-
-
+- **devdeps:** update dependency typescript to v4.9.5 ([#1190](https://github.com/scaleway/scaleway-lib/issues/1190)) ([bbae918](https://github.com/scaleway/scaleway-lib/commit/bbae918d311f24492a99a7f45574774be25b2cb4))
+- **release:** publish ([ff76638](https://github.com/scaleway/scaleway-lib/commit/ff76638470e76f4a56c705772fa74a6102fb3888))
 
 ## 3.14.3 (2023-02-03)
 
-
 ### :package: Chore
 
-* **release:** publish ([0d4de47](https://github.com/scaleway/scaleway-lib/commit/0d4de4729db8244faa75708a756529bd92e8fc1e))
-
+- **release:** publish ([0d4de47](https://github.com/scaleway/scaleway-lib/commit/0d4de4729db8244faa75708a756529bd92e8fc1e))
 
 ### :bug: Bug Fixes
 
-* **deps:** update typescript-eslint monorepo to v5.50.0 ([#1184](https://github.com/scaleway/scaleway-lib/issues/1184)) ([4316a85](https://github.com/scaleway/scaleway-lib/commit/4316a85961d7ae4887344ab08dca2559d96df489))
-
-
+- **deps:** update typescript-eslint monorepo to v5.50.0 ([#1184](https://github.com/scaleway/scaleway-lib/issues/1184)) ([4316a85](https://github.com/scaleway/scaleway-lib/commit/4316a85961d7ae4887344ab08dca2559d96df489))
 
 ## 3.14.2 (2023-02-01)
 
-
 ### :package: Chore
 
-* **release:** publish ([f05200b](https://github.com/scaleway/scaleway-lib/commit/f05200bea049515b0e0584d6812e671da814f2bb))
-
+- **release:** publish ([f05200b](https://github.com/scaleway/scaleway-lib/commit/f05200bea049515b0e0584d6812e671da814f2bb))
 
 ### :bug: Bug Fixes
 
-* **deps:** update dependency eslint-plugin-react to v7.32.2 ([#1181](https://github.com/scaleway/scaleway-lib/issues/1181)) ([87191a8](https://github.com/scaleway/scaleway-lib/commit/87191a86e039ed53be3e59993dfc5a4e3cac57bd))
-* **deps:** update typescript-eslint monorepo to v5.49.0 ([#1169](https://github.com/scaleway/scaleway-lib/issues/1169)) ([a3e2891](https://github.com/scaleway/scaleway-lib/commit/a3e289156e8f4ef5258bf7c774a8bb9c1b08a26f))
-
-
+- **deps:** update dependency eslint-plugin-react to v7.32.2 ([#1181](https://github.com/scaleway/scaleway-lib/issues/1181)) ([87191a8](https://github.com/scaleway/scaleway-lib/commit/87191a86e039ed53be3e59993dfc5a4e3cac57bd))
+- **deps:** update typescript-eslint monorepo to v5.49.0 ([#1169](https://github.com/scaleway/scaleway-lib/issues/1169)) ([a3e2891](https://github.com/scaleway/scaleway-lib/commit/a3e289156e8f4ef5258bf7c774a8bb9c1b08a26f))
 
 ## [3.14.1](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@3.14.0...@scaleway/eslint-config-react@3.14.1) (2023-01-17)
 
-
 ### :package: Chore
 
-* **deps:** update eslint plugins ([#1170](https://github.com/scaleway/scaleway-lib/issues/1170)) ([b49e908](https://github.com/scaleway/scaleway-lib/commit/b49e908f256f8e031170dfe8626b6899e43a9102))
-
-
+- **deps:** update eslint plugins ([#1170](https://github.com/scaleway/scaleway-lib/issues/1170)) ([b49e908](https://github.com/scaleway/scaleway-lib/commit/b49e908f256f8e031170dfe8626b6899e43a9102))
 
 ## [3.14.0](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@3.13.8...@scaleway/eslint-config-react@3.14.0) (2023-01-16)
 
-
 ### :gear: Features
 
-* **eslint-config:** harden eslint config ([#1157](https://github.com/scaleway/scaleway-lib/issues/1157)) ([8087ac8](https://github.com/scaleway/scaleway-lib/commit/8087ac8cf8b06c23bbbf9f13d001468b61313cd6))
-
-
+- **eslint-config:** harden eslint config ([#1157](https://github.com/scaleway/scaleway-lib/issues/1157)) ([8087ac8](https://github.com/scaleway/scaleway-lib/commit/8087ac8cf8b06c23bbbf9f13d001468b61313cd6))
 
 ## 3.13.8 (2023-01-16)
 
-
 ### :package: Chore
 
-* **release:** publish ([9ceabef](https://github.com/scaleway/scaleway-lib/commit/9ceabefec2875acd758518d475f0e60e05d731a0))
-
+- **release:** publish ([9ceabef](https://github.com/scaleway/scaleway-lib/commit/9ceabefec2875acd758518d475f0e60e05d731a0))
 
 ### :bug: Bug Fixes
 
-* **deps:** update dependency eslint-plugin-jsx-a11y to v6.7.0 ([#1162](https://github.com/scaleway/scaleway-lib/issues/1162)) ([ea36599](https://github.com/scaleway/scaleway-lib/commit/ea3659925324bd580a8608f96a0ac7f8ec84a150))
-
-
+- **deps:** update dependency eslint-plugin-jsx-a11y to v6.7.0 ([#1162](https://github.com/scaleway/scaleway-lib/issues/1162)) ([ea36599](https://github.com/scaleway/scaleway-lib/commit/ea3659925324bd580a8608f96a0ac7f8ec84a150))
 
 ## 3.13.7 (2023-01-11)
 
-
 ### :package: Chore
 
-* **release:** publish ([03ab099](https://github.com/scaleway/scaleway-lib/commit/03ab099e2ad498d7928925130bf59e6ee57283a6))
-
+- **release:** publish ([03ab099](https://github.com/scaleway/scaleway-lib/commit/03ab099e2ad498d7928925130bf59e6ee57283a6))
 
 ### :bug: Bug Fixes
 
-* **deps:** update typescript-eslint monorepo to v5.48.1 ([#1154](https://github.com/scaleway/scaleway-lib/issues/1154)) ([c2f6ce0](https://github.com/scaleway/scaleway-lib/commit/c2f6ce06464f80b8014c1f927dfe1af9292826ee))
-
-
+- **deps:** update typescript-eslint monorepo to v5.48.1 ([#1154](https://github.com/scaleway/scaleway-lib/issues/1154)) ([c2f6ce0](https://github.com/scaleway/scaleway-lib/commit/c2f6ce06464f80b8014c1f927dfe1af9292826ee))
 
 ## [3.13.6](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@3.13.5...@scaleway/eslint-config-react@3.13.6) (2023-01-09)
 
-
 ### :bug: Bug Fixes
 
-* **deps:** update typescript-eslint monorepo to v5.48.0 ([#1147](https://github.com/scaleway/scaleway-lib/issues/1147)) ([0e4cfd3](https://github.com/scaleway/scaleway-lib/commit/0e4cfd335eae0265af0f4d3c6a54b80eca9ff22c))
-
-
+- **deps:** update typescript-eslint monorepo to v5.48.0 ([#1147](https://github.com/scaleway/scaleway-lib/issues/1147)) ([0e4cfd3](https://github.com/scaleway/scaleway-lib/commit/0e4cfd335eae0265af0f4d3c6a54b80eca9ff22c))
 
 ## 3.13.5 (2023-01-07)
 
-
 ### :package: Chore
 
-* **release:** publish ([e80144e](https://github.com/scaleway/scaleway-lib/commit/e80144e529c96b01905b0ee29029d0edbd916e61))
-
+- **release:** publish ([e80144e](https://github.com/scaleway/scaleway-lib/commit/e80144e529c96b01905b0ee29029d0edbd916e61))
 
 ### :bug: Bug Fixes
 
-* **deps:** update dependency eslint-config-prettier to v8.6.0 ([#1146](https://github.com/scaleway/scaleway-lib/issues/1146)) ([26cfe8b](https://github.com/scaleway/scaleway-lib/commit/26cfe8bf7d796172dba1ef7c0a10f39cc0ab45b7))
-
-
+- **deps:** update dependency eslint-config-prettier to v8.6.0 ([#1146](https://github.com/scaleway/scaleway-lib/issues/1146)) ([26cfe8b](https://github.com/scaleway/scaleway-lib/commit/26cfe8bf7d796172dba1ef7c0a10f39cc0ab45b7))
 
 ## 3.13.4 (2023-01-06)
 
-
 ### :package: Chore
 
-* **devDeps:** upgrade deps ([#1144](https://github.com/scaleway/scaleway-lib/issues/1144)) ([8a2d30d](https://github.com/scaleway/scaleway-lib/commit/8a2d30d77c7a0047c733d3d0dc9f16ac8dd35a8c))
-* **release:** publish ([d90ea8f](https://github.com/scaleway/scaleway-lib/commit/d90ea8fa24f5cba600b14842e4361563e9321709))
-
-
+- **devDeps:** upgrade deps ([#1144](https://github.com/scaleway/scaleway-lib/issues/1144)) ([8a2d30d](https://github.com/scaleway/scaleway-lib/commit/8a2d30d77c7a0047c733d3d0dc9f16ac8dd35a8c))
+- **release:** publish ([d90ea8f](https://github.com/scaleway/scaleway-lib/commit/d90ea8fa24f5cba600b14842e4361563e9321709))
 
 ## [3.13.3](https://github.com/scaleway/scaleway-lib/compare/@scaleway/eslint-config-react@3.13.2...@scaleway/eslint-config-react@3.13.3) (2022-12-27)
 
