@@ -110,7 +110,7 @@ describe('generate changeset file', () => {
     expect(fs.readFile).toHaveBeenCalledWith(file, 'utf8')
     expect(fs.writeFile).toMatchSnapshot()
     expect(add).toHaveBeenCalledWith(fileName)
-    expect(commit).toHaveBeenCalledWith(`Add changeset renovate-${rev}`)
+    expect(commit).toHaveBeenCalledWith(`chore: add changeset renovate-${rev}`)
     expect(push).toHaveBeenCalledTimes(1)
   })
 
