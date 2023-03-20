@@ -23,9 +23,10 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@segment/analytics-next": "1.51.3"
+    "@segment/analytics-next": "1.51.3",
+    "use-deep-compare-effect": "1.8.1"
   },
-  "peerDependencies": {
-    "react": "18.x || 18"
+  "devDependencies": {
+    "react": "18.2.0"
   }
 }
