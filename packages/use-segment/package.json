@@ -28,5 +28,8 @@
   },
   "devDependencies": {
     "react": "18.2.0"
+  },
+  "peerDependencies": {
+    "react": "18.x || 18"
   }
 }
