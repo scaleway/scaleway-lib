@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.9.8
+
+### Patch Changes
+
+- [#1242](https://github.com/scaleway/scaleway-lib/pull/1242) [`0537a35`](https://github.com/scaleway/scaleway-lib/commit/0537a359fda3a8d72d898930358d5f6f8c8353dd) Thanks [@chambo-e](https://github.com/chambo-e)! - Avoid multiple analytics loads
+
 ## 0.9.7
 
 ### Patch Changes
