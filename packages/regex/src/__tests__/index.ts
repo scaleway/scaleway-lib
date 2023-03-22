@@ -1,5 +1,6 @@
 import {
   absoluteLinuxPath,
+  accessKeyRegex,
   advancedDomainName,
   alpha,
   alphaDashes,
@@ -910,6 +911,19 @@ describe('@regex', () => {
       ['192.168.1.0', false],
     ])('should match regex %s to be %s', (string, expected) => {
       expect(dashedIpv4.test(string)).toBe(expected)
+    })
+  })
+
+  describe('accessKeyRegex', () => {
+    test.each([
+      ['12301234567891234567', false],
+      ['ABCABCDEFGHIJKLMNOPQ', false],
+      ['SCWabcdefghijklmnopq', true],
+      ['scw01234567891234567', true],
+      ['SCW01234567891234567', true],
+      ['SCWABCDEFGHIJKLMNOPQ', true],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(accessKeyRegex.test(string)).toBe(expected)
     })
   })
 })
