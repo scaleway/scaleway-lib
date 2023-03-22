@@ -5,7 +5,8 @@ import type {
   InitOptions,
 } from '@segment/analytics-next'
 import type { ReactNode } from 'react'
-import { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import { createContext, useContext, useMemo, useState } from 'react'
+import { useDeepCompareEffectNoCheck } from 'use-deep-compare-effect'
 
 export type OnEventError = (error: Error) => Promise<void> | void
 type EventFunction = (...args: never[]) => Promise<void>
@@ -72,7 +73,7 @@ function SegmentProvider<T extends Events>({
     )
   }, [initOptions?.integrations, settings?.writeKey])
 
-  useEffect(() => {
+  useDeepCompareEffectNoCheck(() => {
     if (shouldLoad && settings) {
       AnalyticsBrowser.load(settings, initOptions)
         .then(([res]) => setAnalytics(res))
