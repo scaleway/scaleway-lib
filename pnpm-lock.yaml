@@ -171,14 +171,14 @@ importers:
   packages/use-i18n:
     specifiers:
       '@formatjs/ecma402-abstract': 1.14.3
-      '@formatjs/fast-memoize': 1.2.8
+      '@formatjs/fast-memoize': 2.0.1
       date-fns: 2.29.3
       filesize: 10.0.6
       international-types: 0.3.7
       intl-messageformat: 10.3.3
     dependencies:
       '@formatjs/ecma402-abstract': 1.14.3
-      '@formatjs/fast-memoize': 1.2.8
+      '@formatjs/fast-memoize': 2.0.1
       date-fns: 2.29.3
       filesize: 10.0.6
       international-types: 0.3.7
@@ -2268,12 +2268,6 @@ packages:
     resolution: {integrity: sha512-SlsbRC/RX+/zg4AApWIFNDdkLtFbkq3LNoZWXZCE/nHVKqoIJyaoQyge/I0Y38vLxowUn9KTtXgusLD91+orbg==}
     dependencies:
       '@formatjs/intl-localematcher': 0.2.32
-      tslib: 2.4.1
-    dev: false
-
-  /@formatjs/fast-memoize/1.2.8:
-    resolution: {integrity: sha512-PemNUObyoIZcqdQ1ixTPugzAzhEj7j6AHIyrq/qR6x5BFTvOQeXHYsVZUqBEFduAIscUaDfou+U+xTqOiunJ3Q==}
-    dependencies:
       tslib: 2.4.1
     dev: false
 
