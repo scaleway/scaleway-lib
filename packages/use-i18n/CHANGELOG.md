@@ -1,127 +1,100 @@
 # Change Log
 
+## 5.1.1
+
+### Patch Changes
+
+- [#1250](https://github.com/scaleway/scaleway-lib/pull/1250) [`89ca903`](https://github.com/scaleway/scaleway-lib/commit/89ca90300a675429c4aa04a40fea8775e89c4e89) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@formatjs/fast-memoize` to `2.0.1`.
+
+- [#1241](https://github.com/scaleway/scaleway-lib/pull/1241) [`846482b`](https://github.com/scaleway/scaleway-lib/commit/846482b7752fb3fc2b6addbee4c2f8ff037f4170) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `intl-messageformat` to `10.3.3`.
+
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## 5.1.0 (2023-03-09)
 
-
 ### :package: Chore
 
-* **release:** publish ([cfa941f](https://github.com/scaleway/scaleway-lib/commit/cfa941f76446fe539b839f6d19cb8b5dcb6ff81a))
-
+- **release:** publish ([cfa941f](https://github.com/scaleway/scaleway-lib/commit/cfa941f76446fe539b839f6d19cb8b5dcb6ff81a))
 
 ### :gear: Features
 
-* introduce new @scaleway/changesets-renovate package ([#1216](https://github.com/scaleway/scaleway-lib/issues/1216)) ([db88cd0](https://github.com/scaleway/scaleway-lib/commit/db88cd04970fa234a1fb83b5f6f18f2dbbb3c635))
-
-
+- introduce new @scaleway/changesets-renovate package ([#1216](https://github.com/scaleway/scaleway-lib/issues/1216)) ([db88cd0](https://github.com/scaleway/scaleway-lib/commit/db88cd04970fa234a1fb83b5f6f18f2dbbb3c635))
 
 ## 5.0.7 (2023-02-20)
 
-
 ### :package: Chore
 
-* **release:** publish ([b76e45d](https://github.com/scaleway/scaleway-lib/commit/b76e45dff6602c566e69343c1ddddfc304d20f92))
-
+- **release:** publish ([b76e45d](https://github.com/scaleway/scaleway-lib/commit/b76e45dff6602c566e69343c1ddddfc304d20f92))
 
 ### :bug: Bug Fixes
 
-* **deps:** update formatjs monorepo ([#1208](https://github.com/scaleway/scaleway-lib/issues/1208)) ([390bc75](https://github.com/scaleway/scaleway-lib/commit/390bc75dfa2833b30c7ac85d76e0832b8aead5b6))
-
-
+- **deps:** update formatjs monorepo ([#1208](https://github.com/scaleway/scaleway-lib/issues/1208)) ([390bc75](https://github.com/scaleway/scaleway-lib/commit/390bc75dfa2833b30c7ac85d76e0832b8aead5b6))
 
 ## 5.0.6 (2023-02-17)
 
-
 ### :package: Chore
 
-* **release:** publish ([9e09af9](https://github.com/scaleway/scaleway-lib/commit/9e09af9dd6e14e7ac6899b294028e14e54487032))
-
+- **release:** publish ([9e09af9](https://github.com/scaleway/scaleway-lib/commit/9e09af9dd6e14e7ac6899b294028e14e54487032))
 
 ### :bug: Bug Fixes
 
-* **use-i18n:** revert international-types to 0.3.7 ([#1201](https://github.com/scaleway/scaleway-lib/issues/1201)) ([9e7300a](https://github.com/scaleway/scaleway-lib/commit/9e7300a0aad14a96a9f36183d46376e53434847a))
-
-
+- **use-i18n:** revert international-types to 0.3.7 ([#1201](https://github.com/scaleway/scaleway-lib/issues/1201)) ([9e7300a](https://github.com/scaleway/scaleway-lib/commit/9e7300a0aad14a96a9f36183d46376e53434847a))
 
 ## [5.0.5](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@5.0.4...@scaleway/use-i18n@5.0.5) (2023-02-06)
 
-
 ### :bug: Bug Fixes
 
-* **deps:** update formatjs monorepo ([#1185](https://github.com/scaleway/scaleway-lib/issues/1185)) ([76b6cc0](https://github.com/scaleway/scaleway-lib/commit/76b6cc00c39aee23a576f92487065eae5ad0cb6c))
-
-
+- **deps:** update formatjs monorepo ([#1185](https://github.com/scaleway/scaleway-lib/issues/1185)) ([76b6cc0](https://github.com/scaleway/scaleway-lib/commit/76b6cc00c39aee23a576f92487065eae5ad0cb6c))
 
 ## 5.0.4 (2023-02-03)
 
-
 ### :package: Chore
 
-* **release:** publish ([0d4de47](https://github.com/scaleway/scaleway-lib/commit/0d4de4729db8244faa75708a756529bd92e8fc1e))
-
+- **release:** publish ([0d4de47](https://github.com/scaleway/scaleway-lib/commit/0d4de4729db8244faa75708a756529bd92e8fc1e))
 
 ### :bug: Bug Fixes
 
-* **deps:** update formatjs monorepo ([#1178](https://github.com/scaleway/scaleway-lib/issues/1178)) ([0dbcfc5](https://github.com/scaleway/scaleway-lib/commit/0dbcfc5a0a10eb31d594a20c417f6a5879d72d57))
-
-
+- **deps:** update formatjs monorepo ([#1178](https://github.com/scaleway/scaleway-lib/issues/1178)) ([0dbcfc5](https://github.com/scaleway/scaleway-lib/commit/0dbcfc5a0a10eb31d594a20c417f6a5879d72d57))
 
 ## [5.0.3](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@5.0.2...@scaleway/use-i18n@5.0.3) (2023-01-26)
 
-
 ### :package: Chore
 
-* **deps:** bump international-types to 0.3.8 ([#1177](https://github.com/scaleway/scaleway-lib/issues/1177)) ([95e8450](https://github.com/scaleway/scaleway-lib/commit/95e84501a6e9e5b8986791389ab6f665a26fb131))
-
-
+- **deps:** bump international-types to 0.3.8 ([#1177](https://github.com/scaleway/scaleway-lib/issues/1177)) ([95e8450](https://github.com/scaleway/scaleway-lib/commit/95e84501a6e9e5b8986791389ab6f665a26fb131))
 
 ## 5.0.2 (2023-01-25)
 
-
 ### :package: Chore
 
-* **deps:** bump international-types to 0.3.7 ([#1176](https://github.com/scaleway/scaleway-lib/issues/1176)) ([3a7902e](https://github.com/scaleway/scaleway-lib/commit/3a7902e49dff0c72a2c023f6d548637fa83fa695))
-* **release:** publish ([77af5ae](https://github.com/scaleway/scaleway-lib/commit/77af5ae4f229209825c587c643be0f43756cdebe))
-
-
+- **deps:** bump international-types to 0.3.7 ([#1176](https://github.com/scaleway/scaleway-lib/issues/1176)) ([3a7902e](https://github.com/scaleway/scaleway-lib/commit/3a7902e49dff0c72a2c023f6d548637fa83fa695))
+- **release:** publish ([77af5ae](https://github.com/scaleway/scaleway-lib/commit/77af5ae4f229209825c587c643be0f43756cdebe))
 
 ## 5.0.1 (2023-01-13)
 
-
 ### :package: Chore
 
-* **release:** publish ([9d6de7b](https://github.com/scaleway/scaleway-lib/commit/9d6de7b63065f53774cb64b0e5a46a868dc9933a))
-
+- **release:** publish ([9d6de7b](https://github.com/scaleway/scaleway-lib/commit/9d6de7b63065f53774cb64b0e5a46a868dc9933a))
 
 ### :bug: Bug Fixes
 
-* harden ts code ([#1158](https://github.com/scaleway/scaleway-lib/issues/1158)) ([7e2130e](https://github.com/scaleway/scaleway-lib/commit/7e2130ea4c2a079c69ec49b27444daa8f6076d03))
-
-
+- harden ts code ([#1158](https://github.com/scaleway/scaleway-lib/issues/1158)) ([7e2130e](https://github.com/scaleway/scaleway-lib/commit/7e2130ea4c2a079c69ec49b27444daa8f6076d03))
 
 ## [5.0.0](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@4.1.10...@scaleway/use-i18n@5.0.0) (2023-01-06)
 
-
 ### ⚠ BREAKING CHANGES
 
-* packages are ESM only
+- packages are ESM only
 
 ### :gear: Features
 
-* publish packages as ESM only ([#1145](https://github.com/scaleway/scaleway-lib/issues/1145)) ([4c25097](https://github.com/scaleway/scaleway-lib/commit/4c25097254a5ba7f0a5dbb6fdf5d6578a75f777a))
-
-
+- publish packages as ESM only ([#1145](https://github.com/scaleway/scaleway-lib/issues/1145)) ([4c25097](https://github.com/scaleway/scaleway-lib/commit/4c25097254a5ba7f0a5dbb6fdf5d6578a75f777a))
 
 ## [4.1.10](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@4.1.9...@scaleway/use-i18n@4.1.10) (2023-01-06)
 
-
 ### :package: Chore
 
-* **devDeps:** upgrade deps ([#1144](https://github.com/scaleway/scaleway-lib/issues/1144)) ([8a2d30d](https://github.com/scaleway/scaleway-lib/commit/8a2d30d77c7a0047c733d3d0dc9f16ac8dd35a8c))
-
-
+- **devDeps:** upgrade deps ([#1144](https://github.com/scaleway/scaleway-lib/issues/1144)) ([8a2d30d](https://github.com/scaleway/scaleway-lib/commit/8a2d30d77c7a0047c733d3d0dc9f16ac8dd35a8c))
 
 ## [4.1.9](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-i18n@4.1.8...@scaleway/use-i18n@4.1.9) (2023-01-04)
 
