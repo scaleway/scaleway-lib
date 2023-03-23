@@ -1,39 +1,37 @@
 # Change Log
 
+## 3.1.1
+
+### Patch Changes
+
+- [#1254](https://github.com/scaleway/scaleway-lib/pull/1254) [`1af34cb`](https://github.com/scaleway/scaleway-lib/commit/1af34cb8a49cb1d5fd5ddaf608df4d1c160b2e10) Thanks [@ModuloM](https://github.com/ModuloM)! - Add Scaleway access key regex.
+
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## 3.1.0 (2023-01-12)
 
-
 ### :package: Chore
 
-* **release:** publish ([22abd68](https://github.com/scaleway/scaleway-lib/commit/22abd687033bcd8c7cd187c8a9370c02fe7c0ef4))
-
+- **release:** publish ([22abd68](https://github.com/scaleway/scaleway-lib/commit/22abd687033bcd8c7cd187c8a9370c02fe7c0ef4))
 
 ### :gear: Features
 
-* **regex:** advanced domain regex for non ASCII characters ([#1156](https://github.com/scaleway/scaleway-lib/issues/1156)) ([6b896f8](https://github.com/scaleway/scaleway-lib/commit/6b896f824a773e0fa342357e11074551688429e3))
-
-
+- **regex:** advanced domain regex for non ASCII characters ([#1156](https://github.com/scaleway/scaleway-lib/issues/1156)) ([6b896f8](https://github.com/scaleway/scaleway-lib/commit/6b896f824a773e0fa342357e11074551688429e3))
 
 ## 3.0.0 (2023-01-06)
 
-
 ### ⚠ BREAKING CHANGES
 
-* packages are ESM only
+- packages are ESM only
 
 ### :package: Chore
 
-* **release:** publish ([20c9d4f](https://github.com/scaleway/scaleway-lib/commit/20c9d4fb39822245252bf362bc7a8d26127e511d))
-
+- **release:** publish ([20c9d4f](https://github.com/scaleway/scaleway-lib/commit/20c9d4fb39822245252bf362bc7a8d26127e511d))
 
 ### :gear: Features
 
-* publish packages as ESM only ([#1145](https://github.com/scaleway/scaleway-lib/issues/1145)) ([4c25097](https://github.com/scaleway/scaleway-lib/commit/4c25097254a5ba7f0a5dbb6fdf5d6578a75f777a))
-
-
+- publish packages as ESM only ([#1145](https://github.com/scaleway/scaleway-lib/issues/1145)) ([4c25097](https://github.com/scaleway/scaleway-lib/commit/4c25097254a5ba7f0a5dbb6fdf5d6578a75f777a))
 
 ## 2.9.1 (2022-12-29)
 
