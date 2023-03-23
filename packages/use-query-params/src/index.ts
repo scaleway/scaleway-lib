@@ -1,4 +1,4 @@
-import { parse, stringify } from 'query-string'
+import queryString from 'query-string'
 import { useCallback, useMemo } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
@@ -6,6 +6,9 @@ type Options = {
   /** Set to true to push a new entry onto the history stack */
   push: boolean
 }
+
+const {parse} = queryString
+const {stringify} = queryString
 
 type QueryParamValue = string | number | boolean | null | undefined
 
@@ -35,7 +38,7 @@ const useQueryParams = <T extends QueryParams>(): {
 
   const currentState = useMemo(
     () =>
-      parse(location.search, {
+      queryString.parse(location.search, {
         arrayFormat: 'comma',
         parseBooleans: true,
         parseNumbers: true,
@@ -45,7 +48,7 @@ const useQueryParams = <T extends QueryParams>(): {
 
   const stringyFormat = useCallback(
     (params: Partial<T>): string =>
-      stringify(params, {
+      queryString.stringify(params, {
         arrayFormat: 'comma',
         skipEmptyString: true,
         skipNull: true,
