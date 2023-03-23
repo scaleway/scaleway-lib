@@ -1,83 +1,68 @@
 # Change Log
 
+## 4.0.6
+
+### Patch Changes
+
+- [#1246](https://github.com/scaleway/scaleway-lib/pull/1246) [`4aee099`](https://github.com/scaleway/scaleway-lib/commit/4aee0999ec1bcc29fd74078571e2efb308198a9f) Thanks [@chambo-e](https://github.com/chambo-e)! - expose parse/stringify query params functions
+
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## 4.0.5 (2023-02-28)
 
-
 ### :package: Chore
 
-* **devdeps:** update depvdeps ([#1209](https://github.com/scaleway/scaleway-lib/issues/1209)) ([f23725b](https://github.com/scaleway/scaleway-lib/commit/f23725b34ee2cc3269d408c16dd574f7947851f1))
-* **release:** publish ([2c2a356](https://github.com/scaleway/scaleway-lib/commit/2c2a356753502509c8c3afbe245f71ab01744967))
-
-
+- **devdeps:** update depvdeps ([#1209](https://github.com/scaleway/scaleway-lib/issues/1209)) ([f23725b](https://github.com/scaleway/scaleway-lib/commit/f23725b34ee2cc3269d408c16dd574f7947851f1))
+- **release:** publish ([2c2a356](https://github.com/scaleway/scaleway-lib/commit/2c2a356753502509c8c3afbe245f71ab01744967))
 
 ## 4.0.4 (2023-02-09)
 
-
 ### :package: Chore
 
-* **release:** publish ([329b719](https://github.com/scaleway/scaleway-lib/commit/329b719db36ba5a5ce38063990bba306c1c84c96))
-
+- **release:** publish ([329b719](https://github.com/scaleway/scaleway-lib/commit/329b719db36ba5a5ce38063990bba306c1c84c96))
 
 ### :bug: Bug Fixes
 
-* **deps:** update react-router-dom to 6.8.1 ([#1199](https://github.com/scaleway/scaleway-lib/issues/1199)) ([5044625](https://github.com/scaleway/scaleway-lib/commit/50446251314b3d22d9f553b34472cc0dd5c0460f))
-
-
+- **deps:** update react-router-dom to 6.8.1 ([#1199](https://github.com/scaleway/scaleway-lib/issues/1199)) ([5044625](https://github.com/scaleway/scaleway-lib/commit/50446251314b3d22d9f553b34472cc0dd5c0460f))
 
 ## 4.0.3 (2023-02-03)
 
-
 ### :package: Chore
 
-* **devdeps:** update dependency react-router-dom to v6.8.0 ([#1175](https://github.com/scaleway/scaleway-lib/issues/1175)) ([5b9e601](https://github.com/scaleway/scaleway-lib/commit/5b9e6010cbe097d48487aa64e1b6a3492440917a))
-* **release:** publish ([31ea49e](https://github.com/scaleway/scaleway-lib/commit/31ea49eb2cd246e631da901609025d7ff8a0bc5d))
-
-
+- **devdeps:** update dependency react-router-dom to v6.8.0 ([#1175](https://github.com/scaleway/scaleway-lib/issues/1175)) ([5b9e601](https://github.com/scaleway/scaleway-lib/commit/5b9e6010cbe097d48487aa64e1b6a3492440917a))
+- **release:** publish ([31ea49e](https://github.com/scaleway/scaleway-lib/commit/31ea49eb2cd246e631da901609025d7ff8a0bc5d))
 
 ## 4.0.2 (2023-01-13)
 
-
 ### :package: Chore
 
-* **release:** publish ([9d6de7b](https://github.com/scaleway/scaleway-lib/commit/9d6de7b63065f53774cb64b0e5a46a868dc9933a))
-
+- **release:** publish ([9d6de7b](https://github.com/scaleway/scaleway-lib/commit/9d6de7b63065f53774cb64b0e5a46a868dc9933a))
 
 ### :bug: Bug Fixes
 
-* harden ts code ([#1158](https://github.com/scaleway/scaleway-lib/issues/1158)) ([7e2130e](https://github.com/scaleway/scaleway-lib/commit/7e2130ea4c2a079c69ec49b27444daa8f6076d03))
-
-
+- harden ts code ([#1158](https://github.com/scaleway/scaleway-lib/issues/1158)) ([7e2130e](https://github.com/scaleway/scaleway-lib/commit/7e2130ea4c2a079c69ec49b27444daa8f6076d03))
 
 ## 4.0.1 (2023-01-12)
 
-
 ### :package: Chore
 
-* **devdeps:** update dependency react-router-dom to v6.6.2 ([#1155](https://github.com/scaleway/scaleway-lib/issues/1155)) ([6703714](https://github.com/scaleway/scaleway-lib/commit/6703714e1a4dfd1acceaa7f00f4ca822c6e9523f))
-* **release:** publish ([ffcba24](https://github.com/scaleway/scaleway-lib/commit/ffcba24e8c4f9eae5c33b5e1e87f0b2e06280d27))
-
-
+- **devdeps:** update dependency react-router-dom to v6.6.2 ([#1155](https://github.com/scaleway/scaleway-lib/issues/1155)) ([6703714](https://github.com/scaleway/scaleway-lib/commit/6703714e1a4dfd1acceaa7f00f4ca822c6e9523f))
+- **release:** publish ([ffcba24](https://github.com/scaleway/scaleway-lib/commit/ffcba24e8c4f9eae5c33b5e1e87f0b2e06280d27))
 
 ## 4.0.0 (2023-01-06)
 
-
 ### ⚠ BREAKING CHANGES
 
-* packages are ESM only
+- packages are ESM only
 
 ### :package: Chore
 
-* **release:** publish ([20c9d4f](https://github.com/scaleway/scaleway-lib/commit/20c9d4fb39822245252bf362bc7a8d26127e511d))
-
+- **release:** publish ([20c9d4f](https://github.com/scaleway/scaleway-lib/commit/20c9d4fb39822245252bf362bc7a8d26127e511d))
 
 ### :gear: Features
 
-* publish packages as ESM only ([#1145](https://github.com/scaleway/scaleway-lib/issues/1145)) ([4c25097](https://github.com/scaleway/scaleway-lib/commit/4c25097254a5ba7f0a5dbb6fdf5d6578a75f777a))
-
-
+- publish packages as ESM only ([#1145](https://github.com/scaleway/scaleway-lib/issues/1145)) ([4c25097](https://github.com/scaleway/scaleway-lib/commit/4c25097254a5ba7f0a5dbb6fdf5d6578a75f777a))
 
 ## 3.3.11 (2022-12-29)
 
