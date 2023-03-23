@@ -90,3 +90,4 @@ const useQueryParams = <T extends QueryParams>(): {
 }
 
 export default useQueryParams
+export { parse as parseQueryParams, stringify as stringifyQueryParams }
