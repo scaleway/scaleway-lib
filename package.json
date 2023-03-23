@@ -117,6 +117,9 @@
       "text",
       "cobertura"
     ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!(.*(query-string|decode-uri-component|split-on-first|filter-obj)))"
+    ],
     "reporters": [
       "default",
       [
