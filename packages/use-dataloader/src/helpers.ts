@@ -8,7 +8,7 @@ import type { KeyType } from './types'
 export const marshalQueryKey = (queryKey: KeyType) =>
   Array.isArray(queryKey)
     ? queryKey
-        .filter(Boolean)
+        .filter(value => value !== undefined)
         .map(subKey => {
           if (subKey instanceof Date) {
             return subKey.toISOString()
