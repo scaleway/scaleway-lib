@@ -12,9 +12,9 @@ describe('marshalQueryKey', () => {
 
   test('should accept primitive array', () => {
     const date = new Date('2021')
-    expect(marshalQueryKey(['defaultKey', 3, null, date, true])).toStrictEqual(
-      'defaultKey.3.2021-01-01T00:00:00.000Z.true',
-    )
+    expect(
+      marshalQueryKey(['defaultKey', 3, null, false, date, true]),
+    ).toStrictEqual('defaultKey.3.false.2021-01-01T00:00:00.000Z.true')
 
     expect(
       marshalQueryKey(
@@ -22,12 +22,13 @@ describe('marshalQueryKey', () => {
           'default key',
           ['number', 3],
           ['null', null],
+          ['false', false],
           ['date', date],
           ['boolean', true],
         ].flat(),
       ),
     ).toStrictEqual(
-      'default key.number.3.null.date.2021-01-01T00:00:00.000Z.boolean.true',
+      'default key.number.3.null.false.false.date.2021-01-01T00:00:00.000Z.boolean.true',
     )
   })
 

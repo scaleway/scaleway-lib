@@ -8,7 +8,9 @@ import type { KeyType } from './types'
 export const marshalQueryKey = (queryKey: KeyType) =>
   Array.isArray(queryKey)
     ? queryKey
-        .filter(Boolean)
+        // For now, we treat null values as if they were undefined
+        // because we can't stringified them and JSON.stringify is not performant
+        .filter(value => value !== undefined && value !== null)
         .map(subKey => {
           if (subKey instanceof Date) {
             return subKey.toISOString()

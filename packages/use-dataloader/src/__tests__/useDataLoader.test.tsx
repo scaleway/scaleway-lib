@@ -675,6 +675,7 @@ describe('useDataLoader', () => {
 
   test('should use cached data', async () => {
     const fakePromise = jest.fn(initialProps.method)
+    const testDate = new Date()
     const { result } = renderHook(
       props => [
         useDataLoader(props.key, props.method, props.config),
@@ -682,11 +683,15 @@ describe('useDataLoader', () => {
           ...props.config,
           enabled: false,
         }),
+        // eslint-disable-next-line no-sparse-arrays
+        useDataLoader(['test-13', , testDate], props.method, props.config),
+        useDataLoader(['test-13', null, testDate], props.method, props.config),
       ],
       {
         initialProps: {
           ...initialProps,
-          key: 'test-13',
+          // eslint-disable-next-line no-sparse-arrays
+          key: ['test-13', false, testDate],
           method: fakePromise,
         },
         wrapper,
@@ -710,7 +715,10 @@ describe('useDataLoader', () => {
 
     await waitFor(() => expect(result.current[1]?.isSuccess).toBe(true))
     expect(result.current[1]?.isSuccess).toBe(true)
-    expect(fakePromise).toBeCalledTimes(2)
+
+    await waitFor(() => expect(result.current[2]?.isSuccess).toBe(true))
+    expect(result.current[2]?.data).toBe(true)
+    expect(fakePromise).toBeCalledTimes(3)
   })
 
   test('should be reloaded from dataloader context', async () => {
