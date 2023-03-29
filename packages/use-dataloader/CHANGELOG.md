@@ -1,57 +1,51 @@
 # Change Log
 
+## 4.0.1
+
+### Patch Changes
+
+- [#1258](https://github.com/scaleway/scaleway-lib/pull/1258) [`9f22073`](https://github.com/scaleway/scaleway-lib/commit/9f220738be71d6ae01da7f032849fc62f96ab9e6) Thanks [@ModuloM](https://github.com/ModuloM)! - Fix case where cache array key with false value was ignored.
+
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## 4.0.0 (2023-02-06)
 
-
 ### ⚠ BREAKING CHANGES
 
-* **paginated-dataloader:** BREAKING CHANGE: usePaginatedDataloader does no exist anymore 
+- **paginated-dataloader:** BREAKING CHANGE: usePaginatedDataloader does no exist anymore
 
 ### :package: Chore
 
-* **release:** publish ([2ce37e3](https://github.com/scaleway/scaleway-lib/commit/2ce37e3b836aa8c957ef6fb31d96658f064c5b40))
-
+- **release:** publish ([2ce37e3](https://github.com/scaleway/scaleway-lib/commit/2ce37e3b836aa8c957ef6fb31d96658f064c5b40))
 
 ### :gear: Features
 
-* **paginated-dataloader:** BREAKING CHANGE: usePaginatedDataloader does no exist anymore  ([303cffc](https://github.com/scaleway/scaleway-lib/commit/303cffcd228c6eafcbd029bc08c958d8c17b1f41))
-
-
+- **paginated-dataloader:** BREAKING CHANGE: usePaginatedDataloader does no exist anymore ([303cffc](https://github.com/scaleway/scaleway-lib/commit/303cffcd228c6eafcbd029bc08c958d8c17b1f41))
 
 ## 3.0.1 (2023-01-13)
 
-
 ### :package: Chore
 
-* **release:** publish ([9d6de7b](https://github.com/scaleway/scaleway-lib/commit/9d6de7b63065f53774cb64b0e5a46a868dc9933a))
-
+- **release:** publish ([9d6de7b](https://github.com/scaleway/scaleway-lib/commit/9d6de7b63065f53774cb64b0e5a46a868dc9933a))
 
 ### :bug: Bug Fixes
 
-* harden ts code ([#1158](https://github.com/scaleway/scaleway-lib/issues/1158)) ([7e2130e](https://github.com/scaleway/scaleway-lib/commit/7e2130ea4c2a079c69ec49b27444daa8f6076d03))
-
-
+- harden ts code ([#1158](https://github.com/scaleway/scaleway-lib/issues/1158)) ([7e2130e](https://github.com/scaleway/scaleway-lib/commit/7e2130ea4c2a079c69ec49b27444daa8f6076d03))
 
 ## 3.0.0 (2023-01-06)
 
-
 ### ⚠ BREAKING CHANGES
 
-* packages are ESM only
+- packages are ESM only
 
 ### :package: Chore
 
-* **release:** publish ([20c9d4f](https://github.com/scaleway/scaleway-lib/commit/20c9d4fb39822245252bf362bc7a8d26127e511d))
-
+- **release:** publish ([20c9d4f](https://github.com/scaleway/scaleway-lib/commit/20c9d4fb39822245252bf362bc7a8d26127e511d))
 
 ### :gear: Features
 
-* publish packages as ESM only ([#1145](https://github.com/scaleway/scaleway-lib/issues/1145)) ([4c25097](https://github.com/scaleway/scaleway-lib/commit/4c25097254a5ba7f0a5dbb6fdf5d6578a75f777a))
-
-
+- publish packages as ESM only ([#1145](https://github.com/scaleway/scaleway-lib/issues/1145)) ([4c25097](https://github.com/scaleway/scaleway-lib/commit/4c25097254a5ba7f0a5dbb6fdf5d6578a75f777a))
 
 ## [2.16.7](https://github.com/scaleway/scaleway-lib/compare/@scaleway/use-dataloader@2.16.6...@scaleway/use-dataloader@2.16.7) (2023-01-04)
 
