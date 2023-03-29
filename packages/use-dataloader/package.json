@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/use-dataloader",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "A small hook to handle api requests",
   "keywords": [
     "react",
