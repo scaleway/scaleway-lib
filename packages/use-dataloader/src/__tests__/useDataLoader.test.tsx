@@ -685,6 +685,7 @@ describe('useDataLoader', () => {
         }),
         // eslint-disable-next-line no-sparse-arrays
         useDataLoader(['test-13', , testDate], props.method, props.config),
+        useDataLoader(['test-13', null, testDate], props.method, props.config),
       ],
       {
         initialProps: {
