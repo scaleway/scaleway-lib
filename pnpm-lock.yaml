@@ -173,14 +173,14 @@ importers:
       '@formatjs/ecma402-abstract': 1.14.3
       '@formatjs/fast-memoize': 2.0.1
       date-fns: 2.29.3
-      filesize: 10.0.6
+      filesize: 10.0.7
       international-types: 0.3.7
       intl-messageformat: 10.3.3
     dependencies:
       '@formatjs/ecma402-abstract': 1.14.3
       '@formatjs/fast-memoize': 2.0.1
       date-fns: 2.29.3
-      filesize: 10.0.6
+      filesize: 10.0.7
       international-types: 0.3.7
       intl-messageformat: 10.3.3
 
@@ -6026,8 +6026,8 @@ packages:
     dependencies:
       flat-cache: 3.0.4
 
-  /filesize/10.0.6:
-    resolution: {integrity: sha512-rzpOZ4C9vMFDqOa6dNpog92CoLYjD79dnjLk2TYDDtImRIyLTOzqojCb05Opd1WuiWjs+fshhCgTd8cl7y5t+g==}
+  /filesize/10.0.7:
+    resolution: {integrity: sha512-iMRG7Qo9nayLoU3PNCiLizYtsy4W1ClrapeCwEgtiQelOAOuRJiw4QaLI+sSr8xr901dgHv+EYP2bCusGZgoiA==}
     engines: {node: '>= 10.4.0'}
     dev: false
 
