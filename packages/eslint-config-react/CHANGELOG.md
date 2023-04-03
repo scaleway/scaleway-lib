@@ -1,5 +1,16 @@
 # Change Log
 
+## 3.15.8
+
+### Patch Changes
+
+- [#1266](https://github.com/scaleway/scaleway-lib/pull/1266) [`ea76475`](https://github.com/scaleway/scaleway-lib/commit/ea764757abf16ddef74e078d7e995417faa82634) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@commitlint/cli` to `17.5.1`.
+  Updated dependency `typescript` to `5.0.2`.
+
+- [#1265](https://github.com/scaleway/scaleway-lib/pull/1265) [`44eb970`](https://github.com/scaleway/scaleway-lib/commit/44eb970b07c8da9a24f3bf326ad4642bcf6e6b05) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@commitlint/cli` to `17.4.4`.
+  Updated dependency `@typescript-eslint/eslint-plugin` to `5.57.0`.
+  Updated dependency `@typescript-eslint/parser` to `5.57.0`.
+
 ## 3.15.7
 
 ### Patch Changes
