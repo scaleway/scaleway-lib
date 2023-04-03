@@ -53,7 +53,7 @@
     "rollup-plugin-preserve-shebangs": "0.2.0",
     "rollup-plugin-visualizer": "5.9.0",
     "tsd-lite": "0.7.0",
-    "typescript": "5.0.2",
+    "typescript": "5.0.3",
     "wait-for-expect": "3.0.2"
   },
   "scripts": {
