@@ -1,5 +1,12 @@
 # Change Log
 
+## 5.1.2
+
+### Patch Changes
+
+- [#1264](https://github.com/scaleway/scaleway-lib/pull/1264) [`004f8ed`](https://github.com/scaleway/scaleway-lib/commit/004f8ed5c2b5388b3e19ecc5d6e93ebf403a9620) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `prettier` to `2.8.6`.
+  Updated dependency `filesize` to `10.0.7`.
+
 ## 5.1.1
 
 ### Patch Changes
