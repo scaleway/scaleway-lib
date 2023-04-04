@@ -46,7 +46,7 @@ importers:
       rollup-plugin-preserve-shebangs: 0.2.0
       rollup-plugin-visualizer: 5.9.0
       tsd-lite: 0.7.0
-      typescript: 5.0.3
+      typescript: 5.0.2
       wait-for-expect: 3.0.2
     devDependencies:
       '@babel/core': 7.21.3
@@ -87,11 +87,11 @@ importers:
       react-dom: 18.2.0_react@18.2.0
       read-pkg: 7.1.0
       rollup: 3.20.2
-      rollup-plugin-dts: 5.3.0_veck7oukgpukn72f5inxoyux7q
+      rollup-plugin-dts: 5.3.0_dpenfibtlqpfrulx5rm72ngxhu
       rollup-plugin-preserve-shebangs: 0.2.0_rollup@3.20.2
       rollup-plugin-visualizer: 5.9.0_rollup@3.20.2
       tsd-lite: 0.7.0_@tsd+typescript@5.0.2
-      typescript: 5.0.3
+      typescript: 5.0.2
       wait-for-expect: 3.0.2
 
   packages/changesets-renovate:
@@ -8388,7 +8388,7 @@ packages:
     dependencies:
       glob: 7.2.3
 
-  /rollup-plugin-dts/5.3.0_veck7oukgpukn72f5inxoyux7q:
+  /rollup-plugin-dts/5.3.0_dpenfibtlqpfrulx5rm72ngxhu:
     resolution: {integrity: sha512-8FXp0ZkyZj1iU5klkIJYLjIq/YZSwBoERu33QBDxm/1yw5UU4txrEtcmMkrq+ZiKu3Q4qvPCNqc3ovX6rjqzbQ==}
     engines: {node: '>=v14'}
     peerDependencies:
@@ -8397,7 +8397,7 @@ packages:
     dependencies:
       magic-string: 0.30.0
       rollup: 3.20.2
-      typescript: 5.0.3
+      typescript: 5.0.2
     optionalDependencies:
       '@babel/code-frame': 7.18.6
     dev: true
@@ -9051,6 +9051,12 @@ packages:
       call-bind: 1.0.2
       for-each: 0.3.3
       is-typed-array: 1.1.10
+
+  /typescript/5.0.2:
+    resolution: {integrity: sha512-wVORMBGO/FAs/++blGNeAVdbNKtIh1rbBL2EyQ1+J9lClJ93KiiKe8PmFIVdXhHcyv44SL9oglmfeSsndo0jRw==}
+    engines: {node: '>=12.20'}
+    hasBin: true
+    dev: true
 
   /typescript/5.0.3:
     resolution: {integrity: sha512-xv8mOEDnigb/tN9PSMTwSEqAnUvkoXMQlicOb0IUVDBSQCgBSaAAROUZYy2IcUy5qU6XajK5jjjO7TMWqBTKZA==}
