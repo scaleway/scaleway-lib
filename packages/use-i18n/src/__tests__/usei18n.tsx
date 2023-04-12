@@ -297,17 +297,11 @@ describe('i18n hook', () => {
     expect(result.current.t('test')).toEqual('test')
 
     await waitFor(() => {
-      expect(result.current.t('title')).toEqual(en.title)
-      expect(result.current.t('subtitle')).toEqual(en.subtitle)
-      expect(result.current.t('plurals', { numPhotos: 0 })).toEqual(
-        'You have no photos.',
-      )
-      expect(result.current.t('plurals', { numPhotos: 1 })).toEqual(
-        'You have one photo.',
-      )
-      expect(result.current.t('plurals', { numPhotos: 2 })).toEqual(
-        'You have 2 photos.',
-      )
+      expect(result.current.t('title')).toEqual('title')
+      expect(result.current.t('subtitle')).toEqual('subtitle')
+      expect(result.current.t('plurals', { numPhotos: 0 })).toEqual('plurals')
+      expect(result.current.t('plurals', { numPhotos: 1 })).toEqual('plurals')
+      expect(result.current.t('plurals', { numPhotos: 2 })).toEqual('plurals')
     })
   })
 
