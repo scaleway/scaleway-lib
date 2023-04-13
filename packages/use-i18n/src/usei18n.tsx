@@ -330,11 +330,11 @@ const I18nContextProvider = ({
   const translate = useCallback(
     (key: string, context?: ReactParamsObject<any>) => {
       const value = translations[currentLocale]?.[key] as string
-      if (!value) {
-        if (enableDebugKey) {
-          return key
-        }
+      if (enableDebugKey) {
+        return key
+      }
 
+      if (!value) {
         return ''
       }
       if (context) {
