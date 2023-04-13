@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.2.0
+
+### Minor Changes
+
+- [#1276](https://github.com/scaleway/scaleway-lib/pull/1276) [`475fdd6`](https://github.com/scaleway/scaleway-lib/commit/475fdd657848bf0307a0fc193cfcc07bdee37843) Thanks [@DorianMaliszewski](https://github.com/DorianMaliszewski)! - enableDebugKey should always return the key
+
 ## 5.1.2
 
 ### Patch Changes

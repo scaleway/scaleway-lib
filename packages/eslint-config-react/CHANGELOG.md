@@ -1,5 +1,22 @@
 # Change Log
 
+## 3.15.9
+
+### Patch Changes
+
+- [#1268](https://github.com/scaleway/scaleway-lib/pull/1268) [`d642180`](https://github.com/scaleway/scaleway-lib/commit/d642180b77e6bc4ef635d7bc0c92f784b3132f57) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `eslint` to `8.36.0`.
+  Updated dependency `react-router-dom` to `6.10.0`.
+
+- [#1269](https://github.com/scaleway/scaleway-lib/pull/1269) [`7dc744a`](https://github.com/scaleway/scaleway-lib/commit/7dc744a73c9cf74d461a43c5a53f24e777a0a0ea) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `typescript` to `5.0.2`.
+  Updated dependency `@typescript-eslint/eslint-plugin` to `5.57.1`.
+  Updated dependency `@typescript-eslint/parser` to `5.57.1`.
+
+- [#1271](https://github.com/scaleway/scaleway-lib/pull/1271) [`a517e02`](https://github.com/scaleway/scaleway-lib/commit/a517e02ea4084c4438d2bd2905e07bbf04a3937e) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `eslint` to `8.36.0`.
+  Updated dependency `eslint-plugin-deprecation` to `1.4.0`.
+
+- [#1272](https://github.com/scaleway/scaleway-lib/pull/1272) [`b8d9d79`](https://github.com/scaleway/scaleway-lib/commit/b8d9d79c3d6346e83e5740768cfb90bf51c0f4ce) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `packageManager` to `pnpm@8.1.1`.
+  Updated dependency `eslint` to `8.36.0`.
+
 ## 3.15.8
 
 ### Patch Changes

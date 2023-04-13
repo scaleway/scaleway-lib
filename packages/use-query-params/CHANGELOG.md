@@ -1,5 +1,12 @@
 # Change Log
 
+## 4.0.8
+
+### Patch Changes
+
+- [#1268](https://github.com/scaleway/scaleway-lib/pull/1268) [`d642180`](https://github.com/scaleway/scaleway-lib/commit/d642180b77e6bc4ef635d7bc0c92f784b3132f57) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `eslint` to `8.36.0`.
+  Updated dependency `react-router-dom` to `6.10.0`.
+
 ## 4.0.7
 
 ### Patch Changes
