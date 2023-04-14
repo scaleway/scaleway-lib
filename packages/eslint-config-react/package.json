@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/eslint-config-react",
-  "version": "3.15.8",
+  "version": "3.15.9",
   "description": "Scaleway React eslint shared config",
   "keywords": [
     "eslint",
@@ -23,7 +23,7 @@
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-typescript": "17.0.0",
     "eslint-config-prettier": "8.8.0",
-    "eslint-plugin-deprecation": "1.4.0",
+    "eslint-plugin-deprecation": "1.4.1",
     "eslint-plugin-eslint-comments": "3.2.0",
     "eslint-plugin-import": "2.27.5",
     "eslint-plugin-jsx-a11y": "6.7.1",

@@ -164,8 +164,8 @@ importers:
         specifier: 8.8.0
         version: 8.8.0(eslint@8.36.0)
       eslint-plugin-deprecation:
-        specifier: 1.4.0
-        version: 1.4.0(eslint@8.36.0)(typescript@5.0.2)
+        specifier: 1.4.1
+        version: 1.4.1(eslint@8.36.0)(typescript@5.0.2)
       eslint-plugin-eslint-comments:
         specifier: 3.2.0
         version: 3.2.0(eslint@8.36.0)
@@ -4075,19 +4075,6 @@ packages:
       - supports-color
     dev: false
 
-  /@typescript-eslint/experimental-utils@5.57.1(eslint@8.36.0)(typescript@5.0.2):
-    resolution: {integrity: sha512-5F5s8mpM1Y0RQ5iWzKQPQm5cmhARgcMfUwyHX1ZZFL8Tm0PyzyQ+9jgYSMaW74XXvpDg9/KdmMICLlwNwKtO7w==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-    peerDependencies:
-      eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
-    dependencies:
-      '@typescript-eslint/utils': 5.57.1(eslint@8.36.0)(typescript@5.0.2)
-      eslint: 8.36.0
-    transitivePeerDependencies:
-      - supports-color
-      - typescript
-    dev: false
-
   /@typescript-eslint/parser@5.57.1(eslint@8.36.0)(typescript@5.0.2):
     resolution: {integrity: sha512-hlA0BLeVSA/wBPKdPGxoVr9Pp6GutGoY380FEhbVi0Ph4WNe8kLvqIRx76RSQt1lynZKfrXKs0/XeEk4zZycuA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -5596,13 +5583,13 @@ packages:
       - supports-color
     dev: false
 
-  /eslint-plugin-deprecation@1.4.0(eslint@8.36.0)(typescript@5.0.2):
-    resolution: {integrity: sha512-ghFrjqdtwL4sUWjcmPu0J1HTXPDonFJLFdlPwzlvUMkoJNzR9R8Ua/J10mA4vFX9p1ggf/HWvmWBwew2XMTzmQ==}
+  /eslint-plugin-deprecation@1.4.1(eslint@8.36.0)(typescript@5.0.2):
+    resolution: {integrity: sha512-4vxTghWzxsBukPJVQupi6xlTuDc8Pyi1QlRCrFiLgwLPMJQW3cJCNaehJUKQqQFvuue5m4W27e179Y3Qjzeghg==}
     peerDependencies:
       eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
       typescript: ^3.7.5 || ^4.0.0 || ^5.0.0
     dependencies:
-      '@typescript-eslint/experimental-utils': 5.57.1(eslint@8.36.0)(typescript@5.0.2)
+      '@typescript-eslint/utils': 5.57.1(eslint@8.36.0)(typescript@5.0.2)
       eslint: 8.36.0
       tslib: 2.5.0
       tsutils: 3.21.0(typescript@5.0.2)
