@@ -1,59 +1,51 @@
 # Change Log
 
+## 3.0.4
+
+### Patch Changes
+
+- [#1275](https://github.com/scaleway/scaleway-lib/pull/1275) [`1f87508`](https://github.com/scaleway/scaleway-lib/commit/1f875084c86abe100250c739d3e80349e7c72137) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@emotion/cache` to `11.10.7`.
+
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## 3.0.3 (2023-02-28)
 
-
 ### :package: Chore
 
-* **devdeps:** update depvdeps ([#1209](https://github.com/scaleway/scaleway-lib/issues/1209)) ([f23725b](https://github.com/scaleway/scaleway-lib/commit/f23725b34ee2cc3269d408c16dd574f7947851f1))
-* **release:** publish ([2c2a356](https://github.com/scaleway/scaleway-lib/commit/2c2a356753502509c8c3afbe245f71ab01744967))
-
-
+- **devdeps:** update depvdeps ([#1209](https://github.com/scaleway/scaleway-lib/issues/1209)) ([f23725b](https://github.com/scaleway/scaleway-lib/commit/f23725b34ee2cc3269d408c16dd574f7947851f1))
+- **release:** publish ([2c2a356](https://github.com/scaleway/scaleway-lib/commit/2c2a356753502509c8c3afbe245f71ab01744967))
 
 ## 3.0.2 (2023-02-19)
 
-
 ### :package: Chore
 
-* **release:** publish ([9039a24](https://github.com/scaleway/scaleway-lib/commit/9039a24045cd8cf95eb17474e6f6b551320fedb2))
-
+- **release:** publish ([9039a24](https://github.com/scaleway/scaleway-lib/commit/9039a24045cd8cf95eb17474e6f6b551320fedb2))
 
 ### :bug: Bug Fixes
 
-* **deps:** update dependency @emotion/react to v11.10.6 ([#1204](https://github.com/scaleway/scaleway-lib/issues/1204)) ([54b0d50](https://github.com/scaleway/scaleway-lib/commit/54b0d5080b18376d9be9ba3d8d8b8e2d5a22f733))
-
-
+- **deps:** update dependency @emotion/react to v11.10.6 ([#1204](https://github.com/scaleway/scaleway-lib/issues/1204)) ([54b0d50](https://github.com/scaleway/scaleway-lib/commit/54b0d5080b18376d9be9ba3d8d8b8e2d5a22f733))
 
 ## 3.0.1 (2023-01-17)
 
-
 ### :package: Chore
 
-* **deps:** update @babel/core ([#1171](https://github.com/scaleway/scaleway-lib/issues/1171)) ([67ddfa1](https://github.com/scaleway/scaleway-lib/commit/67ddfa140fc64c18f3ec3838eb50f5584716a24f))
-* **release:** publish ([0cd4557](https://github.com/scaleway/scaleway-lib/commit/0cd45577abc2460552cf760d743300b4b3d1c3bb))
-
-
+- **deps:** update @babel/core ([#1171](https://github.com/scaleway/scaleway-lib/issues/1171)) ([67ddfa1](https://github.com/scaleway/scaleway-lib/commit/67ddfa140fc64c18f3ec3838eb50f5584716a24f))
+- **release:** publish ([0cd4557](https://github.com/scaleway/scaleway-lib/commit/0cd45577abc2460552cf760d743300b4b3d1c3bb))
 
 ## 3.0.0 (2023-01-06)
 
-
 ### ⚠ BREAKING CHANGES
 
-* packages are ESM only
+- packages are ESM only
 
 ### :package: Chore
 
-* **release:** publish ([20c9d4f](https://github.com/scaleway/scaleway-lib/commit/20c9d4fb39822245252bf362bc7a8d26127e511d))
-
+- **release:** publish ([20c9d4f](https://github.com/scaleway/scaleway-lib/commit/20c9d4fb39822245252bf362bc7a8d26127e511d))
 
 ### :gear: Features
 
-* publish packages as ESM only ([#1145](https://github.com/scaleway/scaleway-lib/issues/1145)) ([4c25097](https://github.com/scaleway/scaleway-lib/commit/4c25097254a5ba7f0a5dbb6fdf5d6578a75f777a))
-
-
+- publish packages as ESM only ([#1145](https://github.com/scaleway/scaleway-lib/issues/1145)) ([4c25097](https://github.com/scaleway/scaleway-lib/commit/4c25097254a5ba7f0a5dbb6fdf5d6578a75f777a))
 
 ## 2.0.25 (2022-12-27)
 
