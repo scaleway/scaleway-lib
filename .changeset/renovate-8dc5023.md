@@ -1,5 +1,4 @@
 ---
-'@scaleway/eslint-config-react': patch
 '@scaleway/use-i18n': patch
 ---
 
