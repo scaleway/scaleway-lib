@@ -65,11 +65,11 @@ importers:
         specifier: 15.7.5
         version: 15.7.5
       '@types/react':
-        specifier: 18.2.0
-        version: 18.2.0
+        specifier: 18.0.33
+        version: 18.0.33
       '@types/react-dom':
-        specifier: 18.2.1
-        version: 18.2.1
+        specifier: 18.0.11
+        version: 18.0.11
       builtin-modules:
         specifier: 3.3.0
         version: 3.3.0
@@ -196,7 +196,7 @@ importers:
         version: 11.10.7
       '@emotion/jest':
         specifier: 11.10.5
-        version: 11.10.5(@types/jest@29.5.0)
+        version: 11.10.5(@types/jest@29.5.1)
       '@emotion/react':
         specifier: 11.10.6
         version: 11.10.6(@types/react@18.0.33)(react@18.2.0)
@@ -2108,7 +2108,7 @@ packages:
     resolution: {integrity: sha512-14FtKiHhy2QoPIzdTcvh//8OyBlknNs2nXRwIhG904opCby3l+9Xaf/wuPvICBF0rc1ZCNBd3nKe9cd2mecVkQ==}
     dev: false
 
-  /@emotion/jest@11.10.5(@types/jest@29.5.0):
+  /@emotion/jest@11.10.5(@types/jest@29.5.1):
     resolution: {integrity: sha512-LagosxybgisPlxfBGas9kGcNB5xTTX125WbjEVZiE3MEbb+dI4UYn0XIzrsilR8nUaQ5lH6yKUFrMmz7kB34vg==}
     peerDependencies:
       '@types/jest': ^26.0.14 || ^27.0.0 || ^28.0.0 || ^29.0.0
@@ -2121,7 +2121,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.19.4
       '@emotion/css-prettifier': 1.1.1
-      '@types/jest': 29.5.0
+      '@types/jest': 29.5.1
       chalk: 4.1.2
       specificity: 0.4.1
       stylis: 4.1.3
@@ -3855,7 +3855,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.21.0
       '@testing-library/dom': 8.20.0
-      '@types/react-dom': 18.2.1
+      '@types/react-dom': 18.0.11
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
@@ -3945,19 +3945,11 @@ packages:
     dependencies:
       '@types/istanbul-lib-report': 3.0.0
 
-  /@types/jest@29.5.0:
-    resolution: {integrity: sha512-3Emr5VOl/aoBwnWcH/EFQvlSAmjV+XtV9GGu5mwdYew5vhQh0IUZx/60x0TzHDu09Bi7HMx10t/namdJw5QIcg==}
-    dependencies:
-      expect: 29.5.0
-      pretty-format: 29.5.0
-    dev: false
-
   /@types/jest@29.5.1:
     resolution: {integrity: sha512-tEuVcHrpaixS36w7hpsfLBLpjtMRJUE09/MHXn923LOVojDwyC14cWcfc0rDs0VEfUyYmt/+iX1kxxp+gZMcaQ==}
     dependencies:
       expect: 29.5.0
       pretty-format: 29.5.0
-    dev: true
 
   /@types/jsdom@20.0.1:
     resolution: {integrity: sha512-d0r18sZPmMQr1eG35u12FZfhIXNrnsPU/g5wvRKCUf/tOGilKKwYMYGqh33BNR6ba+2gkHw1EUiHoN3mn7E5IQ==}
@@ -4001,21 +3993,13 @@ packages:
   /@types/prop-types@15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
 
-  /@types/react-dom@18.2.1:
-    resolution: {integrity: sha512-8QZEV9+Kwy7tXFmjJrp3XUKQSs9LTnE0KnoUb0YCguWBiNW0Yfb2iBMYZ08WPg35IR6P3Z0s00B15SwZnO26+w==}
+  /@types/react-dom@18.0.11:
+    resolution: {integrity: sha512-O38bPbI2CWtgw/OoQoY+BRelw7uysmXbWvw3nLWO21H1HSh+GOlqPuXshJfjmpNlKiiSDG9cc1JZAaMmVdcTlw==}
     dependencies:
-      '@types/react': 18.2.0
+      '@types/react': 18.0.33
 
   /@types/react@18.0.33:
     resolution: {integrity: sha512-sHxzVxeanvQyQ1lr8NSHaj0kDzcNiGpILEVt69g9S31/7PfMvNCKLKcsHw4lYKjs3cGNJjXSP4mYzX43QlnjNA==}
-    dependencies:
-      '@types/prop-types': 15.7.5
-      '@types/scheduler': 0.16.3
-      csstype: 3.1.2
-    dev: false
-
-  /@types/react@18.2.0:
-    resolution: {integrity: sha512-0FLj93y5USLHdnhIhABk83rm8XEGA7kH3cr+YUlvxoUGp1xNt/DINUMvqPxLyOQMzLmZe8i4RTHbvb8MC7NmrA==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.3
