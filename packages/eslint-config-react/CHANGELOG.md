@@ -1,5 +1,19 @@
 # Change Log
 
+## 3.15.10
+
+### Patch Changes
+
+- [#1295](https://github.com/scaleway/scaleway-lib/pull/1295) [`d3ef5a4`](https://github.com/scaleway/scaleway-lib/commit/d3ef5a460fa496d23d3e376128e88042d52baed8) Thanks [@chambo-e](https://github.com/chambo-e)! - Update dependencies
+
+- [#1286](https://github.com/scaleway/scaleway-lib/pull/1286) [`d8e05aa`](https://github.com/scaleway/scaleway-lib/commit/d8e05aa2b73ae8fd52363fb94e18a80c49202776) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@typescript-eslint/eslint-plugin` to `5.58.0`.
+  Updated dependency `@typescript-eslint/parser` to `5.58.0`.
+
+- [#1279](https://github.com/scaleway/scaleway-lib/pull/1279) [`e775c51`](https://github.com/scaleway/scaleway-lib/commit/e775c51819f1a73e6a7e2d074031ae3c962c90dd) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `eslint-plugin-deprecation` to `1.4.1`.
+
+- [#1285](https://github.com/scaleway/scaleway-lib/pull/1285) [`e57bace`](https://github.com/scaleway/scaleway-lib/commit/e57baceb69ca10237532c2fc5b70583e93089387) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `packageManager` to `pnpm@8.2.0`.
+  Updated dependency `typescript` to `5.0.2`.
+
 ## 3.15.9
 
 ### Patch Changes
