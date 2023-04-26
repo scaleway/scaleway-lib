@@ -1,67 +1,57 @@
 # Change Log
 
+## 2.0.4
+
+### Patch Changes
+
+- [#1295](https://github.com/scaleway/scaleway-lib/pull/1295) [`d3ef5a4`](https://github.com/scaleway/scaleway-lib/commit/d3ef5a460fa496d23d3e376128e88042d52baed8) Thanks [@chambo-e](https://github.com/chambo-e)! - Update dependencies
+
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## 2.0.3 (2023-02-20)
 
-
 ### :package: Chore
 
-* **release:** publish ([b76e45d](https://github.com/scaleway/scaleway-lib/commit/b76e45dff6602c566e69343c1ddddfc304d20f92))
-
+- **release:** publish ([b76e45d](https://github.com/scaleway/scaleway-lib/commit/b76e45dff6602c566e69343c1ddddfc304d20f92))
 
 ### :bug: Bug Fixes
 
-* **deps:** update formatjs monorepo ([#1208](https://github.com/scaleway/scaleway-lib/issues/1208)) ([390bc75](https://github.com/scaleway/scaleway-lib/commit/390bc75dfa2833b30c7ac85d76e0832b8aead5b6))
-
-
+- **deps:** update formatjs monorepo ([#1208](https://github.com/scaleway/scaleway-lib/issues/1208)) ([390bc75](https://github.com/scaleway/scaleway-lib/commit/390bc75dfa2833b30c7ac85d76e0832b8aead5b6))
 
 ## 2.0.2 (2023-02-06)
 
-
 ### :package: Chore
 
-* **release:** publish ([d766621](https://github.com/scaleway/scaleway-lib/commit/d766621aa3de6d5eaa102d111556d838563f5dd9))
-
+- **release:** publish ([d766621](https://github.com/scaleway/scaleway-lib/commit/d766621aa3de6d5eaa102d111556d838563f5dd9))
 
 ### :bug: Bug Fixes
 
-* **deps:** update formatjs monorepo ([#1185](https://github.com/scaleway/scaleway-lib/issues/1185)) ([76b6cc0](https://github.com/scaleway/scaleway-lib/commit/76b6cc00c39aee23a576f92487065eae5ad0cb6c))
-
-
+- **deps:** update formatjs monorepo ([#1185](https://github.com/scaleway/scaleway-lib/issues/1185)) ([76b6cc0](https://github.com/scaleway/scaleway-lib/commit/76b6cc00c39aee23a576f92487065eae5ad0cb6c))
 
 ## 2.0.1 (2023-01-13)
 
-
 ### :package: Chore
 
-* **release:** publish ([9d6de7b](https://github.com/scaleway/scaleway-lib/commit/9d6de7b63065f53774cb64b0e5a46a868dc9933a))
-
+- **release:** publish ([9d6de7b](https://github.com/scaleway/scaleway-lib/commit/9d6de7b63065f53774cb64b0e5a46a868dc9933a))
 
 ### :bug: Bug Fixes
 
-* harden ts code ([#1158](https://github.com/scaleway/scaleway-lib/issues/1158)) ([7e2130e](https://github.com/scaleway/scaleway-lib/commit/7e2130ea4c2a079c69ec49b27444daa8f6076d03))
-
-
+- harden ts code ([#1158](https://github.com/scaleway/scaleway-lib/issues/1158)) ([7e2130e](https://github.com/scaleway/scaleway-lib/commit/7e2130ea4c2a079c69ec49b27444daa8f6076d03))
 
 ## 2.0.0 (2023-01-06)
 
-
 ### ⚠ BREAKING CHANGES
 
-* packages are ESM only
+- packages are ESM only
 
 ### :package: Chore
 
-* **release:** publish ([20c9d4f](https://github.com/scaleway/scaleway-lib/commit/20c9d4fb39822245252bf362bc7a8d26127e511d))
-
+- **release:** publish ([20c9d4f](https://github.com/scaleway/scaleway-lib/commit/20c9d4fb39822245252bf362bc7a8d26127e511d))
 
 ### :gear: Features
 
-* publish packages as ESM only ([#1145](https://github.com/scaleway/scaleway-lib/issues/1145)) ([4c25097](https://github.com/scaleway/scaleway-lib/commit/4c25097254a5ba7f0a5dbb6fdf5d6578a75f777a))
-
-
+- publish packages as ESM only ([#1145](https://github.com/scaleway/scaleway-lib/issues/1145)) ([4c25097](https://github.com/scaleway/scaleway-lib/commit/4c25097254a5ba7f0a5dbb6fdf5d6578a75f777a))
 
 ## 1.1.3 (2022-12-14)
 

@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.2.3
+
+### Patch Changes
+
+- [#1295](https://github.com/scaleway/scaleway-lib/pull/1295) [`d3ef5a4`](https://github.com/scaleway/scaleway-lib/commit/d3ef5a460fa496d23d3e376128e88042d52baed8) Thanks [@chambo-e](https://github.com/chambo-e)! - Update dependencies
+
 ## 1.2.2
 
 ### Patch Changes

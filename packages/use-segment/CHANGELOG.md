@@ -1,5 +1,13 @@
 # Change Log
 
+## 0.9.9
+
+### Patch Changes
+
+- [#1295](https://github.com/scaleway/scaleway-lib/pull/1295) [`d3ef5a4`](https://github.com/scaleway/scaleway-lib/commit/d3ef5a460fa496d23d3e376128e88042d52baed8) Thanks [@chambo-e](https://github.com/chambo-e)! - Update dependencies
+
+- [#1282](https://github.com/scaleway/scaleway-lib/pull/1282) [`c08d940`](https://github.com/scaleway/scaleway-lib/commit/c08d9408bd6772388cc54e963b801a7cef84409e) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@segment/analytics-next` to `1.51.4`.
+
 ## 0.9.8
 
 ### Patch Changes
