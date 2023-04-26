@@ -18,8 +18,8 @@
   "license": "MIT",
   "dependencies": {
     "@emotion/eslint-plugin": "11.10.0",
-    "@typescript-eslint/eslint-plugin": "5.58.0",
-    "@typescript-eslint/parser": "5.58.0",
+    "@typescript-eslint/eslint-plugin": "5.59.1",
+    "@typescript-eslint/parser": "5.59.1",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-typescript": "17.0.0",
     "eslint-config-prettier": "8.8.0",
@@ -34,7 +34,7 @@
     "eslint": ">= 8.5"
   },
   "devDependencies": {
-    "eslint": "8.36.0",
-    "typescript": "5.0.2"
+    "eslint": "8.39.0",
+    "typescript": "5.0.4"
   }
 }
