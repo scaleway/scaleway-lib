@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/changesets-renovate",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Automatically create changesets for Renovate",
   "keywords": [
     "changesets",
@@ -25,6 +25,6 @@
   },
   "license": "MIT",
   "dependencies": {
-    "simple-git": "3.17.0"
+    "simple-git": "3.18.0"
   }
 }
