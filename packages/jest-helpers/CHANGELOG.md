@@ -1,5 +1,14 @@
 # Change Log
 
+## 3.0.5
+
+### Patch Changes
+
+- [#1297](https://github.com/scaleway/scaleway-lib/pull/1297) [`ed14efd`](https://github.com/scaleway/scaleway-lib/commit/ed14efd548219719240e2718c360d82f4bd9cf8b) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `lint-staged` to `13.2.1`.
+  Updated dependency `@emotion/cache` to `11.10.8`.
+  Updated dependency `@emotion/jest` to `11.10.8`.
+  Updated dependency `@emotion/react` to `11.10.8`.
+
 ## 3.0.4
 
 ### Patch Changes
