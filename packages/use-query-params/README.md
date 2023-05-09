@@ -73,7 +73,7 @@ import React from 'react'
 import useQueryParams from '@scaleway/use-query-params'
 
 const Component = () => {
-  const { queryParams, setQueryParams } = useQueryParams()
+  const { queryParams, replaceQueryParams } = useQueryParams()
   const { user, company } = queryParams // user will be undefined and company will be "Scaleway"
   const setUser = () => replaceQueryParams({ user: 'John' }) // user will be "John" and company will be undefined
   // ?user=John
