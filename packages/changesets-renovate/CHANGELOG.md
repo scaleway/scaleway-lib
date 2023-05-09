@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.2.4
+
+### Patch Changes
+
+- [#1309](https://github.com/scaleway/scaleway-lib/pull/1309) [`429f630`](https://github.com/scaleway/scaleway-lib/commit/429f630831de30fc14cfe3216620f32b464a78bd) Thanks [@QuiiBz](https://github.com/QuiiBz)! - Do not generate changeset for `package.json` without `version` field
+
 ## 1.2.3
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.15.11
+
+### Patch Changes
+
+- [#1306](https://github.com/scaleway/scaleway-lib/pull/1306) [`03505bd`](https://github.com/scaleway/scaleway-lib/commit/03505bdaccc301ff04e5bc04207c3d8e2b02c6e7) Thanks [@chambo-e](https://github.com/chambo-e)! - Update dependencies
+
 ## 3.15.10
 
 ### Patch Changes
