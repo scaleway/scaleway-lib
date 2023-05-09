@@ -10,9 +10,11 @@ async function getPackagesNames(files: string[]): Promise<string[]> {
     const data = JSON.parse(await fs.readFile(file, 'utf8')) as {
       name: string
       workspaces?: string[]
+      version?: string
     }
 
-    if (!data.workspaces) {
+    // Do not generate changeset for the root package.json of a monorepo
+    if (!data.workspaces && data.version) {
       packages.push(data.name)
     }
   })
