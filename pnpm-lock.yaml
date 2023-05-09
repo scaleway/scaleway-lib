@@ -295,8 +295,8 @@ importers:
   packages/use-segment:
     dependencies:
       '@segment/analytics-next':
-        specifier: 1.51.6
-        version: 1.51.6
+        specifier: 1.51.7
+        version: 1.51.7
       use-deep-compare-effect:
         specifier: 1.8.1
         version: 1.8.1(react@18.2.0)
@@ -1793,7 +1793,7 @@ packages:
     resolution: {integrity: sha512-JppheLu7S114aEs157fOZDjFqUDpm7eHdq5E8SSR0gUBTEK0cNSHsrSR5a66xs0z3RWuo46QvA3vawp8BxDHvg==}
     dependencies:
       dataloader: 1.4.0
-      node-fetch: 2.6.7
+      node-fetch: 2.6.9
     transitivePeerDependencies:
       - encoding
     dev: true
@@ -2686,19 +2686,19 @@ packages:
       rollup: 3.21.5
     dev: true
 
-  /@segment/analytics-core@1.2.4:
-    resolution: {integrity: sha512-M16osD6+z/bQPSVCZdlU+BAhCk968ppi+SGxU2gVa4B196Qr8SEkBPr3NxUCGTSoULo4/T+k8Ea5cF+pXlgf6Q==}
+  /@segment/analytics-core@1.2.5:
+    resolution: {integrity: sha512-T+AyZe4eKAO08T138RcvCTqUCT609H07VQL6+kh58VJiIalowrnqSdWf9rc+AsUMvPnxUOsnyGBOqNdZ5KNqYw==}
     dependencies:
       '@lukeed/uuid': 2.0.1
       dset: 3.1.2
       tslib: 2.5.0
     dev: false
 
-  /@segment/analytics-next@1.51.6:
-    resolution: {integrity: sha512-SiuuCHLq2sWM3fwF0peQ9J9Ku+FAbsx5XsGl9pL4rfHoaItlQuBETxkmT3BD2YltFxhr4FCQ5+phdT0/X5QUFA==}
+  /@segment/analytics-next@1.51.7:
+    resolution: {integrity: sha512-WXrgQPkB4MBa4Op4X1SKZL/WEBX3vM04jChHClXZK3QcMAezy4A0vblcHK9vtm8RGOuiickVuemU7ZN3/iaGPA==}
     dependencies:
       '@lukeed/uuid': 2.0.1
-      '@segment/analytics-core': 1.2.4
+      '@segment/analytics-core': 1.2.5
       '@segment/analytics.js-video-plugins': 0.2.1
       '@segment/facade': 3.4.10
       '@segment/tsub': 1.0.1
@@ -7656,18 +7656,6 @@ packages:
       '@segment/isodate': 1.0.3
     dev: false
 
-  /node-fetch@2.6.7:
-    resolution: {integrity: sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==}
-    engines: {node: 4.x || >=6.0.0}
-    peerDependencies:
-      encoding: ^0.1.0
-    peerDependenciesMeta:
-      encoding:
-        optional: true
-    dependencies:
-      whatwg-url: 5.0.0
-    dev: true
-
   /node-fetch@2.6.9:
     resolution: {integrity: sha512-DJm/CJkZkRjKKj4Zi4BsKVZh3ValV5IR5s7LVZnW+6YMh0W1BfNA8XSs6DLMGYlId5F3KnA70uu2qepcR08Qqg==}
     engines: {node: 4.x || >=6.0.0}
@@ -7678,7 +7666,6 @@ packages:
         optional: true
     dependencies:
       whatwg-url: 5.0.0
-    dev: false
 
   /node-int64@0.4.0:
     resolution: {integrity: sha512-O5lz91xSOeoXP6DulyHfllpq+Eg00MWitZIbtPfoSEvqIHdl5gfcY6hYzDWnj0qD5tz52PI08u9qUvSVeUBeHw==}
