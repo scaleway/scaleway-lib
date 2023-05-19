@@ -237,7 +237,7 @@ describe('i18n hook', () => {
     })
   })
 
-  it('should set current locale from navigator languages', async () => {
+  it('should set current locale from defaultLocale', async () => {
     const { result } = renderHook(() => useI18n(), {
       wrapper: wrapper({
         defaultLocale: 'fr',
@@ -247,6 +247,91 @@ describe('i18n hook', () => {
 
     await waitFor(() => {
       expect(result.current.currentLocale).toEqual('en')
+    })
+  })
+
+  describe('getCurrentLocale', () => {
+    it('should set current locale from localStorage', async () => {
+      jest.spyOn(global, 'navigator', 'get').mockReturnValueOnce({
+        languages: ['fr'],
+      } as unknown as Navigator)
+      const mockGetItem = jest.fn().mockImplementation(() => 'en')
+      const mockSetItem = jest.fn()
+      const localStorageMock = jest
+        .spyOn(global, 'localStorage', 'get')
+        .mockReturnValue({
+          getItem: mockGetItem,
+          setItem: mockSetItem,
+          clear: jest.fn(),
+        } as unknown as Storage)
+
+      const { result } = renderHook(() => useI18n(), {
+        wrapper: wrapper({
+          defaultLocale: 'es',
+          supportedLocales: ['en', 'fr', 'es'],
+        }),
+      })
+
+      await waitFor(() => {
+        expect(result.current.currentLocale).toEqual('en')
+        expect(mockGetItem).toHaveBeenCalledTimes(2)
+        expect(mockGetItem).toHaveBeenCalledWith(LOCALE_ITEM_STORAGE)
+      })
+      localStorageMock.mockRestore()
+    })
+
+    it('should set current locale from navigator', async () => {
+      jest.spyOn(global, 'navigator', 'get').mockReturnValueOnce({
+        languages: ['fr'],
+      } as unknown as Navigator)
+      const mockGetItem = jest.fn()
+      const mockSetItem = jest.fn()
+      const localStorageMock = jest
+        .spyOn(global, 'localStorage', 'get')
+        .mockReturnValueOnce({
+          getItem: mockGetItem,
+          setItem: mockSetItem,
+          clear: jest.fn(),
+        } as unknown as Storage)
+
+      const { result } = renderHook(() => useI18n(), {
+        wrapper: wrapper({
+          defaultLocale: 'es',
+          supportedLocales: ['en', 'fr', 'es'],
+        }),
+      })
+
+      await waitFor(() => {
+        expect(result.current.currentLocale).toEqual('fr')
+      })
+      localStorageMock.mockRestore()
+    })
+
+    it('should set current locale from defaultLocale', async () => {
+      jest.spyOn(global, 'navigator', 'get').mockReturnValueOnce({
+        languages: [],
+      } as unknown as Navigator)
+      const mockGetItem = jest.fn()
+      const mockSetItem = jest.fn()
+      const localStorageMock = jest
+        .spyOn(global, 'localStorage', 'get')
+        .mockReturnValueOnce({
+          getItem: mockGetItem,
+          setItem: mockSetItem,
+          clear: jest.fn(),
+        } as unknown as Storage)
+
+      const { result } = renderHook(() => useI18n(), {
+        wrapper: wrapper({
+          defaultLocale: 'es',
+          supportedLocales: ['en', 'fr', 'es'],
+        }),
+      })
+
+      await waitFor(() => {
+        expect(result.current.currentLocale).toEqual('es')
+      })
+      localStorageMock.mockRestore()
     })
   })
 
@@ -266,8 +351,8 @@ describe('i18n hook', () => {
 
     await waitFor(() => {
       expect(result.current.currentLocale).toEqual('fr')
-      expect(localStorage.getItem(LOCALE_ITEM_STORAGE)).toBe('fr')
     })
+    expect(localStorage.getItem(LOCALE_ITEM_STORAGE)).toBe('fr')
 
     act(() => {
       result.current.switchLocale('es')
@@ -275,13 +360,16 @@ describe('i18n hook', () => {
 
     await waitFor(() => {
       expect(result.current.currentLocale).toEqual('es')
-      expect(localStorage.getItem(LOCALE_ITEM_STORAGE)).toBe('es')
     })
+    expect(localStorage.getItem(LOCALE_ITEM_STORAGE)).toBe('es')
 
     act(() => {
       result.current.switchLocale('test')
     })
-    expect(result.current.currentLocale).toEqual('es')
+
+    await waitFor(() => {
+      expect(result.current.currentLocale).toEqual('es')
+    })
     expect(localStorage.getItem(LOCALE_ITEM_STORAGE)).toBe('es')
   })
 
