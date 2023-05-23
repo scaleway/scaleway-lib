@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.3.0
+
+### Minor Changes
+
+- [#1320](https://github.com/scaleway/scaleway-lib/pull/1320) [`8da6d75`](https://github.com/scaleway/scaleway-lib/commit/8da6d7553ca5d1cfd7c703c03bb94ce97591feff) Thanks [@ModuloM](https://github.com/ModuloM)! - feat(use-i18n): make the provider compatible with server side rendering
+
 ## 5.2.2
 
 ### Patch Changes
