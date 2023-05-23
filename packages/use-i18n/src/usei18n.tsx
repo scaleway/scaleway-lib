@@ -50,17 +50,21 @@ const getCurrentLocale = ({
   supportedLocales: string[]
   localeItemStorage: string
 }): string => {
-  const { languages } = navigator
-  const browserLocales = [...new Set(languages.map(getLocaleFallback))]
-  const localeStorage = localStorage.getItem(localeItemStorage)
+  if (typeof window !== 'undefined') {
+    const { languages } = navigator
+    const browserLocales = [...new Set(languages.map(getLocaleFallback))]
+    const localeStorage = localStorage.getItem(localeItemStorage)
 
-  return (
-    localeStorage ||
-    browserLocales.find(
-      locale => locale && supportedLocales.includes(locale),
-    ) ||
-    defaultLocale
-  )
+    return (
+      localeStorage ||
+      browserLocales.find(
+        locale => locale && supportedLocales.includes(locale),
+      ) ||
+      defaultLocale
+    )
+  }
+
+  return defaultLocale
 }
 
 type Context<Locale extends BaseLocale> = {
