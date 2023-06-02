@@ -295,8 +295,8 @@ importers:
   packages/use-segment:
     dependencies:
       '@segment/analytics-next':
-        specifier: 1.51.7
-        version: 1.51.7
+        specifier: 1.52.0
+        version: 1.52.0
       use-deep-compare-effect:
         specifier: 1.8.1
         version: 1.8.1(react@18.2.0)
@@ -1799,7 +1799,7 @@ packages:
     resolution: {integrity: sha512-JppheLu7S114aEs157fOZDjFqUDpm7eHdq5E8SSR0gUBTEK0cNSHsrSR5a66xs0z3RWuo46QvA3vawp8BxDHvg==}
     dependencies:
       dataloader: 1.4.0
-      node-fetch: 2.6.7
+      node-fetch: 2.6.10
     transitivePeerDependencies:
       - encoding
     dev: true
@@ -2700,14 +2700,14 @@ packages:
       tslib: 2.5.0
     dev: false
 
-  /@segment/analytics-next@1.51.7:
-    resolution: {integrity: sha512-WXrgQPkB4MBa4Op4X1SKZL/WEBX3vM04jChHClXZK3QcMAezy4A0vblcHK9vtm8RGOuiickVuemU7ZN3/iaGPA==}
+  /@segment/analytics-next@1.52.0:
+    resolution: {integrity: sha512-g78N32oK0dlzskvK36X4Ep1snQo7lzyHRE5R4gI1dVOq3BGd+i4Nv2gpzDCymSxBWs8dtVHaZtBLdPeuLCuYIA==}
     dependencies:
       '@lukeed/uuid': 2.0.1
       '@segment/analytics-core': 1.2.5
       '@segment/analytics.js-video-plugins': 0.2.1
       '@segment/facade': 3.4.10
-      '@segment/tsub': 1.0.1
+      '@segment/tsub': 2.0.0
       dset: 3.1.2
       js-cookie: 3.0.1
       node-fetch: 2.6.10
@@ -2744,8 +2744,8 @@ packages:
     resolution: {integrity: sha512-BtanDuvJqnACFkeeYje7pWULVv8RgZaqKHWwGFnL/g/TH/CcZjkIVTfGDp/MAxmilYHUkrX70SqwnYSTNEaN7A==}
     dev: false
 
-  /@segment/tsub@1.0.1:
-    resolution: {integrity: sha512-rUpvlj/rRfOolk5rjwyrsbl0qzGLsaYgFNEiOSrwrWDryDPq1ZGdo+3Eb+E8+EC0yZOAO4F1DjJfLtaSifpx7w==}
+  /@segment/tsub@2.0.0:
+    resolution: {integrity: sha512-NzkBK8GwPsyQ74AceLjENbUoaFrObnzEKOX4ko2wZDuIyK+DnDm3B//8xZYI2LCKt+wUD55l6ygfjCoVs8RMWw==}
     hasBin: true
     dependencies:
       '@stdlib/math-base-special-ldexp': 0.0.5
@@ -7689,19 +7689,6 @@ packages:
         optional: true
     dependencies:
       whatwg-url: 5.0.0
-    dev: false
-
-  /node-fetch@2.6.7:
-    resolution: {integrity: sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==}
-    engines: {node: 4.x || >=6.0.0}
-    peerDependencies:
-      encoding: ^0.1.0
-    peerDependenciesMeta:
-      encoding:
-        optional: true
-    dependencies:
-      whatwg-url: 5.0.0
-    dev: true
 
   /node-int64@0.4.0:
     resolution: {integrity: sha512-O5lz91xSOeoXP6DulyHfllpq+Eg00MWitZIbtPfoSEvqIHdl5gfcY6hYzDWnj0qD5tz52PI08u9qUvSVeUBeHw==}
