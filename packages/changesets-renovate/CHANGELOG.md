@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.2.5
+
+### Patch Changes
+
+- [#1325](https://github.com/scaleway/scaleway-lib/pull/1325) [`ef2fb63`](https://github.com/scaleway/scaleway-lib/commit/ef2fb636abd6f15e6dd9d28809f141036fafa50a) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `simple-git` to `3.19.0`.
+  Updated dependency `eslint` to `8.40.0`.
+
 ## 1.2.4
 
 ### Patch Changes
