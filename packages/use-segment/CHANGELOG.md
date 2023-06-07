@@ -1,5 +1,12 @@
 # Change Log
 
+## 0.9.11
+
+### Patch Changes
+
+- [#1327](https://github.com/scaleway/scaleway-lib/pull/1327) [`5670aef`](https://github.com/scaleway/scaleway-lib/commit/5670aef2db4c6329382da07a72d527232566d75d) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `eslint` to `8.40.0`.
+  Updated dependency `@segment/analytics-next` to `1.52.0`.
+
 ## 0.9.10
 
 ### Patch Changes
