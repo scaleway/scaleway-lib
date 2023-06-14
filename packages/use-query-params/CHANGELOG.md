@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.11
+
+### Patch Changes
+
+- [#1334](https://github.com/scaleway/scaleway-lib/pull/1334) [`eb658c0`](https://github.com/scaleway/scaleway-lib/commit/eb658c04c70a2a0917ee687a53226dd097521979) Thanks [@chambo-e](https://github.com/chambo-e)! - Update dependecies
+
 ## 4.0.10
 
 ### Patch Changes
