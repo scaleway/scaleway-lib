@@ -27,8 +27,6 @@
       "matchUpdateTypes": ["major"]
     },
     {
-      "automerge": true,
-      "automergeType": "branch",
       "semanticCommitScope": "devDeps",
       "matchDepTypes": ["packageManager", "devDependencies"],
       "matchUpdateTypes": ["minor", "patch"]
