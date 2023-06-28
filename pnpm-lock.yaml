@@ -132,8 +132,8 @@ importers:
         specifier: 5.9.2
         version: 5.9.2(rollup@3.25.3)
       tsd-lite:
-        specifier: 0.7.0
-        version: 0.7.0(@tsd/typescript@5.1.3)
+        specifier: 0.8.0
+        version: 0.8.0(@tsd/typescript@5.1.3)
       typescript:
         specifier: 5.1.3
         version: 5.1.3
@@ -9085,6 +9085,15 @@ packages:
   /tsd-lite@0.7.0(@tsd/typescript@5.1.3):
     resolution: {integrity: sha512-XhQ7w/RPzfjSb98LIQB1qx7yAvRV6+h5JFP4dCvd79Hbp23X8CCx4EdRAQm6faTkRdprKYvZE8kxlK6LpJp8vg==}
     engines: {node: '>=14'}
+    peerDependencies:
+      '@tsd/typescript': 4.x || 5.x
+    dependencies:
+      '@tsd/typescript': 5.1.3
+    dev: true
+
+  /tsd-lite@0.8.0(@tsd/typescript@5.1.3):
+    resolution: {integrity: sha512-wsTMCFgSs+mxM92j1G6cOSAVrwzVcqjqMwCqSs1879I18MHbJQn8IpDwr3cTN+ulTqCmfwlBpaJ4y+08JiyG5Q==}
+    engines: {node: '>=16'}
     peerDependencies:
       '@tsd/typescript': 4.x || 5.x
     dependencies:
