@@ -1,5 +1,12 @@
 # Change Log
 
+## 2.0.8
+
+### Patch Changes
+
+- [#1336](https://github.com/scaleway/scaleway-lib/pull/1336) [`5565d32`](https://github.com/scaleway/scaleway-lib/commit/5565d32777fe65eebcd8f505c30e55c6b4b3890a) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `packageManager` to `pnpm@8.6.0`.
+  Updated dependency `globby` to `13.2.0`.
+
 ## 2.0.7
 
 ### Patch Changes

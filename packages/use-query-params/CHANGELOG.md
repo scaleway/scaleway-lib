@@ -1,5 +1,17 @@
 # Change Log
 
+## 4.0.12
+
+### Patch Changes
+
+- [#1338](https://github.com/scaleway/scaleway-lib/pull/1338) [`4454d96`](https://github.com/scaleway/scaleway-lib/commit/4454d96523d13f865f1e81497f3acb3b8683d552) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@typescript-eslint/eslint-plugin` to `5.60.0`.
+  Updated dependency `@typescript-eslint/parser` to `5.60.0`.
+  Updated dependency `react-router-dom` to `6.12.1`.
+
+- [#1348](https://github.com/scaleway/scaleway-lib/pull/1348) [`1f009bd`](https://github.com/scaleway/scaleway-lib/commit/1f009bd45de0a7ee899b768e20d7e35076ded9c5) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `react-router-dom` to `6.13.0`.
+
+- [#1352](https://github.com/scaleway/scaleway-lib/pull/1352) [`d53f5a0`](https://github.com/scaleway/scaleway-lib/commit/d53f5a06c6d557a00cf0694ebeb2cbd7c0ee5d98) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `react-router-dom` to `6.14.0`.
+
 ## 4.0.11
 
 ### Patch Changes
