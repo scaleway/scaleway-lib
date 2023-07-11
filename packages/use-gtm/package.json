@@ -2,22 +2,20 @@
   "name": "@scaleway/use-gtm",
   "version": "2.0.1",
   "description": "A small hook to handle gtm in a react app",
-  "keywords": [
-    "react",
-    "reactjs",
-    "hooks",
-    "google",
-    "google tag manager",
-    "gtm"
-  ],
   "type": "module",
   "engines": {
     "node": ">=14.x"
   },
   "sideEffects": false,
   "main": "dist/index.js",
-  "module": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
   "publishConfig": {
     "access": "public"
   },
@@ -27,6 +25,14 @@
     "directory": "packages/use-gtm"
   },
   "license": "MIT",
+  "keywords": [
+    "react",
+    "reactjs",
+    "hooks",
+    "google",
+    "google tag manager",
+    "gtm"
+  ],
   "peerDependencies": {
     "react": "18.x || 18"
   }

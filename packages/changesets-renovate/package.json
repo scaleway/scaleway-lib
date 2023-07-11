@@ -2,11 +2,6 @@
   "name": "@scaleway/changesets-renovate",
   "version": "1.2.6",
   "description": "Automatically create changesets for Renovate",
-  "keywords": [
-    "changesets",
-    "renovate",
-    "sync"
-  ],
   "type": "module",
   "engines": {
     "node": ">=14.x"
@@ -24,6 +19,11 @@
     "directory": "packages/changesets-renovate"
   },
   "license": "MIT",
+  "keywords": [
+    "changesets",
+    "renovate",
+    "sync"
+  ],
   "dependencies": {
     "simple-git": "3.19.1"
   }

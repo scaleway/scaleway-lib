@@ -2,22 +2,20 @@
   "name": "@scaleway/use-i18n",
   "version": "5.3.2",
   "description": "A small hook to handle i18n",
-  "keywords": [
-    "react",
-    "reactjs",
-    "hooks",
-    "i18n",
-    "intl",
-    "react-intl"
-  ],
   "type": "module",
   "engines": {
     "node": ">=14.x"
   },
   "sideEffects": false,
   "main": "dist/index.js",
-  "module": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
   "publishConfig": {
     "access": "public"
   },
@@ -27,6 +25,14 @@
     "directory": "packages/use-i18n"
   },
   "license": "MIT",
+  "keywords": [
+    "react",
+    "reactjs",
+    "hooks",
+    "i18n",
+    "intl",
+    "react-intl"
+  ],
   "dependencies": {
     "@formatjs/ecma402-abstract": "1.17.0",
     "@formatjs/fast-memoize": "2.2.0",

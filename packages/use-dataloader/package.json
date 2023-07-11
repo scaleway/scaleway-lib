@@ -2,20 +2,20 @@
   "name": "@scaleway/use-dataloader",
   "version": "4.0.1",
   "description": "A small hook to handle api requests",
-  "keywords": [
-    "react",
-    "reactjs",
-    "hooks",
-    "dataloader"
-  ],
   "type": "module",
   "engines": {
     "node": ">=14.x"
   },
   "sideEffects": false,
   "main": "dist/index.js",
-  "module": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
   "publishConfig": {
     "access": "public"
   },
@@ -25,6 +25,12 @@
     "directory": "packages/use-dataloader"
   },
   "license": "MIT",
+  "keywords": [
+    "react",
+    "reactjs",
+    "hooks",
+    "dataloader"
+  ],
   "peerDependencies": {
     "react": "18.x"
   }
