@@ -290,7 +290,7 @@ importers:
   packages/use-random-name:
     dependencies:
       '@scaleway/random-name':
-        specifier: ^4.0.1
+        specifier: ^4.0.2
         version: link:../random-name
       react:
         specifier: '>=16.8 || 18'
