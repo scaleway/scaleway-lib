@@ -9,7 +9,7 @@
   "sideEffects": false,
   "exports": {
     "types": "./dist/index.d.ts",
-    "import": "./dist/index.js"
+    "default": "./dist/index.js"
   },
   "publishConfig": {
     "access": "public"
