@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.2
+
+### Patch Changes
+
+- [#1380](https://github.com/scaleway/scaleway-lib/pull/1380) [`c0e0d51`](https://github.com/scaleway/scaleway-lib/commit/c0e0d5104680149f9b38ae509b17d14a66c4d733) Thanks [@QuiiBz](https://github.com/QuiiBz)! - Add `exports` field & fix package lint errors
+
 ## 4.0.1
 
 ### Patch Changes
