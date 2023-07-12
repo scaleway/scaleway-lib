@@ -1,5 +1,19 @@
 # Change Log
 
+## 5.3.3
+
+### Patch Changes
+
+- [#1380](https://github.com/scaleway/scaleway-lib/pull/1380) [`c0e0d51`](https://github.com/scaleway/scaleway-lib/commit/c0e0d5104680149f9b38ae509b17d14a66c4d733) Thanks [@QuiiBz](https://github.com/QuiiBz)! - Add `exports` field & fix package lint errors
+
+- [#1361](https://github.com/scaleway/scaleway-lib/pull/1361) [`f9c9306`](https://github.com/scaleway/scaleway-lib/commit/f9c930653273415955b365ab4a829918a5d7eb2b) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `international-types` to `0.5.0`.
+
+- [#1363](https://github.com/scaleway/scaleway-lib/pull/1363) [`0741338`](https://github.com/scaleway/scaleway-lib/commit/0741338d37e6a3002c26c261226b500f95af8785) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `international-types` to `0.5.1`.
+
+- [#1377](https://github.com/scaleway/scaleway-lib/pull/1377) [`ab88feb`](https://github.com/scaleway/scaleway-lib/commit/ab88feb5328504d23d6c500f8118b54c0d81b81c) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `international-types` to `0.5.2`.
+
+- [#1378](https://github.com/scaleway/scaleway-lib/pull/1378) [`85d4409`](https://github.com/scaleway/scaleway-lib/commit/85d440904d1a4c4b0a9b21f53f7c85ac3d682df8) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `international-types` to `0.5.3`.
+
 ## 5.3.2
 
 ### Patch Changes

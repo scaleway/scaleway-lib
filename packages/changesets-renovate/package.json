@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/changesets-renovate",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "description": "Automatically create changesets for Renovate",
   "type": "module",
   "engines": {

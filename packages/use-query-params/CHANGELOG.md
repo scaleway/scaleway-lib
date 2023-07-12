@@ -1,5 +1,13 @@
 # Change Log
 
+## 4.0.13
+
+### Patch Changes
+
+- [#1380](https://github.com/scaleway/scaleway-lib/pull/1380) [`c0e0d51`](https://github.com/scaleway/scaleway-lib/commit/c0e0d5104680149f9b38ae509b17d14a66c4d733) Thanks [@QuiiBz](https://github.com/QuiiBz)! - Add `exports` field & fix package lint errors
+
+- [#1359](https://github.com/scaleway/scaleway-lib/pull/1359) [`72e73a8`](https://github.com/scaleway/scaleway-lib/commit/72e73a82028028ea6f053322d68c29b663a51664) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `react-router-dom` to `6.14.1`.
+
 ## 4.0.12
 
 ### Patch Changes
