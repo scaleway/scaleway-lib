@@ -250,8 +250,8 @@ importers:
         specifier: 10.0.7
         version: 10.0.7
       international-types:
-        specifier: 0.5.3
-        version: 0.5.3
+        specifier: 0.6.0
+        version: 0.6.0
       intl-messageformat:
         specifier: 10.5.0
         version: 10.5.0
@@ -6506,8 +6506,8 @@ packages:
       has: 1.0.3
       side-channel: 1.0.4
 
-  /international-types@0.5.3:
-    resolution: {integrity: sha512-itSEB3Ohnxd08OTTp8+y8irFJVOy1cKr1J6tfrhXnpDz9/Oa3dDAUrcbxiWM7jvGmF6+gdTwVCBVUoGG4E9vdg==}
+  /international-types@0.6.0:
+    resolution: {integrity: sha512-kBaVbh+6qgqqjpFZU9TLjkLcodLnvYwZramvUUCI/bFnKc3CNbMGlIx6/o9Dr4Wko7eRCkJCBaeuKyeKV/5+Fg==}
     dev: false
 
   /intl-messageformat@10.5.0:
