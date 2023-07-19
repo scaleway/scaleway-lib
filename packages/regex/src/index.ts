@@ -7,6 +7,7 @@ export const alphanumdash = /^[a-zA-Z0-9-]*$/
 export const alphanumdashdots = /^[a-zA-Z0-9-.]*$/
 export const alphanumdashdotsorempty = /^$|^[a-zA-Z0-9-.]*$/
 export const alphanumdashdotsspaces = /^[a-zA-Z0-9-.\s]*$/
+export const alphanumdashunderscore = /^[a-zA-Z0-9-_]*$/
 export const alphanumdashunderscoredotsspacesparenthesis =
   /^[a-zA-Z0-9-_.()\s]*$/
 
