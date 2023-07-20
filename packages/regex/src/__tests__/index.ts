@@ -17,6 +17,7 @@ import {
   alphanumdashdotsspaces,
   alphanumdashorempty,
   alphanumdashspaces,
+  alphanumdashunderscore,
   alphanumdashunderscoredotsspacesparenthesis,
   alphanumdots,
   ascii,
@@ -283,6 +284,28 @@ describe('@regex', () => {
       expect(alphanumdashunderscoredotsspacesparenthesis.test(string)).toBe(
         expected,
       )
+    })
+  })
+
+  describe('alphanumdashunderscore', () => {
+    test.each([
+      [alphanumdashText, true],
+      [alphanumdashdotsText, false],
+      [alphanumdashunderscoredotsparenthesisText, false],
+      [asciiLetters, true],
+      [asciiLowercase, true],
+      [asciiUppercase, true],
+      [digitsTest, true],
+      [emailTest, false],
+      [octdigits, true],
+      [hexdigits, true],
+      [printable, false],
+      [punctuation, false],
+      [whitespace, false],
+      [cronTest, false],
+      [macAddress1, false],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(alphanumdashunderscore.test(string)).toBe(expected)
     })
   })
 
