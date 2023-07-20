@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.2.0
+
+### Minor Changes
+
+- [#1393](https://github.com/scaleway/scaleway-lib/pull/1393) [`e3561b6`](https://github.com/scaleway/scaleway-lib/commit/e3561b680f1d9868717656be02364951948c2ee9) Thanks [@QuiiBz](https://github.com/QuiiBz)! - Add alphanumdashunderscore regex
+
 ## 3.1.2
 
 ### Patch Changes
