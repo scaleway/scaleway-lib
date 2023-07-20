@@ -1,5 +1,14 @@
 # Change Log
 
+## 3.15.17
+
+### Patch Changes
+
+- [#1389](https://github.com/scaleway/scaleway-lib/pull/1389) [`1004e15`](https://github.com/scaleway/scaleway-lib/commit/1004e15a830dcf37d68ec634916a49189a19577c) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `eslint-config-airbnb-typescript` to `17.1.0`.
+
+- [#1385](https://github.com/scaleway/scaleway-lib/pull/1385) [`62d2708`](https://github.com/scaleway/scaleway-lib/commit/62d2708724f53fd596a35d988b00452bcd7ddb12) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@typescript-eslint/eslint-plugin` to `5.62.0`.
+  Updated dependency `@typescript-eslint/parser` to `5.62.0`.
+
 ## 3.15.16
 
 ### Patch Changes

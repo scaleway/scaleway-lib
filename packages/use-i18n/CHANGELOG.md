@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.3.4
+
+### Patch Changes
+
+- [#1395](https://github.com/scaleway/scaleway-lib/pull/1395) [`e688b0d`](https://github.com/scaleway/scaleway-lib/commit/e688b0dc7fddc8ce5e4c807d14adaf39247ff2c0) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `international-types` to `0.6.2`.
+
 ## 5.3.3
 
 ### Patch Changes
