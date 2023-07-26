@@ -137,10 +137,12 @@ const format =
       maximumFractionDigits,
       minimumFractionDigits,
       short = true,
+      base = 10,
     }: {
       maximumFractionDigits?: number
       minimumFractionDigits?: number
       short?: boolean
+      base?: number
     },
   ): string => {
     let computedExponent = exponent
@@ -149,7 +151,7 @@ const format =
     if (humanize) {
       if (computedExponent) {
         const value = filesize(amount, {
-          base: 10,
+          base,
           exponent: exponents.findIndex(
             exp => exp.name === (computedExponent as Exponent).name,
           ),
@@ -159,7 +161,7 @@ const format =
         computedValue = value.value
       } else {
         const value = filesize(amount, {
-          base: 10,
+          base,
           output: 'object',
           round: maximumFractionDigits,
         }) as unknown as { value: number; symbol: string; exponent: number }
@@ -248,6 +250,9 @@ export const supportedUnits: Partial<
 export type FormatUnitOptions = {
   unit: SupportedUnits
   short?: boolean
+  maximumFractionDigits?: number
+  minimumFractionDigits?: number
+  base?: number
 }
 
 const formatUnit = (
