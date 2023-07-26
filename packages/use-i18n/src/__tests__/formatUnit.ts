@@ -44,6 +44,12 @@ const tests: TestType[] = [
     'fr',
     12,
   ]),
+  ...SUPPORTED_UNITS.map<TestType>(unit => [
+    'should work with base',
+    { base: 2, unit },
+    'en',
+    4294967296, // 4 GB
+  ]),
 ]
 
 describe('formatUnit', () => {
