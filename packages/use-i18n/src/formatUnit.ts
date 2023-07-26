@@ -249,9 +249,15 @@ export const supportedUnits: Partial<
 
 export type FormatUnitOptions = {
   unit: SupportedUnits
+  /**
+    default: true
+  */
   short?: boolean
   maximumFractionDigits?: number
   minimumFractionDigits?: number
+  /**
+    default: 10
+  */
   base?: number
 }
 
