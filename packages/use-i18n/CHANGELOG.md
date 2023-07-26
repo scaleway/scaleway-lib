@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.4.0
+
+### Minor Changes
+
+- [#1405](https://github.com/scaleway/scaleway-lib/pull/1405) [`70da89b`](https://github.com/scaleway/scaleway-lib/commit/70da89be9163016e885c5f68825f81d8d75a4e63) Thanks [@vincentaudebert](https://github.com/vincentaudebert)! - Allow to change base on formatUnit calculations
+
 ## 5.3.4
 
 ### Patch Changes

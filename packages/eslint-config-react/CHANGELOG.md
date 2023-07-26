@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.15.18
+
+### Patch Changes
+
+- [#1394](https://github.com/scaleway/scaleway-lib/pull/1394) [`7ad92f4`](https://github.com/scaleway/scaleway-lib/commit/7ad92f4a0d74a5e2b5ac21014cd38b4dfa84316f) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `eslint` to `8.45.0`.
+
 ## 3.15.17
 
 ### Patch Changes
