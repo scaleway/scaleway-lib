@@ -15,9 +15,7 @@ afterEach(() => {
 
 describe('generate changeset file', () => {
   it('should skip if not in renovate branch', async () => {
-    // @ts-expect-error we mock at the top
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-    simpleGit.mockReturnValue({
+    ;(simpleGit as jest.Mock).mockReturnValue({
       branch: () => ({
         current: 'main',
       }),
@@ -29,9 +27,7 @@ describe('generate changeset file', () => {
   })
 
   it('should skip if .changeset is already modified', async () => {
-    // @ts-expect-error we mock at the top
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-    simpleGit.mockReturnValue({
+    ;(simpleGit as jest.Mock).mockReturnValue({
       branch: () => ({
         current: 'renovate/test',
       }),
@@ -52,9 +48,7 @@ describe('generate changeset file', () => {
   })
 
   it('should skip no package.json files have been modified', async () => {
-    // @ts-expect-error we mock at the top
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-    simpleGit.mockReturnValue({
+    ;(simpleGit as jest.Mock).mockReturnValue({
       branch: () => ({
         current: 'renovate/test',
       }),
@@ -79,9 +73,7 @@ describe('generate changeset file', () => {
     const commit = jest.fn()
     const push = jest.fn()
 
-    // @ts-expect-error we mock at the top
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-    simpleGit.mockReturnValue({
+    ;(simpleGit as jest.Mock).mockReturnValue({
       branch: () => ({
         current: 'renovate/test',
       }),
@@ -119,9 +111,7 @@ describe('generate changeset file', () => {
   it('should ignore workspace package.json', async () => {
     const file = 'package.json'
 
-    // @ts-expect-error we mock at the top
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-    simpleGit.mockReturnValue({
+    ;(simpleGit as jest.Mock).mockReturnValue({
       branch: () => ({
         current: 'renovate/test',
       }),
@@ -152,9 +142,7 @@ describe('generate changeset file', () => {
   it('should ignore version package.json', async () => {
     const file = 'package.json'
 
-    // @ts-expect-error we mock at the top
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-    simpleGit.mockReturnValue({
+    ;(simpleGit as jest.Mock).mockReturnValue({
       branch: () => ({
         current: 'renovate/test',
       }),
