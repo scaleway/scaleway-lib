@@ -141,6 +141,16 @@ importers:
         specifier: 3.0.2
         version: 3.0.2
 
+  packages/ab-test:
+    dependencies:
+      '@growthbook/growthbook-react':
+        specifier: 0.17.0
+        version: 0.17.0(react@18.2.0)
+    devDependencies:
+      react:
+        specifier: 18.2.0
+        version: 18.2.0
+
   packages/changesets-renovate:
     dependencies:
       simple-git:
@@ -2363,6 +2373,23 @@ packages:
     resolution: {integrity: sha512-bRTd+rKomvfdS4QDlVJ6TA/Jx1F2h/TBVO5LjvhQ7QPPHp19oPNMIum7W2CMEReq/zPxpmCeB31F9+5gl/qtvw==}
     dependencies:
       tslib: 2.5.3
+    dev: false
+
+  /@growthbook/growthbook-react@0.17.0(react@18.2.0):
+    resolution: {integrity: sha512-od+bSg3RD9AXfi/TWFDSzRaB6RuJLkUX5eFOZz8u8wL8yDbgd5RF9cwu4lQIF9/tyG1WLu4qipV+SM2v5s4BcQ==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: ^16.8.0-0 || ^17.0.0-0 || ^18.0.0-0 || 18
+    dependencies:
+      '@growthbook/growthbook': 0.27.0
+      react: 18.2.0
+    dev: false
+
+  /@growthbook/growthbook@0.27.0:
+    resolution: {integrity: sha512-gt/DWXfgyudY3gXAUjzKm9kMjVfCzfRc8d0nQQiXCP523ow23jThrmBzkRKCN+zxYVxUKcHjP9yjU9EKJqP4Fw==}
+    engines: {node: '>=10'}
+    dependencies:
+      dom-mutator: 0.5.0
     dev: false
 
   /@humanwhocodes/config-array@0.11.10:
@@ -5227,6 +5254,11 @@ packages:
 
   /dom-accessibility-api@0.5.14:
     resolution: {integrity: sha512-NMt+m9zFMPZe0JcY9gN224Qvk6qLIdqex29clBvc/y75ZBX9YA9wNK3frsYvu2DI1xcCIwxwnX+TlsJ2DSOADg==}
+
+  /dom-mutator@0.5.0:
+    resolution: {integrity: sha512-bbeX8HWE8JGzraFgbVBX4ws2g3heZFuTtrleQBuN7huy+7n2n7etSuVnot3/1z3jdY2MiwuvoS4Ep1UT2rrGBw==}
+    engines: {node: '>=10'}
+    dev: false
 
   /domexception@4.0.0:
     resolution: {integrity: sha512-A2is4PLG+eeSfoTMA95/s4pvAoSo2mKtiM5jlHkAVewmiO8ISFTFKZjH7UAM1Atli/OT/7JHOrJRJiMKUZKYBw==}
