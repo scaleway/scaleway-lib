@@ -1,4 +1,4 @@
-_# `@scaleway/growthbook`
+_# `@scaleway/use-growthbook`
 
 Tiny adapter to easily add [GrowthBook](https://www.growthbook.io/) to your React Application.
 The idea of this package is to propose a _facade pattern_ above GrowthBook React SDK.
@@ -6,7 +6,7 @@ The idea of this package is to propose a _facade pattern_ above GrowthBook React
 ## Install
 
 ```bash
-$ pnpm add @scaleway/growthbook
+$ pnpm add @scaleway/use-growthbook
 ```
 
 ## How to use
@@ -14,7 +14,7 @@ $ pnpm add @scaleway/growthbook
 ### First add the provider to your application roots
 
 ```js
-import { AbTestProvider } from '@scaleway-lib/growthbook'
+import { AbTestProvider } from '@scaleway/use-growthbook'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
