@@ -1,6 +1,6 @@
+// @ts-expect-error TODO: remove once Growthbook is correctly typed and export
 import { GrowthBook } from '@growthbook/growthbook-react'
 import { render } from '@testing-library/react'
-// @ts-expect-error TODO: remove once Growthbook is correctly typed and export
 import type { TrackingCallback } from '../AbTestProvider'
 import { AbTestProvider } from '../AbTestProvider'
 

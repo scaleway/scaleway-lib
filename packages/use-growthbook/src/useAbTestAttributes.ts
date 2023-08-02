@@ -4,9 +4,8 @@
 // @ts-expect-error TODO: remove once Growthbook is correctly typed and export
 import { useGrowthBook } from '@growthbook/growthbook-react'
 import { useCallback, useMemo } from 'react'
-import type { GrowthBookType } from './types'
+import type { Attributes, GrowthBookType } from './types'
 
-type Attributes = Record<string, unknown>
 export const useAbTestAttributes = (): [
   Attributes,
   (attributes: Attributes) => null | undefined,

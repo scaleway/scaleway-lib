@@ -49,13 +49,13 @@ const getGrowthBookInstance = ({
     },
     trackingCallback,
   })
-export function AbTestProvider({
+export const AbTestProvider = ({
   children,
   config,
   anonymousId,
   trackingCallback,
   errorCallback,
-}: AbTestProviderProps) {
+}: AbTestProviderProps) => {
   const growthbook: GrowthBookType = useMemo(
     () => getGrowthBookInstance({ config, anonymousId, trackingCallback }),
     [trackingCallback, config, anonymousId],

@@ -1,5 +1,7 @@
+export type Attributes = Record<string, unknown>
+
 export type GrowthBookType = {
-  getAttributes: () => Record<string, unknown>
+  getAttributes: () => Attributes
   loadFeatures: ({
     autoRefresh,
     timeout,
@@ -7,5 +9,5 @@ export type GrowthBookType = {
     autoRefresh: boolean
     timeout: number
   }) => Promise<null>
-  setAttributes: (attributes: Record<string, unknown>) => null
+  setAttributes: (attributes: Attributes) => null
 }
