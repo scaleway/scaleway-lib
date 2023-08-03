@@ -1,4 +1,4 @@
-_# `@scaleway/use-growthbook`
+# `@scaleway/use-growthbook`
 
 Tiny adapter to easily add [GrowthBook](https://www.growthbook.io/) to your React Application.
 The idea of this package is to propose a _facade pattern_ above GrowthBook React SDK.
