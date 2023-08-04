@@ -21,7 +21,12 @@ import App from './App'
 
 ReactDOM.render(
   <React.StrictMode>
-    <AbTestProvider config={{ apiHost: 'string', clientKey: 'string', enableDevMode: true }} anonymousId="123456789" trackingCallback={(experiment, result) => console.log(experiment, result)} errorCallback={console.error} >
+    <AbTestProvider
+      config={{ apiHost: 'string', clientKey: 'string', enableDevMode: true }}
+      anonymousId="123456789"
+      trackingCallback={(experiment, result) => console.log(experiment, result)}
+      errorCallback={console.error}
+    >
       <App />
     </AbTestProvider>
   </React.StrictMode>,
@@ -36,6 +41,7 @@ A hook `useAbTestAttributes` is available to get currentAttributes and to set ne
 ### API
 
 Exported utils from GrowthBook React are listed here:
+
 - FeatureString
 - FeaturesReady
 - IfFeatureEnabled

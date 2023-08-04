@@ -23,17 +23,16 @@ const wrapper =
     environment,
     onLoadError,
   }: Omit<GTMProviderProps<DefaultEvents>, 'children'>) =>
-  ({ children }: { children: ReactNode }) =>
-    (
-      <GTMProvider
-        id={id}
-        events={events}
-        environment={environment}
-        onLoadError={onLoadError}
-      >
-        {children}
-      </GTMProvider>
-    )
+  ({ children }: { children: ReactNode }) => (
+    <GTMProvider
+      id={id}
+      events={events}
+      environment={environment}
+      onLoadError={onLoadError}
+    >
+      {children}
+    </GTMProvider>
+  )
 
 describe('GTM hook', () => {
   beforeEach(() => {

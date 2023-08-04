@@ -49,18 +49,17 @@ const wrapper =
     onEventError,
     events = defaultEvents,
   }: Omit<SegmentProviderProps<DefaultEvents>, 'children'>) =>
-  ({ children }: { children: ReactNode }) =>
-    (
-      <SegmentProvider
-        settings={settings}
-        initOptions={initOptions}
-        onError={onError}
-        onEventError={onEventError}
-        events={events}
-      >
-        {children}
-      </SegmentProvider>
-    )
+  ({ children }: { children: ReactNode }) => (
+    <SegmentProvider
+      settings={settings}
+      initOptions={initOptions}
+      onError={onError}
+      onEventError={onEventError}
+      events={events}
+    >
+      {children}
+    </SegmentProvider>
+  )
 
 describe('segment hook', () => {
   beforeEach(() => {

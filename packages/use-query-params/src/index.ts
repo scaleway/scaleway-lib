@@ -7,8 +7,8 @@ type Options = {
   push: boolean
 }
 
-const {parse} = queryString
-const {stringify} = queryString
+const { parse } = queryString
+const { stringify } = queryString
 
 type QueryParamValue = string | number | boolean | null | undefined
 
