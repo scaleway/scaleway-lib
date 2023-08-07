@@ -1,6 +1,7 @@
 export type Attributes = Record<string, unknown>
 
 export type GrowthBookType = {
+  new (...args: unknown[]): GrowthBookType
   getAttributes: () => Attributes
   loadFeatures: ({
     autoRefresh,

@@ -1,12 +1,12 @@
 // @ts-expect-error TODO: remove once Growthbook is correctly typed and export
-import type { GrowthBook } from '@growthbook/growthbook-react'
+import { GrowthBook } from '@growthbook/growthbook-react'
 import { render } from '@testing-library/react'
 import type { TrackingCallback } from '../AbTestProvider'
 import { AbTestProvider } from '../AbTestProvider'
 import type { GrowthBookType } from '../types'
 
 jest.mock('@growthbook/growthbook-react')
-let mockedGrowthBook: jest.MockedClass<typeof GrowthBook>
+const mockGrowthBook = GrowthBook as jest.MockedClass<GrowthBookType>
 
 describe('AbTestProvider', () => {
   let trackingCallback: TrackingCallback
@@ -14,7 +14,7 @@ describe('AbTestProvider', () => {
 
   beforeEach(() => {
     trackingCallback = jest.fn()
-    ;(mockedGrowthBook as jest.Mock).mockClear()
+    jest.clearAllMocks()
   })
   it('should init GrowthBook once', () => {
     render(
@@ -31,11 +31,9 @@ describe('AbTestProvider', () => {
         Foo
       </AbTestProvider>,
     )
-    const growthBookInstance = (mockedGrowthBook as jest.Mock).mock
-      .instances[0] as GrowthBookType
 
-    expect(mockedGrowthBook).toBeCalledTimes(1)
-    expect(growthBookInstance.loadFeatures).toBeCalled()
+    expect(mockGrowthBook).toBeCalled()
+    expect(mockGrowthBook.mock.instances[0]?.loadFeatures).toBeCalled()
   })
 
   it('should not init GrowthBook when client key is not defined', () => {
@@ -53,10 +51,8 @@ describe('AbTestProvider', () => {
         Foo
       </AbTestProvider>,
     )
-    const growthBookInstance = (mockedGrowthBook as jest.Mock).mock
-      .instances[0] as GrowthBookType
 
-    expect(mockedGrowthBook).toBeCalledTimes(1)
-    expect(growthBookInstance.loadFeatures).not.toBeCalled()
+    expect(mockGrowthBook).toBeCalled()
+    expect(mockGrowthBook.mock.instances[0]?.loadFeatures).not.toBeCalled()
   })
 })
