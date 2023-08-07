@@ -19,15 +19,11 @@ import { useMedia } from '@scaleway/use-media'
 
 const App = () => {
   // Accepts an object of features to test
-  const isWide = useMedia({ minWidth: '1000px' });
+  const isWide = useMedia({ minWidth: '1000px' })
   // Or a regular media query string
-  const reduceMotion = useMedia('(prefers-reduced-motion: reduce)');
+  const reduceMotion = useMedia('(prefers-reduced-motion: reduce)')
 
-  return (
-    <div>
-      Screen is wide: {isWide ? '😃' : '😢'}
-    </div>
-  );
+  return <div>Screen is wide: {isWide ? '😃' : '😢'}</div>
 }
 ```
 
@@ -38,14 +34,10 @@ import { useMediaLayout } from '@scaleway/use-media'
 
 const App = () => {
   // Accepts an object of features to test
-  const isWide = useMediaLayout({ minWidth: '1000px' });
+  const isWide = useMediaLayout({ minWidth: '1000px' })
   // Or a regular media query string
-  const reduceMotion = useMediaLayout('(prefers-reduced-motion: reduce)');
+  const reduceMotion = useMediaLayout('(prefers-reduced-motion: reduce)')
 
-  return (
-    <div>
-      Screen is wide: {isWide ? '😃' : '😢'}
-    </div>
-  );
+  return <div>Screen is wide: {isWide ? '😃' : '😢'}</div>
 }
 ```

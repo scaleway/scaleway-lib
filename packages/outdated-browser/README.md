@@ -16,6 +16,7 @@ This package is intended to be used in tandem with a bundler
 Only one parameter is required, a regex of accepted browser user agents
 
 Example with webpack:
+
 ```js
 import { getUserAgentRegExp } from 'browserslist-useragent-regexp'
 

@@ -37,8 +37,9 @@ const wrapperWithCacheKey = ({ children }: { children?: ReactNode }) => (
 
 const wrapperWithOnError =
   (onError: (err: Error) => void) =>
-  ({ children }: { children?: ReactNode }) =>
+  ({ children }: { children?: ReactNode }) => (
     <DataLoaderProvider onError={onError}>{children}</DataLoaderProvider>
+  )
 
 describe('useDataLoader', () => {
   test('should render correctly without options', async () => {

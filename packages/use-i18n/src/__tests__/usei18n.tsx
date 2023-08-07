@@ -36,21 +36,20 @@ const wrapper =
     localeItemStorage = LOCALE_ITEM_STORAGE,
     supportedLocales = ['en', 'fr', 'es'],
   } = {}) =>
-  ({ children }: { children: ReactNode }) =>
-    (
-      <I18n
-        loadDateLocale={loadDateLocale}
-        defaultLoad={defaultLoad}
-        defaultLocale={defaultLocale}
-        defaultTranslations={defaultTranslations}
-        enableDebugKey={enableDebugKey}
-        enableDefaultLocale={enableDefaultLocale}
-        localeItemStorage={localeItemStorage}
-        supportedLocales={supportedLocales}
-      >
-        {children}
-      </I18n>
-    )
+  ({ children }: { children: ReactNode }) => (
+    <I18n
+      loadDateLocale={loadDateLocale}
+      defaultLoad={defaultLoad}
+      defaultLocale={defaultLocale}
+      defaultTranslations={defaultTranslations}
+      enableDebugKey={enableDebugKey}
+      enableDefaultLocale={enableDefaultLocale}
+      localeItemStorage={localeItemStorage}
+      supportedLocales={supportedLocales}
+    >
+      {children}
+    </I18n>
+  )
 
 describe('i18n hook', () => {
   beforeEach(() => {
@@ -59,7 +58,7 @@ describe('i18n hook', () => {
         ({
           language: 'en-US',
           languages: ['en-US', 'en'],
-        } as unknown as Navigator),
+        }) as unknown as Navigator,
     )
   })
 

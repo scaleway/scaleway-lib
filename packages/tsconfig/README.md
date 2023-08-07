@@ -12,6 +12,6 @@ Add to your `.tsconfig.json`
 
 ```json
 {
-	"extends": "@scaleway/tsconfig"
+  "extends": "@scaleway/tsconfig"
 }
 ```
