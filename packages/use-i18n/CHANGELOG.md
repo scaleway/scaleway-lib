@@ -1,5 +1,13 @@
 # Change Log
 
+## 5.4.1
+
+### Patch Changes
+
+- [#1425](https://github.com/scaleway/scaleway-lib/pull/1425) [`bd17af6`](https://github.com/scaleway/scaleway-lib/commit/bd17af6f89fe87373929ebb14de5f36fab7cf3e0) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `international-types` to `0.7.0`.
+
+- [#1413](https://github.com/scaleway/scaleway-lib/pull/1413) [`9379e7a`](https://github.com/scaleway/scaleway-lib/commit/9379e7a1390e563084e1257e20f549d150bae0d9) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `filesize` to `10.0.8`.
+
 ## 5.4.0
 
 ### Minor Changes
