@@ -1,5 +1,11 @@
 # @scaleway/use-growthbook
 
+## 1.0.1
+
+### Patch Changes
+
+- [#1439](https://github.com/scaleway/scaleway-lib/pull/1439) [`eaad0f7`](https://github.com/scaleway/scaleway-lib/commit/eaad0f7195dac15e3b7b2b300b481e3fe7b543cf) Thanks [@philibea](https://github.com/philibea)! - add loadfeature configuration into the providers and moove return function from null to void
+
 ## 1.0.0
 
 ### Major Changes
