@@ -2,12 +2,10 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error TODO: remove once Growthbook is correctly typed and export
 import { GrowthBook, GrowthBookProvider } from '@growthbook/growthbook-react'
-import type { ReactNode } from 'react'
-import { useCallback, useEffect, useMemo } from 'react'
-import type { GrowthBookType } from './types'
+import { type ReactNode, useCallback, useEffect, useMemo } from 'react'
+import type { Attributes, GrowthBookType, LoadConfig } from './types'
 
 export type ToolConfig = {
   apiHost: string
@@ -18,57 +16,60 @@ export type ToolConfig = {
 export type TrackingCallback = (
   experiment: { key: string },
   result: { key: string },
-) => null
+) => void
+
+// TODO: use type from growthbook when it's typed will be export correctly
+// export type TrackingCallback = NonNullable<Context['trackingCallback']>
 
 export type AbTestProviderProps = {
   children: ReactNode
-  anonymousId: string
   config: ToolConfig
   trackingCallback: TrackingCallback
-  errorCallback: (error: string) => null
+  errorCallback: (error: Error | string) => void
+  attributes: Attributes
+  loadConfig?: LoadConfig
 }
 
 const getGrowthBookInstance = ({
   config: { apiHost, clientKey, enableDevMode },
-  anonymousId,
+  attributes,
   trackingCallback,
 }: {
   config: ToolConfig
-  anonymousId: string
+  attributes: Attributes
   trackingCallback: TrackingCallback
 }): GrowthBookType =>
   new GrowthBook({
     apiHost,
     clientKey,
     enableDevMode,
-    attributes: {
-      anonymousId,
-      userId: undefined,
-      organizationId: undefined,
-      organizationType: undefined,
-    },
+    attributes,
     trackingCallback,
   })
+
+const defaultLoadConfig = {
+  autoRefresh: false,
+  timeout: 500,
+}
+
 export const AbTestProvider = ({
   children,
   config,
-  anonymousId,
   trackingCallback,
   errorCallback,
+  attributes,
+  loadConfig = defaultLoadConfig,
 }: AbTestProviderProps) => {
   const growthbook: GrowthBookType = useMemo(
-    () => getGrowthBookInstance({ config, anonymousId, trackingCallback }),
-    [trackingCallback, config, anonymousId],
+    () => getGrowthBookInstance({ config, attributes, trackingCallback }),
+    [trackingCallback, config, attributes],
   )
 
   const loadFeature = useCallback(async () => {
     if (config.clientKey) {
-      await growthbook.loadFeatures({
-        autoRefresh: false,
-        timeout: 500,
-      })
+      await growthbook.loadFeatures(loadConfig)
     }
-  }, [growthbook, config])
+  }, [growthbook, config, loadConfig])
 
   useEffect(() => {
     loadFeature().catch(errorCallback)

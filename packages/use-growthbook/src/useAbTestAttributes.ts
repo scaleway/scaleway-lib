@@ -8,7 +8,7 @@ import type { Attributes, GrowthBookType } from './types'
 
 export const useAbTestAttributes = (): [
   Attributes,
-  (attributes: Attributes) => null | undefined,
+  (attributes: Attributes) => void,
 ] => {
   const growthBook = useGrowthBook() as GrowthBookType | null
 

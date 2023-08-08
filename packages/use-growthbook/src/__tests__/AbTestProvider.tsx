@@ -10,7 +10,7 @@ const mockGrowthBook = GrowthBook as jest.MockedClass<GrowthBookType>
 
 describe('AbTestProvider', () => {
   let trackingCallback: TrackingCallback
-  let errorCallback: (error: string) => null
+  let errorCallback: (error: Error | string) => void
 
   beforeEach(() => {
     trackingCallback = jest.fn()
@@ -19,16 +19,18 @@ describe('AbTestProvider', () => {
   it('should init GrowthBook once', () => {
     render(
       <AbTestProvider
-        anonymousId="foo"
         config={{
           apiHost: 'host',
           clientKey: 'clientKey',
           enableDevMode: true,
         }}
+        attributes={{
+          anonymousId: 'foo',
+        }}
         trackingCallback={trackingCallback}
         errorCallback={errorCallback}
       >
-        Foo
+        Children
       </AbTestProvider>,
     )
 
@@ -39,16 +41,18 @@ describe('AbTestProvider', () => {
   it('should not init GrowthBook when client key is not defined', () => {
     render(
       <AbTestProvider
-        anonymousId="foo"
         config={{
           apiHost: 'host',
           clientKey: '',
           enableDevMode: true,
         }}
+        attributes={{
+          anonymousId: 'foo',
+        }}
         trackingCallback={trackingCallback}
         errorCallback={errorCallback}
       >
-        Foo
+        Children
       </AbTestProvider>,
     )
 
