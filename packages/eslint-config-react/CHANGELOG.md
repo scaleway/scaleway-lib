@@ -1,5 +1,21 @@
 # Change Log
 
+## 3.15.19
+
+### Patch Changes
+
+- [#1426](https://github.com/scaleway/scaleway-lib/pull/1426) [`abdbb9c`](https://github.com/scaleway/scaleway-lib/commit/abdbb9c9a815adccddea2ce3814f4a6bdd0e7f82) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `eslint` to `8.46.0`.
+
+- [#1403](https://github.com/scaleway/scaleway-lib/pull/1403) [`2ebebe0`](https://github.com/scaleway/scaleway-lib/commit/2ebebe08c2f23e53bde1648945830271f2832240) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `eslint-plugin-react` to `7.33.0`.
+
+- [#1422](https://github.com/scaleway/scaleway-lib/pull/1422) [`4f5876c`](https://github.com/scaleway/scaleway-lib/commit/4f5876cee33f826eaee3101c86ac4be6ba3d6b40) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `eslint-plugin-deprecation` to `1.5.0`.
+
+- [#1424](https://github.com/scaleway/scaleway-lib/pull/1424) [`1de59a6`](https://github.com/scaleway/scaleway-lib/commit/1de59a6af50425541854cf8dfa50ef9826b7da3f) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `eslint-plugin-import` to `2.28.0`.
+
+- [#1415](https://github.com/scaleway/scaleway-lib/pull/1415) [`27f8a31`](https://github.com/scaleway/scaleway-lib/commit/27f8a3198240430a113111e7f51f4c5a35c50c4a) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `eslint-plugin-react` to `7.33.1`.
+
+- [#1421](https://github.com/scaleway/scaleway-lib/pull/1421) [`586490f`](https://github.com/scaleway/scaleway-lib/commit/586490f9d20b2bfd4c99bdd5d5e3559dd08b9e38) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `eslint-config-prettier` to `8.9.0`.
+
 ## 3.15.18
 
 ### Patch Changes
