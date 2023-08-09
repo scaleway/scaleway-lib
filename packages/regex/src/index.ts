@@ -1,24 +1,23 @@
 export const accessKeyRegex = /^SCW[A-Z0-9]{17}$/i
 export const alpha = /^[a-zA-Z]*$/
-export const alphaLower = /^[a-z]+$/
+export const alphaLowercase = /^[a-z]+$/
 export const alphanum = /^[a-zA-Z0-9]*$/
 export const alphaDashes = /^[a-zA-Z-]*$/
-export const alphanumdash = /^[a-zA-Z0-9-]*$/
-export const alphanumdashdots = /^[a-zA-Z0-9-.]*$/
-export const alphanumdashdotsorempty = /^$|^[a-zA-Z0-9-.]*$/
-export const alphanumdashdotsspaces = /^[a-zA-Z0-9-.\s]*$/
-export const alphanumdashunderscore = /^[a-zA-Z0-9-_]*$/
-export const alphanumdashunderscoredotsspacesparenthesis =
+export const alphanumDash = /^[a-zA-Z0-9-]*$/
+export const alphanumDashDots = /^[a-zA-Z0-9-.]*$/
+export const alphanumDashDotsOrEmpty = /^$|^[a-zA-Z0-9-.]*$/
+export const alphanumDashDotsSpaces = /^[a-zA-Z0-9-.\s]*$/
+export const alphanumDashLowercase = /^[a-z0-9-]+$/
+export const alphanumDashSpaces = /^[a-zA-Z0-9-\s]*$/
+export const alphanumDashOrEmpty = /^$|^[a-zA-Z0-9-]*$/
+export const alphanumDashUnderscoreDots = /^[a-zA-Z0-9-._]*$/
+export const alphanumDashUnderscore = /^[a-zA-Z0-9-_]*$/
+export const alphanumDashUnderscoreDotsSpacesParenthesis =
   /^[a-zA-Z0-9-_.()\s]*$/
-
-export const alphanumdashorempty = /^$|^[a-zA-Z0-9-]*$/
-export const alphanumdashspaces = /^[a-zA-Z0-9-\s]*$/
-export const alphanumdots = /^[a-zA-Z0-9.]*$/
+export const alphanumDashUnderscoreDotsSpaces = /^[a-zA-Z0-9-.\s_]*$/
+export const alphanumDashUnderscoreDollar = /^[a-zA-Z0-9_$-]*$/
+export const alphanumDots = /^[a-zA-Z0-9.]*$/
 export const alphanumLowercase = /^[a-z0-9]+$/
-export const alphanumdashLowercase = /^[a-z0-9-]+$/
-export const alphanumSpacesDotsUnderscoreDash = /^[a-zA-Z0-9-.\s_]*$/
-export const alphanumUnderscoreDash = /^[a-zA-Z0-9_-]*$/
-export const alphanumUnderscoreDollarDash = /^[a-zA-Z0-9_$-]*$/
 export const absoluteLinuxPath = /(^\/$|^(\/[a-zA-Z0-9_]+)*$)/
 
 // eslint-disable-next-line no-control-regex

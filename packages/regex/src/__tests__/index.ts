@@ -4,22 +4,21 @@ import {
   advancedDomainName,
   alpha,
   alphaDashes,
-  alphaLower,
+  alphaLowercase,
   alphanum,
+  alphanumDash,
+  alphanumDashDots,
+  alphanumDashDotsOrEmpty,
+  alphanumDashDotsSpaces,
+  alphanumDashLowercase,
+  alphanumDashOrEmpty,
+  alphanumDashSpaces,
+  alphanumDashUnderscore,
+  alphanumDashUnderscoreDollar,
+  alphanumDashUnderscoreDotsSpaces,
+  alphanumDashUnderscoreDotsSpacesParenthesis,
+  alphanumDots,
   alphanumLowercase,
-  alphanumSpacesDotsUnderscoreDash,
-  alphanumUnderscoreDash,
-  alphanumUnderscoreDollarDash,
-  alphanumdash,
-  alphanumdashLowercase,
-  alphanumdashdots,
-  alphanumdashdotsorempty,
-  alphanumdashdotsspaces,
-  alphanumdashorempty,
-  alphanumdashspaces,
-  alphanumdashunderscore,
-  alphanumdashunderscoredotsspacesparenthesis,
-  alphanumdots,
   ascii,
   backupKey,
   basicDomain,
@@ -45,9 +44,9 @@ import {
   url,
 } from '..'
 
-const alphanumdashdotsText = 'testwithdashdots-.'
-const alphanumdashunderscoredotsparenthesisText = 'testwithdashdots-_. ()'
-const alphanumdashText = 'testwithdash-'
+const alphanumDashDotsText = 'testwithdashdots-.'
+const alphanumDashUnderscoreDotsParenthesisText = 'testwithdashdots-_. ()'
+const alphanumDashText = 'testwithdash-'
 const asciiLetters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 const nonAsciiLetters =
   'ÀÁÂÃÄÅàáâãäåÇçÈÉÊËèéêëÌÍÎÏìíîïÑñÒÓÔÕÖòóôõöÙÚÛÜùúûüÝýÿĀāĈĉĜĝĤĥĴĵŜŝŴŵŶŷāăąǎćĉčċđēĕėęǝğōŏőǒśŝşšūŭůűǔüźżž'
@@ -97,8 +96,8 @@ const linuxPaths = {
 describe('@regex', () => {
   describe('alpha', () => {
     test.each([
-      [alphanumdashText, false],
-      [alphanumdashdotsText, false],
+      [alphanumDashText, false],
+      [alphanumDashDotsText, false],
       [asciiLetters, true],
       [asciiLowercase, true],
       [asciiUppercase, true],
@@ -116,10 +115,10 @@ describe('@regex', () => {
     })
   })
 
-  describe('alphaLower', () => {
+  describe('alphaLowercase', () => {
     test.each([
-      [alphanumdashText, false],
-      [alphanumdashdotsText, false],
+      [alphanumDashText, false],
+      [alphanumDashDotsText, false],
       [asciiLetters, false],
       [asciiLowercase, true],
       [asciiUppercase, false],
@@ -133,14 +132,14 @@ describe('@regex', () => {
       [cronTest, false],
       [macAddress1, false],
     ])('should match regex %s to be %s', (string, expected) => {
-      expect(alphaLower.test(string)).toBe(expected)
+      expect(alphaLowercase.test(string)).toBe(expected)
     })
   })
 
   describe('alphanum', () => {
     test.each([
-      [alphanumdashText, false],
-      [alphanumdashdotsText, false],
+      [alphanumDashText, false],
+      [alphanumDashDotsText, false],
       [asciiLetters, true],
       [asciiLowercase, true],
       [asciiUppercase, true],
@@ -160,8 +159,8 @@ describe('@regex', () => {
 
   describe('alphaDashes', () => {
     test.each([
-      [alphanumdashText, true],
-      [alphanumdashdotsText, false],
+      [alphanumDashText, true],
+      [alphanumDashDotsText, false],
       [asciiLetters, true],
       [asciiLowercase, true],
       [asciiUppercase, true],
@@ -179,10 +178,10 @@ describe('@regex', () => {
     })
   })
 
-  describe('alphanumdash', () => {
+  describe('alphanumDash', () => {
     test.each([
-      [alphanumdashText, true],
-      [alphanumdashdotsText, false],
+      [alphanumDashText, true],
+      [alphanumDashDotsText, false],
       [asciiLetters, true],
       [asciiLowercase, true],
       [asciiUppercase, true],
@@ -196,14 +195,14 @@ describe('@regex', () => {
       [cronTest, false],
       [macAddress1, false],
     ])('should match regex %s to be %s', (string, expected) => {
-      expect(alphanumdash.test(string)).toBe(expected)
+      expect(alphanumDash.test(string)).toBe(expected)
     })
   })
 
-  describe('alphanumdashdots', () => {
+  describe('alphanumDashDots', () => {
     test.each([
-      [alphanumdashText, true],
-      [alphanumdashdotsText, true],
+      [alphanumDashText, true],
+      [alphanumDashDotsText, true],
       [asciiLetters, true],
       [asciiLowercase, true],
       [asciiUppercase, true],
@@ -217,14 +216,14 @@ describe('@regex', () => {
       [cronTest, false],
       [macAddress1, false],
     ])('should match regex %s to be %s', (string, expected) => {
-      expect(alphanumdashdots.test(string)).toBe(expected)
+      expect(alphanumDashDots.test(string)).toBe(expected)
     })
   })
 
-  describe('alphanumdashdotsorempty', () => {
+  describe('alphanumDashDotsOrEmpty', () => {
     test.each([
-      [alphanumdashText, true],
-      [alphanumdashdotsText, true],
+      [alphanumDashText, true],
+      [alphanumDashDotsText, true],
       [asciiLetters, true],
       [asciiLowercase, true],
       [asciiUppercase, true],
@@ -238,14 +237,14 @@ describe('@regex', () => {
       [cronTest, false],
       [macAddress1, false],
     ])('should match regex %s to be %s', (string, expected) => {
-      expect(alphanumdashdotsorempty.test(string)).toBe(expected)
+      expect(alphanumDashDotsOrEmpty.test(string)).toBe(expected)
     })
   })
 
-  describe('alphanumdashdotsspaces', () => {
+  describe('alphanumDashDotsSpaces', () => {
     test.each([
-      [alphanumdashText, true],
-      [alphanumdashdotsText, true],
+      [alphanumDashText, true],
+      [alphanumDashDotsText, true],
       [asciiLetters, true],
       [asciiLowercase, true],
       [asciiUppercase, true],
@@ -259,15 +258,15 @@ describe('@regex', () => {
       [cronTest, false],
       [macAddress1, false],
     ])('should match regex %s to be %s', (string, expected) => {
-      expect(alphanumdashdotsspaces.test(string)).toBe(expected)
+      expect(alphanumDashDotsSpaces.test(string)).toBe(expected)
     })
   })
 
-  describe('alphanumdashunderscoredotsspacesparenthesis', () => {
+  describe('alphanumDashUnderscoreDotsSpacesParenthesis', () => {
     test.each([
-      [alphanumdashText, true],
-      [alphanumdashdotsText, true],
-      [alphanumdashunderscoredotsparenthesisText, true],
+      [alphanumDashText, true],
+      [alphanumDashDotsText, true],
+      [alphanumDashUnderscoreDotsParenthesisText, true],
       [asciiLetters, true],
       [asciiLowercase, true],
       [asciiUppercase, true],
@@ -281,17 +280,17 @@ describe('@regex', () => {
       [cronTest, false],
       [macAddress1, false],
     ])('should match regex %s to be %s', (string, expected) => {
-      expect(alphanumdashunderscoredotsspacesparenthesis.test(string)).toBe(
+      expect(alphanumDashUnderscoreDotsSpacesParenthesis.test(string)).toBe(
         expected,
       )
     })
   })
 
-  describe('alphanumdashunderscore', () => {
+  describe('alphanumDashUnderscore', () => {
     test.each([
-      [alphanumdashText, true],
-      [alphanumdashdotsText, false],
-      [alphanumdashunderscoredotsparenthesisText, false],
+      [alphanumDashText, true],
+      [alphanumDashDotsText, false],
+      [alphanumDashUnderscoreDotsParenthesisText, false],
       [asciiLetters, true],
       [asciiLowercase, true],
       [asciiUppercase, true],
@@ -305,14 +304,14 @@ describe('@regex', () => {
       [cronTest, false],
       [macAddress1, false],
     ])('should match regex %s to be %s', (string, expected) => {
-      expect(alphanumdashunderscore.test(string)).toBe(expected)
+      expect(alphanumDashUnderscore.test(string)).toBe(expected)
     })
   })
 
-  describe('alphanumdashorempty', () => {
+  describe('alphanumDashOrEmpty', () => {
     test.each([
-      [alphanumdashText, true],
-      [alphanumdashdotsText, false],
+      [alphanumDashText, true],
+      [alphanumDashDotsText, false],
       [asciiLetters, true],
       [asciiLowercase, true],
       [asciiUppercase, true],
@@ -326,14 +325,14 @@ describe('@regex', () => {
       [cronTest, false],
       [macAddress1, false],
     ])('should match regex %s to be %s', (string, expected) => {
-      expect(alphanumdashorempty.test(string)).toBe(expected)
+      expect(alphanumDashOrEmpty.test(string)).toBe(expected)
     })
   })
 
-  describe('alphanumdashspaces', () => {
+  describe('alphanumDashSpaces', () => {
     test.each([
-      [alphanumdashText, true],
-      [alphanumdashdotsText, false],
+      [alphanumDashText, true],
+      [alphanumDashDotsText, false],
       [asciiLetters, true],
       [asciiLowercase, true],
       [asciiUppercase, true],
@@ -347,14 +346,14 @@ describe('@regex', () => {
       [cronTest, false],
       [macAddress1, false],
     ])('should match regex %s to be %s', (string, expected) => {
-      expect(alphanumdashspaces.test(string)).toBe(expected)
+      expect(alphanumDashSpaces.test(string)).toBe(expected)
     })
   })
 
-  describe('alphanumdots', () => {
+  describe('alphanumDots', () => {
     test.each([
-      [alphanumdashText, false],
-      [alphanumdashdotsText, false],
+      [alphanumDashText, false],
+      [alphanumDashDotsText, false],
       [asciiLetters, true],
       [asciiLowercase, true],
       [asciiUppercase, true],
@@ -368,13 +367,13 @@ describe('@regex', () => {
       [cronTest, false],
       [macAddress1, false],
     ])('should match regex %s to be %s', (string, expected) => {
-      expect(alphanumdots.test(string)).toBe(expected)
+      expect(alphanumDots.test(string)).toBe(expected)
     })
   })
 
   describe('alphanumLowercase', () => {
     test.each([
-      [alphanumdashText, false],
+      [alphanumDashText, false],
       [asciiLetters, false],
       [asciiLowercase, true],
       [asciiUppercase, false],
@@ -392,11 +391,11 @@ describe('@regex', () => {
     })
   })
 
-  describe('alphanumdashLowercase', () => {
+  describe('alphanumDashLowercase', () => {
     test.each([
       [asciiLetters, false],
       [asciiLowercase, true],
-      [alphanumdashText, true],
+      [alphanumDashText, true],
       [asciiUppercase, false],
       [digitsTest, true],
       [emailTest, false],
@@ -408,11 +407,11 @@ describe('@regex', () => {
       [cronTest, false],
       [macAddress1, false],
     ])('should match regex %s to be %s', (string, expected) => {
-      expect(alphanumdashLowercase.test(string)).toBe(expected)
+      expect(alphanumDashLowercase.test(string)).toBe(expected)
     })
   })
 
-  describe('alphanumSpacesDotsUnderscoreDash', () => {
+  describe('alphanumDashUnderscoreDotsSpaces', () => {
     test.each([
       [asciiLetters, true],
       [asciiLowercase, true],
@@ -427,11 +426,11 @@ describe('@regex', () => {
       [cronTest, false],
       [macAddress1, false],
     ])('should match regex %s to be %s', (string, expected) => {
-      expect(alphanumSpacesDotsUnderscoreDash.test(string)).toBe(expected)
+      expect(alphanumDashUnderscoreDotsSpaces.test(string)).toBe(expected)
     })
   })
 
-  describe('alphanumUnderscoreDash', () => {
+  describe('alphanumDashUnderscoreDollar', () => {
     test.each([
       [asciiLetters, true],
       [asciiLowercase, true],
@@ -446,26 +445,7 @@ describe('@regex', () => {
       [cronTest, false],
       [macAddress1, false],
     ])('should match regex %s to be %s', (string, expected) => {
-      expect(alphanumUnderscoreDash.test(string)).toBe(expected)
-    })
-  })
-
-  describe('alphanumUnderscoreDollarDash', () => {
-    test.each([
-      [asciiLetters, true],
-      [asciiLowercase, true],
-      [asciiUppercase, true],
-      [digitsTest, true],
-      [emailTest, false],
-      [octdigits, true],
-      [hexdigits, true],
-      [printable, false],
-      [punctuation, false],
-      [whitespace, false],
-      [cronTest, false],
-      [macAddress1, false],
-    ])('should match regex %s to be %s', (string, expected) => {
-      expect(alphanumUnderscoreDollarDash.test(string)).toBe(expected)
+      expect(alphanumDashUnderscoreDollar.test(string)).toBe(expected)
     })
   })
 
