@@ -1,5 +1,28 @@
 # Change Log
 
+## 4.0.0
+
+### Major Changes
+
+- [#1442](https://github.com/scaleway/scaleway-lib/pull/1442) [`c39764e`](https://github.com/scaleway/scaleway-lib/commit/c39764e869fcce3471d6c2c4e35272c86ad24f90) Thanks [@vincentaudebert](https://github.com/vincentaudebert)! - Rename few regex and camelcase all of them for more consistency. Also creates alphanumDashUnderscoreDots.
+
+  Here is the full list of changes:
+
+  - alphaLower -> alphaLowercase
+  - alphanumdash -> alphanumDash
+  - alphanumdashdots -> alphanumDashDots
+  - alphanumdashdotsorempty -> alphanumDashDotsOrEmpty
+  - alphanumdashdotsspaces -> alphanumDashDotsSpaces
+  - alphanumdashunderscore -> alphanumDashUnderscore
+  - alphanumdashunderscoredotsspacesparenthesis -> alphanumDashUnderscoreDotsSpacesParenthesis
+  - alphanumdashorempty -> alphanumDashOrEmpty
+  - alphanumdashspaces -> alphanumDashSpaces
+  - alphanumdots -> alphanumDots
+  - alphanumdashLowercase -> alphanumDashLowercase
+  - alphanumSpacesDotsUnderscoreDash -> alphanumDashUnderscoreDotsSpaces
+  - alphanumUnderscoreDash -> alphanumDashUnderscore
+  - alphanumUnderscoreDollarDash -> alphanumDashUnderscoreDollar
+
 ## 3.2.0
 
 ### Minor Changes
