@@ -41,6 +41,7 @@ import {
   sixDigitsCode,
   spaces,
   uppercaseBasicDomain,
+  uppercaseBasicSubdomain,
   url,
 } from '..'
 
@@ -547,6 +548,33 @@ describe('@regex', () => {
       expect(uppercaseBasicDomain.test(string)).toBe(expected)
     })
   })
+
+  describe('uppercaseBasicSubdomain', () => {
+    test.each([
+      [asciiLetters, false],
+      [asciiLowercase, false],
+      [asciiUppercase, false],
+      [backupKeyTest, false],
+      [domain, false],
+      [subDomain, true],
+      [dashStartDomain, false],
+      [uppercaseDomain, true],
+      [longTldDomain, true],
+      [digitsTest, false],
+      [emailTest, false],
+      [octdigits, false],
+      [hexdigits, false],
+      [printable, false],
+      [punctuation, false],
+      [whitespace, false],
+      [cronTest, false],
+      [macAddress1, false],
+      ...(urls.map(urlString => [urlString, false]) as [string, boolean][]),
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(uppercaseBasicSubdomain.test(string)).toBe(expected)
+    })
+  })
+
   describe('advancedDomain', () => {
     test.each([
       [asciiLetters, false],
