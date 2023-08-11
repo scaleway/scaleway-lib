@@ -35,6 +35,7 @@ import {
   ipv6,
   ipv6Cidr,
   macAddress,
+  pemCertificate,
   phone,
   reverseDNS,
   s3BucketName,
@@ -92,6 +93,35 @@ const linuxPaths = {
   ],
   GOOD: ['/var', '/var/test', '/var/test_', '/var_/test', '/'],
 }
+
+const pemCertificateText = `
+-----BEGIN CERTIFICATE-----
+MIIEljCCAn4CCQCs6KD1xbeH4jANBgkqhkiG9w0BAQsFADANMQswCQYDVQQGEwJG
+UjAeFw0yMzAxMDQxNDUzNTRaFw0yNDAxMDQxNDUzNTRaMA0xCzAJBgNVBAYTAkZS
+MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAzWjmt8rNhCzzuOLcXzVE
+vx6ckL05V5BbldmO17kgyAUVmheStQ2pu7b5K0yMD4w0KX4Tnmoi1gvioJHsNCk2
+CZuRnX3iKY4MQeO90IZzvHiYr2vho/BjJsmtHbUlaH6zhA7Pgv0G0RWV24O865Zw
+AKuo/XccoZc1+8lfs4+HDJEaoEKv0NhxDbrlGk4vxcZ6Bul7nPjlJ1j+bhWZ2o6/
+qNGRlcdC0y2StO+joOF2rweNh+apr5dcxGVFKAd4DGt4lfY85RmXqJpb+SQIJEKU
+gDXsh0VQ7g5zbneOWFt642o7Ok7L3OgPlGtkdQ5CIVBrvc5DqZGowNvAb6geTNm8
+7m0NdI9W85wMVm/l4VraZr0HyQ/C5qKmyyWAc5N8jdJp7medqPdiFOIXf3vvlWnG
+Rt38FuoKy/wwdLSdHfb/bkHWaGZvzvgC4QZj7wgZrrzT3P1KCNKN0I64ekAIwUHu
+vB0I0biKIHRTl2UWBg2JKid6wh+B9kROHaaZtAmvQXx4uFOzQLXHfpqRkWDAaGr7
+Zb/NjJrhzGt6yrNEFyrZ0fyUeZstB503STnSFfLSvE5oNiQbnh2rpmvZyVgDO/i6
+2qvrtFu9GVeo5vObFkjG1zUxjncWgg/gMq2GP/DXOGTez5ibyJnvTu9NYlQTv9R/
+nlZGo7Wq0pwnltKAxAp+rXUCAwEAATANBgkqhkiG9w0BAQsFAAOCAgEAqfWGNXS/
+DW9VYJWiSFeOWnUgZD6wvPXLHbHUuYzvXjtEk7iOC7lBsWzrMctZfe05bb3v45kf
+fvZL/EbQ7NCCgUZTMcWxeT+SeXYyr+dI6yKehSAllTqElCzuM68aOvSE8vyP5fa8
+Amc5AIabeskwoy2CB+XbIfYx15Zh/nJ9M583f+JL51pnCGNCDZujWR5+Q+iFT7Xg
+59Ahe4cZo/MdXrCokrWS0hcUkdUMpKnPTNrSextuJyBFU72Nw9KLK2AbUBknpFZ9
+l3U8uUkIjujoaiTfz9wcUFLpYwn/kg6WowQoWrifcUw2ZuLSA3sj8JFp/ght5y1B
+lhk9nIm9sCsMkeQHEUSaQdXKKi4CHfqK8yFrDlC1HuCJYuCmHon+gsvc2qmMg5Oi
+5CDZKrTIMr8H0ppIyegXDQ2mdjs3JuJLkuR1mpsh4eeD0e9nwXz0u1L+B6wjm03n
+S2yimPErfKx7zaFTiQhnm2IpPQK4doTrbg16A4jvnReJh3SKvtQm5iyloCxBPUaC
+LVzAw14Z6engQR9H/MORYss8JY87p+YJ7t1OuGWKO9/mxs6FC8eYo0uB/b5tqJHg
+nAC1oI+yOflsnhLvmKhyuQBF1rOSvpeUxKMLHNAwef0EVstxQph9jyntgOz6Kz2F
+kq2Yuvvstfin8fLXTU+0lmho2EoN1+oKm1U=
+-----END CERTIFICATE-----`
 
 describe('@regex', () => {
   describe('alpha', () => {
@@ -927,6 +957,27 @@ describe('@regex', () => {
       ['SCWABCDEFGHIJKLMNOPQ', true],
     ])('should match regex %s to be %s', (string, expected) => {
       expect(accessKeyRegex.test(string)).toBe(expected)
+    })
+  })
+
+  describe('pemCertificate', () => {
+    test.each([
+      [asciiLetters, false],
+      [asciiLowercase, false],
+      [asciiUppercase, false],
+      [digitsTest, false],
+      [emailTest, false],
+      [octdigits, false],
+      [fourDigitsTest, false],
+      [hexdigits, false],
+      [printable, false],
+      [punctuation, false],
+      [whitespace, false],
+      [cronTest, false],
+      [macAddress1, false],
+      [pemCertificateText, true],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(pemCertificate.test(string)).toBe(expected)
     })
   })
 })

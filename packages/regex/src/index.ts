@@ -79,3 +79,6 @@ export const ipv6Cidr = new RegExp(`^${cidrv6}$`)
 export const reverseDNS = /^[a-z0-9-]+(\.[a-z0-9-]{1,63})+(\.)$/
 export const dashedIpv4 =
   /(\b25[0-5]|\b2[0-4][0-9]|\b[01]?[0-9][0-9]?)(-(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}/
+
+export const pemCertificate =
+  /-----BEGIN CERTIFICATE-----[\s\S]*-----END CERTIFICATE-----/
