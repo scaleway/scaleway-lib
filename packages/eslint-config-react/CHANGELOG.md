@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.15.21
+
+### Patch Changes
+
+- [#1446](https://github.com/scaleway/scaleway-lib/pull/1446) [`b1825e0`](https://github.com/scaleway/scaleway-lib/commit/b1825e0a68c64afe0de2d4134a2eee6e50707c49) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `eslint-config-prettier` to `9.0.0`.
+
 ## 3.15.20
 
 ### Patch Changes
