@@ -3,10 +3,15 @@ import type {
   LocaleKeys,
   LocaleValue,
   Params,
-  ScopedValue,
   Scopes,
 } from 'international-types'
 import type { ReactNode } from 'react'
+
+export type ScopedValue<
+  Locale extends BaseLocale,
+  Scope extends Scopes<Locale> | undefined,
+  Key extends LocaleKeys<Locale, Scope>,
+> = Scope extends undefined ? Locale[Key] : Locale[`${Scope}.${Key}`]
 
 export type ReactParamsObject<Value extends LocaleValue> = Record<
   Params<Value>[number],

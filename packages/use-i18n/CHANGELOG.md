@@ -1,5 +1,15 @@
 # Change Log
 
+## 5.4.3
+
+### Patch Changes
+
+- [#1461](https://github.com/scaleway/scaleway-lib/pull/1461) [`4e4e639`](https://github.com/scaleway/scaleway-lib/commit/4e4e639cd63298f243293c7dc0c78bb937b7eeaa) Thanks [@QuiiBz](https://github.com/QuiiBz)! - Fix OOM when running eslint
+
+- [#1447](https://github.com/scaleway/scaleway-lib/pull/1447) [`2d994f7`](https://github.com/scaleway/scaleway-lib/commit/2d994f757e4a9e5833d2d0a3943a36ca694b8cbb) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `filesize` to `10.0.9`.
+
+- [#1453](https://github.com/scaleway/scaleway-lib/pull/1453) [`68a8a59`](https://github.com/scaleway/scaleway-lib/commit/68a8a595b2e60480372acd6c52316c056d520ec2) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `filesize` to `10.0.12`.
+
 ## 5.4.2
 
 ### Patch Changes
