@@ -1,3 +1,4 @@
+import { describe, expect, jest, test } from '@jest/globals'
 import { render, renderHook, screen, waitFor } from '@testing-library/react'
 import type { ReactNode } from 'react'
 import DataLoaderProvider, { useDataLoaderContext } from '../DataLoaderProvider'
@@ -62,7 +63,7 @@ describe('DataLoaderProvider', () => {
     try {
       // @ts-expect-error Should throw an error
       await result.current.reload(3).catch(undefined)
-      fail('It should throw an error')
+      throw new Error('It should throw an error')
     } catch (error) {
       expect((error as Error).message).toBe(KEY_IS_NOT_STRING_ERROR)
     }
@@ -72,7 +73,7 @@ describe('DataLoaderProvider', () => {
     try {
       // @ts-expect-error Should throw an error
       result.current.clearCachedData(3)
-      fail('It should throw an error')
+      throw new Error('It should throw an error')
     } catch (error) {
       expect((error as Error).message).toBe(KEY_IS_NOT_STRING_ERROR)
       expect(result.current.getCachedData(TEST_KEY)).toBe(true)
@@ -122,7 +123,7 @@ describe('DataLoaderProvider', () => {
     if (testReload) {
       expect(await testReload()).toBeNull()
     } else {
-      fail('It shoulded be defined')
+      throw new Error('It shoulded be defined')
     }
     expect(result.current.getCachedData(TEST_KEY)).toBe(null)
     expect(result.current.getCachedData()).toStrictEqual({ test: null })

@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+import { describe, expect, jest, test } from '@jest/globals'
 import { renderHook, waitFor } from '@testing-library/react'
 import type { ReactNode } from 'react'
 import DataLoaderProvider, { useDataLoaderContext } from '../DataLoaderProvider'
@@ -501,7 +502,7 @@ describe('useDataLoader', () => {
   })
 
   test('should call onSuccess', async () => {
-    const onSuccess = jest.fn()
+    const onSuccess = jest.fn<any>()
     const { result } = renderHook(
       props => useDataLoader(props.key, props.method, props.config),
       {
@@ -523,8 +524,8 @@ describe('useDataLoader', () => {
   })
 
   test('should call onError', async () => {
-    const onSuccess = jest.fn()
-    const onError = jest.fn()
+    const onSuccess = jest.fn<any>()
+    const onError = jest.fn<any>()
     const error = new Error('Test error')
     const { result } = renderHook(
       props => useDataLoader(props.key, props.method, props.config),
@@ -557,8 +558,8 @@ describe('useDataLoader', () => {
   })
 
   test('should override onError from Provider', async () => {
-    const onSuccess = jest.fn()
-    const onError = jest.fn()
+    const onSuccess = jest.fn<any>()
+    const onError = jest.fn<any>()
     const error = new Error('Test error')
     const onErrorProvider = jest.fn()
     const { result } = renderHook(
@@ -593,7 +594,7 @@ describe('useDataLoader', () => {
   })
 
   test('should call onError from Provider', async () => {
-    const onSuccess = jest.fn()
+    const onSuccess = jest.fn<any>()
     const error = new Error('Test error')
     const onErrorProvider = jest.fn()
     const { result } = renderHook(
@@ -629,7 +630,7 @@ describe('useDataLoader', () => {
 
   test('should clear error on new response', async () => {
     let success = false
-    const onSuccess = jest.fn()
+    const onSuccess = jest.fn<any>()
     const onError = jest.fn(() => {
       success = true
     })

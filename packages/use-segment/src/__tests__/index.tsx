@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it, jest } from '@jest/globals'
 import type { Context } from '@segment/analytics-next'
 import { AnalyticsBrowser } from '@segment/analytics-next'
 import { renderHook, waitFor } from '@testing-library/react'
@@ -218,7 +219,7 @@ describe('segment hook', () => {
       .spyOn(AnalyticsBrowser, 'load')
       .mockResolvedValue([{} as Analytics, {} as Context])
 
-    const onEventError = jest.fn()
+    const onEventError = jest.fn<any>()
     const onError = jest.fn()
 
     const settings = { writeKey: 'pleasethrow' }

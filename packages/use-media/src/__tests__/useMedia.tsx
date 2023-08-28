@@ -1,3 +1,4 @@
+import { describe, expect, it, jest } from '@jest/globals'
 import { renderHook } from '@testing-library/react'
 import { useMedia } from '..'
 
@@ -15,7 +16,7 @@ describe('useMedia hook', () => {
       callback()
 
     Object.defineProperty(window, 'matchMedia', {
-      value: jest.fn().mockImplementation((query: string) => ({
+      value: jest.fn<any>().mockImplementation((query: string) => ({
         addEventListener: mockAddEventListener,
         addListener: jest.fn(),
         dispatchEvent: jest.fn(),
@@ -43,7 +44,7 @@ describe('useMedia hook', () => {
     }
 
     Object.defineProperty(window, 'matchMedia', {
-      value: jest.fn().mockImplementation((query: string) => ({
+      value: jest.fn<any>().mockImplementation((query: string) => ({
         addEventListener: mockAddEventListener,
         addListener: jest.fn(),
         dispatchEvent: jest.fn(),

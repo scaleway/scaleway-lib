@@ -1,8 +1,7 @@
 {
   "root": true,
   "env": {
-    "browser": true,
-    "jest": true
+    "browser": true
   },
   "overrides": [
     {
@@ -21,6 +20,7 @@
       "files": [
         "packages/changesets-renovate/**/*.ts{x,}",
         "packages/validate-icu-locales/**/*.ts{x,}",
+        "packages/jest-helpers/**/*.ts{x,}",
         "**/__tests__/**/*.ts{x,}"
       ],
       "parserOptions": {
@@ -28,7 +28,8 @@
       },
       "extends": ["@scaleway/react/typescript"],
       "rules": {
-        "no-console": "off"
+        "no-console": "off",
+        "import/no-extraneous-dependencies": "off"
       }
     }
   ]
