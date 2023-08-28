@@ -21,7 +21,7 @@ const external = id =>
   [
     ...Object.keys(pkg.dependencies || {}),
     ...Object.keys(pkg.peerDependencies || {}),
-    ...[],
+    ...['@jest/globals'],
   ].find(dep => new RegExp(`^${dep}`).test(id))
 
 export default [
@@ -58,12 +58,12 @@ export default [
       }),
       preserveShebangs(),
       PROFILE &&
-        visualizer({
-          brotliSize: true,
-          filename: '.reports/report.html',
-          gzipSize: true,
-          open: true,
-        }),
+      visualizer({
+        brotliSize: true,
+        filename: '.reports/report.html',
+        gzipSize: true,
+        open: true,
+      }),
     ].filter(Boolean),
   },
   {

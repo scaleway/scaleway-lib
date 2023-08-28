@@ -1,5 +1,6 @@
 import type { CreateSerializerOptions } from '@emotion/jest'
 import { createSerializer } from '@emotion/jest'
+import { expect } from '@jest/globals'
 import type { FC, ReactNode } from 'react'
 import type { RenderWithThemeFn } from './helpers/renderWithTheme'
 import makeRenderWithTheme from './helpers/renderWithTheme'
@@ -20,7 +21,6 @@ export default function makeHelpers<Theme>(
   Wrapper: FC<{ theme?: Theme; children: ReactNode }>,
   createSerializerOptions?: CreateSerializerOptions,
 ): Helpers<Theme> {
-  // @ts-expect-error can't import because rollup fails
   expect.addSnapshotSerializer(createSerializer(createSerializerOptions))
 
   const renderWithTheme = makeRenderWithTheme(Wrapper)
