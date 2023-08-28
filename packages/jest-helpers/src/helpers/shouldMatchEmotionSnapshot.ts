@@ -1,4 +1,3 @@
-import { expect } from '@jest/globals'
 import type { RenderOptions, render } from '@testing-library/react'
 import type { ReactNode } from 'react'
 import type { RenderWithThemeFn } from './renderWithTheme'
@@ -21,6 +20,7 @@ export default function makeShouldMatchEmotionSnapshot<Theme>(
     const node = renderWithTheme(component, options, theme)
     if (transform) await transform(node)
 
+    // @ts-expect-error can't import because rollup fails
     expect(node.asFragment()).toMatchSnapshot()
     node.unmount()
   }

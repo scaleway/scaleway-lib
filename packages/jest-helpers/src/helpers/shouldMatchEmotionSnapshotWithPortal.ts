@@ -1,4 +1,3 @@
-import { expect, jest } from '@jest/globals'
 import type { RenderOptions, render } from '@testing-library/react'
 import type { ReactNode } from 'react'
 import type { RenderWithThemeFn } from './renderWithTheme'
@@ -20,6 +19,7 @@ export default function makeShouldMatchEmotionSnapshotWithPortal<Theme>(
   return async (component, { options, transform, theme } = {}) => {
     // Save the instance of console (disable warning about adding element directly to document.body which is necessary when testing portal components)
     const { console } = global
+    // @ts-expect-error can't import because rollup fails
     global.console = { ...console, error: jest.fn() }
 
     const node = renderWithTheme(
@@ -31,6 +31,7 @@ export default function makeShouldMatchEmotionSnapshotWithPortal<Theme>(
       theme,
     )
     if (transform) await transform(node)
+    // @ts-expect-error can't import because rollup fails
     expect(node.asFragment()).toMatchSnapshot()
 
     // Unmounting to don't see the warning message described above

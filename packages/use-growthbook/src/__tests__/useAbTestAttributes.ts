@@ -5,9 +5,7 @@ import { renderHook } from '@testing-library/react'
 import type { Attributes } from '../types'
 import { useAbTestAttributes } from '../useAbTestAttributes'
 
-jest.mock('@growthbook/growthbook-react', () => ({
-  useGrowthBook: jest.fn(),
-}))
+jest.mock('@growthbook/growthbook-react')
 
 describe('useAbTestAttributes', () => {
   let getAttributes: () => Attributes
