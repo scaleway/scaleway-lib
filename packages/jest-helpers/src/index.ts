@@ -1,5 +1,6 @@
 import type { CreateSerializerOptions } from '@emotion/jest'
 import { createSerializer } from '@emotion/jest'
+import { expect } from '@jest/globals'
 import type { FC, ReactNode } from 'react'
 import type { RenderWithThemeFn } from './helpers/renderWithTheme'
 import makeRenderWithTheme from './helpers/renderWithTheme'

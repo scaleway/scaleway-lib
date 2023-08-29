@@ -1,3 +1,4 @@
+import { afterEach, beforeEach, describe, expect, it, jest } from '@jest/globals'
 import fs from 'node:fs/promises'
 import { simpleGit } from 'simple-git'
 import { run } from '..'
@@ -95,9 +96,9 @@ describe('generate changeset file', () => {
     })
 
     fs.readFile = jest
-      .fn()
+      .fn<any>()
       .mockResolvedValue(`{"name":"packageName","version":"1.0.0"}`)
-    fs.writeFile = jest.fn()
+    fs.writeFile = jest.fn<any>()
 
     await run()
 
@@ -129,9 +130,9 @@ describe('generate changeset file', () => {
     })
 
     fs.readFile = jest
-      .fn()
+      .fn<any>()
       .mockResolvedValue(`{"name":"packageName","workspaces":[]}`)
-    fs.writeFile = jest.fn()
+    fs.writeFile = jest.fn<any>()
 
     await run()
 
@@ -159,8 +160,8 @@ describe('generate changeset file', () => {
 `,
     })
 
-    fs.readFile = jest.fn().mockResolvedValue(`{"name":"packageName"}`)
-    fs.writeFile = jest.fn()
+    fs.readFile = jest.fn<any>().mockResolvedValue(`{"name":"packageName"}`)
+    fs.writeFile = jest.fn<any>()
 
     await run()
 

@@ -1,3 +1,4 @@
+import { beforeAll, describe, expect, it, jest, test } from '@jest/globals'
 import makeHelpers from '..'
 import type { RenderWithThemeFn } from '../helpers/renderWithTheme'
 import type { ShouldMatchEmotionSnapshotFn } from '../helpers/shouldMatchEmotionSnapshot'
@@ -31,7 +32,7 @@ describe('@jest-helpers', () => {
   })
 
   test('should call tranform with shouldMatchEmotionSnapshot', async () => {
-    const transform = jest.fn()
+    const transform = jest.fn<any>()
     await shouldMatchEmotionSnapshot(<div id="test" />, { transform })
 
     expect(transform).toHaveBeenCalledTimes(1)
@@ -42,7 +43,7 @@ describe('@jest-helpers', () => {
   })
 
   it('should call transform with shouldMatchEmotionSnapshot', async () => {
-    const transform = jest.fn()
+    const transform = jest.fn<any>()
     await shouldMatchEmotionSnapshotWithPortal(<div id="test" />, { transform })
 
     expect(transform).toHaveBeenCalledTimes(1)

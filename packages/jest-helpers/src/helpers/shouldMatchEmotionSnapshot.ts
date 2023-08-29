@@ -1,3 +1,4 @@
+import { expect } from '@jest/globals'
 import type { RenderOptions, render } from '@testing-library/react'
 import type { ReactNode } from 'react'
 import type { RenderWithThemeFn } from './renderWithTheme'
