@@ -1,6 +1,7 @@
 import { describe, expect, test } from '@jest/globals'
 import {
   absoluteLinuxPath,
+  absolutePath,
   accessKeyRegex,
   advancedDomainName,
   alpha,
@@ -36,6 +37,7 @@ import {
   ipv6,
   ipv6Cidr,
   macAddress,
+  pathSegment,
   phone,
   reverseDNS,
   s3BucketName,
@@ -956,6 +958,32 @@ describe('@regex', () => {
       ['SCWABCDEFGHIJKLMNOPQ', true],
     ])('should match regex %s to be %s', (string, expected) => {
       expect(accessKeyRegex.test(string)).toBe(expected)
+    })
+  })
+
+  describe.only('pathSegment', () => {
+    test.each([
+      ['/hello', false],
+      ['hello', true],
+      ['hello nop', false],
+      ['hello?', false],
+      ['hello-world', true],
+      ['hello/world', false],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(pathSegment.test(string)).toBe(expected)
+    })
+  })
+
+  describe.only('absolutePath', () => {
+    test.each([
+      ['/hello', true],
+      ['hello', false],
+      ['/hello nop', false],
+      ['/hello?', false],
+      ['/hello-world', true],
+      ['/hello/world', true],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(absolutePath.test(string)).toBe(expected)
     })
   })
 })
