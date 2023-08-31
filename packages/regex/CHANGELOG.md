@@ -1,5 +1,13 @@
 # Change Log
 
+## 4.1.0
+
+### Minor Changes
+
+- [#1493](https://github.com/scaleway/scaleway-lib/pull/1493) [`7f4a667`](https://github.com/scaleway/scaleway-lib/commit/7f4a66773dfc3c90c6c3e8905cbfe8cb2a4c15f3) Thanks [@QuiiBz](https://github.com/QuiiBz)! - Add `pathSegment` and `absolutePath` regex
+
+- [#1448](https://github.com/scaleway/scaleway-lib/pull/1448) [`809a9ac`](https://github.com/scaleway/scaleway-lib/commit/809a9ac4189d72bd8b8b4cd10631334060e39a41) Thanks [@johnrazeur](https://github.com/johnrazeur)! - Add subdomain regex
+
 ## 4.0.0
 
 ### Major Changes

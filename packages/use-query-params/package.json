@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/use-query-params",
-  "version": "4.0.14",
+  "version": "4.0.15",
   "description": "A small hook to handle params",
   "type": "module",
   "engines": {
