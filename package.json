@@ -5,7 +5,7 @@
     "packages/*"
   ],
   "type": "module",
-  "packageManager": "pnpm@8.6.12",
+  "packageManager": "pnpm@8.7.0",
   "engines": {
     "node": ">=18.x",
     "pnpm": ">=7.x"
@@ -29,6 +29,7 @@
     "@testing-library/jest-dom": "6.0.1",
     "@testing-library/react": "13.4.0",
     "@tsd/typescript": "5.1.6",
+    "@types/jest": "^29.5.4",
     "@types/node": "18.17.9",
     "@types/prop-types": "15.7.5",
     "@types/react": "18.2.21",
