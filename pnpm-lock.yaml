@@ -54,8 +54,8 @@ importers:
         specifier: workspace:*
         version: link:packages/tsconfig
       '@testing-library/jest-dom':
-        specifier: 6.0.1
-        version: 6.0.1(@jest/globals@29.6.4)(@types/jest@29.5.4)(jest@29.6.4)
+        specifier: 6.1.2
+        version: 6.1.2(@jest/globals@29.6.4)(@types/jest@29.5.4)(jest@29.6.4)
       '@testing-library/react':
         specifier: 13.4.0
         version: 13.4.0(react-dom@18.2.0)(react@18.2.0)
@@ -346,8 +346,8 @@ packages:
     resolution: {integrity: sha512-1Yjs2SvM8TflER/OD3cOjhWWOZb58A2t7wpE2S9XfBYTiIl+XFhQG2bjy4Pu1I+EAlCNUzRDYDdFwFYUKvXcIA==}
     engines: {node: '>=0.10.0'}
 
-  /@adobe/css-tools@4.0.1:
-    resolution: {integrity: sha512-+u76oB43nOHrF4DDWRLWDCtci7f3QJoEBigemIdIeTi1ODqjx6Tad9NCVnPRwewWlKkVab5PlK8DCtPTyX7S8g==}
+  /@adobe/css-tools@4.3.1:
+    resolution: {integrity: sha512-/62yikz7NLScCGAAST5SHdnjaDJQBDq0M2muyRTpf2VQhw6StBg2ALiu73zSJQ4fMVLA+0uBhBHAle7Wg+2kSg==}
     dev: true
 
   /@ampproject/remapping@2.2.1:
@@ -3943,8 +3943,8 @@ packages:
       lz-string: 1.5.0
       pretty-format: 27.5.1
 
-  /@testing-library/jest-dom@6.0.1(@jest/globals@29.6.4)(@types/jest@29.5.4)(jest@29.6.4):
-    resolution: {integrity: sha512-0hx/AWrJp8EKr8LmC5jrV3Lx8TZySH7McU1Ix2czBPQnLd458CefSEGjZy7w8kaBRA6LhoPkGjoZ3yqSs338IQ==}
+  /@testing-library/jest-dom@6.1.2(@jest/globals@29.6.4)(@types/jest@29.5.4)(jest@29.6.4):
+    resolution: {integrity: sha512-NP9jl1Q2qDDtx+cqogowtQtmgD2OVs37iMSIsTv5eN5ETRkf26Kj6ugVwA93/gZzzFWQAsgkKkcftDe91BJCkQ==}
     engines: {node: '>=14', npm: '>=6', yarn: '>=1'}
     peerDependencies:
       '@jest/globals': '>= 28'
@@ -3961,7 +3961,7 @@ packages:
       vitest:
         optional: true
     dependencies:
-      '@adobe/css-tools': 4.0.1
+      '@adobe/css-tools': 4.3.1
       '@babel/runtime': 7.22.5
       '@jest/globals': 29.6.4
       '@types/jest': 29.5.4
