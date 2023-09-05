@@ -1,4 +1,3 @@
-// @ts-expect-error TODO: remove once Growthbook is correctly typed and export
 import { useGrowthBook } from '@growthbook/growthbook-react'
 import { beforeEach, describe, expect, it, jest } from '@jest/globals'
 import { renderHook } from '@testing-library/react'
