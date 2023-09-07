@@ -26,7 +26,7 @@
     "@rollup/plugin-node-resolve": "15.2.1",
     "@scaleway/eslint-config-react": "workspace:*",
     "@scaleway/tsconfig": "workspace:*",
-    "@testing-library/jest-dom": "6.1.2",
+    "@testing-library/jest-dom": "6.1.3",
     "@testing-library/react": "13.4.0",
     "@tsd/typescript": "5.2.2",
     "@types/jest": "29.5.4",
