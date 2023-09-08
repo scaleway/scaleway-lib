@@ -7,4 +7,6 @@ const GrowthBook = jest.fn(() => ({
 
 const GrowthBookProvider = ({ children }: { children: ReactNode }) => children
 
-export { GrowthBook, GrowthBookProvider }
+const useGrowthBook = jest.fn()
+
+export { GrowthBook, GrowthBookProvider, useGrowthBook }
