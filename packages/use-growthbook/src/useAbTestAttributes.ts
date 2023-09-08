@@ -1,16 +1,12 @@
-// eslint-disable-next-line eslint-comments/disable-enable-pair
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error TODO: remove once Growthbook is correctly typed and export
 import { useGrowthBook } from '@growthbook/growthbook-react'
 import { useCallback, useMemo } from 'react'
-import type { Attributes, GrowthBookType } from './types'
+import type { Attributes } from './types'
 
 export const useAbTestAttributes = (): [
   Attributes,
   (attributes: Attributes) => void,
 ] => {
-  const growthBook = useGrowthBook() as GrowthBookType | null
+  const growthBook = useGrowthBook()
 
   const attributes: Attributes = useMemo(
     () => growthBook?.getAttributes() ?? {},
