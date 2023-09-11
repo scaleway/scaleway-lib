@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/use-segment",
-  "version": "0.9.16",
+  "version": "0.9.17",
   "description": "A small hook to handle segment",
   "type": "module",
   "engines": {
