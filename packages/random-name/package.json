@@ -7,10 +7,8 @@
     "node": ">=14.x"
   },
   "sideEffects": false,
-  "exports": {
-    "types": "./dist/index.d.ts",
-    "default": "./dist/index.js"
-  },
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
