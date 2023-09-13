@@ -312,8 +312,8 @@ importers:
   packages/use-segment:
     dependencies:
       '@segment/analytics-next':
-        specifier: 1.54.0
-        version: 1.54.0
+        specifier: 1.55.0
+        version: 1.55.0
       use-deep-compare-effect:
         specifier: 1.8.1
         version: 1.8.1(react@18.2.0)
@@ -2796,19 +2796,19 @@ packages:
       rollup: 3.29.1
     dev: true
 
-  /@segment/analytics-core@1.3.0:
-    resolution: {integrity: sha512-ujScWZH49NK1hYlp2/EMw45nOPEh+pmTydAnR6gSkRNucZD4fuinvpPL03rmFCw8ibaMuKLAdgPJfQ0gkLKZ5A==}
+  /@segment/analytics-core@1.3.1:
+    resolution: {integrity: sha512-KGblJ8WQNC4t0j31zeyYBm2thHWuPULNAoP7waU5ts7Asz9ipvGoHqFSLG6warqvcnBdkiRbNam242zmxX53oA==}
     dependencies:
       '@lukeed/uuid': 2.0.1
       dset: 3.1.2
       tslib: 2.5.3
     dev: false
 
-  /@segment/analytics-next@1.54.0:
-    resolution: {integrity: sha512-KJ1sZswWab0KkufhXHF+Gjscm/sZmHdLybvOASe9smRDhnyaqmDxZqCWJnwS8LVIhy7mG4DvPynpyj8TL2JLdQ==}
+  /@segment/analytics-next@1.55.0:
+    resolution: {integrity: sha512-Ae6LpLW2U/rDwCAGrw7XHMjulk8becxEE0Nu45f0sE7b/+iy/c6NuxomzdhL5Vnp2WETDtv62M2pQtrfQ+XX7w==}
     dependencies:
       '@lukeed/uuid': 2.0.1
-      '@segment/analytics-core': 1.3.0
+      '@segment/analytics-core': 1.3.1
       '@segment/analytics.js-video-plugins': 0.2.1
       '@segment/facade': 3.4.10
       '@segment/tsub': 2.0.0
