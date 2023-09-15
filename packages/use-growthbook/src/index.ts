@@ -13,3 +13,8 @@ export type {
 } from '@growthbook/growthbook-react'
 export { useAbTestAttributes } from './useAbTestAttributes'
 export { AbTestProvider } from './AbTestProvider'
+export type {
+  TrackingCallback,
+  ErrorCallback,
+  ToolConfig,
+} from './AbTestProvider'

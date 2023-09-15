@@ -11,11 +11,13 @@ export type ToolConfig = {
 
 export type TrackingCallback = NonNullable<Context['trackingCallback']>
 
+export type ErrorCallback = (error: Error | string) => void
+
 export type AbTestProviderProps = {
   children: ReactNode
   config: ToolConfig
   trackingCallback: TrackingCallback
-  errorCallback: (error: Error | string) => void
+  errorCallback: ErrorCallback
   attributes: Attributes
   loadConfig?: LoadConfig
 }
