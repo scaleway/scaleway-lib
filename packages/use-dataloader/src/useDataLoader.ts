@@ -112,7 +112,10 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
 
   useEffect(() => {
     if (needLoad) {
-      request.load().then(onSuccessRef.current).catch(onErrorRef.current)
+      const defaultOnSuccessOrError = () => {}
+      const onSuccessLoad = onSuccessRef.current ?? defaultOnSuccessOrError
+      const onFailedLoad = onErrorRef.current ?? defaultOnSuccessOrError
+      request.load().then(onSuccessLoad).catch(onFailedLoad)
     }
     optimisticIsLoadingRef.current = false
   }, [needLoad, request])
@@ -130,10 +133,11 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
             needPollingRef.current &&
             !request.isCalled)
         ) {
-          request
-            .load(true)
-            .then(onSuccessRef.current)
-            .catch(onErrorRef.current)
+          const defaultOnSuccessOrError = () => {}
+          const onSuccessLoad = onSuccessRef.current ?? defaultOnSuccessOrError
+          const onFailedLoad = onErrorRef.current ?? defaultOnSuccessOrError
+
+          request.load(true).then(onSuccessLoad).catch(onFailedLoad)
         }
       }, pollingInterval)
     }
