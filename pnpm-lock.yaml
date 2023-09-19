@@ -266,8 +266,8 @@ importers:
         specifier: 0.8.0
         version: 0.8.0
       intl-messageformat:
-        specifier: 10.5.2
-        version: 10.5.2
+        specifier: 10.5.3
+        version: 10.5.3
       react:
         specifier: 18.x || 18
         version: 18.2.0
@@ -6523,8 +6523,8 @@ packages:
     resolution: {integrity: sha512-cJwagIBzMG0FTK81TABeSBU0eReIXWmvW18m/URn8ZA+GLoWIcdL43kfjArwHVmZJ1n+IFchsBj8tQLYUqmwnA==}
     dev: false
 
-  /intl-messageformat@10.5.2:
-    resolution: {integrity: sha512-X4rlUNbgCc8/RdMhmvUEEZ38yNDn5S4r0u8n8yQH2OOdhsR46SmOuQsCKG35nRXmL5u2nxPsNN6qNhHoMm6FMQ==}
+  /intl-messageformat@10.5.3:
+    resolution: {integrity: sha512-TzKn1uhJBMyuKTO4zUX47SU+d66fu1W9tVzIiZrQ6hBqQQeYscBMIzKL/qEXnFbJrH9uU5VV3+T5fWib4SIcKA==}
     dependencies:
       '@formatjs/ecma402-abstract': 1.17.2
       '@formatjs/fast-memoize': 2.2.0
