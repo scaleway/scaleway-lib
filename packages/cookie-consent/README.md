@@ -18,10 +18,10 @@ const MyApp = ({ children }: PropsWithChildren) => {
     <CookieConsentProvider
       isConsentRequired // Switch off consents if not defined (usefull for E2E testing)
       essentialIntegrations={[]} // List of mandatory integrations
-      segmentConfig={{
+      config={{
         segment, // Segment configuration used to get dynamically the integration used
       }}
-      // not required 
+      // not required
       cookiePrefix="_scw_rgpd" // default value
       consentMaxAge={13 * 30 * 24 * 60 * 60} // default value (appx 13 months)
       consentAdvertisingMaxAge={6 * 30 * 24 * 60 * 60} // default value (appx 6 months)

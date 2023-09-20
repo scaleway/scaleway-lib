@@ -11,7 +11,7 @@ type Integration = { category: CategoryKind; name: string }
 
 export type Integrations = Integration[]
 
-export type SegmentConfig = {
+export type Config = {
   segment?: {
     writeKey: string
     cdnURL: string

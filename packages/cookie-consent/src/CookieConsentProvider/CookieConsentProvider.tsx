@@ -10,12 +10,7 @@ import {
 } from 'react'
 import { uniq } from '../helpers/array'
 import { stringToHash } from '../helpers/misc'
-import type {
-  CategoryKind,
-  Consent,
-  Integrations,
-  SegmentConfig,
-} from './types'
+import type { CategoryKind, Config, Consent, Integrations } from './types'
 import { useSegmentIntegrations } from './useSegmentIntegrations'
 
 const COOKIE_PREFIX = '_scw_rgpd'
@@ -58,7 +53,7 @@ export const CookieConsentProvider = ({
   children,
   isConsentRequired,
   essentialIntegrations,
-  segmentConfig,
+  config,
   cookiePrefix = COOKIE_PREFIX,
   consentMaxAge = CONSENT_MAX_AGE,
   consentAdvertisingMaxAge = CONSENT_ADVERTISING_MAX_AGE,
@@ -67,7 +62,7 @@ export const CookieConsentProvider = ({
   children: ReactNode
   isConsentRequired: boolean
   essentialIntegrations: string[]
-  segmentConfig: SegmentConfig
+  config: Config
   cookiePrefix: string
   consentMaxAge: number
   consentAdvertisingMaxAge: number
@@ -80,7 +75,7 @@ export const CookieConsentProvider = ({
   const [needConsent, setNeedsConsent] = useState(false)
 
   const [cookies, setCookies] = useState<Record<string, string>>()
-  const segmentIntegrations = useSegmentIntegrations(segmentConfig)
+  const segmentIntegrations = useSegmentIntegrations(config)
 
   useEffect(() => {
     setCookies(cookie.parse(document.cookie))
