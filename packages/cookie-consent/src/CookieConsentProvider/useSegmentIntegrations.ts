@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import type { CategoryKind, Config, Integrations } from './types'
+import type { CategoryKind, Integrations, SegmentConfig } from './types'
 
 type SegmentIntegration = {
   category: string
@@ -47,7 +47,7 @@ const transformSegmentIntegrationsToIntegrations = (
   )
 
 // Will return undefined if loading, empty array if no response or error, response else
-export const useSegmentIntegrations = (config: Config) => {
+export const useSegmentIntegrations = (config: SegmentConfig) => {
   const [integrations, setIntegrations] = useState<Integrations | undefined>(
     undefined,
   )
