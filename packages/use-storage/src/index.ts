@@ -16,12 +16,13 @@ declare global {
   }
 }
 
-const canUseDOM = !!(
+const canUseDOM =
   typeof window !== 'undefined' &&
-  typeof window.document !== 'undefined' &&
-  typeof window.localStorage !== 'undefined' &&
-  typeof window.sessionStorage !== 'undefined'
-)
+  !!(
+    typeof window.document !== 'undefined' &&
+    typeof window.localStorage !== 'undefined' &&
+    typeof window.sessionStorage !== 'undefined'
+  )
 
 const subscribeStorage = (callback: () => void) => {
   if (canUseDOM) {

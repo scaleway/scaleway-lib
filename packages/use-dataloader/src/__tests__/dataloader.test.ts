@@ -54,9 +54,14 @@ describe('Dataloader class', () => {
       notifyChanges,
     })
     expect(method).toBeCalledTimes(0)
-    instance.load().catch(undefined)
-    instance.load().catch(undefined)
-    await instance.load()
+
+    // simulate multiple call in //
+    await Promise.all([
+      instance.load().catch(undefined),
+      instance.load().catch(undefined),
+      instance.load(),
+    ])
+
     expect(method).toBeCalledTimes(1)
     instance.clearData()
   })
@@ -71,7 +76,9 @@ describe('Dataloader class', () => {
     })
     expect(instance.getData()).toBe(undefined)
     expect(notify).toBeCalledTimes(0)
-    instance.load().catch(undefined)
+
+    instance.load().catch(() => null)
+
     expect(method).toBeCalledTimes(1)
     instance.cancel()
     expect(notify).toBeCalledTimes(0)
@@ -145,7 +152,9 @@ describe('Dataloader class', () => {
       method,
       notifyChanges,
     })
+
     instance.load().catch(undefined)
+
     instance.cancel()
     await waitForExpect(() => expect(instance.status).toBe(StatusEnum.IDLE))
     expect(notifyChanges).toBeCalledTimes(1)
@@ -181,9 +190,11 @@ describe('Dataloader class', () => {
           notifyChanges,
         }),
     )
-    instances.forEach(instance => {
-      instance.load().catch(undefined)
-    })
+
+    for await (const instance of instances) {
+      await instance.load().catch(() => null)
+    }
+
     await waitForExpect(() => expect(method).toBeCalledTimes(5))
   })
 })

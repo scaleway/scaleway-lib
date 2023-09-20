@@ -1,4 +1,11 @@
-import { afterEach, beforeAll, describe, expect, jest, test } from '@jest/globals'
+import {
+  afterEach,
+  beforeAll,
+  describe,
+  expect,
+  jest,
+  test,
+} from '@jest/globals'
 
 /**
  * @jest-environment jsdom
