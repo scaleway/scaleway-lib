@@ -1,24 +1,76 @@
 # Shire - Cookie Consent
 
-This package contains the Cookie Consent modals and providers logic.
+This package is an helper to handle cookie consents with Segment integrations.
+It will handle the cookie consent for each categories.
+
+This package does not contain design element to display a cookie consent modal, 
+it only handle the storage and the init of cookie consent in a React provider.
 
 ## QuickStart
 
-### Prerequisites
+In order to use it, first you need to provide a context at the top level of your application
 
+```tsx
+import { PropsWithChildren } from 'react'
+
+const MyApp = ({ children }: PropsWithChildren) => {
+  return (
+    <CookieConsentProvider
+      isConsentRequired // Switch off consents if not defined (usefull for E2E testing)
+      essentialIntegrations={[]} // List of mandatory integrations
+      config={{
+        segment, // Segment configuration used to get dynamically the integration used
+      }}
+    >
+      {children}
+    </CookieConsentProvider>
+  )
+}
 ```
-$ cd packages/cookie-consent
+
+Then in your cookie modal component you could simply use exposed hook to get and modify consents
+
+```tsx
+export function PanelConsent() {
+  const { saveConsent, categoriesConsent } = useCookieConsent()
+
+  const setAllConsents = ({
+    categoriesConsent,
+    value,
+  }: {
+    categoriesConsent: Partial<Consent>
+    value: boolean
+  }) =>
+    Object.keys(categoriesConsent).reduce(
+      (acc, category) => ({ ...acc, [category]: value }),
+      {},
+    )
+
+  const handleClick = (consentForAll: boolean) => () => {
+    saveConsent(setAllConsents({ categoriesConsent, value: consentForAll }))
+  }
+
+  const onAgreeAll = handleClick(true)
+
+  const onReject = handleClick(false)
+
+  return (
+    <div className={styles.consent}>
+      <div>Do you accept consents ?</div>
+      <div>
+        <Button onClick={onAgreeAll} autoFocus>
+          Accept
+        </Button>
+        <Button onClick={onReject}>
+          Decline
+        </Button>
+      </div>
+    </div>
+  )
+}
 ```
 
-### Start
-
-```bash
-$ pnpm build # Build the package
-$ pnpm watch # Build the package and watch for changes
-```
-
-### How it works 
-
+### User flow
 
 ```mermaid
 flowchart TD
@@ -46,4 +98,19 @@ flowchart TD
     N -..-> O[Check value fo cookies _scw_rgpd_hash and _scw_rgpd_$categorie$]
     O --> B
     end
+```
+
+## How to contribute ?
+
+### Prerequisites
+
+```
+$ cd packages/cookie-consent
+```
+
+### Start
+
+```bash
+$ pnpm build # Build the package
+$ pnpm watch # Build the package and watch for changes
 ```
