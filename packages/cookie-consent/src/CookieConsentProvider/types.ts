@@ -11,8 +11,7 @@ type Integration = { category: CategoryKind; name: string }
 
 export type Integrations = Integration[]
 
-// TODO: avoid duplicating this type in @shire/console
-export type Config = {
+export type SegmentConfig = {
   segment?: {
     writeKey: string
     cdnURL: string

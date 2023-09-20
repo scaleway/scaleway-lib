@@ -3,7 +3,7 @@
 This package is an helper to handle cookie consents with Segment integrations.
 It will handle the cookie consent for each categories.
 
-This package does not contain design element to display a cookie consent modal, 
+This package does not contain design element to display a cookie consent modal,
 it only handle the storage and the init of cookie consent in a React provider.
 
 ## QuickStart
@@ -18,9 +18,14 @@ const MyApp = ({ children }: PropsWithChildren) => {
     <CookieConsentProvider
       isConsentRequired // Switch off consents if not defined (usefull for E2E testing)
       essentialIntegrations={[]} // List of mandatory integrations
-      config={{
+      segmentConfig={{
         segment, // Segment configuration used to get dynamically the integration used
       }}
+      // not required 
+      cookiePrefix="_scw_rgpd" // default value
+      consentMaxAge={13 * 30 * 24 * 60 * 60} // default value (appx 13 months)
+      consentAdvertisingMaxAge={6 * 30 * 24 * 60 * 60} // default value (appx 6 months)
+      cookiesOptions={{ sameSite: 'strict', secure: true, path: '/' }} // default value
     >
       {children}
     </CookieConsentProvider>
@@ -61,9 +66,7 @@ export function PanelConsent() {
         <Button onClick={onAgreeAll} autoFocus>
           Accept
         </Button>
-        <Button onClick={onReject}>
-          Decline
-        </Button>
+        <Button onClick={onReject}>Decline</Button>
       </div>
     </div>
   )

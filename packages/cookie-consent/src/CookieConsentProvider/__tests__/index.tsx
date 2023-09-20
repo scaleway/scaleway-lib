@@ -13,7 +13,7 @@ const wrapper =
     <CookieConsentProvider
       isConsentRequired={isConsentRequired}
       essentialIntegrations={['Deskpro', 'Stripe', 'Sentry']}
-      config={{
+      segmentConfig={{
         segment: {
           cdnURL: 'url',
           writeKey: 'key',

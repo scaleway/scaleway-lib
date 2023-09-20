@@ -10,7 +10,12 @@ import {
 } from 'react'
 import { uniq } from '../helpers/array'
 import { stringToHash } from '../helpers/misc'
-import type { CategoryKind, Config, Consent, Integrations } from './types'
+import type {
+  CategoryKind,
+  Consent,
+  Integrations,
+  SegmentConfig,
+} from './types'
 import { useSegmentIntegrations } from './useSegmentIntegrations'
 
 const COOKIE_PREFIX = '_scw_rgpd'
@@ -53,17 +58,29 @@ export const CookieConsentProvider = ({
   children,
   isConsentRequired,
   essentialIntegrations,
-  config,
+  segmentConfig,
+  cookiePrefix = COOKIE_PREFIX,
+  consentMaxAge = CONSENT_MAX_AGE,
+  consentAdvertisingMaxAge = CONSENT_ADVERTISING_MAX_AGE,
+  cookiesOptions = COOKIES_OPTIONS,
 }: {
   children: ReactNode
   isConsentRequired: boolean
   essentialIntegrations: string[]
-  config: Config
+  segmentConfig: SegmentConfig
+  cookiePrefix: string
+  consentMaxAge: number
+  consentAdvertisingMaxAge: number
+  cookiesOptions: {
+    sameSite: boolean | 'strict' | 'lax' | 'none' | undefined
+    secure: boolean
+    path: string
+  }
 }) => {
   const [needConsent, setNeedsConsent] = useState(false)
 
   const [cookies, setCookies] = useState<Record<string, string>>()
-  const segmentIntegrations = useSegmentIntegrations(config)
+  const segmentIntegrations = useSegmentIntegrations(segmentConfig)
 
   useEffect(() => {
     setCookies(cookie.parse(document.cookie))
@@ -126,12 +143,12 @@ export const CookieConsentProvider = ({
         (acc, category) => ({
           ...acc,
           [category]: isConsentRequired
-            ? cookies?.[`${COOKIE_PREFIX}_${category}`] === 'true'
+            ? cookies?.[`${cookiePrefix}_${category}`] === 'true'
             : true,
         }),
         {},
       ),
-    [isConsentRequired, categories, cookies],
+    [isConsentRequired, categories, cookies, cookiePrefix],
   )
 
   const saveConsent = useCallback(
@@ -139,7 +156,7 @@ export const CookieConsentProvider = ({
       for (const [consentName, consentValue] of Object.entries(
         categoriesConsent,
       ) as [CategoryKind, boolean][]) {
-        const cookieName = `${COOKIE_PREFIX}_${consentName}`
+        const cookieName = `${cookiePrefix}_${consentName}`
 
         if (!consentValue) {
           // If consent is set to false we have to delete the cookie
@@ -148,14 +165,14 @@ export const CookieConsentProvider = ({
           })
         } else {
           document.cookie = cookie.serialize(
-            `${COOKIE_PREFIX}_${consentName}`,
+            `${cookiePrefix}_${consentName}`,
             consentValue.toString(),
             {
-              ...COOKIES_OPTIONS,
+              ...cookiesOptions,
               maxAge:
                 consentName === 'advertising'
-                  ? CONSENT_ADVERTISING_MAX_AGE
-                  : CONSENT_MAX_AGE,
+                  ? consentAdvertisingMaxAge
+                  : consentMaxAge,
             },
           )
         }
@@ -165,14 +182,20 @@ export const CookieConsentProvider = ({
         HASH_COOKIE,
         integrationsHash.toString(),
         {
-          ...COOKIES_OPTIONS,
+          ...cookiesOptions,
           // Here we use the shortest max age to force to ask again for expired consent
-          maxAge: CONSENT_ADVERTISING_MAX_AGE,
+          maxAge: consentAdvertisingMaxAge,
         },
       )
       setNeedsConsent(false)
     },
-    [integrationsHash],
+    [
+      integrationsHash,
+      consentAdvertisingMaxAge,
+      consentMaxAge,
+      cookiePrefix,
+      cookiesOptions,
+    ],
   )
 
   const isSegmentAllowed = useMemo(
