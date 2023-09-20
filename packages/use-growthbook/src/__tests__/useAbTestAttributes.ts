@@ -1,5 +1,4 @@
-// @ts-expect-error TODO: remove once Growthbook is correctly typed and export
-import { useGrowthBook } from '@growthbook/growthbook-react'
+import * as growthbook from '@growthbook/growthbook-react'
 import { beforeEach, describe, expect, it, jest } from '@jest/globals'
 import { renderHook } from '@testing-library/react'
 import type { Attributes } from '../types'
@@ -16,10 +15,10 @@ describe('useAbTestAttributes', () => {
       .fn()
       .mockReturnValue({ foo: 'bar' }) as () => Attributes
     setAttributes = jest.fn() as (attributes: Attributes) => null | undefined
-    ;(useGrowthBook as jest.Mock).mockReturnValue({
+    jest.spyOn(growthbook, 'useGrowthBook').mockReturnValue({
       getAttributes,
       setAttributes,
-    })
+    } as ReturnType<typeof growthbook.useGrowthBook>)
   })
 
   it('should allow to get attributes from GrowthBook', () => {

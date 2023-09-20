@@ -29,6 +29,7 @@ module.exports = {
     '@typescript-eslint/prefer-reduce-type-parameter': 'error',
     '@typescript-eslint/prefer-string-starts-ends-with': 'error',
     '@typescript-eslint/prefer-ts-expect-error': 'error',
+    '@typescript-eslint/no-floating-promises': 'error',
     // https://github.com/typescript-eslint/typescript-eslint/issues/4619
     '@typescript-eslint/no-misused-promises': [
       'error',
@@ -38,10 +39,12 @@ module.exports = {
         },
       },
     ],
+    '@typescript-eslint/no-explicit-any': 'warn',
     '@typescript-eslint/no-unused-vars': 'error',
     '@typescript-eslint/consistent-type-imports': 'error',
     '@typescript-eslint/consistent-type-exports': 'error',
     '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
+    '@typescript-eslint/no-redundant-type-constituents': 'warn',
     // We favor object defaults instead of default props in TS
     // https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/default_props/#you-may-not-need-defaultprops
     // https://twitter.com/dan_abramov/status/1133878326358171650

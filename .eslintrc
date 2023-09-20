@@ -27,7 +27,9 @@
       },
       "extends": ["@scaleway/react/typescript"],
       "rules": {
-        "no-console": "off"
+        "no-console": "off",
+        "@typescript-eslint/no-explicit-any": "warn",
+        "@typescript-eslint/no-floating-promises": "warn"
       }
     },
     {

@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/use-i18n",
-  "version": "5.4.3",
+  "version": "5.4.5",
   "description": "A small hook to handle i18n",
   "type": "module",
   "engines": {
@@ -29,12 +29,12 @@
     "react-intl"
   ],
   "dependencies": {
-    "@formatjs/ecma402-abstract": "1.17.0",
+    "@formatjs/ecma402-abstract": "1.17.2",
     "@formatjs/fast-memoize": "2.2.0",
     "date-fns": "2.30.0",
     "filesize": "10.0.12",
     "international-types": "0.8.0",
-    "intl-messageformat": "10.5.0"
+    "intl-messageformat": "10.5.3"
   },
   "peerDependencies": {
     "date-fns": "2.x",

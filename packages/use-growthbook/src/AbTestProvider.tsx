@@ -1,11 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-// @ts-expect-error TODO: remove once Growthbook is correctly typed and export
+import type { Context } from '@growthbook/growthbook-react'
 import { GrowthBook, GrowthBookProvider } from '@growthbook/growthbook-react'
 import { type ReactNode, useCallback, useEffect, useMemo } from 'react'
-import type { Attributes, GrowthBookType, LoadConfig } from './types'
+import type { Attributes, LoadConfig } from './types'
 
 export type ToolConfig = {
   apiHost: string
@@ -13,19 +9,15 @@ export type ToolConfig = {
   enableDevMode: boolean
 }
 
-export type TrackingCallback = (
-  experiment: { key: string },
-  result: { key: string },
-) => void
+export type TrackingCallback = NonNullable<Context['trackingCallback']>
 
-// TODO: use type from growthbook when it's typed will be export correctly
-// export type TrackingCallback = NonNullable<Context['trackingCallback']>
+export type ErrorCallback = (error: Error | string) => void
 
 export type AbTestProviderProps = {
   children: ReactNode
   config: ToolConfig
   trackingCallback: TrackingCallback
-  errorCallback: (error: Error | string) => void
+  errorCallback: ErrorCallback
   attributes: Attributes
   loadConfig?: LoadConfig
 }
@@ -38,7 +30,7 @@ const getGrowthBookInstance = ({
   config: ToolConfig
   attributes: Attributes
   trackingCallback: TrackingCallback
-}): GrowthBookType =>
+}) =>
   new GrowthBook({
     apiHost,
     clientKey,
@@ -60,7 +52,7 @@ export const AbTestProvider = ({
   attributes,
   loadConfig = defaultLoadConfig,
 }: AbTestProviderProps) => {
-  const growthbook: GrowthBookType = useMemo(
+  const growthbook = useMemo(
     () => getGrowthBookInstance({ config, attributes, trackingCallback }),
     [trackingCallback, config, attributes],
   )
@@ -79,7 +71,3 @@ export const AbTestProvider = ({
     <GrowthBookProvider growthbook={growthbook}>{children}</GrowthBookProvider>
   )
 }
-/* eslint-enable @typescript-eslint/no-unsafe-call  */
-/* eslint-enable @typescript-eslint/no-unsafe-return */
-/* eslint-enable @typescript-eslint/no-unsafe-assignment */
-/* eslint-enable @typescript-eslint/no-unsafe-member-access */
