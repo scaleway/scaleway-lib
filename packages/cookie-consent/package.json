@@ -1,18 +1,38 @@
 {
   "name": "@scaleway/cookie-consent",
-  "version": "0.2.14",
-  "description": "Cookie consentment banner",
+  "version": "0.1.0",
+  "description": "React provider to handle website end user consent cookie storage based on segment integrations",
   "type": "module",
   "sideEffects": false,
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "exports": {
+    "types": "./dist/index.d.ts",
+    "default": "./dist/index.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "react",
+    "reactjs",
+    "hooks",
+    "segment",
+    "cookies",
+    "gdpr"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scaleway/scaleway-lib",
+    "directory": "packages/cookie-consent"
+  },
   "dependencies": {
-    "cookie": "0.5.0",
-    "react": "18.2.0"
+    "cookie": "0.5.0"
   },
   "devDependencies": {
     "@types/cookie": "0.5.1",
-    "@types/react": "18.2.21"
+    "@types/react": "18.2.21",
+    "react": "18.2.0"
+  },
+  "peerDependencies": {
+    "react": "18.x || 18"
   }
 }

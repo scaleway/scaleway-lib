@@ -152,9 +152,6 @@ importers:
       cookie:
         specifier: 0.5.0
         version: 0.5.0
-      react:
-        specifier: 18.2.0
-        version: 18.2.0
     devDependencies:
       '@types/cookie':
         specifier: 0.5.1
@@ -162,6 +159,9 @@ importers:
       '@types/react':
         specifier: 18.2.21
         version: 18.2.21
+      react:
+        specifier: 18.2.0
+        version: 18.2.0
 
   packages/eslint-config-react:
     dependencies:

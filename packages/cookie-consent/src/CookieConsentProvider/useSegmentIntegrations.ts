@@ -37,11 +37,8 @@ const transformSegmentIntegrationsToIntegrations = (
   segmentIntegrations: SegmentIntegrations,
 ): Integrations =>
   [defaultSegmentIoIntegration, ...segmentIntegrations].map(
-    ({ name, category, creationName }) => ({
-      // Segment requires the `creationName` for this destination.
-      // This condition is a test (as of 2023-02-28)
-      // and should either be improved or deleted.
-      name: name === 'Google Ads (Gtag)' ? creationName : name,
+    ({ category, creationName }) => ({
+      name: creationName,
       category: CATEGORY_MATCH[category] ?? 'marketing',
     }),
   )

@@ -1,3 +1,4 @@
+import type { CookieSerializeOptions } from 'cookie';
 import cookie from 'cookie'
 import type { ReactNode } from 'react'
 import {
@@ -66,11 +67,7 @@ export const CookieConsentProvider = ({
   cookiePrefix: string
   consentMaxAge: number
   consentAdvertisingMaxAge: number
-  cookiesOptions: {
-    sameSite: boolean | 'strict' | 'lax' | 'none' | undefined
-    secure: boolean
-    path: string
-  }
+  cookiesOptions: CookieSerializeOptions
 }) => {
   const [needConsent, setNeedsConsent] = useState(false)
 
