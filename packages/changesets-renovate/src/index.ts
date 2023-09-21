@@ -17,9 +17,6 @@ function shouldIgnorePackage(
   packageName: string,
   ignoredPackages: string[],
 ): boolean {
-  console.log('packageName', packageName)
-  console.log('ignoredPackages', ignoredPackages)
-
   return ignoredPackages.some(ignoredPackage => {
     if (ignoredPackage.endsWith('*')) {
       return packageName.startsWith(ignoredPackage.slice(0, -1))
