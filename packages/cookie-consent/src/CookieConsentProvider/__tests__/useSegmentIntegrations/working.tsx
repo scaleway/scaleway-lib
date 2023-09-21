@@ -58,7 +58,7 @@ describe('CookieConsent - useSegmentIntegrations', () => {
         },
         {
           category: 'analytics',
-          name: 'Google Universal Analytics',
+          name: 'Google Analytics',
         },
         {
           category: 'marketing',
@@ -70,7 +70,7 @@ describe('CookieConsent - useSegmentIntegrations', () => {
         },
         {
           category: 'marketing',
-          name: 'Scaleway Custom',
+          name: 'bonjour',
         },
       ])
     })

@@ -1,6 +1,6 @@
-import type { CookieSerializeOptions } from 'cookie';
+import type { CookieSerializeOptions } from 'cookie'
 import cookie from 'cookie'
-import type { ReactNode } from 'react'
+import type { PropsWithChildren } from 'react'
 import {
   createContext,
   useCallback,
@@ -59,16 +59,15 @@ export const CookieConsentProvider = ({
   consentMaxAge = CONSENT_MAX_AGE,
   consentAdvertisingMaxAge = CONSENT_ADVERTISING_MAX_AGE,
   cookiesOptions = COOKIES_OPTIONS,
-}: {
-  children: ReactNode
+}: PropsWithChildren<{
   isConsentRequired: boolean
   essentialIntegrations: string[]
   config: Config
-  cookiePrefix: string
-  consentMaxAge: number
-  consentAdvertisingMaxAge: number
-  cookiesOptions: CookieSerializeOptions
-}) => {
+  cookiePrefix?: string
+  consentMaxAge?: number
+  consentAdvertisingMaxAge?: number
+  cookiesOptions?: CookieSerializeOptions
+}>) => {
   const [needConsent, setNeedsConsent] = useState(false)
 
   const [cookies, setCookies] = useState<Record<string, string>>()
