@@ -3,7 +3,31 @@
 import fs from 'node:fs/promises'
 import { simpleGit } from 'simple-git'
 
+async function getChangesetIgnoredPackages(): Promise<string[]> {
+  const changesetConfig = JSON.parse(
+    await fs.readFile('.changeset/config.json', 'utf8'),
+  ) as {
+    ignore?: string[]
+  }
+
+  return changesetConfig.ignore ?? []
+}
+
+function shouldIgnorePackage(
+  packageName: string,
+  ignoredPackages: string[],
+): boolean {
+  return ignoredPackages.some(ignoredPackage => {
+    if (ignoredPackage.endsWith('*')) {
+      return packageName.startsWith(ignoredPackage.slice(0, -1))
+    }
+
+    return packageName === ignoredPackage
+  })
+}
+
 async function getPackagesNames(files: string[]): Promise<string[]> {
+  const ignoredPackages = await getChangesetIgnoredPackages()
   const packages: string[] = []
 
   const promises = files.map(async file => {
@@ -11,6 +35,10 @@ async function getPackagesNames(files: string[]): Promise<string[]> {
       name: string
       workspaces?: string[]
       version?: string
+    }
+
+    if (shouldIgnorePackage(data.name, ignoredPackages)) {
+      return
     }
 
     // Do not generate changeset for the root package.json of a monorepo
