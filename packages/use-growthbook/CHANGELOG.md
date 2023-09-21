@@ -1,5 +1,11 @@
 # @scaleway/use-growthbook
 
+## 1.0.3
+
+### Patch Changes
+
+- [#1518](https://github.com/scaleway/scaleway-lib/pull/1518) [`ca2aa68`](https://github.com/scaleway/scaleway-lib/commit/ca2aa68fcde0470dde378b4322ff55e9caec170f) Thanks [@Slashgear](https://github.com/Slashgear)! - Export directly some usable type on provider init attributes
+
 ## 1.0.2
 
 ### Patch Changes

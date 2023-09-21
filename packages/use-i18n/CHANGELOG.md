@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.4.5
+
+### Patch Changes
+
+- [#1526](https://github.com/scaleway/scaleway-lib/pull/1526) [`b2d88d4`](https://github.com/scaleway/scaleway-lib/commit/b2d88d4b5d959d047ae45692b48292a41ab77aab) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `intl-messageformat` to `10.5.3`.
+
 ## 5.4.4
 
 ### Patch Changes
