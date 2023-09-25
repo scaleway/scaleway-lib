@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.3.0
+
+### Minor Changes
+
+- [#1531](https://github.com/scaleway/scaleway-lib/pull/1531) [`5f1fc75`](https://github.com/scaleway/scaleway-lib/commit/5f1fc750d93333a4ae3f48abcd96dd3af21fd886) Thanks [@QuiiBz](https://github.com/QuiiBz)! - Ignore packages that are ignored in the changeset config
+
 ## 1.2.7
 
 ### Patch Changes

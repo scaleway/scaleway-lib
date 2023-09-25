@@ -104,7 +104,8 @@ describe('generate changeset file', () => {
 
     fs.readFile = jest
       .fn<any>()
-      .mockResolvedValue(`{"name":"packageName","version":"1.0.0"}`)
+      .mockResolvedValueOnce(`{}`)
+      .mockResolvedValueOnce(`{"name":"packageName","version":"1.0.0"}`)
     fs.writeFile = jest.fn<any>()
 
     await run()
@@ -138,7 +139,8 @@ describe('generate changeset file', () => {
 
     fs.readFile = jest
       .fn<any>()
-      .mockResolvedValue(`{"name":"packageName","workspaces":[]}`)
+      .mockResolvedValueOnce(`{}`)
+      .mockResolvedValueOnce(`{"name":"packageName","workspaces":[]}`)
     fs.writeFile = jest.fn<any>()
 
     await run()
@@ -167,7 +169,74 @@ describe('generate changeset file', () => {
 `,
     })
 
-    fs.readFile = jest.fn<any>().mockResolvedValue(`{"name":"packageName"}`)
+    fs.readFile = jest
+      .fn<any>()
+      .mockResolvedValueOnce(`{}`)
+      .mockResolvedValueOnce(`{"name":"packageName"}`)
+    fs.writeFile = jest.fn<any>()
+
+    await run()
+
+    expect(fs.readFile).toHaveBeenCalledWith(file, 'utf8')
+    expect(console.log).toHaveBeenCalledWith('No packages modified, skipping')
+  })
+
+  it('should ignore changeset ignored packages', async () => {
+    const file = 'test/package.json'
+
+    ;(simpleGit as jest.Mock).mockReturnValue({
+      branch: () => ({
+        current: 'renovate/test',
+      }),
+      diffSummary: () => ({
+        files: [
+          {
+            file,
+          },
+        ],
+      }),
+      show: () => `
++ "package": "version"
++ "package2": "version2"
+`,
+    })
+
+    fs.readFile = jest
+      .fn<any>()
+      .mockResolvedValueOnce(`{"ignore":["packageName"]}`)
+      .mockResolvedValueOnce(`{"name":"packageName","version":"1.0.0"}`)
+    fs.writeFile = jest.fn<any>()
+
+    await run()
+
+    expect(fs.readFile).toHaveBeenCalledWith(file, 'utf8')
+    expect(console.log).toHaveBeenCalledWith('No packages modified, skipping')
+  })
+
+  it('should ignore changeset ignored packages with star', async () => {
+    const file = 'test/package.json'
+
+    ;(simpleGit as jest.Mock).mockReturnValue({
+      branch: () => ({
+        current: 'renovate/test',
+      }),
+      diffSummary: () => ({
+        files: [
+          {
+            file,
+          },
+        ],
+      }),
+      show: () => `
++ "package": "version"
++ "package2": "version2"
+`,
+    })
+
+    fs.readFile = jest
+      .fn<any>()
+      .mockResolvedValueOnce(`{"ignore":["@example/*"]}`)
+      .mockResolvedValueOnce(`{"name":"@example/test","version":"1.0.0"}`)
     fs.writeFile = jest.fn<any>()
 
     await run()
