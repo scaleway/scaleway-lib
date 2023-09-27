@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.9
+
+### Patch Changes
+
+- [#1207](https://github.com/scaleway/scaleway-lib/pull/1207) [`f6a72cf`](https://github.com/scaleway/scaleway-lib/commit/f6a72cf6436dd3c17a88dac8ecde6b67d262c3ac) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@testing-library/react` to `14.0.0`.
+
 ## 3.0.8
 
 ### Patch Changes
