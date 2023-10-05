@@ -149,18 +149,16 @@ describe('CookieConsent - CookieConsentProvider', () => {
       })
     })
 
-    const cookieOptions = { sameSite: 'strict', secure: true }
+    const cookieOptions = { sameSite: 'strict', secure: true, path: '/' }
 
     expect(spy).toHaveBeenCalledTimes(3)
     expect(spy).toHaveBeenNthCalledWith(2, '_scw_rgpd_marketing', 'true', {
       ...cookieOptions,
       maxAge: 33696000,
-      path: '/',
     })
     expect(spy).toHaveBeenNthCalledWith(3, '_scw_rgpd_hash', '913003917', {
       ...cookieOptions,
       maxAge: 15552000,
-      path: '/',
     })
 
     act(() => {
@@ -172,12 +170,12 @@ describe('CookieConsent - CookieConsentProvider', () => {
 
     expect(spy).toHaveBeenCalledTimes(6)
     expect(spy).toHaveBeenNthCalledWith(5, '_scw_rgpd_marketing', '', {
+      ...cookieOptions,
       expires: new Date(0),
     })
     expect(spy).toHaveBeenNthCalledWith(6, '_scw_rgpd_hash', '913003917', {
       ...cookieOptions,
       maxAge: 15552000,
-      path: '/',
     })
   })
 
