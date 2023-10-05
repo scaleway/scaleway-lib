@@ -152,6 +152,7 @@ export const CookieConsentProvider = ({
         if (!consentValue) {
           // If consent is set to false we have to delete the cookie
           document.cookie = cookie.serialize(cookieName, '', {
+            ...cookiesOptions,
             expires: new Date(0),
           })
         } else {
