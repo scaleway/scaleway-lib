@@ -22,7 +22,7 @@ const CONSENT_MAX_AGE = 13 * 30 * 24 * 60 * 60
 // Appx 6 Months
 const CONSENT_ADVERTISING_MAX_AGE = 6 * 30 * 24 * 60 * 60
 
-export const COOKIES_OPTIONS = {
+const COOKIES_OPTIONS = {
   sameSite: 'strict',
   secure: true,
   path: '/',
