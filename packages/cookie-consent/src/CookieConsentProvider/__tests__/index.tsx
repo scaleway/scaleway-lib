@@ -3,7 +3,7 @@ import { afterEach, describe, expect, it, jest } from '@jest/globals'
 import { act, renderHook } from '@testing-library/react'
 import cookie from 'cookie'
 import type { ComponentProps, ReactNode } from 'react'
-import { CookieConsentProvider, useCookieConsent } from '..'
+import { COOKIES_OPTIONS, CookieConsentProvider, useCookieConsent } from '..'
 
 const wrapper =
   ({
@@ -240,5 +240,37 @@ describe('CookieConsent - CookieConsentProvider', () => {
       Salesforce: true,
       'Salesforce custom destination (Scaleway)': true,
     })
+  })
+
+  it('should delete a cookie correctly with appropriate options', () => {
+    const spy = jest.spyOn(cookie, 'serialize')
+
+    const { result } = renderHook(() => useCookieConsent(), {
+      wrapper: wrapper({
+        isConsentRequired: true,
+        essentialIntegrations: ['Deskpro', 'Stripe', 'Sentry'],
+        config: {
+          segment: {
+            cdnURL: 'url',
+            writeKey: 'key',
+          },
+        },
+      }),
+    })
+
+    act(() => {
+      result.current.saveConsent({ marketing: false })
+    })
+
+    const expectedDeleteCookieOptions = {
+      ...COOKIES_OPTIONS,
+      expires: expect.any(Date),
+    }
+
+    expect(spy).toHaveBeenCalledWith(
+      '_scw_rgpd_marketing',
+      '',
+      expectedDeleteCookieOptions,
+    )
   })
 })
