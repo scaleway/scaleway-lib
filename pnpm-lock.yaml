@@ -270,8 +270,8 @@ importers:
         specifier: 2.30.0
         version: 2.30.0
       filesize:
-        specifier: 10.0.12
-        version: 10.0.12
+        specifier: 10.1.0
+        version: 10.1.0
       international-types:
         specifier: 0.8.0
         version: 0.8.0
@@ -6155,8 +6155,8 @@ packages:
     dependencies:
       flat-cache: 3.0.4
 
-  /filesize@10.0.12:
-    resolution: {integrity: sha512-6RS9gDchbn+qWmtV2uSjo5vmKizgfCQeb5jKmqx8HyzA3MoLqqyQxN+QcjkGBJt7FjJ9qFce67Auyya5rRRbpw==}
+  /filesize@10.1.0:
+    resolution: {integrity: sha512-GTLKYyBSDz3nPhlLVPjPWZCnhkd9TrrRArNcy8Z+J2cqScB7h2McAzR6NBX6nYOoWafql0roY8hrocxnZBv9CQ==}
     engines: {node: '>= 10.4.0'}
     dev: false
 
