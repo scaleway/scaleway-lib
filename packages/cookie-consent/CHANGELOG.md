@@ -1,5 +1,11 @@
 # @scaleway/cookie-consent
 
+## 1.0.3
+
+### Patch Changes
+
+- [#1562](https://github.com/scaleway/scaleway-lib/pull/1562) [`4a6f64b`](https://github.com/scaleway/scaleway-lib/commit/4a6f64b3eb9030f10c26b006905998eef88220ca) Thanks [@Vinzius](https://github.com/Vinzius)! - keep special condition for google ads
+
 ## 1.0.2
 
 ### Patch Changes
