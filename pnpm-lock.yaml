@@ -45,8 +45,8 @@ importers:
         specifier: 6.0.3
         version: 6.0.3(@babel/core@7.23.0)(rollup@3.29.4)
       '@rollup/plugin-node-resolve':
-        specifier: 15.2.1
-        version: 15.2.1(rollup@3.29.4)
+        specifier: 15.2.2
+        version: 15.2.2(rollup@3.29.4)
       '@scaleway/eslint-config-react':
         specifier: workspace:*
         version: link:packages/eslint-config-react
@@ -69,11 +69,11 @@ importers:
         specifier: 18.17.19
         version: 18.17.19
       '@types/react':
-        specifier: 18.2.24
-        version: 18.2.24
+        specifier: 18.2.25
+        version: 18.2.25
       '@types/react-dom':
-        specifier: 18.2.8
-        version: 18.2.8
+        specifier: 18.2.11
+        version: 18.2.11
       builtin-modules:
         specifier: 3.3.0
         version: 3.3.0
@@ -216,7 +216,7 @@ importers:
         version: 11.11.0(@types/jest@29.5.5)
       '@emotion/react':
         specifier: 11.11.1
-        version: 11.11.1(@types/react@18.2.24)(react@18.2.0)
+        version: 11.11.1(@types/react@18.2.25)(react@18.2.0)
       '@testing-library/react':
         specifier: 14.0.0
         version: 14.0.0(react-dom@18.2.0)(react@18.2.0)
@@ -2228,7 +2228,7 @@ packages:
     resolution: {integrity: sha512-W2P2c/VRW1/1tLox0mVUalvnWXxavmv/Oum2aPsRcoDJuob75FC3Y8FbpfLwUegRcxINtGUMPq0tFCvYNTBXNA==}
     dev: false
 
-  /@emotion/react@11.11.1(@types/react@18.2.24)(react@18.2.0):
+  /@emotion/react@11.11.1(@types/react@18.2.25)(react@18.2.0):
     resolution: {integrity: sha512-5mlW1DquU5HaxjLkfkGN1GA/fvVGdyHURRiX/0FHl2cfIfRxSOfmxEH5YS43edp0OldZrZ+dkBKbngxcNCdZvA==}
     peerDependencies:
       '@types/react': '*'
@@ -2244,7 +2244,7 @@ packages:
       '@emotion/use-insertion-effect-with-fallbacks': 1.0.1(react@18.2.0)
       '@emotion/utils': 1.2.1
       '@emotion/weak-memoize': 0.3.1
-      '@types/react': 18.2.24
+      '@types/react': 18.2.25
       hoist-non-react-statics: 3.3.2
       react: 18.2.0
     dev: false
@@ -2774,11 +2774,11 @@ packages:
       rollup: 3.29.4
     dev: true
 
-  /@rollup/plugin-node-resolve@15.2.1(rollup@3.29.4):
-    resolution: {integrity: sha512-nsbUg588+GDSu8/NS8T4UAshO6xeaOfINNuXeVHcKV02LJtoRaM1SiOacClw4kws1SFiNhdLGxlbMY9ga/zs/w==}
+  /@rollup/plugin-node-resolve@15.2.2(rollup@3.29.4):
+    resolution: {integrity: sha512-f64bU4OKqV0yihtxFemmuf0oj37pToCFMISCA+sJbbIAl5wcpbRO9XgWNWb1tDiWQJUcPxo6V0l59hcuZOQ3kw==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
-      rollup: ^2.78.0||^3.0.0
+      rollup: ^2.78.0||^3.0.0||^4.0.0
     peerDependenciesMeta:
       rollup:
         optional: true
@@ -4113,13 +4113,19 @@ packages:
   /@types/prop-types@15.7.8:
     resolution: {integrity: sha512-kMpQpfZKSCBqltAJwskgePRaYRFukDkm1oItcAbC3gNELR20XIBcN9VRgg4+m8DKsTfkWeA4m4Imp4DDuWy7FQ==}
 
+  /@types/react-dom@18.2.11:
+    resolution: {integrity: sha512-zq6Dy0EiCuF9pWFW6I6k6W2LdpUixLE4P6XjXU1QHLfak3GPACQfLwEuHzY5pOYa4hzj1d0GxX/P141aFjZsyg==}
+    dependencies:
+      '@types/react': 18.2.25
+    dev: true
+
   /@types/react-dom@18.2.8:
     resolution: {integrity: sha512-bAIvO5lN/U8sPGvs1Xm61rlRHHaq5rp5N3kp9C+NJ/Q41P8iqjkXSu0+/qu8POsjH9pNWb0OYabFez7taP7omw==}
     dependencies:
-      '@types/react': 18.2.24
+      '@types/react': 18.2.25
 
-  /@types/react@18.2.24:
-    resolution: {integrity: sha512-Ee0Jt4sbJxMu1iDcetZEIKQr99J1Zfb6D4F3qfUWoR1JpInkY1Wdg4WwCyBjL257D0+jGqSl1twBjV8iCaC0Aw==}
+  /@types/react@18.2.25:
+    resolution: {integrity: sha512-24xqse6+VByVLIr+xWaQ9muX1B4bXJKXBbjszbld/UEDslGLY53+ZucF44HCmLbMPejTzGG9XgR+3m2/Wqu1kw==}
     dependencies:
       '@types/prop-types': 15.7.8
       '@types/scheduler': 0.16.4
