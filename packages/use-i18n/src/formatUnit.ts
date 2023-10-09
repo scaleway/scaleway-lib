@@ -142,7 +142,7 @@ const format =
       maximumFractionDigits?: number
       minimumFractionDigits?: number
       short?: boolean
-      base?: number
+      base?: 2 | 10
     },
   ): string => {
     let computedExponent = exponent
@@ -258,7 +258,7 @@ export type FormatUnitOptions = {
   /**
     default: 10
   */
-  base?: number
+  base?: 2 | 10
 }
 
 const formatUnit = (

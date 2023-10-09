@@ -121,7 +121,7 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
   }, [needLoad, request])
 
   useEffect(() => {
-    let interval: NodeJS.Timer | undefined
+    let interval: NodeJS.Timeout | undefined
 
     if (pollingInterval) {
       interval = setInterval(() => {
@@ -143,7 +143,9 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
     }
 
     return () => {
-      if (interval) clearInterval(interval)
+      if (interval) {
+        clearInterval(interval)
+      }
     }
   }, [pollingInterval, request])
 
