@@ -37,8 +37,8 @@ const transformSegmentIntegrationsToIntegrations = (
   segmentIntegrations: SegmentIntegrations,
 ): Integrations =>
   [defaultSegmentIoIntegration, ...segmentIntegrations].map(
-    ({ category, creationName }) => ({
-      name: creationName,
+    ({ category, name }) => ({
+      name,
       category: CATEGORY_MATCH[category] ?? 'marketing',
     }),
   )
