@@ -37,8 +37,9 @@ const transformSegmentIntegrationsToIntegrations = (
   segmentIntegrations: SegmentIntegrations,
 ): Integrations =>
   [defaultSegmentIoIntegration, ...segmentIntegrations].map(
-    ({ category, name }) => ({
-      name,
+    ({ category, creationName, name }) => ({
+      // Segment requires the `creationName` for this destination.
+      name: name === 'Google Ads (Gtag)' ? creationName : name,
       category: CATEGORY_MATCH[category] ?? 'marketing',
     }),
   )
