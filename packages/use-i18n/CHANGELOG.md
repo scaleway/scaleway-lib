@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.4.6
+
+### Patch Changes
+
+- [#1558](https://github.com/scaleway/scaleway-lib/pull/1558) [`cd4eea2`](https://github.com/scaleway/scaleway-lib/commit/cd4eea26a8e350b3168ff3792838166b4a8b3cd1) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `filesize` to `10.1.0`.
+
 ## 5.4.5
 
 ### Patch Changes
