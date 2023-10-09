@@ -1,5 +1,11 @@
 # @scaleway/cookie-consent
 
+## 1.0.2
+
+### Patch Changes
+
+- [#1560](https://github.com/scaleway/scaleway-lib/pull/1560) [`90d0e18`](https://github.com/scaleway/scaleway-lib/commit/90d0e183b92e059026c4453a62a1309cdd1afbf0) Thanks [@Slashgear](https://github.com/Slashgear)! - Fix configuration of segment integrations with categories by using name instead of creationName
+
 ## 1.0.1
 
 ### Patch Changes
