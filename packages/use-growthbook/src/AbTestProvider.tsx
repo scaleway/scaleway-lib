@@ -1,19 +1,14 @@
-import type { Context } from '@growthbook/growthbook-react'
 import { GrowthBook, GrowthBookProvider } from '@growthbook/growthbook-react'
 import { type ReactNode, useCallback, useEffect, useMemo } from 'react'
-import type { Attributes, LoadConfig } from './types'
+import type {
+  Attributes,
+  ErrorCallback,
+  LoadConfig,
+  ToolConfig,
+  TrackingCallback,
+} from './types'
 
-export type ToolConfig = {
-  apiHost: string
-  clientKey: string
-  enableDevMode: boolean
-}
-
-export type TrackingCallback = NonNullable<Context['trackingCallback']>
-
-export type ErrorCallback = (error: Error | string) => void
-
-export type AbTestProviderProps = {
+type AbTestProviderProps = {
   children: ReactNode
   config: ToolConfig
   trackingCallback: TrackingCallback
@@ -22,27 +17,33 @@ export type AbTestProviderProps = {
   loadConfig?: LoadConfig
 }
 
+const defaultLoadConfig: LoadConfig = {
+  autoRefresh: false,
+  timeout: 500,
+  skipCache: false,
+} as const
+
 const getGrowthBookInstance = ({
-  config: { apiHost, clientKey, enableDevMode },
-  attributes,
+  config: {
+    apiHost,
+    clientKey,
+    enableDevMode,
+    backgroundSync,
+    subscribeToChanges,
+  },
   trackingCallback,
 }: {
   config: ToolConfig
-  attributes: Attributes
   trackingCallback: TrackingCallback
 }) =>
   new GrowthBook({
     apiHost,
     clientKey,
     enableDevMode,
-    attributes,
     trackingCallback,
+    backgroundSync,
+    subscribeToChanges,
   })
-
-const defaultLoadConfig = {
-  autoRefresh: false,
-  timeout: 500,
-}
 
 export const AbTestProvider = ({
   children,
@@ -50,22 +51,33 @@ export const AbTestProvider = ({
   trackingCallback,
   errorCallback,
   attributes,
-  loadConfig = defaultLoadConfig,
+  loadConfig,
 }: AbTestProviderProps) => {
   const growthbook = useMemo(
-    () => getGrowthBookInstance({ config, attributes, trackingCallback }),
-    [trackingCallback, config, attributes],
+    () => getGrowthBookInstance({ config, trackingCallback }),
+    [trackingCallback, config],
   )
 
   const loadFeature = useCallback(async () => {
     if (config.clientKey) {
-      await growthbook.loadFeatures(loadConfig)
+      await growthbook.loadFeatures(loadConfig ?? defaultLoadConfig)
     }
   }, [growthbook, config, loadConfig])
 
   useEffect(() => {
     loadFeature().catch(errorCallback)
   }, [loadFeature, errorCallback])
+
+  // avoid multiple instances of growthbook when attributes of the Providers changes.
+  useEffect(() => {
+    const currentAttributes = growthbook.getAttributes()
+    if (currentAttributes !== attributes) {
+      growthbook.setAttributes({
+        ...currentAttributes,
+        ...attributes,
+      })
+    }
+  }, [attributes, growthbook])
 
   return (
     <GrowthBookProvider growthbook={growthbook}>{children}</GrowthBookProvider>

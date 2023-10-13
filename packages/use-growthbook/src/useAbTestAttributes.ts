@@ -1,5 +1,4 @@
 import { useGrowthBook } from '@growthbook/growthbook-react'
-import { useCallback, useMemo } from 'react'
 import type { Attributes } from './types'
 
 export const useAbTestAttributes = (): [
@@ -8,19 +7,17 @@ export const useAbTestAttributes = (): [
 ] => {
   const growthBook = useGrowthBook()
 
-  const attributes: Attributes = useMemo(
-    () => growthBook?.getAttributes() ?? {},
-    [growthBook],
-  )
+  if (growthBook) {
+    const attributes = growthBook.getAttributes()
 
-  const setAttributes = useCallback(
-    (newAttributes: Attributes) =>
-      growthBook?.setAttributes({
+    const setAttributes = (newAttributes: Attributes) =>
+      growthBook.setAttributes({
         ...attributes,
         ...newAttributes,
-      }),
-    [growthBook, attributes],
-  )
+      })
 
-  return [attributes, setAttributes]
+    return [attributes, setAttributes]
+  }
+
+  return [{}, () => {}]
 }
