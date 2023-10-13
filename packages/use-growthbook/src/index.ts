@@ -4,17 +4,18 @@ export {
   withRunExperiment,
   useFeatureIsOn,
   useFeatureValue,
+  useGrowthBook,
+  useGrowthBookSSR,
 } from '@growthbook/growthbook-react'
-export type {
+
+export {
   FeatureString,
   FeaturesReady,
   IfFeatureEnabled,
-  Context,
 } from '@growthbook/growthbook-react'
+
 export { useAbTestAttributes } from './useAbTestAttributes'
+
 export { AbTestProvider } from './AbTestProvider'
-export type {
-  TrackingCallback,
-  ErrorCallback,
-  ToolConfig,
-} from './AbTestProvider'
+
+export type { TrackingCallback, ErrorCallback, ToolConfig } from './types'

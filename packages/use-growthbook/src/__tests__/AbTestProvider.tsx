@@ -1,12 +1,18 @@
 import { GrowthBook } from '@growthbook/growthbook-react'
 import { beforeEach, describe, expect, it, jest } from '@jest/globals'
 import { render } from '@testing-library/react'
-import type { TrackingCallback } from '../AbTestProvider'
+import type { ComponentProps } from 'react'
 import { AbTestProvider } from '../AbTestProvider'
+
+type TrackingCallback = ComponentProps<
+  typeof AbTestProvider
+>['trackingCallback']
+
+type ErrorCallback = ComponentProps<typeof AbTestProvider>['errorCallback']
 
 describe('AbTestProvider', () => {
   let trackingCallback: TrackingCallback
-  let errorCallback: (error: Error | string) => void
+  let errorCallback: ErrorCallback
 
   beforeEach(() => {
     trackingCallback = jest.fn()
