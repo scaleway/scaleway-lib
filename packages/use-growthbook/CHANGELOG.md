@@ -1,5 +1,13 @@
 # @scaleway/use-growthbook
 
+## 1.0.4
+
+### Patch Changes
+
+- [#1572](https://github.com/scaleway/scaleway-lib/pull/1572) [`57ddd1a`](https://github.com/scaleway/scaleway-lib/commit/57ddd1a39c048675f343c0da8735714f1cb5678a) Thanks [@philibea](https://github.com/philibea)! - when attributes a of provider change there is new instance of growthbook created and can make a desync during render
+
+- [#1566](https://github.com/scaleway/scaleway-lib/pull/1566) [`2223dc1`](https://github.com/scaleway/scaleway-lib/commit/2223dc1ec4993b57e4dbeb41f65a8659c63d548c) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@growthbook/growthbook-react` to `0.19.0`.
+
 ## 1.0.3
 
 ### Patch Changes
