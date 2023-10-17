@@ -38,6 +38,20 @@ globalThis.fetch = jest.fn<any>(() =>
           website: 'http://google-ta.com',
           category: 'Unknown Category',
         },
+        {
+          name: 'Google Ads (Gtag)',
+          creationName: 'Google AdWords New',
+          description: `Advertise on Google and put your message in front of potential customers right when they're searching for what you have to offer.`,
+          website: 'https://adwords.google.com',
+          category: 'Advertising',
+        },
+        {
+          name: 'Amplitude (Actions)',
+          creationName: 'Actions Amplitude',
+          description: `Amplitude is an event tracking and segmentation platform for your web and mobile apps. By analyzing the actions your users perform, you can gain a better understanding to drive retention, engagement, and conversion.`,
+          website: 'https://amplitude.com',
+          category: 'Analytics',
+        },
       ]),
   }),
 )
@@ -71,6 +85,14 @@ describe('CookieConsent - useSegmentIntegrations', () => {
         {
           category: 'marketing',
           name: 'Scaleway Custom',
+        },
+        {
+          category: 'marketing',
+          name: 'Google AdWords New',
+        },
+        {
+          category: 'analytics',
+          name: 'Amplitude (Actions)',
         },
       ])
     })
