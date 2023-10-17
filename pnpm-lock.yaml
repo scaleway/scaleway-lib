@@ -276,8 +276,8 @@ importers:
         specifier: 0.8.1
         version: 0.8.1
       intl-messageformat:
-        specifier: 10.5.3
-        version: 10.5.3
+        specifier: 10.5.4
+        version: 10.5.4
       react:
         specifier: 18.x || 18
         version: 18.2.0
@@ -2299,6 +2299,14 @@ packages:
 
   /@formatjs/icu-messageformat-parser@2.6.2:
     resolution: {integrity: sha512-nF/Iww7sc5h+1MBCDRm68qpHTCG4xvGzYs/x9HFcDETSGScaJ1Fcadk5U/NXjXeCtzD+DhN4BAwKFVclHfKMdA==}
+    dependencies:
+      '@formatjs/ecma402-abstract': 1.17.2
+      '@formatjs/icu-skeleton-parser': 1.6.2
+      tslib: 2.5.3
+    dev: false
+
+  /@formatjs/icu-messageformat-parser@2.7.0:
+    resolution: {integrity: sha512-7uqC4C2RqOaBQtcjqXsSpGRYVn+ckjhNga5T/otFh6MgxRrCJQqvjfbrGLpX1Lcbxdm5WH3Z2WZqt1+Tm/cn/Q==}
     dependencies:
       '@formatjs/ecma402-abstract': 1.17.2
       '@formatjs/icu-skeleton-parser': 1.6.2
@@ -6581,12 +6589,12 @@ packages:
     resolution: {integrity: sha512-tajBCAHo4I0LIFlmQ9ZWfjMWVyRffzuvfbXCd6ssFt5u1Zw15DN0UBpVTItXdNa1ls+cpQt3Yw8+TxsfGF8JcA==}
     dev: false
 
-  /intl-messageformat@10.5.3:
-    resolution: {integrity: sha512-TzKn1uhJBMyuKTO4zUX47SU+d66fu1W9tVzIiZrQ6hBqQQeYscBMIzKL/qEXnFbJrH9uU5VV3+T5fWib4SIcKA==}
+  /intl-messageformat@10.5.4:
+    resolution: {integrity: sha512-z+hrFdiJ/heRYlzegrdFYqU1m/KOMOVMqNilIArj+PbsuU8TNE7v4TWdQgSoxlxbT4AcZH3Op3/Fu15QTp+W1w==}
     dependencies:
       '@formatjs/ecma402-abstract': 1.17.2
       '@formatjs/fast-memoize': 2.2.0
-      '@formatjs/icu-messageformat-parser': 2.6.2
+      '@formatjs/icu-messageformat-parser': 2.7.0
       tslib: 2.5.3
     dev: false
 
