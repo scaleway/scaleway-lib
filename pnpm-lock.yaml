@@ -341,8 +341,8 @@ importers:
   packages/validate-icu-locales:
     dependencies:
       '@formatjs/icu-messageformat-parser':
-        specifier: 2.6.2
-        version: 2.6.2
+        specifier: 2.7.0
+        version: 2.7.0
       globby:
         specifier: 13.2.2
         version: 13.2.2
@@ -2294,14 +2294,6 @@ packages:
   /@formatjs/fast-memoize@2.2.0:
     resolution: {integrity: sha512-hnk/nY8FyrL5YxwP9e4r9dqeM6cAbo8PeU9UjyXojZMNvVad2Z06FAVHyR3Ecw6fza+0GH7vdJgiKIVXTMbSBA==}
     dependencies:
-      tslib: 2.5.3
-    dev: false
-
-  /@formatjs/icu-messageformat-parser@2.6.2:
-    resolution: {integrity: sha512-nF/Iww7sc5h+1MBCDRm68qpHTCG4xvGzYs/x9HFcDETSGScaJ1Fcadk5U/NXjXeCtzD+DhN4BAwKFVclHfKMdA==}
-    dependencies:
-      '@formatjs/ecma402-abstract': 1.17.2
-      '@formatjs/icu-skeleton-parser': 1.6.2
       tslib: 2.5.3
     dev: false
 
