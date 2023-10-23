@@ -36,98 +36,98 @@ scaleway-lib is a set of NPM packages used at Scaleway.
 - [`@scaleway/cookie-consent`](./packages/countries/README.md): React provider to handle website end user consent cookie storage based on segment integrations.
 
   ![npm](https://img.shields.io/npm/dm/@scaleway/cookie-consent)
-  ![npm bundle size](https://img.shields.io/bundlephobia/min/@scaleway/cookie-consent)
+  ![npm bundle size](https://packagephobia.com/badge?p=@scaleway/cookie-consent)
   ![npm](https://img.shields.io/npm/v/@scaleway/cookie-consent)
 
 
-- [`@scaleway/countries`](./packages/countries/README.md): ISO 3166/3166-2 coutries JSON database.
+- [`@scaleway/countries`](./packages_deprecated/countries/README.md): ISO 3166/3166-2 coutries JSON database.
 
   ![npm](https://img.shields.io/npm/dm/@scaleway/countries)
-  ![npm bundle size](https://img.shields.io/bundlephobia/min/@scaleway/countries)
+  ![npm bundle size](https://packagephobia.com/badge?p=@scaleway/countries)
   ![npm](https://img.shields.io/npm/v/@scaleway/countries)
 
 - [`@scaleway/eslint-config-react`](./packages/eslint-config-react/README.md): A shared eslint react opiniated configuration. Available in Javascript and Typescript.
 
   ![npm](https://img.shields.io/npm/dm/@scaleway/eslint-config-react)
-  ![npm bundle size](https://img.shields.io/bundlephobia/min/@scaleway/eslint-config-react)
+  ![npm bundle size](https://packagephobia.com/badge?p=@scaleway/eslint-config-react)
   ![npm](https://img.shields.io/npm/v/@scaleway/eslint-config-react)
 
 - [`@scaleway/random-name`](./packages/random-name/README.md): A tiny utility to generate random names.
 
   ![npm](https://img.shields.io/npm/dm/@scaleway/random-name)
-  ![npm bundle size](https://img.shields.io/bundlephobia/min/@scaleway/random-name)
+  ![npm bundle size](https://packagephobia.com/badge?p=@scaleway/random-name)
   ![npm](https://img.shields.io/npm/v/@scaleway/random-name)
 
 - [`@scaleway/use-dataloader`](./packages/use-dataloader/README.md):
   A tiny react hook to to handle api requests.
 
   ![npm](https://img.shields.io/npm/dm/@scaleway/use-dataloader)
-  ![npm bundle size](https://img.shields.io/bundlephobia/min/@scaleway/use-dataloader)
+  ![npm bundle size](https://packagephobia.com/badge?p=@scaleway/use-dataloader)
   ![npm](https://img.shields.io/npm/v/@scaleway/use-dataloader)
 
 - [`@scaleway/use-query-params`](./packages/use-query-params/README.md):
   A tiny react hook to read and update URLs query parameters.
 
   ![npm](https://img.shields.io/npm/dm/@scaleway/use-query-params)
-  ![npm bundle size](https://img.shields.io/bundlephobia/min/@scaleway/use-query-params)
+  ![npm bundle size](https://packagephobia.com/badge?p=@scaleway/use-query-params)
   ![npm](https://img.shields.io/npm/v/@scaleway/use-query-params)
 
 - [`@scaleway/use-segment`](./packages/use-segment/README.md):
   A tiny hooks to handle segment events.
 
   ![npm](https://img.shields.io/npm/dm/@scaleway/use-segment)
-  ![npm bundle size](https://img.shields.io/bundlephobia/min/@scaleway/use-segment)
+  ![npm bundle size](https://packagephobia.com/badge?p=@scaleway/use-segment)
   ![npm](https://img.shields.io/npm/v/@scaleway/use-segment)
 
-- [`@scaleway/use-growthbok`](./packages/use-growthbok/README.md):
+- [`@scaleway/use-growthbook`](./packages/use-growthbook/README.md):
   A tiny hook to handle Growthbook Feature flag and A/B test tool.
 
-  ![npm](https://img.shields.io/npm/dm/@scaleway/use-growthbok)
-  ![npm bundle size](https://img.shields.io/bundlephobia/min/@scaleway/use-growthbok)
-  ![npm](https://img.shields.io/npm/v/@scaleway/use-growthbok)
+  ![npm](https://img.shields.io/npm/dm/@scaleway/use-growthbook)
+  ![npm bundle size](https://packagephobia.com/badge?p=@scaleway/use-growthbook)
+  ![npm](https://img.shields.io/npm/v/@scaleway/use-growthbook)
 
 - [`@scaleway/use-gtm`](./packages/use-gtm/README.md):
   A tiny hook to handle gtm.
 
   ![npm](https://img.shields.io/npm/dm/@scaleway/use-gtm)
-  ![npm bundle size](https://img.shields.io/bundlephobia/min/@scaleway/use-gtm)
+  ![npm bundle size](https://packagephobia.com/badge?p=@scaleway/use-gtm)
   ![npm](https://img.shields.io/npm/v/@scaleway/use-gtm)
 
 - [`@scaleway/use-i18n`](./packages/use-i18n/README.md):
   A tiny hook to handle i18n.
 
   ![npm](https://img.shields.io/npm/dm/@scaleway/use-i18n)
-  ![npm bundle size](https://img.shields.io/bundlephobia/min/@scaleway/use-i18n)
+  ![npm bundle size](https://packagephobia.com/badge?p=@scaleway/use-i18n)
   ![npm](https://img.shields.io/npm/v/@scaleway/use-i18n)
 
 - [`@scaleway/regex`](./packages/regex/README.md): usefull regex named.
 
   ![npm](https://img.shields.io/npm/dm/@scaleway/regex)
-  ![npm bundle size](https://img.shields.io/bundlephobia/min/@scaleway/regex)
+  ![npm bundle size](https://packagephobia.com/badge?p=@scaleway/regex)
   ![npm](https://img.shields.io/npm/v/@scaleway/regex)
 
 - [`@scaleway/jest-helpers`](./packages/jest-helpers/README.md): utilities jest functions.
 
   ![npm](https://img.shields.io/npm/dm/@scaleway/jest-helpers)
-  ![npm bundle size](https://img.shields.io/bundlephobia/min/@scaleway/jest-helpers)
+  ![npm bundle size](https://packagephobia.com/badge?p=@scaleway/jest-helpers)
   ![npm](https://img.shields.io/npm/v/@scaleway/jest-helpers)
 
 - [`@scaleway/outdated-browser`](./packages/outdated-browser/README.md): A small web script to display outdated banne
 
   ![npm](https://img.shields.io/npm/dm/@scaleway/outdated-browser)
-  ![npm bundle size](https://img.shields.io/bundlephobia/min/@scaleway/outdated-browser)
+  ![npm bundle size](https://packagephobia.com/badge?p=@scaleway/outdated-browser)
   ![npm](https://img.shields.io/npm/v/@scaleway/outdated-browser)
 
 - [`@scaleway/validate-icu-locales`](./packages/validate-icu-locales/README.md): A small cli to check ICU locales error
 
   ![npm](https://img.shields.io/npm/dm/@scaleway/validate-icu-locales)
-  ![npm bundle size](https://img.shields.io/bundlephobia/min/@scaleway/validate-icu-locales)
+  ![npm bundle size](https://packagephobia.com/badge?p=@scaleway/validate-icu-locales)
   ![npm](https://img.shields.io/npm/v/@scaleway/validate-icu-locales)
 
 - [`@scaleway/use-storage`](./packages/use-storage/README.md): A React hook to interact with local/session storage in reactive way with the same API as setState
 
   ![npm](https://img.shields.io/npm/dm/@scaleway/use-storage)
-  ![npm bundle size](https://img.shields.io/bundlephobia/min/@scaleway/use-storage)
+  ![npm bundle size](https://packagephobia.com/badge?p=@scaleway/use-storage)
   ![npm](https://img.shields.io/npm/v/@scaleway/use-storage)
 
 ## Development
