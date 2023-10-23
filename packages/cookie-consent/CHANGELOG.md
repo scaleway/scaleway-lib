@@ -1,5 +1,13 @@
 # @scaleway/cookie-consent
 
+## 1.0.4
+
+### Patch Changes
+
+- [#1584](https://github.com/scaleway/scaleway-lib/pull/1584) [`6b9dc14`](https://github.com/scaleway/scaleway-lib/commit/6b9dc147d24ed9716ea1c006521ef99f0e90ccf2) Thanks [@Vinzius](https://github.com/Vinzius)! - cover more edge cases for cookie tests
+
+- [#1586](https://github.com/scaleway/scaleway-lib/pull/1586) [`26e8519`](https://github.com/scaleway/scaleway-lib/commit/26e85191abf57fc2daa35a262238f9a824a12d7f) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@types/cookie` to `0.5.3`.
+
 ## 1.0.3
 
 ### Patch Changes
