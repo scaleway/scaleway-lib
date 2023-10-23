@@ -1,5 +1,13 @@
 # Change Log
 
+## 5.4.7
+
+### Patch Changes
+
+- [#1575](https://github.com/scaleway/scaleway-lib/pull/1575) [`74e71ce`](https://github.com/scaleway/scaleway-lib/commit/74e71ceb08648a51f0b0cb32a2ecfb35e849f8ba) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `international-types` to `0.8.1`.
+
+- [#1583](https://github.com/scaleway/scaleway-lib/pull/1583) [`53eba71`](https://github.com/scaleway/scaleway-lib/commit/53eba71738ad5e5ab02ffaf77ce20f191215461a) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `intl-messageformat` to `10.5.4`.
+
 ## 5.4.6
 
 ### Patch Changes
