@@ -83,4 +83,4 @@ export const dashedIpv4 =
   /(\b25[0-5]|\b2[0-4][0-9]|\b[01]?[0-9][0-9]?)(-(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}/
 
 export const pathSegment = /^[_a-zA-Z0-9][-_.a-zA-Z0-9]*[_a-zA-Z0-9]$/
-export const absolutePath = /^\/(([\w. -]+)[^\s?]\/?)+$/
+export const absolutePath = /^\/(([\w. -]*)[^\s?]\/?)+$/
