@@ -1,4 +1,4 @@
-# Shire - Cookie Consent
+# `@scaleway/cookie-consent`
 
 This package is an helper to handle cookie consents with Segment integrations.
 It will handle the cookie consent for each categories.

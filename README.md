@@ -31,8 +31,6 @@ scaleway-lib is a set of NPM packages used at Scaleway.
 
 ## Available packages
 
-## Available packages
-
 - [`@scaleway/cookie-consent`](./packages/countries/README.md): React provider to handle website end user consent cookie storage based on segment integrations.
 
   ![npm](https://img.shields.io/npm/dm/@scaleway/cookie-consent)
