@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/use-growthbook",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Utility package to expose AB test tool",
   "type": "module",
   "engines": {

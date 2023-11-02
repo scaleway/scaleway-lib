@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.2.0
+
+### Minor Changes
+
+- [#1605](https://github.com/scaleway/scaleway-lib/pull/1605) [`b7030c8`](https://github.com/scaleway/scaleway-lib/commit/b7030c8fdc14995f0fe66f1dcfd4fc538a82e14f) Thanks [@DorianMaliszewski](https://github.com/DorianMaliszewski)! - fix: absolute path is more permissive
+
 ## 4.1.0
 
 ### Minor Changes
