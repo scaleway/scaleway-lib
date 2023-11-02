@@ -961,7 +961,7 @@ describe('@regex', () => {
     })
   })
 
-  describe.only('pathSegment', () => {
+  describe('pathSegment', () => {
     test.each([
       ['/hello', false],
       ['hello', true],
@@ -974,14 +974,20 @@ describe('@regex', () => {
     })
   })
 
-  describe.only('absolutePath', () => {
+  describe('absolutePath', () => {
     test.each([
       ['/hello', true],
+      ['/a', true],
       ['hello', false],
-      ['/hello nop', false],
+      ['/hello nop', true],
       ['/hello?', false],
       ['/hello-world', true],
       ['/hello/world', true],
+      [
+        `/hello/world
+        ciao/test`,
+        false,
+      ],
     ])('should match regex %s to be %s', (string, expected) => {
       expect(absolutePath.test(string)).toBe(expected)
     })
