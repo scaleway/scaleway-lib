@@ -1,5 +1,11 @@
 # @scaleway/cookie-consent
 
+## 1.0.5
+
+### Patch Changes
+
+- [#1602](https://github.com/scaleway/scaleway-lib/pull/1602) [`60cc5c0`](https://github.com/scaleway/scaleway-lib/commit/60cc5c07c8387a0feee84ca9d7d07deb16177a17) Thanks [@Slashgear](https://github.com/Slashgear)! - Fix naming error in Readme heading
+
 ## 1.0.4
 
 ### Patch Changes

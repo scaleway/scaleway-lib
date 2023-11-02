@@ -1,5 +1,19 @@
 # Change Log
 
+## 3.15.29
+
+### Patch Changes
+
+- [#1611](https://github.com/scaleway/scaleway-lib/pull/1611) [`04864aa`](https://github.com/scaleway/scaleway-lib/commit/04864aa6cad15e0c4068a65a0943887d4c9af4db) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@typescript-eslint/eslint-plugin` to `6.9.0`.
+  Updated dependency `@typescript-eslint/parser` to `6.9.0`.
+
+- [#1619](https://github.com/scaleway/scaleway-lib/pull/1619) [`e4a443a`](https://github.com/scaleway/scaleway-lib/commit/e4a443a830da251981133a3b977eff484649e1f3) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@typescript-eslint/eslint-plugin` to `6.9.1`.
+  Updated dependency `@typescript-eslint/parser` to `6.9.1`.
+
+- [#1610](https://github.com/scaleway/scaleway-lib/pull/1610) [`eff2641`](https://github.com/scaleway/scaleway-lib/commit/eff26411da8072da4f026e6ffdc338834d59b6bd) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `eslint-plugin-import` to `2.29.0`.
+
+- [#1603](https://github.com/scaleway/scaleway-lib/pull/1603) [`c6839fb`](https://github.com/scaleway/scaleway-lib/commit/c6839fb420c9130225465b2a931be8bda1de4eb0) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `eslint` to `8.52.0`.
+
 ## 3.15.28
 
 ### Patch Changes
