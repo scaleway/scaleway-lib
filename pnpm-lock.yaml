@@ -33,11 +33,11 @@ importers:
         specifier: 2.26.2
         version: 2.26.2
       '@commitlint/cli':
-        specifier: 18.0.0
-        version: 18.0.0(typescript@5.2.2)
+        specifier: 18.2.0
+        version: 18.2.0(typescript@5.2.2)
       '@commitlint/config-conventional':
-        specifier: 18.0.0
-        version: 18.0.0
+        specifier: 18.1.0
+        version: 18.1.0
       '@jest/globals':
         specifier: 29.7.0
         version: 29.7.0
@@ -1934,8 +1934,8 @@ packages:
       prettier: 2.8.8
     dev: true
 
-  /@commitlint/cli@18.0.0(typescript@5.2.2):
-    resolution: {integrity: sha512-0HuJB7VfxSqia0r+mZ9VLgTc5gPaRDiQtloLfwCBp63PvpFn2sZsidiZBbym3jDC6+P47HSuIdRRg3/JsCcBwA==}
+  /@commitlint/cli@18.2.0(typescript@5.2.2):
+    resolution: {integrity: sha512-F/DCG791kMFmWg5eIdogakuGeg4OiI2kD430ed1a1Hh3epvrJdeIAgcGADAMIOmF+m0S1+VlIYUKG2dvQQ1Izw==}
     engines: {node: '>=v18'}
     hasBin: true
     dependencies:
@@ -1953,8 +1953,8 @@ packages:
       - typescript
     dev: true
 
-  /@commitlint/config-conventional@18.0.0:
-    resolution: {integrity: sha512-XZW3MDwhMWwr7pf+jO5F18ohBwrJ8mt+1OPhkVyO8bYrY0dKPE5tPpdXlDt+JCFurl4VnUDPmu6xZ4/cKCH7cA==}
+  /@commitlint/config-conventional@18.1.0:
+    resolution: {integrity: sha512-8vvvtV3GOLEMHeKc8PjRL1lfP1Y4B6BG0WroFd9PJeRiOc3nFX1J0wlJenLURzl9Qus6YXVGWf+a/ZlbCKT3AA==}
     engines: {node: '>=v18'}
     dependencies:
       conventional-changelog-conventionalcommits: 7.0.2
@@ -6727,6 +6727,7 @@ packages:
     resolution: {integrity: sha512-Z7dk6Qo8pOCp3l4tsX2C5ZVas4V+UxwQodwZhLopL91TX8UyyHEXafPcyoeeWuLrwzHcr3igO78wNLwHJHsMCQ==}
     dependencies:
       has: 1.0.3
+    dev: true
 
   /is-core-module@2.13.1:
     resolution: {integrity: sha512-hHrIjvZsftOsvKSn2TRYl63zvxsgE0K+0mYMoH6gD4omR5IWB2KynivBQczo3+wF1cCkjzvptnI9Q0sPU66ilw==}
@@ -8676,7 +8677,7 @@ packages:
     resolution: {integrity: sha512-iMDbmAWtfU+MHpxt/I5iWI7cY6YVEZUQ3MBgPQ++XD1PELuJHIl82xBmObyP2KyQmkNB2dsqF7seoQQiAn5yDQ==}
     hasBin: true
     dependencies:
-      is-core-module: 2.13.0
+      is-core-module: 2.13.1
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
     dev: false
