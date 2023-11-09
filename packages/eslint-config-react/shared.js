@@ -122,5 +122,6 @@ module.exports = {
       },
     ],
     'sort-keys': 'off',
+    'no-constant-binary-expression': 'error',
   },
 }
