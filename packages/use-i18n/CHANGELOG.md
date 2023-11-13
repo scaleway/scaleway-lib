@@ -1,5 +1,17 @@
 # Change Log
 
+## 5.4.8
+
+### Patch Changes
+
+- [#1630](https://github.com/scaleway/scaleway-lib/pull/1630) [`56cf7ab`](https://github.com/scaleway/scaleway-lib/commit/56cf7ab634a193a8c53596fc54d77f722ea73460) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@formatjs/ecma402-abstract` to `1.17.3`.
+  Updated dependency `intl-messageformat` to `10.5.5`.
+  Updated dependency `@formatjs/icu-messageformat-parser` to `2.7.1`.
+
+- [#1643](https://github.com/scaleway/scaleway-lib/pull/1643) [`439dca4`](https://github.com/scaleway/scaleway-lib/commit/439dca4a9ca875a758f708a757dccf2f3eab2766) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@formatjs/ecma402-abstract` to `1.17.4`.
+  Updated dependency `intl-messageformat` to `10.5.7`.
+  Updated dependency `@formatjs/icu-messageformat-parser` to `2.7.2`.
+
 ## 5.4.7
 
 ### Patch Changes
