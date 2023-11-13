@@ -1,5 +1,13 @@
 # @scaleway/cookie-consent
 
+## 1.0.6
+
+### Patch Changes
+
+- [#1640](https://github.com/scaleway/scaleway-lib/pull/1640) [`742d510`](https://github.com/scaleway/scaleway-lib/commit/742d510f07f3a71402387146ffffe8477913762f) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `cookie` to `0.6.0`.
+
+- [#1631](https://github.com/scaleway/scaleway-lib/pull/1631) [`90265a8`](https://github.com/scaleway/scaleway-lib/commit/90265a81a8da00deec381c3d948d1b730ee4bb4a) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@types/cookie` to `0.5.4`.
+
 ## 1.0.5
 
 ### Patch Changes

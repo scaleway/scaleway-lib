@@ -1,5 +1,20 @@
 # Change Log
 
+## 3.16.0
+
+### Minor Changes
+
+- [#1637](https://github.com/scaleway/scaleway-lib/pull/1637) [`41a6cb6`](https://github.com/scaleway/scaleway-lib/commit/41a6cb63e2b060b4a941e2b5579557f1358f98f2) Thanks [@johnrazeur](https://github.com/johnrazeur)! - Add no-constant-binary-expression rule to eslint config
+
+### Patch Changes
+
+- [#1636](https://github.com/scaleway/scaleway-lib/pull/1636) [`16930c3`](https://github.com/scaleway/scaleway-lib/commit/16930c34cf1fd4f2f49e018b409f715d927e40ff) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `eslint` to `8.53.0`.
+
+- [#1639](https://github.com/scaleway/scaleway-lib/pull/1639) [`8fc72fb`](https://github.com/scaleway/scaleway-lib/commit/8fc72fba1999d25f461b8cd4719870ecf98a65af) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@typescript-eslint/eslint-plugin` to `6.10.0`.
+  Updated dependency `@typescript-eslint/parser` to `6.10.0`.
+
+- [#1628](https://github.com/scaleway/scaleway-lib/pull/1628) [`dfcb18e`](https://github.com/scaleway/scaleway-lib/commit/dfcb18e04ef93217b7ef2328e77578a3aa578411) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `eslint-plugin-jsx-a11y` to `6.8.0`.
+
 ## 3.15.29
 
 ### Patch Changes
