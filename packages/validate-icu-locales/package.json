@@ -24,7 +24,7 @@
     "cli"
   ],
   "dependencies": {
-    "@formatjs/icu-messageformat-parser": "2.7.2",
+    "@formatjs/icu-messageformat-parser": "2.7.3",
     "globby": "13.2.2",
     "module-from-string": "3.3.0"
   }
