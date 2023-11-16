@@ -33,8 +33,8 @@ importers:
         specifier: 2.26.2
         version: 2.26.2
       '@commitlint/cli':
-        specifier: 18.4.0
-        version: 18.4.0(typescript@5.2.2)
+        specifier: 18.4.1
+        version: 18.4.1(typescript@5.2.2)
       '@commitlint/config-conventional':
         specifier: 18.4.0
         version: 18.4.0
@@ -1992,8 +1992,8 @@ packages:
       prettier: 2.8.8
     dev: true
 
-  /@commitlint/cli@18.4.0(typescript@5.2.2):
-    resolution: {integrity: sha512-iz3KJtmsRRFm6OlyrORxRR6qcrznuoFDzcvMXTMpl6E/wj9Vr2crolDk6cG3bFpJCjWd9C7KidXerRha6hh1kQ==}
+  /@commitlint/cli@18.4.1(typescript@5.2.2):
+    resolution: {integrity: sha512-4+jljfd29Udw9RDDyigavLO9LvdbmB8O9xjDzVZ0R3lJuG7nCeyHgnKWIVpFaN590isZMV/cMeQK0gH7hRF40A==}
     engines: {node: '>=v18'}
     hasBin: true
     dependencies:
