@@ -1,5 +1,12 @@
 # Change Log
 
+## 3.16.1
+
+### Patch Changes
+
+- [#1662](https://github.com/scaleway/scaleway-lib/pull/1662) [`61470ae`](https://github.com/scaleway/scaleway-lib/commit/61470aec833545a11727a6f13afd13f24e7f6485) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@typescript-eslint/eslint-plugin` to `6.11.0`.
+  Updated dependency `@typescript-eslint/parser` to `6.11.0`.
+
 ## 3.16.0
 
 ### Minor Changes
