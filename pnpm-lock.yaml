@@ -15,8 +15,8 @@ importers:
         specifier: 7.23.3
         version: 7.23.3(@babel/core@7.23.3)(eslint@8.53.0)
       '@babel/plugin-transform-runtime':
-        specifier: 7.23.3
-        version: 7.23.3(@babel/core@7.23.3)
+        specifier: 7.23.4
+        version: 7.23.4(@babel/core@7.23.3)
       '@babel/preset-env':
         specifier: 7.23.3
         version: 7.23.3(@babel/core@7.23.3)
@@ -382,11 +382,6 @@ packages:
       '@babel/highlight': 7.22.10
     dev: true
 
-  /@babel/compat-data@7.23.2:
-    resolution: {integrity: sha512-0S9TQMmDHlqAZ2ITT95irXKfxN9bncq8ZCoJhun3nHL/lLUxd2NKBJYoNGWH7S0hz6fRQwWlAWn/ILM0C70KZQ==}
-    engines: {node: '>=6.9.0'}
-    dev: true
-
   /@babel/compat-data@7.23.3:
     resolution: {integrity: sha512-BmR4bWbDIoFJmJ9z2cZ8Gmm2MXgEDgjdWgpKmKWUt54UGFJdlj31ECtbaDvCG/qVdG3AQ1SfpZEs01lUFbzLOQ==}
     engines: {node: '>=6.9.0'}
@@ -467,7 +462,7 @@ packages:
     resolution: {integrity: sha512-y6EEzULok0Qvz8yyLkCvVX+02ic+By2UdOhylwUOvOn9dvYc9mKICJuuU1n1XBI02YWsNsnrY1kc6DVbjcXbtw==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/compat-data': 7.23.2
+      '@babel/compat-data': 7.23.3
       '@babel/helper-validator-option': 7.22.15
       browserslist: 4.22.1
       lru-cache: 5.1.1
@@ -562,7 +557,7 @@ packages:
     resolution: {integrity: sha512-0pYVBnDKZO2fnSPCrgM/6WMc7eS20Fbok+0r88fp+YtWVLZrp4CkafFGIp+W0VKw4a22sgebPT99y+FDNMdP4w==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.23.0
+      '@babel/types': 7.23.3
 
   /@babel/helper-module-transforms@7.23.3(@babel/core@7.23.3):
     resolution: {integrity: sha512-7bBs4ED9OmswdfDzpz4MpWgSrV7FXlc3zIagvLFjS5H+Mk7Snr21vQ6QwrsoCGMfNC4e4LQPdoULEt4ykz0SRQ==}
@@ -1448,8 +1443,8 @@ packages:
       '@babel/helper-plugin-utils': 7.22.5
     dev: true
 
-  /@babel/plugin-transform-runtime@7.23.3(@babel/core@7.23.3):
-    resolution: {integrity: sha512-XcQ3X58CKBdBnnZpPaQjgVMePsXtSZzHoku70q9tUAQp02ggPQNM04BF3RvlW1GSM/McbSOQAzEK4MXbS7/JFg==}
+  /@babel/plugin-transform-runtime@7.23.4(@babel/core@7.23.3):
+    resolution: {integrity: sha512-ITwqpb6V4btwUG0YJR82o2QvmWrLgDnx/p2A3CTPYGaRgULkDiC0DRA2C4jlRB9uXGUEfaSS/IGHfVW+ohzYDw==}
     engines: {node: '>=6.9.0'}
     peerDependencies:
       '@babel/core': ^7.0.0-0
@@ -1768,14 +1763,6 @@ packages:
       - supports-color
     dev: true
 
-  /@babel/types@7.23.0:
-    resolution: {integrity: sha512-0oIyUfKoI3mSqMvsxBdclDwxXKXAUA8v/apZbc+iSyARYou1o8ZGDxbUYyLFoW2arqS2jDGqJuZvv1d/io1axg==}
-    engines: {node: '>=6.9.0'}
-    dependencies:
-      '@babel/helper-string-parser': 7.22.5
-      '@babel/helper-validator-identifier': 7.22.20
-      to-fast-properties: 2.0.0
-
   /@babel/types@7.23.3:
     resolution: {integrity: sha512-OZnvoH2l8PK5eUvEcUyCt/sXgr/h+UWpVuBbOljwcrAgUl6lpchoQ++PHGyQy1AtYnVA6CEq3y5xeEI10brpXw==}
     engines: {node: '>=6.9.0'}
@@ -1783,7 +1770,6 @@ packages:
       '@babel/helper-string-parser': 7.22.5
       '@babel/helper-validator-identifier': 7.22.20
       to-fast-properties: 2.0.0
-    dev: true
 
   /@bcoe/v8-coverage@0.2.3:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
@@ -4732,7 +4718,7 @@ packages:
     peerDependencies:
       '@babel/core': ^7.4.0 || ^8.0.0-0 <8.0.0
     dependencies:
-      '@babel/compat-data': 7.23.2
+      '@babel/compat-data': 7.23.3
       '@babel/core': 7.23.3
       '@babel/helper-define-polyfill-provider': 0.4.3(@babel/core@7.23.3)
       semver: 6.3.1
