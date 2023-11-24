@@ -51,7 +51,7 @@
     "rollup": "4.5.1",
     "rollup-plugin-dts": "6.1.0",
     "rollup-plugin-preserve-shebangs": "0.2.0",
-    "rollup-plugin-visualizer": "5.9.2",
+    "rollup-plugin-visualizer": "5.9.3",
     "tsd-lite": "0.8.0",
     "typescript": "5.2.2",
     "wait-for-expect": "3.0.2"
