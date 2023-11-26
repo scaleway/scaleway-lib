@@ -59,9 +59,6 @@ importers:
       '@testing-library/react':
         specifier: 14.2.2
         version: 14.2.2(react-dom@18.2.0)(react@18.2.0)
-      '@tsd/typescript':
-        specifier: 5.3.3
-        version: 5.3.3
       '@types/jest':
         specifier: 29.5.12
         version: 29.5.12
@@ -131,9 +128,9 @@ importers:
       rollup-plugin-visualizer:
         specifier: 5.12.0
         version: 5.12.0(rollup@4.13.2)
-      tsd-lite:
-        specifier: 0.8.2
-        version: 0.8.2(@tsd/typescript@5.3.3)
+      tstyche:
+        specifier: '1.1.0 '
+        version: 1.1.0(typescript@5.4.3)
       typescript:
         specifier: 5.4.3
         version: 5.4.3
@@ -9626,6 +9623,19 @@ packages:
   /tslib@2.5.3:
     resolution: {integrity: sha512-mSxlJJwl3BMEQCUNnxXBU9jP4JBktcEGhURcPR6VQVlnP0FdDEsIaz0C35dXNGLyRfrATNofF0F5p2KPxQgB+w==}
     dev: false
+
+  /tstyche@1.1.0(typescript@5.4.3):
+    resolution: {integrity: sha512-ZvDeScrBJf6053bdOkGUtnfDn7414XjmjGWrDntQfSmtPvxv9HVJ+03GFK2O46hfoAI9L5Q22uw6xy5ZTBdPGg==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+    peerDependencies:
+      typescript: 4.x || 5.x
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      typescript: 5.4.3
+    dev: true
 
   /tsutils@3.21.0(typescript@5.4.3):
     resolution: {integrity: sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==}

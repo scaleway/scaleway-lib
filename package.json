@@ -28,7 +28,6 @@
     "@scaleway/tsconfig": "workspace:*",
     "@testing-library/jest-dom": "6.4.2",
     "@testing-library/react": "14.2.2",
-    "@tsd/typescript": "5.3.3",
     "@types/jest": "29.5.12",
     "@types/node": "20.11.30",
     "@types/react": "18.2.67",
@@ -52,7 +51,7 @@
     "rollup-plugin-dts": "6.1.0",
     "rollup-plugin-preserve-shebangs": "0.2.0",
     "rollup-plugin-visualizer": "5.12.0",
-    "tsd-lite": "0.8.2",
+    "tstyche": "1.1.0 ",
     "typescript": "5.4.3",
     "wait-for-expect": "3.0.2"
   },
@@ -66,7 +65,7 @@
     "test": "TZ=UTC jest",
     "test:watch": "pnpm run test --watch",
     "test:coverage": "pnpm run test --coverage",
-    "test:types": "jest -c jest.config.tsd.mjs",
+    "test:types": "tstyche",
     "release": "pnpm build && pnpm changeset publish",
     "prepare": "husky install"
   },
