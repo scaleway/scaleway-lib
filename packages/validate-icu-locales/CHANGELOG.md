@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.0.14
+
+### Patch Changes
+
+- [#1678](https://github.com/scaleway/scaleway-lib/pull/1678) [`ef4a40b`](https://github.com/scaleway/scaleway-lib/commit/ef4a40bd34654b196ee0130e8801565283377b9c) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `globby` to `14.0.0`.
+
 ## 2.0.13
 
 ### Patch Changes
