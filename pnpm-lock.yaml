@@ -131,9 +131,9 @@ importers:
       rollup-plugin-visualizer:
         specifier: 5.11.0
         version: 5.11.0(rollup@4.6.1)
-      tsd-lite:
-        specifier: 0.8.0
-        version: 0.8.0(@tsd/typescript@5.3.3)
+      tstyche:
+        specifier: 1.0.0-beta.6
+        version: 1.0.0-beta.6(typescript@5.3.3)
       typescript:
         specifier: 5.3.3
         version: 5.3.3
@@ -356,8 +356,8 @@ packages:
     resolution: {integrity: sha512-1Yjs2SvM8TflER/OD3cOjhWWOZb58A2t7wpE2S9XfBYTiIl+XFhQG2bjy4Pu1I+EAlCNUzRDYDdFwFYUKvXcIA==}
     engines: {node: '>=0.10.0'}
 
-  /@adobe/css-tools@4.3.1:
-    resolution: {integrity: sha512-/62yikz7NLScCGAAST5SHdnjaDJQBDq0M2muyRTpf2VQhw6StBg2ALiu73zSJQ4fMVLA+0uBhBHAle7Wg+2kSg==}
+  /@adobe/css-tools@4.3.2:
+    resolution: {integrity: sha512-DA5a1C0gD/pLOvhv33YMrbf2FK3oUzwNl9oOJqE4XVjuEtt6XIakRcsd7eLiOSPkp1kTRQGICTA8cKra/vFbjw==}
     dev: true
 
   /@ampproject/remapping@2.2.1:
@@ -4092,7 +4092,7 @@ packages:
       vitest:
         optional: true
     dependencies:
-      '@adobe/css-tools': 4.3.1
+      '@adobe/css-tools': 4.3.2
       '@babel/runtime': 7.23.5
       '@jest/globals': 29.7.0
       '@types/jest': 29.5.11
@@ -9487,6 +9487,19 @@ packages:
   /tslib@2.5.3:
     resolution: {integrity: sha512-mSxlJJwl3BMEQCUNnxXBU9jP4JBktcEGhURcPR6VQVlnP0FdDEsIaz0C35dXNGLyRfrATNofF0F5p2KPxQgB+w==}
     dev: false
+
+  /tstyche@1.0.0-beta.6(typescript@5.3.3):
+    resolution: {integrity: sha512-+FIQ8LNE2AEj+PgZjY67WtzJXh3zGuUzwpdjUluxEAflNRcejzscsS8KVRVS4w8BQ27HeHZq0gj3HUU75q99dw==}
+    engines: {node: ^16.14 || 18.x || >=20.x}
+    hasBin: true
+    peerDependencies:
+      typescript: 4.x || 5.x
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      typescript: 5.3.3
+    dev: true
 
   /tsutils@3.21.0(typescript@5.3.3):
     resolution: {integrity: sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==}
