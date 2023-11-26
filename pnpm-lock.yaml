@@ -60,8 +60,8 @@ importers:
         specifier: 14.1.2
         version: 14.1.2(react-dom@18.2.0)(react@18.2.0)
       '@tsd/typescript':
-        specifier: 5.2.2
-        version: 5.2.2
+        specifier: 5.3.2
+        version: 5.3.2
       '@types/jest':
         specifier: 29.5.10
         version: 29.5.10
@@ -100,7 +100,7 @@ importers:
         version: 2.4.26
       jest-runner-tsd:
         specifier: 6.0.0
-        version: 6.0.0(@tsd/typescript@5.2.2)
+        version: 6.0.0(@tsd/typescript@5.3.2)
       lint-staged:
         specifier: 15.1.0
         version: 15.1.0
@@ -133,7 +133,7 @@ importers:
         version: 5.9.3(rollup@4.5.2)
       tsd-lite:
         specifier: 0.8.0
-        version: 0.8.0(@tsd/typescript@5.2.2)
+        version: 0.8.0(@tsd/typescript@5.3.2)
       typescript:
         specifier: 5.2.2
         version: 5.2.2
@@ -4044,8 +4044,8 @@ packages:
     engines: {node: '>= 10'}
     dev: true
 
-  /@tsd/typescript@5.2.2:
-    resolution: {integrity: sha512-VtjHPAKJqLJoHHKBDNofzvQB2+ZVxjXU/Gw6INAS9aINLQYVsxfzrQ2s84huCeYWZRTtrr7R0J7XgpZHjNwBCw==}
+  /@tsd/typescript@5.3.2:
+    resolution: {integrity: sha512-CgECyqLqPRCIcOLJeKvlx4iNs1/IS8SCE/Kb8NlTl3TklLkhtp1jHwZf5VTSTzCH5twlATgdMQfEe+vFzKpHFw==}
     engines: {node: '>=14.17'}
     dev: true
 
@@ -7340,17 +7340,17 @@ packages:
       slash: 3.0.0
     dev: true
 
-  /jest-runner-tsd@6.0.0(@tsd/typescript@5.2.2):
+  /jest-runner-tsd@6.0.0(@tsd/typescript@5.3.2):
     resolution: {integrity: sha512-lSzRoVqc/AwahlKFamdwO/R63Vze/xpCnab+FsNni8zmxyBt3e3py51mFE2UQBh2gSvEYwudOSHgX+xtmLynKw==}
     engines: {node: '>=16'}
     peerDependencies:
       '@tsd/typescript': 4.x || 5.x
     dependencies:
       '@babel/code-frame': 7.22.5
-      '@tsd/typescript': 5.2.2
+      '@tsd/typescript': 5.3.2
       chalk: 4.1.2
       create-jest-runner: 0.12.3
-      tsd-lite: 0.8.0(@tsd/typescript@5.2.2)
+      tsd-lite: 0.8.0(@tsd/typescript@5.3.2)
     transitivePeerDependencies:
       - '@jest/test-result'
       - jest-runner
@@ -9382,13 +9382,13 @@ packages:
       strip-bom: 3.0.0
     dev: false
 
-  /tsd-lite@0.8.0(@tsd/typescript@5.2.2):
+  /tsd-lite@0.8.0(@tsd/typescript@5.3.2):
     resolution: {integrity: sha512-wsTMCFgSs+mxM92j1G6cOSAVrwzVcqjqMwCqSs1879I18MHbJQn8IpDwr3cTN+ulTqCmfwlBpaJ4y+08JiyG5Q==}
     engines: {node: '>=16'}
     peerDependencies:
       '@tsd/typescript': 4.x || 5.x
     dependencies:
-      '@tsd/typescript': 5.2.2
+      '@tsd/typescript': 5.3.2
     dev: true
 
   /tslib@1.14.1:
