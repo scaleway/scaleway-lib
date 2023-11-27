@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.2.1
+
+### Patch Changes
+
+- [#1680](https://github.com/scaleway/scaleway-lib/pull/1680) [`c2fa21f`](https://github.com/scaleway/scaleway-lib/commit/c2fa21ffc7fe5d15a1f6cd24523d129ec1c445db) Thanks [@philibea](https://github.com/philibea)! - Update pathSegment regex
+
 ## 4.2.0
 
 ### Minor Changes
