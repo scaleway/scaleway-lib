@@ -969,6 +969,9 @@ describe('@regex', () => {
       ['hello?', false],
       ['hello-world', true],
       ['hello/world', false],
+      ['/', false],
+      ['a', true],
+      ['1', true],
     ])('should match regex %s to be %s', (string, expected) => {
       expect(pathSegment.test(string)).toBe(expected)
     })
