@@ -133,9 +133,11 @@ export async function run() {
   const packageBumps = await getBumps(files)
 
   await createChangeset(fileName, packageBumps, packageNames)
-  await simpleGit().add(fileName)
-  await simpleGit().commit(`chore: add changeset renovate-${shortHash}`)
-  await simpleGit().push()
+  if (!process.env['SKIP_COMMIT']) {
+    await simpleGit().add(fileName)
+    await simpleGit().commit(`chore: add changeset renovate-${shortHash}`)
+    await simpleGit().push()
+  }
 }
 
 run().catch(console.error)
