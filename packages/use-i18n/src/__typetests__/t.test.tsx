@@ -1,6 +1,5 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-import { expectError, expectType } from 'tsd-lite'
-import { useI18n, useTranslation } from '../usei18n'
+import { expect, test } from 'tstyche'
+import { useI18n } from '../usei18n'
 
 const { t } = useI18n<{
   hello: 'world'
@@ -10,55 +9,56 @@ const { t } = useI18n<{
   'describe.john': '{name} is {age} years old'
 }>()
 
-// Single key
-expectType<string>(t('hello'))
-expectError(t('keydoesnotexists'))
+test('i18n - t', () => {
+  expect(t('hello')).type.toEqual<string>()
+  // Single key
+  expect(t('keydoesnotexists')).type.toRaiseError()
 
-// Multiple keys
-expectType<string>(t('doe.john'))
-expectError(t('doe.doesnotexists'))
+  // Multiple keys
+  expect(t('doe.john')).type.toEqual<string>()
+  expect(t('doe.doesnotexists')).type.toRaiseError()
 
-// With a param
-expectError(t('doe.child'))
-expectType<string>(
-  t('doe.child', {
-    name: 'Name',
-  }),
-)
-expectError(
-  t('doe.doesnotexists', {
-    name: 'Name',
-  }),
-)
-expectError(
-  t('doe.child', {
-    doesnotexists: 'Name',
-  }),
-)
-expectError(t('doe.child', {}))
-expectError(t('doe.child'))
+  // With a param
+  expect(
+    t('doe.child', {
+      name: 'Name',
+    }),
+  ).type.toEqual<string>()
+  expect(
+    t('doe.doesnotexists', {
+      name: 'Name',
+    }),
+  ).type.toRaiseError()
 
-// With multiple params
-expectType<string>(
-  t('describe.john', {
-    age: '30',
-    name: 'John',
-  }),
-)
-expectError(t('describe.john', {}))
-expectError(t('describe.john'))
+  expect(t('doe.child', {})).type.toRaiseError(
+    "Argument of type '{}' is not assignable to parameter of type",
+  )
 
-// With react components as param value
-expectType<string>(
-  t('doe.child', {
-    name: (
-      <p>
-        My name is<b>John</b>
-      </p>
-    ),
-  }),
-)
+  expect(t('doe.child')).type.toRaiseError('Expected 2 arguments, but got 1')
 
-// Required generic
-const { t: t2 } = useI18n()
-expectError(t2('test'))
+  // With multiple params
+  expect(
+    t('describe.john', {
+      age: '30',
+      name: 'John',
+    }),
+  ).type.toEqual<string>()
+
+  expect(t('describe.john', {})).type.toRaiseError()
+  expect(t('describe.john')).type.toRaiseError()
+
+  // With react components as param value
+  expect(
+    t('doe.child', {
+      name: (
+        <p>
+          My name is<b>John</b>
+        </p>
+      ),
+    }),
+  ).type.toEqual<string>()
+
+  // Required generic
+  const { t: t2 } = useI18n()
+  expect(t2('test')).type.toRaiseError()
+})
