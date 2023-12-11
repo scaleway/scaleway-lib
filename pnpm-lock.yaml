@@ -129,8 +129,8 @@ importers:
         specifier: 0.2.0
         version: 0.2.0(rollup@4.6.1)
       rollup-plugin-visualizer:
-        specifier: 5.9.3
-        version: 5.9.3(rollup@4.6.1)
+        specifier: 5.10.0
+        version: 5.10.0(rollup@4.6.1)
       tsd-lite:
         specifier: 0.8.0
         version: 0.8.0(@tsd/typescript@5.3.3)
@@ -744,6 +744,7 @@ packages:
   /@babel/highlight@7.23.4:
     resolution: {integrity: sha512-acGdbYSfp2WheJoJm/EBBBLh/ID8KDc64ISZ9DYtBmC8/Q204PZJLHyzeB5qMzJ5trcOkybd78M4x2KWsUq++A==}
     engines: {node: '>=6.9.0'}
+    requiresBuild: true
     dependencies:
       '@babel/helper-validator-identifier': 7.22.20
       chalk: 2.4.2
@@ -8947,8 +8948,8 @@ packages:
       rollup: 4.6.1
     dev: true
 
-  /rollup-plugin-visualizer@5.9.3(rollup@4.6.1):
-    resolution: {integrity: sha512-ieGM5UAbMVqThX67GCuFHu/GkaSXIUZwFKJsSzE+7+k9fibU/6gbUz7SL+9BBzNtv5bIFHj7kEu0TWcqEnT/sQ==}
+  /rollup-plugin-visualizer@5.10.0(rollup@4.6.1):
+    resolution: {integrity: sha512-N4AkNL0qFvipegbDJ0kupS+8eKGjL0q+lYwV46NflLX/B8Rh73wz3kCIdg50bR6XVhNcaMA4Eb519xtm90Ckfg==}
     engines: {node: '>=14'}
     hasBin: true
     peerDependencies:
