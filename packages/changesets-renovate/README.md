@@ -16,4 +16,10 @@ This package is a very simple CLI:
 changesets-renovate
 ```
 
+To skip committing the changeset.
+
+```bash
+SKIP_COMMIT=TRUE changesets-renovate
+```
+
 It's inspired by this GitHub Action from Backstage: https://github.com/backstage/backstage/blob/master/.github/workflows/sync_renovate-changesets.yml

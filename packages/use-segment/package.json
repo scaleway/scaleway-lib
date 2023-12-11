@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/use-segment",
-  "version": "0.9.24",
+  "version": "0.9.25",
   "description": "A small hook to handle segment",
   "type": "module",
   "engines": {
@@ -27,7 +27,7 @@
     "segment"
   ],
   "dependencies": {
-    "@segment/analytics-next": "1.61.0",
+    "@segment/analytics-next": "1.62.0",
     "use-deep-compare-effect": "1.8.1"
   },
   "devDependencies": {
