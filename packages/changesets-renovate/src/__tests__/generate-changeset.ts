@@ -117,6 +117,54 @@ describe('generate changeset file', () => {
     expect(push).toHaveBeenCalledTimes(1)
   })
 
+  it('should generate changeset file, but skip commit and push', async () => {
+    const rev = 'test'
+    const fileName = `.changeset/renovate-${rev}.md`
+    const file = 'test/package.json'
+    const revparse = jest.fn().mockReturnValue(rev)
+    const add = jest.fn()
+    const commit = jest.fn()
+    const push = jest.fn()
+
+    ;(simpleGit as jest.Mock).mockReturnValue({
+      branch: () => ({
+        current: 'renovate/test',
+      }),
+      diffSummary: () => ({
+        files: [
+          {
+            file,
+          },
+        ],
+      }),
+      show: () => `
++ "package": "version"
++ "package2": "version2"
+`,
+      revparse,
+      add,
+      commit,
+      push,
+    })
+
+    fs.readFile = jest
+      .fn<any>()
+      .mockResolvedValueOnce(`{}`)
+      .mockResolvedValueOnce(`{"name":"packageName","version":"1.0.0"}`)
+    fs.writeFile = jest.fn<any>()
+
+    process.env['SKIP_COMMIT'] = 'TRUE'
+    await run()
+
+    expect(fs.readFile).toHaveBeenCalledWith(file, 'utf8')
+    expect(fs.writeFile).toMatchSnapshot()
+    expect(add).not.toHaveBeenCalledWith(fileName)
+    expect(commit).not.toHaveBeenCalledWith(
+      `chore: add changeset renovate-${rev}`,
+    )
+    expect(push).not.toHaveBeenCalledTimes(1)
+  })
+
   it('should ignore workspace package.json', async () => {
     const file = 'package.json'
 
