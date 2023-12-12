@@ -46,6 +46,7 @@ const wrapper =
   ({
     settings,
     initOptions,
+    areOptionsLoading,
     onError,
     onEventError,
     events = defaultEvents,
@@ -54,6 +55,7 @@ const wrapper =
     <SegmentProvider
       settings={settings}
       initOptions={initOptions}
+      areOptionsLoading={areOptionsLoading}
       onError={onError}
       onEventError={onEventError}
       events={events}
@@ -82,6 +84,17 @@ describe('segment hook', () => {
     console.error = orignalConsoleError
   })
 
+  it('useSegment should not be ready before load', () => {
+    const { result } = renderHook(() => useSegment<DefaultEvents>(), {
+      wrapper: wrapper({
+        events: defaultEvents,
+        settings: undefined,
+      }),
+    })
+    expect(result.current.analytics).toBe(undefined)
+    expect(result.current.isAnalyticsReady).toBe(true)
+  })
+
   it('useSegment should not load without settings', () => {
     const { result } = renderHook(() => useSegment<DefaultEvents>(), {
       wrapper: wrapper({
@@ -90,6 +103,7 @@ describe('segment hook', () => {
       }),
     })
     expect(result.current.analytics).toBe(undefined)
+    expect(result.current.isAnalyticsReady).toBe(true)
   })
 
   it('useSegment should not load when All integrations disabled', () => {

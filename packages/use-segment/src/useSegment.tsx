@@ -18,6 +18,7 @@ type Events = Record<
 type SegmentContextInterface<T extends Events = Events> = {
   analytics: Analytics | undefined
   events: { [K in keyof T]: ReturnType<T[K]> }
+  isAnalyticsReady: boolean
 }
 
 const SegmentContext = createContext<SegmentContextInterface | undefined>(
@@ -40,6 +41,7 @@ export function useSegment<T extends Events>(): SegmentContextInterface<T> {
 export type SegmentProviderProps<T> = {
   settings?: AnalyticsBrowserSettings
   initOptions?: InitOptions
+  areOptionsLoading?: boolean
   onError?: (err: Error) => void
   onEventError?: OnEventError
   events: T
@@ -52,34 +54,49 @@ function SegmentProvider<T extends Events>({
   children,
   settings,
   initOptions,
+  areOptionsLoading = false,
   onError,
   onEventError,
   events,
 }: SegmentProviderProps<T>) {
+  const [isAnalyticsReady, setIsAnalyticsReady] = useState(false)
   const [internalAnalytics, setAnalytics] = useState<Analytics | undefined>(
     undefined,
   )
 
   const shouldLoad = useMemo(() => {
+    // If options are loading (for example Segment integrations),
+    // we don't know if we should load or not
+    if (areOptionsLoading) {
+      return undefined
+    }
+
     const hasNoIntegrationsSettings = !initOptions?.integrations
-    const isAllEnabled = !!initOptions?.integrations?.All
     const isAnyIntegrationEnabled = Object.values(
       initOptions?.integrations ?? {},
     ).reduce<boolean>((acc, integration) => !!acc || !!integration, false)
 
     return (
       !!settings?.writeKey &&
-      (hasNoIntegrationsSettings || isAllEnabled || isAnyIntegrationEnabled)
+      (hasNoIntegrationsSettings || isAnyIntegrationEnabled)
     )
-  }, [initOptions?.integrations, settings?.writeKey])
+  }, [areOptionsLoading, initOptions, settings])
 
   useDeepCompareEffectNoCheck(() => {
-    if (shouldLoad && settings) {
+    if (shouldLoad === true && settings) {
       AnalyticsBrowser.load(settings, initOptions)
-        .then(([res]) => setAnalytics(res))
+        .then(([res]) => {
+          setAnalytics(res)
+        })
         .catch((err: Error) => {
           onError?.(err)
         })
+        .finally(() => {
+          setIsAnalyticsReady(true)
+        })
+    } else if (shouldLoad === false) {
+      // When user has refused tracking, set ready anyway
+      setIsAnalyticsReady(true)
     }
   }, [onError, settings, initOptions, shouldLoad])
 
@@ -95,8 +112,9 @@ function SegmentProvider<T extends Events>({
     return {
       analytics: internalAnalytics,
       events: curiedEvents,
+      isAnalyticsReady,
     }
-  }, [internalAnalytics, events, onEventError])
+  }, [events, internalAnalytics, isAnalyticsReady, onEventError])
 
   return (
     <SegmentContext.Provider value={value}>{children}</SegmentContext.Provider>
