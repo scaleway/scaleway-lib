@@ -84,15 +84,22 @@ describe('segment hook', () => {
     console.error = orignalConsoleError
   })
 
-  it('useSegment should not be ready before load', () => {
+  it('useSegment should not be ready and not load when options are loading', () => {
+    const mock = jest
+      .spyOn(AnalyticsBrowser, 'load')
+      .mockResolvedValue([{} as Analytics, {} as Context])
+
     const { result } = renderHook(() => useSegment<DefaultEvents>(), {
       wrapper: wrapper({
         events: defaultEvents,
         settings: undefined,
+        areOptionsLoading: true,
       }),
     })
+
+    expect(mock).toHaveBeenCalledTimes(0)
     expect(result.current.analytics).toBe(undefined)
-    expect(result.current.isAnalyticsReady).toBe(true)
+    expect(result.current.isAnalyticsReady).toBe(false)
   })
 
   it('useSegment should not load without settings', () => {
@@ -106,7 +113,11 @@ describe('segment hook', () => {
     expect(result.current.isAnalyticsReady).toBe(true)
   })
 
-  it('useSegment should not load when All integrations disabled', () => {
+  it('useSegment should not load but be ready when All integrations disabled', () => {
+    const mock = jest
+      .spyOn(AnalyticsBrowser, 'load')
+      .mockResolvedValue([{} as Analytics, {} as Context])
+
     const { result } = renderHook(() => useSegment<DefaultEvents>(), {
       wrapper: wrapper({
         events: defaultEvents,
@@ -114,7 +125,9 @@ describe('segment hook', () => {
         settings: { writeKey: 'sample ' },
       }),
     })
+    expect(mock).toHaveBeenCalledTimes(0)
     expect(result.current.analytics).toBe(undefined)
+    expect(result.current.isAnalyticsReady).toBe(true)
   })
 
   it('useSegment should not load when all of integrations disabled', () => {
@@ -132,6 +145,7 @@ describe('segment hook', () => {
       }),
     })
     expect(result.current.analytics).toBe(undefined)
+    expect(result.current.isAnalyticsReady).toBe(true)
   })
 
   it('useSegment should load when at least one integrations enabled', async () => {
@@ -158,6 +172,7 @@ describe('segment hook', () => {
     await waitFor(() => {
       expect(result.current.analytics).toStrictEqual({})
     })
+    expect(result.current.isAnalyticsReady).toBe(true)
   })
 
   it('Provider should load with key', async () => {
@@ -283,6 +298,7 @@ describe('segment hook', () => {
     await waitFor(() => {
       expect(result.current.analytics).toStrictEqual({})
     })
+    expect(result.current.isAnalyticsReady).toBe(true)
   })
 
   it('useSegment should correctly infer types', async () => {
