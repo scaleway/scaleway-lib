@@ -22,6 +22,6 @@ describe('CookieConsent - useSegmentIntegrations', () => {
     await waitFor(() => {
       expect(globalThis.fetch).toHaveBeenCalled()
     })
-    expect(result.current.isSegmentLoading).toBe(false)
+    expect(result.current.isLoading).toBe(false)
   })
 })

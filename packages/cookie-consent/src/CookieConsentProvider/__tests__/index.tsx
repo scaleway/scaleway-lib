@@ -40,7 +40,7 @@ const integrations = [
 ]
 const mockUseSegmentIntegrations = jest.fn().mockReturnValue({
   integrations,
-  isSegmentLoading: false,
+  isLoading: false,
 })
 jest.mock('../useSegmentIntegrations', () => ({
   __esModule: true,
@@ -96,7 +96,7 @@ describe('CookieConsent - CookieConsentProvider', () => {
     // simulate that Segment is loading
     mockUseSegmentIntegrations.mockReturnValue({
       integrations: undefined,
-      isSegmentLoading: true,
+      isLoading: true,
     })
     const { result } = renderHook(() => useCookieConsent(), {
       wrapper: wrapper({
@@ -115,7 +115,7 @@ describe('CookieConsent - CookieConsentProvider', () => {
     // put mock back as if segment integrations are loaded
     mockUseSegmentIntegrations.mockReturnValue({
       integrations,
-      isSegmentLoading: false,
+      isLoading: false,
     })
   })
 
