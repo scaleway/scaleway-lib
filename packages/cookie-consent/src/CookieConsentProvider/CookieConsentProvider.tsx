@@ -32,6 +32,7 @@ type Context = {
   integrations: Integrations
   needConsent: boolean
   isSegmentAllowed: boolean
+  isSegmentLoading: boolean
   segmentIntegrations: { All: boolean } & Record<string, boolean>
   categoriesConsent: Partial<Consent>
   saveConsent: (categoriesConsent: Partial<Consent>) => void
@@ -108,7 +109,7 @@ export const CookieConsentProvider = ({
   useEffect(() => {
     // We set needConsent at false until we have an answer from segment
     // This is to avoid showing setting needConsent to true only to be set
-    // to false after receiving segment answer and flciker the UI
+    // to false after receiving segment answer and flicker the UI
     setNeedsConsent(
       isConsentRequired &&
         cookies?.[HASH_COOKIE] !== integrationsHash.toString() &&
@@ -220,17 +221,19 @@ export const CookieConsentProvider = ({
       integrations,
       needConsent,
       isSegmentAllowed,
+      isSegmentLoading: !segmentIntegrations,
       segmentIntegrations: segmentEnabledIntegrations,
       categoriesConsent: cookieConsent,
       saveConsent,
     }),
     [
       integrations,
-      cookieConsent,
-      saveConsent,
       needConsent,
       isSegmentAllowed,
+      segmentIntegrations,
       segmentEnabledIntegrations,
+      cookieConsent,
+      saveConsent,
     ],
   )
 
