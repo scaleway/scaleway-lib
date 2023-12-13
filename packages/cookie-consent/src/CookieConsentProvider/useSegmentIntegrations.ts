@@ -80,5 +80,8 @@ export const useSegmentIntegrations = (config: Config) => {
       })
   }, [setIntegrations, config.segment])
 
-  return integrations
+  return {
+    integrations,
+    isSegmentLoading: integrations === undefined,
+  }
 }

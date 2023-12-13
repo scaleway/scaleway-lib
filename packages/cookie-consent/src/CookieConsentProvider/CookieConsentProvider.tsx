@@ -72,7 +72,8 @@ export const CookieConsentProvider = ({
   const [needConsent, setNeedsConsent] = useState(false)
 
   const [cookies, setCookies] = useState<Record<string, string>>()
-  const segmentIntegrations = useSegmentIntegrations(config)
+  const { integrations: segmentIntegrations, isSegmentLoading } =
+    useSegmentIntegrations(config)
 
   useEffect(() => {
     setCookies(cookie.parse(document.cookie))
@@ -221,7 +222,7 @@ export const CookieConsentProvider = ({
       integrations,
       needConsent,
       isSegmentAllowed,
-      isSegmentLoading: !segmentIntegrations,
+      isSegmentLoading,
       segmentIntegrations: segmentEnabledIntegrations,
       categoriesConsent: cookieConsent,
       saveConsent,
@@ -230,7 +231,7 @@ export const CookieConsentProvider = ({
       integrations,
       needConsent,
       isSegmentAllowed,
-      segmentIntegrations,
+      isSegmentLoading,
       segmentEnabledIntegrations,
       cookieConsent,
       saveConsent,
