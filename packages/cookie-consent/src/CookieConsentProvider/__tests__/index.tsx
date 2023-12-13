@@ -89,7 +89,7 @@ describe('CookieConsent - CookieConsentProvider', () => {
       Salesforce: true,
       'Salesforce custom destination (Scaleway)': true,
     })
-    expect(result.current.isSegmentLoading).toBe(false)
+    expect(result.current.isSegmentIntegrationsLoading).toBe(false)
   })
 
   it('should know when integrations are loading', () => {
@@ -110,7 +110,7 @@ describe('CookieConsent - CookieConsentProvider', () => {
         },
       }),
     })
-    expect(result.current.isSegmentLoading).toBe(true)
+    expect(result.current.isSegmentIntegrationsLoading).toBe(true)
 
     // put mock back as if segment integrations are loaded
     mockUseSegmentIntegrations.mockReturnValue({
