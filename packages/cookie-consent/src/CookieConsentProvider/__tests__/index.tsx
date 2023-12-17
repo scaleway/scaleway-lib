@@ -24,22 +24,27 @@ const wrapper =
     </CookieConsentProvider>
   )
 
+const integrations = [
+  {
+    category: 'analytics',
+    name: 'Google Universal Analytics',
+  },
+  {
+    category: 'marketing',
+    name: 'Salesforce custom destination (Scaleway)',
+  },
+  {
+    category: 'marketing',
+    name: 'Salesforce',
+  },
+]
+const mockUseSegmentIntegrations = jest.fn().mockReturnValue({
+  integrations,
+  isLoading: false,
+})
 jest.mock('../useSegmentIntegrations', () => ({
   __esModule: true,
-  useSegmentIntegrations: () => [
-    {
-      category: 'analytics',
-      name: 'Google Universal Analytics',
-    },
-    {
-      category: 'marketing',
-      name: 'Salesforce custom destination (Scaleway)',
-    },
-    {
-      category: 'marketing',
-      name: 'Salesforce',
-    },
-  ],
+  useSegmentIntegrations: () => mockUseSegmentIntegrations(),
 }))
 
 describe('CookieConsent - CookieConsentProvider', () => {
@@ -83,6 +88,34 @@ describe('CookieConsent - CookieConsentProvider', () => {
       'Google Universal Analytics': true,
       Salesforce: true,
       'Salesforce custom destination (Scaleway)': true,
+    })
+    expect(result.current.isSegmentIntegrationsLoading).toBe(false)
+  })
+
+  it('should know when integrations are loading', () => {
+    // simulate that Segment is loading
+    mockUseSegmentIntegrations.mockReturnValue({
+      integrations: undefined,
+      isLoading: true,
+    })
+    const { result } = renderHook(() => useCookieConsent(), {
+      wrapper: wrapper({
+        isConsentRequired: true,
+        essentialIntegrations: ['Deskpro', 'Stripe', 'Sentry'],
+        config: {
+          segment: {
+            cdnURL: 'url',
+            writeKey: 'key',
+          },
+        },
+      }),
+    })
+    expect(result.current.isSegmentIntegrationsLoading).toBe(true)
+
+    // put mock back as if segment integrations are loaded
+    mockUseSegmentIntegrations.mockReturnValue({
+      integrations,
+      isLoading: false,
     })
   })
 
