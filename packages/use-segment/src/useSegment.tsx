@@ -80,7 +80,7 @@ function SegmentProvider<T extends Events>({
       !!settings?.writeKey &&
       (hasNoIntegrationsSettings || isAnyIntegrationEnabled)
     )
-  }, [areOptionsLoading, initOptions, settings])
+  }, [areOptionsLoading, initOptions?.integrations, settings?.writeKey])
 
   useDeepCompareEffectNoCheck(() => {
     if (shouldLoad === true && settings) {
