@@ -23,6 +23,6 @@ describe('CookieConsent - useSegmentIntegrations', () => {
       expect(globalThis.fetch).toHaveBeenCalled()
     })
 
-    expect(result.current.isLoading).toBe(false)
+    expect(result.current.isLoaded).toBe(true)
   })
 })
