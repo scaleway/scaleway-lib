@@ -41,7 +41,6 @@ export function useSegment<T extends Events>(): SegmentContextInterface<T> {
 export type SegmentProviderProps<T> = {
   settings?: AnalyticsBrowserSettings
   initOptions?: InitOptions
-  areOptionsLoading?: boolean
   onError?: (err: Error) => void
   onEventError?: OnEventError
   events: T
@@ -54,7 +53,6 @@ function SegmentProvider<T extends Events>({
   children,
   settings,
   initOptions,
-  areOptionsLoading = false,
   onError,
   onEventError,
   events,
@@ -65,22 +63,23 @@ function SegmentProvider<T extends Events>({
   )
 
   const shouldLoad = useMemo(() => {
-    // If options are loading (for example Segment integrations),
-    // we don't know if we should load or not
-    if (areOptionsLoading) {
-      return undefined
+    if (settings !== undefined && initOptions !== undefined) {
+      const hasNoIntegrationsSettings = !initOptions.integrations
+      const isAllEnabled = !!initOptions.integrations?.All
+      const isAnyIntegrationEnabled = Object.values(
+        initOptions.integrations ?? {},
+      ).reduce<boolean>((acc, integration) => !!acc || !!integration, false)
+
+      return (
+        !!settings.writeKey &&
+        (hasNoIntegrationsSettings || isAllEnabled || isAnyIntegrationEnabled)
+      )
     }
 
-    const hasNoIntegrationsSettings = !initOptions?.integrations
-    const isAnyIntegrationEnabled = Object.values(
-      initOptions?.integrations ?? {},
-    ).reduce<boolean>((acc, integration) => !!acc || !!integration, false)
-
-    return (
-      !!settings?.writeKey &&
-      (hasNoIntegrationsSettings || isAnyIntegrationEnabled)
-    )
-  }, [areOptionsLoading, initOptions?.integrations, settings?.writeKey])
+    // If options or settings are undefined, we don't know if we should load or not
+    // (For example, in case segment integrations are still loading)
+    return undefined
+  }, [initOptions, settings])
 
   useDeepCompareEffectNoCheck(() => {
     if (shouldLoad === true && settings) {
