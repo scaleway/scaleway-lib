@@ -32,7 +32,7 @@ type Context = {
   integrations: Integrations
   needConsent: boolean
   isSegmentAllowed: boolean
-  isSegmentIntegrationsLoading: boolean
+  isSegmentIntegrationsLoaded: boolean
   segmentIntegrations: { All: boolean } & Record<string, boolean>
   categoriesConsent: Partial<Consent>
   saveConsent: (categoriesConsent: Partial<Consent>) => void
@@ -74,7 +74,7 @@ export const CookieConsentProvider = ({
   const [cookies, setCookies] = useState<Record<string, string>>()
   const {
     integrations: segmentIntegrations,
-    isLoading: isSegmentIntegrationsLoading,
+    isLoaded: isSegmentIntegrationsLoaded,
   } = useSegmentIntegrations(config)
 
   useEffect(() => {
@@ -224,7 +224,7 @@ export const CookieConsentProvider = ({
       integrations,
       needConsent,
       isSegmentAllowed,
-      isSegmentIntegrationsLoading,
+      isSegmentIntegrationsLoaded,
       segmentIntegrations: segmentEnabledIntegrations,
       categoriesConsent: cookieConsent,
       saveConsent,
@@ -233,7 +233,7 @@ export const CookieConsentProvider = ({
       integrations,
       needConsent,
       isSegmentAllowed,
-      isSegmentIntegrationsLoading,
+      isSegmentIntegrationsLoaded,
       segmentEnabledIntegrations,
       cookieConsent,
       saveConsent,
