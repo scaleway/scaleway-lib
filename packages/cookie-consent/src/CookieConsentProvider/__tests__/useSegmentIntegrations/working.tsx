@@ -64,7 +64,7 @@ describe('CookieConsent - useSegmentIntegrations', () => {
       }),
     )
 
-    expect(result.current.isLoading).toBe(true)
+    expect(result.current.isLoaded).toBe(false)
 
     await waitFor(() => {
       expect(result.current.integrations).toStrictEqual([
@@ -102,6 +102,6 @@ describe('CookieConsent - useSegmentIntegrations', () => {
     await waitFor(() => {
       expect(globalThis.fetch).toHaveBeenCalled()
     })
-    expect(result.current.isLoading).toBe(false)
+    expect(result.current.isLoaded).toBe(true)
   })
 })

@@ -40,7 +40,7 @@ const integrations = [
 ]
 const mockUseSegmentIntegrations = jest.fn().mockReturnValue({
   integrations,
-  isLoading: false,
+  isLoaded: true,
 })
 jest.mock('../useSegmentIntegrations', () => ({
   __esModule: true,
@@ -89,14 +89,14 @@ describe('CookieConsent - CookieConsentProvider', () => {
       Salesforce: true,
       'Salesforce custom destination (Scaleway)': true,
     })
-    expect(result.current.isSegmentIntegrationsLoading).toBe(false)
+    expect(result.current.isSegmentIntegrationsLoaded).toBe(true)
   })
 
   it('should know when integrations are loading', () => {
     // simulate that Segment is loading
     mockUseSegmentIntegrations.mockReturnValue({
       integrations: undefined,
-      isLoading: true,
+      isLoaded: false,
     })
     const { result } = renderHook(() => useCookieConsent(), {
       wrapper: wrapper({
@@ -110,12 +110,12 @@ describe('CookieConsent - CookieConsentProvider', () => {
         },
       }),
     })
-    expect(result.current.isSegmentIntegrationsLoading).toBe(true)
+    expect(result.current.isSegmentIntegrationsLoaded).toBe(false)
 
     // put mock back as if segment integrations are loaded
     mockUseSegmentIntegrations.mockReturnValue({
       integrations,
-      isLoading: false,
+      isLoaded: true,
     })
   })
 
