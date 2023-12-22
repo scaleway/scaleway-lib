@@ -41,6 +41,7 @@ export function useSegment<T extends Events>(): SegmentContextInterface<T> {
 export type SegmentProviderProps<T> = {
   settings?: AnalyticsBrowserSettings
   initOptions?: InitOptions
+  areOptionsLoaded?: boolean
   onError?: (err: Error) => void
   onEventError?: OnEventError
   events: T
@@ -53,6 +54,7 @@ function SegmentProvider<T extends Events>({
   children,
   settings,
   initOptions,
+  areOptionsLoaded = false,
   onError,
   onEventError,
   events,
@@ -63,26 +65,25 @@ function SegmentProvider<T extends Events>({
   )
 
   const shouldLoad = useMemo(() => {
-    if (settings !== undefined && initOptions !== undefined) {
-      const hasNoIntegrationsSettings = !initOptions.integrations
-      const isAllEnabled = !!initOptions.integrations?.All
+    if (areOptionsLoaded) {
+      const hasNoIntegrationsSettings = !initOptions?.integrations
+      const isAllEnabled = !!initOptions?.integrations?.All
       const isAnyIntegrationEnabled = Object.values(
-        initOptions.integrations ?? {},
+        initOptions?.integrations ?? {},
       ).reduce<boolean>((acc, integration) => !!acc || !!integration, false)
 
       return (
-        !!settings.writeKey &&
+        !!settings?.writeKey &&
         (hasNoIntegrationsSettings || isAllEnabled || isAnyIntegrationEnabled)
       )
     }
 
-    // If options or settings are undefined, we don't know if we should load or not
-    // (For example, in case segment integrations are still loading)
-    return undefined
-  }, [initOptions, settings])
+    // If options are not loaded, we should not load
+    return false
+  }, [initOptions?.integrations, areOptionsLoaded, settings?.writeKey])
 
   useDeepCompareEffectNoCheck(() => {
-    if (shouldLoad === true && settings) {
+    if (areOptionsLoaded && shouldLoad && settings) {
       AnalyticsBrowser.load(settings, initOptions)
         .then(([res]) => {
           setAnalytics(res)
@@ -93,7 +94,7 @@ function SegmentProvider<T extends Events>({
         .finally(() => {
           setIsAnalyticsReady(true)
         })
-    } else if (shouldLoad === false) {
+    } else if (areOptionsLoaded && !shouldLoad) {
       // When user has refused tracking, set ready anyway
       setIsAnalyticsReady(true)
     }
