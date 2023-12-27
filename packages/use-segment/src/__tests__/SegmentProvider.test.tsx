@@ -5,6 +5,8 @@ import { render, screen, waitFor } from '@testing-library/react'
 import SegmentProvider from '..'
 import type { Analytics } from '../index'
 
+const TestChildren = () => <div data-testid="test">children</div>
+
 describe('SegmentProvider', () => {
   it('Provider should render children when shouldRenderOnlyWhenReady is false', async () => {
     const mock = jest
@@ -22,17 +24,18 @@ describe('SegmentProvider', () => {
           event: () => () => Promise.resolve(),
         }}
       >
-        <div>children</div>
+        <TestChildren />
       </SegmentProvider>,
     )
 
     await waitFor(() => {
       expect(mock).toHaveBeenCalledTimes(0)
     })
-    expect(screen.getByText('children')).toBeTruthy()
+
+    expect(screen.getByTestId('test')).toBeTruthy()
   })
 
-  it('Provider should not render children when analytics is not ready', async () => {
+  it('Provider should not render children when options are not loaded ', async () => {
     const mock = jest
       .spyOn(AnalyticsBrowser, 'load')
       .mockResolvedValue([{} as Analytics, {} as Context])
@@ -49,14 +52,62 @@ describe('SegmentProvider', () => {
           event: () => () => Promise.resolve(),
         }}
       >
-        <div>children</div>
+        <TestChildren />
       </SegmentProvider>,
     )
 
     await waitFor(() => {
       expect(mock).toHaveBeenCalledTimes(0)
     })
-    // FIXME not working
-    // expect(screen.findByText('children')).finNoAssertionThatworks ..
+
+    expect(screen.queryByTestId('test')).toBe(null)
+  })
+
+  it('Provider should not render children when options are not loaded at first render, but load after options changed', async () => {
+    const mock = jest
+      .spyOn(AnalyticsBrowser, 'load')
+      .mockResolvedValue([{} as Analytics, {} as Context])
+
+    const settings = { writeKey: 'helloworld' }
+
+    const { rerender } = render(
+      <SegmentProvider
+        settings={settings}
+        initOptions={{}}
+        areOptionsLoaded={false}
+        shouldRenderOnlyWhenReady
+        events={{
+          event: () => () => Promise.resolve(),
+        }}
+      >
+        <TestChildren />
+      </SegmentProvider>,
+    )
+
+    await waitFor(() => {
+      expect(mock).toHaveBeenCalledTimes(0)
+    })
+
+    expect(screen.queryByTestId('test')).toBe(null)
+
+    rerender(
+      <SegmentProvider
+        settings={settings}
+        initOptions={{}}
+        areOptionsLoaded
+        shouldRenderOnlyWhenReady
+        events={{
+          event: () => () => Promise.resolve(),
+        }}
+      >
+        <TestChildren />
+      </SegmentProvider>,
+    )
+
+    await waitFor(() => {
+      expect(mock).toHaveBeenCalledTimes(1)
+    })
+
+    expect(screen.queryByTestId('test')).toBeTruthy()
   })
 })

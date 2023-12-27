@@ -126,7 +126,7 @@ describe('segment hook', () => {
     expect(result.current.isAnalyticsReady).toBe(false)
   })
 
-  it('useSegment should not load but be ready when All integrations disabled', () => {
+  it('useSegment should not load but be ready when All integrations disabled', async () => {
     const mock = jest
       .spyOn(AnalyticsBrowser, 'load')
       .mockResolvedValue([{} as Analytics, {} as Context])
@@ -139,7 +139,10 @@ describe('segment hook', () => {
         areOptionsLoaded: true,
       }),
     })
-    expect(mock).toHaveBeenCalledTimes(0)
+    await waitFor(() => {
+      expect(mock).toHaveBeenCalledTimes(0)
+    })
+
     expect(result.current.analytics).toBe(undefined)
     expect(result.current.isAnalyticsReady).toBe(true)
   })
@@ -163,8 +166,9 @@ describe('segment hook', () => {
         areOptionsLoaded: true,
       }),
     })
-
-    expect(mock).toHaveBeenCalledTimes(0)
+    await waitFor(() => {
+      expect(mock).toHaveBeenCalledTimes(0)
+    })
 
     await waitFor(() => {
       expect(result.current.analytics).toStrictEqual(undefined)
@@ -191,8 +195,9 @@ describe('segment hook', () => {
         areOptionsLoaded: true,
       }),
     })
-
-    expect(mock).toHaveBeenCalledTimes(1)
+    await waitFor(() => {
+      expect(mock).toHaveBeenCalledTimes(1)
+    })
 
     await waitFor(() => {
       expect(result.current.analytics).toStrictEqual({})
@@ -215,8 +220,9 @@ describe('segment hook', () => {
         areOptionsLoaded: false,
       }),
     })
-
-    expect(mock).toHaveBeenCalledTimes(0)
+    await waitFor(() => {
+      expect(mock).toHaveBeenCalledTimes(0)
+    })
 
     await waitFor(() => {
       expect(result.current.analytics).toStrictEqual(undefined)
@@ -239,8 +245,10 @@ describe('segment hook', () => {
       }),
     })
 
-    expect(mock).toHaveBeenCalledTimes(1)
-    expect(mock).toHaveBeenCalledWith(settings, undefined)
+    await waitFor(() => {
+      expect(mock).toHaveBeenCalledTimes(1)
+      expect(mock).toHaveBeenCalledWith(settings, undefined)
+    })
 
     await waitFor(() => {
       expect(result.current.analytics).toStrictEqual({})
@@ -262,9 +270,10 @@ describe('segment hook', () => {
         areOptionsLoaded: true,
       }),
     })
-
-    expect(mock).toHaveBeenCalledTimes(1)
-    expect(mock).toHaveBeenCalledWith(settings, undefined)
+    await waitFor(() => {
+      expect(mock).toHaveBeenCalledTimes(1)
+      expect(mock).toHaveBeenCalledWith(settings, undefined)
+    })
 
     await waitFor(() => {
       expect(result.current.analytics).toStrictEqual({})
@@ -287,9 +296,10 @@ describe('segment hook', () => {
         areOptionsLoaded: true,
       }),
     })
-
-    expect(mock).toHaveBeenCalledTimes(1)
-    expect(mock).toHaveBeenCalledWith(settings, undefined)
+    await waitFor(() => {
+      expect(mock).toHaveBeenCalledTimes(1)
+      expect(mock).toHaveBeenCalledWith(settings, undefined)
+    })
 
     await waitForExpect(() => {
       expect(onError).toHaveBeenCalledTimes(1)
@@ -319,8 +329,9 @@ describe('segment hook', () => {
         areOptionsLoaded: true,
       }),
     })
-
-    expect(mock).toHaveBeenCalledTimes(1)
+    await waitFor(() => {
+      expect(mock).toHaveBeenCalledTimes(1)
+    })
 
     await waitFor(async () => {
       await result.current.events.errorEvent()
@@ -352,8 +363,10 @@ describe('segment hook', () => {
       }),
     })
 
-    expect(mock).toHaveBeenCalledTimes(1)
-    expect(mock).toHaveBeenCalledWith(settings, initOptions)
+    await waitFor(() => {
+      expect(mock).toHaveBeenCalledTimes(1)
+      expect(mock).toHaveBeenCalledWith(settings, initOptions)
+    })
 
     await waitFor(() => {
       expect(result.current.analytics).toStrictEqual({})
@@ -369,7 +382,12 @@ describe('segment hook', () => {
       }),
     })
 
-    // @ts-expect-error if type infering works this should be an error
-    expect(await result.current.events.pageVisited()).toBe(undefined)
+    expect(
+      await result.current.events.pageVisited(
+        'Main',
+        'organizationId',
+        'Elements',
+      ),
+    ).toBe(undefined)
   })
 })
