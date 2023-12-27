@@ -42,6 +42,7 @@ export type SegmentProviderProps<T> = {
   settings?: AnalyticsBrowserSettings
   initOptions?: InitOptions
   areOptionsLoaded?: boolean
+  shouldRenderOnlyWhenReady?: boolean
   onError?: (err: Error) => void
   onEventError?: OnEventError
   events: T
@@ -55,6 +56,8 @@ function SegmentProvider<T extends Events>({
   settings,
   initOptions,
   areOptionsLoaded = false,
+  // This option force provider to render children only when isAnalytics is ready
+  shouldRenderOnlyWhenReady = false,
   onError,
   onEventError,
   events,
@@ -116,8 +119,12 @@ function SegmentProvider<T extends Events>({
     }
   }, [events, internalAnalytics, isAnalyticsReady, onEventError])
 
+  const shouldRender = !shouldRenderOnlyWhenReady || isAnalyticsReady
+
   return (
-    <SegmentContext.Provider value={value}>{children}</SegmentContext.Provider>
+    <SegmentContext.Provider value={value}>
+      {shouldRender ? children : null}
+    </SegmentContext.Provider>
   )
 }
 

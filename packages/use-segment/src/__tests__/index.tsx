@@ -50,12 +50,14 @@ const wrapper =
     onError,
     onEventError,
     events = defaultEvents,
+    shouldRenderOnlyWhenReady,
   }: Omit<SegmentProviderProps<DefaultEvents>, 'children'>) =>
   ({ children }: { children: ReactNode }) => (
     <SegmentProvider
       settings={settings}
       initOptions={initOptions}
       areOptionsLoaded={areOptionsLoaded}
+      shouldRenderOnlyWhenReady={shouldRenderOnlyWhenReady}
       onError={onError}
       onEventError={onEventError}
       events={events}
