@@ -1,5 +1,13 @@
 # @scaleway/cookie-consent
 
+## 1.1.0
+
+### Minor Changes
+
+- [#1726](https://github.com/scaleway/scaleway-lib/pull/1726) [`7669906`](https://github.com/scaleway/scaleway-lib/commit/76699066084b09de9c5da877c6f3be71a47024a5) Thanks [@ModuloM](https://github.com/ModuloM)! - Add isSegmentIntegrationsLoading state to manage Segment integrations loading status
+
+- [#1738](https://github.com/scaleway/scaleway-lib/pull/1738) [`63b01a2`](https://github.com/scaleway/scaleway-lib/commit/63b01a24418ea68889db60e6a6efb48651310917) Thanks [@ModuloM](https://github.com/ModuloM)! - refactor(useCookieConsent): change isSegmentIntegrationsLoaded output
+
 ## 1.0.7
 
 ### Patch Changes

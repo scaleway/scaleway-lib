@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/jest-helpers",
-  "version": "3.0.11",
+  "version": "3.0.12",
   "description": "A package for utilities jest functions",
   "type": "module",
   "engines": {

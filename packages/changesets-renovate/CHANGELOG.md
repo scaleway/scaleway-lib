@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.4.0
+
+### Minor Changes
+
+- [#1705](https://github.com/scaleway/scaleway-lib/pull/1705) [`d3e1246`](https://github.com/scaleway/scaleway-lib/commit/d3e1246f70229cf9e3a7a5d464d921fe5e379af0) Thanks [@wrighbr](https://github.com/wrighbr)! - add the ability to skip commit
+
 ## 1.3.2
 
 ### Patch Changes

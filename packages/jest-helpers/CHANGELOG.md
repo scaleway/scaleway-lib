@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.12
+
+### Patch Changes
+
+- [#1742](https://github.com/scaleway/scaleway-lib/pull/1742) [`94f6831`](https://github.com/scaleway/scaleway-lib/commit/94f68312ef023da9f34ac3e1a0387a232be75c67) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@emotion/react` to `11.11.3`.
+
 ## 3.0.11
 
 ### Patch Changes
