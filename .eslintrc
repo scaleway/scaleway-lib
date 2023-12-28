@@ -38,7 +38,8 @@
         "**/__tests__/**/*.ts{x,}"
       ],
       "rules": {
-        "import/no-extraneous-dependencies": "off"
+        "import/no-extraneous-dependencies": "off",
+        "react/jsx-key": "off"
       }
     }
   ]

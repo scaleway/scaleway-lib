@@ -123,5 +123,6 @@ module.exports = {
     ],
     'sort-keys': 'off',
     'no-constant-binary-expression': 'error',
+    'react/jsx-key': 'error',
   },
 }
