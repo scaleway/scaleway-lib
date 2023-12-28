@@ -101,7 +101,7 @@ function SegmentProvider<T extends Events>({
       // When user has refused tracking, set ready anyway
       setIsAnalyticsReady(true)
     }
-  }, [onError, settings, initOptions, shouldLoad])
+  }, [onError, settings, initOptions, shouldLoad, areOptionsLoaded])
 
   const value = useMemo<SegmentContextInterface<T>>(() => {
     const curiedEvents = Object.entries(events).reduce(
