@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.10.1
+
+### Patch Changes
+
+- [#1751](https://github.com/scaleway/scaleway-lib/pull/1751) [`87c8f38`](https://github.com/scaleway/scaleway-lib/commit/87c8f388d87efabdda68a22772f15fecf0990a06) Thanks [@ModuloM](https://github.com/ModuloM)! - fix(useSegment): add test and missing dep on useEffect
+
 ## 0.10.0
 
 ### Minor Changes
