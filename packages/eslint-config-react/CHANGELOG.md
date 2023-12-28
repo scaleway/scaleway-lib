@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.17.0
+
+### Minor Changes
+
+- [#1746](https://github.com/scaleway/scaleway-lib/pull/1746) [`62c3a59`](https://github.com/scaleway/scaleway-lib/commit/62c3a59d12c2eea077dfd48dff72b5c500b51292) Thanks [@johnrazeur](https://github.com/johnrazeur)! - Add react/jsx-key rule
+
 ## 3.16.4
 
 ### Patch Changes

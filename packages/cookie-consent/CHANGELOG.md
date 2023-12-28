@@ -1,5 +1,11 @@
 # @scaleway/cookie-consent
 
+## 1.1.1
+
+### Patch Changes
+
+- [#1748](https://github.com/scaleway/scaleway-lib/pull/1748) [`c7d2a78`](https://github.com/scaleway/scaleway-lib/commit/c7d2a785762f5aa78948f5905e4a2838545a7e14) Thanks [@ModuloM](https://github.com/ModuloM)! - fix(useCookieConsent): fix missing dependency
+
 ## 1.1.0
 
 ### Minor Changes
