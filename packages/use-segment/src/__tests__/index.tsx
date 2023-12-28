@@ -68,6 +68,10 @@ const wrapper =
 
 describe('segment hook', () => {
   beforeEach(() => {
+    jest.clearAllMocks()
+  })
+
+  afterAll(() => {
     jest.restoreAllMocks()
   })
 
