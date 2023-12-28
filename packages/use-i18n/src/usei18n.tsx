@@ -1,6 +1,7 @@
 import type { NumberFormatOptions } from '@formatjs/ecma402-abstract'
 import type { Locale as DateFnsLocale } from 'date-fns'
 import { formatDistanceToNow, formatDistanceToNowStrict } from 'date-fns'
+import { enGB } from 'date-fns/locale'
 import type { BaseLocale } from 'international-types'
 import type { ReactElement, ReactNode } from 'react'
 import {
@@ -20,7 +21,7 @@ import type { IntlListFormatOptions } from './formatters'
 import formatters from './formatters'
 import type { ReactParamsObject, ScopedTranslateFn, TranslateFn } from './types'
 
-const LOCALE_ITEM_STORAGE = 'locale'
+const LOCALE_ITEM_STORAGE = 'locale' as const
 
 type TranslationsByLocales = Record<string, BaseLocale>
 type RequiredGenericContext<Locale extends BaseLocale> =
@@ -156,18 +157,31 @@ export function useTranslation<Locale extends BaseLocale = {}>(
   }
 }
 
-type LoadTranslationsFn = ({
+type LoadTranslationsFn = <L extends string>({
   namespace,
   locale,
 }: {
   namespace: string
-  locale: string
+  locale: L
 }) => Promise<{ default: BaseLocale }>
-type LoadLocaleFn = (locale: string) => Promise<Locale>
+
+type LoadLocaleFn<L extends string> = (locale: L) => Promise<Locale>
 
 const initialDefaultTranslations = {}
 
-const I18nContextProvider = ({
+type I18nContextProviderProps<SupportedLocales extends string[]> = {
+  children: ReactNode
+  defaultLoad: LoadTranslationsFn
+  loadDateLocale?: LoadLocaleFn<SupportedLocales[number]>
+  defaultDateLocale?: DateFnsLocale
+  defaultLocale: SupportedLocales[number]
+  defaultTranslations: TranslationsByLocales
+  enableDefaultLocale: boolean
+  enableDebugKey: boolean
+  localeItemStorage: string
+  supportedLocales: SupportedLocales
+}
+const I18nContextProvider = <SupportedLocales extends string[]>({
   children,
   defaultLoad,
   loadDateLocale,
@@ -178,33 +192,32 @@ const I18nContextProvider = ({
   enableDebugKey = false,
   localeItemStorage = LOCALE_ITEM_STORAGE,
   supportedLocales,
-}: {
-  children: ReactNode
-  defaultLoad: LoadTranslationsFn
-  loadDateLocale?: LoadLocaleFn
-  defaultDateLocale?: Locale
-  defaultLocale: string
-  defaultTranslations: TranslationsByLocales
-  enableDefaultLocale: boolean
-  enableDebugKey: boolean
-  localeItemStorage: string
-  supportedLocales: string[]
-}): ReactElement => {
-  const [currentLocale, setCurrentLocale] = useState<string>(
+}: I18nContextProviderProps<SupportedLocales>): ReactElement => {
+  const [currentLocale, setCurrentLocale] = useState<SupportedLocales[number]>(
     getCurrentLocale({ defaultLocale, localeItemStorage, supportedLocales }),
   )
   const [translations, setTranslations] =
     useState<TranslationsByLocales>(defaultTranslations)
   const [namespaces, setNamespaces] = useState<string[]>([])
-  const [dateFnsLocale, setDateFnsLocale] = useState<Locale | undefined>(
-    defaultDateLocale ?? undefined,
+  const [dateFnsLocale, setDateFnsLocale] = useState<DateFnsLocale>(
+    defaultDateLocale ?? enGB,
   )
 
   useEffect(() => {
-    loadDateLocale?.(currentLocale === 'en' ? 'en-GB' : currentLocale)
-      .then(setDateFnsLocale)
-      .catch(() => loadDateLocale('en-GB').then(setDateFnsLocale))
-  }, [loadDateLocale, currentLocale])
+    const load = async () => {
+      if (loadDateLocale) {
+        try {
+          const dateFnsL = await loadDateLocale(currentLocale)
+          setDateFnsLocale(dateFnsL)
+        } catch (err) {
+          setDateFnsLocale(defaultDateLocale ?? enGB)
+        }
+      }
+    }
+    load()
+      .then()
+      .catch(() => null)
+  }, [defaultDateLocale, loadDateLocale, currentLocale])
 
   const loadTranslations = useCallback(
     async (namespace: string, load: LoadTranslationsFn = defaultLoad) => {
