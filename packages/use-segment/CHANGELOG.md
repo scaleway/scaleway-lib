@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.10.0
+
+### Minor Changes
+
+- [#1722](https://github.com/scaleway/scaleway-lib/pull/1722) [`1ad01cc`](https://github.com/scaleway/scaleway-lib/commit/1ad01cc077139530ec7275cf3955493c019e41fd) Thanks [@ModuloM](https://github.com/ModuloM)! - Add ready state to useSegment
+
 ## 0.9.25
 
 ### Patch Changes
