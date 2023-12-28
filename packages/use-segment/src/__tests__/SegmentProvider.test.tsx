@@ -1,4 +1,4 @@
-import { describe, expect, it, jest } from '@jest/globals'
+import { afterAll, describe, expect, it, jest } from '@jest/globals'
 import type { Context } from '@segment/analytics-next'
 import { AnalyticsBrowser } from '@segment/analytics-next'
 import { render, screen, waitFor } from '@testing-library/react'
@@ -8,6 +8,14 @@ import type { Analytics } from '../index'
 const TestChildren = () => <div data-testid="test">children</div>
 
 describe('SegmentProvider', () => {
+  beforeEach(() => {
+    jest.clearAllMocks()
+  })
+
+  afterAll(() => {
+    jest.restoreAllMocks()
+  })
+
   it('Provider should render children when shouldRenderOnlyWhenReady is false', async () => {
     const mock = jest
       .spyOn(AnalyticsBrowser, 'load')
@@ -106,6 +114,50 @@ describe('SegmentProvider', () => {
 
     await waitFor(() => {
       expect(mock).toHaveBeenCalledTimes(1)
+    })
+
+    expect(screen.queryByTestId('test')).toBeTruthy()
+  })
+
+  it('Provider should not render children when options are not loaded at first render, but load after options changed even without settings', async () => {
+    const mock = jest
+      .spyOn(AnalyticsBrowser, 'load')
+      .mockResolvedValue([{} as Analytics, {} as Context])
+
+    const { rerender } = render(
+      <SegmentProvider
+        initOptions={{}}
+        areOptionsLoaded={false}
+        shouldRenderOnlyWhenReady
+        events={{
+          event: () => () => Promise.resolve(),
+        }}
+      >
+        <TestChildren />
+      </SegmentProvider>,
+    )
+
+    await waitFor(() => {
+      expect(mock).toHaveBeenCalledTimes(0)
+    })
+
+    expect(screen.queryByTestId('test')).toBe(null)
+
+    rerender(
+      <SegmentProvider
+        initOptions={{}}
+        areOptionsLoaded
+        shouldRenderOnlyWhenReady
+        events={{
+          event: () => () => Promise.resolve(),
+        }}
+      >
+        <TestChildren />
+      </SegmentProvider>,
+    )
+
+    await waitFor(() => {
+      expect(mock).toHaveBeenCalledTimes(0)
     })
 
     expect(screen.queryByTestId('test')).toBeTruthy()
