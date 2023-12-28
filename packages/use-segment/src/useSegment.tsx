@@ -18,6 +18,7 @@ type Events = Record<
 type SegmentContextInterface<T extends Events = Events> = {
   analytics: Analytics | undefined
   events: { [K in keyof T]: ReturnType<T[K]> }
+  isAnalyticsReady: boolean
 }
 
 const SegmentContext = createContext<SegmentContextInterface | undefined>(
@@ -40,6 +41,8 @@ export function useSegment<T extends Events>(): SegmentContextInterface<T> {
 export type SegmentProviderProps<T> = {
   settings?: AnalyticsBrowserSettings
   initOptions?: InitOptions
+  areOptionsLoaded?: boolean
+  shouldRenderOnlyWhenReady?: boolean
   onError?: (err: Error) => void
   onEventError?: OnEventError
   events: T
@@ -52,34 +55,51 @@ function SegmentProvider<T extends Events>({
   children,
   settings,
   initOptions,
+  areOptionsLoaded = false,
+  // This option force provider to render children only when isAnalytics is ready
+  shouldRenderOnlyWhenReady = false,
   onError,
   onEventError,
   events,
 }: SegmentProviderProps<T>) {
+  const [isAnalyticsReady, setIsAnalyticsReady] = useState(false)
   const [internalAnalytics, setAnalytics] = useState<Analytics | undefined>(
     undefined,
   )
 
   const shouldLoad = useMemo(() => {
-    const hasNoIntegrationsSettings = !initOptions?.integrations
-    const isAllEnabled = !!initOptions?.integrations?.All
-    const isAnyIntegrationEnabled = Object.values(
-      initOptions?.integrations ?? {},
-    ).reduce<boolean>((acc, integration) => !!acc || !!integration, false)
+    if (areOptionsLoaded) {
+      const hasNoIntegrationsSettings = !initOptions?.integrations
+      const isAllEnabled = !!initOptions?.integrations?.All
+      const isAnyIntegrationEnabled = Object.values(
+        initOptions?.integrations ?? {},
+      ).reduce<boolean>((acc, integration) => !!acc || !!integration, false)
 
-    return (
-      !!settings?.writeKey &&
-      (hasNoIntegrationsSettings || isAllEnabled || isAnyIntegrationEnabled)
-    )
-  }, [initOptions?.integrations, settings?.writeKey])
+      return (
+        !!settings?.writeKey &&
+        (hasNoIntegrationsSettings || isAllEnabled || isAnyIntegrationEnabled)
+      )
+    }
+
+    // If options are not loaded, we should not load
+    return false
+  }, [initOptions?.integrations, areOptionsLoaded, settings?.writeKey])
 
   useDeepCompareEffectNoCheck(() => {
-    if (shouldLoad && settings) {
+    if (areOptionsLoaded && shouldLoad && settings) {
       AnalyticsBrowser.load(settings, initOptions)
-        .then(([res]) => setAnalytics(res))
+        .then(([res]) => {
+          setAnalytics(res)
+        })
         .catch((err: Error) => {
           onError?.(err)
         })
+        .finally(() => {
+          setIsAnalyticsReady(true)
+        })
+    } else if (areOptionsLoaded && !shouldLoad) {
+      // When user has refused tracking, set ready anyway
+      setIsAnalyticsReady(true)
     }
   }, [onError, settings, initOptions, shouldLoad])
 
@@ -95,11 +115,16 @@ function SegmentProvider<T extends Events>({
     return {
       analytics: internalAnalytics,
       events: curiedEvents,
+      isAnalyticsReady,
     }
-  }, [internalAnalytics, events, onEventError])
+  }, [events, internalAnalytics, isAnalyticsReady, onEventError])
+
+  const shouldRender = !shouldRenderOnlyWhenReady || isAnalyticsReady
 
   return (
-    <SegmentContext.Provider value={value}>{children}</SegmentContext.Provider>
+    <SegmentContext.Provider value={value}>
+      {shouldRender ? children : null}
+    </SegmentContext.Provider>
   )
 }
 
