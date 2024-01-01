@@ -31,13 +31,13 @@
   "dependencies": {
     "@formatjs/ecma402-abstract": "1.18.0",
     "@formatjs/fast-memoize": "2.2.0",
-    "date-fns": "2.30.0",
+    "date-fns": "3.0.0",
     "filesize": "10.1.0",
     "international-types": "0.8.1",
     "intl-messageformat": "10.5.8"
   },
   "peerDependencies": {
-    "date-fns": "2.x",
+    "date-fns": "2.x || 3.x",
     "react": "18.x || 18",
     "react-dom": "18.x || 18"
   }
