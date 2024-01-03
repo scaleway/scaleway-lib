@@ -4,7 +4,7 @@
   "description": "A small hook to handle i18n",
   "type": "module",
   "engines": {
-    "node": ">=14.x"
+    "node": ">=18.x"
   },
   "sideEffects": false,
   "exports": {
@@ -37,7 +37,7 @@
     "intl-messageformat": "10.5.8"
   },
   "peerDependencies": {
-    "date-fns": "2.x || 3.x",
+    "date-fns": "3.x",
     "react": "18.x || 18",
     "react-dom": "18.x || 18"
   }
