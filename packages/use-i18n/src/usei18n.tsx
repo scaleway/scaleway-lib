@@ -1,6 +1,10 @@
 import type { NumberFormatOptions } from '@formatjs/ecma402-abstract'
-import type { Locale as DateFnsLocale } from 'date-fns'
-import { formatDistanceToNow, formatDistanceToNowStrict } from 'date-fns'
+import {
+  type Locale as DateFnsLocale,
+  formatDistanceToNow,
+  formatDistanceToNowStrict,
+} from 'date-fns'
+import { enGB } from 'date-fns/locale'
 import type { BaseLocale } from 'international-types'
 import type { ReactElement, ReactNode } from 'react'
 import {
@@ -12,12 +16,9 @@ import {
   useState,
 } from 'react'
 import ReactDOM from 'react-dom'
-import type { FormatDateOptions } from './formatDate'
-import dateFormat from './formatDate'
-import type { FormatUnitOptions } from './formatUnit'
-import unitFormat from './formatUnit'
-import type { IntlListFormatOptions } from './formatters'
-import formatters from './formatters'
+import dateFormat, { type FormatDateOptions } from './formatDate'
+import unitFormat, { type FormatUnitOptions } from './formatUnit'
+import formatters, { type IntlListFormatOptions } from './formatters'
 import type { ReactParamsObject, ScopedTranslateFn, TranslateFn } from './types'
 
 const LOCALE_ITEM_STORAGE = 'locale'
@@ -163,7 +164,8 @@ type LoadTranslationsFn = ({
   namespace: string
   locale: string
 }) => Promise<{ default: BaseLocale }>
-type LoadLocaleFn = (locale: string) => Promise<Locale>
+
+type LoadLocaleFn = (locale: string) => Promise<DateFnsLocale> | DateFnsLocale
 
 const initialDefaultTranslations = {}
 
@@ -182,7 +184,7 @@ const I18nContextProvider = ({
   children: ReactNode
   defaultLoad: LoadTranslationsFn
   loadDateLocale?: LoadLocaleFn
-  defaultDateLocale?: Locale
+  defaultDateLocale?: DateFnsLocale
   defaultLocale: string
   defaultTranslations: TranslationsByLocales
   enableDefaultLocale: boolean
@@ -196,14 +198,19 @@ const I18nContextProvider = ({
   const [translations, setTranslations] =
     useState<TranslationsByLocales>(defaultTranslations)
   const [namespaces, setNamespaces] = useState<string[]>([])
-  const [dateFnsLocale, setDateFnsLocale] = useState<Locale | undefined>(
-    defaultDateLocale ?? undefined,
+  const [dateFnsLocale, setDateFnsLocale] = useState<DateFnsLocale | undefined>(
+    defaultDateLocale ?? enGB,
   )
 
   useEffect(() => {
-    loadDateLocale?.(currentLocale === 'en' ? 'en-GB' : currentLocale)
-      .then(setDateFnsLocale)
-      .catch(() => loadDateLocale('en-GB').then(setDateFnsLocale))
+    const loadDateFnsLocale = async () => {
+      const dateFns = await loadDateLocale?.(
+        currentLocale === 'en' ? 'en-GB' : currentLocale,
+      )
+      setDateFnsLocale(dateFns)
+    }
+
+    loadDateFnsLocale().catch(() => setDateFnsLocale(enGB))
   }, [loadDateLocale, currentLocale])
 
   const loadTranslations = useCallback(
