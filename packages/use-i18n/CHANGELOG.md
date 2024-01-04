@@ -1,5 +1,15 @@
 # Change Log
 
+## 6.0.0
+
+### Major Changes
+
+- [#1758](https://github.com/scaleway/scaleway-lib/pull/1758) [`9937482`](https://github.com/scaleway/scaleway-lib/commit/9937482b7773986c8695faefd065bf33b3fbdf91) Thanks [@renovate](https://github.com/apps/renovate)! - Add a onError function for load date-fns locale, fix a bug when a local is removed
+
+### Patch Changes
+
+- [#1758](https://github.com/scaleway/scaleway-lib/pull/1758) [`9937482`](https://github.com/scaleway/scaleway-lib/commit/9937482b7773986c8695faefd065bf33b3fbdf91) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `date-fns` to `2.x || 3.x`.
+
 ## 5.4.9
 
 ### Patch Changes
