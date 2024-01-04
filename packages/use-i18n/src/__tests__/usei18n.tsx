@@ -31,21 +31,23 @@ type NamespaceLocale = {
   languages: 'Languages'
 }
 
+const supportedLocales = ['en', 'fr', 'es'] as const
+
 const wrapper =
   ({
     loadDateLocale = async (locale: string) =>
       import(`date-fns/locale/${locale}/index`),
     defaultLoad = async ({ locale }: { locale: string }) =>
       import(`./locales/${locale}.json`),
-    defaultLocale = 'en',
+    defaultLocale = 'en' as const,
     defaultTranslations = {},
     enableDebugKey = false,
     enableDefaultLocale = false,
     localeItemStorage = LOCALE_ITEM_STORAGE,
-    supportedLocales = ['en', 'fr', 'es'],
+    supportedLocales = ['en', 'fr', 'es'] as const,
   } = {}) =>
-  ({ children }: { children: ReactNode }) => (
-    <I18n
+  ({ children }: { children: ReactNode }) => {
+    ;<I18n
       loadDateLocale={loadDateLocale}
       defaultLoad={defaultLoad}
       defaultLocale={defaultLocale}
@@ -57,7 +59,7 @@ const wrapper =
     >
       {children}
     </I18n>
-  )
+  }
 
 describe('i18n hook', () => {
   beforeEach(() => {
@@ -248,7 +250,7 @@ describe('i18n hook', () => {
     const { result } = renderHook(() => useI18n(), {
       wrapper: wrapper({
         defaultLocale: 'fr',
-        supportedLocales: ['en', 'fr', 'es'],
+        supportedLocales: ['en', 'fr', 'es'] as const,
       }),
     })
 

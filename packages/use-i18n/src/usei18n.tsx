@@ -48,7 +48,7 @@ const getCurrentLocale = ({
   localeItemStorage,
 }: {
   defaultLocale: string
-  supportedLocales: string[]
+  supportedLocales: readonly string[]
   localeItemStorage: string
 }): string => {
   if (typeof window !== 'undefined') {
@@ -86,7 +86,7 @@ type Context<Locale extends BaseLocale> = {
     namespace: string,
     load?: LoadTranslationsFn,
   ) => Promise<string>
-  locales: string[]
+  locales: readonly string[]
   namespaces: string[]
   namespaceTranslation: ScopedTranslateFn<Locale>
   relativeTime: (
@@ -169,7 +169,7 @@ type LoadLocaleFn<L extends string> = (locale: L) => Promise<Locale>
 
 const initialDefaultTranslations = {}
 
-type I18nContextProviderProps<SupportedLocales extends string[]> = {
+type I18nContextProviderProps<SupportedLocales extends readonly string[]> = {
   children: ReactNode
   defaultLoad: LoadTranslationsFn
   loadDateLocale?: LoadLocaleFn<SupportedLocales[number]>
@@ -181,7 +181,7 @@ type I18nContextProviderProps<SupportedLocales extends string[]> = {
   localeItemStorage: string
   supportedLocales: SupportedLocales
 }
-const I18nContextProvider = <SupportedLocales extends string[]>({
+const I18nContextProvider = <SupportedLocales extends Readonly<string[]>>({
   children,
   defaultLoad,
   loadDateLocale,
