@@ -7,6 +7,7 @@ import {
   jest,
 } from '@jest/globals'
 import { act, renderHook, waitFor } from '@testing-library/react'
+import { enGB, fr as frDateFns } from 'date-fns/locale'
 import mockdate from 'mockdate'
 import type { ReactNode } from 'react'
 import I18n, { useI18n, useTranslation } from '..'
@@ -35,7 +36,7 @@ const defaultSupportedLocales = ['en', 'fr', 'es']
 
 const wrapper =
   ({
-    loadDateLocale = async (locale: string) => {
+    loadDateLocaleAsync = async (locale: string) => {
       if (locale === 'en') {
         return (await import('date-fns/locale/en-GB')).enGB
       }
@@ -49,6 +50,16 @@ const wrapper =
 
       return (await import(`date-fns/locale/en-GB`)).enGB
     },
+    loadDateLocale = (locale: string) => {
+      if (locale === 'en') {
+        return enGB
+      }
+      if (locale === 'fr') {
+        return frDateFns
+      }
+
+      return enGB
+    },
     defaultLoad = async ({ locale }: { locale: string }) =>
       import(`./locales/${locale}.json`),
     defaultLocale = 'en',
@@ -61,6 +72,7 @@ const wrapper =
   ({ children }: { children: ReactNode }) => (
     <I18n
       loadDateLocale={loadDateLocale}
+      loadDateLocaleAsync={loadDateLocaleAsync}
       defaultLoad={defaultLoad}
       defaultLocale={defaultLocale}
       defaultTranslations={defaultTranslations}
@@ -268,6 +280,33 @@ describe('i18n hook', () => {
 
     await waitFor(() => {
       expect(result.current.currentLocale).toEqual('en')
+    })
+  })
+
+  it('should work with a component', async () => {
+    const { result } = renderHook(
+      () => useTranslation<{ 'with.identifier': 'Hello {identifier}' }>([]),
+      {
+        wrapper: wrapper({ defaultLocale: 'en' }),
+      },
+    )
+    const CustomComponent = ({ children }: { children: ReactNode }) => (
+      <p style={{ fontWeight: 'bold' }}>{children}</p>
+    )
+
+    await waitFor(() => {
+      expect(
+        result.current.t('with.identifier', { identifier: <b>My resource</b> }),
+      ).toEqual(['Are you sure you want to delete ', <b>My resource</b>, '?'])
+      expect(
+        result.current.t('with.identifier', {
+          identifier: <CustomComponent>My resource</CustomComponent>,
+        }),
+      ).toEqual([
+        'Are you sure you want to delete ',
+        <CustomComponent>My resource</CustomComponent>,
+        '?',
+      ])
     })
   })
 
@@ -765,7 +804,7 @@ describe('i18n hook', () => {
 
       await waitFor(() => {
         expect(result.current.currentLocale).toEqual('fr')
-        expect(mockGetItem).toHaveBeenCalledTimes(2)
+        expect(mockGetItem).toHaveBeenCalledTimes(1)
         expect(mockGetItem).toHaveBeenCalledWith(LOCALE_ITEM_STORAGE)
       })
 
@@ -775,33 +814,6 @@ describe('i18n hook', () => {
       })
 
       localStorageMock.mockRestore()
-    })
-  })
-
-  it('should work with a component', async () => {
-    const { result } = renderHook(
-      () => useTranslation<{ 'with.identifier': 'Hello {identifier}' }>([]),
-      {
-        wrapper: wrapper({ defaultLocale: 'en' }),
-      },
-    )
-    const CustomComponent = ({ children }: { children: ReactNode }) => (
-      <p style={{ fontWeight: 'bold' }}>{children}</p>
-    )
-
-    await waitFor(() => {
-      expect(
-        result.current.t('with.identifier', { identifier: <b>My resource</b> }),
-      ).toEqual(['Are you sure you want to delete ', <b>My resource</b>, '?'])
-      expect(
-        result.current.t('with.identifier', {
-          identifier: <CustomComponent>My resource</CustomComponent>,
-        }),
-      ).toEqual([
-        'Are you sure you want to delete ',
-        <CustomComponent>My resource</CustomComponent>,
-        '?',
-      ])
     })
   })
 })
