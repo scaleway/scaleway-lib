@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.1.0
+
+### Minor Changes
+
+- [#1762](https://github.com/scaleway/scaleway-lib/pull/1762) [`d73b2b1`](https://github.com/scaleway/scaleway-lib/commit/d73b2b1aa9420e8f9a2ec49a7055d56cebb91dc0) Thanks [@philibea](https://github.com/philibea)! - Add a non async loadDateLocal possibility
+
 ## 6.0.0
 
 ### Major Changes
