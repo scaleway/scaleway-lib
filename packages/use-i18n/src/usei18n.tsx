@@ -1,6 +1,11 @@
 import type { NumberFormatOptions } from '@formatjs/ecma402-abstract'
-import type { Locale as DateFnsLocale } from 'date-fns'
-import { formatDistanceToNow, formatDistanceToNowStrict } from 'date-fns'
+import type {
+  Locale as DateFnsLocale,
+  FormatDistanceToNowOptions,
+  FormatDistanceToNowStrictOptions,
+} from 'date-fns'
+import { formatDistanceToNow } from 'date-fns/formatDistanceToNow'
+import { formatDistanceToNowStrict } from 'date-fns/formatDistanceToNowStrict'
 import type { BaseLocale } from 'international-types'
 import type { ReactElement, ReactNode } from 'react'
 import {
@@ -12,15 +17,12 @@ import {
   useState,
 } from 'react'
 import ReactDOM from 'react-dom'
-import type { FormatDateOptions } from './formatDate'
-import dateFormat from './formatDate'
-import type { FormatUnitOptions } from './formatUnit'
-import unitFormat from './formatUnit'
-import type { IntlListFormatOptions } from './formatters'
-import formatters from './formatters'
+import dateFormat, { type FormatDateOptions } from './formatDate'
+import unitFormat, { type FormatUnitOptions } from './formatUnit'
+import formatters, { type IntlListFormatOptions } from './formatters'
 import type { ReactParamsObject, ScopedTranslateFn, TranslateFn } from './types'
 
-const LOCALE_ITEM_STORAGE = 'locale'
+const LOCALE_ITEM_STORAGE = 'locale' as const
 
 type TranslationsByLocales = Record<string, BaseLocale>
 type RequiredGenericContext<Locale extends BaseLocale> =
@@ -53,15 +55,38 @@ const getCurrentLocale = ({
   if (typeof window !== 'undefined') {
     const { languages } = navigator
     const browserLocales = [...new Set(languages.map(getLocaleFallback))]
-    const localeStorage = localStorage.getItem(localeItemStorage)
+    const currentLocalFromlocalStorage = localStorage.getItem(localeItemStorage)
 
-    return (
-      localeStorage ||
-      browserLocales.find(
-        locale => locale && supportedLocales.includes(locale),
-      ) ||
-      defaultLocale
+    if (
+      currentLocalFromlocalStorage &&
+      supportedLocales.find(
+        supportedLocale => supportedLocale === currentLocalFromlocalStorage,
+      )
+    ) {
+      return currentLocalFromlocalStorage
+    }
+    localStorage.removeItem(localeItemStorage)
+
+    const findedBrowserLocal = browserLocales.find(
+      locale => locale && supportedLocales.includes(locale),
     )
+
+    if (findedBrowserLocal) {
+      localStorage.setItem(localeItemStorage, findedBrowserLocal)
+
+      return findedBrowserLocal
+    }
+
+    if (
+      defaultLocale &&
+      supportedLocales.find(
+        supportedLocale => supportedLocale === defaultLocale,
+      )
+    ) {
+      localStorage.setItem(localeItemStorage, defaultLocale)
+
+      return defaultLocale
+    }
   }
 
   return defaultLocale
@@ -90,21 +115,14 @@ type Context<Locale extends BaseLocale> = {
   namespaceTranslation: ScopedTranslateFn<Locale>
   relativeTime: (
     date: Date | number,
-    options?: {
-      includeSeconds?: boolean
-      addSuffix?: boolean
-    },
+    options?: FormatDistanceToNowOptions,
   ) => string
   relativeTimeStrict: (
     date: Date | number,
-    options?: {
-      addSuffix?: boolean
-      unit?: 'second' | 'minute' | 'hour' | 'day' | 'month' | 'year'
-      roundingMethod?: 'floor' | 'ceil' | 'round'
-    },
+    options?: FormatDistanceToNowStrictOptions,
   ) => string
   setTranslations: React.Dispatch<React.SetStateAction<TranslationsByLocales>>
-  switchLocale: (locale: string) => void
+  switchLocale: (locale: string) => Promise<void>
   t: TranslateFn<Locale>
   translations: TranslationsByLocales
 }
@@ -163,26 +181,31 @@ type LoadTranslationsFn = ({
   namespace: string
   locale: string
 }) => Promise<{ default: BaseLocale }>
-type LoadLocaleFn = (locale: string) => Promise<Locale>
+
+type LoadLocaleFn = (locale: string) => DateFnsLocale
+type LoadLocaleFnAsync = (locale: string) => Promise<DateFnsLocale>
+type LoadDateLocaleError = (error: Error) => void
 
 const initialDefaultTranslations = {}
 
 const I18nContextProvider = ({
   children,
   defaultLoad,
-  loadDateLocale,
-  defaultDateLocale,
   defaultLocale,
   defaultTranslations = initialDefaultTranslations,
-  enableDefaultLocale = false,
   enableDebugKey = false,
+  enableDefaultLocale = false,
+  loadDateLocale,
+  loadDateLocaleAsync,
   localeItemStorage = LOCALE_ITEM_STORAGE,
+  onLoadDateLocaleError,
   supportedLocales,
 }: {
   children: ReactNode
   defaultLoad: LoadTranslationsFn
   loadDateLocale?: LoadLocaleFn
-  defaultDateLocale?: Locale
+  loadDateLocaleAsync: LoadLocaleFnAsync
+  onLoadDateLocaleError?: LoadDateLocaleError
   defaultLocale: string
   defaultTranslations: TranslationsByLocales
   enableDefaultLocale: boolean
@@ -196,15 +219,42 @@ const I18nContextProvider = ({
   const [translations, setTranslations] =
     useState<TranslationsByLocales>(defaultTranslations)
   const [namespaces, setNamespaces] = useState<string[]>([])
-  const [dateFnsLocale, setDateFnsLocale] = useState<Locale | undefined>(
-    defaultDateLocale ?? undefined,
+
+  const [dateFnsLocale, setDateFnsLocale] = useState<DateFnsLocale | undefined>(
+    loadDateLocale?.(currentLocale) ?? undefined,
   )
 
+  const loadDateFNS = loadDateLocale ?? loadDateLocaleAsync
+
+  const setDateFns = useCallback(
+    async (locale: string) => {
+      try {
+        const dateFns = await loadDateFNS(locale)
+        setDateFnsLocale(dateFns)
+      } catch (err) {
+        if (err instanceof Error && onLoadDateLocaleError) {
+          onLoadDateLocaleError(err)
+        }
+
+        setDateFnsLocale(dateFnsLocale)
+      }
+    },
+    [loadDateFNS, setDateFnsLocale, onLoadDateLocaleError, dateFnsLocale],
+  )
+
+  /**
+   *  At first render when we find a local on the localStorage which is not the same as the default,
+   *  we should switch also the date-fns local related to the current local.
+   *  As the method is async, we obviously need a useEffect to apply this change...
+   * */
+
   useEffect(() => {
-    loadDateLocale?.(currentLocale === 'en' ? 'en-GB' : currentLocale)
-      .then(setDateFnsLocale)
-      .catch(() => loadDateLocale('en-GB').then(setDateFnsLocale))
-  }, [loadDateLocale, currentLocale])
+    if (!dateFnsLocale) {
+      setDateFns(currentLocale)
+        .then()
+        .catch(() => null)
+    }
+  }, [currentLocale, dateFnsLocale, setDateFns, setDateFnsLocale])
 
   const loadTranslations = useCallback(
     async (namespace: string, load: LoadTranslationsFn = defaultLoad) => {
@@ -252,13 +302,14 @@ const I18nContextProvider = ({
   )
 
   const switchLocale = useCallback(
-    (locale: string) => {
+    async (locale: string) => {
       if (supportedLocales.includes(locale)) {
         localStorage.setItem(localeItemStorage, locale)
         setCurrentLocale(locale)
+        await setDateFns(locale)
       }
     },
-    [localeItemStorage, setCurrentLocale, supportedLocales],
+    [setDateFns, localeItemStorage, setCurrentLocale, supportedLocales],
   )
 
   const formatNumber = useCallback(
@@ -297,11 +348,10 @@ const I18nContextProvider = ({
   const relativeTimeStrict = useCallback(
     (
       date: Date | number,
-      options: {
-        addSuffix?: boolean
-        unit?: 'second' | 'minute' | 'hour' | 'day' | 'month' | 'year'
-        roundingMethod?: 'floor' | 'ceil' | 'round'
-      } = { addSuffix: true, unit: 'day' },
+      options: FormatDistanceToNowStrictOptions = {
+        addSuffix: true,
+        unit: 'day',
+      },
     ) => {
       const finalDate = new Date(date)
 
@@ -316,10 +366,7 @@ const I18nContextProvider = ({
   const relativeTime = useCallback(
     (
       date: Date | number,
-      options: {
-        includeSeconds?: boolean
-        addSuffix?: boolean
-      } = { addSuffix: true },
+      options: FormatDistanceToNowOptions = { addSuffix: true },
     ) => {
       const finalDate = new Date(date)
 

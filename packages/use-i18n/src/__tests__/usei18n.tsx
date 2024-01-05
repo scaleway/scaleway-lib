@@ -7,6 +7,7 @@ import {
   jest,
 } from '@jest/globals'
 import { act, renderHook, waitFor } from '@testing-library/react'
+import { enGB, fr as frDateFns } from 'date-fns/locale'
 import mockdate from 'mockdate'
 import type { ReactNode } from 'react'
 import I18n, { useI18n, useTranslation } from '..'
@@ -31,10 +32,34 @@ type NamespaceLocale = {
   languages: 'Languages'
 }
 
+const defaultSupportedLocales = ['en', 'fr', 'es']
+
 const wrapper =
   ({
-    loadDateLocale = async (locale: string) =>
-      import(`date-fns/locale/${locale}/index`),
+    loadDateLocaleAsync = async (locale: string) => {
+      if (locale === 'en') {
+        return (await import('date-fns/locale/en-GB')).enGB
+      }
+      if (locale === 'fr') {
+        return (await import('date-fns/locale/fr')).fr
+      }
+
+      if (locale === 'es') {
+        return (await import('date-fns/locale/es')).es
+      }
+
+      return (await import(`date-fns/locale/en-GB`)).enGB
+    },
+    loadDateLocale = (locale: string) => {
+      if (locale === 'en') {
+        return enGB
+      }
+      if (locale === 'fr') {
+        return frDateFns
+      }
+
+      return enGB
+    },
     defaultLoad = async ({ locale }: { locale: string }) =>
       import(`./locales/${locale}.json`),
     defaultLocale = 'en',
@@ -42,11 +67,12 @@ const wrapper =
     enableDebugKey = false,
     enableDefaultLocale = false,
     localeItemStorage = LOCALE_ITEM_STORAGE,
-    supportedLocales = ['en', 'fr', 'es'],
+    supportedLocales = defaultSupportedLocales,
   } = {}) =>
   ({ children }: { children: ReactNode }) => (
     <I18n
       loadDateLocale={loadDateLocale}
+      loadDateLocaleAsync={loadDateLocaleAsync}
       defaultLoad={defaultLoad}
       defaultLocale={defaultLocale}
       defaultTranslations={defaultTranslations}
@@ -126,16 +152,16 @@ describe('i18n hook', () => {
       expect(result.current.t('title')).toEqual(en.title)
     })
 
-    act(() => {
-      result.current.switchLocale('fr')
+    await act(async () => {
+      await result.current.switchLocale('fr')
     })
 
     await waitFor(() => {
       expect(result.current.t('title')).toEqual(fr.title)
     })
 
-    act(() => {
-      result.current.switchLocale('es')
+    await act(async () => {
+      await result.current.switchLocale('es')
     })
 
     await waitFor(() => {
@@ -176,8 +202,8 @@ describe('i18n hook', () => {
     expect(result.current.t('lastName')).toEqual('Last Name')
     expect(result.current.t('languages')).toEqual('Languages')
 
-    act(() => {
-      result.current.switchLocale('fr')
+    await act(async () => {
+      await result.current.switchLocale('fr')
     })
 
     await waitFor(() => {
@@ -221,8 +247,8 @@ describe('i18n hook', () => {
 
     // current local will be 'en' based on navigator
     // await load of locales
-    act(() => {
-      result.current.switchLocale('fr')
+    await act(async () => {
+      await result.current.switchLocale('fr')
     })
 
     await waitFor(() => {
@@ -257,6 +283,33 @@ describe('i18n hook', () => {
     })
   })
 
+  it('should work with a component', async () => {
+    const { result } = renderHook(
+      () => useTranslation<{ 'with.identifier': 'Hello {identifier}' }>([]),
+      {
+        wrapper: wrapper({ defaultLocale: 'en' }),
+      },
+    )
+    const CustomComponent = ({ children }: { children: ReactNode }) => (
+      <p style={{ fontWeight: 'bold' }}>{children}</p>
+    )
+
+    await waitFor(() => {
+      expect(
+        result.current.t('with.identifier', { identifier: <b>My resource</b> }),
+      ).toEqual(['Are you sure you want to delete ', <b>My resource</b>, '?'])
+      expect(
+        result.current.t('with.identifier', {
+          identifier: <CustomComponent>My resource</CustomComponent>,
+        }),
+      ).toEqual([
+        'Are you sure you want to delete ',
+        <CustomComponent>My resource</CustomComponent>,
+        '?',
+      ])
+    })
+  })
+
   describe('getCurrentLocale', () => {
     it('should set current locale from localStorage', async () => {
       jest.spyOn(global, 'navigator', 'get').mockReturnValueOnce({
@@ -264,11 +317,13 @@ describe('i18n hook', () => {
       } as unknown as Navigator)
       const mockGetItem = jest.fn().mockImplementation(() => 'en')
       const mockSetItem = jest.fn()
+      const mockRemoveItem = jest.fn()
       const localStorageMock = jest
         .spyOn(global, 'localStorage', 'get')
         .mockReturnValue({
           getItem: mockGetItem,
           setItem: mockSetItem,
+          removeItem: mockRemoveItem,
           clear: jest.fn(),
         } as unknown as Storage)
 
@@ -281,7 +336,38 @@ describe('i18n hook', () => {
 
       await waitFor(() => {
         expect(result.current.currentLocale).toEqual('en')
-        expect(mockGetItem).toHaveBeenCalledTimes(2)
+        expect(mockGetItem).toHaveBeenCalledTimes(1)
+        expect(mockGetItem).toHaveBeenCalledWith(LOCALE_ITEM_STORAGE)
+      })
+      localStorageMock.mockRestore()
+    })
+
+    it('should not set current locale from localStorage when this value is not supported', async () => {
+      jest.spyOn(global, 'navigator', 'get').mockReturnValueOnce({
+        languages: ['bz'],
+      } as unknown as Navigator)
+      const mockGetItem = jest.fn().mockImplementation(() => 're')
+      const mockSetItem = jest.fn()
+      const mockRemoveItem = jest.fn()
+      const localStorageMock = jest
+        .spyOn(global, 'localStorage', 'get')
+        .mockReturnValue({
+          getItem: mockGetItem,
+          setItem: mockSetItem,
+          removeItem: mockRemoveItem,
+          clear: jest.fn(),
+        } as unknown as Storage)
+
+      const { result } = renderHook(() => useI18n(), {
+        wrapper: wrapper({
+          defaultLocale: 'en',
+          supportedLocales: ['en'],
+        }),
+      })
+
+      await waitFor(() => {
+        expect(result.current.currentLocale).toEqual('en')
+        expect(mockGetItem).toHaveBeenCalledTimes(1)
         expect(mockGetItem).toHaveBeenCalledWith(LOCALE_ITEM_STORAGE)
       })
       localStorageMock.mockRestore()
@@ -293,11 +379,13 @@ describe('i18n hook', () => {
       } as unknown as Navigator)
       const mockGetItem = jest.fn()
       const mockSetItem = jest.fn()
+      const mockRemoveItem = jest.fn()
       const localStorageMock = jest
         .spyOn(global, 'localStorage', 'get')
         .mockReturnValueOnce({
           getItem: mockGetItem,
           setItem: mockSetItem,
+          removeItem: mockRemoveItem,
           clear: jest.fn(),
         } as unknown as Storage)
 
@@ -320,11 +408,13 @@ describe('i18n hook', () => {
       } as unknown as Navigator)
       const mockGetItem = jest.fn()
       const mockSetItem = jest.fn()
+      const mockRemoveItem = jest.fn()
       const localStorageMock = jest
         .spyOn(global, 'localStorage', 'get')
         .mockReturnValueOnce({
           getItem: mockGetItem,
           setItem: mockSetItem,
+          removeItem: mockRemoveItem,
           clear: jest.fn(),
         } as unknown as Storage)
 
@@ -350,10 +440,10 @@ describe('i18n hook', () => {
       }),
     })
     expect(result.current.currentLocale).toEqual('en')
-    expect(localStorage.getItem(LOCALE_ITEM_STORAGE)).toBe(null)
+    expect(localStorage.getItem(LOCALE_ITEM_STORAGE)).toBe('en')
 
-    act(() => {
-      result.current.switchLocale('fr')
+    await act(async () => {
+      await result.current.switchLocale('fr')
     })
 
     await waitFor(() => {
@@ -361,8 +451,8 @@ describe('i18n hook', () => {
     })
     expect(localStorage.getItem(LOCALE_ITEM_STORAGE)).toBe('fr')
 
-    act(() => {
-      result.current.switchLocale('es')
+    await act(async () => {
+      await result.current.switchLocale('es')
     })
 
     await waitFor(() => {
@@ -370,8 +460,8 @@ describe('i18n hook', () => {
     })
     expect(localStorage.getItem(LOCALE_ITEM_STORAGE)).toBe('es')
 
-    act(() => {
-      result.current.switchLocale('test')
+    await act(async () => {
+      await result.current.switchLocale('test')
     })
 
     await waitFor(() => {
@@ -441,8 +531,8 @@ describe('i18n hook', () => {
       }),
     ).toEqual('$2.00')
 
-    act(() => {
-      result.current.switchLocale('fr')
+    await act(async () => {
+      await result.current.switchLocale('fr')
     })
 
     // https://stackoverflow.com/questions/58769806/identical-strings-not-matching-in-jest
@@ -491,8 +581,8 @@ describe('i18n hook', () => {
       }),
     ).toEqual('Motorcycle Bus Car')
 
-    act(() => {
-      result.current.switchLocale('fr')
+    await act(async () => {
+      await result.current.switchLocale('fr')
     })
 
     await waitFor(() => {
@@ -565,8 +655,8 @@ describe('i18n hook', () => {
       }),
     ).toEqual('12/17/1995')
 
-    act(() => {
-      result.current.switchLocale('fr')
+    await act(async () => {
+      await result.current.switchLocale('fr')
     })
 
     await waitFor(() => {
@@ -602,11 +692,12 @@ describe('i18n hook', () => {
 
     expect(result.current.relativeTime(date)).toEqual('over 20 years ago')
 
-    act(() => {
-      result.current.switchLocale('fr')
+    await act(async () => {
+      await result.current.switchLocale('fr')
     })
 
     await waitFor(() => {
+      expect(result.current.dateFnsLocale?.code).toBe('fr')
       expect(result.current.relativeTime(date)).toEqual('il y a plus de 20 ans')
     })
   })
@@ -621,8 +712,8 @@ describe('i18n hook', () => {
     const date = new Date('September 13, 2011 15:15:00')
 
     expect(result.current.relativeTimeStrict(date)).toEqual('3499 days ago')
-    act(() => {
-      result.current.switchLocale('fr')
+    await act(async () => {
+      await result.current.switchLocale('fr')
     })
 
     await waitFor(() => {
@@ -642,8 +733,8 @@ describe('i18n hook', () => {
     expect(
       result.current.formatUnit(12, { short: false, unit: 'byte' }),
     ).toEqual('12 bytes')
-    act(() => {
-      result.current.switchLocale('fr')
+    await act(async () => {
+      await result.current.switchLocale('fr')
     })
 
     await waitFor(() => {
@@ -663,8 +754,8 @@ describe('i18n hook', () => {
     expect(
       result.current.formatDate(new Date(2020, 1, 13, 16, 28), 'numericHour'),
     ).toEqual('2020-02-13 4:28 PM')
-    act(() => {
-      result.current.switchLocale('fr')
+    await act(async () => {
+      await result.current.switchLocale('fr')
     })
 
     await waitFor(() => {
@@ -674,44 +765,55 @@ describe('i18n hook', () => {
     })
   })
 
-  it('should load default datefns locales', async () => {
-    const { result } = renderHook(() => useI18n(), {
-      wrapper: wrapper({
-        defaultLocale: 'test',
-        supportedLocales: ['test'],
-      }),
-    })
-    expect(result.current.dateFnsLocale).toBe(undefined)
-
-    await waitFor(() => {
-      expect(result.current.dateFnsLocale?.code).toEqual('en-GB')
-    })
-  })
-
-  it('should work with a component', async () => {
-    const { result } = renderHook(
-      () => useTranslation<{ 'with.identifier': 'Hello {identifier}' }>([]),
-      {
-        wrapper: wrapper({ defaultLocale: 'en' }),
-      },
-    )
-    const CustomComponent = ({ children }: { children: ReactNode }) => (
-      <p style={{ fontWeight: 'bold' }}>{children}</p>
-    )
-
-    await waitFor(() => {
-      expect(
-        result.current.t('with.identifier', { identifier: <b>My resource</b> }),
-      ).toEqual(['Are you sure you want to delete ', <b>My resource</b>, '?'])
-      expect(
-        result.current.t('with.identifier', {
-          identifier: <CustomComponent>My resource</CustomComponent>,
+  describe('date-fns', () => {
+    it('should load default date-fns locales', async () => {
+      const { result } = renderHook(() => useI18n(), {
+        wrapper: wrapper({
+          defaultLocale: 'test',
+          supportedLocales: ['test'],
         }),
-      ).toEqual([
-        'Are you sure you want to delete ',
-        <CustomComponent>My resource</CustomComponent>,
-        '?',
-      ])
+      })
+
+      await waitFor(() => {
+        expect(result.current.dateFnsLocale?.code).toEqual('en-GB')
+      })
+    })
+
+    it('should load correct date-fns based on current local', async () => {
+      jest.spyOn(global, 'navigator', 'get').mockReturnValueOnce({
+        languages: ['fr'],
+      } as unknown as Navigator)
+      const mockGetItem = jest.fn().mockImplementation(() => 'fr')
+      const mockSetItem = jest.fn()
+      const mockRemoveItem = jest.fn()
+      const localStorageMock = jest
+        .spyOn(global, 'localStorage', 'get')
+        .mockReturnValue({
+          getItem: mockGetItem,
+          setItem: mockSetItem,
+          removeItem: mockRemoveItem,
+          clear: jest.fn(),
+        } as unknown as Storage)
+
+      const { result } = renderHook(() => useI18n(), {
+        wrapper: wrapper({
+          defaultLocale: 'es',
+          supportedLocales: ['en', 'fr', 'es'],
+        }),
+      })
+
+      await waitFor(() => {
+        expect(result.current.currentLocale).toEqual('fr')
+        expect(mockGetItem).toHaveBeenCalledTimes(1)
+        expect(mockGetItem).toHaveBeenCalledWith(LOCALE_ITEM_STORAGE)
+      })
+
+      await waitFor(() => {
+        expect(result.current.dateFnsLocale?.code).toEqual('fr')
+        expect(result.current.dateFnsLocale).toMatchObject({ code: 'fr' })
+      })
+
+      localStorageMock.mockRestore()
     })
   })
 })
