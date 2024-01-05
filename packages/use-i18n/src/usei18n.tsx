@@ -182,7 +182,8 @@ type LoadTranslationsFn = ({
   locale: string
 }) => Promise<{ default: BaseLocale }>
 
-type LoadLocaleFn = (locale: string) => Promise<DateFnsLocale>
+type LoadLocaleFn = (locale: string) => DateFnsLocale
+type LoadLocaleFnAsync = (locale: string) => Promise<DateFnsLocale>
 type LoadDateLocaleError = (error: Error) => void
 
 const initialDefaultTranslations = {}
@@ -195,13 +196,15 @@ const I18nContextProvider = ({
   enableDebugKey = false,
   enableDefaultLocale = false,
   loadDateLocale,
+  loadDateLocaleAsync,
   localeItemStorage = LOCALE_ITEM_STORAGE,
   onLoadDateLocaleError,
   supportedLocales,
 }: {
   children: ReactNode
   defaultLoad: LoadTranslationsFn
-  loadDateLocale: LoadLocaleFn
+  loadDateLocale?: LoadLocaleFn
+  loadDateLocaleAsync: LoadLocaleFnAsync
   onLoadDateLocaleError?: LoadDateLocaleError
   defaultLocale: string
   defaultTranslations: TranslationsByLocales
@@ -216,14 +219,17 @@ const I18nContextProvider = ({
   const [translations, setTranslations] =
     useState<TranslationsByLocales>(defaultTranslations)
   const [namespaces, setNamespaces] = useState<string[]>([])
+
   const [dateFnsLocale, setDateFnsLocale] = useState<DateFnsLocale | undefined>(
-    undefined,
+    loadDateLocale?.(currentLocale) ?? undefined,
   )
+
+  const loadDateFNS = loadDateLocale ?? loadDateLocaleAsync
 
   const setDateFns = useCallback(
     async (locale: string) => {
       try {
-        const dateFns = await loadDateLocale(locale)
+        const dateFns = await loadDateFNS(locale)
         setDateFnsLocale(dateFns)
       } catch (err) {
         if (err instanceof Error && onLoadDateLocaleError) {
@@ -233,7 +239,7 @@ const I18nContextProvider = ({
         setDateFnsLocale(dateFnsLocale)
       }
     },
-    [loadDateLocale, setDateFnsLocale, onLoadDateLocaleError, dateFnsLocale],
+    [loadDateFNS, setDateFnsLocale, onLoadDateLocaleError, dateFnsLocale],
   )
 
   /**
