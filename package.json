@@ -5,7 +5,7 @@
     "packages/*"
   ],
   "type": "module",
-  "packageManager": "pnpm@8.13.1",
+  "packageManager": "pnpm@8.14.0",
   "engines": {
     "node": ">=18.x",
     "pnpm": ">=7.x"
@@ -31,7 +31,7 @@
     "@tsd/typescript": "5.3.3",
     "@types/jest": "29.5.11",
     "@types/node": "20.10.6",
-    "@types/react": "18.2.46",
+    "@types/react": "18.2.47",
     "@types/react-dom": "18.2.18",
     "builtin-modules": "3.3.0",
     "cross-env": "7.0.3",
@@ -48,7 +48,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "read-pkg": "9.0.1",
-    "rollup": "4.9.2",
+    "rollup": "4.9.4",
     "rollup-plugin-dts": "6.1.0",
     "rollup-plugin-preserve-shebangs": "0.2.0",
     "rollup-plugin-visualizer": "5.12.0",
