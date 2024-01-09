@@ -156,6 +156,7 @@ export function useTranslation<Locale extends BaseLocale = {}>(
 
   const key = namespaces.join(',')
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     key
       .split(',')
       .map(async (namespace: string) => loadTranslations(namespace, load))
