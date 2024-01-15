@@ -322,8 +322,8 @@ importers:
   packages/use-segment:
     dependencies:
       '@segment/analytics-next':
-        specifier: 1.62.1
-        version: 1.62.1
+        specifier: 1.63.0
+        version: 1.63.0
       use-deep-compare-effect:
         specifier: 1.8.1
         version: 1.8.1(react@18.2.0)
@@ -2851,8 +2851,8 @@ packages:
       tslib: 2.5.3
     dev: false
 
-  /@segment/analytics-next@1.62.1:
-    resolution: {integrity: sha512-B/sBlxozxIWiiQ/HHLL5Mszt7yCT8d4eaZ2gIyYvPcy36TjRnPi3bbVaIr5c1GlxB2TvzNkNRWZnbdb4o9PU3A==}
+  /@segment/analytics-next@1.63.0:
+    resolution: {integrity: sha512-6GCZXq2vNiZj/jnolT+Rsl51PZdlw2dNyFutfwnY+GjMZB+UkzaLbpwc20q+cMWj5FvhksIxrfG1F+aYZBf5lw==}
     dependencies:
       '@lukeed/uuid': 2.0.1
       '@segment/analytics-core': 1.4.1
