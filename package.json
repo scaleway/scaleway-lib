@@ -54,12 +54,15 @@
     "rollup-plugin-visualizer": "5.12.0",
     "tsd-lite": "0.8.0",
     "typescript": "5.3.3",
+    "vite": "5.0.11",
+    "vite-dts": "1.0.4",
     "wait-for-expect": "3.0.2"
   },
   "scripts": {
     "lint": "eslint --ext js,ts,tsx --cache .",
     "lint:fix": "pnpm run lint --fix",
     "build": "pnpm recursive --filter='!@scaleway/eslint-config-react' --filter='!@scaleway/tsconfig' exec -- rollup -c ../../rollup.config.mjs",
+    "build:vite": "pnpm recursive --filter='!@scaleway/eslint-config-react' --filter='!@scaleway/tsconfig' --filter='!@scaleway/changesets-renovate' --filter='!@scaleway/jest-helpers' exec vite build --config ../../vite.config.mts",
     "build:profile": "cross-env PROFILE=true pnpm run build",
     "commit": "npx git-cz -a",
     "format": "prettier --write '**/*.{ts,tsx,js,json,md,mdx}'",
@@ -130,5 +133,10 @@
         }
       ]
     ]
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^4.2.1",
+    "vite": "5.0.11",
+    "vite-plugin-dts": "3.7.0"
   }
 }

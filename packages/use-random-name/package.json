@@ -4,7 +4,7 @@
   "description": "A small react utility to generate a random name",
   "type": "module",
   "engines": {
-    "node": ">=14.x"
+    "node": ">=18.x"
   },
   "sideEffects": false,
   "exports": {
@@ -24,6 +24,6 @@
     "react": ">=16.8"
   },
   "dependencies": {
-    "@scaleway/random-name": "^4.0.2"
+    "@scaleway/random-name": "4.0.2"
   }
 }
