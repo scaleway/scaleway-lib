@@ -72,12 +72,14 @@ export const AbTestProvider = ({
   useEffect(() => {
     const currentAttributes = growthbook.getAttributes()
     if (currentAttributes !== attributes) {
-      growthbook.setAttributes({
-        ...currentAttributes,
-        ...attributes,
-      })
+      growthbook
+        .setAttributes({
+          ...currentAttributes,
+          ...attributes,
+        })
+        .catch(errorCallback)
     }
-  }, [attributes, growthbook])
+  }, [attributes, growthbook, errorCallback])
 
   return (
     <GrowthBookProvider growthbook={growthbook}>{children}</GrowthBookProvider>

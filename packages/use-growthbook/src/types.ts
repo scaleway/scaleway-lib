@@ -1,4 +1,4 @@
-import type { Context } from '@growthbook/growthbook-react'
+import type { Context, GrowthBook } from '@growthbook/growthbook-react'
 
 export type Attributes = Record<string, string | number | undefined>
 
@@ -7,11 +7,7 @@ export type Attributes = Record<string, string | number | undefined>
  * @param {number} [timeout] - 500.
  * @param {boolean} [skipCache] - false.
  */
-export type LoadConfig = {
-  autoRefresh: boolean
-  timeout: number
-  skipCache: boolean
-}
+export type LoadConfig = NonNullable<Parameters<GrowthBook['loadFeatures']>[0]>
 
 export type ToolConfig = Pick<
   Context,

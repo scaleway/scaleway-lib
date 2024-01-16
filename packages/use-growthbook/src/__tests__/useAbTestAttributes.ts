@@ -8,13 +8,12 @@ jest.mock('@growthbook/growthbook-react')
 
 describe('useAbTestAttributes', () => {
   let getAttributes: () => Attributes
-  let setAttributes: (attributes: Attributes) => null | undefined
+  let setAttributes: (attributes: Attributes) => Promise<void>
 
   beforeEach(() => {
-    getAttributes = jest
-      .fn()
-      .mockReturnValue({ foo: 'bar' }) as () => Attributes
-    setAttributes = jest.fn() as (attributes: Attributes) => null | undefined
+    getAttributes = jest.fn<() => Attributes>().mockReturnValue({ foo: 'bar' })
+    setAttributes = jest.fn(() => Promise.resolve())
+
     jest.spyOn(growthbook, 'useGrowthBook').mockReturnValue({
       getAttributes,
       setAttributes,
