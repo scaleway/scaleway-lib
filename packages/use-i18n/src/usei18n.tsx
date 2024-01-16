@@ -214,7 +214,17 @@ const I18nContextProvider = ({
   enableDebugKey: boolean
   localeItemStorage: string
   supportedLocales: string[]
-  onTranslateError?: (error: Error) => void
+  onTranslateError?: ({
+    error,
+    currentLocale,
+    value,
+    key,
+  }: {
+    error: Error
+    currentLocale: string
+    value: string
+    key: string
+  }) => void
 }): ReactElement => {
   const [currentLocale, setCurrentLocale] = useState<string>(
     getCurrentLocale({ defaultLocale, localeItemStorage, supportedLocales }),
@@ -398,7 +408,12 @@ const I18nContextProvider = ({
             .getTranslationFormat(value, currentLocale)
             .format(context) as string
         } catch (err) {
-          onTranslateError?.(err as Error)
+          onTranslateError?.({
+            error: err as Error,
+            currentLocale,
+            value,
+            key,
+          })
 
           // with default locale nothing should break or it's normal to not ignore it.
           const defaultValue = translations[defaultLocale]?.[key] as string

@@ -9,30 +9,27 @@ import {
 import { act, renderHook, waitFor } from '@testing-library/react'
 import { enGB, fr as frDateFns } from 'date-fns/locale'
 import mockdate from 'mockdate'
-import type { ReactNode } from 'react'
+import type { ComponentProps, ReactNode } from 'react'
 import I18n, { useI18n, useTranslation } from '..'
-import en from './locales/en.json'
-import es from './locales/es.json'
-import fr from './locales/fr.json'
+import en from './locales/en'
+import es from './locales/es'
+import fr from './locales/fr'
 
 const LOCALE_ITEM_STORAGE = 'locales'
 
-type Locale = {
-  test: 'Test'
-  'with.identifier': 'Are you sure you want to delete {identifier}?'
-  plurals: '{numPhotos, plural, =0 {You have one photo.} other {You have # photos.}}'
-  subtitle: 'Here is a subtitle'
-  'tests.test.namespaces': 'test'
-  title: 'Welcome on @scaelway/ui i18n hook'
-}
-
+type LocaleEN = typeof en
+type Locale = LocaleEN
 type NamespaceLocale = {
   name: 'Name'
   lastName: 'Last Name'
   languages: 'Languages'
 }
 
+type OnTranslateError = ComponentProps<typeof I18n>['onTranslateError']
+
 const defaultSupportedLocales = ['en', 'fr', 'es']
+
+const defaultOnTranslateError: OnTranslateError = () => {}
 
 const wrapper =
   ({
@@ -61,13 +58,14 @@ const wrapper =
       return enGB
     },
     defaultLoad = async ({ locale }: { locale: string }) =>
-      import(`./locales/${locale}.json`),
+      import(`./locales/${locale}.ts`),
     defaultLocale = 'en',
     defaultTranslations = {},
     enableDebugKey = false,
     enableDefaultLocale = false,
     localeItemStorage = LOCALE_ITEM_STORAGE,
     supportedLocales = defaultSupportedLocales,
+    onTranslateError = defaultOnTranslateError,
   } = {}) =>
   ({ children }: { children: ReactNode }) => (
     <I18n
@@ -80,6 +78,7 @@ const wrapper =
       enableDefaultLocale={enableDefaultLocale}
       localeItemStorage={localeItemStorage}
       supportedLocales={supportedLocales}
+      onTranslateError={onTranslateError}
     >
       {children}
     </I18n>
@@ -470,7 +469,7 @@ describe('i18n hook', () => {
     expect(localStorage.getItem(LOCALE_ITEM_STORAGE)).toBe('es')
   })
 
-  it('should translate correctly with enableDebugKey', async () => {
+  it('should translate correctly with enableDebugKey and return key', async () => {
     const { result } = renderHook(() => useI18n<Locale>(), {
       wrapper: wrapper({
         defaultLocale: 'en',
@@ -479,15 +478,66 @@ describe('i18n hook', () => {
         supportedLocales: ['en', 'fr'],
       }),
     })
+
+    // @ts-expect-error this key doesn't exist but enable debug key will return the key
     expect(result.current.t('test')).toEqual('test')
 
     await waitFor(() => {
       expect(result.current.t('title')).toEqual('title')
       expect(result.current.t('subtitle')).toEqual('subtitle')
-      expect(result.current.t('plurals', { numPhotos: 0 })).toEqual('plurals')
-      expect(result.current.t('plurals', { numPhotos: 1 })).toEqual('plurals')
-      expect(result.current.t('plurals', { numPhotos: 2 })).toEqual('plurals')
+      expect(result.current.t('plurals', { count: 0 })).toEqual('plurals')
+      expect(result.current.t('plurals', { count: 1 })).toEqual('plurals')
+      expect(result.current.t('plurals', { count: 2 })).toEqual('plurals')
     })
+  })
+
+  it('should call onTranslateError when there is a sync issue to remove/add variable in one traduction of a language', async () => {
+    const mockOnTranslateError = jest.fn()
+
+    const { result } = renderHook(() => useI18n<Locale>(), {
+      wrapper: wrapper({
+        defaultLocale: 'en',
+        defaultTranslations: { en, fr },
+        supportedLocales: ['en', 'fr'],
+        onTranslateError: mockOnTranslateError,
+      }),
+    })
+
+    await act(async () => {
+      await result.current.switchLocale('fr')
+    })
+
+    waitFor(() => {
+      expect(result.current.currentLocale).toEqual('fr')
+    })
+
+    const newVariable = 'newVariable'
+    expect(
+      result.current.t('translate.error', { newVariable: 'newVariable' }),
+    ).toBe(
+      `On translate sync issue with variable between locales ${newVariable}`,
+    )
+
+    expect(mockOnTranslateError).toHaveBeenCalledTimes(1)
+    expect(mockOnTranslateError).toHaveBeenCalledWith({
+      error: new Error(
+        'The intl string context variable "oldFrenchVariable" was not provided to the string "onTranslateError fonction sera appelé car il manque une variable en français {oldFrenchVariable}"',
+      ),
+      currentLocale: 'fr',
+      key: 'translate.error',
+      value:
+        'onTranslateError fonction sera appelé car il manque une variable en français {oldFrenchVariable}',
+    })
+
+    const oldFrenchVariable = 'cette variable fonctionne'
+    expect(
+      result.current.t('translate.error', {
+        // @ts-expect-error this variable doesn't exist in english anymore but still in french locales
+        oldFrenchVariable,
+      }),
+    ).toBe(
+      `onTranslateError fonction sera appelé car il manque une variable en français ${oldFrenchVariable}`,
+    )
   })
 
   it('should use namespaceTranslation', async () => {
