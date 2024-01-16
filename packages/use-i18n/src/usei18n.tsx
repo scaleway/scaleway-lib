@@ -200,6 +200,7 @@ const I18nContextProvider = ({
   loadDateLocaleAsync,
   localeItemStorage = LOCALE_ITEM_STORAGE,
   onLoadDateLocaleError,
+  onTranslateError,
   supportedLocales,
 }: {
   children: ReactNode
@@ -213,6 +214,17 @@ const I18nContextProvider = ({
   enableDebugKey: boolean
   localeItemStorage: string
   supportedLocales: string[]
+  onTranslateError?: ({
+    error,
+    currentLocale,
+    value,
+    key,
+  }: {
+    error: Error
+    currentLocale: string
+    value: string
+    key: string
+  }) => void
 }): ReactElement => {
   const [currentLocale, setCurrentLocale] = useState<string>(
     getCurrentLocale({ defaultLocale, localeItemStorage, supportedLocales }),
@@ -382,6 +394,7 @@ const I18nContextProvider = ({
   const translate = useCallback(
     (key: string, context?: ReactParamsObject<any>) => {
       const value = translations[currentLocale]?.[key] as string
+
       if (enableDebugKey) {
         return key
       }
@@ -390,14 +403,36 @@ const I18nContextProvider = ({
         return ''
       }
       if (context) {
-        return formatters
-          .getTranslationFormat(value, currentLocale)
-          .format(context) as string
+        try {
+          return formatters
+            .getTranslationFormat(value, currentLocale)
+            .format(context) as string
+        } catch (err) {
+          onTranslateError?.({
+            error: err as Error,
+            currentLocale,
+            value,
+            key,
+          })
+
+          // with default locale nothing should break or it's normal to not ignore it.
+          const defaultValue = translations[defaultLocale]?.[key] as string
+
+          return formatters
+            .getTranslationFormat(defaultValue, defaultLocale)
+            .format(context) as string
+        }
       }
 
       return value
     },
-    [currentLocale, translations, enableDebugKey],
+    [
+      currentLocale,
+      translations,
+      enableDebugKey,
+      defaultLocale,
+      onTranslateError,
+    ],
   )
 
   const namespaceTranslation = useCallback(
