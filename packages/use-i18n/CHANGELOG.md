@@ -1,5 +1,15 @@
 # Change Log
 
+## 6.1.1
+
+### Patch Changes
+
+- [#1782](https://github.com/scaleway/scaleway-lib/pull/1782) [`a3636ad`](https://github.com/scaleway/scaleway-lib/commit/a3636ad488c2cc29e6257ceb00f7cb19154f4e45) Thanks [@philibea](https://github.com/philibea)! - add a onTranslateError function in case of desync traduction between language. This will help to focus only on default language for developers
+
+- [#1780](https://github.com/scaleway/scaleway-lib/pull/1780) [`3341e58`](https://github.com/scaleway/scaleway-lib/commit/3341e5856641f1d55320f9da107b9641a8709238) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `date-fns` to `3.2.0`.
+
+- [#1774](https://github.com/scaleway/scaleway-lib/pull/1774) [`22d954d`](https://github.com/scaleway/scaleway-lib/commit/22d954d6d4b5bac16afbba93f44789e10a7f12e9) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `date-fns` to `3.1.0`.
+
 ## 6.1.0
 
 ### Minor Changes
