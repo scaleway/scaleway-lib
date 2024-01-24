@@ -132,8 +132,8 @@ importers:
         specifier: 5.12.0
         version: 5.12.0(rollup@4.9.6)
       tsd-lite:
-        specifier: 0.8.0
-        version: 0.8.0(@tsd/typescript@5.3.3)
+        specifier: 0.8.2
+        version: 0.8.2(@tsd/typescript@5.3.3)
       typescript:
         specifier: 5.3.3
         version: 5.3.3
@@ -7320,7 +7320,7 @@ packages:
       '@tsd/typescript': 5.3.3
       chalk: 4.1.2
       create-jest-runner: 0.12.3
-      tsd-lite: 0.8.0(@tsd/typescript@5.3.3)
+      tsd-lite: 0.8.2(@tsd/typescript@5.3.3)
     transitivePeerDependencies:
       - '@jest/test-result'
       - jest-runner
@@ -9348,8 +9348,8 @@ packages:
       strip-bom: 3.0.0
     dev: false
 
-  /tsd-lite@0.8.0(@tsd/typescript@5.3.3):
-    resolution: {integrity: sha512-wsTMCFgSs+mxM92j1G6cOSAVrwzVcqjqMwCqSs1879I18MHbJQn8IpDwr3cTN+ulTqCmfwlBpaJ4y+08JiyG5Q==}
+  /tsd-lite@0.8.2(@tsd/typescript@5.3.3):
+    resolution: {integrity: sha512-A1bzKLlQoWf6NkavfxYqOkbRL/B/kYsBDGUNyXqXm193mAbiXoIJxOjd84CIQ/B2dtxcy8dHat+6V//zxpGBmA==}
     engines: {node: '>=16'}
     peerDependencies:
       '@tsd/typescript': 4.x || 5.x
