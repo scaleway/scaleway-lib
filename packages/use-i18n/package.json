@@ -31,7 +31,7 @@
   "dependencies": {
     "@formatjs/ecma402-abstract": "1.18.2",
     "@formatjs/fast-memoize": "2.2.0",
-    "date-fns": "3.2.0",
+    "date-fns": "3.3.0",
     "filesize": "10.1.0",
     "international-types": "0.8.1",
     "intl-messageformat": "10.5.10"
