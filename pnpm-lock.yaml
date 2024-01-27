@@ -276,8 +276,8 @@ importers:
         specifier: 0.8.1
         version: 0.8.1
       intl-messageformat:
-        specifier: 10.5.10
-        version: 10.5.10
+        specifier: 10.5.11
+        version: 10.5.11
       react:
         specifier: 18.x || 18
         version: 18.2.0
@@ -341,8 +341,8 @@ importers:
   packages/validate-icu-locales:
     dependencies:
       '@formatjs/icu-messageformat-parser':
-        specifier: 2.7.5
-        version: 2.7.5
+        specifier: 2.7.6
+        version: 2.7.6
       globby:
         specifier: 14.0.0
         version: 14.0.0
@@ -2291,16 +2291,16 @@ packages:
       tslib: 2.5.3
     dev: false
 
-  /@formatjs/icu-messageformat-parser@2.7.5:
-    resolution: {integrity: sha512-zCB53HdGDibh6/2ISEN3TGsFQruQ6gGKMFV94qHNyVrs0tNO6ncKhV0vq0n3Ydz8ipIQ2GaYAvfCoimNOVvKqA==}
+  /@formatjs/icu-messageformat-parser@2.7.6:
+    resolution: {integrity: sha512-etVau26po9+eewJKYoiBKP6743I1br0/Ie00Pb/S/PtmYfmjTcOn2YCh2yNkSZI12h6Rg+BOgQYborXk46BvkA==}
     dependencies:
       '@formatjs/ecma402-abstract': 1.18.2
-      '@formatjs/icu-skeleton-parser': 1.7.2
+      '@formatjs/icu-skeleton-parser': 1.8.0
       tslib: 2.5.3
     dev: false
 
-  /@formatjs/icu-skeleton-parser@1.7.2:
-    resolution: {integrity: sha512-nlIXVv280bjGW3ail5Np1+xgGKBnMhwQQIivgbk9xX0af8ESQO+y2VW9TOY7mCrs3WH786uVpZlLimXAlXH7SA==}
+  /@formatjs/icu-skeleton-parser@1.8.0:
+    resolution: {integrity: sha512-QWLAYvM0n8hv7Nq5BEs4LKIjevpVpbGLAJgOaYzg9wABEoX1j0JO1q2/jVkO6CVlq0dbsxZCngS5aXbysYueqA==}
     dependencies:
       '@formatjs/ecma402-abstract': 1.18.2
       tslib: 2.5.3
@@ -6693,12 +6693,12 @@ packages:
     resolution: {integrity: sha512-tajBCAHo4I0LIFlmQ9ZWfjMWVyRffzuvfbXCd6ssFt5u1Zw15DN0UBpVTItXdNa1ls+cpQt3Yw8+TxsfGF8JcA==}
     dev: false
 
-  /intl-messageformat@10.5.10:
-    resolution: {integrity: sha512-3yzwX6t/my9WRtNiqP05r+/UkpWxwstQiwaHAiuHmDRt7ykzWJ+nceOVjNLZYYWGiSltY+C+Likd8OIVkASepw==}
+  /intl-messageformat@10.5.11:
+    resolution: {integrity: sha512-eYq5fkFBVxc7GIFDzpFQkDOZgNayNTQn4Oufe8jw6YY6OHVw70/4pA3FyCsQ0Gb2DnvEJEMmN2tOaXUGByM+kg==}
     dependencies:
       '@formatjs/ecma402-abstract': 1.18.2
       '@formatjs/fast-memoize': 2.2.0
-      '@formatjs/icu-messageformat-parser': 2.7.5
+      '@formatjs/icu-messageformat-parser': 2.7.6
       tslib: 2.5.3
     dev: false
 
