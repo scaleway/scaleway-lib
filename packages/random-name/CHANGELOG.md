@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.3
+
+### Patch Changes
+
+- [#1804](https://github.com/scaleway/scaleway-lib/pull/1804) [`202edf7`](https://github.com/scaleway/scaleway-lib/commit/202edf7d334dd4a4bc8971a098e48dc0eb024476) Thanks [@cyclimse](https://github.com/cyclimse)! - Add Xavier Niel on random name
+
 ## 4.0.2
 
 ### Patch Changes
