@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/use-i18n",
-  "version": "6.1.1",
+  "version": "6.1.2",
   "description": "A small hook to handle i18n",
   "type": "module",
   "engines": {

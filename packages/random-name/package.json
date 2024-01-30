@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/random-name",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "description": "A small utility to generate a random name",
   "type": "module",
   "engines": {

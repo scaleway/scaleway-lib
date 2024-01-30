@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.23
+
+### Patch Changes
+
+- [#1793](https://github.com/scaleway/scaleway-lib/pull/1793) [`d1950d6`](https://github.com/scaleway/scaleway-lib/commit/d1950d632183ca1a6c85fb051e323754c810b1ce) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `react-router-dom` to `6.21.3`.
+
 ## 4.0.22
 
 ### Patch Changes
