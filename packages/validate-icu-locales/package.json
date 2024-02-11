@@ -25,7 +25,7 @@
   ],
   "dependencies": {
     "@formatjs/icu-messageformat-parser": "2.7.6",
-    "globby": "14.0.0",
+    "globby": "14.0.1",
     "module-from-string": "3.3.0"
   }
 }
