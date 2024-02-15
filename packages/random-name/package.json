@@ -4,7 +4,7 @@
   "description": "A small utility to generate a random name",
   "type": "module",
   "engines": {
-    "node": ">=14.x"
+    "node": ">=20.x"
   },
   "sideEffects": false,
   "exports": {

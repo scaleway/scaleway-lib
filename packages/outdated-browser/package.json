@@ -4,7 +4,7 @@
   "description": "A small web script to display outdated banner",
   "type": "module",
   "engines": {
-    "node": ">=14.x"
+    "node": ">=20.x"
   },
   "sideEffects": false,
   "exports": {
