@@ -11,11 +11,10 @@ type TrackingCallback = ComponentProps<
 type ErrorCallback = ComponentProps<typeof AbTestProvider>['errorCallback']
 
 describe('AbTestProvider', () => {
-  let trackingCallback: TrackingCallback
-  let errorCallback: ErrorCallback
+  const trackingCallback = jest.fn<TrackingCallback>()
+  const errorCallback: ErrorCallback = () => null
 
   beforeEach(() => {
-    trackingCallback = jest.fn()
     jest.clearAllMocks()
   })
   it('should init GrowthBook once', () => {
