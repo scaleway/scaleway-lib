@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/use-storage",
-  "version": "2.0.2",
+  "version": "3.0.0",
   "description": "A React hook to interact with local/session storage in reactive way",
   "type": "module",
   "engines": {

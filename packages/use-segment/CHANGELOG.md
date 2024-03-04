@@ -1,5 +1,15 @@
 # Change Log
 
+## 1.0.0
+
+### Major Changes
+
+- [#1837](https://github.com/scaleway/scaleway-lib/pull/1837) [`5404963`](https://github.com/scaleway/scaleway-lib/commit/5404963ddd01fafe6ed9753d8324fb19849065ca) Thanks [@philibea](https://github.com/philibea)! - upgrade node version from 14 to 20
+
+### Patch Changes
+
+- [#1825](https://github.com/scaleway/scaleway-lib/pull/1825) [`fd3082b`](https://github.com/scaleway/scaleway-lib/commit/fd3082b0e251fe100150085a08f4e890e26ba5a5) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@segment/analytics-next` to `1.64.0`.
+
 ## 0.10.2
 
 ### Patch Changes
