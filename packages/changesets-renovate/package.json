@@ -4,7 +4,7 @@
   "description": "Automatically create changesets for Renovate",
   "type": "module",
   "engines": {
-    "node": ">=14.x"
+    "node": ">=20.x"
   },
   "bin": {
     "changesets-renovate": "dist/index.js"

@@ -4,7 +4,7 @@
   "description": "A small hook to handle api requests",
   "type": "module",
   "engines": {
-    "node": ">=14.x"
+    "node": ">=20.x"
   },
   "sideEffects": false,
   "exports": {
