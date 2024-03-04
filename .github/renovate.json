@@ -8,8 +8,11 @@
   "reviewersSampleSize": 2,
   "prHourlyLimit": 5,
   "prConcurrentLimit": 10,
+  "automerge": false,
   "labels": ["dependencies"],
   "rangeStrategy": "pin",
+  "rebaseWhen": "auto",
+  "dependencyDashboard": true,
   "semanticCommitType": "chore",
   "semanticCommitScope": "deps",
   "packageRules": [
@@ -38,13 +41,15 @@
     },
     {
       "labels": ["UPDATE-MINOR"],
-      "stabilityDays": 5,
+      "stabilityDays": 10,
       "matchUpdateTypes": ["minor"]
     },
     {
       "labels": ["UPDATE-PATCH"],
-      "stabilityDays": 1,
-      "matchUpdateTypes": ["patch"]
+      "stabilityDays": 5,
+      "matchUpdateTypes": ["patch"],
+      "automerge": true,
+      "autoApprove": true
     },
     {
       "matchDepTypes": ["engines"],

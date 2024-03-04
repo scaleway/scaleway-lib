@@ -4,7 +4,7 @@
   "description": "A small utility to use regex",
   "type": "module",
   "engines": {
-    "node": ">=14.x"
+    "node": ">=20.x"
   },
   "sideEffects": false,
   "exports": {

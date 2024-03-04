@@ -39,7 +39,7 @@ jobs:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
-        node: ['18','20']
+        node: ['20']
     steps:
       - uses: actions/checkout@v4.1.1
       - uses: pnpm/action-setup@v3.0.0
@@ -52,4 +52,4 @@ jobs:
       - run: pnpm install
       - run: pnpm run build
       - run: pnpm run test:coverage
-      - uses: codecov/codecov-action@v4.0.2
+      - uses: codecov/codecov-action@v4.1.0
