@@ -39,7 +39,7 @@ jobs:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
-        node: ['18','20']
+        node: ['20']
     steps:
       - uses: actions/checkout@v4.1.1
       - uses: pnpm/action-setup@v3.0.0

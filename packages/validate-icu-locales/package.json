@@ -4,7 +4,7 @@
   "description": "A small cli to handle icu errors on locales files",
   "type": "module",
   "engines": {
-    "node": ">=14.x"
+    "node": ">=20.x"
   },
   "bin": {
     "validate-icu": "dist/index.js"
