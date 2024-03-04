@@ -1,5 +1,15 @@
 # Change Log
 
+## 3.0.0
+
+### Major Changes
+
+- [#1837](https://github.com/scaleway/scaleway-lib/pull/1837) [`5404963`](https://github.com/scaleway/scaleway-lib/commit/5404963ddd01fafe6ed9753d8324fb19849065ca) Thanks [@philibea](https://github.com/philibea)! - upgrade node version from 14 to 20
+
+### Patch Changes
+
+- [#1821](https://github.com/scaleway/scaleway-lib/pull/1821) [`177cee2`](https://github.com/scaleway/scaleway-lib/commit/177cee2fb57aeff90aadb2c384deb3b964d01931) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `globby` to `14.0.1`.
+
 ## 2.0.15
 
 ### Patch Changes

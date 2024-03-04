@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/outdated-browser",
-  "version": "2.0.2",
+  "version": "3.0.0",
   "description": "A small web script to display outdated banner",
   "type": "module",
   "engines": {

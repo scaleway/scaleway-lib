@@ -1,5 +1,17 @@
 # Change Log
 
+## 4.0.0
+
+### Major Changes
+
+- [#1837](https://github.com/scaleway/scaleway-lib/pull/1837) [`5404963`](https://github.com/scaleway/scaleway-lib/commit/5404963ddd01fafe6ed9753d8324fb19849065ca) Thanks [@philibea](https://github.com/philibea)! - upgrade node version from 14 to 20
+
+### Patch Changes
+
+- [#1826](https://github.com/scaleway/scaleway-lib/pull/1826) [`6fb0a4a`](https://github.com/scaleway/scaleway-lib/commit/6fb0a4ab60ea0ebceea65c4162f7147246a0b9db) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@testing-library/react` to `14.2.1`.
+
+- [#1846](https://github.com/scaleway/scaleway-lib/pull/1846) [`53c8aca`](https://github.com/scaleway/scaleway-lib/commit/53c8aca6a1621f9b9402291681cd625958f9ca29) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@emotion/react` to `11.11.4`.
+
 ## 3.0.12
 
 ### Patch Changes

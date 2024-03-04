@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/use-random-name",
-  "version": "0.3.2",
+  "version": "1.0.0",
   "description": "A small react utility to generate a random name",
   "type": "module",
   "engines": {
@@ -24,6 +24,6 @@
     "react": ">=16.8"
   },
   "dependencies": {
-    "@scaleway/random-name": "^4.0.2"
+    "@scaleway/random-name": "^5.0.0"
   }
 }

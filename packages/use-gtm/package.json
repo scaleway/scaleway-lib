@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/use-gtm",
-  "version": "2.0.2",
+  "version": "3.0.0",
   "description": "A small hook to handle gtm in a react app",
   "type": "module",
   "engines": {
