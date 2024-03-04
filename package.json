@@ -7,8 +7,8 @@
   "type": "module",
   "packageManager": "pnpm@8.15.4",
   "engines": {
-    "node": ">=18.x",
-    "pnpm": ">=7.x"
+    "node": ">=20.x",
+    "pnpm": ">=8.x"
   },
   "devDependencies": {
     "@babel/core": "7.24.0",
@@ -31,7 +31,7 @@
     "@tsd/typescript": "5.3.3",
     "@types/jest": "29.5.12",
     "@types/node": "20.11.24",
-    "@types/react": "18.2.58",
+    "@types/react": "18.2.60",
     "@types/react-dom": "18.2.19",
     "builtin-modules": "3.3.0",
     "cross-env": "7.0.3",
