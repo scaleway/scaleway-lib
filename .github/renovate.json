@@ -1,20 +1,20 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "enabledManagers": ["github-actions", "npm"],
-  "extends": ["config:base", ":combinePatchMinorReleases"],
   "assignees": ["team:console"],
   "assigneesSampleSize": 1,
-  "reviewers": ["team:console"],
-  "reviewersSampleSize": 2,
-  "prHourlyLimit": 5,
-  "prConcurrentLimit": 10,
   "automerge": false,
+  "dependencyDashboard": true,
+  "enabledManagers": ["github-actions", "npm"],
+  "extends": ["config:base", ":combinePatchMinorReleases"],
   "labels": ["dependencies"],
+  "prConcurrentLimit": 10,
+  "prHourlyLimit": 5,
   "rangeStrategy": "pin",
   "rebaseWhen": "auto",
-  "dependencyDashboard": true,
-  "semanticCommitType": "chore",
+  "reviewers": ["team:console"],
+  "reviewersSampleSize": 2,
   "semanticCommitScope": "deps",
+  "semanticCommitType": "chore",
   "packageRules": [
     {
       "matchDepTypes": ["engines", "peerDependencies"],
@@ -22,7 +22,9 @@
     },
     {
       "matchManagers": ["github-actions"],
-      "semanticCommitScope": "devDeps"
+      "semanticCommitScope": "devDeps",
+      "automerge": true,
+      "autoApprove": true
     },
     {
       "semanticCommitScope": "devDeps",
@@ -41,12 +43,14 @@
     },
     {
       "labels": ["UPDATE-MINOR"],
-      "stabilityDays": 10,
-      "matchUpdateTypes": ["minor"]
+      "stabilityDays": 7,
+      "matchUpdateTypes": ["minor"],
+      "automerge": true,
+      "autoApprove": true
     },
     {
       "labels": ["UPDATE-PATCH"],
-      "stabilityDays": 5,
+      "stabilityDays": 3,
       "matchUpdateTypes": ["patch"],
       "automerge": true,
       "autoApprove": true
