@@ -27,7 +27,7 @@
     "segment"
   ],
   "dependencies": {
-    "@segment/analytics-next": "1.64.0",
+    "@segment/analytics-next": "1.66.0",
     "use-deep-compare-effect": "1.8.1"
   },
   "devDependencies": {
