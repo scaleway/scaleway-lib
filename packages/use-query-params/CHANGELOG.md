@@ -1,5 +1,13 @@
 # Change Log
 
+## 5.0.1
+
+### Patch Changes
+
+- [#1860](https://github.com/scaleway/scaleway-lib/pull/1860) [`80b5680`](https://github.com/scaleway/scaleway-lib/commit/80b56807e5ea5559f01401f9c9a671ced2430e3c) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `query-string` to `9.0.0`.
+
+- [#1858](https://github.com/scaleway/scaleway-lib/pull/1858) [`ece4acc`](https://github.com/scaleway/scaleway-lib/commit/ece4accfe2ad31a56b76e269ead51e2cdf4e36f6) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `react-router-dom` to `6.22.3`.
+
 ## 5.0.0
 
 ### Major Changes

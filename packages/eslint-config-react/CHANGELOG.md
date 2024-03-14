@@ -1,5 +1,24 @@
 # Change Log
 
+## 3.17.5
+
+### Patch Changes
+
+- [#1868](https://github.com/scaleway/scaleway-lib/pull/1868) [`434992d`](https://github.com/scaleway/scaleway-lib/commit/434992d8bb939c1a6a32b9b9c7313fb699749ac1) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@typescript-eslint/eslint-plugin` to `7.2.0`.
+  Updated dependency `@typescript-eslint/parser` to `7.2.0`.
+
+- [#1859](https://github.com/scaleway/scaleway-lib/pull/1859) [`d377f03`](https://github.com/scaleway/scaleway-lib/commit/d377f03384f4adb8aed7a66bf10d3a1faee2bea9) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `eslint-plugin-react` to `7.34.0`.
+
+- [#1869](https://github.com/scaleway/scaleway-lib/pull/1869) [`397cb9b`](https://github.com/scaleway/scaleway-lib/commit/397cb9bcb5c838a4df633eae2d1e5b222f5d4b13) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `eslint-config-airbnb-typescript` to `18.0.0`.
+
+- [#1861](https://github.com/scaleway/scaleway-lib/pull/1861) [`5a3514c`](https://github.com/scaleway/scaleway-lib/commit/5a3514cbb58eb1bdee6e8403d4289030120da327) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `typescript` to `5.4.2`.
+
+- [#1854](https://github.com/scaleway/scaleway-lib/pull/1854) [`7a81520`](https://github.com/scaleway/scaleway-lib/commit/7a81520e6deb236ce8519349af1a0e09c65db095) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@typescript-eslint/eslint-plugin` to `7.1.0`.
+  Updated dependency `@typescript-eslint/parser` to `7.1.0`.
+
+- [#1863](https://github.com/scaleway/scaleway-lib/pull/1863) [`56774a1`](https://github.com/scaleway/scaleway-lib/commit/56774a1508745f18f382daf918d3ee4fc9fb5db9) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@typescript-eslint/eslint-plugin` to `7.1.1`.
+  Updated dependency `@typescript-eslint/parser` to `7.1.1`.
+
 ## 3.17.4
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.1.3
+
+### Patch Changes
+
+- [#1867](https://github.com/scaleway/scaleway-lib/pull/1867) [`c22d068`](https://github.com/scaleway/scaleway-lib/commit/c22d068a9fb13a72e0a4fce12683d4a2d82c53c0) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `date-fns` to `3.4.0`.
+
 ## 6.1.2
 
 ### Patch Changes
