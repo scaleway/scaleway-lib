@@ -22,7 +22,7 @@ import unitFormat, { type FormatUnitOptions } from './formatUnit'
 import formatters, { type IntlListFormatOptions } from './formatters'
 import type { ReactParamsObject, ScopedTranslateFn, TranslateFn } from './types'
 
-const LOCALE_ITEM_STORAGE = 'locale' as const
+const LOCALE_ITEM_STORAGE = 'locale'
 
 type TranslationsByLocales = Record<string, BaseLocale>
 type RequiredGenericContext<Locale extends BaseLocale> =
