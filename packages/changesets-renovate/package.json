@@ -25,6 +25,6 @@
     "sync"
   ],
   "dependencies": {
-    "simple-git": "3.22.0"
+    "simple-git": "3.23.0"
   }
 }
