@@ -8,7 +8,6 @@ module.exports = {
   ],
   plugins: ['deprecation', '@typescript-eslint'],
   rules: {
-    'deprecation/deprecation': 'warn',
     // Enforce T[] instead of Array<T>
     '@typescript-eslint/array-type': [
       'error',
