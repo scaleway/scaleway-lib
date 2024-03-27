@@ -132,8 +132,8 @@ importers:
         specifier: 5.12.0
         version: 5.12.0(rollup@4.13.0)
       tsd-lite:
-        specifier: 0.8.2
-        version: 0.8.2(@tsd/typescript@5.3.3)
+        specifier: 0.9.0
+        version: 0.9.0(@tsd/typescript@5.3.3)
       typescript:
         specifier: 5.4.3
         version: 5.4.3
@@ -9595,6 +9595,16 @@ packages:
   /tsd-lite@0.8.2(@tsd/typescript@5.3.3):
     resolution: {integrity: sha512-A1bzKLlQoWf6NkavfxYqOkbRL/B/kYsBDGUNyXqXm193mAbiXoIJxOjd84CIQ/B2dtxcy8dHat+6V//zxpGBmA==}
     engines: {node: '>=16'}
+    peerDependencies:
+      '@tsd/typescript': 4.x || 5.x
+    dependencies:
+      '@tsd/typescript': 5.3.3
+    dev: true
+
+  /tsd-lite@0.9.0(@tsd/typescript@5.3.3):
+    resolution: {integrity: sha512-djuH9e7NJHCH20Jw9/KzH+2P7c6Cc2Lee0wOu4xavU5G3NTYIIdk5L0KCOS+18PWx3SyOA/dOICAAatT2bfLmQ==}
+    engines: {node: '>=16'}
+    deprecated: 'This package is deprecated. For details, see the deprecation notice: https://github.com/mrazauskas/tsd-lite/issues/364'
     peerDependencies:
       '@tsd/typescript': 4.x || 5.x
     dependencies:
