@@ -59,9 +59,6 @@ importers:
       '@testing-library/react':
         specifier: 14.2.2
         version: 14.2.2(react-dom@18.2.0)(react@18.2.0)
-      '@tsd/typescript':
-        specifier: 5.3.3
-        version: 5.3.3
       '@types/jest':
         specifier: 29.5.12
         version: 29.5.12
@@ -98,9 +95,6 @@ importers:
       jest-localstorage-mock:
         specifier: 2.4.26
         version: 2.4.26
-      jest-runner-tsd:
-        specifier: 6.0.0
-        version: 6.0.0(@tsd/typescript@5.3.3)
       lint-staged:
         specifier: 15.2.2
         version: 15.2.2
@@ -131,9 +125,9 @@ importers:
       rollup-plugin-visualizer:
         specifier: 5.12.0
         version: 5.12.0(rollup@4.13.2)
-      tsd-lite:
-        specifier: 0.8.2
-        version: 0.8.2(@tsd/typescript@5.3.3)
+      tstyche:
+        specifier: '1.1.0 '
+        version: 1.1.0(typescript@5.4.3)
       typescript:
         specifier: 5.4.3
         version: 5.4.3
@@ -366,13 +360,6 @@ packages:
     dependencies:
       '@jridgewell/gen-mapping': 0.3.3
       '@jridgewell/trace-mapping': 0.3.18
-    dev: true
-
-  /@babel/code-frame@7.22.5:
-    resolution: {integrity: sha512-Xmwn266vad+6DAqEB2A6V/CcZVp62BbwVmcOJc2RPuwih1kw02TjQvWVWlcKGbBPd+8/0V5DEkOcizRGYsspYQ==}
-    engines: {node: '>=6.9.0'}
-    dependencies:
-      '@babel/highlight': 7.23.4
     dev: true
 
   /@babel/code-frame@7.23.5:
@@ -668,16 +655,6 @@ packages:
       '@babel/types': 7.24.0
     transitivePeerDependencies:
       - supports-color
-    dev: true
-
-  /@babel/highlight@7.23.4:
-    resolution: {integrity: sha512-acGdbYSfp2WheJoJm/EBBBLh/ID8KDc64ISZ9DYtBmC8/Q204PZJLHyzeB5qMzJ5trcOkybd78M4x2KWsUq++A==}
-    engines: {node: '>=6.9.0'}
-    requiresBuild: true
-    dependencies:
-      '@babel/helper-validator-identifier': 7.22.20
-      chalk: 2.4.2
-      js-tokens: 4.0.0
     dev: true
 
   /@babel/highlight@7.24.2:
@@ -4095,11 +4072,6 @@ packages:
     engines: {node: '>= 10'}
     dev: true
 
-  /@tsd/typescript@5.3.3:
-    resolution: {integrity: sha512-CQlfzol0ldaU+ftWuG52vH29uRoKboLinLy84wS8TQOu+m+tWoaUfk4svL4ij2V8M5284KymJBlHUusKj6k34w==}
-    engines: {node: '>=14.17'}
-    dev: true
-
   /@types/aria-query@5.0.1:
     resolution: {integrity: sha512-XTIieEY+gvJ39ChLcB4If5zHtPxt3Syj5rgZR+e1ctpmK8NjPf0zFqsz4JpLJT0xla9GFDKjy8Cpu331nrmE1Q==}
 
@@ -5203,23 +5175,6 @@ packages:
       js-yaml: 4.1.0
       parse-json: 5.2.0
       typescript: 5.4.3
-    dev: true
-
-  /create-jest-runner@0.12.3:
-    resolution: {integrity: sha512-xrGcSrr86F2YdbrOoAZIowSYMYBpxrOrqHEvJqIpG0vsuMVcq3+OKSe7JJR1SWJFLGiMhHInPyR48+rW9ZHq9Q==}
-    hasBin: true
-    peerDependencies:
-      '@jest/test-result': ^28.0.0 || ^29.0.0
-      jest-runner: ^28.0.0 || ^29.0.0
-    peerDependenciesMeta:
-      '@jest/test-result':
-        optional: true
-      jest-runner:
-        optional: true
-    dependencies:
-      chalk: 4.1.2
-      jest-worker: 29.6.4
-      p-limit: 3.1.0
     dev: true
 
   /create-jest@29.7.0(@types/node@20.11.30):
@@ -7579,22 +7534,6 @@ packages:
       slash: 3.0.0
     dev: true
 
-  /jest-runner-tsd@6.0.0(@tsd/typescript@5.3.3):
-    resolution: {integrity: sha512-lSzRoVqc/AwahlKFamdwO/R63Vze/xpCnab+FsNni8zmxyBt3e3py51mFE2UQBh2gSvEYwudOSHgX+xtmLynKw==}
-    engines: {node: '>=16'}
-    peerDependencies:
-      '@tsd/typescript': 4.x || 5.x
-    dependencies:
-      '@babel/code-frame': 7.22.5
-      '@tsd/typescript': 5.3.3
-      chalk: 4.1.2
-      create-jest-runner: 0.12.3
-      tsd-lite: 0.8.2(@tsd/typescript@5.3.3)
-    transitivePeerDependencies:
-      - '@jest/test-result'
-      - jest-runner
-    dev: true
-
   /jest-runner@29.7.0:
     resolution: {integrity: sha512-fsc4N6cPCAahybGBfTRcq5wFR6fpLznMg47sY5aDpsoejOcVYFb07AHuSnR0liMcPTgBsA3ZJL6kFOjPdoNipQ==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
@@ -7682,18 +7621,6 @@ packages:
       - supports-color
     dev: true
 
-  /jest-util@29.6.3:
-    resolution: {integrity: sha512-QUjna/xSy4B32fzcKTSz1w7YYzgiHrjjJjevdRf61HYk998R5vVMMNmrHESYZVDS5DSWs+1srPLPKxXPkeSDOA==}
-    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
-    dependencies:
-      '@jest/types': 29.6.3
-      '@types/node': 20.11.30
-      chalk: 4.1.2
-      ci-info: 3.8.0
-      graceful-fs: 4.2.11
-      picomatch: 2.3.1
-    dev: true
-
   /jest-util@29.7.0:
     resolution: {integrity: sha512-z6EbKajIpqGKU56y5KBUgy1dt1ihhQJgWzUlZHArA/+X2ad7Cb5iF+AK1EWVL/Bo7Rz9uurpqw6SiBCefUbCGA==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
@@ -7729,16 +7656,6 @@ packages:
       emittery: 0.13.1
       jest-util: 29.7.0
       string-length: 4.0.2
-    dev: true
-
-  /jest-worker@29.6.4:
-    resolution: {integrity: sha512-6dpvFV4WjcWbDVGgHTWo/aupl8/LbBx2NSKfiwqf79xC/yeJjKHT1+StcKy/2KTmW16hE68ccKVOtXf+WZGz7Q==}
-    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
-    dependencies:
-      '@types/node': 20.11.30
-      jest-util: 29.6.3
-      merge-stream: 2.0.0
-      supports-color: 8.1.1
     dev: true
 
   /jest-worker@29.7.0:
@@ -9610,15 +9527,6 @@ packages:
       strip-bom: 3.0.0
     dev: false
 
-  /tsd-lite@0.8.2(@tsd/typescript@5.3.3):
-    resolution: {integrity: sha512-A1bzKLlQoWf6NkavfxYqOkbRL/B/kYsBDGUNyXqXm193mAbiXoIJxOjd84CIQ/B2dtxcy8dHat+6V//zxpGBmA==}
-    engines: {node: '>=16'}
-    peerDependencies:
-      '@tsd/typescript': 4.x || 5.x
-    dependencies:
-      '@tsd/typescript': 5.3.3
-    dev: true
-
   /tslib@1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
     dev: false
@@ -9626,6 +9534,19 @@ packages:
   /tslib@2.5.3:
     resolution: {integrity: sha512-mSxlJJwl3BMEQCUNnxXBU9jP4JBktcEGhURcPR6VQVlnP0FdDEsIaz0C35dXNGLyRfrATNofF0F5p2KPxQgB+w==}
     dev: false
+
+  /tstyche@1.1.0(typescript@5.4.3):
+    resolution: {integrity: sha512-ZvDeScrBJf6053bdOkGUtnfDn7414XjmjGWrDntQfSmtPvxv9HVJ+03GFK2O46hfoAI9L5Q22uw6xy5ZTBdPGg==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+    peerDependencies:
+      typescript: 4.x || 5.x
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      typescript: 5.4.3
+    dev: true
 
   /tsutils@3.21.0(typescript@5.4.3):
     resolution: {integrity: sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==}

@@ -53,3 +53,22 @@ jobs:
       - run: pnpm run build
       - run: pnpm run test:coverage
       - uses: codecov/codecov-action@v4.1.1
+
+  test-types:
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        node: ['20']
+    steps:
+      - uses: actions/checkout@v4.1.1
+      - uses: pnpm/action-setup@v2.4.0
+      - name: Use Node.js
+        uses: actions/setup-node@v4.0.0
+        with:
+          node-version: ${{ matrix.node }}
+          check-latest: true
+          cache: 'pnpm'
+      - run: pnpm install
+      - run: pnpm run build
+      - run: pnpm run test:types
+
