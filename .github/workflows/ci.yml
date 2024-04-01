@@ -52,15 +52,13 @@ jobs:
       - run: pnpm install
       - run: pnpm run build
       - run: pnpm run test:coverage
-<<<<<<< HEAD
       - uses: codecov/codecov-action@v4.1.1
-=======
-      - uses: codecov/codecov-action@v3.1.4
+
   test-types:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
-        node: ['18','20']
+        node: ['20']
     steps:
       - uses: actions/checkout@v4.1.1
       - uses: pnpm/action-setup@v2.4.0
@@ -74,4 +72,3 @@ jobs:
       - run: pnpm run build
       - run: pnpm run test:types
 
->>>>>>> e23dfe49 (refactor(type-test): use new runner for types tests)
