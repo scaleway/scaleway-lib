@@ -28,7 +28,7 @@
     "@scaleway/tsconfig": "workspace:*",
     "@testing-library/jest-dom": "6.4.2",
     "@testing-library/react": "14.2.2",
-    "@tsd/typescript": "5.3.3",
+    "@tsd/typescript": "5.4.3",
     "@types/jest": "29.5.12",
     "@types/node": "20.11.30",
     "@types/react": "18.2.67",
