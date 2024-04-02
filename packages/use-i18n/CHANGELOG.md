@@ -1,5 +1,15 @@
 # Change Log
 
+## 6.1.4
+
+### Patch Changes
+
+- [#1891](https://github.com/scaleway/scaleway-lib/pull/1891) [`a4d9fcd`](https://github.com/scaleway/scaleway-lib/commit/a4d9fcd9d5be263790d304fc93d4910a3cd2d3d6) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `date-fns` to `3.6.0`.
+
+- [#1889](https://github.com/scaleway/scaleway-lib/pull/1889) [`c88fdac`](https://github.com/scaleway/scaleway-lib/commit/c88fdac4df031c84e0b521560e65dd398a5eb616) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `filesize` to `10.1.1`.
+
+- [#1884](https://github.com/scaleway/scaleway-lib/pull/1884) [`86dbd7c`](https://github.com/scaleway/scaleway-lib/commit/86dbd7c6cb4ca3865e8aa9edc8fb867c2d143257) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `date-fns` to `3.5.0`.
+
 ## 6.1.3
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @scaleway/cookie-consent
 
+## 1.1.2
+
+### Patch Changes
+
+- [#1902](https://github.com/scaleway/scaleway-lib/pull/1902) [`6d410ae`](https://github.com/scaleway/scaleway-lib/commit/6d410ae22456909e84b2e2c332f2887e1ebc0509) Thanks [@philibea](https://github.com/philibea)! - Remove the default object All: false of integrations when integrations are set. This will only apply on empty integrations array to protect users
+
 ## 1.1.1
 
 ### Patch Changes
