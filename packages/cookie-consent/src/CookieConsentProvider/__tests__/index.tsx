@@ -1,14 +1,19 @@
 // useSegmentIntegrations tests have been splitted in multiple files because of https://github.com/facebook/jest/issues/8987
-import { afterEach, describe, expect, it, jest } from '@jest/globals'
+import { describe, expect, it, jest } from '@jest/globals'
 import { act, renderHook } from '@testing-library/react'
 import cookie from 'cookie'
 import type { ComponentProps, ReactNode } from 'react'
 import { CookieConsentProvider, useCookieConsent } from '..'
+import type { Integrations } from '../types'
+import type { useSegmentIntegrations } from '../useSegmentIntegrations'
 
 const wrapper =
   ({
     isConsentRequired,
-  }: Omit<ComponentProps<typeof CookieConsentProvider>, 'children'>) =>
+  }: Omit<
+    ComponentProps<typeof CookieConsentProvider>,
+    'children' | 'essentialIntegrations' | 'config'
+  >) =>
   ({ children }: { children: ReactNode }) => (
     <CookieConsentProvider
       isConsentRequired={isConsentRequired}
@@ -24,7 +29,7 @@ const wrapper =
     </CookieConsentProvider>
   )
 
-const integrations = [
+const integrations: Integrations = [
   {
     category: 'analytics',
     name: 'Google Universal Analytics',
@@ -38,18 +43,25 @@ const integrations = [
     name: 'Salesforce',
   },
 ]
-const mockUseSegmentIntegrations = jest.fn().mockReturnValue({
+
+const mockUseSegmentIntegrations = jest.fn<
+  () => ReturnType<typeof useSegmentIntegrations>
+>(() => ({
   integrations,
   isLoaded: true,
-})
+}))
+
 jest.mock('../useSegmentIntegrations', () => ({
-  __esModule: true,
   useSegmentIntegrations: () => mockUseSegmentIntegrations(),
 }))
 
 describe('CookieConsent - CookieConsentProvider', () => {
-  afterEach(() => {
-    document.cookie = ''
+  beforeEach(() => {
+    jest.clearAllMocks()
+  })
+
+  afterAll(() => {
+    jest.restoreAllMocks()
   })
 
   it('useCookieConsent should throw without provider', () => {
@@ -57,7 +69,7 @@ describe('CookieConsent - CookieConsentProvider', () => {
     spy.mockImplementation(() => {})
 
     expect(() => renderHook(() => useCookieConsent())).toThrow(
-      Error('useCookieConsent must be used within a CookieConsentProvider'),
+      new Error('useCookieConsent must be used within a CookieConsentProvider'),
     )
 
     spy.mockRestore()
@@ -67,13 +79,6 @@ describe('CookieConsent - CookieConsentProvider', () => {
     const { result } = renderHook(() => useCookieConsent(), {
       wrapper: wrapper({
         isConsentRequired: false,
-        essentialIntegrations: ['Deskpro', 'Stripe', 'Sentry'],
-        config: {
-          segment: {
-            cdnURL: 'url',
-            writeKey: 'key',
-          },
-        },
       }),
     })
 
@@ -84,7 +89,6 @@ describe('CookieConsent - CookieConsentProvider', () => {
       marketing: true,
     })
     expect(result.current.segmentIntegrations).toStrictEqual({
-      All: false,
       'Google Universal Analytics': true,
       Salesforce: true,
       'Salesforce custom destination (Scaleway)': true,
@@ -94,42 +98,24 @@ describe('CookieConsent - CookieConsentProvider', () => {
 
   it('should know when integrations are loading', () => {
     // simulate that Segment is loading
-    mockUseSegmentIntegrations.mockReturnValue({
+    mockUseSegmentIntegrations.mockReturnValueOnce({
       integrations: undefined,
       isLoaded: false,
     })
     const { result } = renderHook(() => useCookieConsent(), {
       wrapper: wrapper({
         isConsentRequired: true,
-        essentialIntegrations: ['Deskpro', 'Stripe', 'Sentry'],
-        config: {
-          segment: {
-            cdnURL: 'url',
-            writeKey: 'key',
-          },
-        },
       }),
     })
-    expect(result.current.isSegmentIntegrationsLoaded).toBe(false)
 
-    // put mock back as if segment integrations are loaded
-    mockUseSegmentIntegrations.mockReturnValue({
-      integrations,
-      isLoaded: true,
-    })
+    expect(mockUseSegmentIntegrations).toBeCalledTimes(1)
+    expect(result.current.isSegmentIntegrationsLoaded).toBe(false)
   })
 
   it('should know to ask for content when no cookie is set and consent is required', () => {
     const { result } = renderHook(() => useCookieConsent(), {
       wrapper: wrapper({
         isConsentRequired: true,
-        essentialIntegrations: ['Deskpro', 'Stripe', 'Sentry'],
-        config: {
-          segment: {
-            cdnURL: 'url',
-            writeKey: 'key',
-          },
-        },
       }),
     })
 
@@ -140,7 +126,6 @@ describe('CookieConsent - CookieConsentProvider', () => {
       analytics: false,
     })
     expect(result.current.segmentIntegrations).toStrictEqual({
-      All: false,
       'Google Universal Analytics': false,
       Salesforce: false,
       'Salesforce custom destination (Scaleway)': false,
@@ -152,13 +137,6 @@ describe('CookieConsent - CookieConsentProvider', () => {
     const { result } = renderHook(() => useCookieConsent(), {
       wrapper: wrapper({
         isConsentRequired: true,
-        essentialIntegrations: ['Deskpro', 'Stripe', 'Sentry'],
-        config: {
-          segment: {
-            cdnURL: 'url',
-            writeKey: 'key',
-          },
-        },
       }),
     })
 
@@ -169,7 +147,6 @@ describe('CookieConsent - CookieConsentProvider', () => {
       marketing: false,
     })
     expect(result.current.segmentIntegrations).toStrictEqual({
-      All: false,
       'Google Universal Analytics': false,
       Salesforce: false,
       'Salesforce custom destination (Scaleway)': false,
@@ -213,17 +190,12 @@ describe('CookieConsent - CookieConsentProvider', () => {
   })
 
   it('should not need consent if hash cookie is set', () => {
-    jest.spyOn(cookie, 'parse').mockReturnValue({ _scw_rgpd_hash: '913003917' })
+    jest
+      .spyOn(cookie, 'parse')
+      .mockImplementation(() => ({ _scw_rgpd_hash: '913003917' }))
     const { result } = renderHook(() => useCookieConsent(), {
       wrapper: wrapper({
         isConsentRequired: true,
-        essentialIntegrations: ['Deskpro', 'Stripe', 'Sentry'],
-        config: {
-          segment: {
-            cdnURL: 'url',
-            writeKey: 'key',
-          },
-        },
       }),
     })
 
@@ -234,7 +206,6 @@ describe('CookieConsent - CookieConsentProvider', () => {
       marketing: false,
     })
     expect(result.current.segmentIntegrations).toStrictEqual({
-      All: false,
       'Google Universal Analytics': false,
       Salesforce: false,
       'Salesforce custom destination (Scaleway)': false,
@@ -242,20 +213,14 @@ describe('CookieConsent - CookieConsentProvider', () => {
   })
 
   it('should not need consent if hash cookie is set and some categories already approved', () => {
-    jest.spyOn(cookie, 'parse').mockReturnValue({
+    jest.spyOn(cookie, 'parse').mockImplementation(() => ({
       _scw_rgpd_hash: '913003917',
       _scw_rgpd_marketing: 'true',
-    })
+    }))
+
     const { result } = renderHook(() => useCookieConsent(), {
       wrapper: wrapper({
         isConsentRequired: true,
-        essentialIntegrations: ['Deskpro', 'Stripe', 'Sentry'],
-        config: {
-          segment: {
-            cdnURL: 'url',
-            writeKey: 'key',
-          },
-        },
       }),
     })
 
@@ -266,10 +231,27 @@ describe('CookieConsent - CookieConsentProvider', () => {
       marketing: true,
     })
     expect(result.current.segmentIntegrations).toStrictEqual({
-      All: false,
       'Google Universal Analytics': false,
       Salesforce: true,
       'Salesforce custom destination (Scaleway)': true,
+    })
+  })
+
+  it('should return integration All: false in case there is no integrations', () => {
+    mockUseSegmentIntegrations.mockReturnValue({
+      integrations: [],
+      isLoaded: true,
+    })
+    const { result } = renderHook(() => useCookieConsent(), {
+      wrapper: wrapper({
+        isConsentRequired: true,
+      }),
+    })
+
+    expect(mockUseSegmentIntegrations).toBeCalledTimes(2)
+
+    expect(result.current.segmentIntegrations).toStrictEqual({
+      All: false,
     })
   })
 })
