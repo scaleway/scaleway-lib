@@ -1,6 +1,6 @@
 import { describe, expect, it, jest } from '@jest/globals'
 import { renderHook, waitFor } from '@testing-library/react'
-import { useSegmentIntegrations } from '../..'
+import { useSegmentIntegrations } from '../../useSegmentIntegrations'
 
 globalThis.fetch = jest.fn<any>(() => Promise.resolve({ ok: false }))
 

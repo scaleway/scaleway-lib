@@ -11,7 +11,8 @@ import {
 } from 'react'
 import { uniq } from '../helpers/array'
 import { stringToHash } from '../helpers/misc'
-import type { CategoryKind, Config, Consent, Integrations } from './types'
+import { isCategoryKind } from './helpers'
+import type { Config, Consent, Integrations } from './types'
 import { useSegmentIntegrations } from './useSegmentIntegrations'
 
 const COOKIE_PREFIX = '_scw_rgpd'
@@ -147,8 +148,12 @@ export const CookieConsentProvider = ({
     (categoriesConsent: Partial<Consent>) => {
       for (const [consentName, consentValue] of Object.entries(
         categoriesConsent,
-      ) as [CategoryKind, boolean][]) {
-        const cookieName = `${cookiePrefix}_${consentName}`
+      )) {
+        const consentCategoryName = isCategoryKind(consentName)
+          ? consentName
+          : 'unknown'
+
+        const cookieName = `${cookiePrefix}_${consentCategoryName}`
 
         if (!consentValue) {
           // If consent is set to false we have to delete the cookie
@@ -158,12 +163,12 @@ export const CookieConsentProvider = ({
           })
         } else {
           document.cookie = cookie.serialize(
-            `${cookiePrefix}_${consentName}`,
+            `${cookiePrefix}_${consentCategoryName}`,
             consentValue.toString(),
             {
               ...cookiesOptions,
               maxAge:
-                consentName === 'advertising'
+                consentCategoryName === 'advertising'
                   ? consentAdvertisingMaxAge
                   : consentMaxAge,
             },

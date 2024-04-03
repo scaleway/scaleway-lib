@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals'
 import { renderHook, waitFor } from '@testing-library/react'
-import { useSegmentIntegrations } from '../..'
+import { useSegmentIntegrations } from '../../useSegmentIntegrations'
 
 describe('CookieConsent - useSegmentIntegrations', () => {
   it('should not call segment if config is empty and return empty array', async () => {
