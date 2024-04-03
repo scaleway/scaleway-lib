@@ -24,7 +24,7 @@ export const SegmentConsentMiddleware = ({
   children,
   amplitudeIntegrationName = AMPLITUDE_INTEGRATION_NAME,
 }: PropsWithChildren<{
-  amplitudeIntegrationName: string
+  amplitudeIntegrationName?: string
 }>) => {
   const { analytics } = useSegment()
   const { categoriesConsent } = useCookieConsent()
