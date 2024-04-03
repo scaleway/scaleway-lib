@@ -73,6 +73,13 @@ export function PanelConsent() {
 }
 ```
 
+### Segment Consent Middleware
+
+As it's necessary now to have a consent management.
+https://segment.com/docs/privacy/consent-management/configure-consent-management/
+
+you will have the possibility to add the SegmentConsentMiddleware, be aware that there is a dependency with SegmenttProvider.
+
 ### User flow
 
 ```mermaid

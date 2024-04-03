@@ -1,5 +1,5 @@
 export {
   CookieConsentProvider,
+  SegmentConsentMiddleware,
   useCookieConsent,
 } from './CookieConsentProvider'
-export type { CategoryKind, Consent } from './CookieConsentProvider/types'
