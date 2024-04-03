@@ -1,5 +1,11 @@
 # @scaleway/cookie-consent
 
+## 1.2.0
+
+### Minor Changes
+
+- [#1905](https://github.com/scaleway/scaleway-lib/pull/1905) [`009e4c2`](https://github.com/scaleway/scaleway-lib/commit/009e4c234db1b8e0dc07aa830d0980ece0a1ee0d) Thanks [@philibea](https://github.com/philibea)! - Add Consent Middleware, fix an amplitude issue with session_id not forward correctly to the destination
+
 ## 1.1.2
 
 ### Patch Changes
