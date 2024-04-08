@@ -51,7 +51,7 @@
     "rollup-plugin-preserve-shebangs": "0.2.0",
     "rollup-plugin-visualizer": "5.12.0",
     "tstyche": "1.1.0 ",
-    "typescript": "5.4.3",
+    "typescript": "5.4.4",
     "wait-for-expect": "3.0.2"
   },
   "scripts": {
