@@ -16,7 +16,6 @@ import {
   useMemo,
   useState,
 } from 'react'
-import ReactDOM from 'react-dom'
 import dateFormat, { type FormatDateOptions } from './formatDate'
 import unitFormat, { type FormatUnitOptions } from './formatUnit'
 import formatters, { type IntlListFormatOptions } from './formatters'
@@ -292,22 +291,15 @@ const I18nContextProvider = ({
         ...result[currentLocale]?.default,
       }
 
-      // avoid a lot of render when async update
-      // This is handled automatically in react 18, but we leave it here for compat
-      // https://github.com/reactwg/react-18/discussions/21#discussioncomment-801703
-      ReactDOM.unstable_batchedUpdates(() => {
-        setTranslations(prevState => ({
-          ...prevState,
-          ...{
-            [currentLocale]: {
-              ...prevState[currentLocale],
-              ...trad,
-            },
-          },
-        }))
+      setTranslations(prevState => ({
+        ...prevState,
+        [currentLocale]: {
+          ...prevState[currentLocale],
+          ...trad,
+        },
+      }))
 
-        setNamespaces(prevState => [...new Set([...prevState, namespace])])
-      })
+      setNamespaces(prevState => [...new Set([...prevState, namespace])])
 
       return namespace
     },
