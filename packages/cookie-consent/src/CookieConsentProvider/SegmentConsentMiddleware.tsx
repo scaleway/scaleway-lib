@@ -2,10 +2,16 @@ import { useSegment } from '@scaleway/use-segment'
 import cookie from 'cookie'
 import type { PropsWithChildren } from 'react'
 import { useCookieConsent } from './CookieConsentProvider'
-import { type CategoryKind, isCategoryKind } from './helpers'
+import { type CategoryKind } from './helpers'
 
 export const AMPLITUDE_INTEGRATION_NAME = 'Amplitude (Actions)'
 const COOKIE_SESSION_ID_NAME = 'analytics_session_id'
+
+type ConsentObject = {
+  defaultDestinationBehavior: null
+  destinationPreferences: null
+  categoryPreferences: Partial<Record<CategoryKind, boolean>>
+}
 
 export const getSessionId = () => {
   const sessionId = cookie.parse(document.cookie)[COOKIE_SESSION_ID_NAME]
@@ -29,25 +35,20 @@ export const SegmentConsentMiddleware = ({
   const { analytics } = useSegment()
   const { categoriesConsent } = useCookieConsent()
 
-  const categoriesPreferencesAccepted: CategoryKind[] = []
-
-  for (const [key, value] of Object.entries(categoriesConsent)) {
-    if (value && isCategoryKind(key)) {
-      categoriesPreferencesAccepted.push(key)
-    }
-  }
-
   analytics
     ?.addSourceMiddleware(({ payload, next }) => {
       if (payload.obj.context) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, no-param-reassign
-        payload.obj.context['consent'] = {
-          ...payload.obj.context['consent'],
+        const consent: ConsentObject = {
+          // ...payload.obj.context['consent'],
           defaultDestinationBehavior: null,
           // Need to be handle if we let the user choose per destination and not per categories.
           destinationPreferences: null,
-          categoryPreferences: categoriesPreferencesAccepted,
+          // https://segment.com/docs/privacy/consent-management/consent-in-segment-connections/#consent-object
+          categoryPreferences: categoriesConsent,
         }
+
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, no-param-reassign
+        payload.obj.context['consent'] = consent
       }
 
       // actually there is a bug on the default script.
