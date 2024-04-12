@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.1.5
+
+### Patch Changes
+
+- [#1921](https://github.com/scaleway/scaleway-lib/pull/1921) [`249071d`](https://github.com/scaleway/scaleway-lib/commit/249071d412ebb6b7d491d416c9b65c7d6263f06f) Thanks [@philibea](https://github.com/philibea)! - Remove usage of unstable_batch_update from react-dom as it's default behavior of react now
+
 ## 6.1.4
 
 ### Patch Changes

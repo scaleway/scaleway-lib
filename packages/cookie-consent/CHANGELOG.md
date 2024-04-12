@@ -1,5 +1,11 @@
 # @scaleway/cookie-consent
 
+## 1.2.1
+
+### Patch Changes
+
+- [`56c8f90`](https://github.com/scaleway/scaleway-lib/commit/56c8f90d8ea35b9ba7158cd1d0ae440e63685509) Thanks [@philibea](https://github.com/philibea)! - update consent object
+
 ## 1.2.0
 
 ### Minor Changes
