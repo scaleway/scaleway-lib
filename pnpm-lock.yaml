@@ -66,11 +66,11 @@ importers:
         specifier: 20.12.7
         version: 20.12.7
       '@types/react':
-        specifier: 18.2.75
-        version: 18.2.75
+        specifier: 18.2.77
+        version: 18.2.77
       '@types/react-dom':
-        specifier: 18.2.24
-        version: 18.2.24
+        specifier: 18.2.25
+        version: 18.2.25
       builtin-modules:
         specifier: 3.3.0
         version: 3.3.0
@@ -213,7 +213,7 @@ importers:
         version: 11.11.0(@types/jest@29.5.12)
       '@emotion/react':
         specifier: 11.11.4
-        version: 11.11.4(@types/react@18.2.75)(react@18.2.0)
+        version: 11.11.4(@types/react@18.2.77)(react@18.2.0)
       '@testing-library/react':
         specifier: 14.3.0
         version: 14.3.0(react-dom@18.2.0)(react@18.2.0)
@@ -2237,7 +2237,7 @@ packages:
     resolution: {integrity: sha512-W2P2c/VRW1/1tLox0mVUalvnWXxavmv/Oum2aPsRcoDJuob75FC3Y8FbpfLwUegRcxINtGUMPq0tFCvYNTBXNA==}
     dev: false
 
-  /@emotion/react@11.11.4(@types/react@18.2.75)(react@18.2.0):
+  /@emotion/react@11.11.4(@types/react@18.2.77)(react@18.2.0):
     resolution: {integrity: sha512-t8AjMlF0gHpvvxk5mAtCqR4vmxiGHCeJBaQO6gncUSdklELOgtwjerNY2yuJNfwnc6vi16U/+uMF+afIawJ9iw==}
     peerDependencies:
       '@types/react': '*'
@@ -2253,7 +2253,7 @@ packages:
       '@emotion/use-insertion-effect-with-fallbacks': 1.0.1(react@18.2.0)
       '@emotion/utils': 1.2.1
       '@emotion/weak-memoize': 0.3.1
-      '@types/react': 18.2.75
+      '@types/react': 18.2.77
       hoist-non-react-statics: 3.3.2
       react: 18.2.0
     dev: false
@@ -4240,10 +4240,16 @@ packages:
   /@types/react-dom@18.2.24:
     resolution: {integrity: sha512-cN6upcKd8zkGy4HU9F1+/s98Hrp6D4MOcippK4PoE8OZRngohHZpbJn1GsaDLz87MqvHNoT13nHvNqM9ocRHZg==}
     dependencies:
-      '@types/react': 18.2.75
+      '@types/react': 18.2.77
 
-  /@types/react@18.2.75:
-    resolution: {integrity: sha512-+DNnF7yc5y0bHkBTiLKqXFe+L4B3nvOphiMY3tuA5X10esmjqk7smyBZzbGTy2vsiy/Bnzj8yFIBL8xhRacoOg==}
+  /@types/react-dom@18.2.25:
+    resolution: {integrity: sha512-o/V48vf4MQh7juIKZU2QGDfli6p1+OOi5oXx36Hffpc9adsHeXjVp8rHuPkjd8VT8sOJ2Zp05HR7CdpGTIUFUA==}
+    dependencies:
+      '@types/react': 18.2.77
+    dev: true
+
+  /@types/react@18.2.77:
+    resolution: {integrity: sha512-CUT9KUUF+HytDM7WiXKLF9qUSg4tGImwy4FXTlfEDPEkkNUzJ7rVFolYweJ9fS1ljoIaP7M7Rdjc5eUm/Yu5AA==}
     dependencies:
       '@types/prop-types': 15.7.8
       csstype: 3.1.2
