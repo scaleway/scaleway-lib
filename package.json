@@ -27,7 +27,7 @@
     "@scaleway/eslint-config-react": "workspace:*",
     "@scaleway/tsconfig": "workspace:*",
     "@testing-library/jest-dom": "6.4.2",
-    "@testing-library/react": "14.3.0",
+    "@testing-library/react": "14.3.1",
     "@types/jest": "29.5.12",
     "@types/node": "20.12.7",
     "@types/react": "18.2.77",
