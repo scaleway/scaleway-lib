@@ -73,7 +73,7 @@ describe('useDataLoader', () => {
     const method = jest.fn(
       () =>
         new Promise(resolve => {
-          setTimeout(() => resolve(true), PROMISE_TIMEOUT)
+          setTimeout(() => resolve(true), PROMISE_TIMEOUT + 150)
         }),
     )
 
