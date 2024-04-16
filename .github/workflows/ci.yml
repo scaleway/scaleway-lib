@@ -52,7 +52,7 @@ jobs:
       - run: pnpm install
       - run: pnpm run build
       - run: pnpm run test:coverage
-      - uses: codecov/codecov-action@v4.2.0
+      - uses: codecov/codecov-action@v4.3.0
 
   test-types:
     runs-on: ubuntu-22.04
