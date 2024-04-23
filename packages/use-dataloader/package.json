@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/use-dataloader",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "A small hook to handle api requests",
   "type": "module",
   "engines": {
@@ -24,7 +24,6 @@
     "type:generate": "tsc --declaration -p tsconfig.build.json",
     "build": "vite build --config vite.config.ts && pnpm run type:generate",
     "build:profile": "npx vite-bundle-visualizer -c vite.config.ts",
-   
     "lint": "eslint --report-unused-disable-directives --cache --cache-strategy content --ext ts,tsx ."
   },
   "repository": {

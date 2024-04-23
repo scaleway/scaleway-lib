@@ -1,5 +1,13 @@
 # Change Log
 
+## 4.0.3
+
+### Patch Changes
+
+- [#1930](https://github.com/scaleway/scaleway-lib/pull/1930) [`257d1e3`](https://github.com/scaleway/scaleway-lib/commit/257d1e3bbdd8f50e47410e418f3f9c4348adabf9) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@testing-library/react` to `14.3.1`.
+
+- [#1943](https://github.com/scaleway/scaleway-lib/pull/1943) [`e726def`](https://github.com/scaleway/scaleway-lib/commit/e726def8e0cb4593f800f9acecca51b173ae907a) Thanks [@philibea](https://github.com/philibea)! - Migration from rollup to vite
+
 ## 4.0.2
 
 ### Patch Changes

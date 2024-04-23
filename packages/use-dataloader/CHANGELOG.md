@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.1
+
+### Patch Changes
+
+- [#1943](https://github.com/scaleway/scaleway-lib/pull/1943) [`e726def`](https://github.com/scaleway/scaleway-lib/commit/e726def8e0cb4593f800f9acecca51b173ae907a) Thanks [@philibea](https://github.com/philibea)! - Migration from rollup to vite
+
 ## 5.0.0
 
 ### Major Changes

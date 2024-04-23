@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.0.2
+
+### Patch Changes
+
+- [#1938](https://github.com/scaleway/scaleway-lib/pull/1938) [`70ef706`](https://github.com/scaleway/scaleway-lib/commit/70ef706667e6cdb91d58ecd7d36e4770b9cf1943) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@segment/analytics-next` to `1.67.0`.
+
+- [#1943](https://github.com/scaleway/scaleway-lib/pull/1943) [`e726def`](https://github.com/scaleway/scaleway-lib/commit/e726def8e0cb4593f800f9acecca51b173ae907a) Thanks [@philibea](https://github.com/philibea)! - Migration from rollup to vite
+
 ## 1.0.1
 
 ### Patch Changes
