@@ -2,15 +2,31 @@
   "name": "@scaleway/validate-icu-locales",
   "version": "3.0.0",
   "description": "A small cli to handle icu errors on locales files",
-  "type": "module",
   "engines": {
     "node": ">=20.x"
+  },
+  "type": "module",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.js"
+    }
   },
   "bin": {
     "validate-icu": "dist/index.js"
   },
   "publishConfig": {
     "access": "public"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "type:generate": "tsc --declaration -p tsconfig.build.json",
+    "build": "vite build --config vite.config.ts && pnpm run type:generate",
+    "build:profile": "npx vite-bundle-visualizer -c vite.config.ts",
+    "lint": "eslint --report-unused-disable-directives --cache --cache-strategy content --ext ts,tsx ."
   },
   "repository": {
     "type": "git",

@@ -48,13 +48,13 @@ export const SegmentConsentMiddleware = ({
           categoryPreferences: categoriesConsent,
         }
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, no-param-reassign
+        // eslint-disable-next-line , no-param-reassign
         payload.obj.context['consent'] = consent
       }
 
       // actually there is a bug on the default script.
       if (payload.integrations()[amplitudeIntegrationName]) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, no-param-reassign
+        // eslint-disable-next-line , no-param-reassign
         payload.obj.integrations = {
           ...payload.obj.integrations,
           [amplitudeIntegrationName]: {

@@ -2,7 +2,7 @@
 
 import { parse } from '@formatjs/icu-messageformat-parser'
 import type { ParserError } from '@formatjs/icu-messageformat-parser/error'
-import { readFile } from 'fs/promises'
+import * as fs from 'fs/promises'
 import { globby } from 'globby'
 import { importFromString } from 'module-from-string'
 
@@ -56,7 +56,7 @@ const readFiles = async (files: string[]): Promise<ErrorsICU> => {
 
     if (extension === 'json') {
       try {
-        const data = await readFile(file)
+        const data = await fs.readFile(file)
         const jsonFile = data.toString()
 
         const locales = JSON.parse(jsonFile) as Locales
@@ -70,7 +70,7 @@ const readFiles = async (files: string[]): Promise<ErrorsICU> => {
 
     if (extension === 'ts' || extension === 'js') {
       try {
-        const data = await readFile(file)
+        const data = await fs.readFile(file)
         const javascriptFile = data.toString()
 
         const mod: unknown = await importFromString(javascriptFile, {

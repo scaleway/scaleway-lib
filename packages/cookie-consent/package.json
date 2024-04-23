@@ -3,13 +3,24 @@
   "version": "1.2.1",
   "description": "React provider to handle website end user consent cookie storage based on segment integrations",
   "type": "module",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "sideEffects": false,
   "exports": {
-    "types": "./dist/index.d.ts",
-    "default": "./dist/index.js"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
   },
   "publishConfig": {
     "access": "public"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "type:generate": "tsc --declaration -p tsconfig.build.json",
+    "build": "vite build --config vite.config.ts && pnpm run type:generate",
+    "build:profile": "npx vite-bundle-visualizer -c vite.config.ts",
+    "lint": "eslint --report-unused-disable-directives --cache --cache-strategy content --ext ts,tsx ."
   },
   "keywords": [
     "react",
@@ -30,10 +41,10 @@
   "devDependencies": {
     "@types/cookie": "0.6.0",
     "react": "18.2.0",
-    "@scaleway/use-segment": "1.0.1"
+    "@scaleway/use-segment": "workspace:*"
   },
   "peerDependencies": {
     "react": "18.x || 18",
-    "@scaleway/use-segment": "1.0.1"
+    "@scaleway/use-segment": "^1.0.1"
   }
 }

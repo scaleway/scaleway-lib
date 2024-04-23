@@ -2,14 +2,20 @@
   "name": "@scaleway/use-i18n",
   "version": "6.1.5",
   "description": "A small hook to handle i18n",
-  "type": "module",
+  
   "engines": {
     "node": ">=18.x"
   },
   "sideEffects": false,
+  "type": "module",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    "types": "./dist/index.d.ts",
-    "default": "./dist/index.js"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.js"
+    }
   },
   "publishConfig": {
     "access": "public"
@@ -28,6 +34,13 @@
     "intl",
     "react-intl"
   ],
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "type:generate": "tsc --declaration -p tsconfig.build.json",
+    "build": "vite build --config vite.config.ts && pnpm run type:generate",
+    "build:profile": "npx vite-bundle-visualizer -c vite.config.ts",
+    "lint": "eslint --report-unused-disable-directives --cache --cache-strategy content --ext ts,tsx ."
+  },
   "dependencies": {
     "@formatjs/ecma402-abstract": "1.18.2",
     "@formatjs/fast-memoize": "2.2.0",

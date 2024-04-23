@@ -2,23 +2,36 @@
   "name": "@scaleway/jest-helpers",
   "version": "4.0.2",
   "description": "A package for utilities jest functions",
-  "type": "module",
   "engines": {
     "node": ">=20.x"
   },
   "sideEffects": false,
+  "type": "module",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    "types": "./dist/index.d.ts",
-    "default": "./dist/index.js"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.js"
+    }
   },
   "publishConfig": {
     "access": "public"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "type:generate": "tsc --declaration -p tsconfig.build.json",
+    "build": "vite build --config vite.config.ts && pnpm run type:generate",
+    "build:profile": "npx vite-bundle-visualizer -c vite.config.ts",
+    "lint": "eslint --report-unused-disable-directives --cache --cache-strategy content --ext ts,tsx ."
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/scaleway/scaleway-lib",
     "directory": "packages/jest-helpers"
   },
+  
   "license": "MIT",
   "dependencies": {
     "@emotion/cache": "11.11.0",
@@ -27,7 +40,8 @@
     "@testing-library/react": "15.0.2"
   },
   "peerDependencies": {
-    "react": "^18.0.0 || 18"
+    "react": "^18.0.0 || 18",
+    "@jest/globals": "29.7.0"
   },
   "devDependencies": {
     "react": "18.2.0",

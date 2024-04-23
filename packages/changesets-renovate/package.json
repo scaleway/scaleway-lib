@@ -3,16 +3,35 @@
   "version": "2.0.2",
   "description": "Automatically create changesets for Renovate",
   "type": "module",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "engines": {
     "node": ">=20.x"
   },
   "bin": {
     "changesets-renovate": "dist/index.js"
   },
-  "sideEffects": false,
   "publishConfig": {
     "access": "public"
   },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "type:generate": "tsc --declaration -p tsconfig.build.json",
+    "build": "vite build --config vite.config.ts && pnpm run type:generate",
+    "build:profile": "npx vite-bundle-visualizer -c vite.config.ts",
+    "lint": "eslint --report-unused-disable-directives --cache --cache-strategy content --ext ts,tsx ."
+  },
+
   "repository": {
     "type": "git",
     "url": "https://github.com/scaleway/scaleway-lib",
