@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/changesets-renovate",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Automatically create changesets for Renovate",
   "type": "module",
   "module": "./dist/index.js",
@@ -31,7 +31,6 @@
     "build:profile": "npx vite-bundle-visualizer -c vite.config.ts",
     "lint": "eslint --report-unused-disable-directives --cache --cache-strategy content --ext ts,tsx ."
   },
-
   "repository": {
     "type": "git",
     "url": "https://github.com/scaleway/scaleway-lib",

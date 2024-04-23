@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/jest-helpers",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "description": "A package for utilities jest functions",
   "engines": {
     "node": ">=20.x"
@@ -31,7 +31,6 @@
     "url": "https://github.com/scaleway/scaleway-lib",
     "directory": "packages/jest-helpers"
   },
-  
   "license": "MIT",
   "dependencies": {
     "@emotion/cache": "11.11.0",
