@@ -2,7 +2,7 @@ import react from '@vitejs/plugin-react'
 import browserslist from 'browserslist'
 import { resolveToEsbuildTarget } from 'esbuild-plugin-browserslist'
 import { readPackage } from 'read-pkg'
-import { type UserConfig, defineConfig } from 'vite'
+import { type UserConfig, defineConfig } from 'vitest/config'
 
 const pkg = await readPackage()
 
@@ -33,6 +33,7 @@ export const defaultConfig: UserConfig = {
   build: {
     outDir: 'dist',
     target: [...targets, 'node20'],
+    minify: false,
     lib: {
       name: pkg.name,
       entry: 'src/index.ts',
@@ -57,6 +58,43 @@ export const defaultConfig: UserConfig = {
       jsxRuntime: 'automatic',
     }),
   ],
+  test: {
+    name: 'lib',
+    globals: true,
+    clearMocks: true,
+    restoreMocks: true,
+    mockReset: true,
+    environment: 'node',
+    setupFiles: ['vitest-localstorage-mock'],
+    server: {
+      deps: {
+        inline: true,
+      },
+    },
+    allowOnly: false,
+    css: true,
+    logHeapUsage: true,
+    reporters: ['default', 'junit'],
+    outputFile: {
+      junit: '.reports/tests.xml',
+    },
+    coverage: {
+      provider: 'istanbul',
+      reporter: ['text', 'json', 'cobertura', 'html', 'json-summary'],
+      exclude: [
+        '.reports/**',
+        '.turbo',
+        '**/.eslintrc.*',
+        '**/*.d.ts',
+        'build',
+        'dist',
+        'node_modules',
+        '**/{webpack,vite,vitest,babel}.config.*',
+        '**.snap',
+        '**.svg',
+      ],
+    },
+  },
 }
 
 export default defineConfig(defaultConfig)

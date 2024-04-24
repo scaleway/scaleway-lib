@@ -1,6 +1,6 @@
-import { describe, expect, jest, test } from '@jest/globals'
 import { render, renderHook, screen, waitFor } from '@testing-library/react'
 import type { ReactNode } from 'react'
+import { describe, expect, test, vi } from 'vitest'
 import DataLoaderProvider, { useDataLoaderContext } from '../DataLoaderProvider'
 import { KEY_IS_NOT_STRING_ERROR, StatusEnum } from '../constants'
 
@@ -39,7 +39,7 @@ describe('DataLoaderProvider', () => {
   })
 
   test('should add request', async () => {
-    const method = jest.fn(fakePromise)
+    const method = vi.fn(fakePromise)
     const { result, rerender } = renderHook(useDataLoaderContext, {
       wrapper,
     })
@@ -81,7 +81,7 @@ describe('DataLoaderProvider', () => {
   })
 
   test('should add request with cache key prefix', async () => {
-    const method = jest.fn(fakePromise)
+    const method = vi.fn(fakePromise)
     const { result } = renderHook(useDataLoaderContext, {
       wrapper: wrapperWithCacheKey,
     })
@@ -106,7 +106,7 @@ describe('DataLoaderProvider', () => {
   })
 
   test('should add request with result is null', async () => {
-    const method = jest.fn(fakeNullPromise)
+    const method = vi.fn(fakeNullPromise)
     const { result } = renderHook(useDataLoaderContext, {
       wrapper,
     })
@@ -142,7 +142,7 @@ describe('DataLoaderProvider', () => {
   })
 
   test('should add request with bad key', () => {
-    const method = jest.fn(fakePromise)
+    const method = vi.fn(fakePromise)
     const { result } = renderHook(useDataLoaderContext, {
       wrapper,
     })
@@ -157,7 +157,7 @@ describe('DataLoaderProvider', () => {
   })
 
   test('should delay max concurrent request', async () => {
-    const method = jest.fn(
+    const method = vi.fn(
       () =>
         new Promise(resolve => {
           setTimeout(() => resolve(true), 100)

@@ -9,4 +9,8 @@ export default mergeConfig(defineConfig(defaultConfig), {
       formats: ['es', 'cjs'],
     },
   },
+  // test: {
+  //   environment: 'jsdom',
+  //   setupFiles: ['./vitest.setup.ts'],
+  // },
 })

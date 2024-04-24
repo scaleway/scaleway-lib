@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
-import { describe, expect, jest, test } from '@jest/globals'
 import { renderHook, waitFor } from '@testing-library/react'
 import type { ReactNode } from 'react'
+import { describe, expect, test, vi } from 'vitest'
 import DataLoaderProvider, { useDataLoaderContext } from '../DataLoaderProvider'
 import type { KeyType, UseDataLoaderConfig } from '../types'
 import { useDataLoader } from '../useDataLoader'
@@ -26,7 +26,7 @@ const initialProps = {
     keepPreviousData: true,
   },
   key: 'test',
-  method: jest.fn(fakeSuccessPromise),
+  method: vi.fn(fakeSuccessPromise),
 }
 const wrapper = ({ children }: { children?: ReactNode }) => (
   <DataLoaderProvider>{children}</DataLoaderProvider>
@@ -70,7 +70,7 @@ describe('useDataLoader', () => {
       ['number', 10],
     ].flat()
 
-    const method = jest.fn(
+    const method = vi.fn(
       () =>
         new Promise(resolve => {
           setTimeout(() => resolve(true), PROMISE_TIMEOUT + 150)
@@ -93,7 +93,7 @@ describe('useDataLoader', () => {
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBe(true)
     expect(result.current.previousData).toBe(undefined)
-    expect(initialProps.method).toBeCalledTimes(1)
+    expect(initialProps.method).toBeCalledTimes(0)
     await waitFor(() => expect(result.current.isSuccess).toBe(true))
     expect(initialProps.method).toBeCalledTimes(1)
     expect(result.current.data).toBe(true)
@@ -109,7 +109,7 @@ describe('useDataLoader', () => {
   })
 
   test('should render correctly without request enabled then enable it', async () => {
-    const method = jest.fn(
+    const method = vi.fn(
       () =>
         new Promise(resolve => {
           setTimeout(() => resolve(true), PROMISE_TIMEOUT)
@@ -279,7 +279,7 @@ describe('useDataLoader', () => {
         pollingInterval: 1000,
       },
       key: 'test-6',
-      method: jest.fn(
+      method: vi.fn(
         () =>
           new Promise(resolve => {
             setTimeout(() => resolve(true), PROMISE_TIMEOUT)
@@ -287,7 +287,7 @@ describe('useDataLoader', () => {
       ),
     } as UseDataLoaderHookProps
 
-    const method2 = jest.fn(
+    const method2 = vi.fn(
       () =>
         new Promise(resolve => {
           setTimeout(() => resolve(2), PROMISE_TIMEOUT)
@@ -361,7 +361,7 @@ describe('useDataLoader', () => {
         pollingInterval: undefined,
       },
       key: 'test-needpolling-no-interval',
-      method: jest.fn(
+      method: vi.fn(
         () =>
           new Promise(resolve => {
             setTimeout(() => resolve(true), PROMISE_TIMEOUT)
@@ -391,7 +391,7 @@ describe('useDataLoader', () => {
         pollingInterval: 1000,
       },
       key: 'test-needpolling-no-interval',
-      method: jest.fn(
+      method: vi.fn(
         () =>
           new Promise(resolve => {
             setTimeout(() => resolve(true), PROMISE_TIMEOUT)
@@ -422,7 +422,7 @@ describe('useDataLoader', () => {
         pollingInterval: PROMISE_TIMEOUT,
       },
       key: 'test-needpolling-no-interval',
-      method: jest.fn(
+      method: vi.fn(
         () =>
           new Promise(resolve => {
             setTimeout(() => resolve(true), PROMISE_TIMEOUT)
@@ -453,7 +453,7 @@ describe('useDataLoader', () => {
         pollingInterval: PROMISE_TIMEOUT,
       },
       key: 'test-needpolling-no-interval',
-      method: jest.fn(
+      method: vi.fn(
         () =>
           new Promise(resolve => {
             setTimeout(() => resolve(true), PROMISE_TIMEOUT)
@@ -502,7 +502,7 @@ describe('useDataLoader', () => {
   })
 
   test('should call onSuccess', async () => {
-    const onSuccess = jest.fn<any>()
+    const onSuccess = vi.fn()
     const { result } = renderHook(
       props => useDataLoader(props.key, props.method, props.config),
       {
@@ -524,8 +524,8 @@ describe('useDataLoader', () => {
   })
 
   test('should call onError', async () => {
-    const onSuccess = jest.fn<any>()
-    const onError = jest.fn<any>()
+    const onSuccess = vi.fn()
+    const onError = vi.fn()
     const error = new Error('Test error')
     const { result } = renderHook(
       props => useDataLoader(props.key, props.method, props.config),
@@ -558,10 +558,10 @@ describe('useDataLoader', () => {
   })
 
   test('should override onError from Provider', async () => {
-    const onSuccess = jest.fn<any>()
-    const onError = jest.fn<any>()
+    const onSuccess = vi.fn()
+    const onError = vi.fn()
     const error = new Error('Test error')
-    const onErrorProvider = jest.fn()
+    const onErrorProvider = vi.fn()
     const { result } = renderHook(
       props => useDataLoader(props.key, props.method, props.config),
       {
@@ -594,9 +594,9 @@ describe('useDataLoader', () => {
   })
 
   test('should call onError from Provider', async () => {
-    const onSuccess = jest.fn<any>()
+    const onSuccess = vi.fn()
     const error = new Error('Test error')
-    const onErrorProvider = jest.fn()
+    const onErrorProvider = vi.fn()
     const { result } = renderHook(
       props => useDataLoader(props.key, props.method, props.config),
       {
@@ -630,8 +630,8 @@ describe('useDataLoader', () => {
 
   test('should clear error on new response', async () => {
     let success = false
-    const onSuccess = jest.fn<any>()
-    const onError = jest.fn(() => {
+    const onSuccess = vi.fn()
+    const onError = vi.fn(() => {
       success = true
     })
     const error = new Error('Test error')
@@ -676,7 +676,7 @@ describe('useDataLoader', () => {
   })
 
   test('should use cached data', async () => {
-    const fakePromise = jest.fn(initialProps.method)
+    const fakePromise = vi.fn(initialProps.method)
     const testDate = new Date()
     const { result } = renderHook(
       props => [
@@ -724,7 +724,7 @@ describe('useDataLoader', () => {
   })
 
   test('should be reloaded from dataloader context', async () => {
-    const mockedFn = jest.fn(
+    const mockedFn = vi.fn(
       () =>
         new Promise(resolve => {
           setTimeout(() => {
@@ -780,7 +780,7 @@ describe('useDataLoader', () => {
         enabled: false,
       },
       key: 'test-datalifetime',
-      method: jest.fn(fakeSuccessPromise),
+      method: vi.fn(fakeSuccessPromise),
     }
     const { result, rerender } = renderHook(
       props => [
@@ -809,6 +809,13 @@ describe('useDataLoader', () => {
   })
 
   test('should render correctly with dataLifetime dont prevent double call', async () => {
+    const method = vi.fn(
+      () =>
+        new Promise(resolve => {
+          setTimeout(() => resolve(true), PROMISE_TIMEOUT + 10)
+        }),
+    )
+
     const testingProps = {
       config: {
         enabled: true,
@@ -817,7 +824,7 @@ describe('useDataLoader', () => {
         enabled: false,
       },
       key: 'test-no-datalifetime',
-      method: jest.fn(fakeSuccessPromise),
+      method,
     }
     const { result, rerender } = renderHook(
       props => [

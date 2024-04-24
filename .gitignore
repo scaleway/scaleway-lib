@@ -25,7 +25,13 @@ yarn-debug.log*
 yarn-error.log*
 *.log
 
+# turbo
+packages/*/.turbo
+packages/*/dist
 
+#vite
+vite.config.ts.*
+vitest.config.ts.*
 
 # Yalc
 yalc.lock
