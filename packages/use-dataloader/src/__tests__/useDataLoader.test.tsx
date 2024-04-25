@@ -70,17 +70,9 @@ describe('useDataLoader', () => {
       ['number', 10],
     ].flat()
 
-    const method = vi.fn(
-      () =>
-        new Promise(resolve => {
-          setTimeout(() => resolve(true), PROMISE_TIMEOUT + 150)
-        }),
-    )
-
     const initProps = {
       ...initialProps,
       key,
-      method,
     }
 
     const { result, rerender } = renderHook(
@@ -93,8 +85,9 @@ describe('useDataLoader', () => {
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBe(true)
     expect(result.current.previousData).toBe(undefined)
-    expect(initialProps.method).toBeCalledTimes(0)
-    await waitFor(() => expect(result.current.isSuccess).toBe(true))
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBe(true)
+    })
     expect(initialProps.method).toBeCalledTimes(1)
     expect(result.current.data).toBe(true)
     expect(result.current.isLoading).toBe(false)
@@ -109,12 +102,21 @@ describe('useDataLoader', () => {
   })
 
   test('should render correctly without request enabled then enable it', async () => {
-    const method = vi.fn(
-      () =>
+    let resolveIt = false
+    const method = vi.fn(() => {
+      const promiseFn = () =>
         new Promise(resolve => {
-          setTimeout(() => resolve(true), PROMISE_TIMEOUT)
-        }),
-    )
+          setTimeout(() => {
+            if (resolveIt) {
+              resolve(true)
+            } else {
+              resolve(promiseFn())
+            }
+          }, PROMISE_TIMEOUT)
+        })
+
+      return promiseFn()
+    })
     const testProps = {
       config: {
         enabled: false,
@@ -135,8 +137,9 @@ describe('useDataLoader', () => {
     testProps.config.enabled = true
     rerender({ ...testProps })
     await waitFor(() => expect(result.current.isLoading).toBe(true))
-    expect(method).toBeCalledTimes(1)
     expect(result.current.data).toBe(undefined)
+    resolveIt = true
+    expect(method).toBeCalledTimes(1)
     await waitFor(() => expect(result.current.isSuccess).toBe(true))
     expect(result.current.isLoading).toBe(false)
     expect(result.current.previousData).toBe(undefined)
@@ -187,6 +190,26 @@ describe('useDataLoader', () => {
   })
 
   test('should render and cache correctly with cacheKeyPrefix', async () => {
+    let resolveIt = false
+    const method = vi.fn(() => {
+      const promiseFn = () =>
+        new Promise(resolve => {
+          setTimeout(() => {
+            if (resolveIt) {
+              resolve(true)
+            } else {
+              resolve(promiseFn())
+            }
+          }, PROMISE_TIMEOUT)
+        })
+
+      return promiseFn()
+    })
+
+    const initProps = {
+      ...initialProps,
+      method,
+    }
     const { result } = renderHook(
       props => [
         useDataLoader(props.key, props.method, props.config),
@@ -196,21 +219,24 @@ describe('useDataLoader', () => {
         }),
       ],
       {
-        initialProps,
+        initialProps: initProps,
         wrapper: wrapperWithCacheKey,
       },
     )
 
     expect(result.current[0]?.data).toBe(undefined)
     expect(result.current[0]?.isLoading).toBe(true)
+    resolveIt = true
     expect(result.current[1]?.data).toBe(undefined)
     expect(result.current[1]?.isIdle).toBe(true)
     await waitFor(() => expect(result.current[0]?.isSuccess).toBe(true))
     expect(result.current[0]?.data).toBe(true)
 
-    result.current[1]?.reload().catch(undefined)
+    resolveIt = false
+    result.current[1]?.reload().catch(() => null)
     await waitFor(() => expect(result.current[1]?.isLoading).toBe(true))
     expect(result.current[1]?.data).toBe(undefined)
+    resolveIt = true
 
     await waitFor(() => expect(result.current[1]?.isSuccess).toBe(true))
     expect(result.current[1]?.data).toBe(true)
@@ -232,8 +258,8 @@ describe('useDataLoader', () => {
     await waitFor(() => expect(result.current.isSuccess).toBe(true))
     expect(result.current.data).toBe(true)
     expect(result.current.isLoading).toBe(false)
-    result.current.reload().catch(undefined)
-    result.current.reload().catch(undefined)
+    result.current.reload().catch(() => null)
+    result.current.reload().catch(() => null)
     await waitFor(() => expect(result.current.isLoading).toBe(true))
     expect(result.current.data).toBe(true)
     await waitFor(() => expect(result.current.isSuccess).toBe(true))
@@ -479,11 +505,31 @@ describe('useDataLoader', () => {
   })
 
   test('should render correctly with enabled off', async () => {
+    let resolveIt = false
+    const method = vi.fn(() => {
+      const promiseFn = () =>
+        new Promise(resolve => {
+          setTimeout(() => {
+            if (resolveIt) {
+              resolve(true)
+            } else {
+              resolve(promiseFn())
+            }
+          }, PROMISE_TIMEOUT)
+        })
+
+      return promiseFn()
+    })
+
+    const initProps = {
+      ...initialProps,
+      method,
+    }
     const { result } = renderHook(
       props => useDataLoader(props.key, props.method, props.config),
       {
         initialProps: {
-          ...initialProps,
+          ...initProps,
           config: {
             enabled: false,
           },
@@ -494,9 +540,10 @@ describe('useDataLoader', () => {
     )
     expect(result.current.data).toBe(undefined)
     expect(result.current.isIdle).toBe(true)
-    result.current.reload().catch(undefined)
+    result.current.reload().catch(() => null)
     await waitFor(() => expect(result.current.isLoading).toBe(true))
     expect(result.current.data).toBe(undefined)
+    resolveIt = true
     await waitFor(() => expect(result.current.isSuccess).toBe(true))
     expect(result.current.data).toBe(true)
   })
@@ -668,7 +715,7 @@ describe('useDataLoader', () => {
     expect(onError).toBeCalledTimes(1)
     expect(onSuccess).toBeCalledTimes(0)
 
-    result.current.reload().catch(undefined)
+    result.current.reload().catch(() => null)
     await waitFor(() => expect(result.current.isSuccess).toBe(true))
     expect(result.current.data).toBe(true)
     expect(result.current.error).toBe(undefined)
@@ -711,7 +758,7 @@ describe('useDataLoader', () => {
     await waitFor(() => expect(result.current[0]?.isSuccess).toBe(true))
     expect(result.current[0]?.data).toBe(true)
 
-    result.current[1]?.reload().catch(undefined)
+    result.current[1]?.reload().catch(() => null)
     await waitFor(() => expect(result.current[1]?.isLoading).toBe(true))
     expect(result.current[1]?.data).toBe(true)
 
@@ -760,7 +807,7 @@ describe('useDataLoader', () => {
     expect(result.current[0].data).toBe(true)
     expect(mockedFn).toBeCalledTimes(1)
 
-    result.current[1].reloadAll().catch(undefined)
+    result.current[1].reloadAll().catch(() => null)
     await waitFor(() => expect(result.current[0].isLoading).toBe(true))
     expect(result.current[0].data).toBe(true)
     expect(Object.values(result.current[1].getReloads()).length).toBe(1)
