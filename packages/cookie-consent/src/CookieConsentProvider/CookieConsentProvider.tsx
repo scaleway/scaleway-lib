@@ -52,8 +52,6 @@ export const useCookieConsent = (): Context => {
   return context
 }
 
-const getCookies = () => cookie.parse(document.cookie)
-
 export const CookieConsentProvider = ({
   children,
   isConsentRequired,
@@ -73,6 +71,9 @@ export const CookieConsentProvider = ({
   cookiesOptions?: CookieSerializeOptions
 }>) => {
   const [needConsent, setNeedsConsent] = useState(false)
+  const [cookies, setCookies] = useState<Record<string, string>>(
+    cookie.parse(document.cookie),
+  )
 
   const {
     integrations: segmentIntegrations,
@@ -113,10 +114,10 @@ export const CookieConsentProvider = ({
     // to false after receiving segment answer and flicker the UI
     setNeedsConsent(
       isConsentRequired &&
-        getCookies()[HASH_COOKIE] !== integrationsHash.toString() &&
+        cookies[HASH_COOKIE] !== integrationsHash.toString() &&
         segmentIntegrations !== undefined,
     )
-  }, [isConsentRequired, integrationsHash, segmentIntegrations])
+  }, [isConsentRequired, integrationsHash, segmentIntegrations, cookies])
 
   // We store unique categories names in an array
   const categories = useMemo(
@@ -135,13 +136,14 @@ export const CookieConsentProvider = ({
       categories.reduce<Partial<Consent>>(
         (acc, category) => ({
           ...acc,
-          [category]: isConsentRequired
-            ? getCookies()[`${cookiePrefix}_${category}`] === 'true'
-            : true,
+          [category]:
+            isConsentRequired || needConsent
+              ? cookies[`${cookiePrefix}_${category}`] === 'true'
+              : true,
         }),
         {},
       ),
-    [isConsentRequired, categories, cookiePrefix],
+    [isConsentRequired, categories, cookiePrefix, needConsent, cookies],
   )
 
   const saveConsent = useCallback(
@@ -163,7 +165,7 @@ export const CookieConsentProvider = ({
           })
         } else {
           document.cookie = cookie.serialize(
-            `${cookiePrefix}_${consentCategoryName}`,
+            cookieName,
             consentValue.toString(),
             {
               ...cookiesOptions,
@@ -174,6 +176,10 @@ export const CookieConsentProvider = ({
             },
           )
         }
+        setCookies(prevCookies => ({
+          ...prevCookies,
+          [cookieName]: consentValue ? 'true' : 'false',
+        }))
       }
       // We set the hash cookie to the current consented integrations
       document.cookie = cookie.serialize(
@@ -185,6 +191,10 @@ export const CookieConsentProvider = ({
           maxAge: consentAdvertisingMaxAge,
         },
       )
+      setCookies(prevCookies => ({
+        ...prevCookies,
+        [HASH_COOKIE]: integrationsHash.toString(),
+      }))
       setNeedsConsent(false)
     },
     [
@@ -206,7 +216,6 @@ export const CookieConsentProvider = ({
         : true,
     [isConsentRequired, segmentIntegrations, cookieConsent, needConsent],
   )
-
   // 'All': false tells Segment not to send data to any Destinations by default, unless they’re explicitly listed as true in the next lines.
   // In this case we should not have any integration, so we protect the user. Maybe unecessary as we always set true of false for an integration.
   const segmentEnabledIntegrations = useMemo(

@@ -154,7 +154,7 @@ describe('CookieConsent - CookieConsentProvider', () => {
 
     act(() => {
       result.current.saveConsent({
-        advertising: true,
+        analytics: true,
         marketing: true,
       })
     })
@@ -169,6 +169,17 @@ describe('CookieConsent - CookieConsentProvider', () => {
     expect(spy).toHaveBeenNthCalledWith(3, '_scw_rgpd_hash', '913003917', {
       ...cookieOptions,
       maxAge: 15552000,
+    })
+
+    act(() => {
+      expect(result.current.categoriesConsent).toStrictEqual({
+        analytics: true,
+        marketing: true,
+      })
+    })
+
+    act(() => {
+      expect(result.current.isSegmentAllowed).toBe(true)
     })
 
     act(() => {
