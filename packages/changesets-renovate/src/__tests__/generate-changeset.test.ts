@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { run } from '..'
-import { mockSimpleGit } from '../../__mocks__/simple-git'
+import { defaultGitValues, mockSimpleGit } from '../../__mocks__/simple-git'
 
 vi.mock('node:fs/promises')
 
@@ -12,6 +12,7 @@ beforeEach(() => {
 describe('generate changeset file', () => {
   it('should skip if not in renovate branch', async () => {
     mockSimpleGit.mockReturnValue({
+      ...defaultGitValues,
       branch: () => ({
         current: 'main',
       }),
@@ -26,6 +27,7 @@ describe('generate changeset file', () => {
 
   it('should skip if .changeset is already modified', async () => {
     mockSimpleGit.mockReturnValue({
+      ...defaultGitValues,
       branch: () => ({
         current: 'renovate/test',
       }),
@@ -48,6 +50,7 @@ describe('generate changeset file', () => {
 
   it('should skip no package.json files have been modified', async () => {
     mockSimpleGit.mockReturnValue({
+      ...defaultGitValues,
       branch: () => ({
         current: 'renovate/test',
       }),
@@ -161,6 +164,7 @@ describe('generate changeset file', () => {
     const file = 'package.json'
 
     mockSimpleGit.mockReturnValue({
+      ...defaultGitValues,
       branch: () => ({
         current: 'renovate/test',
       }),
@@ -193,6 +197,7 @@ describe('generate changeset file', () => {
     const file = 'package.json'
 
     mockSimpleGit.mockReturnValue({
+      ...defaultGitValues,
       branch: () => ({
         current: 'renovate/test',
       }),
@@ -225,6 +230,7 @@ describe('generate changeset file', () => {
     const file = 'test/package.json'
 
     mockSimpleGit.mockReturnValue({
+      ...defaultGitValues,
       branch: () => ({
         current: 'renovate/test',
       }),
@@ -257,6 +263,7 @@ describe('generate changeset file', () => {
     const file = 'test/package.json'
 
     mockSimpleGit.mockReturnValue({
+      ...defaultGitValues,
       branch: () => ({
         current: 'renovate/test',
       }),

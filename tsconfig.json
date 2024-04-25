@@ -13,6 +13,7 @@
   "exclude": [
     "**/dist/*.ts",
     "**/__typetests__/*.test.ts",
-    "**/__typetests__/*.test.tsx"
+    "**/__typetests__/*.test.tsx",
+    "packages_deprecated/**"
   ]
 }

@@ -1,3 +1,0 @@
-// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
-
-exports[`useRandomName > useTranslation should not be defined without I18nProvider 1`] = `"intelligent-elgamal"`;

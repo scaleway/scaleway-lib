@@ -2,7 +2,6 @@ import { renderHook, waitFor } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 import { useSegmentIntegrations } from '../../useSegmentIntegrations'
 
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 globalThis.fetch = vi.fn(() =>
   Promise.resolve({
     ok: true,
@@ -54,7 +53,7 @@ globalThis.fetch = vi.fn(() =>
           category: 'Analytics',
         },
       ]),
-  }),
+  } as unknown as Response),
 )
 
 describe('CookieConsent - useSegmentIntegrations', () => {

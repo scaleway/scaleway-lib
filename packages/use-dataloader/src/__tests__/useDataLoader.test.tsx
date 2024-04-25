@@ -106,11 +106,9 @@ describe('useDataLoader', () => {
     const method = vi.fn(() => {
       const promiseFn = () =>
         new Promise(resolve => {
-          setTimeout(() => {
+          setInterval(() => {
             if (resolveIt) {
               resolve(true)
-            } else {
-              resolve(promiseFn())
             }
           }, PROMISE_TIMEOUT)
         })
@@ -194,11 +192,9 @@ describe('useDataLoader', () => {
     const method = vi.fn(() => {
       const promiseFn = () =>
         new Promise(resolve => {
-          setTimeout(() => {
+          setInterval(() => {
             if (resolveIt) {
               resolve(true)
-            } else {
-              resolve(promiseFn())
             }
           }, PROMISE_TIMEOUT)
         })
@@ -509,11 +505,9 @@ describe('useDataLoader', () => {
     const method = vi.fn(() => {
       const promiseFn = () =>
         new Promise(resolve => {
-          setTimeout(() => {
+          setInterval(() => {
             if (resolveIt) {
               resolve(true)
-            } else {
-              resolve(promiseFn())
             }
           }, PROMISE_TIMEOUT)
         })

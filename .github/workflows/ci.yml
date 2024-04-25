@@ -53,6 +53,10 @@ jobs:
       - run: pnpm run build
       - run: pnpm run test:coverage
       - uses: codecov/codecov-action@v4.3.0
+        with: 
+          files: packages/**/coverage/cobertura-coverage.xml
+          token: ${{ secrets.CODECOV_TOKEN }} 
+          verbose: true
 
   test-types:
     runs-on: ubuntu-22.04

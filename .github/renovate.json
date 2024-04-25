@@ -15,6 +15,7 @@
   "reviewersSampleSize": 2,
   "semanticCommitScope": "deps",
   "semanticCommitType": "chore",
+  "ignorePaths": ["packages_deprecated/**/package.json"],
   "packageRules": [
     {
       "matchDepTypes": ["engines", "peerDependencies"],

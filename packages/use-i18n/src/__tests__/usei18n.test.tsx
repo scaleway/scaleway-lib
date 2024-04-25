@@ -93,7 +93,7 @@ describe('i18n hook', () => {
     mockdate.reset()
   })
 
-  it.only('useTranslation should not be defined without I18nProvider', () => {
+  it('useTranslation should not be defined without I18nProvider', () => {
     const spy = vi.spyOn(console, 'error')
     spy.mockImplementation(() => {})
 

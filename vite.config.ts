@@ -74,14 +74,11 @@ export const defaultConfig: UserConfig = {
     allowOnly: false,
     css: true,
     logHeapUsage: true,
-    reporters: ['default', 'junit'],
-    outputFile: {
-      junit: '.reports/tests.xml',
-    },
-    exclude: ['**/__typetests__/**'],
+    reporters: ['default'],
+    exclude: ['**/__typetests__/**', 'node_modules', '**/dist/**'],
     coverage: {
       provider: 'istanbul',
-      reporter: ['text', 'json', 'cobertura', 'html', 'json-summary'],
+      reporter: ['json-summary', 'cobertura'],
       exclude: [
         '**/__typetests__/**',
         '.reports/**',
