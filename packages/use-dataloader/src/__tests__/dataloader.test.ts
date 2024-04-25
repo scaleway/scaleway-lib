@@ -1,4 +1,4 @@
-import { describe, expect, jest, test } from '@jest/globals'
+import { describe, expect, test, vi } from 'vitest'
 import waitForExpect from 'wait-for-expect'
 import { StatusEnum } from '../constants'
 import DataLoader from '../dataloader'
@@ -31,8 +31,8 @@ const fakeLongErrorPromise = () =>
 
 describe('Dataloader class', () => {
   test('should create instance then load then destroy', async () => {
-    const method = jest.fn(fakeSuccessPromise)
-    const notifyChanges = jest.fn()
+    const method = vi.fn(fakeSuccessPromise)
+    const notifyChanges = vi.fn()
     const instance = new DataLoader({
       key: 'test-destroy',
       method,
@@ -46,8 +46,8 @@ describe('Dataloader class', () => {
   })
 
   test('should create instance then load multiple times', async () => {
-    const method = jest.fn(fakeSuccessPromise)
-    const notifyChanges = jest.fn()
+    const method = vi.fn(fakeSuccessPromise)
+    const notifyChanges = vi.fn()
     const instance = new DataLoader({
       key: 'test-load',
       method,
@@ -67,8 +67,8 @@ describe('Dataloader class', () => {
   })
 
   test('should create instance with cancel', () => {
-    const notify = jest.fn()
-    const method = jest.fn(fakeSuccessPromise)
+    const notify = vi.fn()
+    const method = vi.fn(fakeSuccessPromise)
     const instance = new DataLoader({
       key: 'test-cancel',
       method,
@@ -87,8 +87,8 @@ describe('Dataloader class', () => {
   })
 
   test('should create instance without cancel', async () => {
-    const notify = jest.fn()
-    const method = jest.fn(fakeSuccessPromise)
+    const notify = vi.fn()
+    const method = vi.fn(fakeSuccessPromise)
     const instance = new DataLoader({
       key: 'test-without-cancel',
       method,
@@ -103,8 +103,8 @@ describe('Dataloader class', () => {
   })
 
   test('should create instance with null data', async () => {
-    const method = jest.fn(fakeNullPromise)
-    const notifyChanges = jest.fn()
+    const method = vi.fn(fakeNullPromise)
+    const notifyChanges = vi.fn()
     const instance = new DataLoader({
       key: 'test-null',
       method,
@@ -115,8 +115,8 @@ describe('Dataloader class', () => {
     expect(instance.getData()).toBe(null)
   })
   test('should create instance with undefined data', async () => {
-    const method = jest.fn(fakeUndefinedPromise)
-    const notifyChanges = jest.fn()
+    const method = vi.fn(fakeUndefinedPromise)
+    const notifyChanges = vi.fn()
 
     const instance = new DataLoader({
       key: 'test-undefined',
@@ -129,9 +129,9 @@ describe('Dataloader class', () => {
   })
 
   test('should create instance with error', async () => {
-    const method = jest.fn(fakeErrorPromise)
-    const notifyChanges = jest.fn()
-    const onError = jest.fn()
+    const method = vi.fn(fakeErrorPromise)
+    const notifyChanges = vi.fn()
+    const onError = vi.fn()
 
     const instance = new DataLoader({
       key: 'test-error',
@@ -144,8 +144,8 @@ describe('Dataloader class', () => {
   })
 
   test('should create instance with cancel', async () => {
-    const method = jest.fn(fakeSuccessPromise)
-    const notifyChanges = jest.fn()
+    const method = vi.fn(fakeSuccessPromise)
+    const notifyChanges = vi.fn()
 
     const instance = new DataLoader({
       key: 'test-cancel',
@@ -161,9 +161,9 @@ describe('Dataloader class', () => {
   })
 
   test('should create instance with error and cancel', async () => {
-    const method = jest.fn(fakeLongErrorPromise)
-    const notifyChanges = jest.fn()
-    const onError = jest.fn()
+    const method = vi.fn(fakeLongErrorPromise)
+    const notifyChanges = vi.fn()
+    const onError = vi.fn()
 
     const instance = new DataLoader({
       key: 'test-error-cancel',
@@ -179,8 +179,8 @@ describe('Dataloader class', () => {
   })
 
   test('should launch multiple dataloader', async () => {
-    const method = jest.fn(fakeErrorPromise)
-    const notifyChanges = jest.fn()
+    const method = vi.fn(fakeErrorPromise)
+    const notifyChanges = vi.fn()
 
     const instances = Array.from({ length: 5 }, (_, index) => index).map(
       index =>

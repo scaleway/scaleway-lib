@@ -35,11 +35,14 @@
     {
       "files": [
         "packages/jest-helpers/**/*.ts{x,}",
-        "**/__tests__/**/*.ts{x,}"
+        "**/__tests__/**/*.ts{x,}",
+        "vitest.setup.ts",
+        "*.config.ts"
       ],
       "rules": {
         "import/no-extraneous-dependencies": "off",
-        "react/jsx-key": "off"
+        "react/jsx-key": "off",
+        "import/no-relative-packages": "off"
       }
     }
   ]

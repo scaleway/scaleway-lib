@@ -1,0 +1,247 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`formatDate > should return passed object if not valid date 1`] = `
+{
+  "not": "a valid date",
+}
+`;
+
+exports[`formatDate > should work with custom format and locale de 1`] = `"Donnerstag, 13. F 20 n. Chr., 16:28:00 Koordinierte Weltzeit"`;
+
+exports[`formatDate > should work with custom format and locale de 2`] = `"Donnerstag, 13. F 20 n. Chr., 15:28:00 Koordinierte Weltzeit"`;
+
+exports[`formatDate > should work with custom format and locale de 3`] = `"Donnerstag, 13. F 20 n. Chr., 15:28:00 Koordinierte Weltzeit"`;
+
+exports[`formatDate > should work with custom format and locale en 1`] = `"Thursday, F 13, 20 AD, 04:28:00 PM Coordinated Universal Time"`;
+
+exports[`formatDate > should work with custom format and locale en 2`] = `"Thursday, F 13, 20 AD, 03:28:00 PM Coordinated Universal Time"`;
+
+exports[`formatDate > should work with custom format and locale en 3`] = `"Thursday, F 13, 20 AD, 03:28:00 PM Coordinated Universal Time"`;
+
+exports[`formatDate > should work with custom format and locale es 1`] = `"jueves, 13 F 20 d. C., 16:28:00 (tiempo universal coordinado)"`;
+
+exports[`formatDate > should work with custom format and locale es 2`] = `"jueves, 13 F 20 d. C., 15:28:00 (tiempo universal coordinado)"`;
+
+exports[`formatDate > should work with custom format and locale es 3`] = `"jueves, 13 F 20 d. C., 15:28:00 (tiempo universal coordinado)"`;
+
+exports[`formatDate > should work with custom format and locale fr 1`] = `"jeudi 13 F 20 ap. J.-C. 16:28:00 temps universel coordonné"`;
+
+exports[`formatDate > should work with custom format and locale fr 2`] = `"jeudi 13 F 20 ap. J.-C. 15:28:00 temps universel coordonné"`;
+
+exports[`formatDate > should work with custom format and locale fr 3`] = `"jeudi 13 F 20 ap. J.-C. 15:28:00 temps universel coordonné"`;
+
+exports[`formatDate > should work with custom format and locale ro 1`] = `"joi, 13 F 20 d.Hr., 16:28:00 Timpul universal coordonat"`;
+
+exports[`formatDate > should work with custom format and locale ro 2`] = `"joi, 13 F 20 d.Hr., 15:28:00 Timpul universal coordonat"`;
+
+exports[`formatDate > should work with custom format and locale ro 3`] = `"joi, 13 F 20 d.Hr., 15:28:00 Timpul universal coordonat"`;
+
+exports[`formatDate > should work with format "hour", for date = "2020-02-13T15:28:00.000Z" and locale "de" 1`] = `"13. Februar 2020 um 15:28"`;
+
+exports[`formatDate > should work with format "hour", for date = "2020-02-13T15:28:00.000Z" and locale "en" 1`] = `"February 13, 2020 at 3:28 PM"`;
+
+exports[`formatDate > should work with format "hour", for date = "2020-02-13T15:28:00.000Z" and locale "es" 1`] = `"13 de febrero de 2020, 15:28"`;
+
+exports[`formatDate > should work with format "hour", for date = "2020-02-13T15:28:00.000Z" and locale "fr" 1`] = `"13 février 2020 à 15:28"`;
+
+exports[`formatDate > should work with format "hour", for date = "2020-02-13T15:28:00.000Z" and locale "ro" 1`] = `"13 februarie 2020 la 15:28"`;
+
+exports[`formatDate > should work with format "hour", for date = "1581607680000" and locale "de" 1`] = `"13. Februar 2020 um 15:28"`;
+
+exports[`formatDate > should work with format "hour", for date = "1581607680000" and locale "en" 1`] = `"February 13, 2020 at 3:28 PM"`;
+
+exports[`formatDate > should work with format "hour", for date = "1581607680000" and locale "es" 1`] = `"13 de febrero de 2020, 15:28"`;
+
+exports[`formatDate > should work with format "hour", for date = "1581607680000" and locale "fr" 1`] = `"13 février 2020 à 15:28"`;
+
+exports[`formatDate > should work with format "hour", for date = "1581607680000" and locale "ro" 1`] = `"13 februarie 2020 la 15:28"`;
+
+exports[`formatDate > should work with format "hour", for date = "new Date(2020, 1, 13, 16, 28)" and locale "de" 1`] = `"13. Februar 2020 um 16:28"`;
+
+exports[`formatDate > should work with format "hour", for date = "new Date(2020, 1, 13, 16, 28)" and locale "en" 1`] = `"February 13, 2020 at 4:28 PM"`;
+
+exports[`formatDate > should work with format "hour", for date = "new Date(2020, 1, 13, 16, 28)" and locale "es" 1`] = `"13 de febrero de 2020, 16:28"`;
+
+exports[`formatDate > should work with format "hour", for date = "new Date(2020, 1, 13, 16, 28)" and locale "fr" 1`] = `"13 février 2020 à 16:28"`;
+
+exports[`formatDate > should work with format "hour", for date = "new Date(2020, 1, 13, 16, 28)" and locale "ro" 1`] = `"13 februarie 2020 la 16:28"`;
+
+exports[`formatDate > should work with format "hourOnly", for date = "2020-02-13T15:28:00.000Z" and locale "de" 1`] = `"15:28"`;
+
+exports[`formatDate > should work with format "hourOnly", for date = "2020-02-13T15:28:00.000Z" and locale "en" 1`] = `"3:28 PM"`;
+
+exports[`formatDate > should work with format "hourOnly", for date = "2020-02-13T15:28:00.000Z" and locale "es" 1`] = `"15:28"`;
+
+exports[`formatDate > should work with format "hourOnly", for date = "2020-02-13T15:28:00.000Z" and locale "fr" 1`] = `"15:28"`;
+
+exports[`formatDate > should work with format "hourOnly", for date = "2020-02-13T15:28:00.000Z" and locale "ro" 1`] = `"15:28"`;
+
+exports[`formatDate > should work with format "hourOnly", for date = "1581607680000" and locale "de" 1`] = `"15:28"`;
+
+exports[`formatDate > should work with format "hourOnly", for date = "1581607680000" and locale "en" 1`] = `"3:28 PM"`;
+
+exports[`formatDate > should work with format "hourOnly", for date = "1581607680000" and locale "es" 1`] = `"15:28"`;
+
+exports[`formatDate > should work with format "hourOnly", for date = "1581607680000" and locale "fr" 1`] = `"15:28"`;
+
+exports[`formatDate > should work with format "hourOnly", for date = "1581607680000" and locale "ro" 1`] = `"15:28"`;
+
+exports[`formatDate > should work with format "hourOnly", for date = "new Date(2020, 1, 13, 16, 28)" and locale "de" 1`] = `"16:28"`;
+
+exports[`formatDate > should work with format "hourOnly", for date = "new Date(2020, 1, 13, 16, 28)" and locale "en" 1`] = `"4:28 PM"`;
+
+exports[`formatDate > should work with format "hourOnly", for date = "new Date(2020, 1, 13, 16, 28)" and locale "es" 1`] = `"16:28"`;
+
+exports[`formatDate > should work with format "hourOnly", for date = "new Date(2020, 1, 13, 16, 28)" and locale "fr" 1`] = `"16:28"`;
+
+exports[`formatDate > should work with format "hourOnly", for date = "new Date(2020, 1, 13, 16, 28)" and locale "ro" 1`] = `"16:28"`;
+
+exports[`formatDate > should work with format "long", for date = "2020-02-13T15:28:00.000Z" and locale "de" 1`] = `"13. Februar 2020"`;
+
+exports[`formatDate > should work with format "long", for date = "2020-02-13T15:28:00.000Z" and locale "en" 1`] = `"February 13, 2020"`;
+
+exports[`formatDate > should work with format "long", for date = "2020-02-13T15:28:00.000Z" and locale "es" 1`] = `"13 de febrero de 2020"`;
+
+exports[`formatDate > should work with format "long", for date = "2020-02-13T15:28:00.000Z" and locale "fr" 1`] = `"13 février 2020"`;
+
+exports[`formatDate > should work with format "long", for date = "2020-02-13T15:28:00.000Z" and locale "ro" 1`] = `"13 februarie 2020"`;
+
+exports[`formatDate > should work with format "long", for date = "1581607680000" and locale "de" 1`] = `"13. Februar 2020"`;
+
+exports[`formatDate > should work with format "long", for date = "1581607680000" and locale "en" 1`] = `"February 13, 2020"`;
+
+exports[`formatDate > should work with format "long", for date = "1581607680000" and locale "es" 1`] = `"13 de febrero de 2020"`;
+
+exports[`formatDate > should work with format "long", for date = "1581607680000" and locale "fr" 1`] = `"13 février 2020"`;
+
+exports[`formatDate > should work with format "long", for date = "1581607680000" and locale "ro" 1`] = `"13 februarie 2020"`;
+
+exports[`formatDate > should work with format "long", for date = "new Date(2020, 1, 13, 16, 28)" and locale "de" 1`] = `"13. Februar 2020"`;
+
+exports[`formatDate > should work with format "long", for date = "new Date(2020, 1, 13, 16, 28)" and locale "en" 1`] = `"February 13, 2020"`;
+
+exports[`formatDate > should work with format "long", for date = "new Date(2020, 1, 13, 16, 28)" and locale "es" 1`] = `"13 de febrero de 2020"`;
+
+exports[`formatDate > should work with format "long", for date = "new Date(2020, 1, 13, 16, 28)" and locale "fr" 1`] = `"13 février 2020"`;
+
+exports[`formatDate > should work with format "long", for date = "new Date(2020, 1, 13, 16, 28)" and locale "ro" 1`] = `"13 februarie 2020"`;
+
+exports[`formatDate > should work with format "numeric", for date = "2020-02-13T15:28:00.000Z" and locale "de" 1`] = `"2020-02-13"`;
+
+exports[`formatDate > should work with format "numeric", for date = "2020-02-13T15:28:00.000Z" and locale "en" 1`] = `"2020-02-13"`;
+
+exports[`formatDate > should work with format "numeric", for date = "2020-02-13T15:28:00.000Z" and locale "es" 1`] = `"2020-02-13"`;
+
+exports[`formatDate > should work with format "numeric", for date = "2020-02-13T15:28:00.000Z" and locale "fr" 1`] = `"2020-02-13"`;
+
+exports[`formatDate > should work with format "numeric", for date = "2020-02-13T15:28:00.000Z" and locale "ro" 1`] = `"2020-02-13"`;
+
+exports[`formatDate > should work with format "numeric", for date = "1581607680000" and locale "de" 1`] = `"2020-02-13"`;
+
+exports[`formatDate > should work with format "numeric", for date = "1581607680000" and locale "en" 1`] = `"2020-02-13"`;
+
+exports[`formatDate > should work with format "numeric", for date = "1581607680000" and locale "es" 1`] = `"2020-02-13"`;
+
+exports[`formatDate > should work with format "numeric", for date = "1581607680000" and locale "fr" 1`] = `"2020-02-13"`;
+
+exports[`formatDate > should work with format "numeric", for date = "1581607680000" and locale "ro" 1`] = `"2020-02-13"`;
+
+exports[`formatDate > should work with format "numeric", for date = "new Date(2020, 1, 13, 16, 28)" and locale "de" 1`] = `"2020-02-13"`;
+
+exports[`formatDate > should work with format "numeric", for date = "new Date(2020, 1, 13, 16, 28)" and locale "en" 1`] = `"2020-02-13"`;
+
+exports[`formatDate > should work with format "numeric", for date = "new Date(2020, 1, 13, 16, 28)" and locale "es" 1`] = `"2020-02-13"`;
+
+exports[`formatDate > should work with format "numeric", for date = "new Date(2020, 1, 13, 16, 28)" and locale "fr" 1`] = `"2020-02-13"`;
+
+exports[`formatDate > should work with format "numeric", for date = "new Date(2020, 1, 13, 16, 28)" and locale "ro" 1`] = `"2020-02-13"`;
+
+exports[`formatDate > should work with format "numericHour", for date = "2020-02-13T15:28:00.000Z" and locale "de" 1`] = `"2020-02-13 15:28"`;
+
+exports[`formatDate > should work with format "numericHour", for date = "2020-02-13T15:28:00.000Z" and locale "en" 1`] = `"2020-02-13 3:28 PM"`;
+
+exports[`formatDate > should work with format "numericHour", for date = "2020-02-13T15:28:00.000Z" and locale "es" 1`] = `"2020-02-13 15:28"`;
+
+exports[`formatDate > should work with format "numericHour", for date = "2020-02-13T15:28:00.000Z" and locale "fr" 1`] = `"2020-02-13 15:28"`;
+
+exports[`formatDate > should work with format "numericHour", for date = "2020-02-13T15:28:00.000Z" and locale "ro" 1`] = `"2020-02-13 15:28"`;
+
+exports[`formatDate > should work with format "numericHour", for date = "1581607680000" and locale "de" 1`] = `"2020-02-13 15:28"`;
+
+exports[`formatDate > should work with format "numericHour", for date = "1581607680000" and locale "en" 1`] = `"2020-02-13 3:28 PM"`;
+
+exports[`formatDate > should work with format "numericHour", for date = "1581607680000" and locale "es" 1`] = `"2020-02-13 15:28"`;
+
+exports[`formatDate > should work with format "numericHour", for date = "1581607680000" and locale "fr" 1`] = `"2020-02-13 15:28"`;
+
+exports[`formatDate > should work with format "numericHour", for date = "1581607680000" and locale "ro" 1`] = `"2020-02-13 15:28"`;
+
+exports[`formatDate > should work with format "numericHour", for date = "new Date(2020, 1, 13, 16, 28)" and locale "de" 1`] = `"2020-02-13 16:28"`;
+
+exports[`formatDate > should work with format "numericHour", for date = "new Date(2020, 1, 13, 16, 28)" and locale "en" 1`] = `"2020-02-13 4:28 PM"`;
+
+exports[`formatDate > should work with format "numericHour", for date = "new Date(2020, 1, 13, 16, 28)" and locale "es" 1`] = `"2020-02-13 16:28"`;
+
+exports[`formatDate > should work with format "numericHour", for date = "new Date(2020, 1, 13, 16, 28)" and locale "fr" 1`] = `"2020-02-13 16:28"`;
+
+exports[`formatDate > should work with format "numericHour", for date = "new Date(2020, 1, 13, 16, 28)" and locale "ro" 1`] = `"2020-02-13 16:28"`;
+
+exports[`formatDate > should work with format "short", for date = "2020-02-13T15:28:00.000Z" and locale "de" 1`] = `"13. Feb. 2020"`;
+
+exports[`formatDate > should work with format "short", for date = "2020-02-13T15:28:00.000Z" and locale "en" 1`] = `"Feb 13, 2020"`;
+
+exports[`formatDate > should work with format "short", for date = "2020-02-13T15:28:00.000Z" and locale "es" 1`] = `"13 feb 2020"`;
+
+exports[`formatDate > should work with format "short", for date = "2020-02-13T15:28:00.000Z" and locale "fr" 1`] = `"13 févr. 2020"`;
+
+exports[`formatDate > should work with format "short", for date = "2020-02-13T15:28:00.000Z" and locale "ro" 1`] = `"13 feb. 2020"`;
+
+exports[`formatDate > should work with format "short", for date = "1581607680000" and locale "de" 1`] = `"13. Feb. 2020"`;
+
+exports[`formatDate > should work with format "short", for date = "1581607680000" and locale "en" 1`] = `"Feb 13, 2020"`;
+
+exports[`formatDate > should work with format "short", for date = "1581607680000" and locale "es" 1`] = `"13 feb 2020"`;
+
+exports[`formatDate > should work with format "short", for date = "1581607680000" and locale "fr" 1`] = `"13 févr. 2020"`;
+
+exports[`formatDate > should work with format "short", for date = "1581607680000" and locale "ro" 1`] = `"13 feb. 2020"`;
+
+exports[`formatDate > should work with format "short", for date = "new Date(2020, 1, 13, 16, 28)" and locale "de" 1`] = `"13. Feb. 2020"`;
+
+exports[`formatDate > should work with format "short", for date = "new Date(2020, 1, 13, 16, 28)" and locale "en" 1`] = `"Feb 13, 2020"`;
+
+exports[`formatDate > should work with format "short", for date = "new Date(2020, 1, 13, 16, 28)" and locale "es" 1`] = `"13 feb 2020"`;
+
+exports[`formatDate > should work with format "short", for date = "new Date(2020, 1, 13, 16, 28)" and locale "fr" 1`] = `"13 févr. 2020"`;
+
+exports[`formatDate > should work with format "short", for date = "new Date(2020, 1, 13, 16, 28)" and locale "ro" 1`] = `"13 feb. 2020"`;
+
+exports[`formatDate > should work with format "shortWithoutDay", for date = "2020-02-13T15:28:00.000Z" and locale "de" 1`] = `"Feb. 2020"`;
+
+exports[`formatDate > should work with format "shortWithoutDay", for date = "2020-02-13T15:28:00.000Z" and locale "en" 1`] = `"Feb 2020"`;
+
+exports[`formatDate > should work with format "shortWithoutDay", for date = "2020-02-13T15:28:00.000Z" and locale "es" 1`] = `"feb 2020"`;
+
+exports[`formatDate > should work with format "shortWithoutDay", for date = "2020-02-13T15:28:00.000Z" and locale "fr" 1`] = `"févr. 2020"`;
+
+exports[`formatDate > should work with format "shortWithoutDay", for date = "2020-02-13T15:28:00.000Z" and locale "ro" 1`] = `"feb. 2020"`;
+
+exports[`formatDate > should work with format "shortWithoutDay", for date = "1581607680000" and locale "de" 1`] = `"Feb. 2020"`;
+
+exports[`formatDate > should work with format "shortWithoutDay", for date = "1581607680000" and locale "en" 1`] = `"Feb 2020"`;
+
+exports[`formatDate > should work with format "shortWithoutDay", for date = "1581607680000" and locale "es" 1`] = `"feb 2020"`;
+
+exports[`formatDate > should work with format "shortWithoutDay", for date = "1581607680000" and locale "fr" 1`] = `"févr. 2020"`;
+
+exports[`formatDate > should work with format "shortWithoutDay", for date = "1581607680000" and locale "ro" 1`] = `"feb. 2020"`;
+
+exports[`formatDate > should work with format "shortWithoutDay", for date = "new Date(2020, 1, 13, 16, 28)" and locale "de" 1`] = `"Feb. 2020"`;
+
+exports[`formatDate > should work with format "shortWithoutDay", for date = "new Date(2020, 1, 13, 16, 28)" and locale "en" 1`] = `"Feb 2020"`;
+
+exports[`formatDate > should work with format "shortWithoutDay", for date = "new Date(2020, 1, 13, 16, 28)" and locale "es" 1`] = `"feb 2020"`;
+
+exports[`formatDate > should work with format "shortWithoutDay", for date = "new Date(2020, 1, 13, 16, 28)" and locale "fr" 1`] = `"févr. 2020"`;
+
+exports[`formatDate > should work with format "shortWithoutDay", for date = "new Date(2020, 1, 13, 16, 28)" and locale "ro" 1`] = `"feb. 2020"`;

@@ -1,8 +1,8 @@
-import { beforeEach, describe, expect, it, jest } from '@jest/globals'
 import type { Context } from '@segment/analytics-next'
 import { AnalyticsBrowser } from '@segment/analytics-next'
 import { renderHook, waitFor } from '@testing-library/react'
 import type { ReactNode } from 'react'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import waitForExpect from 'wait-for-expect'
 import SegmentProvider, { useSegment } from '..'
 import type { Analytics, OnEventError, SegmentProviderProps } from '..'
@@ -68,16 +68,16 @@ const wrapper =
 
 describe('segment hook', () => {
   beforeEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
   })
 
   afterAll(() => {
-    jest.restoreAllMocks()
+    vi.restoreAllMocks()
   })
 
   it('useSegment should not be defined without SegmentProvider', () => {
     const orignalConsoleError = console.error
-    console.error = jest.fn
+    console.error = vi.fn
 
     try {
       renderHook(() => useSegment())
@@ -91,7 +91,7 @@ describe('segment hook', () => {
   })
 
   it('useSegment should not be ready and not load by default', () => {
-    const mock = jest
+    const mock = vi
       .spyOn(AnalyticsBrowser, 'load')
       .mockResolvedValue([{} as Analytics, {} as Context])
 
@@ -131,7 +131,7 @@ describe('segment hook', () => {
   })
 
   it('useSegment should not load but be ready when All integrations disabled', async () => {
-    const mock = jest
+    const mock = vi
       .spyOn(AnalyticsBrowser, 'load')
       .mockResolvedValue([{} as Analytics, {} as Context])
 
@@ -152,7 +152,7 @@ describe('segment hook', () => {
   })
 
   it('useSegment should not load but be ready when all integrations are disabled ', async () => {
-    const mock = jest
+    const mock = vi
       .spyOn(AnalyticsBrowser, 'load')
       .mockResolvedValue([{} as Analytics, {} as Context])
 
@@ -181,7 +181,7 @@ describe('segment hook', () => {
   })
 
   it('useSegment should load when at least one integrations enabled', async () => {
-    const mock = jest
+    const mock = vi
       .spyOn(AnalyticsBrowser, 'load')
       .mockResolvedValue([{} as Analytics, {} as Context])
 
@@ -210,7 +210,7 @@ describe('segment hook', () => {
   })
 
   it('Provider should not load when options are not loaded', async () => {
-    const mock = jest
+    const mock = vi
       .spyOn(AnalyticsBrowser, 'load')
       .mockResolvedValue([{} as Analytics, {} as Context])
 
@@ -235,7 +235,7 @@ describe('segment hook', () => {
   })
 
   it('Provider should load with key', async () => {
-    const mock = jest
+    const mock = vi
       .spyOn(AnalyticsBrowser, 'load')
       .mockResolvedValue([{} as Analytics, {} as Context])
 
@@ -261,7 +261,7 @@ describe('segment hook', () => {
   })
 
   it('Provider should load with key and cdn', async () => {
-    const mock = jest
+    const mock = vi
       .spyOn(AnalyticsBrowser, 'load')
       .mockResolvedValue([{} as Analytics, {} as Context])
 
@@ -287,9 +287,9 @@ describe('segment hook', () => {
 
   it('Provider should load and call onError on analytics load error', async () => {
     const error = new Error('not good')
-    const mock = jest.spyOn(AnalyticsBrowser, 'load').mockRejectedValue(error)
+    const mock = vi.spyOn(AnalyticsBrowser, 'load').mockRejectedValue(error)
 
-    const onError = jest.fn()
+    const onError = vi.fn()
     const settings = { writeKey: 'pleasethrow' }
 
     const { result } = renderHook(() => useSegment<DefaultEvents>(), {
@@ -315,12 +315,12 @@ describe('segment hook', () => {
   })
 
   it('Provider call onEventError when an event is trigger with an error', async () => {
-    const mock = jest
+    const mock = vi
       .spyOn(AnalyticsBrowser, 'load')
       .mockResolvedValue([{} as Analytics, {} as Context])
 
-    const onEventError = jest.fn<any>()
-    const onError = jest.fn()
+    const onEventError = vi.fn()
+    const onError = vi.fn()
 
     const settings = { writeKey: 'pleasethrow' }
 
@@ -349,7 +349,7 @@ describe('segment hook', () => {
   })
 
   it('Provider should load with settings and initOptions', async () => {
-    const mock = jest
+    const mock = vi
       .spyOn(AnalyticsBrowser, 'load')
       .mockResolvedValue([{} as Analytics, {} as Context])
 

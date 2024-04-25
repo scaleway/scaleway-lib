@@ -6,12 +6,14 @@
     "target": "esnext",
     "noEmit": true,
     "allowJs": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "skipLibCheck": true
   },
   "include": ["**/*.ts", "**/*.js", "**/.*.js", "**/*.tsx"],
   "exclude": [
     "**/dist/*.ts",
     "**/__typetests__/*.test.ts",
-    "**/__typetests__/*.test.tsx"
+    "**/__typetests__/*.test.tsx",
+    "packages_deprecated/**"
   ]
 }

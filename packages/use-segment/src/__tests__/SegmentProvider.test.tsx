@@ -1,23 +1,15 @@
-import { afterAll, describe, expect, it, jest } from '@jest/globals'
 import type { Context } from '@segment/analytics-next'
 import { AnalyticsBrowser } from '@segment/analytics-next'
 import { render, screen, waitFor } from '@testing-library/react'
+import { describe, expect, it, vi } from 'vitest'
 import SegmentProvider from '..'
 import type { Analytics } from '../index'
 
 const TestChildren = () => <div data-testid="test">children</div>
 
 describe('SegmentProvider', () => {
-  beforeEach(() => {
-    jest.clearAllMocks()
-  })
-
-  afterAll(() => {
-    jest.restoreAllMocks()
-  })
-
   it('Provider should render children when shouldRenderOnlyWhenReady is false', async () => {
-    const mock = jest
+    const mock = vi
       .spyOn(AnalyticsBrowser, 'load')
       .mockResolvedValue([{} as Analytics, {} as Context])
 
@@ -44,7 +36,7 @@ describe('SegmentProvider', () => {
   })
 
   it('Provider should not render children when options are not loaded ', async () => {
-    const mock = jest
+    const mock = vi
       .spyOn(AnalyticsBrowser, 'load')
       .mockResolvedValue([{} as Analytics, {} as Context])
 
@@ -72,7 +64,7 @@ describe('SegmentProvider', () => {
   })
 
   it('Provider should not render children when options are not loaded at first render, but load after options changed', async () => {
-    const mock = jest
+    const mock = vi
       .spyOn(AnalyticsBrowser, 'load')
       .mockResolvedValue([{} as Analytics, {} as Context])
 
@@ -120,7 +112,7 @@ describe('SegmentProvider', () => {
   })
 
   it('Provider should not render children when options are not loaded at first render, but load after options changed even without settings', async () => {
-    const mock = jest
+    const mock = vi
       .spyOn(AnalyticsBrowser, 'load')
       .mockResolvedValue([{} as Analytics, {} as Context])
 

@@ -3,6 +3,8 @@
 import fs from 'node:fs/promises'
 import { simpleGit } from 'simple-git'
 
+console.debug('simpleGit', simpleGit)
+
 async function getChangesetIgnoredPackages(): Promise<string[]> {
   const changesetConfig = JSON.parse(
     await fs.readFile('.changeset/config.json', 'utf8'),
