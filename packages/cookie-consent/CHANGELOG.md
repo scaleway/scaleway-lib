@@ -1,5 +1,11 @@
 # @scaleway/cookie-consent
 
+## 1.2.3
+
+### Patch Changes
+
+- [#1946](https://github.com/scaleway/scaleway-lib/pull/1946) [`65e62ec`](https://github.com/scaleway/scaleway-lib/commit/65e62ec0de2aacc22db09debded47bcbd0cd4eb1) Thanks [@philibea](https://github.com/philibea)! - Fix issue with initialization on save content doens't load segment on first render.
+
 ## 1.2.2
 
 ### Patch Changes
