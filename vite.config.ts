@@ -78,10 +78,12 @@ export const defaultConfig: UserConfig = {
     outputFile: {
       junit: '.reports/tests.xml',
     },
+    exclude: ['**/__typetests__/**'],
     coverage: {
       provider: 'istanbul',
       reporter: ['text', 'json', 'cobertura', 'html', 'json-summary'],
       exclude: [
+        '**/__typetests__/**',
         '.reports/**',
         '.turbo',
         '**/.eslintrc.*',

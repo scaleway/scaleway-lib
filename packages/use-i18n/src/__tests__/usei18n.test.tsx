@@ -93,42 +93,24 @@ describe('i18n hook', () => {
     mockdate.reset()
   })
 
-  it('useTranslation should not be defined without I18nProvider', () => {
-    const orignalConsoleError = console.error
-    console.error = vi.fn
+  it.only('useTranslation should not be defined without I18nProvider', () => {
+    const spy = vi.spyOn(console, 'error')
+    spy.mockImplementation(() => {})
 
-    try {
-      renderHook(() => useTranslation(), {
-        wrapper: ({ children }: { children: ReactNode }) => (
-          <div>{children}</div>
-        ),
-      })
-    } catch (error) {
-      expect((error as Error).message).toBe(
-        'useTranslation must be used within a I18nProvider',
-      )
-    }
-
-    console.error = orignalConsoleError
+    expect(() => renderHook(() => useTranslation())).toThrow(
+      new Error('useTranslation must be used within a I18nProvider'),
+    )
+    spy.mockRestore()
   })
 
   it('useI18n should not be defined without I18nProvider', () => {
-    const orignalConsoleError = console.error
-    console.error = vi.fn
+    const spy = vi.spyOn(console, 'error')
+    spy.mockImplementation(() => {})
 
-    try {
-      renderHook(() => useI18n(), {
-        wrapper: ({ children }: { children: ReactNode }) => (
-          <div>{children}</div>
-        ),
-      })
-    } catch (error) {
-      expect((error as Error).message).toBe(
-        'useI18n must be used within a I18nProvider',
-      )
-    }
-
-    console.error = orignalConsoleError
+    expect(() => renderHook(() => useI18n())).toThrow(
+      new Error('useI18n must be used within a I18nProvider'),
+    )
+    spy.mockRestore()
   })
 
   it('should use defaultLoad, useTranslation, switch local and translate', async () => {

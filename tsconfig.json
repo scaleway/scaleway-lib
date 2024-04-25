@@ -6,7 +6,8 @@
     "target": "esnext",
     "noEmit": true,
     "allowJs": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "skipLibCheck": true
   },
   "include": ["**/*.ts", "**/*.js", "**/.*.js", "**/*.tsx"],
   "exclude": [

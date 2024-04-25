@@ -1,10 +1,10 @@
-import { beforeAll, describe, expect, it, jest, test } from '@jest/globals'
+import { beforeAll, describe, expect, it, test, vi } from 'vitest'
 import makeHelpers from '..'
 import type { RenderWithThemeFn } from '../helpers/renderWithTheme'
 import type { ShouldMatchEmotionSnapshotFn } from '../helpers/shouldMatchEmotionSnapshot'
 import type { ShouldMatchEmotionSnapshotWithPortalFn } from '../helpers/shouldMatchEmotionSnapshotWithPortal'
 
-describe('@jest-helpers', () => {
+describe('@vi-helpers', () => {
   let renderWithTheme: RenderWithThemeFn<unknown>
   let shouldMatchEmotionSnapshot: ShouldMatchEmotionSnapshotFn<unknown>
   let shouldMatchEmotionSnapshotWithPortal: ShouldMatchEmotionSnapshotWithPortalFn<unknown>
@@ -32,7 +32,7 @@ describe('@jest-helpers', () => {
   })
 
   test('should call tranform with shouldMatchEmotionSnapshot', async () => {
-    const transform = jest.fn()
+    const transform = vi.fn()
     await shouldMatchEmotionSnapshot(<div id="test" />, { transform })
 
     expect(transform).toHaveBeenCalledTimes(1)
@@ -43,7 +43,7 @@ describe('@jest-helpers', () => {
   })
 
   it('should call transform with shouldMatchEmotionSnapshot', async () => {
-    const transform = jest.fn()
+    const transform = vi.fn()
     await shouldMatchEmotionSnapshotWithPortal(<div id="test" />, { transform })
 
     expect(transform).toHaveBeenCalledTimes(1)
