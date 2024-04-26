@@ -49,7 +49,7 @@ importers:
         version: 6.4.2(@jest/globals@29.7.0)(@types/jest@29.5.12)(jest@29.7.0(@types/node@20.12.7)(babel-plugin-macros@3.1.0))(vitest@1.5.0(@types/node@20.12.7)(happy-dom@14.7.1)(jsdom@20.0.3))
       '@testing-library/react':
         specifier: 15.0.2
-        version: 15.0.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 15.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@types/jest':
         specifier: 29.5.12
         version: 29.5.12
@@ -57,11 +57,11 @@ importers:
         specifier: 20.12.7
         version: 20.12.7
       '@types/react':
-        specifier: 18.2.79
-        version: 18.2.79
+        specifier: 18.3.0
+        version: 18.3.0
       '@types/react-dom':
-        specifier: 18.2.25
-        version: 18.2.25
+        specifier: 18.3.0
+        version: 18.3.0
       '@vitejs/plugin-react':
         specifier: 4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@20.12.7))
@@ -139,8 +139,8 @@ importers:
         specifier: 0.6.0
         version: 0.6.0
       react:
-        specifier: 18.2.0
-        version: 18.2.0
+        specifier: 18.3.0
+        version: 18.3.0
 
   packages/eslint-config-react:
     dependencies:
@@ -155,7 +155,7 @@ importers:
         version: 7.7.1(eslint@8.57.0)(typescript@5.4.5)
       eslint-config-airbnb:
         specifier: 19.0.4
-        version: 19.0.4(eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.7.1(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0))(eslint-plugin-jsx-a11y@6.8.0(eslint@8.57.0))(eslint-plugin-react-hooks@4.6.0(eslint@8.57.0))(eslint-plugin-react@7.34.1(eslint@8.57.0))(eslint@8.57.0)
+        version: 19.0.4(eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.7.1(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0))(eslint-plugin-jsx-a11y@6.8.0(eslint@8.57.0))(eslint-plugin-react-hooks@4.6.1(eslint@8.57.0))(eslint-plugin-react@7.34.1(eslint@8.57.0))(eslint@8.57.0)
       eslint-config-airbnb-typescript:
         specifier: 18.0.0
         version: 18.0.0(@typescript-eslint/eslint-plugin@7.7.1(@typescript-eslint/parser@7.7.1(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5))(@typescript-eslint/parser@7.7.1(eslint@8.57.0)(typescript@5.4.5))(eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.7.1(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0))(eslint@8.57.0)
@@ -178,8 +178,8 @@ importers:
         specifier: 7.34.1
         version: 7.34.1(eslint@8.57.0)
       eslint-plugin-react-hooks:
-        specifier: 4.6.0
-        version: 4.6.0(eslint@8.57.0)
+        specifier: 4.6.1
+        version: 4.6.1(eslint@8.57.0)
     devDependencies:
       eslint:
         specifier: 8.57.0
@@ -197,20 +197,20 @@ importers:
   packages/tsconfig: {}
 
   packages/use-dataloader:
-    dependencies:
+    devDependencies:
       react:
-        specifier: 18.x
-        version: 18.2.0
+        specifier: 18.3.0
+        version: 18.3.0
 
   packages/use-growthbook:
     dependencies:
       '@growthbook/growthbook-react':
         specifier: 0.26.0
-        version: 0.26.0(react@18.2.0)
+        version: 0.26.0(react@18.3.0)
     devDependencies:
       react:
-        specifier: 18.2.0
-        version: 18.2.0
+        specifier: 18.3.0
+        version: 18.3.0
 
   packages/use-i18n:
     dependencies:
@@ -232,18 +232,19 @@ importers:
       intl-messageformat:
         specifier: 10.5.11
         version: 10.5.11
+    devDependencies:
       react:
-        specifier: 18.x || 18
-        version: 18.2.0
+        specifier: 18.3.0
+        version: 18.3.0
       react-dom:
-        specifier: 18.x || 18
-        version: 18.2.0(react@18.2.0)
+        specifier: 18.3.0
+        version: 18.3.0(react@18.3.0)
 
   packages/use-media:
-    dependencies:
+    devDependencies:
       react:
-        specifier: 18.x
-        version: 18.2.0
+        specifier: 18.3.0
+        version: 18.3.0
 
   packages/use-query-params:
     dependencies:
@@ -255,27 +256,27 @@ importers:
         version: 9.0.0
     devDependencies:
       react:
-        specifier: 18.2.0
-        version: 18.2.0
+        specifier: 18.3.0
+        version: 18.3.0
       react-dom:
-        specifier: 18.2.0
-        version: 18.2.0(react@18.2.0)
+        specifier: 18.3.0
+        version: 18.3.0(react@18.3.0)
       react-router-dom:
         specifier: 6.22.3
-        version: 6.22.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 6.22.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
 
   packages/use-random-name:
     dependencies:
       '@scaleway/random-name':
         specifier: workspace:*
         version: link:../random-name
-      react:
-        specifier: '>=16.8'
-        version: 18.2.0
     devDependencies:
       '@scaleway/use-segment':
         specifier: workspace:*
         version: link:../use-segment
+      react:
+        specifier: 18.3.0
+        version: 18.3.0
 
   packages/use-segment:
     dependencies:
@@ -284,17 +285,17 @@ importers:
         version: 1.68.0
       use-deep-compare-effect:
         specifier: 1.8.1
-        version: 1.8.1(react@18.2.0)
+        version: 1.8.1(react@18.3.0)
     devDependencies:
       react:
-        specifier: 18.2.0
-        version: 18.2.0
+        specifier: 18.3.0
+        version: 18.3.0
 
   packages/use-storage:
-    dependencies:
+    devDependencies:
       react:
-        specifier: '>=18.0'
-        version: 18.2.0
+        specifier: 18.3.0
+        version: 18.3.0
 
   packages/validate-icu-locales:
     dependencies:
@@ -2180,11 +2181,11 @@ packages:
   '@types/prop-types@15.7.12':
     resolution: {integrity: sha512-5zvhXYtRNRluoE/jAp4GVsSduVUzNWKkOZrCDBWYtE7biZywwdC2AcEzg+cSMLFRfVgeAFqpfNabiPjxFddV1Q==}
 
-  '@types/react-dom@18.2.25':
-    resolution: {integrity: sha512-o/V48vf4MQh7juIKZU2QGDfli6p1+OOi5oXx36Hffpc9adsHeXjVp8rHuPkjd8VT8sOJ2Zp05HR7CdpGTIUFUA==}
+  '@types/react-dom@18.3.0':
+    resolution: {integrity: sha512-EhwApuTmMBmXuFOikhQLIBUn6uFg81SwLMOAUgodJF14SOBOCMdU04gDoYi0WOJJHD144TL32z4yDqCW3dnkQg==}
 
-  '@types/react@18.2.79':
-    resolution: {integrity: sha512-RwGAGXPl9kSXwdNTafkOEuFrTBD5SA2B3iEB96xi8+xu5ddUa/cpvyVCSNn+asgLCTHkb5ZxN8gbuibYJi4s1w==}
+  '@types/react@18.3.0':
+    resolution: {integrity: sha512-DiUcKjzE6soLyln8NNZmyhcQjVv+WsUIFSqetMN0p8927OztKT4VTfFTqsbAi5oAGIcgOmOajlfBqyptDDjZRw==}
 
   '@types/semver@7.5.8':
     resolution: {integrity: sha512-I8EUhyrgfLrcTkzV3TSsGyl1tSuPrEDzr0yd5m90UgNxQkyDXULk3b6MlQqTCpZpNtWe1K0hzclnZkTcLBe2UQ==}
@@ -3219,8 +3220,8 @@ packages:
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8
 
-  eslint-plugin-react-hooks@4.6.0:
-    resolution: {integrity: sha512-oFc7Itz9Qxh2x4gNHStv3BqJq54ExXmfC+a1NjAta66IAN87Wu0R/QArgIS9qKzX3dXKPI9H5crl9QchNMY9+g==}
+  eslint-plugin-react-hooks@4.6.1:
+    resolution: {integrity: sha512-Ck77j8hF7l9N4S/rzSLOWEKpn994YH6iwUK8fr9mXIaQvGpQYmOnQLbiue1u5kI5T1y+gdgqosnEAO9NCz0DBg==}
     engines: {node: '>=10'}
     peerDependencies:
       eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0
@@ -4537,10 +4538,10 @@ packages:
     resolution: {integrity: sha512-ARhCpm70fzdcvNQfPoy49IaanKkTlRWF2JMzqhcJbhSFRZv7nPTvZJdcY7301IPmvW+/p0RgIWnQDLJxifsQ7g==}
     engines: {node: '>=8'}
 
-  react-dom@18.2.0:
-    resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
+  react-dom@18.3.0:
+    resolution: {integrity: sha512-zaKdLBftQJnvb7FtDIpZtsAIb2MZU087RM8bRDZU8LVCCFYjPTsDZJNFUWPcVz3HFSN1n/caxi0ca4B/aaVQGQ==}
     peerDependencies:
-      react: ^18.2.0
+      react: ^18.3.0
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
@@ -4568,8 +4569,8 @@ packages:
     peerDependencies:
       react: '>=16.8'
 
-  react@18.2.0:
-    resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
+  react@18.3.0:
+    resolution: {integrity: sha512-RPutkJftSAldDibyrjuku7q11d3oy6wKOyPe5K1HA/HwwrXcEqBdHsLypkC2FFYjP7bPUa6gbzSBhw4sY2JcDg==}
     engines: {node: '>=0.10.0'}
 
   read-pkg-up@7.0.1:
@@ -4697,8 +4698,8 @@ packages:
     resolution: {integrity: sha512-xAg7SOnEhrm5zI3puOOKyy1OMcMlIJZYNJY7xLBwSze0UjhPLnWfj2GF2EpT0jmzaJKIWKHLsaSSajf35bcYnA==}
     engines: {node: '>=v12.22.7'}
 
-  scheduler@0.23.0:
-    resolution: {integrity: sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==}
+  scheduler@0.23.1:
+    resolution: {integrity: sha512-5GKS5JGfiah1O38Vfa9srZE4s3wdHbwjlCrvIookrg2FO9aIwKLOJXuJQFlEfNcVSOXuaL2hzDeY20uVXcUtrw==}
 
   semver@5.7.2:
     resolution: {integrity: sha512-cBznnQ9KjJqU67B52RMC65CMarK2600WFnbkcaiwWq3xy/5haFJlshgnpjovMVJ+Hff49d8GEn0b87C5pDQ10g==}
@@ -6607,10 +6608,10 @@ snapshots:
     dependencies:
       tslib: 2.6.2
 
-  '@growthbook/growthbook-react@0.26.0(react@18.2.0)':
+  '@growthbook/growthbook-react@0.26.0(react@18.3.0)':
     dependencies:
       '@growthbook/growthbook': 0.36.0
-      react: 18.2.0
+      react: 18.3.0
 
   '@growthbook/growthbook@0.36.0':
     dependencies:
@@ -7638,13 +7639,13 @@ snapshots:
       jest: 29.7.0(@types/node@20.12.7)(babel-plugin-macros@3.1.0)
       vitest: 1.5.0(@types/node@20.12.7)(happy-dom@14.7.1)(jsdom@20.0.3)
 
-  '@testing-library/react@15.0.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+  '@testing-library/react@15.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
     dependencies:
       '@babel/runtime': 7.24.4
       '@testing-library/dom': 10.0.0
-      '@types/react-dom': 18.2.25
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
+      '@types/react-dom': 18.3.0
+      react: 18.3.0
+      react-dom: 18.3.0(react@18.3.0)
 
   '@tootallnate/once@2.0.0':
     optional: true
@@ -7719,11 +7720,11 @@ snapshots:
 
   '@types/prop-types@15.7.12': {}
 
-  '@types/react-dom@18.2.25':
+  '@types/react-dom@18.3.0':
     dependencies:
-      '@types/react': 18.2.79
+      '@types/react': 18.3.0
 
-  '@types/react@18.2.79':
+  '@types/react@18.3.0':
     dependencies:
       '@types/prop-types': 15.7.12
       csstype: 3.1.3
@@ -8868,14 +8869,14 @@ snapshots:
     transitivePeerDependencies:
       - eslint-plugin-import
 
-  eslint-config-airbnb@19.0.4(eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.7.1(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0))(eslint-plugin-jsx-a11y@6.8.0(eslint@8.57.0))(eslint-plugin-react-hooks@4.6.0(eslint@8.57.0))(eslint-plugin-react@7.34.1(eslint@8.57.0))(eslint@8.57.0):
+  eslint-config-airbnb@19.0.4(eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.7.1(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0))(eslint-plugin-jsx-a11y@6.8.0(eslint@8.57.0))(eslint-plugin-react-hooks@4.6.1(eslint@8.57.0))(eslint-plugin-react@7.34.1(eslint@8.57.0))(eslint@8.57.0):
     dependencies:
       eslint: 8.57.0
       eslint-config-airbnb-base: 15.0.0(eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.7.1(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0))(eslint@8.57.0)
       eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.7.1(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)
       eslint-plugin-jsx-a11y: 6.8.0(eslint@8.57.0)
       eslint-plugin-react: 7.34.1(eslint@8.57.0)
-      eslint-plugin-react-hooks: 4.6.0(eslint@8.57.0)
+      eslint-plugin-react-hooks: 4.6.1(eslint@8.57.0)
       object.assign: 4.1.5
       object.entries: 1.1.8
 
@@ -8964,7 +8965,7 @@ snapshots:
       object.entries: 1.1.8
       object.fromentries: 2.0.8
 
-  eslint-plugin-react-hooks@4.6.0(eslint@8.57.0):
+  eslint-plugin-react-hooks@4.6.1(eslint@8.57.0):
     dependencies:
       eslint: 8.57.0
 
@@ -10567,11 +10568,11 @@ snapshots:
 
   quick-lru@4.0.1: {}
 
-  react-dom@18.2.0(react@18.2.0):
+  react-dom@18.3.0(react@18.3.0):
     dependencies:
       loose-envify: 1.4.0
-      react: 18.2.0
-      scheduler: 0.23.0
+      react: 18.3.0
+      scheduler: 0.23.1
 
   react-is@16.13.1: {}
 
@@ -10581,19 +10582,19 @@ snapshots:
 
   react-refresh@0.14.0: {}
 
-  react-router-dom@6.22.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  react-router-dom@6.22.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
       '@remix-run/router': 1.15.3
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      react-router: 6.22.3(react@18.2.0)
+      react: 18.3.0
+      react-dom: 18.3.0(react@18.3.0)
+      react-router: 6.22.3(react@18.3.0)
 
-  react-router@6.22.3(react@18.2.0):
+  react-router@6.22.3(react@18.3.0):
     dependencies:
       '@remix-run/router': 1.15.3
-      react: 18.2.0
+      react: 18.3.0
 
-  react@18.2.0:
+  react@18.3.0:
     dependencies:
       loose-envify: 1.4.0
 
@@ -10764,7 +10765,7 @@ snapshots:
       xmlchars: 2.2.0
     optional: true
 
-  scheduler@0.23.0:
+  scheduler@0.23.1:
     dependencies:
       loose-envify: 1.4.0
 
@@ -11189,11 +11190,11 @@ snapshots:
       requires-port: 1.0.0
     optional: true
 
-  use-deep-compare-effect@1.8.1(react@18.2.0):
+  use-deep-compare-effect@1.8.1(react@18.3.0):
     dependencies:
       '@babel/runtime': 7.24.4
       dequal: 2.0.3
-      react: 18.2.0
+      react: 18.3.0
 
   v8-to-istanbul@9.2.0:
     dependencies:

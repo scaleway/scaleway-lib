@@ -50,6 +50,10 @@
     "international-types": "0.8.1",
     "intl-messageformat": "10.5.11"
   },
+  "devDependencies": {
+    "react": "18.3.0",
+    "react-dom": "18.3.0"
+  },
   "peerDependencies": {
     "date-fns": "3.x",
     "react": "18.x || 18",

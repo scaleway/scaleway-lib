@@ -37,7 +37,8 @@
     "react": ">=16.8"
   },
   "devDependencies": {
-    "@scaleway/use-segment": "workspace:*"
+    "@scaleway/use-segment": "workspace:*",
+    "react": "18.3.0"
   },
   "dependencies": {
     "@scaleway/random-name": "workspace:*"

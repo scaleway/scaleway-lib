@@ -36,5 +36,8 @@
   "license": "MIT",
   "peerDependencies": {
     "react": ">=18.0"
+  },
+  "devDependencies": {
+    "react": "18.3.0"
   }
 }
