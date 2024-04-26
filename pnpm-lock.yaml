@@ -280,8 +280,8 @@ importers:
   packages/use-segment:
     dependencies:
       '@segment/analytics-next':
-        specifier: 1.67.0
-        version: 1.67.0
+        specifier: 1.68.0
+        version: 1.68.0
       use-deep-compare-effect:
         specifier: 1.8.1
         version: 1.8.1(react@18.2.0)
@@ -1532,14 +1532,14 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@segment/analytics-core@1.5.0':
-    resolution: {integrity: sha512-xFM9sS4ltRWDnNE6bD/bwLAGGBI1Doidf35J6ePyuOfecZ7c0sADtk9xR1QD98CDDFVaQcrfV/O1l4rBZvCm4A==}
+  '@segment/analytics-core@1.5.1':
+    resolution: {integrity: sha512-fQTtxO1TyTb/j09a7Hyi080N0MxCC+7uA3rGF2033xrFglxgUb6a75Lc9MAEpZLUcwgSw/VyECf0ewmxtRNiOw==}
 
   '@segment/analytics-generic-utils@1.2.0':
     resolution: {integrity: sha512-DfnW6mW3YQOLlDQQdR89k4EqfHb0g/3XvBXkovH1FstUN93eL1kfW9CsDcVQyH3bAC5ZsFyjA/o/1Q2j0QeoWw==}
 
-  '@segment/analytics-next@1.67.0':
-    resolution: {integrity: sha512-57sugvZFDOgFH4yajiganNQjFo5zWP5JqAkt9lDwCfDMhYn5xlvdjO8ahcdug2waouQw2c9vA8a5yVFWVIjWJw==}
+  '@segment/analytics-next@1.68.0':
+    resolution: {integrity: sha512-/Sg+1wqdNfTSW5KUBOYYwwmdlOwMmTiggEZlk4/yJPd6WtNHXzzqqmgkDKL0HehxAG/qJeXn1DDzPCErSF+KYw==}
 
   '@segment/analytics.js-video-plugins@0.2.1':
     resolution: {integrity: sha512-lZwCyEXT4aaHBLNK433okEKdxGAuyrVmop4BpQqQSJuRz0DglPZgd9B/XjiiWs1UyOankg2aNYMN3VcS8t4eSQ==}
@@ -4792,9 +4792,6 @@ packages:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
     engines: {node: '>=0.10.0'}
 
-  spark-md5@3.0.2:
-    resolution: {integrity: sha512-wcFzz9cDfbuqe0FZzfi2or1sgyIrsDwmPwfZC4hiNidPdPINjeUwNfv5kldczoEAcjl9Y1L3SM7Uz2PUEQzxQw==}
-
   spawndamnit@2.0.0:
     resolution: {integrity: sha512-j4JKEcncSjFlqIwU5L/rp2N5SIPsdxaRsIv678+TZxZ0SRDJTm8JrxJMjE/XuiEZNEir3S8l0Fa3Ke339WI4qA==}
 
@@ -6928,7 +6925,7 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.14.3':
     optional: true
 
-  '@segment/analytics-core@1.5.0':
+  '@segment/analytics-core@1.5.1':
     dependencies:
       '@lukeed/uuid': 2.0.1
       '@segment/analytics-generic-utils': 1.2.0
@@ -6939,10 +6936,10 @@ snapshots:
     dependencies:
       tslib: 2.6.2
 
-  '@segment/analytics-next@1.67.0':
+  '@segment/analytics-next@1.68.0':
     dependencies:
       '@lukeed/uuid': 2.0.1
-      '@segment/analytics-core': 1.5.0
+      '@segment/analytics-core': 1.5.1
       '@segment/analytics-generic-utils': 1.2.0
       '@segment/analytics.js-video-plugins': 0.2.1
       '@segment/facade': 3.4.10
@@ -6950,7 +6947,6 @@ snapshots:
       dset: 3.1.3
       js-cookie: 3.0.1
       node-fetch: 2.7.0
-      spark-md5: 3.0.2
       tslib: 2.6.2
       unfetch: 4.2.0
     transitivePeerDependencies:
@@ -10867,8 +10863,6 @@ snapshots:
 
   source-map@0.6.1:
     optional: true
-
-  spark-md5@3.0.2: {}
 
   spawndamnit@2.0.0:
     dependencies:
