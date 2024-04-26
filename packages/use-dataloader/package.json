@@ -40,6 +40,9 @@
     "hooks",
     "dataloader"
   ],
+  "devDependencies": {
+    "react": "18.3.0"
+  },
   "peerDependencies": {
     "react": "18.x"
   }
