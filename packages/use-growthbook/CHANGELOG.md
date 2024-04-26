@@ -1,5 +1,11 @@
 # @scaleway/use-growthbook
 
+## 2.0.4
+
+### Patch Changes
+
+- [#1953](https://github.com/scaleway/scaleway-lib/pull/1953) [`1fddf05`](https://github.com/scaleway/scaleway-lib/commit/1fddf0515851908b094f983b05b3d87af8eef433) Thanks [@philibea](https://github.com/philibea)! - add cjs build
+
 ## 2.0.3
 
 ### Patch Changes
