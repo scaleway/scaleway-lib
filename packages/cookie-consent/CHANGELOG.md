@@ -1,5 +1,14 @@
 # @scaleway/cookie-consent
 
+## 1.2.4
+
+### Patch Changes
+
+- [#1953](https://github.com/scaleway/scaleway-lib/pull/1953) [`1fddf05`](https://github.com/scaleway/scaleway-lib/commit/1fddf0515851908b094f983b05b3d87af8eef433) Thanks [@philibea](https://github.com/philibea)! - add cjs build
+
+- Updated dependencies [[`1fddf05`](https://github.com/scaleway/scaleway-lib/commit/1fddf0515851908b094f983b05b3d87af8eef433)]:
+  - @scaleway/use-segment@1.0.3
+
 ## 1.2.3
 
 ### Patch Changes
