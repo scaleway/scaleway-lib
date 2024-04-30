@@ -5,6 +5,7 @@
   "engines": {
     "node": ">=20.x"
   },
+  "main": "./dist/index.cjs",
   "type": "module",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
