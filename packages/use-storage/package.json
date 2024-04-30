@@ -38,6 +38,6 @@
     "react": ">=18.0"
   },
   "devDependencies": {
-    "react": "18.3.0"
+    "react": "18.3.1"
   }
 }
