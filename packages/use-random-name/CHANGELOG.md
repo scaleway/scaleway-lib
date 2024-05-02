@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.0.3
+
+### Patch Changes
+
+- Updated dependencies [[`d034b3c`](https://github.com/scaleway/scaleway-lib/commit/d034b3cda1cac30ce2ed4e95be5a2c79642f8ca4)]:
+  - @scaleway/random-name@5.1.0
+
 ## 1.0.2
 
 ### Patch Changes
