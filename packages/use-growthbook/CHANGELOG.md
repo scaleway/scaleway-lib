@@ -1,5 +1,11 @@
 # @scaleway/use-growthbook
 
+## 2.1.0
+
+### Minor Changes
+
+- [#1960](https://github.com/scaleway/scaleway-lib/pull/1960) [`d034b3c`](https://github.com/scaleway/scaleway-lib/commit/d034b3cda1cac30ce2ed4e95be5a2c79642f8ca4) Thanks [@Slashgear](https://github.com/Slashgear)! - add legacy main attribut for CommonJS export usage
+
 ## 2.0.4
 
 ### Patch Changes
