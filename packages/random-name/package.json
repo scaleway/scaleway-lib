@@ -6,6 +6,7 @@
     "node": ">=20.x"
   },
   "sideEffects": false,
+  "main": "./dist/index.cjs",
   "type": "module",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
