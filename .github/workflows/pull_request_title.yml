@@ -17,4 +17,8 @@ jobs:
         check-latest: true
         cache: 'pnpm'
     - run: pnpm install
-    - run: echo '${{ github.event.pull_request.title }}' | pnpm commitlint
+    - name: Check PR title
+      env:
+        TITLE: ${{ github.event.pull_request.title }}
+      run: echo "$TITLE" | pnpm commitlint
+    
