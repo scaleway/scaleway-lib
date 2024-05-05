@@ -44,7 +44,7 @@
     "read-pkg": "9.0.1",
     "tstyche": "1.1.0 ",
     "typescript": "5.4.5",
-    "vite": "5.2.10",
+    "vite": "5.2.11",
     "vitest": "1.5.3",
     "vitest-localstorage-mock": "0.1.2",
     "wait-for-expect": "3.0.2"
