@@ -48,7 +48,7 @@
     "date-fns": "3.6.0",
     "filesize": "10.1.1",
     "international-types": "0.8.1",
-    "intl-messageformat": "10.5.11"
+    "intl-messageformat": "10.5.12"
   },
   "devDependencies": {
     "react": "18.3.1",
