@@ -43,12 +43,12 @@
     "test:unit:coverage": "pnpm test:unit --coverage"
   },
   "dependencies": {
-    "@formatjs/ecma402-abstract": "1.18.2",
+    "@formatjs/ecma402-abstract": "1.18.3",
     "@formatjs/fast-memoize": "2.2.0",
     "date-fns": "3.6.0",
     "filesize": "10.1.2",
     "international-types": "0.8.1",
-    "intl-messageformat": "10.5.12"
+    "intl-messageformat": "10.5.13"
   },
   "devDependencies": {
     "react": "18.3.1",
