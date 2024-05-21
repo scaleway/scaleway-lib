@@ -8,10 +8,12 @@
   "sideEffects": false,
   "type": "module",
   "module": "./dist/index.js",
+   "main": "./dist/index.cjs",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
       "default": "./dist/index.js"
     }
   },
