@@ -7,17 +7,13 @@ export const useAbTestAttributes = (): [
 ] => {
   const growthBook = useGrowthBook()
 
-  if (growthBook) {
-    const attributes = growthBook.getAttributes()
+  const attributes = growthBook.getAttributes()
 
-    const setAttributes = (newAttributes: Attributes) =>
-      growthBook.setAttributes({
-        ...attributes,
-        ...newAttributes,
-      })
+  const setAttributes = (newAttributes: Attributes) =>
+    growthBook.setAttributes({
+      ...attributes,
+      ...newAttributes,
+    })
 
-    return [attributes, setAttributes]
-  }
-
-  return [{}, () => {}]
+  return [attributes, setAttributes]
 }
