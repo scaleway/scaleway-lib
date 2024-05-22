@@ -43,7 +43,7 @@
     "media queries"
   ],
   "peerDependencies": {
-    "react": "18.x"
+    "react": "18.x || 19.x"
   },
   "devDependencies": {
     "react": "18.3.1"
