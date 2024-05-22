@@ -49,7 +49,7 @@
     "date-fns": "3.6.0",
     "filesize": "10.1.2",
     "international-types": "0.8.1",
-    "intl-messageformat": "10.5.13"
+    "intl-messageformat": "10.5.14"
   },
   "devDependencies": {
     "react": "18.3.1",
