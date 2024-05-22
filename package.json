@@ -42,6 +42,7 @@
     "mockdate": "3.0.5",
     "prettier": "3.2.5",
     "read-pkg": "9.0.1",
+    "shx": "0.3.4",
     "tstyche": "1.1.0 ",
     "typescript": "5.4.5",
     "vite": "5.2.11",
