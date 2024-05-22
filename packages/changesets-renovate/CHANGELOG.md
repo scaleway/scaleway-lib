@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.0.4
+
+### Patch Changes
+
+- [#1997](https://github.com/scaleway/scaleway-lib/pull/1997) [`814b7df`](https://github.com/scaleway/scaleway-lib/commit/814b7df358751e9e331cd8b8187bd1c85f9e734b) Thanks [@philibea](https://github.com/philibea)! - use ssr build with vite
+
 ## 2.0.3
 
 ### Patch Changes
