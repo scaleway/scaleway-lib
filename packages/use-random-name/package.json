@@ -8,7 +8,7 @@
   "sideEffects": false,
   "type": "module",
   "module": "./dist/index.js",
-   "main": "./dist/index.cjs",
+  "main": "./dist/index.cjs",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@scaleway/use-segment": "workspace:*",
-    "react": "18.3.1"
+    "react": "19.0.0-beta-26f2496093-20240514"
   },
   "dependencies": {
     "@scaleway/random-name": "workspace:*"
