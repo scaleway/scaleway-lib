@@ -38,7 +38,7 @@
     "eslint": "8.57.0",
     "happy-dom": "14.11.0",
     "husky": "9.0.11",
-    "lint-staged": "15.2.2",
+    "lint-staged": "15.2.5",
     "mockdate": "3.0.5",
     "prettier": "3.2.5",
     "read-pkg": "9.0.1",
