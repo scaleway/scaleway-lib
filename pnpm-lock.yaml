@@ -218,8 +218,8 @@ importers:
   packages/use-i18n:
     dependencies:
       '@formatjs/ecma402-abstract':
-        specifier: 1.18.3
-        version: 1.18.3
+        specifier: 2.0.0
+        version: 2.0.0
       '@formatjs/fast-memoize':
         specifier: 2.2.0
         version: 2.2.0
@@ -1335,9 +1335,6 @@ packages:
   '@eslint/js@8.57.0':
     resolution: {integrity: sha512-Ys+3g2TaW7gADOJzPt83SJtCDhMjndcDMFVQ/Tj9iA1BfJzFKD9mAUXT3OenpuPHbI6P/myECxRJrofUsDx/5g==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-
-  '@formatjs/ecma402-abstract@1.18.3':
-    resolution: {integrity: sha512-J961RbhyjHWeCIv+iOceNxpoZ/qomJOs5lH+rUJCeKNa59gME4KC0LJVMeWODjHsnv/hTH8Hvd6sevzcAzjuaQ==}
 
   '@formatjs/ecma402-abstract@2.0.0':
     resolution: {integrity: sha512-rRqXOqdFmk7RYvj4khklyqzcfQl9vEL/usogncBHRZfZBDOwMGuSRNFl02fu5KGHXdbinju+YXyuR+Nk8xlr/g==}
@@ -6677,11 +6674,6 @@ snapshots:
       - supports-color
 
   '@eslint/js@8.57.0': {}
-
-  '@formatjs/ecma402-abstract@1.18.3':
-    dependencies:
-      '@formatjs/intl-localematcher': 0.5.4
-      tslib: 2.6.2
 
   '@formatjs/ecma402-abstract@2.0.0':
     dependencies:
