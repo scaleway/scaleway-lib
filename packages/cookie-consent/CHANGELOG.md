@@ -1,5 +1,11 @@
 # @scaleway/cookie-consent
 
+## 2.0.1
+
+### Patch Changes
+
+- [#2012](https://github.com/scaleway/scaleway-lib/pull/2012) [`7bb675e`](https://github.com/scaleway/scaleway-lib/commit/7bb675ec2a52d287b489dc9eb6683d0fd9e8d554) Thanks [@philibea](https://github.com/philibea)! - Add a screen object from window into the context of segment
+
 ## 2.0.0
 
 ### Minor Changes
