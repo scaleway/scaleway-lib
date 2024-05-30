@@ -47,6 +47,17 @@ export const SegmentConsentMiddleware = ({
           // https://segment.com/docs/privacy/consent-management/consent-in-segment-connections/#consent-object
           categoryPreferences: categoriesConsent,
         }
+        // eslint-disable-next-line  @typescript-eslint/no-unnecessary-condition
+        if (window) {
+          const screen = {
+            width: window.screen.width,
+            height: window.screen.height,
+            availHeight: window.screen.availHeight,
+            availWidth: window.screen.availWidth,
+          }
+          // eslint-disable-next-line , no-param-reassign
+          payload.obj.context['screen'] = screen
+        }
 
         // eslint-disable-next-line , no-param-reassign
         payload.obj.context['consent'] = consent
