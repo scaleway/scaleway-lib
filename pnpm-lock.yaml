@@ -46,7 +46,7 @@ importers:
         version: link:packages/tsconfig
       '@testing-library/jest-dom':
         specifier: 6.4.5
-        version: 6.4.5(@jest/globals@29.7.0)(@types/jest@29.5.12)(jest@29.7.0(@types/node@20.12.12))(vitest@1.6.0(@types/node@20.12.12)(happy-dom@14.11.1)(jsdom@20.0.3))
+        version: 6.4.5(@jest/globals@29.7.0)(@types/jest@29.5.12)(jest@29.7.0(@types/node@20.12.12))(vitest@1.6.0(@types/node@20.12.12)(happy-dom@14.12.0)(jsdom@20.0.3))
       '@testing-library/react':
         specifier: 15.0.7
         version: 15.0.7(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -67,7 +67,7 @@ importers:
         version: 4.3.0(vite@5.2.12(@types/node@20.12.12))
       '@vitest/coverage-istanbul':
         specifier: 1.6.0
-        version: 1.6.0(vitest@1.6.0(@types/node@20.12.12)(happy-dom@14.11.1)(jsdom@20.0.3))
+        version: 1.6.0(vitest@1.6.0(@types/node@20.12.12)(happy-dom@14.12.0)(jsdom@20.0.3))
       browserslist:
         specifier: 4.23.0
         version: 4.23.0
@@ -84,8 +84,8 @@ importers:
         specifier: 8.57.0
         version: 8.57.0
       happy-dom:
-        specifier: 14.11.1
-        version: 14.11.1
+        specifier: 14.12.0
+        version: 14.12.0
       husky:
         specifier: 9.0.11
         version: 9.0.11
@@ -115,10 +115,10 @@ importers:
         version: 5.2.12(@types/node@20.12.12)
       vitest:
         specifier: 1.6.0
-        version: 1.6.0(@types/node@20.12.12)(happy-dom@14.11.1)(jsdom@20.0.3)
+        version: 1.6.0(@types/node@20.12.12)(happy-dom@14.12.0)(jsdom@20.0.3)
       vitest-localstorage-mock:
         specifier: 0.1.2
-        version: 0.1.2(vitest@1.6.0(@types/node@20.12.12)(happy-dom@14.11.1)(jsdom@20.0.3))
+        version: 0.1.2(vitest@1.6.0(@types/node@20.12.12)(happy-dom@14.12.0)(jsdom@20.0.3))
       wait-for-expect:
         specifier: 3.0.2
         version: 3.0.2
@@ -3546,8 +3546,8 @@ packages:
   graphemer@1.4.0:
     resolution: {integrity: sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==}
 
-  happy-dom@14.11.1:
-    resolution: {integrity: sha512-JuaGMxD3QlQei6LdAM9mMY9am/cHa978uFbkOpjN5x83DG+QQp/NLyVV4Ru7KOjs70XYZ4KbI0TNiO81nM7uQQ==}
+  happy-dom@14.12.0:
+    resolution: {integrity: sha512-dHcnlGFY2o2CdxfuYpqwSrBrpj/Kuzv4u4f3TU5yHW1GL24dKij4pv1BRjXnXc3uWo8qsCbToF9weaDsm/He8A==}
     engines: {node: '>=16.0.0'}
 
   hard-rejection@2.1.0:
@@ -7734,7 +7734,7 @@ snapshots:
       lz-string: 1.5.0
       pretty-format: 27.5.1
 
-  '@testing-library/jest-dom@6.4.5(@jest/globals@29.7.0)(@types/jest@29.5.12)(jest@29.7.0(@types/node@20.12.12))(vitest@1.6.0(@types/node@20.12.12)(happy-dom@14.11.1)(jsdom@20.0.3))':
+  '@testing-library/jest-dom@6.4.5(@jest/globals@29.7.0)(@types/jest@29.5.12)(jest@29.7.0(@types/node@20.12.12))(vitest@1.6.0(@types/node@20.12.12)(happy-dom@14.12.0)(jsdom@20.0.3))':
     dependencies:
       '@adobe/css-tools': 4.3.3
       '@babel/runtime': 7.24.4
@@ -7748,7 +7748,7 @@ snapshots:
       '@jest/globals': 29.7.0
       '@types/jest': 29.5.12
       jest: 29.7.0(@types/node@20.12.12)
-      vitest: 1.6.0(@types/node@20.12.12)(happy-dom@14.11.1)(jsdom@20.0.3)
+      vitest: 1.6.0(@types/node@20.12.12)(happy-dom@14.12.0)(jsdom@20.0.3)
 
   '@testing-library/react@15.0.7(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
@@ -7984,7 +7984,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@vitest/coverage-istanbul@1.6.0(vitest@1.6.0(@types/node@20.12.12)(happy-dom@14.11.1)(jsdom@20.0.3))':
+  '@vitest/coverage-istanbul@1.6.0(vitest@1.6.0(@types/node@20.12.12)(happy-dom@14.12.0)(jsdom@20.0.3))':
     dependencies:
       debug: 4.3.4
       istanbul-lib-coverage: 3.2.2
@@ -7995,7 +7995,7 @@ snapshots:
       magicast: 0.3.4
       picocolors: 1.0.0
       test-exclude: 6.0.0
-      vitest: 1.6.0(@types/node@20.12.12)(happy-dom@14.11.1)(jsdom@20.0.3)
+      vitest: 1.6.0(@types/node@20.12.12)(happy-dom@14.12.0)(jsdom@20.0.3)
     transitivePeerDependencies:
       - supports-color
 
@@ -9413,7 +9413,7 @@ snapshots:
 
   graphemer@1.4.0: {}
 
-  happy-dom@14.11.1:
+  happy-dom@14.12.0:
     dependencies:
       entities: 4.5.0
       webidl-conversions: 7.0.0
@@ -11351,11 +11351,11 @@ snapshots:
       '@types/node': 20.12.12
       fsevents: 2.3.3
 
-  vitest-localstorage-mock@0.1.2(vitest@1.6.0(@types/node@20.12.12)(happy-dom@14.11.1)(jsdom@20.0.3)):
+  vitest-localstorage-mock@0.1.2(vitest@1.6.0(@types/node@20.12.12)(happy-dom@14.12.0)(jsdom@20.0.3)):
     dependencies:
-      vitest: 1.6.0(@types/node@20.12.12)(happy-dom@14.11.1)(jsdom@20.0.3)
+      vitest: 1.6.0(@types/node@20.12.12)(happy-dom@14.12.0)(jsdom@20.0.3)
 
-  vitest@1.6.0(@types/node@20.12.12)(happy-dom@14.11.1)(jsdom@20.0.3):
+  vitest@1.6.0(@types/node@20.12.12)(happy-dom@14.12.0)(jsdom@20.0.3):
     dependencies:
       '@vitest/expect': 1.6.0
       '@vitest/runner': 1.6.0
@@ -11379,7 +11379,7 @@ snapshots:
       why-is-node-running: 2.2.2
     optionalDependencies:
       '@types/node': 20.12.12
-      happy-dom: 14.11.1
+      happy-dom: 14.12.0
       jsdom: 20.0.3
     transitivePeerDependencies:
       - less
