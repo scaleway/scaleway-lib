@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.1.8
+
+### Patch Changes
+
+- [#2020](https://github.com/scaleway/scaleway-lib/pull/2020) [`12ae426`](https://github.com/scaleway/scaleway-lib/commit/12ae426c89b05f42afd7618c0a2bb3a953e6aa3a) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@formatjs/ecma402-abstract` to `2.0.0`.
+
 ## 6.1.7
 
 ### Patch Changes
