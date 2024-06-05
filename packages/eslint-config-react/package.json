@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/eslint-config-react",
-  "version": "3.18.3",
+  "version": "3.18.4",
   "description": "Scaleway React eslint shared config",
   "keywords": [
     "eslint",
