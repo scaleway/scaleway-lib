@@ -8,7 +8,7 @@
   "packageManager": "pnpm@9.2.0",
   "engines": {
     "node": ">=20.x",
-    "pnpm": ">=8.x"
+    "pnpm": ">=9.x"
   },
   "dependencies": {
     "@babel/core": "7.24.7",
@@ -17,6 +17,7 @@
     "@babel/preset-env": "7.24.7",
     "@babel/preset-react": "7.24.7",
     "@babel/preset-typescript": "7.24.7",
+    "@biomejs/biome": "1.8.0",
     "@changesets/changelog-github": "0.5.0",
     "@changesets/cli": "2.27.5",
     "@commitlint/cli": "19.3.0",
@@ -40,7 +41,6 @@
     "husky": "9.0.11",
     "lint-staged": "15.2.5",
     "mockdate": "3.0.5",
-    "prettier": "3.3.0",
     "read-pkg": "9.0.1",
     "shx": "0.3.4",
     "tstyche": "1.1.0 ",
@@ -55,7 +55,7 @@
     "lint:fix": "pnpm run lint --fix",
     "build": "pnpm recursive run build",
     "commit": "npx git-cz -a",
-    "format": "prettier --write '**/*.{ts,tsx,js,json,md,mdx}'",
+    "format": "biome format --write .",
     "test": "pnpm recursive run test:unit",
     "test:coverage": "pnpm run test --coverage",
     "test:types": "tstyche",
@@ -78,14 +78,14 @@
   },
   "lint-staged": {
     "*.(j|t)s?(x)": [
-      "prettier --write",
+      "biome format --write .",
       "eslint --fix"
     ],
     "*.json": [
-      "prettier --write"
+      "biome format --write ."
     ],
     "*.mdx": [
-      "prettier --write"
+      "biome format --write ."
     ]
   },
   "config": {
