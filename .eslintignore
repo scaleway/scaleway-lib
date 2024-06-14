@@ -1,7 +1,0 @@
-# From .gitignore
-node_modules/
-dist/
-build/
-__typetests__/
-packages_deprecated/
-coverage/

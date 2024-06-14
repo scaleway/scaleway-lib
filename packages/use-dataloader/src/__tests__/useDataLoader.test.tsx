@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { renderHook, waitFor } from '@testing-library/react'
 import type { ReactNode } from 'react'
 import { describe, expect, test, vi } from 'vitest'
@@ -733,7 +732,7 @@ describe('useDataLoader', () => {
       {
         initialProps: {
           ...initialProps,
-          // eslint-disable-next-line no-sparse-arrays
+
           key: ['test-13', false, testDate],
           method: fakePromise,
         },
@@ -895,4 +894,3 @@ describe('useDataLoader', () => {
     await waitFor(() => expect(result.current[1]?.isSuccess).toBe(true))
   })
 })
-/* eslint-enable no-console */

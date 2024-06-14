@@ -9,7 +9,7 @@
     "jsx": "preserve",
     "skipLibCheck": true
   },
-  "include": ["**/*.ts", "**/*.js", "**/.*.js", "**/*.tsx"],
+  "include": ["**/*.ts", "**/*.js", "**/.*.js", "**/*.tsx", "**/*.mjs"],
   "exclude": [
     "**/dist/*.ts",
     "**/__typetests__/*.test.ts",
