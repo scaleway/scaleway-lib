@@ -17,6 +17,7 @@ import { useSegmentIntegrations } from './useSegmentIntegrations'
 
 const COOKIE_PREFIX = '_scw_rgpd'
 const HASH_COOKIE = `${COOKIE_PREFIX}_hash`
+const IS_CLIENT = typeof document !== 'undefined'
 
 // Appx 13 Months
 const CONSENT_MAX_AGE = 13 * 30 * 24 * 60 * 60
@@ -72,7 +73,7 @@ export const CookieConsentProvider = ({
 }>) => {
   const [needConsent, setNeedsConsent] = useState(false)
   const [cookies, setCookies] = useState<Record<string, string>>(
-    cookie.parse(document.cookie),
+    IS_CLIENT ? cookie.parse(document.cookie) : {},
   )
 
   const {
