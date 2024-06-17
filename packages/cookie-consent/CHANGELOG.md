@@ -1,5 +1,11 @@
 # @scaleway/cookie-consent
 
+## 2.0.2
+
+### Patch Changes
+
+- [#2041](https://github.com/scaleway/scaleway-lib/pull/2041) [`ca12d6d`](https://github.com/scaleway/scaleway-lib/commit/ca12d6d5b8e9679a9c12d619ad07d1c72b44c507) Thanks [@Slashgear](https://github.com/Slashgear)! - Cookie consent provider now work on client and server side
+
 ## 2.0.1
 
 ### Patch Changes
