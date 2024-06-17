@@ -53,9 +53,9 @@ jobs:
       - run: pnpm run build
       - run: pnpm run test:coverage
       - uses: codecov/codecov-action@v4.4.1
-        with: 
+        with:
           files: packages/**/coverage/cobertura-coverage.xml
-          token: ${{ secrets.CODECOV_TOKEN }} 
+          token: ${{ secrets.CODECOV_TOKEN }}
           verbose: true
 
   test-types:
@@ -75,4 +75,3 @@ jobs:
       - run: pnpm install
       - run: pnpm run build
       - run: pnpm run test:types
-

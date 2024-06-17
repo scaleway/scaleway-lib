@@ -6,18 +6,34 @@
     "eslint",
     "eslintconfig"
   ],
-  "main": "index.js",
   "publishConfig": {
     "access": "public"
   },
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/scaleway/scaleway-lib",
     "directory": "packages/eslint-config-react"
   },
+  "exports": {
+    ".": "./index.mjs",
+    "./javascript": "./javascript.mjs",
+    "./typescript": "./typescript.mjs",
+    "./emotion": "./emotion.mjs",
+    "./shared": "./shared.mjs"
+  },
+  "files": [
+    "index.mjs",
+    "javascript.mjs",
+    "typescript.mjs",
+    "shared.mjs",
+    "emotion.mjs"
+  ],
   "license": "MIT",
   "dependencies": {
     "@emotion/eslint-plugin": "11.11.0",
+    "@eslint/compat": "1.0.3",
+    "@eslint/eslintrc": "3.1.0",
     "@typescript-eslint/eslint-plugin": "7.12.0",
     "@typescript-eslint/parser": "7.12.0",
     "eslint-config-airbnb": "19.0.4",
@@ -31,10 +47,10 @@
     "eslint-plugin-react-hooks": "4.6.2"
   },
   "peerDependencies": {
-    "eslint": ">= 8.5"
+    "eslint": ">= 9.4"
   },
   "devDependencies": {
-    "eslint": "8.57.0",
+    "eslint": "9.4.0",
     "typescript": "5.4.5"
   }
 }

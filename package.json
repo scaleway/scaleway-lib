@@ -1,9 +1,7 @@
 {
   "name": "root",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": ["packages/*"],
   "type": "module",
   "packageManager": "pnpm@9.2.0",
   "engines": {
@@ -17,14 +15,15 @@
     "@babel/preset-env": "7.24.7",
     "@babel/preset-react": "7.24.7",
     "@babel/preset-typescript": "7.24.7",
-    "@biomejs/biome": "1.8.0",
+    "@biomejs/biome": "1.8.1",
     "@changesets/changelog-github": "0.5.0",
     "@changesets/cli": "2.27.5",
     "@commitlint/cli": "19.3.0",
     "@commitlint/config-conventional": "19.2.2",
+    "@eslint/eslintrc": "3.1.0",
     "@scaleway/eslint-config-react": "workspace:*",
     "@scaleway/tsconfig": "workspace:*",
-    "@testing-library/jest-dom": "6.4.5",
+    "@testing-library/jest-dom": "6.4.6",
     "@testing-library/react": "16.0.0",
     "@types/jest": "29.5.12",
     "@types/node": "20.14.2",
@@ -36,7 +35,8 @@
     "builtin-modules": "4.0.0",
     "cross-env": "7.0.3",
     "esbuild-plugin-browserslist": "0.12.1",
-    "eslint": "8.57.0",
+    "eslint": "9.4.0",
+    "globals": "15.4.0",
     "happy-dom": "14.12.0",
     "husky": "9.0.11",
     "lint-staged": "15.2.5",
@@ -51,7 +51,7 @@
     "wait-for-expect": "3.0.2"
   },
   "scripts": {
-    "lint": "eslint --ext js,ts,tsx --cache .",
+    "lint": "eslint --cache .",
     "lint:fix": "pnpm run lint --fix",
     "build": "pnpm recursive run build",
     "commit": "npx git-cz -a",
@@ -72,21 +72,13 @@
     }
   },
   "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
+    "extends": ["@commitlint/config-conventional"]
   },
   "lint-staged": {
-    "*.(j|t)s?(x)": [
-      "biome format --write .",
-      "eslint --fix"
-    ],
-    "*.json": [
-      "biome format --write ."
-    ],
-    "*.mdx": [
-      "biome format --write ."
-    ]
+    "*.(j|t)s?(x)": ["biome format --write .", "eslint --fix"],
+    "*.json": ["biome format --write ."],
+    "*.y(a)ml,": ["pnpm dlx prettier --write '**/*.{yml,yaml}' --single-quote"],
+    "*.mdx": ["biome format --write ."]
   },
   "config": {
     "commitizen": {
@@ -95,21 +87,10 @@
   },
   "jest": {
     "testEnvironment": "jsdom",
-    "setupFiles": [
-      "jest-localstorage-mock"
-    ],
-    "collectCoverageFrom": [
-      "packages/*/src/**/*.{ts,tsx,js,jsx}"
-    ],
-    "modulePathIgnorePatterns": [
-      "locales",
-      "__typetests__",
-      "dist"
-    ],
-    "coverageReporters": [
-      "text",
-      "cobertura"
-    ],
+    "setupFiles": ["jest-localstorage-mock"],
+    "collectCoverageFrom": ["packages/*/src/**/*.{ts,tsx,js,jsx}"],
+    "modulePathIgnorePatterns": ["locales", "__typetests__", "dist"],
+    "coverageReporters": ["text", "cobertura"],
     "transformIgnorePatterns": [
       "node_modules/(?!(.*(query-string|decode-uri-component|split-on-first|filter-obj)))"
     ],
