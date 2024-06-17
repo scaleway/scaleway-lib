@@ -1,5 +1,5 @@
-import emotion from "./emotion.mjs";
-import javascript from "./javascript.mjs";
-import typescript from "./typescript.mjs";
+import emotion from './emotion.mjs'
+import javascript from './javascript.mjs'
+import typescript from './typescript.mjs'
 
-export { emotion, javascript, typescript };
+export { emotion, javascript, typescript }
