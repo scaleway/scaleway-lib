@@ -1,9 +1,7 @@
 {
   "name": "root",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": ["packages/*"],
   "type": "module",
   "packageManager": "pnpm@9.2.0",
   "engines": {
@@ -74,21 +72,13 @@
     }
   },
   "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
+    "extends": ["@commitlint/config-conventional"]
   },
   "lint-staged": {
-    "*.(j|t)s?(x)": [
-      "biome format --write .",
-      "eslint --fix"
-    ],
-    "*.json": [
-      "biome format --write ."
-    ],
-    "*.mdx": [
-      "biome format --write ."
-    ]
+    "*.(j|t)s?(x)": ["biome format --write .", "eslint --fix"],
+    "*.json": ["biome format --write ."],
+    "*.y(a)ml,": ["pnpm dlx prettier --write '**/*.{yml,yaml}' --single-quote"],
+    "*.mdx": ["biome format --write ."]
   },
   "config": {
     "commitizen": {
@@ -97,21 +87,10 @@
   },
   "jest": {
     "testEnvironment": "jsdom",
-    "setupFiles": [
-      "jest-localstorage-mock"
-    ],
-    "collectCoverageFrom": [
-      "packages/*/src/**/*.{ts,tsx,js,jsx}"
-    ],
-    "modulePathIgnorePatterns": [
-      "locales",
-      "__typetests__",
-      "dist"
-    ],
-    "coverageReporters": [
-      "text",
-      "cobertura"
-    ],
+    "setupFiles": ["jest-localstorage-mock"],
+    "collectCoverageFrom": ["packages/*/src/**/*.{ts,tsx,js,jsx}"],
+    "modulePathIgnorePatterns": ["locales", "__typetests__", "dist"],
+    "coverageReporters": ["text", "cobertura"],
     "transformIgnorePatterns": [
       "node_modules/(?!(.*(query-string|decode-uri-component|split-on-first|filter-obj)))"
     ],
