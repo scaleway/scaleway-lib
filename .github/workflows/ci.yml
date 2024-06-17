@@ -1,6 +1,7 @@
 name: CI
 
 on:
+  merge_group:
   push:
     branches:
       - main
@@ -17,7 +18,7 @@ jobs:
         with:
           node-version: 20
           check-latest: true
-          cache: 'pnpm'
+          cache: "pnpm"
       - run: pnpm install
       - run: pnpm run build
       - run: pnpm tsc --noEmit
@@ -31,7 +32,7 @@ jobs:
         with:
           node-version: 20
           check-latest: true
-          cache: 'pnpm'
+          cache: "pnpm"
       - run: pnpm install
       - run: pnpm run build
       - run: pnpm run lint
@@ -39,7 +40,7 @@ jobs:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
-        node: ['20']
+        node: ["20"]
     steps:
       - uses: actions/checkout@v4.1.7
       - uses: pnpm/action-setup@v4.0.0
@@ -48,7 +49,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           check-latest: true
-          cache: 'pnpm'
+          cache: "pnpm"
       - run: pnpm install
       - run: pnpm run build
       - run: pnpm run test:coverage
@@ -62,7 +63,7 @@ jobs:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
-        node: ['20']
+        node: ["20"]
     steps:
       - uses: actions/checkout@v4.1.7
       - uses: pnpm/action-setup@v4.0.0
@@ -71,7 +72,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           check-latest: true
-          cache: 'pnpm'
+          cache: "pnpm"
       - run: pnpm install
       - run: pnpm run build
       - run: pnpm run test:types
