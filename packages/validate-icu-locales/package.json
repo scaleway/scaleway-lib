@@ -43,7 +43,7 @@
   ],
   "dependencies": {
     "@formatjs/icu-messageformat-parser": "2.7.8",
-    "globby": "14.0.1",
+    "globby": "14.0.2",
     "module-from-string": "3.3.0"
   }
 }
