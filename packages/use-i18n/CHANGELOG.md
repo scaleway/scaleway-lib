@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.1.9
+
+### Patch Changes
+
+- [#2079](https://github.com/scaleway/scaleway-lib/pull/2079) [`5705ac5`](https://github.com/scaleway/scaleway-lib/commit/5705ac5ec19c4b76a6fbfb06bf22a91642cd2b1e) Thanks [@philibea](https://github.com/philibea)! - Fix fallback issue on the default local during translation
+
 ## 6.1.8
 
 ### Patch Changes
