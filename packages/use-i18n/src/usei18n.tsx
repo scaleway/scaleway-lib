@@ -293,7 +293,7 @@ const I18nContextProvider = ({
 
       const trad: Record<string, string> = {
         ...result.defaultLocale.default,
-        ...result[currentLocale]?.default,
+        ...result[currentLocale].default,
       }
 
       setTranslations(prevState => ({
