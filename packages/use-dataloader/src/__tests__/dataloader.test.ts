@@ -77,11 +77,13 @@ describe('Dataloader class', () => {
     expect(instance.getData()).toBe(undefined)
     expect(notify).toBeCalledTimes(0)
 
+    // don't await as we will cancel this instance before
     instance.load().catch(() => null)
 
     expect(method).toBeCalledTimes(1)
     instance.cancel()
     expect(notify).toBeCalledTimes(0)
+
     expect(instance.getData()).toBe(undefined)
     instance.clearData()
   })
@@ -153,11 +155,14 @@ describe('Dataloader class', () => {
       notifyChanges,
     })
 
-    instance.load().catch(undefined)
+    expect(notifyChanges).toBeCalledTimes(0)
+
+    await instance.load().catch(undefined)
+    expect(notifyChanges).toBeCalledTimes(1)
 
     instance.cancel()
     await waitForExpect(() => expect(instance.status).toBe(StatusEnum.IDLE))
-    expect(notifyChanges).toBeCalledTimes(1)
+    expect(notifyChanges).toBeCalledTimes(2)
   })
 
   test('should create instance with error and cancel', async () => {
