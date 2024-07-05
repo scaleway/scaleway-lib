@@ -1,5 +1,25 @@
 # Change Log
 
+## 4.0.1
+
+### Patch Changes
+
+- [#2057](https://github.com/scaleway/scaleway-lib/pull/2057) [`3bc6771`](https://github.com/scaleway/scaleway-lib/commit/3bc677185809cd240c72a62696f2a8ef68b814a1) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@typescript-eslint/eslint-plugin` to `7.13.1`.
+  Updated dependency `@typescript-eslint/parser` to `7.13.1`.
+
+- [#2052](https://github.com/scaleway/scaleway-lib/pull/2052) [`0d04d73`](https://github.com/scaleway/scaleway-lib/commit/0d04d7346f7f4eb1df1c5c002f7f4757f7f5904c) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@eslint/compat` to `1.1.0`.
+
+- [#2063](https://github.com/scaleway/scaleway-lib/pull/2063) [`1676ce7`](https://github.com/scaleway/scaleway-lib/commit/1676ce78760b4e696706278e0841b7c3289792a9) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `eslint-plugin-react` to `7.34.3`.
+
+- [#2050](https://github.com/scaleway/scaleway-lib/pull/2050) [`9d5a766`](https://github.com/scaleway/scaleway-lib/commit/9d5a7668ba7124c47531d4530026f7cb77e6e005) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@typescript-eslint/eslint-plugin` to `7.13.0`.
+  Updated dependency `@typescript-eslint/parser` to `7.13.0`.
+
+- [#2071](https://github.com/scaleway/scaleway-lib/pull/2071) [`39266c2`](https://github.com/scaleway/scaleway-lib/commit/39266c2d204a989d9a6fb3071c691c3909a0b879) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `eslint-plugin-jsx-a11y` to `6.9.0`.
+
+- [#2037](https://github.com/scaleway/scaleway-lib/pull/2037) [`50a0ccc`](https://github.com/scaleway/scaleway-lib/commit/50a0ccc43562bf39b27b8a2ff81d5e58f7cc0874) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `eslint-plugin-deprecation` to `3.0.0`.
+
+- [#2062](https://github.com/scaleway/scaleway-lib/pull/2062) [`190030c`](https://github.com/scaleway/scaleway-lib/commit/190030c9138c0d43676b57b63b760fb01e93f9bf) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `eslint` to `9.5.0`.
+
 ## 4.0.0
 
 ### Major Changes
