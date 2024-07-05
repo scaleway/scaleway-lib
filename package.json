@@ -84,25 +84,5 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  },
-  "jest": {
-    "testEnvironment": "jsdom",
-    "setupFiles": ["jest-localstorage-mock"],
-    "collectCoverageFrom": ["packages/*/src/**/*.{ts,tsx,js,jsx}"],
-    "modulePathIgnorePatterns": ["locales", "__typetests__", "dist"],
-    "coverageReporters": ["text", "cobertura"],
-    "transformIgnorePatterns": [
-      "node_modules/(?!(.*(query-string|decode-uri-component|split-on-first|filter-obj)))"
-    ],
-    "reporters": [
-      "default",
-      [
-        "jest-junit",
-        {
-          "outputDirectory": ".reports",
-          "outputName": "tests.xml"
-        }
-      ]
-    ]
   }
 }

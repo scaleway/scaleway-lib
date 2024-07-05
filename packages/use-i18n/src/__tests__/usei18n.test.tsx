@@ -497,6 +497,7 @@ describe('i18n hook', () => {
       error: new Error(
         'The intl string context variable "oldFrenchVariable" was not provided to the string "onTranslateError fonction sera appelé car il manque une variable en français {oldFrenchVariable}"',
       ),
+      defaultLocale: 'en',
       currentLocale: 'fr',
       key: 'translate.error',
       value:

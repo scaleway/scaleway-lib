@@ -188,6 +188,9 @@ type LoadDateLocaleError = (error: Error) => void
 
 const initialDefaultTranslations = {}
 
+// TODO: improve type from Provider based on a Generic to have 'fr' | 'en'
+type Locale = string
+
 const I18nContextProvider = ({
   children,
   defaultLoad,
@@ -207,12 +210,12 @@ const I18nContextProvider = ({
   loadDateLocale?: LoadLocaleFn
   loadDateLocaleAsync: LoadLocaleFnAsync
   onLoadDateLocaleError?: LoadDateLocaleError
-  defaultLocale: string
+  defaultLocale: Locale
   defaultTranslations: TranslationsByLocales
   enableDefaultLocale: boolean
   enableDebugKey: boolean
-  localeItemStorage: string
-  supportedLocales: string[]
+  localeItemStorage: Locale
+  supportedLocales: Locale[]
   onTranslateError?: ({
     error,
     currentLocale,
@@ -220,7 +223,8 @@ const I18nContextProvider = ({
     key,
   }: {
     error: Error
-    currentLocale: string
+    currentLocale: Locale
+    defaultLocale: Locale
     value: string
     key: string
   }) => void
@@ -281,6 +285,7 @@ const I18nContextProvider = ({
           namespace,
         })
       }
+
       result[currentLocale] = await load({
         locale: currentLocale,
         namespace,
@@ -293,6 +298,10 @@ const I18nContextProvider = ({
 
       setTranslations(prevState => ({
         ...prevState,
+        [defaultLocale]: {
+          ...prevState[defaultLocale],
+          ...result.defaultLocale.default,
+        },
         [currentLocale]: {
           ...prevState[currentLocale],
           ...trad,
@@ -394,6 +403,7 @@ const I18nContextProvider = ({
       if (!value) {
         return ''
       }
+
       if (context) {
         try {
           return formatters
@@ -403,6 +413,7 @@ const I18nContextProvider = ({
           onTranslateError?.({
             error: err as Error,
             currentLocale,
+            defaultLocale,
             value,
             key,
           })
