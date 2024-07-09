@@ -84,8 +84,8 @@ importers:
         specifier: 7.0.3
         version: 7.0.3
       esbuild-plugin-browserslist:
-        specifier: 0.13.0
-        version: 0.13.0(browserslist@4.23.1)(esbuild@0.21.5)
+        specifier: 0.14.0
+        version: 0.14.0(browserslist@4.23.1)(esbuild@0.21.5)
       eslint:
         specifier: 9.5.0
         version: 9.5.0
@@ -3161,12 +3161,12 @@ packages:
     cpu: [x64]
     os: [openbsd]
 
-  esbuild-plugin-browserslist@0.13.0:
-    resolution: {integrity: sha512-jjiIiFT1Hrp3CPcKucZcqC8BSkWet/baVLtxN4Vy7yiTXk2PrAiQiVlgMaFc82JCAidOH1FCghvIkL8Z5HWhEQ==}
+  esbuild-plugin-browserslist@0.14.0:
+    resolution: {integrity: sha512-z/3nq4yIgeRiABXj1pdCz3NvYyAgny070hYjJsML7ag0VogZeE6M0TXg66EloNpzg9rBXOkKQgwHBQ7qz2ZC4g==}
     engines: {node: '>=18'}
     peerDependencies:
       browserslist: ^4.21.8
-      esbuild: ~0.22.0
+      esbuild: ~0.23.0
 
   esbuild-sunos-64@0.15.18:
     resolution: {integrity: sha512-On22LLFlBeLNj/YF3FT+cXcyKPEI263nflYlAhz5crxtp3yRG1Ugfr7ITyxmCmjm4vbN/dGrb/B7w7U8yJR9yw==}
@@ -8847,7 +8847,7 @@ snapshots:
   esbuild-openbsd-64@0.15.18:
     optional: true
 
-  esbuild-plugin-browserslist@0.13.0(browserslist@4.23.1)(esbuild@0.21.5):
+  esbuild-plugin-browserslist@0.14.0(browserslist@4.23.1)(esbuild@0.21.5):
     dependencies:
       browserslist: 4.23.1
       debug: 4.3.5
