@@ -34,7 +34,7 @@
     "browserslist": "4.23.1",
     "builtin-modules": "4.0.0",
     "cross-env": "7.0.3",
-    "esbuild-plugin-browserslist": "0.12.1",
+    "esbuild-plugin-browserslist": "0.13.0",
     "eslint": "9.5.0",
     "globals": "15.8.0",
     "happy-dom": "14.12.3",
