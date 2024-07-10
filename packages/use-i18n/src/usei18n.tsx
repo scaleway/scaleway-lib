@@ -53,7 +53,9 @@ const getCurrentLocale = ({
 }): string => {
   if (typeof window !== 'undefined') {
     const { languages } = navigator
-    const browserLocales = [...new Set(languages.map(getLocaleFallback))]
+    const browserLocales = [
+      ...new Set([...languages.map(getLocaleFallback), ...languages]),
+    ]
     const currentLocalFromlocalStorage = localStorage.getItem(localeItemStorage)
 
     if (
