@@ -1,5 +1,13 @@
 # Change Log
 
+## 6.1.10
+
+### Patch Changes
+
+- [#2096](https://github.com/scaleway/scaleway-lib/pull/2096) [`a86bb14`](https://github.com/scaleway/scaleway-lib/commit/a86bb14fdb21ed7a90aca21d27a0e5d074611e6e) Thanks [@alexandre-combemorel](https://github.com/alexandre-combemorel)! - fix default locales browser list
+
+- [#2097](https://github.com/scaleway/scaleway-lib/pull/2097) [`4d578fe`](https://github.com/scaleway/scaleway-lib/commit/4d578fe2a39018271e4616ec17ac250e2550adac) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `filesize` to `10.1.4`.
+
 ## 6.1.9
 
 ### Patch Changes
