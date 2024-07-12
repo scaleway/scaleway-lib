@@ -41,7 +41,7 @@
     "feature flags"
   ],
   "dependencies": {
-    "@growthbook/growthbook-react": "1.0.1"
+    "@growthbook/growthbook-react": "1.1.0"
   },
   "devDependencies": {
     "react": "18.3.1"
