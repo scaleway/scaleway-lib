@@ -9,10 +9,10 @@
     "pnpm": ">=9.x"
   },
   "dependencies": {
-    "@babel/core": "7.24.7",
-    "@babel/eslint-parser": "7.24.7",
+    "@babel/core": "7.24.9",
+    "@babel/eslint-parser": "7.25.0",
     "@babel/plugin-transform-runtime": "7.24.7",
-    "@babel/preset-env": "7.24.7",
+    "@babel/preset-env": "7.25.0",
     "@babel/preset-react": "7.24.7",
     "@babel/preset-typescript": "7.24.7",
     "@biomejs/biome": "1.8.3",
@@ -43,7 +43,7 @@
     "mockdate": "3.0.5",
     "read-pkg": "9.0.1",
     "shx": "0.3.4",
-    "tstyche": "2.0.0",
+    "tstyche": "2.1.1",
     "typescript": "5.5.3",
     "vite": "5.3.3",
     "vitest": "1.6.0",
