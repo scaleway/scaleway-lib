@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.4
+
+### Patch Changes
+
+- [#2124](https://github.com/scaleway/scaleway-lib/pull/2124) [`c28b50b`](https://github.com/scaleway/scaleway-lib/commit/c28b50be15ffb8b493cb3fac2b1fb809045fe7fe) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `query-string` to `9.1.0`.
+
 ## 5.0.3
 
 ### Patch Changes
