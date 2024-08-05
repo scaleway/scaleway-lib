@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.3
+
+### Patch Changes
+
+- [#2117](https://github.com/scaleway/scaleway-lib/pull/2117) [`6cc5a2e`](https://github.com/scaleway/scaleway-lib/commit/6cc5a2ed7bc631d5621524d60865336dfdc21dfe) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `module-from-string` to `3.3.1`.
+
 ## 3.1.2
 
 ### Patch Changes
