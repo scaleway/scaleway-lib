@@ -36,7 +36,7 @@
     "cross-env": "7.0.3",
     "esbuild-plugin-browserslist": "0.14.0",
     "eslint": "9.8.0",
-    "globals": "15.8.0",
+    "globals": "15.9.0",
     "happy-dom": "14.12.3",
     "husky": "9.1.4",
     "lint-staged": "15.2.8",
