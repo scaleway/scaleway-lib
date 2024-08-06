@@ -27,6 +27,7 @@ import {
   cron,
   dashedIpv4,
   digits,
+  elevenDigitsCode,
   email,
   fourDigitsCode,
   hexadecimal,
@@ -37,6 +38,7 @@ import {
   ipv6,
   ipv6Cidr,
   macAddress,
+  nineDigitsCode,
   pathSegment,
   phone,
   reverseDNS,
@@ -64,6 +66,7 @@ const uppercaseDomain = 'SUB.another-example.com'
 const longTldDomain = 'sub.another-example.verylongtld'
 const cronTest = '0 0 0 * * 0 1-4'
 const digitsTest = '0123456789'
+const elevenDigitsCodeTest = '01234567890'
 const emailTest = 'test@scaleway.com'
 const fourDigitsTest = '2345'
 const hexdigits = '0123456789abcdefABCDEF'
@@ -85,6 +88,7 @@ const urls = [
 ]
 const whitespace = ' \t\n\r\x0b\x0c'
 const macAddress1 = '1F:B5:FA:47:CD:C4'
+const nineDigitsCodeTest = '012345678'
 const linuxPaths = {
   BAD: [
     '/var/test@',
@@ -640,6 +644,26 @@ describe('@regex', () => {
     })
   })
 
+  describe('elevenDigitsCode', () => {
+    test.each([
+      [asciiLetters, false],
+      [asciiLowercase, false],
+      [asciiUppercase, false],
+      [digitsTest, false],
+      [emailTest, false],
+      [octdigits, false],
+      [elevenDigitsCodeTest, true],
+      [hexdigits, false],
+      [printable, false],
+      [punctuation, false],
+      [whitespace, false],
+      [cronTest, false],
+      [macAddress1, false],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(elevenDigitsCode.test(string)).toBe(expected)
+    })
+  })
+
   describe('email', () => {
     test.each([
       [asciiLetters, false],
@@ -676,6 +700,26 @@ describe('@regex', () => {
       [macAddress1, false],
     ])('should match regex %s to be %s', (string, expected) => {
       expect(fourDigitsCode.test(string)).toBe(expected)
+    })
+  })
+
+  describe('nineDigitsCode', () => {
+    test.each([
+      [asciiLetters, false],
+      [asciiLowercase, false],
+      [asciiUppercase, false],
+      [digitsTest, false],
+      [emailTest, false],
+      [octdigits, false],
+      [nineDigitsCodeTest, true],
+      [hexdigits, false],
+      [printable, false],
+      [punctuation, false],
+      [whitespace, false],
+      [cronTest, false],
+      [macAddress1, false],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(nineDigitsCode.test(string)).toBe(expected)
     })
   })
 
