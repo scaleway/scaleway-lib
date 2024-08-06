@@ -1,5 +1,12 @@
 # Change Log
 
+## 4.0.4
+
+### Patch Changes
+
+- [#2128](https://github.com/scaleway/scaleway-lib/pull/2128) [`fe4c24b`](https://github.com/scaleway/scaleway-lib/commit/fe4c24bafa16d46bc511de1ba198e126f344ecc6) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@typescript-eslint/eslint-plugin` to `7.18.0`.
+  Updated dependency `@typescript-eslint/parser` to `7.18.0`.
+
 ## 4.0.3
 
 ### Patch Changes
