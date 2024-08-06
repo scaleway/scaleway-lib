@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.2.0
+
+### Minor Changes
+
+- [#2132](https://github.com/scaleway/scaleway-lib/pull/2132) [`fbe702b`](https://github.com/scaleway/scaleway-lib/commit/fbe702b32aa734e46836d267c23ddcc960b2d550) Thanks [@JulienSaguez](https://github.com/JulienSaguez)! - Add `elevenDigitsCode` and `nineDigitsCode` regex
+
 ## 5.1.0
 
 ### Minor Changes
