@@ -22,4 +22,10 @@ To skip committing the changeset.
 SKIP_COMMIT=TRUE changesets-renovate
 ```
 
+To skip checking the branch name starts `renovate/`
+
+```bash
+SKIP_BRANCH_CHECK=TRUE changesets-renovate
+```
+
 It's inspired by this GitHub Action from Backstage: https://github.com/backstage/backstage/blob/master/.github/workflows/sync_renovate-changesets.yml

@@ -45,3 +45,49 @@ Updated dependency \`package2\` to \`version2\`.
   ],
 }
 `;
+
+exports[`generate changeset file > should not skip if not in renovate branch, when branch check skip is true 1`] = `
+[MockFunction spy] {
+  "calls": [
+    [
+      ".changeset/renovate-test.md",
+      "---
+'packageName': patch
+---
+
+Updated dependency \`package\` to \`version\`.
+Updated dependency \`package2\` to \`version2\`.
+",
+    ],
+  ],
+  "results": [
+    {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`generate changeset file > should skip if not in renovate branch 1`] = `
+[MockFunction spy] {
+  "calls": [
+    [
+      ".changeset/renovate-test.md",
+      "---
+'packageName': patch
+---
+
+Updated dependency \`package\` to \`version\`.
+Updated dependency \`package2\` to \`version2\`.
+",
+    ],
+  ],
+  "results": [
+    {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;

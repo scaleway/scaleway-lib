@@ -97,7 +97,10 @@ export async function run() {
 
   console.log('Detected branch:', branch)
 
-  if (!branch.current.startsWith('renovate/')) {
+  if (
+    !branch.current.startsWith('renovate/') &&
+    !process.env['SKIP_BRANCH_CHECK']
+  ) {
     console.log('Not a renovate branch, skipping')
 
     return
