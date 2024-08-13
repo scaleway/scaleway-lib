@@ -46,7 +46,7 @@ Updated dependency \`package2\` to \`version2\`.
 }
 `;
 
-exports[`generate changeset file > should not skip if not in renovate branch, when branch check skip is true 1`] = `
+exports[`generate changeset file > should not skip if branch starts with custom branch prefix 1`] = `
 [MockFunction spy] {
   "calls": [
     [
@@ -69,7 +69,7 @@ Updated dependency \`package2\` to \`version2\`.
 }
 `;
 
-exports[`generate changeset file > should skip if not in renovate branch 1`] = `
+exports[`generate changeset file > should not skip if not in renovate branch, when branch check skip is true 1`] = `
 [MockFunction spy] {
   "calls": [
     [

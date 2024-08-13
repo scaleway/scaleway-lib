@@ -94,11 +94,12 @@ async function getBumps(files: string[]): Promise<Map<string, string>> {
 
 export async function run() {
   const branch = await simpleGit().branch()
+  const branchPrefix = process.env['BRANCH_PREFIX'] ?? 'renovate/'
 
   console.log('Detected branch:', branch)
 
   if (
-    !branch.current.startsWith('renovate/') &&
+    !branch.current.startsWith(branchPrefix) &&
     !process.env['SKIP_BRANCH_CHECK']
   ) {
     console.log('Not a renovate branch, skipping')
