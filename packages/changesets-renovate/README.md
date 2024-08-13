@@ -22,6 +22,12 @@ To skip committing the changeset.
 SKIP_COMMIT=TRUE changesets-renovate
 ```
 
+To have a custom prefix for renovate branch name instead of `renovate/`
+
+```bash
+BRANCH_PREFIX=dep-upgrade changesets-renovate
+```
+
 To skip checking the branch name starts `renovate/`
 
 ```bash
