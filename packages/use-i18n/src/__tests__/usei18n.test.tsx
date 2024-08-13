@@ -22,7 +22,7 @@ type NamespaceLocale = {
 
 type OnTranslateError = ComponentProps<typeof I18n>['onTranslateError']
 
-const isLocaleSupportedDefault = (locale: string): locale is Locales =>
+const isDefaultLocalesSupported = (locale: string): locale is Locales =>
   ListLocales.includes(locale as Locales)
 
 const defaultOnTranslateError: OnTranslateError = () => {}
@@ -60,7 +60,7 @@ const wrapper =
     enableDebugKey = false,
     enableDefaultLocale = false,
     localeItemStorage = LOCALE_ITEM_STORAGE,
-    isLocaleSupported = isLocaleSupportedDefault,
+    isLocaleSupported = isDefaultLocalesSupported,
     onTranslateError = defaultOnTranslateError,
   } = {}) =>
   ({ children }: { children: ReactNode }) => (
@@ -159,7 +159,7 @@ describe('i18n hook', () => {
       {
         wrapper: wrapper({
           defaultLocale: 'en',
-          isLocaleSupported: isLocaleSupportedDefault,
+          isLocaleSupported: isDefaultLocalesSupported,
         }),
       },
     )
@@ -216,7 +216,7 @@ describe('i18n hook', () => {
         wrapper: wrapper({
           defaultLocale: 'fr',
           enableDefaultLocale: true,
-          isLocaleSupported: isLocaleSupportedDefault,
+          isLocaleSupported: isDefaultLocalesSupported,
         }),
       },
     )
@@ -250,7 +250,7 @@ describe('i18n hook', () => {
     const { result } = renderHook(() => useI18n(), {
       wrapper: wrapper({
         defaultLocale: 'fr',
-        isLocaleSupported: isLocaleSupportedDefault,
+        isLocaleSupported: isDefaultLocalesSupported,
       }),
     })
 
@@ -306,7 +306,7 @@ describe('i18n hook', () => {
       const { result } = renderHook(() => useI18n(), {
         wrapper: wrapper({
           defaultLocale: 'es',
-          isLocaleSupported: isLocaleSupportedDefault,
+          isLocaleSupported: isDefaultLocalesSupported,
         }),
       })
 
@@ -337,7 +337,7 @@ describe('i18n hook', () => {
       const { result } = renderHook(() => useI18n(), {
         wrapper: wrapper({
           defaultLocale: 'en',
-          isLocaleSupported: isLocaleSupportedDefault,
+          isLocaleSupported: isDefaultLocalesSupported,
         }),
       })
 
@@ -368,7 +368,7 @@ describe('i18n hook', () => {
       const { result } = renderHook(() => useI18n(), {
         wrapper: wrapper({
           defaultLocale: 'es',
-          isLocaleSupported: isLocaleSupportedDefault,
+          isLocaleSupported: isDefaultLocalesSupported,
         }),
       })
 
@@ -397,7 +397,7 @@ describe('i18n hook', () => {
       const { result } = renderHook(() => useI18n(), {
         wrapper: wrapper({
           defaultLocale: 'es',
-          isLocaleSupported: isLocaleSupportedDefault,
+          isLocaleSupported: isDefaultLocalesSupported,
         }),
       })
 
@@ -412,7 +412,7 @@ describe('i18n hook', () => {
     const { result } = renderHook(() => useI18n<Locale, Locales>(), {
       wrapper: wrapper({
         defaultLocale: 'en',
-        isLocaleSupported: isLocaleSupportedDefault,
+        isLocaleSupported: isDefaultLocalesSupported,
       }),
     })
     expect(result.current.currentLocale).toEqual('en')
@@ -455,7 +455,7 @@ describe('i18n hook', () => {
         defaultLocale: 'en',
         defaultTranslations: { en },
         enableDebugKey: true,
-        isLocaleSupported: isLocaleSupportedDefault,
+        isLocaleSupported: isDefaultLocalesSupported,
       }),
     })
 
@@ -478,7 +478,7 @@ describe('i18n hook', () => {
       wrapper: wrapper({
         defaultLocale: 'en',
         defaultTranslations: { en, fr },
-        isLocaleSupported: isLocaleSupportedDefault,
+        isLocaleSupported: isDefaultLocalesSupported,
         onTranslateError: mockOnTranslateError,
       }),
     })
@@ -801,7 +801,7 @@ describe('i18n hook', () => {
       const { result } = renderHook(() => useI18n(), {
         wrapper: wrapper({
           defaultLocale: 'test',
-          isLocaleSupported: isLocaleSupportedDefault,
+          isLocaleSupported: isDefaultLocalesSupported,
         }),
       })
 
@@ -829,7 +829,7 @@ describe('i18n hook', () => {
       const { result } = renderHook(() => useI18n(), {
         wrapper: wrapper({
           defaultLocale: 'es',
-          isLocaleSupported: isLocaleSupportedDefault,
+          isLocaleSupported: isDefaultLocalesSupported,
         }),
       })
 
