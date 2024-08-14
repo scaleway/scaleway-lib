@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.0
+
+### Major Changes
+
+- [#2112](https://github.com/scaleway/scaleway-lib/pull/2112) [`89f222a`](https://github.com/scaleway/scaleway-lib/commit/89f222a7125b7b9e0ce6fd76931fadf47ca22b2a) Thanks [@alexandre-combemorel](https://github.com/alexandre-combemorel)! - Add typing on locales and remove auto mapping from browser locale to simple locale
+
 ## 6.1.10
 
 ### Patch Changes

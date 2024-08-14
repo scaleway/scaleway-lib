@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.1.0
+
+### Minor Changes
+
+- [#2133](https://github.com/scaleway/scaleway-lib/pull/2133) [`2597f61`](https://github.com/scaleway/scaleway-lib/commit/2597f6151c67aa1cc7bab17e1d09b0505a687991) Thanks [@ImOverlord](https://github.com/ImOverlord)! - Add `SKIP_BRANCH_CHECK` as an option to not check branch name
+
 ## 2.0.5
 
 ### Patch Changes
