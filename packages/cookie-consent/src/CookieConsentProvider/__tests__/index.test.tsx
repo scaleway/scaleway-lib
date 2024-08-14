@@ -45,8 +45,7 @@ const integrations: Integrations = [
 ]
 
 const mockUseSegmentIntegrations = vi.fn<
-  [],
-  ReturnType<typeof useSegmentIntegrations>
+  () => ReturnType<typeof useSegmentIntegrations>
 >(() => ({
   integrations,
   isLoaded: true,
