@@ -25,6 +25,106 @@ describe('generate changeset file', () => {
     expect(console.log).toHaveBeenCalledWith('Not a renovate branch, skipping')
   })
 
+  it('should not skip if branch starts with custom branch prefix', async () => {
+    const rev = 'test'
+    const fileName = `.changeset/renovate-${rev}.md`
+    const file = 'test/package.json'
+    const revparse = vi.fn().mockReturnValue(rev)
+    const add = vi.fn()
+    const commit = vi.fn()
+    const push = vi.fn()
+
+    mockSimpleGit.mockReturnValue({
+      branch: () => ({
+        current: 'dep-upgrade/test',
+      }),
+      diffSummary: () => ({
+        files: [
+          {
+            file,
+          },
+        ],
+      }),
+      show: () => `
++ "package": "version"
++ "package2": "version2"
+`,
+      revparse,
+      add,
+      commit,
+      push,
+    })
+
+    fs.readFile = vi
+      .fn()
+      .mockResolvedValueOnce(`{}`)
+      .mockResolvedValueOnce(`{"name":"packageName","version":"1.0.0"}`)
+    fs.writeFile = vi.fn()
+
+    process.env['BRANCH_PREFIX'] = 'dep-upgrade/'
+    await run()
+    process.env['BRANCH_PREFIX'] = undefined
+
+    expect(console.log).not.toHaveBeenCalledWith(
+      'Not a renovate branch, skipping',
+    )
+    expect(fs.readFile).toHaveBeenCalledWith(file, 'utf8')
+    expect(fs.writeFile).toMatchSnapshot()
+    expect(add).toHaveBeenCalledWith(fileName)
+    expect(commit).toHaveBeenCalledWith(`chore: add changeset renovate-${rev}`)
+    expect(push).toHaveBeenCalledTimes(1)
+  })
+
+  it('should not skip if not in renovate branch, when branch check skip is true', async () => {
+    const rev = 'test'
+    const fileName = `.changeset/renovate-${rev}.md`
+    const file = 'test/package.json'
+    const revparse = vi.fn().mockReturnValue(rev)
+    const add = vi.fn()
+    const commit = vi.fn()
+    const push = vi.fn()
+
+    mockSimpleGit.mockReturnValue({
+      branch: () => ({
+        current: 'main',
+      }),
+      diffSummary: () => ({
+        files: [
+          {
+            file,
+          },
+        ],
+      }),
+      show: () => `
++ "package": "version"
++ "package2": "version2"
+`,
+      revparse,
+      add,
+      commit,
+      push,
+    })
+
+    fs.readFile = vi
+      .fn()
+      .mockResolvedValueOnce(`{}`)
+      .mockResolvedValueOnce(`{"name":"packageName","version":"1.0.0"}`)
+    fs.writeFile = vi.fn()
+
+    process.env['SKIP_BRANCH_CHECK'] = 'TRUE'
+    await run()
+    process.env['SKIP_BRANCH_CHECK'] = undefined
+
+    expect(console.log).not.toHaveBeenCalledWith(
+      'Not a renovate branch, skipping',
+    )
+    expect(fs.readFile).toHaveBeenCalledWith(file, 'utf8')
+    expect(fs.writeFile).toMatchSnapshot()
+    expect(add).toHaveBeenCalledWith(fileName)
+    expect(commit).toHaveBeenCalledWith(`chore: add changeset renovate-${rev}`)
+    expect(push).toHaveBeenCalledTimes(1)
+  })
+
   it('should skip if .changeset is already modified', async () => {
     mockSimpleGit.mockReturnValue({
       ...defaultGitValues,
