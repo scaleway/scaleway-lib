@@ -2,14 +2,18 @@
 import { expect, test } from 'tstyche'
 import { useI18n } from '../usei18n'
 
+const ListLocales = ['es', 'en', 'fr', 'fr-FR', 'en-GB'] as const
+type Locales = (typeof ListLocales)[number]
+type Locale = {
+  hello: 'world'
+  'doe.john': 'John Doe'
+  'doe.jane': 'Jane Doe'
+  'doe.child': 'Child is {name}'
+  'describe.john': '{name} is {age} years old'
+}
+
 test('i18n - namespaceTranslation', () => {
-  const { namespaceTranslation } = useI18n<{
-    hello: 'world'
-    'doe.john': 'John Doe'
-    'doe.jane': 'Jane Doe'
-    'doe.child': 'Child is {name}'
-    'describe.john': '{name} is {age} years old'
-  }>()
+  const { namespaceTranslation } = useI18n<Locale, Locales>()
 
   // Single key
   expect(namespaceTranslation('hello')).type.toRaiseError(
@@ -62,7 +66,7 @@ test('i18n - namespaceTranslation', () => {
   expect(namespaceTranslation('describe')('john')).type.toRaiseError()
 
   // Required generic
-  const { namespaceTranslation: namespaceTranslation2 } = useI18n()
+  const { namespaceTranslation: namespaceTranslation2 } = useI18n<Locale>()
   expect(namespaceTranslation2('test')).type.toRaiseError(
     `Argument of type '"test"' is not assignable to parameter of type`,
   )
