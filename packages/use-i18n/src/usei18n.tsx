@@ -31,7 +31,7 @@ type TranslationsByLocales = Record<string, BaseLocale>
 type RequiredGenericContext<
   LocaleParam extends BaseLocale,
   LocalSupportedType extends string,
-> = keyof string extends never
+> = keyof LocaleParam extends never
   ? Omit<
       Context<LocaleParam, LocalSupportedType>,
       't' | 'namespaceTranslation'
