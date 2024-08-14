@@ -23,53 +23,54 @@ import type { ReactParamsObject, ScopedTranslateFn, TranslateFn } from './types'
 
 const LOCALE_ITEM_STORAGE = 'locale'
 
+type SupportedLocalesType<LocalSupportedType extends string> = (
+  locale: string,
+) => locale is LocalSupportedType
+
 type TranslationsByLocales = Record<string, BaseLocale>
-type RequiredGenericContext<Locale extends BaseLocale> =
-  keyof Locale extends never
-    ? Omit<Context<Locale>, 't' | 'namespaceTranslation'> & {
-        t: (str: 'You must pass a generic argument to useI18n()') => void
-        namespaceTranslation: (
-          str: 'You must pass a generic argument to useI18n()',
-        ) => void
-      }
-    : Context<Locale>
+type RequiredGenericContext<
+  LocaleParam extends BaseLocale,
+  LocalSupportedType extends string,
+> = keyof LocaleParam extends never
+  ? Omit<
+      Context<LocaleParam, LocalSupportedType>,
+      't' | 'namespaceTranslation'
+    > & {
+      t: (str: 'You must pass a generic argument to useI18n()') => void
+      namespaceTranslation: (
+        str: 'You must pass a generic argument to useI18n()',
+      ) => void
+    }
+  : Context<LocaleParam, LocalSupportedType>
 
 const areNamespacesLoaded = (
   namespaces: string[],
   loadedNamespaces: string[] = [],
 ) => namespaces.every(n => loadedNamespaces.includes(n))
 
-const getLocaleFallback = (locale: string) =>
-  locale.split('-')[0]?.split('_')[0]
-
-const getCurrentLocale = ({
+const getCurrentLocale = <LocalSupportedType extends string>({
   defaultLocale,
-  supportedLocales,
+  isLocaleSupported,
   localeItemStorage,
 }: {
-  defaultLocale: string
-  supportedLocales: string[]
+  defaultLocale: LocalSupportedType
+  isLocaleSupported: SupportedLocalesType<LocalSupportedType>
   localeItemStorage: string
-}): string => {
+}): LocalSupportedType => {
   if (typeof window !== 'undefined') {
-    const { languages } = navigator
-    const browserLocales = [
-      ...new Set([...languages.map(getLocaleFallback), ...languages]),
-    ]
+    const { languages: browserLocales } = navigator
     const currentLocalFromlocalStorage = localStorage.getItem(localeItemStorage)
 
     if (
       currentLocalFromlocalStorage &&
-      supportedLocales.find(
-        supportedLocale => supportedLocale === currentLocalFromlocalStorage,
-      )
+      isLocaleSupported(currentLocalFromlocalStorage)
     ) {
       return currentLocalFromlocalStorage
     }
     localStorage.removeItem(localeItemStorage)
 
-    const findedBrowserLocal = browserLocales.find(
-      locale => locale && supportedLocales.includes(locale),
+    const findedBrowserLocal = browserLocales.find(locale =>
+      isLocaleSupported(locale),
     )
 
     if (findedBrowserLocal) {
@@ -78,12 +79,7 @@ const getCurrentLocale = ({
       return findedBrowserLocal
     }
 
-    if (
-      defaultLocale &&
-      supportedLocales.find(
-        supportedLocale => supportedLocale === defaultLocale,
-      )
-    ) {
+    if (defaultLocale && isLocaleSupported(defaultLocale)) {
       localStorage.setItem(localeItemStorage, defaultLocale)
 
       return defaultLocale
@@ -93,8 +89,11 @@ const getCurrentLocale = ({
   return defaultLocale
 }
 
-type Context<Locale extends BaseLocale> = {
-  currentLocale: string
+type Context<
+  LocaleParam extends BaseLocale,
+  LocalSupportedType extends string,
+> = {
+  currentLocale: LocalSupportedType
   dateFnsLocale?: DateFnsLocale
   datetime: (
     date: Date | number,
@@ -109,11 +108,10 @@ type Context<Locale extends BaseLocale> = {
   formatUnit: (value: number, options: FormatUnitOptions) => string
   loadTranslations: (
     namespace: string,
-    load?: LoadTranslationsFn,
+    load?: LoadTranslationsFn<LocalSupportedType>,
   ) => Promise<string>
-  locales: string[]
   namespaces: string[]
-  namespaceTranslation: ScopedTranslateFn<Locale>
+  namespaceTranslation: ScopedTranslateFn<LocaleParam>
   relativeTime: (
     date: Date | number,
     options?: FormatDistanceToNowOptions,
@@ -123,32 +121,41 @@ type Context<Locale extends BaseLocale> = {
     options?: FormatDistanceToNowStrictOptions,
   ) => string
   setTranslations: React.Dispatch<React.SetStateAction<TranslationsByLocales>>
-  switchLocale: (locale: string) => Promise<void>
-  t: TranslateFn<Locale>
+  switchLocale: (locale: LocalSupportedType) => Promise<void>
+  t: TranslateFn<LocaleParam>
   translations: TranslationsByLocales
 }
 
 // It's safe to use any here because the Locale can be anything at this point:
 // useI18n / useTranslation requires to explicitely give a Locale to use.
-const I18nContext = createContext<Context<any> | undefined>(undefined)
+const I18nContext = createContext<Context<any, any> | undefined>(undefined)
 
 export function useI18n<
   // eslint-disable-next-line @typescript-eslint/ban-types
-  Locale extends BaseLocale = {},
->(): RequiredGenericContext<Locale> {
+  LocaleParam extends BaseLocale = {},
+  LocalSupportedType extends string = '',
+>(): RequiredGenericContext<LocaleParam, LocalSupportedType> {
   const context = useContext(I18nContext)
   if (context === undefined) {
     throw new Error('useI18n must be used within a I18nProvider')
   }
 
-  return context as unknown as RequiredGenericContext<Locale>
+  return context as unknown as RequiredGenericContext<
+    LocaleParam,
+    LocalSupportedType
+  >
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-export function useTranslation<Locale extends BaseLocale = {}>(
+export function useTranslation<
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  LocaleParam extends BaseLocale = {},
+  LocalSupportedType extends string = '',
+>(
   namespaces: string[] = [],
-  load: LoadTranslationsFn | undefined = undefined,
-): RequiredGenericContext<Locale> & { isLoaded: boolean } {
+  load: LoadTranslationsFn<LocalSupportedType> | undefined = undefined,
+): RequiredGenericContext<LocaleParam, LocalSupportedType> & {
+  isLoaded: boolean
+} {
   const context = useContext(I18nContext)
   if (context === undefined) {
     throw new Error('useTranslation must be used within a I18nProvider')
@@ -171,29 +178,30 @@ export function useTranslation<Locale extends BaseLocale = {}>(
   return {
     ...context,
     isLoaded,
-  } as unknown as RequiredGenericContext<Locale> & {
+  } as unknown as RequiredGenericContext<LocaleParam, LocalSupportedType> & {
     isLoaded: boolean
   }
 }
 
-type LoadTranslationsFn = ({
+type LoadTranslationsFn<LocalSupportedType extends string> = ({
   namespace,
   locale,
 }: {
   namespace: string
-  locale: string
+  locale: LocalSupportedType
 }) => Promise<{ default: BaseLocale }>
 
-type LoadLocaleFn = (locale: string) => DateFnsLocale
-type LoadLocaleFnAsync = (locale: string) => Promise<DateFnsLocale>
+type LoadLocaleFn<LocalSupportedType extends string> = (
+  locale: LocalSupportedType,
+) => DateFnsLocale
+type LoadLocaleFnAsync<LocalSupportedType extends string> = (
+  locale: LocalSupportedType,
+) => Promise<DateFnsLocale>
 type LoadDateLocaleError = (error: Error) => void
 
 const initialDefaultTranslations = {}
 
-// TODO: improve type from Provider based on a Generic to have 'fr' | 'en'
-type Locale = string
-
-const I18nContextProvider = ({
+const I18nContextProvider = <LocalSupportedType extends string>({
   children,
   defaultLoad,
   defaultLocale,
@@ -205,19 +213,19 @@ const I18nContextProvider = ({
   localeItemStorage = LOCALE_ITEM_STORAGE,
   onLoadDateLocaleError,
   onTranslateError,
-  supportedLocales,
+  isLocaleSupported,
 }: {
   children: ReactNode
-  defaultLoad: LoadTranslationsFn
-  loadDateLocale?: LoadLocaleFn
-  loadDateLocaleAsync: LoadLocaleFnAsync
+  defaultLoad: LoadTranslationsFn<LocalSupportedType>
+  loadDateLocale?: LoadLocaleFn<LocalSupportedType>
+  loadDateLocaleAsync: LoadLocaleFnAsync<LocalSupportedType>
   onLoadDateLocaleError?: LoadDateLocaleError
-  defaultLocale: Locale
+  defaultLocale: LocalSupportedType
   defaultTranslations: TranslationsByLocales
   enableDefaultLocale: boolean
   enableDebugKey: boolean
-  localeItemStorage: Locale
-  supportedLocales: Locale[]
+  localeItemStorage: string
+  isLocaleSupported: SupportedLocalesType<LocalSupportedType>
   onTranslateError?: ({
     error,
     currentLocale,
@@ -225,14 +233,18 @@ const I18nContextProvider = ({
     key,
   }: {
     error: Error
-    currentLocale: Locale
-    defaultLocale: Locale
+    currentLocale: LocalSupportedType
+    defaultLocale: LocalSupportedType
     value: string
     key: string
   }) => void
 }): ReactElement => {
-  const [currentLocale, setCurrentLocale] = useState<string>(
-    getCurrentLocale({ defaultLocale, localeItemStorage, supportedLocales }),
+  const [currentLocale, setCurrentLocale] = useState<LocalSupportedType>(
+    getCurrentLocale({
+      defaultLocale,
+      localeItemStorage,
+      isLocaleSupported,
+    }),
   )
   const [translations, setTranslations] =
     useState<TranslationsByLocales>(defaultTranslations)
@@ -245,7 +257,7 @@ const I18nContextProvider = ({
   const loadDateFNS = loadDateLocale ?? loadDateLocaleAsync
 
   const setDateFns = useCallback(
-    async (locale: string) => {
+    async (locale: LocalSupportedType) => {
       try {
         const dateFns = await loadDateFNS(locale)
         setDateFnsLocale(dateFns)
@@ -275,7 +287,10 @@ const I18nContextProvider = ({
   }, [currentLocale, dateFnsLocale, setDateFns, setDateFnsLocale])
 
   const loadTranslations = useCallback(
-    async (namespace: string, load: LoadTranslationsFn = defaultLoad) => {
+    async (
+      namespace: string,
+      load: LoadTranslationsFn<LocalSupportedType> = defaultLoad,
+    ) => {
       const result = {
         [currentLocale]: { default: {} },
         defaultLocale: { default: {} },
@@ -318,14 +333,14 @@ const I18nContextProvider = ({
   )
 
   const switchLocale = useCallback(
-    async (locale: string) => {
-      if (supportedLocales.includes(locale)) {
+    async (locale: LocalSupportedType) => {
+      if (isLocaleSupported(locale)) {
         localStorage.setItem(localeItemStorage, locale)
         setCurrentLocale(locale)
         await setDateFns(locale)
       }
     },
-    [setDateFns, localeItemStorage, setCurrentLocale, supportedLocales],
+    [setDateFns, localeItemStorage, setCurrentLocale, isLocaleSupported],
   )
 
   const formatNumber = useCallback(
@@ -457,7 +472,6 @@ const I18nContextProvider = ({
       formatNumber,
       formatUnit,
       loadTranslations,
-      locales: supportedLocales,
       namespaces,
       namespaceTranslation,
       relativeTime,
@@ -481,7 +495,6 @@ const I18nContextProvider = ({
       relativeTime,
       relativeTimeStrict,
       setTranslations,
-      supportedLocales,
       switchLocale,
       translate,
       translations,
