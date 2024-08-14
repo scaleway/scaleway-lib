@@ -2,13 +2,13 @@ import type { GrowthBook as GBType } from '@growthbook/growthbook-react'
 import type { ReactNode } from 'react'
 import { vi } from 'vitest'
 
-export const getAttributes = vi.fn<[], ReturnType<GBType['getAttributes']>>()
-export const setAttributes = vi.fn<[], ReturnType<GBType['setAttributes']>>(
+export const getAttributes = vi.fn<() => ReturnType<GBType['getAttributes']>>()
+export const setAttributes = vi.fn<() => ReturnType<GBType['setAttributes']>>(
   () => Promise.resolve(),
 )
 
 export const GrowthBook = vi.fn(() => ({
-  loadFeatures: vi.fn<[], ReturnType<GBType['loadFeatures']>>(),
+  loadFeatures: vi.fn<() => ReturnType<GBType['loadFeatures']>>(),
   getAttributes,
   setAttributes,
 }))
