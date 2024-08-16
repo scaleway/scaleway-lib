@@ -39,7 +39,7 @@
     "globals": "15.9.0",
     "happy-dom": "14.12.3",
     "husky": "9.1.4",
-    "lint-staged": "15.2.8",
+    "lint-staged": "15.2.9",
     "mockdate": "3.0.5",
     "read-pkg": "9.0.1",
     "shx": "0.3.4",
