@@ -50,7 +50,7 @@
     "eslint": ">= 9.7"
   },
   "devDependencies": {
-    "eslint": "9.9.0",
+    "eslint": "9.9.1",
     "typescript": "5.5.4"
   }
 }
