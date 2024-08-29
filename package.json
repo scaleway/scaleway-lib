@@ -3,7 +3,7 @@
   "private": true,
   "workspaces": ["packages/*"],
   "type": "module",
-  "packageManager": "pnpm@9.7.1",
+  "packageManager": "pnpm@9.8.0",
   "engines": {
     "node": ">=20.x",
     "pnpm": ">=9.x"
