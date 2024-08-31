@@ -11,7 +11,7 @@ type TrackingCallback = ComponentProps<
 type ErrorCallback = ComponentProps<typeof AbTestProvider>['errorCallback']
 
 describe('AbTestProvider', () => {
-  const trackingCallback = vi.fn<() => TrackingCallback>()
+  const trackingCallback = vi.fn<TrackingCallback>()
   const errorCallback: ErrorCallback = () => null
 
   it('should init GrowthBook once', () => {
