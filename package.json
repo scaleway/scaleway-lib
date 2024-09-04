@@ -19,7 +19,7 @@
     "@changesets/changelog-github": "0.5.0",
     "@changesets/cli": "2.27.7",
     "@commitlint/cli": "19.4.1",
-    "@commitlint/config-conventional": "19.2.2",
+    "@commitlint/config-conventional": "19.4.1",
     "@eslint/eslintrc": "3.1.0",
     "@scaleway/eslint-config-react": "workspace:*",
     "@scaleway/tsconfig": "workspace:*",
