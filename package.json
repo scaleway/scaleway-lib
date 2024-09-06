@@ -37,7 +37,7 @@
     "esbuild-plugin-browserslist": "0.14.0",
     "eslint": "9.9.1",
     "globals": "15.9.0",
-    "happy-dom": "15.0.0",
+    "happy-dom": "15.7.0",
     "husky": "9.1.5",
     "lint-staged": "15.2.10",
     "mockdate": "3.0.5",
@@ -45,7 +45,7 @@
     "shx": "0.3.4",
     "tstyche": "2.1.1",
     "typescript": "5.5.4",
-    "vite": "5.4.2",
+    "vite": "5.4.3",
     "vitest": "2.0.5",
     "vitest-localstorage-mock": "0.1.2",
     "wait-for-expect": "3.0.2"
