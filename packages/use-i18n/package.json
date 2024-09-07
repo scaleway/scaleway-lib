@@ -50,7 +50,7 @@
     "@formatjs/ecma402-abstract": "2.0.0",
     "@formatjs/fast-memoize": "2.2.0",
     "date-fns": "3.6.0",
-    "filesize": "10.1.4",
+    "filesize": "10.1.5",
     "international-types": "0.8.1",
     "intl-messageformat": "10.5.14"
   },
