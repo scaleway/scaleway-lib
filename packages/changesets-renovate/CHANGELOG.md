@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.1.1
+
+### Patch Changes
+
+- [#2174](https://github.com/scaleway/scaleway-lib/pull/2174) [`573055e`](https://github.com/scaleway/scaleway-lib/commit/573055e447f3548f605b7893a09672aa137609a7) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `simple-git` to `3.26.0`.
+
 ## 2.1.0
 
 ### Minor Changes

@@ -1,5 +1,13 @@
 # Change Log
 
+## 7.0.1
+
+### Patch Changes
+
+- [#2177](https://github.com/scaleway/scaleway-lib/pull/2177) [`4addb9a`](https://github.com/scaleway/scaleway-lib/commit/4addb9aa0ae168175fac362646de05a2c760b4de) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `filesize` to `10.1.6`.
+
+- [#2171](https://github.com/scaleway/scaleway-lib/pull/2171) [`f33705e`](https://github.com/scaleway/scaleway-lib/commit/f33705e2a1cec3b4287984559e200327fb2d554c) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `filesize` to `10.1.5`.
+
 ## 7.0.0
 
 ### Major Changes
