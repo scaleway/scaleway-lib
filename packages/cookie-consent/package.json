@@ -50,6 +50,6 @@
   },
   "peerDependencies": {
     "react": "18.x || 18",
-    "@scaleway/use-segment": "^1.1.2"
+    "@scaleway/use-segment": "^1.1.3"
   }
 }
