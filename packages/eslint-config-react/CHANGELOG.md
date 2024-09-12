@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.6
+
+### Patch Changes
+
+- [#2178](https://github.com/scaleway/scaleway-lib/pull/2178) [`95fd2e4`](https://github.com/scaleway/scaleway-lib/commit/95fd2e42ba94995b4089a9c52b7faedcfe0c1d79) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `eslint-plugin-jsx-a11y` to `6.10.0`.
+
 ## 4.0.5
 
 ### Patch Changes

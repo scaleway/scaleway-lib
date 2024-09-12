@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.1
+
+### Patch Changes
+
+- [#2179](https://github.com/scaleway/scaleway-lib/pull/2179) [`3c8926e`](https://github.com/scaleway/scaleway-lib/commit/3c8926e55b328354ee9ae1088dc42d394cf1e833) Thanks [@philibea](https://github.com/philibea)! - remove niel from list
+
 ## 5.1.0
 
 ### Minor Changes
