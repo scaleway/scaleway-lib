@@ -38,7 +38,7 @@
     "eslint": "9.9.1",
     "globals": "15.9.0",
     "happy-dom": "15.7.3",
-    "husky": "9.1.5",
+    "husky": "9.1.6",
     "lint-staged": "15.2.10",
     "mockdate": "3.0.5",
     "read-pkg": "9.0.1",
