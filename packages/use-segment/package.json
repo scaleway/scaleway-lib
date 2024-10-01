@@ -43,7 +43,7 @@
     "segment"
   ],
   "dependencies": {
-    "@segment/analytics-next": "1.72.2",
+    "@segment/analytics-next": "1.73.0",
     "use-deep-compare-effect": "1.8.1"
   },
   "devDependencies": {
