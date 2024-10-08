@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.2
+
+### Patch Changes
+
+- [#2210](https://github.com/scaleway/scaleway-lib/pull/2210) [`7c717e2`](https://github.com/scaleway/scaleway-lib/commit/7c717e2b02de5ca5e587f854db797566a31b0dd6) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `date-fns` to `3.x || 4.x`.
+
 ## 7.0.1
 
 ### Patch Changes
