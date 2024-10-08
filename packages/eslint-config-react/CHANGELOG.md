@@ -1,5 +1,15 @@
 # Change Log
 
+## 4.0.7
+
+### Patch Changes
+
+- [#2194](https://github.com/scaleway/scaleway-lib/pull/2194) [`26fe3c8`](https://github.com/scaleway/scaleway-lib/commit/26fe3c8c8335a0cb1cc407b3d44c941a5b204539) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `eslint-plugin-react` to `7.36.0`.
+
+- [#2190](https://github.com/scaleway/scaleway-lib/pull/2190) [`0bc6a70`](https://github.com/scaleway/scaleway-lib/commit/0bc6a7064e50160c6e7ec8da30f86701ee24c43e) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `typescript` to `5.6.2`.
+
+- [#2182](https://github.com/scaleway/scaleway-lib/pull/2182) [`72e93d3`](https://github.com/scaleway/scaleway-lib/commit/72e93d3a322dad683dd32c7e7004455b91d06974) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `eslint` to `9.10.0`.
+
 ## 4.0.6
 
 ### Patch Changes
