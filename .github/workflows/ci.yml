@@ -11,7 +11,7 @@ jobs:
   typecheck:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4.1.7
+      - uses: actions/checkout@v4.2.0
       - uses: pnpm/action-setup@v4.0.0
       - name: Use Node.js
         uses: actions/setup-node@v4.0.4
@@ -25,7 +25,7 @@ jobs:
   lint:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4.1.7
+      - uses: actions/checkout@v4.2.0
       - uses: pnpm/action-setup@v4.0.0
       - name: Use Node.js
         uses: actions/setup-node@v4.0.4
@@ -42,7 +42,7 @@ jobs:
       matrix:
         node: ["20"]
     steps:
-      - uses: actions/checkout@v4.1.7
+      - uses: actions/checkout@v4.2.0
       - uses: pnpm/action-setup@v4.0.0
       - name: Use Node.js
         uses: actions/setup-node@v4.0.4
@@ -53,7 +53,7 @@ jobs:
       - run: pnpm install
       - run: pnpm run build
       - run: pnpm run test:coverage
-      - uses: codecov/codecov-action@v4.5.0
+      - uses: codecov/codecov-action@v4.6.0
         with:
           files: packages/**/coverage/cobertura-coverage.xml
           token: ${{ secrets.CODECOV_TOKEN }}
@@ -65,7 +65,7 @@ jobs:
       matrix:
         node: ["20"]
     steps:
-      - uses: actions/checkout@v4.1.7
+      - uses: actions/checkout@v4.2.0
       - uses: pnpm/action-setup@v4.0.0
       - name: Use Node.js
         uses: actions/setup-node@v4.0.4

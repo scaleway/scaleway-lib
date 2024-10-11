@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.2.1
+
+### Patch Changes
+
+- [`be2d1a8`](https://github.com/scaleway/scaleway-lib/commit/be2d1a82fc21f3c04fddfcf2217c8ccc5e2e492e) Thanks [@Lawndlwd](https://github.com/Lawndlwd)! - Add new regex underscore uppercase
+
 ## 5.2.0
 
 ### Minor Changes
