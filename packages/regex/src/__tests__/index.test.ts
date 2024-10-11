@@ -7,6 +7,7 @@ import {
   alpha,
   alphaDashes,
   alphaLowercase,
+  alphaUpperUnderscore,
   alphanum,
   alphanumDash,
   alphanumDashDots,
@@ -53,6 +54,7 @@ import {
 const alphanumDashDotsText = 'testwithdashdots-.'
 const alphanumDashUnderscoreDotsParenthesisText = 'testwithdashdots-_. ()'
 const alphanumDashText = 'testwithdash-'
+const uppercaseUnderscoreText = 'ASTT_GGF'
 const asciiLetters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 const nonAsciiLetters =
   'ÀÁÂÃÄÅàáâãäåÇçÈÉÊËèéêëÌÍÎÏìíîïÑñÒÓÔÕÖòóôõöÙÚÛÜùúûüÝýÿĀāĈĉĜĝĤĥĴĵŜŝŴŵŶŷāăąǎćĉčċđēĕėęǝğōŏőǒśŝşšūŭůűǔüźżž'
@@ -376,6 +378,27 @@ describe('@regex', () => {
       [macAddress1, false],
     ])('should match regex %s to be %s', (string, expected) => {
       expect(alphanumDots.test(string)).toBe(expected)
+    })
+  })
+  describe('alphaUpperUnderscore', () => {
+    test.each([
+      [alphanumDashText, false],
+      [uppercaseUnderscoreText, true],
+      [alphanumDashDotsText, false],
+      [asciiLetters, false],
+      [asciiLowercase, false],
+      [asciiUppercase, true],
+      [digitsTest, false],
+      [emailTest, false],
+      [octdigits, false],
+      [hexdigits, false],
+      [printable, false],
+      [punctuation, false],
+      [whitespace, false],
+      [cronTest, false],
+      [macAddress1, false],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(alphaUpperUnderscore.test(string)).toBe(expected)
     })
   })
 

@@ -9,6 +9,8 @@ export const alphanumDashDotsOrEmpty = /^$|^[a-zA-Z0-9-.]*$/
 export const alphanumDashDotsSpaces = /^[a-zA-Z0-9-.\s]*$/
 export const alphanumDashLowercase = /^[a-z0-9-]+$/
 export const alphanumDashSpaces = /^[a-zA-Z0-9-\s]*$/
+export const alphaUpperUnderscore = /^[A-Z_]+$/
+
 export const alphanumDashOrEmpty = /^$|^[a-zA-Z0-9-]*$/
 export const alphanumDashUnderscoreDots = /^[a-zA-Z0-9-._]*$/
 export const alphanumDashUnderscore = /^[a-zA-Z0-9-_]*$/
