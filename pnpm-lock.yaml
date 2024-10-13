@@ -315,8 +315,8 @@ importers:
   packages/validate-icu-locales:
     dependencies:
       '@formatjs/icu-messageformat-parser':
-        specifier: 2.7.8
-        version: 2.7.8
+        specifier: 2.7.9
+        version: 2.7.9
       globby:
         specifier: 14.0.2
         version: 14.0.2
@@ -1432,14 +1432,23 @@ packages:
   '@formatjs/ecma402-abstract@2.0.0':
     resolution: {integrity: sha512-rRqXOqdFmk7RYvj4khklyqzcfQl9vEL/usogncBHRZfZBDOwMGuSRNFl02fu5KGHXdbinju+YXyuR+Nk8xlr/g==}
 
+  '@formatjs/ecma402-abstract@2.1.0':
+    resolution: {integrity: sha512-SE2V2PE03K9U/YQZ3nxEOysRkQ/CfSwLHR789Uk9N0PTiWT6I+17UTDI97zYEwC1mbnjefqmtjbL8nunjPwGjw==}
+
   '@formatjs/fast-memoize@2.2.0':
     resolution: {integrity: sha512-hnk/nY8FyrL5YxwP9e4r9dqeM6cAbo8PeU9UjyXojZMNvVad2Z06FAVHyR3Ecw6fza+0GH7vdJgiKIVXTMbSBA==}
 
   '@formatjs/icu-messageformat-parser@2.7.8':
     resolution: {integrity: sha512-nBZJYmhpcSX0WeJ5SDYUkZ42AgR3xiyhNCsQweFx3cz/ULJjym8bHAzWKvG5e2+1XO98dBYC0fWeeAECAVSwLA==}
 
+  '@formatjs/icu-messageformat-parser@2.7.9':
+    resolution: {integrity: sha512-9Z5buDRMsTbplXknvRlDmnpWhZrayNVcVvkH0+SSz8Ll4XD/7Tcn8m1IjxM3iBJSwQbxwxb7/g0Fkx3d4j2osw==}
+
   '@formatjs/icu-skeleton-parser@1.8.2':
     resolution: {integrity: sha512-k4ERKgw7aKGWJZgTarIcNEmvyTVD9FYh0mTrrBMHZ1b8hUu6iOJ4SzsZlo3UNAvHYa+PnvntIwRPt1/vy4nA9Q==}
+
+  '@formatjs/icu-skeleton-parser@1.8.3':
+    resolution: {integrity: sha512-TsKAP013ayZFbWWR2KWy+f9QVZh0yDFTPK3yE4OqU2gnzafvmKTodRtJLVpfZmpXWJ5y7BWD1AsyT14mcbLzig==}
 
   '@formatjs/intl-localematcher@0.5.4':
     resolution: {integrity: sha512-zTwEpWOzZ2CiKcB93BLngUX59hQkuZjT2+SAQEscSm52peDW/getsawMcWF1rGRpMCX6D7nSJA3CzJ8gn13N/g==}
@@ -5676,6 +5685,12 @@ snapshots:
       '@formatjs/intl-localematcher': 0.5.4
       tslib: 2.6.2
 
+  '@formatjs/ecma402-abstract@2.1.0':
+    dependencies:
+      '@formatjs/fast-memoize': 2.2.0
+      '@formatjs/intl-localematcher': 0.5.4
+      tslib: 2.6.2
+
   '@formatjs/fast-memoize@2.2.0':
     dependencies:
       tslib: 2.6.2
@@ -5686,9 +5701,20 @@ snapshots:
       '@formatjs/icu-skeleton-parser': 1.8.2
       tslib: 2.6.2
 
+  '@formatjs/icu-messageformat-parser@2.7.9':
+    dependencies:
+      '@formatjs/ecma402-abstract': 2.1.0
+      '@formatjs/icu-skeleton-parser': 1.8.3
+      tslib: 2.6.2
+
   '@formatjs/icu-skeleton-parser@1.8.2':
     dependencies:
       '@formatjs/ecma402-abstract': 2.0.0
+      tslib: 2.6.2
+
+  '@formatjs/icu-skeleton-parser@1.8.3':
+    dependencies:
+      '@formatjs/ecma402-abstract': 2.1.0
       tslib: 2.6.2
 
   '@formatjs/intl-localematcher@0.5.4':
