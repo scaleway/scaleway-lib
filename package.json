@@ -31,7 +31,7 @@
     "@types/react-dom": "18.3.0",
     "@vitejs/plugin-react": "4.3.2",
     "@vitest/coverage-istanbul": "2.1.2",
-    "browserslist": "4.23.3",
+    "browserslist": "4.24.0",
     "builtin-modules": "4.0.0",
     "cross-env": "7.0.3",
     "esbuild-plugin-browserslist": "0.15.0",
