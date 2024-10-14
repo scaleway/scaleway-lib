@@ -309,7 +309,7 @@ const I18nContextProvider = <LocalSupportedType extends string>({
       })
 
       const trad: Record<string, string> = {
-        ...result.defaultLocale?.default,
+        ...result.defaultLocale.default,
         ...result[currentLocale].default,
       }
 
@@ -317,7 +317,7 @@ const I18nContextProvider = <LocalSupportedType extends string>({
         ...prevState,
         [defaultLocale]: {
           ...prevState[defaultLocale],
-          ...result.defaultLocale?.default,
+          ...result.defaultLocale.default,
         },
         [currentLocale]: {
           ...prevState[currentLocale],
