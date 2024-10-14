@@ -1,4 +1,4 @@
-import type { CookieSerializeOptions } from 'cookie'
+import type { SerializeOptions } from 'cookie'
 import cookie from 'cookie'
 import type { PropsWithChildren } from 'react'
 import {
@@ -24,7 +24,7 @@ const CONSENT_MAX_AGE = 13 * 30 * 24 * 60 * 60
 // Appx 6 Months
 const CONSENT_ADVERTISING_MAX_AGE = 6 * 30 * 24 * 60 * 60
 
-const COOKIES_OPTIONS = {
+const COOKIES_OPTIONS: SerializeOptions = {
   sameSite: 'strict',
   secure: true,
   path: '/',
@@ -69,10 +69,10 @@ export const CookieConsentProvider = ({
   cookiePrefix?: string
   consentMaxAge?: number
   consentAdvertisingMaxAge?: number
-  cookiesOptions?: CookieSerializeOptions
+  cookiesOptions?: SerializeOptions
 }>) => {
   const [needConsent, setNeedsConsent] = useState(false)
-  const [cookies, setCookies] = useState<Record<string, string>>(
+  const [cookies, setCookies] = useState<Record<string, string | undefined>>(
     IS_CLIENT ? cookie.parse(document.cookie) : {},
   )
 
