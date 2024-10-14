@@ -296,8 +296,8 @@ importers:
   packages/use-segment:
     dependencies:
       '@segment/analytics-next':
-        specifier: 1.74.0
-        version: 1.74.0
+        specifier: 1.75.0
+        version: 1.75.0
       use-deep-compare-effect:
         specifier: 1.8.1
         version: 1.8.1(react@18.3.1)
@@ -1649,8 +1649,8 @@ packages:
   '@segment/analytics-generic-utils@1.2.0':
     resolution: {integrity: sha512-DfnW6mW3YQOLlDQQdR89k4EqfHb0g/3XvBXkovH1FstUN93eL1kfW9CsDcVQyH3bAC5ZsFyjA/o/1Q2j0QeoWw==}
 
-  '@segment/analytics-next@1.74.0':
-    resolution: {integrity: sha512-dhSwm+kahwnsHZmhcInu6wTJZFCLtG1VDCw0uiQRuKL5SDRRNEMORvKErV6bycXHWLelaYQVIMRcHH2Y9lk48A==}
+  '@segment/analytics-next@1.75.0':
+    resolution: {integrity: sha512-IWtcLqYMOdoa0KbLf2y0EMuZmOhRysYxECgKkf0VD6SPAmioQjSvTwa6YGxRWNrE/eATqhdfhjQkRF3J25Ti5w==}
 
   '@segment/analytics.js-video-plugins@0.2.1':
     resolution: {integrity: sha512-lZwCyEXT4aaHBLNK433okEKdxGAuyrVmop4BpQqQSJuRz0DglPZgd9B/XjiiWs1UyOankg2aNYMN3VcS8t4eSQ==}
@@ -5887,13 +5887,13 @@ snapshots:
       '@lukeed/uuid': 2.0.1
       '@segment/analytics-generic-utils': 1.2.0
       dset: 3.1.4
-      tslib: 2.6.2
+      tslib: 2.7.0
 
   '@segment/analytics-generic-utils@1.2.0':
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.7.0
 
-  '@segment/analytics-next@1.74.0':
+  '@segment/analytics-next@1.75.0':
     dependencies:
       '@lukeed/uuid': 2.0.1
       '@segment/analytics-core': 1.8.0
@@ -5903,7 +5903,7 @@ snapshots:
       dset: 3.1.4
       js-cookie: 3.0.1
       node-fetch: 2.7.0
-      tslib: 2.6.2
+      tslib: 2.7.0
       unfetch: 4.2.0
     transitivePeerDependencies:
       - encoding
