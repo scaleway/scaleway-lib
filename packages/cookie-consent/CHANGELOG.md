@@ -1,5 +1,16 @@
 # @scaleway/cookie-consent
 
+## 2.0.3
+
+### Patch Changes
+
+- [#2239](https://github.com/scaleway/scaleway-lib/pull/2239) [`aca0b2c`](https://github.com/scaleway/scaleway-lib/commit/aca0b2ccb4ed16fa2525f7d1774bade44f26b9c2) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `cookie` to `0.7.2`.
+
+- [#2247](https://github.com/scaleway/scaleway-lib/pull/2247) [`67691c8`](https://github.com/scaleway/scaleway-lib/commit/67691c8634c1eae3d44d5a1acc86cafbd87510ce) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `cookie` to `1.0.1`.
+
+- Updated dependencies [[`44b6bcb`](https://github.com/scaleway/scaleway-lib/commit/44b6bcb6985c7f432f3a06ae0996a7c7a894161f), [`9ccc11b`](https://github.com/scaleway/scaleway-lib/commit/9ccc11b87dfb792f19405cb41d8d166cd735f71e)]:
+  - @scaleway/use-segment@1.1.5
+
 ## 2.0.2
 
 ### Patch Changes
