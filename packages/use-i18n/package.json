@@ -52,7 +52,7 @@
     "date-fns": "4.1.0",
     "filesize": "10.1.6",
     "international-types": "0.8.1",
-    "intl-messageformat": "10.7.0"
+    "intl-messageformat": "10.7.1"
   },
   "devDependencies": {
     "react": "18.3.1",
