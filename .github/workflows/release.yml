@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions: write-all
     steps:
-      - uses: actions/checkout@v4.2.1
+      - uses: actions/checkout@v4.2.2
       - name: Git Identity
         run: |
           git config --global user.name 'Scaleway Bot'
