@@ -3,7 +3,7 @@
   "private": true,
   "workspaces": ["packages/*"],
   "type": "module",
-  "packageManager": "pnpm@9.12.2",
+  "packageManager": "pnpm@9.12.3",
   "engines": {
     "node": ">=20.x",
     "pnpm": ">=9.x"
@@ -23,7 +23,7 @@
     "@eslint/eslintrc": "3.1.0",
     "@scaleway/eslint-config-react": "workspace:*",
     "@scaleway/tsconfig": "workspace:*",
-    "@testing-library/jest-dom": "6.6.2",
+    "@testing-library/jest-dom": "6.6.3",
     "@testing-library/react": "16.0.1",
     "@types/jest": "29.5.14",
     "@types/node": "20.16.12",
@@ -31,7 +31,7 @@
     "@types/react-dom": "18.3.1",
     "@vitejs/plugin-react": "4.3.3",
     "@vitest/coverage-istanbul": "2.1.3",
-    "browserslist": "4.24.0",
+    "browserslist": "4.24.2",
     "builtin-modules": "4.0.0",
     "cross-env": "7.0.3",
     "esbuild-plugin-browserslist": "0.15.0",
@@ -45,7 +45,7 @@
     "shx": "0.3.4",
     "tstyche": "2.1.1",
     "typescript": "5.6.3",
-    "vite": "5.4.9",
+    "vite": "5.4.10",
     "vitest": "2.1.3",
     "vitest-localstorage-mock": "0.1.2",
     "wait-for-expect": "3.0.2"
