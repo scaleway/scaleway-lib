@@ -199,9 +199,8 @@ export const useInfiniteDataLoader = <
       isError,
       isLoading,
       isSuccess,
-      hasNextPage: false,
+      hasNextPage: nextPageRef.current !== undefined,
       isLoadingFirstPage,
-      pageData: undefined,
       data: isLoadingFirstPage
         ? initialData
         : (requestRefs.current
