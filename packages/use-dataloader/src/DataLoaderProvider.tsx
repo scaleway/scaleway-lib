@@ -50,6 +50,7 @@ export type IDataLoaderContext = {
   ) => DataLoader<ResultType, ErrorType>
   reload: (key?: string) => Promise<void>
   reloadAll: () => Promise<void>
+  reloadGroup: (startKey?: string) => Promise<void>
 }
 
 // @ts-expect-error we force the context to undefined, should be corrected with default values
@@ -136,6 +137,16 @@ const DataLoaderProvider = ({
     [getRequest],
   )
 
+  const reloadGroup = useCallback(async (startPrefix?: string) => {
+    if (startPrefix && typeof startPrefix === 'string') {
+      await Promise.all(
+        Object.values(requestsRef.current)
+          .filter(request => request.key.startsWith(startPrefix))
+          .map(request => request.load(true)),
+      )
+    } else throw new Error(KEY_IS_NOT_STRING_ERROR)
+  }, [])
+
   const reloadAll = useCallback(async () => {
     await Promise.all(
       Object.values(requestsRef.current).map(request => request.load(true)),
@@ -189,6 +200,7 @@ const DataLoaderProvider = ({
       onError,
       reload,
       reloadAll,
+      reloadGroup,
     }),
     [
       addRequest,
@@ -202,6 +214,7 @@ const DataLoaderProvider = ({
       onError,
       reload,
       reloadAll,
+      reloadGroup,
     ],
   )
 
