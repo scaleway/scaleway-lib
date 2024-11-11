@@ -25,7 +25,7 @@ test('i18n - namespaceTranslation', () => {
     `Argument of type '"doe.john"' is not assignable to parameter of type '"doe" | "describe"'`,
   )
 
-  expect(namespaceTranslation('doe')('john')).type.toEqual<string>()
+  expect(namespaceTranslation('doe')('john')).type.toBe<string>()
 
   expect(namespaceTranslation('doe')('doesnotexists')).type.toRaiseError(
     `Expected 2 arguments, but got 1.`,
@@ -39,7 +39,7 @@ test('i18n - namespaceTranslation', () => {
     namespaceTranslation('doe')('child', {
       name: 'Name',
     }),
-  ).type.toEqual<string>()
+  ).type.toBe<string>()
   expect(
     namespaceTranslation('doe')('doesnotexists', {
       name: 'Name',
@@ -60,7 +60,7 @@ test('i18n - namespaceTranslation', () => {
       age: '30',
       name: 'John',
     }),
-  ).type.toEqual<string>()
+  ).type.toBe<string>()
 
   expect(namespaceTranslation('describe')('john', {})).type.toRaiseError()
   expect(namespaceTranslation('describe')('john')).type.toRaiseError()
