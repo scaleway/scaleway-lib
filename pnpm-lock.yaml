@@ -245,8 +245,8 @@ importers:
         specifier: 0.8.1
         version: 0.8.1
       intl-messageformat:
-        specifier: 10.7.5
-        version: 10.7.5
+        specifier: 10.7.6
+        version: 10.7.6
     devDependencies:
       react:
         specifier: 18.3.1
@@ -2959,8 +2959,8 @@ packages:
     resolution: {integrity: sha512-agE4QfB2Lkp9uICn7BAqoscw4SZP9kTE2hxiFI3jBPmXJfdqiahTbUuKGsMoN2GtqL9AxhYioAcVvgsb1HvRbA==}
     engines: {node: '>= 0.10'}
 
-  intl-messageformat@10.7.5:
-    resolution: {integrity: sha512-CflbRvJiahVmnfxq/lO+DCM1/8ji4vC4rTnz6ZJEKKodViB+EWgY9M4EqXVRQ+3K0Ng5qwSyqybPP+KSfS4KZw==}
+  intl-messageformat@10.7.6:
+    resolution: {integrity: sha512-IsMU/hqyy3FJwNJ0hxDfY2heJ7MteSuFvcnCebxRp67di4Fhx1gKKE+qS0bBwUF8yXkX9SsPUhLeX/B6h5SKUA==}
 
   is-array-buffer@3.0.4:
     resolution: {integrity: sha512-wcjaerHw0ydZwfhiKbXJWLDY8A7yV7KhjQOpb83hGgGfId/aQa4TOvwyzn2PuswW2gPCYEL/nEAiSVpdOj1lXw==}
@@ -7454,7 +7454,7 @@ snapshots:
 
   interpret@1.4.0: {}
 
-  intl-messageformat@10.7.5:
+  intl-messageformat@10.7.6:
     dependencies:
       '@formatjs/ecma402-abstract': 2.2.3
       '@formatjs/fast-memoize': 2.2.3
