@@ -1,5 +1,21 @@
 # Change Log
 
+## 4.0.9
+
+### Patch Changes
+
+- [#2253](https://github.com/scaleway/scaleway-lib/pull/2253) [`ed64757`](https://github.com/scaleway/scaleway-lib/commit/ed6475775c74fc83c7102e3cd6aba2803b1dcf31) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@eslint/compat` to `1.2.1`.
+
+- [#2270](https://github.com/scaleway/scaleway-lib/pull/2270) [`257be75`](https://github.com/scaleway/scaleway-lib/commit/257be756619ff170a161118c9928b208de91a3c8) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@eslint/compat` to `1.2.2`.
+
+- [#2258](https://github.com/scaleway/scaleway-lib/pull/2258) [`4db4fd1`](https://github.com/scaleway/scaleway-lib/commit/4db4fd184cd45359f72d7c91de2730d058e4e3cc) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `eslint-plugin-jsx-a11y` to `6.10.1`.
+
+- [#2249](https://github.com/scaleway/scaleway-lib/pull/2249) [`b18511e`](https://github.com/scaleway/scaleway-lib/commit/b18511e20e4c41b63e42f70aa92bf18d8a867501) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `eslint-plugin-react-hooks` to `5.0.0`.
+
+- [#2262](https://github.com/scaleway/scaleway-lib/pull/2262) [`237d4c1`](https://github.com/scaleway/scaleway-lib/commit/237d4c100f06f1592a88a0292ada15f758f4d5c9) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `eslint` to `9.13.0`.
+
+- [#2266](https://github.com/scaleway/scaleway-lib/pull/2266) [`339c4ca`](https://github.com/scaleway/scaleway-lib/commit/339c4ca9ba4eb9eee538f0a92071d064c92ab875) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `eslint-plugin-react` to `7.37.2`.
+
 ## 4.0.8
 
 ### Patch Changes
