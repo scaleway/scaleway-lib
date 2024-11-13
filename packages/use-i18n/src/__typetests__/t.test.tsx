@@ -10,12 +10,12 @@ const { t } = useI18n<{
 }>()
 
 test('i18n - t', () => {
-  expect(t('hello')).type.toEqual<string>()
+  expect(t('hello')).type.toBe<string>()
   // Single key
   expect(t('keydoesnotexists')).type.toRaiseError()
 
   // Multiple keys
-  expect(t('doe.john')).type.toEqual<string>()
+  expect(t('doe.john')).type.toBe<string>()
   expect(t('doe.doesnotexists')).type.toRaiseError()
 
   // With a param
@@ -23,7 +23,7 @@ test('i18n - t', () => {
     t('doe.child', {
       name: 'Name',
     }),
-  ).type.toEqual<string>()
+  ).type.toBe<string>()
   expect(
     t('doe.doesnotexists', {
       name: 'Name',
@@ -42,7 +42,7 @@ test('i18n - t', () => {
       age: '30',
       name: 'John',
     }),
-  ).type.toEqual<string>()
+  ).type.toBe<string>()
 
   expect(t('describe.john', {})).type.toRaiseError()
   expect(t('describe.john')).type.toRaiseError()
@@ -56,7 +56,7 @@ test('i18n - t', () => {
         </p>
       ),
     }),
-  ).type.toEqual<string>()
+  ).type.toBe<string>()
 
   // Required generic
   const { t: t2 } = useI18n()
