@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.1
+
+### Patch Changes
+
+- [#2277](https://github.com/scaleway/scaleway-lib/pull/2277) [`21a2dc6`](https://github.com/scaleway/scaleway-lib/commit/21a2dc6cf7df20c3423de2cadfd07e51ff5f7d2b) Thanks [@philibea](https://github.com/philibea)! - export a datalifetime object
+
 ## 5.1.0
 
 ### Minor Changes
