@@ -53,7 +53,9 @@ const wrapper =
 
       return enGB
     },
+
     defaultLoad = async ({ locale }: { locale: string }) =>
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       import(`./locales/${locale}.ts`),
     defaultLocale = 'en',
     defaultTranslations = {},
@@ -152,7 +154,9 @@ describe('i18n hook', () => {
     }: {
       locale: string
       namespace: string
-    }) => import(`./locales/namespaces/${locale}/${namespace}.json`)
+    }) =>
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+      import(`./locales/namespaces/${locale}/${namespace}.json`)
 
     const { result } = renderHook(
       () => useTranslation<NamespaceLocale, Locales>(['user', 'profile'], load),
@@ -208,7 +212,9 @@ describe('i18n hook', () => {
     }: {
       locale: string
       namespace: string
-    }) => import(`./locales/namespaces/${locale}/${namespace}.json`)
+    }) =>
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+      import(`./locales/namespaces/${locale}/${namespace}.json`)
 
     const { result } = renderHook(
       () => useTranslation<NamespaceLocale, Locales>(['user'], load),
