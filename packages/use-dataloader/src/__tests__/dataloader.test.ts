@@ -14,6 +14,7 @@ const fakeNullPromise = () =>
   new Promise(resolve => {
     setTimeout(() => resolve(null), PROMISE_TIMEOUT)
   })
+
 const fakeUndefinedPromise = () =>
   new Promise(resolve => {
     setTimeout(() => resolve(undefined), PROMISE_TIMEOUT)
@@ -196,6 +197,7 @@ describe('Dataloader class', () => {
         }),
     )
 
+    // eslint-disable-next-line @typescript-eslint/await-thenable
     for await (const instance of instances) {
       await instance.load().catch(() => null)
     }

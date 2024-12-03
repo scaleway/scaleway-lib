@@ -51,6 +51,7 @@ const findICUErrors = (
 const readFiles = async (files: string[]): Promise<ErrorsICU> => {
   const errors = []
 
+  // eslint-disable-next-line @typescript-eslint/await-thenable
   for await (const file of files) {
     const extension = file.split('.').pop()
 

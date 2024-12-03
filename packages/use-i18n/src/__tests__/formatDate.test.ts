@@ -5,30 +5,30 @@ import formatDate, { supportedFormats } from '../formatDate'
 const locales = ['en', 'fr', 'de', 'ro', 'es']
 
 const tests = [
-  ...locales.map(locale => [
-    ...supportedFormats.map(format => [
+  ...locales.map(locale =>
+    supportedFormats.map(format => [
       format,
       'new Date(2020, 1, 13, 16, 28)',
       locale,
       new Date(2020, 1, 13, 16, 28),
     ]),
-  ]),
-  ...locales.map(locale => [
-    ...supportedFormats.map(format => [
+  ),
+  ...locales.map(locale =>
+    supportedFormats.map(format => [
       format,
       '1581607680000',
       locale,
       1581607680000,
     ]),
-  ]),
-  ...locales.map(locale => [
-    ...supportedFormats.map(format => [
+  ),
+  ...locales.map(locale =>
+    supportedFormats.map(format => [
       format,
       '2020-02-13T15:28:00.000Z',
       locale,
       '2020-02-13T15:28:00.000Z',
     ]),
-  ]),
+  ),
 ].flat() as [FormatDateOptions, string, string, Date | string | number][]
 
 describe('formatDate', () => {
