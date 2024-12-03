@@ -1,5 +1,21 @@
 # Change Log
 
+## 5.0.0
+
+### Major Changes
+
+- [#2320](https://github.com/scaleway/scaleway-lib/pull/2320) [`8655476`](https://github.com/scaleway/scaleway-lib/commit/8655476e72465f3743a541bb3431193bfd49a9b0) Thanks [@philibea](https://github.com/philibea)! - remove usage of eslint-config-airbnb-typescript as it's not maintain anymore, migrate to stylistic package
+
+### Patch Changes
+
+- [#2288](https://github.com/scaleway/scaleway-lib/pull/2288) [`3c6b30d`](https://github.com/scaleway/scaleway-lib/commit/3c6b30d76e31a79508905a710f00a7081a80cd3b) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `eslint-plugin-jsx-a11y` to `6.10.2`.
+
+- [#2306](https://github.com/scaleway/scaleway-lib/pull/2306) [`060f4f9`](https://github.com/scaleway/scaleway-lib/commit/060f4f9a3363e6d4dc0b1c9f99aeb9816993ec55) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@eslint/eslintrc` to `3.2.0`.
+
+- [#2300](https://github.com/scaleway/scaleway-lib/pull/2300) [`0e44ad8`](https://github.com/scaleway/scaleway-lib/commit/0e44ad87297981c705da061e7a38cbfdefd13b8c) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@eslint/compat` to `1.2.3`.
+
+- [#2318](https://github.com/scaleway/scaleway-lib/pull/2318) [`b13f10a`](https://github.com/scaleway/scaleway-lib/commit/b13f10a14c9e4e053fe80b19cd347f7d7a0acb2a) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `typescript` to `5.7.2`.
+
 ## 4.0.9
 
 ### Patch Changes
