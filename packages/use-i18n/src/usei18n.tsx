@@ -131,7 +131,7 @@ type Context<
 const I18nContext = createContext<Context<any, any> | undefined>(undefined)
 
 export function useI18n<
-  // eslint-disable-next-line @typescript-eslint/ban-types
+  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
   LocaleParam extends BaseLocale = {},
   LocalSupportedType extends string = '',
 >(): RequiredGenericContext<LocaleParam, LocalSupportedType> {
@@ -147,7 +147,7 @@ export function useI18n<
 }
 
 export function useTranslation<
-  // eslint-disable-next-line @typescript-eslint/ban-types
+  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
   LocaleParam extends BaseLocale = {},
   LocalSupportedType extends string = '',
 >(
@@ -194,9 +194,11 @@ type LoadTranslationsFn<LocalSupportedType extends string> = ({
 type LoadLocaleFn<LocalSupportedType extends string> = (
   locale: LocalSupportedType,
 ) => DateFnsLocale
+
 type LoadLocaleFnAsync<LocalSupportedType extends string> = (
   locale: LocalSupportedType,
 ) => Promise<DateFnsLocale>
+
 type LoadDateLocaleError = (error: Error) => void
 
 const initialDefaultTranslations = {}

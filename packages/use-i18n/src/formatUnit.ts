@@ -157,16 +157,18 @@ const format =
           ),
           output: 'object',
           round: maximumFractionDigits,
-        }) as unknown as { value: number; symbol: string; exponent: number }
-        computedValue = value.value
+        })
+
+        computedValue = Number.parseFloat(value.value)
       } else {
         const value = filesize(amount, {
           base,
           output: 'object',
           round: maximumFractionDigits,
-        }) as unknown as { value: number; symbol: string; exponent: number }
+        })
+
         computedExponent = exponents[value.exponent]
-        computedValue = value.value
+        computedValue = Number.parseFloat(value.value)
       }
     }
 
