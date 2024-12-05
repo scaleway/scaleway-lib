@@ -41,7 +41,7 @@
     "directory": "packages/cookie-consent"
   },
   "dependencies": {
-    "cookie": "1.0.1"
+    "cookie": "1.0.2"
   },
   "devDependencies": {
     "react": "18.3.1",
