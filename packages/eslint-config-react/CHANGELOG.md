@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.0
+
+### Minor Changes
+
+- [#2324](https://github.com/scaleway/scaleway-lib/pull/2324) [`6625aca`](https://github.com/scaleway/scaleway-lib/commit/6625acad0e0ef1adaa7b20e23e33e36743d6bb7a) Thanks [@philibea](https://github.com/philibea)! - fix conflict rules apply by formatter like prettier / biome
+
 ## 5.0.0
 
 ### Major Changes
