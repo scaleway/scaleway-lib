@@ -15,6 +15,7 @@ const config = compat.extends('airbnb-base')
 
 const defaultAirBnbRules = [...fixupPluginRules(config)].reduce(
   (acc, currentConfig) => ({
+    // biome-ignore lint/performance/noAccumulatingSpread: <explanation>
     ...acc,
     ...currentConfig.rules,
   }),
@@ -31,12 +32,16 @@ export default [
   stylisticPlugin.configs['recommended-flat'],
   {
     rules: {
+      // --- Should be done when using biome/prettier formatter --- //
       '@stylistic/quotes': 'off',
       '@stylistic/operator-linebreak': 'off',
       '@stylistic/indent': 'off',
       '@stylistic/quote-props': 'off',
       '@stylistic/indent-binary-ops': 'off',
       '@stylistic/arrow-parens': 'off',
+      '@stylistic/multiline-ternary': 'off',
+      '@stylistic/no-trailing-spaces': 'off',
+      // -------------------------------------- ///
 
       '@stylistic/brace-style': defaultAirBnbRules['brace-style'],
       '@stylistic/comma-dangle': [
