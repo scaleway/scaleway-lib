@@ -30,7 +30,7 @@
     "@types/react": "18.3.13",
     "@types/react-dom": "18.3.1",
     "@vitejs/plugin-react": "4.3.4",
-    "@vitest/coverage-istanbul": "2.1.6",
+    "@vitest/coverage-istanbul": "2.1.7",
     "browserslist": "4.24.2",
     "builtin-modules": "4.0.0",
     "cross-env": "7.0.3",
@@ -46,7 +46,7 @@
     "tstyche": "3.0.0",
     "typescript": "5.7.2",
     "vite": "5.4.11",
-    "vitest": "2.1.6",
+    "vitest": "2.1.7",
     "vitest-localstorage-mock": "0.1.2",
     "wait-for-expect": "3.0.2"
   },
