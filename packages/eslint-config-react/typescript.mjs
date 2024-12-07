@@ -1,6 +1,5 @@
 import { fixupConfigRules } from '@eslint/compat'
 import { FlatCompat } from '@eslint/eslintrc'
-import deprecation from 'eslint-plugin-deprecation'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import shared from './shared.mjs'
@@ -19,6 +18,7 @@ export default [
       'airbnb-base',
       'plugin:@typescript-eslint/recommended',
       'plugin:@typescript-eslint/recommended-requiring-type-checking',
+      'plugin:import/recommended',
       'plugin:import/typescript',
     ),
   ),

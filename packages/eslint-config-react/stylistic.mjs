@@ -41,6 +41,14 @@ export default [
       '@stylistic/arrow-parens': 'off',
       '@stylistic/multiline-ternary': 'off',
       '@stylistic/no-trailing-spaces': 'off',
+      '@stylistic/comma-style': 'off',
+      '@stylistic/func-call-spacing': 'off',
+      '@stylistic/jsx-wrap-multilines': 'off',
+      '@stylistic/member-delimiter-style': 'off',
+      '@stylistic/jsx-curly-brace-presence': 'off',
+      '@stylistic/jsx-curly-newline': 'off',
+      '@stylistic/jsx-one-expression-per-line': 'off',
+      '@stylistic/max-statements-per-line ': 'off',
       // -------------------------------------- ///
 
       '@stylistic/brace-style': defaultAirBnbRules['brace-style'],

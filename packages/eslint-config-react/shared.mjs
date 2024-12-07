@@ -37,11 +37,13 @@ export default [
           },
 
           groups: [
-            ['builtin', 'external'],
+            'builtin',
+            'external',
             'internal',
             'parent',
             'sibling',
             'index',
+            // "type",
           ],
           'newlines-between': 'never',
         },
