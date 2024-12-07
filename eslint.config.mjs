@@ -25,6 +25,14 @@ export default [
         defaultVersion: '18', // Default React version to use when the version you have installed cannot be detected.
         // If not provided, defaults to the latest React version.
       },
+      'import/resolver': {
+        typescript: {
+          project: [
+            './tsconfig.json', // Root config
+            './packages/**/tsconfig.json',
+          ],
+        },
+      },
     },
     languageOptions: {
       globals: {
@@ -35,7 +43,6 @@ export default [
   ...scw.map(config => ({ ...config, files: ['**/*.js'] })),
   {
     files: ['**/*.js'],
-
     languageOptions: {
       parser: babelParser,
       parserOptions: {
@@ -56,7 +63,9 @@ export default [
       sourceType: 'script',
 
       parserOptions: {
-        project: ['tsconfig.json'],
+        project: ['tsconfig.json', 'packages/**/tsconfig.json'],
+        projectService: true,
+        tsconfigRootDir: import.meta.dirname,
       },
     },
   },
@@ -73,7 +82,7 @@ export default [
       sourceType: 'script',
 
       parserOptions: {
-        project: ['tsconfig.json'],
+        project: ['tsconfig.json', 'packages/**/tsconfig.json'],
       },
     },
 

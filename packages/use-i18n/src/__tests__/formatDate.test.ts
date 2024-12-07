@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest'
-import type { FormatDateOptions } from '../formatDate'
 import formatDate, { supportedFormats } from '../formatDate'
+import type { FormatDateOptions } from '../formatDate'
 
 const locales = ['en', 'fr', 'de', 'ro', 'es']
 

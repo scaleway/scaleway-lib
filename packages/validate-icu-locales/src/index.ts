@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
+import * as fs from 'fs/promises'
 import { parse } from '@formatjs/icu-messageformat-parser'
 import type { ParserError } from '@formatjs/icu-messageformat-parser/error'
-import * as fs from 'fs/promises'
 import { globby } from 'globby'
 import { importFromString } from 'module-from-string'
 
