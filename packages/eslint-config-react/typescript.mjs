@@ -1,6 +1,5 @@
 import { fixupConfigRules } from '@eslint/compat'
 import { FlatCompat } from '@eslint/eslintrc'
-import deprecation from 'eslint-plugin-deprecation'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import shared from './shared.mjs'
@@ -19,24 +18,27 @@ export default [
       'airbnb-base',
       'plugin:@typescript-eslint/recommended',
       'plugin:@typescript-eslint/recommended-requiring-type-checking',
+      'plugin:import/recommended',
       'plugin:import/typescript',
     ),
   ),
   ...airbnbTypescript,
   ...shared,
   {
-    plugins: {
-      deprecation,
-    },
-
     rules: {
+      /*******   WARN  ********/
+      '@typescript-eslint/no-deprecated': 'warn',
+      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-redundant-type-constituents': 'warn',
+      /***************************/
+
+      /*******   ERROR  ********/
       '@typescript-eslint/array-type': [
         'error',
         {
           default: 'array',
         },
       ],
-
       '@typescript-eslint/no-base-to-string': 'error',
       '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'error',
       '@typescript-eslint/no-unnecessary-condition': 'error',
@@ -57,15 +59,10 @@ export default [
           },
         },
       ],
-
-      '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-unused-vars': 'error',
       '@typescript-eslint/consistent-type-imports': 'error',
       '@typescript-eslint/consistent-type-exports': 'error',
       '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
-      '@typescript-eslint/no-redundant-type-constituents': 'warn',
-      'react/require-default-props': 'off',
-      'react/prop-types': 'off',
 
       'react/jsx-no-useless-fragment': [
         'error',
@@ -73,6 +70,13 @@ export default [
           allowExpressions: true,
         },
       ],
+
+      /***************************/
+
+      /*******   OFF  ********/
+
+      'react/require-default-props': 'off',
+      'react/prop-types': 'off',
 
       // The following rules are enabled in Airbnb config, but are already checked (more thoroughly) by the TypeScript compiler
       // Some of the rules also fail in TypeScript files, for example: https://github.com/typescript-eslint/typescript-eslint/issues/662#issuecomment-507081586

@@ -1,6 +1,5 @@
-import type { SerializeOptions } from 'cookie'
 import cookie from 'cookie'
-import type { PropsWithChildren } from 'react'
+import type { SerializeOptions } from 'cookie'
 import {
   createContext,
   useCallback,
@@ -9,6 +8,7 @@ import {
   useMemo,
   useState,
 } from 'react'
+import type { PropsWithChildren } from 'react'
 import { uniq } from '../helpers/array'
 import { stringToHash } from '../helpers/misc'
 import { isCategoryKind } from './helpers'
