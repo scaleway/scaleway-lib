@@ -47,7 +47,7 @@
     "test:unit:coverage": "pnpm test:unit --coverage"
   },
   "dependencies": {
-    "@formatjs/ecma402-abstract": "2.2.5",
+    "@formatjs/ecma402-abstract": "2.3.1",
     "@formatjs/fast-memoize": "2.2.5",
     "date-fns": "4.1.0",
     "filesize": "10.1.6",

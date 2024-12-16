@@ -227,8 +227,8 @@ importers:
   packages/use-i18n:
     dependencies:
       '@formatjs/ecma402-abstract':
-        specifier: 2.2.5
-        version: 2.2.5
+        specifier: 2.3.1
+        version: 2.3.1
       '@formatjs/fast-memoize':
         specifier: 2.2.5
         version: 2.2.5
@@ -1424,14 +1424,8 @@ packages:
     resolution: {integrity: sha512-2b/g5hRmpbb1o4GnTZax9N9m0FXzz9OV42ZzI4rDDMDuHUqigAiQCEWChBWCY4ztAGVRjoWT19v0yMmc5/L5kA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@formatjs/ecma402-abstract@2.2.5':
-    resolution: {integrity: sha512-ep/5vGkyZvMSi6s8nQG8k7vTcKjuXs402fgGIWixj0AWRgKbeaZeLuYc32NIPXexgBjWepMeZGgHLuZXkuD2Gg==}
-
   '@formatjs/ecma402-abstract@2.3.1':
     resolution: {integrity: sha512-Ip9uV+/MpLXWRk03U/GzeJMuPeOXpJBSB5V1tjA6kJhvqssye5J5LoYLc7Z5IAHb7nR62sRoguzrFiVCP/hnzw==}
-
-  '@formatjs/fast-memoize@2.2.4':
-    resolution: {integrity: sha512-8SzI0cBADgbLOYsoQW/IqVHljCH964CrOdESFQ07wMkRLP90+MfV7k6gZPiGD88ubqET9igJV5c292rT28B7xQ==}
 
   '@formatjs/fast-memoize@2.2.5':
     resolution: {integrity: sha512-6PoewUMrrcqxSoBXAOJDiW1m+AmkrAj0RiXnOMD59GRaswjXhm3MDhgepXPBgonc09oSirAJTsAggzAGQf6A6g==}
@@ -1441,9 +1435,6 @@ packages:
 
   '@formatjs/icu-skeleton-parser@1.8.11':
     resolution: {integrity: sha512-8LlHHE/yL/zVJZHAX3pbKaCjZKmBIO6aJY1mkVh4RMSEu/2WRZ4Ysvv3kKXJ9M8RJLBHdnk1/dUQFdod1Dt7Dw==}
-
-  '@formatjs/intl-localematcher@0.5.8':
-    resolution: {integrity: sha512-I+WDNWWJFZie+jkfkiK5Mp4hEDyRSEvmyfYadflOno/mmKJKcB17fEpEH0oJu/OWhhCJ8kJBDz2YMd/6cDl7Mg==}
 
   '@formatjs/intl-localematcher@0.5.9':
     resolution: {integrity: sha512-8zkGu/sv5euxbjfZ/xmklqLyDGQSxsLqg8XOq88JW3cmJtzhCP8EtSJXlaKZnVO4beEaoiT9wj4eIoCQ9smwxA==}
@@ -5647,21 +5638,11 @@ snapshots:
     dependencies:
       levn: 0.4.1
 
-  '@formatjs/ecma402-abstract@2.2.5':
-    dependencies:
-      '@formatjs/fast-memoize': 2.2.4
-      '@formatjs/intl-localematcher': 0.5.8
-      tslib: 2.7.0
-
   '@formatjs/ecma402-abstract@2.3.1':
     dependencies:
       '@formatjs/fast-memoize': 2.2.5
       '@formatjs/intl-localematcher': 0.5.9
       decimal.js: 10.4.3
-      tslib: 2.7.0
-
-  '@formatjs/fast-memoize@2.2.4':
-    dependencies:
       tslib: 2.7.0
 
   '@formatjs/fast-memoize@2.2.5':
@@ -5677,10 +5658,6 @@ snapshots:
   '@formatjs/icu-skeleton-parser@1.8.11':
     dependencies:
       '@formatjs/ecma402-abstract': 2.3.1
-      tslib: 2.7.0
-
-  '@formatjs/intl-localematcher@0.5.8':
-    dependencies:
       tslib: 2.7.0
 
   '@formatjs/intl-localematcher@0.5.9':
@@ -6286,7 +6263,7 @@ snapshots:
 
   agent-base@6.0.2:
     dependencies:
-      debug: 4.3.7
+      debug: 4.4.0
     transitivePeerDependencies:
       - supports-color
     optional: true
@@ -7437,7 +7414,7 @@ snapshots:
     dependencies:
       '@tootallnate/once': 2.0.0
       agent-base: 6.0.2
-      debug: 4.3.7
+      debug: 4.4.0
     transitivePeerDependencies:
       - supports-color
     optional: true
@@ -7445,7 +7422,7 @@ snapshots:
   https-proxy-agent@5.0.1:
     dependencies:
       agent-base: 6.0.2
-      debug: 4.3.7
+      debug: 4.4.0
     transitivePeerDependencies:
       - supports-color
     optional: true
