@@ -25,6 +25,20 @@ type OnTranslateError = ComponentProps<typeof I18n>['onTranslateError']
 const isDefaultLocalesSupported = (locale: string): locale is Locales =>
   ListLocales.includes(locale as Locales)
 
+const load = async ({
+  locale,
+  namespace,
+}: {
+  locale: string
+  namespace: string
+}) =>
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+  import(`./locales/namespaces/${locale}/${namespace}.json`)
+
+const CustomComponent = ({ children }: { children: ReactNode }) => (
+  <p style={{ fontWeight: 'bold' }}>{children}</p>
+)
+
 const defaultOnTranslateError: OnTranslateError = () => {}
 
 const wrapper =
@@ -148,16 +162,6 @@ describe('i18n hook', () => {
   })
 
   it('should use specific load on useTranslation', async () => {
-    const load = async ({
-      locale,
-      namespace,
-    }: {
-      locale: string
-      namespace: string
-    }) =>
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-      import(`./locales/namespaces/${locale}/${namespace}.json`)
-
     const { result } = renderHook(
       () => useTranslation<NamespaceLocale, Locales>(['user', 'profile'], load),
       {
@@ -206,16 +210,6 @@ describe('i18n hook', () => {
   })
 
   it("should use specific load and fallback default local if the key doesn't exist", async () => {
-    const load = async ({
-      locale,
-      namespace,
-    }: {
-      locale: string
-      namespace: string
-    }) =>
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-      import(`./locales/namespaces/${locale}/${namespace}.json`)
-
     const { result } = renderHook(
       () => useTranslation<NamespaceLocale, Locales>(['user'], load),
       {
@@ -272,21 +266,24 @@ describe('i18n hook', () => {
         wrapper: wrapper({ defaultLocale: 'en' }),
       },
     )
-    const CustomComponent = ({ children }: { children: ReactNode }) => (
-      <p style={{ fontWeight: 'bold' }}>{children}</p>
-    )
 
     await waitFor(() => {
       expect(
-        result.current.t('with.identifier', { identifier: <b>My resource</b> }),
-      ).toEqual(['Are you sure you want to delete ', <b>My resource</b>, '?'])
-      expect(
         result.current.t('with.identifier', {
-          identifier: <CustomComponent>My resource</CustomComponent>,
+          identifier: <b key="1">My resource</b>,
         }),
       ).toEqual([
         'Are you sure you want to delete ',
-        <CustomComponent>My resource</CustomComponent>,
+        <b key="1">My resource</b>,
+        '?',
+      ])
+      expect(
+        result.current.t('with.identifier', {
+          identifier: <CustomComponent key="1">My resource</CustomComponent>,
+        }),
+      ).toEqual([
+        'Are you sure you want to delete ',
+        <CustomComponent key="1">My resource</CustomComponent>,
         '?',
       ])
     })
@@ -581,12 +578,12 @@ describe('i18n hook', () => {
           currency: 'EUR',
           style: 'currency',
         }),
-      ).toEqual('2,00\xa0€')
+      ).toEqual('2,00\u00A0€')
     })
 
     expect(
       result.current.formatNumber(2, { currency: 'USD', style: 'currency' }),
-    ).toEqual('2,00\xa0$US')
+    ).toEqual('2,00\u00A0$US')
   })
 
   it('should use formatList', async () => {

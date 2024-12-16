@@ -1,7 +1,9 @@
 {
   "name": "root",
   "private": true,
-  "workspaces": ["packages/*"],
+  "workspaces": [
+    "packages/*"
+  ],
   "type": "module",
   "packageManager": "pnpm@9.15.0",
   "engines": {
@@ -45,7 +47,7 @@
     "shx": "0.3.4",
     "tstyche": "3.1.1",
     "typescript": "5.7.2",
-    "vite": "5.4.11",
+    "vite": "6.0.3",
     "vitest": "2.1.8",
     "vitest-localstorage-mock": "0.1.2",
     "wait-for-expect": "3.0.2"
@@ -58,6 +60,7 @@
     "format": "biome format --write .",
     "test": "pnpm recursive run test:unit",
     "test:coverage": "pnpm run test --coverage",
+    "typecheck": "pnpm tsc --noEmit",
     "test:types": "tstyche",
     "release": "pnpm build && pnpm changeset publish",
     "prepare": "husky install"
@@ -72,13 +75,24 @@
     }
   },
   "commitlint": {
-    "extends": ["@commitlint/config-conventional"]
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   },
   "lint-staged": {
-    "*.(j|t)s?(x)": ["biome format --write .", "eslint --fix"],
-    "*.json": ["biome format --write ."],
-    "*.y(a)ml,": ["pnpm dlx prettier --write '**/*.{yml,yaml}' --single-quote"],
-    "*.mdx": ["biome format --write ."]
+    "*.(j|t)s?(x)": [
+      "biome format --write .",
+      "eslint --fix"
+    ],
+    "*.json": [
+      "biome format --write ."
+    ],
+    "*.y(a)ml,": [
+      "pnpm dlx prettier --write '**/*.{yml,yaml}' --single-quote"
+    ],
+    "*.mdx": [
+      "biome format --write ."
+    ]
   },
   "config": {
     "commitizen": {
