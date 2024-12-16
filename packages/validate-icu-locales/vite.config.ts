@@ -2,8 +2,14 @@
 
 import { defineConfig, mergeConfig } from 'vite'
 import { defaultConfig } from '../../vite.config'
+import { defaultConfig as vitestDefaultConfig } from '../../vitest.config'
 
-export default mergeConfig(defineConfig(defaultConfig), {
+const config = {
+  ...defineConfig(defaultConfig),
+  ...vitestDefaultConfig,
+}
+
+export default mergeConfig(config, {
   build: {
     ssr: true,
     target: ['node20'],
