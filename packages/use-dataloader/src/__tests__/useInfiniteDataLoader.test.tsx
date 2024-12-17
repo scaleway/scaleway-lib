@@ -179,4 +179,74 @@ describe('useInfinitDataLoader', () => {
       { nextPage: 3, data: 'Page 2 data' },
     ])
   })
+
+  it('should get the first and loadMore one page on mount while not enabled then enabled then reload', async () => {
+    const { setCanResolve, initialProps, resetCounter } =
+      getPrerequisite('test4')
+    const localInitialProps = {
+      ...initialProps,
+      config: {
+        ...config,
+        enabled: false,
+      },
+    }
+    const { result, rerender } = renderHook(
+      props => useInfiniteDataLoader(props.key, props.method, props.config),
+      {
+        initialProps: localInitialProps,
+        wrapper,
+      },
+    )
+    expect(result.current.data).toBe(undefined)
+    expect(result.current.isLoading).toBe(false)
+    expect(initialProps.method).toHaveBeenCalledTimes(0)
+    rerender(localInitialProps)
+    expect(result.current.data).toBe(undefined)
+    expect(result.current.isLoading).toBe(false)
+    expect(initialProps.method).toHaveBeenCalledTimes(0)
+    rerender({ ...localInitialProps, config: { ...config, enabled: true } })
+    expect(result.current.data).toBe(undefined)
+    await waitFor(() => expect(result.current.isLoading).toBe(true))
+    expect(initialProps.method).toHaveBeenCalledTimes(1)
+    expect(initialProps.method).toHaveBeenCalledWith({
+      page: 1,
+    })
+    setCanResolve(true)
+    await waitFor(() => expect(result.current.isSuccess).toBe(true))
+    setCanResolve(false)
+    expect(initialProps.method).toHaveBeenCalledTimes(1)
+    expect(result.current.data).toStrictEqual([
+      { nextPage: 2, data: 'Page 1 data' },
+    ])
+    expect(result.current.isLoading).toBe(false)
+    act(() => {
+      result.current.loadMore()
+    })
+    await waitFor(() => expect(result.current.isLoading).toBe(true))
+    expect(result.current.data).toStrictEqual([
+      { nextPage: 2, data: 'Page 1 data' },
+    ])
+    expect(initialProps.method).toHaveBeenCalledTimes(2)
+    expect(initialProps.method).toHaveBeenCalledWith({
+      page: 2,
+    })
+    setCanResolve(true)
+    await waitFor(() => expect(result.current.isSuccess).toBe(true))
+    expect(result.current.data).toStrictEqual([
+      { nextPage: 2, data: 'Page 1 data' },
+      { nextPage: 3, data: 'Page 2 data' },
+    ])
+    setCanResolve(false)
+    resetCounter()
+    act(() => {
+      result.current.reload().catch(() => null)
+    })
+    await waitFor(() => expect(result.current.isLoading).toBe(true))
+    setCanResolve(true)
+    await waitFor(() => expect(result.current.isSuccess).toBe(true))
+    expect(result.current.data).toStrictEqual([
+      { nextPage: 2, data: 'Page 1 data' },
+      { nextPage: 3, data: 'Page 2 data' },
+    ])
+  })
 })
