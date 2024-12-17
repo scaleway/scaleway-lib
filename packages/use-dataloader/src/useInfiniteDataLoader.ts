@@ -201,11 +201,13 @@ export const useInfiniteDataLoader = <
       isSuccess,
       hasNextPage: nextPageRef.current !== undefined,
       isLoadingFirstPage,
-      data: isLoadingFirstPage
-        ? initialData
-        : (requestRefs.current
-            .filter(dataloader => !!dataloader.data)
-            .map(dataloader => dataloader.data) as ResultType[]),
+      data:
+        isLoadingFirstPage ||
+        requestRefs.current.filter(dataloader => !!dataloader.data).length === 0
+          ? initialData
+          : (requestRefs.current
+              .filter(dataloader => !!dataloader.data)
+              .map(dataloader => dataloader.data) as ResultType[]),
       error: request.error,
       reload,
       loadMore,
