@@ -1,8 +1,9 @@
 import { useSegment } from '@scaleway/use-segment'
-import cookie from 'cookie'
+import { parse } from 'cookie'
 import type { PropsWithChildren } from 'react'
 import { useCookieConsent } from './CookieConsentProvider'
-import { type CategoryKind } from './helpers'
+import { IS_CLIENT } from './helpers'
+import type { CategoryKind } from './helpers'
 
 export const AMPLITUDE_INTEGRATION_NAME = 'Amplitude (Actions)'
 const COOKIE_SESSION_ID_NAME = 'analytics_session_id'
@@ -14,7 +15,9 @@ type ConsentObject = {
 }
 
 export const getSessionId = () => {
-  const sessionId = cookie.parse(document.cookie)[COOKIE_SESSION_ID_NAME]
+  const sessionId = IS_CLIENT
+    ? parse(document.cookie)[COOKIE_SESSION_ID_NAME]
+    : ''
   if (sessionId) {
     return Number.parseInt(sessionId, 10)
   }
