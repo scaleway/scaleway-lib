@@ -1,5 +1,13 @@
 # Change Log
 
+## 5.0.11
+
+### Patch Changes
+
+- [#2376](https://github.com/scaleway/scaleway-lib/pull/2376) [`3d90660`](https://github.com/scaleway/scaleway-lib/commit/3d90660ed13e552f4bbe349def70fc8326dea49b) Thanks [@philibea](https://github.com/philibea)! - update package json export dist file only
+
+- [#2371](https://github.com/scaleway/scaleway-lib/pull/2371) [`7839256`](https://github.com/scaleway/scaleway-lib/commit/7839256db99e2d12cfe9960f1cb13a24da5ba280) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `react-router-dom` to `6.28.1`.
+
 ## 5.0.10
 
 ### Patch Changes
