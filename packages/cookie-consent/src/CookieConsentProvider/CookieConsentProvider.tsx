@@ -1,4 +1,4 @@
-import cookie from 'cookie'
+import { parse, serialize } from 'cookie'
 import type { SerializeOptions } from 'cookie'
 import {
   createContext,
@@ -11,13 +11,12 @@ import {
 import type { PropsWithChildren } from 'react'
 import { uniq } from '../helpers/array'
 import { stringToHash } from '../helpers/misc'
-import { isCategoryKind } from './helpers'
+import { IS_CLIENT, isCategoryKind } from './helpers'
 import type { Config, Consent, Integrations } from './types'
 import { useSegmentIntegrations } from './useSegmentIntegrations'
 
 const COOKIE_PREFIX = '_scw_rgpd'
 const HASH_COOKIE = `${COOKIE_PREFIX}_hash`
-const IS_CLIENT = typeof document !== 'undefined'
 
 // Appx 13 Months
 const CONSENT_MAX_AGE = 13 * 30 * 24 * 60 * 60
@@ -72,8 +71,9 @@ export const CookieConsentProvider = ({
   cookiesOptions?: SerializeOptions
 }>) => {
   const [needConsent, setNeedsConsent] = useState(false)
+  console.debug('document cookie', document.cookie)
   const [cookies, setCookies] = useState<Record<string, string | undefined>>(
-    IS_CLIENT ? cookie.parse(document.cookie) : {},
+    IS_CLIENT ? parse(document.cookie) : {},
   )
 
   const {
@@ -113,6 +113,7 @@ export const CookieConsentProvider = ({
     // We set needConsent at false until we have an answer from segment
     // This is to avoid showing setting needConsent to true only to be set
     // to false after receiving segment answer and flicker the UI
+
     setNeedsConsent(
       isConsentRequired &&
         cookies[HASH_COOKIE] !== integrationsHash.toString() &&
@@ -160,22 +161,18 @@ export const CookieConsentProvider = ({
 
         if (!consentValue) {
           // If consent is set to false we have to delete the cookie
-          document.cookie = cookie.serialize(cookieName, '', {
+          document.cookie = serialize(cookieName, '', {
             ...cookiesOptions,
             expires: new Date(0),
           })
         } else {
-          document.cookie = cookie.serialize(
-            cookieName,
-            consentValue.toString(),
-            {
-              ...cookiesOptions,
-              maxAge:
-                consentCategoryName === 'advertising'
-                  ? consentAdvertisingMaxAge
-                  : consentMaxAge,
-            },
-          )
+          document.cookie = serialize(cookieName, consentValue.toString(), {
+            ...cookiesOptions,
+            maxAge:
+              consentCategoryName === 'advertising'
+                ? consentAdvertisingMaxAge
+                : consentMaxAge,
+          })
         }
         setCookies(prevCookies => ({
           ...prevCookies,
@@ -183,15 +180,11 @@ export const CookieConsentProvider = ({
         }))
       }
       // We set the hash cookie to the current consented integrations
-      document.cookie = cookie.serialize(
-        HASH_COOKIE,
-        integrationsHash.toString(),
-        {
-          ...cookiesOptions,
-          // Here we use the shortest max age to force to ask again for expired consent
-          maxAge: consentAdvertisingMaxAge,
-        },
-      )
+      document.cookie = serialize(HASH_COOKIE, integrationsHash.toString(), {
+        ...cookiesOptions,
+        // Here we use the shortest max age to force to ask again for expired consent
+        maxAge: consentAdvertisingMaxAge,
+      })
       setCookies(prevCookies => ({
         ...prevCookies,
         [HASH_COOKIE]: integrationsHash.toString(),
