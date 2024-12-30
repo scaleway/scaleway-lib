@@ -38,7 +38,7 @@
     "cross-env": "7.0.3",
     "esbuild-plugin-browserslist": "0.15.0",
     "eslint": "9.17.0",
-    "globals": "15.13.0",
+    "globals": "15.14.0",
     "happy-dom": "15.11.7",
     "husky": "9.1.7",
     "lint-staged": "15.2.11",
@@ -47,7 +47,7 @@
     "shx": "0.3.4",
     "tstyche": "3.1.1",
     "typescript": "5.7.2",
-    "vite": "6.0.4",
+    "vite": "6.0.6",
     "vitest": "2.1.8",
     "vitest-localstorage-mock": "0.1.2",
     "wait-for-expect": "3.0.2"
