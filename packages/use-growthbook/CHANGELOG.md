@@ -1,5 +1,11 @@
 # @scaleway/use-growthbook
 
+## 2.1.6
+
+### Patch Changes
+
+- [#2376](https://github.com/scaleway/scaleway-lib/pull/2376) [`3d90660`](https://github.com/scaleway/scaleway-lib/commit/3d90660ed13e552f4bbe349def70fc8326dea49b) Thanks [@philibea](https://github.com/philibea)! - update package json export dist file only
+
 ## 2.1.5
 
 ### Patch Changes
