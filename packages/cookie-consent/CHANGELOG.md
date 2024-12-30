@@ -1,5 +1,18 @@
 # @scaleway/cookie-consent
 
+## 2.0.6
+
+### Patch Changes
+
+- [#2378](https://github.com/scaleway/scaleway-lib/pull/2378) [`6789326`](https://github.com/scaleway/scaleway-lib/commit/6789326013998e58e1adfc27e00546ba235f3d63) Thanks [@philibea](https://github.com/philibea)! - update import cookies
+
+- [#2364](https://github.com/scaleway/scaleway-lib/pull/2364) [`463f5bc`](https://github.com/scaleway/scaleway-lib/commit/463f5bc9b67bfca8dc7faa27cac0fda6d13050af) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `react` to `19.0.0`.
+  Updated dependency `react-dom` to `19.0.0`.
+  Updated dependency `@types/react` to `19.0.0`.
+  Updated dependency `@types/react-dom` to `19.0.0`.
+- Updated dependencies [[`463f5bc`](https://github.com/scaleway/scaleway-lib/commit/463f5bc9b67bfca8dc7faa27cac0fda6d13050af)]:
+  - @scaleway/use-segment@1.1.8
+
 ## 2.0.5
 
 ### Patch Changes

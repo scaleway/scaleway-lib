@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/use-media",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "A small hook to track CSS media query state",
   "engines": {
     "node": ">=20.x"
