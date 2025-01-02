@@ -71,7 +71,6 @@ export const CookieConsentProvider = ({
   cookiesOptions?: SerializeOptions
 }>) => {
   const [needConsent, setNeedsConsent] = useState(false)
-  console.debug('document cookie', document.cookie)
   const [cookies, setCookies] = useState<Record<string, string | undefined>>(
     IS_CLIENT ? parse(document.cookie) : {},
   )
