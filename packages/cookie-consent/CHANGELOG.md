@@ -1,5 +1,11 @@
 # @scaleway/cookie-consent
 
+## 2.0.7
+
+### Patch Changes
+
+- [#2382](https://github.com/scaleway/scaleway-lib/pull/2382) [`77dc0c7`](https://github.com/scaleway/scaleway-lib/commit/77dc0c77cda3389575cc0decb0902c75d3ca8acb) Thanks [@alexandre-combemorel](https://github.com/alexandre-combemorel)! - Fix missing to remove debug
+
 ## 2.0.6
 
 ### Patch Changes
