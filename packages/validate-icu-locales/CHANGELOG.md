@@ -1,5 +1,14 @@
 # Change Log
 
+## 3.1.10
+
+### Patch Changes
+
+- [#2386](https://github.com/scaleway/scaleway-lib/pull/2386) [`dc5e97e`](https://github.com/scaleway/scaleway-lib/commit/dc5e97e8090feb46d8c52d5174441aa90f95e146) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@formatjs/ecma402-abstract` to `2.3.2`.
+  Updated dependency `@formatjs/fast-memoize` to `2.2.6`.
+  Updated dependency `intl-messageformat` to `10.7.11`.
+  Updated dependency `@formatjs/icu-messageformat-parser` to `2.9.8`.
+
 ## 3.1.9
 
 ### Patch Changes
