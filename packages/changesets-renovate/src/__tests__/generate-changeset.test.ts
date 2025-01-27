@@ -10,6 +10,13 @@ beforeEach(() => {
 })
 
 describe('generate changeset file', () => {
+  beforeEach(() => {
+    delete process.env['SKIP_BRANCH_CHECK']
+    delete process.env['SKIP_COMMIT']
+    delete process.env['BRANCH_PREFIX']
+    delete process.env['SORT_CHANGESETS']
+  })
+
   it('should skip if not in renovate branch', async () => {
     mockSimpleGit.mockReturnValue({
       ...defaultGitValues,
@@ -63,7 +70,6 @@ describe('generate changeset file', () => {
 
     process.env['BRANCH_PREFIX'] = 'dep-upgrade/'
     await run()
-    process.env['BRANCH_PREFIX'] = undefined
 
     expect(console.log).not.toHaveBeenCalledWith(
       'Not a renovate branch, skipping',
@@ -113,7 +119,6 @@ describe('generate changeset file', () => {
 
     process.env['SKIP_BRANCH_CHECK'] = 'TRUE'
     await run()
-    process.env['SKIP_BRANCH_CHECK'] = undefined
 
     expect(console.log).not.toHaveBeenCalledWith(
       'Not a renovate branch, skipping',
@@ -188,8 +193,8 @@ describe('generate changeset file', () => {
         ],
       }),
       show: () => `
-+ "package": "version"
-+ "package2": "version2"
++ "packagez": "version2"
++ "packagea": "version"
 `,
       revparse,
       add,
@@ -252,6 +257,61 @@ describe('generate changeset file', () => {
     await run()
 
     expect(fs.readFile).toHaveBeenCalledWith(file, 'utf8')
+    expect(fs.writeFile).toMatchSnapshot()
+    expect(add).not.toHaveBeenCalledWith(fileName)
+    expect(commit).not.toHaveBeenCalledWith(
+      `chore: add changeset renovate-${rev}`,
+    )
+    expect(push).not.toHaveBeenCalledTimes(1)
+  })
+
+  it('should generate sorted changeset file, but skip commit and push', async () => {
+    const rev = 'test'
+    const fileName = `.changeset/renovate-${rev}.md`
+    const fileA = 'test-a/package.json'
+    const fileB = 'test-b/package.json'
+    const revparse = vi.fn().mockReturnValue(rev)
+    const add = vi.fn()
+    const commit = vi.fn()
+    const push = vi.fn()
+
+    mockSimpleGit.mockReturnValue({
+      branch: () => ({
+        current: 'renovate/test',
+      }),
+      diffSummary: () => ({
+        files: [
+          {
+            file: fileB,
+          },
+          {
+            file: fileA,
+          },
+        ],
+      }),
+      show: () => `
++ "packagez": "version2"
++ "packagea": "version"
+`,
+      revparse,
+      add,
+      commit,
+      push,
+    })
+
+    fs.readFile = vi
+      .fn()
+      .mockResolvedValueOnce(`{}`)
+      .mockResolvedValueOnce(`{"name":"packageNameB","version":"1.1.1"}`)
+      .mockResolvedValueOnce(`{"name":"packageNameA","version":"1.0.0"}`)
+    fs.writeFile = vi.fn()
+
+    process.env['SKIP_COMMIT'] = 'TRUE'
+    process.env['SORT_CHANGESETS'] = 'TRUE'
+    await run()
+
+    expect(fs.readFile).toHaveBeenCalledWith(fileA, 'utf8')
+    expect(fs.readFile).toHaveBeenCalledWith(fileB, 'utf8')
     expect(fs.writeFile).toMatchSnapshot()
     expect(add).not.toHaveBeenCalledWith(fileName)
     expect(commit).not.toHaveBeenCalledWith(
