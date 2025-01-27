@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.1.10
+
+### Patch Changes
+
+- [#2429](https://github.com/scaleway/scaleway-lib/pull/2429) [`300d6f4`](https://github.com/scaleway/scaleway-lib/commit/300d6f475d6e15e993549698aa601c4188dd19f6) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@segment/analytics-next` to `1.77.0`.
+
 ## 1.1.9
 
 ### Patch Changes
