@@ -1,5 +1,6 @@
 import { act, renderHook, waitFor } from '@testing-library/react'
 import { enGB, fr as frDateFns } from 'date-fns/locale'
+import { ErrorCode, FormatError } from 'intl-messageformat'
 import mockdate from 'mockdate'
 import type { ComponentProps, ReactNode } from 'react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
@@ -502,9 +503,12 @@ describe('i18n hook', () => {
     )
 
     expect(mockOnTranslateError).toHaveBeenCalledTimes(1)
+
     expect(mockOnTranslateError).toHaveBeenCalledWith({
-      error: new Error(
+      error: new FormatError(
         'The intl string context variable "oldFrenchVariable" was not provided to the string "onTranslateError fonction sera appelé car il manque une variable en français {oldFrenchVariable}"',
+        ErrorCode.MISSING_VALUE,
+        'onTranslateError fonction sera appelé car il manque une variable en français {oldFrenchVariable}',
       ),
       defaultLocale: 'en',
       currentLocale: 'fr',
