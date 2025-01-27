@@ -1,5 +1,20 @@
 # Change Log
 
+## 3.1.10
+
+### Patch Changes
+
+- [#2425](https://github.com/scaleway/scaleway-lib/pull/2425) [`56c7f16`](https://github.com/scaleway/scaleway-lib/commit/56c7f16a92041ebee1e98c3e447ae071e55e1bda) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `intl-messageformat` to `10.7.14`.
+  Updated dependency `@formatjs/icu-messageformat-parser` to `2.11.0`.
+
+- [#2386](https://github.com/scaleway/scaleway-lib/pull/2386) [`dc5e97e`](https://github.com/scaleway/scaleway-lib/commit/dc5e97e8090feb46d8c52d5174441aa90f95e146) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@formatjs/ecma402-abstract` to `2.3.2`.
+  Updated dependency `@formatjs/fast-memoize` to `2.2.6`.
+  Updated dependency `intl-messageformat` to `10.7.11`.
+  Updated dependency `@formatjs/icu-messageformat-parser` to `2.9.8`.
+
+- [#2404](https://github.com/scaleway/scaleway-lib/pull/2404) [`09478d8`](https://github.com/scaleway/scaleway-lib/commit/09478d8d64e5b5ac049d44461e6108784833c088) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@formatjs/icu-messageformat-parser` to `2.10.0`.
+  Updated dependency `intl-messageformat` to `10.7.12`.
+
 ## 3.1.9
 
 ### Patch Changes
