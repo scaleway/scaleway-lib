@@ -1,5 +1,12 @@
 # @scaleway/cookie-consent
 
+## 2.0.8
+
+### Patch Changes
+
+- Updated dependencies [[`f4df416`](https://github.com/scaleway/scaleway-lib/commit/f4df4168bcb362f6bd3fc90062fe4560a55867d3)]:
+  - @scaleway/use-segment@1.1.9
+
 ## 2.0.7
 
 ### Patch Changes
