@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/use-i18n",
-  "version": "7.0.8",
+  "version": "7.0.9",
   "description": "A small hook to handle i18n",
   "engines": {
     "node": ">=18.x"
@@ -52,7 +52,7 @@
     "date-fns": "4.1.0",
     "filesize": "10.1.6",
     "international-types": "0.8.1",
-    "intl-messageformat": "10.7.11"
+    "intl-messageformat": "10.7.14"
   },
   "devDependencies": {
     "react": "19.0.0",
