@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.2.6
+
+### Patch Changes
+
+- [#2431](https://github.com/scaleway/scaleway-lib/pull/2431) [`6f8ccd2`](https://github.com/scaleway/scaleway-lib/commit/6f8ccd25993ef07ae61583da3a7d2acc62a21e53) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `eslint` to `9.19.0`.
+
 ## 5.2.5
 
 ### Patch Changes
