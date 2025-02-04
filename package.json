@@ -39,7 +39,7 @@
     "esbuild-plugin-browserslist": "0.15.0",
     "eslint": "9.19.0",
     "globals": "15.14.0",
-    "happy-dom": "16.7.3",
+    "happy-dom": "16.8.1",
     "husky": "9.1.7",
     "lint-staged": "15.4.3",
     "mockdate": "3.0.5",
