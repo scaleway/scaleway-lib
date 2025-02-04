@@ -32,8 +32,32 @@ exports[`generate changeset file > should generate changeset file, commit and pu
 'packageName': patch
 ---
 
-Updated dependency \`package\` to \`version\`.
-Updated dependency \`package2\` to \`version2\`.
+Updated dependency \`packagez\` to \`version2\`.
+Updated dependency \`packagea\` to \`version\`.
+",
+    ],
+  ],
+  "results": [
+    {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`generate changeset file > should generate sorted changeset file, but skip commit and push 1`] = `
+[MockFunction spy] {
+  "calls": [
+    [
+      ".changeset/renovate-test.md",
+      "---
+'packageNameA': patch
+'packageNameB': patch
+---
+
+Updated dependency \`packagea\` to \`version\`.
+Updated dependency \`packagez\` to \`version2\`.
 ",
     ],
   ],
