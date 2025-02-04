@@ -59,12 +59,18 @@ async function createChangeset(
   packageBumps: Map<string, string>,
   packages: string[],
 ) {
-  let message = ''
+  const messageLines = []
 
   for (const [pkg, bump] of packageBumps) {
-    message += `Updated dependency \`${pkg}\` to \`${bump}\`.\n`
+    messageLines.push(`Updated dependency \`${pkg}\` to \`${bump}\`.`)
   }
 
+  if (process.env['SORT_CHANGESETS']) {
+    packages.sort()
+    messageLines.sort()
+  }
+
+  const message = messageLines.join('\n')
   const pkgs = packages.map(pkg => `'${pkg}': patch`).join('\n')
   const body = `---\n${pkgs}\n---\n\n${message.trim()}\n`
   await fs.writeFile(fileName, body)
