@@ -115,7 +115,7 @@ export const processTranslations = async ({
     )}ms\x1b[0m`,
   )
 
-  if (totalUnusedLocales > 0) {
+  if (totalUnusedLocales > 0 && process.env['NODE_ENV'] !== 'test') {
     process.exit(1)
   }
 }
