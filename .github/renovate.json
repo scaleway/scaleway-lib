@@ -1,107 +1,63 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "assignees": [
-    "team:console"
-  ],
+  "assignees": ["team:console"],
   "assigneesSampleSize": 1,
   "automerge": false,
   "dependencyDashboard": true,
-  "enabledManagers": [
-    "github-actions",
-    "npm"
-  ],
-  "extends": [
-    "config:recommended",
-    ":combinePatchMinorReleases"
-  ],
-  "labels": [
-    "dependencies"
-  ],
+  "enabledManagers": ["github-actions", "npm"],
+  "extends": ["config:recommended", ":combinePatchMinorReleases"],
+  "labels": ["dependencies"],
   "prConcurrentLimit": 10,
   "prHourlyLimit": 5,
   "rangeStrategy": "pin",
   "rebaseWhen": "auto",
-  "reviewers": [
-    "team:console"
-  ],
+  "reviewers": ["team:console"],
   "reviewersSampleSize": 2,
   "semanticCommitScope": "deps",
   "semanticCommitType": "chore",
-  "ignorePaths": [
-    "packages_deprecated/**/package.json"
-  ],
+  "ignorePaths": ["packages_deprecated/**/package.json"],
   "packageRules": [
     {
-      "matchDepTypes": [
-        "engines",
-        "peerDependencies"
-      ],
+      "matchDepTypes": ["engines", "peerDependencies"],
       "rangeStrategy": "widen"
     },
     {
-      "matchManagers": [
-        "github-actions"
-      ],
+      "matchManagers": ["github-actions"],
       "semanticCommitScope": "devDeps",
       "automerge": true,
       "autoApprove": true
     },
     {
       "semanticCommitScope": "devDeps",
-      "matchDepTypes": [
-        "packageManager",
-        "devDependencies"
-      ],
-      "matchUpdateTypes": [
-        "major"
-      ]
+      "matchDepTypes": ["packageManager", "devDependencies"],
+      "matchUpdateTypes": ["major"]
     },
     {
       "semanticCommitScope": "devDeps",
-      "matchDepTypes": [
-        "packageManager",
-        "devDependencies"
-      ],
-      "matchUpdateTypes": [
-        "minor",
-        "patch"
-      ]
+      "matchDepTypes": ["packageManager", "devDependencies"],
+      "matchUpdateTypes": ["minor", "patch"]
     },
     {
-      "labels": [
-        "UPDATE-MAJOR"
-      ],
+      "labels": ["UPDATE-MAJOR"],
       "minimumReleaseAge": "14 days",
-      "matchUpdateTypes": [
-        "major"
-      ]
+      "matchUpdateTypes": ["major"]
     },
     {
-      "labels": [
-        "UPDATE-MINOR"
-      ],
+      "labels": ["UPDATE-MINOR"],
       "minimumReleaseAge": "7 days",
-      "matchUpdateTypes": [
-        "minor"
-      ],
+      "matchUpdateTypes": ["minor"],
       "automerge": true,
       "autoApprove": true
     },
     {
-      "labels": [
-        "UPDATE-PATCH"
-      ],
+      "labels": ["UPDATE-PATCH"],
       "minimumReleaseAge": "3 days",
-      "matchUpdateTypes": [
-        "patch"
-      ],
+      "matchUpdateTypes": ["patch"],
       "automerge": true,
       "autoApprove": true
     },
     {
-      "matchDepTypes": [
-        "engines"
-      ],
+      "matchDepTypes": ["engines"],
       "rangeStrategy": "widen"
     }
   ]
