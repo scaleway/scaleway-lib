@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.2.2
+
+### Patch Changes
+
+- [#2461](https://github.com/scaleway/scaleway-lib/pull/2461) [`3779419`](https://github.com/scaleway/scaleway-lib/commit/3779419f6cec8271d99638e0377106bc23a5b75e) Thanks [@Lawndlwd](https://github.com/Lawndlwd)! - fix the cron regex
+
 ## 5.2.1
 
 ### Patch Changes
