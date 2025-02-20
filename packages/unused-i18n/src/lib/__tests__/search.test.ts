@@ -1,7 +1,7 @@
 import * as fs from 'fs'
 import * as path from 'path'
 import { describe, expect, it, vi } from 'vitest'
-import { searchFilesRecursively } from "../search"
+import { searchFilesRecursively } from '../search'
 
 vi.mock('fs')
 
@@ -22,16 +22,16 @@ describe('searchFilesRecursively', () => {
       })),
       readFileSync: vi.fn(filePath => {
         if (filePath === path.join(baseDir, 'file1.js')) {
- return `
+          return `
         import { useI18n } from '@scaleway/use-i18n'
-        ` 
-}
+        `
+        }
         if (filePath === path.join(baseDir, 'file2.js')) return 'no match here'
         if (filePath === path.join(baseDir, 'subdir', 'file3.js')) {
- return `
+          return `
         import { useI18n } from '@scaleway/use-i18n'
-        ` 
-}
+        `
+        }
 
         return ''
       }),

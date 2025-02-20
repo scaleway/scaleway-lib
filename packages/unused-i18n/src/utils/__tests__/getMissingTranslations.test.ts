@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest'
-import { getMissingTranslations } from "../missingTranslations"
-import { shouldExclude } from "../shouldExclude"
+import { getMissingTranslations } from '../missingTranslations'
+import { shouldExclude } from '../shouldExclude'
 
 vi.mock('../../utils/shouldExclude', () => ({
   shouldExclude: vi.fn(),

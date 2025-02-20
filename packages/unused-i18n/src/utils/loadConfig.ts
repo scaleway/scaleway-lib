@@ -1,5 +1,5 @@
 import * as fs from 'fs'
-import * as path from 'path'
+import { extname, resolve } from 'path'
 import { build } from 'esbuild'
 import type { Config } from '../types'
 
@@ -10,7 +10,7 @@ export const loadConfig = async (): Promise<Config> => {
   let configPath = ''
 
   for (const ext of supportedExtensions) {
-    const potentialPath = path.resolve(cwd, `unused-i18n.config${ext}`)
+    const potentialPath = resolve(cwd, `unused-i18n.config${ext}`)
     if (fs.existsSync(potentialPath)) {
       configPath = potentialPath
       break
@@ -23,13 +23,14 @@ export const loadConfig = async (): Promise<Config> => {
     )
   }
 
-  const extension = path.extname(configPath)
+  const extension = extname(configPath)
 
   if (extension === '.json') {
     const configContent = fs.readFileSync(configPath, 'utf-8')
 
     return JSON.parse(configContent) as Config
   }
+
   if (extension === '.ts') {
     const result = await build({
       entryPoints: [configPath],
@@ -41,7 +42,6 @@ export const loadConfig = async (): Promise<Config> => {
     })
 
     const jsCode = result.outputFiles[0]?.text ?? ''
-
     const module = (await import(
       `data:application/javascript,${encodeURIComponent(jsCode)}`
     )) as { default: Config }

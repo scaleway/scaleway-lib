@@ -6,7 +6,8 @@ export const getMissingTranslations = ({
   localLines,
   excludeKey,
   extractedTranslations,
-}: GetMissingTranslationsArgs): string[] => localLines.filter(line => {
+}: GetMissingTranslationsArgs): string[] =>
+  localLines.filter(line => {
     if (shouldExclude({ line, excludeKey })) {
       return false
     }
