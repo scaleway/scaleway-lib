@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.2.0
+
+### Minor Changes
+
+- [#2422](https://github.com/scaleway/scaleway-lib/pull/2422) [`d122517`](https://github.com/scaleway/scaleway-lib/commit/d122517e81259e361368b2a466bbd930fa751d90) Thanks [@garar](https://github.com/garar)! - add an option to sort the message
+
 ## 2.1.2
 
 ### Patch Changes

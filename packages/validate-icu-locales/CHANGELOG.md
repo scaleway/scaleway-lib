@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.11
+
+### Patch Changes
+
+- [#2451](https://github.com/scaleway/scaleway-lib/pull/2451) [`f2365ce`](https://github.com/scaleway/scaleway-lib/commit/f2365ceb4d099f760e5ceb555684aa7543febc2c) Thanks [@philibea](https://github.com/philibea)! - Add ignore tag option to validate icu
+
 ## 3.1.10
 
 ### Patch Changes
