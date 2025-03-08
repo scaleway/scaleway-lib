@@ -1,5 +1,21 @@
 # Change Log
 
+## 5.2.8
+
+### Patch Changes
+
+- [#2478](https://github.com/scaleway/scaleway-lib/pull/2478) [`fc010db`](https://github.com/scaleway/scaleway-lib/commit/fc010dbac40307e772891a425b7227a73096f6de) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `typescript` to `5.8.2`.
+
+- [#2466](https://github.com/scaleway/scaleway-lib/pull/2466) [`a05ca8d`](https://github.com/scaleway/scaleway-lib/commit/a05ca8d717c7db85542559d2a6310d18e4acdfbe) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@eslint/compat` to `1.2.7`.
+
+- [#2477](https://github.com/scaleway/scaleway-lib/pull/2477) [`4880ad6`](https://github.com/scaleway/scaleway-lib/commit/4880ad6cb340ba58bdf70feae116cfcda72ce035) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `eslint-plugin-react-hooks` to `5.2.0`.
+
+- [#2432](https://github.com/scaleway/scaleway-lib/pull/2432) [`d8ab172`](https://github.com/scaleway/scaleway-lib/commit/d8ab172b503516027885903b85b5ef018e055c79) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@stylistic/eslint-plugin` to `3.0.1`.
+
+- [#2473](https://github.com/scaleway/scaleway-lib/pull/2473) [`5ae2fec`](https://github.com/scaleway/scaleway-lib/commit/5ae2fecda858005c9f5e4b0847a814bc6b7159b5) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@eslint/eslintrc` to `3.3.0`.
+
+- [#2468](https://github.com/scaleway/scaleway-lib/pull/2468) [`e19d5a0`](https://github.com/scaleway/scaleway-lib/commit/e19d5a0c05c3e1a5486fbddab8afd94a2957b2c4) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `eslint-config-prettier` to `10.0.2`.
+
 ## 5.2.7
 
 ### Patch Changes
