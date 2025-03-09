@@ -46,7 +46,7 @@
     "dataloader"
   ],
   "devDependencies": {
-    "react": "19.0.0"
+    "react": "catalog:"
   },
   "peerDependencies": {
     "react": "18.x || 19.x"

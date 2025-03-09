@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@scaleway/use-segment": "workspace:*",
-    "react": "19.0.0"
+    "react": "catalog:"
   },
   "dependencies": {
     "@scaleway/random-name": "workspace:*"

@@ -34,26 +34,26 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@emotion/eslint-plugin": "11.12.0",
-    "@eslint/compat": "1.2.7",
-    "@eslint/eslintrc": "3.3.0",
-    "@stylistic/eslint-plugin": "4.0.1",
-    "@typescript-eslint/eslint-plugin": "8.25.0",
-    "@typescript-eslint/parser": "8.25.0",
-    "eslint-config-airbnb": "19.0.4",
-    "eslint-config-prettier": "10.0.2",
-    "eslint-import-resolver-typescript": "3.8.3",
-    "eslint-plugin-eslint-comments": "3.2.0",
-    "eslint-plugin-import": "2.31.0",
-    "eslint-plugin-jsx-a11y": "6.10.2",
-    "eslint-plugin-react": "7.37.4",
-    "eslint-plugin-react-hooks": "5.2.0"
+    "@emotion/eslint-plugin": "catalog:",
+    "@eslint/compat": "catalog:",
+    "@eslint/eslintrc": "catalog:",
+    "@stylistic/eslint-plugin": "catalog:",
+    "@typescript-eslint/eslint-plugin": "catalog:",
+    "@typescript-eslint/parser": "catalog:",
+    "eslint-config-airbnb": "catalog:",
+    "eslint-config-prettier": "catalog:",
+    "eslint-import-resolver-typescript": "catalog:",
+    "eslint-plugin-eslint-comments": "catalog:",
+    "eslint-plugin-import": "catalog:",
+    "eslint-plugin-jsx-a11y": "catalog:",
+    "eslint-plugin-react": "catalog:",
+    "eslint-plugin-react-hooks": "catalog:"
   },
   "peerDependencies": {
     "eslint": ">= 9.x"
   },
   "devDependencies": {
-    "eslint": "9.19.0",
-    "typescript": "5.8.2"
+    "eslint": "catalog:",
+    "typescript": "catalog:"
   }
 }

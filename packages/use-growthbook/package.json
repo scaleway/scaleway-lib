@@ -44,10 +44,10 @@
     "feature flags"
   ],
   "dependencies": {
-    "@growthbook/growthbook-react": "1.4.1"
+    "@growthbook/growthbook-react": "catalog:"
   },
   "devDependencies": {
-    "react": "19.0.0"
+    "react": "catalog:"
   },
   "peerDependencies": {
     "react": "18.x || 19.x"
