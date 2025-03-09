@@ -32,7 +32,7 @@
     "@types/react": "19.0.10",
     "@types/react-dom": "19.0.4",
     "@vitejs/plugin-react": "4.3.4",
-    "@vitest/coverage-istanbul": "3.0.7",
+    "@vitest/coverage-istanbul": "3.0.8",
     "browserslist": "4.24.4",
     "builtin-modules": "4.0.0",
     "cross-env": "7.0.3",
@@ -48,7 +48,7 @@
     "tstyche": "3.5.0",
     "typescript": "5.8.2",
     "vite": "6.2.0",
-    "vitest": "3.0.7",
+    "vitest": "3.0.8",
     "vitest-localstorage-mock": "0.1.2",
     "wait-for-expect": "3.0.2"
   },
