@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.1.12
+
+### Patch Changes
+
+- [#2454](https://github.com/scaleway/scaleway-lib/pull/2454) [`4b5252f`](https://github.com/scaleway/scaleway-lib/commit/4b5252faee2fdeae339b5946b2aa23baf97084bd) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@formatjs/ecma402-abstract` to `2.3.3`.
+  Updated dependency `intl-messageformat` to `10.7.15`.
+  Updated dependency `@formatjs/icu-messageformat-parser` to `2.11.1`.
+
 ## 3.1.11
 
 ### Patch Changes
