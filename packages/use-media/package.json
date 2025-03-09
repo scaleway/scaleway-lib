@@ -49,6 +49,6 @@
     "react": "18.x || 19.x"
   },
   "devDependencies": {
-    "react": "19.0.0"
+    "react": "catalog:"
   }
 }

@@ -47,16 +47,16 @@
     "test:unit:coverage": "pnpm test:unit --coverage"
   },
   "dependencies": {
-    "@formatjs/ecma402-abstract": "2.3.3",
-    "@formatjs/fast-memoize": "2.2.6",
-    "date-fns": "4.1.0",
-    "filesize": "10.1.6",
-    "international-types": "0.8.1",
-    "intl-messageformat": "10.7.15"
+    "@formatjs/ecma402-abstract": "catalog:",
+    "@formatjs/fast-memoize": "catalog:",
+    "date-fns": "catalog:",
+    "filesize": "catalog:",
+    "international-types": "catalog:",
+    "intl-messageformat": "catalog:"
   },
   "devDependencies": {
-    "react": "19.0.0",
-    "react-dom": "19.0.0"
+    "react": "catalog:",
+    "react-dom": "catalog:"
   },
   "peerDependencies": {
     "date-fns": "3.x || 4.x",
