@@ -20,7 +20,7 @@ catalog:
   "@formatjs/icu-messageformat-parser": 2.11.1
   "@growthbook/growthbook-react": 1.4.1
   "@segment/analytics-next": 1.77.0
-  "@stylistic/eslint-plugin": 4.1.0
+  "@stylistic/eslint-plugin": 4.2.0
   "@testing-library/jest-dom": 6.6.3
   "@testing-library/react": 16.2.0
   "@types/jest": 29.5.14
