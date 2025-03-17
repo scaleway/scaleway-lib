@@ -100,8 +100,8 @@ catalogs:
       specifier: 4.24.4
       version: 4.24.4
     builtin-modules:
-      specifier: 4.0.0
-      version: 4.0.0
+      specifier: 5.0.0
+      version: 5.0.0
     cookie:
       specifier: 1.0.2
       version: 1.0.2
@@ -292,7 +292,7 @@ importers:
         version: 4.24.4
       builtin-modules:
         specifier: 'catalog:'
-        version: 4.0.0
+        version: 5.0.0
       cross-env:
         specifier: 'catalog:'
         version: 7.0.3
@@ -2289,8 +2289,8 @@ packages:
   buffer-from@1.1.2:
     resolution: {integrity: sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ==}
 
-  builtin-modules@4.0.0:
-    resolution: {integrity: sha512-p1n8zyCkt1BVrKNFymOHjcDSAl7oq/gUvfgULv2EblgpPVQlQr9yHnWjg9IJ2MhfwPqiYqMMrr01OY7yQoK2yA==}
+  builtin-modules@5.0.0:
+    resolution: {integrity: sha512-bkXY9WsVpY7CvMhKSR6pZilZu9Ln5WDrKVBUXf2S443etkmEO4V58heTecXcUIsNsi4Rx8JUO4NfX1IcQl4deg==}
     engines: {node: '>=18.20'}
 
   cac@6.7.14:
@@ -6630,7 +6630,7 @@ snapshots:
   buffer-from@1.1.2:
     optional: true
 
-  builtin-modules@4.0.0: {}
+  builtin-modules@5.0.0: {}
 
   cac@6.7.14: {}
 
