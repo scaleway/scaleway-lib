@@ -19,7 +19,7 @@ catalog:
   "@formatjs/fast-memoize": 2.2.6
   "@formatjs/icu-messageformat-parser": 2.11.1
   "@growthbook/growthbook-react": 1.4.1
-  "@segment/analytics-next": 1.77.0
+  "@segment/analytics-next": 1.78.0
   "@stylistic/eslint-plugin": 4.2.0
   "@testing-library/jest-dom": 6.6.3
   "@testing-library/react": 16.2.0
@@ -40,7 +40,7 @@ catalog:
   eslint: 9.19.0
   eslint-config-airbnb: 19.0.4
   eslint-config-prettier: 10.1.1
-  eslint-import-resolver-typescript: 3.8.3
+  eslint-import-resolver-typescript: 3.8.7
   eslint-plugin-eslint-comments: 3.2.0
   eslint-plugin-import: 2.31.0
   eslint-plugin-jsx-a11y: 6.10.2
@@ -67,7 +67,7 @@ catalog:
   tstyche: 3.5.0
   typescript: 5.8.2
   use-deep-compare-effect: 1.8.1
-  vite: 6.2.1
+  vite: 6.2.2
   vitest: 3.0.8
   vitest-localstorage-mock: 0.1.2
   wait-for-expect: 3.0.2
