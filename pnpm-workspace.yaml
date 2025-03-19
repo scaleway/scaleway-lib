@@ -40,7 +40,7 @@ catalog:
   eslint: 9.19.0
   eslint-config-airbnb: 19.0.4
   eslint-config-prettier: 10.1.1
-  eslint-import-resolver-typescript: 3.8.3
+  eslint-import-resolver-typescript: 3.8.7
   eslint-plugin-eslint-comments: 3.2.0
   eslint-plugin-import: 2.31.0
   eslint-plugin-jsx-a11y: 6.10.2
