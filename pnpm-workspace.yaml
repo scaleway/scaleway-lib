@@ -37,7 +37,7 @@ catalog:
   cross-env: 7.0.3
   date-fns: 4.1.0
   esbuild-plugin-browserslist: 0.16.0
-  eslint: 9.19.0
+  eslint: 9.22.0
   eslint-config-airbnb: 19.0.4
   eslint-config-prettier: 10.1.1
   eslint-import-resolver-typescript: 3.8.7
