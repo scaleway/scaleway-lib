@@ -44,6 +44,7 @@ import {
   phone,
   reverseDNS,
   s3BucketName,
+  sgPortRange,
   sixDigitsCode,
   spaces,
   uppercaseBasicDomain,
@@ -1060,6 +1061,60 @@ describe('@regex', () => {
       ],
     ])('should match regex %s to be %s', (string, expected) => {
       expect(absolutePath.test(string)).toBe(expected)
+    })
+  })
+
+  describe('sgPortRange', () => {
+    test.each([
+      // Valid single ports
+      ['1', true],
+      ['80', true],
+      ['443', true],
+      ['8080', true],
+      ['65535', true],
+
+      // Valid port ranges
+      ['1-80', true],
+      ['80-443', true],
+      ['1000-2000', true],
+      ['1-65535', true],
+      ['8080-8090', true],
+
+      // Edge cases for valid ports
+      ['1-1', true],
+      ['65535-65535', true],
+
+      // Invalid: Port 0 not allowed => but regex was like that so product might accept it, keep it like that for now
+      ['0', true],
+      ['0-80', true],
+      ['80-0', true],
+
+      // Invalid: Ports above 65535
+      ['65536', false],
+      ['70000', false],
+      ['1-70000', false],
+      ['65536-65537', false],
+
+      // Invalid formats
+      ['', false],
+      ['a', false],
+      ['1a', false],
+      ['a1', false],
+      ['1,2', false],
+      ['1:2', false],
+      ['1 - 2', false],
+      ['1~2', false],
+      ['1-2-3', false],
+      ['1-', false],
+      ['-1', false],
+      ['-', false],
+      ['1--2', false],
+
+      // Edge cases
+      ['65534-65535', true],
+      ['65535-65535', true],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(sgPortRange.test(string)).toBe(expected)
     })
   })
 })
