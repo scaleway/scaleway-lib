@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.2.0
+
+### Minor Changes
+
+- [#2282](https://github.com/scaleway/scaleway-lib/pull/2282) [`d153ea4`](https://github.com/scaleway/scaleway-lib/commit/d153ea43f8d052a57f1d8cfa33b99142ab4432a0) Thanks [@DorianMaliszewski](https://github.com/DorianMaliszewski)! - Add useInfiniteDataLoader
+
 ## 5.1.3
 
 ### Patch Changes

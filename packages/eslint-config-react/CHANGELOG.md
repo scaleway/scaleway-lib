@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.2.9
+
+### Patch Changes
+
+- [#2490](https://github.com/scaleway/scaleway-lib/pull/2490) [`68ed15b`](https://github.com/scaleway/scaleway-lib/commit/68ed15b136bfd609a29dd74e494f149ca36f0f0b) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@stylistic/eslint-plugin` to `4.1.0`.
+
 ## 5.2.8
 
 ### Patch Changes
