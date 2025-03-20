@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.3.0
+
+### Minor Changes
+
+- [#2514](https://github.com/scaleway/scaleway-lib/pull/2514) [`69dc566`](https://github.com/scaleway/scaleway-lib/commit/69dc566a431ebb9e8d2e8cd4c58508f9a9409b03) Thanks [@alexandre-combemorel](https://github.com/alexandre-combemorel)! - Add new regex for port security group handling
+
 ## 5.2.2
 
 ### Patch Changes
