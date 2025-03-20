@@ -5,6 +5,7 @@ import {
   KEY_IS_NOT_STRING_ERROR,
 } from './constants'
 import DataLoader from './dataloader'
+import { marshalQueryKey } from './helpers'
 import type { OnErrorFn, PromiseType } from './types'
 
 type CachedData = Record<string, unknown>
@@ -39,6 +40,7 @@ export type IDataLoaderContext = {
     key: string,
     args: UseDataLoaderInitializerArgs<ResultType>,
   ) => DataLoader<ResultType, ErrorType>
+  computeKey: (key: string) => string
   cacheKeyPrefix?: string
   onError?: (error: Error) => void | Promise<void>
   clearAllCachedData: () => void
@@ -65,14 +67,14 @@ type DataLoaderProviderProps = {
 
 const DataLoaderProvider = ({
   children,
-  cacheKeyPrefix = '',
+  cacheKeyPrefix,
   onError,
   maxConcurrentRequests = DEFAULT_MAX_CONCURRENT_REQUESTS,
 }: DataLoaderProviderProps): ReactElement => {
   const requestsRef = useRef<Requests>({})
 
   const computeKey = useCallback(
-    (key: string) => `${cacheKeyPrefix ? `${cacheKeyPrefix}-` : ''}${key}`,
+    (key: string) => marshalQueryKey([cacheKeyPrefix, key]),
     [cacheKeyPrefix],
   )
 
@@ -201,6 +203,7 @@ const DataLoaderProvider = ({
       reload,
       reloadAll,
       reloadGroup,
+      computeKey,
     }),
     [
       addRequest,
@@ -215,6 +218,7 @@ const DataLoaderProvider = ({
       reload,
       reloadAll,
       reloadGroup,
+      computeKey,
     ],
   )
 

@@ -97,21 +97,16 @@ export type UseDataLoaderResult<ResultType, ErrorType> = {
 export type UseInfiniteDataLoaderConfig<
   ResultType,
   ErrorType extends Error,
-  ParamsType,
+  ParamsType extends Record<string, unknown>,
   ParamsKey extends keyof ParamsType,
 > = Omit<UseDataLoaderConfig<ResultType, ErrorType>, 'initialData'> & {
   /**
-   * Params will be forwarded to method
-   */
-  params: ParamsType
-  /**
-   * The key to change in params
-   */
-  pageKey: ParamsKey
-  /**
    * If return undefined it consider that there are no remaining page to load
    */
-  getNextPage: (result: ResultType) => ParamsType[ParamsKey]
+  getNextPage: (
+    lastRes: ResultType,
+    lastParams: ParamsType,
+  ) => ParamsType[ParamsKey]
   /**
    * The initial data if no one is present in the cache before the request
    */

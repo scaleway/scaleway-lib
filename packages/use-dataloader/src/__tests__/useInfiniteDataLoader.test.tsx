@@ -12,10 +12,6 @@ const config: UseInfiniteDataLoaderConfig<
   'page'
 > = {
   getNextPage: result => result.nextPage,
-  pageKey: 'page',
-  params: {
-    page: 1,
-  },
   enabled: true,
 }
 
@@ -41,6 +37,9 @@ const getPrerequisite = (key: string) => {
 
   return {
     initialProps: {
+      baseParams: {
+        page: 1,
+      },
       config: {
         enabled: true,
       },
@@ -65,7 +64,14 @@ describe('useInfinitDataLoader', () => {
   it('should get the first page on mount while enabled', async () => {
     const { setCanResolve, initialProps } = getPrerequisite('test1')
     const { result } = renderHook(
-      props => useInfiniteDataLoader(props.key, props.method, config),
+      props =>
+        useInfiniteDataLoader(
+          props.key,
+          props.method,
+          props.baseParams,
+          'page',
+          config,
+        ),
       {
         initialProps,
         wrapper,
@@ -86,7 +92,14 @@ describe('useInfinitDataLoader', () => {
   it('should get the first and loadMore one page on mount while enabled', async () => {
     const { setCanResolve, initialProps } = getPrerequisite('test2')
     const { result } = renderHook(
-      props => useInfiniteDataLoader(props.key, props.method, config),
+      props =>
+        useInfiniteDataLoader(
+          props.key,
+          props.method,
+          props.baseParams,
+          'page',
+          config,
+        ),
       {
         initialProps,
         wrapper,
@@ -129,7 +142,14 @@ describe('useInfinitDataLoader', () => {
     const { setCanResolve, initialProps, resetCounter } =
       getPrerequisite('test3')
     const { result } = renderHook(
-      props => useInfiniteDataLoader(props.key, props.method, config),
+      props =>
+        useInfiniteDataLoader(
+          props.key,
+          props.method,
+          props.baseParams,
+          'page',
+          config,
+        ),
       {
         initialProps,
         wrapper,
@@ -191,7 +211,14 @@ describe('useInfinitDataLoader', () => {
       },
     }
     const { result, rerender } = renderHook(
-      props => useInfiniteDataLoader(props.key, props.method, props.config),
+      props =>
+        useInfiniteDataLoader(
+          props.key,
+          props.method,
+          props.baseParams,
+          'page',
+          props.config,
+        ),
       {
         initialProps: localInitialProps,
         wrapper,

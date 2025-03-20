@@ -16,11 +16,13 @@ import type {
 export const useInfiniteDataLoader = <
   ResultType = unknown,
   ErrorType extends Error = Error,
-  ParamsType = unknown,
+  ParamsType extends Record<string, unknown> = Record<string, unknown>,
   ParamsPageKey extends keyof ParamsType = keyof ParamsType,
 >(
   baseKey: KeyType,
-  method: (params?: ParamsType) => PromiseType<ResultType>,
+  method: (params: ParamsType) => PromiseType<ResultType>,
+  baseParams: ParamsType,
+  pageParamKey: ParamsPageKey,
   config?: UseInfiniteDataLoaderConfig<
     ResultType,
     ErrorType,
@@ -28,7 +30,11 @@ export const useInfiniteDataLoader = <
     ParamsPageKey
   >,
 ): UseInfiniteDataLoaderResult<ResultType, ErrorType> => {
-  const { getOrAddRequest, onError: onGlobalError } = useDataLoaderContext()
+  const {
+    getOrAddRequest,
+    computeKey,
+    onError: onGlobalError,
+  } = useDataLoaderContext()
   const {
     enabled = true,
     onError,
@@ -36,23 +42,23 @@ export const useInfiniteDataLoader = <
     keepPreviousData = false,
     initialData,
     dataLifetime,
-    pageKey,
-    params,
     getNextPage,
   } = config ?? {}
   const requestRefs = useRef<DataLoader<ResultType, ErrorType>[]>([])
-  const [page, setPage] = useState(
-    params && pageKey ? params[pageKey] : undefined,
-  )
+  const [page, setPage] = useState(baseParams[pageParamKey])
   const nextPageRef = useRef(page)
   const getNextPageRef = useRef(getNextPage)
   const methodRef = useRef(() =>
     method(
-      pageKey && page ? ({ ...params, [pageKey]: page } as ParamsType) : params,
+      pageParamKey && page
+        ? ({ ...baseParams, [pageParamKey]: page } as ParamsType)
+        : baseParams,
     ),
   )
   const paramsRef = useRef(
-    pageKey && page ? ({ ...params, [pageKey]: page } as ParamsType) : params,
+    pageParamKey && page
+      ? ({ ...baseParams, [pageParamKey]: page } as ParamsType)
+      : baseParams,
   )
   const onSuccessRef = useRef(onSuccess)
   const onErrorRef = useRef(onError ?? onGlobalError)
@@ -62,30 +68,36 @@ export const useInfiniteDataLoader = <
     setCounter(current => current + 1)
   }, [])
 
-  const baseQueryKey = useMemo(
-    () => marshalQueryKey([marshalQueryKey(baseKey), page as string | number]),
-    [baseKey, page],
-  )
-
-  useEffect(() => {
-    requestRefs.current.forEach(request => request.removeObserver(() => null))
-    requestRefs.current = []
-    forceRerender()
-  }, [baseKey, forceRerender])
+  const baseQueryKey = useMemo(() => marshalQueryKey(baseKey), [baseKey])
 
   useEffect(
     () => () => {
-      requestRefs.current.forEach(request => request.removeObserver(() => null))
+      requestRefs.current.forEach(request =>
+        request.removeObserver(forceRerender),
+      )
     },
-    [],
+    [forceRerender],
   )
 
-  const getCurrentRequest = useCallback(() => {
-    const requestInRef = requestRefs.current.find(
-      request => request.key === baseQueryKey,
+  const getCurrentRequest = () => {
+    const currentQueryKey = marshalQueryKey([
+      baseQueryKey,
+      'infinite',
+      page as string | number,
+    ])
+    requestRefs.current.forEach(request =>
+      !request.key.startsWith(computeKey(baseQueryKey))
+        ? request.removeObserver(forceRerender)
+        : undefined,
+    )
+    requestRefs.current = requestRefs.current.filter(({ key }) =>
+      key.startsWith(computeKey(baseQueryKey)),
+    )
+    const requestInRef = requestRefs.current.find(request =>
+      request.key.endsWith(currentQueryKey),
     )
     if (!requestInRef) {
-      const request = getOrAddRequest<ResultType, ErrorType>(baseQueryKey, {
+      const request = getOrAddRequest<ResultType, ErrorType>(currentQueryKey, {
         enabled,
         method: methodRef.current,
       })
@@ -96,7 +108,7 @@ export const useInfiniteDataLoader = <
     }
 
     return requestInRef
-  }, [baseQueryKey, forceRerender, enabled, getOrAddRequest])
+  }
 
   const request = getCurrentRequest()
 
@@ -166,8 +178,10 @@ export const useInfiniteDataLoader = <
 
   useEffect(() => {
     paramsRef.current =
-      pageKey && page ? ({ ...params, [pageKey]: page } as ParamsType) : params
-  }, [params, pageKey, page])
+      pageParamKey && page
+        ? ({ ...baseParams, [pageParamKey]: page } as ParamsType)
+        : baseParams
+  }, [baseParams, pageParamKey, page])
 
   useEffect(() => {
     if (needLoad) {
@@ -180,6 +194,7 @@ export const useInfiniteDataLoader = <
           if (getNextPageRef.current) {
             nextPageRef.current = getNextPageRef.current(
               result,
+              paramsRef.current,
             ) as typeof nextPageRef.current
           }
           await onSuccessLoad(result)
@@ -203,9 +218,10 @@ export const useInfiniteDataLoader = <
       isLoadingFirstPage,
       data:
         isLoadingFirstPage ||
-        requestRefs.current.filter(dataloader => !!dataloader.data).length === 0
+        [...requestRefs.current].filter(dataloader => !!dataloader.data)
+          .length === 0
           ? initialData
-          : (requestRefs.current
+          : ([...requestRefs.current]
               .filter(dataloader => !!dataloader.data)
               .map(dataloader => dataloader.data) as ResultType[]),
       error: request.error,
@@ -213,6 +229,7 @@ export const useInfiniteDataLoader = <
       loadMore,
     }),
     [
+      initialData,
       isIdle,
       isLoading,
       isSuccess,
@@ -221,7 +238,6 @@ export const useInfiniteDataLoader = <
       isLoadingFirstPage,
       reload,
       loadMore,
-      initialData,
     ],
   )
 
