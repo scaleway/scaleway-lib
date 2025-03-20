@@ -5,6 +5,7 @@ import {
   KEY_IS_NOT_STRING_ERROR,
 } from './constants'
 import DataLoader from './dataloader'
+import { marshalQueryKey } from './helpers'
 import type { OnErrorFn, PromiseType } from './types'
 
 type CachedData = Record<string, unknown>
@@ -39,6 +40,7 @@ export type IDataLoaderContext = {
     key: string,
     args: UseDataLoaderInitializerArgs<ResultType>,
   ) => DataLoader<ResultType, ErrorType>
+  computeKey: (key: string) => string
   cacheKeyPrefix?: string
   onError?: (error: Error) => void | Promise<void>
   clearAllCachedData: () => void
@@ -50,6 +52,7 @@ export type IDataLoaderContext = {
   ) => DataLoader<ResultType, ErrorType>
   reload: (key?: string) => Promise<void>
   reloadAll: () => Promise<void>
+  reloadGroup: (startKey?: string) => Promise<void>
 }
 
 // @ts-expect-error we force the context to undefined, should be corrected with default values
@@ -64,14 +67,14 @@ type DataLoaderProviderProps = {
 
 const DataLoaderProvider = ({
   children,
-  cacheKeyPrefix = '',
+  cacheKeyPrefix,
   onError,
   maxConcurrentRequests = DEFAULT_MAX_CONCURRENT_REQUESTS,
 }: DataLoaderProviderProps): ReactElement => {
   const requestsRef = useRef<Requests>({})
 
   const computeKey = useCallback(
-    (key: string) => `${cacheKeyPrefix ? `${cacheKeyPrefix}-` : ''}${key}`,
+    (key: string) => marshalQueryKey([cacheKeyPrefix, key]),
     [cacheKeyPrefix],
   )
 
@@ -136,6 +139,16 @@ const DataLoaderProvider = ({
     [getRequest],
   )
 
+  const reloadGroup = useCallback(async (startPrefix?: string) => {
+    if (startPrefix && typeof startPrefix === 'string') {
+      await Promise.all(
+        Object.values(requestsRef.current)
+          .filter(request => request.key.startsWith(startPrefix))
+          .map(request => request.load(true)),
+      )
+    } else throw new Error(KEY_IS_NOT_STRING_ERROR)
+  }, [])
+
   const reloadAll = useCallback(async () => {
     await Promise.all(
       Object.values(requestsRef.current).map(request => request.load(true)),
@@ -189,6 +202,8 @@ const DataLoaderProvider = ({
       onError,
       reload,
       reloadAll,
+      reloadGroup,
+      computeKey,
     }),
     [
       addRequest,
@@ -202,6 +217,8 @@ const DataLoaderProvider = ({
       onError,
       reload,
       reloadAll,
+      reloadGroup,
+      computeKey,
     ],
   )
 
