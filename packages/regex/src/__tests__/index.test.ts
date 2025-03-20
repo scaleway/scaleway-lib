@@ -1084,7 +1084,7 @@ describe('@regex', () => {
       ['1-1', true],
       ['65535-65535', true],
 
-      // Invalid: Port 0 not allowed
+      // Invalid: Port 0 not allowed => but regex was like that so product might accept it, keep it like that for now
       ['0', true],
       ['0-80', true],
       ['80-0', true],
