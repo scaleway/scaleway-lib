@@ -62,7 +62,7 @@ catalog:
   react-dom: 19.0.0
   react-router-dom: 6.29.0
   read-pkg: 9.0.1
-  shx: 0.3.4
+  shx: 0.4.0
   simple-git: 3.27.0
   tstyche: 3.5.0
   typescript: 5.8.2
