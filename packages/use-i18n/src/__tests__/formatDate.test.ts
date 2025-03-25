@@ -73,7 +73,7 @@ describe('formatDate', () => {
       // @ts-expect-error we check a failing case
       formatDate('fr', 1581607680000, 'not a valid format'),
     ).toThrowError(
-      'format "not a valid format" should be one of hour, hourOnly, long, short, shortWithoutDay, numeric, numericHour or a valid Intl.DateTimeFormat options object',
+      'format "not a valid format" should be one of second, hour, hourOnly, long, short, shortWithoutDay, numeric, numericHour or a valid Intl.DateTimeFormat options object',
     )
   })
 })
