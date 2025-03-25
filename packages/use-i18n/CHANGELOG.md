@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0
+
+### Minor Changes
+
+- [#2522](https://github.com/scaleway/scaleway-lib/pull/2522) [`404c277`](https://github.com/scaleway/scaleway-lib/commit/404c277db99c5ad16b0b1c8505d51cd4cdfb8f6a) Thanks [@MathildeJolly](https://github.com/MathildeJolly)! - feat: add format second to formatDate
+
 ## 7.0.10
 
 ### Patch Changes
