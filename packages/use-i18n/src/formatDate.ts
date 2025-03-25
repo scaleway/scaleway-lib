@@ -1,6 +1,15 @@
 import { formatISO, intlFormat } from 'date-fns'
 
 const formatOptions = {
+  second: {
+    // Expected output format: 13 February 2025 at 4:28:00
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+  },
   hour: {
     // Expected output format: February 13, 2020, 4:28 PM
     day: 'numeric',
