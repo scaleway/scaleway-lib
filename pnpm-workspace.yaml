@@ -19,7 +19,7 @@ catalog:
   "@formatjs/fast-memoize": 2.2.6
   "@formatjs/icu-messageformat-parser": 2.11.1
   "@growthbook/growthbook-react": 1.4.1
-  "@segment/analytics-next": 1.78.1
+  "@segment/analytics-next": 1.79.0
   "@stylistic/eslint-plugin": 4.2.0
   "@testing-library/jest-dom": 6.6.3
   "@testing-library/react": 16.2.0
