@@ -61,8 +61,8 @@ catalogs:
       specifier: 1.4.1
       version: 1.4.1
     '@segment/analytics-next':
-      specifier: 1.78.1
-      version: 1.78.1
+      specifier: 1.79.0
+      version: 1.79.0
     '@stylistic/eslint-plugin':
       specifier: 4.2.0
       version: 4.2.0
@@ -507,7 +507,7 @@ importers:
     dependencies:
       '@segment/analytics-next':
         specifier: 'catalog:'
-        version: 1.78.1
+        version: 1.79.0
       use-deep-compare-effect:
         specifier: 'catalog:'
         version: 1.8.1(react@19.0.0)
@@ -1907,8 +1907,8 @@ packages:
   '@segment/analytics-generic-utils@1.2.0':
     resolution: {integrity: sha512-DfnW6mW3YQOLlDQQdR89k4EqfHb0g/3XvBXkovH1FstUN93eL1kfW9CsDcVQyH3bAC5ZsFyjA/o/1Q2j0QeoWw==}
 
-  '@segment/analytics-next@1.78.1':
-    resolution: {integrity: sha512-jnM/nXPBeq5Y2IxDWA+P2Dlz5YzpEaPF/n0bTPjkDf+XuRAZyLAe/7iS8zwa6Q2hlweMfXhNcymCW1119/xiig==}
+  '@segment/analytics-next@1.79.0':
+    resolution: {integrity: sha512-56k8WV8W/LK1pnhSj68sogatsicxQ6FBfA8nR9lRYcdRQkJ+l3zv3m5AZVVhiV5J75DKSpxWsVZwJ1DtVtIRNw==}
 
   '@segment/analytics.js-video-plugins@0.2.1':
     resolution: {integrity: sha512-lZwCyEXT4aaHBLNK433okEKdxGAuyrVmop4BpQqQSJuRz0DglPZgd9B/XjiiWs1UyOankg2aNYMN3VcS8t4eSQ==}
@@ -6318,7 +6318,7 @@ snapshots:
     dependencies:
       tslib: 2.7.0
 
-  '@segment/analytics-next@1.78.1':
+  '@segment/analytics-next@1.79.0':
     dependencies:
       '@lukeed/uuid': 2.0.1
       '@segment/analytics-core': 1.8.1
