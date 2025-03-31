@@ -40,6 +40,7 @@ import {
   ipv6Cidr,
   macAddress,
   nineDigitsCode,
+  password,
   pathSegment,
   phone,
   reverseDNS,
@@ -1115,6 +1116,18 @@ describe('@regex', () => {
       ['65535-65535', true],
     ])('should match regex %s to be %s', (string, expected) => {
       expect(sgPortRange.test(string)).toBe(expected)
+    })
+  })
+
+  describe('password', () => {
+    test.each([
+      ['password', true],
+      ['Password123!', true],
+      ['Password123!@#', true],
+      ['password`', false],
+      ['Password`123!@#', false],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(password.test(string)).toBe(expected)
     })
   })
 })

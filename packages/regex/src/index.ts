@@ -92,3 +92,6 @@ export const absolutePath = /^\/(([\w. -]*)[^\s?]\/?)+$/
 // A port range between 1 to 65535 separated by an hypen or a single number
 export const sgPortRange =
   /^(6553[0-5]|655[0-2][0-9]|65[0-4][0-9]{2}|6[0-4][0-9]{3}|[1-5]?[0-9]{1,4})(-(6553[0-5]|655[0-2][0-9]|65[0-4][0-9]{2}|6[0-4][0-9]{3}|[1-5]?[0-9]{1,4}))?$/
+
+// Include all characters except backtick `
+export const password = /^[^`]+$/
