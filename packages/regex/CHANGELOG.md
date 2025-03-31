@@ -1,5 +1,13 @@
 # Change Log
 
+## 5.3.1
+
+### Patch Changes
+
+- [#2533](https://github.com/scaleway/scaleway-lib/pull/2533) [`8b076aa`](https://github.com/scaleway/scaleway-lib/commit/8b076aa0e1b603401b680c0282b0cc9248c6fe30) Thanks [@MathildeJolly](https://github.com/MathildeJolly)! - feat(regex): add regex for password
+
+- [#2536](https://github.com/scaleway/scaleway-lib/pull/2536) [`91acf46`](https://github.com/scaleway/scaleway-lib/commit/91acf4694a876ef816f1e078320dfa966b8a031f) Thanks [@MathildeJolly](https://github.com/MathildeJolly)! - fix(regex): exclude @ as first letter for password regex
+
 ## 5.3.0
 
 ### Minor Changes
