@@ -1126,6 +1126,7 @@ describe('@regex', () => {
       ['Password123!@#', true],
       ['password`', false],
       ['Password`123!@#', false],
+      ['@Password123!@#', false],
     ])('should match regex %s to be %s', (string, expected) => {
       expect(password.test(string)).toBe(expected)
     })

@@ -93,5 +93,5 @@ export const absolutePath = /^\/(([\w. -]*)[^\s?]\/?)+$/
 export const sgPortRange =
   /^(6553[0-5]|655[0-2][0-9]|65[0-4][0-9]{2}|6[0-4][0-9]{3}|[1-5]?[0-9]{1,4})(-(6553[0-5]|655[0-2][0-9]|65[0-4][0-9]{2}|6[0-4][0-9]{3}|[1-5]?[0-9]{1,4}))?$/
 
-// Include all characters except backtick `
-export const password = /^[^`]+$/
+// Include all characters except backtick ` and @ as first character
+export const password = /^(?!@)[^`]*$/
