@@ -37,6 +37,12 @@ async function getPackagesNames(files: string[]): Promise<string[]> {
       name: string
       workspaces?: string[]
       version?: string
+      private?: boolean  // Add this type definition
+    }
+
+    // Skip if the package is private
+    if (data.private) {
+      return
     }
 
     if (shouldIgnorePackage(data.name, ignoredPackages)) {
@@ -53,6 +59,7 @@ async function getPackagesNames(files: string[]): Promise<string[]> {
 
   return packages
 }
+
 
 async function createChangeset(
   fileName: string,
