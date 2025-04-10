@@ -37,10 +37,9 @@ async function getPackagesNames(files: string[]): Promise<string[]> {
       name: string
       workspaces?: string[]
       version?: string
-      private?: boolean  // Add this type definition
+      private?: boolean
     }
 
-    // Skip if the package is private
     if (data.private) {
       return
     }
