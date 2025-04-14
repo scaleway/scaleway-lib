@@ -14,10 +14,6 @@ type Requests = Record<string, DataLoader<unknown, unknown>>
 
 type UseDataLoaderInitializerArgs<ResultType = unknown> = {
   method: () => PromiseType<ResultType>
-  /**
-   * Max time before data from previous success is considered as outdated (in millisecond)
-   */
-  maxDataLifetime?: number
   enabled?: boolean
 }
 
@@ -42,6 +38,7 @@ export type IDataLoaderContext = {
   ) => DataLoader<ResultType, ErrorType>
   computeKey: (key: string) => string
   cacheKeyPrefix?: string
+  defaultDatalifetime?: number
   onError?: (error: Error) => void | Promise<void>
   clearAllCachedData: () => void
   clearCachedData: (key: string) => void
@@ -63,6 +60,10 @@ type DataLoaderProviderProps = {
   cacheKeyPrefix?: string
   onError?: OnErrorFn
   maxConcurrentRequests?: number
+  /**
+   * Default request lifetime in milliseconds. It doesnt override values passed to hooks
+   */
+  defaultDatalifetime?: number
 }
 
 const DataLoaderProvider = ({
@@ -70,6 +71,7 @@ const DataLoaderProvider = ({
   cacheKeyPrefix,
   onError,
   maxConcurrentRequests = DEFAULT_MAX_CONCURRENT_REQUESTS,
+  defaultDatalifetime,
 }: DataLoaderProviderProps): ReactElement => {
   const requestsRef = useRef<Requests>({})
 
@@ -204,6 +206,7 @@ const DataLoaderProvider = ({
       reloadAll,
       reloadGroup,
       computeKey,
+      defaultDatalifetime,
     }),
     [
       addRequest,
@@ -219,6 +222,7 @@ const DataLoaderProvider = ({
       reloadAll,
       reloadGroup,
       computeKey,
+      defaultDatalifetime,
     ],
   )
 

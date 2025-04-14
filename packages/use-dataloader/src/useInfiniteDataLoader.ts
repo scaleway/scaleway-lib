@@ -34,6 +34,7 @@ export const useInfiniteDataLoader = <
     getOrAddRequest,
     computeKey,
     onError: onGlobalError,
+    defaultDatalifetime,
   } = useDataLoaderContext()
   const {
     enabled = true,
@@ -44,24 +45,32 @@ export const useInfiniteDataLoader = <
     dataLifetime,
     getNextPage,
   } = config ?? {}
+  const computedDatalifetime = dataLifetime ?? defaultDatalifetime
   const requestRefs = useRef<DataLoader<ResultType, ErrorType>[]>([])
   const [page, setPage] = useState(baseParams[pageParamKey])
   const nextPageRef = useRef(page)
-  const getNextPageRef = useRef(getNextPage)
-  const methodRef = useRef(() =>
-    method(
-      pageParamKey && page
-        ? ({ ...baseParams, [pageParamKey]: page } as ParamsType)
-        : baseParams,
-    ),
+
+  const getNextPageFnRef = useRef(
+    (...params: Parameters<NonNullable<typeof getNextPage>>) =>
+      getNextPage ? getNextPage(...params) : undefined,
   )
-  const paramsRef = useRef(
-    pageParamKey && page
-      ? ({ ...baseParams, [pageParamKey]: page } as ParamsType)
-      : baseParams,
+
+  const getParamsRef = useRef(() => ({
+    ...baseParams,
+    [pageParamKey]: nextPageRef.current,
+  }))
+
+  const getMethodRef = useRef(() => method(getParamsRef.current()))
+
+  const getOnSuccessRef = useRef(
+    (...params: Parameters<NonNullable<typeof onSuccess>>) =>
+      onSuccess?.(...params),
   )
-  const onSuccessRef = useRef(onSuccess)
-  const onErrorRef = useRef(onError ?? onGlobalError)
+
+  const getOnErrorRef = useRef(
+    (err: ErrorType) => onError?.(err) ?? onGlobalError?.(err),
+  )
+
   const [, setCounter] = useState(0)
 
   const forceRerender = useCallback(() => {
@@ -99,7 +108,7 @@ export const useInfiniteDataLoader = <
     if (!requestInRef) {
       const request = getOrAddRequest<ResultType, ErrorType>(currentQueryKey, {
         enabled,
-        method: methodRef.current,
+        method: getMethodRef.current,
       })
       requestRefs.current.push(request)
       request.addObserver(forceRerender)
@@ -117,12 +126,12 @@ export const useInfiniteDataLoader = <
       !!(
         enabled &&
         (!request.dataUpdatedAt ||
-          !dataLifetime ||
+          !computedDatalifetime ||
           (request.dataUpdatedAt &&
-            dataLifetime &&
-            request.dataUpdatedAt + dataLifetime < Date.now()))
+            computedDatalifetime &&
+            request.dataUpdatedAt + computedDatalifetime < Date.now()))
       ),
-    [enabled, request.dataUpdatedAt, dataLifetime],
+    [enabled, request.dataUpdatedAt, computedDatalifetime],
   )
 
   const optimisticIsLoadingRef = useRef(needLoad)
@@ -149,22 +158,28 @@ export const useInfiniteDataLoader = <
   const reload = useCallback(async () => {
     await Promise.all(
       requestRefs.current.map(req =>
-        req.load(true).then(onSuccessRef.current).catch(onErrorRef.current),
+        req
+          .load(true)
+          .then(getOnSuccessRef.current)
+          .catch(getOnErrorRef.current),
       ),
     )
   }, [])
 
+  const loadMore = useCallback(() => {
+    const nextPage = nextPageRef.current
+    if (nextPage) {
+      setPage(() => nextPage)
+      getParamsRef.current = () => ({
+        ...baseParams,
+        [pageParamKey]: nextPage,
+      })
+    }
+  }, [baseParams, pageParamKey])
+
   useEffect(() => {
-    request.method = () => method(paramsRef.current)
+    request.method = () => method(getParamsRef.current())
   }, [method, request])
-
-  useEffect(() => {
-    onSuccessRef.current = onSuccess
-  }, [onSuccess])
-
-  useEffect(() => {
-    onErrorRef.current = onError ?? onGlobalError
-  }, [onError, onGlobalError])
 
   useEffect(() => {
     if (keepPreviousData) {
@@ -172,31 +187,27 @@ export const useInfiniteDataLoader = <
     }
   }, [request.data, keepPreviousData])
 
+  // Reset page when baseParams or pageParamKey change
   useEffect(() => {
-    getNextPageRef.current = getNextPage
-  }, [getNextPage])
-
-  useEffect(() => {
-    paramsRef.current =
-      pageParamKey && page
-        ? ({ ...baseParams, [pageParamKey]: page } as ParamsType)
-        : baseParams
-  }, [baseParams, pageParamKey, page])
+    setPage(() => baseParams[pageParamKey])
+    nextPageRef.current = baseParams[pageParamKey]
+    getParamsRef.current = () => ({
+      ...baseParams,
+      [pageParamKey]: nextPageRef.current,
+    })
+  }, [baseParams, pageParamKey])
 
   useEffect(() => {
     if (needLoad) {
-      const defaultOnSuccessOrError = () => {}
-      const onSuccessLoad = onSuccessRef.current ?? defaultOnSuccessOrError
-      const onFailedLoad = onErrorRef.current ?? defaultOnSuccessOrError
+      const onSuccessLoad = getOnSuccessRef.current
+      const onFailedLoad = getOnErrorRef.current
       request
         .load()
         .then(async result => {
-          if (getNextPageRef.current) {
-            nextPageRef.current = getNextPageRef.current(
-              result,
-              paramsRef.current,
-            ) as typeof nextPageRef.current
-          }
+          nextPageRef.current = getNextPageFnRef.current(
+            result,
+            getParamsRef.current(),
+          ) as typeof page
           await onSuccessLoad(result)
         })
         .catch(onFailedLoad)
@@ -204,9 +215,22 @@ export const useInfiniteDataLoader = <
     optimisticIsLoadingRef.current = false
   }, [needLoad, request])
 
-  const loadMore = useCallback(() => {
-    setPage(nextPageRef.current)
-  }, [])
+  useEffect(() => {
+    getParamsRef.current = () => ({
+      ...baseParams,
+      [pageParamKey]: nextPageRef.current,
+    })
+  }, [baseParams, pageParamKey])
+  useEffect(() => {
+    getOnSuccessRef.current = (...params) => onSuccess?.(...params)
+  }, [onSuccess])
+  useEffect(() => {
+    getOnErrorRef.current = err => onError?.(err) ?? onGlobalError?.(err)
+  }, [onError, onGlobalError])
+  useEffect(() => {
+    getNextPageFnRef.current = (...params) =>
+      getNextPage ? getNextPage(...params) : undefined
+  }, [getNextPage])
 
   const data = useMemo<UseInfiniteDataLoaderResult<ResultType, ErrorType>>(
     () => ({

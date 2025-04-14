@@ -23,7 +23,12 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
     dataLifetime,
   }: UseDataLoaderConfig<ResultType, ErrorType> = {},
 ): UseDataLoaderResult<ResultType, ErrorType> => {
-  const { getOrAddRequest, onError: onGlobalError } = useDataLoaderContext()
+  const {
+    getOrAddRequest,
+    onError: onGlobalError,
+    defaultDatalifetime,
+  } = useDataLoaderContext()
+  const computedDatalifetime = dataLifetime ?? defaultDatalifetime
   const methodRef = useRef(method)
   const onSuccessRef = useRef(onSuccess)
   const onErrorRef = useRef(onError ?? onGlobalError)
@@ -54,12 +59,12 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
       !!(
         enabled &&
         (!request.dataUpdatedAt ||
-          !dataLifetime ||
+          !computedDatalifetime ||
           (request.dataUpdatedAt &&
-            dataLifetime &&
-            request.dataUpdatedAt + dataLifetime < Date.now()))
+            computedDatalifetime &&
+            request.dataUpdatedAt + computedDatalifetime < Date.now()))
       ),
-    [enabled, request.dataUpdatedAt, dataLifetime],
+    [enabled, request.dataUpdatedAt, computedDatalifetime],
   )
 
   const optimisticIsLoadingRef = useRef(needLoad)
