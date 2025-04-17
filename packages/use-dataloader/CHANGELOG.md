@@ -1,5 +1,13 @@
 # Change Log
 
+## 5.3.0
+
+### Minor Changes
+
+- [#2548](https://github.com/scaleway/scaleway-lib/pull/2548) [`5a569a1`](https://github.com/scaleway/scaleway-lib/commit/5a569a16caa14d7bebea56c14eb4c43b1592dfda) Thanks [@DorianMaliszewski](https://github.com/DorianMaliszewski)! - Fix: useInfiniteDataloader doesnt update on params change
+
+- [#2548](https://github.com/scaleway/scaleway-lib/pull/2548) [`5a569a1`](https://github.com/scaleway/scaleway-lib/commit/5a569a16caa14d7bebea56c14eb4c43b1592dfda) Thanks [@DorianMaliszewski](https://github.com/DorianMaliszewski)! - Feat: Add a default lifetime on the provider
+
 ## 5.2.0
 
 ### Minor Changes

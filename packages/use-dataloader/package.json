@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/use-dataloader",
-  "version": "5.2.0",
+  "version": "5.3.0",
   "description": "A small hook to handle api requests",
   "type": "module",
   "engines": {
