@@ -30,7 +30,7 @@ catalog:
   "@typescript-eslint/eslint-plugin": 8.30.1
   "@typescript-eslint/parser": 8.30.1
   "@vitejs/plugin-react": 4.4.1
-  "@vitest/coverage-istanbul": 3.1.1
+  "@vitest/coverage-istanbul": 3.1.2
   browserslist: 4.24.4
   builtin-modules: 5.0.0
   cookie: 1.0.2
@@ -68,6 +68,6 @@ catalog:
   typescript: 5.8.3
   use-deep-compare-effect: 1.8.1
   vite: 6.3.2
-  vitest: 3.1.1
+  vitest: 3.1.2
   vitest-localstorage-mock: 0.1.2
   wait-for-expect: 3.0.2
