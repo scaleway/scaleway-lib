@@ -73,20 +73,25 @@ export const useInfiniteDataLoader = <
 
   const [, setCounter] = useState(0)
 
-  const forceRerender = useCallback(() => {
+  const forceRerender = useRef(() => {
     setCounter(current => current + 1)
-  }, [])
+  })
 
   const baseQueryKey = useMemo(() => marshalQueryKey(baseKey), [baseKey])
 
-  useEffect(
-    () => () => {
-      requestRefs.current.forEach(request =>
-        request.removeObserver(forceRerender),
-      )
-    },
-    [forceRerender],
-  )
+  useEffect(() => {
+    const notifyFn = forceRerender.current
+    // Ensure observers are added after first mount
+    requestRefs.current.forEach(request =>
+      !request.observers.includes(notifyFn)
+        ? request.addObserver(notifyFn)
+        : undefined,
+    )
+
+    return () => {
+      requestRefs.current.forEach(request => request.removeObserver(notifyFn))
+    }
+  }, [])
 
   const getCurrentRequest = () => {
     const currentQueryKey = marshalQueryKey([
@@ -94,14 +99,15 @@ export const useInfiniteDataLoader = <
       'infinite',
       page as string | number,
     ])
-    requestRefs.current.forEach(request =>
-      !request.key.startsWith(computeKey(baseQueryKey))
-        ? request.removeObserver(forceRerender)
-        : undefined,
-    )
-    requestRefs.current = requestRefs.current.filter(({ key }) =>
-      key.startsWith(computeKey(baseQueryKey)),
-    )
+    // Clean bad requests in the array
+    requestRefs.current = requestRefs.current.filter(request => {
+      if (request.key.startsWith(computeKey(baseQueryKey))) {
+        return true
+      }
+      request.removeObserver(forceRerender.current)
+
+      return false
+    })
     const requestInRef = requestRefs.current.find(request =>
       request.key.endsWith(currentQueryKey),
     )
@@ -110,8 +116,10 @@ export const useInfiniteDataLoader = <
         enabled,
         method: getMethodRef.current,
       })
+      if (!request.observers.includes(forceRerender.current)) {
+        request.addObserver(forceRerender.current)
+      }
       requestRefs.current.push(request)
-      request.addObserver(forceRerender)
 
       return request
     }
