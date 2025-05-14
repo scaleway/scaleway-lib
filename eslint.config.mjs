@@ -108,4 +108,11 @@ export default [
       'import/no-relative-packages': 'off',
     },
   },
+  {
+    files: ['packages/unused-i18n/**/*.ts'],
+    rules: {
+      'no-console': 'off',
+      'no-cond-assign': 'off',
+    },
+  },
 ]
