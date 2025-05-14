@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.4.0
+
+### Minor Changes
+
+- [#2590](https://github.com/scaleway/scaleway-lib/pull/2590) [`36d8d9e`](https://github.com/scaleway/scaleway-lib/commit/36d8d9ef98586f58462b5993d4f9217696ae15a6) Thanks [@DorianMaliszewski](https://github.com/DorianMaliszewski)! - Fix : Ensure observers are correctly added at mount to handle components mount/unmount quick chaining
+
 ## 5.3.0
 
 ### Minor Changes
