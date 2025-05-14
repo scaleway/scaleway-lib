@@ -34,11 +34,11 @@ catalogs:
       specifier: 2.29.2
       version: 2.29.2
     '@commitlint/cli':
-      specifier: 19.8.0
-      version: 19.8.0
+      specifier: 19.8.1
+      version: 19.8.1
     '@commitlint/config-conventional':
-      specifier: 19.8.0
-      version: 19.8.0
+      specifier: 19.8.1
+      version: 19.8.1
     '@emotion/eslint-plugin':
       specifier: 11.12.0
       version: 11.12.0
@@ -79,11 +79,11 @@ catalogs:
       specifier: 22.14.1
       version: 22.14.1
     '@types/react':
-      specifier: 19.1.3
-      version: 19.1.3
+      specifier: 19.1.4
+      version: 19.1.4
     '@types/react-dom':
-      specifier: 19.1.3
-      version: 19.1.3
+      specifier: 19.1.5
+      version: 19.1.5
     '@typescript-eslint/eslint-plugin':
       specifier: 8.31.0
       version: 8.31.0
@@ -97,8 +97,8 @@ catalogs:
       specifier: 3.1.2
       version: 3.1.2
     browserslist:
-      specifier: 4.24.4
-      version: 4.24.4
+      specifier: 4.24.5
+      version: 4.24.5
     builtin-modules:
       specifier: 5.0.0
       version: 5.0.0
@@ -175,8 +175,8 @@ catalogs:
       specifier: 3.3.1
       version: 3.3.1
     query-string:
-      specifier: 9.1.1
-      version: 9.1.1
+      specifier: 9.1.2
+      version: 9.1.2
     react:
       specifier: 19.1.0
       version: 19.1.0
@@ -250,10 +250,10 @@ importers:
         version: 2.29.2
       '@commitlint/cli':
         specifier: 'catalog:'
-        version: 19.8.0(@types/node@22.14.1)(typescript@5.8.3)
+        version: 19.8.1(@types/node@22.14.1)(typescript@5.8.3)
       '@commitlint/config-conventional':
         specifier: 'catalog:'
-        version: 19.8.0
+        version: 19.8.1
       '@eslint/eslintrc':
         specifier: 'catalog:'
         version: 3.3.1
@@ -268,7 +268,7 @@ importers:
         version: 6.6.3
       '@testing-library/react':
         specifier: 'catalog:'
-        version: 16.3.0(@testing-library/dom@10.0.0)(@types/react-dom@19.1.3(@types/react@19.1.3))(@types/react@19.1.3)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 16.3.0(@testing-library/dom@10.0.0)(@types/react-dom@19.1.5(@types/react@19.1.4))(@types/react@19.1.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@types/jest':
         specifier: 'catalog:'
         version: 29.5.14
@@ -277,10 +277,10 @@ importers:
         version: 22.14.1
       '@types/react':
         specifier: 'catalog:'
-        version: 19.1.3
+        version: 19.1.4
       '@types/react-dom':
         specifier: 'catalog:'
-        version: 19.1.3(@types/react@19.1.3)
+        version: 19.1.5(@types/react@19.1.4)
       '@vitejs/plugin-react':
         specifier: 'catalog:'
         version: 4.4.1(vite@6.3.4(@types/node@22.14.1)(jiti@2.4.2)(terser@5.37.0)(yaml@2.7.0))
@@ -289,7 +289,7 @@ importers:
         version: 3.1.2(vitest@3.1.2(@types/node@22.14.1)(happy-dom@17.4.6)(jiti@2.4.2)(jsdom@20.0.3)(terser@5.37.0)(yaml@2.7.0))
       browserslist:
         specifier: 'catalog:'
-        version: 4.24.4
+        version: 4.24.5
       builtin-modules:
         specifier: 'catalog:'
         version: 5.0.0
@@ -298,7 +298,7 @@ importers:
         version: 7.0.3
       esbuild-plugin-browserslist:
         specifier: 'catalog:'
-        version: 1.0.0(browserslist@4.24.4)(esbuild@0.25.0)
+        version: 1.0.0(browserslist@4.24.5)(esbuild@0.25.0)
       eslint:
         specifier: 'catalog:'
         version: 9.25.1(jiti@2.4.2)
@@ -478,7 +478,7 @@ importers:
         version: 5.3.0
       query-string:
         specifier: 'catalog:'
-        version: 9.1.1
+        version: 9.1.2
     devDependencies:
       react:
         specifier: 'catalog:'
@@ -1275,73 +1275,73 @@ packages:
   '@changesets/write@0.4.0':
     resolution: {integrity: sha512-CdTLvIOPiCNuH71pyDu3rA+Q0n65cmAbXnwWH84rKGiFumFzkmHNT8KHTMEchcxN+Kl8I54xGUhJ7l3E7X396Q==}
 
-  '@commitlint/cli@19.8.0':
-    resolution: {integrity: sha512-t/fCrLVu+Ru01h0DtlgHZXbHV2Y8gKocTR5elDOqIRUzQd0/6hpt2VIWOj9b3NDo7y4/gfxeR2zRtXq/qO6iUg==}
+  '@commitlint/cli@19.8.1':
+    resolution: {integrity: sha512-LXUdNIkspyxrlV6VDHWBmCZRtkEVRpBKxi2Gtw3J54cGWhLCTouVD/Q6ZSaSvd2YaDObWK8mDjrz3TIKtaQMAA==}
     engines: {node: '>=v18'}
     hasBin: true
 
-  '@commitlint/config-conventional@19.8.0':
-    resolution: {integrity: sha512-9I2kKJwcAPwMoAj38hwqFXG0CzS2Kj+SAByPUQ0SlHTfb7VUhYVmo7G2w2tBrqmOf7PFd6MpZ/a1GQJo8na8kw==}
+  '@commitlint/config-conventional@19.8.1':
+    resolution: {integrity: sha512-/AZHJL6F6B/G959CsMAzrPKKZjeEiAVifRyEwXxcT6qtqbPwGw+iQxmNS+Bu+i09OCtdNRW6pNpBvgPrtMr9EQ==}
     engines: {node: '>=v18'}
 
-  '@commitlint/config-validator@19.8.0':
-    resolution: {integrity: sha512-+r5ZvD/0hQC3w5VOHJhGcCooiAVdynFlCe2d6I9dU+PvXdV3O+fU4vipVg+6hyLbQUuCH82mz3HnT/cBQTYYuA==}
+  '@commitlint/config-validator@19.8.1':
+    resolution: {integrity: sha512-0jvJ4u+eqGPBIzzSdqKNX1rvdbSU1lPNYlfQQRIFnBgLy26BtC0cFnr7c/AyuzExMxWsMOte6MkTi9I3SQ3iGQ==}
     engines: {node: '>=v18'}
 
-  '@commitlint/ensure@19.8.0':
-    resolution: {integrity: sha512-kNiNU4/bhEQ/wutI1tp1pVW1mQ0QbAjfPRo5v8SaxoVV+ARhkB8Wjg3BSseNYECPzWWfg/WDqQGIfV1RaBFQZg==}
+  '@commitlint/ensure@19.8.1':
+    resolution: {integrity: sha512-mXDnlJdvDzSObafjYrOSvZBwkD01cqB4gbnnFuVyNpGUM5ijwU/r/6uqUmBXAAOKRfyEjpkGVZxaDsCVnHAgyw==}
     engines: {node: '>=v18'}
 
-  '@commitlint/execute-rule@19.8.0':
-    resolution: {integrity: sha512-fuLeI+EZ9x2v/+TXKAjplBJWI9CNrHnyi5nvUQGQt4WRkww/d95oVRsc9ajpt4xFrFmqMZkd/xBQHZDvALIY7A==}
+  '@commitlint/execute-rule@19.8.1':
+    resolution: {integrity: sha512-YfJyIqIKWI64Mgvn/sE7FXvVMQER/Cd+s3hZke6cI1xgNT/f6ZAz5heND0QtffH+KbcqAwXDEE1/5niYayYaQA==}
     engines: {node: '>=v18'}
 
-  '@commitlint/format@19.8.0':
-    resolution: {integrity: sha512-EOpA8IERpQstxwp/WGnDArA7S+wlZDeTeKi98WMOvaDLKbjptuHWdOYYr790iO7kTCif/z971PKPI2PkWMfOxg==}
+  '@commitlint/format@19.8.1':
+    resolution: {integrity: sha512-kSJj34Rp10ItP+Eh9oCItiuN/HwGQMXBnIRk69jdOwEW9llW9FlyqcWYbHPSGofmjsqeoxa38UaEA5tsbm2JWw==}
     engines: {node: '>=v18'}
 
-  '@commitlint/is-ignored@19.8.0':
-    resolution: {integrity: sha512-L2Jv9yUg/I+jF3zikOV0rdiHUul9X3a/oU5HIXhAJLE2+TXTnEBfqYP9G5yMw/Yb40SnR764g4fyDK6WR2xtpw==}
+  '@commitlint/is-ignored@19.8.1':
+    resolution: {integrity: sha512-AceOhEhekBUQ5dzrVhDDsbMaY5LqtN8s1mqSnT2Kz1ERvVZkNihrs3Sfk1Je/rxRNbXYFzKZSHaPsEJJDJV8dg==}
     engines: {node: '>=v18'}
 
-  '@commitlint/lint@19.8.0':
-    resolution: {integrity: sha512-+/NZKyWKSf39FeNpqhfMebmaLa1P90i1Nrb1SrA7oSU5GNN/lksA4z6+ZTnsft01YfhRZSYMbgGsARXvkr/VLQ==}
+  '@commitlint/lint@19.8.1':
+    resolution: {integrity: sha512-52PFbsl+1EvMuokZXLRlOsdcLHf10isTPlWwoY1FQIidTsTvjKXVXYb7AvtpWkDzRO2ZsqIgPK7bI98x8LRUEw==}
     engines: {node: '>=v18'}
 
-  '@commitlint/load@19.8.0':
-    resolution: {integrity: sha512-4rvmm3ff81Sfb+mcWT5WKlyOa+Hd33WSbirTVUer0wjS1Hv/Hzr07Uv1ULIV9DkimZKNyOwXn593c+h8lsDQPQ==}
+  '@commitlint/load@19.8.1':
+    resolution: {integrity: sha512-9V99EKG3u7z+FEoe4ikgq7YGRCSukAcvmKQuTtUyiYPnOd9a2/H9Ak1J9nJA1HChRQp9OA/sIKPugGS+FK/k1A==}
     engines: {node: '>=v18'}
 
-  '@commitlint/message@19.8.0':
-    resolution: {integrity: sha512-qs/5Vi9bYjf+ZV40bvdCyBn5DvbuelhR6qewLE8Bh476F7KnNyLfdM/ETJ4cp96WgeeHo6tesA2TMXS0sh5X4A==}
+  '@commitlint/message@19.8.1':
+    resolution: {integrity: sha512-+PMLQvjRXiU+Ae0Wc+p99EoGEutzSXFVwQfa3jRNUZLNW5odZAyseb92OSBTKCu+9gGZiJASt76Cj3dLTtcTdg==}
     engines: {node: '>=v18'}
 
-  '@commitlint/parse@19.8.0':
-    resolution: {integrity: sha512-YNIKAc4EXvNeAvyeEnzgvm1VyAe0/b3Wax7pjJSwXuhqIQ1/t2hD3OYRXb6D5/GffIvaX82RbjD+nWtMZCLL7Q==}
+  '@commitlint/parse@19.8.1':
+    resolution: {integrity: sha512-mmAHYcMBmAgJDKWdkjIGq50X4yB0pSGpxyOODwYmoexxxiUCy5JJT99t1+PEMK7KtsCtzuWYIAXYAiKR+k+/Jw==}
     engines: {node: '>=v18'}
 
-  '@commitlint/read@19.8.0':
-    resolution: {integrity: sha512-6ywxOGYajcxK1y1MfzrOnwsXO6nnErna88gRWEl3qqOOP8MDu/DTeRkGLXBFIZuRZ7mm5yyxU5BmeUvMpNte5w==}
+  '@commitlint/read@19.8.1':
+    resolution: {integrity: sha512-03Jbjb1MqluaVXKHKRuGhcKWtSgh3Jizqy2lJCRbRrnWpcM06MYm8th59Xcns8EqBYvo0Xqb+2DoZFlga97uXQ==}
     engines: {node: '>=v18'}
 
-  '@commitlint/resolve-extends@19.8.0':
-    resolution: {integrity: sha512-CLanRQwuG2LPfFVvrkTrBR/L/DMy3+ETsgBqW1OvRxmzp/bbVJW0Xw23LnnExgYcsaFtos967lul1CsbsnJlzQ==}
+  '@commitlint/resolve-extends@19.8.1':
+    resolution: {integrity: sha512-GM0mAhFk49I+T/5UCYns5ayGStkTt4XFFrjjf0L4S26xoMTSkdCf9ZRO8en1kuopC4isDFuEm7ZOm/WRVeElVg==}
     engines: {node: '>=v18'}
 
-  '@commitlint/rules@19.8.0':
-    resolution: {integrity: sha512-IZ5IE90h6DSWNuNK/cwjABLAKdy8tP8OgGVGbXe1noBEX5hSsu00uRlLu6JuruiXjWJz2dZc+YSw3H0UZyl/mA==}
+  '@commitlint/rules@19.8.1':
+    resolution: {integrity: sha512-Hnlhd9DyvGiGwjfjfToMi1dsnw1EXKGJNLTcsuGORHz6SS9swRgkBsou33MQ2n51/boIDrbsg4tIBbRpEWK2kw==}
     engines: {node: '>=v18'}
 
-  '@commitlint/to-lines@19.8.0':
-    resolution: {integrity: sha512-3CKLUw41Cur8VMjh16y8LcsOaKbmQjAKCWlXx6B0vOUREplp6em9uIVhI8Cv934qiwkbi2+uv+mVZPnXJi1o9A==}
+  '@commitlint/to-lines@19.8.1':
+    resolution: {integrity: sha512-98Mm5inzbWTKuZQr2aW4SReY6WUukdWXuZhrqf1QdKPZBCCsXuG87c+iP0bwtD6DBnmVVQjgp4whoHRVixyPBg==}
     engines: {node: '>=v18'}
 
-  '@commitlint/top-level@19.8.0':
-    resolution: {integrity: sha512-Rphgoc/omYZisoNkcfaBRPQr4myZEHhLPx2/vTXNLjiCw4RgfPR1wEgUpJ9OOmDCiv5ZyIExhprNLhteqH4FuQ==}
+  '@commitlint/top-level@19.8.1':
+    resolution: {integrity: sha512-Ph8IN1IOHPSDhURCSXBz44+CIu+60duFwRsg6HqaISFHQHbmBtxVw4ZrFNIYUzEP7WwrNPxa2/5qJ//NK1FGcw==}
     engines: {node: '>=v18'}
 
-  '@commitlint/types@19.8.0':
-    resolution: {integrity: sha512-LRjP623jPyf3Poyfb0ohMj8I3ORyBDOwXAgxxVPbSD0unJuW2mJWeiRfaQinjtccMqC5Wy1HOMfa4btKjbNxbg==}
+  '@commitlint/types@19.8.1':
+    resolution: {integrity: sha512-/yCrWGCoA1SVKOks25EGadP9Pnj0oAIHGpl2wH2M2Y46dPM2ueb8wyCVOD7O3WCTkaJ0IkKvzhl1JY7+uCT2Dw==}
     engines: {node: '>=v18'}
 
   '@emnapi/core@1.4.3':
@@ -2050,13 +2050,13 @@ packages:
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
 
-  '@types/react-dom@19.1.3':
-    resolution: {integrity: sha512-rJXC08OG0h3W6wDMFxQrZF00Kq6qQvw0djHRdzl3U5DnIERz0MRce3WVc7IS6JYBwtaP/DwYtRRjVlvivNveKg==}
+  '@types/react-dom@19.1.5':
+    resolution: {integrity: sha512-CMCjrWucUBZvohgZxkjd6S9h0nZxXjzus6yDfUb+xLxYM7VvjKNH1tQrE9GWLql1XoOP4/Ds3bwFqShHUYraGg==}
     peerDependencies:
       '@types/react': ^19.0.0
 
-  '@types/react@19.1.3':
-    resolution: {integrity: sha512-dLWQ+Z0CkIvK1J8+wrDPwGxEYFA4RAyHoZPxHVGspYmFVnwGSNT24cGIhFJrtfRnWVuW8X7NO52gCXmhkVUWGQ==}
+  '@types/react@19.1.4':
+    resolution: {integrity: sha512-EB1yiiYdvySuIITtD5lhW4yPyJ31RkJkkDw794LaQYrxCSaQV/47y5o1FMC4zF9ZyjUjzJMZwbovEnT5yHTW6g==}
 
   '@types/semver@7.5.8':
     resolution: {integrity: sha512-I8EUhyrgfLrcTkzV3TSsGyl1tSuPrEDzr0yd5m90UgNxQkyDXULk3b6MlQqTCpZpNtWe1K0hzclnZkTcLBe2UQ==}
@@ -2458,8 +2458,8 @@ packages:
     resolution: {integrity: sha512-yQbXgO/OSZVD2IsiLlro+7Hf6Q18EJrKSEsdoMzKePKXct3gvD8oLcOQdIzGupr5Fj+EDe8gO/lxc1BzfMpxvA==}
     engines: {node: '>=8'}
 
-  browserslist@4.24.4:
-    resolution: {integrity: sha512-KDi1Ny1gSePi1vm0q4oxSF8b4DR44GF4BbmS2YdhPLOEqd8pDviZOGH/GsmRwoWJ2+5Lr085X7naowMwKHDG1A==}
+  browserslist@4.24.5:
+    resolution: {integrity: sha512-FDToo4Wo82hIdgc1CQ+NQD0hEhmpPjrZ3hiUgwgOG6IuTdlpr8jdjyG24P6cNP1yJpTLzS5OcGgSw0xmDU1/Tw==}
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
 
@@ -2498,8 +2498,8 @@ packages:
     resolution: {integrity: sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==}
     engines: {node: '>=6'}
 
-  caniuse-lite@1.0.30001689:
-    resolution: {integrity: sha512-CmeR2VBycfa+5/jOfnp/NpWPGd06nf1XYiefUvhXFfZE4GkRc9jv+eGPS4nT558WS/8lYCzV8SlANCIPvbWP1g==}
+  caniuse-lite@1.0.30001717:
+    resolution: {integrity: sha512-auPpttCq6BDEG8ZAuHJIplGw6GODhjw+/11e7IjpnYCxZcW/ONgPs0KVBJ0d1bY3e2+7PRe5RCLyP+PfwVgkYw==}
 
   chai@5.2.0:
     resolution: {integrity: sha512-mCuXncKXk5iCLhfhwTc0izo0gtEmpz5CtG2y8GiOINBlMVS6v8TMRc5TaLWKS6692m9+dVVfzgeVxR5UxWHTYw==}
@@ -2765,8 +2765,8 @@ packages:
   eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
 
-  electron-to-chromium@1.5.73:
-    resolution: {integrity: sha512-8wGNxG9tAG5KhGd3eeA0o6ixhiNdgr0DcHWm85XPCphwZgD1lIEoi6t3VERayWao7SF7AAZTw6oARGJeVjH8Kg==}
+  electron-to-chromium@1.5.152:
+    resolution: {integrity: sha512-xBOfg/EBaIlVsHipHl2VdTPJRSvErNUaqW8ejTq5OlOlIYx1wOllCHsAvAIrr55jD1IYEfdR86miUEt8H5IeJg==}
 
   emoji-regex@10.3.0:
     resolution: {integrity: sha512-QpLs9D9v9kArv4lfDEgg1X/gN5XLnf/A6l9cs8SPZLRZR3ZkY9+kwIQTxm+fsSej5UMYGE8fdoaZVIBlqG0XTw==}
@@ -4075,8 +4075,8 @@ packages:
     resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
     engines: {node: '>=6'}
 
-  query-string@9.1.1:
-    resolution: {integrity: sha512-MWkCOVIcJP9QSKU52Ngow6bsAWAPlPK2MludXvcrS2bGZSl+T1qX9MZvRIkqUIkGLJquMJHWfsT6eRqUpp4aWg==}
+  query-string@9.1.2:
+    resolution: {integrity: sha512-s3UlTyjxRux4KjwWaJsjh1Mp8zoCkSGKirbD9H89pEM9UOZsfpRZpdfzvsy2/mGlLfC3NnYVpy2gk7jXITHEtA==}
     engines: {node: '>=18'}
 
   querystringify@2.2.0:
@@ -4486,6 +4486,9 @@ packages:
   tinyexec@0.3.2:
     resolution: {integrity: sha512-KQQR9yN7R5+OSwaK0XQoj22pwHoTlgYqmUscPYoknOoWCWfj/5/ABTMRi69FrKU5ffPVh5QcFikpWJI/P1ocHA==}
 
+  tinyexec@1.0.1:
+    resolution: {integrity: sha512-5uC6DDlmeqiOwCPmK9jMSdOuZTh8bU39Ys6yidB+UTt5hfZUPGAypSgFRiEp+jbi9qH40BLDvy85jIU88wKSqw==}
+
   tinyglobby@0.2.13:
     resolution: {integrity: sha512-mEwzpUgrLySlveBwEVDMKk5B57bhLPYovRfPAXD5gA/98Opn0rCDj3GtLwFvCvH5RK9uPCExUROW5NjDwvqkxw==}
     engines: {node: '>=12.0.0'}
@@ -4629,8 +4632,8 @@ packages:
   unrs-resolver@1.6.3:
     resolution: {integrity: sha512-mYNIMmxlDcaepmUTNrBu2tEB/bRkLBUeAhke8XOnXYqSu/9dUk4cdFiJG1N4d5Q7Fii+9MpgavkxJpnXPqNhHw==}
 
-  update-browserslist-db@1.1.1:
-    resolution: {integrity: sha512-R8UzCaa9Az+38REPiJ1tXlImTJXlVfgHZsglwBD/k6nj76ctsH1E3q4doGrukiLQd3sGQYu56r5+lo5r94l29A==}
+  update-browserslist-db@1.1.3:
+    resolution: {integrity: sha512-UxhIZQ+QInVdunkDAaiazvvT/+fXL5Osr0JZlJulepYu6Jd7qJtDZjlur0emRlT71EN3ScPoE7gvsuIKKNavKw==}
     hasBin: true
     peerDependencies:
       browserslist: '>= 4.21.0'
@@ -4933,7 +4936,7 @@ snapshots:
     dependencies:
       '@babel/compat-data': 7.26.8
       '@babel/helper-validator-option': 7.25.9
-      browserslist: 4.24.4
+      browserslist: 4.24.5
       lru-cache: 5.1.1
       semver: 6.3.1
 
@@ -5889,63 +5892,63 @@ snapshots:
       human-id: 4.1.1
       prettier: 2.8.8
 
-  '@commitlint/cli@19.8.0(@types/node@22.14.1)(typescript@5.8.3)':
+  '@commitlint/cli@19.8.1(@types/node@22.14.1)(typescript@5.8.3)':
     dependencies:
-      '@commitlint/format': 19.8.0
-      '@commitlint/lint': 19.8.0
-      '@commitlint/load': 19.8.0(@types/node@22.14.1)(typescript@5.8.3)
-      '@commitlint/read': 19.8.0
-      '@commitlint/types': 19.8.0
-      tinyexec: 0.3.2
+      '@commitlint/format': 19.8.1
+      '@commitlint/lint': 19.8.1
+      '@commitlint/load': 19.8.1(@types/node@22.14.1)(typescript@5.8.3)
+      '@commitlint/read': 19.8.1
+      '@commitlint/types': 19.8.1
+      tinyexec: 1.0.1
       yargs: 17.7.2
     transitivePeerDependencies:
       - '@types/node'
       - typescript
 
-  '@commitlint/config-conventional@19.8.0':
+  '@commitlint/config-conventional@19.8.1':
     dependencies:
-      '@commitlint/types': 19.8.0
+      '@commitlint/types': 19.8.1
       conventional-changelog-conventionalcommits: 7.0.2
 
-  '@commitlint/config-validator@19.8.0':
+  '@commitlint/config-validator@19.8.1':
     dependencies:
-      '@commitlint/types': 19.8.0
+      '@commitlint/types': 19.8.1
       ajv: 8.17.1
 
-  '@commitlint/ensure@19.8.0':
+  '@commitlint/ensure@19.8.1':
     dependencies:
-      '@commitlint/types': 19.8.0
+      '@commitlint/types': 19.8.1
       lodash.camelcase: 4.3.0
       lodash.kebabcase: 4.1.1
       lodash.snakecase: 4.1.1
       lodash.startcase: 4.4.0
       lodash.upperfirst: 4.3.1
 
-  '@commitlint/execute-rule@19.8.0': {}
+  '@commitlint/execute-rule@19.8.1': {}
 
-  '@commitlint/format@19.8.0':
+  '@commitlint/format@19.8.1':
     dependencies:
-      '@commitlint/types': 19.8.0
+      '@commitlint/types': 19.8.1
       chalk: 5.4.1
 
-  '@commitlint/is-ignored@19.8.0':
+  '@commitlint/is-ignored@19.8.1':
     dependencies:
-      '@commitlint/types': 19.8.0
+      '@commitlint/types': 19.8.1
       semver: 7.7.1
 
-  '@commitlint/lint@19.8.0':
+  '@commitlint/lint@19.8.1':
     dependencies:
-      '@commitlint/is-ignored': 19.8.0
-      '@commitlint/parse': 19.8.0
-      '@commitlint/rules': 19.8.0
-      '@commitlint/types': 19.8.0
+      '@commitlint/is-ignored': 19.8.1
+      '@commitlint/parse': 19.8.1
+      '@commitlint/rules': 19.8.1
+      '@commitlint/types': 19.8.1
 
-  '@commitlint/load@19.8.0(@types/node@22.14.1)(typescript@5.8.3)':
+  '@commitlint/load@19.8.1(@types/node@22.14.1)(typescript@5.8.3)':
     dependencies:
-      '@commitlint/config-validator': 19.8.0
-      '@commitlint/execute-rule': 19.8.0
-      '@commitlint/resolve-extends': 19.8.0
-      '@commitlint/types': 19.8.0
+      '@commitlint/config-validator': 19.8.1
+      '@commitlint/execute-rule': 19.8.1
+      '@commitlint/resolve-extends': 19.8.1
+      '@commitlint/types': 19.8.1
       chalk: 5.4.1
       cosmiconfig: 9.0.0(typescript@5.8.3)
       cosmiconfig-typescript-loader: 6.1.0(@types/node@22.14.1)(cosmiconfig@9.0.0(typescript@5.8.3))(typescript@5.8.3)
@@ -5956,45 +5959,45 @@ snapshots:
       - '@types/node'
       - typescript
 
-  '@commitlint/message@19.8.0': {}
+  '@commitlint/message@19.8.1': {}
 
-  '@commitlint/parse@19.8.0':
+  '@commitlint/parse@19.8.1':
     dependencies:
-      '@commitlint/types': 19.8.0
+      '@commitlint/types': 19.8.1
       conventional-changelog-angular: 7.0.0
       conventional-commits-parser: 5.0.0
 
-  '@commitlint/read@19.8.0':
+  '@commitlint/read@19.8.1':
     dependencies:
-      '@commitlint/top-level': 19.8.0
-      '@commitlint/types': 19.8.0
+      '@commitlint/top-level': 19.8.1
+      '@commitlint/types': 19.8.1
       git-raw-commits: 4.0.0
       minimist: 1.2.8
-      tinyexec: 0.3.2
+      tinyexec: 1.0.1
 
-  '@commitlint/resolve-extends@19.8.0':
+  '@commitlint/resolve-extends@19.8.1':
     dependencies:
-      '@commitlint/config-validator': 19.8.0
-      '@commitlint/types': 19.8.0
+      '@commitlint/config-validator': 19.8.1
+      '@commitlint/types': 19.8.1
       global-directory: 4.0.1
       import-meta-resolve: 4.1.0
       lodash.mergewith: 4.6.2
       resolve-from: 5.0.0
 
-  '@commitlint/rules@19.8.0':
+  '@commitlint/rules@19.8.1':
     dependencies:
-      '@commitlint/ensure': 19.8.0
-      '@commitlint/message': 19.8.0
-      '@commitlint/to-lines': 19.8.0
-      '@commitlint/types': 19.8.0
+      '@commitlint/ensure': 19.8.1
+      '@commitlint/message': 19.8.1
+      '@commitlint/to-lines': 19.8.1
+      '@commitlint/types': 19.8.1
 
-  '@commitlint/to-lines@19.8.0': {}
+  '@commitlint/to-lines@19.8.1': {}
 
-  '@commitlint/top-level@19.8.0':
+  '@commitlint/top-level@19.8.1':
     dependencies:
       find-up: 7.0.0
 
-  '@commitlint/types@19.8.0':
+  '@commitlint/types@19.8.1':
     dependencies:
       '@types/conventional-commits-parser': 5.0.0
       chalk: 5.4.1
@@ -6522,15 +6525,15 @@ snapshots:
       lodash: 4.17.21
       redent: 3.0.0
 
-  '@testing-library/react@16.3.0(@testing-library/dom@10.0.0)(@types/react-dom@19.1.3(@types/react@19.1.3))(@types/react@19.1.3)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@testing-library/react@16.3.0(@testing-library/dom@10.0.0)(@types/react-dom@19.1.5(@types/react@19.1.4))(@types/react@19.1.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@babel/runtime': 7.26.9
       '@testing-library/dom': 10.0.0
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
     optionalDependencies:
-      '@types/react': 19.1.3
-      '@types/react-dom': 19.1.3(@types/react@19.1.3)
+      '@types/react': 19.1.4
+      '@types/react-dom': 19.1.5(@types/react@19.1.4)
 
   '@tootallnate/once@2.0.0':
     optional: true
@@ -6596,11 +6599,11 @@ snapshots:
 
   '@types/normalize-package-data@2.4.4': {}
 
-  '@types/react-dom@19.1.3(@types/react@19.1.3)':
+  '@types/react-dom@19.1.5(@types/react@19.1.4)':
     dependencies:
-      '@types/react': 19.1.3
+      '@types/react': 19.1.4
 
-  '@types/react@19.1.3':
+  '@types/react@19.1.4':
     dependencies:
       csstype: 3.1.3
 
@@ -7088,12 +7091,12 @@ snapshots:
     dependencies:
       fill-range: 7.1.1
 
-  browserslist@4.24.4:
+  browserslist@4.24.5:
     dependencies:
-      caniuse-lite: 1.0.30001689
-      electron-to-chromium: 1.5.73
+      caniuse-lite: 1.0.30001717
+      electron-to-chromium: 1.5.152
       node-releases: 2.0.19
-      update-browserslist-db: 1.1.1(browserslist@4.24.4)
+      update-browserslist-db: 1.1.3(browserslist@4.24.5)
 
   buffer-from@1.1.2:
     optional: true
@@ -7131,7 +7134,7 @@ snapshots:
 
   callsites@3.1.0: {}
 
-  caniuse-lite@1.0.30001689: {}
+  caniuse-lite@1.0.30001717: {}
 
   chai@5.2.0:
     dependencies:
@@ -7222,7 +7225,7 @@ snapshots:
 
   core-js-compat@3.40.0:
     dependencies:
-      browserslist: 4.24.4
+      browserslist: 4.24.5
 
   cosmiconfig-typescript-loader@6.1.0(@types/node@22.14.1)(cosmiconfig@9.0.0(typescript@5.8.3))(typescript@5.8.3):
     dependencies:
@@ -7378,7 +7381,7 @@ snapshots:
 
   eastasianwidth@0.2.0: {}
 
-  electron-to-chromium@1.5.73: {}
+  electron-to-chromium@1.5.152: {}
 
   emoji-regex@10.3.0: {}
 
@@ -7512,9 +7515,9 @@ snapshots:
       is-date-object: 1.1.0
       is-symbol: 1.1.1
 
-  esbuild-plugin-browserslist@1.0.0(browserslist@4.24.4)(esbuild@0.25.0):
+  esbuild-plugin-browserslist@1.0.0(browserslist@4.24.5)(esbuild@0.25.0):
     dependencies:
-      browserslist: 4.24.4
+      browserslist: 4.24.5
       debug: 4.4.0
       esbuild: 0.25.0
       zod: 3.24.2
@@ -8895,7 +8898,7 @@ snapshots:
 
   punycode@2.3.1: {}
 
-  query-string@9.1.1:
+  query-string@9.1.2:
     dependencies:
       decode-uri-component: 0.4.1
       filter-obj: 5.1.0
@@ -9362,6 +9365,8 @@ snapshots:
 
   tinyexec@0.3.2: {}
 
+  tinyexec@1.0.1: {}
+
   tinyglobby@0.2.13:
     dependencies:
       fdir: 6.4.4(picomatch@4.0.2)
@@ -9515,9 +9520,9 @@ snapshots:
       '@unrs/resolver-binding-win32-ia32-msvc': 1.6.3
       '@unrs/resolver-binding-win32-x64-msvc': 1.6.3
 
-  update-browserslist-db@1.1.1(browserslist@4.24.4):
+  update-browserslist-db@1.1.3(browserslist@4.24.5):
     dependencies:
-      browserslist: 4.24.4
+      browserslist: 4.24.5
       escalade: 3.2.0
       picocolors: 1.1.1
 
