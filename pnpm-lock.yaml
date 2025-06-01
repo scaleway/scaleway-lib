@@ -58,8 +58,8 @@ catalogs:
       specifier: 2.11.2
       version: 2.11.2
     '@growthbook/growthbook-react':
-      specifier: 1.4.1
-      version: 1.4.1
+      specifier: 1.5.1
+      version: 1.5.1
     '@segment/analytics-next':
       specifier: 1.81.0
       version: 1.81.0
@@ -431,7 +431,7 @@ importers:
     dependencies:
       '@growthbook/growthbook-react':
         specifier: 'catalog:'
-        version: 1.4.1(react@19.1.0)
+        version: 1.5.1(react@19.1.0)
     devDependencies:
       react:
         specifier: 'catalog:'
@@ -1721,14 +1721,14 @@ packages:
   '@formatjs/intl-localematcher@0.6.1':
     resolution: {integrity: sha512-ePEgLgVCqi2BBFnTMWPfIghu6FkbZnnBVhO2sSxvLfrdFw7wCHAHiDoM2h4NRgjbaY7+B7HgOLZGkK187pZTZg==}
 
-  '@growthbook/growthbook-react@1.4.1':
-    resolution: {integrity: sha512-HqqtkOwKoVKmtTN7H9qjQ6Nw6RICn+STL1FS9l/7CoDaBJA2r3HiXXGvm2W1bYMwDmhu9pt3XqBxhlD3N9ymAA==}
+  '@growthbook/growthbook-react@1.5.1':
+    resolution: {integrity: sha512-SQlB9XJib1xajQYbEO2Za+e0BlXGD5LOqgfv2j1cWHhWQkBkwmr3IQu6KD8rVqDoD0WY6de3X3mKfgKlxzzO0Q==}
     engines: {node: '>=10'}
     peerDependencies:
-      react: ^16.8.0-0 || ^17.0.0-0 || ^18.0.0-0
+      react: ^16.8.0-0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
 
-  '@growthbook/growthbook@1.4.1':
-    resolution: {integrity: sha512-Cl+q1SPwTYHvV2mcsjDcAuT4ezzpA6pOJr7nGCKiPaIZ4BN+pNt2kQM/dtCiwwse7vFz26S1/UJ+mb6qSSW8sQ==}
+  '@growthbook/growthbook@1.5.1':
+    resolution: {integrity: sha512-t0cj+3i2YtZ4Y/v1xl2fThogLMvjjUy3fx7ywGoLPgKZdhYy2HSXUGY1lLM/I0FMTEd2L2lkJHEzeUKpW6Ew3g==}
     engines: {node: '>=10'}
 
   '@humanfs/core@0.19.1':
@@ -6277,12 +6277,12 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@growthbook/growthbook-react@1.4.1(react@19.1.0)':
+  '@growthbook/growthbook-react@1.5.1(react@19.1.0)':
     dependencies:
-      '@growthbook/growthbook': 1.4.1
+      '@growthbook/growthbook': 1.5.1
       react: 19.1.0
 
-  '@growthbook/growthbook@1.4.1':
+  '@growthbook/growthbook@1.5.1':
     dependencies:
       dom-mutator: 0.6.0
 
@@ -6961,7 +6961,7 @@ snapshots:
 
   agent-base@6.0.2:
     dependencies:
-      debug: 4.4.0
+      debug: 4.4.1
     transitivePeerDependencies:
       - supports-color
     optional: true
@@ -8173,7 +8173,7 @@ snapshots:
     dependencies:
       '@tootallnate/once': 2.0.0
       agent-base: 6.0.2
-      debug: 4.4.0
+      debug: 4.4.1
     transitivePeerDependencies:
       - supports-color
     optional: true
@@ -8181,7 +8181,7 @@ snapshots:
   https-proxy-agent@5.0.1:
     dependencies:
       agent-base: 6.0.2
-      debug: 4.4.0
+      debug: 4.4.1
     transitivePeerDependencies:
       - supports-color
     optional: true
