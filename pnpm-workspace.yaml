@@ -18,7 +18,7 @@ catalog:
   "@formatjs/ecma402-abstract": 2.3.4
   "@formatjs/fast-memoize": 2.2.7
   "@formatjs/icu-messageformat-parser": 2.11.2
-  "@growthbook/growthbook-react": 1.4.1
+  "@growthbook/growthbook-react": 1.5.1
   "@segment/analytics-next": 1.81.0
   "@stylistic/eslint-plugin": 4.2.0
   "@testing-library/jest-dom": 6.6.3
