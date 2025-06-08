@@ -1,0 +1,51 @@
+{
+  "name": "unused-i18n",
+  "version": "0.2.0",
+  "description": "React provider to handle website end user consent cookie storage based on segment integrations",
+  "type": "module",
+  "main": "dist/cli.cjs",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "unused-i18n": "dist/cli.cjs"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "prebuild": "shx rm -rf dist",
+    "build": "vite build --config vite.config.ts && pnpm run type:generate",
+    "type:generate": "tsc --declaration -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "release": "pnpm build && pnpm changeset publish",
+    "coverage": "vitest run --coverage",
+    "lint": "eslint --report-unused-disable-directives --cache --cache-strategy content --ext ts,tsx .",
+    "test:unit": "vitest --run --config vite.config.ts",
+    "test:unit:coverage": "pnpm test:unit --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scaleway/scaleway-lib",
+    "directory": "packages/unused-i18n"
+  },
+  "dependencies": {
+    "commander": "12.1.0",
+    "esbuild": "0.24.2"
+  },
+  "keywords": [
+    "i18n",
+    "unused-i18n",
+    "i18n-unused",
+    "locales",
+    "next-international",
+    "internationalization",
+    "translate",
+    "next"
+  ],
+  "engines": {
+    "node": ">=22.x",
+    "pnpm": ">=9.x"
+  }
+}
