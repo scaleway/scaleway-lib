@@ -9,6 +9,18 @@ const config = {
 
 export default mergeConfig(config, {
   build: {
+    lib: {
+      entry: 'src/cli.ts',
+      fileName: (format: string, filename: string) => {
+        if (format === 'es') {
+          return `${filename}.js`
+        }
+
+        return `${filename}.${format}`
+      },
+      formats: ['es'],
+      name: '@scaleway/changesets-renovate',
+    },
     ssr: true,
     target: ['node20'],
   },

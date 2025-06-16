@@ -1,15 +1,15 @@
 {
   "name": "@scaleway/changesets-renovate",
   "version": "2.2.2",
-  "description": "Automatically create changesets for Renovate",
+  "description": "Automatically create changesets for Renovate and pnpm catalogs",
   "type": "module",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "module": "./dist/cli.js",
+  "types": "./dist/cli.d.ts",
   "sideEffects": false,
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
+      "types": "./dist/cli.d.ts",
+      "default": "./dist/cli.js"
     }
   },
   "files": [
@@ -19,7 +19,7 @@
     "node": ">=20.x"
   },
   "bin": {
-    "changesets-renovate": "dist/index.js"
+    "changesets-renovate": "dist/cli.js"
   },
   "publishConfig": {
     "access": "public"
@@ -43,9 +43,14 @@
   "keywords": [
     "changesets",
     "renovate",
+    "pnpm",
+    "catalogs",
     "sync"
   ],
   "dependencies": {
+    "@types/js-yaml": "catalog:",
+    "fast-glob": "catalog:",
+    "js-yaml": "catalog:",
     "simple-git": "catalog:"
   }
 }

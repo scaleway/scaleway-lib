@@ -1,0 +1,104 @@
+import fs from 'node:fs'
+import fg from 'fast-glob'
+import * as yaml from 'js-yaml'
+import { simpleGit } from 'simple-git'
+
+const { globSync } = fg
+
+/**
+ * Load catalog from pnpm workspace file at specific git revision
+ * @param revision Git revision to load file from (default: HEAD)
+ * @param filePath Path to the pnpm workspace file (default: pnpm-workspace.yaml)
+ * @returns Catalog object or empty object if not found
+ */
+export async function loadCatalogFromGit(
+  revision: string = 'HEAD',
+  filePath: string = 'pnpm-workspace.yaml',
+): Promise<Record<string, string>> {
+  try {
+    // Handle case where revision might be undefined
+    if (!revision) {
+      return {}
+    }
+
+    const git = simpleGit()
+    const content = await git.show([`${revision}:${filePath}`])
+    const parsed = yaml.load(content) as {
+      catalog?: Record<string, string>
+    } | null
+
+    return parsed?.catalog || {}
+  } catch {
+    // Silently ignore errors in production code
+    // Tests can check for specific error cases
+    return {}
+  }
+}
+
+/**
+ * Find changed dependencies between two git revisions of pnpm workspace
+ * @param oldRevision The previous git revision
+ * @param newRevision The current git revision (default: HEAD)
+ * @param filePath Path to the pnpm workspace file (default: pnpm-workspace.yaml)
+ * @returns Array of package names that have changed
+ */
+export async function findChangedDependenciesFromGit(
+  oldRevision: string,
+  newRevision: string = 'HEAD',
+  filePath: string = 'pnpm-workspace.yaml',
+): Promise<string[]> {
+  const oldCatalog = await loadCatalogFromGit(oldRevision, filePath)
+  const newCatalog = await loadCatalogFromGit(newRevision, filePath)
+
+  return Object.entries(newCatalog)
+    .filter(
+      ([pkg, newVersion]) => oldCatalog[pkg] && oldCatalog[pkg] !== newVersion,
+    )
+    .map(([pkg]) => pkg)
+}
+
+/**
+ * Find packages affected by dependency changes
+ * @param changedDeps Array of changed dependency names
+ * @param packageJsonGlob Glob pattern to find package.json files
+ * @returns Set of package names that are affected by the changes
+ */
+export function findAffectedPackages(
+  changedDeps: string[],
+  packageJsonGlob: string = 'packages/*/package.json',
+): Set<string> {
+  if (changedDeps.length === 0) {
+    return new Set()
+  }
+
+  const packageJsonPaths = globSync(packageJsonGlob)
+  const affectedPackages = new Set<string>()
+
+  for (const pkgJsonPath of packageJsonPaths) {
+    try {
+      const json = JSON.parse(fs.readFileSync(pkgJsonPath, 'utf-8')) as {
+        dependencies?: Record<string, string>
+        devDependencies?: Record<string, string>
+        peerDependencies?: Record<string, string>
+      }
+      const deps = {
+        ...json.dependencies,
+        ...json.devDependencies,
+        ...json.peerDependencies,
+      }
+
+      for (const dep of changedDeps) {
+        if (deps[dep]) {
+          const dirName = pkgJsonPath.split('/').slice(-2, -1)[0] || ''
+          affectedPackages.add(dirName)
+          break // No need to check other deps for this package
+        }
+      }
+    } catch {
+      // Silently ignore errors in production code
+      // Tests can check for specific error cases
+    }
+  }
+
+  return affectedPackages
+}
