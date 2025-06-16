@@ -23,6 +23,7 @@
     "@commitlint/cli": "catalog:",
     "@commitlint/config-conventional": "catalog:",
     "@eslint/eslintrc": "catalog:",
+    "@rudderstack/analytics-js": "catalog:",
     "@scaleway/eslint-config-react": "workspace:*",
     "@scaleway/tsconfig": "workspace:*",
     "@testing-library/jest-dom": "catalog:",
@@ -72,7 +73,12 @@
         "react-dom": "18 || 19",
         "@types/react": "18 || 19"
       }
-    }
+    },
+    "onlyBuiltDependencies": [
+      "@biomejs/biome",
+      "esbuild",
+      "unrs-resolver"
+    ]
   },
   "commitlint": {
     "extends": [

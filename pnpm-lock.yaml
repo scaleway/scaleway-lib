@@ -60,6 +60,9 @@ catalogs:
     '@growthbook/growthbook-react':
       specifier: 1.5.1
       version: 1.5.1
+    '@rudderstack/analytics-js':
+      specifier: ^3.20.1
+      version: 3.20.1
     '@segment/analytics-next':
       specifier: 1.81.0
       version: 1.81.0
@@ -257,6 +260,9 @@ importers:
       '@eslint/eslintrc':
         specifier: 'catalog:'
         version: 3.3.1
+      '@rudderstack/analytics-js':
+        specifier: 'catalog:'
+        version: 3.20.1
       '@scaleway/eslint-config-react':
         specifier: workspace:*
         version: link:packages/eslint-config-react
@@ -499,6 +505,19 @@ importers:
       '@scaleway/use-segment':
         specifier: workspace:*
         version: link:../use-segment
+      react:
+        specifier: 'catalog:'
+        version: 19.1.0
+
+  packages/use-rudder:
+    dependencies:
+      '@segment/analytics-next':
+        specifier: 'catalog:'
+        version: 1.81.0
+      use-deep-compare-effect:
+        specifier: 'catalog:'
+        version: 1.8.1(react@19.1.0)
+    devDependencies:
       react:
         specifier: 'catalog:'
         version: 19.1.0
@@ -1903,6 +1922,9 @@ packages:
 
   '@rtsao/scc@1.1.0':
     resolution: {integrity: sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g==}
+
+  '@rudderstack/analytics-js@3.20.1':
+    resolution: {integrity: sha512-iaY2RGsR/vCBOPzYx23fmLfUS/vP+/wo3koN2N5mHFAolXVBTXjnvNo6fsgeUcvRd7NFdcKUFZA36PLP8RwmqQ==}
 
   '@segment/analytics-core@1.8.1':
     resolution: {integrity: sha512-EYcdBdhfi1pOYRX+Sf5orpzzYYFmDHTEu6+w0hjXpW5bWkWct+Nv6UJg1hF4sGDKEQjpZIinLTpQ4eioFM4KeQ==}
@@ -6333,6 +6355,8 @@ snapshots:
 
   '@rtsao/scc@1.1.0': {}
 
+  '@rudderstack/analytics-js@3.20.1': {}
+
   '@segment/analytics-core@1.8.1':
     dependencies:
       '@lukeed/uuid': 2.0.1
@@ -9420,7 +9444,7 @@ snapshots:
 
   use-deep-compare-effect@1.8.1(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.26.0
+      '@babel/runtime': 7.26.9
       dequal: 2.0.3
       react: 19.1.0
 
