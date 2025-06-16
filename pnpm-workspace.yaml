@@ -29,7 +29,7 @@ catalog:
   "@types/react-dom": 19.1.6
   "@typescript-eslint/eslint-plugin": 8.33.1
   "@typescript-eslint/parser": 8.33.1
-  "@vitejs/plugin-react": 4.5.1
+  "@vitejs/plugin-react": 4.5.2
   "@vitest/coverage-istanbul": 3.2.3
   browserslist: 4.24.5
   builtin-modules: 5.0.0
