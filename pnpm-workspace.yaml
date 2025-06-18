@@ -64,7 +64,7 @@ catalog:
   read-pkg: 9.0.1
   shx: 0.4.0
   simple-git: 3.28.0
-  tstyche: 4.0.1
+  tstyche: 4.0.2
   typescript: 5.8.3
   use-deep-compare-effect: 1.8.1
   vite: 6.3.5
