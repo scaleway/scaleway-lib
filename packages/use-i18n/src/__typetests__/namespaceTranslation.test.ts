@@ -17,6 +17,7 @@ test('i18n - namespaceTranslation', () => {
 
   // Single key
   expect(namespaceTranslation).type.not.toBeCallableWith('hello')
+
   // Multiple keys
   expect(namespaceTranslation).type.not.toBeCallableWith('doe.john')
 
