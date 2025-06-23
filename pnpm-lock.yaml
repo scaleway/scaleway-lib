@@ -61,7 +61,7 @@ catalogs:
       specifier: 1.5.1
       version: 1.5.1
     '@rudderstack/analytics-js':
-      specifier: ^3.20.1
+      specifier: 3.20.1
       version: 3.20.1
     '@segment/analytics-next':
       specifier: 1.81.0
