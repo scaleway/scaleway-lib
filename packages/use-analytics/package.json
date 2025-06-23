@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/use-analytics",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A small hook to handle events analytics",
   "engines": {
     "node": ">=20.x"
@@ -50,7 +50,7 @@
     "rudderstack"
   ],
   "dependencies": {
-    "@rudderstack/analytics-js":"catalog:",
+    "@rudderstack/analytics-js": "catalog:",
     "@segment/analytics-next": "catalog:",
     "cookie": "catalog:",
     "use-deep-compare-effect": "catalog:"

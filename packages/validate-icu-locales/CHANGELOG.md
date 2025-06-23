@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.14
+
+### Patch Changes
+
+- [#2639](https://github.com/scaleway/scaleway-lib/pull/2639) [`305b084`](https://github.com/scaleway/scaleway-lib/commit/305b0840229836dd77298a5ed4f48937e6e97245) Thanks [@philibea](https://github.com/philibea)! - update packages
+
 ## 3.1.13
 
 ### Patch Changes
