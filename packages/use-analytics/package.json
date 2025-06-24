@@ -9,13 +9,21 @@
   "type": "module",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./analytics": {
       "types": "./dist/analytics/index.d.ts",
       "require": "./dist/analytics/index.cjs",
+      "import": "./dist/analytics/index.js",
       "default": "./dist/analytics/index.js"
     },
     "./cookies-consent": {
       "types": "./dist/cookies-consent/index.d.ts",
       "require": "./dist/cookies-consent/index.cjs",
+      "import": "./dist/cookies-consent/index.js",
       "default": "./dist/cookies-consent/index.js"
     }
   },
@@ -31,7 +39,8 @@
     "type:generate": "tsc --declaration -p tsconfig.build.json",
     "build": "vite build --config vite.config.ts && pnpm run type:generate",
     "build:profile": "npx vite-bundle-visualizer -c vite.config.ts",
-    "lint": "eslint --report-unused-disable-directives --cache --cache-strategy content --ext ts,tsx ."
+    "lint": "eslint --report-unused-disable-directives --cache --cache-strategy content --ext ts,tsx .",
+    "lintpublish": "publint"
   },
   "repository": {
     "type": "git",
