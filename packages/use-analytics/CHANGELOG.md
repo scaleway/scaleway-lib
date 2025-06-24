@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.0.4
+
+### Patch Changes
+
+- [#2671](https://github.com/scaleway/scaleway-lib/pull/2671) [`9e46551`](https://github.com/scaleway/scaleway-lib/commit/9e465516e7280c2d189fd1bfda676c78eb2dc5c6) Thanks [@philibea](https://github.com/philibea)! - remove use effect
+
 ## 0.0.3
 
 ### Patch Changes
