@@ -25,7 +25,7 @@ catalog:
   '@stylistic/eslint-plugin': 4.4.1
   '@testing-library/jest-dom': 6.6.3
   '@testing-library/react': 16.3.0
-  '@types/jest': 29.5.14
+  '@types/jest': 30.0.0
   '@types/node': 22.15.30
   '@types/react': 19.1.8
   '@types/react-dom': 19.1.6
