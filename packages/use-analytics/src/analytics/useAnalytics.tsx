@@ -55,13 +55,13 @@ export type AnalyticsProviderProps<T> = {
   loadOptions?: LoadOptions
 
   /**
-   * This option help you in case you don't want to load analytics
-   */
-  shouldLoadAnalytics?: boolean
-  /**
-   *  // This option force provider to render children only when isAnalytics is ready
+   *  This option force provider to render children only when isAnalytics is ready
    */
   shouldRenderOnlyWhenReady?: boolean
+  /**
+   * used with shouldRenderOnlyWhenReady can blocked rendering until consent the first time.
+   */
+  needConsent?: boolean
   allowedConsents: CategoryKind[]
   deniedConsents: CategoryKind[]
   onError?: (err: Error) => void
@@ -79,18 +79,26 @@ export function AnalyticsProvider<T extends Events>({
   settings,
   loadOptions,
   shouldRenderOnlyWhenReady = false,
+  needConsent = true,
   onError,
   onEventError,
   allowedConsents,
   deniedConsents,
   events,
+  onLoaded,
 }: AnalyticsProviderProps<T>) {
   const [isAnalyticsReady, setIsAnalyticsReady] = useState(false)
   const [internalAnalytics, setAnalytics] = useState<Analytics | undefined>(
     undefined,
   )
 
-  const shouldLoad = useMemo(() => !!settings?.writeKey, [settings?.writeKey])
+  const shouldLoad = useMemo(() => {
+    if (needConsent) {
+      return false
+    }
+
+    return !!settings?.writeKey
+  }, [settings?.writeKey, needConsent])
 
   useDeepCompareEffectNoCheck(() => {
     if (shouldLoad && settings) {
@@ -112,6 +120,8 @@ export function AnalyticsProvider<T extends Events>({
             },
           })
 
+          onLoaded(rudderAnalytics)
+
           setIsAnalyticsReady(true)
         },
         ...loadOptions,
@@ -122,10 +132,11 @@ export function AnalyticsProvider<T extends Events>({
         setAnalytics({ ...analytics, trackLink: trackLink(analytics) })
         setIsAnalyticsReady(true)
       })
-    } else if (!shouldLoad) {
-      // When user has refused tracking, set ready anyway
-      setIsAnalyticsReady(true)
     }
+    // else if (!shouldLoad && !needConsent ) {
+    //   // When user has refused tracking, set ready anyway
+    //   setIsAnalyticsReady(true)
+    // }
   }, [onError, settings, loadOptions, shouldLoad])
 
   const value = useMemo<AnalyticsContextInterface<T>>(() => {
@@ -144,7 +155,18 @@ export function AnalyticsProvider<T extends Events>({
     }
   }, [events, internalAnalytics, isAnalyticsReady, onEventError])
 
-  const shouldRender = !shouldRenderOnlyWhenReady || isAnalyticsReady
+  const shouldRender =
+    !shouldRenderOnlyWhenReady || (isAnalyticsReady && !needConsent)
+
+  useDeepCompareEffectNoCheck(() => {
+    internalAnalytics?.consent({
+      consentManagement: {
+        enabled: true,
+        allowedConsentIds: allowedConsents,
+        deniedConsentIds: deniedConsents,
+      },
+    })
+  }, [allowedConsents, deniedConsents])
 
   return (
     <AnalyticsContext.Provider value={value}>
