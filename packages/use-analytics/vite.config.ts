@@ -11,7 +11,11 @@ export default mergeConfig(config, {
   build: {
     lib: {
       formats: ['es', 'cjs'],
-      entry: ['src/index.ts', 'src/cookies-consent/index.ts'],
+      entry: [
+        'src/index.ts',
+        'src/analytics/index.ts',
+        'src/cookies-consent/index.ts',
+      ],
     },
   },
   test: {
