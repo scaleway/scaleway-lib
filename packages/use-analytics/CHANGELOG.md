@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.0.2
+
+### Patch Changes
+
+- [#2660](https://github.com/scaleway/scaleway-lib/pull/2660) [`88ce76b`](https://github.com/scaleway/scaleway-lib/commit/88ce76b69d70797ea791edac61155a0406067473) Thanks [@philibea](https://github.com/philibea)! - remove fields from package.json
+
 ## 0.0.1
 
 ### Patch Changes
