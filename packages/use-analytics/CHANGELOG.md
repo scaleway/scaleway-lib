@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.0.3
+
+### Patch Changes
+
+- [#2663](https://github.com/scaleway/scaleway-lib/pull/2663) [`71f500b`](https://github.com/scaleway/scaleway-lib/commit/71f500b3c86eba65a56cd57a695c2ee063a2628f) Thanks [@philibea](https://github.com/philibea)! - fix export fields
+
 ## 0.0.2
 
 ### Patch Changes
