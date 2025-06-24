@@ -1,6 +1,6 @@
 import type { ConsentOptions, LoadOptions } from '@rudderstack/analytics-js'
 
-export const consentOptions: ConsentOptions = {
+export const defaultConsentOptions: ConsentOptions = {
   trackConsent: true,
   discardPreConsentEvents: true,
   storage: {

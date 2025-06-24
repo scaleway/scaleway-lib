@@ -9,7 +9,7 @@ export const isCategoryKind = (key: string): key is CategoryKind =>
 type Provider = 'custom'
 type ResolutionStrategy = 'and' | 'or'
 
-type Consents = { consent: CategoryKind }[]
+export type Consents = { consent: CategoryKind }[]
 
 type Destination = {
   id: string

@@ -5,11 +5,8 @@
   "engines": {
     "node": ">=20.x"
   },
-  "main": "./dist/index.cjs",
   "sideEffects": false,
   "type": "module",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/analytics/index.d.ts",
