@@ -154,8 +154,8 @@ catalogs:
       specifier: 14.1.0
       version: 14.1.0
     happy-dom:
-      specifier: 17.6.3
-      version: 17.6.3
+      specifier: 18.0.0
+      version: 18.0.0
     history:
       specifier: 5.3.0
       version: 5.3.0
@@ -292,7 +292,7 @@ importers:
         version: 4.5.2(vite@6.3.5(@types/node@22.15.32)(jiti@2.4.2)(terser@5.37.0)(yaml@2.8.0))
       '@vitest/coverage-istanbul':
         specifier: 'catalog:'
-        version: 3.2.4(vitest@3.2.4(@types/node@22.15.32)(happy-dom@17.6.3)(jiti@2.4.2)(jsdom@20.0.3)(terser@5.37.0)(yaml@2.8.0))
+        version: 3.2.4(vitest@3.2.4(@types/node@22.15.32)(happy-dom@18.0.0)(jiti@2.4.2)(jsdom@20.0.3)(terser@5.37.0)(yaml@2.8.0))
       browserslist:
         specifier: 'catalog:'
         version: 4.25.0
@@ -313,7 +313,7 @@ importers:
         version: 16.2.0
       happy-dom:
         specifier: 'catalog:'
-        version: 17.6.3
+        version: 18.0.0
       husky:
         specifier: 'catalog:'
         version: 9.1.7
@@ -340,10 +340,10 @@ importers:
         version: 6.3.5(@types/node@22.15.32)(jiti@2.4.2)(terser@5.37.0)(yaml@2.8.0)
       vitest:
         specifier: 'catalog:'
-        version: 3.2.4(@types/node@22.15.32)(happy-dom@17.6.3)(jiti@2.4.2)(jsdom@20.0.3)(terser@5.37.0)(yaml@2.8.0)
+        version: 3.2.4(@types/node@22.15.32)(happy-dom@18.0.0)(jiti@2.4.2)(jsdom@20.0.3)(terser@5.37.0)(yaml@2.8.0)
       vitest-localstorage-mock:
         specifier: 'catalog:'
-        version: 0.1.2(vitest@3.2.4(@types/node@22.15.32)(happy-dom@17.6.3)(jiti@2.4.2)(jsdom@20.0.3)(terser@5.37.0)(yaml@2.8.0))
+        version: 0.1.2(vitest@3.2.4(@types/node@22.15.32)(happy-dom@18.0.0)(jiti@2.4.2)(jsdom@20.0.3)(terser@5.37.0)(yaml@2.8.0))
       wait-for-expect:
         specifier: 'catalog:'
         version: 3.0.2
@@ -2059,6 +2059,9 @@ packages:
   '@types/node@12.20.55':
     resolution: {integrity: sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==}
 
+  '@types/node@20.19.1':
+    resolution: {integrity: sha512-jJD50LtlD2dodAEO653i3YF04NWak6jN3ky+Ri3Em3mGR39/glWiboM/IePaRbgwSfqM1TpGXfAg8ohn/4dTgA==}
+
   '@types/node@22.15.32':
     resolution: {integrity: sha512-3jigKqgSjsH6gYZv2nEsqdXfZqIFGAV36XYYjf9KGZ3PSG+IhLecqPnI310RvjutyMwifE2hhhNEklOUrvx/wA==}
 
@@ -2078,6 +2081,9 @@ packages:
 
   '@types/stack-utils@2.0.3':
     resolution: {integrity: sha512-9aEbYZ3TbYMznPdcdr3SmIrLXwC/AKZXQeCf9Pgao5CKb8CyHuEX5jzWPTkvregvhRJHcpRO6BFoGW9ycaOkYw==}
+
+  '@types/whatwg-mimetype@3.0.2':
+    resolution: {integrity: sha512-c2AKvDT8ToxLIOUlN51gTiHXflsfIFisS4pO7pDPoKouJCESkhZnEy623gwP9laCy5lnLDAw1vAzu2vM2YLOrA==}
 
   '@types/yargs-parser@21.0.3':
     resolution: {integrity: sha512-I4q9QU9MQv4oEOz4tAHJtNz1cwuLxn2F3xcc2iV5WdqLPpUnj30aUuxt1mAxYTG+oe8CZMV/+6rU4S4gRDzqtQ==}
@@ -3328,8 +3334,8 @@ packages:
   graphemer@1.4.0:
     resolution: {integrity: sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==}
 
-  happy-dom@17.6.3:
-    resolution: {integrity: sha512-UVIHeVhxmxedbWPCfgS55Jg2rDfwf2BCKeylcPSqazLz5w3Kri7Q4xdBJubsr/+VUzFLh0VjIvh13RaDA2/Xug==}
+  happy-dom@18.0.0:
+    resolution: {integrity: sha512-o3p2Axi1EdIfMaOUulDzO/5yXzLLV0g/54eLPVrkt3u20r3yOuOenHpyp2clAJ0eHMc+HyE139ulQxl+8pEJIw==}
     engines: {node: '>=20.0.0'}
 
   has-bigints@1.0.2:
@@ -6611,6 +6617,10 @@ snapshots:
 
   '@types/node@12.20.55': {}
 
+  '@types/node@20.19.1':
+    dependencies:
+      undici-types: 6.21.0
+
   '@types/node@22.15.32':
     dependencies:
       undici-types: 6.21.0
@@ -6628,6 +6638,8 @@ snapshots:
   '@types/semver@7.5.8': {}
 
   '@types/stack-utils@2.0.3': {}
+
+  '@types/whatwg-mimetype@3.0.2': {}
 
   '@types/yargs-parser@21.0.3': {}
 
@@ -6891,7 +6903,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@vitest/coverage-istanbul@3.2.4(vitest@3.2.4(@types/node@22.15.32)(happy-dom@17.6.3)(jiti@2.4.2)(jsdom@20.0.3)(terser@5.37.0)(yaml@2.8.0))':
+  '@vitest/coverage-istanbul@3.2.4(vitest@3.2.4(@types/node@22.15.32)(happy-dom@18.0.0)(jiti@2.4.2)(jsdom@20.0.3)(terser@5.37.0)(yaml@2.8.0))':
     dependencies:
       '@istanbuljs/schema': 0.1.3
       debug: 4.4.1
@@ -6903,7 +6915,7 @@ snapshots:
       magicast: 0.3.5
       test-exclude: 7.0.1
       tinyrainbow: 2.0.0
-      vitest: 3.2.4(@types/node@22.15.32)(happy-dom@17.6.3)(jiti@2.4.2)(jsdom@20.0.3)(terser@5.37.0)(yaml@2.8.0)
+      vitest: 3.2.4(@types/node@22.15.32)(happy-dom@18.0.0)(jiti@2.4.2)(jsdom@20.0.3)(terser@5.37.0)(yaml@2.8.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -8151,9 +8163,10 @@ snapshots:
 
   graphemer@1.4.0: {}
 
-  happy-dom@17.6.3:
+  happy-dom@18.0.0:
     dependencies:
-      webidl-conversions: 7.0.0
+      '@types/node': 20.19.1
+      '@types/whatwg-mimetype': 3.0.2
       whatwg-mimetype: 3.0.0
 
   has-bigints@1.0.2: {}
@@ -9665,11 +9678,11 @@ snapshots:
       terser: 5.37.0
       yaml: 2.8.0
 
-  vitest-localstorage-mock@0.1.2(vitest@3.2.4(@types/node@22.15.32)(happy-dom@17.6.3)(jiti@2.4.2)(jsdom@20.0.3)(terser@5.37.0)(yaml@2.8.0)):
+  vitest-localstorage-mock@0.1.2(vitest@3.2.4(@types/node@22.15.32)(happy-dom@18.0.0)(jiti@2.4.2)(jsdom@20.0.3)(terser@5.37.0)(yaml@2.8.0)):
     dependencies:
-      vitest: 3.2.4(@types/node@22.15.32)(happy-dom@17.6.3)(jiti@2.4.2)(jsdom@20.0.3)(terser@5.37.0)(yaml@2.8.0)
+      vitest: 3.2.4(@types/node@22.15.32)(happy-dom@18.0.0)(jiti@2.4.2)(jsdom@20.0.3)(terser@5.37.0)(yaml@2.8.0)
 
-  vitest@3.2.4(@types/node@22.15.32)(happy-dom@17.6.3)(jiti@2.4.2)(jsdom@20.0.3)(terser@5.37.0)(yaml@2.8.0):
+  vitest@3.2.4(@types/node@22.15.32)(happy-dom@18.0.0)(jiti@2.4.2)(jsdom@20.0.3)(terser@5.37.0)(yaml@2.8.0):
     dependencies:
       '@types/chai': 5.2.2
       '@vitest/expect': 3.2.4
@@ -9696,7 +9709,7 @@ snapshots:
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 22.15.32
-      happy-dom: 17.6.3
+      happy-dom: 18.0.0
       jsdom: 20.0.3
     transitivePeerDependencies:
       - jiti
@@ -9721,7 +9734,8 @@ snapshots:
 
   webidl-conversions@3.0.1: {}
 
-  webidl-conversions@7.0.0: {}
+  webidl-conversions@7.0.0:
+    optional: true
 
   whatwg-encoding@2.0.0:
     dependencies:
