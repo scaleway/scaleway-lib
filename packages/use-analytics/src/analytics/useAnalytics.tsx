@@ -1,6 +1,6 @@
 import { RudderAnalytics } from '@rudderstack/analytics-js'
 import type { LoadOptions } from '@rudderstack/analytics-js'
-import { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import { createContext, useContext, useMemo, useState } from 'react'
 import type { ReactNode } from 'react'
 import { useDeepCompareEffectNoCheck } from 'use-deep-compare-effect'
 import { destSDKBaseURL, pluginsSDKBaseURL } from '../constants'
@@ -79,7 +79,6 @@ export function AnalyticsProvider<T extends Events>({
   settings,
   loadOptions,
   shouldRenderOnlyWhenReady = false,
-  shouldLoadAnalytics = false,
   onError,
   onEventError,
   allowedConsents,
@@ -91,13 +90,7 @@ export function AnalyticsProvider<T extends Events>({
     undefined,
   )
 
-  const shouldLoad = useMemo(() => {
-    if (shouldLoadAnalytics) {
-      return !!settings?.writeKey
-    }
-
-    return false
-  }, [shouldLoadAnalytics, settings?.writeKey])
+  const shouldLoad = useMemo(() => !!settings?.writeKey, [settings?.writeKey])
 
   useDeepCompareEffectNoCheck(() => {
     if (shouldLoad && settings) {
@@ -129,22 +122,11 @@ export function AnalyticsProvider<T extends Events>({
         setAnalytics({ ...analytics, trackLink: trackLink(analytics) })
         setIsAnalyticsReady(true)
       })
-    } else if (shouldLoadAnalytics && !shouldLoad) {
+    } else if (!shouldLoad) {
       // When user has refused tracking, set ready anyway
       setIsAnalyticsReady(true)
     }
-  }, [onError, settings, loadOptions, shouldLoad, shouldLoadAnalytics])
-
-  useEffect(() => {
-    if (isAnalyticsReady) {
-      internalAnalytics?.consent({
-        consentManagement: {
-          allowedConsentIds: allowedConsents,
-          deniedConsentIds: deniedConsents,
-        },
-      })
-    }
-  }, [internalAnalytics, isAnalyticsReady, allowedConsents, deniedConsents])
+  }, [onError, settings, loadOptions, shouldLoad])
 
   const value = useMemo<AnalyticsContextInterface<T>>(() => {
     const curiedEvents = Object.entries(events).reduce(

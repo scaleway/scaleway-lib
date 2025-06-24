@@ -11,7 +11,7 @@ export const defaultConsentOptions: ConsentOptions = {
     allowedConsentIds: [],
     deniedConsentIds: [],
   },
-}
+} as const
 
 export const defaultLoadOptions: LoadOptions = {
   logLevel: 'NONE',
@@ -58,4 +58,4 @@ export const defaultLoadOptions: LoadOptions = {
     autoTrack: true,
     timeout: 500,
   },
-}
+} as const
