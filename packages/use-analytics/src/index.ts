@@ -1,7 +1,17 @@
+export { AnalyticsProvider, useAnalytics, useDestinations } from './analytics'
+export {
+  defaultLoadOptions,
+  defaultConsentOptions,
+} from './analytics/constants'
+
 export type {
   Analytics,
   OnEventError,
   AnalyticsProviderProps,
 } from './analytics/useAnalytics'
-
-export { AnalyticsProvider, useAnalytics, useDestinations } from './analytics'
+export type {
+  AnalyticsIntegration,
+  CategoryKind,
+  Consents,
+  Consent,
+} from './types'

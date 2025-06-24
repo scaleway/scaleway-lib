@@ -5,7 +5,7 @@ import type { ReactNode } from 'react'
 import { useDeepCompareEffectNoCheck } from 'use-deep-compare-effect'
 import { destSDKBaseURL, pluginsSDKBaseURL } from '../constants'
 import type { CategoryKind } from '../types'
-import { consentOptions, defaultLoadOptions } from './constants'
+import { defaultConsentOptions, defaultLoadOptions } from './constants'
 import { trackLink } from './segments/trackLink'
 import type { TrackLink } from './segments/trackLink'
 import { userMigrationsTraits } from './segments/userMigrationsTraits'
@@ -111,7 +111,7 @@ export function AnalyticsProvider<T extends Events>({
           userMigrationsTraits(rudderAnalytics)
 
           rudderAnalytics.consent({
-            ...consentOptions,
+            ...defaultConsentOptions,
             consentManagement: {
               enabled: true,
               allowedConsentIds: allowedConsents,

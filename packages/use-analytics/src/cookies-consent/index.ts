@@ -2,4 +2,5 @@ export {
   CookieConsentProvider,
   useCookieConsent,
 } from './CookieConsentProvider'
-// export { SegmentConsentMiddleware } from './SegmentConsentMiddleware'
+export { CATEGORIES } from '../constants'
+export type { AnalyticsIntegration, CategoryKind, Consents } from '../types'
