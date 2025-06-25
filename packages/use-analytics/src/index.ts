@@ -11,6 +11,8 @@ export type {
 } from './analytics/useAnalytics'
 export type {
   AnalyticsIntegration,
+  EssentialDestination,
+  Destination,
   CategoryKind,
   Consents,
   Consent,

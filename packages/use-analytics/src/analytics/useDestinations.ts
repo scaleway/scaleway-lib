@@ -13,7 +13,7 @@ const transformConfigToDestinations = (
 ): AnalyticsIntegration[] => {
   const { destinations } = config.source
 
-  const integrations = destinations.map(
+  const dest = destinations.map(
     ({ destinationDefinition, config: { consentManagement } }) => ({
       name: destinationDefinition.name,
       displayName: destinationDefinition.displayName,
@@ -23,7 +23,7 @@ const transformConfigToDestinations = (
     }),
   )
 
-  return integrations
+  return dest
 }
 
 /**
@@ -65,9 +65,6 @@ export const useDestinations = (config: Config) => {
         setDestinations(response)
       })
       .catch(() => {
-        setDestinations([])
-      })
-      .finally(() => {
         setDestinations([])
       })
   }, [setDestinations, config.analytics])

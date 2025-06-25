@@ -11,7 +11,7 @@ type ResolutionStrategy = 'and' | 'or'
 
 export type Consents = { consent: CategoryKind }[]
 
-type Destination = {
+type RudderDestination = {
   id: string
   name: string
   enabled: boolean
@@ -44,7 +44,7 @@ export type AnalyticsConfig = {
     config: Record<string, any>
     enabled: boolean
     workspaceId: string
-    destinations: Destination[]
+    destinations: RudderDestination[]
   }
 }
 
@@ -56,12 +56,14 @@ export type AnalyticsIntegration = {
 
 export type Consent = { [K in CategoryKind]: boolean }
 
-export type Integration = {
+export type Destination = {
   category: CategoryKind
   name: string
+  displayName: string
 }
+export type EssentialDestination = Pick<Destination, 'displayName' | 'name'>
 
-export type Integrations = Integration[]
+export type Destinations = Destination[]
 
 export type Config = {
   analytics?: {

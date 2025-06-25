@@ -22,10 +22,16 @@ import { uniq } from '../helpers/array'
 import { IS_CLIENT } from '../helpers/isClient'
 import { stringToHash } from '../helpers/misc'
 import { isCategoryKind } from '../types'
-import type { Config, Consent, Integration, Integrations } from '../types'
+import type {
+  Config,
+  Consent,
+  Destination,
+  Destinations,
+  EssentialDestination,
+} from '../types'
 
 type Context = {
-  destinations: Integrations
+  destinations: Destinations
   needConsent: boolean
   isDestinationsLoaded: boolean
   categories: typeof CATEGORIES
@@ -50,6 +56,7 @@ export const CookieConsentProvider = ({
   children,
   isConsentRequired,
   essentialDestinations,
+  manualDestinations,
   config,
   cookiePrefix = COOKIE_PREFIX,
   consentMaxAge = CONSENT_MAX_AGE,
@@ -57,7 +64,8 @@ export const CookieConsentProvider = ({
   cookiesOptions = COOKIES_OPTIONS,
 }: PropsWithChildren<{
   isConsentRequired: boolean
-  essentialDestinations: string[]
+  essentialDestinations: EssentialDestination[]
+  manualDestinations?: Destinations
   config: Config
   cookiePrefix?: string
   consentMaxAge?: number
@@ -74,25 +82,28 @@ export const CookieConsentProvider = ({
     isLoaded: isDestinationsLoaded,
   } = useDestinations(config)
 
-  const destinations: Integrations = useMemo(
+  const destinations: Destinations = useMemo(
     () =>
       uniq([
         ...(analyticsDestinations ?? []).map(
           dest =>
             ({
               name: dest.name,
+              displayName: dest.displayName,
               category: dest.consents[0] ?? 'essential',
-            }) satisfies Integration,
+            }) satisfies Destination,
         ),
         ...essentialDestinations.map(
           dest =>
             ({
-              name: dest,
+              name: dest.name,
+              displayName: dest.displayName,
               category: 'essential',
-            }) satisfies Integration,
+            }) satisfies Destination,
         ),
+        ...(manualDestinations ?? []),
       ]),
-    [analyticsDestinations, essentialDestinations],
+    [analyticsDestinations, essentialDestinations, manualDestinations],
   )
 
   // We compute a hash with all the integrations that are enabled
@@ -101,20 +112,17 @@ export const CookieConsentProvider = ({
   const destinationsHash = useMemo(
     () =>
       stringToHash(
-        uniq([
-          ...destinations.map(({ name }) => name),
-          ...essentialDestinations,
-        ])
+        uniq(destinations.map(({ name }) => name))
           .sort()
           .join(undefined),
       ),
-    [destinations, essentialDestinations],
+    [destinations],
   )
 
   useEffect(() => {
-    // We set needConsent at false until we have an answer from segment
+    // We set needConsent at false until we have an answer from the source
     // This is to avoid showing setting needConsent to true only to be set
-    // to false after receiving segment answer and flicker the UI
+    // to false after receiving source answer and flicker the UI
 
     setNeedsConsent(
       isConsentRequired &&

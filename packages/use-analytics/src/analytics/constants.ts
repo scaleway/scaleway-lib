@@ -4,7 +4,7 @@ export const defaultConsentOptions: ConsentOptions = {
   trackConsent: true,
   discardPreConsentEvents: true,
   storage: {
-    type: 'localStorage',
+    type: 'cookieStorage',
   },
   consentManagement: {
     enabled: true,
@@ -47,7 +47,7 @@ export const defaultLoadOptions: LoadOptions = {
   integrations: {
     All: true,
   },
-  loadIntegration: false,
+  loadIntegration: true,
   secureCookie: true,
   anonymousIdOptions: {
     autoCapture: {
