@@ -22,13 +22,7 @@ import { uniq } from '../helpers/array'
 import { IS_CLIENT } from '../helpers/isClient'
 import { stringToHash } from '../helpers/misc'
 import { isCategoryKind } from '../types'
-import type {
-  Config,
-  Consent,
-  Destination,
-  Destinations,
-  EssentialDestination,
-} from '../types'
+import type { Config, Consent, Destination, Destinations } from '../types'
 
 type Context = {
   destinations: Destinations
@@ -55,7 +49,6 @@ export const useCookieConsent = (): Context => {
 export const CookieConsentProvider = ({
   children,
   isConsentRequired,
-  essentialDestinations,
   manualDestinations,
   config,
   cookiePrefix = COOKIE_PREFIX,
@@ -64,7 +57,6 @@ export const CookieConsentProvider = ({
   cookiesOptions = COOKIES_OPTIONS,
 }: PropsWithChildren<{
   isConsentRequired: boolean
-  essentialDestinations: EssentialDestination[]
   manualDestinations?: Destinations
   config: Config
   cookiePrefix?: string
@@ -93,17 +85,9 @@ export const CookieConsentProvider = ({
               category: dest.consents[0] ?? 'essential',
             }) satisfies Destination,
         ),
-        ...essentialDestinations.map(
-          dest =>
-            ({
-              name: dest.name,
-              displayName: dest.displayName,
-              category: 'essential',
-            }) satisfies Destination,
-        ),
         ...(manualDestinations ?? []),
       ]),
-    [analyticsDestinations, essentialDestinations, manualDestinations],
+    [analyticsDestinations, manualDestinations],
   )
 
   // We compute a hash with all the integrations that are enabled

@@ -18,7 +18,7 @@ export type { Analytics }
 
 export type OnEventError = (error: Error) => Promise<void> | void
 
-type EventFunction = (...args: never[]) => Promise<void>
+type EventFunction = (...args: never[]) => Promise<void> | void
 type Events = Record<
   string,
   (analytics?: Analytics, onEventError?: OnEventError) => EventFunction

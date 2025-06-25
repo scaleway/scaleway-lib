@@ -1,4 +1,9 @@
-export { AnalyticsProvider, useAnalytics, useDestinations } from './analytics'
+export {
+  AnalyticsProvider,
+  useAnalytics,
+  useDestinations,
+  userMigrationsTraits,
+} from './analytics'
 export {
   defaultLoadOptions,
   defaultConsentOptions,
@@ -11,7 +16,6 @@ export type {
 } from './analytics/useAnalytics'
 export type {
   AnalyticsIntegration,
-  EssentialDestination,
   Destination,
   CategoryKind,
   Consents,
