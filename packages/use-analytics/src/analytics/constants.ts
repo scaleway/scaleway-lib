@@ -52,6 +52,7 @@ export const defaultLoadOptions: LoadOptions = {
   anonymousIdOptions: {
     autoCapture: {
       enabled: true,
+      source: 'segment',
     },
   },
   sessions: {

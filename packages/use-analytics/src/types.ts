@@ -61,7 +61,6 @@ export type Destination = {
   name: string
   displayName: string
 }
-export type EssentialDestination = Pick<Destination, 'displayName' | 'name'>
 
 export type Destinations = Destination[]
 
