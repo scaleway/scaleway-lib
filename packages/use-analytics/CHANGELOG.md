@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.0.6
+
+### Patch Changes
+
+- [#2677](https://github.com/scaleway/scaleway-lib/pull/2677) [`af36a6e`](https://github.com/scaleway/scaleway-lib/commit/af36a6e1b49f4907896e0ed596cd96f0faf58a82) Thanks [@philibea](https://github.com/philibea)! - fix useless props: essentialDestinations, better typing
+
 ## 0.0.5
 
 ### Patch Changes
