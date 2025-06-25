@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.0.5
+
+### Patch Changes
+
+- [#2674](https://github.com/scaleway/scaleway-lib/pull/2674) [`b2a4f52`](https://github.com/scaleway/scaleway-lib/commit/b2a4f528aa988fdcc049a7f3b089a529873c0aed) Thanks [@philibea](https://github.com/philibea)! - fix issue with destination load and naming
+
 ## 0.0.4
 
 ### Patch Changes
