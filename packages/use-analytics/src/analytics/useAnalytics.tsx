@@ -128,15 +128,11 @@ export function AnalyticsProvider<T extends Events>({
       })
 
       analytics.ready(() => {
-        // @ts-expect-error blabla
+        // @ts-expect-error tracklink is added to the analytics setup to simplify migration from segment, should be remove.
         setAnalytics({ ...analytics, trackLink: trackLink(analytics) })
         setIsAnalyticsReady(true)
       })
     }
-    // else if (!shouldLoad && !needConsent ) {
-    //   // When user has refused tracking, set ready anyway
-    //   setIsAnalyticsReady(true)
-    // }
   }, [onError, settings, loadOptions, shouldLoad])
 
   const value = useMemo<AnalyticsContextInterface<T>>(() => {
