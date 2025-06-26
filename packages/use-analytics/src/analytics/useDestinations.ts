@@ -36,6 +36,7 @@ export const useDestinations = (config: Config) => {
     AnalyticsIntegration[] | undefined
   >(undefined)
 
+  // TODO: use useDataloader to add more cache.
   useEffect(() => {
     const fetchDestinations = async () => {
       if (config.analytics?.cdnURL && config.analytics.writeKey) {
@@ -52,6 +53,8 @@ export const useDestinations = (config: Config) => {
         if (!response.ok) {
           throw new Error('Failed to fetch integrations from source')
         }
+
+        // TODO: use zod to safe parse and add an error callback in case the schema changed.
         const json = (await response.json()) as AnalyticsConfig
 
         return transformConfigToDestinations(json)

@@ -1,8 +1,11 @@
 import type { ConsentOptions, LoadOptions } from '@rudderstack/analytics-js'
 
 export const defaultConsentOptions: ConsentOptions = {
-  trackConsent: true,
-  discardPreConsentEvents: true,
+  trackConsent: false,
+  /**
+   * The discardPreConsentEvents parameter in RudderStack's JavaScript SDK determines what happens to events that are generated before the user provides consent (pre-consent events):
+   */
+  discardPreConsentEvents: false,
   storage: {
     type: 'cookieStorage',
   },
