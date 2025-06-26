@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.0.7
+
+### Patch Changes
+
+- [#2679](https://github.com/scaleway/scaleway-lib/pull/2679) [`a709498`](https://github.com/scaleway/scaleway-lib/commit/a709498fa347c2cdf7f1ee37f348524398bd8ce5) Thanks [@philibea](https://github.com/philibea)! - change default config
+
 ## 0.0.6
 
 ### Patch Changes
