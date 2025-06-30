@@ -1,5 +1,13 @@
 # Change Log
 
+## 0.0.8
+
+### Patch Changes
+
+- [#2689](https://github.com/scaleway/scaleway-lib/pull/2689) [`ff0aa04`](https://github.com/scaleway/scaleway-lib/commit/ff0aa04e834465b814fa57d075a47f72b8cfe810) Thanks [@philibea](https://github.com/philibea)! - remove track link and add group properties
+
+- [#2689](https://github.com/scaleway/scaleway-lib/pull/2689) [`ff0aa04`](https://github.com/scaleway/scaleway-lib/commit/ff0aa04e834465b814fa57d075a47f72b8cfe810) Thanks [@philibea](https://github.com/philibea)! - Add a true trackLink
+
 ## 0.0.7
 
 ### Patch Changes
