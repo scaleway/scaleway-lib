@@ -24,6 +24,9 @@ export const userMigrationsTraits = (rudderAnalytics: RudderAnalytics) => {
   }
 
   if (segmentGroupId && (!rudderGroupId || rudderGroupId !== segmentGroupId)) {
-    rudderAnalytics.group(segmentGroupId)
+    rudderAnalytics.group(segmentGroupId, {
+      group_type: 'organization',
+      groupId: segmentGroupId,
+    })
   }
 }
