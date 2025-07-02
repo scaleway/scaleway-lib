@@ -193,6 +193,7 @@ export const CookieConsentProvider = ({
       categoriesConsent: cookieConsent,
       saveConsent,
       categories: CATEGORIES,
+      cookies,
     }),
     [
       destinations,
@@ -200,6 +201,7 @@ export const CookieConsentProvider = ({
       needConsent,
       cookieConsent,
       saveConsent,
+      cookies,
     ],
   )
 
