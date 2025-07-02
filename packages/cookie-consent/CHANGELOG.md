@@ -1,5 +1,11 @@
 # @scaleway/cookie-consent
 
+## 2.0.11
+
+### Patch Changes
+
+- [`6a2956b`](https://github.com/scaleway/scaleway-lib/commit/6a2956b6b594139c87f12bf781e98ebc048bee27) Thanks [@philibea](https://github.com/philibea)! - add cookies to providers
+
 ## 2.0.10
 
 ### Patch Changes

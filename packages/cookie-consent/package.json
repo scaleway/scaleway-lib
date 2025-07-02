@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/cookie-consent",
-  "version": "2.0.10",
+  "version": "2.0.11",
   "description": "React provider to handle website end user consent cookie storage based on segment integrations",
   "main": "./dist/index.cjs",
   "type": "module",
