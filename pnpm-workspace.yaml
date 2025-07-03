@@ -22,7 +22,7 @@ catalog:
   '@growthbook/growthbook-react': 1.6.0
   '@rudderstack/analytics-js': 3.21.0
   '@segment/analytics-next': 1.81.0
-  '@stylistic/eslint-plugin': 4.4.1
+  '@stylistic/eslint-plugin': 5.1.0
   '@testing-library/jest-dom': 6.6.3
   '@testing-library/react': 16.3.0
   '@types/jest': 30.0.0
