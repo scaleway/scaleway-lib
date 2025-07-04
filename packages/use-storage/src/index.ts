@@ -24,6 +24,34 @@ const canUseDOM =
     typeof window.sessionStorage !== 'undefined'
   )
 
+const createMemoryStorage = (): Storage => {
+  const storage: { [key: string]: string | null } = {}
+
+  return {
+    length: Object.entries(storage).length,
+    clear() {
+      Object.keys(storage).forEach(key => {
+        delete storage[key]
+      })
+    },
+    key(index) {
+      return Object.values(storage)[index] ?? null
+    },
+    getItem(key) {
+      return storage[key] ?? null
+    },
+    setItem(key, value) {
+      storage[key] = value
+    },
+    removeItem(key) {
+      delete storage[key]
+    },
+  }
+}
+
+const getStorage = (name: 'localStorage' | 'sessionStorage') =>
+  canUseDOM ? window[name] : createMemoryStorage()
+
 const subscribeStorage = (callback: () => void) => {
   if (canUseDOM) {
     window.addEventListener('storage', callback)
@@ -47,7 +75,9 @@ const useStorage = <T>(
 ): [T | null, (value: T | undefined) => void] => {
   const storage = useMemo(
     () =>
-      options?.kind === 'session' ? window.sessionStorage : window.localStorage,
+      options?.kind === 'session'
+        ? getStorage('sessionStorage')
+        : getStorage('localStorage'),
     [options?.kind],
   )
 
