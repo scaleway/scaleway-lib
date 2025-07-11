@@ -178,8 +178,8 @@ catalogs:
       specifier: 3.3.1
       version: 3.3.1
     query-string:
-      specifier: 9.2.1
-      version: 9.2.1
+      specifier: 9.2.2
+      version: 9.2.2
     react:
       specifier: 19.1.0
       version: 19.1.0
@@ -503,7 +503,7 @@ importers:
         version: 5.3.0
       query-string:
         specifier: 'catalog:'
-        version: 9.2.1
+        version: 9.2.2
     devDependencies:
       react:
         specifier: 'catalog:'
@@ -4213,8 +4213,8 @@ packages:
     resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
     engines: {node: '>=6'}
 
-  query-string@9.2.1:
-    resolution: {integrity: sha512-3jTGGLRzlhu/1ws2zlr4Q+GVMLCQTLFOj8CMX5x44cdZG9FQE07x2mQhaNxaKVPNmIDu0mvJ/cEwtY7Pim7hqA==}
+  query-string@9.2.2:
+    resolution: {integrity: sha512-pDSIZJ9sFuOp6VnD+5IkakSVf+rICAuuU88Hcsr6AKL0QtxSIfVuKiVP2oahFI7tk3CRSexwV+Ya6MOoTxzg9g==}
     engines: {node: '>=18'}
 
   querystringify@2.2.0:
@@ -9208,7 +9208,7 @@ snapshots:
 
   punycode@2.3.1: {}
 
-  query-string@9.2.1:
+  query-string@9.2.2:
     dependencies:
       decode-uri-component: 0.4.1
       filter-obj: 5.1.0
