@@ -12,11 +12,11 @@ const { t } = useI18n<{
 test('i18n - t', () => {
   expect(t('hello')).type.toBe<string>()
   // Single key
-  expect(t('keydoesnotexists')).type.toRaiseError()
+  expect(t).type.not.toBeCallableWith('keydoesnotexists')
 
   // Multiple keys
   expect(t('doe.john')).type.toBe<string>()
-  expect(t('doe.doesnotexists')).type.toRaiseError()
+  expect(t).type.not.toBeCallableWith('doe.doesnotexists')
 
   // With a param
   expect(
@@ -24,17 +24,13 @@ test('i18n - t', () => {
       name: 'Name',
     }),
   ).type.toBe<string>()
-  expect(
-    t('doe.doesnotexists', {
-      name: 'Name',
-    }),
-  ).type.toRaiseError()
+  expect(t).type.not.toBeCallableWith('doe.doesnotexists', {
+    name: 'Name',
+  })
 
-  expect(t('doe.child', {})).type.toRaiseError(
-    "Argument of type '{}' is not assignable to parameter of type",
-  )
+  expect(t).type.not.toBeCallableWith('doe.child', {})
 
-  expect(t('doe.child')).type.toRaiseError('Expected 2 arguments, but got 1')
+  expect(t).type.not.toBeCallableWith('doe.child')
 
   // With multiple params
   expect(
@@ -44,8 +40,8 @@ test('i18n - t', () => {
     }),
   ).type.toBe<string>()
 
-  expect(t('describe.john', {})).type.toRaiseError()
-  expect(t('describe.john')).type.toRaiseError()
+  expect(t).type.not.toBeCallableWith('describe.john', {})
+  expect(t).type.not.toBeCallableWith('describe.john')
 
   // With react components as param value
   expect(
@@ -60,5 +56,5 @@ test('i18n - t', () => {
 
   // Required generic
   const { t: t2 } = useI18n()
-  expect(t2('test')).type.toRaiseError()
+  expect(t2).type.not.toBeCallableWith('test')
 })
