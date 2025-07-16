@@ -106,6 +106,7 @@ export function AnalyticsProvider<T extends Events>({
 
       analytics.load(settings.writeKey, settings.cdnURL, {
         ...defaultLoadOptions,
+        configUrl: settings.cdnURL,
         destSDKBaseURL: destSDKBaseURL(settings.cdnURL),
         pluginsSDKBaseURL: pluginsSDKBaseURL(settings.cdnURL),
         onLoaded: (rudderAnalytics: Analytics) => {
