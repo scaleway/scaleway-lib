@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.0.9
+
+### Patch Changes
+
+- [#2708](https://github.com/scaleway/scaleway-lib/pull/2708) [`02feb13`](https://github.com/scaleway/scaleway-lib/commit/02feb13ee1d104cd0a2bbe10e40cdddf6f0eef36) Thanks [@philibea](https://github.com/philibea)! - add configUrl setting by default
+
 ## 0.0.8
 
 ### Patch Changes
