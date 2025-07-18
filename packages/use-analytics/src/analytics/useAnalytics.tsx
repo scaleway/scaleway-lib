@@ -1,6 +1,6 @@
 import { RudderAnalytics } from '@rudderstack/analytics-js'
 import type { LoadOptions } from '@rudderstack/analytics-js'
-import { createContext, useContext, useMemo, useState } from 'react'
+import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import type { ReactNode } from 'react'
 import { useDeepCompareEffectNoCheck } from 'use-deep-compare-effect'
 import { destSDKBaseURL, pluginsSDKBaseURL } from '../constants'
@@ -51,6 +51,7 @@ export type AnalyticsProviderProps<T> = {
   settings?: {
     writeKey: string
     cdnURL: string
+    timeout: number
   }
   loadOptions?: LoadOptions
 
@@ -91,6 +92,26 @@ export function AnalyticsProvider<T extends Events>({
   const [internalAnalytics, setAnalytics] = useState<Analytics | undefined>(
     undefined,
   )
+
+  // This effect will unlock the case where we have a failure with the load of the analytics.load as rudderstack doesn't provider any solution for this case.
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout> | undefined
+    if (!isAnalyticsReady && !internalAnalytics && settings?.timeout) {
+      if (shouldRenderOnlyWhenReady) {
+        timer = setTimeout(() => setIsAnalyticsReady(true), settings.timeout)
+      }
+    }
+
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [
+    isAnalyticsReady,
+    internalAnalytics,
+    setIsAnalyticsReady,
+    shouldRenderOnlyWhenReady,
+    settings?.timeout,
+  ])
 
   const shouldLoad = useMemo(() => {
     if (needConsent) {
