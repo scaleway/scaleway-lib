@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.0.10
+
+### Patch Changes
+
+- [#2711](https://github.com/scaleway/scaleway-lib/pull/2711) [`bf7df55`](https://github.com/scaleway/scaleway-lib/commit/bf7df5591f3a93297d05219d0d108a616eab576a) Thanks [@philibea](https://github.com/philibea)! - add a timeout option to set analytics in case of silent failure
+
 ## 0.0.9
 
 ### Patch Changes
