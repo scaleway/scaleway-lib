@@ -26,6 +26,7 @@
     "@rudderstack/analytics-js": "catalog:",
     "@scaleway/eslint-config-react": "workspace:*",
     "@scaleway/tsconfig": "workspace:*",
+    "@scaleway/use-segment": "catalog:",
     "@testing-library/jest-dom": "catalog:",
     "@testing-library/react": "catalog:",
     "@types/jest": "catalog:",
