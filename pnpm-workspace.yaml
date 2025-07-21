@@ -21,6 +21,7 @@ catalog:
   '@formatjs/icu-messageformat-parser': 2.11.2
   '@growthbook/growthbook-react': 1.6.0
   '@rudderstack/analytics-js': 3.21.0
+  '@scaleway/use-segment': 1.1.11
   '@segment/analytics-next': 1.81.1
   '@stylistic/eslint-plugin': 4.4.1
   '@testing-library/jest-dom': 6.6.3

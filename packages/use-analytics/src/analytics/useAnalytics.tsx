@@ -6,14 +6,9 @@ import { useDeepCompareEffectNoCheck } from 'use-deep-compare-effect'
 import { destSDKBaseURL, pluginsSDKBaseURL } from '../constants'
 import type { CategoryKind } from '../types'
 import { defaultConsentOptions, defaultLoadOptions } from './constants'
-import { trackLink } from './segments/trackLink'
-import type { TrackLink } from './segments/trackLink'
 import { userMigrationsTraits } from './segments/userMigrationsTraits'
 
-type Analytics = RudderAnalytics & {
-  trackLink: TrackLink
-}
-
+type Analytics = RudderAnalytics
 export type { Analytics }
 
 export type OnEventError = (error: Error) => Promise<void> | void
@@ -51,7 +46,6 @@ export type AnalyticsProviderProps<T> = {
   settings?: {
     writeKey: string
     cdnURL: string
-    timeout: number
   }
   loadOptions?: LoadOptions
 
@@ -60,9 +54,10 @@ export type AnalyticsProviderProps<T> = {
    */
   shouldRenderOnlyWhenReady?: boolean
   /**
-   * used with shouldRenderOnlyWhenReady can blocked rendering until consent the first time.
+   * used with shouldRenderOnlyWhenReady can blocked rendering until consent the first time. You can also set a timeout to prevent blocking indefinitely.
    */
   needConsent?: boolean
+  timeout?: number
   allowedConsents: CategoryKind[]
   deniedConsents: CategoryKind[]
   onError?: (err: Error) => void
@@ -87,6 +82,7 @@ export function AnalyticsProvider<T extends Events>({
   deniedConsents,
   events,
   onLoaded,
+  timeout,
 }: AnalyticsProviderProps<T>) {
   const [isAnalyticsReady, setIsAnalyticsReady] = useState(false)
   const [internalAnalytics, setAnalytics] = useState<Analytics | undefined>(
@@ -96,9 +92,10 @@ export function AnalyticsProvider<T extends Events>({
   // This effect will unlock the case where we have a failure with the load of the analytics.load as rudderstack doesn't provider any solution for this case.
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout> | undefined
-    if (!isAnalyticsReady && !internalAnalytics && settings?.timeout) {
+    if (!isAnalyticsReady && !internalAnalytics && timeout) {
       if (shouldRenderOnlyWhenReady) {
-        timer = setTimeout(() => setIsAnalyticsReady(true), settings.timeout)
+        timer = setTimeout(() => setIsAnalyticsReady(true), timeout)
+        onError?.(new Error('Analytics Setup Timeout'))
       }
     }
 
@@ -110,7 +107,8 @@ export function AnalyticsProvider<T extends Events>({
     internalAnalytics,
     setIsAnalyticsReady,
     shouldRenderOnlyWhenReady,
-    settings?.timeout,
+    timeout,
+    onError,
   ])
 
   const shouldLoad = useMemo(() => {
@@ -150,12 +148,11 @@ export function AnalyticsProvider<T extends Events>({
       })
 
       analytics.ready(() => {
-        // @ts-expect-error tracklink is added to the analytics setup to simplify migration from segment, should be remove.
-        setAnalytics({ ...analytics, trackLink: trackLink(analytics) })
+        setAnalytics(analytics)
         setIsAnalyticsReady(true)
       })
     }
-  }, [onError, settings, loadOptions, shouldLoad])
+  }, [settings, loadOptions, shouldLoad])
 
   const value = useMemo<AnalyticsContextInterface<T>>(() => {
     const curiedEvents = Object.entries(events).reduce(
