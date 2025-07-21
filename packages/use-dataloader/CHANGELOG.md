@@ -1,5 +1,15 @@
 # Change Log
 
+## 5.5.0
+
+### Minor Changes
+
+- [#2598](https://github.com/scaleway/scaleway-lib/pull/2598) [`70852bc`](https://github.com/scaleway/scaleway-lib/commit/70852bc2384622e94ba4874cec390d63b771dd44) Thanks [@DorianMaliszewski](https://github.com/DorianMaliszewski)! - Fix infinite dataloader effects that reset the page everytime
+
+### Patch Changes
+
+- [#2639](https://github.com/scaleway/scaleway-lib/pull/2639) [`305b084`](https://github.com/scaleway/scaleway-lib/commit/305b0840229836dd77298a5ed4f48937e6e97245) Thanks [@philibea](https://github.com/philibea)! - update packages
+
 ## 5.4.0
 
 ### Minor Changes

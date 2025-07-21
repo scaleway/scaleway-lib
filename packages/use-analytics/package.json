@@ -1,0 +1,70 @@
+{
+  "name": "@scaleway/use-analytics",
+  "version": "0.0.10",
+  "description": "A small hook to handle events analytics",
+  "engines": {
+    "node": ">=20.x"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./analytics": {
+      "types": "./dist/analytics/index.d.ts",
+      "require": "./dist/analytics/index.cjs",
+      "import": "./dist/analytics/index.js",
+      "default": "./dist/analytics/index.js"
+    },
+    "./cookies-consent": {
+      "types": "./dist/cookies-consent/index.d.ts",
+      "require": "./dist/cookies-consent/index.cjs",
+      "import": "./dist/cookies-consent/index.js",
+      "default": "./dist/cookies-consent/index.js"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist/*"
+  ],
+  "scripts": {
+    "prebuild": "shx rm -rf dist",
+    "typecheck": "tsc --noEmit",
+    "type:generate": "tsc --declaration -p tsconfig.build.json",
+    "build": "vite build --config vite.config.ts && pnpm run type:generate",
+    "build:profile": "npx vite-bundle-visualizer -c vite.config.ts",
+    "lint": "eslint --report-unused-disable-directives --cache --cache-strategy content --ext ts,tsx .",
+    "lintpublish": "publint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scaleway/scaleway-lib",
+    "directory": "packages/use-analytics"
+  },
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "reactjs",
+    "hooks",
+    "segment",
+    "rudderstack"
+  ],
+  "dependencies": {
+    "@rudderstack/analytics-js": "catalog:",
+    "@segment/analytics-next": "catalog:",
+    "cookie": "catalog:",
+    "use-deep-compare-effect": "catalog:"
+  },
+  "devDependencies": {
+    "react": "catalog:"
+  },
+  "peerDependencies": {
+    "react": "18.x || 19.x"
+  }
+}

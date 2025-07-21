@@ -1,5 +1,20 @@
 # @scaleway/cookie-consent
 
+## 2.0.11
+
+### Patch Changes
+
+- [`6a2956b`](https://github.com/scaleway/scaleway-lib/commit/6a2956b6b594139c87f12bf781e98ebc048bee27) Thanks [@philibea](https://github.com/philibea)! - add cookies to providers
+
+## 2.0.10
+
+### Patch Changes
+
+- [#2639](https://github.com/scaleway/scaleway-lib/pull/2639) [`305b084`](https://github.com/scaleway/scaleway-lib/commit/305b0840229836dd77298a5ed4f48937e6e97245) Thanks [@philibea](https://github.com/philibea)! - update packages
+
+- Updated dependencies [[`305b084`](https://github.com/scaleway/scaleway-lib/commit/305b0840229836dd77298a5ed4f48937e6e97245)]:
+  - @scaleway/use-segment@1.1.11
+
 ## 2.0.9
 
 ### Patch Changes
