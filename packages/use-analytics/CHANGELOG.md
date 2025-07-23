@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.0.11
+
+### Patch Changes
+
+- [#2721](https://github.com/scaleway/scaleway-lib/pull/2721) [`f69cca8`](https://github.com/scaleway/scaleway-lib/commit/f69cca84efec09f88261373d192208d4e9661bf3) Thanks [@philibea](https://github.com/philibea)! - add default analytics thirsd party
+
 ## 0.0.10
 
 ### Patch Changes
