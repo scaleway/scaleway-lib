@@ -9,6 +9,11 @@ export {
   defaultConsentOptions,
 } from './analytics/constants'
 
+export {
+  THIRD_PARTY_PROVIDERS,
+  CATEGORIES,
+} from './constants'
+
 export type {
   Analytics,
   OnEventError,

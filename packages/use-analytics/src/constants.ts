@@ -1,5 +1,28 @@
 import type { SerializeOptions } from 'cookie'
 
+export const THIRD_PARTY_PROVIDERS = [
+  {
+    name: 'Amplitude',
+    displayName: 'Amplitude',
+    category: 'analytics',
+  },
+  {
+    name: 'Algolia',
+    displayName: 'Algolia',
+    category: 'analytics',
+  },
+  {
+    name: 'LinkedIn',
+    displayName: 'LinkedIn',
+    category: 'marketing',
+  },
+  {
+    name: 'Google Ads',
+    displayName: 'Google AdWord',
+    category: 'marketing',
+  },
+] as const
+
 export const CATEGORIES = [
   'essential',
   'functional',
