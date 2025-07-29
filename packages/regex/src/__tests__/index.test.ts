@@ -521,7 +521,7 @@ describe('@regex', () => {
       [backupKeyTest, true],
       [digitsTest, false],
       [emailTest, false],
-      [octdigits, false],
+      [octdigits, true],
       [hexdigits, false],
       [printable, false],
       [punctuation, false],
