@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.4.0
+
+### Minor Changes
+
+- [#2728](https://github.com/scaleway/scaleway-lib/pull/2728) [`a4851d2`](https://github.com/scaleway/scaleway-lib/commit/a4851d2065a3f558896e6517009f2d293893b711) Thanks [@JulienSaguez](https://github.com/JulienSaguez)! - feat(regex): update regex for backupkey
+
 ## 5.3.2
 
 ### Patch Changes
