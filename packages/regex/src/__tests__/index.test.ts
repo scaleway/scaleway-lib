@@ -4,6 +4,7 @@ import {
   absolutePath,
   accessKeyRegex,
   advancedDomainName,
+  alias,
   alpha,
   alphaDashes,
   alphaLowercase,
@@ -492,6 +493,24 @@ describe('@regex', () => {
       ),
     ])('should match regex %s to be %s', (string, expected) => {
       expect(absoluteLinuxPath.test(string)).toBe(expected)
+    })
+  })
+
+  describe('alias', () => {
+    test.each([
+      [asciiLetters, false],
+      [asciiLowercase, true],
+      [asciiUppercase, false],
+      [digitsTest, true],
+      [emailTest, false],
+      [octdigits, true],
+      [hexdigits, false],
+      [printable, false],
+      [punctuation, false],
+      [whitespace, false],
+      [cronTest, false],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(alias.test(string)).toBe(expected)
     })
   })
 

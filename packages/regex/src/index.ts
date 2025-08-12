@@ -24,6 +24,7 @@ export const absoluteLinuxPath = /(^\/$|^(\/[a-zA-Z0-9_]+)*$)/
 
 // eslint-disable-next-line no-control-regex
 export const ascii = /^[\x00-\x7F]+$/
+export const alias = /^[a-z0-9]{2,32}$/
 export const backupKey = /^[A-Z0-9]{8}$|^[A-Z0-9]{32}$/
 export const basicDomain = /^[a-z0-9-]+(\.[a-z0-9-]{1,63})+$/
 export const uppercaseBasicDomain =
