@@ -2,4 +2,4 @@
 "@scaleway/regex": minor
 ---
 
-feat(regex): add regex alias
+feat(regex): add regex organizationAlias and uuid

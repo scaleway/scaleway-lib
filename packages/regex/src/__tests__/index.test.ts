@@ -4,7 +4,6 @@ import {
   absolutePath,
   accessKeyRegex,
   advancedDomainName,
-  alias,
   alpha,
   alphaDashes,
   alphaLowercase,
@@ -41,6 +40,7 @@ import {
   ipv6Cidr,
   macAddress,
   nineDigitsCode,
+  organizationAlias,
   password,
   pathSegment,
   phone,
@@ -52,6 +52,7 @@ import {
   uppercaseBasicDomain,
   uppercaseBasicSubdomain,
   url,
+  uuid,
 } from '..'
 
 const alphanumDashDotsText = 'testwithdashdots-.'
@@ -105,6 +106,7 @@ const linuxPaths = {
   ],
   GOOD: ['/var', '/var/test', '/var/test_', '/var_/test', '/'],
 }
+const uuidTest = '550e8400-e29b-41d4-a716-446655440000'
 
 describe('@regex', () => {
   describe('alpha', () => {
@@ -496,7 +498,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('alias', () => {
+  describe('organizationAlias', () => {
     test.each([
       [asciiLetters, false],
       [asciiLowercase, true],
@@ -510,7 +512,7 @@ describe('@regex', () => {
       [whitespace, false],
       [cronTest, false],
     ])('should match regex %s to be %s', (string, expected) => {
-      expect(alias.test(string)).toBe(expected)
+      expect(organizationAlias.test(string)).toBe(expected)
     })
   })
 
@@ -1148,6 +1150,26 @@ describe('@regex', () => {
       ['@Password123!@#', false],
     ])('should match regex %s to be %s', (string, expected) => {
       expect(password.test(string)).toBe(expected)
+    })
+  })
+
+  describe('uuid', () => {
+    test.each([
+      [asciiLetters, false],
+      [asciiLowercase, false],
+      [asciiUppercase, false],
+      [digitsTest, false],
+      [emailTest, false],
+      [octdigits, false],
+      [hexdigits, false],
+      [printable, false],
+      [punctuation, false],
+      [whitespace, false],
+      [cronTest, false],
+      [macAddress1, false],
+      [uuidTest, true],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(uuid.test(string)).toBe(expected)
     })
   })
 })
