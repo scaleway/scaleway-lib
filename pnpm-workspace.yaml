@@ -28,8 +28,8 @@ catalog:
   '@testing-library/react': 16.3.0
   '@types/jest': 30.0.0
   '@types/node': 22.16.5
-  '@types/react': 19.1.8
-  '@types/react-dom': 19.1.6
+  '@types/react': 19.1.10
+  '@types/react-dom': 19.1.7
   '@typescript-eslint/eslint-plugin': 8.38.0
   '@typescript-eslint/parser': 8.38.0
   '@vitejs/plugin-react': 4.7.0
@@ -61,8 +61,8 @@ catalog:
   mockdate: 3.0.5
   module-from-string: 3.3.1
   query-string: 9.2.2
-  react: 19.1.0
-  react-dom: 19.1.0
+  react: 19.1.1
+  react-dom: 19.1.1
   react-router-dom: 6.29.0
   read-pkg: 9.0.1
   shx: 0.4.0
