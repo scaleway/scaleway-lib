@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.5.0
+
+### Minor Changes
+
+- [#2736](https://github.com/scaleway/scaleway-lib/pull/2736) [`9019322`](https://github.com/scaleway/scaleway-lib/commit/90193222e74c116016d52ef50d9c278d3bae522f) Thanks [@JulienSaguez](https://github.com/JulienSaguez)! - feat(regex): add regex organizationAlias and uuid
+
 ## 5.4.0
 
 ### Minor Changes
