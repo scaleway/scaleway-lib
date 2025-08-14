@@ -53,7 +53,7 @@ export const url =
 export const hexadecimal = /^[0-9a-fA-F]+$/
 export const s3BucketName = /^[a-z0-9][-.a-z0-9]{1,61}[a-z0-9]$/
 export const uuid =
-  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 
 // Pasted from `ip-regex` package (https://github.com/sindresorhus/ip-regex/blob/main/index.js)
 const v4 =
