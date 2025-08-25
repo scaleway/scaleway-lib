@@ -10,7 +10,7 @@ catalog:
   '@babel/preset-typescript': 7.27.1
   '@biomejs/biome': 2.1.2
   '@changesets/changelog-github': 0.5.1
-  '@changesets/cli': 2.29.5
+  '@changesets/cli': 2.29.6
   '@commitlint/cli': 19.8.1
   '@commitlint/config-conventional': 19.8.1
   '@emotion/eslint-plugin': 11.12.0
