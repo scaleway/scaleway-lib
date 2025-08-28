@@ -19,7 +19,7 @@ catalog:
   '@formatjs/ecma402-abstract': 2.3.4
   '@formatjs/fast-memoize': 2.2.7
   '@formatjs/icu-messageformat-parser': 2.11.2
-  '@growthbook/growthbook-react': 1.6.0
+  '@growthbook/growthbook-react': 1.6.1
   '@rudderstack/analytics-js': 3.23.0
   '@scaleway/use-segment': 1.1.11
   '@segment/analytics-next': 1.81.1
