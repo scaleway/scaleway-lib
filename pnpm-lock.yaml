@@ -58,8 +58,8 @@ catalogs:
       specifier: 2.11.2
       version: 2.11.2
     '@growthbook/growthbook-react':
-      specifier: 1.6.0
-      version: 1.6.0
+      specifier: 1.6.1
+      version: 1.6.1
     '@rudderstack/analytics-js':
       specifier: 3.23.0
       version: 3.23.0
@@ -462,7 +462,7 @@ importers:
     dependencies:
       '@growthbook/growthbook-react':
         specifier: 'catalog:'
-        version: 1.6.0(react@19.1.1)
+        version: 1.6.1(react@19.1.1)
     devDependencies:
       react:
         specifier: 'catalog:'
@@ -1754,14 +1754,14 @@ packages:
   '@formatjs/intl-localematcher@0.6.1':
     resolution: {integrity: sha512-ePEgLgVCqi2BBFnTMWPfIghu6FkbZnnBVhO2sSxvLfrdFw7wCHAHiDoM2h4NRgjbaY7+B7HgOLZGkK187pZTZg==}
 
-  '@growthbook/growthbook-react@1.6.0':
-    resolution: {integrity: sha512-B1zSLfjRKfDlXNXMCvDLBGRAEslNDu2acUgCtHLvtGm/ZeiXtT4TuSG6dy9U2XcXczMFHoDtDln3skGb6mbo7g==}
+  '@growthbook/growthbook-react@1.6.1':
+    resolution: {integrity: sha512-ZxE0R+TslhTymMjyJiLMgvrKxZ+DqPzDuUjN8dZdAJQtlGUnGDn99pcF7lwYStZBPVZ3ncwNCQ9piEqU3i7AXg==}
     engines: {node: '>=10'}
     peerDependencies:
       react: ^16.8.0-0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
 
-  '@growthbook/growthbook@1.6.0':
-    resolution: {integrity: sha512-0aMB8j1lVLob4uXpFpTmylMEzlMsaaeFZiXgtaveCQwF+vwdKZG+aCOX/XQyLEvdsU1x3M4s/kZSiFM1lRMgQw==}
+  '@growthbook/growthbook@1.6.1':
+    resolution: {integrity: sha512-GSvb7bNaBTfH54AZ0oQdnoyV/ZxN9NhDEIHOsRUiM+CSOPiodz0i8/+1O6Wg0wFEVgBxS5CGWffyd74fym43Xw==}
     engines: {node: '>=10'}
 
   '@humanfs/core@0.19.1':
@@ -6433,12 +6433,12 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@growthbook/growthbook-react@1.6.0(react@19.1.1)':
+  '@growthbook/growthbook-react@1.6.1(react@19.1.1)':
     dependencies:
-      '@growthbook/growthbook': 1.6.0
+      '@growthbook/growthbook': 1.6.1
       react: 19.1.1
 
-  '@growthbook/growthbook@1.6.0':
+  '@growthbook/growthbook@1.6.1':
     dependencies:
       dom-mutator: 0.6.0
 
