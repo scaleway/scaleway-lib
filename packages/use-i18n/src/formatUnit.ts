@@ -81,8 +81,9 @@ const formatShortUnit = (
     shortenedUnit = symbols.short.octet
   }
 
-  return `${exponent.symbol}${shortenedUnit}${compoundUnit ? compoundUnitsSymbols[compoundUnit] : ''
-    }`
+  return `${exponent.symbol}${shortenedUnit}${
+    compoundUnit ? compoundUnitsSymbols[compoundUnit] : ''
+  }`
 }
 
 const formatLongUnit = (
@@ -99,21 +100,22 @@ const formatLongUnit = (
   ) {
     translation =
       localesWhoFavorOctetOverByte[
-      locale as keyof typeof localesWhoFavorOctetOverByte
+        locale as keyof typeof localesWhoFavorOctetOverByte
       ]
   }
 
-  return `${exponent.name}${formatters
-    .getTranslationFormat(
-      `{amount, plural,
+  return `${exponent.name}${
+    formatters
+      .getTranslationFormat(
+        `{amount, plural,
       =0 {${translation.singular}}
       =1 {${translation.singular}}
       other {${translation.plural}}
   }`,
-      locale,
-    )
-    .format({ amount }) as string
-    }`
+        locale,
+      )
+      .format({ amount }) as string
+  }`
 }
 
 const format =
@@ -128,71 +130,73 @@ const format =
     exponent?: Exponent
     humanize?: boolean
   }) =>
-    (
-      locale: string,
-      amount: number,
-      {
-        maximumFractionDigits,
-        minimumFractionDigits,
-        short = true,
-        base = 10,
-      }: {
-        maximumFractionDigits?: number
-        minimumFractionDigits?: number
-        short?: boolean
-        base?: 2 | 10
-      },
-    ): string => {
-      let computedExponent = exponent
-      let computedValue = amount
+  (
+    locale: string,
+    amount: number,
+    {
+      maximumFractionDigits,
+      minimumFractionDigits,
+      short = true,
+      base = 10,
+    }: {
+      maximumFractionDigits?: number
+      minimumFractionDigits?: number
+      short?: boolean
+      base?: 2 | 10
+    },
+  ): string => {
+    let computedExponent = exponent
+    let computedValue = amount
 
-      if (humanize) {
-        if (computedExponent) {
-          const value = filesize(amount, {
-            base,
-            exponent: exponents.findIndex(
-              exp => exp.name === (computedExponent as Exponent).name,
-            ),
-            output: 'object',
-            round: maximumFractionDigits,
-          })
+    if (humanize) {
+      if (computedExponent) {
+        const value = filesize(amount, {
+          base,
+          exponent: exponents.findIndex(
+            exp => exp.name === (computedExponent as Exponent).name,
+          ),
+          output: 'object',
+          round: maximumFractionDigits,
+        })
 
-          computedValue = Number.parseFloat(value.value.toString())
-        } else {
-          const value = filesize(amount, {
-            base,
-            output: 'object',
-            round: maximumFractionDigits,
-          })
+        computedValue = Number.parseFloat(value.value.toString())
+      } else {
+        const value = filesize(amount, {
+          base,
+          output: 'object',
+          round: maximumFractionDigits,
+        })
 
-          computedExponent = exponents[value.exponent]
-          computedValue = Number.parseFloat(value.value.toString())
-        }
+        computedExponent = exponents[value.exponent]
+        computedValue = Number.parseFloat(value.value.toString())
       }
-
-      return `${new Intl.NumberFormat(locale, {
-        maximumFractionDigits,
-        minimumFractionDigits,
-      }).format(computedValue)} ${short
-        ? formatShortUnit(
-          locale,
-          computedExponent as Exponent,
-          unit,
-          compoundUnit,
-        )
-        : formatLongUnit(
-          locale,
-          computedExponent as Exponent,
-          unit,
-          computedValue,
-        )
-        }`
     }
+
+    return `${new Intl.NumberFormat(locale, {
+      maximumFractionDigits,
+      minimumFractionDigits,
+    }).format(computedValue)} ${
+      short
+        ? formatShortUnit(
+            locale,
+            computedExponent as Exponent,
+            unit,
+            compoundUnit,
+          )
+        : formatLongUnit(
+            locale,
+            computedExponent as Exponent,
+            unit,
+            computedValue,
+          )
+    }`
+  }
 
 type SimpleUnits = `${ExponentName}${Unit}${'-humanized' | ''}`
 type ComplexUnits = `${Unit}${'s' | ''}${'-humanized' | ''}`
-// eslint-disable-next-line @stylistic/space-infix-ops
-type PerSecondUnit = `${ExponentName | ''}bit${'s' | ''}${'-per-second' | ''}${| '-humanized' | ''}`
+ 
+type PerSecondUnit =
+  `${ExponentName | ''}bit${'s' | ''}${'-per-second' | ''}${'-humanized' | ''}`
 type SupportedUnits = SimpleUnits | ComplexUnits | PerSecondUnit
 
 export const supportedUnits: Partial<
