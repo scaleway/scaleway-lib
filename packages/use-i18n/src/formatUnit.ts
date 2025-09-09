@@ -194,7 +194,7 @@ const format =
 
 type SimpleUnits = `${ExponentName}${Unit}${'-humanized' | ''}`
 type ComplexUnits = `${Unit}${'s' | ''}${'-humanized' | ''}`
- 
+
 type PerSecondUnit =
   `${ExponentName | ''}bit${'s' | ''}${'-per-second' | ''}${'-humanized' | ''}`
 type SupportedUnits = SimpleUnits | ComplexUnits | PerSecondUnit
