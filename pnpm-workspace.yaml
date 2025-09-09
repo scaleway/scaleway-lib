@@ -20,7 +20,7 @@ catalog:
   '@formatjs/fast-memoize': 2.2.7
   '@formatjs/icu-messageformat-parser': 2.11.2
   '@growthbook/growthbook-react': 1.6.1
-  '@rudderstack/analytics-js': 3.23.0
+  '@rudderstack/analytics-js': 3.23.2
   '@scaleway/use-segment': 1.1.11
   '@segment/analytics-next': 1.81.1
   '@stylistic/eslint-plugin': 4.4.1
