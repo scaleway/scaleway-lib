@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.0.12
+
+### Patch Changes
+
+- [#2747](https://github.com/scaleway/scaleway-lib/pull/2747) [`2d30d81`](https://github.com/scaleway/scaleway-lib/commit/2d30d817867dcee41aa53ebe2fb2b2c25a17f61f) Thanks [@philibea](https://github.com/philibea)! - Add normalize id on anonymousId, userId, groupId
+
 ## 0.0.11
 
 ### Patch Changes
