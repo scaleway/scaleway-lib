@@ -1,4 +1,5 @@
 import type { RudderAnalytics } from '@rudderstack/analytics-js'
+import { normalizeId } from '../normalizeId'
 
 const SEGMENT_COOKIES_KEY = {
   ANONYMOUS_ID: 'ajs_anonymous_id',
@@ -16,14 +17,20 @@ export const userMigrationsTraits = (rudderAnalytics: RudderAnalytics) => {
   const rudderGroupId = rudderAnalytics.getGroupId()
 
   if (segmentAnonymousId) {
-    rudderAnalytics.setAnonymousId(segmentAnonymousId)
+    rudderAnalytics.setAnonymousId(normalizeId(segmentAnonymousId))
   }
 
   if (segmentUserId && (!rudderUserId || rudderUserId !== segmentUserId)) {
-    rudderAnalytics.identify(segmentUserId)
+    const normalizedUserId = normalizeId(segmentUserId)
+    if (normalizedUserId) {
+      rudderAnalytics.identify(normalizedUserId)
+    }
   }
 
   if (segmentGroupId && (!rudderGroupId || rudderGroupId !== segmentGroupId)) {
-    rudderAnalytics.group(segmentGroupId)
+    const normalizedGroupId = normalizeId(segmentGroupId)
+    if (normalizedGroupId) {
+      rudderAnalytics.group(normalizedGroupId)
+    }
   }
 }
