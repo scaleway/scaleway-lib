@@ -6,6 +6,7 @@ import { useDeepCompareEffectNoCheck } from 'use-deep-compare-effect'
 import { destSDKBaseURL, pluginsSDKBaseURL } from '../constants'
 import type { CategoryKind } from '../types'
 import { defaultConsentOptions, defaultLoadOptions } from './constants'
+import { normalizeIdsMigration } from './normalizeIdsMigration'
 import { userMigrationsTraits } from './segments/userMigrationsTraits'
 
 type Analytics = RudderAnalytics
@@ -130,6 +131,7 @@ export function AnalyticsProvider<T extends Events>({
         pluginsSDKBaseURL: pluginsSDKBaseURL(settings.cdnURL),
         onLoaded: (rudderAnalytics: Analytics) => {
           userMigrationsTraits(rudderAnalytics)
+          normalizeIdsMigration(rudderAnalytics)
 
           rudderAnalytics.consent({
             ...defaultConsentOptions,
