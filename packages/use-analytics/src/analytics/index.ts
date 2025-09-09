@@ -9,3 +9,4 @@ export type {
 export { userMigrationsTraits } from './segments/userMigrationsTraits'
 export { defaultLoadOptions } from './constants'
 export { useDestinations } from './useDestinations'
+export { normalizeId } from './normalizeId'
