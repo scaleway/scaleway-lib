@@ -70,7 +70,7 @@ catalog:
   tstyche: 4.0.2
   typescript: 5.9.2
   use-deep-compare-effect: 1.8.1
-  vite: 7.0.6
+  vite: 7.0.7
   vitest: 3.2.4
   vitest-localstorage-mock: 0.1.2
   wait-for-expect: 3.0.2
