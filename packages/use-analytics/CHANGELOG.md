@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.0.13
+
+### Patch Changes
+
+- [#2762](https://github.com/scaleway/scaleway-lib/pull/2762) [`65c02e2`](https://github.com/scaleway/scaleway-lib/commit/65c02e2c8177050fcb9504416d95181f5fe3a163) Thanks [@philibea](https://github.com/philibea)! - export normalize id of analytics
+
 ## 0.0.12
 
 ### Patch Changes
