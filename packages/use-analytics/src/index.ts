@@ -1,9 +1,11 @@
 export {
   AnalyticsProvider,
+  normalizeIdsMigration,
   useAnalytics,
   useDestinations,
   userMigrationsTraits,
 } from './analytics'
+
 export {
   defaultLoadOptions,
   defaultConsentOptions,
