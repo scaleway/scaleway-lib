@@ -2,4 +2,4 @@
 "@scaleway/use-analytics": patch
 ---
 
-export normalize id of analytics
+Rollback ruddestack version
