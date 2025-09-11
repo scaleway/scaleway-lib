@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.0.14
+
+### Patch Changes
+
+- [#2767](https://github.com/scaleway/scaleway-lib/pull/2767) [`6a00202`](https://github.com/scaleway/scaleway-lib/commit/6a00202e12ed4c025c48f67f8b0a1e77f1b33f6e) Thanks [@philibea](https://github.com/philibea)! - Rollback ruddestack version
+
 ## 0.0.13
 
 ### Patch Changes
