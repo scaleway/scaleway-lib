@@ -6,6 +6,7 @@ import { useDeepCompareEffectNoCheck } from 'use-deep-compare-effect'
 import { destSDKBaseURL, pluginsSDKBaseURL } from '../constants'
 import type { CategoryKind } from '../types'
 import { defaultConsentOptions, defaultLoadOptions } from './constants'
+import { normalizeIdsMigration } from './normalizeIdsMigration'
 
 type Analytics = RudderAnalytics
 export type { Analytics }
@@ -136,6 +137,7 @@ export function AnalyticsProvider<T extends Events>({
               deniedConsentIds: deniedConsents,
             },
           })
+          normalizeIdsMigration(analytics)
 
           onLoaded(rudderAnalytics)
 
