@@ -36,6 +36,8 @@ type Context = {
   isDestinationsLoaded: boolean
   categories: typeof CATEGORIES
   categoriesConsent: Partial<Consent>
+  allowedConsents: (keyof Consent)[]
+  deniedConsents: (keyof Consent)[]
   saveConsent: (categoriesConsent: Partial<Consent>) => void
 }
 
