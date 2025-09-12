@@ -91,7 +91,7 @@ export function AnalyticsProvider<T extends Events>({
   // This effect will unlock the case where we have a failure with the load of the analytics.load as rudderstack doesn't provider any solution for this case.
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout> | undefined
-    if (!isAnalyticsReady && !internalAnalytics && timeout) {
+    if (!isAnalyticsReady && timeout) {
       if (shouldRenderOnlyWhenReady) {
         timer = setTimeout(() => setIsAnalyticsReady(true), timeout)
         onError?.(new Error('Analytics Setup Timeout'))
@@ -138,8 +138,7 @@ export function AnalyticsProvider<T extends Events>({
           })
 
           onLoaded(rudderAnalytics)
-
-          setIsAnalyticsReady(true)
+          setAnalytics(analytics)
         },
         ...loadOptions,
       })
