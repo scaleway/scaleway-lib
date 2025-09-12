@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.0.16
+
+### Patch Changes
+
+- [#2776](https://github.com/scaleway/scaleway-lib/pull/2776) [`f6efd44`](https://github.com/scaleway/scaleway-lib/commit/f6efd44c8329a28b7b2c495681add9b27838cc34) Thanks [@philibea](https://github.com/philibea)! - Add missing type to consent context
+
 ## 0.0.15
 
 ### Patch Changes
