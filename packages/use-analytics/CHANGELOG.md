@@ -1,5 +1,13 @@
 # Change Log
 
+## 0.0.15
+
+### Patch Changes
+
+- [#2772](https://github.com/scaleway/scaleway-lib/pull/2772) [`37b453a`](https://github.com/scaleway/scaleway-lib/commit/37b453a4985ea778815f8f461ad6d21715353e78) Thanks [@philibea](https://github.com/philibea)! - Add allowedConsents and denied consent on cookie consent provider
+
+- [#2772](https://github.com/scaleway/scaleway-lib/pull/2772) [`37b453a`](https://github.com/scaleway/scaleway-lib/commit/37b453a4985ea778815f8f461ad6d21715353e78) Thanks [@philibea](https://github.com/philibea)! - Fix readyness state
+
 ## 0.0.14
 
 ### Patch Changes
