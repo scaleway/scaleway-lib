@@ -73,6 +73,6 @@ catalog:
   vite: 7.1.5
   vitest: 3.2.4
   vitest-localstorage-mock: 0.1.2
-  wait-for-expect: 3.0.2
+  wait-for-expect: 4.0.0
 
 catalogMode: strict
