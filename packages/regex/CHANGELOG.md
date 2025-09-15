@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.6.0
+
+### Minor Changes
+
+- [#2782](https://github.com/scaleway/scaleway-lib/pull/2782) [`aececf9`](https://github.com/scaleway/scaleway-lib/commit/aececf9ba62bf9c7d78251504eac3f147b87005f) Thanks [@MathildeJolly](https://github.com/MathildeJolly)! - feat(regex): add new kafka username regex
+
 ## 5.5.0
 
 ### Minor Changes

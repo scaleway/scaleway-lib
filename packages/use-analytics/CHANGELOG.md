@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.0.17
+
+### Patch Changes
+
+- [#2783](https://github.com/scaleway/scaleway-lib/pull/2783) [`2a10859`](https://github.com/scaleway/scaleway-lib/commit/2a10859772870b962a1fa849c874f9a63ecfbcc7) Thanks [@philibea](https://github.com/philibea)! - Add timeout option also when shouldRenderOnlyWhenReady is not set
+
 ## 0.0.16
 
 ### Patch Changes
