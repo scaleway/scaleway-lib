@@ -5,7 +5,7 @@ import type { ReactNode } from 'react'
 import { useDeepCompareEffectNoCheck } from 'use-deep-compare-effect'
 import { destSDKBaseURL, pluginsSDKBaseURL } from '../constants'
 import type { CategoryKind } from '../types'
-import { defaultConsentOptions, defaultLoadOptions } from './constants'
+import { defaultConsentOptions, defaultLoadOptions, defaultTimeout } from './constants'
 import { normalizeIdsMigration } from './normalizeIdsMigration'
 
 type Analytics = RudderAnalytics
@@ -50,7 +50,7 @@ export type AnalyticsProviderProps<T> = {
   loadOptions?: LoadOptions
 
   /**
-   *  This option force provider to render children only when isAnalytics is ready
+   *  This option force provider to render children only when isAnalytics is ready, you can also set a timeout to prevent blocking indefinitely and use isAnalyticsReady to show a loading screen.
    */
   shouldRenderOnlyWhenReady?: boolean
   /**
@@ -92,11 +92,9 @@ export function AnalyticsProvider<T extends Events>({
   // This effect will unlock the case where we have a failure with the load of the analytics.load as rudderstack doesn't provider any solution for this case.
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout> | undefined
-    if (!isAnalyticsReady && timeout) {
-      if (shouldRenderOnlyWhenReady) {
-        timer = setTimeout(() => setIsAnalyticsReady(true), timeout)
+    if (!isAnalyticsReady && (Number.isFinite(timeout) || shouldRenderOnlyWhenReady)) {
+        timer = setTimeout(() => setIsAnalyticsReady(true), timeout ?? defaultTimeout)
         onError?.(new Error('Analytics Setup Timeout'))
-      }
     }
 
     return () => {
