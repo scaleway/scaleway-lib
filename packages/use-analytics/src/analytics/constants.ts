@@ -1,5 +1,7 @@
 import type { ConsentOptions, LoadOptions } from '@rudderstack/analytics-js'
 
+export const defaultTimeout = 5000
+
 export const defaultConsentOptions: ConsentOptions = {
   trackConsent: false,
   /**
