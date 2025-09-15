@@ -98,3 +98,7 @@ export const sgPortRange =
 
 // Include all characters except backtick ` and @ as first character
 export const password = /^(?!@)[^`]*$/
+
+// A kafka username contains lowercase letters and numbers, with each segment starting and ending with a letter or number. Hyphens are only allowed in the middle of segments. Example: "username", "user-name", "my-group.user-name"
+export const kafkaUsernameRegex =
+  /^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$/

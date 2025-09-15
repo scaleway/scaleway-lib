@@ -38,6 +38,7 @@ import {
   ipv4Cidr,
   ipv6,
   ipv6Cidr,
+  kafkaUsernameRegex,
   macAddress,
   nineDigitsCode,
   organizationAlias,
@@ -1150,6 +1151,19 @@ describe('@regex', () => {
       ['@Password123!@#', false],
     ])('should match regex %s to be %s', (string, expected) => {
       expect(password.test(string)).toBe(expected)
+    })
+  })
+
+  describe('kafkaUsernameRegex', () => {
+    test.each([
+      ['username', true],
+      ['user-name', true],
+      ['my-group.user-name', true],
+      ['-user-name', false],
+      ['user-Name-', false],
+      ['user..name', false],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(kafkaUsernameRegex.test(string)).toBe(expected)
     })
   })
 
