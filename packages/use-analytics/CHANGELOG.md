@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.0.18
+
+### Patch Changes
+
+- [#2790](https://github.com/scaleway/scaleway-lib/pull/2790) [`fc98e52`](https://github.com/scaleway/scaleway-lib/commit/fc98e52997c67ba6737369d7e5fc1ca5622d92a6) Thanks [@philibea](https://github.com/philibea)! - Add a proper timeout option to avoid re-render
+
 ## 0.0.17
 
 ### Patch Changes
