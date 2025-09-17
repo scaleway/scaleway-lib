@@ -5,7 +5,11 @@ import type { ReactNode } from 'react'
 import { useDeepCompareEffectNoCheck } from 'use-deep-compare-effect'
 import { destSDKBaseURL, pluginsSDKBaseURL } from '../constants'
 import type { CategoryKind } from '../types'
-import { defaultConsentOptions, defaultLoadOptions, defaultTimeout } from './constants'
+import {
+  defaultConsentOptions,
+  defaultLoadOptions,
+  defaultTimeout,
+} from './constants'
 import { normalizeIdsMigration } from './normalizeIdsMigration'
 
 type Analytics = RudderAnalytics
@@ -92,9 +96,18 @@ export function AnalyticsProvider<T extends Events>({
   // This effect will unlock the case where we have a failure with the load of the analytics.load as rudderstack doesn't provider any solution for this case.
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout> | undefined
-    if (!isAnalyticsReady && (Number.isFinite(timeout) || shouldRenderOnlyWhenReady)) {
-        timer = setTimeout(() => setIsAnalyticsReady(true), timeout ?? defaultTimeout)
-        onError?.(new Error('Analytics Setup Timeout'))
+    if (
+      !isAnalyticsReady &&
+      (Number.isFinite(timeout) || shouldRenderOnlyWhenReady)
+    ) {
+      timer = setTimeout(() => {
+        setIsAnalyticsReady(true)
+        onError?.(new Error('Timeout'))
+      }, timeout ?? defaultTimeout)
+    }
+
+    if (isAnalyticsReady) {
+      clearTimeout(timer)
     }
 
     return () => {
@@ -102,7 +115,6 @@ export function AnalyticsProvider<T extends Events>({
     }
   }, [
     isAnalyticsReady,
-    internalAnalytics,
     setIsAnalyticsReady,
     shouldRenderOnlyWhenReady,
     timeout,
@@ -144,7 +156,13 @@ export function AnalyticsProvider<T extends Events>({
       })
 
       analytics.ready(() => {
-        setAnalytics(analytics)
+        /**
+         * this will wait for client destination to be ready, but analytics is ready.
+         * we can listen for RSA_Ready event to know when the analytics is ready if we don't want to wait for the client destination to be ready.
+         * document.addEventListener('RSA_Ready', function(e) {
+         *  console.log('RSA_Ready', e.detail.analyticsInstance);
+         * });
+         */
         setIsAnalyticsReady(true)
       })
     }
