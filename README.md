@@ -37,7 +37,6 @@ scaleway-lib is a set of NPM packages used at Scaleway.
   ![npm bundle size](https://packagephobia.com/badge?p=@scaleway/cookie-consent)
   ![npm](https://img.shields.io/npm/v/@scaleway/cookie-consent)
 
-
 - [`@scaleway/countries`](./packages_deprecated/countries/README.md): ISO 3166/3166-2 coutries JSON database.
 
   ![npm](https://img.shields.io/npm/dm/@scaleway/countries)
@@ -103,6 +102,12 @@ scaleway-lib is a set of NPM packages used at Scaleway.
   ![npm](https://img.shields.io/npm/dm/@scaleway/regex)
   ![npm bundle size](https://packagephobia.com/badge?p=@scaleway/regex)
   ![npm](https://img.shields.io/npm/v/@scaleway/regex)
+
+- [`@scaleway/fuzzy-search`](./packages/fuzzy-search/README.md): fuzzy search utility
+
+  ![npm](https://img.shields.io/npm/dm/@scaleway/fuzzy-search)
+  ![npm bundle size](https://packagephobia.com/badge?p=@scaleway/fuzzy-search)
+  ![npm](https://img.shields.io/npm/v/@scaleway/fuzzy-search)
 
 - [`@scaleway/jest-helpers`](./packages/jest-helpers/README.md): utilities jest functions.
 
