@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/fuzzy-search",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A small utility to use fuzzy search",
   "type": "module",
   "engines": {
