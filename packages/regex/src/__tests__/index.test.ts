@@ -38,6 +38,7 @@ import {
   ipv4Cidr,
   ipv6,
   ipv6Cidr,
+  isJson,
   kafkaUsernameRegex,
   macAddress,
   nineDigitsCode,
@@ -1151,6 +1152,19 @@ describe('@regex', () => {
       ['@Password123!@#', false],
     ])('should match regex %s to be %s', (string, expected) => {
       expect(password.test(string)).toBe(expected)
+    })
+  })
+
+  describe('isJson', () => {
+    test.each([
+      ['{"key": "value"}', true],
+      ['{"key": {"nested": "value"}}', true],
+      ['{"key": ["array", "value"]}', true],
+      ['{"key": "value"', false],
+      ['{"key": {"nested": "value"', false],
+      ['{"key": ["array", "value"', false],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(isJson.test(string)).toBe(expected)
     })
   })
 
