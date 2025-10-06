@@ -40,7 +40,7 @@ catalog:
   cross-env: 10.0.0
   date-fns: 4.1.0
   esbuild-plugin-browserslist: 1.0.1
-  eslint: 9.29.0
+  eslint: 9.36.0
   eslint-config-airbnb: 19.0.4
   eslint-config-prettier: 10.1.8
   eslint-import-resolver-typescript: 4.4.4
