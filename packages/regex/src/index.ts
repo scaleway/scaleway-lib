@@ -103,4 +103,4 @@ export const password = /^(?!@)[^`]*$/
 export const kafkaUsernameRegex =
   /^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$/
 
-export const isJson = /({(?:[^{}]|{(?:[^{}]|{[^{}]*})*})*})/s
+export const json = /({(?:[^{}]|{(?:[^{}]|{[^{}]*})*})*})/s

@@ -2,4 +2,4 @@
 "@scaleway/regex": minor
 ---
 
-regex: add new isJson regex
+regex: add new json regex
