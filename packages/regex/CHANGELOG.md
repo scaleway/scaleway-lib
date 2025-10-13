@@ -1,5 +1,23 @@
 # Change Log
 
+## 5.6.0
+
+### Minor Changes
+
+- [#2782](https://github.com/scaleway/scaleway-lib/pull/2782) [`aececf9`](https://github.com/scaleway/scaleway-lib/commit/aececf9ba62bf9c7d78251504eac3f147b87005f) Thanks [@MathildeJolly](https://github.com/MathildeJolly)! - feat(regex): add new kafka username regex
+
+## 5.5.0
+
+### Minor Changes
+
+- [#2736](https://github.com/scaleway/scaleway-lib/pull/2736) [`9019322`](https://github.com/scaleway/scaleway-lib/commit/90193222e74c116016d52ef50d9c278d3bae522f) Thanks [@JulienSaguez](https://github.com/JulienSaguez)! - feat(regex): add regex organizationAlias and uuid
+
+## 5.4.0
+
+### Minor Changes
+
+- [#2728](https://github.com/scaleway/scaleway-lib/pull/2728) [`a4851d2`](https://github.com/scaleway/scaleway-lib/commit/a4851d2065a3f558896e6517009f2d293893b711) Thanks [@JulienSaguez](https://github.com/JulienSaguez)! - feat(regex): update regex for backupkey
+
 ## 5.3.2
 
 ### Patch Changes

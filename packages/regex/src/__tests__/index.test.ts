@@ -38,8 +38,10 @@ import {
   ipv4Cidr,
   ipv6,
   ipv6Cidr,
+  kafkaUsernameRegex,
   macAddress,
   nineDigitsCode,
+  organizationAlias,
   password,
   pathSegment,
   phone,
@@ -51,6 +53,7 @@ import {
   uppercaseBasicDomain,
   uppercaseBasicSubdomain,
   url,
+  uuid,
 } from '..'
 
 const alphanumDashDotsText = 'testwithdashdots-.'
@@ -104,6 +107,7 @@ const linuxPaths = {
   ],
   GOOD: ['/var', '/var/test', '/var/test_', '/var_/test', '/'],
 }
+const uuidTest = '550e8400-e29b-41d4-a716-446655440000'
 
 describe('@regex', () => {
   describe('alpha', () => {
@@ -492,6 +496,24 @@ describe('@regex', () => {
       ),
     ])('should match regex %s to be %s', (string, expected) => {
       expect(absoluteLinuxPath.test(string)).toBe(expected)
+    })
+  })
+
+  describe('organizationAlias', () => {
+    test.each([
+      [asciiLetters, false],
+      [asciiLowercase, true],
+      [asciiUppercase, false],
+      [digitsTest, true],
+      [emailTest, false],
+      [octdigits, true],
+      [hexdigits, false],
+      [printable, false],
+      [punctuation, false],
+      [whitespace, false],
+      [cronTest, false],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(organizationAlias.test(string)).toBe(expected)
     })
   })
 
@@ -1129,6 +1151,39 @@ describe('@regex', () => {
       ['@Password123!@#', false],
     ])('should match regex %s to be %s', (string, expected) => {
       expect(password.test(string)).toBe(expected)
+    })
+  })
+
+  describe('kafkaUsernameRegex', () => {
+    test.each([
+      ['username', true],
+      ['user-name', true],
+      ['my-group.user-name', true],
+      ['-user-name', false],
+      ['user-Name-', false],
+      ['user..name', false],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(kafkaUsernameRegex.test(string)).toBe(expected)
+    })
+  })
+
+  describe('uuid', () => {
+    test.each([
+      [asciiLetters, false],
+      [asciiLowercase, false],
+      [asciiUppercase, false],
+      [digitsTest, false],
+      [emailTest, false],
+      [octdigits, false],
+      [hexdigits, false],
+      [printable, false],
+      [punctuation, false],
+      [whitespace, false],
+      [cronTest, false],
+      [macAddress1, false],
+      [uuidTest, true],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(uuid.test(string)).toBe(expected)
     })
   })
 })

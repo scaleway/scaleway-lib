@@ -1,7 +1,7 @@
 {
-  "name": "@scaleway/regex",
-  "version": "5.6.0",
-  "description": "A small utility to use regex",
+  "name": "@scaleway/fuzzy-search",
+  "version": "1.0.0",
+  "description": "A small utility to use fuzzy search",
   "type": "module",
   "engines": {
     "node": ">=20.x"
@@ -33,7 +33,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/scaleway/scaleway-lib",
-    "directory": "packages/regex"
+    "directory": "packages/fuzzy-search"
   },
   "license": "MIT"
 }

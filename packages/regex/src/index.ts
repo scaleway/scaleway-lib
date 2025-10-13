@@ -24,6 +24,7 @@ export const absoluteLinuxPath = /(^\/$|^(\/[a-zA-Z0-9_]+)*$)/
 
 // eslint-disable-next-line no-control-regex
 export const ascii = /^[\x00-\x7F]+$/
+export const organizationAlias = /^[a-z0-9]{2,32}$/
 export const backupKey = /^[A-Z0-9]{8}$|^[A-Z0-9]{32}$/
 export const basicDomain = /^[a-z0-9-]+(\.[a-z0-9-]{1,63})+$/
 export const uppercaseBasicDomain =
@@ -51,6 +52,8 @@ export const url =
   /^http(s)?:\/\/?[\w.-]+(?:\.[\w.-]+)+[\w\-._~:/?#[\]@!$&'()*+,;=.]+$/
 export const hexadecimal = /^[0-9a-fA-F]+$/
 export const s3BucketName = /^[a-z0-9][-.a-z0-9]{1,61}[a-z0-9]$/
+export const uuid =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 
 // Pasted from `ip-regex` package (https://github.com/sindresorhus/ip-regex/blob/main/index.js)
 const v4 =
@@ -95,3 +98,7 @@ export const sgPortRange =
 
 // Include all characters except backtick ` and @ as first character
 export const password = /^(?!@)[^`]*$/
+
+// A kafka username contains lowercase letters and numbers, with each segment starting and ending with a letter or number. Hyphens are only allowed in the middle of segments. Example: "username", "user-name", "my-group.user-name"
+export const kafkaUsernameRegex =
+  /^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$/

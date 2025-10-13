@@ -1,5 +1,49 @@
 # Change Log
 
+## 0.0.18
+
+### Patch Changes
+
+- [#2790](https://github.com/scaleway/scaleway-lib/pull/2790) [`fc98e52`](https://github.com/scaleway/scaleway-lib/commit/fc98e52997c67ba6737369d7e5fc1ca5622d92a6) Thanks [@philibea](https://github.com/philibea)! - Add a proper timeout option to avoid re-render
+
+## 0.0.17
+
+### Patch Changes
+
+- [#2783](https://github.com/scaleway/scaleway-lib/pull/2783) [`2a10859`](https://github.com/scaleway/scaleway-lib/commit/2a10859772870b962a1fa849c874f9a63ecfbcc7) Thanks [@philibea](https://github.com/philibea)! - Add timeout option also when shouldRenderOnlyWhenReady is not set
+
+## 0.0.16
+
+### Patch Changes
+
+- [#2776](https://github.com/scaleway/scaleway-lib/pull/2776) [`f6efd44`](https://github.com/scaleway/scaleway-lib/commit/f6efd44c8329a28b7b2c495681add9b27838cc34) Thanks [@philibea](https://github.com/philibea)! - Add missing type to consent context
+
+## 0.0.15
+
+### Patch Changes
+
+- [#2772](https://github.com/scaleway/scaleway-lib/pull/2772) [`37b453a`](https://github.com/scaleway/scaleway-lib/commit/37b453a4985ea778815f8f461ad6d21715353e78) Thanks [@philibea](https://github.com/philibea)! - Add allowedConsents and denied consent on cookie consent provider
+
+- [#2772](https://github.com/scaleway/scaleway-lib/pull/2772) [`37b453a`](https://github.com/scaleway/scaleway-lib/commit/37b453a4985ea778815f8f461ad6d21715353e78) Thanks [@philibea](https://github.com/philibea)! - Fix readyness state
+
+## 0.0.14
+
+### Patch Changes
+
+- [#2767](https://github.com/scaleway/scaleway-lib/pull/2767) [`6a00202`](https://github.com/scaleway/scaleway-lib/commit/6a00202e12ed4c025c48f67f8b0a1e77f1b33f6e) Thanks [@philibea](https://github.com/philibea)! - Rollback ruddestack version
+
+## 0.0.13
+
+### Patch Changes
+
+- [#2762](https://github.com/scaleway/scaleway-lib/pull/2762) [`65c02e2`](https://github.com/scaleway/scaleway-lib/commit/65c02e2c8177050fcb9504416d95181f5fe3a163) Thanks [@philibea](https://github.com/philibea)! - export normalize id of analytics
+
+## 0.0.12
+
+### Patch Changes
+
+- [#2747](https://github.com/scaleway/scaleway-lib/pull/2747) [`2d30d81`](https://github.com/scaleway/scaleway-lib/commit/2d30d817867dcee41aa53ebe2fb2b2c25a17f61f) Thanks [@philibea](https://github.com/philibea)! - Add normalize id on anonymousId, userId, groupId
+
 ## 0.0.11
 
 ### Patch Changes
