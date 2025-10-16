@@ -55,15 +55,17 @@ export const useInfiniteDataLoader = <
       getNextPage ? getNextPage(...params) : undefined,
   )
 
-  const paramsMemo = useMemo(
-    () => ({
-      ...baseParams,
-      [pageParamKey]: page,
-    }),
-    [baseParams, page, pageParamKey],
-  )
+  const paramsRef = useRef({
+    ...baseParams,
+    [pageParamKey]: page,
+  })
 
-  const getMethodRef = useRef(() => method(paramsMemo))
+  paramsRef.current = {
+    ...baseParams,
+    [pageParamKey]: page,
+  }
+
+  const getMethodRef = useRef(() => method(paramsRef.current))
   const getOnSuccessRef = useRef(
     (...params: Parameters<NonNullable<typeof onSuccess>>) =>
       onSuccess?.(...params),
@@ -188,8 +190,8 @@ export const useInfiniteDataLoader = <
   })
 
   useEffect(() => {
-    request.method = () => method(paramsMemo)
-  }, [method, request, paramsMemo])
+    request.method = () => method(paramsRef.current)
+  }, [method, request])
 
   useEffect(() => {
     if (keepPreviousData) {
@@ -213,14 +215,14 @@ export const useInfiniteDataLoader = <
         .then(async result => {
           nextPageRef.current = getNextPageFnRef.current(
             result,
-            paramsMemo,
+            paramsRef.current,
           ) as typeof page
           await onSuccessLoad(result)
         })
         .catch(onFailedLoad)
     }
     optimisticIsLoadingRef.current = false
-  }, [needLoad, request, paramsMemo])
+  }, [needLoad, request])
 
   useEffect(() => {
     getOnSuccessRef.current = (...params) => onSuccess?.(...params)
