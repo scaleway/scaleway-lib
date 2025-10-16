@@ -55,13 +55,12 @@ export const useInfiniteDataLoader = <
       getNextPage ? getNextPage(...params) : undefined,
   )
 
-  const paramsRef = useRef({
+  const paramsArgs = {
     ...baseParams,
     [pageParamKey]: page,
-  })
+  }
 
-  const getMethodRef = useRef(() => method(paramsRef.current))
-
+  const getMethodRef = useRef(() => method(paramsArgs))
   const getOnSuccessRef = useRef(
     (...params: Parameters<NonNullable<typeof onSuccess>>) =>
       onSuccess?.(...params),
@@ -99,23 +98,28 @@ export const useInfiniteDataLoader = <
       'infinite',
       page as string | number,
     ])
+
     // Clean bad requests in the array
     requestRefs.current = requestRefs.current.filter(request => {
       if (request.key.startsWith(computeKey(baseQueryKey))) {
         return true
       }
+
       request.removeObserver(forceRerender.current)
 
       return false
     })
+
     const requestInRef = requestRefs.current.find(request =>
       request.key.endsWith(currentQueryKey),
     )
+
     if (!requestInRef) {
       const request = getOrAddRequest<ResultType, ErrorType>(currentQueryKey, {
         enabled,
         method: getMethodRef.current,
       })
+
       if (!request.observers.includes(forceRerender.current)) {
         request.addObserver(forceRerender.current)
       }
@@ -176,16 +180,13 @@ export const useInfiniteDataLoader = <
 
   const loadMoreRef = useRef(() => {
     if (nextPageRef.current) {
-      paramsRef.current = {
-        ...baseParams,
-        [pageParamKey]: nextPageRef.current,
-      }
       setPage(curr => nextPageRef.current ?? curr)
     }
   })
 
   useEffect(() => {
-    request.method = () => method(paramsRef.current)
+    request.method = () => method(paramsArgs)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [method, request])
 
   useEffect(() => {
@@ -210,28 +211,24 @@ export const useInfiniteDataLoader = <
         .then(async result => {
           nextPageRef.current = getNextPageFnRef.current(
             result,
-            paramsRef.current,
+            paramsArgs,
           ) as typeof page
           await onSuccessLoad(result)
         })
         .catch(onFailedLoad)
     }
     optimisticIsLoadingRef.current = false
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [needLoad, request])
 
   useEffect(() => {
-    paramsRef.current = {
-      ...baseParams,
-      [pageParamKey]: page,
-    }
-    /* eslint-disable-next-line react-hooks/exhaustive-deps */
-  }, [baseParams, pageParamKey])
-  useEffect(() => {
     getOnSuccessRef.current = (...params) => onSuccess?.(...params)
   }, [onSuccess])
+
   useEffect(() => {
     getOnErrorRef.current = err => onError?.(err) ?? onGlobalError?.(err)
   }, [onError, onGlobalError])
+
   useEffect(() => {
     getNextPageFnRef.current = (...params) =>
       getNextPage ? getNextPage(...params) : undefined

@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest'
-import { isFuzzyMatch, levenshteinDistance, normalizeString } from ".."
+import { isFuzzyMatch, levenshteinDistance, normalizeString } from '..'
 
 describe('fuzzySearch', () => {
   describe('normalizeString', () => {
