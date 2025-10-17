@@ -62,6 +62,7 @@ export const defaultLoadOptions: LoadOptions = {
   },
   sessions: {
     autoTrack: true,
-    timeout: 500,
+    // 30 minutes
+    timeout: 30 * 60 * 1000,
   },
 } as const
