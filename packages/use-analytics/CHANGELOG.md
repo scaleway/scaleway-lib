@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.0.19
+
+### Patch Changes
+
+- [#2816](https://github.com/scaleway/scaleway-lib/pull/2816) [`a5baca4`](https://github.com/scaleway/scaleway-lib/commit/a5baca45bf0df0465e28697a68cad2dc098f9437) Thanks [@philibea](https://github.com/philibea)! - change default session timeout from 500ms to 30min
+
 ## 0.0.18
 
 ### Patch Changes
