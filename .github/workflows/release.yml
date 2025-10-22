@@ -6,12 +6,23 @@ on:
       - main
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
+
 jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
     permissions: write-all
     steps:
+      - name: Pull Secrets
+        uses: scaleway/action-scw-secret@v0
+        with:
+          secret-names: |
+              NPM_TOKEN, /npm/token_scaleway_lib
+          access-key: ${{ vars.SCW_ACCESS_KEY }}
+          secret-key: ${{ secrets.SCW_SECRET_KEY }}
+          default-project-id: ${{ vars.SCW_DEFAULT_PROJECT_ID }}
+          default-organization-id: ${{ vars.SCW_DEFAULT_ORGANIZATION_ID }}
+
       - uses: actions/checkout@v5.0.0
       - name: Git Identity
         run: |
