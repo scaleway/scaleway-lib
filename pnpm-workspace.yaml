@@ -68,7 +68,7 @@ catalog:
   shx: 0.4.0
   simple-git: 3.28.0
   tstyche: 4.0.2
-  typescript: 5.9.2
+  typescript: 5.9.3
   use-deep-compare-effect: 1.8.1
   vite: 7.1.11
   vitest: 3.2.4
