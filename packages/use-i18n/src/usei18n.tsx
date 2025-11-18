@@ -162,12 +162,15 @@ export function useTranslation<
   }
   const { loadTranslations, namespaces: loadedNamespaces } = context
 
+  // here we generate a key string from the array of namespace in order to only trigger the use effect
+  // when the passed keys change and not when the ref of the array change
+  const key = namespaces.join(',')
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    namespaces.map(async (namespace: string) =>
-      loadTranslations(namespace, load),
-    )
-  }, [loadTranslations, namespaces, load])
+    key
+      .split(',')
+      .map(async (namespace: string) => loadTranslations(namespace, load))
+  }, [loadTranslations, key, load])
 
   const isLoaded = useMemo(
     () => areNamespacesLoaded(namespaces, loadedNamespaces),

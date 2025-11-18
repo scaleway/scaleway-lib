@@ -117,7 +117,7 @@ describe('i18n hook', () => {
     const spy = vi.spyOn(console, 'error')
     spy.mockImplementation(() => {})
 
-    expect(() => renderHook(() => useTranslation())).toThrow(
+    expect(() => renderHook(() => useTranslation(['test']))).toThrow(
       new Error('useTranslation must be used within a I18nProvider'),
     )
     spy.mockRestore()
@@ -133,34 +133,41 @@ describe('i18n hook', () => {
     spy.mockRestore()
   })
 
-  it('should use defaultLoad, useTranslation, switch local and translate', async () => {
-    const { result } = renderHook(() => useTranslation<Locale, Locales>([]), {
-      wrapper: wrapper({ defaultLocale: 'en' }),
-    })
-    // first render there is no load
-    expect(result.current.t('title')).toEqual('')
+  it(
+    'should use defaultLoad, useTranslation, switch local and translate',
+    async () => {
+      const { result } = renderHook(
+        () => useTranslation<Locale, Locales>(['test']),
+        {
+          wrapper: wrapper({ defaultLocale: 'en' }),
+        },
+      )
+      // first render there is no load
+      expect(result.current.t('title')).toEqual('')
 
-    await waitFor(() => {
-      // after load of en locale
-      expect(result.current.t('title')).toEqual(en.title)
-    })
+      await waitFor(() => {
+        // after load of en locale
+        expect(result.current.t('title')).toEqual(en.title)
+      })
 
-    await act(async () => {
-      await result.current.switchLocale('fr')
-    })
+      await act(async () => {
+        await result.current.switchLocale('fr')
+      })
 
-    await waitFor(() => {
-      expect(result.current.t('title')).toEqual(fr.title)
-    })
+      await waitFor(() => {
+        expect(result.current.t('title')).toEqual(fr.title)
+      })
 
-    await act(async () => {
-      await result.current.switchLocale('es')
-    })
+      await act(async () => {
+        await result.current.switchLocale('es')
+      })
 
-    await waitFor(() => {
-      expect(result.current.t('title')).toEqual(es.title)
-    })
-  })
+      await waitFor(() => {
+        expect(result.current.t('title')).toEqual(es.title)
+      })
+    },
+    {},
+  )
 
   it('should use specific load on useTranslation', async () => {
     const { result } = renderHook(
@@ -262,7 +269,8 @@ describe('i18n hook', () => {
 
   it('should work with a component', async () => {
     const { result } = renderHook(
-      () => useTranslation<{ 'with.identifier': 'Hello {identifier}' }>([]),
+      () =>
+        useTranslation<{ 'with.identifier': 'Hello {identifier}' }>(['test']),
       {
         wrapper: wrapper({ defaultLocale: 'en' }),
       },
