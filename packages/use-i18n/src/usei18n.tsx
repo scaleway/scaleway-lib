@@ -151,7 +151,7 @@ export function useTranslation<
   LocaleParam extends BaseLocale = {},
   LocalSupportedType extends string = '',
 >(
-  namespaces: string[] = [],
+  namespaces: [string, ...string[]],
   load: LoadTranslationsFn<LocalSupportedType> | undefined = undefined,
 ): RequiredGenericContext<LocaleParam, LocalSupportedType> & {
   isLoaded: boolean
@@ -162,13 +162,12 @@ export function useTranslation<
   }
   const { loadTranslations, namespaces: loadedNamespaces } = context
 
-  const key = namespaces.join(',')
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    key
-      .split(',')
-      .map(async (namespace: string) => loadTranslations(namespace, load))
-  }, [loadTranslations, key, load])
+    namespaces.map(async (namespace: string) =>
+      loadTranslations(namespace, load),
+    )
+  }, [loadTranslations, namespaces, load])
 
   const isLoaded = useMemo(
     () => areNamespacesLoaded(namespaces, loadedNamespaces),

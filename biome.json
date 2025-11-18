@@ -32,16 +32,16 @@
     "attributePosition": "auto",
     "includes": [
       "**",
-      "!**/.next/",
-      "!**/coverage/",
-      "!**/node_modules/",
-      "!**/storybook-static",
-      "!**/dist/",
+      "!**/.next/*",
+      "!**/coverage/*",
+      "!**/node_modules/*",
+      "!**/storybook-static/*",
+      "!**/dist/*",
       "!**/pnpm-lock.yaml",
       "!**/package.json",
       "!**/CHANGELOG.md",
       "!**/*.snap",
-      "!**/__snapshots__/"
+      "!**/__snapshots__/*"
     ]
   },
   "javascript": {
