@@ -34,7 +34,7 @@ catalog:
   '@typescript-eslint/parser': 8.43.0
   '@vitejs/plugin-react': 5.0.2
   '@vitest/coverage-istanbul': 3.2.4
-  browserslist: 4.26.3
+  browserslist: 4.28.0
   builtin-modules: 5.0.0
   cookie: 1.0.2
   cross-env: 10.0.0
