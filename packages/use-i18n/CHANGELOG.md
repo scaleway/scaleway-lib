@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.2.0
+
+### Minor Changes
+
+- [#2831](https://github.com/scaleway/scaleway-lib/pull/2831) [`4cb5fc4`](https://github.com/scaleway/scaleway-lib/commit/4cb5fc4ecad9826191edea03cb870511958534cb) Thanks [@alexandre-combemorel](https://github.com/alexandre-combemorel)! - fix: typing issue and force use of string array with at least one element for namespaces in useTranslation hook
+
 ## 7.1.1
 
 ### Patch Changes
