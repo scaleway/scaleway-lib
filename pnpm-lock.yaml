@@ -85,8 +85,8 @@ catalogs:
       specifier: 22.18.11
       version: 22.18.11
     '@types/react':
-      specifier: 19.2.5
-      version: 19.2.5
+      specifier: 19.2.7
+      version: 19.2.7
     '@types/react-dom':
       specifier: 19.2.3
       version: 19.2.3
@@ -184,11 +184,11 @@ catalogs:
       specifier: 9.3.1
       version: 9.3.1
     react:
-      specifier: 19.2.0
-      version: 19.2.0
+      specifier: 19.2.3
+      version: 19.2.3
     react-dom:
-      specifier: 19.2.0
-      version: 19.2.0
+      specifier: 19.2.3
+      version: 19.2.3
     react-router-dom:
       specifier: 6.29.0
       version: 6.29.0
@@ -274,13 +274,13 @@ importers:
         version: link:packages/tsconfig
       '@scaleway/use-segment':
         specifier: 'catalog:'
-        version: 1.1.11(react@19.2.0)
+        version: 1.1.11(react@19.2.3)
       '@testing-library/jest-dom':
         specifier: 'catalog:'
         version: 6.9.1
       '@testing-library/react':
         specifier: 'catalog:'
-        version: 16.3.1(@testing-library/dom@10.0.0)(@types/react-dom@19.2.3(@types/react@19.2.5))(@types/react@19.2.5)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        version: 16.3.1(@testing-library/dom@10.0.0)(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@types/jest':
         specifier: 'catalog:'
         version: 30.0.0
@@ -289,10 +289,10 @@ importers:
         version: 22.18.11
       '@types/react':
         specifier: 'catalog:'
-        version: 19.2.5
+        version: 19.2.7
       '@types/react-dom':
         specifier: 'catalog:'
-        version: 19.2.3(@types/react@19.2.5)
+        version: 19.2.3(@types/react@19.2.7)
       '@vitejs/plugin-react':
         specifier: 'catalog:'
         version: 5.1.2(vite@7.1.11(@types/node@22.18.11)(jiti@2.4.2)(terser@5.37.0)(yaml@2.8.1))
@@ -371,7 +371,7 @@ importers:
         version: link:../use-segment
       react:
         specifier: 'catalog:'
-        version: 19.2.0
+        version: 19.2.3
 
   packages/eslint-config-react:
     dependencies:
@@ -448,27 +448,27 @@ importers:
         version: 1.0.2
       use-deep-compare-effect:
         specifier: 'catalog:'
-        version: 1.8.1(react@19.2.0)
+        version: 1.8.1(react@19.2.3)
     devDependencies:
       react:
         specifier: 'catalog:'
-        version: 19.2.0
+        version: 19.2.3
 
   packages/use-dataloader:
     devDependencies:
       react:
         specifier: 'catalog:'
-        version: 19.2.0
+        version: 19.2.3
 
   packages/use-growthbook:
     dependencies:
       '@growthbook/growthbook-react':
         specifier: 'catalog:'
-        version: 1.6.2(react@19.2.0)
+        version: 1.6.2(react@19.2.3)
     devDependencies:
       react:
         specifier: 'catalog:'
-        version: 19.2.0
+        version: 19.2.3
 
   packages/use-i18n:
     dependencies:
@@ -493,16 +493,16 @@ importers:
     devDependencies:
       react:
         specifier: 'catalog:'
-        version: 19.2.0
+        version: 19.2.3
       react-dom:
         specifier: 'catalog:'
-        version: 19.2.0(react@19.2.0)
+        version: 19.2.3(react@19.2.3)
 
   packages/use-media:
     devDependencies:
       react:
         specifier: 'catalog:'
-        version: 19.2.0
+        version: 19.2.3
 
   packages/use-query-params:
     dependencies:
@@ -515,13 +515,13 @@ importers:
     devDependencies:
       react:
         specifier: 'catalog:'
-        version: 19.2.0
+        version: 19.2.3
       react-dom:
         specifier: 'catalog:'
-        version: 19.2.0(react@19.2.0)
+        version: 19.2.3(react@19.2.3)
       react-router-dom:
         specifier: 'catalog:'
-        version: 6.29.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        version: 6.29.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
 
   packages/use-random-name:
     dependencies:
@@ -534,7 +534,7 @@ importers:
         version: link:../use-segment
       react:
         specifier: 'catalog:'
-        version: 19.2.0
+        version: 19.2.3
 
   packages/use-segment:
     dependencies:
@@ -543,17 +543,17 @@ importers:
         version: 1.81.1
       use-deep-compare-effect:
         specifier: 'catalog:'
-        version: 1.8.1(react@19.2.0)
+        version: 1.8.1(react@19.2.3)
     devDependencies:
       react:
         specifier: 'catalog:'
-        version: 19.2.0
+        version: 19.2.3
 
   packages/use-storage:
     devDependencies:
       react:
         specifier: 'catalog:'
-        version: 19.2.0
+        version: 19.2.3
 
   packages/validate-icu-locales:
     dependencies:
@@ -2135,8 +2135,8 @@ packages:
     peerDependencies:
       '@types/react': ^19.2.0
 
-  '@types/react@19.2.5':
-    resolution: {integrity: sha512-keKxkZMqnDicuvFoJbzrhbtdLSPhj/rZThDlKWCDbgXmUg0rEUFtRssDXKYmtXluZlIqiC5VqkCgRwzuyLHKHw==}
+  '@types/react@19.2.7':
+    resolution: {integrity: sha512-MWtvHrGZLFttgeEj28VXHxpmwYbor/ATPYbBfSFZEIRK0ecCFLl2Qo55z52Hss+UV9CRN7trSeq1zbgx7YDWWg==}
 
   '@types/semver@7.5.8':
     resolution: {integrity: sha512-I8EUhyrgfLrcTkzV3TSsGyl1tSuPrEDzr0yd5m90UgNxQkyDXULk3b6MlQqTCpZpNtWe1K0hzclnZkTcLBe2UQ==}
@@ -2754,8 +2754,8 @@ packages:
     resolution: {integrity: sha512-AZL67abkUzIuvcHqk7c09cezpGNcxUxU4Ioi/05xHk4DQeTkWmGYftIE6ctU6AEt+Gn4n1lDStOtj7FKycP71A==}
     engines: {node: '>=8'}
 
-  csstype@3.1.3:
-    resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
+  csstype@3.2.3:
+    resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
 
   damerau-levenshtein@1.0.8:
     resolution: {integrity: sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==}
@@ -4185,10 +4185,10 @@ packages:
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
 
-  react-dom@19.2.0:
-    resolution: {integrity: sha512-UlbRu4cAiGaIewkPyiRGJk0imDN2T3JjieT6spoL2UeSf5od4n5LB/mQ4ejmxhCFT1tYe8IvaFulzynWovsEFQ==}
+  react-dom@19.2.3:
+    resolution: {integrity: sha512-yELu4WmLPw5Mr/lmeEpox5rw3RETacE++JgHqQzd2dg+YbJuat3jH4ingc+WPZhxaoFzdv9y33G+F7Nl5O0GBg==}
     peerDependencies:
-      react: ^19.2.0
+      react: ^19.2.3
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
@@ -4216,8 +4216,8 @@ packages:
     peerDependencies:
       react: '>=16.8'
 
-  react@19.2.0:
-    resolution: {integrity: sha512-tmbWg6W31tQLeB5cdIBOicJDJRR2KzXsV7uSK9iNfLWQ5bIZfxuPEHp7M8wiHyHnn0DD1i7w3Zmin0FtkrwoCQ==}
+  react@19.2.3:
+    resolution: {integrity: sha512-Ku/hhYbVjOQnXDZFv2+RibmLFGwFdeeKHFcOTlrt7xplBnya5OGn/hIRDsqDiSUcfORsDC7MPxwork8jBwsIWA==}
     engines: {node: '>=0.10.0'}
 
   read-pkg@9.0.1:
@@ -6339,10 +6339,10 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@growthbook/growthbook-react@1.6.2(react@19.2.0)':
+  '@growthbook/growthbook-react@1.6.2(react@19.2.3)':
     dependencies:
       '@growthbook/growthbook': 1.6.2
-      react: 19.2.0
+      react: 19.2.3
 
   '@growthbook/growthbook@1.6.2':
     dependencies:
@@ -6558,11 +6558,11 @@ snapshots:
 
   '@rudderstack/analytics-js@3.24.0': {}
 
-  '@scaleway/use-segment@1.1.11(react@19.2.0)':
+  '@scaleway/use-segment@1.1.11(react@19.2.3)':
     dependencies:
       '@segment/analytics-next': 1.81.0
-      react: 19.2.0
-      use-deep-compare-effect: 1.8.1(react@19.2.0)
+      react: 19.2.3
+      use-deep-compare-effect: 1.8.1(react@19.2.3)
     transitivePeerDependencies:
       - encoding
 
@@ -6673,15 +6673,15 @@ snapshots:
       picocolors: 1.1.1
       redent: 3.0.0
 
-  '@testing-library/react@16.3.1(@testing-library/dom@10.0.0)(@types/react-dom@19.2.3(@types/react@19.2.5))(@types/react@19.2.5)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
+  '@testing-library/react@16.3.1(@testing-library/dom@10.0.0)(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:
       '@babel/runtime': 7.27.6
       '@testing-library/dom': 10.0.0
-      react: 19.2.0
-      react-dom: 19.2.0(react@19.2.0)
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
     optionalDependencies:
-      '@types/react': 19.2.5
-      '@types/react-dom': 19.2.3(@types/react@19.2.5)
+      '@types/react': 19.2.7
+      '@types/react-dom': 19.2.3(@types/react@19.2.7)
 
   '@tootallnate/once@2.0.0':
     optional: true
@@ -6757,13 +6757,13 @@ snapshots:
 
   '@types/normalize-package-data@2.4.4': {}
 
-  '@types/react-dom@19.2.3(@types/react@19.2.5)':
+  '@types/react-dom@19.2.3(@types/react@19.2.7)':
     dependencies:
-      '@types/react': 19.2.5
+      '@types/react': 19.2.7
 
-  '@types/react@19.2.5':
+  '@types/react@19.2.7':
     dependencies:
-      csstype: 3.1.3
+      csstype: 3.2.3
 
   '@types/semver@7.5.8': {}
 
@@ -7471,7 +7471,7 @@ snapshots:
       cssom: 0.3.8
     optional: true
 
-  csstype@3.1.3: {}
+  csstype@3.2.3: {}
 
   damerau-levenshtein@1.0.8: {}
 
@@ -9078,9 +9078,9 @@ snapshots:
 
   queue-microtask@1.2.3: {}
 
-  react-dom@19.2.0(react@19.2.0):
+  react-dom@19.2.3(react@19.2.3):
     dependencies:
-      react: 19.2.0
+      react: 19.2.3
       scheduler: 0.27.0
 
   react-is@16.13.1: {}
@@ -9091,19 +9091,19 @@ snapshots:
 
   react-refresh@0.18.0: {}
 
-  react-router-dom@6.29.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
+  react-router-dom@6.29.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
     dependencies:
       '@remix-run/router': 1.22.0
-      react: 19.2.0
-      react-dom: 19.2.0(react@19.2.0)
-      react-router: 6.29.0(react@19.2.0)
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
+      react-router: 6.29.0(react@19.2.3)
 
-  react-router@6.29.0(react@19.2.0):
+  react-router@6.29.0(react@19.2.3):
     dependencies:
       '@remix-run/router': 1.22.0
-      react: 19.2.0
+      react: 19.2.3
 
-  react@19.2.0: {}
+  react@19.2.3: {}
 
   read-pkg@9.0.1:
     dependencies:
@@ -9722,11 +9722,11 @@ snapshots:
       requires-port: 1.0.0
     optional: true
 
-  use-deep-compare-effect@1.8.1(react@19.2.0):
+  use-deep-compare-effect@1.8.1(react@19.2.3):
     dependencies:
       '@babel/runtime': 7.27.6
       dequal: 2.0.3
-      react: 19.2.0
+      react: 19.2.3
 
   validate-npm-package-license@3.0.4:
     dependencies:
