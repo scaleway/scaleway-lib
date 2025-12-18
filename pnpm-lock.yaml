@@ -109,8 +109,8 @@ catalogs:
       specifier: 5.0.0
       version: 5.0.0
     cookie:
-      specifier: 1.0.2
-      version: 1.0.2
+      specifier: 1.1.1
+      version: 1.1.1
     cross-env:
       specifier: 10.1.0
       version: 10.1.0
@@ -364,7 +364,7 @@ importers:
     dependencies:
       cookie:
         specifier: 'catalog:'
-        version: 1.0.2
+        version: 1.1.1
     devDependencies:
       '@scaleway/use-segment':
         specifier: workspace:*
@@ -445,7 +445,7 @@ importers:
         version: 1.81.1
       cookie:
         specifier: 'catalog:'
-        version: 1.0.2
+        version: 1.1.1
       use-deep-compare-effect:
         specifier: 'catalog:'
         version: 1.8.1(react@19.2.3)
@@ -2704,8 +2704,8 @@ packages:
   convert-source-map@2.0.0:
     resolution: {integrity: sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==}
 
-  cookie@1.0.2:
-    resolution: {integrity: sha512-9Kr/j4O16ISv8zBBhJoi4bXOYNTkFLOqSL3UDB0njXxCXNezjeyVrJyGOWtgfs/q2km1gwBcfH8q1yEGoMYunA==}
+  cookie@1.1.1:
+    resolution: {integrity: sha512-ei8Aos7ja0weRpFzJnEA9UHJ/7XQmqglbRwnf2ATjcB9Wq874VKH9kfjjirM6UhU2/E5fFYadylyhFldcqSidQ==}
     engines: {node: '>=18'}
 
   core-js-compat@3.43.0:
@@ -7417,7 +7417,7 @@ snapshots:
 
   convert-source-map@2.0.0: {}
 
-  cookie@1.0.2: {}
+  cookie@1.1.1: {}
 
   core-js-compat@3.43.0:
     dependencies:

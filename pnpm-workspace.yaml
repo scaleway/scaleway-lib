@@ -36,7 +36,7 @@ catalog:
   '@vitest/coverage-istanbul': 3.2.4
   browserslist: 4.28.1
   builtin-modules: 5.0.0
-  cookie: 1.0.2
+  cookie: 1.1.1
   cross-env: 10.1.0
   date-fns: 4.1.0
   esbuild-plugin-browserslist: 1.0.2
