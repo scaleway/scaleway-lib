@@ -1,5 +1,17 @@
 # Change Log
 
+## 5.5.2
+
+### Patch Changes
+
+- [#2839](https://github.com/scaleway/scaleway-lib/pull/2839) [`22bd7e4`](https://github.com/scaleway/scaleway-lib/commit/22bd7e431e155c21cab4b59affaa411569c9e3a3) Thanks [@etienne-scaleway](https://github.com/etienne-scaleway)! - Export UseDataLoaderResult type
+
+## 5.5.1
+
+### Patch Changes
+
+- [#2812](https://github.com/scaleway/scaleway-lib/pull/2812) [`72ac1e2`](https://github.com/scaleway/scaleway-lib/commit/72ac1e23233bff9cb1a32b9d24a27643c819871a) Thanks [@Lawndlwd](https://github.com/Lawndlwd)! - Fix bug on infinity data loader.
+
 ## 5.5.0
 
 ### Minor Changes

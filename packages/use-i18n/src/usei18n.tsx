@@ -151,7 +151,7 @@ export function useTranslation<
   LocaleParam extends BaseLocale = {},
   LocalSupportedType extends string = '',
 >(
-  namespaces: string[] = [],
+  namespaces: [string, ...string[]],
   load: LoadTranslationsFn<LocalSupportedType> | undefined = undefined,
 ): RequiredGenericContext<LocaleParam, LocalSupportedType> & {
   isLoaded: boolean
@@ -162,6 +162,8 @@ export function useTranslation<
   }
   const { loadTranslations, namespaces: loadedNamespaces } = context
 
+  // here we generate a key string from the array of namespace in order to only trigger the use effect
+  // when the passed keys change and not when the ref of the array change
   const key = namespaces.join(',')
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises

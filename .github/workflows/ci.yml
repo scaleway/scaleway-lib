@@ -11,12 +11,12 @@ jobs:
   typecheck:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v5.0.0
+      - uses: actions/checkout@v5.0.1
       - uses: pnpm/action-setup@v4.1.0
       - name: Use Node.js
         uses: actions/setup-node@v5.0.0
         with:
-          node-version: 22.19.0
+          node-version: 22.20.0
           check-latest: true
           cache: "pnpm"
       - run: pnpm install
@@ -25,12 +25,12 @@ jobs:
   lint:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v5.0.0
+      - uses: actions/checkout@v5.0.1
       - uses: pnpm/action-setup@v4.1.0
       - name: Use Node.js
         uses: actions/setup-node@v5.0.0
         with:
-          node-version: 22.19.0
+          node-version: 22.20.0
           check-latest: true
           cache: "pnpm"
       - run: pnpm install
@@ -42,7 +42,7 @@ jobs:
       matrix:
         node: ["20"]
     steps:
-      - uses: actions/checkout@v5.0.0
+      - uses: actions/checkout@v5.0.1
       - uses: pnpm/action-setup@v4.1.0
       - name: Use Node.js
         uses: actions/setup-node@v5.0.0
@@ -65,7 +65,7 @@ jobs:
       matrix:
         node: ["20"]
     steps:
-      - uses: actions/checkout@v5.0.0
+      - uses: actions/checkout@v5.0.1
       - uses: pnpm/action-setup@v4.1.0
       - name: Use Node.js
         uses: actions/setup-node@v5.0.0
