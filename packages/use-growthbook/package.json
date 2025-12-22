@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/use-growthbook",
-  "version": "2.1.0",
+  "version": "2.1.9",
   "description": "Utility package to expose AB test tool",
   "engines": {
     "node": ">=20.x"
@@ -20,6 +20,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "files": [
+    "dist/*"
+  ],
   "scripts": {
     "prebuild": "shx rm -rf dist",
     "typecheck": "tsc --noEmit",
@@ -41,12 +44,12 @@
     "feature flags"
   ],
   "dependencies": {
-    "@growthbook/growthbook-react": "1.0.1"
+    "@growthbook/growthbook-react": "catalog:"
   },
   "devDependencies": {
-    "react": "18.3.1"
+    "react": "catalog:"
   },
   "peerDependencies": {
-    "react": "18.x"
+    "react": "18.x || 19.x"
   }
 }

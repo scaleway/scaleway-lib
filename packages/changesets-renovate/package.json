@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/changesets-renovate",
-  "version": "2.0.4",
+  "version": "2.2.1",
   "description": "Automatically create changesets for Renovate",
   "type": "module",
   "module": "./dist/index.js",
@@ -46,6 +46,6 @@
     "sync"
   ],
   "dependencies": {
-    "simple-git": "3.25.0"
+    "simple-git": "catalog:"
   }
 }

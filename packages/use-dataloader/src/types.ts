@@ -16,78 +16,112 @@ export type NeedPollingType<ResultType> =
   | boolean
   | ((data?: ResultType) => boolean)
 
-/**
- * @typedef {Object} UseDataLoaderConfig
- * @property {Function} [onSuccess] callback when a request success
- * @property {Function} [onError] callback when a error is occured, this will override the onError specified on the Provider if any
- * @property {*} [initialData] initial data if no one is present in the cache before the request
- * @property {number} [pollingInterval] relaunch the request after the last success
- * @property {boolean} [enabled=true] launch request automatically (default true)
- * @property {boolean} [keepPreviousData=true] do we need to keep the previous data after reload (default true)
- * @property {number} [dataLifetime=undefined]  Time before data from previous success is considered as outdated (in millisecond)
- * @property {NeedPollingType} [needPolling=true] When pollingInterval is set you can set a set a custom callback to know if polling is enabled
- */
 export type UseDataLoaderConfig<ResultType, ErrorType> = {
+  /**
+   * Launch request automatically on mount
+   * @default true
+   */
   enabled?: boolean
+  /**
+   * The initial data if no one is present in the cache before the request
+   */
   initialData?: ResultType
+  /**
+   * Do we need to keep the previous data after reload (default true)
+   * @default true
+   */
   keepPreviousData?: boolean
+  /*
+   * Callback when a error is occured, this will override the onError specified on the Provider if any
+   */
   onError?: OnErrorFn<ErrorType>
+  /**
+   * Callback when a request success
+   */
   onSuccess?: OnSuccessFn<ResultType>
+  /**
+   * If you want to relaunch the request after the last success
+   */
   pollingInterval?: number
+  /**
+   * Time before data from previous success is considered as outdated (in millisecond)
+   * @default undefined
+   */
   dataLifetime?: number
+  /**
+   * When pollingInterval is set you can set a set a custom callback to know if polling is enabled
+   * @default true
+   */
   needPolling?: NeedPollingType<ResultType>
 }
 
-/**
- * @typedef {Object} UseDataLoaderResult
- * @property {boolean} isIdle true if the hook in initial state
- * @property {boolean} isLoading true if the request is launched
- * @property {boolean} isSuccess true if the request success
- * @property {boolean} isError true if the request throw an error
- * @property {boolean} isPolling true if the request if enabled is true, pollingInterval is defined and the status is isLoading or isSuccess
- * @property {*} previousData if keepPreviousData is true it return the last data fetched
- * @property {*} data initialData if no data is fetched or not present in the cache otherwise return the data fetched
- * @property {string} error the error occured during the request
- * @property {Function} reload reload the data
- */
 export type UseDataLoaderResult<ResultType, ErrorType> = {
+  /**
+   * Return initialData if no data is fetched or not present in the cache otherwise return the data fetched
+   */
   data?: ResultType
+  /**
+   * The error occured during the request
+   */
   error?: ErrorType
+  /**
+   * True if the request throw an error
+   */
   isError: boolean
+  /**
+   * True if the hook in initial state
+   */
   isIdle: boolean
+  /**
+   * True if the request is launched
+   */
   isLoading: boolean
+  /**
+   * True if the request if enabled is true, pollingInterval is defined and the status is isLoading or isSuccess
+   */
   isPolling: boolean
+  /**
+   * True if the request success
+   */
   isSuccess: boolean
+  /**
+   * If keepPreviousData is true it return the last data fetched
+   */
   previousData?: ResultType
+  /**
+   * Reload the data
+   */
   reload: () => Promise<void>
 }
 
-/**
- * Params send to the method
- */
-export type UsePaginatedDataLoaderMethodParams = {
-  page: number
-  perPage: number
+export type UseInfiniteDataLoaderConfig<
+  ResultType,
+  ErrorType extends Error,
+  ParamsType extends Record<string, unknown>,
+  ParamsKey extends keyof ParamsType,
+> = Omit<UseDataLoaderConfig<ResultType, ErrorType>, 'initialData'> & {
+  /**
+   * If return undefined it consider that there are no remaining page to load
+   */
+  getNextPage: (
+    lastRes: ResultType,
+    lastParams: ParamsType,
+  ) => ParamsType[ParamsKey]
+  /**
+   * The initial data if no one is present in the cache before the request
+   */
+  initialData?: ResultType[]
 }
 
-export type UsePaginatedDataLoaderConfig<ResultType, ErrorType> =
-  UseDataLoaderConfig<ResultType, ErrorType> & {
-    initialPage?: number
-    perPage?: number
-  }
-
-export type UsePaginatedDataLoaderResult<ResultType, ErrorType> = {
-  pageData?: ResultType
-  data?: Record<number, ResultType | undefined>
+export type UseInfiniteDataLoaderResult<ResultType, ErrorType> = {
+  data?: ResultType[]
   error?: ErrorType
   isError: boolean
   isIdle: boolean
   isLoading: boolean
-  isPolling: boolean
+  isLoadingFirstPage: boolean
   isSuccess: boolean
+  hasNextPage: boolean
   reload: () => Promise<void>
-  goToPage: (page: number) => void
-  goToNextPage: () => void
-  goToPreviousPage: () => void
-  page: number
+  loadMore: () => void
 }

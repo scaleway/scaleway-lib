@@ -1,13 +1,24 @@
 #!/usr/bin/env node
 
+import { readFile } from 'node:fs/promises'
+import { parseArgs } from 'node:util'
+import type { ParseArgsConfig } from 'node:util'
 import { parse } from '@formatjs/icu-messageformat-parser'
 import type { ParserError } from '@formatjs/icu-messageformat-parser/error'
-import * as fs from 'fs/promises'
 import { globby } from 'globby'
 import { importFromString } from 'module-from-string'
 
-const args = process.argv.slice(2)
-const pattern = args[0]
+const options: ParseArgsConfig['options'] = {
+  ignoreTag: {
+    type: 'boolean',
+    short: 'i',
+    default: false,
+  },
+}
+
+const { values, positionals } = parseArgs({ options, allowPositionals: true })
+
+const pattern = positionals[0]
 
 type Locales = Record<string, string>
 type ErrorICU = {
@@ -29,7 +40,10 @@ const findICUErrors = (
   const errors = Object.entries(locales)
     .map(([key, value]) => {
       try {
-        parse(value)
+        parse(value, {
+          // Need to cast as node doesn't allow generic to parseArgs
+          ignoreTag: values['ignoreTag'] as boolean,
+        })
 
         return undefined
       } catch (err) {
@@ -51,12 +65,13 @@ const findICUErrors = (
 const readFiles = async (files: string[]): Promise<ErrorsICU> => {
   const errors = []
 
+  // eslint-disable-next-line @typescript-eslint/await-thenable
   for await (const file of files) {
     const extension = file.split('.').pop()
 
     if (extension === 'json') {
       try {
-        const data = await fs.readFile(file)
+        const data = await readFile(file)
         const jsonFile = data.toString()
 
         const locales = JSON.parse(jsonFile) as Locales
@@ -70,7 +85,7 @@ const readFiles = async (files: string[]): Promise<ErrorsICU> => {
 
     if (extension === 'ts' || extension === 'js') {
       try {
-        const data = await fs.readFile(file)
+        const data = await readFile(file)
         const javascriptFile = data.toString()
 
         const mod: unknown = await importFromString(javascriptFile, {

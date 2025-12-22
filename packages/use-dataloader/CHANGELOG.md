@@ -1,5 +1,68 @@
 # Change Log
 
+## 5.5.2
+
+### Patch Changes
+
+- [#2839](https://github.com/scaleway/scaleway-lib/pull/2839) [`22bd7e4`](https://github.com/scaleway/scaleway-lib/commit/22bd7e431e155c21cab4b59affaa411569c9e3a3) Thanks [@etienne-scaleway](https://github.com/etienne-scaleway)! - Export UseDataLoaderResult type
+
+## 5.5.1
+
+### Patch Changes
+
+- [#2812](https://github.com/scaleway/scaleway-lib/pull/2812) [`72ac1e2`](https://github.com/scaleway/scaleway-lib/commit/72ac1e23233bff9cb1a32b9d24a27643c819871a) Thanks [@Lawndlwd](https://github.com/Lawndlwd)! - Fix bug on infinity data loader.
+
+## 5.5.0
+
+### Minor Changes
+
+- [#2598](https://github.com/scaleway/scaleway-lib/pull/2598) [`70852bc`](https://github.com/scaleway/scaleway-lib/commit/70852bc2384622e94ba4874cec390d63b771dd44) Thanks [@DorianMaliszewski](https://github.com/DorianMaliszewski)! - Fix infinite dataloader effects that reset the page everytime
+
+### Patch Changes
+
+- [#2639](https://github.com/scaleway/scaleway-lib/pull/2639) [`305b084`](https://github.com/scaleway/scaleway-lib/commit/305b0840229836dd77298a5ed4f48937e6e97245) Thanks [@philibea](https://github.com/philibea)! - update packages
+
+## 5.4.0
+
+### Minor Changes
+
+- [#2590](https://github.com/scaleway/scaleway-lib/pull/2590) [`36d8d9e`](https://github.com/scaleway/scaleway-lib/commit/36d8d9ef98586f58462b5993d4f9217696ae15a6) Thanks [@DorianMaliszewski](https://github.com/DorianMaliszewski)! - Fix : Ensure observers are correctly added at mount to handle components mount/unmount quick chaining.
+
+## 5.3.0
+
+### Minor Changes
+
+- [#2548](https://github.com/scaleway/scaleway-lib/pull/2548) [`5a569a1`](https://github.com/scaleway/scaleway-lib/commit/5a569a16caa14d7bebea56c14eb4c43b1592dfda) Thanks [@DorianMaliszewski](https://github.com/DorianMaliszewski)! - Fix: useInfiniteDataloader doesnt update on params change
+
+- [#2548](https://github.com/scaleway/scaleway-lib/pull/2548) [`5a569a1`](https://github.com/scaleway/scaleway-lib/commit/5a569a16caa14d7bebea56c14eb4c43b1592dfda) Thanks [@DorianMaliszewski](https://github.com/DorianMaliszewski)! - Feat: Add a default lifetime on the provider
+
+## 5.2.0
+
+### Minor Changes
+
+- [#2282](https://github.com/scaleway/scaleway-lib/pull/2282) [`d153ea4`](https://github.com/scaleway/scaleway-lib/commit/d153ea43f8d052a57f1d8cfa33b99142ab4432a0) Thanks [@DorianMaliszewski](https://github.com/DorianMaliszewski)! - Add useInfiniteDataLoader
+
+## 5.1.3
+
+### Patch Changes
+
+- [#2364](https://github.com/scaleway/scaleway-lib/pull/2364) [`463f5bc`](https://github.com/scaleway/scaleway-lib/commit/463f5bc9b67bfca8dc7faa27cac0fda6d13050af) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `react` to `19.0.0`.
+  Updated dependency `react-dom` to `19.0.0`.
+  Updated dependency `@types/react` to `19.0.0`.
+  Updated dependency `@types/react-dom` to `19.0.0`.
+
+## 5.1.2
+
+### Patch Changes
+
+- [#2376](https://github.com/scaleway/scaleway-lib/pull/2376) [`3d90660`](https://github.com/scaleway/scaleway-lib/commit/3d90660ed13e552f4bbe349def70fc8326dea49b) Thanks [@philibea](https://github.com/philibea)! - update package json export dist file only
+
+## 5.1.1
+
+### Patch Changes
+
+- [#2277](https://github.com/scaleway/scaleway-lib/pull/2277) [`21a2dc6`](https://github.com/scaleway/scaleway-lib/commit/21a2dc6cf7df20c3423de2cadfd07e51ff5f7d2b) Thanks [@philibea](https://github.com/philibea)! - export a datalifetime object
+
 ## 5.1.0
 
 ### Minor Changes

@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/validate-icu-locales",
-  "version": "3.1.1",
+  "version": "3.1.14",
   "description": "A small cli to handle icu errors on locales files",
   "engines": {
     "node": ">=20.x"
@@ -16,6 +16,9 @@
       "default": "./dist/index.js"
     }
   },
+  "files": [
+    "dist/"
+  ],
   "bin": {
     "validate-icu": "dist/index.js"
   },
@@ -42,8 +45,8 @@
     "cli"
   ],
   "dependencies": {
-    "@formatjs/icu-messageformat-parser": "2.7.8",
-    "globby": "14.0.1",
-    "module-from-string": "3.3.0"
+    "@formatjs/icu-messageformat-parser": "catalog:",
+    "globby": "catalog:",
+    "module-from-string": "catalog:"
   }
 }

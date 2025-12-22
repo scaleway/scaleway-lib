@@ -1,5 +1,6 @@
 import { act, renderHook, waitFor } from '@testing-library/react'
 import { enGB, fr as frDateFns } from 'date-fns/locale'
+import { ErrorCode, FormatError } from 'intl-messageformat'
 import mockdate from 'mockdate'
 import type { ComponentProps, ReactNode } from 'react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
@@ -10,8 +11,10 @@ import fr from './locales/fr'
 
 const LOCALE_ITEM_STORAGE = 'locales'
 
-type LocaleEN = typeof en
-type Locale = LocaleEN
+const ListLocales = ['es', 'en', 'fr', 'fr-FR', 'en-GB'] as const
+type Locales = (typeof ListLocales)[number]
+
+type Locale = typeof en
 type NamespaceLocale = {
   name: 'Name'
   lastName: 'Last Name'
@@ -20,7 +23,22 @@ type NamespaceLocale = {
 
 type OnTranslateError = ComponentProps<typeof I18n>['onTranslateError']
 
-const defaultSupportedLocales = ['en', 'fr', 'es']
+const isDefaultLocalesSupported = (locale: string): locale is Locales =>
+  ListLocales.includes(locale as Locales)
+
+const load = async ({
+  locale,
+  namespace,
+}: {
+  locale: string
+  namespace: string
+}) =>
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+  import(`./locales/namespaces/${locale}/${namespace}.json`)
+
+const CustomComponent = ({ children }: { children: ReactNode }) => (
+  <p style={{ fontWeight: 'bold' }}>{children}</p>
+)
 
 const defaultOnTranslateError: OnTranslateError = () => {}
 
@@ -50,14 +68,16 @@ const wrapper =
 
       return enGB
     },
+
     defaultLoad = async ({ locale }: { locale: string }) =>
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       import(`./locales/${locale}.ts`),
     defaultLocale = 'en',
     defaultTranslations = {},
     enableDebugKey = false,
     enableDefaultLocale = false,
     localeItemStorage = LOCALE_ITEM_STORAGE,
-    supportedLocales = defaultSupportedLocales,
+    isLocaleSupported = isDefaultLocalesSupported,
     onTranslateError = defaultOnTranslateError,
   } = {}) =>
   ({ children }: { children: ReactNode }) => (
@@ -70,7 +90,7 @@ const wrapper =
       enableDebugKey={enableDebugKey}
       enableDefaultLocale={enableDefaultLocale}
       localeItemStorage={localeItemStorage}
-      supportedLocales={supportedLocales}
+      isLocaleSupported={isLocaleSupported}
       onTranslateError={onTranslateError}
     >
       {children}
@@ -97,7 +117,7 @@ describe('i18n hook', () => {
     const spy = vi.spyOn(console, 'error')
     spy.mockImplementation(() => {})
 
-    expect(() => renderHook(() => useTranslation())).toThrow(
+    expect(() => renderHook(() => useTranslation(['test']))).toThrow(
       new Error('useTranslation must be used within a I18nProvider'),
     )
     spy.mockRestore()
@@ -113,50 +133,49 @@ describe('i18n hook', () => {
     spy.mockRestore()
   })
 
-  it('should use defaultLoad, useTranslation, switch local and translate', async () => {
-    const { result } = renderHook(() => useTranslation<Locale>([]), {
-      wrapper: wrapper({ defaultLocale: 'en' }),
-    })
-    // first render there is no load
-    expect(result.current.t('title')).toEqual('')
+  it(
+    'should use defaultLoad, useTranslation, switch local and translate',
+    async () => {
+      const { result } = renderHook(
+        () => useTranslation<Locale, Locales>(['test']),
+        {
+          wrapper: wrapper({ defaultLocale: 'en' }),
+        },
+      )
+      // first render there is no load
+      expect(result.current.t('title')).toEqual('')
 
-    await waitFor(() => {
-      // after load of en locale
-      expect(result.current.t('title')).toEqual(en.title)
-    })
+      await waitFor(() => {
+        // after load of en locale
+        expect(result.current.t('title')).toEqual(en.title)
+      })
 
-    await act(async () => {
-      await result.current.switchLocale('fr')
-    })
+      await act(async () => {
+        await result.current.switchLocale('fr')
+      })
 
-    await waitFor(() => {
-      expect(result.current.t('title')).toEqual(fr.title)
-    })
+      await waitFor(() => {
+        expect(result.current.t('title')).toEqual(fr.title)
+      })
 
-    await act(async () => {
-      await result.current.switchLocale('es')
-    })
+      await act(async () => {
+        await result.current.switchLocale('es')
+      })
 
-    await waitFor(() => {
-      expect(result.current.t('title')).toEqual(es.title)
-    })
-  })
+      await waitFor(() => {
+        expect(result.current.t('title')).toEqual(es.title)
+      })
+    },
+    {},
+  )
 
   it('should use specific load on useTranslation', async () => {
-    const load = async ({
-      locale,
-      namespace,
-    }: {
-      locale: string
-      namespace: string
-    }) => import(`./locales/namespaces/${locale}/${namespace}.json`)
-
     const { result } = renderHook(
-      () => useTranslation<NamespaceLocale>(['user', 'profile'], load),
+      () => useTranslation<NamespaceLocale, Locales>(['user', 'profile'], load),
       {
         wrapper: wrapper({
           defaultLocale: 'en',
-          supportedLocales: ['en', 'fr'],
+          isLocaleSupported: isDefaultLocalesSupported,
         }),
       },
     )
@@ -199,21 +218,13 @@ describe('i18n hook', () => {
   })
 
   it("should use specific load and fallback default local if the key doesn't exist", async () => {
-    const load = async ({
-      locale,
-      namespace,
-    }: {
-      locale: string
-      namespace: string
-    }) => import(`./locales/namespaces/${locale}/${namespace}.json`)
-
     const { result } = renderHook(
-      () => useTranslation<NamespaceLocale>(['user'], load),
+      () => useTranslation<NamespaceLocale, Locales>(['user'], load),
       {
         wrapper: wrapper({
           defaultLocale: 'fr',
           enableDefaultLocale: true,
-          supportedLocales: ['en', 'fr'],
+          isLocaleSupported: isDefaultLocalesSupported,
         }),
       },
     )
@@ -247,7 +258,7 @@ describe('i18n hook', () => {
     const { result } = renderHook(() => useI18n(), {
       wrapper: wrapper({
         defaultLocale: 'fr',
-        supportedLocales: ['en', 'fr', 'es'],
+        isLocaleSupported: isDefaultLocalesSupported,
       }),
     })
 
@@ -258,26 +269,30 @@ describe('i18n hook', () => {
 
   it('should work with a component', async () => {
     const { result } = renderHook(
-      () => useTranslation<{ 'with.identifier': 'Hello {identifier}' }>([]),
+      () =>
+        useTranslation<{ 'with.identifier': 'Hello {identifier}' }>(['test']),
       {
         wrapper: wrapper({ defaultLocale: 'en' }),
       },
     )
-    const CustomComponent = ({ children }: { children: ReactNode }) => (
-      <p style={{ fontWeight: 'bold' }}>{children}</p>
-    )
 
     await waitFor(() => {
       expect(
-        result.current.t('with.identifier', { identifier: <b>My resource</b> }),
-      ).toEqual(['Are you sure you want to delete ', <b>My resource</b>, '?'])
-      expect(
         result.current.t('with.identifier', {
-          identifier: <CustomComponent>My resource</CustomComponent>,
+          identifier: <b key="1">My resource</b>,
         }),
       ).toEqual([
         'Are you sure you want to delete ',
-        <CustomComponent>My resource</CustomComponent>,
+        <b key="1">My resource</b>,
+        '?',
+      ])
+      expect(
+        result.current.t('with.identifier', {
+          identifier: <CustomComponent key="1">My resource</CustomComponent>,
+        }),
+      ).toEqual([
+        'Are you sure you want to delete ',
+        <CustomComponent key="1">My resource</CustomComponent>,
         '?',
       ])
     })
@@ -303,7 +318,7 @@ describe('i18n hook', () => {
       const { result } = renderHook(() => useI18n(), {
         wrapper: wrapper({
           defaultLocale: 'es',
-          supportedLocales: ['en', 'fr', 'es'],
+          isLocaleSupported: isDefaultLocalesSupported,
         }),
       })
 
@@ -334,7 +349,7 @@ describe('i18n hook', () => {
       const { result } = renderHook(() => useI18n(), {
         wrapper: wrapper({
           defaultLocale: 'en',
-          supportedLocales: ['en'],
+          isLocaleSupported: isDefaultLocalesSupported,
         }),
       })
 
@@ -365,7 +380,7 @@ describe('i18n hook', () => {
       const { result } = renderHook(() => useI18n(), {
         wrapper: wrapper({
           defaultLocale: 'es',
-          supportedLocales: ['en', 'fr', 'es'],
+          isLocaleSupported: isDefaultLocalesSupported,
         }),
       })
 
@@ -394,7 +409,7 @@ describe('i18n hook', () => {
       const { result } = renderHook(() => useI18n(), {
         wrapper: wrapper({
           defaultLocale: 'es',
-          supportedLocales: ['en', 'fr', 'es'],
+          isLocaleSupported: isDefaultLocalesSupported,
         }),
       })
 
@@ -406,10 +421,10 @@ describe('i18n hook', () => {
   })
 
   it('should switch locale', async () => {
-    const { result } = renderHook(() => useI18n(), {
+    const { result } = renderHook(() => useI18n<Locale, Locales>(), {
       wrapper: wrapper({
         defaultLocale: 'en',
-        supportedLocales: ['en', 'fr', 'es'],
+        isLocaleSupported: isDefaultLocalesSupported,
       }),
     })
     expect(result.current.currentLocale).toEqual('en')
@@ -434,6 +449,9 @@ describe('i18n hook', () => {
     expect(localStorage.getItem(LOCALE_ITEM_STORAGE)).toBe('es')
 
     await act(async () => {
+      // we test even if an incorrect typescript value is being passed to the function
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
       await result.current.switchLocale('test')
     })
 
@@ -449,7 +467,7 @@ describe('i18n hook', () => {
         defaultLocale: 'en',
         defaultTranslations: { en },
         enableDebugKey: true,
-        supportedLocales: ['en', 'fr'],
+        isLocaleSupported: isDefaultLocalesSupported,
       }),
     })
 
@@ -468,11 +486,11 @@ describe('i18n hook', () => {
   it('should call onTranslateError when there is a sync issue to remove/add variable in one traduction of a language', async () => {
     const mockOnTranslateError = vi.fn()
 
-    const { result } = renderHook(() => useI18n<Locale>(), {
+    const { result } = renderHook(() => useI18n<Locale, Locales>(), {
       wrapper: wrapper({
         defaultLocale: 'en',
         defaultTranslations: { en, fr },
-        supportedLocales: ['en', 'fr'],
+        isLocaleSupported: isDefaultLocalesSupported,
         onTranslateError: mockOnTranslateError,
       }),
     })
@@ -493,10 +511,14 @@ describe('i18n hook', () => {
     )
 
     expect(mockOnTranslateError).toHaveBeenCalledTimes(1)
+
     expect(mockOnTranslateError).toHaveBeenCalledWith({
-      error: new Error(
+      error: new FormatError(
         'The intl string context variable "oldFrenchVariable" was not provided to the string "onTranslateError fonction sera appelé car il manque une variable en français {oldFrenchVariable}"',
+        ErrorCode.MISSING_VALUE,
+        'onTranslateError fonction sera appelé car il manque une variable en français {oldFrenchVariable}',
       ),
+      defaultLocale: 'en',
       currentLocale: 'fr',
       key: 'translate.error',
       value:
@@ -533,7 +555,7 @@ describe('i18n hook', () => {
   })
 
   it('should use formatNumber', async () => {
-    const { result } = renderHook(() => useI18n(), {
+    const { result } = renderHook(() => useI18n<Locale, Locales>(), {
       wrapper: wrapper({
         defaultLocale: 'en',
       }),
@@ -568,16 +590,16 @@ describe('i18n hook', () => {
           currency: 'EUR',
           style: 'currency',
         }),
-      ).toEqual('2,00\xa0€')
+      ).toEqual('2,00\u00A0€')
     })
 
     expect(
       result.current.formatNumber(2, { currency: 'USD', style: 'currency' }),
-    ).toEqual('2,00\xa0$US')
+    ).toEqual('2,00\u00A0$US')
   })
 
   it('should use formatList', async () => {
-    const { result } = renderHook(() => useI18n(), {
+    const { result } = renderHook(() => useI18n<Locale, Locales>(), {
       wrapper: wrapper({
         defaultLocale: 'en',
       }),
@@ -634,7 +656,7 @@ describe('i18n hook', () => {
   })
 
   it('should use datetime', async () => {
-    const { result } = renderHook(() => useI18n(), {
+    const { result } = renderHook(() => useI18n<Locale, Locales>(), {
       wrapper: wrapper({
         defaultLocale: 'en',
       }),
@@ -706,7 +728,7 @@ describe('i18n hook', () => {
   })
 
   it('should relativeTime', async () => {
-    const { result } = renderHook(() => useI18n(), {
+    const { result } = renderHook(() => useI18n<Locale, Locales>(), {
       wrapper: wrapper({
         defaultLocale: 'en',
       }),
@@ -727,7 +749,7 @@ describe('i18n hook', () => {
   })
 
   it('should relativeTimeStrict', async () => {
-    const { result } = renderHook(() => useI18n(), {
+    const { result } = renderHook(() => useI18n<Locale, Locales>(), {
       wrapper: wrapper({
         defaultLocale: 'en',
       }),
@@ -748,7 +770,7 @@ describe('i18n hook', () => {
   })
 
   it('should formatUnit', async () => {
-    const { result } = renderHook(() => useI18n(), {
+    const { result } = renderHook(() => useI18n<Locale, Locales>(), {
       wrapper: wrapper({
         defaultLocale: 'en',
       }),
@@ -769,7 +791,7 @@ describe('i18n hook', () => {
   })
 
   it('should formatDate', async () => {
-    const { result } = renderHook(() => useI18n(), {
+    const { result } = renderHook(() => useI18n<Locale, Locales>(), {
       wrapper: wrapper({
         defaultLocale: 'en',
       }),
@@ -794,7 +816,7 @@ describe('i18n hook', () => {
       const { result } = renderHook(() => useI18n(), {
         wrapper: wrapper({
           defaultLocale: 'test',
-          supportedLocales: ['test'],
+          isLocaleSupported: isDefaultLocalesSupported,
         }),
       })
 
@@ -822,7 +844,7 @@ describe('i18n hook', () => {
       const { result } = renderHook(() => useI18n(), {
         wrapper: wrapper({
           defaultLocale: 'es',
-          supportedLocales: ['en', 'fr', 'es'],
+          isLocaleSupported: isDefaultLocalesSupported,
         }),
       })
 

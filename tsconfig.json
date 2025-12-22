@@ -11,6 +11,7 @@
   },
   "include": ["**/*.ts", "**/*.js", "**/.*.js", "**/*.tsx", "**/*.mjs"],
   "exclude": [
+    "**/dist",
     "**/dist/*.ts",
     "**/__typetests__/*.test.ts",
     "**/__typetests__/*.test.tsx",

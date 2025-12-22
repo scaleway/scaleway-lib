@@ -2,7 +2,8 @@ import react from '@vitejs/plugin-react'
 import browserslist from 'browserslist'
 import { resolveToEsbuildTarget } from 'esbuild-plugin-browserslist'
 import { readPackage } from 'read-pkg'
-import { type UserConfig, defineConfig } from 'vitest/config'
+import { defineConfig } from 'vite'
+import type { UserConfig } from 'vite'
 
 const pkg = await readPackage()
 
@@ -15,7 +16,8 @@ const externalPkgs = [
 const external = (id: string) => {
   const match = (dependency: string) => new RegExp(`^${dependency}`).test(id)
   const isExternal = externalPkgs.some(match)
-  const isBundled = pkg.bundleDependencies?.some(match) // alias of bundledDependencies package.json field array
+  // alias of bundledDependencies package.json field array
+  const isBundled = pkg.bundleDependencies?.some(match)
 
   return isExternal && !isBundled
 }
@@ -58,42 +60,6 @@ export const defaultConfig: UserConfig = {
       jsxRuntime: 'automatic',
     }),
   ],
-  test: {
-    name: 'lib',
-    globals: true,
-    clearMocks: true,
-    restoreMocks: true,
-    mockReset: true,
-    environment: 'node',
-    setupFiles: ['vitest-localstorage-mock'],
-    server: {
-      deps: {
-        inline: true,
-      },
-    },
-    allowOnly: false,
-    css: true,
-    logHeapUsage: true,
-    reporters: ['default'],
-    exclude: ['**/__typetests__/**', 'node_modules', '**/dist/**'],
-    coverage: {
-      provider: 'istanbul',
-      reporter: ['json-summary', 'cobertura'],
-      exclude: [
-        '**/__typetests__/**',
-        '.reports/**',
-        '.turbo',
-        '**/.eslintrc.*',
-        '**/*.d.ts',
-        'build',
-        'dist',
-        'node_modules',
-        '**/{webpack,vite,vitest,babel}.config.*',
-        '**.snap',
-        '**.svg',
-      ],
-    },
-  },
 }
 
 export default defineConfig(defaultConfig)

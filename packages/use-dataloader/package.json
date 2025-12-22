@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/use-dataloader",
-  "version": "5.1.0",
+  "version": "5.5.2",
   "description": "A small hook to handle api requests",
   "type": "module",
   "engines": {
@@ -20,6 +20,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "files": [
+    "dist/"
+  ],
   "scripts": {
     "prebuild": "shx rm -rf dist",
     "typecheck": "tsc --noEmit",
@@ -43,9 +46,9 @@
     "dataloader"
   ],
   "devDependencies": {
-    "react": "18.3.1"
+    "react": "catalog:"
   },
   "peerDependencies": {
-    "react": "18.x"
+    "react": "18.x || 19.x"
   }
 }

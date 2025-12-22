@@ -1,0 +1,119 @@
+# Change Log
+
+## 0.0.19
+
+### Patch Changes
+
+- [#2816](https://github.com/scaleway/scaleway-lib/pull/2816) [`a5baca4`](https://github.com/scaleway/scaleway-lib/commit/a5baca45bf0df0465e28697a68cad2dc098f9437) Thanks [@philibea](https://github.com/philibea)! - change default session timeout from 500ms to 30min
+
+## 0.0.18
+
+### Patch Changes
+
+- [#2790](https://github.com/scaleway/scaleway-lib/pull/2790) [`fc98e52`](https://github.com/scaleway/scaleway-lib/commit/fc98e52997c67ba6737369d7e5fc1ca5622d92a6) Thanks [@philibea](https://github.com/philibea)! - Add a proper timeout option to avoid re-render
+
+## 0.0.17
+
+### Patch Changes
+
+- [#2783](https://github.com/scaleway/scaleway-lib/pull/2783) [`2a10859`](https://github.com/scaleway/scaleway-lib/commit/2a10859772870b962a1fa849c874f9a63ecfbcc7) Thanks [@philibea](https://github.com/philibea)! - Add timeout option also when shouldRenderOnlyWhenReady is not set
+
+## 0.0.16
+
+### Patch Changes
+
+- [#2776](https://github.com/scaleway/scaleway-lib/pull/2776) [`f6efd44`](https://github.com/scaleway/scaleway-lib/commit/f6efd44c8329a28b7b2c495681add9b27838cc34) Thanks [@philibea](https://github.com/philibea)! - Add missing type to consent context
+
+## 0.0.15
+
+### Patch Changes
+
+- [#2772](https://github.com/scaleway/scaleway-lib/pull/2772) [`37b453a`](https://github.com/scaleway/scaleway-lib/commit/37b453a4985ea778815f8f461ad6d21715353e78) Thanks [@philibea](https://github.com/philibea)! - Add allowedConsents and denied consent on cookie consent provider
+
+- [#2772](https://github.com/scaleway/scaleway-lib/pull/2772) [`37b453a`](https://github.com/scaleway/scaleway-lib/commit/37b453a4985ea778815f8f461ad6d21715353e78) Thanks [@philibea](https://github.com/philibea)! - Fix readyness state
+
+## 0.0.14
+
+### Patch Changes
+
+- [#2767](https://github.com/scaleway/scaleway-lib/pull/2767) [`6a00202`](https://github.com/scaleway/scaleway-lib/commit/6a00202e12ed4c025c48f67f8b0a1e77f1b33f6e) Thanks [@philibea](https://github.com/philibea)! - Rollback ruddestack version
+
+## 0.0.13
+
+### Patch Changes
+
+- [#2762](https://github.com/scaleway/scaleway-lib/pull/2762) [`65c02e2`](https://github.com/scaleway/scaleway-lib/commit/65c02e2c8177050fcb9504416d95181f5fe3a163) Thanks [@philibea](https://github.com/philibea)! - export normalize id of analytics
+
+## 0.0.12
+
+### Patch Changes
+
+- [#2747](https://github.com/scaleway/scaleway-lib/pull/2747) [`2d30d81`](https://github.com/scaleway/scaleway-lib/commit/2d30d817867dcee41aa53ebe2fb2b2c25a17f61f) Thanks [@philibea](https://github.com/philibea)! - Add normalize id on anonymousId, userId, groupId
+
+## 0.0.11
+
+### Patch Changes
+
+- [#2721](https://github.com/scaleway/scaleway-lib/pull/2721) [`f69cca8`](https://github.com/scaleway/scaleway-lib/commit/f69cca84efec09f88261373d192208d4e9661bf3) Thanks [@philibea](https://github.com/philibea)! - add default analytics thirsd party
+
+## 0.0.10
+
+### Patch Changes
+
+- [#2711](https://github.com/scaleway/scaleway-lib/pull/2711) [`bf7df55`](https://github.com/scaleway/scaleway-lib/commit/bf7df5591f3a93297d05219d0d108a616eab576a) Thanks [@philibea](https://github.com/philibea)! - add a timeout option to set analytics in case of silent failure
+
+## 0.0.9
+
+### Patch Changes
+
+- [#2708](https://github.com/scaleway/scaleway-lib/pull/2708) [`02feb13`](https://github.com/scaleway/scaleway-lib/commit/02feb13ee1d104cd0a2bbe10e40cdddf6f0eef36) Thanks [@philibea](https://github.com/philibea)! - add configUrl setting by default
+
+## 0.0.8
+
+### Patch Changes
+
+- [#2689](https://github.com/scaleway/scaleway-lib/pull/2689) [`ff0aa04`](https://github.com/scaleway/scaleway-lib/commit/ff0aa04e834465b814fa57d075a47f72b8cfe810) Thanks [@philibea](https://github.com/philibea)! - remove track link and add group properties
+
+- [#2689](https://github.com/scaleway/scaleway-lib/pull/2689) [`ff0aa04`](https://github.com/scaleway/scaleway-lib/commit/ff0aa04e834465b814fa57d075a47f72b8cfe810) Thanks [@philibea](https://github.com/philibea)! - Add a true trackLink
+
+## 0.0.7
+
+### Patch Changes
+
+- [#2679](https://github.com/scaleway/scaleway-lib/pull/2679) [`a709498`](https://github.com/scaleway/scaleway-lib/commit/a709498fa347c2cdf7f1ee37f348524398bd8ce5) Thanks [@philibea](https://github.com/philibea)! - change default config
+
+## 0.0.6
+
+### Patch Changes
+
+- [#2677](https://github.com/scaleway/scaleway-lib/pull/2677) [`af36a6e`](https://github.com/scaleway/scaleway-lib/commit/af36a6e1b49f4907896e0ed596cd96f0faf58a82) Thanks [@philibea](https://github.com/philibea)! - fix useless props: essentialDestinations, better typing
+
+## 0.0.5
+
+### Patch Changes
+
+- [#2674](https://github.com/scaleway/scaleway-lib/pull/2674) [`b2a4f52`](https://github.com/scaleway/scaleway-lib/commit/b2a4f528aa988fdcc049a7f3b089a529873c0aed) Thanks [@philibea](https://github.com/philibea)! - fix issue with destination load and naming
+
+## 0.0.4
+
+### Patch Changes
+
+- [#2671](https://github.com/scaleway/scaleway-lib/pull/2671) [`9e46551`](https://github.com/scaleway/scaleway-lib/commit/9e465516e7280c2d189fd1bfda676c78eb2dc5c6) Thanks [@philibea](https://github.com/philibea)! - remove use effect
+
+## 0.0.3
+
+### Patch Changes
+
+- [#2663](https://github.com/scaleway/scaleway-lib/pull/2663) [`71f500b`](https://github.com/scaleway/scaleway-lib/commit/71f500b3c86eba65a56cd57a695c2ee063a2628f) Thanks [@philibea](https://github.com/philibea)! - fix export fields
+
+## 0.0.2
+
+### Patch Changes
+
+- [#2660](https://github.com/scaleway/scaleway-lib/pull/2660) [`88ce76b`](https://github.com/scaleway/scaleway-lib/commit/88ce76b69d70797ea791edac61155a0406067473) Thanks [@philibea](https://github.com/philibea)! - remove fields from package.json
+
+## 0.0.1
+
+### Patch Changes
+
+- [#2644](https://github.com/scaleway/scaleway-lib/pull/2644) [`4a05293`](https://github.com/scaleway/scaleway-lib/commit/4a05293afe6f2e6b719c2767f32fc8b328477c62) Thanks [@philibea](https://github.com/philibea)! - Create Analytics providers with rudderstack, add consent management

@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/use-i18n",
-  "version": "6.1.8",
+  "version": "7.2.0",
   "description": "A small hook to handle i18n",
   "engines": {
     "node": ">=18.x"
@@ -9,6 +9,9 @@
   "type": "module",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "files": [
+    "dist/"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -40,24 +43,24 @@
     "build": "vite build --config vite.config.ts && pnpm run type:generate",
     "build:profile": "npx vite-bundle-visualizer -c vite.config.ts",
     "lint": "eslint --report-unused-disable-directives --cache --cache-strategy content --ext ts,tsx .",
-    "test:unit": "vitest --run --config vite.config.ts",
+    "test:unit": "TZ=UTC LANG=en_US.UTF8 NODE_ENV=test vitest --run --config vite.config.ts",
     "test:unit:coverage": "pnpm test:unit --coverage"
   },
   "dependencies": {
-    "@formatjs/ecma402-abstract": "2.0.0",
-    "@formatjs/fast-memoize": "2.2.0",
-    "date-fns": "3.6.0",
-    "filesize": "10.1.2",
-    "international-types": "0.8.1",
-    "intl-messageformat": "10.5.14"
+    "@formatjs/ecma402-abstract": "catalog:",
+    "@formatjs/fast-memoize": "catalog:",
+    "date-fns": "catalog:",
+    "filesize": "catalog:",
+    "international-types": "catalog:",
+    "intl-messageformat": "catalog:"
   },
   "devDependencies": {
-    "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "react": "catalog:",
+    "react-dom": "catalog:"
   },
   "peerDependencies": {
-    "date-fns": "3.x",
-    "react": "18.x || 18",
-    "react-dom": "18.x || 18"
+    "date-fns": "3.x || 4.x",
+    "react": "18.x || 19.x",
+    "react-dom": "18.x || 19.x"
   }
 }

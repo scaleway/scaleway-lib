@@ -1,54 +1,58 @@
 {
   "name": "root",
   "private": true,
-  "workspaces": ["packages/*"],
+  "workspaces": [
+    "packages/*"
+  ],
   "type": "module",
-  "packageManager": "pnpm@9.3.0",
+  "packageManager": "pnpm@10.25.0",
   "engines": {
     "node": ">=20.x",
     "pnpm": ">=9.x"
   },
   "dependencies": {
-    "@babel/core": "7.24.7",
-    "@babel/eslint-parser": "7.24.7",
-    "@babel/plugin-transform-runtime": "7.24.7",
-    "@babel/preset-env": "7.24.7",
-    "@babel/preset-react": "7.24.7",
-    "@babel/preset-typescript": "7.24.7",
-    "@biomejs/biome": "1.8.1",
-    "@changesets/changelog-github": "0.5.0",
-    "@changesets/cli": "2.27.5",
-    "@commitlint/cli": "19.3.0",
-    "@commitlint/config-conventional": "19.2.2",
-    "@eslint/eslintrc": "3.1.0",
+    "@babel/core": "catalog:",
+    "@babel/eslint-parser": "catalog:",
+    "@babel/plugin-transform-runtime": "catalog:",
+    "@babel/preset-env": "catalog:",
+    "@babel/preset-react": "catalog:",
+    "@babel/preset-typescript": "catalog:",
+    "@biomejs/biome": "catalog:",
+    "@changesets/changelog-github": "catalog:",
+    "@changesets/cli": "catalog:",
+    "@commitlint/cli": "catalog:",
+    "@commitlint/config-conventional": "catalog:",
+    "@eslint/eslintrc": "catalog:",
+    "@rudderstack/analytics-js": "catalog:",
     "@scaleway/eslint-config-react": "workspace:*",
     "@scaleway/tsconfig": "workspace:*",
-    "@testing-library/jest-dom": "6.4.6",
-    "@testing-library/react": "16.0.0",
-    "@types/jest": "29.5.12",
-    "@types/node": "20.14.2",
-    "@types/react": "18.3.3",
-    "@types/react-dom": "18.3.0",
-    "@vitejs/plugin-react": "4.3.1",
-    "@vitest/coverage-istanbul": "1.6.0",
-    "browserslist": "4.23.1",
-    "builtin-modules": "4.0.0",
-    "cross-env": "7.0.3",
-    "esbuild-plugin-browserslist": "0.12.1",
-    "eslint": "9.4.0",
-    "globals": "15.4.0",
-    "happy-dom": "14.12.0",
-    "husky": "9.0.11",
-    "lint-staged": "15.2.7",
-    "mockdate": "3.0.5",
-    "read-pkg": "9.0.1",
-    "shx": "0.3.4",
-    "tstyche": "1.1.0 ",
-    "typescript": "5.4.5",
-    "vite": "5.2.13",
-    "vitest": "1.6.0",
-    "vitest-localstorage-mock": "0.1.2",
-    "wait-for-expect": "3.0.2"
+    "@scaleway/use-segment": "catalog:",
+    "@testing-library/jest-dom": "catalog:",
+    "@testing-library/react": "catalog:",
+    "@types/jest": "catalog:",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@vitejs/plugin-react": "catalog:",
+    "@vitest/coverage-istanbul": "catalog:",
+    "browserslist": "catalog:",
+    "builtin-modules": "catalog:",
+    "cross-env": "catalog:",
+    "esbuild-plugin-browserslist": "catalog:",
+    "eslint": "catalog:",
+    "globals": "catalog:",
+    "happy-dom": "catalog:",
+    "husky": "catalog:",
+    "lint-staged": "catalog:",
+    "mockdate": "catalog:",
+    "read-pkg": "catalog:",
+    "shx": "catalog:",
+    "tstyche": "catalog:",
+    "typescript": "catalog:",
+    "vite": "catalog:",
+    "vitest": "catalog:",
+    "vitest-localstorage-mock": "catalog:",
+    "wait-for-expect": "catalog:"
   },
   "scripts": {
     "lint": "eslint --cache .",
@@ -58,6 +62,7 @@
     "format": "biome format --write .",
     "test": "pnpm recursive run test:unit",
     "test:coverage": "pnpm run test --coverage",
+    "typecheck": "pnpm tsc --noEmit",
     "test:types": "tstyche",
     "release": "pnpm build && pnpm changeset publish",
     "prepare": "husky install"
@@ -65,44 +70,40 @@
   "pnpm": {
     "peerDependencyRules": {
       "allowedVersions": {
-        "react": "18",
-        "react-dom": "18",
-        "@types/react": "18"
+        "react": "18 || 19",
+        "react-dom": "18 || 19",
+        "@types/react": "18 || 19"
       }
-    }
+    },
+    "onlyBuiltDependencies": [
+      "@biomejs/biome",
+      "esbuild",
+      "unrs-resolver"
+    ]
   },
   "commitlint": {
-    "extends": ["@commitlint/config-conventional"]
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   },
   "lint-staged": {
-    "*.(j|t)s?(x)": ["biome format --write .", "eslint --fix"],
-    "*.json": ["biome format --write ."],
-    "*.y(a)ml,": ["pnpm dlx prettier --write '**/*.{yml,yaml}' --single-quote"],
-    "*.mdx": ["biome format --write ."]
+    "*.(j|t)s?(x)": [
+      "biome format --write .",
+      "eslint --fix"
+    ],
+    "*.json": [
+      "biome format --write ."
+    ],
+    "*.y(a)ml,": [
+      "pnpm dlx prettier --write '**/*.{yml,yaml}' --single-quote"
+    ],
+    "*.mdx": [
+      "biome format --write ."
+    ]
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  },
-  "jest": {
-    "testEnvironment": "jsdom",
-    "setupFiles": ["jest-localstorage-mock"],
-    "collectCoverageFrom": ["packages/*/src/**/*.{ts,tsx,js,jsx}"],
-    "modulePathIgnorePatterns": ["locales", "__typetests__", "dist"],
-    "coverageReporters": ["text", "cobertura"],
-    "transformIgnorePatterns": [
-      "node_modules/(?!(.*(query-string|decode-uri-component|split-on-first|filter-obj)))"
-    ],
-    "reporters": [
-      "default",
-      [
-        "jest-junit",
-        {
-          "outputDirectory": ".reports",
-          "outputName": "tests.xml"
-        }
-      ]
-    ]
   }
 }

@@ -9,6 +9,8 @@ export const alphanumDashDotsOrEmpty = /^$|^[a-zA-Z0-9-.]*$/
 export const alphanumDashDotsSpaces = /^[a-zA-Z0-9-.\s]*$/
 export const alphanumDashLowercase = /^[a-z0-9-]+$/
 export const alphanumDashSpaces = /^[a-zA-Z0-9-\s]*$/
+export const alphaUpperUnderscore = /^[A-Z_]+$/
+
 export const alphanumDashOrEmpty = /^$|^[a-zA-Z0-9-]*$/
 export const alphanumDashUnderscoreDots = /^[a-zA-Z0-9-._]*$/
 export const alphanumDashUnderscore = /^[a-zA-Z0-9-_]*$/
@@ -22,7 +24,8 @@ export const absoluteLinuxPath = /(^\/$|^(\/[a-zA-Z0-9_]+)*$)/
 
 // eslint-disable-next-line no-control-regex
 export const ascii = /^[\x00-\x7F]+$/
-export const backupKey = /^[A-Z0-9]{32}$/
+export const organizationAlias = /^[a-z0-9]{2,32}$/
+export const backupKey = /^[A-Z0-9]{8}$|^[A-Z0-9]{32}$/
 export const basicDomain = /^[a-z0-9-]+(\.[a-z0-9-]{1,63})+$/
 export const uppercaseBasicDomain =
   /^(?![-])+[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]{1,63})+$/
@@ -32,7 +35,7 @@ export const uppercaseBasicSubdomain =
 export const advancedDomainName =
   /^(?:(?:(?:[a-zA-Z0-9À-ÖØ-öø-ÿ](?:[a-zA-Z0-9À-ÖØ-öø-ÿ-]{0,61}[a-zA-Z0-9À-ÖØ-öø-ÿ])?)\.)+[a-zA-Z]{2,}|(?:[0-9]{1,3}\.){3}[0-9]{1,3})(?::[\d]{1,5})?$/
 
-export const cron = /^((((\d+,)+\d+|(\d+(\/|-)\d+)|\d+|\*) ?){5,7})$/
+export const cron = /^((((\d+,)+\d+|(\d+(\/|-)\d+)|\d+|\*|\*\/\d+) ?){5,7})$/
 export const digits = /^[0-9]*$/
 export const macAddress =
   /^([0-9a-fA-F][0-9a-fA-F]:){5}([0-9a-fA-F][0-9a-fA-F])$/
@@ -43,10 +46,14 @@ export const fourDigitsCode = /^[0-9]{4}$/
 export const phone = /^\+[0-9]*/
 export const spaces = /^\s*$/
 export const sixDigitsCode = /^[0-9]{6}$/
+export const nineDigitsCode = /^[0-9]{9}$/
+export const elevenDigitsCode = /^[0-9]{11}$/
 export const url =
   /^http(s)?:\/\/?[\w.-]+(?:\.[\w.-]+)+[\w\-._~:/?#[\]@!$&'()*+,;=.]+$/
 export const hexadecimal = /^[0-9a-fA-F]+$/
 export const s3BucketName = /^[a-z0-9][-.a-z0-9]{1,61}[a-z0-9]$/
+export const uuid =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 
 // Pasted from `ip-regex` package (https://github.com/sindresorhus/ip-regex/blob/main/index.js)
 const v4 =
@@ -84,3 +91,14 @@ export const dashedIpv4 =
 
 export const pathSegment = /^[_a-zA-Z0-9]([-_.a-zA-Z0-9]*[_a-zA-Z0-9])?$/
 export const absolutePath = /^\/(([\w. -]*)[^\s?]\/?)+$/
+
+// A port range between 1 to 65535 separated by an hypen or a single number
+export const sgPortRange =
+  /^(6553[0-5]|655[0-2][0-9]|65[0-4][0-9]{2}|6[0-4][0-9]{3}|[1-5]?[0-9]{1,4})(-(6553[0-5]|655[0-2][0-9]|65[0-4][0-9]{2}|6[0-4][0-9]{3}|[1-5]?[0-9]{1,4}))?$/
+
+// Include all characters except backtick ` and @ as first character
+export const password = /^(?!@)[^`]*$/
+
+// A kafka username contains lowercase letters and numbers, with each segment starting and ending with a letter or number. Hyphens are only allowed in the middle of segments. Example: "username", "user-name", "my-group.user-name"
+export const kafkaUsernameRegex =
+  /^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$/

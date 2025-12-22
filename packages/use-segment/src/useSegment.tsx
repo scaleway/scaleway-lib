@@ -4,8 +4,8 @@ import type {
   AnalyticsBrowserSettings,
   InitOptions,
 } from '@segment/analytics-next'
-import type { ReactNode } from 'react'
 import { createContext, useContext, useMemo, useState } from 'react'
+import type { ReactNode } from 'react'
 import { useDeepCompareEffectNoCheck } from 'use-deep-compare-effect'
 
 export type OnEventError = (error: Error) => Promise<void> | void

@@ -1,5 +1,64 @@
 # @scaleway/use-growthbook
 
+## 2.1.9
+
+### Patch Changes
+
+- [#2639](https://github.com/scaleway/scaleway-lib/pull/2639) [`305b084`](https://github.com/scaleway/scaleway-lib/commit/305b0840229836dd77298a5ed4f48937e6e97245) Thanks [@philibea](https://github.com/philibea)! - update packages
+
+## 2.1.8
+
+### Patch Changes
+
+- [#2475](https://github.com/scaleway/scaleway-lib/pull/2475) [`27458c2`](https://github.com/scaleway/scaleway-lib/commit/27458c2341d218e4e4d28039403fa3b27e3f194a) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@growthbook/growthbook-react` to `1.4.1`.
+
+## 2.1.7
+
+### Patch Changes
+
+- [#2364](https://github.com/scaleway/scaleway-lib/pull/2364) [`463f5bc`](https://github.com/scaleway/scaleway-lib/commit/463f5bc9b67bfca8dc7faa27cac0fda6d13050af) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `react` to `19.0.0`.
+  Updated dependency `react-dom` to `19.0.0`.
+  Updated dependency `@types/react` to `19.0.0`.
+  Updated dependency `@types/react-dom` to `19.0.0`.
+
+## 2.1.6
+
+### Patch Changes
+
+- [#2376](https://github.com/scaleway/scaleway-lib/pull/2376) [`3d90660`](https://github.com/scaleway/scaleway-lib/commit/3d90660ed13e552f4bbe349def70fc8326dea49b) Thanks [@philibea](https://github.com/philibea)! - update package json export dist file only
+
+## 2.1.5
+
+### Patch Changes
+
+- [#2325](https://github.com/scaleway/scaleway-lib/pull/2325) [`34186a6`](https://github.com/scaleway/scaleway-lib/commit/34186a617935638ebcb080c45dd90a0b9ec58f48) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@growthbook/growthbook-react` to `1.3.1`.
+
+- [#2312](https://github.com/scaleway/scaleway-lib/pull/2312) [`a1b85f1`](https://github.com/scaleway/scaleway-lib/commit/a1b85f107cf24304c4361223ebcd6ff74bd3f1cb) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@growthbook/growthbook-react` to `1.3.0`.
+
+## 2.1.4
+
+### Patch Changes
+
+- [#2237](https://github.com/scaleway/scaleway-lib/pull/2237) [`28eaa6e`](https://github.com/scaleway/scaleway-lib/commit/28eaa6ec008441711c6b702780864dc965d3776b) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@growthbook/growthbook-react` to `1.2.1`.
+
+## 2.1.3
+
+### Patch Changes
+
+- [#2154](https://github.com/scaleway/scaleway-lib/pull/2154) [`abf9b7c`](https://github.com/scaleway/scaleway-lib/commit/abf9b7cb56c27dc0c7bbdb3ed3a3b8c8f1017783) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@growthbook/growthbook-react` to `1.2.0`.
+
+## 2.1.2
+
+### Patch Changes
+
+- [#2091](https://github.com/scaleway/scaleway-lib/pull/2091) [`2f04650`](https://github.com/scaleway/scaleway-lib/commit/2f04650ecc92205aa0b06a526675c641e041bcfd) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@growthbook/growthbook-react` to `1.1.0`.
+
+## 2.1.1
+
+### Patch Changes
+
+- [#2045](https://github.com/scaleway/scaleway-lib/pull/2045) [`0d79190`](https://github.com/scaleway/scaleway-lib/commit/0d79190d997cb0fc966a4be53e67877900bc95b3) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@growthbook/growthbook-react` to `1.0.1`.
+
 ## 2.1.0
 
 ### Minor Changes

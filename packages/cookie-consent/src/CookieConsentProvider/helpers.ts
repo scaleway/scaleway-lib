@@ -10,3 +10,5 @@ export type CategoryKind = (typeof categories)[number]
 
 export const isCategoryKind = (key: string): key is CategoryKind =>
   categories.includes(key as CategoryKind)
+
+export const IS_CLIENT = typeof document !== 'undefined'

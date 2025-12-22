@@ -1,5 +1,41 @@
 # Change Log
 
+## 2.2.1
+
+### Patch Changes
+
+- [#2639](https://github.com/scaleway/scaleway-lib/pull/2639) [`305b084`](https://github.com/scaleway/scaleway-lib/commit/305b0840229836dd77298a5ed4f48937e6e97245) Thanks [@philibea](https://github.com/philibea)! - update packages
+
+## 2.2.0
+
+### Minor Changes
+
+- [#2422](https://github.com/scaleway/scaleway-lib/pull/2422) [`d122517`](https://github.com/scaleway/scaleway-lib/commit/d122517e81259e361368b2a466bbd930fa751d90) Thanks [@garar](https://github.com/garar)! - add an option to sort the message
+
+## 2.1.2
+
+### Patch Changes
+
+- [#2204](https://github.com/scaleway/scaleway-lib/pull/2204) [`d3e7edb`](https://github.com/scaleway/scaleway-lib/commit/d3e7edbe9bebf9a1ce77ddd64e272d374518d54f) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `simple-git` to `3.27.0`.
+
+## 2.1.1
+
+### Patch Changes
+
+- [#2174](https://github.com/scaleway/scaleway-lib/pull/2174) [`573055e`](https://github.com/scaleway/scaleway-lib/commit/573055e447f3548f605b7893a09672aa137609a7) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `simple-git` to `3.26.0`.
+
+## 2.1.0
+
+### Minor Changes
+
+- [#2133](https://github.com/scaleway/scaleway-lib/pull/2133) [`2597f61`](https://github.com/scaleway/scaleway-lib/commit/2597f6151c67aa1cc7bab17e1d09b0505a687991) Thanks [@ImOverlord](https://github.com/ImOverlord)! - Add `SKIP_BRANCH_CHECK` as an option to not check branch name
+
+## 2.0.5
+
+### Patch Changes
+
+- [#2048](https://github.com/scaleway/scaleway-lib/pull/2048) [`cc09c01`](https://github.com/scaleway/scaleway-lib/commit/cc09c0118159069cab94d95c9dadc2de84a8e519) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `simple-git` to `3.25.0`.
+
 ## 2.0.4
 
 ### Patch Changes

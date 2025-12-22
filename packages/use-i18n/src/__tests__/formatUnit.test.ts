@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest'
-import type { FormatUnitOptions } from '../formatUnit'
 import formatUnit, { supportedUnits } from '../formatUnit'
+import type { FormatUnitOptions } from '../formatUnit'
 
 const locales = ['en', 'fr', 'ro']
 

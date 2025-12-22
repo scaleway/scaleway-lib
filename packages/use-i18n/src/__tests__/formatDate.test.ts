@@ -1,34 +1,34 @@
 import { describe, expect, test } from 'vitest'
-import type { FormatDateOptions } from '../formatDate'
 import formatDate, { supportedFormats } from '../formatDate'
+import type { FormatDateOptions } from '../formatDate'
 
 const locales = ['en', 'fr', 'de', 'ro', 'es']
 
 const tests = [
-  ...locales.map(locale => [
-    ...supportedFormats.map(format => [
+  ...locales.map(locale =>
+    supportedFormats.map(format => [
       format,
       'new Date(2020, 1, 13, 16, 28)',
       locale,
       new Date(2020, 1, 13, 16, 28),
     ]),
-  ]),
-  ...locales.map(locale => [
-    ...supportedFormats.map(format => [
+  ),
+  ...locales.map(locale =>
+    supportedFormats.map(format => [
       format,
       '1581607680000',
       locale,
       1581607680000,
     ]),
-  ]),
-  ...locales.map(locale => [
-    ...supportedFormats.map(format => [
+  ),
+  ...locales.map(locale =>
+    supportedFormats.map(format => [
       format,
       '2020-02-13T15:28:00.000Z',
       locale,
       '2020-02-13T15:28:00.000Z',
     ]),
-  ]),
+  ),
 ].flat() as [FormatDateOptions, string, string, Date | string | number][]
 
 describe('formatDate', () => {
@@ -73,7 +73,7 @@ describe('formatDate', () => {
       // @ts-expect-error we check a failing case
       formatDate('fr', 1581607680000, 'not a valid format'),
     ).toThrowError(
-      'format "not a valid format" should be one of hour, hourOnly, long, short, shortWithoutDay, numeric, numericHour or a valid Intl.DateTimeFormat options object',
+      'format "not a valid format" should be one of second, hour, hourOnly, long, short, shortWithoutDay, numeric, numericHour or a valid Intl.DateTimeFormat options object',
     )
   })
 })

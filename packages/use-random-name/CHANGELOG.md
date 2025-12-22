@@ -1,5 +1,36 @@
 # Change Log
 
+## 1.0.7
+
+### Patch Changes
+
+- [#2639](https://github.com/scaleway/scaleway-lib/pull/2639) [`305b084`](https://github.com/scaleway/scaleway-lib/commit/305b0840229836dd77298a5ed4f48937e6e97245) Thanks [@philibea](https://github.com/philibea)! - update packages
+
+- Updated dependencies [[`305b084`](https://github.com/scaleway/scaleway-lib/commit/305b0840229836dd77298a5ed4f48937e6e97245)]:
+  - @scaleway/random-name@5.1.2
+
+## 1.0.6
+
+### Patch Changes
+
+- [#2364](https://github.com/scaleway/scaleway-lib/pull/2364) [`463f5bc`](https://github.com/scaleway/scaleway-lib/commit/463f5bc9b67bfca8dc7faa27cac0fda6d13050af) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `react` to `19.0.0`.
+  Updated dependency `react-dom` to `19.0.0`.
+  Updated dependency `@types/react` to `19.0.0`.
+  Updated dependency `@types/react-dom` to `19.0.0`.
+
+## 1.0.5
+
+### Patch Changes
+
+- [#2376](https://github.com/scaleway/scaleway-lib/pull/2376) [`3d90660`](https://github.com/scaleway/scaleway-lib/commit/3d90660ed13e552f4bbe349def70fc8326dea49b) Thanks [@philibea](https://github.com/philibea)! - update package json export dist file only
+
+## 1.0.4
+
+### Patch Changes
+
+- Updated dependencies [[`3c8926e`](https://github.com/scaleway/scaleway-lib/commit/3c8926e55b328354ee9ae1088dc42d394cf1e833)]:
+  - @scaleway/random-name@5.1.1
+
 ## 1.0.3
 
 ### Patch Changes

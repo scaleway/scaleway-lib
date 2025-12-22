@@ -7,6 +7,7 @@ import {
   alpha,
   alphaDashes,
   alphaLowercase,
+  alphaUpperUnderscore,
   alphanum,
   alphanumDash,
   alphanumDashDots,
@@ -27,6 +28,7 @@ import {
   cron,
   dashedIpv4,
   digits,
+  elevenDigitsCode,
   email,
   fourDigitsCode,
   hexadecimal,
@@ -36,21 +38,28 @@ import {
   ipv4Cidr,
   ipv6,
   ipv6Cidr,
+  kafkaUsernameRegex,
   macAddress,
+  nineDigitsCode,
+  organizationAlias,
+  password,
   pathSegment,
   phone,
   reverseDNS,
   s3BucketName,
+  sgPortRange,
   sixDigitsCode,
   spaces,
   uppercaseBasicDomain,
   uppercaseBasicSubdomain,
   url,
+  uuid,
 } from '..'
 
 const alphanumDashDotsText = 'testwithdashdots-.'
 const alphanumDashUnderscoreDotsParenthesisText = 'testwithdashdots-_. ()'
 const alphanumDashText = 'testwithdash-'
+const uppercaseUnderscoreText = 'ASTT_GGF'
 const asciiLetters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 const nonAsciiLetters =
   'ÀÁÂÃÄÅàáâãäåÇçÈÉÊËèéêëÌÍÎÏìíîïÑñÒÓÔÕÖòóôõöÙÚÛÜùúûüÝýÿĀāĈĉĜĝĤĥĴĵŜŝŴŵŶŷāăąǎćĉčċđēĕėęǝğōŏőǒśŝşšūŭůűǔüźżž'
@@ -62,8 +71,9 @@ const subDomain = 'sub.another-example.com'
 const dashStartDomain = '-sub.another-example.com'
 const uppercaseDomain = 'SUB.another-example.com'
 const longTldDomain = 'sub.another-example.verylongtld'
-const cronTest = '0 0 0 * * 0 1-4'
+const cronTest = '0 0 0 */5 * 0 1-4'
 const digitsTest = '0123456789'
+const elevenDigitsCodeTest = '01234567890'
 const emailTest = 'test@scaleway.com'
 const fourDigitsTest = '2345'
 const hexdigits = '0123456789abcdefABCDEF'
@@ -85,6 +95,7 @@ const urls = [
 ]
 const whitespace = ' \t\n\r\x0b\x0c'
 const macAddress1 = '1F:B5:FA:47:CD:C4'
+const nineDigitsCodeTest = '012345678'
 const linuxPaths = {
   BAD: [
     '/var/test@',
@@ -96,6 +107,7 @@ const linuxPaths = {
   ],
   GOOD: ['/var', '/var/test', '/var/test_', '/var_/test', '/'],
 }
+const uuidTest = '550e8400-e29b-41d4-a716-446655440000'
 
 describe('@regex', () => {
   describe('alpha', () => {
@@ -374,6 +386,27 @@ describe('@regex', () => {
       expect(alphanumDots.test(string)).toBe(expected)
     })
   })
+  describe('alphaUpperUnderscore', () => {
+    test.each([
+      [alphanumDashText, false],
+      [uppercaseUnderscoreText, true],
+      [alphanumDashDotsText, false],
+      [asciiLetters, false],
+      [asciiLowercase, false],
+      [asciiUppercase, true],
+      [digitsTest, false],
+      [emailTest, false],
+      [octdigits, false],
+      [hexdigits, false],
+      [printable, false],
+      [punctuation, false],
+      [whitespace, false],
+      [cronTest, false],
+      [macAddress1, false],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(alphaUpperUnderscore.test(string)).toBe(expected)
+    })
+  })
 
   describe('alphanumLowercase', () => {
     test.each([
@@ -466,6 +499,24 @@ describe('@regex', () => {
     })
   })
 
+  describe('organizationAlias', () => {
+    test.each([
+      [asciiLetters, false],
+      [asciiLowercase, true],
+      [asciiUppercase, false],
+      [digitsTest, true],
+      [emailTest, false],
+      [octdigits, true],
+      [hexdigits, false],
+      [printable, false],
+      [punctuation, false],
+      [whitespace, false],
+      [cronTest, false],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(organizationAlias.test(string)).toBe(expected)
+    })
+  })
+
   describe('ascii', () => {
     test.each([
       [asciiLetters, true],
@@ -492,7 +543,7 @@ describe('@regex', () => {
       [backupKeyTest, true],
       [digitsTest, false],
       [emailTest, false],
-      [octdigits, false],
+      [octdigits, true],
       [hexdigits, false],
       [printable, false],
       [punctuation, false],
@@ -640,6 +691,26 @@ describe('@regex', () => {
     })
   })
 
+  describe('elevenDigitsCode', () => {
+    test.each([
+      [asciiLetters, false],
+      [asciiLowercase, false],
+      [asciiUppercase, false],
+      [digitsTest, false],
+      [emailTest, false],
+      [octdigits, false],
+      [elevenDigitsCodeTest, true],
+      [hexdigits, false],
+      [printable, false],
+      [punctuation, false],
+      [whitespace, false],
+      [cronTest, false],
+      [macAddress1, false],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(elevenDigitsCode.test(string)).toBe(expected)
+    })
+  })
+
   describe('email', () => {
     test.each([
       [asciiLetters, false],
@@ -676,6 +747,26 @@ describe('@regex', () => {
       [macAddress1, false],
     ])('should match regex %s to be %s', (string, expected) => {
       expect(fourDigitsCode.test(string)).toBe(expected)
+    })
+  })
+
+  describe('nineDigitsCode', () => {
+    test.each([
+      [asciiLetters, false],
+      [asciiLowercase, false],
+      [asciiUppercase, false],
+      [digitsTest, false],
+      [emailTest, false],
+      [octdigits, false],
+      [nineDigitsCodeTest, true],
+      [hexdigits, false],
+      [printable, false],
+      [punctuation, false],
+      [whitespace, false],
+      [cronTest, false],
+      [macAddress1, false],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(nineDigitsCode.test(string)).toBe(expected)
     })
   })
 
@@ -993,6 +1084,106 @@ describe('@regex', () => {
       ],
     ])('should match regex %s to be %s', (string, expected) => {
       expect(absolutePath.test(string)).toBe(expected)
+    })
+  })
+
+  describe('sgPortRange', () => {
+    test.each([
+      // Valid single ports
+      ['1', true],
+      ['80', true],
+      ['443', true],
+      ['8080', true],
+      ['65535', true],
+
+      // Valid port ranges
+      ['1-80', true],
+      ['80-443', true],
+      ['1000-2000', true],
+      ['1-65535', true],
+      ['8080-8090', true],
+
+      // Edge cases for valid ports
+      ['1-1', true],
+      ['65535-65535', true],
+
+      // Invalid: Port 0 not allowed => but regex was like that so product might accept it, keep it like that for now
+      ['0', true],
+      ['0-80', true],
+      ['80-0', true],
+
+      // Invalid: Ports above 65535
+      ['65536', false],
+      ['70000', false],
+      ['1-70000', false],
+      ['65536-65537', false],
+
+      // Invalid formats
+      ['', false],
+      ['a', false],
+      ['1a', false],
+      ['a1', false],
+      ['1,2', false],
+      ['1:2', false],
+      ['1 - 2', false],
+      ['1~2', false],
+      ['1-2-3', false],
+      ['1-', false],
+      ['-1', false],
+      ['-', false],
+      ['1--2', false],
+
+      // Edge cases
+      ['65534-65535', true],
+      ['65535-65535', true],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(sgPortRange.test(string)).toBe(expected)
+    })
+  })
+
+  describe('password', () => {
+    test.each([
+      ['password', true],
+      ['Password123!', true],
+      ['Password123!@#', true],
+      ['password`', false],
+      ['Password`123!@#', false],
+      ['@Password123!@#', false],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(password.test(string)).toBe(expected)
+    })
+  })
+
+  describe('kafkaUsernameRegex', () => {
+    test.each([
+      ['username', true],
+      ['user-name', true],
+      ['my-group.user-name', true],
+      ['-user-name', false],
+      ['user-Name-', false],
+      ['user..name', false],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(kafkaUsernameRegex.test(string)).toBe(expected)
+    })
+  })
+
+  describe('uuid', () => {
+    test.each([
+      [asciiLetters, false],
+      [asciiLowercase, false],
+      [asciiUppercase, false],
+      [digitsTest, false],
+      [emailTest, false],
+      [octdigits, false],
+      [hexdigits, false],
+      [printable, false],
+      [punctuation, false],
+      [whitespace, false],
+      [cronTest, false],
+      [macAddress1, false],
+      [uuidTest, true],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(uuid.test(string)).toBe(expected)
     })
   })
 })

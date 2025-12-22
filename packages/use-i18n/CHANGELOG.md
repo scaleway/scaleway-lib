@@ -1,5 +1,147 @@
 # Change Log
 
+## 7.2.0
+
+### Minor Changes
+
+- [#2831](https://github.com/scaleway/scaleway-lib/pull/2831) [`4cb5fc4`](https://github.com/scaleway/scaleway-lib/commit/4cb5fc4ecad9826191edea03cb870511958534cb) Thanks [@alexandre-combemorel](https://github.com/alexandre-combemorel)! - fix: typing issue and force use of string array with at least one element for namespaces in useTranslation hook
+
+## 7.1.1
+
+### Patch Changes
+
+- [#2639](https://github.com/scaleway/scaleway-lib/pull/2639) [`305b084`](https://github.com/scaleway/scaleway-lib/commit/305b0840229836dd77298a5ed4f48937e6e97245) Thanks [@philibea](https://github.com/philibea)! - update packages
+
+## 7.1.0
+
+### Minor Changes
+
+- [#2522](https://github.com/scaleway/scaleway-lib/pull/2522) [`404c277`](https://github.com/scaleway/scaleway-lib/commit/404c277db99c5ad16b0b1c8505d51cd4cdfb8f6a) Thanks [@MathildeJolly](https://github.com/MathildeJolly)! - feat: add format second to formatDate
+
+## 7.0.10
+
+### Patch Changes
+
+- [#2454](https://github.com/scaleway/scaleway-lib/pull/2454) [`4b5252f`](https://github.com/scaleway/scaleway-lib/commit/4b5252faee2fdeae339b5946b2aa23baf97084bd) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@formatjs/ecma402-abstract` to `2.3.3`.
+  Updated dependency `intl-messageformat` to `10.7.15`.
+  Updated dependency `@formatjs/icu-messageformat-parser` to `2.11.1`.
+
+## 7.0.9
+
+### Patch Changes
+
+- [#2425](https://github.com/scaleway/scaleway-lib/pull/2425) [`56c7f16`](https://github.com/scaleway/scaleway-lib/commit/56c7f16a92041ebee1e98c3e447ae071e55e1bda) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `intl-messageformat` to `10.7.14`.
+  Updated dependency `@formatjs/icu-messageformat-parser` to `2.11.0`.
+
+- [#2386](https://github.com/scaleway/scaleway-lib/pull/2386) [`dc5e97e`](https://github.com/scaleway/scaleway-lib/commit/dc5e97e8090feb46d8c52d5174441aa90f95e146) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@formatjs/ecma402-abstract` to `2.3.2`.
+  Updated dependency `@formatjs/fast-memoize` to `2.2.6`.
+  Updated dependency `intl-messageformat` to `10.7.11`.
+  Updated dependency `@formatjs/icu-messageformat-parser` to `2.9.8`.
+
+- [#2404](https://github.com/scaleway/scaleway-lib/pull/2404) [`09478d8`](https://github.com/scaleway/scaleway-lib/commit/09478d8d64e5b5ac049d44461e6108784833c088) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@formatjs/icu-messageformat-parser` to `2.10.0`.
+  Updated dependency `intl-messageformat` to `10.7.12`.
+
+## 7.0.8
+
+### Patch Changes
+
+- [#2364](https://github.com/scaleway/scaleway-lib/pull/2364) [`463f5bc`](https://github.com/scaleway/scaleway-lib/commit/463f5bc9b67bfca8dc7faa27cac0fda6d13050af) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `react` to `19.0.0`.
+  Updated dependency `react-dom` to `19.0.0`.
+  Updated dependency `@types/react` to `19.0.0`.
+  Updated dependency `@types/react-dom` to `19.0.0`.
+
+## 7.0.7
+
+### Patch Changes
+
+- [#2348](https://github.com/scaleway/scaleway-lib/pull/2348) [`5c36ff0`](https://github.com/scaleway/scaleway-lib/commit/5c36ff03a279a5a1a34a8c898906cb2146eebd56) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@formatjs/fast-memoize` to `2.2.5`.
+  Updated dependency `intl-messageformat` to `10.7.10`.
+  Updated dependency `@formatjs/icu-messageformat-parser` to `2.9.7`.
+
+- [#2356](https://github.com/scaleway/scaleway-lib/pull/2356) [`de94e6a`](https://github.com/scaleway/scaleway-lib/commit/de94e6a9df2e0f23dd3bb21db60eeb884321df96) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@formatjs/ecma402-abstract` to `2.3.1`.
+
+## 7.0.6
+
+### Patch Changes
+
+- [#2340](https://github.com/scaleway/scaleway-lib/pull/2340) [`ad362e6`](https://github.com/scaleway/scaleway-lib/commit/ad362e698734d631d89433bb01d6763a271f1fb5) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@formatjs/ecma402-abstract` to `2.2.5`.
+  Updated dependency `@formatjs/fast-memoize` to `2.2.4`.
+  Updated dependency `intl-messageformat` to `10.7.8`.
+  Updated dependency `@formatjs/icu-messageformat-parser` to `2.9.5`.
+
+## 7.0.5
+
+### Patch Changes
+
+- [#2303](https://github.com/scaleway/scaleway-lib/pull/2303) [`ed13d8d`](https://github.com/scaleway/scaleway-lib/commit/ed13d8df7edf32f3636d0e43dc5cf8025d87d959) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@formatjs/ecma402-abstract` to `2.2.4`.
+  Updated dependency `intl-messageformat` to `10.7.7`.
+  Updated dependency `@formatjs/icu-messageformat-parser` to `2.9.4`.
+
+## 7.0.4
+
+### Patch Changes
+
+- [#2285](https://github.com/scaleway/scaleway-lib/pull/2285) [`67d4b79`](https://github.com/scaleway/scaleway-lib/commit/67d4b7990c1d0b7e853a93e65ac5d4c032b6fd31) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@formatjs/ecma402-abstract` to `2.2.3`.
+  Updated dependency `intl-messageformat` to `10.7.5`.
+  Updated dependency `@formatjs/icu-messageformat-parser` to `2.9.3`.
+
+- [#2287](https://github.com/scaleway/scaleway-lib/pull/2287) [`d9e86d3`](https://github.com/scaleway/scaleway-lib/commit/d9e86d354448056d330f41d6288f6cded643f0ac) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `intl-messageformat` to `10.7.6`.
+
+- [#2272](https://github.com/scaleway/scaleway-lib/pull/2272) [`f48a9a1`](https://github.com/scaleway/scaleway-lib/commit/f48a9a107dbec8ece5d965158a4fdb0f87c57fff) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@formatjs/ecma402-abstract` to `2.2.1`.
+  Updated dependency `@formatjs/fast-memoize` to `2.2.2`.
+  Updated dependency `intl-messageformat` to `10.7.3`.
+  Updated dependency `@formatjs/icu-messageformat-parser` to `2.9.1`.
+
+- [#2279](https://github.com/scaleway/scaleway-lib/pull/2279) [`7a70e95`](https://github.com/scaleway/scaleway-lib/commit/7a70e9539b9b1d637bb948f4b58ecc42e0750b0b) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@formatjs/ecma402-abstract` to `2.2.2`.
+  Updated dependency `@formatjs/fast-memoize` to `2.2.3`.
+  Updated dependency `intl-messageformat` to `10.7.4`.
+  Updated dependency `@formatjs/icu-messageformat-parser` to `2.9.2`.
+
+- [#2259](https://github.com/scaleway/scaleway-lib/pull/2259) [`2b9a20a`](https://github.com/scaleway/scaleway-lib/commit/2b9a20ab8cd78f4b049327f1a2ed17aefe2ebbe7) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `intl-messageformat` to `10.7.1`.
+
+## 7.0.3
+
+### Patch Changes
+
+- [#2242](https://github.com/scaleway/scaleway-lib/pull/2242) [`7710793`](https://github.com/scaleway/scaleway-lib/commit/77107936aab553757f332b3b5dd8515089947788) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@formatjs/ecma402-abstract` to `2.2.0`.
+  Updated dependency `@formatjs/fast-memoize` to `2.2.1`.
+  Updated dependency `intl-messageformat` to `10.7.0`.
+  Updated dependency `@formatjs/icu-messageformat-parser` to `2.7.10`.
+
+## 7.0.2
+
+### Patch Changes
+
+- [#2210](https://github.com/scaleway/scaleway-lib/pull/2210) [`7c717e2`](https://github.com/scaleway/scaleway-lib/commit/7c717e2b02de5ca5e587f854db797566a31b0dd6) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `date-fns` to `3.x || 4.x`.
+
+## 7.0.1
+
+### Patch Changes
+
+- [#2177](https://github.com/scaleway/scaleway-lib/pull/2177) [`4addb9a`](https://github.com/scaleway/scaleway-lib/commit/4addb9aa0ae168175fac362646de05a2c760b4de) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `filesize` to `10.1.6`.
+
+- [#2171](https://github.com/scaleway/scaleway-lib/pull/2171) [`f33705e`](https://github.com/scaleway/scaleway-lib/commit/f33705e2a1cec3b4287984559e200327fb2d554c) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `filesize` to `10.1.5`.
+
+## 7.0.0
+
+### Major Changes
+
+- [#2112](https://github.com/scaleway/scaleway-lib/pull/2112) [`89f222a`](https://github.com/scaleway/scaleway-lib/commit/89f222a7125b7b9e0ce6fd76931fadf47ca22b2a) Thanks [@alexandre-combemorel](https://github.com/alexandre-combemorel)! - Add typing on locales and remove auto mapping from browser locale to simple locale
+
+## 6.1.10
+
+### Patch Changes
+
+- [#2096](https://github.com/scaleway/scaleway-lib/pull/2096) [`a86bb14`](https://github.com/scaleway/scaleway-lib/commit/a86bb14fdb21ed7a90aca21d27a0e5d074611e6e) Thanks [@alexandre-combemorel](https://github.com/alexandre-combemorel)! - fix default locales browser list
+
+- [#2097](https://github.com/scaleway/scaleway-lib/pull/2097) [`4d578fe`](https://github.com/scaleway/scaleway-lib/commit/4d578fe2a39018271e4616ec17ac250e2550adac) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `filesize` to `10.1.4`.
+
+## 6.1.9
+
+### Patch Changes
+
+- [#2079](https://github.com/scaleway/scaleway-lib/pull/2079) [`5705ac5`](https://github.com/scaleway/scaleway-lib/commit/5705ac5ec19c4b76a6fbfb06bf22a91642cd2b1e) Thanks [@philibea](https://github.com/philibea)! - Fix fallback issue on the default local during translation
+
 ## 6.1.8
 
 ### Patch Changes

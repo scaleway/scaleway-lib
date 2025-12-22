@@ -1,5 +1,72 @@
 # Change Log
 
+## 1.1.11
+
+### Patch Changes
+
+- [#2639](https://github.com/scaleway/scaleway-lib/pull/2639) [`305b084`](https://github.com/scaleway/scaleway-lib/commit/305b0840229836dd77298a5ed4f48937e6e97245) Thanks [@philibea](https://github.com/philibea)! - update packages
+
+## 1.1.10
+
+### Patch Changes
+
+- [#2429](https://github.com/scaleway/scaleway-lib/pull/2429) [`300d6f4`](https://github.com/scaleway/scaleway-lib/commit/300d6f475d6e15e993549698aa601c4188dd19f6) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@segment/analytics-next` to `1.77.0`.
+
+## 1.1.9
+
+### Patch Changes
+
+- [#2402](https://github.com/scaleway/scaleway-lib/pull/2402) [`f4df416`](https://github.com/scaleway/scaleway-lib/commit/f4df4168bcb362f6bd3fc90062fe4560a55867d3) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@segment/analytics-next` to `1.76.1`.
+
+## 1.1.8
+
+### Patch Changes
+
+- [#2364](https://github.com/scaleway/scaleway-lib/pull/2364) [`463f5bc`](https://github.com/scaleway/scaleway-lib/commit/463f5bc9b67bfca8dc7faa27cac0fda6d13050af) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `react` to `19.0.0`.
+  Updated dependency `react-dom` to `19.0.0`.
+  Updated dependency `@types/react` to `19.0.0`.
+  Updated dependency `@types/react-dom` to `19.0.0`.
+
+## 1.1.7
+
+### Patch Changes
+
+- [#2376](https://github.com/scaleway/scaleway-lib/pull/2376) [`3d90660`](https://github.com/scaleway/scaleway-lib/commit/3d90660ed13e552f4bbe349def70fc8326dea49b) Thanks [@philibea](https://github.com/philibea)! - update package json export dist file only
+
+## 1.1.6
+
+### Patch Changes
+
+- [#2286](https://github.com/scaleway/scaleway-lib/pull/2286) [`8f5aeea`](https://github.com/scaleway/scaleway-lib/commit/8f5aeea0e53ea3fa5e3d24ca59ac44e25750f482) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@segment/analytics-next` to `1.76.0`.
+
+## 1.1.5
+
+### Patch Changes
+
+- [#2214](https://github.com/scaleway/scaleway-lib/pull/2214) [`44b6bcb`](https://github.com/scaleway/scaleway-lib/commit/44b6bcb6985c7f432f3a06ae0996a7c7a894161f) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@segment/analytics-next` to `1.74.0`.
+
+- [#2244](https://github.com/scaleway/scaleway-lib/pull/2244) [`9ccc11b`](https://github.com/scaleway/scaleway-lib/commit/9ccc11b87dfb792f19405cb41d8d166cd735f71e) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@segment/analytics-next` to `1.75.0`.
+
+## 1.1.4
+
+### Patch Changes
+
+- [#2203](https://github.com/scaleway/scaleway-lib/pull/2203) [`1c4448e`](https://github.com/scaleway/scaleway-lib/commit/1c4448e60c4ff986316ae7965163f75af639f00c) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@segment/analytics-next` to `1.73.0`.
+
+## 1.1.3
+
+### Patch Changes
+
+- [#2168](https://github.com/scaleway/scaleway-lib/pull/2168) [`de56f59`](https://github.com/scaleway/scaleway-lib/commit/de56f59734b48aef060ba1f32a3d9f6a7b0f8091) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@segment/analytics-next` to `1.72.2`.
+
+## 1.1.2
+
+### Patch Changes
+
+- [#2102](https://github.com/scaleway/scaleway-lib/pull/2102) [`05a6829`](https://github.com/scaleway/scaleway-lib/commit/05a6829986c83196e3ffa3431a793890cfff4cb0) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@segment/analytics-next` to `1.71.0`.
+
+- [#2121](https://github.com/scaleway/scaleway-lib/pull/2121) [`c6eefab`](https://github.com/scaleway/scaleway-lib/commit/c6eefabe77119db0022c1d8a3b84a81eca37a84e) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@segment/analytics-next` to `1.72.1`.
+
 ## 1.1.1
 
 ### Patch Changes

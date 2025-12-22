@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/use-media",
-  "version": "3.0.1",
+  "version": "3.0.4",
   "description": "A small hook to track CSS media query state",
   "engines": {
     "node": ">=20.x"
@@ -16,6 +16,9 @@
       "default": "./dist/index.js"
     }
   },
+  "files": [
+    "dist/"
+  ],
   "publishConfig": {
     "access": "public"
   },
@@ -43,9 +46,9 @@
     "media queries"
   ],
   "peerDependencies": {
-    "react": "18.x"
+    "react": "18.x || 19.x"
   },
   "devDependencies": {
-    "react": "18.3.1"
+    "react": "catalog:"
   }
 }

@@ -1,5 +1,61 @@
 # Change Log
 
+## 5.6.0
+
+### Minor Changes
+
+- [#2782](https://github.com/scaleway/scaleway-lib/pull/2782) [`aececf9`](https://github.com/scaleway/scaleway-lib/commit/aececf9ba62bf9c7d78251504eac3f147b87005f) Thanks [@MathildeJolly](https://github.com/MathildeJolly)! - feat(regex): add new kafka username regex
+
+## 5.5.0
+
+### Minor Changes
+
+- [#2736](https://github.com/scaleway/scaleway-lib/pull/2736) [`9019322`](https://github.com/scaleway/scaleway-lib/commit/90193222e74c116016d52ef50d9c278d3bae522f) Thanks [@JulienSaguez](https://github.com/JulienSaguez)! - feat(regex): add regex organizationAlias and uuid
+
+## 5.4.0
+
+### Minor Changes
+
+- [#2728](https://github.com/scaleway/scaleway-lib/pull/2728) [`a4851d2`](https://github.com/scaleway/scaleway-lib/commit/a4851d2065a3f558896e6517009f2d293893b711) Thanks [@JulienSaguez](https://github.com/JulienSaguez)! - feat(regex): update regex for backupkey
+
+## 5.3.2
+
+### Patch Changes
+
+- [#2639](https://github.com/scaleway/scaleway-lib/pull/2639) [`305b084`](https://github.com/scaleway/scaleway-lib/commit/305b0840229836dd77298a5ed4f48937e6e97245) Thanks [@philibea](https://github.com/philibea)! - update packages
+
+## 5.3.1
+
+### Patch Changes
+
+- [#2533](https://github.com/scaleway/scaleway-lib/pull/2533) [`8b076aa`](https://github.com/scaleway/scaleway-lib/commit/8b076aa0e1b603401b680c0282b0cc9248c6fe30) Thanks [@MathildeJolly](https://github.com/MathildeJolly)! - feat(regex): add regex for password
+
+- [#2536](https://github.com/scaleway/scaleway-lib/pull/2536) [`91acf46`](https://github.com/scaleway/scaleway-lib/commit/91acf4694a876ef816f1e078320dfa966b8a031f) Thanks [@MathildeJolly](https://github.com/MathildeJolly)! - fix(regex): exclude @ as first letter for password regex
+
+## 5.3.0
+
+### Minor Changes
+
+- [#2514](https://github.com/scaleway/scaleway-lib/pull/2514) [`69dc566`](https://github.com/scaleway/scaleway-lib/commit/69dc566a431ebb9e8d2e8cd4c58508f9a9409b03) Thanks [@alexandre-combemorel](https://github.com/alexandre-combemorel)! - Add new regex for port security group handling
+
+## 5.2.2
+
+### Patch Changes
+
+- [#2461](https://github.com/scaleway/scaleway-lib/pull/2461) [`3779419`](https://github.com/scaleway/scaleway-lib/commit/3779419f6cec8271d99638e0377106bc23a5b75e) Thanks [@Lawndlwd](https://github.com/Lawndlwd)! - fix the cron regex
+
+## 5.2.1
+
+### Patch Changes
+
+- [`be2d1a8`](https://github.com/scaleway/scaleway-lib/commit/be2d1a82fc21f3c04fddfcf2217c8ccc5e2e492e) Thanks [@Lawndlwd](https://github.com/Lawndlwd)! - Add new regex underscore uppercase
+
+## 5.2.0
+
+### Minor Changes
+
+- [#2132](https://github.com/scaleway/scaleway-lib/pull/2132) [`fbe702b`](https://github.com/scaleway/scaleway-lib/commit/fbe702b32aa734e46836d267c23ddcc960b2d550) Thanks [@JulienSaguez](https://github.com/JulienSaguez)! - Add `elevenDigitsCode` and `nineDigitsCode` regex
+
 ## 5.1.0
 
 ### Minor Changes

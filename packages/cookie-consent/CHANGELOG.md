@@ -1,5 +1,79 @@
 # @scaleway/cookie-consent
 
+## 2.0.11
+
+### Patch Changes
+
+- [`6a2956b`](https://github.com/scaleway/scaleway-lib/commit/6a2956b6b594139c87f12bf781e98ebc048bee27) Thanks [@philibea](https://github.com/philibea)! - add cookies to providers
+
+## 2.0.10
+
+### Patch Changes
+
+- [#2639](https://github.com/scaleway/scaleway-lib/pull/2639) [`305b084`](https://github.com/scaleway/scaleway-lib/commit/305b0840229836dd77298a5ed4f48937e6e97245) Thanks [@philibea](https://github.com/philibea)! - update packages
+
+- Updated dependencies [[`305b084`](https://github.com/scaleway/scaleway-lib/commit/305b0840229836dd77298a5ed4f48937e6e97245)]:
+  - @scaleway/use-segment@1.1.11
+
+## 2.0.9
+
+### Patch Changes
+
+- Updated dependencies [[`300d6f4`](https://github.com/scaleway/scaleway-lib/commit/300d6f475d6e15e993549698aa601c4188dd19f6)]:
+  - @scaleway/use-segment@1.1.10
+
+## 2.0.8
+
+### Patch Changes
+
+- Updated dependencies [[`f4df416`](https://github.com/scaleway/scaleway-lib/commit/f4df4168bcb362f6bd3fc90062fe4560a55867d3)]:
+  - @scaleway/use-segment@1.1.9
+
+## 2.0.7
+
+### Patch Changes
+
+- [#2382](https://github.com/scaleway/scaleway-lib/pull/2382) [`77dc0c7`](https://github.com/scaleway/scaleway-lib/commit/77dc0c77cda3389575cc0decb0902c75d3ca8acb) Thanks [@alexandre-combemorel](https://github.com/alexandre-combemorel)! - Fix missing to remove debug
+
+## 2.0.6
+
+### Patch Changes
+
+- [#2378](https://github.com/scaleway/scaleway-lib/pull/2378) [`6789326`](https://github.com/scaleway/scaleway-lib/commit/6789326013998e58e1adfc27e00546ba235f3d63) Thanks [@philibea](https://github.com/philibea)! - update import cookies
+
+- [#2364](https://github.com/scaleway/scaleway-lib/pull/2364) [`463f5bc`](https://github.com/scaleway/scaleway-lib/commit/463f5bc9b67bfca8dc7faa27cac0fda6d13050af) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `react` to `19.0.0`.
+  Updated dependency `react-dom` to `19.0.0`.
+  Updated dependency `@types/react` to `19.0.0`.
+  Updated dependency `@types/react-dom` to `19.0.0`.
+- Updated dependencies [[`463f5bc`](https://github.com/scaleway/scaleway-lib/commit/463f5bc9b67bfca8dc7faa27cac0fda6d13050af)]:
+  - @scaleway/use-segment@1.1.8
+
+## 2.0.5
+
+### Patch Changes
+
+- [#2376](https://github.com/scaleway/scaleway-lib/pull/2376) [`3d90660`](https://github.com/scaleway/scaleway-lib/commit/3d90660ed13e552f4bbe349def70fc8326dea49b) Thanks [@philibea](https://github.com/philibea)! - update package json export dist file only
+
+- Updated dependencies [[`3d90660`](https://github.com/scaleway/scaleway-lib/commit/3d90660ed13e552f4bbe349def70fc8326dea49b)]:
+  - @scaleway/use-segment@1.1.7
+
+## 2.0.4
+
+### Patch Changes
+
+- [#2327](https://github.com/scaleway/scaleway-lib/pull/2327) [`3356ae6`](https://github.com/scaleway/scaleway-lib/commit/3356ae6cefbc862f4cd583ae0409ed4417ed2cfb) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `cookie` to `1.0.2`.
+
+## 2.0.3
+
+### Patch Changes
+
+- [#2239](https://github.com/scaleway/scaleway-lib/pull/2239) [`aca0b2c`](https://github.com/scaleway/scaleway-lib/commit/aca0b2ccb4ed16fa2525f7d1774bade44f26b9c2) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `cookie` to `0.7.2`.
+
+- [#2247](https://github.com/scaleway/scaleway-lib/pull/2247) [`67691c8`](https://github.com/scaleway/scaleway-lib/commit/67691c8634c1eae3d44d5a1acc86cafbd87510ce) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `cookie` to `1.0.1`.
+
+- Updated dependencies [[`44b6bcb`](https://github.com/scaleway/scaleway-lib/commit/44b6bcb6985c7f432f3a06ae0996a7c7a894161f), [`9ccc11b`](https://github.com/scaleway/scaleway-lib/commit/9ccc11b87dfb792f19405cb41d8d166cd735f71e)]:
+  - @scaleway/use-segment@1.1.5
+
 ## 2.0.2
 
 ### Patch Changes

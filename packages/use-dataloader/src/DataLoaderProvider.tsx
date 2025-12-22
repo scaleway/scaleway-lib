@@ -1,10 +1,11 @@
-import type { ReactElement, ReactNode } from 'react'
 import { createContext, useCallback, useContext, useMemo, useRef } from 'react'
+import type { ReactElement, ReactNode } from 'react'
 import {
   DEFAULT_MAX_CONCURRENT_REQUESTS,
   KEY_IS_NOT_STRING_ERROR,
 } from './constants'
 import DataLoader from './dataloader'
+import { marshalQueryKey } from './helpers'
 import type { OnErrorFn, PromiseType } from './types'
 
 type CachedData = Record<string, unknown>
@@ -13,10 +14,6 @@ type Requests = Record<string, DataLoader<unknown, unknown>>
 
 type UseDataLoaderInitializerArgs<ResultType = unknown> = {
   method: () => PromiseType<ResultType>
-  /**
-   * Max time before data from previous success is considered as outdated (in millisecond)
-   */
-  maxDataLifetime?: number
   enabled?: boolean
 }
 
@@ -39,7 +36,9 @@ export type IDataLoaderContext = {
     key: string,
     args: UseDataLoaderInitializerArgs<ResultType>,
   ) => DataLoader<ResultType, ErrorType>
+  computeKey: (key: string) => string
   cacheKeyPrefix?: string
+  defaultDatalifetime?: number
   onError?: (error: Error) => void | Promise<void>
   clearAllCachedData: () => void
   clearCachedData: (key: string) => void
@@ -50,6 +49,7 @@ export type IDataLoaderContext = {
   ) => DataLoader<ResultType, ErrorType>
   reload: (key?: string) => Promise<void>
   reloadAll: () => Promise<void>
+  reloadGroup: (startKey?: string) => Promise<void>
 }
 
 // @ts-expect-error we force the context to undefined, should be corrected with default values
@@ -60,18 +60,23 @@ type DataLoaderProviderProps = {
   cacheKeyPrefix?: string
   onError?: OnErrorFn
   maxConcurrentRequests?: number
+  /**
+   * Default request lifetime in milliseconds. It doesnt override values passed to hooks
+   */
+  defaultDatalifetime?: number
 }
 
 const DataLoaderProvider = ({
   children,
-  cacheKeyPrefix = '',
+  cacheKeyPrefix,
   onError,
   maxConcurrentRequests = DEFAULT_MAX_CONCURRENT_REQUESTS,
+  defaultDatalifetime,
 }: DataLoaderProviderProps): ReactElement => {
   const requestsRef = useRef<Requests>({})
 
   const computeKey = useCallback(
-    (key: string) => `${cacheKeyPrefix ? `${cacheKeyPrefix}-` : ''}${key}`,
+    (key: string) => marshalQueryKey([cacheKeyPrefix, key]),
     [cacheKeyPrefix],
   )
 
@@ -136,6 +141,16 @@ const DataLoaderProvider = ({
     [getRequest],
   )
 
+  const reloadGroup = useCallback(async (startPrefix?: string) => {
+    if (startPrefix && typeof startPrefix === 'string') {
+      await Promise.all(
+        Object.values(requestsRef.current)
+          .filter(request => request.key.startsWith(startPrefix))
+          .map(request => request.load(true)),
+      )
+    } else throw new Error(KEY_IS_NOT_STRING_ERROR)
+  }, [])
+
   const reloadAll = useCallback(async () => {
     await Promise.all(
       Object.values(requestsRef.current).map(request => request.load(true)),
@@ -189,6 +204,9 @@ const DataLoaderProvider = ({
       onError,
       reload,
       reloadAll,
+      reloadGroup,
+      computeKey,
+      defaultDatalifetime,
     }),
     [
       addRequest,
@@ -202,6 +220,9 @@ const DataLoaderProvider = ({
       onError,
       reload,
       reloadAll,
+      reloadGroup,
+      computeKey,
+      defaultDatalifetime,
     ],
   )
 

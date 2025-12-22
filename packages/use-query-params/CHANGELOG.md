@@ -1,5 +1,92 @@
 # Change Log
 
+## 5.0.15
+
+### Patch Changes
+
+- [#2639](https://github.com/scaleway/scaleway-lib/pull/2639) [`305b084`](https://github.com/scaleway/scaleway-lib/commit/305b0840229836dd77298a5ed4f48937e6e97245) Thanks [@philibea](https://github.com/philibea)! - update packages
+
+## 5.0.14
+
+### Patch Changes
+
+- [#2449](https://github.com/scaleway/scaleway-lib/pull/2449) [`c92224a`](https://github.com/scaleway/scaleway-lib/commit/c92224a41621719fe7db51873462d12fdc8dc9d3) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `react-router-dom` to `6.29.0`.
+
+## 5.0.13
+
+### Patch Changes
+
+- [#2411](https://github.com/scaleway/scaleway-lib/pull/2411) [`761b131`](https://github.com/scaleway/scaleway-lib/commit/761b1314d061c67590fd8b77634218a5b4fe2ab7) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `react-router-dom` to `6.28.2`.
+
+## 5.0.12
+
+### Patch Changes
+
+- [#2364](https://github.com/scaleway/scaleway-lib/pull/2364) [`463f5bc`](https://github.com/scaleway/scaleway-lib/commit/463f5bc9b67bfca8dc7faa27cac0fda6d13050af) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `react` to `19.0.0`.
+  Updated dependency `react-dom` to `19.0.0`.
+  Updated dependency `@types/react` to `19.0.0`.
+  Updated dependency `@types/react-dom` to `19.0.0`.
+
+## 5.0.11
+
+### Patch Changes
+
+- [#2376](https://github.com/scaleway/scaleway-lib/pull/2376) [`3d90660`](https://github.com/scaleway/scaleway-lib/commit/3d90660ed13e552f4bbe349def70fc8326dea49b) Thanks [@philibea](https://github.com/philibea)! - update package json export dist file only
+
+- [#2371](https://github.com/scaleway/scaleway-lib/pull/2371) [`7839256`](https://github.com/scaleway/scaleway-lib/commit/7839256db99e2d12cfe9960f1cb13a24da5ba280) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `react-router-dom` to `6.28.1`.
+
+## 5.0.10
+
+### Patch Changes
+
+- [#2296](https://github.com/scaleway/scaleway-lib/pull/2296) [`b822c14`](https://github.com/scaleway/scaleway-lib/commit/b822c147d5e5b0ef0cc95a2a5cd5ac9bc1a587b6) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `react-router-dom` to `6.28.0`.
+
+## 5.0.9
+
+### Patch Changes
+
+- [#2248](https://github.com/scaleway/scaleway-lib/pull/2248) [`3a6628e`](https://github.com/scaleway/scaleway-lib/commit/3a6628e75f13a1e63490e303a0427257adb78105) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `react-router-dom` to `6.27.0`.
+
+## 5.0.8
+
+### Patch Changes
+
+- [#2240](https://github.com/scaleway/scaleway-lib/pull/2240) [`83607a9`](https://github.com/scaleway/scaleway-lib/commit/83607a90ccd2c14304e5507c766fd36abeebfc74) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `query-string` to `9.1.1`.
+
+## 5.0.7
+
+### Patch Changes
+
+- [#2181](https://github.com/scaleway/scaleway-lib/pull/2181) [`f98b57c`](https://github.com/scaleway/scaleway-lib/commit/f98b57ca631bb468a7ac0f7d50ae5ef8bf4ab2b7) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `react-router-dom` to `6.26.2`.
+
+## 5.0.6
+
+### Patch Changes
+
+- [#2145](https://github.com/scaleway/scaleway-lib/pull/2145) [`df25834`](https://github.com/scaleway/scaleway-lib/commit/df25834f3ef3b9aef6043e1f4b32880f638ccd78) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `react-router-dom` to `6.26.1`.
+
+- [#2134](https://github.com/scaleway/scaleway-lib/pull/2134) [`3387358`](https://github.com/scaleway/scaleway-lib/commit/3387358981492366f895ccc4da1c43bc7ed7b8ea) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `react-router-dom` to `6.26.0`.
+
+## 5.0.5
+
+### Patch Changes
+
+- [#2087](https://github.com/scaleway/scaleway-lib/pull/2087) [`f22f402`](https://github.com/scaleway/scaleway-lib/commit/f22f402fca6441feaa4f33cb140e1eb64bfe54b5) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `react-router-dom` to `6.24.1`.
+
+- [#2131](https://github.com/scaleway/scaleway-lib/pull/2131) [`8daa3c3`](https://github.com/scaleway/scaleway-lib/commit/8daa3c3cf171a7c72a25a41473fcf5ba0565229d) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `react-router-dom` to `6.25.1`.
+
+## 5.0.4
+
+### Patch Changes
+
+- [#2124](https://github.com/scaleway/scaleway-lib/pull/2124) [`c28b50b`](https://github.com/scaleway/scaleway-lib/commit/c28b50be15ffb8b493cb3fac2b1fb809045fe7fe) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `query-string` to `9.1.0`.
+
+## 5.0.3
+
+### Patch Changes
+
+- [#2076](https://github.com/scaleway/scaleway-lib/pull/2076) [`402eb35`](https://github.com/scaleway/scaleway-lib/commit/402eb35b87607117edeca9962d1f6ec0cd14e6da) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `react-router-dom` to `6.24.0`.
+
 ## 5.0.2
 
 ### Patch Changes

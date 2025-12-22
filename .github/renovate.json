@@ -5,7 +5,7 @@
   "automerge": false,
   "dependencyDashboard": true,
   "enabledManagers": ["github-actions", "npm"],
-  "extends": ["config:base", ":combinePatchMinorReleases"],
+  "extends": ["config:recommended", ":combinePatchMinorReleases"],
   "labels": ["dependencies"],
   "prConcurrentLimit": 10,
   "prHourlyLimit": 5,
@@ -19,7 +19,7 @@
   "packageRules": [
     {
       "matchDepTypes": ["engines", "peerDependencies"],
-      "versionStrategy": "widen"
+      "rangeStrategy": "widen"
     },
     {
       "matchManagers": ["github-actions"],
@@ -39,19 +39,19 @@
     },
     {
       "labels": ["UPDATE-MAJOR"],
-      "stabilityDays": 14,
+      "minimumReleaseAge": "14 days",
       "matchUpdateTypes": ["major"]
     },
     {
       "labels": ["UPDATE-MINOR"],
-      "stabilityDays": 7,
+      "minimumReleaseAge": "7 days",
       "matchUpdateTypes": ["minor"],
       "automerge": true,
       "autoApprove": true
     },
     {
       "labels": ["UPDATE-PATCH"],
-      "stabilityDays": 3,
+      "minimumReleaseAge": "3 days",
       "matchUpdateTypes": ["patch"],
       "automerge": true,
       "autoApprove": true

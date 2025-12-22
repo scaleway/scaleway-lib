@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/use-query-params",
-  "version": "5.0.2",
+  "version": "5.0.15",
   "description": "A small hook to handle params",
   "engines": {
     "node": ">=20.x"
@@ -16,6 +16,9 @@
       "default": "./dist/index.js"
     }
   },
+  "files": [
+    "dist/"
+  ],
   "publishConfig": {
     "access": "public"
   },
@@ -45,17 +48,17 @@
     "query-params"
   ],
   "dependencies": {
-    "history": "5.3.0",
-    "query-string": "9.0.0"
+    "history": "catalog:",
+    "query-string": "catalog:"
   },
   "peerDependencies": {
-    "react": "18.x || 18",
-    "react-dom": "18.x || 18",
+    "react": "18.x || 19.x",
+    "react-dom": "18.x || 19.x",
     "react-router-dom": "^6.0.0"
   },
   "devDependencies": {
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
-    "react-router-dom": "6.23.1"
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "react-router-dom": "catalog:"
   }
 }

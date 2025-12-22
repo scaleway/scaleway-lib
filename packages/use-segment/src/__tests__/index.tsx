@@ -1,5 +1,5 @@
-import type { Context } from '@segment/analytics-next'
 import { AnalyticsBrowser } from '@segment/analytics-next'
+import type { Context } from '@segment/analytics-next'
 import { renderHook, waitFor } from '@testing-library/react'
 import type { ReactNode } from 'react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'

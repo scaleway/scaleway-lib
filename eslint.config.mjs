@@ -15,6 +15,25 @@ export default [
     ],
   },
   {
+    settings: {
+      react: {
+        pragma: 'React', // Pragma to use, default to "React"
+        fragment: 'Fragment', // Fragment to use (may be a property of <pragma>), default to "Fragment"
+        version: 'detect', // React version. "detect" automatically picks the version you have installed.
+        // You can also use `16.0`, `16.3`, etc, if you want to override the detected value.
+        // Defaults to the "defaultVersion" setting and warns if missing, and to "detect" in the future
+        defaultVersion: '18', // Default React version to use when the version you have installed cannot be detected.
+        // If not provided, defaults to the latest React version.
+      },
+      'import/resolver': {
+        typescript: {
+          project: [
+            './tsconfig.json', // Root config
+            './packages/**/tsconfig.json',
+          ],
+        },
+      },
+    },
     languageOptions: {
       globals: {
         ...globals.browser,
@@ -24,7 +43,6 @@ export default [
   ...scw.map(config => ({ ...config, files: ['**/*.js'] })),
   {
     files: ['**/*.js'],
-
     languageOptions: {
       parser: babelParser,
       parserOptions: {
@@ -45,7 +63,9 @@ export default [
       sourceType: 'script',
 
       parserOptions: {
-        project: ['tsconfig.json'],
+        project: ['tsconfig.json', 'packages/**/tsconfig.json'],
+        projectService: true,
+        tsconfigRootDir: import.meta.dirname,
       },
     },
   },
@@ -62,24 +82,7 @@ export default [
       sourceType: 'script',
 
       parserOptions: {
-        project: ['tsconfig.json'],
-      },
-    },
-  })),
-  ...scwTypescript.map(config => ({
-    ...config,
-    files: [
-      'packages/changesets-renovate/**/*.ts{x,}',
-      'packages/validate-icu-locales/**/*.ts{x,}',
-      '**/__tests__/**/*.ts{x,}',
-    ],
-
-    languageOptions: {
-      ecmaVersion: 5,
-      sourceType: 'script',
-
-      parserOptions: {
-        project: ['tsconfig.json'],
+        project: ['tsconfig.json', 'packages/**/tsconfig.json'],
       },
     },
 
@@ -93,7 +96,6 @@ export default [
 
   {
     files: [
-      'packages/jest-helpers/**/*.ts{x,}',
       '**/__tests__/**/*.ts{x,}',
       '**/vitest.setup.ts',
       '**/*.config.ts',

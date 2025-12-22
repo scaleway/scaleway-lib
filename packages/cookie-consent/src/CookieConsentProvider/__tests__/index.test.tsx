@@ -1,6 +1,6 @@
 // useSegmentIntegrations tests have been splitted in multiple files because of https://github.com/facebook/vi/issues/8987
-import { act, renderHook } from '@testing-library/react'
-import cookie from 'cookie'
+import { act, renderHook, waitFor } from '@testing-library/react'
+import * as cookie from 'cookie'
 import type { ComponentProps, ReactNode } from 'react'
 import { describe, expect, it, vi } from 'vitest'
 import { CookieConsentProvider, useCookieConsent } from '..'
@@ -44,10 +44,9 @@ const integrations: Integrations = [
   },
 ]
 
-const mockUseSegmentIntegrations = vi.fn<
-  [],
-  ReturnType<typeof useSegmentIntegrations>
->(() => ({
+type MockSegmentIntegrations = () => ReturnType<typeof useSegmentIntegrations>
+
+const mockUseSegmentIntegrations = vi.fn<MockSegmentIntegrations>(() => ({
   integrations,
   isLoaded: true,
 }))
@@ -194,9 +193,9 @@ describe('CookieConsent - CookieConsentProvider', () => {
   })
 
   it('should not need consent if hash cookie is set', () => {
-    vi.spyOn(cookie, 'parse').mockImplementation(() => ({
-      _scw_rgpd_hash: '913003917',
-    }))
+    // document.cookie = '_scw_rgpd_hash=913003917;'
+    document.cookie = cookie.serialize('_scw_rgpd_hash', '913003917')
+
     const { result } = renderHook(() => useCookieConsent(), {
       wrapper: wrapper({
         isConsentRequired: true,
@@ -216,19 +215,18 @@ describe('CookieConsent - CookieConsentProvider', () => {
     })
   })
 
-  it('should not need consent if hash cookie is set and some categories already approved', () => {
-    vi.spyOn(cookie, 'parse').mockImplementation(() => ({
-      _scw_rgpd_hash: '913003917',
-      _scw_rgpd_marketing: 'true',
-    }))
+  it('should not need consent if hash cookie is set and some categories already approved', async () => {
+    document.cookie = cookie.serialize('_scw_rgpd_marketing', 'true')
+    document.cookie = cookie.serialize('_scw_rgpd_hash', '913003917')
 
     const { result } = renderHook(() => useCookieConsent(), {
       wrapper: wrapper({
         isConsentRequired: true,
       }),
     })
-
-    expect(result.current.needConsent).toBe(false)
+    await waitFor(() => {
+      expect(result.current.needConsent).toBe(false)
+    })
     expect(result.current.isSegmentAllowed).toBe(true)
     expect(result.current.categoriesConsent).toStrictEqual({
       analytics: false,

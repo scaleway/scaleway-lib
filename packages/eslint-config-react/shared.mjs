@@ -2,6 +2,7 @@ import { fixupConfigRules } from '@eslint/compat'
 import { FlatCompat } from '@eslint/eslintrc'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import stylisticJs from './stylistic.mjs'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -19,9 +20,13 @@ export default [
       'plugin:react/jsx-runtime',
     ),
   ),
+  ...stylisticJs,
   {
     rules: {
       curly: 'error',
+      'no-use-before-define': 'off',
+      'import/extensions': 'off',
+      'dot-notation': 'off',
 
       'import/order': [
         'error',
@@ -32,11 +37,13 @@ export default [
           },
 
           groups: [
-            ['builtin', 'external'],
+            'builtin',
+            'external',
             'internal',
             'parent',
             'sibling',
             'index',
+            // "type",
           ],
           'newlines-between': 'never',
         },
