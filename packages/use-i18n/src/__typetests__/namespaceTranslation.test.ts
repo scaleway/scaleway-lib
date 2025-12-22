@@ -16,43 +16,34 @@ test('i18n - namespaceTranslation', () => {
   const { namespaceTranslation } = useI18n<Locale, Locales>()
 
   // Single key
-  expect(namespaceTranslation('hello')).type.toRaiseError(
-    `Argument of type '"hello"' is not assignable to parameter of type '"doe" | "describe"'`,
-  )
+  expect(namespaceTranslation).type.not.toBeCallableWith('hello')
 
   // Multiple keys
-  expect(namespaceTranslation('doe.john')).type.toRaiseError(
-    `Argument of type '"doe.john"' is not assignable to parameter of type '"doe" | "describe"'`,
-  )
+  expect(namespaceTranslation).type.not.toBeCallableWith('doe.john')
 
   expect(namespaceTranslation('doe')('john')).type.toBe<string>()
 
-  expect(namespaceTranslation('doe')('doesnotexists')).type.toRaiseError(
-    `Expected 2 arguments, but got 1.`,
-  )
+  expect(namespaceTranslation('doe')).type.not.toBeCallableWith('doesnotexists')
 
   // With a param
-  expect(namespaceTranslation('doe')('child')).type.toRaiseError(
-    `Expected 2 arguments, but got 1.`,
-  )
+  expect(namespaceTranslation('doe')).type.not.toBeCallableWith('child')
   expect(
     namespaceTranslation('doe')('child', {
       name: 'Name',
     }),
   ).type.toBe<string>()
-  expect(
-    namespaceTranslation('doe')('doesnotexists', {
+  expect(namespaceTranslation('doe')).type.not.toBeCallableWith(
+    'doesnotexists',
+    {
       name: 'Name',
-    }),
-  ).type.toRaiseError()
-  expect(
-    namespaceTranslation('doe')('child', {
-      doesnotexists: 'Name',
-    }),
-  ).type.toRaiseError()
+    },
+  )
+  expect(namespaceTranslation('doe')).type.not.toBeCallableWith('child', {
+    doesnotexists: 'Name',
+  })
 
-  expect(namespaceTranslation('doe')('child', {})).type.toRaiseError()
-  expect(namespaceTranslation('doe')('child')).type.toRaiseError()
+  expect(namespaceTranslation('doe')).type.not.toBeCallableWith('child', {})
+  expect(namespaceTranslation('doe')).type.not.toBeCallableWith('child')
 
   // With multiple params
   expect(
@@ -62,12 +53,10 @@ test('i18n - namespaceTranslation', () => {
     }),
   ).type.toBe<string>()
 
-  expect(namespaceTranslation('describe')('john', {})).type.toRaiseError()
-  expect(namespaceTranslation('describe')('john')).type.toRaiseError()
+  expect(namespaceTranslation('describe')).type.not.toBeCallableWith('john', {})
+  expect(namespaceTranslation('describe')).type.not.toBeCallableWith('john')
 
   // Required generic
   const { namespaceTranslation: namespaceTranslation2 } = useI18n<Locale>()
-  expect(namespaceTranslation2('test')).type.toRaiseError(
-    `Argument of type '"test"' is not assignable to parameter of type`,
-  )
+  expect(namespaceTranslation2).type.not.toBeCallableWith('test')
 })
