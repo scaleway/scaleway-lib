@@ -68,7 +68,7 @@ export default [
 
       parserOptions: {
         project: ['tsconfig.json', 'packages/**/tsconfig.json'],
-        projectService: true,
+        // projectService: true,
         tsconfigRootDir: import.meta.dirname,
       },
     },
