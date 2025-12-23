@@ -32,12 +32,11 @@ const tests = [
 ].flat() as [FormatDateOptions, string, string, Date | string | number][]
 
 describe('formatDate', () => {
-  test.each(tests)(
-    'should work with format "%s", for date = "%s" and locale "%s"',
-    (format, _, locale, date) => {
-      expect(formatDate(locale, date, format)).toMatchSnapshot()
-    },
-  )
+  test.each(
+    tests,
+  )('should work with format "%s", for date = "%s" and locale "%s"', (format, _, locale, date) => {
+    expect(formatDate(locale, date, format)).toMatchSnapshot()
+  })
 
   test.each(locales)('should work with custom format and locale %s', locale => {
     const format: FormatDateOptions = {

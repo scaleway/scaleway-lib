@@ -10,12 +10,12 @@ const config = {
 export default mergeConfig(config, {
   build: {
     lib: {
-      formats: ['es', 'cjs'],
       entry: [
         'src/index.ts',
         'src/analytics/index.ts',
         'src/cookies-consent/index.ts',
       ],
+      formats: ['es', 'cjs'],
     },
   },
   test: {

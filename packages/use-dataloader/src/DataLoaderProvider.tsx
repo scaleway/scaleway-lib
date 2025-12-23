@@ -1,5 +1,5 @@
+import type { Context, ReactElement, ReactNode } from 'react'
 import { createContext, useCallback, useContext, useMemo, useRef } from 'react'
-import type { ReactElement, ReactNode } from 'react'
 import {
   DEFAULT_MAX_CONCURRENT_REQUESTS,
   KEY_IS_NOT_STRING_ERROR,
@@ -52,8 +52,9 @@ export type IDataLoaderContext = {
   reloadGroup: (startKey?: string) => Promise<void>
 }
 
-// @ts-expect-error we force the context to undefined, should be corrected with default values
-export const DataLoaderContext = createContext<IDataLoaderContext>(undefined)
+export const DataLoaderContext: Context<IDataLoaderContext> =
+  // @ts-expect-error we force the context to undefined, should be corrected with default values
+  createContext<IDataLoaderContext>(undefined)
 
 type DataLoaderProviderProps = {
   children: ReactNode
@@ -197,6 +198,8 @@ const DataLoaderProvider = ({
       cacheKeyPrefix,
       clearAllCachedData,
       clearCachedData,
+      computeKey,
+      defaultDatalifetime,
       getCachedData,
       getOrAddRequest,
       getReloads,
@@ -205,8 +208,6 @@ const DataLoaderProvider = ({
       reload,
       reloadAll,
       reloadGroup,
-      computeKey,
-      defaultDatalifetime,
     }),
     [
       addRequest,

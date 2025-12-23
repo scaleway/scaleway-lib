@@ -1,20 +1,19 @@
 {
-  "extends": "@scaleway/tsconfig",
   "compilerOptions": {
+    "jsx": "preserve",
     "lib": ["DOM", "ES2019"],
     "module": "esnext",
-    "target": "esnext",
     "noEmit": true,
-    "allowJs": true,
-    "jsx": "preserve",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "target": "esnext"
   },
-  "include": ["**/*.ts", "**/*.js", "**/.*.js", "**/*.tsx", "**/*.mjs"],
   "exclude": [
     "**/dist",
     "**/dist/*.ts",
     "**/__typetests__/*.test.ts",
     "**/__typetests__/*.test.tsx",
     "packages_deprecated/**"
-  ]
+  ],
+  "extends": "@scaleway/tsconfig",
+  "include": ["**/*.ts", "**/*.js", "**/.*.js", "**/*.tsx", "**/*.mjs"]
 }

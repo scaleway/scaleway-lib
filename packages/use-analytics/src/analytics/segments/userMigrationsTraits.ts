@@ -3,11 +3,13 @@ import { normalizeId } from '../normalizeId'
 
 const SEGMENT_COOKIES_KEY = {
   ANONYMOUS_ID: 'ajs_anonymous_id',
-  USER_ID: 'ajs_user_id',
   GROUP_ID: 'ajs_group_id',
+  USER_ID: 'ajs_user_id',
 }
 
-export const userMigrationsTraits = (rudderAnalytics: RudderAnalytics) => {
+export const userMigrationsTraits = (
+  rudderAnalytics: RudderAnalytics,
+): void => {
   const segmentAnonymousId = localStorage.getItem(
     SEGMENT_COOKIES_KEY.ANONYMOUS_ID,
   )

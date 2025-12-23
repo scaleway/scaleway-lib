@@ -1,11 +1,11 @@
-import { AnalyticsBrowser } from '@segment/analytics-next'
 import type { Context } from '@segment/analytics-next'
+import { AnalyticsBrowser } from '@segment/analytics-next'
 import { renderHook, waitFor } from '@testing-library/react'
 import type { ReactNode } from 'react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import waitForExpect from 'wait-for-expect'
-import SegmentProvider, { useSegment } from '..'
 import type { Analytics, OnEventError, SegmentProviderProps } from '..'
+import SegmentProvider, { useSegment } from '..'
 
 const eventError = new Error('Error Event')
 
@@ -54,13 +54,13 @@ const wrapper =
   }: Omit<SegmentProviderProps<DefaultEvents>, 'children'>) =>
   ({ children }: { children: ReactNode }) => (
     <SegmentProvider
-      settings={settings}
-      initOptions={initOptions}
       areOptionsLoaded={areOptionsLoaded}
-      shouldRenderOnlyWhenReady={shouldRenderOnlyWhenReady}
+      events={events}
+      initOptions={initOptions}
       onError={onError}
       onEventError={onEventError}
-      events={events}
+      settings={settings}
+      shouldRenderOnlyWhenReady={shouldRenderOnlyWhenReady}
     >
       {children}
     </SegmentProvider>
@@ -122,8 +122,8 @@ describe('segment hook', () => {
     const { result } = renderHook(() => useSegment<DefaultEvents>(), {
       wrapper: wrapper({
         events: defaultEvents,
-        settings: { writeKey: 'sample ' },
         initOptions: undefined,
+        settings: { writeKey: 'sample ' },
       }),
     })
     expect(result.current.analytics).toBe(undefined)
@@ -137,10 +137,10 @@ describe('segment hook', () => {
 
     const { result } = renderHook(() => useSegment<DefaultEvents>(), {
       wrapper: wrapper({
+        areOptionsLoaded: true,
         events: defaultEvents,
         initOptions: { integrations: { All: false } },
         settings: { writeKey: 'sample ' },
-        areOptionsLoaded: true,
       }),
     })
     await waitFor(() => {
@@ -158,6 +158,7 @@ describe('segment hook', () => {
 
     const { result } = renderHook(() => useSegment<DefaultEvents>(), {
       wrapper: wrapper({
+        areOptionsLoaded: true,
         events: defaultEvents,
         initOptions: {
           integrations: {
@@ -167,7 +168,6 @@ describe('segment hook', () => {
           },
         },
         settings: { writeKey: 'sample ' },
-        areOptionsLoaded: true,
       }),
     })
     await waitFor(() => {
@@ -187,6 +187,7 @@ describe('segment hook', () => {
 
     const { result } = renderHook(() => useSegment<DefaultEvents>(), {
       wrapper: wrapper({
+        areOptionsLoaded: true,
         events: defaultEvents,
         initOptions: {
           integrations: {
@@ -196,7 +197,6 @@ describe('segment hook', () => {
           },
         },
         settings: { writeKey: 'sample ' },
-        areOptionsLoaded: true,
       }),
     })
     await waitFor(() => {
@@ -218,10 +218,10 @@ describe('segment hook', () => {
 
     const { result } = renderHook(() => useSegment<DefaultEvents>(), {
       wrapper: wrapper({
-        events: defaultEvents,
-        settings,
-        initOptions: {},
         areOptionsLoaded: false,
+        events: defaultEvents,
+        initOptions: {},
+        settings,
       }),
     })
     await waitFor(() => {
@@ -243,9 +243,9 @@ describe('segment hook', () => {
 
     const { result } = renderHook(() => useSegment<DefaultEvents>(), {
       wrapper: wrapper({
+        areOptionsLoaded: true,
         events: defaultEvents,
         settings,
-        areOptionsLoaded: true,
       }),
     })
 
@@ -269,9 +269,9 @@ describe('segment hook', () => {
 
     const { result } = renderHook(() => useSegment<DefaultEvents>(), {
       wrapper: wrapper({
+        areOptionsLoaded: true,
         events: defaultEvents,
         settings,
-        areOptionsLoaded: true,
       }),
     })
     await waitFor(() => {
@@ -294,10 +294,10 @@ describe('segment hook', () => {
 
     const { result } = renderHook(() => useSegment<DefaultEvents>(), {
       wrapper: wrapper({
+        areOptionsLoaded: true,
         events: defaultEvents,
         onError,
         settings,
-        areOptionsLoaded: true,
       }),
     })
     await waitFor(() => {
@@ -326,11 +326,11 @@ describe('segment hook', () => {
 
     const { result } = renderHook(() => useSegment<DefaultEvents>(), {
       wrapper: wrapper({
+        areOptionsLoaded: true,
         events: defaultEvents,
         onError,
         onEventError,
         settings,
-        areOptionsLoaded: true,
       }),
     })
     await waitFor(() => {
@@ -360,10 +360,10 @@ describe('segment hook', () => {
 
     const { result } = renderHook(() => useSegment<DefaultEvents>(), {
       wrapper: wrapper({
+        areOptionsLoaded: true,
         events: defaultEvents,
         initOptions,
         settings,
-        areOptionsLoaded: true,
       }),
     })
 

@@ -1,5 +1,6 @@
 import { GrowthBook, GrowthBookProvider } from '@growthbook/growthbook-react'
-import { type ReactNode, useCallback, useEffect, useMemo } from 'react'
+import type { ComponentType, ReactNode } from 'react'
+import { useCallback, useEffect, useMemo } from 'react'
 import type {
   Attributes,
   ErrorCallback,
@@ -19,8 +20,8 @@ type AbTestProviderProps = {
 
 const defaultLoadConfig: LoadConfig = {
   autoRefresh: false,
-  timeout: 500,
   skipCache: false,
+  timeout: 500,
 } as const
 
 const getGrowthBookInstance = ({
@@ -38,14 +39,14 @@ const getGrowthBookInstance = ({
 }) =>
   new GrowthBook({
     apiHost,
+    backgroundSync,
     clientKey,
     enableDevMode,
-    trackingCallback,
-    backgroundSync,
     subscribeToChanges,
+    trackingCallback,
   })
 
-export const AbTestProvider = ({
+export const AbTestProvider: ComponentType<AbTestProviderProps> = ({
   children,
   config,
   trackingCallback,

@@ -5,7 +5,7 @@ import type { KeyType } from './types'
  * @param {KeyType} queryKey
  * @returns string
  */
-export const marshalQueryKey = (queryKey: KeyType) =>
+export const marshalQueryKey = (queryKey: KeyType): string =>
   Array.isArray(queryKey)
     ? queryKey
         // For now, we treat null values as if they were undefined

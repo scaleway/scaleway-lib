@@ -1,7 +1,7 @@
-import { RudderAnalytics } from '@rudderstack/analytics-js'
 import type { LoadOptions } from '@rudderstack/analytics-js'
+import { RudderAnalytics } from '@rudderstack/analytics-js'
+import type { JSX, ReactNode } from 'react'
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
-import type { ReactNode } from 'react'
 import { useDeepCompareEffectNoCheck } from 'use-deep-compare-effect'
 import { destSDKBaseURL, pluginsSDKBaseURL } from '../constants'
 import type { CategoryKind } from '../types'
@@ -87,7 +87,7 @@ export function AnalyticsProvider<T extends Events>({
   events,
   onLoaded,
   timeout,
-}: AnalyticsProviderProps<T>) {
+}: AnalyticsProviderProps<T>): JSX.Element {
   const [isAnalyticsReady, setIsAnalyticsReady] = useState(false)
   const [internalAnalytics, setAnalytics] = useState<Analytics | undefined>(
     undefined,
@@ -137,14 +137,13 @@ export function AnalyticsProvider<T extends Events>({
         ...defaultLoadOptions,
         configUrl: settings.cdnURL,
         destSDKBaseURL: destSDKBaseURL(settings.cdnURL),
-        pluginsSDKBaseURL: pluginsSDKBaseURL(settings.cdnURL),
         onLoaded: (rudderAnalytics: Analytics) => {
           rudderAnalytics.consent({
             ...defaultConsentOptions,
             consentManagement: {
-              enabled: true,
               allowedConsentIds: allowedConsents,
               deniedConsentIds: deniedConsents,
+              enabled: true,
             },
           })
           normalizeIdsMigration(analytics)
@@ -152,6 +151,7 @@ export function AnalyticsProvider<T extends Events>({
           onLoaded(rudderAnalytics)
           setAnalytics(analytics)
         },
+        pluginsSDKBaseURL: pluginsSDKBaseURL(settings.cdnURL),
         ...loadOptions,
       })
 
@@ -190,9 +190,9 @@ export function AnalyticsProvider<T extends Events>({
   useDeepCompareEffectNoCheck(() => {
     internalAnalytics?.consent({
       consentManagement: {
-        enabled: true,
         allowedConsentIds: allowedConsents,
         deniedConsentIds: deniedConsents,
+        enabled: true,
       },
     })
   }, [allowedConsents, deniedConsents])

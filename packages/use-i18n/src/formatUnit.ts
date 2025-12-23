@@ -12,7 +12,7 @@ const exponents = [
   { name: 'exa', symbol: 'E' },
   { name: 'zetta', symbol: 'Z' },
   { name: 'yotta', symbol: 'Y' },
-]
+] as const
 
 type Exponent = (typeof exponents)[number]
 type ExponentName =

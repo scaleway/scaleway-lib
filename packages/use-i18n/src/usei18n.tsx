@@ -7,6 +7,7 @@ import type {
 import { formatDistanceToNow } from 'date-fns/formatDistanceToNow'
 import { formatDistanceToNowStrict } from 'date-fns/formatDistanceToNowStrict'
 import type { BaseLocale } from 'international-types'
+import type { ReactElement, ReactNode } from 'react'
 import {
   createContext,
   useCallback,
@@ -15,7 +16,6 @@ import {
   useMemo,
   useState,
 } from 'react'
-import type { ReactElement, ReactNode } from 'react'
 import dateFormat, { type FormatDateOptions } from './formatDate'
 import unitFormat, { type FormatUnitOptions } from './formatUnit'
 import formatters, { type IntlListFormatOptions } from './formatters'
@@ -131,8 +131,7 @@ type Context<
 const I18nContext = createContext<Context<any, any> | undefined>(undefined)
 
 export function useI18n<
-  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
-  LocaleParam extends BaseLocale = {},
+  LocaleParam extends BaseLocale = BaseLocale,
   LocalSupportedType extends string = '',
 >(): RequiredGenericContext<LocaleParam, LocalSupportedType> {
   const context = useContext(I18nContext)
@@ -147,8 +146,7 @@ export function useI18n<
 }
 
 export function useTranslation<
-  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
-  LocaleParam extends BaseLocale = {},
+  LocaleParam extends BaseLocale = BaseLocale,
   LocalSupportedType extends string = '',
 >(
   namespaces: [string, ...string[]],
@@ -246,8 +244,8 @@ const I18nContextProvider = <LocalSupportedType extends string>({
   const [currentLocale, setCurrentLocale] = useState<LocalSupportedType>(
     getCurrentLocale({
       defaultLocale,
-      localeItemStorage,
       isLocaleSupported,
+      localeItemStorage,
     }),
   )
   const [translations, setTranslations] =
@@ -432,11 +430,11 @@ const I18nContextProvider = <LocalSupportedType extends string>({
             .format(context) as string
         } catch (err) {
           onTranslateError?.({
-            error: err as Error,
             currentLocale,
             defaultLocale,
-            value,
+            error: err as Error,
             key,
+            value,
           })
 
           // with default locale nothing should break or it's normal to not ignore it.
