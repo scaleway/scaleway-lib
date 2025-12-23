@@ -37,7 +37,7 @@
     "@vitest/coverage-istanbul": "catalog:",
     "browserslist": "catalog:",
     "builtin-modules": "catalog:",
-     "oxlint": "1.32.0",
+    "oxlint": "1.32.0",
     "cross-env": "catalog:",
     "esbuild-plugin-browserslist": "catalog:",
     "eslint": "catalog:",

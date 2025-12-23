@@ -17,8 +17,8 @@ import {
   useState,
 } from 'react'
 import dateFormat, { type FormatDateOptions } from './formatDate'
-import unitFormat, { type FormatUnitOptions } from './formatUnit'
 import formatters, { type IntlListFormatOptions } from './formatters'
+import unitFormat, { type FormatUnitOptions } from './formatUnit'
 import type { ReactParamsObject, ScopedTranslateFn, TranslateFn } from './types'
 
 const LOCALE_ITEM_STORAGE = 'locale'

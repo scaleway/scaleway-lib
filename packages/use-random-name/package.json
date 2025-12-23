@@ -43,7 +43,6 @@
     "react": ">=16.8"
   },
   "devDependencies": {
-    "@scaleway/use-segment": "workspace:*",
     "react": "catalog:"
   },
   "dependencies": {

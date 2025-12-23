@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
-import { readFile, writeFile } from 'node:fs/promises'
+import fs from 'node:fs/promises'
 import { simpleGit } from 'simple-git'
 
 console.debug('simpleGit', simpleGit)
 
 async function getChangesetIgnoredPackages(): Promise<string[]> {
   const changesetConfig = JSON.parse(
-    await readFile('.changeset/config.json', 'utf8'),
+    await fs.readFile('.changeset/config.json', 'utf8'),
   ) as {
     ignore?: string[]
   }
@@ -33,7 +33,7 @@ async function getPackagesNames(files: string[]): Promise<string[]> {
   const packages: string[] = []
 
   const promises = files.map(async file => {
-    const data = JSON.parse(await readFile(file, 'utf8')) as {
+    const data = JSON.parse(await fs.readFile(file, 'utf8')) as {
       name: string
       workspaces?: string[]
       version?: string
@@ -73,7 +73,7 @@ async function createChangeset(
   const message = messageLines.join('\n')
   const pkgs = packages.map(pkg => `'${pkg}': patch`).join('\n')
   const body = `---\n${pkgs}\n---\n\n${message.trim()}\n`
-  await writeFile(fileName, body)
+  await fs.writeFile(fileName, body)
 }
 
 async function getBumps(files: string[]): Promise<Map<string, string>> {
