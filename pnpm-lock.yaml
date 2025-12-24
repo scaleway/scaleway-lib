@@ -118,8 +118,8 @@ catalogs:
       specifier: 4.1.0
       version: 4.1.0
     esbuild-plugin-browserslist:
-      specifier: 1.0.2
-      version: 1.0.2
+      specifier: 2.0.0
+      version: 2.0.0
     eslint:
       specifier: 9.39.2
       version: 9.39.2
@@ -310,7 +310,7 @@ importers:
         version: 10.1.0
       esbuild-plugin-browserslist:
         specifier: 'catalog:'
-        version: 1.0.2(browserslist@4.28.1)(esbuild@0.27.2)
+        version: 2.0.0(browserslist@4.28.1)(esbuild@0.27.2)
       eslint:
         specifier: 'catalog:'
         version: 9.39.2(jiti@2.4.2)
@@ -2948,12 +2948,12 @@ packages:
     resolution: {integrity: sha512-w+5mJ3GuFL+NjVtJlvydShqE1eN3h3PbI7/5LAsYJP/2qtuMXjfL2LpHSRqo4b4eSF5K/DH1JXKUAHSB2UW50g==}
     engines: {node: '>= 0.4'}
 
-  esbuild-plugin-browserslist@1.0.2:
-    resolution: {integrity: sha512-RFgs0SLRMExC7vBh80FnbTgN4eyTtYAuCmfPSArukMC0b6tMnfkgVmFDR/CTR2cJu6IViAomsdXyF9cfk65DsQ==}
+  esbuild-plugin-browserslist@2.0.0:
+    resolution: {integrity: sha512-gm8EITyyfS3h5I+f/+6C+TFXI23PWi80vHtoccIA17GIoZDSSjHYZw+MINXrlQZ7DZ57myL0JAuDsKbUZlWQgw==}
     engines: {node: ^20.19.0 || ^22.12.0 || >23.0.0}
     peerDependencies:
-      browserslist: ^4.21.8
-      esbuild: ~0.25.10
+      browserslist: ^4.28.0
+      esbuild: ~0.27.0
 
   esbuild@0.23.0:
     resolution: {integrity: sha512-1lvV17H2bMYda/WaFb2jLPeHU3zml2k4/yagNMG8Q/YtfMjCwEUZa2eXXMgZTVSL5q1n4H7sQ0X6CdJDqqeCFA==}
@@ -4736,6 +4736,10 @@ packages:
 
   unicorn-magic@0.1.0:
     resolution: {integrity: sha512-lRfVq8fE8gz6QMBuDM6a+LO3IAzTi05H6gCVaUpir2E1Rwpo4ZUog45KpNXKC/Mn3Yb9UDuHumeFTo9iV/D9FQ==}
+    engines: {node: '>=18'}
+
+  unicorn-magic@0.3.0:
+    resolution: {integrity: sha512-+QBBXBCvifc56fsbuxZQ6Sic3wqqc3WWaqxs58gvJrcOuN83HGTCwz3oS5phzU9LthRNE9VrJCFCLUgHeeFnfA==}
     engines: {node: '>=18'}
 
   unicorn-magic@0.4.0:
@@ -7705,7 +7709,7 @@ snapshots:
       is-date-object: 1.1.0
       is-symbol: 1.1.1
 
-  esbuild-plugin-browserslist@1.0.2(browserslist@4.28.1)(esbuild@0.27.2):
+  esbuild-plugin-browserslist@2.0.0(browserslist@4.28.1)(esbuild@0.27.2):
     dependencies:
       browserslist: 4.28.1
       debug: 4.4.3
@@ -9694,6 +9698,8 @@ snapshots:
   unicode-property-aliases-ecmascript@2.1.0: {}
 
   unicorn-magic@0.1.0: {}
+
+  unicorn-magic@0.3.0: {}
 
   unicorn-magic@0.4.0: {}
 
