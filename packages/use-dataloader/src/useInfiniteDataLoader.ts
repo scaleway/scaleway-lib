@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { useDataLoaderContext } from './DataLoaderProvider'
 import { StatusEnum } from './constants'
+import { useDataLoaderContext } from './DataLoaderProvider'
 import type DataLoader from './dataloader'
 import { marshalQueryKey } from './helpers'
 import type {
@@ -81,14 +81,16 @@ export const useInfiniteDataLoader = <
   useEffect(() => {
     const notifyFn = forceRerender.current
     // Ensure observers are added after first mount
-    requestRefs.current.forEach(request =>
-      !request.observers.includes(notifyFn)
-        ? request.addObserver(notifyFn)
-        : undefined,
-    )
+    requestRefs.current.forEach(request => {
+      if (!request.observers.includes(notifyFn)) {
+        request.addObserver(notifyFn)
+      }
+    })
 
     return () => {
-      requestRefs.current.forEach(request => request.removeObserver(notifyFn))
+      requestRefs.current.forEach(request => {
+        request.removeObserver(notifyFn)
+      })
     }
   }, [])
 
@@ -236,12 +238,6 @@ export const useInfiniteDataLoader = <
 
   const data = useMemo<UseInfiniteDataLoaderResult<ResultType, ErrorType>>(
     () => ({
-      isIdle,
-      isError,
-      isLoading,
-      isSuccess,
-      hasNextPage: nextPageRef.current !== undefined,
-      isLoadingFirstPage,
       data:
         isLoadingFirstPage ||
         [...requestRefs.current].filter(dataloader => !!dataloader.data)
@@ -251,8 +247,14 @@ export const useInfiniteDataLoader = <
               .filter(dataloader => !!dataloader.data)
               .map(dataloader => dataloader.data) as ResultType[]),
       error: request.error,
-      reload,
+      hasNextPage: nextPageRef.current !== undefined,
+      isError,
+      isIdle,
+      isLoading,
+      isLoadingFirstPage,
+      isSuccess,
       loadMore: loadMoreRef.current,
+      reload,
     }),
     [
       initialData,

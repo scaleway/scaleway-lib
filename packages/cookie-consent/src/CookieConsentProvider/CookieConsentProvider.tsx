@@ -1,5 +1,6 @@
-import { parse, serialize } from 'cookie'
 import type { SerializeOptions } from 'cookie'
+import { parse, serialize } from 'cookie'
+import type { ComponentType, Context, PropsWithChildren } from 'react'
 import {
   createContext,
   useCallback,
@@ -8,28 +9,27 @@ import {
   useMemo,
   useState,
 } from 'react'
-import type { PropsWithChildren } from 'react'
 import { uniq } from '../helpers/array'
 import { stringToHash } from '../helpers/misc'
 import { IS_CLIENT, isCategoryKind } from './helpers'
 import type { Config, Consent, Integrations } from './types'
 import { useSegmentIntegrations } from './useSegmentIntegrations'
 
-const COOKIE_PREFIX = '_scw_rgpd'
-const HASH_COOKIE = `${COOKIE_PREFIX}_hash`
+const COOKIE_PREFIX = '_scw_rgpd' as const
+const HASH_COOKIE = `${COOKIE_PREFIX}_hash` as const
 
 // Appx 13 Months
-const CONSENT_MAX_AGE = 13 * 30 * 24 * 60 * 60
+const CONSENT_MAX_AGE: number = 13 * 30 * 24 * 60 * 60
 // Appx 6 Months
-const CONSENT_ADVERTISING_MAX_AGE = 6 * 30 * 24 * 60 * 60
+const CONSENT_ADVERTISING_MAX_AGE: number = 6 * 30 * 24 * 60 * 60
 
 const COOKIES_OPTIONS: SerializeOptions = {
+  path: '/',
   sameSite: 'strict',
   secure: true,
-  path: '/',
 } as const
 
-type Context = {
+type CookieContext = {
   integrations: Integrations
   needConsent: boolean
   isSegmentAllowed: boolean
@@ -39,9 +39,11 @@ type Context = {
   saveConsent: (categoriesConsent: Partial<Consent>) => void
 }
 
-const CookieConsentContext = createContext<Context | undefined>(undefined)
+const CookieConsentContext: Context<CookieContext | undefined> = createContext<
+  CookieContext | undefined
+>(undefined)
 
-export const useCookieConsent = (): Context => {
+export const useCookieConsent: () => CookieContext = (): CookieContext => {
   const context = useContext(CookieConsentContext)
   if (context === undefined) {
     throw new Error(
@@ -52,7 +54,19 @@ export const useCookieConsent = (): Context => {
   return context
 }
 
-export const CookieConsentProvider = ({
+type CookieConsentProviderProps = PropsWithChildren<{
+  isConsentRequired: boolean
+  essentialIntegrations: string[]
+  config: Config
+  cookiePrefix?: string
+  consentMaxAge?: number
+  consentAdvertisingMaxAge?: number
+  cookiesOptions?: SerializeOptions
+}>
+
+export const CookieConsentProvider: ComponentType<
+  CookieConsentProviderProps
+> = ({
   children,
   isConsentRequired,
   essentialIntegrations,
@@ -61,15 +75,7 @@ export const CookieConsentProvider = ({
   consentMaxAge = CONSENT_MAX_AGE,
   consentAdvertisingMaxAge = CONSENT_ADVERTISING_MAX_AGE,
   cookiesOptions = COOKIES_OPTIONS,
-}: PropsWithChildren<{
-  isConsentRequired: boolean
-  essentialIntegrations: string[]
-  config: Config
-  cookiePrefix?: string
-  consentMaxAge?: number
-  consentAdvertisingMaxAge?: number
-  cookiesOptions?: SerializeOptions
-}>) => {
+}) => {
   const [needConsent, setNeedsConsent] = useState(false)
   const [cookies, setCookies] = useState<Record<string, string | undefined>>(
     IS_CLIENT ? parse(document.cookie) : {},
@@ -85,8 +91,8 @@ export const CookieConsentProvider = ({
       uniq([
         ...(segmentIntegrations ?? []),
         ...(essentialIntegrations.map(integration => ({
-          name: integration,
           category: 'essential',
+          name: integration,
         })) as Integrations),
       ]),
     [segmentIntegrations, essentialIntegrations],
@@ -227,13 +233,13 @@ export const CookieConsentProvider = ({
 
   const value = useMemo(
     () => ({
+      categoriesConsent: cookieConsent,
       integrations,
-      needConsent,
       isSegmentAllowed,
       isSegmentIntegrationsLoaded,
-      segmentIntegrations: segmentEnabledIntegrations,
-      categoriesConsent: cookieConsent,
+      needConsent,
       saveConsent,
+      segmentIntegrations: segmentEnabledIntegrations,
     }),
     [
       integrations,

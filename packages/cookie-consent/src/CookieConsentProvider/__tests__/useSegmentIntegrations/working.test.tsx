@@ -48,7 +48,8 @@ globalThis.fetch = vi.fn(() =>
         {
           name: 'Amplitude (Actions)',
           creationName: 'Actions Amplitude',
-          description: `Amplitude is an event tracking and segmentation platform for your web and mobile apps. By analyzing the actions your users perform, you can gain a better understanding to drive retention, engagement, and conversion.`,
+          description:
+            'Amplitude is an event tracking and segmentation platform for your web and mobile apps. By analyzing the actions your users perform, you can gain a better understanding to drive retention, engagement, and conversion.',
           website: 'https://amplitude.com',
           category: 'Analytics',
         },

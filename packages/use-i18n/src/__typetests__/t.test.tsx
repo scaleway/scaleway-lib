@@ -55,6 +55,6 @@ test('i18n - t', () => {
   ).type.toBe<string>()
 
   // Required generic
-  const { t: t2 } = useI18n()
+  const { t: t2 } = useI18n<{}>()
   expect(t2).type.not.toBeCallableWith('test')
 })

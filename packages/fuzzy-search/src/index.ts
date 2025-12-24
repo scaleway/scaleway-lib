@@ -1,5 +1,5 @@
 // Remove accent & uppercase
-export const normalizeString = (string: string) =>
+export const normalizeString = (string: string): string =>
   string
     .normalize('NFD')
     .replace(/[\u0300-\u036F]/g, '')

@@ -52,6 +52,10 @@ export default [
   },
   ...scwTypescript.map(config => ({
     ...config,
+    rules: {
+      ...config.rules,
+      "import/order":'off',
+    },
     files: ['**/*.ts', '**/*.tsx'],
   })),
 

@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 import { readFile } from 'node:fs/promises'
-import { parseArgs } from 'node:util'
 import type { ParseArgsConfig } from 'node:util'
+import { parseArgs } from 'node:util'
 import { parse } from '@formatjs/icu-messageformat-parser'
 import type { ParserError } from '@formatjs/icu-messageformat-parser/error'
 import { globby } from 'globby'
@@ -10,13 +10,13 @@ import { importFromString } from 'module-from-string'
 
 const options: ParseArgsConfig['options'] = {
   ignoreTag: {
-    type: 'boolean',
-    short: 'i',
     default: false,
+    short: 'i',
+    type: 'boolean',
   },
 }
 
-const { values, positionals } = parseArgs({ options, allowPositionals: true })
+const { values, positionals } = parseArgs({ allowPositionals: true, options })
 
 const pattern = positionals[0]
 
@@ -50,10 +50,10 @@ const findICUErrors = (
         const { message } = err as ParserError
 
         return {
+          filePath,
+          key,
           message,
           value,
-          key,
-          filePath,
         }
       }
     })
@@ -79,7 +79,7 @@ const readFiles = async (files: string[]): Promise<ErrorsICU> => {
         const ICUErrors = findICUErrors(locales, file)
         errors.push(...ICUErrors)
       } catch (err) {
-        console.error({ file, err })
+        console.error({ err, file })
       }
     }
 

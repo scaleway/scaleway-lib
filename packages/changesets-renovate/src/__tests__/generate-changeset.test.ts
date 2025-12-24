@@ -64,7 +64,7 @@ describe('generate changeset file', () => {
 
     fs.readFile = vi
       .fn()
-      .mockResolvedValueOnce(`{}`)
+      .mockResolvedValueOnce('{}')
       .mockResolvedValueOnce(`{"name":"packageName","version":"1.0.0"}`)
     fs.writeFile = vi.fn()
 
@@ -113,7 +113,7 @@ describe('generate changeset file', () => {
 
     fs.readFile = vi
       .fn()
-      .mockResolvedValueOnce(`{}`)
+      .mockResolvedValueOnce('{}')
       .mockResolvedValueOnce(`{"name":"packageName","version":"1.0.0"}`)
     fs.writeFile = vi.fn()
 
@@ -204,7 +204,7 @@ describe('generate changeset file', () => {
 
     fs.readFile = vi
       .fn()
-      .mockResolvedValueOnce(`{}`)
+      .mockResolvedValueOnce('{}')
       .mockResolvedValueOnce(`{"name":"packageName","version":"1.0.0"}`)
     fs.writeFile = vi.fn()
 
@@ -249,7 +249,7 @@ describe('generate changeset file', () => {
 
     fs.readFile = vi
       .fn()
-      .mockResolvedValueOnce(`{}`)
+      .mockResolvedValueOnce('{}')
       .mockResolvedValueOnce(`{"name":"packageName","version":"1.0.0"}`)
     fs.writeFile = vi.fn()
 
@@ -301,7 +301,7 @@ describe('generate changeset file', () => {
 
     fs.readFile = vi
       .fn()
-      .mockResolvedValueOnce(`{}`)
+      .mockResolvedValueOnce('{}')
       .mockResolvedValueOnce(`{"name":"packageNameB","version":"1.1.1"}`)
       .mockResolvedValueOnce(`{"name":"packageNameA","version":"1.0.0"}`)
     fs.writeFile = vi.fn()
@@ -343,7 +343,7 @@ describe('generate changeset file', () => {
 
     fs.readFile = vi
       .fn()
-      .mockResolvedValueOnce(`{}`)
+      .mockResolvedValueOnce('{}')
       .mockResolvedValueOnce(`{"name":"packageName","workspaces":[]}`)
     fs.writeFile = vi.fn()
 
@@ -376,7 +376,7 @@ describe('generate changeset file', () => {
 
     fs.readFile = vi
       .fn()
-      .mockResolvedValueOnce(`{}`)
+      .mockResolvedValueOnce('{}')
       .mockResolvedValueOnce(`{"name":"packageName"}`)
     fs.writeFile = vi.fn()
 
