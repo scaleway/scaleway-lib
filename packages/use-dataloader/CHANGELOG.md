@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.1
+
+### Patch Changes
+
+- [#2891](https://github.com/scaleway/scaleway-lib/pull/2891) [`471a494`](https://github.com/scaleway/scaleway-lib/commit/471a49472363bb27defc86a5d3f0924dcda9b02c) Thanks [@philibea](https://github.com/philibea)! - Issue with type generated
+
 ## 6.0.0
 
 ### Major Changes
