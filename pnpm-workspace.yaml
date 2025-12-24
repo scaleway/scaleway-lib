@@ -66,7 +66,7 @@ catalog:
   query-string: 9.3.1
   react: 19.2.3
   react-dom: 19.2.3
-  react-router-dom: 6.30.0
+  react-router-dom: 6.30.2
   read-pkg: 10.0.0
   shx: 0.4.0
   simple-git: 3.30.0
