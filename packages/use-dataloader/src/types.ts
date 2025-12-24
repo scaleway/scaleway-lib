@@ -73,9 +73,13 @@ export type UseDataLoaderResult<ResultType, ErrorType> = {
    */
   isIdle: boolean
   /**
-   * True if the request is launched
+   * True only when there is no cache data and we're fetching data for the first time
    */
   isLoading: boolean
+  /**
+   * True if there is an active request in progress
+   */
+  isFetching: boolean
   /**
    * True if the request if enabled is true, pollingInterval is defined and the status is isLoading or isSuccess
    */
@@ -119,9 +123,10 @@ export type UseInfiniteDataLoaderResult<ResultType, ErrorType> = {
   isError: boolean
   isIdle: boolean
   isLoading: boolean
-  isLoadingFirstPage: boolean
+  isFetching: boolean
   isSuccess: boolean
   hasNextPage: boolean
+  isLoadingFirstPage: boolean
   reload: () => Promise<void>
   loadMore: () => void
 }

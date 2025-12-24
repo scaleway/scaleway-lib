@@ -39,3 +39,7 @@ yalc.lock
 
 # IDE
 .zed
+
+# ai
+.ai
+AGENTS.md

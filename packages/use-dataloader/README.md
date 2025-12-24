@@ -118,19 +118,19 @@ const fakePromise = () =>
 
 function MyComponent() {
   // Use a key if you want to persist data in the DataLoaderProvider cache
-  const { data, isLoading, isSuccess, isError, error } = useDataLoader(
+  const { data, isLoading, isFetching, isSuccess, isError, error } = useDataLoader(
     'cache-key',
     fakePromise,
   )
 
   // This is the first time we load the data
   if (isLoading && !data) {
-    return <div>Loading...</div>
+    return <div>Loading initial data...</div>
   }
 
-  // This happen when you already load the data but want to reload it
-  if (isLoading && data) {
-    return <div>Reloading...</div>
+  // This happen when you already loaded the data but want to reload it
+  if (isFetching && data) {
+    return <div>Refreshing...</div>
   }
 
   // Will be true when the promise is resolved
@@ -162,14 +162,19 @@ const fakePromise = () =>
 
 function MyComponentThatUseDataLoader({key}) {
   // Use a key if you want to persist data in the DataLoaderProvider cache
-  const { data, isLoading, isSuccess, isError, error } = useDataLoader(
+  const { data, isLoading, isFetching, isSuccess, isError, error } = useDataLoader(
     key,
     fakePromise,
   )
 
-  // Will be true during the promise
+  // Will be true during the initial load
   if (isLoading) {
-    return <div>Loading...</div>
+    return <div>Loading initial data...</div>
+  }
+
+  // Will be true during any active request (initial or subsequent)
+  if (isFetching) {
+    return <div>Refreshing...</div>
   }
 
   // Will be true when the promise is resolved
@@ -236,10 +241,13 @@ const useDataLoader = (
 )
 ```
 
+The hook returns an object with the following properties:
+
 |   Property   |                                                                 Description                                                                  |
 | :----------: | :------------------------------------------------------------------------------------------------------------------------------------------: |
 |    isIdle    |                                                    `true` if the request is not launched                                                     |
-|  isLoading   |                               `true` if the request is launched **or** enabled is `true` and isIdle is `true`                                |
+|  isLoading   |                               `true` only during the initial fetch when there's no cached data                                              |
+|  isFetching  |                               `true` when there is an active request in progress (initial or subsequent)                                   |
 |  isSuccess   |                                                  `true`if the request finished successfully                                                  |
 |   isError    |                                                     `true` if the request throw an error                                                     |
 |  isPolling   | `true` if the request if `enabled` is true, `pollingInterval` is defined and the status is `isLoading`,`isSuccess` or during the first fetch |

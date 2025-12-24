@@ -31,6 +31,7 @@ const getPrerequisite = (key: string) => {
             }, 100)
           }
         }
+
         resolvePromise()
       }),
   )
@@ -79,6 +80,7 @@ describe('useInfinitDataLoader', () => {
     )
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBe(true)
+    expect(result.current.isFetching).toBe(true)
     expect(initialProps.method).toHaveBeenCalledTimes(1)
     setCanResolve(true)
     await waitFor(() => expect(result.current.isSuccess).toBe(true))
@@ -87,6 +89,8 @@ describe('useInfinitDataLoader', () => {
       { nextPage: 2, data: 'Page 1 data' },
     ])
     expect(result.current.isLoading).toBe(false)
+    expect(result.current.isLoading).toBe(false)
+    expect(result.current.isFetching).toBe(false)
   })
 
   it('should get the first and loadMore one page on mount while enabled', async () => {
@@ -107,6 +111,8 @@ describe('useInfinitDataLoader', () => {
     )
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBe(true)
+    expect(result.current.isFetching).toBe(true)
+    expect(result.current.isFetching).toBe(true)
     expect(initialProps.method).toHaveBeenCalledTimes(1)
     expect(initialProps.method).toHaveBeenCalledWith({
       page: 1,
@@ -118,6 +124,7 @@ describe('useInfinitDataLoader', () => {
       { nextPage: 2, data: 'Page 1 data' },
     ])
     expect(result.current.isLoading).toBe(false)
+    expect(result.current.isFetching).toBe(false)
     setCanResolve(false)
     act(() => {
       result.current.loadMore()
@@ -125,13 +132,15 @@ describe('useInfinitDataLoader', () => {
     expect(result.current.data).toStrictEqual([
       { nextPage: 2, data: 'Page 1 data' },
     ])
-    await waitFor(() => expect(result.current.isLoading).toBe(true))
+    await waitFor(() => expect(result.current.isFetching).toBe(true))
     expect(initialProps.method).toHaveBeenCalledTimes(2)
     expect(initialProps.method).toHaveBeenCalledWith({
       page: 2,
     })
     setCanResolve(true)
+    await waitFor(() => expect(result.current.isFetching).toBe(true))
     await waitFor(() => expect(result.current.isSuccess).toBe(true))
+    await waitFor(() => expect(result.current.isFetching).toBe(false))
     expect(result.current.data).toStrictEqual([
       { nextPage: 2, data: 'Page 1 data' },
       { nextPage: 3, data: 'Page 2 data' },
@@ -157,6 +166,7 @@ describe('useInfinitDataLoader', () => {
     )
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBe(true)
+    expect(result.current.isFetching).toBe(true)
     expect(initialProps.method).toHaveBeenCalledTimes(1)
     expect(initialProps.method).toHaveBeenCalledWith({
       page: 1,
@@ -169,10 +179,11 @@ describe('useInfinitDataLoader', () => {
       { nextPage: 2, data: 'Page 1 data' },
     ])
     expect(result.current.isLoading).toBe(false)
+    expect(result.current.isFetching).toBe(false)
     act(() => {
       result.current.loadMore()
     })
-    await waitFor(() => expect(result.current.isLoading).toBe(true))
+    await waitFor(() => expect(result.current.isFetching).toBe(true))
     expect(result.current.data).toStrictEqual([
       { nextPage: 2, data: 'Page 1 data' },
     ])
@@ -191,7 +202,7 @@ describe('useInfinitDataLoader', () => {
     act(() => {
       result.current.reload().catch(() => null)
     })
-    await waitFor(() => expect(result.current.isLoading).toBe(true))
+    await waitFor(() => expect(result.current.isFetching).toBe(true))
     setCanResolve(true)
     await waitFor(() => expect(result.current.isSuccess).toBe(true))
     expect(result.current.data).toStrictEqual([
@@ -226,14 +237,16 @@ describe('useInfinitDataLoader', () => {
     )
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBe(false)
+    expect(result.current.isFetching).toBe(false)
     expect(initialProps.method).toHaveBeenCalledTimes(0)
     rerender(localInitialProps)
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBe(false)
+    expect(result.current.isFetching).toBe(false)
     expect(initialProps.method).toHaveBeenCalledTimes(0)
     rerender({ ...localInitialProps, config: { ...config, enabled: true } })
     expect(result.current.data).toBe(undefined)
-    await waitFor(() => expect(result.current.isLoading).toBe(true))
+    await waitFor(() => expect(result.current.isFetching).toBe(true))
     expect(initialProps.method).toHaveBeenCalledTimes(1)
     expect(initialProps.method).toHaveBeenCalledWith({
       page: 1,
@@ -246,10 +259,11 @@ describe('useInfinitDataLoader', () => {
       { nextPage: 2, data: 'Page 1 data' },
     ])
     expect(result.current.isLoading).toBe(false)
+    expect(result.current.isFetching).toBe(false)
     act(() => {
       result.current.loadMore()
     })
-    await waitFor(() => expect(result.current.isLoading).toBe(true))
+    await waitFor(() => expect(result.current.isFetching).toBe(true))
     expect(result.current.data).toStrictEqual([
       { nextPage: 2, data: 'Page 1 data' },
     ])
@@ -258,7 +272,12 @@ describe('useInfinitDataLoader', () => {
       page: 2,
     })
     setCanResolve(true)
+    await waitFor(() => expect(result.current.isFetching).toBe(true))
     await waitFor(() => expect(result.current.isSuccess).toBe(true))
+    await waitFor(() => expect(result.current.isLoading).toBe(false))
+    // After loadMore completes, we should still have only 2 calls
+    // (initial load + loadMore), not 3, because reload reuses existing requests
+    expect(initialProps.method).toHaveBeenCalledTimes(2)
     expect(result.current.data).toStrictEqual([
       { nextPage: 2, data: 'Page 1 data' },
       { nextPage: 3, data: 'Page 2 data' },
@@ -268,9 +287,71 @@ describe('useInfinitDataLoader', () => {
     act(() => {
       result.current.reload().catch(() => null)
     })
-    await waitFor(() => expect(result.current.isLoading).toBe(true))
+    await waitFor(() => expect(result.current.isFetching).toBe(true))
+    setCanResolve(true)
+    await waitFor(() => expect(result.current.isFetching).toBe(false))
+    expect(result.current.data).toStrictEqual([
+      { nextPage: 2, data: 'Page 1 data' },
+      { nextPage: 3, data: 'Page 2 data' },
+    ])
+  })
+
+  it('should differentiate between isLoading and isFetching', async () => {
+    const { setCanResolve, initialProps } = getPrerequisite(
+      'test-isLoading-vs-isFetching',
+    )
+
+    const { result } = renderHook(
+      props =>
+        useInfiniteDataLoader(
+          props.key,
+          props.method,
+          props.baseParams,
+          'page',
+          config,
+        ),
+      {
+        initialProps,
+        wrapper,
+      },
+    )
+
+    // Initially, isLoading should be true (first load with no cache)
+    expect(result.current.isLoading).toBe(true)
+    expect(result.current.isFetching).toBe(true)
+    expect(result.current.data).toBe(undefined)
+
+    // Resolve the first request
     setCanResolve(true)
     await waitFor(() => expect(result.current.isSuccess).toBe(true))
+
+    // After first load, isLoading should be false but isFetching should also be false
+    expect(result.current.isLoading).toBe(false)
+    expect(result.current.isFetching).toBe(false)
+    expect(result.current.data).toStrictEqual([
+      { nextPage: 2, data: 'Page 1 data' },
+    ])
+
+    // Trigger a loadMore
+    setCanResolve(false)
+    act(() => {
+      result.current.loadMore()
+    })
+
+    // During loadMore, isLoading should be false (we have cached data) but isFetching should be true
+    await waitFor(() => expect(result.current.isFetching).toBe(true))
+    expect(result.current.isLoading).toBe(false)
+    expect(result.current.data).toStrictEqual([
+      { nextPage: 2, data: 'Page 1 data' },
+    ]) // Still have cached data
+
+    // Resolve the loadMore
+    setCanResolve(true)
+    await waitFor(() => expect(result.current.isSuccess).toBe(true))
+
+    // After loadMore, both should be false again
+    expect(result.current.isLoading).toBe(false)
+    expect(result.current.isFetching).toBe(false)
     expect(result.current.data).toStrictEqual([
       { nextPage: 2, data: 'Page 1 data' },
       { nextPage: 3, data: 'Page 2 data' },
