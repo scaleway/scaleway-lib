@@ -2,4 +2,4 @@
 "@scaleway/use-dataloader": patch
 ---
 
-Fix type issue on declared const
+Issue with type generated
