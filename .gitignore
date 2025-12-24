@@ -36,3 +36,6 @@ vitest.config.ts.*
 # Yalc
 yalc.lock
 .yalc/
+
+# IDE
+.zed

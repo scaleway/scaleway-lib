@@ -1,0 +1,37 @@
+{
+  "name": "@scaleway-lib/utils",
+  "version": "0.0.1",
+  "description": "Utility scripts and tools for scaleway-lib",
+  "type": "module",
+  "private": true,
+  "bin": {
+    "check-catalog-usage": "./src/check-catalog-usage.ts"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prepublishOnly": "pnpm run build"
+  },
+  "keywords": [
+    "utilities",
+    "pnpm",
+    "catalog",
+    "validation"
+  ],
+  "author": "Scaleway",
+  "license": "MIT",
+  "dependencies": {
+    "yaml": "catalog:"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "typescript": "catalog:"
+  },
+  "engines": {
+    "node": ">=24.x"
+  },
+  "files": [
+    "src/**/*",
+    "README.md"
+  ]
+}
