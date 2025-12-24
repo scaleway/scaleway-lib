@@ -255,7 +255,7 @@ describe('useDataLoader', () => {
     expect(result.current.isLoading).toBe(false)
     result.current.reload().catch(() => null)
     result.current.reload().catch(() => null)
-    await waitFor(() => expect(result.current.isLoading).toBe(true))
+    await waitFor(() => expect(result.current.isFetching).toBe(true))
     expect(result.current.data).toBe(true)
     await waitFor(() => expect(result.current.isSuccess).toBe(true))
     expect(result.current.data).toBe(true)
@@ -324,20 +324,21 @@ describe('useDataLoader', () => {
     )
     expect(result.current.data).toBe(undefined)
     expect(result.current.isPolling).toBe(true)
-    expect(result.current.isLoading).toBe(true)
+    expect(result.current.isFetching).toBe(true)
     expect(pollingProps.method).toBeCalledTimes(1)
     await waitFor(() => expect(result.current.isSuccess).toBe(true))
     expect(result.current.data).toBe(true)
     expect(result.current.isSuccess).toBe(true)
     expect(result.current.isPolling).toBe(true)
-    await waitFor(() => expect(result.current.isLoading).toBe(true))
+    await waitFor(() => expect(result.current.isFetching).toBe(true))
     expect(pollingProps.method).toBeCalledTimes(2)
     expect(result.current.isPolling).toBe(true)
 
     await waitFor(() => expect(result.current.isSuccess).toBe(true))
     expect(result.current.data).toBe(true)
+    expect(result.current.isPolling).toBe(true)
     expect(result.current.isSuccess).toBe(true)
-    expect(result.current.isLoading).toBe(false)
+    expect(result.current.isFetching).toBe(false)
     rerender({
       ...pollingProps,
       config: {
@@ -348,13 +349,13 @@ describe('useDataLoader', () => {
     expect(result.current.data).toBe(true)
     expect(result.current.isPolling).toBe(true)
     expect(result.current.isSuccess).toBe(true)
-    expect(result.current.isLoading).toBe(false)
-    await waitFor(() => expect(result.current.isLoading).toBe(true))
+    expect(result.current.isFetching).toBe(false)
+    await waitFor(() => expect(result.current.isFetching).toBe(true))
     expect(result.current.isSuccess).toBe(false)
     await waitFor(() => expect(result.current.isSuccess).toBe(true))
     expect(method2).toBeCalledTimes(1)
-    expect(result.current.isPolling).toBe(true)
-    expect(result.current.isLoading).toBe(false)
+    expect(result.current.isSuccess).toBe(true)
+    expect(result.current.isFetching).toBe(false)
     expect(result.current.data).toBe(2)
 
     rerender({
@@ -364,7 +365,7 @@ describe('useDataLoader', () => {
       },
       method: method2,
     })
-    await waitFor(() => expect(result.current.isLoading).toBe(true))
+    await waitFor(() => expect(result.current.isFetching).toBe(true))
     expect(result.current.data).toBe(2)
     expect(result.current.isPolling).toBe(true)
     expect(result.current.isSuccess).toBe(false)
@@ -752,7 +753,7 @@ describe('useDataLoader', () => {
     expect(result.current[0]?.data).toBe(true)
 
     result.current[1]?.reload().catch(() => null)
-    await waitFor(() => expect(result.current[1]?.isLoading).toBe(true))
+    await waitFor(() => expect(result.current[1]?.isFetching).toBe(true))
     expect(result.current[1]?.data).toBe(true)
 
     await waitFor(() => expect(result.current[1]?.isSuccess).toBe(true))
@@ -801,7 +802,7 @@ describe('useDataLoader', () => {
     expect(mockedFn).toBeCalledTimes(1)
 
     result.current[1].reloadAll().catch(() => null)
-    await waitFor(() => expect(result.current[0].isLoading).toBe(true))
+    await waitFor(() => expect(result.current[0].isFetching).toBe(true))
     expect(result.current[0].data).toBe(true)
     expect(Object.values(result.current[1].getReloads()).length).toBe(1)
 
@@ -883,8 +884,8 @@ describe('useDataLoader', () => {
     await waitFor(() => expect(result.current[0]?.isSuccess).toBe(true))
     testingProps.config2.enabled = true
     rerender(testingProps)
-    await waitFor(() => expect(result.current[0]?.isLoading).toBe(true))
-    await waitFor(() => expect(result.current[1]?.isLoading).toBe(true))
+    await waitFor(() => expect(result.current[0]?.isFetching).toBe(true))
+    await waitFor(() => expect(result.current[1]?.isFetching).toBe(true))
     expect(testingProps.method).toBeCalledTimes(2)
     expect(result.current[0]?.data).toBe(true)
     expect(result.current[0]?.previousData).toBe(undefined)
@@ -892,5 +893,69 @@ describe('useDataLoader', () => {
     expect(result.current[1]?.previousData).toBe(undefined)
     await waitFor(() => expect(result.current[0]?.isSuccess).toBe(true))
     await waitFor(() => expect(result.current[1]?.isSuccess).toBe(true))
+  })
+
+  test('should differentiate between isLoading and isFetching', async () => {
+    let resolveIt = false
+    const method = vi.fn(() => {
+      const promiseFn = () =>
+        new Promise(resolve => {
+          setInterval(() => {
+            if (resolveIt) {
+              resolve({ id: 1, name: 'test' })
+            }
+          }, PROMISE_TIMEOUT)
+        })
+
+      return promiseFn()
+    })
+
+    const testProps = {
+      config: {
+        enabled: true,
+      },
+      key: 'test-isLoading-vs-isFetching',
+      method,
+    }
+
+    const { result } = renderHook(
+      props => useDataLoader(props.key, props.method, props.config),
+      {
+        initialProps: testProps,
+        wrapper,
+      },
+    )
+
+    // Initially, isLoading should be true (first load with no cache)
+    expect(result.current.isLoading).toBe(true)
+    expect(result.current.isFetching).toBe(true)
+    expect(result.current.data).toBe(undefined)
+
+    // Resolve the first request
+    resolveIt = true
+    await waitFor(() => expect(result.current.isSuccess).toBe(true))
+
+    // After first load, both should be false
+    expect(result.current.isLoading).toBe(false)
+    expect(result.current.isFetching).toBe(false)
+    expect(result.current.data).toEqual({ id: 1, name: 'test' })
+
+    // Trigger a reload
+    resolveIt = false
+    result.current.reload().catch(() => null)
+
+    // During reload, isLoading should be false (we have cached data) but isFetching should be true
+    await waitFor(() => expect(result.current.isFetching).toBe(true))
+    expect(result.current.isLoading).toBe(false)
+    expect(result.current.data).toEqual({ id: 1, name: 'test' }) // Still have cached data
+
+    // Resolve the reload
+    resolveIt = true
+    await waitFor(() => expect(result.current.isSuccess).toBe(true))
+
+    // After reload, both should be false again
+    expect(result.current.isLoading).toBe(false)
+    expect(result.current.isFetching).toBe(false)
+    expect(result.current.data).toEqual({ id: 1, name: 'test' })
   })
 })

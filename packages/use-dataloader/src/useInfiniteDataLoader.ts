@@ -152,7 +152,8 @@ export const useInfiniteDataLoader = <
 
   const previousDataRef = useRef(request.data)
 
-  const isLoading = requestRefs.current.some(
+  // isFetching is true when there is an active request in progress
+  const isFetching = requestRefs.current.some(
     req => req.status === StatusEnum.LOADING || optimisticIsLoadingRef.current,
   )
 
@@ -236,19 +237,28 @@ export const useInfiniteDataLoader = <
       getNextPage ? getNextPage(...params) : undefined
   }, [getNextPage])
 
+  const computedData =
+    isLoadingFirstPage ||
+    [...requestRefs.current].filter(dataloader => !!dataloader.data).length ===
+      0
+      ? initialData
+      : ([...requestRefs.current]
+          .filter(dataloader => !!dataloader.data)
+          .map(dataloader => dataloader.data) as ResultType[])
+
+  // isLoading is true only when there is no cache data and we're fetching data for the first time
+  const isLoading =
+    !computedData &&
+    request.isFirstLoading &&
+    request.status === StatusEnum.LOADING
+
   const data = useMemo<UseInfiniteDataLoaderResult<ResultType, ErrorType>>(
     () => ({
-      data:
-        isLoadingFirstPage ||
-        [...requestRefs.current].filter(dataloader => !!dataloader.data)
-          .length === 0
-          ? initialData
-          : ([...requestRefs.current]
-              .filter(dataloader => !!dataloader.data)
-              .map(dataloader => dataloader.data) as ResultType[]),
+      data: computedData,
       error: request.error,
       hasNextPage: nextPageRef.current !== undefined,
       isError,
+      isFetching,
       isIdle,
       isLoading,
       isLoadingFirstPage,
@@ -257,9 +267,10 @@ export const useInfiniteDataLoader = <
       reload,
     }),
     [
-      initialData,
+      computedData,
       isIdle,
       isLoading,
+      isFetching,
       isSuccess,
       isError,
       request.error,
