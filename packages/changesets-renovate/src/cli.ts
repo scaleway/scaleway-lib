@@ -96,6 +96,14 @@ async function getBumps(files: string[]): Promise<Map<string, string>> {
   return bumps
 }
 
+async function handleChangesetFile(fileName: string) {
+  if (!process.env['SKIP_COMMIT']) {
+    await simpleGit().add(fileName)
+    await simpleGit().commit(`chore: add ${fileName}`)
+    await simpleGit().push()
+  }
+}
+
 /**
  * Handle package.json changes (original Renovate flow)
  */
@@ -121,11 +129,7 @@ async function handlePackageChanges(diffFiles: string[]): Promise<void> {
   const packageBumps = await getBumps(files)
 
   await createChangeset(fileName, packageBumps, packageNames)
-  if (!process.env['SKIP_COMMIT']) {
-    await simpleGit().add(fileName)
-    await simpleGit().commit(`chore: add changeset renovate-${shortHash}`)
-    await simpleGit().push()
-  }
+  await handleChangesetFile(fileName)
 }
 
 /**
@@ -187,6 +191,8 @@ async function handleCatalogChanges(diffFiles: string[]): Promise<void> {
   const shortHash = (await simpleGit().revparse(['--short', 'HEAD'])).trim()
   const fileName = `.changeset/renovate-${shortHash}.md`
   await createChangeset(fileName, changedDeps, packageNames)
+
+  await handleChangesetFile(fileName)
 
   console.log('\n✅ Done creating changesets.')
 }
