@@ -1,0 +1,19 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oxc-project/oxc/main/crates/oxc_linter/src/config/schema.json",
+  "plugins": ["unicorn", "typescript", "oxc"],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn",
+    "perf": "warn"
+  },
+  "rules": {
+    "no-console": "warn",
+    "no-debugger": "error",
+    "no-unused-vars": "warn"
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2021": true
+  }
+}
