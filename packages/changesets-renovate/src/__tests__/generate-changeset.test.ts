@@ -77,7 +77,7 @@ describe('generate changeset file', () => {
     expect(fs.readFile).toHaveBeenCalledWith(file, 'utf8')
     expect(fs.writeFile).toMatchSnapshot()
     expect(add).toHaveBeenCalledWith(fileName)
-    expect(commit).toHaveBeenCalledWith(`chore: add changeset renovate-${rev}`)
+    expect(commit).toHaveBeenCalledWith(`chore: add ${fileName}`)
     expect(push).toHaveBeenCalledTimes(1)
   })
 
@@ -126,7 +126,7 @@ describe('generate changeset file', () => {
     expect(fs.readFile).toHaveBeenCalledWith(file, 'utf8')
     expect(fs.writeFile).toMatchSnapshot()
     expect(add).toHaveBeenCalledWith(fileName)
-    expect(commit).toHaveBeenCalledWith(`chore: add changeset renovate-${rev}`)
+    expect(commit).toHaveBeenCalledWith(`chore: add ${fileName}`)
     expect(push).toHaveBeenCalledTimes(1)
   })
 
@@ -213,7 +213,7 @@ describe('generate changeset file', () => {
     expect(fs.readFile).toHaveBeenCalledWith(file, 'utf8')
     expect(fs.writeFile).toMatchSnapshot()
     expect(add).toHaveBeenCalledWith(fileName)
-    expect(commit).toHaveBeenCalledWith(`chore: add changeset renovate-${rev}`)
+    expect(commit).toHaveBeenCalledWith(`chore: add ${fileName}`)
     expect(push).toHaveBeenCalledTimes(1)
   })
 
