@@ -14,8 +14,8 @@ import {
   CATEGORIES,
   CONSENT_ADVERTISING_MAX_AGE,
   CONSENT_MAX_AGE,
-  COOKIES_OPTIONS,
   COOKIE_PREFIX,
+  COOKIES_OPTIONS,
   HASH_COOKIE,
 } from '../constants'
 import { uniq } from '../helpers/array'

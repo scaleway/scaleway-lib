@@ -21,7 +21,8 @@ jobs:
           cache: "pnpm"
       - run: pnpm install
       - run: pnpm run build
-      - run: pnpm tsc --noEmit
+      - run: pnpm typecheck
+      - run: pnpm typecheck:global
   lint:
     runs-on: ubuntu-24.04
     steps:

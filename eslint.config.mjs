@@ -55,6 +55,7 @@ export default [
     rules: {
       ...config.rules,
       "import/order":'off',
+      "sort-imports": "off",
     },
     files: ['**/*.ts', '**/*.tsx'],
   })),
@@ -67,7 +68,7 @@ export default [
       sourceType: 'script',
 
       parserOptions: {
-        project: ['tsconfig.json', 'packages/**/tsconfig.json'],
+        project: ['tsconfig.json', 'packages/**/tsconfig.json', '!packages/utils/tsconfig.json'],
         // projectService: true,
         tsconfigRootDir: import.meta.dirname,
       },
