@@ -1,4 +1,4 @@
-import type { Context, ReactElement, ReactNode } from 'react'
+import type { ComponentType, Context, ReactNode } from 'react'
 import { createContext, useCallback, useContext, useMemo, useRef } from 'react'
 import {
   DEFAULT_MAX_CONCURRENT_REQUESTS,
@@ -67,13 +67,13 @@ type DataLoaderProviderProps = {
   defaultDatalifetime?: number
 }
 
-const DataLoaderProvider = ({
+const DataLoaderProvider: ComponentType<DataLoaderProviderProps> = ({
   children,
   cacheKeyPrefix,
   onError,
   maxConcurrentRequests = DEFAULT_MAX_CONCURRENT_REQUESTS,
   defaultDatalifetime,
-}: DataLoaderProviderProps): ReactElement => {
+}) => {
   const requestsRef = useRef<Requests>({})
 
   const computeKey = useCallback(
