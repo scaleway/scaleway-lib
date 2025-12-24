@@ -202,8 +202,8 @@ catalogs:
       specifier: 3.30.0
       version: 3.30.0
     tstyche:
-      specifier: 4.3.0
-      version: 4.3.0
+      specifier: 5.0.2
+      version: 5.0.2
     typescript:
       specifier: 5.9.3
       version: 5.9.3
@@ -340,7 +340,7 @@ importers:
         version: 0.4.0
       tstyche:
         specifier: 'catalog:'
-        version: 4.3.0(typescript@5.9.3)
+        version: 5.0.2(typescript@5.9.3)
       typescript:
         specifier: 'catalog:'
         version: 5.9.3
@@ -4638,12 +4638,12 @@ packages:
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
 
-  tstyche@4.3.0:
-    resolution: {integrity: sha512-X5mSVCivhCSDKHr9tWfCH0kmEo5cLApZILK5XfssTIirc9wEvcSYhCaixj5TSR/39cIC7U5TQD+wtGKsYh7nlw==}
-    engines: {node: '>=20.9'}
+  tstyche@5.0.2:
+    resolution: {integrity: sha512-5XoNS1qIHr7w2QkpCx9WOJD69soaxaeqzY3DNOb+trLWjJowzKVZ9L7tSLWxXnwZQ9vKPTq4F41gUd99371aXg==}
+    engines: {node: '>=20.12'}
     hasBin: true
     peerDependencies:
-      typescript: '>=4.7'
+      typescript: '>=5.0'
     peerDependenciesMeta:
       typescript:
         optional: true
@@ -9568,7 +9568,7 @@ snapshots:
 
   tslib@2.8.1: {}
 
-  tstyche@4.3.0(typescript@5.9.3):
+  tstyche@5.0.2(typescript@5.9.3):
     optionalDependencies:
       typescript: 5.9.3
 
