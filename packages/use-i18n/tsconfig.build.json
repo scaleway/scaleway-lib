@@ -1,10 +1,10 @@
 {
-  "extends": "./tsconfig.json",
   "compilerOptions": {
-    "noEmit": false,
     "emitDeclarationOnly": true,
-    "rootDir": "src",
-    "outDir": "dist"
+    "isolatedDeclarations": true,
+    "noEmit": false,
+    "outDir": "dist",
+    "rootDir": "src"
   },
   "exclude": [
     "*.config.ts",
@@ -13,5 +13,6 @@
     "**/__mocks__",
     "**/__typetests__",
     "src/**/*.test.tsx"
-  ]
+  ],
+  "extends": "./tsconfig.json"
 }

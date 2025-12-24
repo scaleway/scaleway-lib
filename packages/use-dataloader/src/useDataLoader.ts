@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { useDataLoaderContext } from './DataLoaderProvider'
 import { StatusEnum } from './constants'
+import { useDataLoaderContext } from './DataLoaderProvider'
 import { marshalQueryKey } from './helpers'
 import type {
   KeyType,

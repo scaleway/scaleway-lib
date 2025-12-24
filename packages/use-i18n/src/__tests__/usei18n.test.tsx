@@ -56,7 +56,7 @@ const wrapper =
         return (await import('date-fns/locale/es')).es
       }
 
-      return (await import(`date-fns/locale/en-GB`)).enGB
+      return (await import('date-fns/locale/en-GB')).enGB
     },
     loadDateLocale = (locale: string) => {
       if (locale === 'en') {

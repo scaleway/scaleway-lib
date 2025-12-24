@@ -3,7 +3,11 @@ import type { ConsentOptions, LoadOptions } from '@rudderstack/analytics-js'
 export const defaultTimeout = 5000
 
 export const defaultConsentOptions: ConsentOptions = {
-  trackConsent: false,
+  consentManagement: {
+    allowedConsentIds: [],
+    deniedConsentIds: [],
+    enabled: true,
+  },
   /**
    * The discardPreConsentEvents parameter in RudderStack's JavaScript SDK determines what happens to events that are generated before the user provides consent (pre-consent events):
    */
@@ -11,39 +15,22 @@ export const defaultConsentOptions: ConsentOptions = {
   storage: {
     type: 'cookieStorage',
   },
-  consentManagement: {
-    enabled: true,
-    allowedConsentIds: [],
-    deniedConsentIds: [],
-  },
+  trackConsent: false,
 } as const
 
 export const defaultLoadOptions: LoadOptions = {
-  logLevel: 'NONE',
-  polyfillIfRequired: false,
-  preConsent: {
-    enabled: true,
-    storage: {
-      strategy: 'anonymousId',
-    },
-    events: {
-      delivery: 'buffer',
+  anonymousIdOptions: {
+    autoCapture: {
+      enabled: true,
+      source: 'segment',
     },
   },
   consentManagement: {
-    enabled: true,
-    provider: 'custom',
     // https://www.rudderstack.com/docs/data-governance/consent-management/custom-consent-manager/javascript/#pre-consent-user-tracking
     allowedConsentIds: [],
     deniedConsentIds: [],
-  },
-  queueOptions: {
-    batch: {
-      enabled: true,
-      maxItems: 20,
-      maxSize: 512 * 1024, // 512 KB
-      flushInterval: 3_000, // in ms
-    },
+    enabled: true,
+    provider: 'custom',
   },
   /**
    * integrations are usefull in case you do not want to load uses some destinations despites the consentManagements or if you need to change something.
@@ -53,13 +40,26 @@ export const defaultLoadOptions: LoadOptions = {
     All: true,
   },
   loadIntegration: true,
-  secureCookie: true,
-  anonymousIdOptions: {
-    autoCapture: {
-      enabled: true,
-      source: 'segment',
+  logLevel: 'NONE',
+  polyfillIfRequired: false,
+  preConsent: {
+    enabled: true,
+    events: {
+      delivery: 'buffer',
+    },
+    storage: {
+      strategy: 'anonymousId',
     },
   },
+  queueOptions: {
+    batch: {
+      enabled: true,
+      flushInterval: 3_000, // in ms
+      maxItems: 20,
+      maxSize: 512 * 1024, // 512 KB
+    },
+  },
+  secureCookie: true,
   sessions: {
     autoTrack: true,
     // 30 minutes

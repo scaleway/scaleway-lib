@@ -1,15 +1,6 @@
 import { formatISO, intlFormat } from 'date-fns'
 
 const formatOptions = {
-  second: {
-    // Expected output format: 13 February 2025 at 4:28:00
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric',
-  },
   hour: {
     // Expected output format: February 13, 2020, 4:28 PM
     day: 'numeric',
@@ -17,29 +8,38 @@ const formatOptions = {
     minute: 'numeric',
     month: 'long',
     year: 'numeric',
-  },
+  } as const,
   hourOnly: {
     // Expected output format: 4:28 PM
     hour: 'numeric',
     minute: 'numeric',
-  },
+  } as const,
   long: {
     // Expected output format: February 13, 2020
     day: 'numeric',
     month: 'long',
     year: 'numeric',
-  },
+  } as const,
+  second: {
+    // Expected output format: 13 February 2025 at 4:28:00
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    month: 'long',
+    second: 'numeric',
+    year: 'numeric',
+  } as const,
   short: {
     // Expected output format: Feb 13, 2020
     day: 'numeric',
     month: 'short',
     year: 'numeric',
-  },
+  } as const,
   shortWithoutDay: {
     // Expected output format: Feb 2020
     month: 'short',
     year: 'numeric',
-  },
+  } as const,
 } as const
 
 const complexFormatOptions = {
@@ -50,14 +50,23 @@ const complexFormatOptions = {
     `${formatISO(date, { representation: 'date' })} ${intlFormat(
       date,
       formatOptions.hourOnly,
-      { locale },
+      {
+        locale,
+      },
     )}`,
 } as const
 
-export const supportedFormats = [
-  ...Object.keys(formatOptions),
-  ...Object.keys(complexFormatOptions),
-]
+type FormatOptions = keyof typeof formatOptions
+type ComplexFormatOptions = keyof typeof complexFormatOptions
+
+const keyFormatOptions = Object.keys(formatOptions) as FormatOptions[]
+const keyComplexFormatOptions = Object.keys(
+  complexFormatOptions,
+) as ComplexFormatOptions[]
+
+export const supportedFormats: (FormatOptions | ComplexFormatOptions)[] = [
+  ...new Set([...keyFormatOptions, ...keyComplexFormatOptions]),
+] as const
 
 export type FormatDateOptions =
   | keyof typeof formatOptions

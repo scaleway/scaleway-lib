@@ -58,7 +58,7 @@ async function createChangeset(
   fileName: string,
   packageBumps: Map<string, string>,
   packages: string[],
-) {
+): Promise<void> {
   const messageLines = []
 
   for (const [pkg, bump] of packageBumps) {
@@ -98,7 +98,7 @@ async function getBumps(files: string[]): Promise<Map<string, string>> {
   return bumps
 }
 
-export async function run() {
+export async function run(): Promise<void> {
   const branch = await simpleGit().branch()
   const branchPrefix = process.env['BRANCH_PREFIX'] ?? 'renovate/'
 
