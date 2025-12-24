@@ -451,4 +451,91 @@ describe('generate changeset file', () => {
     expect(fs.readFile).toHaveBeenCalledWith(file, 'utf8')
     expect(console.log).toHaveBeenCalledWith('No packages modified, skipping')
   })
+
+  it('should ignore private packages', async () => {
+    const file = 'test/package.json'
+
+    mockSimpleGit.mockReturnValue({
+      ...defaultGitValues,
+      branch: () => ({
+        current: 'renovate/test',
+      }),
+      diffSummary: () => ({
+        files: [
+          {
+            file,
+          },
+        ],
+      }),
+      show: () => `
++ "package": "version"
++ "package2": "version2"
+`,
+    })
+
+    fs.readFile = vi
+      .fn()
+      .mockResolvedValueOnce(`{}`)
+      .mockResolvedValueOnce(`{"name":"packageName","version":"1.0.0","private":true}`)
+    fs.writeFile = vi.fn()
+
+    await run()
+
+    expect(fs.readFile).toHaveBeenCalledWith(file, 'utf8')
+    expect(console.log).toHaveBeenCalledWith('No packages modified, skipping')
+  })
+
+  it('should include only non-private packages in changeset', async () => {
+    const rev = 'test'
+    const fileName = `.changeset/renovate-${rev}.md`
+    const privateFile = 'private/package.json'
+    const publicFile = 'public/package.json'
+    const revparse = vi.fn().mockReturnValue(rev)
+    const add = vi.fn()
+    const commit = vi.fn()
+    const push = vi.fn()
+
+    mockSimpleGit.mockReturnValue({
+      branch: () => ({
+        current: 'renovate/test',
+      }),
+      diffSummary: () => ({
+        files: [
+          {
+            file: privateFile,
+          },
+          {
+            file: publicFile,
+          },
+        ],
+      }),
+      show: () => `
++ "package": "version"
++ "package2": "version2"
+`,
+      revparse,
+      add,
+      commit,
+      push,
+    })
+
+    fs.readFile = vi
+      .fn()
+      .mockResolvedValueOnce(`{}`)
+      .mockResolvedValueOnce(`{"name":"privatePackage","version":"1.0.0","private":true}`)
+      .mockResolvedValueOnce(`{"name":"publicPackage","version":"1.0.0"}`)
+    fs.writeFile = vi.fn()
+
+    await run()
+
+    expect(fs.readFile).toHaveBeenCalledWith(privateFile, 'utf8')
+    expect(fs.readFile).toHaveBeenCalledWith(publicFile, 'utf8')
+    expect(fs.writeFile).toHaveBeenCalled()
+    // Only the public package should be included in the changeset
+    expect(fs.writeFile.mock.calls[0][1]).toContain("'publicPackage': patch")
+    expect(fs.writeFile.mock.calls[0][1]).not.toContain("'privatePackage': patch")
+    expect(add).toHaveBeenCalledWith(fileName)
+    expect(commit).toHaveBeenCalledWith(`chore: add changeset renovate-${rev}`)
+    expect(push).toHaveBeenCalledTimes(1)
+  })
 })
