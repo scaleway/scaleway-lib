@@ -134,11 +134,12 @@ catalog:
 
       const result = await findChangedDependenciesFromGit('abc123', 'def456')
 
-      expect(result).toHaveLength(2)
-      expect(result).toContain('package-a')
-      expect(result).toContain('package-c')
-      expect(result).not.toContain('package-b') // Unchanged
-      expect(result).not.toContain('package-d') // New package
+      const packages = [...result.keys()]
+      expect(packages).toHaveLength(2)
+      expect(packages).toContain('package-a')
+      expect(packages).toContain('package-c')
+      expect(packages).not.toContain('package-b') // Unchanged
+      expect(packages).not.toContain('package-d') // New package
     })
   })
 

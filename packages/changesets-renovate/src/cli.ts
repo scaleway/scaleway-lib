@@ -148,7 +148,6 @@ async function handleCatalogChanges(diffFiles: string[]): Promise<void> {
   const { findChangedDependenciesFromGit, findAffectedPackages } = await import(
     './pnpm-catalogs-git-utils.js'
   )
-  const { execSync } = await import('node:child_process')
 
   // Compare catalogs between HEAD~1 and HEAD
   console.log('🔍 Comparing catalogs: HEAD~1 -> HEAD')
@@ -160,7 +159,7 @@ async function handleCatalogChanges(diffFiles: string[]): Promise<void> {
     'pnpm-workspace.yaml',
   )
 
-  if (changedDeps.length === 0) {
+  if (changedDeps.size === 0) {
     console.log('✅ No catalog dependency changes.')
 
     return
@@ -169,7 +168,7 @@ async function handleCatalogChanges(diffFiles: string[]): Promise<void> {
   console.log('📦 Changed dependencies:', changedDeps)
 
   // Step 2: Find affected packages
-  const affectedPackages = findAffectedPackages(changedDeps)
+  const affectedPackages = findAffectedPackages([...changedDeps.keys()])
 
   if (affectedPackages.size === 0) {
     console.log('📦 No packages affected by catalog changes.')
@@ -184,15 +183,10 @@ async function handleCatalogChanges(diffFiles: string[]): Promise<void> {
 
   // Step 3: Generate changesets
   console.log('\n✏️  Creating changesets...')
-  for (const pkg of affectedPackages) {
-    console.log(`  Creating changeset for ${pkg}...`)
-    execSync(
-      `npx changeset --empty --include=${pkg} --summary="Bump dependency from catalog update"`,
-      {
-        stdio: 'inherit',
-      },
-    )
-  }
+  const packageNames = [...affectedPackages.keys()]
+  const shortHash = (await simpleGit().revparse(['--short', 'HEAD'])).trim()
+  const fileName = `.changeset/renovate-${shortHash}.md`
+  await createChangeset(fileName, changedDeps, packageNames)
 
   console.log('\n✅ Done creating changesets.')
 }

@@ -46,15 +46,20 @@ export async function findChangedDependenciesFromGit(
   oldRevision: string,
   newRevision: string = 'HEAD',
   filePath: string = 'pnpm-workspace.yaml',
-): Promise<string[]> {
+): Promise<Map<string, string>> {
   const oldCatalog = await loadCatalogFromGit(oldRevision, filePath)
   const newCatalog = await loadCatalogFromGit(newRevision, filePath)
 
-  return Object.entries(newCatalog)
+  const bumps = new Map()
+  Object.entries(newCatalog)
     .filter(
       ([pkg, newVersion]) => oldCatalog[pkg] && oldCatalog[pkg] !== newVersion,
     )
-    .map(([pkg]) => pkg)
+    .forEach(([pkg, newVersion]) => {
+      bumps.set(pkg, newVersion)
+    })
+
+  return bumps
 }
 
 /**
