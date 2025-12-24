@@ -81,6 +81,9 @@ catalogs:
     '@types/jest':
       specifier: 30.0.0
       version: 30.0.0
+    '@types/js-yaml':
+      specifier: ^4.0.9
+      version: 4.0.9
     '@types/node':
       specifier: 24.10.4
       version: 24.10.4
@@ -147,6 +150,9 @@ catalogs:
     eslint-plugin-react-hooks:
       specifier: 7.0.1
       version: 7.0.1
+    fast-glob:
+      specifier: 3.3.3
+      version: 3.3.3
     filesize:
       specifier: 11.0.13
       version: 11.0.13
@@ -171,6 +177,9 @@ catalogs:
     intl-messageformat:
       specifier: 10.7.18
       version: 10.7.18
+    js-yaml:
+      specifier: 4.1.1
+      version: 4.1.1
     lint-staged:
       specifier: 16.2.7
       version: 16.2.7
@@ -317,6 +326,9 @@ importers:
       eslint:
         specifier: 'catalog:'
         version: 9.39.2(jiti@2.4.2)
+      fast-glob:
+        specifier: 'catalog:'
+        version: 3.3.3
       globals:
         specifier: 'catalog:'
         version: 16.5.0
@@ -326,6 +338,9 @@ importers:
       husky:
         specifier: 'catalog:'
         version: 9.1.7
+      js-yaml:
+        specifier: 'catalog:'
+        version: 4.1.1
       lint-staged:
         specifier: 'catalog:'
         version: 16.2.7
@@ -363,9 +378,21 @@ importers:
       '@scaleway-lib/utils':
         specifier: workspace:*
         version: link:packages/utils
+      '@scaleway/changesets-renovate':
+        specifier: workspace:*
+        version: link:packages/changesets-renovate
 
   packages/changesets-renovate:
     dependencies:
+      '@types/js-yaml':
+        specifier: 'catalog:'
+        version: 4.0.9
+      fast-glob:
+        specifier: 'catalog:'
+        version: 3.3.3
+      js-yaml:
+        specifier: 'catalog:'
+        version: 4.1.1
       simple-git:
         specifier: 'catalog:'
         version: 3.30.0
@@ -2119,6 +2146,9 @@ packages:
 
   '@types/jest@30.0.0':
     resolution: {integrity: sha512-XTYugzhuwqWjws0CVz8QpM36+T+Dz5mTEBKhNs/esGLnCIlGdRy+Dq78NRjd7ls7r8BC8ZRMOrKlkO1hU0JOwA==}
+
+  '@types/js-yaml@4.0.9':
+    resolution: {integrity: sha512-k4MGaQl5TGo/iipqb2UDG2UwjXziSWkh0uysQelTlJpX1qGlpUZYm8PnO4DxG1qBomtJUdYJ6qR6xdIah10JLg==}
 
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
@@ -6601,6 +6631,8 @@ snapshots:
     dependencies:
       expect: 30.0.2
       pretty-format: 30.0.2
+
+  '@types/js-yaml@4.0.9': {}
 
   '@types/json-schema@7.0.15': {}
 

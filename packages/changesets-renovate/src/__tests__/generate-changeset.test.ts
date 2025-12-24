@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { run } from '..'
 import { defaultGitValues, mockSimpleGit } from '../../__mocks__/simple-git'
+import { run } from '../cli.js'
 
 vi.mock('node:fs/promises')
 
@@ -168,7 +168,7 @@ describe('generate changeset file', () => {
     await run()
 
     expect(console.log).toHaveBeenCalledWith(
-      'No package.json changes to published packages, skipping',
+      'No relevant changes detected, skipping',
     )
   })
 

@@ -40,9 +40,11 @@
     "cross-env": "catalog:",
     "esbuild-plugin-browserslist": "catalog:",
     "eslint": "catalog:",
+    "fast-glob": "catalog:",
     "globals": "catalog:",
     "happy-dom": "catalog:",
     "husky": "catalog:",
+    "js-yaml": "catalog:",
     "lint-staged": "catalog:",
     "mockdate": "catalog:",
     "oxlint": "1.33.0",
@@ -56,7 +58,8 @@
     "wait-for-expect": "catalog:"
   },
   "devDependencies": {
-    "@scaleway-lib/utils": "workspace:*"
+    "@scaleway-lib/utils": "workspace:*",
+    "@scaleway/changesets-renovate": "workspace:*"
   },
   "scripts": {
     "lint": "eslint --cache .",
