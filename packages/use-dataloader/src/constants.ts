@@ -10,7 +10,7 @@ export enum StatusEnum {
 }
 
 export const KEY_IS_NOT_STRING_ERROR = 'Key should be a string' as const
-export const DEFAULT_MAX_CONCURRENT_REQUESTS = 20 as ConstrainULong
+export const DEFAULT_MAX_CONCURRENT_REQUESTS = 20 as const
 
 export type KeyPolling = '3S' | '5S' | '10S'
 export type TimeMapPolling = Record<KeyPolling, number>
