@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/use-i18n",
-  "version": "7.2.0",
+  "version": "7.2.1",
   "description": "A small hook to handle i18n",
   "engines": {
     "node": ">=18.x"

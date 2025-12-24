@@ -11,12 +11,12 @@ jobs:
   typecheck:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v5.0.1
-      - uses: pnpm/action-setup@v4.1.0
+      - uses: actions/checkout@v6.0.1
+      - uses: pnpm/action-setup@v4.2.0
       - name: Use Node.js
-        uses: actions/setup-node@v5.0.0
+        uses: actions/setup-node@v6.1.0
         with:
-          node-version: 22.21.1
+          node-version: 24.12.0
           check-latest: true
           cache: "pnpm"
       - run: pnpm install
@@ -25,12 +25,12 @@ jobs:
   lint:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v5.0.1
-      - uses: pnpm/action-setup@v4.1.0
+      - uses: actions/checkout@v6.0.1
+      - uses: pnpm/action-setup@v4.2.0
       - name: Use Node.js
-        uses: actions/setup-node@v5.0.0
+        uses: actions/setup-node@v6.1.0
         with:
-          node-version: 22.21.1
+          node-version: 24.12.0
           check-latest: true
           cache: "pnpm"
       - run: pnpm install
@@ -42,10 +42,10 @@ jobs:
       matrix:
         node: ["20"]
     steps:
-      - uses: actions/checkout@v5.0.1
-      - uses: pnpm/action-setup@v4.1.0
+      - uses: actions/checkout@v6.0.1
+      - uses: pnpm/action-setup@v4.2.0
       - name: Use Node.js
-        uses: actions/setup-node@v5.0.0
+        uses: actions/setup-node@v6.1.0
         with:
           node-version: ${{ matrix.node }}
           check-latest: true
@@ -53,7 +53,7 @@ jobs:
       - run: pnpm install
       - run: pnpm run build
       - run: pnpm run test:coverage
-      - uses: codecov/codecov-action@v5.5.1
+      - uses: codecov/codecov-action@v5.5.2
         with:
           files: packages/**/coverage/cobertura-coverage.xml
           token: ${{ secrets.CODECOV_TOKEN }}
@@ -65,10 +65,10 @@ jobs:
       matrix:
         node: ["20"]
     steps:
-      - uses: actions/checkout@v5.0.1
-      - uses: pnpm/action-setup@v4.1.0
+      - uses: actions/checkout@v6.0.1
+      - uses: pnpm/action-setup@v4.2.0
       - name: Use Node.js
-        uses: actions/setup-node@v5.0.0
+        uses: actions/setup-node@v6.1.0
         with:
           node-version: ${{ matrix.node }}
           check-latest: true

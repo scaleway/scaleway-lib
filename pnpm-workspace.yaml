@@ -9,7 +9,7 @@ catalog:
   '@babel/preset-react': 7.28.5
   '@babel/preset-typescript': 7.28.5
   '@biomejs/biome': 2.3.10
-  '@changesets/changelog-github': 0.5.1
+  '@changesets/changelog-github': 0.5.2
   '@changesets/cli': 2.29.8
   '@commitlint/cli': 20.2.0
   '@commitlint/config-conventional': 20.2.0
@@ -23,11 +23,11 @@ catalog:
   '@rudderstack/analytics-js': 3.24.0
   '@scaleway/use-segment': 1.1.11
   '@segment/analytics-next': 1.81.1
-  '@stylistic/eslint-plugin': 4.4.1
+  '@stylistic/eslint-plugin': 5.6.1
   '@testing-library/jest-dom': 6.9.1
   '@testing-library/react': 16.3.1
   '@types/jest': 30.0.0
-  '@types/node': 22.19.3
+  '@types/node': 24.10.4
   '@types/react': 19.2.7
   '@types/react-dom': 19.2.3
   '@typescript-eslint/eslint-plugin': 8.43.0
@@ -39,7 +39,7 @@ catalog:
   cookie: 1.1.1
   cross-env: 10.1.0
   date-fns: 4.1.0
-  esbuild-plugin-browserslist: 1.0.2
+  esbuild-plugin-browserslist: 2.0.0
   eslint: 9.39.2
   eslint-config-airbnb: 19.0.4
   eslint-config-prettier: 10.1.8
@@ -48,10 +48,10 @@ catalog:
   eslint-plugin-import: 2.32.0
   eslint-plugin-jsx-a11y: 6.10.2
   eslint-plugin-react: 7.37.5
-  eslint-plugin-react-hooks: 5.2.0
+  eslint-plugin-react-hooks: 7.0.1
   filesize: 11.0.13
   globals: 16.5.0
-  globby: 14.1.0
+  globby: 16.0.0
   happy-dom: 20.0.11
   history: 5.3.0
   husky: 9.1.7
@@ -64,10 +64,10 @@ catalog:
   react: 19.2.3
   react-dom: 19.2.3
   react-router-dom: 6.29.0
-  read-pkg: 9.0.1
+  read-pkg: 10.0.0
   shx: 0.4.0
   simple-git: 3.30.0
-  tstyche: 4.3.0
+  tstyche: 5.0.2
   typescript: 5.9.3
   use-deep-compare-effect: 1.8.1
   vite: 7.3.0

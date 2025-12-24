@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/random-name",
-  "version": "5.1.2",
+  "version": "5.1.3",
   "description": "A small utility to generate a random name",
   "engines": {
     "node": ">=20.x"

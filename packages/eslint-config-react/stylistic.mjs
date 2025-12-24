@@ -29,7 +29,7 @@ export default [
     },
   },
   stylisticPlugin.configs['disable-legacy'],
-  stylisticPlugin.configs['recommended-flat'],
+  stylisticPlugin.configs['recommended'],
   {
     rules: {
       // --- Should be done when using biome/prettier formatter --- //
@@ -42,7 +42,6 @@ export default [
       '@stylistic/multiline-ternary': 'off',
       '@stylistic/no-trailing-spaces': 'off',
       '@stylistic/comma-style': 'off',
-      '@stylistic/func-call-spacing': 'off',
       '@stylistic/jsx-wrap-multilines': 'off',
       '@stylistic/member-delimiter-style': 'off',
       '@stylistic/jsx-curly-brace-presence': 'off',
@@ -62,7 +61,7 @@ export default [
         },
       ],
       '@stylistic/comma-spacing': defaultAirBnbRules['comma-spacing'],
-      '@stylistic/func-call-spacing': defaultAirBnbRules['func-call-spacing'],
+      // '@stylistic/func-call-spacing': defaultAirBnbRules['func-call-spacing'],
       '@stylistic/keyword-spacing': defaultAirBnbRules['keyword-spacing'],
       '@stylistic/no-extra-semi': defaultAirBnbRules['no-extra-semi'],
       '@stylistic/object-curly-spacing':

@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/cookie-consent",
-  "version": "2.0.11",
+  "version": "2.0.12",
   "description": "React provider to handle website end user consent cookie storage based on segment integrations",
   "main": "./dist/index.cjs",
   "type": "module",
@@ -47,11 +47,9 @@
     "cookie": "catalog:"
   },
   "devDependencies": {
-    "react": "catalog:",
-    "@scaleway/use-segment": "workspace:*"
+    "react": "catalog:"
   },
   "peerDependencies": {
-    "react": "18.x || 19.x",
-    "@scaleway/use-segment": "1.1.11"
+    "react": "18.x || 19.x"
   }
 }

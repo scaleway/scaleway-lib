@@ -1,7 +1,9 @@
 import type { RudderAnalytics } from '@rudderstack/analytics-js'
 import { normalizeId } from './normalizeId'
 
-export const normalizeIdsMigration = (rudderAnalytics: RudderAnalytics) => {
+export const normalizeIdsMigration = (
+  rudderAnalytics: RudderAnalytics,
+): void => {
   // normalize id issue with segment migration
   const anonymousId = rudderAnalytics.getAnonymousId()
   const normalizeAnonymousId = normalizeId(anonymousId)

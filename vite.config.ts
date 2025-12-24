@@ -2,8 +2,8 @@ import react from '@vitejs/plugin-react'
 import browserslist from 'browserslist'
 import { resolveToEsbuildTarget } from 'esbuild-plugin-browserslist'
 import { readPackage } from 'read-pkg'
-import { defineConfig } from 'vite'
 import type { UserConfig } from 'vite'
+import { defineConfig } from 'vite'
 
 const pkg = await readPackage()
 
@@ -33,13 +33,8 @@ const targets = resolveToEsbuildTarget(
 
 export const defaultConfig: UserConfig = {
   build: {
-    outDir: 'dist',
-    target: [...targets, 'node20'],
-    minify: false,
     lib: {
-      name: pkg.name,
       entry: 'src/index.ts',
-      formats: ['es'],
       fileName: (format, filename) => {
         if (format === 'es') {
           return `${filename}.js`
@@ -47,13 +42,18 @@ export const defaultConfig: UserConfig = {
 
         return `${filename}.${format}`
       },
+      formats: ['es'],
+      name: pkg.name,
     },
+    minify: false,
+    outDir: 'dist',
     rollupOptions: {
       external,
       output: {
         preserveModules: true,
       },
     },
+    target: [...targets, 'node20'],
   },
   plugins: [
     react({

@@ -17,22 +17,22 @@ const tests: TestType[] = [
     'fr',
     12.56,
   ]),
-  ...SUPPORTED_UNITS.map(unit =>
+  ...SUPPORTED_UNITS.flatMap(unit =>
     locales.map<TestType>(locale => [
       `should work with locale ${locale} and`,
       { unit },
       locale,
       12.56,
     ]),
-  ).flat(),
-  ...SUPPORTED_UNITS.map(unit =>
+  ),
+  ...SUPPORTED_UNITS.flatMap(unit =>
     locales.map<TestType>(locale => [
       `should work with long format, locale ${locale} and`,
       { short: false, unit },
       locale,
       12.56,
     ]),
-  ).flat(),
+  ),
   ...SUPPORTED_UNITS.map<TestType>(unit => [
     'should work with maximumFractionDigits',
     { maximumFractionDigits: 3, unit },

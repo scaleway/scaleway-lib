@@ -1,1 +1,1 @@
-export const IS_CLIENT = typeof document !== 'undefined'
+export const IS_CLIENT: boolean = typeof document !== 'undefined'

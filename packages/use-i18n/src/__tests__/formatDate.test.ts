@@ -2,7 +2,7 @@ import { describe, expect, test } from 'vitest'
 import formatDate, { supportedFormats } from '../formatDate'
 import type { FormatDateOptions } from '../formatDate'
 
-const locales = ['en', 'fr', 'de', 'ro', 'es']
+const locales = ['en', 'fr', 'de', 'ro', 'es'] as const
 
 const tests = [
   ...locales.map(locale =>
@@ -32,12 +32,11 @@ const tests = [
 ].flat() as [FormatDateOptions, string, string, Date | string | number][]
 
 describe('formatDate', () => {
-  test.each(tests)(
-    'should work with format "%s", for date = "%s" and locale "%s"',
-    (format, _, locale, date) => {
-      expect(formatDate(locale, date, format)).toMatchSnapshot()
-    },
-  )
+  test.each(
+    tests,
+  )('should work with format "%s", for date = "%s" and locale "%s"', (format, _, locale, date) => {
+    expect(formatDate(locale, date, format)).toMatchSnapshot()
+  })
 
   test.each(locales)('should work with custom format and locale %s', locale => {
     const format: FormatDateOptions = {
@@ -73,7 +72,7 @@ describe('formatDate', () => {
       // @ts-expect-error we check a failing case
       formatDate('fr', 1581607680000, 'not a valid format'),
     ).toThrowError(
-      'format "not a valid format" should be one of second, hour, hourOnly, long, short, shortWithoutDay, numeric, numericHour or a valid Intl.DateTimeFormat options object',
+      'format "not a valid format" should be one of hour, hourOnly, long, second, short, shortWithoutDay, numeric, numericHour or a valid Intl.DateTimeFormat options object',
     )
   })
 })
