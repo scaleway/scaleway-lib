@@ -1,4 +1,4 @@
-const SECOND: number = 1000
+const SECOND = 1000 as const
 const MINUTE: number = 60 * SECOND
 const HOUR: number = 60 * MINUTE
 
@@ -9,20 +9,33 @@ export enum StatusEnum {
   SUCCESS = 'success',
 }
 
-export const KEY_IS_NOT_STRING_ERROR: string = 'Key should be a string'
-export const DEFAULT_MAX_CONCURRENT_REQUESTS: number = 20
+export const KEY_IS_NOT_STRING_ERROR = 'Key should be a string' as const
+export const DEFAULT_MAX_CONCURRENT_REQUESTS = 20 as ConstrainULong
 
-export type TimeMap = { [key: string]: number }
+export type KeyPolling = '3S' | '5S' | '10S'
+export type TimeMapPolling = Record<KeyPolling, number>
 
-export const POLLING_INTERVAL: TimeMap = {
+export const POLLING_INTERVAL: TimeMapPolling = {
   '3S': 3 * SECOND,
   '5S': 5 * SECOND,
   '10S': 10 * SECOND,
 } as const
 
-export const DATALIFE_TIME: TimeMap = {
-  '1h': 1 * HOUR,
-  '1m': 1 * MINUTE,
+export type KeyDataLifeTime =
+  | '1h'
+  | '1m'
+  | '2h'
+  | '3m'
+  | '5m'
+  | '5S'
+  | '10S'
+  | '30S'
+  | 'NONE'
+export type TimeMapDataLifeTime = Record<KeyDataLifeTime, number>
+
+export const DATALIFE_TIME: TimeMapDataLifeTime = {
+  '1h': HOUR,
+  '1m': MINUTE,
   '2h': 2 * HOUR,
   '3m': 3 * MINUTE,
   '5m': 5 * MINUTE,
