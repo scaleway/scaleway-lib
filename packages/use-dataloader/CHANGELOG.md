@@ -1,5 +1,19 @@
 # Change Log
 
+## 6.0.0
+
+### Major Changes
+
+- [#2858](https://github.com/scaleway/scaleway-lib/pull/2858) [`5148f41`](https://github.com/scaleway/scaleway-lib/commit/5148f4144c56fb375c4d76abefadbf55f6f51127) Thanks [@philibea](https://github.com/philibea)! - - Changed `isLoading` behavior to be `true` only during the initial fetch when there's no cached data
+  - `isLoading` is now `false` during subsequent fetches, even when `isFetching` is `true`
+  - Added distinction between initial loading (`isLoading`) and ongoing fetching (`isFetching`)
+  - `isLoading` is `true` only when there is no cache data and we're fetching for the first time
+  - `isFetching` remains `true` during any active request (initial or subsequent)
+
+### Patch Changes
+
+- [#2884](https://github.com/scaleway/scaleway-lib/pull/2884) [`18e373e`](https://github.com/scaleway/scaleway-lib/commit/18e373e6314d805940384706b6c80093b02d2a56) Thanks [@philibea](https://github.com/philibea)! - Fix type issue on declared const
+
 ## 5.5.3
 
 ### Patch Changes
