@@ -47,7 +47,7 @@
     "js-yaml": "catalog:",
     "lint-staged": "catalog:",
     "mockdate": "catalog:",
-    "oxlint": "1.33.0",
+    "oxlint": "1.35.0",
     "read-pkg": "catalog:",
     "shx": "catalog:",
     "tstyche": "catalog:",
