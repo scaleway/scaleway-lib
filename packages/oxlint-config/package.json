@@ -1,10 +1,10 @@
 {
   "name": "@scaleway/oxlint-config",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Scaleway's shareable configuration for oxlint",
   "keywords": [
     "oxlint",
-		"oxlint-config",
+    "oxlint-config",
     "lint",
     "config",
     "scaleway"
@@ -37,9 +37,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-     "oxlint": "catalog:"
+    "oxlint": "catalog:"
   },
   "peerDependencies": {
-     "oxlint": "catalog:"
+    "oxlint": "catalog:"
   }
 }
