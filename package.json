@@ -33,6 +33,7 @@
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
+    "@typescript/native-preview": "catalog:",
     "@vitejs/plugin-react": "catalog:",
     "@vitest/coverage-istanbul": "catalog:",
     "browserslist": "catalog:",
@@ -47,7 +48,7 @@
     "js-yaml": "catalog:",
     "lint-staged": "catalog:",
     "mockdate": "catalog:",
-    "oxlint": "1.35.0",
+    "oxlint": "catalog:",
     "read-pkg": "catalog:",
     "shx": "catalog:",
     "tstyche": "catalog:",
@@ -59,12 +60,15 @@
   },
   "devDependencies": {
     "@scaleway-lib/utils": "workspace:*",
-    "@scaleway/changesets-renovate": "workspace:*"
+    "@scaleway/changesets-renovate": "workspace:*",
+    "@scaleway/oxlint-config": "workspace:*"
   },
   "scripts": {
     "lint": "eslint --cache .",
     "lint:fix": "pnpm run lint --fix",
     "lint:catalog": "pnpm check-catalog-usage",
+    "oxc": "pnpm oxlint -c .oxlintrc.json",
+    "oxc:fix": "pnpm oxlint -c .oxlintrc.json --fix",
     "build": "pnpm recursive run build",
     "typecheck": "pnpm recursive run typecheck",
     "commit": "npx git-cz -a",

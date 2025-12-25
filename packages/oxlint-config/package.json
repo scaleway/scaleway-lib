@@ -4,6 +4,7 @@
   "description": "Scaleway's shareable configuration for oxlint",
   "keywords": [
     "oxlint",
+		"oxlint-config",
     "lint",
     "config",
     "scaleway"
@@ -19,11 +20,19 @@
   },
   "homepage": "https://github.com/scaleway/oxlint-config-scaleway#readme",
   "main": "index.json",
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "index.json",
     "react.json",
     "typescript.json"
   ],
+  "exports": {
+    ".": "./index.json",
+    "./react": "./react.json",
+    "./typescript": "./typescript.json"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

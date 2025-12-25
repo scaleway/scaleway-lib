@@ -1,0 +1,15 @@
+{
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "plugins": [],
+    "extends": [
+      // "@scaleway/oxlint-config",
+      "./packages/oxlint-config/index.json",
+      "./packages/oxlint-config/react.json",
+      "./packages/oxlint-config/typescript.json"
+    ],
+    "ignorePatterns": [
+      "packages_deprecated/**",
+      "**/package.config.d.ts",
+      "global.d.ts"
+    ],
+}
