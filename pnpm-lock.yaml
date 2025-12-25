@@ -163,8 +163,8 @@ catalogs:
       specifier: 16.5.0
       version: 16.5.0
     globby:
-      specifier: 16.0.0
-      version: 16.0.0
+      specifier: 16.1.0
+      version: 16.1.0
     happy-dom:
       specifier: 20.0.11
       version: 20.0.11
@@ -611,7 +611,7 @@ importers:
         version: 2.11.4
       globby:
         specifier: 'catalog:'
-        version: 16.0.0
+        version: 16.1.0
       module-from-string:
         specifier: 'catalog:'
         version: 3.3.1
@@ -3356,8 +3356,8 @@ packages:
     resolution: {integrity: sha512-jhIXaOzy1sb8IyocaruWSn1TjmnBVs8Ayhcy83rmxNJ8q2uWKCAj3CnJY+KpGSXCueAPc0i05kVvVKtP1t9S3g==}
     engines: {node: '>=10'}
 
-  globby@16.0.0:
-    resolution: {integrity: sha512-ejy4TJFga99yW6Q0uhM3pFawKWZmtZzZD/v/GwI5+9bCV5Ew+D2pSND6W7fUes5UykqSsJkUfxFVdRh7Q1+P3Q==}
+  globby@16.1.0:
+    resolution: {integrity: sha512-+A4Hq7m7Ze592k9gZRy4gJ27DrXRNnC1vPjxTt1qQxEY8RxagBkBxivkCwg7FxSTG0iLLEMaUx13oOr0R2/qcQ==}
     engines: {node: '>=20'}
 
   gopd@1.2.0:
@@ -8122,7 +8122,7 @@ snapshots:
       merge2: 1.4.1
       slash: 3.0.0
 
-  globby@16.0.0:
+  globby@16.1.0:
     dependencies:
       '@sindresorhus/merge-streams': 4.0.0
       fast-glob: 3.3.3
