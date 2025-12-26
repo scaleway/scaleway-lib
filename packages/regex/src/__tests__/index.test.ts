@@ -56,6 +56,7 @@ import {
   uppercaseBasicSubdomain,
   url,
   uuid,
+  webhostingUsernameEmailRegex,
 } from '..'
 
 const alphanumDashDotsText = 'testwithdashdots-.'
@@ -1166,6 +1167,25 @@ describe('@regex', () => {
       ['user..name', false],
     ])('should match regex %s to be %s', (string, expected) => {
       expect(kafkaUsernameRegex.test(string)).toBe(expected)
+    })
+  })
+
+  describe('webhostingUsernameEmailRegex', () => {
+    test.each([
+      ['test', true],
+      ['test_test', true],
+      ['test-test', true],
+      ['test.test', true],
+      ['test.test.', false],
+      ['test..test', false],
+      ['test-test-', false],
+      ['test_test_', false],
+      ['test.test.', false],
+      ['test..test', false],
+      ['test..test', false],
+      ['test..test', false],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(webhostingUsernameEmailRegex.test(string)).toBe(expected)
     })
   })
 
