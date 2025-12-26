@@ -123,7 +123,9 @@ const DataLoaderProvider: ComponentType<DataLoaderProviderProps> = ({
     (key: string) => {
       if (key && typeof key === 'string') {
         getRequest(key)?.clearData()
-      } else throw new Error(KEY_IS_NOT_STRING_ERROR)
+      } else {
+        throw new Error(KEY_IS_NOT_STRING_ERROR)
+      }
     },
     [getRequest],
   )
@@ -137,7 +139,9 @@ const DataLoaderProvider: ComponentType<DataLoaderProviderProps> = ({
     async (key?: string) => {
       if (key && typeof key === 'string') {
         await getRequest(key)?.load(true)
-      } else throw new Error(KEY_IS_NOT_STRING_ERROR)
+      } else {
+        throw new Error(KEY_IS_NOT_STRING_ERROR)
+      }
     },
     [getRequest],
   )
@@ -149,7 +153,9 @@ const DataLoaderProvider: ComponentType<DataLoaderProviderProps> = ({
           .filter(request => request.key.startsWith(startPrefix))
           .map(request => request.load(true)),
       )
-    } else throw new Error(KEY_IS_NOT_STRING_ERROR)
+    } else {
+      throw new Error(KEY_IS_NOT_STRING_ERROR)
+    }
   }, [])
 
   const reloadAll = useCallback(async () => {

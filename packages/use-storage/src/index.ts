@@ -1,3 +1,4 @@
+// oxlint-disable unicorn/no-typeof-undefined
 import {
   useCallback,
   useEffect,
@@ -7,7 +8,7 @@ import {
 } from 'react'
 
 declare global {
-  // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
+  // oxlint-disable-next-line typescript/consistent-type-definitions
   interface WindowEventMap {
     // native storage event is not broadcasted on the current page
     // https://developer.mozilla.org/en-US/docs/Web/API/Window/storage_event

@@ -17,7 +17,7 @@ jobs:
         uses: scaleway/action-scw-secret@v0
         with:
           secret-names: |
-              NPM_TOKEN, /npm/token_scaleway_lib
+            NPM_TOKEN, /npm/token_scaleway_lib
           access-key: ${{ vars.SCW_ACCESS_KEY }}
           secret-key: ${{ secrets.SCW_SECRET_KEY }}
           default-project-id: ${{ vars.SCW_DEFAULT_PROJECT_ID }}

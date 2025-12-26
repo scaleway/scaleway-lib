@@ -41,17 +41,20 @@
     "cross-env": "catalog:",
     "esbuild-plugin-browserslist": "catalog:",
     "eslint": "catalog:",
+    "eslint-plugin-oxlint": "catalog:",
     "fast-glob": "catalog:",
     "globals": "catalog:",
     "happy-dom": "catalog:",
     "husky": "catalog:",
     "js-yaml": "catalog:",
+    "jsdom": "catalog:",
     "lint-staged": "catalog:",
     "mockdate": "catalog:",
     "oxlint": "catalog:",
     "read-pkg": "catalog:",
     "shx": "catalog:",
     "tstyche": "catalog:",
+    "turbo": "catalog:",
     "typescript": "catalog:",
     "vite": "catalog:",
     "vitest": "catalog:",
@@ -68,14 +71,18 @@
     "lint:fix": "pnpm run lint --fix",
     "lint:catalog": "pnpm check-catalog-usage",
     "oxc": "pnpm oxlint -c .oxlintrc.json",
+    "oxc:quiet": "pnpm oxlint -c .oxlintrc.json --quiet",
     "oxc:fix": "pnpm oxlint -c .oxlintrc.json --fix",
-    "build": "pnpm recursive run build",
-    "typecheck": "pnpm recursive run typecheck",
+    "build": "pnpm turbo build",
+    "typecheck": "pnpm turbo typecheck",
+    "typecheck:generate": "pnpm turbo typecheck:generate",
+    "typecheck:go": "pnpm turbo typecheck:go",
+    "typecheck:generate:go": "pnpm turbo typecheck:generate:go",
     "commit": "npx git-cz -a",
-    "format": "biome check --linter-enabled=false --write .",
+    "format": "biome check  --linter-enabled=false --write .",
     "format:check": "biome format --verbose .",
-    "test": "pnpm recursive run test:unit",
-    "test:coverage": "pnpm run test --coverage",
+    "test:unit": "pnpm turbo test:unit",
+    "test:coverage": "pnpm test:unit -- --coverage",
     "typecheck:global": "pnpm tsc --noEmit",
     "test:types": "tstyche",
     "release": "pnpm build && pnpm changeset publish",
@@ -101,9 +108,14 @@
     ]
   },
   "lint-staged": {
-    "*.(j|t)s?(x)": [
-      "biome format --write .",
-      "eslint --fix"
+    "*.ts?(x)": [
+      "pnpm run format",
+      "pnpm -w biome lint . --diagnostic-level=error",
+      "oxlint -c .oxlintrc.json --quiet --fix",
+      "eslint --cache --cache-strategy content --fix"
+    ],
+    "*.y?(a)ml": [
+      "pnpm dlx prettier --write '**/*.{yml,yaml}' --single-quote"
     ],
     "*.json": [
       "biome format --write ."

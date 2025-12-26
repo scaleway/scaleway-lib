@@ -1,7 +1,9 @@
 type ID = string | number | undefined | null
 
 export const normalizeId = (id: ID): string | undefined => {
-  if (id === null || id === undefined) return undefined
+  if (id === null || id === undefined) {
+    return undefined
+  }
 
   // Already a string but possibly JSON-encoded
   if (typeof id === 'string') {

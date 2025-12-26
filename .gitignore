@@ -15,6 +15,13 @@ dist
 coverage
 .reports
 
+# turbo
+.turbo
+!.turbo/config.json
+examples/*/.turbo
+packages/*/.turbo
+tools/*/.turbo
+
 
 # VSCode extension "Local History"
 .history

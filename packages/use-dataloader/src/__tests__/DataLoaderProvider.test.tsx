@@ -32,7 +32,7 @@ const wrapperWith2ConcurrentRequests = ({
   <DataLoaderProvider maxConcurrentRequests={2}>{children}</DataLoaderProvider>
 )
 
-describe('DataLoaderProvider', () => {
+describe('dataLoaderProvider', () => {
   test('should render correctly', () => {
     render(<DataLoaderProvider>Test</DataLoaderProvider>)
     expect(screen.getByText('Test')).toBeTruthy()
@@ -59,7 +59,7 @@ describe('DataLoaderProvider', () => {
     expect(testRequest.status).toBe(StatusEnum.LOADING)
     expect(method).toBeCalledTimes(1)
     await waitFor(() => expect(testRequest.status).toBe(StatusEnum.SUCCESS))
-    expect(result.current.getCachedData(TEST_KEY)).toBe(true)
+    expect(result.current.getCachedData(TEST_KEY)).toBeTruthy()
     try {
       // @ts-expect-error Should throw an error
       await result.current.reload(3).catch(undefined)
@@ -76,7 +76,7 @@ describe('DataLoaderProvider', () => {
       throw new Error('It should throw an error')
     } catch (error) {
       expect((error as Error).message).toBe(KEY_IS_NOT_STRING_ERROR)
-      expect(result.current.getCachedData(TEST_KEY)).toBe(true)
+      expect(result.current.getCachedData(TEST_KEY)).toBeTruthy()
     }
   })
 
@@ -98,8 +98,8 @@ describe('DataLoaderProvider', () => {
     testRequest.load().catch(undefined)
     await waitFor(() => expect(testRequest.status).toBe(StatusEnum.SUCCESS))
     expect(method).toBeCalledTimes(1)
-    expect(testRequest.data).toBe(true)
-    expect(result.current.getCachedData(TEST_KEY)).toBe(true)
+    expect(testRequest.data).toBeTruthy()
+    expect(result.current.getCachedData(TEST_KEY)).toBeTruthy()
     result.current.reload(TEST_KEY).catch(undefined)
     await waitFor(() => expect(testRequest.status).toBe(StatusEnum.LOADING))
     await waitFor(() => expect(testRequest.status).toBe(StatusEnum.SUCCESS))
@@ -151,8 +151,8 @@ describe('DataLoaderProvider', () => {
       result.current.addRequest(3, {
         method,
       })
-    } catch (e) {
-      expect((e as Error).message).toBe(KEY_IS_NOT_STRING_ERROR)
+    } catch (error) {
+      expect((error as Error).message).toBe(KEY_IS_NOT_STRING_ERROR)
     }
   })
 

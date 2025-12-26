@@ -19,7 +19,9 @@
   "scripts": {
     "prebuild": "shx rm -rf dist",
     "typecheck": "tsc --noEmit",
+    "typecheck:go": "tsgo --noEmit",
     "type:generate": "tsc --declaration -p tsconfig.build.json",
+    "type:generate:go": "tsgo --declaration -p tsconfig.build.json",
     "build": "vite build --config vite.config.ts && pnpm run type:generate",
     "build:profile": "npx vite-bundle-visualizer -c vite.config.ts",
     "lint": "eslint --report-unused-disable-directives --cache --cache-strategy content --ext ts,tsx .",

@@ -30,7 +30,7 @@ const fakeLongErrorPromise = () =>
     setTimeout(() => reject(new Error('test')), 1000)
   })
 
-describe('Dataloader class', () => {
+describe('dataloader class', () => {
   test('should create instance then load then destroy', async () => {
     const method = vi.fn(fakeSuccessPromise)
     const notifyChanges = vi.fn()
@@ -101,7 +101,7 @@ describe('Dataloader class', () => {
     await instance.load()
     expect(method).toBeCalledTimes(1)
     expect(notify).toBeCalledTimes(1)
-    expect(instance.getData()).toBe(true)
+    expect(instance.getData()).toBeTruthy()
     instance.clearData()
   })
 

@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 
+// oxlint-disable eslint/no-console
+// oxlint-disable eslint/max-statements
+
 /**
  * Script to check that dependencies use catalog references instead of hardcoded versions
  */
@@ -45,11 +48,12 @@ function checkDependencies(
   catalogPackages: string[],
   errors: DependencyError[],
 ): void {
-  if (!deps) return
+  if (!deps) {
+    return
+  }
 
   for (const [pkgName, version] of Object.entries(deps)) {
     if (catalogPackages.includes(pkgName) && version !== 'catalog:') {
-      // eslint-disable-next-line no-console
       console.error(
         `❌ Error: Package "${pkgName}" in "${filePath}" should use "catalog:" but uses "${version}"`,
       )
@@ -96,7 +100,6 @@ async function main(): Promise<void> {
     // Get catalog packages
     const catalogPackages = getCatalogPackages(workspacePath)
 
-    // eslint-disable-next-line no-console
     console.log('Catalog packages found:', catalogPackages)
 
     // Check root package.json
@@ -149,28 +152,24 @@ async function main(): Promise<void> {
             catalogPackages,
             errors,
           )
-        } catch (err) {
-          // eslint-disable-next-line no-console
+        } catch (error) {
           console.error(
             `Error reading ${pkgJsonPath}:`,
-            err instanceof Error ? err.message : String(err),
+            error instanceof Error ? error.message : String(error),
           )
         }
       }
     }
 
     if (errors.length > 0) {
-      // eslint-disable-next-line no-console
       console.error(
         '\n❌ Found dependencies that should use catalog: references',
       )
       process.exit(1)
     } else {
-      // eslint-disable-next-line no-console
       console.log('\n✅ All catalog packages are properly referenced')
     }
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error(
       'Error:',
       error instanceof Error ? error.message : String(error),

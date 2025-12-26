@@ -446,8 +446,8 @@ describe('i18n hook', () => {
 
     await act(async () => {
       // we test even if an incorrect typescript value is being passed to the function
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-expect-error
+
+      // @ts-expect-error expected error
       await result.current.switchLocale('test')
     })
 

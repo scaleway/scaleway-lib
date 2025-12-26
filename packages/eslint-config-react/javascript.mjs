@@ -12,7 +12,7 @@ const compat = new FlatCompat({
   baseDirectory: dirname,
 })
 
-export default [
+export const defaultJavascriptRules = [
   ...fixupConfigRules(compat.config(airbnb)),
   ...shared,
   {
@@ -26,3 +26,5 @@ export default [
     },
   },
 ]
+
+export default defaultJavascriptRules

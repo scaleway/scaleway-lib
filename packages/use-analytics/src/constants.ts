@@ -32,12 +32,12 @@ export const CATEGORIES = [
 ] as const
 
 export const destSDKBaseURL = (cdnUrl: string): string =>
-  `${cdnUrl}/cdn/v3/modern/js-integrations`
+  `${cdnUrl}/cdn/v3/modern/js-integrations` as const
 export const pluginsSDKBaseURL = (cdnUrl: string): string =>
-  `${cdnUrl}/cdn/v3/modern/plugins`
+  `${cdnUrl}/cdn/v3/modern/plugins` as const
 
-export const COOKIE_PREFIX: string = '_scw_rgpd'
-export const HASH_COOKIE: string = `${COOKIE_PREFIX}_hash`
+export const COOKIE_PREFIX: string = '_scw_rgpd' as const
+export const HASH_COOKIE: string = `${COOKIE_PREFIX}_hash` as const
 
 // Appx 13 Months
 export const CONSENT_MAX_AGE: number = 13 * 30 * 24 * 60 * 60

@@ -15,7 +15,7 @@ describe('normalizeId', () => {
   it('should parse valid JSON strings to string', () => {
     expect(normalizeId('"user123"')).toBe('user123')
     expect(normalizeId('"12345"')).toBe('12345')
-    expect(normalizeId('"\\"nested\\" string"')).toBe('"nested" string')
+    expect(normalizeId(String.raw`"\"nested\" string"`)).toBe('"nested" string')
   })
 
   it('should ignore JSON strings that decode to non-strings', () => {

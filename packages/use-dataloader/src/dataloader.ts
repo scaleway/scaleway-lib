@@ -1,3 +1,5 @@
+// oxlint-disable eslint/max-statements
+//
 import { DEFAULT_MAX_CONCURRENT_REQUESTS, StatusEnum } from './constants'
 import type { PromiseType } from './types'
 
@@ -48,7 +50,9 @@ class DataLoader<ResultType, ErrorType> {
       this.status = StatusEnum.LOADING
     }
     this.data = DataLoader.cachedData[this.key] as ResultType
-    if (args.notifyChanges) this.observers.push(args.notifyChanges)
+    if (args.notifyChanges) {
+      this.observers.push(args.notifyChanges)
+    }
   }
 
   public notifyChanges(): void {
@@ -153,7 +157,9 @@ class DataLoader<ResultType, ErrorType> {
 
   public removeObserver(observer: () => void): void {
     const index = this.observers.indexOf(observer)
-    if (index > -1) this.observers.splice(index, 1)
+    if (index !== -1) {
+      this.observers.splice(index, 1)
+    }
   }
 }
 

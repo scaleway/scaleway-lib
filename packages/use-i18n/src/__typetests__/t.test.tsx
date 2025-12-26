@@ -1,15 +1,16 @@
 import { expect, test } from 'tstyche'
 import { useI18n } from '../usei18n'
 
-const { t } = useI18n<{
+type I18NLocale = {
   hello: 'world'
   'doe.john': 'John Doe'
   'doe.jane': 'Jane Doe'
   'doe.child': 'Child is {name}'
   'describe.john': '{name} is {age} years old'
-}>()
+}
 
 test('i18n - t', () => {
+  const { t } = useI18n<I18NLocale>()
   expect(t('hello')).type.toBe<string>()
   // Single key
   expect(t).type.not.toBeCallableWith('keydoesnotexists')
@@ -55,6 +56,6 @@ test('i18n - t', () => {
   ).type.toBe<string>()
 
   // Required generic
-  const { t: t2 } = useI18n<{}>()
+  const { t: t2 } = useI18n<Record<'', string>>()
   expect(t2).type.not.toBeCallableWith('test')
 })

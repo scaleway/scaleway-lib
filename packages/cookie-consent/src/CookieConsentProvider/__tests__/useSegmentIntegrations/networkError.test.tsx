@@ -4,7 +4,7 @@ import { useSegmentIntegrations } from '../../useSegmentIntegrations'
 
 globalThis.fetch = vi.fn(() => Promise.reject(new Error('randomError')))
 
-describe('CookieConsent - useSegmentIntegrations', () => {
+describe('cookieConsent - useSegmentIntegrations', () => {
   it('should call segment and return empty array if any error occurs in the fetch', async () => {
     const { result } = renderHook(() =>
       useSegmentIntegrations({
@@ -22,6 +22,6 @@ describe('CookieConsent - useSegmentIntegrations', () => {
     await waitFor(() => {
       expect(globalThis.fetch).toHaveBeenCalled()
     })
-    expect(result.current.isLoaded).toBe(true)
+    expect(result.current.isLoaded).toBeTruthy()
   })
 })

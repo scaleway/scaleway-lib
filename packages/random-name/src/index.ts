@@ -837,4 +837,6 @@ const randomName = (prefix = '', separator = '-'): string => {
   return prefix.length > 0 ? `${prefix}${separator}${name}` : name
 }
 
+export { randomName }
+
 export default randomName

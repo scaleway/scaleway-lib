@@ -22,7 +22,7 @@ const defaultAirBnbRules = [...fixupPluginRules(config)].reduce(
   {},
 )
 
-export default [
+const defaultStylisticRules =  [
   {
     plugins: {
       '@stylistic': stylisticPlugin,
@@ -78,3 +78,6 @@ export default [
     },
   },
 ]
+
+export { defaultStylisticRules }
+export default defaultStylisticRules

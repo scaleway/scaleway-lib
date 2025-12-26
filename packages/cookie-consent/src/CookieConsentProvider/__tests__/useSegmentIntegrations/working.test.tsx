@@ -57,7 +57,7 @@ globalThis.fetch = vi.fn(() =>
   } as unknown as Response),
 )
 
-describe('CookieConsent - useSegmentIntegrations', () => {
+describe('cookieConsent - useSegmentIntegrations', () => {
   it('should call segment and processed results when everything is alright', async () => {
     const { result } = renderHook(() =>
       useSegmentIntegrations({
@@ -65,7 +65,7 @@ describe('CookieConsent - useSegmentIntegrations', () => {
       }),
     )
 
-    expect(result.current.isLoaded).toBe(false)
+    expect(result.current.isLoaded).toBeFalsy()
 
     await waitFor(() => {
       expect(result.current.integrations).toStrictEqual([
@@ -103,6 +103,6 @@ describe('CookieConsent - useSegmentIntegrations', () => {
     await waitFor(() => {
       expect(globalThis.fetch).toHaveBeenCalled()
     })
-    expect(result.current.isLoaded).toBe(true)
+    expect(result.current.isLoaded).toBeTruthy()
   })
 })

@@ -1,9 +1,17 @@
+// For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
+
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import babelParser from '@babel/eslint-parser'
 import scw from '@scaleway/eslint-config-react/javascript'
 import scwTypescript from '@scaleway/eslint-config-react/typescript'
 import globals from 'globals'
+import oxlint from 'eslint-plugin-oxlint'
 
-export default [
+const filename = fileURLToPath(import.meta.url)
+const dirname = path.dirname(filename)
+
+const defaultRules = [
   {
     ignores: [
       '**/node_modules/',
@@ -22,7 +30,7 @@ export default [
         version: 'detect', // React version. "detect" automatically picks the version you have installed.
         // You can also use `16.0`, `16.3`, etc, if you want to override the detected value.
         // Defaults to the "defaultVersion" setting and warns if missing, and to "detect" in the future
-        defaultVersion: '18', // Default React version to use when the version you have installed cannot be detected.
+        defaultVersion: '19', // Default React version to use when the version you have installed cannot be detected.
         // If not provided, defaults to the latest React version.
       },
       'import/resolver': {
@@ -37,6 +45,17 @@ export default [
     languageOptions: {
       globals: {
         ...globals.browser,
+      },
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+
+      parserOptions: {
+        tsconfigRootDir: dirname,
+        project: [
+          'tsconfig.json',
+          'packages/*/tsconfig.json',
+          'tools/*/tsconfig.json',
+        ],
       },
     },
   },
@@ -99,7 +118,7 @@ export default [
       '@typescript-eslint/no-floating-promises': 'warn',
     },
   })),
-
+ ...oxlint.buildFromOxlintConfigFile('.oxlintrc.json'),
   {
     files: [
       '**/__tests__/**/*.ts{x,}',
@@ -115,3 +134,6 @@ export default [
     },
   },
 ]
+
+
+export default defaultRules

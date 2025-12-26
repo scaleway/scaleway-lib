@@ -1,3 +1,5 @@
+// oxlint-disable eslint/max-statements
+
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { StatusEnum } from './constants'
 import { useDataLoaderContext } from './DataLoaderProvider'
@@ -189,7 +191,7 @@ export const useInfiniteDataLoader = <
 
   useEffect(() => {
     request.method = () => method(paramsArgs)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // oxlint-disable-next-line react-hooks/exhaustive-deps
   }, [method, request])
 
   useEffect(() => {
@@ -202,7 +204,7 @@ export const useInfiniteDataLoader = <
   useEffect(() => {
     setPage(() => baseParams[pageParamKey])
     nextPageRef.current = baseParams[pageParamKey]
-    /* eslint-disable-next-line react-hooks/exhaustive-deps */
+    // oxlint-disable-next-line react-hooks/exhaustive-deps
   }, [baseQueryKey])
 
   useEffect(() => {
@@ -221,7 +223,7 @@ export const useInfiniteDataLoader = <
         .catch(onFailedLoad)
     }
     optimisticIsLoadingRef.current = false
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // oxlint-disable-next-line react-hooks/exhaustive-deps
   }, [needLoad, request])
 
   useEffect(() => {

@@ -24,14 +24,13 @@
     "access": "public"
   },
   "files": [
-    "index.json",
-    "react.json",
-    "typescript.json"
+    "configs/**"
   ],
   "exports": {
-    ".": "./index.json",
-    "./react": "./react.json",
-    "./typescript": "./typescript.json"
+    ".": "./configs/index.json",
+    "./react": "./configs/react.json",
+    "./typescript": "./configs/typescript.json",
+    "./vitest": "./configs/vitest.json"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

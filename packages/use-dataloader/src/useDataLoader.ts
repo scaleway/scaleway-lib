@@ -1,3 +1,5 @@
+// oxlint-disable eslint/max-statements
+
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { StatusEnum } from './constants'
 import { useDataLoaderContext } from './DataLoaderProvider'
@@ -8,6 +10,9 @@ import type {
   UseDataLoaderConfig,
   UseDataLoaderResult,
 } from './types'
+
+// oxlint-disable-next-line unicorn/empty-brace-spaces
+const noop = () => {}
 
 export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
   key: KeyType,
@@ -168,9 +173,8 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
             needPollingRef.current &&
             !request.isCalled)
         ) {
-          const defaultOnSuccessOrError = () => {}
-          const onSuccessLoad = onSuccessRef.current ?? defaultOnSuccessOrError
-          const onFailedLoad = onErrorRef.current ?? defaultOnSuccessOrError
+          const onSuccessLoad = onSuccessRef.current ?? noop
+          const onFailedLoad = onErrorRef.current ?? noop
 
           request.load(true).then(onSuccessLoad).catch(onFailedLoad)
         }
