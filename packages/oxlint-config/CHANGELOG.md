@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.2
+
+### Patch Changes
+
+- [`aba524c`](https://github.com/scaleway/scaleway-lib/commit/aba524c19b887ea924fb46d0a1227b6a04e371a9) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - issue with repository git config package
+
 ## 0.1.1
 
 ### Patch Changes
