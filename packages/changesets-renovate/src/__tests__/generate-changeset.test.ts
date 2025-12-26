@@ -1,12 +1,24 @@
-import fs from 'node:fs/promises'
+import { writeFile, readFile } from 'node:fs/promises'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { defaultGitValues, mockSimpleGit } from '../../__mocks__/simple-git'
 import { run } from '../cli.js'
 
+// Mock all external dependencies
 vi.mock('node:fs/promises')
+
+const mockedWriteFile = vi.mocked(writeFile)
+const mockedReadFile = vi.mocked(readFile)
 
 beforeEach(() => {
   vi.spyOn(console, 'log')
+  // Mock readFile to return empty config by default
+  mockedReadFile.mockImplementation(async path => {
+    if (path === '.changeset/config.json') {
+      return '{}'
+    }
+
+    return '{}'
+  })
 })
 
 describe('generate changeset file', () => {
@@ -62,11 +74,17 @@ describe('generate changeset file', () => {
       push,
     })
 
-    fs.readFile = vi
-      .fn()
-      .mockResolvedValueOnce('{}')
-      .mockResolvedValueOnce(`{"name":"packageName","version":"1.0.0"}`)
-    fs.writeFile = vi.fn()
+    // Mock changeset config for this test
+    mockedReadFile.mockImplementation(async path => {
+      if (path === '.changeset/config.json') {
+        return '{}'
+      }
+      if (path === 'test/package.json') {
+        return `{"name":"packageName","version":"1.0.0"}`
+      }
+
+      return '{}'
+    })
 
     process.env['BRANCH_PREFIX'] = 'dep-upgrade/'
     await run()
@@ -74,8 +92,8 @@ describe('generate changeset file', () => {
     expect(console.log).not.toHaveBeenCalledWith(
       'Not a renovate branch, skipping',
     )
-    expect(fs.readFile).toHaveBeenCalledWith(file, 'utf8')
-    expect(fs.writeFile).toMatchSnapshot()
+    expect(mockedReadFile).toHaveBeenCalledWith(file, 'utf8')
+    expect(mockedWriteFile).toMatchSnapshot()
     expect(add).toHaveBeenCalledWith(fileName)
     expect(commit).toHaveBeenCalledWith(`chore: add ${fileName}`)
     expect(push).toHaveBeenCalledTimes(1)
@@ -111,11 +129,17 @@ describe('generate changeset file', () => {
       push,
     })
 
-    fs.readFile = vi
-      .fn()
-      .mockResolvedValueOnce('{}')
-      .mockResolvedValueOnce(`{"name":"packageName","version":"1.0.0"}`)
-    fs.writeFile = vi.fn()
+    // Mock changeset config for this test
+    mockedReadFile.mockImplementation(async path => {
+      if (path === '.changeset/config.json') {
+        return '{}'
+      }
+      if (path === 'test/package.json') {
+        return `{"name":"packageName","version":"1.0.0"}`
+      }
+
+      return '{}'
+    })
 
     process.env['SKIP_BRANCH_CHECK'] = 'TRUE'
     await run()
@@ -123,8 +147,8 @@ describe('generate changeset file', () => {
     expect(console.log).not.toHaveBeenCalledWith(
       'Not a renovate branch, skipping',
     )
-    expect(fs.readFile).toHaveBeenCalledWith(file, 'utf8')
-    expect(fs.writeFile).toMatchSnapshot()
+    expect(mockedReadFile).toHaveBeenCalledWith(file, 'utf8')
+    expect(mockedWriteFile).toMatchSnapshot()
     expect(add).toHaveBeenCalledWith(fileName)
     expect(commit).toHaveBeenCalledWith(`chore: add ${fileName}`)
     expect(push).toHaveBeenCalledTimes(1)
@@ -202,16 +226,22 @@ describe('generate changeset file', () => {
       push,
     })
 
-    fs.readFile = vi
-      .fn()
-      .mockResolvedValueOnce('{}')
-      .mockResolvedValueOnce(`{"name":"packageName","version":"1.0.0"}`)
-    fs.writeFile = vi.fn()
+    // Mock changeset config for this test
+    mockedReadFile.mockImplementation(async path => {
+      if (path === '.changeset/config.json') {
+        return '{}'
+      }
+      if (path === 'test/package.json') {
+        return `{"name":"packageName","version":"1.0.0"}`
+      }
+
+      return '{}'
+    })
 
     await run()
 
-    expect(fs.readFile).toHaveBeenCalledWith(file, 'utf8')
-    expect(fs.writeFile).toMatchSnapshot()
+    expect(mockedReadFile).toHaveBeenCalledWith(file, 'utf8')
+    expect(mockedWriteFile).toMatchSnapshot()
     expect(add).toHaveBeenCalledWith(fileName)
     expect(commit).toHaveBeenCalledWith(`chore: add ${fileName}`)
     expect(push).toHaveBeenCalledTimes(1)
@@ -247,17 +277,23 @@ describe('generate changeset file', () => {
       push,
     })
 
-    fs.readFile = vi
-      .fn()
-      .mockResolvedValueOnce('{}')
-      .mockResolvedValueOnce(`{"name":"packageName","version":"1.0.0"}`)
-    fs.writeFile = vi.fn()
+    // Mock changeset config for this test
+    mockedReadFile.mockImplementation(async path => {
+      if (path === '.changeset/config.json') {
+        return '{}'
+      }
+      if (path === 'test/package.json') {
+        return `{"name":"packageName","version":"1.0.0"}`
+      }
+
+      return '{}'
+    })
 
     process.env['SKIP_COMMIT'] = 'TRUE'
     await run()
 
-    expect(fs.readFile).toHaveBeenCalledWith(file, 'utf8')
-    expect(fs.writeFile).toMatchSnapshot()
+    expect(mockedReadFile).toHaveBeenCalledWith(file, 'utf8')
+    expect(mockedWriteFile).toMatchSnapshot()
     expect(add).not.toHaveBeenCalledWith(fileName)
     expect(commit).not.toHaveBeenCalledWith(
       `chore: add changeset renovate-${rev}`,
@@ -299,20 +335,28 @@ describe('generate changeset file', () => {
       push,
     })
 
-    fs.readFile = vi
-      .fn()
-      .mockResolvedValueOnce('{}')
-      .mockResolvedValueOnce(`{"name":"packageNameB","version":"1.1.1"}`)
-      .mockResolvedValueOnce(`{"name":"packageNameA","version":"1.0.0"}`)
-    fs.writeFile = vi.fn()
+    // Mock changeset config for this test
+    mockedReadFile.mockImplementation(async path => {
+      if (path === '.changeset/config.json') {
+        return '{}'
+      }
+      if (path === 'test-a/package.json') {
+        return `{"name":"packageNameA","version":"1.0.0"}`
+      }
+      if (path === 'test-b/package.json') {
+        return `{"name":"packageNameB","version":"1.1.1"}`
+      }
+
+      return '{}'
+    })
 
     process.env['SKIP_COMMIT'] = 'TRUE'
     process.env['SORT_CHANGESETS'] = 'TRUE'
     await run()
 
-    expect(fs.readFile).toHaveBeenCalledWith(fileA, 'utf8')
-    expect(fs.readFile).toHaveBeenCalledWith(fileB, 'utf8')
-    expect(fs.writeFile).toMatchSnapshot()
+    expect(mockedReadFile).toHaveBeenCalledWith(fileA, 'utf8')
+    expect(mockedReadFile).toHaveBeenCalledWith(fileB, 'utf8')
+    expect(mockedWriteFile).toMatchSnapshot()
     expect(add).not.toHaveBeenCalledWith(fileName)
     expect(commit).not.toHaveBeenCalledWith(
       `chore: add changeset renovate-${rev}`,
@@ -341,15 +385,21 @@ describe('generate changeset file', () => {
 `,
     })
 
-    fs.readFile = vi
-      .fn()
-      .mockResolvedValueOnce('{}')
-      .mockResolvedValueOnce(`{"name":"packageName","workspaces":[]}`)
-    fs.writeFile = vi.fn()
+    // Mock changeset config for this test
+    mockedReadFile.mockImplementation(async path => {
+      if (path === '.changeset/config.json') {
+        return '{}'
+      }
+      if (path === 'package.json') {
+        return `{"name":"packageName","workspaces":[]}`
+      }
+
+      return '{}'
+    })
 
     await run()
 
-    expect(fs.readFile).toHaveBeenCalledWith(file, 'utf8')
+    expect(mockedReadFile).toHaveBeenCalledWith(file, 'utf8')
     expect(console.log).toHaveBeenCalledWith('No packages modified, skipping')
   })
 
@@ -374,15 +424,21 @@ describe('generate changeset file', () => {
 `,
     })
 
-    fs.readFile = vi
-      .fn()
-      .mockResolvedValueOnce('{}')
-      .mockResolvedValueOnce(`{"name":"packageName"}`)
-    fs.writeFile = vi.fn()
+    // Mock changeset config for this test
+    mockedReadFile.mockImplementation(async path => {
+      if (path === '.changeset/config.json') {
+        return '{}'
+      }
+      if (path === 'package.json') {
+        return `{"name":"packageName"}`
+      }
+
+      return '{}'
+    })
 
     await run()
 
-    expect(fs.readFile).toHaveBeenCalledWith(file, 'utf8')
+    expect(mockedReadFile).toHaveBeenCalledWith(file, 'utf8')
     expect(console.log).toHaveBeenCalledWith('No packages modified, skipping')
   })
 
@@ -407,15 +463,21 @@ describe('generate changeset file', () => {
 `,
     })
 
-    fs.readFile = vi
-      .fn()
-      .mockResolvedValueOnce(`{"ignore":["packageName"]}`)
-      .mockResolvedValueOnce(`{"name":"packageName","version":"1.0.0"}`)
-    fs.writeFile = vi.fn()
+    // Mock changeset config for this test
+    mockedReadFile.mockImplementation(async path => {
+      if (path === '.changeset/config.json') {
+        return '{"ignore":["packageName"]}'
+      }
+      if (path === 'test/package.json') {
+        return `{"name":"packageName","version":"1.0.0"}`
+      }
+
+      return '{}'
+    })
 
     await run()
 
-    expect(fs.readFile).toHaveBeenCalledWith(file, 'utf8')
+    expect(mockedReadFile).toHaveBeenCalledWith(file, 'utf8')
     expect(console.log).toHaveBeenCalledWith('No packages modified, skipping')
   })
 
@@ -440,15 +502,21 @@ describe('generate changeset file', () => {
 `,
     })
 
-    fs.readFile = vi
-      .fn()
-      .mockResolvedValueOnce(`{"ignore":["@example/*"]}`)
-      .mockResolvedValueOnce(`{"name":"@example/test","version":"1.0.0"}`)
-    fs.writeFile = vi.fn()
+    // Mock changeset config for this test
+    mockedReadFile.mockImplementation(async path => {
+      if (path === '.changeset/config.json') {
+        return '{"ignore":["@example/*"]}'
+      }
+      if (path === 'test/package.json') {
+        return `{"name":"@example/test","version":"1.0.0"}`
+      }
+
+      return '{}'
+    })
 
     await run()
 
-    expect(fs.readFile).toHaveBeenCalledWith(file, 'utf8')
+    expect(mockedReadFile).toHaveBeenCalledWith(file, 'utf8')
     expect(console.log).toHaveBeenCalledWith('No packages modified, skipping')
   })
 })

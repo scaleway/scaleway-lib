@@ -11,7 +11,7 @@ const compat = new FlatCompat({
   baseDirectory: dirname,
 })
 
-export default [
+const defaultRules = [
   ...fixupConfigRules(
     compat.extends(
       'airbnb/hooks',
@@ -140,3 +140,6 @@ export default [
     },
   },
 ]
+
+
+export default defaultRules

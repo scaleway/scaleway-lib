@@ -1,0 +1,33 @@
+
+{
+  "$schema": "../node_modules/oxlint/configuration_schema.json",
+  "plugins": [],
+  "extends": ["./index.json"],
+  "overrides": [{
+    "files": [
+      "**/__tests__/**/*.{ts,tsx}",
+      "**/__mocks__/**/*.{ts,tsx}",
+      "**/*.test.{ts,tsx}",
+      "**/*.spec.{ts,tsx}"
+    ],
+    "plugins": ["import", "oxc", "vitest"],
+    "rules": {
+      "@typescript-eslint/consistent-type-imports": "off",
+      "import/no-namespace": "off",
+      "import/export": "off",
+      "import/no-anonymous-default-export": "off",
+      "import/no-unassigned-import": "off",
+      "jsx_a11y/label-has-associated-control": "off",
+      "vitest/prefer-lowercase-title": "error",
+      "node/no-process-env": "off",
+      "react/only-export-components": "off",
+      "unicorn/no-array-callback-reference": "off",
+      "react/jsx-props-no-spreading": "off",
+      "eslint/no-alert": "off",
+      "eslint/no-console": "off",
+      "import/no-named-export": "off",
+      "react/jsx-pascal-case": "off",
+      }
+  }],
+
+}

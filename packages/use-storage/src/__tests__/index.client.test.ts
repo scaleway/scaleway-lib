@@ -36,12 +36,12 @@ describe('useStorage - Client side', () => {
       act(() => result.current[1](true))
 
       expect(window.localStorage.getItem(KEY)).toBe('true')
-      expect(result.current[0]).toBe(true)
+      expect(result.current[0]).toBeTruthy()
 
       act(() => result.current[1](false))
 
       expect(window.localStorage.getItem(KEY)).toBe('false')
-      expect(result.current[0]).toBe(false)
+      expect(result.current[0]).toBeFalsy()
     })
 
     it('works with 0 value', () => {
@@ -126,12 +126,12 @@ describe('useStorage - Client side', () => {
       act(() => result.current[1](true))
 
       expect(window.sessionStorage.getItem(KEY)).toBe('true')
-      expect(result.current[0]).toBe(true)
+      expect(result.current[0]).toBeTruthy()
 
       act(() => result.current[1](false))
 
       expect(window.sessionStorage.getItem(KEY)).toBe('false')
-      expect(result.current[0]).toBe(false)
+      expect(result.current[0]).toBeFalsy()
     })
 
     it('works with 0 value', () => {

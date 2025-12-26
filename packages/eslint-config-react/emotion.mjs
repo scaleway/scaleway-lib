@@ -1,7 +1,7 @@
 import { rules } from '@emotion/eslint-plugin'
 import { fixupPluginRules } from '@eslint/compat'
 
-export default [
+export const defaultEmotionRules =  [
   {
     plugins: {
       '@emotion': fixupPluginRules({ rules }),
@@ -22,3 +22,5 @@ export default [
     },
   },
 ]
+
+export default defaultEmotionRules

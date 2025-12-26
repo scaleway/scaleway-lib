@@ -12,7 +12,7 @@ const compat = new FlatCompat({
   baseDirectory: dirname,
 })
 
-export default [
+const defaultTypescriptRules=  [
   ...fixupConfigRules(
     compat.extends(
       'airbnb-base',
@@ -107,3 +107,6 @@ export default [
     },
   },
 ]
+
+export { defaultTypescriptRules }
+export default defaultTypescriptRules

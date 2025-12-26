@@ -1,3 +1,5 @@
+// oxlint-disable typescript/no-inferrable-types
+
 export const accessKeyRegex: RegExp = /^SCW[A-Z0-9]{17}$/i
 export const alpha: RegExp = /^[a-zA-Z]*$/
 export const alphaLowercase: RegExp = /^[a-z]+$/
@@ -22,8 +24,8 @@ export const alphanumDots: RegExp = /^[a-zA-Z0-9.]*$/
 export const alphanumLowercase: RegExp = /^[a-z0-9]+$/
 export const absoluteLinuxPath: RegExp = /(^\/$|^(\/[a-zA-Z0-9_]+)*$)/
 
-// eslint-disable-next-line no-control-regex
-export const ascii: RegExp = /^[\x00-\x7F]+$/
+// oxlint-disable-next-line eslint/no-control-regex
+export const ascii: RegExp = /^[\u0000-\u007F]+$/
 export const organizationAlias: RegExp = /^[a-z0-9]{2,32}$/
 export const backupKey: RegExp = /^[A-Z0-9]{8}$|^[A-Z0-9]{32}$/
 export const basicDomain: RegExp = /^[a-z0-9-]+(\.[a-z0-9-]{1,63})+$/
@@ -57,9 +59,8 @@ export const uuid: RegExp =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 
 // Pasted from `ip-regex` package (https://github.com/sindresorhus/ip-regex/blob/main/index.js)
-const v4: string =
-  '(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)){3}'
-const v6segment: string = '[a-fA-F\\d]{1,4}'
+const v4: string = String.raw`(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)(?:\.(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)){3}`
+const v6segment: string = String.raw`[a-fA-F\d]{1,4}`
 const v6: string = `
 (?:
 (?:${v6segment}:){7}(?:${v6segment}|:)|

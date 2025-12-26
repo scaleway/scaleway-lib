@@ -10,7 +10,6 @@ on:
       - 'pnpm-workspace.yaml'
       - '**/package.json'
 
-
 jobs:
   generate-changeset:
     runs-on: ubuntu-latest
@@ -31,7 +30,7 @@ jobs:
         with:
           node-version: 24.12.0
           check-latest: true
-          cache: "pnpm"
+          cache: 'pnpm'
       - run: pnpm install
       - run: pnpm run build
       - run: pnpm install

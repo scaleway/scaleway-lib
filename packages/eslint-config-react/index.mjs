@@ -1,6 +1,9 @@
-import emotion from './emotion.mjs'
-import javascript from './javascript.mjs'
-import typescript from './typescript.mjs'
-import stylistic from './stylistic.mjs'
+import { defaultEmotionRules } from './emotion.mjs'
+import { defaultJavascriptRules } from './javascript.mjs'
+import { defaultTypescriptRules } from './typescript.mjs'
+import { defaultStylisticRules } from './stylistic.mjs'
 
-export { emotion, javascript, stylistic, typescript }
+export const emotion = defaultEmotionRules
+export const javascript = defaultJavascriptRules
+export const stylistic = defaultStylisticRules
+export const typescript = defaultTypescriptRules

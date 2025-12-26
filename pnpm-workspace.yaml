@@ -49,8 +49,10 @@ catalog:
   eslint-plugin-eslint-comments: 3.2.0
   eslint-plugin-import: 2.32.0
   eslint-plugin-jsx-a11y: 6.10.2
+  eslint-plugin-oxlint: 1.35.0
   eslint-plugin-react: 7.37.5
   eslint-plugin-react-hooks: 7.0.1
+  execa: 9.6.1
   fast-glob: 3.3.3
   filesize: 11.0.13
   globals: 16.5.0
@@ -61,6 +63,7 @@ catalog:
   international-types: 0.8.1
   intl-messageformat: 11.0.6
   js-yaml: 4.1.1
+  jsdom: 27.4.0
   lint-staged: 16.2.7
   mockdate: 3.0.5
   module-from-string: 3.3.1
@@ -73,6 +76,7 @@ catalog:
   shx: 0.4.0
   simple-git: 3.30.0
   tstyche: 5.0.2
+  turbo: ^2.7.2
   typescript: 5.9.3
   use-deep-compare-effect: 1.8.1
   vite: 7.3.0
@@ -83,4 +87,8 @@ catalog:
 
 catalogMode: strict
 
-cleanupUnusedCatalogs: true
+packageManagerStrictVersion: true
+
+supportedArchitectures:
+  cpu: [x64, arm64]
+  os: [darwin, current]

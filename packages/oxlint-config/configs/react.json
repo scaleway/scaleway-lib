@@ -1,0 +1,52 @@
+{
+  "$schema": "../node_modules/oxlint/configuration_schema.json",
+  "plugins": ["react","jsx-a11y"],
+  "extends": ["./index.json"],
+  "rules": {
+    "react-perf/jsx-no-jsx-as-prop": "off",
+    "react-perf/jsx-no-new-array-as-prop": "off",
+    "react-perf/jsx-no-new-function-as-prop": "off",
+    "react-perf/jsx-no-new-object-as-prop": "off",
+    "react_perf/jsx-no-jsx-as-prop": "error",
+    "react_perf/jsx-no-new-array-as-prop": "error",
+    "react_perf/jsx-no-new-function-as-props": "error",
+    "react_perf/jsx-no-new-object-as-prop": "error",
+    "react/button-has-type": "error",
+    "react/exhaustive-deps": "error",
+    "react/jsx-filename-extension": [
+      "error",
+      {
+        "extensions": [".jsx", ".tsx"]
+      }
+    ],
+    "react/iframe-missing-sandbox": "error",
+    "react/jsx-key": "error",
+    "react/jsx-handler-names": "off",
+    "react/jsx-no-comment-text-nodes": "error",
+    "react/jsx-no-duplicate-props": "error",
+    "react/jsx-no-target-blank": "off",
+    "react/jsx-no-undef": "error",
+    "react/jsx-no-useless-fragment": "error",
+    "react/no-children-prop": "error",
+    "react/no-dangerously-set-inner-html": "error",
+    "react/no-direct-mutation-state": "error",
+    "react/no-find-dom-node": "error",
+    "react/no-is-mounted": "error",
+    "react/no-render-return-value": "error",
+    "react/no-set-state": "off",
+    "react/no-string-refs": "error",
+    "react/no-unescaped-entities": "error",
+    "react/no-unknown-property": "error",
+    "react/react-in-jsx-scope": "off",
+    "react/require-render-return": "error",
+  },
+  "settings": {
+    "jsx-a11y": {
+      "components": {
+        "polymorphicPropName": "as"
+      }
+    },
+    "react": {}
+  }
+
+}

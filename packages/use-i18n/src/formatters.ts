@@ -65,8 +65,7 @@ const baseFormatters: BaseFormatters = {
   ),
 
   getListFormat: memoize(
-    // @ts-expect-error we assume Intl.ListFormat exists in our current context
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     (...args) => new Intl.ListFormat(...args) as IntlListFormat,
     {
       cache: createFastMemoizeCache<IntlListFormat>(),

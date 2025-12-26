@@ -16,9 +16,12 @@ import {
   useMemo,
   useState,
 } from 'react'
-import dateFormat, { type FormatDateOptions } from './formatDate'
-import formatters, { type IntlListFormatOptions } from './formatters'
-import unitFormat, { type FormatUnitOptions } from './formatUnit'
+import type { FormatDateOptions } from './formatDate'
+import dateFormat from './formatDate'
+import type { IntlListFormatOptions } from './formatters'
+import formatters from './formatters'
+import type { FormatUnitOptions } from './formatUnit'
+import unitFormat from './formatUnit'
 import type { ReactParamsObject, ScopedTranslateFn, TranslateFn } from './types'
 
 const LOCALE_ITEM_STORAGE = 'locale'
@@ -128,6 +131,7 @@ type Context<
 
 // It's safe to use any here because the Locale can be anything at this point:
 // useI18n / useTranslation requires to explicitely give a Locale to use.
+// oxlint-disable-next-line eslint/no-explicit-any
 const I18nContext = createContext<Context<any, any> | undefined>(undefined)
 
 export function useI18n<
@@ -263,9 +267,9 @@ const I18nContextProvider = <LocalSupportedType extends string>({
       try {
         const dateFns = await loadDateFNS(locale)
         setDateFnsLocale(dateFns)
-      } catch (err) {
-        if (err instanceof Error && onLoadDateLocaleError) {
-          onLoadDateLocaleError(err)
+      } catch (error) {
+        if (error instanceof Error && onLoadDateLocaleError) {
+          onLoadDateLocaleError(error)
         }
 
         setDateFnsLocale(dateFnsLocale)
@@ -412,6 +416,7 @@ const I18nContextProvider = <LocalSupportedType extends string>({
   )
 
   const translate = useCallback(
+    // oxlint-disable-next-line eslint/no-explicit-any
     (key: string, context?: ReactParamsObject<any>) => {
       const value = translations[currentLocale]?.[key] as string
 
@@ -428,11 +433,11 @@ const I18nContextProvider = <LocalSupportedType extends string>({
           return formatters
             .getTranslationFormat(value, currentLocale)
             .format(context) as string
-        } catch (err) {
+        } catch (error) {
           onTranslateError?.({
             currentLocale,
             defaultLocale,
-            error: err as Error,
+            error: error as Error,
             key,
             value,
           })
@@ -459,6 +464,7 @@ const I18nContextProvider = <LocalSupportedType extends string>({
 
   const namespaceTranslation = useCallback(
     (scope: string, t = translate) =>
+      // oxlint-disable-next-line eslint/no-explicit-any
       (key: string, context?: ReactParamsObject<any>) =>
         t(`${scope}.${key}`, context) || t(key, context),
     [translate],

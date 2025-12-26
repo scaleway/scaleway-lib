@@ -19,5 +19,4 @@ export const GrowthBookProvider = ({ children }: { children: ReactNode }) =>
 
 export const useGrowthBook = vi.fn()
 
-// eslint-disable-next-line no-console
 console.debug('GrowthBook Mock', GrowthBookProvider)

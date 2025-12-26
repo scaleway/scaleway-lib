@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 
+// oxlint-disable eslint/no-console
+// oxlint-disable eslint/max-statements
+
 import { readFile } from 'node:fs/promises'
 import type { ParseArgsConfig } from 'node:util'
 import { parseArgs } from 'node:util'
@@ -58,8 +61,8 @@ const findICUErrors = (
         })
 
         return undefined
-      } catch (err) {
-        const { message } = err as ParserError
+      } catch (error) {
+        const { message } = error as ParserError
 
         return {
           filePath,
@@ -90,8 +93,8 @@ const readFiles = async (files: string[]): Promise<ErrorsICU> => {
 
         const ICUErrors = findICUErrors(locales, file)
         errors.push(...ICUErrors)
-      } catch (err) {
-        console.error({ err, file })
+      } catch (error) {
+        console.error({ error, file })
       }
     }
 
@@ -111,13 +114,13 @@ const readFiles = async (files: string[]): Promise<ErrorsICU> => {
             const ICUErrors = findICUErrors(locales, file)
             errors.push(...ICUErrors)
           } else {
-            console.error('export default from: ', file, ' is not an object')
+            console.error('export default from:', file, 'is not an object')
           }
         } else {
-          console.error(file, ' is not an object')
+          console.error(file, 'is not an object')
         }
-      } catch (err) {
-        console.error({ err, file })
+      } catch (error) {
+        console.error({ error, file })
       }
     }
   }
