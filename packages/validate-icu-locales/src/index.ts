@@ -3,10 +3,22 @@
 import { readFile } from 'node:fs/promises'
 import type { ParseArgsConfig } from 'node:util'
 import { parseArgs } from 'node:util'
+import type { Location } from '@formatjs/icu-messageformat-parser'
 import { parse } from '@formatjs/icu-messageformat-parser'
-import type { ParserError } from '@formatjs/icu-messageformat-parser/error'
 import { globby } from 'globby'
 import { importFromString } from 'module-from-string'
+
+type ParserError = {
+  // it's a enum inside @formatjs, don't use it today
+  kind: string
+  message: string
+  location: Location
+}
+// export interface ParserError {
+//   kind: ErrorKind;
+//   message: string;
+//   location: Location;
+// }
 
 const options: ParseArgsConfig['options'] = {
   ignoreTag: {
