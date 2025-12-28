@@ -3,7 +3,9 @@ import type { AnalyticsConfig, AnalyticsIntegration, Config } from '../types'
 
 const timeout = (time: number) => {
   const controller = new AbortController()
-  setTimeout(() => controller.abort(), time * 1000)
+  setTimeout(() => {
+    controller.abort()
+  }, time * 1000)
 
   return controller
 }
@@ -60,6 +62,7 @@ export const useDestinations = (
         }
 
         // TODO: use zod to safe parse and add an error callback in case the schema changed.
+        // oxlint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
         const json = (await response.json()) as AnalyticsConfig
 
         return transformConfigToDestinations(json)

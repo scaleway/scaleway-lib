@@ -80,7 +80,7 @@ const formatDate = (
 ): string => {
   if (
     typeof format === 'string' &&
-    !(`${format}` in formatOptions || `${format}` in complexFormatOptions)
+    !(format in formatOptions || format in complexFormatOptions)
   ) {
     throw new Error(
       `format "${format}" should be one of ${supportedFormats.join(
@@ -92,7 +92,7 @@ const formatDate = (
   const properDate: Date =
     typeof date === 'string' || typeof date === 'number' ? new Date(date) : date
 
-  if (typeof format === 'string' && `${format}` in complexFormatOptions) {
+  if (typeof format === 'string' && format in complexFormatOptions) {
     return complexFormatOptions[format as keyof typeof complexFormatOptions](
       properDate,
       locale,

@@ -62,14 +62,14 @@ export const useInfiniteDataLoader = <
     [pageParamKey]: page,
   }
 
-  const getMethodRef = useRef(() => method(paramsArgs))
+  const getMethodRef = useRef(async () => method(paramsArgs))
   const getOnSuccessRef = useRef(
-    (...params: Parameters<NonNullable<typeof onSuccess>>) =>
+    async (...params: Parameters<NonNullable<typeof onSuccess>>) =>
       onSuccess?.(...params),
   )
 
   const getOnErrorRef = useRef(
-    (err: ErrorType) => onError?.(err) ?? onGlobalError?.(err),
+    async (err: ErrorType) => onError?.(err) ?? onGlobalError?.(err),
   )
 
   const [, setCounter] = useState(0)
@@ -174,7 +174,7 @@ export const useInfiniteDataLoader = <
 
   const reload = useCallback(async () => {
     await Promise.all(
-      requestRefs.current.map(req =>
+      requestRefs.current.map(async req =>
         req
           .load(true)
           .then(getOnSuccessRef.current)
@@ -190,7 +190,7 @@ export const useInfiniteDataLoader = <
   })
 
   useEffect(() => {
-    request.method = () => method(paramsArgs)
+    request.method = async () => method(paramsArgs)
     // oxlint-disable-next-line react-hooks/exhaustive-deps
   }, [method, request])
 
@@ -227,11 +227,11 @@ export const useInfiniteDataLoader = <
   }, [needLoad, request])
 
   useEffect(() => {
-    getOnSuccessRef.current = (...params) => onSuccess?.(...params)
+    getOnSuccessRef.current = async (...params) => onSuccess?.(...params)
   }, [onSuccess])
 
   useEffect(() => {
-    getOnErrorRef.current = err => onError?.(err) ?? onGlobalError?.(err)
+    getOnErrorRef.current = async err => onError?.(err) ?? onGlobalError?.(err)
   }, [onError, onGlobalError])
 
   useEffect(() => {

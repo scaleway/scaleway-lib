@@ -2,11 +2,10 @@ import type { ReactNode } from 'react'
 import { vi } from 'vitest'
 
 export const getAttributes = vi.fn()
-export const setAttributes = vi.fn(() => Promise.resolve())
+export const setAttributes = vi.fn(async () => Promise.resolve())
 export const loadFeatures = vi.fn()
 
-// eslint-disable-next-line prefer-arrow-callback
-export const GrowthBook = vi.fn(function mock() {
+export const GrowthBook = vi.fn(function mockGrowthBook() {
   return {
     loadFeatures,
     getAttributes,
@@ -14,9 +13,10 @@ export const GrowthBook = vi.fn(function mock() {
   }
 })
 
-export const GrowthBookProvider = ({ children }: { children: ReactNode }) =>
-  children
+export const GrowthBookProvider = async ({
+  children,
+}: {
+  children: ReactNode
+}) => children
 
 export const useGrowthBook = vi.fn()
-
-console.debug('GrowthBook Mock', GrowthBookProvider)

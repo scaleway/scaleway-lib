@@ -128,6 +128,8 @@ const defaultRules = [
     ],
 
     rules: {
+      'eslint/prefer-arrow-callback': 'off',
+      'prefer-arrow-callback': 'off',
       'import/no-extraneous-dependencies': 'off',
       'react/jsx-key': 'off',
       'import/no-relative-packages': 'off',

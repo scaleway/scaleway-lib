@@ -91,7 +91,7 @@ function findWorkspaceFile(startDir: string = dirName): string {
 }
 
 // Main function
-async function main(): Promise<void> {
+function main(): Promise<void> | void {
   try {
     const workspacePath = findWorkspaceFile()
     const rootDir = path.dirname(workspacePath)
@@ -180,9 +180,11 @@ async function main(): Promise<void> {
 
 // Run the script if called directly
 if (import.meta.url === `file://${process.argv[1]}`) {
-  main().catch(() => {
+  try {
+    await main()
+  } catch {
     // Intentionally left empty to satisfy no-floating-promises rule
-  })
+  }
 }
 
 // Export for programmatic use

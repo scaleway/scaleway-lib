@@ -3,7 +3,7 @@ import { content, style } from './content'
 declare const SUPPORTED_BROWSERS: string
 
 const STORAGE_KEY = '__outdated'
-const ignore = sessionStorage.getItem(STORAGE_KEY) || 'false'
+const ignore = sessionStorage.getItem(STORAGE_KEY) ?? 'false'
 
 declare global {
   // oxlint-disable-next-line @typescript-eslint/consistent-type-definitions

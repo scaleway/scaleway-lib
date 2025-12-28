@@ -8,6 +8,25 @@ on:
     branches: ['main']
 
 jobs:
+  build:
+    strategy:
+      matrix:
+        node: ['24']
+    runs-on: ubuntu-24.04
+    env:
+      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+      TURBO_CACHE: 'remote:rw'
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v4.2.0
+      - uses: actions/setup-node@v6.1.0
+        with:
+          node-version: ${{ matrix.node }}
+      - name: build
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm run build
+
   typecheck:
     runs-on: ubuntu-24.04
     steps:
@@ -22,6 +41,7 @@ jobs:
       - run: pnpm install
       - run: pnpm typecheck
       # - run: pnpm typecheck:global
+
   typecheck-go:
     runs-on: ubuntu-24.04
     steps:
@@ -36,8 +56,45 @@ jobs:
       - run: pnpm install
       - run: pnpm typecheck:go
 
+  oxlint:
+    runs-on: ubuntu-24.04
+    needs: [build]
+    env:
+      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+      TURBO_CACHE: 'remote:rw'
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v4.2.0
+      - uses: actions/setup-node@v6.1.0
+        with:
+          node-version: 24.12.0
+          check-latest: true
+          cache: 'pnpm'
+      - name: oxlint
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm run build
+          pnpm run oxc --quiet
+
+  format:
+    runs-on: ubuntu-24.04
+    env:
+      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+      TURBO_CACHE: 'remote:rw'
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v4.2.0
+      - uses: actions/setup-node@v6.1.0
+        with:
+          node-version: 24.12.0
+          cache: 'pnpm'
+      - run: |
+          pnpm install --frozen-lockfile
+          pnpm run format:ci
+
   lint:
     runs-on: ubuntu-24.04
+    needs: [build]
     steps:
       - uses: actions/checkout@v6.0.1
       - uses: pnpm/action-setup@v4.2.0

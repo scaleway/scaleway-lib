@@ -151,7 +151,7 @@ const DataLoaderProvider: ComponentType<DataLoaderProviderProps> = ({
       await Promise.all(
         Object.values(requestsRef.current)
           .filter(request => request.key.startsWith(startPrefix))
-          .map(request => request.load(true)),
+          .map(async request => request.load(true)),
       )
     } else {
       throw new Error(KEY_IS_NOT_STRING_ERROR)
@@ -160,7 +160,9 @@ const DataLoaderProvider: ComponentType<DataLoaderProviderProps> = ({
 
   const reloadAll = useCallback(async () => {
     await Promise.all(
-      Object.values(requestsRef.current).map(request => request.load(true)),
+      Object.values(requestsRef.current).map(async request =>
+        request.load(true),
+      ),
     )
   }, [])
 
@@ -184,13 +186,15 @@ const DataLoaderProvider: ComponentType<DataLoaderProviderProps> = ({
   const getReloads = useCallback(
     (key?: string) => {
       if (key) {
-        return getRequest(key) ? () => getRequest(key)?.load(true) : undefined
+        return getRequest(key)
+          ? async () => getRequest(key)?.load(true)
+          : undefined
       }
 
       return Object.entries(requestsRef.current).reduce<Reloads>(
         (acc, [requestKey, { load }]) => ({
           ...acc,
-          [requestKey]: () => load(true),
+          [requestKey]: async () => load(true),
         }),
         {},
       )

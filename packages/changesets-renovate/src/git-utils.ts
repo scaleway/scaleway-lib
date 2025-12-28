@@ -29,7 +29,7 @@ export async function loadCatalogFromGit(
       catalog?: Record<string, string>
     } | null
 
-    return parsed?.catalog || {}
+    return parsed?.catalog ?? {}
   } catch {
     // Silently ignore errors in production code
     // Tests can check for specific error cases
@@ -121,7 +121,7 @@ export async function findAffectedPackages(
       for (const dep of changedDeps) {
         if (deps[dep]) {
           const path = pkgJsonPath.split('/')
-          const dirName = path.at(-2) || ''
+          const dirName = path.at(-2) ?? ''
           affectedPackages.add(dirName)
           break // No need to check other deps for this package
         }

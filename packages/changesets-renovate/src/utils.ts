@@ -68,7 +68,7 @@ export async function loadCatalogFromFile(
       catalog?: Record<string, string>
     } | null
 
-    return parsed?.catalog || {}
+    return parsed?.catalog ?? {}
   } catch {
     // Silently ignore errors in production code
     // Tests can check for specific error cases
@@ -89,7 +89,7 @@ export function loadCatalogFromWorkspaceContent(
       catalog?: Record<string, string>
     } | null
 
-    return parsed?.catalog || {}
+    return parsed?.catalog ?? {}
   } catch {
     // Silently ignore errors in production code
     // Tests can check for specific error cases
