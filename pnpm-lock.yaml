@@ -49,8 +49,8 @@ catalogs:
       specifier: 3.3.3
       version: 3.3.3
     '@formatjs/ecma402-abstract':
-      specifier: 3.0.5
-      version: 3.0.5
+      specifier: 3.0.6
+      version: 3.0.6
     '@formatjs/fast-memoize':
       specifier: 3.0.1
       version: 3.0.1
@@ -184,8 +184,8 @@ catalogs:
       specifier: 0.8.1
       version: 0.8.1
     intl-messageformat:
-      specifier: 11.0.6
-      version: 11.0.6
+      specifier: 11.0.7
+      version: 11.0.7
     js-yaml:
       specifier: 4.1.1
       version: 4.1.1
@@ -547,7 +547,7 @@ importers:
     dependencies:
       '@formatjs/ecma402-abstract':
         specifier: 'catalog:'
-        version: 3.0.5
+        version: 3.0.6
       '@formatjs/fast-memoize':
         specifier: 'catalog:'
         version: 3.0.1
@@ -562,7 +562,7 @@ importers:
         version: 0.8.1
       intl-messageformat:
         specifier: 'catalog:'
-        version: 11.0.6
+        version: 11.0.7
     devDependencies:
       react:
         specifier: 'catalog:'
@@ -1828,14 +1828,23 @@ packages:
   '@formatjs/ecma402-abstract@3.0.5':
     resolution: {integrity: sha512-TF0uoOhPhbzzAuKgOA3s8M20wZm5f6IWDq6dBVkl8gKvS7vq84AkzR9ts0oLN0pbDy6TDx0pESUgyJgMJQItDg==}
 
+  '@formatjs/ecma402-abstract@3.0.6':
+    resolution: {integrity: sha512-fIOujvbua2wbKk8et+ftvUvRiW8RQDAwix7ZZNjq7GbCh0npeqsLpRyBmDQ2w3tLT9PwcBwDepfJukByz8nbSA==}
+
   '@formatjs/fast-memoize@3.0.1':
     resolution: {integrity: sha512-kzk635kEmsxrrEWQXY7uKRocFCVXR4es5OQqcqCGg2NPtQztG/OBkE9THHu6UOTxpfyIkZhh6DjPBZGRp7y3og==}
 
   '@formatjs/icu-messageformat-parser@3.1.1':
     resolution: {integrity: sha512-Nntjlw21Yp2fFAkOeJmWhJg0nxoCeRTNF/+zNmLpAQGjdsaPJ7QabmbG3e/IHjVe55LGma4NuhYdaygJCuXVHQ==}
 
+  '@formatjs/icu-messageformat-parser@3.2.0':
+    resolution: {integrity: sha512-igWyeCLk6QzBQ4UXdAaMXxJ9Yhc7PC57Xjy9swGrGgqIQl0NlNp9ZBwifL1BHfqB9HBJxUbyc4jHr4wDcbHmnw==}
+
   '@formatjs/icu-skeleton-parser@2.0.5':
     resolution: {integrity: sha512-SAbpKkyvD6F7ujlEDSqVR0KDi0IR8lT2X4A9wTehTEeIZy4bIJqu68tlNdC94IGbrZh2n3LXcS0VTKfcFnUhUg==}
+
+  '@formatjs/icu-skeleton-parser@2.0.6':
+    resolution: {integrity: sha512-ukF8ZQc4KEwgXOxhyg8ZvGjfNjvsxPkO5H+2uqeT/GFBqj/72tvfLHxsSxz/DVJkX1y4Bh95hhORbjfVDuNx8g==}
 
   '@formatjs/intl-localematcher@0.7.3':
     resolution: {integrity: sha512-NaeABectKdTCOnlH9VFGmMS3K0JuR7Soc2t5R2MCkBrM3H/hlKVYh0XSrcjjPkbjIdrF7L/Bzx9JtGuVaSfYlA==}
@@ -3559,8 +3568,8 @@ packages:
     resolution: {integrity: sha512-agE4QfB2Lkp9uICn7BAqoscw4SZP9kTE2hxiFI3jBPmXJfdqiahTbUuKGsMoN2GtqL9AxhYioAcVvgsb1HvRbA==}
     engines: {node: '>= 0.10'}
 
-  intl-messageformat@11.0.6:
-    resolution: {integrity: sha512-zymRESVTAbsuhXPe1HuvMNgw1jixIDB+tSQ95AoihjB9w9LmuGoH42siLo7lqB13FSPcLweRUY7Mk4foR+ZBnA==}
+  intl-messageformat@11.0.7:
+    resolution: {integrity: sha512-8jgzn03xeH0ZWR2K0An/CdngRX8sSUSt0+1cYSqVMePp0WeMQ7LStKUnRz2uHwjE44PReRvb1avcqV4gLjPAVQ==}
 
   is-array-buffer@3.0.5:
     resolution: {integrity: sha512-DDfANUiiG2wC1qawP66qlTugJeL5HyzMpfr8lLK+jMQirGzNod0B12cFB/9q838Ru27sBwfw78/rdoU7RERz6A==}
@@ -6406,6 +6415,13 @@ snapshots:
       decimal.js: 10.6.0
       tslib: 2.8.1
 
+  '@formatjs/ecma402-abstract@3.0.6':
+    dependencies:
+      '@formatjs/fast-memoize': 3.0.1
+      '@formatjs/intl-localematcher': 0.7.3
+      decimal.js: 10.6.0
+      tslib: 2.8.1
+
   '@formatjs/fast-memoize@3.0.1':
     dependencies:
       tslib: 2.8.1
@@ -6416,9 +6432,20 @@ snapshots:
       '@formatjs/icu-skeleton-parser': 2.0.5
       tslib: 2.8.1
 
+  '@formatjs/icu-messageformat-parser@3.2.0':
+    dependencies:
+      '@formatjs/ecma402-abstract': 3.0.6
+      '@formatjs/icu-skeleton-parser': 2.0.6
+      tslib: 2.8.1
+
   '@formatjs/icu-skeleton-parser@2.0.5':
     dependencies:
       '@formatjs/ecma402-abstract': 3.0.5
+      tslib: 2.8.1
+
+  '@formatjs/icu-skeleton-parser@2.0.6':
+    dependencies:
+      '@formatjs/ecma402-abstract': 3.0.6
       tslib: 2.8.1
 
   '@formatjs/intl-localematcher@0.7.3':
@@ -8372,11 +8399,11 @@ snapshots:
 
   interpret@1.4.0: {}
 
-  intl-messageformat@11.0.6:
+  intl-messageformat@11.0.7:
     dependencies:
-      '@formatjs/ecma402-abstract': 3.0.5
+      '@formatjs/ecma402-abstract': 3.0.6
       '@formatjs/fast-memoize': 3.0.1
-      '@formatjs/icu-messageformat-parser': 3.1.1
+      '@formatjs/icu-messageformat-parser': 3.2.0
       tslib: 2.8.1
 
   is-array-buffer@3.0.5:
