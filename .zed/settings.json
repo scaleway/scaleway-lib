@@ -6,6 +6,7 @@
   "language_servers": [
     "typescript-language-server",
     "oxc",
+    "oxlint",
     "biome",
     "json-language-server",
     "eslint",

@@ -151,6 +151,8 @@ catalog:
         'packages/package-b/package.json',
       ])
 
+      // oxlint-disable @typescript-eslint/require-await
+      // oxlint-disable typescript-eslint/no-unsafe-argument
       vi.mocked(fs.readFile).mockImplementation((async (filePath: any) => {
         if (filePath === 'packages/package-a/package.json') {
           return JSON.stringify({

@@ -19,7 +19,9 @@ const defaultSegmentIoIntegration: SegmentIntegration = {
 
 const timeout = (time: number) => {
   const controller = new AbortController()
-  setTimeout(() => controller.abort(), time * 1000)
+  setTimeout(() => {
+    controller.abort()
+  }, time * 1000)
 
   return controller
 }

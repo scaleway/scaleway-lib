@@ -2,10 +2,10 @@ import { renderHook, waitFor } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 import { useSegmentIntegrations } from '../../useSegmentIntegrations'
 
-globalThis.fetch = vi.fn(() =>
+globalThis.fetch = vi.fn(async () =>
   Promise.resolve({
     ok: true,
-    json: () =>
+    json: async () =>
       Promise.resolve([
         {
           name: 'Google Universal Analytics',

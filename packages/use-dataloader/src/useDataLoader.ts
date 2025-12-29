@@ -106,14 +106,14 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
     // Set optimistic loading state to true when reload is called
     optimisticIsLoadingRef.current = true
 
-    const onSuccessHandler = (result: ResultType) => {
+    const onSuccessHandler = async (result: ResultType) => {
       // Set optimistic loading state to false when request completes
       optimisticIsLoadingRef.current = false
 
       return onSuccessRef.current?.(result)
     }
 
-    const onErrorHandler = (error: ErrorType & Error) => {
+    const onErrorHandler = async (error: ErrorType & Error) => {
       // Set optimistic loading state to false when request completes
       optimisticIsLoadingRef.current = false
 

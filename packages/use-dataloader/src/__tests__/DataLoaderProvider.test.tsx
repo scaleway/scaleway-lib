@@ -6,14 +6,18 @@ import { KEY_IS_NOT_STRING_ERROR, StatusEnum } from '../constants'
 
 const TEST_KEY = 'test'
 const PROMISE_TIMEOUT = 5
-const fakePromise = () =>
+const fakePromise = async () =>
   new Promise(resolve => {
-    setTimeout(() => resolve(true), PROMISE_TIMEOUT)
+    setTimeout(() => {
+      resolve(true)
+    }, PROMISE_TIMEOUT)
   })
 
-const fakeNullPromise = () =>
+const fakeNullPromise = async () =>
   new Promise(resolve => {
-    setTimeout(() => resolve(null), PROMISE_TIMEOUT)
+    setTimeout(() => {
+      resolve(null)
+    }, PROMISE_TIMEOUT)
   })
 
 const wrapper = ({ children }: { children: ReactNode }) => (
@@ -55,10 +59,13 @@ describe('dataLoaderProvider', () => {
 
     expect(testRequest).toBeDefined()
     expect(testRequest.status).toBe(StatusEnum.IDLE)
+    // oxlint-disable-next-line  @typescript-eslint/no-floating-promises
     testRequest.load().catch(undefined)
     expect(testRequest.status).toBe(StatusEnum.LOADING)
     expect(method).toBeCalledTimes(1)
-    await waitFor(() => expect(testRequest.status).toBe(StatusEnum.SUCCESS))
+    await waitFor(() => {
+      expect(testRequest.status).toBe(StatusEnum.SUCCESS)
+    })
     expect(result.current.getCachedData(TEST_KEY)).toBeTruthy()
     try {
       // @ts-expect-error Should throw an error
@@ -67,9 +74,14 @@ describe('dataLoaderProvider', () => {
     } catch (error) {
       expect((error as Error).message).toBe(KEY_IS_NOT_STRING_ERROR)
     }
+    // oxlint-disable-next-line  @typescript-eslint/no-floating-promises
     result.current.reload(TEST_KEY).catch(undefined)
-    await waitFor(() => expect(testRequest.status).toBe(StatusEnum.LOADING))
-    await waitFor(() => expect(testRequest.status).toBe(StatusEnum.SUCCESS))
+    await waitFor(() => {
+      expect(testRequest.status).toBe(StatusEnum.LOADING)
+    })
+    await waitFor(() => {
+      expect(testRequest.status).toBe(StatusEnum.SUCCESS)
+    })
     try {
       // @ts-expect-error Should throw an error
       result.current.clearCachedData(3)
@@ -95,14 +107,22 @@ describe('dataLoaderProvider', () => {
     expect(Object.values(result.current.getReloads()).length).toBe(1)
     expect(testRequest).toBeDefined()
     expect(testRequest.status).toBe(StatusEnum.IDLE)
+    // oxlint-disable-next-line  @typescript-eslint/no-floating-promises
     testRequest.load().catch(undefined)
-    await waitFor(() => expect(testRequest.status).toBe(StatusEnum.SUCCESS))
+    await waitFor(() => {
+      expect(testRequest.status).toBe(StatusEnum.SUCCESS)
+    })
     expect(method).toBeCalledTimes(1)
     expect(testRequest.data).toBeTruthy()
     expect(result.current.getCachedData(TEST_KEY)).toBeTruthy()
+    // oxlint-disable-next-line  @typescript-eslint/no-floating-promises
     result.current.reload(TEST_KEY).catch(undefined)
-    await waitFor(() => expect(testRequest.status).toBe(StatusEnum.LOADING))
-    await waitFor(() => expect(testRequest.status).toBe(StatusEnum.SUCCESS))
+    await waitFor(() => {
+      expect(testRequest.status).toBe(StatusEnum.LOADING)
+    })
+    await waitFor(() => {
+      expect(testRequest.status).toBe(StatusEnum.SUCCESS)
+    })
   })
 
   test('should add request with result is null', async () => {
@@ -158,9 +178,11 @@ describe('dataLoaderProvider', () => {
 
   test('should delay max concurrent request', async () => {
     const method = vi.fn(
-      () =>
+      async () =>
         new Promise(resolve => {
-          setTimeout(() => resolve(true), 100)
+          setTimeout(() => {
+            resolve(true)
+          }, 100)
         }),
     )
     const { result } = renderHook(useDataLoaderContext, {
@@ -183,10 +205,15 @@ describe('dataLoaderProvider', () => {
         method,
       }),
     ].forEach(request => {
+      // oxlint-disable-next-line  @typescript-eslint/no-floating-promises
       request.load().catch(undefined)
     })
     expect(method).toBeCalledTimes(2)
-    await waitFor(() => expect(method).toBeCalledTimes(4))
-    await waitFor(() => expect(method).toBeCalledTimes(5))
+    await waitFor(() => {
+      expect(method).toBeCalledTimes(4)
+    })
+    await waitFor(() => {
+      expect(method).toBeCalledTimes(5)
+    })
   })
 })

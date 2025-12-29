@@ -2,8 +2,9 @@ import { renderHook } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 import { useMedia } from '..'
 
-const mockAddEventListener = (_event: string, callback: () => void) =>
+const mockAddEventListener = (_event: string, callback: () => void) => {
   callback()
+}
 
 describe('useMedia hook', () => {
   it('should return the result of a query with a string', () => {

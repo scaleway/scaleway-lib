@@ -8,16 +8,16 @@ import { defineConfig } from 'vite'
 const pkg = await readPackage()
 
 const externalPkgs = [
-  ...Object.keys(pkg.dependencies || {}),
-  ...Object.keys(pkg.optionalDependencies || {}),
-  ...Object.keys(pkg.peerDependencies || {}),
+  ...Object.keys(pkg.dependencies ?? {}),
+  ...Object.keys(pkg.optionalDependencies ?? {}),
+  ...Object.keys(pkg.peerDependencies ?? {}),
 ]
 
 const external = (id: string) => {
   const match = (dependency: string) => new RegExp(`^${dependency}`).test(id)
   const isExternal = externalPkgs.some(p => match(p))
   // alias of bundledDependencies package.json field array
-  const isBundled = pkg.bundleDependencies?.some(match)
+  const isBundled = pkg.bundleDependencies?.some(dep => !dep) ?? false
 
   return isExternal && !isBundled
 }

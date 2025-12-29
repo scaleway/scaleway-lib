@@ -5,29 +5,39 @@ import DataLoader from '../dataloader'
 
 const PROMISE_TIMEOUT = 100
 
-const fakeSuccessPromise = () =>
+const fakeSuccessPromise = async () =>
   new Promise(resolve => {
-    setTimeout(() => resolve(true), PROMISE_TIMEOUT)
+    setTimeout(() => {
+      resolve(true)
+    }, PROMISE_TIMEOUT)
   })
 
-const fakeNullPromise = () =>
+const fakeNullPromise = async () =>
   new Promise(resolve => {
-    setTimeout(() => resolve(null), PROMISE_TIMEOUT)
+    setTimeout(() => {
+      resolve(null)
+    }, PROMISE_TIMEOUT)
   })
 
-const fakeUndefinedPromise = () =>
+const fakeUndefinedPromise = async () =>
   new Promise(resolve => {
-    setTimeout(() => resolve(undefined), PROMISE_TIMEOUT)
+    setTimeout(() => {
+      resolve(undefined)
+    }, PROMISE_TIMEOUT)
   })
 
-const fakeErrorPromise = () =>
+const fakeErrorPromise = async () =>
   new Promise((_, reject) => {
-    setTimeout(() => reject(new Error('test')), PROMISE_TIMEOUT)
+    setTimeout(() => {
+      reject(new Error('test'))
+    }, PROMISE_TIMEOUT)
   })
 
-const fakeLongErrorPromise = () =>
+const fakeLongErrorPromise = async () =>
   new Promise((_, reject) => {
-    setTimeout(() => reject(new Error('test')), 1000)
+    setTimeout(() => {
+      reject(new Error('test'))
+    }, 1000)
   })
 
 describe('dataloader class', () => {
@@ -162,7 +172,9 @@ describe('dataloader class', () => {
     expect(notifyChanges).toBeCalledTimes(1)
 
     instance.cancel()
-    await waitForExpect(() => expect(instance.status).toBe(StatusEnum.IDLE))
+    await waitForExpect(() => {
+      expect(instance.status).toBe(StatusEnum.IDLE)
+    })
     expect(notifyChanges).toBeCalledTimes(2)
   })
 
@@ -178,10 +190,14 @@ describe('dataloader class', () => {
     })
     const res = instance.load().catch(onError)
     instance.cancel()
-    await waitForExpect(() => expect(instance.status).toBe(StatusEnum.IDLE))
+    await waitForExpect(() => {
+      expect(instance.status).toBe(StatusEnum.IDLE)
+    })
     expect(notifyChanges).toBeCalledTimes(1)
     expect(onError).toBeCalledTimes(0)
-    await waitForExpect(async () => expect(await res).toBeUndefined())
+    await waitForExpect(async () => {
+      expect(await res).toBeUndefined()
+    })
   })
 
   test('should launch multiple dataloader', async () => {
@@ -202,6 +218,8 @@ describe('dataloader class', () => {
       await instance.load().catch(() => null)
     }
 
-    await waitForExpect(() => expect(method).toBeCalledTimes(5))
+    await waitForExpect(() => {
+      expect(method).toBeCalledTimes(5)
+    })
   })
 })

@@ -9,7 +9,7 @@ export const useAbTestAttributes = (): [
 
   const attributes = growthBook.getAttributes()
 
-  const setAttributes = (newAttributes: Attributes) =>
+  const setAttributes = async (newAttributes: Attributes) =>
     growthBook.setAttributes({
       ...attributes,
       ...newAttributes,
