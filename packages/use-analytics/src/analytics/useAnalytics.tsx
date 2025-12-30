@@ -12,8 +12,7 @@ import {
 } from './constants'
 import { normalizeIdsMigration } from './normalizeIdsMigration'
 
-type Analytics = RudderAnalytics
-export type { Analytics }
+export type Analytics = RudderAnalytics
 
 export type OnEventError = (error: Error) => Promise<void> | void
 

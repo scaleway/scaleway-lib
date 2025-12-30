@@ -4,9 +4,9 @@
 
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { mockSimpleGit } from '../../__mocks__/simple-git'
-import { handlePackageChanges } from '../handle-packages.js'
 import { createChangeset } from '../createChangeset.js'
 import { getBumpsFromGit, handleChangesetFile } from '../git-utils.js'
+import { handlePackageChanges } from '../handle-packages.js'
 import { getPackagesNames } from '../utils.js'
 
 // Mock all external dependencies
