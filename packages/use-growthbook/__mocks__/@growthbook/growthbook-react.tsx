@@ -10,8 +10,11 @@ export const loadFeatures = vi.fn()
 // Create a mock class for GrowthBook
 export class MockGrowthBook {
   init = init
+
   getAttributes = getAttributes
+
   setAttributes = setAttributes
+
   loadFeatures = loadFeatures
 
   constructor() {
@@ -27,11 +30,11 @@ export class MockGrowthBook {
 export const GrowthBook = MockGrowthBook
 
 // Export the provider component
-export const GrowthBookProvider = async ({
+export const GrowthBookProvider = ({
   children,
 }: {
   children: ReactNode
-}) => children
+}): ReactNode => children
 
 // Export hook
 export const useGrowthBook = vi.fn(() => new MockGrowthBook())
