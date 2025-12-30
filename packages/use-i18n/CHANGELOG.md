@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.2.3
+
+### Patch Changes
+
+- [#2906](https://github.com/scaleway/scaleway-lib/pull/2906) [`210a65c`](https://github.com/scaleway/scaleway-lib/commit/210a65cefad767401e9f5097a854ba2018676e5d) Thanks [@philibea](https://github.com/philibea)! - Export type
+
 ## 7.2.2
 
 ### Patch Changes
