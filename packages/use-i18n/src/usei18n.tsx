@@ -24,14 +24,34 @@ import type { FormatUnitOptions } from './formatUnit'
 import unitFormat from './formatUnit'
 import type { ReactParamsObject, ScopedTranslateFn, TranslateFn } from './types'
 
-const LOCALE_ITEM_STORAGE = 'locale'
-
-type SupportedLocalesType<LocalSupportedType extends string> = (
+// Export types that are used in the public API
+export type SupportedLocalesType<LocalSupportedType extends string> = (
   locale: string,
 ) => locale is LocalSupportedType
 
-type TranslationsByLocales = Record<string, BaseLocale>
-type RequiredGenericContext<
+export type TranslationsByLocales = Record<string, BaseLocale>
+
+export type LoadTranslationsFn<LocalSupportedType extends string> = ({
+  namespace,
+  locale,
+}: {
+  namespace: string
+  locale: LocalSupportedType
+}) => Promise<{ default: BaseLocale }>
+
+export type LoadLocaleFn<LocalSupportedType extends string> = (
+  locale: LocalSupportedType,
+) => DateFnsLocale
+
+export type LoadLocaleFnAsync<LocalSupportedType extends string> = (
+  locale: LocalSupportedType,
+) => Promise<DateFnsLocale>
+
+export type LoadDateLocaleError = (error: Error) => void
+
+const LOCALE_ITEM_STORAGE = 'locale'
+
+export type RequiredGenericContext<
   LocaleParam extends BaseLocale,
   LocalSupportedType extends string,
 > = keyof LocaleParam extends never
@@ -92,7 +112,7 @@ const getCurrentLocale = <LocalSupportedType extends string>({
   return defaultLocale
 }
 
-type Context<
+export type Context<
   LocaleParam extends BaseLocale,
   LocalSupportedType extends string,
 > = {
@@ -186,24 +206,6 @@ export function useTranslation<
     isLoaded: boolean
   }
 }
-
-type LoadTranslationsFn<LocalSupportedType extends string> = ({
-  namespace,
-  locale,
-}: {
-  namespace: string
-  locale: LocalSupportedType
-}) => Promise<{ default: BaseLocale }>
-
-type LoadLocaleFn<LocalSupportedType extends string> = (
-  locale: LocalSupportedType,
-) => DateFnsLocale
-
-type LoadLocaleFnAsync<LocalSupportedType extends string> = (
-  locale: LocalSupportedType,
-) => Promise<DateFnsLocale>
-
-type LoadDateLocaleError = (error: Error) => void
 
 const initialDefaultTranslations = {}
 
