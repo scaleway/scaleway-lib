@@ -12,10 +12,12 @@ describe('validate-icu-locales CLI', () => {
       expect.fail('Expected command to fail with ICU errors')
     } catch (error) {
       // Check that the error contains information about ICU syntax errors
-      const errorMessage = (error as Error).toString()
-      // The CLI outputs errors to stderr and exits with code 1
-      expect(errorMessage).toContain('errors')
-      expect(errorMessage).toContain('EXPECT_ARGUMENT_CLOSING_BRACE')
+      if (error instanceof Error) {
+        const errorMessage = error.toString()
+        // The CLI outputs errors to stderr and exits with code 1
+        expect(errorMessage).toContain('errors')
+        expect(errorMessage).toContain('EXPECT_ARGUMENT_CLOSING_BRACE')
+      }
     }
   })
 

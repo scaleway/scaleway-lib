@@ -20,7 +20,7 @@ export const defaultConfig = mergeConfig(viteConfig, {
         '**.svg',
       ],
       provider: 'istanbul',
-      reporter: ['json-summary', 'cobertura'],
+      reporter: ['text', 'json', 'json-summary', 'html', 'lcov'],
     },
     css: true,
     environment: 'node',

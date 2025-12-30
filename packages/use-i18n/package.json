@@ -3,7 +3,7 @@
   "version": "7.2.2",
   "description": "A small hook to handle i18n",
   "engines": {
-    "node": ">=18.x"
+    "node": ">=20.x"
   },
   "sideEffects": false,
   "type": "module",
