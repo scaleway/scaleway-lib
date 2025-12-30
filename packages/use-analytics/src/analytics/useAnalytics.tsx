@@ -174,8 +174,9 @@ export function AnalyticsProvider<T extends Events>({
         ...acc,
         [eventName]: eventFn(internalAnalytics, onEventError),
       }),
-      {},
-    ) as { [K in keyof T]: ReturnType<T[K]> }
+      // oxlint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
+      {} as { [K in keyof T]: ReturnType<T[K]> },
+    )
 
     return {
       analytics: internalAnalytics,

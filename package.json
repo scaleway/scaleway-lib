@@ -51,6 +51,7 @@
     "lint-staged": "catalog:",
     "mockdate": "catalog:",
     "oxlint": "catalog:",
+    "oxlint-tsgolint": "catalog:",
     "read-pkg": "catalog:",
     "shx": "catalog:",
     "tstyche": "catalog:",
@@ -62,17 +63,17 @@
     "wait-for-expect": "catalog:"
   },
   "devDependencies": {
-    "@scaleway-lib/utils": "workspace:*",
     "@scaleway/changesets-renovate": "workspace:*",
-    "@scaleway/oxlint-config": "workspace:*"
+    "@scaleway/oxlint-config": "workspace:*",
+    "@scaleway/utils": "workspace:*"
   },
   "scripts": {
-    "lint": "eslint --cache .",
+    "lint": "eslint --cache . --quiet",
     "lint:fix": "pnpm run lint --fix",
     "lint:catalog": "pnpm check-catalog-usage",
-    "oxc": "pnpm oxlint -c .oxlintrc.json",
-    "oxc:quiet": "pnpm oxlint -c .oxlintrc.json --quiet",
-    "oxc:fix": "pnpm oxlint -c .oxlintrc.json --fix",
+    "oxc": "pnpm oxlint -c .oxlintrc.json --type-aware --type-check",
+    "oxc:quiet": "pnpm oxc --quiet",
+    "oxc:fix": "pnpm oxc --fix",
     "build": "pnpm turbo build",
     "typecheck": "pnpm turbo typecheck",
     "typecheck:generate": "pnpm turbo typecheck:generate",
@@ -81,6 +82,7 @@
     "commit": "npx git-cz -a",
     "format": "biome check  --linter-enabled=false --write .",
     "format:check": "biome format --verbose .",
+    "format:ci": "biome ci --linter-enabled=false .",
     "test:unit": "pnpm turbo test:unit",
     "test:coverage": "pnpm test:unit -- --coverage",
     "typecheck:global": "pnpm tsc --noEmit",
@@ -111,7 +113,7 @@
     "*.ts?(x)": [
       "pnpm run format",
       "pnpm -w biome lint . --diagnostic-level=error",
-      "oxlint -c .oxlintrc.json --quiet --fix",
+      "pnpm run oxc:fix --quiet",
       "eslint --cache --cache-strategy content --fix"
     ],
     "*.y?(a)ml": [

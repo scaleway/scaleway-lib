@@ -17,7 +17,9 @@ const noop = () => {}
 export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
   key: KeyType,
   method: () => PromiseType<ResultType>,
-  {
+  config?: UseDataLoaderConfig<ResultType, ErrorType>,
+): UseDataLoaderResult<ResultType, ErrorType> => {
+  const {
     enabled = true,
     onError,
     onSuccess,
@@ -26,8 +28,8 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
     pollingInterval,
     initialData,
     dataLifetime,
-  }: UseDataLoaderConfig<ResultType, ErrorType> = {},
-): UseDataLoaderResult<ResultType, ErrorType> => {
+  } = config ?? {}
+
   const {
     getOrAddRequest,
     onError: onGlobalError,
@@ -106,14 +108,14 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
     // Set optimistic loading state to true when reload is called
     optimisticIsLoadingRef.current = true
 
-    const onSuccessHandler = (result: ResultType) => {
+    const onSuccessHandler = async (result: ResultType) => {
       // Set optimistic loading state to false when request completes
       optimisticIsLoadingRef.current = false
 
       return onSuccessRef.current?.(result)
     }
 
-    const onErrorHandler = (error: ErrorType & Error) => {
+    const onErrorHandler = async (error: ErrorType & Error) => {
       // Set optimistic loading state to false when request completes
       optimisticIsLoadingRef.current = false
 

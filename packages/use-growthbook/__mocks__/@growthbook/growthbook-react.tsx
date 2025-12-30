@@ -1,22 +1,37 @@
 import type { ReactNode } from 'react'
 import { vi } from 'vitest'
 
+// Create mock functions
+export const init = vi.fn()
 export const getAttributes = vi.fn()
-export const setAttributes = vi.fn(() => Promise.resolve())
+export const setAttributes = vi.fn()
 export const loadFeatures = vi.fn()
 
-// eslint-disable-next-line prefer-arrow-callback
-export const GrowthBook = vi.fn(function mock() {
-  return {
-    loadFeatures,
-    getAttributes,
-    setAttributes,
+// Create a mock class for GrowthBook
+export class MockGrowthBook {
+  init = init
+  getAttributes = getAttributes
+  setAttributes = setAttributes
+  loadFeatures = loadFeatures
+
+  constructor() {
+    // Reset mocks for each instance
+    this.init.mockResolvedValue(undefined)
+    this.getAttributes.mockReturnValue({})
+    this.setAttributes.mockResolvedValue(undefined)
+    this.loadFeatures.mockResolvedValue(undefined)
   }
-})
+}
 
-export const GrowthBookProvider = ({ children }: { children: ReactNode }) =>
-  children
+// Export the constructor
+export const GrowthBook = MockGrowthBook
 
-export const useGrowthBook = vi.fn()
+// Export the provider component
+export const GrowthBookProvider = async ({
+  children,
+}: {
+  children: ReactNode
+}) => children
 
-console.debug('GrowthBook Mock', GrowthBookProvider)
+// Export hook
+export const useGrowthBook = vi.fn(() => new MockGrowthBook())

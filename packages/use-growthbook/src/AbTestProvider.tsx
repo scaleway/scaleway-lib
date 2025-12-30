@@ -19,30 +19,23 @@ type AbTestProviderProps = {
 }
 
 const defaultLoadConfig: LoadConfig = {
-  autoRefresh: false,
   skipCache: false,
   timeout: 500,
 } as const
 
-const getGrowthBookInstance = ({
-  config: {
-    apiHost,
-    clientKey,
-    enableDevMode,
-    backgroundSync,
-    subscribeToChanges,
-  },
-  trackingCallback,
-}: {
+type GetGrowthBookInstanceProps = {
   config: ToolConfig
   trackingCallback: TrackingCallback
-}) =>
+}
+
+const getGrowthBookInstance = ({
+  config: { apiHost, clientKey, enableDevMode },
+  trackingCallback,
+}: GetGrowthBookInstanceProps) =>
   new GrowthBook({
     apiHost,
-    backgroundSync,
     clientKey,
     enableDevMode,
-    subscribeToChanges,
     trackingCallback,
   })
 
@@ -53,7 +46,7 @@ export const AbTestProvider: ComponentType<AbTestProviderProps> = ({
   errorCallback,
   attributes,
   loadConfig,
-}: AbTestProviderProps) => {
+}) => {
   const growthbook = useMemo(
     () => getGrowthBookInstance({ config, trackingCallback }),
     [trackingCallback, config],
@@ -61,7 +54,11 @@ export const AbTestProvider: ComponentType<AbTestProviderProps> = ({
 
   const loadFeature = useCallback(async () => {
     if (config.clientKey) {
-      await growthbook.loadFeatures(loadConfig ?? defaultLoadConfig)
+      const initConfig = {
+        ...defaultLoadConfig,
+        ...loadConfig,
+      }
+      await growthbook.init(initConfig)
     }
   }, [growthbook, config, loadConfig])
 

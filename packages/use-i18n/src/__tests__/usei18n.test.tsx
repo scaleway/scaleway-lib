@@ -495,7 +495,7 @@ describe('i18n hook', () => {
       await result.current.switchLocale('fr')
     })
 
-    waitFor(() => {
+    await waitFor(() => {
       expect(result.current.currentLocale).toEqual('fr')
     })
 

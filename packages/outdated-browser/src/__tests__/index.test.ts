@@ -8,7 +8,7 @@ const localStorageMock = (() => {
 
   return {
     getItem(key: string): unknown {
-      return store[key] || null
+      return store[key] ?? null
     },
     setItem(key: string, value: unknown) {
       store[key] = value?.toString()
@@ -50,7 +50,7 @@ describe('@outdated-browser', () => {
     fakeUA = undefined
   })
 
-  test('render nothing if SUPPORTED_BROWSER is nil', () => {
+  test('render nothing if SUPPORTED_BROWSER is nil', async () => {
     // @ts-expect-error global mock
     global.SUPPORTED_BROWSERS = ''
 
@@ -59,7 +59,7 @@ describe('@outdated-browser', () => {
     })
   })
 
-  test('render nothing if SUPPORTED_BROWSER is defined and match userAgent ', () => {
+  test('render nothing if SUPPORTED_BROWSER is defined and match userAgent ', async () => {
     fakeUA = 'a'
     // @ts-expect-error global mock
     global.SUPPORTED_BROWSERS = 'a'
@@ -69,7 +69,7 @@ describe('@outdated-browser', () => {
     })
   })
 
-  test('render banner if SUPPORTED_BROWSER is defined and does not match userAgent', () => {
+  test('render banner if SUPPORTED_BROWSER is defined and does not match userAgent', async () => {
     fakeUA = 'b'
     // @ts-expect-error global mock
     global.SUPPORTED_BROWSERS = 'a'
@@ -79,7 +79,7 @@ describe('@outdated-browser', () => {
     })
   })
 
-  test('render nothing if SUPPORTED_BROWSER is defined and does not match userAgent and user has already ignored banner', () => {
+  test('render nothing if SUPPORTED_BROWSER is defined and does not match userAgent and user has already ignored banner', async () => {
     fakeUA = 'b'
     // @ts-expect-error global mock
     global.SUPPORTED_BROWSERS = 'a'
@@ -90,7 +90,7 @@ describe('@outdated-browser', () => {
     })
   })
 
-  test('render nothing if SUPPORTED_BROWSER is defined and does not match userAgent and user click on button', () => {
+  test('render nothing if SUPPORTED_BROWSER is defined and does not match userAgent and user click on button', async () => {
     fakeUA = 'b'
     // @ts-expect-error global mock
     global.SUPPORTED_BROWSERS = 'a'

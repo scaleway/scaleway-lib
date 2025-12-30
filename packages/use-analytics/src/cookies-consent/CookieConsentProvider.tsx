@@ -200,16 +200,19 @@ export const CookieConsentProvider: ComponentType<
   const allowedConsents = useMemo(
     () =>
       Object.keys(cookieConsent).filter(
-        key => cookieConsent[key as CategoryKind],
-      ) as CategoryKind[],
+        // oxlint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
+        (key): key is CategoryKind => !cookieConsent[key as CategoryKind],
+      ),
     [cookieConsent],
   )
 
   const deniedConsents = useMemo(
     () =>
       Object.keys(cookieConsent).filter(
-        key => !allowedConsents.includes(key as CategoryKind),
-      ) as CategoryKind[],
+        // oxlint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
+        (key): key is CategoryKind =>
+          !allowedConsents.includes(key as CategoryKind),
+      ),
     [cookieConsent, allowedConsents],
   )
 
