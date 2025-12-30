@@ -38,6 +38,7 @@ export const useInfiniteDataLoader = <
     onError: onGlobalError,
     defaultDatalifetime,
   } = useDataLoaderContext()
+
   const {
     enabled = true,
     onError,
@@ -47,6 +48,7 @@ export const useInfiniteDataLoader = <
     dataLifetime,
     getNextPage,
   } = config ?? {}
+
   const computedDatalifetime = dataLifetime ?? defaultDatalifetime
   const requestRefs = useRef<DataLoader<ResultType, ErrorType>[]>([])
   const [page, setPage] = useState(baseParams[pageParamKey])

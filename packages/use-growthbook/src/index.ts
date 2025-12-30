@@ -7,7 +7,6 @@ export {
   useFeatureIsOn,
   useFeatureValue,
   useGrowthBook,
-  useGrowthBookSSR,
   withRunExperiment,
 } from '@growthbook/growthbook-react'
 export { AbTestProvider } from './AbTestProvider'

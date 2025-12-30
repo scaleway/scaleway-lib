@@ -18,6 +18,7 @@
         "out/**"
       ]
     },
+
     "typecheck": {
       "dependsOn": ["^build"],
       "inputs": ["**/*.{ts,tsx}", "tsconfig.json"]

@@ -17,7 +17,9 @@ const noop = () => {}
 export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
   key: KeyType,
   method: () => PromiseType<ResultType>,
-  {
+  config?: UseDataLoaderConfig<ResultType, ErrorType>,
+): UseDataLoaderResult<ResultType, ErrorType> => {
+  const {
     enabled = true,
     onError,
     onSuccess,
@@ -26,8 +28,8 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
     pollingInterval,
     initialData,
     dataLifetime,
-  }: UseDataLoaderConfig<ResultType, ErrorType> = {},
-): UseDataLoaderResult<ResultType, ErrorType> => {
+  } = config ?? {}
+
   const {
     getOrAddRequest,
     onError: onGlobalError,
