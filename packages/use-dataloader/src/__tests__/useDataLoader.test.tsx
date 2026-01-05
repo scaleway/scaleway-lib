@@ -57,11 +57,11 @@ describe('useDataLoader', () => {
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBeTruthy()
     expect(result.current.previousData).toBe(undefined)
-    expect(initialProps.method).toBeCalledTimes(1)
+    expect(initialProps.method).toHaveBeenCalledOnce()
     await waitFor(() => {
       expect(result.current.isSuccess).toBeTruthy()
     })
-    expect(initialProps.method).toBeCalledTimes(1)
+    expect(initialProps.method).toHaveBeenCalledOnce()
     expect(result.current.data).toBeTruthy()
     expect(result.current.isLoading).toBeFalsy()
     expect(result.current.previousData).toBe(undefined)
@@ -93,14 +93,14 @@ describe('useDataLoader', () => {
     await waitFor(() => {
       expect(result.current.isSuccess).toBeTruthy()
     })
-    expect(initialProps.method).toBeCalledTimes(1)
+    expect(initialProps.method).toHaveBeenCalledOnce()
     expect(result.current.data).toBeTruthy()
     expect(result.current.isLoading).toBeFalsy()
     expect(result.current.previousData).toBe(undefined)
 
     rerender({ ...initProps })
 
-    expect(initialProps.method).toBeCalledTimes(1)
+    expect(initialProps.method).toHaveBeenCalledOnce()
     expect(result.current.data).toBeTruthy()
     expect(result.current.isLoading).toBeFalsy()
     expect(result.current.previousData).toBe(undefined)
@@ -144,7 +144,7 @@ describe('useDataLoader', () => {
     })
     expect(result.current.data).toBe(undefined)
     resolveIt = true
-    expect(method).toBeCalledTimes(1)
+    expect(method).toHaveBeenCalledOnce()
     await waitFor(() => {
       expect(result.current.isSuccess).toBeTruthy()
     })
@@ -361,7 +361,7 @@ describe('useDataLoader', () => {
     expect(result.current.data).toBe(undefined)
     expect(result.current.isPolling).toBeTruthy()
     expect(result.current.isFetching).toBeTruthy()
-    expect(pollingProps.method).toBeCalledTimes(1)
+    expect(pollingProps.method).toHaveBeenCalledOnce()
     await waitFor(() => {
       expect(result.current.isSuccess).toBeTruthy()
     })
@@ -399,7 +399,7 @@ describe('useDataLoader', () => {
     await waitFor(() => {
       expect(result.current.isSuccess).toBeTruthy()
     })
-    expect(method2).toBeCalledTimes(1)
+    expect(method2).toHaveBeenCalledOnce()
     expect(result.current.isSuccess).toBeTruthy()
     expect(result.current.isFetching).toBeFalsy()
     expect(result.current.data).toBe(2)
@@ -453,7 +453,7 @@ describe('useDataLoader', () => {
     expect(result.current.data).toBe(undefined)
     expect(result.current.isPolling).toBeFalsy()
     expect(result.current.isLoading).toBeTruthy()
-    expect(pollingProps.method).toBeCalledTimes(1)
+    expect(pollingProps.method).toHaveBeenCalledOnce()
     await waitFor(() => {
       expect(result.current.isSuccess).toBeTruthy()
     })
@@ -487,7 +487,7 @@ describe('useDataLoader', () => {
     expect(result.current.data).toBe(undefined)
     expect(result.current.isPolling).toBeTruthy()
     expect(result.current.isLoading).toBeTruthy()
-    expect(pollingProps.method).toBeCalledTimes(1)
+    expect(pollingProps.method).toHaveBeenCalledOnce()
     await waitFor(() => {
       expect(result.current.isSuccess).toBeTruthy()
     })
@@ -522,7 +522,7 @@ describe('useDataLoader', () => {
     expect(result.current.data).toBe(undefined)
     expect(result.current.isPolling).toBeFalsy()
     expect(result.current.isLoading).toBeTruthy()
-    expect(pollingProps.method).toBeCalledTimes(1)
+    expect(pollingProps.method).toHaveBeenCalledOnce()
     await waitFor(() => {
       expect(result.current.isSuccess).toBeTruthy()
     })
@@ -557,7 +557,7 @@ describe('useDataLoader', () => {
     expect(result.current.data).toBe(undefined)
     expect(result.current.isPolling).toBeTruthy()
     expect(result.current.isLoading).toBeTruthy()
-    expect(pollingProps.method).toBeCalledTimes(1)
+    expect(pollingProps.method).toHaveBeenCalledOnce()
     await waitFor(() => {
       expect(result.current.isSuccess).toBeTruthy()
     })
@@ -633,7 +633,7 @@ describe('useDataLoader', () => {
       expect(result.current.isSuccess).toBeTruthy()
     })
     expect(result.current.data).toBeTruthy()
-    expect(onSuccess).toBeCalledTimes(1)
+    expect(onSuccess).toHaveBeenCalledOnce()
   })
 
   test('should call onError', async () => {
@@ -667,7 +667,7 @@ describe('useDataLoader', () => {
     expect(result.current.error).toBe(error)
     expect(result.current.data).toBe(undefined)
 
-    expect(onError).toBeCalledTimes(1)
+    expect(onError).toHaveBeenCalledOnce()
     expect(onError).toBeCalledWith(error)
     expect(onSuccess).toBeCalledTimes(0)
   })
@@ -704,7 +704,7 @@ describe('useDataLoader', () => {
     expect(result.current.data).toBe(undefined)
     expect(result.current.error).toBe(error)
 
-    expect(onError).toBeCalledTimes(1)
+    expect(onError).toHaveBeenCalledOnce()
     expect(onError).toBeCalledWith(error)
     expect(onErrorProvider).toBeCalledTimes(0)
     expect(onSuccess).toBeCalledTimes(0)
@@ -742,7 +742,7 @@ describe('useDataLoader', () => {
     expect(result.current.error).toBe(error)
     expect(result.current.isError).toBeTruthy()
 
-    expect(onErrorProvider).toBeCalledTimes(1)
+    expect(onErrorProvider).toHaveBeenCalledOnce()
     expect(onErrorProvider).toBeCalledWith(error)
     expect(onSuccess).toBeCalledTimes(0)
   })
@@ -786,7 +786,7 @@ describe('useDataLoader', () => {
     expect(result.current.isError).toBeTruthy()
     expect(result.current.data).toBe(undefined)
 
-    expect(onError).toBeCalledTimes(1)
+    expect(onError).toHaveBeenCalledOnce()
     expect(onSuccess).toBeCalledTimes(0)
 
     result.current.reload().catch(() => null)
@@ -891,7 +891,7 @@ describe('useDataLoader', () => {
       expect(result.current[0].isSuccess).toBeTruthy()
     })
     expect(result.current[0].data).toBeTruthy()
-    expect(mockedFn).toBeCalledTimes(1)
+    expect(mockedFn).toHaveBeenCalledOnce()
 
     result.current[1].reloadAll().catch(() => null)
     await waitFor(() => {
@@ -932,13 +932,13 @@ describe('useDataLoader', () => {
     expect(result.current[0]?.data).toBe(undefined)
     expect(result.current[0]?.isLoading).toBeTruthy()
     expect(result.current[0]?.previousData).toBe(undefined)
-    expect(testingProps.method).toBeCalledTimes(1)
+    expect(testingProps.method).toHaveBeenCalledOnce()
     await waitFor(() => {
       expect(result.current[0]?.isSuccess).toBeTruthy()
     })
     testingProps.config2.enabled = true
     rerender(testingProps)
-    expect(testingProps.method).toBeCalledTimes(1)
+    expect(testingProps.method).toHaveBeenCalledOnce()
     expect(result.current[0]?.data).toBeTruthy()
     expect(result.current[1]?.data).toBeTruthy()
     expect(result.current[0]?.isLoading).toBeFalsy()
@@ -980,7 +980,7 @@ describe('useDataLoader', () => {
     expect(result.current[0]?.data).toBe(undefined)
     expect(result.current[0]?.isLoading).toBeTruthy()
     expect(result.current[0]?.previousData).toBe(undefined)
-    expect(testingProps.method).toBeCalledTimes(1)
+    expect(testingProps.method).toHaveBeenCalledOnce()
     await waitFor(() => {
       expect(result.current[0]?.isSuccess).toBeTruthy()
     })

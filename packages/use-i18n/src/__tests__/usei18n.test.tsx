@@ -320,7 +320,7 @@ describe('i18n hook', () => {
 
       await waitFor(() => {
         expect(result.current.currentLocale).toEqual('en')
-        expect(mockGetItem).toHaveBeenCalledTimes(1)
+        expect(mockGetItem).toHaveBeenCalledOnce()
         expect(mockGetItem).toHaveBeenCalledWith(LOCALE_ITEM_STORAGE)
       })
       localStorageMock.mockRestore()
@@ -351,7 +351,7 @@ describe('i18n hook', () => {
 
       await waitFor(() => {
         expect(result.current.currentLocale).toEqual('en')
-        expect(mockGetItem).toHaveBeenCalledTimes(1)
+        expect(mockGetItem).toHaveBeenCalledOnce()
         expect(mockGetItem).toHaveBeenCalledWith(LOCALE_ITEM_STORAGE)
       })
       localStorageMock.mockRestore()
@@ -506,7 +506,7 @@ describe('i18n hook', () => {
       `On translate sync issue with variable between locales ${newVariable}`,
     )
 
-    expect(mockOnTranslateError).toHaveBeenCalledTimes(1)
+    expect(mockOnTranslateError).toHaveBeenCalledOnce()
 
     expect(mockOnTranslateError).toHaveBeenCalledWith({
       currentLocale: 'fr',
@@ -846,7 +846,7 @@ describe('i18n hook', () => {
 
       await waitFor(() => {
         expect(result.current.currentLocale).toEqual('fr')
-        expect(mockGetItem).toHaveBeenCalledTimes(1)
+        expect(mockGetItem).toHaveBeenCalledOnce()
         expect(mockGetItem).toHaveBeenCalledWith(LOCALE_ITEM_STORAGE)
       })
 

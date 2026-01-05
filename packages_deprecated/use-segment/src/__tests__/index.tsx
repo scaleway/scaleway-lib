@@ -200,7 +200,7 @@ describe('segment hook', () => {
       }),
     })
     await waitFor(() => {
-      expect(mock).toHaveBeenCalledTimes(1)
+      expect(mock).toHaveBeenCalledOnce()
     })
 
     await waitFor(() => {
@@ -250,7 +250,7 @@ describe('segment hook', () => {
     })
 
     await waitFor(() => {
-      expect(mock).toHaveBeenCalledTimes(1)
+      expect(mock).toHaveBeenCalledOnce()
       expect(mock).toHaveBeenCalledWith(settings, undefined)
     })
 
@@ -275,7 +275,7 @@ describe('segment hook', () => {
       }),
     })
     await waitFor(() => {
-      expect(mock).toHaveBeenCalledTimes(1)
+      expect(mock).toHaveBeenCalledOnce()
       expect(mock).toHaveBeenCalledWith(settings, undefined)
     })
 
@@ -301,12 +301,12 @@ describe('segment hook', () => {
       }),
     })
     await waitFor(() => {
-      expect(mock).toHaveBeenCalledTimes(1)
+      expect(mock).toHaveBeenCalledOnce()
       expect(mock).toHaveBeenCalledWith(settings, undefined)
     })
 
     await waitForExpect(() => {
-      expect(onError).toHaveBeenCalledTimes(1)
+      expect(onError).toHaveBeenCalledOnce()
     })
     expect(onError).toHaveBeenCalledWith(error)
     await waitForExpect(() => {
@@ -334,7 +334,7 @@ describe('segment hook', () => {
       }),
     })
     await waitFor(() => {
-      expect(mock).toHaveBeenCalledTimes(1)
+      expect(mock).toHaveBeenCalledOnce()
     })
 
     await waitFor(async () => {
@@ -342,7 +342,7 @@ describe('segment hook', () => {
     })
 
     await waitForExpect(() => {
-      expect(onEventError).toHaveBeenCalledTimes(1)
+      expect(onEventError).toHaveBeenCalledOnce()
       expect(onEventError).toHaveBeenCalledWith(eventError)
     })
     expect(result.current.isAnalyticsReady).toBe(true)
@@ -368,7 +368,7 @@ describe('segment hook', () => {
     })
 
     await waitFor(() => {
-      expect(mock).toHaveBeenCalledTimes(1)
+      expect(mock).toHaveBeenCalledOnce()
       expect(mock).toHaveBeenCalledWith(settings, initOptions)
     })
 

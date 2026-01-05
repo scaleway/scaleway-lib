@@ -84,12 +84,12 @@ describe('useInfinitDataLoader', () => {
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBeTruthy()
     expect(result.current.isFetching).toBeTruthy()
-    expect(initialProps.method).toHaveBeenCalledTimes(1)
+    expect(initialProps.method).toHaveBeenCalledOnce()
     setCanResolve(true)
     await waitFor(() => {
       expect(result.current.isSuccess).toBeTruthy()
     })
-    expect(initialProps.method).toHaveBeenCalledTimes(1)
+    expect(initialProps.method).toHaveBeenCalledOnce()
     expect(result.current.data).toStrictEqual([
       { data: 'Page 1 data', nextPage: 2 },
     ])
@@ -118,7 +118,7 @@ describe('useInfinitDataLoader', () => {
     expect(result.current.isLoading).toBeTruthy()
     expect(result.current.isFetching).toBeTruthy()
     expect(result.current.isFetching).toBeTruthy()
-    expect(initialProps.method).toHaveBeenCalledTimes(1)
+    expect(initialProps.method).toHaveBeenCalledOnce()
     expect(initialProps.method).toHaveBeenCalledWith({
       page: 1,
     })
@@ -126,7 +126,7 @@ describe('useInfinitDataLoader', () => {
     await waitFor(() => {
       expect(result.current.isSuccess).toBeTruthy()
     })
-    expect(initialProps.method).toHaveBeenCalledTimes(1)
+    expect(initialProps.method).toHaveBeenCalledOnce()
     expect(result.current.data).toStrictEqual([
       { data: 'Page 1 data', nextPage: 2 },
     ])
@@ -182,7 +182,7 @@ describe('useInfinitDataLoader', () => {
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBeTruthy()
     expect(result.current.isFetching).toBeTruthy()
-    expect(initialProps.method).toHaveBeenCalledTimes(1)
+    expect(initialProps.method).toHaveBeenCalledOnce()
     expect(initialProps.method).toHaveBeenCalledWith({
       page: 1,
     })
@@ -191,7 +191,7 @@ describe('useInfinitDataLoader', () => {
       expect(result.current.isSuccess).toBeTruthy()
     })
     setCanResolve(false)
-    expect(initialProps.method).toHaveBeenCalledTimes(1)
+    expect(initialProps.method).toHaveBeenCalledOnce()
     expect(result.current.data).toStrictEqual([
       { data: 'Page 1 data', nextPage: 2 },
     ])
@@ -274,7 +274,7 @@ describe('useInfinitDataLoader', () => {
     await waitFor(() => {
       expect(result.current.isFetching).toBeTruthy()
     })
-    expect(initialProps.method).toHaveBeenCalledTimes(1)
+    expect(initialProps.method).toHaveBeenCalledOnce()
     expect(initialProps.method).toHaveBeenCalledWith({
       page: 1,
     })
@@ -283,7 +283,7 @@ describe('useInfinitDataLoader', () => {
       expect(result.current.isSuccess).toBeTruthy()
     })
     setCanResolve(false)
-    expect(initialProps.method).toHaveBeenCalledTimes(1)
+    expect(initialProps.method).toHaveBeenCalledOnce()
     expect(result.current.data).toStrictEqual([
       { data: 'Page 1 data', nextPage: 2 },
     ])

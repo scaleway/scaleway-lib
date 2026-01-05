@@ -52,7 +52,7 @@ describe('dataloader class', () => {
     instance.removeObserver(() => {})
     expect(method).toBeCalledTimes(0)
     await instance.load()
-    expect(method).toBeCalledTimes(1)
+    expect(method).toHaveBeenCalledOnce()
     instance.clearData()
   })
 
@@ -73,7 +73,7 @@ describe('dataloader class', () => {
       instance.load(),
     ])
 
-    expect(method).toBeCalledTimes(1)
+    expect(method).toHaveBeenCalledOnce()
     instance.clearData()
   })
 
@@ -91,7 +91,7 @@ describe('dataloader class', () => {
     // don't await as we will cancel this instance before
     instance.load().catch(() => null)
 
-    expect(method).toBeCalledTimes(1)
+    expect(method).toHaveBeenCalledOnce()
     instance.cancel()
     expect(notify).toBeCalledTimes(0)
 
@@ -109,8 +109,8 @@ describe('dataloader class', () => {
     })
     expect(notify).toBeCalledTimes(0)
     await instance.load()
-    expect(method).toBeCalledTimes(1)
-    expect(notify).toBeCalledTimes(1)
+    expect(method).toHaveBeenCalledOnce()
+    expect(notify).toHaveBeenCalledOnce()
     expect(instance.getData()).toBeTruthy()
     instance.clearData()
   })
@@ -124,7 +124,7 @@ describe('dataloader class', () => {
       notifyChanges,
     })
     await instance.load()
-    expect(method).toBeCalledTimes(1)
+    expect(method).toHaveBeenCalledOnce()
     expect(instance.getData()).toBe(null)
   })
   test('should create instance with undefined data', async () => {
@@ -137,7 +137,7 @@ describe('dataloader class', () => {
       notifyChanges,
     })
     await instance.load()
-    expect(method).toBeCalledTimes(1)
+    expect(method).toHaveBeenCalledOnce()
     expect(instance.getData()).toBe(undefined)
   })
 
@@ -152,8 +152,8 @@ describe('dataloader class', () => {
       notifyChanges,
     })
     await instance.load().catch(onError)
-    expect(notifyChanges).toBeCalledTimes(1)
-    expect(onError).toBeCalledTimes(1)
+    expect(notifyChanges).toHaveBeenCalledOnce()
+    expect(onError).toHaveBeenCalledOnce()
   })
 
   test('should create instance with cancel', async () => {
@@ -169,7 +169,7 @@ describe('dataloader class', () => {
     expect(notifyChanges).toBeCalledTimes(0)
 
     await instance.load().catch(undefined)
-    expect(notifyChanges).toBeCalledTimes(1)
+    expect(notifyChanges).toHaveBeenCalledOnce()
 
     instance.cancel()
     await waitForExpect(() => {
@@ -193,7 +193,7 @@ describe('dataloader class', () => {
     await waitForExpect(() => {
       expect(instance.status).toBe(StatusEnum.IDLE)
     })
-    expect(notifyChanges).toBeCalledTimes(1)
+    expect(notifyChanges).toHaveBeenCalledOnce()
     expect(onError).toBeCalledTimes(0)
     await waitForExpect(async () => {
       expect(await res).toBeUndefined()

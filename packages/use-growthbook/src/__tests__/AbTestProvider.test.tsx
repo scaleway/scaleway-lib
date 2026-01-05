@@ -257,6 +257,6 @@ describe('abTestProvider', () => {
 
     // Since the attributes are the same object reference and we're using the same GrowthBook instance,
     // setAttributes should only be called once (from the initial render), not a second time from the re-render
-    expect(setAttributes).toBeCalledTimes(1)
+    expect(setAttributes).toHaveBeenCalledOnce()
   })
 })

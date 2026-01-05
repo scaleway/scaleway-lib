@@ -109,7 +109,7 @@ describe('cookieConsent - CookieConsentProvider', () => {
       }),
     })
 
-    expect(mockUseSegmentIntegrations).toBeCalledTimes(1)
+    expect(mockUseSegmentIntegrations).toHaveBeenCalledOnce()
     expect(result.current.isSegmentIntegrationsLoaded).toBeFalsy()
   })
 

@@ -62,7 +62,7 @@ describe('dataLoaderProvider', () => {
     // oxlint-disable-next-line  @typescript-eslint/no-floating-promises
     testRequest.load().catch(undefined)
     expect(testRequest.status).toBe(StatusEnum.LOADING)
-    expect(method).toBeCalledTimes(1)
+    expect(method).toHaveBeenCalledOnce()
     await waitFor(() => {
       expect(testRequest.status).toBe(StatusEnum.SUCCESS)
     })
@@ -112,7 +112,7 @@ describe('dataLoaderProvider', () => {
     await waitFor(() => {
       expect(testRequest.status).toBe(StatusEnum.SUCCESS)
     })
-    expect(method).toBeCalledTimes(1)
+    expect(method).toHaveBeenCalledOnce()
     expect(testRequest.data).toBeTruthy()
     expect(result.current.getCachedData(TEST_KEY)).toBeTruthy()
     // oxlint-disable-next-line  @typescript-eslint/no-floating-promises
@@ -134,7 +134,7 @@ describe('dataLoaderProvider', () => {
       method,
     })
     await request.load()
-    expect(method).toBeCalledTimes(1)
+    expect(method).toHaveBeenCalledOnce()
     expect(result.current.getRequest(TEST_KEY).status).toBe(StatusEnum.SUCCESS)
     const reloads = result.current.getReloads()
     expect(reloads).toHaveProperty(TEST_KEY)

@@ -146,6 +146,6 @@ describe('GTM hook', () => {
       `script[src="https://www.googletagmanager.com/gtm.js?id=testId"]`,
     ) as Element
     fireEvent.error(script)
-    expect(onLoadError).toHaveBeenCalledTimes(1)
+    expect(onLoadError).toHaveBeenCalledOnce()
   })
 })

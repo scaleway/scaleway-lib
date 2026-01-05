@@ -105,7 +105,7 @@ describe('SegmentProvider', () => {
     )
 
     await waitFor(() => {
-      expect(mock).toHaveBeenCalledTimes(1)
+      expect(mock).toHaveBeenCalledOnce()
     })
 
     expect(screen.queryByTestId('test')).toBeTruthy()

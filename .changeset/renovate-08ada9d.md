@@ -1,5 +1,5 @@
 ---
-'use-i18n': patch
+'@scaleway/use-i18n': patch
 ---
 
 Updated dependency `@formatjs/ecma402-abstract` to `3.0.6`.
