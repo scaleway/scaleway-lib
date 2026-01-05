@@ -5,7 +5,7 @@
     "packages/*"
   ],
   "type": "module",
-  "packageManager": "pnpm@10.17.1",
+  "packageManager": "pnpm@10.26.2",
   "engines": {
     "node": ">=20.x",
     "pnpm": ">=9.x"
@@ -33,6 +33,7 @@
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
+    "@typescript/native-preview": "catalog:",
     "@vitejs/plugin-react": "catalog:",
     "@vitest/coverage-istanbul": "catalog:",
     "browserslist": "catalog:",
@@ -40,29 +41,51 @@
     "cross-env": "catalog:",
     "esbuild-plugin-browserslist": "catalog:",
     "eslint": "catalog:",
+    "eslint-plugin-oxlint": "catalog:",
+    "fast-glob": "catalog:",
     "globals": "catalog:",
     "happy-dom": "catalog:",
     "husky": "catalog:",
+    "js-yaml": "catalog:",
+    "jsdom": "catalog:",
     "lint-staged": "catalog:",
     "mockdate": "catalog:",
+    "oxlint": "catalog:",
+    "oxlint-tsgolint": "catalog:",
     "read-pkg": "catalog:",
     "shx": "catalog:",
     "tstyche": "catalog:",
+    "turbo": "catalog:",
     "typescript": "catalog:",
     "vite": "catalog:",
     "vitest": "catalog:",
     "vitest-localstorage-mock": "catalog:",
     "wait-for-expect": "catalog:"
   },
+  "devDependencies": {
+    "@scaleway/changesets-renovate": "workspace:*",
+    "@scaleway/oxlint-config": "workspace:*",
+    "@scaleway/utils": "workspace:*"
+  },
   "scripts": {
-    "lint": "eslint --cache .",
+    "lint": "eslint --cache . --quiet",
     "lint:fix": "pnpm run lint --fix",
-    "build": "pnpm recursive run build",
+    "lint:catalog": "pnpm check-catalog-usage",
+    "oxc": "pnpm oxlint -c .oxlintrc.json --type-aware --type-check",
+    "oxc:quiet": "pnpm oxc --quiet",
+    "oxc:fix": "pnpm oxc --fix",
+    "build": "pnpm turbo build",
+    "typecheck": "pnpm turbo typecheck",
+    "typecheck:generate": "pnpm turbo typecheck:generate",
+    "typecheck:go": "pnpm turbo typecheck:go",
+    "typecheck:generate:go": "pnpm turbo typecheck:generate:go",
     "commit": "npx git-cz -a",
-    "format": "biome format --write .",
-    "test": "pnpm recursive run test:unit",
-    "test:coverage": "pnpm run test --coverage",
-    "typecheck": "pnpm tsc --noEmit",
+    "format": "biome check  --linter-enabled=false --write .",
+    "format:check": "biome format --verbose .",
+    "format:ci": "biome ci --linter-enabled=false .",
+    "test:unit": "pnpm turbo test:unit",
+    "test:coverage": "pnpm test:unit -- --coverage",
+    "typecheck:global": "pnpm tsc --noEmit",
     "test:types": "tstyche",
     "release": "pnpm build && pnpm changeset publish",
     "prepare": "husky install"
@@ -87,9 +110,14 @@
     ]
   },
   "lint-staged": {
-    "*.(j|t)s?(x)": [
-      "biome format --write .",
-      "eslint --fix"
+    "*.ts?(x)": [
+      "pnpm run format",
+      "pnpm -w biome lint . --diagnostic-level=error",
+      "pnpm run oxc:fix --quiet",
+      "eslint --cache --cache-strategy content --fix"
+    ],
+    "*.y?(a)ml": [
+      "pnpm dlx prettier --write '**/*.{yml,yaml}' --single-quote"
     ],
     "*.json": [
       "biome format --write ."

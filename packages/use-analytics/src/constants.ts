@@ -2,25 +2,25 @@ import type { SerializeOptions } from 'cookie'
 
 export const THIRD_PARTY_PROVIDERS = [
   {
-    name: 'Amplitude',
+    category: 'analytics',
     displayName: 'Amplitude',
-    category: 'analytics',
-  },
+    name: 'Amplitude',
+  } as const,
   {
-    name: 'Algolia',
+    category: 'analytics',
     displayName: 'Algolia',
-    category: 'analytics',
-  },
+    name: 'Algolia',
+  } as const,
   {
-    name: 'LinkedIn',
+    category: 'marketing',
     displayName: 'LinkedIn',
-    category: 'marketing',
-  },
+    name: 'LinkedIn',
+  } as const,
   {
-    name: 'Google Ads',
-    displayName: 'Google AdWord',
     category: 'marketing',
-  },
+    displayName: 'Google AdWord',
+    name: 'Google Ads',
+  } as const,
 ] as const
 
 export const CATEGORIES = [
@@ -31,21 +31,21 @@ export const CATEGORIES = [
   'advertising',
 ] as const
 
-export const destSDKBaseURL = (cdnUrl: string) =>
-  `${cdnUrl}/cdn/v3/modern/js-integrations`
-export const pluginsSDKBaseURL = (cdnUrl: string) =>
-  `${cdnUrl}/cdn/v3/modern/plugins`
+export const destSDKBaseURL = (cdnUrl: string): string =>
+  `${cdnUrl}/cdn/v3/modern/js-integrations` as const
+export const pluginsSDKBaseURL = (cdnUrl: string): string =>
+  `${cdnUrl}/cdn/v3/modern/plugins` as const
 
-export const COOKIE_PREFIX = '_scw_rgpd'
-export const HASH_COOKIE = `${COOKIE_PREFIX}_hash`
+export const COOKIE_PREFIX: string = '_scw_rgpd' as const
+export const HASH_COOKIE: string = `${COOKIE_PREFIX}_hash` as const
 
 // Appx 13 Months
-export const CONSENT_MAX_AGE = 13 * 30 * 24 * 60 * 60
+export const CONSENT_MAX_AGE: number = 13 * 30 * 24 * 60 * 60
 // Appx 6 Months
-export const CONSENT_ADVERTISING_MAX_AGE = 6 * 30 * 24 * 60 * 60
+export const CONSENT_ADVERTISING_MAX_AGE: number = 6 * 30 * 24 * 60 * 60
 
 export const COOKIES_OPTIONS: SerializeOptions = {
+  path: '/',
   sameSite: 'strict',
   secure: true,
-  path: '/',
 } as const

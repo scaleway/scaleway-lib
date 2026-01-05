@@ -1,21 +1,40 @@
-import type { GrowthBook as GBType } from '@growthbook/growthbook-react'
 import type { ReactNode } from 'react'
 import { vi } from 'vitest'
 
-export const getAttributes = vi.fn<() => ReturnType<GBType['getAttributes']>>()
-export const setAttributes = vi.fn<() => ReturnType<GBType['setAttributes']>>(
-  () => Promise.resolve(),
-)
+// Create mock functions
+export const init = vi.fn()
+export const getAttributes = vi.fn()
+export const setAttributes = vi.fn()
+export const loadFeatures = vi.fn()
 
-export const GrowthBook = vi.fn(() => ({
-  loadFeatures: vi.fn<() => ReturnType<GBType['loadFeatures']>>(),
-  getAttributes,
-  setAttributes,
-}))
-export const GrowthBookProvider = ({ children }: { children: ReactNode }) =>
-  children
+// Create a mock class for GrowthBook
+export class MockGrowthBook {
+  init = init
 
-export const useGrowthBook = vi.fn()
+  getAttributes = getAttributes
 
-console.debug('GrowthBook Mock', GrowthBookProvider)
-// export { GrowthBook, GrowthBookProvider, useGrowthBook }
+  setAttributes = setAttributes
+
+  loadFeatures = loadFeatures
+
+  constructor() {
+    // Reset mocks for each instance
+    this.init.mockResolvedValue(undefined)
+    this.getAttributes.mockReturnValue({})
+    this.setAttributes.mockResolvedValue(undefined)
+    this.loadFeatures.mockResolvedValue(undefined)
+  }
+}
+
+// Export the constructor
+export const GrowthBook = MockGrowthBook
+
+// Export the provider component
+export const GrowthBookProvider = ({
+  children,
+}: {
+  children: ReactNode
+}): ReactNode => children
+
+// Export hook
+export const useGrowthBook = vi.fn(() => new MockGrowthBook())

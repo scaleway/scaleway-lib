@@ -2,22 +2,22 @@ import react from '@vitejs/plugin-react'
 import browserslist from 'browserslist'
 import { resolveToEsbuildTarget } from 'esbuild-plugin-browserslist'
 import { readPackage } from 'read-pkg'
-import { defineConfig } from 'vite'
 import type { UserConfig } from 'vite'
+import { defineConfig } from 'vite'
 
 const pkg = await readPackage()
 
 const externalPkgs = [
-  ...Object.keys(pkg.dependencies || {}),
-  ...Object.keys(pkg.optionalDependencies || {}),
-  ...Object.keys(pkg.peerDependencies || {}),
+  ...Object.keys(pkg.dependencies ?? {}),
+  ...Object.keys(pkg.optionalDependencies ?? {}),
+  ...Object.keys(pkg.peerDependencies ?? {}),
 ]
 
 const external = (id: string) => {
   const match = (dependency: string) => new RegExp(`^${dependency}`).test(id)
-  const isExternal = externalPkgs.some(match)
+  const isExternal = externalPkgs.some(p => match(p))
   // alias of bundledDependencies package.json field array
-  const isBundled = pkg.bundleDependencies?.some(match)
+  const isBundled = pkg.bundleDependencies?.some(dep => !dep) ?? false
 
   return isExternal && !isBundled
 }
@@ -33,13 +33,8 @@ const targets = resolveToEsbuildTarget(
 
 export const defaultConfig: UserConfig = {
   build: {
-    outDir: 'dist',
-    target: [...targets, 'node20'],
-    minify: false,
     lib: {
-      name: pkg.name,
       entry: 'src/index.ts',
-      formats: ['es'],
       fileName: (format, filename) => {
         if (format === 'es') {
           return `${filename}.js`
@@ -47,13 +42,18 @@ export const defaultConfig: UserConfig = {
 
         return `${filename}.${format}`
       },
+      formats: ['es'],
+      name: pkg.name,
     },
+    minify: false,
+    outDir: 'dist',
     rollupOptions: {
       external,
       output: {
         preserveModules: true,
       },
     },
+    target: [...targets, 'node20'],
   },
   plugins: [
     react({

@@ -1,6 +1,8 @@
+// oxlint-disable eslint/max-statements
+
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { useDataLoaderContext } from './DataLoaderProvider'
 import { StatusEnum } from './constants'
+import { useDataLoaderContext } from './DataLoaderProvider'
 import type DataLoader from './dataloader'
 import { marshalQueryKey } from './helpers'
 import type {
@@ -36,6 +38,7 @@ export const useInfiniteDataLoader = <
     onError: onGlobalError,
     defaultDatalifetime,
   } = useDataLoaderContext()
+
   const {
     enabled = true,
     onError,
@@ -45,6 +48,7 @@ export const useInfiniteDataLoader = <
     dataLifetime,
     getNextPage,
   } = config ?? {}
+
   const computedDatalifetime = dataLifetime ?? defaultDatalifetime
   const requestRefs = useRef<DataLoader<ResultType, ErrorType>[]>([])
   const [page, setPage] = useState(baseParams[pageParamKey])
@@ -60,14 +64,14 @@ export const useInfiniteDataLoader = <
     [pageParamKey]: page,
   }
 
-  const getMethodRef = useRef(() => method(paramsArgs))
+  const getMethodRef = useRef(async () => method(paramsArgs))
   const getOnSuccessRef = useRef(
-    (...params: Parameters<NonNullable<typeof onSuccess>>) =>
+    async (...params: Parameters<NonNullable<typeof onSuccess>>) =>
       onSuccess?.(...params),
   )
 
   const getOnErrorRef = useRef(
-    (err: ErrorType) => onError?.(err) ?? onGlobalError?.(err),
+    async (err: ErrorType) => onError?.(err) ?? onGlobalError?.(err),
   )
 
   const [, setCounter] = useState(0)
@@ -81,14 +85,16 @@ export const useInfiniteDataLoader = <
   useEffect(() => {
     const notifyFn = forceRerender.current
     // Ensure observers are added after first mount
-    requestRefs.current.forEach(request =>
-      !request.observers.includes(notifyFn)
-        ? request.addObserver(notifyFn)
-        : undefined,
-    )
+    requestRefs.current.forEach(request => {
+      if (!request.observers.includes(notifyFn)) {
+        request.addObserver(notifyFn)
+      }
+    })
 
     return () => {
-      requestRefs.current.forEach(request => request.removeObserver(notifyFn))
+      requestRefs.current.forEach(request => {
+        request.removeObserver(notifyFn)
+      })
     }
   }, [])
 
@@ -150,7 +156,8 @@ export const useInfiniteDataLoader = <
 
   const previousDataRef = useRef(request.data)
 
-  const isLoading = requestRefs.current.some(
+  // isFetching is true when there is an active request in progress
+  const isFetching = requestRefs.current.some(
     req => req.status === StatusEnum.LOADING || optimisticIsLoadingRef.current,
   )
 
@@ -169,7 +176,7 @@ export const useInfiniteDataLoader = <
 
   const reload = useCallback(async () => {
     await Promise.all(
-      requestRefs.current.map(req =>
+      requestRefs.current.map(async req =>
         req
           .load(true)
           .then(getOnSuccessRef.current)
@@ -185,8 +192,8 @@ export const useInfiniteDataLoader = <
   })
 
   useEffect(() => {
-    request.method = () => method(paramsArgs)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    request.method = async () => method(paramsArgs)
+    // oxlint-disable-next-line react-hooks/exhaustive-deps
   }, [method, request])
 
   useEffect(() => {
@@ -199,7 +206,7 @@ export const useInfiniteDataLoader = <
   useEffect(() => {
     setPage(() => baseParams[pageParamKey])
     nextPageRef.current = baseParams[pageParamKey]
-    /* eslint-disable-next-line react-hooks/exhaustive-deps */
+    // oxlint-disable-next-line react-hooks/exhaustive-deps
   }, [baseQueryKey])
 
   useEffect(() => {
@@ -218,15 +225,15 @@ export const useInfiniteDataLoader = <
         .catch(onFailedLoad)
     }
     optimisticIsLoadingRef.current = false
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // oxlint-disable-next-line react-hooks/exhaustive-deps
   }, [needLoad, request])
 
   useEffect(() => {
-    getOnSuccessRef.current = (...params) => onSuccess?.(...params)
+    getOnSuccessRef.current = async (...params) => onSuccess?.(...params)
   }, [onSuccess])
 
   useEffect(() => {
-    getOnErrorRef.current = err => onError?.(err) ?? onGlobalError?.(err)
+    getOnErrorRef.current = async err => onError?.(err) ?? onGlobalError?.(err)
   }, [onError, onGlobalError])
 
   useEffect(() => {
@@ -234,30 +241,40 @@ export const useInfiniteDataLoader = <
       getNextPage ? getNextPage(...params) : undefined
   }, [getNextPage])
 
+  const computedData =
+    isLoadingFirstPage ||
+    [...requestRefs.current].filter(dataloader => !!dataloader.data).length ===
+      0
+      ? initialData
+      : ([...requestRefs.current]
+          .filter(dataloader => !!dataloader.data)
+          .map(dataloader => dataloader.data) as ResultType[])
+
+  // isLoading is true only when there is no cache data and we're fetching data for the first time
+  const isLoading =
+    !computedData &&
+    request.isFirstLoading &&
+    request.status === StatusEnum.LOADING
+
   const data = useMemo<UseInfiniteDataLoaderResult<ResultType, ErrorType>>(
     () => ({
-      isIdle,
-      isError,
-      isLoading,
-      isSuccess,
-      hasNextPage: nextPageRef.current !== undefined,
-      isLoadingFirstPage,
-      data:
-        isLoadingFirstPage ||
-        [...requestRefs.current].filter(dataloader => !!dataloader.data)
-          .length === 0
-          ? initialData
-          : ([...requestRefs.current]
-              .filter(dataloader => !!dataloader.data)
-              .map(dataloader => dataloader.data) as ResultType[]),
+      data: computedData,
       error: request.error,
-      reload,
+      hasNextPage: nextPageRef.current !== undefined,
+      isError,
+      isFetching,
+      isIdle,
+      isLoading,
+      isLoadingFirstPage,
+      isSuccess,
       loadMore: loadMoreRef.current,
+      reload,
     }),
     [
-      initialData,
+      computedData,
       isIdle,
       isLoading,
+      isFetching,
       isSuccess,
       isError,
       request.error,

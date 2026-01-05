@@ -1,3 +1,4 @@
+// oxlint-disable unicorn/no-typeof-undefined
 import {
   useCallback,
   useEffect,
@@ -7,7 +8,7 @@ import {
 } from 'react'
 
 declare global {
-  // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
+  // oxlint-disable-next-line typescript/consistent-type-definitions
   interface WindowEventMap {
     // native storage event is not broadcasted on the current page
     // https://developer.mozilla.org/en-US/docs/Web/API/Window/storage_event
@@ -38,13 +39,15 @@ const subscribeStorage = (callback: () => void) => {
   }
 }
 
+type ReturnStorage<T> = [T | null, (value: T | undefined) => void]
+
 const useStorage = <T>(
   key: string,
   options?: {
     initialValue?: T
     kind?: 'session' | 'local'
   },
-): [T | null, (value: T | undefined) => void] => {
+): ReturnStorage<T> => {
   const storage = useMemo(
     () =>
       options?.kind === 'session' ? window.sessionStorage : window.localStorage,
@@ -102,7 +105,11 @@ const useStorage = <T>(
   return [parsedValue, setValue]
 }
 
-export const useSessionStorage = <T>(key: string, initialValue?: T) =>
-  useStorage<T>(key, { initialValue, kind: 'session' })
-export const useLocalStorage = <T>(key: string, initialValue?: T) =>
-  useStorage<T>(key, { initialValue, kind: 'local' })
+export const useSessionStorage = <T>(
+  key: string,
+  initialValue?: T,
+): ReturnStorage<T> => useStorage<T>(key, { initialValue, kind: 'session' })
+export const useLocalStorage = <T>(
+  key: string,
+  initialValue?: T,
+): ReturnStorage<T> => useStorage<T>(key, { initialValue, kind: 'local' })

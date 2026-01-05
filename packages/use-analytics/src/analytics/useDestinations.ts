@@ -3,7 +3,9 @@ import type { AnalyticsConfig, AnalyticsIntegration, Config } from '../types'
 
 const timeout = (time: number) => {
   const controller = new AbortController()
-  setTimeout(() => controller.abort(), time * 1000)
+  setTimeout(() => {
+    controller.abort()
+  }, time * 1000)
 
   return controller
 }
@@ -15,11 +17,11 @@ const transformConfigToDestinations = (
 
   const dest = destinations.map(
     ({ destinationDefinition, config: { consentManagement } }) => ({
-      name: destinationDefinition.name,
-      displayName: destinationDefinition.displayName,
       consents: consentManagement.flatMap(({ consents }) =>
         consents.map(({ consent }) => consent),
       ),
+      displayName: destinationDefinition.displayName,
+      name: destinationDefinition.name,
     }),
   )
 
@@ -31,7 +33,12 @@ const transformConfigToDestinations = (
  * Should be the most important as only theses destinations will load a script and set an external cookies.
  * Will return undefined if loading, empty array if no response or error, response else.
  */
-export const useDestinations = (config: Config) => {
+export const useDestinations = (
+  config: Config,
+): {
+  destinations: AnalyticsIntegration[] | undefined
+  isLoaded: boolean
+} => {
   const [destinations, setDestinations] = useState<
     AnalyticsIntegration[] | undefined
   >(undefined)
@@ -43,10 +50,10 @@ export const useDestinations = (config: Config) => {
         const url = `${config.analytics.cdnURL}/sourceConfig`
         const WRITE_KEY = window.btoa(`${config.analytics.writeKey}:`)
         const response = await fetch(url, {
-          method: 'GET',
           headers: {
             Authorization: `Basic ${WRITE_KEY}`,
           },
+          method: 'GET',
           // We'd rather have an half consent than no consent at all
           signal: timeout(10).signal,
         })
@@ -55,6 +62,7 @@ export const useDestinations = (config: Config) => {
         }
 
         // TODO: use zod to safe parse and add an error callback in case the schema changed.
+        // oxlint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
         const json = (await response.json()) as AnalyticsConfig
 
         return transformConfigToDestinations(json)

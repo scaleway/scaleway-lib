@@ -1,3 +1,5 @@
+// oxlint-disable eslint/max-statements
+//
 import { DEFAULT_MAX_CONCURRENT_REQUESTS, StatusEnum } from './constants'
 import type { PromiseType } from './types'
 
@@ -9,7 +11,7 @@ export type DataLoaderConstructorArgs<ResultType> = {
 }
 
 class DataLoader<ResultType, ErrorType> {
-  public static maxConcurrent = DEFAULT_MAX_CONCURRENT_REQUESTS
+  public static maxConcurrent: number = DEFAULT_MAX_CONCURRENT_REQUESTS
 
   public static started = 0
 
@@ -48,15 +50,19 @@ class DataLoader<ResultType, ErrorType> {
       this.status = StatusEnum.LOADING
     }
     this.data = DataLoader.cachedData[this.key] as ResultType
-    if (args.notifyChanges) this.observers.push(args.notifyChanges)
+    if (args.notifyChanges) {
+      this.observers.push(args.notifyChanges)
+    }
   }
 
-  public notifyChanges() {
+  public notifyChanges(): void {
     if (this.timeout) {
       clearTimeout(this.timeout)
     }
     this.timeout = setTimeout(() => {
-      this.observers.forEach(observer => observer())
+      this.observers.forEach(observer => {
+        observer()
+      })
     }) as unknown as number
   }
 
@@ -145,13 +151,15 @@ class DataLoader<ResultType, ErrorType> {
     this.status = StatusEnum.IDLE
   }
 
-  public addObserver(observer: () => void) {
+  public addObserver(observer: () => void): void {
     this.observers.push(observer)
   }
 
-  public removeObserver(observer: () => void) {
+  public removeObserver(observer: () => void): void {
     const index = this.observers.indexOf(observer)
-    if (index > -1) this.observers.splice(index, 1)
+    if (index !== -1) {
+      this.observers.splice(index, 1)
+    }
   }
 }
 

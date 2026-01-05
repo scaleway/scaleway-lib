@@ -15,6 +15,13 @@ dist
 coverage
 .reports
 
+# turbo
+.turbo
+!.turbo/config.json
+examples/*/.turbo
+packages/*/.turbo
+tools/*/.turbo
+
 
 # VSCode extension "Local History"
 .history
@@ -36,3 +43,10 @@ vitest.config.ts.*
 # Yalc
 yalc.lock
 .yalc/
+
+# IDE
+.zed
+
+# ai
+.ai
+AGENTS.md

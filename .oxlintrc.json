@@ -1,0 +1,77 @@
+{
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+      "correctness": "deny",
+      "nursery": "off",
+      "pedantic": "deny",
+      "perf": "deny",
+      "restriction": "deny",
+      "style": "deny",
+      "suspicious": "deny"
+    },
+    "extends": [
+      "./packages/oxlint-config/configs/index.json",
+      "./packages/oxlint-config/configs/react.json",
+      "./packages/oxlint-config/configs/typescript.json"
+    ],
+    "ignorePatterns": [
+      "packages_deprecated/**",
+      "**/package.config.d.ts",
+      "global.d.ts",
+      "packages/eslint-config-react"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/__tests__/*.{ts,tsx}",
+          "**/__mocks__/*.{ts,tsx}",
+          "**/*.test.{ts,tsx}",
+          "**/*.spec.{ts,tsx}",
+          "vitest.setup.ts"
+        ],
+        "plugins": ["import", "oxc", "vitest"],
+        "rules": {
+          "@typescript-eslint/consistent-type-imports": "error",
+          "@typescript-eslint/no-explicit-any": "warn",
+          "@typescript-eslint/no-unsafe-argument": "warn",
+          "@typescript-eslint/require-await": "warn",
+          "eslint/max-statements":["error", {
+            // inside test it's a lot need to reduce.
+            "max": 30
+          }],
+          "eslint/no-alert": "off",
+          "eslint/no-console": "off",
+          "import/export": "off",
+          "import/no-anonymous-default-export": "off",
+          "import/no-named-export": "off",
+          "import/no-namespace": "off",
+          "import/no-unassigned-import": "off",
+          "jsx_a11y/label-has-associated-control": "off",
+          "node/no-process-env": "off",
+          "react/jsx-pascal-case": "off",
+          "react/jsx-props-no-spreading": "off",
+          "react/only-export-components": "off",
+          "unicorn/escape-case":"warn",
+          "unicorn/no-array-callback-reference": "off",
+          "unicorn/no-hex-escape":"warn",
+          "vitest/prefer-lowercase-title": "error"
+        }
+      }
+    ],
+    "rules": {
+      "@typescript-eslint/no-deprecated": "warn",
+      "@typescript-eslint/no-dynamic-delete": "warn",
+      "@typescript-eslint/no-misused-spread": "warn",
+      "@typescript-eslint/no-redundant-type-constituents": "warn",
+      "@typescript-eslint/no-unsafe-type-assertion": "warn",
+      "@typescript-eslint/strict-boolean-expressions": "off",
+      "react/only-export-components":"warn",
+      "unicorn/empty-brace-spaces": "error",
+      "unicorn/prefer-global-this":"allow"
+    },
+    "settings": {
+    	"vitest": {
+    		"typecheck": true
+    	 }
+    }
+}

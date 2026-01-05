@@ -1,15 +1,15 @@
 {
   "name": "@scaleway/changesets-renovate",
-  "version": "2.2.1",
-  "description": "Automatically create changesets for Renovate",
+  "version": "2.2.2",
+  "description": "Automatically create changesets for Renovate and pnpm catalogs",
   "type": "module",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "module": "./dist/cli.js",
+  "types": "./dist/cli.d.ts",
   "sideEffects": false,
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
+      "types": "./dist/cli.d.ts",
+      "default": "./dist/cli.js"
     }
   },
   "files": [
@@ -19,7 +19,7 @@
     "node": ">=20.x"
   },
   "bin": {
-    "changesets-renovate": "dist/index.js"
+    "changesets-renovate": "dist/cli.js"
   },
   "publishConfig": {
     "access": "public"
@@ -27,7 +27,9 @@
   "scripts": {
     "prebuild": "shx rm -rf dist",
     "typecheck": "tsc --noEmit",
+    "typecheck:go": "tsgo --noEmit",
     "type:generate": "tsc --declaration -p tsconfig.build.json",
+    "type:generate:go": "tsgo --declaration -p tsconfig.build.json",
     "build": "vite build --config vite.config.ts && pnpm run type:generate",
     "build:profile": "npx vite-bundle-visualizer -c vite.config.ts",
     "lint": "eslint --report-unused-disable-directives --cache --cache-strategy content --ext ts,tsx .",
@@ -43,9 +45,14 @@
   "keywords": [
     "changesets",
     "renovate",
+    "pnpm",
+    "catalogs",
     "sync"
   ],
   "dependencies": {
+    "@types/js-yaml": "catalog:",
+    "fast-glob": "catalog:",
+    "js-yaml": "catalog:",
     "simple-git": "catalog:"
   }
 }

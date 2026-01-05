@@ -7,24 +7,25 @@ export {
 } from './analytics'
 
 export {
-  defaultLoadOptions,
   defaultConsentOptions,
+  defaultLoadOptions,
 } from './analytics/constants'
-
-export {
-  THIRD_PARTY_PROVIDERS,
-  CATEGORIES,
-} from './constants'
 
 export type {
   Analytics,
-  OnEventError,
   AnalyticsProviderProps,
+  OnEventError,
 } from './analytics/useAnalytics'
+
+export {
+  CATEGORIES,
+  THIRD_PARTY_PROVIDERS,
+} from './constants'
+
 export type {
   AnalyticsIntegration,
-  Destination,
   CategoryKind,
-  Consents,
   Consent,
+  Consents,
+  Destination,
 } from './types'

@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react'
-import { beforeEach, describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import {
   getAttributes,
   setAttributes,
@@ -10,10 +10,13 @@ import { useAbTestAttributes } from '../useAbTestAttributes'
 describe('useAbTestAttributes', () => {
   beforeEach(() => {
     getAttributes.mockReturnValue({ foo: 'bar' })
+    setAttributes.mockResolvedValue(undefined)
 
     useGrowthBook.mockReturnValue({
       getAttributes,
       setAttributes,
+      init: vi.fn(),
+      loadFeatures: vi.fn(),
     })
   })
 

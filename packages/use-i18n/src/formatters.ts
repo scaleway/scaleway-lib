@@ -1,6 +1,6 @@
 import type { NumberFormatOptions } from '@formatjs/ecma402-abstract'
-import { memoize, strategies } from '@formatjs/fast-memoize'
 import type { Cache } from '@formatjs/fast-memoize'
+import { memoize, strategies } from '@formatjs/fast-memoize'
 import IntlTranslationFormat from 'intl-messageformat'
 
 // Deeply inspired by https://github.com/formatjs/formatjs/blob/7406e526a9c5666cee22cc2316dad1fa1d88697c/packages/intl-messageformat/src/core.ts
@@ -65,8 +65,7 @@ const baseFormatters: BaseFormatters = {
   ),
 
   getListFormat: memoize(
-    // @ts-expect-error we assume Intl.ListFormat exists in our current context
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     (...args) => new Intl.ListFormat(...args) as IntlListFormat,
     {
       cache: createFastMemoizeCache<IntlListFormat>(),

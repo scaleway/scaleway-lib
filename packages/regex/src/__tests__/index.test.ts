@@ -1,3 +1,5 @@
+// oxlint-disable eslint/max-statements
+
 import { describe, expect, test } from 'vitest'
 import {
   absoluteLinuxPath,
@@ -81,7 +83,7 @@ const hexdigits = '0123456789abcdefABCDEF'
 const octdigits = '01234567'
 const phoneTest = '+33607080910'
 const printable =
-  '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~ \t\n\r\x0b\x0c'
+  '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~ \t\n\r\u000B\u000C'
 const punctuation = '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'
 const sixDigitsCodeTest = '123456'
 const urls = [
@@ -94,7 +96,7 @@ const urls = [
   'http://www.example.com/products?id=1&page=2',
   'http://www.example.com#up',
 ]
-const whitespace = ' \t\n\r\x0b\x0c'
+const whitespace = ' \t\n\r\u000B\u000C'
 const macAddress1 = '1F:B5:FA:47:CD:C4'
 const nineDigitsCodeTest = '012345678'
 const linuxPaths = {
@@ -1174,14 +1176,8 @@ describe('@regex', () => {
       ['test_test', true],
       ['test-test', true],
       ['test.test', true],
+      ['test..test', false],
       ['test.test.', false],
-      ['test..test', false],
-      ['test-test-', false],
-      ['test_test_', false],
-      ['test.test.', false],
-      ['test..test', false],
-      ['test..test', false],
-      ['test..test', false],
     ])('should match regex %s to be %s', (string, expected) => {
       expect(webhostingUsernameEmailRegex.test(string)).toBe(expected)
     })

@@ -16,11 +16,15 @@ describe.skip('useStorage - Server side', () => {
       const { result } = renderHook(() => useLocalStorage<string>(KEY))
       expect(result.current[0]).toBeNull()
 
-      act(() => result.current[1]('hello'))
+      act(() => {
+        result.current[1]('hello')
+      })
 
       expect(result.current[0]).toBe('hello')
 
-      act(() => result.current[1](undefined))
+      act(() => {
+        result.current[1](undefined)
+      })
 
       expect(result.current[0]).toBeNull()
     })
@@ -38,12 +42,16 @@ describe.skip('useStorage - Server side', () => {
       const { result } = renderHook(() => useSessionStorage<string>(KEY))
       expect(result.current[0]).toBeNull()
 
-      act(() => result.current[1]('hello'))
+      act(() => {
+        result.current[1]('hello')
+      })
 
       expect(window.sessionStorage.getItem(KEY)).toBe('"hello"')
       expect(result.current[0]).toBe('hello')
 
-      act(() => result.current[1](undefined))
+      act(() => {
+        result.current[1](undefined)
+      })
 
       expect(window.sessionStorage.getItem(KEY)).toBeNull()
       expect(result.current[0]).toBeNull()

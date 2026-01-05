@@ -41,7 +41,7 @@ export type AnalyticsConfig = {
     id: string
     name: string
     writeKey: string
-    config: Record<string, any>
+    config: Record<string, unknown>
     enabled: boolean
     workspaceId: string
     destinations: RudderDestination[]

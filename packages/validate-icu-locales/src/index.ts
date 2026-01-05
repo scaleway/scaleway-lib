@@ -1,22 +1,37 @@
 #!/usr/bin/env node
 
+// oxlint-disable eslint/no-console
+// oxlint-disable eslint/max-statements
+
 import { readFile } from 'node:fs/promises'
-import { parseArgs } from 'node:util'
 import type { ParseArgsConfig } from 'node:util'
+import { parseArgs } from 'node:util'
+import type { Location } from '@formatjs/icu-messageformat-parser'
 import { parse } from '@formatjs/icu-messageformat-parser'
-import type { ParserError } from '@formatjs/icu-messageformat-parser/error'
 import { globby } from 'globby'
 import { importFromString } from 'module-from-string'
 
+type ParserError = {
+  // it's a enum inside @formatjs, don't use it today
+  kind: string
+  message: string
+  location: Location
+}
+// export interface ParserError {
+//   kind: ErrorKind;
+//   message: string;
+//   location: Location;
+// }
+
 const options: ParseArgsConfig['options'] = {
   ignoreTag: {
-    type: 'boolean',
-    short: 'i',
     default: false,
+    short: 'i',
+    type: 'boolean',
   },
 }
 
-const { values, positionals } = parseArgs({ options, allowPositionals: true })
+const { values, positionals } = parseArgs({ allowPositionals: true, options })
 
 const pattern = positionals[0]
 
@@ -46,14 +61,14 @@ const findICUErrors = (
         })
 
         return undefined
-      } catch (err) {
-        const { message } = err as ParserError
+      } catch (error) {
+        const { message } = error as ParserError
 
         return {
+          filePath,
+          key,
           message,
           value,
-          key,
-          filePath,
         }
       }
     })
@@ -78,8 +93,8 @@ const readFiles = async (files: string[]): Promise<ErrorsICU> => {
 
         const ICUErrors = findICUErrors(locales, file)
         errors.push(...ICUErrors)
-      } catch (err) {
-        console.error({ file, err })
+      } catch (error) {
+        console.error({ error, file })
       }
     }
 
@@ -99,13 +114,13 @@ const readFiles = async (files: string[]): Promise<ErrorsICU> => {
             const ICUErrors = findICUErrors(locales, file)
             errors.push(...ICUErrors)
           } else {
-            console.error('export default from: ', file, ' is not an object')
+            console.error('export default from:', file, 'is not an object')
           }
         } else {
-          console.error(file, ' is not an object')
+          console.error(file, 'is not an object')
         }
-      } catch (err) {
-        console.error({ err, file })
+      } catch (error) {
+        console.error({ error, file })
       }
     }
   }

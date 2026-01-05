@@ -20,7 +20,7 @@ const defaultAirBnbRules = [...fixupPluginRules(config)].reduce(
   {},
 )
 
-export default [
+const defaultAirbnb = [
   ...fixupConfigRules(compat.extends('airbnb-base')),
   {
     rules: {
@@ -190,3 +190,5 @@ export default [
     },
   },
 ]
+
+export default defaultAirbnb

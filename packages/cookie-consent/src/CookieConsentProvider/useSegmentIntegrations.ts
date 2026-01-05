@@ -19,7 +19,9 @@ const defaultSegmentIoIntegration: SegmentIntegration = {
 
 const timeout = (time: number) => {
   const controller = new AbortController()
-  setTimeout(() => controller.abort(), time * 1000)
+  setTimeout(() => {
+    controller.abort()
+  }, time * 1000)
 
   return controller
 }
@@ -29,8 +31,8 @@ type SegmentIntegrations = SegmentIntegration[]
 const CATEGORY_MATCH: Record<string, CategoryKind> = {
   Analytics: 'analytics',
   CRM: 'marketing',
-  Other: 'marketing',
   Functional: 'functional',
+  Other: 'marketing',
 }
 
 const transformSegmentIntegrationsToIntegrations = (
@@ -38,14 +40,20 @@ const transformSegmentIntegrationsToIntegrations = (
 ): Integrations =>
   [defaultSegmentIoIntegration, ...segmentIntegrations].map(
     ({ category, creationName, name }) => ({
+      category: CATEGORY_MATCH[category] ?? 'marketing',
       // Segment requires the `creationName` for this destination.
       name: name === 'Google Ads (Gtag)' ? creationName : name,
-      category: CATEGORY_MATCH[category] ?? 'marketing',
     }),
   )
 
+type SegmentIntegrationsHook = (config: Config) => {
+  integrations: Integrations | undefined
+  isLoaded: boolean
+}
 // Will return undefined if loading, empty array if no response or error, response else
-export const useSegmentIntegrations = (config: Config) => {
+export const useSegmentIntegrations: SegmentIntegrationsHook = (
+  config: Config,
+) => {
   const [integrations, setIntegrations] = useState<Integrations | undefined>(
     undefined,
   )

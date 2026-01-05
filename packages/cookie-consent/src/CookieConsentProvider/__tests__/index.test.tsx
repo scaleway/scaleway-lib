@@ -55,7 +55,16 @@ vi.mock('../useSegmentIntegrations', () => ({
   useSegmentIntegrations: () => mockUseSegmentIntegrations(),
 }))
 
-describe('CookieConsent - CookieConsentProvider', () => {
+describe('cookieConsent - CookieConsentProvider', () => {
+  beforeEach(() => {
+    // Clear all cookies before each test
+    document.cookie.split(';').forEach(cook => {
+      const eqPos = cook.indexOf('=')
+      const name = eqPos !== -1 ? cook.substr(0, eqPos).trim() : cook.trim()
+      document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT`
+    })
+  })
+
   it('useCookieConsent should throw without provider', () => {
     const spy = vi.spyOn(console, 'error')
     spy.mockImplementation(() => {})
@@ -74,8 +83,8 @@ describe('CookieConsent - CookieConsentProvider', () => {
       }),
     })
 
-    expect(result.current.needConsent).toBe(false)
-    expect(result.current.isSegmentAllowed).toBe(true)
+    expect(result.current.needConsent).toBeFalsy()
+    expect(result.current.isSegmentAllowed).toBeTruthy()
     expect(result.current.categoriesConsent).toStrictEqual({
       analytics: true,
       marketing: true,
@@ -85,7 +94,7 @@ describe('CookieConsent - CookieConsentProvider', () => {
       Salesforce: true,
       'Salesforce custom destination (Scaleway)': true,
     })
-    expect(result.current.isSegmentIntegrationsLoaded).toBe(true)
+    expect(result.current.isSegmentIntegrationsLoaded).toBeTruthy()
   })
 
   it('should know when integrations are loading', () => {
@@ -101,7 +110,7 @@ describe('CookieConsent - CookieConsentProvider', () => {
     })
 
     expect(mockUseSegmentIntegrations).toBeCalledTimes(1)
-    expect(result.current.isSegmentIntegrationsLoaded).toBe(false)
+    expect(result.current.isSegmentIntegrationsLoaded).toBeFalsy()
   })
 
   it('should know to ask for content when no cookie is set and consent is required', () => {
@@ -111,8 +120,8 @@ describe('CookieConsent - CookieConsentProvider', () => {
       }),
     })
 
-    expect(result.current.needConsent).toBe(true)
-    expect(result.current.isSegmentAllowed).toBe(false)
+    expect(result.current.needConsent).toBeTruthy()
+    expect(result.current.isSegmentAllowed).toBeFalsy()
     expect(result.current.categoriesConsent).toStrictEqual({
       marketing: false,
       analytics: false,
@@ -132,8 +141,8 @@ describe('CookieConsent - CookieConsentProvider', () => {
       }),
     })
 
-    expect(result.current.needConsent).toBe(true)
-    expect(result.current.isSegmentAllowed).toBe(false)
+    expect(result.current.needConsent).toBeTruthy()
+    expect(result.current.isSegmentAllowed).toBeFalsy()
     expect(result.current.categoriesConsent).toStrictEqual({
       analytics: false,
       marketing: false,
@@ -171,7 +180,7 @@ describe('CookieConsent - CookieConsentProvider', () => {
     })
 
     act(() => {
-      expect(result.current.isSegmentAllowed).toBe(true)
+      expect(result.current.isSegmentAllowed).toBeTruthy()
     })
 
     act(() => {
@@ -193,7 +202,6 @@ describe('CookieConsent - CookieConsentProvider', () => {
   })
 
   it('should not need consent if hash cookie is set', () => {
-    // document.cookie = '_scw_rgpd_hash=913003917;'
     document.cookie = cookie.serialize('_scw_rgpd_hash', '913003917')
 
     const { result } = renderHook(() => useCookieConsent(), {
@@ -202,8 +210,8 @@ describe('CookieConsent - CookieConsentProvider', () => {
       }),
     })
 
-    expect(result.current.needConsent).toBe(false)
-    expect(result.current.isSegmentAllowed).toBe(false)
+    expect(result.current.needConsent).toBeFalsy()
+    expect(result.current.isSegmentAllowed).toBeFalsy()
     expect(result.current.categoriesConsent).toStrictEqual({
       analytics: false,
       marketing: false,
@@ -225,9 +233,9 @@ describe('CookieConsent - CookieConsentProvider', () => {
       }),
     })
     await waitFor(() => {
-      expect(result.current.needConsent).toBe(false)
+      expect(result.current.needConsent).toBeFalsy()
     })
-    expect(result.current.isSegmentAllowed).toBe(true)
+    expect(result.current.isSegmentAllowed).toBeTruthy()
     expect(result.current.categoriesConsent).toStrictEqual({
       analytics: false,
       marketing: true,

@@ -1,6 +1,9 @@
+// oxlint-disable unicorn/no-typeof-undefined
+
 import { useEffect, useLayoutEffect, useState } from 'react'
 import type { Effect } from './types'
 
+// oxlint-disable unicorn/empty-brace-spaces
 function noop() {}
 
 export const mockMediaQueryList: MediaQueryList = {
@@ -14,9 +17,11 @@ export const mockMediaQueryList: MediaQueryList = {
   removeListener: noop,
 }
 
+type MediaEffect = (query: string, defaultState?: boolean) => boolean
+
 const createUseMedia =
   (effect: Effect) =>
-  (query: string, defaultState = false) => {
+  (query: string, defaultState = false): boolean => {
     const [state, setState] = useState(defaultState)
 
     effect(() => {
@@ -47,5 +52,5 @@ const createUseMedia =
     return state
   }
 
-export const useMedia = createUseMedia(useEffect)
-export const useMediaLayout = createUseMedia(useLayoutEffect)
+export const useMedia: MediaEffect = createUseMedia(useEffect)
+export const useMediaLayout: MediaEffect = createUseMedia(useLayoutEffect)

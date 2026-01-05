@@ -1,5 +1,5 @@
+import type { ComponentType, Context, ReactNode } from 'react'
 import { createContext, useCallback, useContext, useMemo, useRef } from 'react'
-import type { ReactElement, ReactNode } from 'react'
 import {
   DEFAULT_MAX_CONCURRENT_REQUESTS,
   KEY_IS_NOT_STRING_ERROR,
@@ -52,8 +52,9 @@ export type IDataLoaderContext = {
   reloadGroup: (startKey?: string) => Promise<void>
 }
 
-// @ts-expect-error we force the context to undefined, should be corrected with default values
-export const DataLoaderContext = createContext<IDataLoaderContext>(undefined)
+export const DataLoaderContext: Context<IDataLoaderContext> =
+  // @ts-expect-error we force the context to undefined, should be corrected with default values
+  createContext<IDataLoaderContext>(undefined)
 
 type DataLoaderProviderProps = {
   children: ReactNode
@@ -66,13 +67,13 @@ type DataLoaderProviderProps = {
   defaultDatalifetime?: number
 }
 
-const DataLoaderProvider = ({
+const DataLoaderProvider: ComponentType<DataLoaderProviderProps> = ({
   children,
   cacheKeyPrefix,
   onError,
   maxConcurrentRequests = DEFAULT_MAX_CONCURRENT_REQUESTS,
   defaultDatalifetime,
-}: DataLoaderProviderProps): ReactElement => {
+}) => {
   const requestsRef = useRef<Requests>({})
 
   const computeKey = useCallback(
@@ -122,7 +123,9 @@ const DataLoaderProvider = ({
     (key: string) => {
       if (key && typeof key === 'string') {
         getRequest(key)?.clearData()
-      } else throw new Error(KEY_IS_NOT_STRING_ERROR)
+      } else {
+        throw new Error(KEY_IS_NOT_STRING_ERROR)
+      }
     },
     [getRequest],
   )
@@ -136,7 +139,9 @@ const DataLoaderProvider = ({
     async (key?: string) => {
       if (key && typeof key === 'string') {
         await getRequest(key)?.load(true)
-      } else throw new Error(KEY_IS_NOT_STRING_ERROR)
+      } else {
+        throw new Error(KEY_IS_NOT_STRING_ERROR)
+      }
     },
     [getRequest],
   )
@@ -146,14 +151,18 @@ const DataLoaderProvider = ({
       await Promise.all(
         Object.values(requestsRef.current)
           .filter(request => request.key.startsWith(startPrefix))
-          .map(request => request.load(true)),
+          .map(async request => request.load(true)),
       )
-    } else throw new Error(KEY_IS_NOT_STRING_ERROR)
+    } else {
+      throw new Error(KEY_IS_NOT_STRING_ERROR)
+    }
   }, [])
 
   const reloadAll = useCallback(async () => {
     await Promise.all(
-      Object.values(requestsRef.current).map(request => request.load(true)),
+      Object.values(requestsRef.current).map(async request =>
+        request.load(true),
+      ),
     )
   }, [])
 
@@ -177,13 +186,15 @@ const DataLoaderProvider = ({
   const getReloads = useCallback(
     (key?: string) => {
       if (key) {
-        return getRequest(key) ? () => getRequest(key)?.load(true) : undefined
+        return getRequest(key)
+          ? async () => getRequest(key)?.load(true)
+          : undefined
       }
 
       return Object.entries(requestsRef.current).reduce<Reloads>(
         (acc, [requestKey, { load }]) => ({
           ...acc,
-          [requestKey]: () => load(true),
+          [requestKey]: async () => load(true),
         }),
         {},
       )
@@ -197,6 +208,8 @@ const DataLoaderProvider = ({
       cacheKeyPrefix,
       clearAllCachedData,
       clearCachedData,
+      computeKey,
+      defaultDatalifetime,
       getCachedData,
       getOrAddRequest,
       getReloads,
@@ -205,8 +218,6 @@ const DataLoaderProvider = ({
       reload,
       reloadAll,
       reloadGroup,
-      computeKey,
-      defaultDatalifetime,
     }),
     [
       addRequest,

@@ -7,15 +7,11 @@ export type Attributes = Record<string, string | number | undefined>
  * @param {number} [timeout] - 500.
  * @param {boolean} [skipCache] - false.
  */
-export type LoadConfig = NonNullable<Parameters<GrowthBook['loadFeatures']>[0]>
+export type LoadConfig = NonNullable<Parameters<GrowthBook['init']>[0]>
 
 export type ToolConfig = Pick<
   Context,
-  | 'apiHost'
-  | 'clientKey'
-  | 'enableDevMode'
-  | 'backgroundSync'
-  | 'subscribeToChanges'
+  'apiHost' | 'clientKey' | 'enableDevMode' | 'debug' | 'stickyBucketService'
 >
 
 export type TrackingCallback = NonNullable<Context['trackingCallback']>

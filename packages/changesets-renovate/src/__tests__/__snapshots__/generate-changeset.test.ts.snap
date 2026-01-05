@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`generate changeset file > should generate changeset file, but skip commit and push 1`] = `
-[MockFunction spy] {
+[MockFunction] {
   "calls": [
     [
       ".changeset/renovate-test.md",
@@ -24,7 +24,7 @@ Updated dependency \`package2\` to \`version2\`.
 `;
 
 exports[`generate changeset file > should generate changeset file, commit and push 1`] = `
-[MockFunction spy] {
+[MockFunction] {
   "calls": [
     [
       ".changeset/renovate-test.md",
@@ -47,7 +47,7 @@ Updated dependency \`packagea\` to \`version\`.
 `;
 
 exports[`generate changeset file > should generate sorted changeset file, but skip commit and push 1`] = `
-[MockFunction spy] {
+[MockFunction] {
   "calls": [
     [
       ".changeset/renovate-test.md",
@@ -71,7 +71,7 @@ Updated dependency \`packagez\` to \`version2\`.
 `;
 
 exports[`generate changeset file > should not skip if branch starts with custom branch prefix 1`] = `
-[MockFunction spy] {
+[MockFunction] {
   "calls": [
     [
       ".changeset/renovate-test.md",
@@ -94,7 +94,7 @@ Updated dependency \`package2\` to \`version2\`.
 `;
 
 exports[`generate changeset file > should not skip if not in renovate branch, when branch check skip is true 1`] = `
-[MockFunction spy] {
+[MockFunction] {
   "calls": [
     [
       ".changeset/renovate-test.md",

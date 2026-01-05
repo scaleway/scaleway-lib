@@ -2,10 +2,10 @@ import { renderHook, waitFor } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 import { useSegmentIntegrations } from '../../useSegmentIntegrations'
 
-globalThis.fetch = vi.fn(() =>
+globalThis.fetch = vi.fn(async () =>
   Promise.resolve({
     ok: true,
-    json: () =>
+    json: async () =>
       Promise.resolve([
         {
           name: 'Google Universal Analytics',
@@ -48,7 +48,8 @@ globalThis.fetch = vi.fn(() =>
         {
           name: 'Amplitude (Actions)',
           creationName: 'Actions Amplitude',
-          description: `Amplitude is an event tracking and segmentation platform for your web and mobile apps. By analyzing the actions your users perform, you can gain a better understanding to drive retention, engagement, and conversion.`,
+          description:
+            'Amplitude is an event tracking and segmentation platform for your web and mobile apps. By analyzing the actions your users perform, you can gain a better understanding to drive retention, engagement, and conversion.',
           website: 'https://amplitude.com',
           category: 'Analytics',
         },
@@ -56,7 +57,7 @@ globalThis.fetch = vi.fn(() =>
   } as unknown as Response),
 )
 
-describe('CookieConsent - useSegmentIntegrations', () => {
+describe('cookieConsent - useSegmentIntegrations', () => {
   it('should call segment and processed results when everything is alright', async () => {
     const { result } = renderHook(() =>
       useSegmentIntegrations({
@@ -64,7 +65,7 @@ describe('CookieConsent - useSegmentIntegrations', () => {
       }),
     )
 
-    expect(result.current.isLoaded).toBe(false)
+    expect(result.current.isLoaded).toBeFalsy()
 
     await waitFor(() => {
       expect(result.current.integrations).toStrictEqual([
@@ -102,6 +103,6 @@ describe('CookieConsent - useSegmentIntegrations', () => {
     await waitFor(() => {
       expect(globalThis.fetch).toHaveBeenCalled()
     })
-    expect(result.current.isLoaded).toBe(true)
+    expect(result.current.isLoaded).toBeTruthy()
   })
 })

@@ -1,5 +1,6 @@
 import { GrowthBook, GrowthBookProvider } from '@growthbook/growthbook-react'
-import { type ReactNode, useCallback, useEffect, useMemo } from 'react'
+import type { ComponentType, ReactNode } from 'react'
+import { useCallback, useEffect, useMemo } from 'react'
 import type {
   Attributes,
   ErrorCallback,
@@ -18,41 +19,34 @@ type AbTestProviderProps = {
 }
 
 const defaultLoadConfig: LoadConfig = {
-  autoRefresh: false,
-  timeout: 500,
   skipCache: false,
+  timeout: 500,
 } as const
 
-const getGrowthBookInstance = ({
-  config: {
-    apiHost,
-    clientKey,
-    enableDevMode,
-    backgroundSync,
-    subscribeToChanges,
-  },
-  trackingCallback,
-}: {
+type GetGrowthBookInstanceProps = {
   config: ToolConfig
   trackingCallback: TrackingCallback
-}) =>
+}
+
+const getGrowthBookInstance = ({
+  config: { apiHost, clientKey, enableDevMode },
+  trackingCallback,
+}: GetGrowthBookInstanceProps) =>
   new GrowthBook({
     apiHost,
     clientKey,
     enableDevMode,
     trackingCallback,
-    backgroundSync,
-    subscribeToChanges,
   })
 
-export const AbTestProvider = ({
+export const AbTestProvider: ComponentType<AbTestProviderProps> = ({
   children,
   config,
   trackingCallback,
   errorCallback,
   attributes,
   loadConfig,
-}: AbTestProviderProps) => {
+}) => {
   const growthbook = useMemo(
     () => getGrowthBookInstance({ config, trackingCallback }),
     [trackingCallback, config],
@@ -60,7 +54,11 @@ export const AbTestProvider = ({
 
   const loadFeature = useCallback(async () => {
     if (config.clientKey) {
-      await growthbook.loadFeatures(loadConfig ?? defaultLoadConfig)
+      const initConfig = {
+        ...defaultLoadConfig,
+        ...loadConfig,
+      }
+      await growthbook.init(initConfig)
     }
   }, [growthbook, config, loadConfig])
 

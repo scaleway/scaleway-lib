@@ -1,4 +1,4 @@
-export default {
+ const locales = {
   //  error on this one missing bracket
 
   'units.minutes.label':
@@ -7,3 +7,5 @@ export default {
   'units.days.label': '{count, plural, =0 {Day} =1 {Day} other {Days}}',
   'units.months.label': '{count, plural, =0 {Month} =1 {Month} other {Months}}',
 }
+
+export default locales

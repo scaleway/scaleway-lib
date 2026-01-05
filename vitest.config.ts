@@ -3,26 +3,9 @@ import { defaultConfig as viteConfig } from './vite.config'
 
 export const defaultConfig = mergeConfig(viteConfig, {
   test: {
-    name: 'lib',
-    globals: true,
-    clearMocks: true,
-    restoreMocks: true,
-    mockReset: true,
-    environment: 'node',
-    setupFiles: ['vitest-localstorage-mock'],
-    server: {
-      deps: {
-        inline: true,
-      },
-    },
     allowOnly: false,
-    css: true,
-    logHeapUsage: true,
-    reporters: ['default'],
-    exclude: ['**/__typetests__/**', 'node_modules', '**/dist/**'],
+    clearMocks: true,
     coverage: {
-      provider: 'istanbul',
-      reporter: ['json-summary', 'cobertura'],
       exclude: [
         '**/__typetests__/**',
         '.reports/**',
@@ -36,7 +19,24 @@ export const defaultConfig = mergeConfig(viteConfig, {
         '**.snap',
         '**.svg',
       ],
+      provider: 'istanbul',
+      reporter: ['text', 'json', 'json-summary', 'html', 'lcov'],
     },
+    css: true,
+    environment: 'node',
+    exclude: ['**/__typetests__/**', 'node_modules', '**/dist/**'],
+    globals: true,
+    logHeapUsage: true,
+    mockReset: true,
+    name: 'lib',
+    reporters: ['default'],
+    restoreMocks: true,
+    server: {
+      deps: {
+        inline: true,
+      },
+    },
+    setupFiles: ['vitest-localstorage-mock'],
   },
 })
 

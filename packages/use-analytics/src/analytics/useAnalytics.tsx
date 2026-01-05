@@ -1,7 +1,7 @@
-import { RudderAnalytics } from '@rudderstack/analytics-js'
 import type { LoadOptions } from '@rudderstack/analytics-js'
+import { RudderAnalytics } from '@rudderstack/analytics-js'
+import type { JSX, ReactNode } from 'react'
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
-import type { ReactNode } from 'react'
 import { useDeepCompareEffectNoCheck } from 'use-deep-compare-effect'
 import { destSDKBaseURL, pluginsSDKBaseURL } from '../constants'
 import type { CategoryKind } from '../types'
@@ -12,8 +12,7 @@ import {
 } from './constants'
 import { normalizeIdsMigration } from './normalizeIdsMigration'
 
-type Analytics = RudderAnalytics
-export type { Analytics }
+export type Analytics = RudderAnalytics
 
 export type OnEventError = (error: Error) => Promise<void> | void
 
@@ -87,7 +86,7 @@ export function AnalyticsProvider<T extends Events>({
   events,
   onLoaded,
   timeout,
-}: AnalyticsProviderProps<T>) {
+}: AnalyticsProviderProps<T>): JSX.Element {
   const [isAnalyticsReady, setIsAnalyticsReady] = useState(false)
   const [internalAnalytics, setAnalytics] = useState<Analytics | undefined>(
     undefined,
@@ -137,14 +136,13 @@ export function AnalyticsProvider<T extends Events>({
         ...defaultLoadOptions,
         configUrl: settings.cdnURL,
         destSDKBaseURL: destSDKBaseURL(settings.cdnURL),
-        pluginsSDKBaseURL: pluginsSDKBaseURL(settings.cdnURL),
         onLoaded: (rudderAnalytics: Analytics) => {
           rudderAnalytics.consent({
             ...defaultConsentOptions,
             consentManagement: {
-              enabled: true,
               allowedConsentIds: allowedConsents,
               deniedConsentIds: deniedConsents,
+              enabled: true,
             },
           })
           normalizeIdsMigration(analytics)
@@ -152,6 +150,7 @@ export function AnalyticsProvider<T extends Events>({
           onLoaded(rudderAnalytics)
           setAnalytics(analytics)
         },
+        pluginsSDKBaseURL: pluginsSDKBaseURL(settings.cdnURL),
         ...loadOptions,
       })
 
@@ -174,8 +173,9 @@ export function AnalyticsProvider<T extends Events>({
         ...acc,
         [eventName]: eventFn(internalAnalytics, onEventError),
       }),
-      {},
-    ) as { [K in keyof T]: ReturnType<T[K]> }
+      // oxlint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
+      {} as { [K in keyof T]: ReturnType<T[K]> },
+    )
 
     return {
       analytics: internalAnalytics,
@@ -190,9 +190,9 @@ export function AnalyticsProvider<T extends Events>({
   useDeepCompareEffectNoCheck(() => {
     internalAnalytics?.consent({
       consentManagement: {
-        enabled: true,
         allowedConsentIds: allowedConsents,
         deniedConsentIds: deniedConsents,
+        enabled: true,
       },
     })
   }, [allowedConsents, deniedConsents])

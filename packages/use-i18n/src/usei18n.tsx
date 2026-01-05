@@ -7,6 +7,7 @@ import type {
 import { formatDistanceToNow } from 'date-fns/formatDistanceToNow'
 import { formatDistanceToNowStrict } from 'date-fns/formatDistanceToNowStrict'
 import type { BaseLocale } from 'international-types'
+import type { ReactElement, ReactNode } from 'react'
 import {
   createContext,
   useCallback,
@@ -15,20 +16,42 @@ import {
   useMemo,
   useState,
 } from 'react'
-import type { ReactElement, ReactNode } from 'react'
-import dateFormat, { type FormatDateOptions } from './formatDate'
-import unitFormat, { type FormatUnitOptions } from './formatUnit'
-import formatters, { type IntlListFormatOptions } from './formatters'
+import type { FormatDateOptions } from './formatDate'
+import dateFormat from './formatDate'
+import type { IntlListFormatOptions } from './formatters'
+import formatters from './formatters'
+import type { FormatUnitOptions } from './formatUnit'
+import unitFormat from './formatUnit'
 import type { ReactParamsObject, ScopedTranslateFn, TranslateFn } from './types'
 
-const LOCALE_ITEM_STORAGE = 'locale'
-
-type SupportedLocalesType<LocalSupportedType extends string> = (
+// Export types that are used in the public API
+export type SupportedLocalesType<LocalSupportedType extends string> = (
   locale: string,
 ) => locale is LocalSupportedType
 
-type TranslationsByLocales = Record<string, BaseLocale>
-type RequiredGenericContext<
+export type TranslationsByLocales = Record<string, BaseLocale>
+
+export type LoadTranslationsFn<LocalSupportedType extends string> = ({
+  namespace,
+  locale,
+}: {
+  namespace: string
+  locale: LocalSupportedType
+}) => Promise<{ default: BaseLocale }>
+
+export type LoadLocaleFn<LocalSupportedType extends string> = (
+  locale: LocalSupportedType,
+) => DateFnsLocale
+
+export type LoadLocaleFnAsync<LocalSupportedType extends string> = (
+  locale: LocalSupportedType,
+) => Promise<DateFnsLocale>
+
+export type LoadDateLocaleError = (error: Error) => void
+
+const LOCALE_ITEM_STORAGE = 'locale'
+
+export type RequiredGenericContext<
   LocaleParam extends BaseLocale,
   LocalSupportedType extends string,
 > = keyof LocaleParam extends never
@@ -89,7 +112,7 @@ const getCurrentLocale = <LocalSupportedType extends string>({
   return defaultLocale
 }
 
-type Context<
+export type Context<
   LocaleParam extends BaseLocale,
   LocalSupportedType extends string,
 > = {
@@ -128,11 +151,11 @@ type Context<
 
 // It's safe to use any here because the Locale can be anything at this point:
 // useI18n / useTranslation requires to explicitely give a Locale to use.
+// oxlint-disable-next-line eslint/no-explicit-any
 const I18nContext = createContext<Context<any, any> | undefined>(undefined)
 
 export function useI18n<
-  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
-  LocaleParam extends BaseLocale = {},
+  LocaleParam extends BaseLocale = BaseLocale,
   LocalSupportedType extends string = '',
 >(): RequiredGenericContext<LocaleParam, LocalSupportedType> {
   const context = useContext(I18nContext)
@@ -147,8 +170,7 @@ export function useI18n<
 }
 
 export function useTranslation<
-  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
-  LocaleParam extends BaseLocale = {},
+  LocaleParam extends BaseLocale = BaseLocale,
   LocalSupportedType extends string = '',
 >(
   namespaces: [string, ...string[]],
@@ -184,24 +206,6 @@ export function useTranslation<
     isLoaded: boolean
   }
 }
-
-type LoadTranslationsFn<LocalSupportedType extends string> = ({
-  namespace,
-  locale,
-}: {
-  namespace: string
-  locale: LocalSupportedType
-}) => Promise<{ default: BaseLocale }>
-
-type LoadLocaleFn<LocalSupportedType extends string> = (
-  locale: LocalSupportedType,
-) => DateFnsLocale
-
-type LoadLocaleFnAsync<LocalSupportedType extends string> = (
-  locale: LocalSupportedType,
-) => Promise<DateFnsLocale>
-
-type LoadDateLocaleError = (error: Error) => void
 
 const initialDefaultTranslations = {}
 
@@ -246,8 +250,8 @@ const I18nContextProvider = <LocalSupportedType extends string>({
   const [currentLocale, setCurrentLocale] = useState<LocalSupportedType>(
     getCurrentLocale({
       defaultLocale,
-      localeItemStorage,
       isLocaleSupported,
+      localeItemStorage,
     }),
   )
   const [translations, setTranslations] =
@@ -265,9 +269,9 @@ const I18nContextProvider = <LocalSupportedType extends string>({
       try {
         const dateFns = await loadDateFNS(locale)
         setDateFnsLocale(dateFns)
-      } catch (err) {
-        if (err instanceof Error && onLoadDateLocaleError) {
-          onLoadDateLocaleError(err)
+      } catch (error) {
+        if (error instanceof Error && onLoadDateLocaleError) {
+          onLoadDateLocaleError(error)
         }
 
         setDateFnsLocale(dateFnsLocale)
@@ -414,6 +418,7 @@ const I18nContextProvider = <LocalSupportedType extends string>({
   )
 
   const translate = useCallback(
+    // oxlint-disable-next-line eslint/no-explicit-any
     (key: string, context?: ReactParamsObject<any>) => {
       const value = translations[currentLocale]?.[key] as string
 
@@ -430,13 +435,13 @@ const I18nContextProvider = <LocalSupportedType extends string>({
           return formatters
             .getTranslationFormat(value, currentLocale)
             .format(context) as string
-        } catch (err) {
+        } catch (error) {
           onTranslateError?.({
-            error: err as Error,
             currentLocale,
             defaultLocale,
-            value,
+            error: error as Error,
             key,
+            value,
           })
 
           // with default locale nothing should break or it's normal to not ignore it.
@@ -461,6 +466,7 @@ const I18nContextProvider = <LocalSupportedType extends string>({
 
   const namespaceTranslation = useCallback(
     (scope: string, t = translate) =>
+      // oxlint-disable-next-line eslint/no-explicit-any
       (key: string, context?: ReactParamsObject<any>) =>
         t(`${scope}.${key}`, context) || t(key, context),
     [translate],

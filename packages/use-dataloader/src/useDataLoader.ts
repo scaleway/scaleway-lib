@@ -1,6 +1,8 @@
+// oxlint-disable eslint/max-statements
+
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { useDataLoaderContext } from './DataLoaderProvider'
 import { StatusEnum } from './constants'
+import { useDataLoaderContext } from './DataLoaderProvider'
 import { marshalQueryKey } from './helpers'
 import type {
   KeyType,
@@ -9,10 +11,15 @@ import type {
   UseDataLoaderResult,
 } from './types'
 
+// oxlint-disable-next-line unicorn/empty-brace-spaces
+const noop = () => {}
+
 export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
   key: KeyType,
   method: () => PromiseType<ResultType>,
-  {
+  config?: UseDataLoaderConfig<ResultType, ErrorType>,
+): UseDataLoaderResult<ResultType, ErrorType> => {
+  const {
     enabled = true,
     onError,
     onSuccess,
@@ -21,8 +28,8 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
     pollingInterval,
     initialData,
     dataLifetime,
-  }: UseDataLoaderConfig<ResultType, ErrorType> = {},
-): UseDataLoaderResult<ResultType, ErrorType> => {
+  } = config ?? {}
+
   const {
     getOrAddRequest,
     onError: onGlobalError,
@@ -71,7 +78,17 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
 
   const previousDataRef = useRef(request.data)
 
+  // Compute the data that will be returned to the user
+  const computedData = !request.isFirstLoading ? request.data : initialData
+
+  // isLoading is true only when there is no cache data and we're fetching data for the first time
   const isLoading =
+    !computedData &&
+    request.isFirstLoading &&
+    (request.status === StatusEnum.LOADING || optimisticIsLoadingRef.current)
+
+  // isFetching is true when there is an active request in progress
+  const isFetching =
     request.status === StatusEnum.LOADING || optimisticIsLoadingRef.current
 
   const isSuccess = request.status === StatusEnum.SUCCESS
@@ -87,11 +104,26 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
       (typeof needPolling !== 'function' && needPolling))
   )
 
-  const reload = useCallback(
-    () =>
-      request.load(true).then(onSuccessRef.current).catch(onErrorRef.current),
-    [request],
-  )
+  const reload: () => Promise<void> = useCallback(async () => {
+    // Set optimistic loading state to true when reload is called
+    optimisticIsLoadingRef.current = true
+
+    const onSuccessHandler = async (result: ResultType) => {
+      // Set optimistic loading state to false when request completes
+      optimisticIsLoadingRef.current = false
+
+      return onSuccessRef.current?.(result)
+    }
+
+    const onErrorHandler = async (error: ErrorType & Error) => {
+      // Set optimistic loading state to false when request completes
+      optimisticIsLoadingRef.current = false
+
+      return onErrorRef.current?.(error)
+    }
+
+    return request.load(true).then(onSuccessHandler).catch(onErrorHandler)
+  }, [request])
 
   useEffect(() => {
     needPollingRef.current = needPolling
@@ -117,12 +149,17 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
 
   useEffect(() => {
     if (needLoad) {
-      const defaultOnSuccessOrError = () => {}
+      // Set optimistic loading state to true when auto-loading is triggered
+      optimisticIsLoadingRef.current = true
+
+      const defaultOnSuccessOrError = () => {
+        // Set optimistic loading state to false when request completes
+        optimisticIsLoadingRef.current = false
+      }
       const onSuccessLoad = onSuccessRef.current ?? defaultOnSuccessOrError
       const onFailedLoad = onErrorRef.current ?? defaultOnSuccessOrError
       request.load().then(onSuccessLoad).catch(onFailedLoad)
     }
-    optimisticIsLoadingRef.current = false
   }, [needLoad, request])
 
   useEffect(() => {
@@ -138,9 +175,8 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
             needPollingRef.current &&
             !request.isCalled)
         ) {
-          const defaultOnSuccessOrError = () => {}
-          const onSuccessLoad = onSuccessRef.current ?? defaultOnSuccessOrError
-          const onFailedLoad = onErrorRef.current ?? defaultOnSuccessOrError
+          const onSuccessLoad = onSuccessRef.current ?? noop
+          const onFailedLoad = onErrorRef.current ?? noop
 
           request.load(true).then(onSuccessLoad).catch(onFailedLoad)
         }
@@ -155,9 +191,10 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
   }, [pollingInterval, request])
 
   return {
-    data: !request.isFirstLoading ? request.data : initialData,
+    data: computedData,
     error: request.error,
     isError,
+    isFetching,
     isIdle,
     isLoading,
     isPolling,

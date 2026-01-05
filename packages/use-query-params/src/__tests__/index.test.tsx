@@ -2,10 +2,35 @@ import { act, renderHook } from '@testing-library/react'
 import { createMemoryHistory } from 'history'
 import type { History } from 'history'
 import { useLayoutEffect, useState } from 'react'
-import type { ReactNode } from 'react'
+import type { ComponentType, ReactNode, PropsWithChildren } from 'react'
 import { MemoryRouter, Router } from 'react-router-dom'
 import { describe, expect, it, test } from 'vitest'
 import useQueryParams from '..'
+
+type HistoryProps = {
+  history: History
+}
+const HistoryRouter: ComponentType<PropsWithChildren<HistoryProps>> = ({
+  history,
+  children,
+}) => {
+  const [state, setState] = useState({
+    action: history.action,
+    location: history.location,
+  })
+
+  useLayoutEffect(() => history.listen(setState), [history])
+
+  return (
+    <Router
+      navigator={history}
+      location={state.location}
+      navigationType={state.action}
+    >
+      {children}
+    </Router>
+  )
+}
 
 const wrapper =
   ({
@@ -19,22 +44,7 @@ const wrapper =
   }) =>
   ({ children }: { children: ReactNode }) => {
     if (history) {
-      const [state, setState] = useState({
-        action: history.action,
-        location: history.location,
-      })
-
-      useLayoutEffect(() => history.listen(setState), [])
-
-      return (
-        <Router
-          navigator={history}
-          location={state.location}
-          navigationType={state.action}
-        >
-          {children}
-        </Router>
-      )
+      return <HistoryRouter history={history}>{children}</HistoryRouter>
     }
 
     return (

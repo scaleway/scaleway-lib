@@ -12,7 +12,7 @@ const exponents = [
   { name: 'exa', symbol: 'E' },
   { name: 'zetta', symbol: 'Z' },
   { name: 'yotta', symbol: 'Y' },
-]
+] as const
 
 type Exponent = (typeof exponents)[number]
 type ExponentName =
@@ -153,7 +153,7 @@ const format =
         const value = filesize(amount, {
           base,
           exponent: exponents.findIndex(
-            exp => exp.name === (computedExponent as Exponent).name,
+            exp => exp.name === computedExponent!.name,
           ),
           output: 'object',
           round: maximumFractionDigits,
@@ -177,18 +177,8 @@ const format =
       minimumFractionDigits,
     }).format(computedValue)} ${
       short
-        ? formatShortUnit(
-            locale,
-            computedExponent as Exponent,
-            unit,
-            compoundUnit,
-          )
-        : formatLongUnit(
-            locale,
-            computedExponent as Exponent,
-            unit,
-            computedValue,
-          )
+        ? formatShortUnit(locale, computedExponent!, unit, compoundUnit)
+        : formatLongUnit(locale, computedExponent!, unit, computedValue)
     }`
   }
 

@@ -1,5 +1,6 @@
-import { parse, serialize } from 'cookie'
 import type { SerializeOptions } from 'cookie'
+import { parse, serialize } from 'cookie'
+import type { ComponentType, PropsWithChildren } from 'react'
 import {
   createContext,
   useCallback,
@@ -8,20 +9,18 @@ import {
   useMemo,
   useState,
 } from 'react'
-import type { PropsWithChildren } from 'react'
 import { useDestinations } from '../analytics/useDestinations'
 import {
   CATEGORIES,
   CONSENT_ADVERTISING_MAX_AGE,
   CONSENT_MAX_AGE,
-  COOKIES_OPTIONS,
   COOKIE_PREFIX,
+  COOKIES_OPTIONS,
   HASH_COOKIE,
 } from '../constants'
 import { uniq } from '../helpers/array'
 import { IS_CLIENT } from '../helpers/isClient'
 import { stringToHash } from '../helpers/misc'
-import { isCategoryKind } from '../types'
 import type {
   CategoryKind,
   Config,
@@ -29,6 +28,7 @@ import type {
   Destination,
   Destinations,
 } from '../types'
+import { isCategoryKind } from '../types'
 
 type Context = {
   destinations: Destinations
@@ -54,7 +54,19 @@ export const useCookieConsent = (): Context => {
   return context
 }
 
-export const CookieConsentProvider = ({
+type CookieConsentProviderProps = PropsWithChildren<{
+  isConsentRequired: boolean
+  manualDestinations?: Destinations
+  config: Config
+  cookiePrefix?: string
+  consentMaxAge?: number
+  consentAdvertisingMaxAge?: number
+  cookiesOptions?: SerializeOptions
+}>
+
+export const CookieConsentProvider: ComponentType<
+  CookieConsentProviderProps
+> = ({
   children,
   isConsentRequired,
   manualDestinations,
@@ -63,15 +75,7 @@ export const CookieConsentProvider = ({
   consentMaxAge = CONSENT_MAX_AGE,
   consentAdvertisingMaxAge = CONSENT_ADVERTISING_MAX_AGE,
   cookiesOptions = COOKIES_OPTIONS,
-}: PropsWithChildren<{
-  isConsentRequired: boolean
-  manualDestinations?: Destinations
-  config: Config
-  cookiePrefix?: string
-  consentMaxAge?: number
-  consentAdvertisingMaxAge?: number
-  cookiesOptions?: SerializeOptions
-}>) => {
+}) => {
   const [needConsent, setNeedsConsent] = useState(false)
   const [cookies, setCookies] = useState<Record<string, string | undefined>>(
     IS_CLIENT ? parse(document.cookie) : {},
@@ -88,9 +92,9 @@ export const CookieConsentProvider = ({
         ...(analyticsDestinations ?? []).map(
           dest =>
             ({
-              name: dest.name,
-              displayName: dest.displayName,
               category: dest.consents[0] ?? 'essential',
+              displayName: dest.displayName,
+              name: dest.name,
             }) satisfies Destination,
         ),
         ...(manualDestinations ?? []),
@@ -196,30 +200,33 @@ export const CookieConsentProvider = ({
   const allowedConsents = useMemo(
     () =>
       Object.keys(cookieConsent).filter(
-        key => cookieConsent[key as CategoryKind],
-      ) as CategoryKind[],
+        // oxlint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
+        (key): key is CategoryKind => !cookieConsent[key as CategoryKind],
+      ),
     [cookieConsent],
   )
 
   const deniedConsents = useMemo(
     () =>
       Object.keys(cookieConsent).filter(
-        key => !allowedConsents.includes(key as CategoryKind),
-      ) as CategoryKind[],
+        // oxlint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
+        (key): key is CategoryKind =>
+          !allowedConsents.includes(key as CategoryKind),
+      ),
     [cookieConsent, allowedConsents],
   )
 
   const value = useMemo(
     () => ({
-      destinations,
-      needConsent,
-      isDestinationsLoaded,
-      categoriesConsent: cookieConsent,
       allowedConsents,
-      deniedConsents,
-      saveConsent,
       categories: CATEGORIES,
+      categoriesConsent: cookieConsent,
       cookies,
+      deniedConsents,
+      destinations,
+      isDestinationsLoaded,
+      needConsent,
+      saveConsent,
     }),
     [
       destinations,
