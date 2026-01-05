@@ -31,8 +31,8 @@ catalog:
   '@types/node': 24.10.4
   '@types/react': 19.2.7
   '@types/react-dom': 19.2.3
-  '@typescript-eslint/eslint-plugin': 8.50.1
-  '@typescript-eslint/parser': 8.50.1
+  '@typescript-eslint/eslint-plugin': 8.51.0
+  '@typescript-eslint/parser': 8.51.0
   '@typescript/native-preview': 7.0.0-dev.20251227.1
   '@vitejs/plugin-react': 5.1.2
   '@vitest/coverage-istanbul': 4.0.16
