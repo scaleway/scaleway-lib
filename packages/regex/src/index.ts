@@ -105,3 +105,7 @@ export const password: RegExp = /^(?!@)[^`]*$/
 // A kafka username contains lowercase letters and numbers, with each segment starting and ending with a letter or number. Hyphens are only allowed in the middle of segments. Example: "username", "user-name", "my-group.user-name"
 export const kafkaUsernameRegex: RegExp =
   /^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$/
+
+// The username cannot begin or end with a period, cannot contain two consecutive periods, and can only contain letters, numbers, periods, hyphens, and underscores. Example: "test", "test_test", "test-test"
+export const webhostingUsernameEmailRegex: RegExp =
+  /^(?!.*\.\.)[a-zA-Z0-9_-][a-zA-Z0-9._-]*[a-zA-Z0-9_-]$/
