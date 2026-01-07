@@ -86,7 +86,7 @@ export const useSegmentIntegrations: SegmentIntegrationsHook = (
       .catch(() => {
         setIntegrations([])
       })
-  }, [setIntegrations, config.segment])
+  }, [config.segment])
 
   return {
     integrations,

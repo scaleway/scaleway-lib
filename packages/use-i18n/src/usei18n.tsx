@@ -284,7 +284,7 @@ const I18nContextProvider = <LocalSupportedType extends string>({
    *  At first render when we find a local on the localStorage which is not the same as the default,
    *  we should switch also the date-fns local related to the current local.
    *  As the method is async, we obviously need a useEffect to apply this change...
-   * */
+   */
 
   useEffect(() => {
     if (!dateFnsLocale) {

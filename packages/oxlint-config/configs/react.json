@@ -1,27 +1,27 @@
 {
   "$schema": "../node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react","jsx-a11y"],
   "extends": ["./index.json"],
+  "plugins": ["react", "jsx-a11y"],
   "rules": {
-    "react-perf/jsx-no-jsx-as-prop": "off",
-    "react-perf/jsx-no-new-array-as-prop": "off",
-    "react-perf/jsx-no-new-function-as-prop": "off",
-    "react-perf/jsx-no-new-object-as-prop": "off",
     "react_perf/jsx-no-jsx-as-prop": "error",
     "react_perf/jsx-no-new-array-as-prop": "error",
     "react_perf/jsx-no-new-function-as-props": "error",
     "react_perf/jsx-no-new-object-as-prop": "error",
+    "react-perf/jsx-no-jsx-as-prop": "off",
+    "react-perf/jsx-no-new-array-as-prop": "off",
+    "react-perf/jsx-no-new-function-as-prop": "off",
+    "react-perf/jsx-no-new-object-as-prop": "off",
     "react/button-has-type": "error",
     "react/exhaustive-deps": "error",
+    "react/iframe-missing-sandbox": "error",
     "react/jsx-filename-extension": [
       "error",
       {
         "extensions": [".jsx", ".tsx"]
       }
     ],
-    "react/iframe-missing-sandbox": "error",
-    "react/jsx-key": "error",
     "react/jsx-handler-names": "off",
+    "react/jsx-key": "error",
     "react/jsx-no-comment-text-nodes": "error",
     "react/jsx-no-duplicate-props": "error",
     "react/jsx-no-target-blank": "off",
@@ -38,7 +38,7 @@
     "react/no-unescaped-entities": "error",
     "react/no-unknown-property": "error",
     "react/react-in-jsx-scope": "off",
-    "react/require-render-return": "error",
+    "react/require-render-return": "error"
   },
   "settings": {
     "jsx-a11y": {
@@ -48,5 +48,4 @@
     },
     "react": {}
   }
-
 }

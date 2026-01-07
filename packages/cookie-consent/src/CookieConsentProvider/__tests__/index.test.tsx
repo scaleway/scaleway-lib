@@ -2,7 +2,7 @@
 import { act, renderHook, waitFor } from '@testing-library/react'
 import * as cookie from 'cookie'
 import type { ComponentProps, ReactNode } from 'react'
-import { describe, expect, it, vi } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { CookieConsentProvider, useCookieConsent } from '..'
 import type { Integrations } from '../types'
 import type { useSegmentIntegrations } from '../useSegmentIntegrations'
@@ -16,14 +16,14 @@ const wrapper =
   >) =>
   ({ children }: { children: ReactNode }) => (
     <CookieConsentProvider
-      isConsentRequired={isConsentRequired}
-      essentialIntegrations={['Deskpro', 'Stripe', 'Sentry']}
       config={{
         segment: {
           cdnURL: 'url',
           writeKey: 'key',
         },
       }}
+      essentialIntegrations={['Deskpro', 'Stripe', 'Sentry']}
+      isConsentRequired={isConsentRequired}
     >
       {children}
     </CookieConsentProvider>
@@ -123,8 +123,8 @@ describe('cookieConsent - CookieConsentProvider', () => {
     expect(result.current.needConsent).toBeTruthy()
     expect(result.current.isSegmentAllowed).toBeFalsy()
     expect(result.current.categoriesConsent).toStrictEqual({
-      marketing: false,
       analytics: false,
+      marketing: false,
     })
     expect(result.current.segmentIntegrations).toStrictEqual({
       'Google Universal Analytics': false,
@@ -160,16 +160,16 @@ describe('cookieConsent - CookieConsentProvider', () => {
       })
     })
 
-    const cookieOptions = { sameSite: 'strict', secure: true, path: '/' }
+    const cookieOptions = { path: '/', sameSite: 'strict', secure: true }
 
     expect(spy).toHaveBeenCalledTimes(3)
     expect(spy).toHaveBeenNthCalledWith(2, '_scw_rgpd_marketing', 'true', {
       ...cookieOptions,
-      maxAge: 33696000,
+      maxAge: 33_696_000,
     })
     expect(spy).toHaveBeenNthCalledWith(3, '_scw_rgpd_hash', '913003917', {
       ...cookieOptions,
-      maxAge: 15552000,
+      maxAge: 15_552_000,
     })
 
     act(() => {
@@ -197,7 +197,7 @@ describe('cookieConsent - CookieConsentProvider', () => {
     })
     expect(spy).toHaveBeenNthCalledWith(6, '_scw_rgpd_hash', '913003917', {
       ...cookieOptions,
-      maxAge: 15552000,
+      maxAge: 15_552_000,
     })
   })
 

@@ -32,16 +32,16 @@ describe('abTestProvider', () => {
   it('should create GrowthBook instance', () => {
     render(
       <AbTestProvider
+        attributes={{
+          anonymousId: 'foo',
+        }}
         config={{
           apiHost: 'host',
           clientKey: 'clientKey',
           enableDevMode: true,
         }}
-        attributes={{
-          anonymousId: 'foo',
-        }}
-        trackingCallback={trackingCallback}
         errorCallback={errorCallback}
+        trackingCallback={trackingCallback}
       >
         Children
       </AbTestProvider>,
@@ -56,16 +56,16 @@ describe('abTestProvider', () => {
     await act(async () => {
       render(
         <AbTestProvider
+          attributes={{
+            anonymousId: 'foo',
+          }}
           config={{
             apiHost: 'host',
             clientKey: 'clientKey',
             enableDevMode: true,
           }}
-          attributes={{
-            anonymousId: 'foo',
-          }}
-          trackingCallback={trackingCallback}
           errorCallback={errorCallback}
+          trackingCallback={trackingCallback}
         >
           Children
         </AbTestProvider>,
@@ -84,16 +84,16 @@ describe('abTestProvider', () => {
     await act(async () => {
       render(
         <AbTestProvider
+          attributes={{
+            anonymousId: 'foo',
+          }}
           config={{
             apiHost: 'host',
             clientKey: '',
             enableDevMode: true,
           }}
-          attributes={{
-            anonymousId: 'foo',
-          }}
-          trackingCallback={trackingCallback}
           errorCallback={errorCallback}
+          trackingCallback={trackingCallback}
         >
           Children
         </AbTestProvider>,
@@ -115,16 +115,16 @@ describe('abTestProvider', () => {
     await act(async () => {
       render(
         <AbTestProvider
+          attributes={{
+            anonymousId: 'foo',
+          }}
           config={{
             apiHost: 'host',
             clientKey: 'clientKey',
             enableDevMode: true,
           }}
-          attributes={{
-            anonymousId: 'foo',
-          }}
-          trackingCallback={trackingCallback}
           errorCallback={errorCallback}
+          trackingCallback={trackingCallback}
         >
           Children
         </AbTestProvider>,
@@ -146,16 +146,16 @@ describe('abTestProvider', () => {
     await act(async () => {
       const result = render(
         <AbTestProvider
+          attributes={{
+            anonymousId: 'foo',
+          }}
           config={{
             apiHost: 'host',
             clientKey: 'clientKey',
             enableDevMode: true,
           }}
-          attributes={{
-            anonymousId: 'foo',
-          }}
-          trackingCallback={trackingCallback}
           errorCallback={errorCallback}
+          trackingCallback={trackingCallback}
         >
           Children
         </AbTestProvider>,
@@ -170,18 +170,19 @@ describe('abTestProvider', () => {
     // Re-render with different attributes
     if (rerenderFn) {
       await act(async () => {
+        // biome-ignore lint/style/noNonNullAssertion: error
         rerenderFn!(
           <AbTestProvider
+            attributes={{
+              anonymousId: 'bar',
+            }}
             config={{
               apiHost: 'host',
               clientKey: 'clientKey',
               enableDevMode: true,
             }}
-            attributes={{
-              anonymousId: 'bar',
-            }}
-            trackingCallback={trackingCallback}
             errorCallback={errorCallback}
+            trackingCallback={trackingCallback}
           >
             Children
           </AbTestProvider>,
@@ -214,10 +215,10 @@ describe('abTestProvider', () => {
     await act(async () => {
       const result = render(
         <AbTestProvider
-          config={config}
           attributes={sharedAttributes}
-          trackingCallback={trackingCallback}
+          config={config}
           errorCallback={errorCallback}
+          trackingCallback={trackingCallback}
         >
           Children
         </AbTestProvider>,
@@ -232,12 +233,13 @@ describe('abTestProvider', () => {
     // Re-render with the SAME EXACT object references
     if (rerenderFn) {
       await act(async () => {
+        // biome-ignore lint/style/noNonNullAssertion: error
         rerenderFn!(
           <AbTestProvider
-            config={config} // Same config object
-            attributes={sharedAttributes} // Same attributes object
-            trackingCallback={trackingCallback}
+            attributes={sharedAttributes} // Same config object
+            config={config} // Same attributes object
             errorCallback={errorCallback}
+            trackingCallback={trackingCallback}
           >
             Children
           </AbTestProvider>,

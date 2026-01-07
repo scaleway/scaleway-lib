@@ -1,7 +1,7 @@
 import { defaultEmotionRules } from './emotion.mjs'
 import { defaultJavascriptRules } from './javascript.mjs'
-import { defaultTypescriptRules } from './typescript.mjs'
 import { defaultStylisticRules } from './stylistic.mjs'
+import { defaultTypescriptRules } from './typescript.mjs'
 
 export const emotion = defaultEmotionRules
 export const javascript = defaultJavascriptRules

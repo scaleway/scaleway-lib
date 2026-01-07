@@ -5,8 +5,8 @@ import { fileURLToPath } from 'node:url'
 import babelParser from '@babel/eslint-parser'
 import scw from '@scaleway/eslint-config-react/javascript'
 import scwTypescript from '@scaleway/eslint-config-react/typescript'
-import globals from 'globals'
 import oxlint from 'eslint-plugin-oxlint'
+import globals from 'globals'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -23,16 +23,23 @@ const defaultRules = [
     ],
   },
   {
-    settings: {
-      react: {
-        pragma: 'React', // Pragma to use, default to "React"
-        fragment: 'Fragment', // Fragment to use (may be a property of <pragma>), default to "Fragment"
-        version: 'detect', // React version. "detect" automatically picks the version you have installed.
-        // You can also use `16.0`, `16.3`, etc, if you want to override the detected value.
-        // Defaults to the "defaultVersion" setting and warns if missing, and to "detect" in the future
-        defaultVersion: '19', // Default React version to use when the version you have installed cannot be detected.
-        // If not provided, defaults to the latest React version.
+    languageOptions: {
+      ecmaVersion: 'latest',
+      globals: {
+        ...globals.browser,
       },
+
+      parserOptions: {
+        project: [
+          'tsconfig.json',
+          'packages/*/tsconfig.json',
+          'tools/*/tsconfig.json',
+        ],
+        tsconfigRootDir: dirname,
+      },
+      sourceType: 'module',
+    },
+    settings: {
       'import/resolver': {
         typescript: {
           project: [
@@ -41,21 +48,14 @@ const defaultRules = [
           ],
         },
       },
-    },
-    languageOptions: {
-      globals: {
-        ...globals.browser,
-      },
-      ecmaVersion: 'latest',
-      sourceType: 'module',
-
-      parserOptions: {
-        tsconfigRootDir: dirname,
-        project: [
-          'tsconfig.json',
-          'packages/*/tsconfig.json',
-          'tools/*/tsconfig.json',
-        ],
+      react: {
+        // You can also use `16.0`, `16.3`, etc, if you want to override the detected value.
+        // Defaults to the "defaultVersion" setting and warns if missing, and to "detect" in the future
+        defaultVersion: '19', // Default React version to use when the version you have installed cannot be detected.
+        fragment: 'Fragment', // Fragment to use (may be a property of <pragma>), default to "Fragment"
+        pragma: 'React', // Pragma to use, default to "React"
+        version: 'detect', // React version. "detect" automatically picks the version you have installed.
+        // If not provided, defaults to the latest React version.
       },
     },
   },
@@ -71,12 +71,12 @@ const defaultRules = [
   },
   ...scwTypescript.map(config => ({
     ...config,
+    files: ['**/*.ts', '**/*.tsx'],
     rules: {
       ...config.rules,
-      "import/order":'off',
-      "sort-imports": "off",
+      'import/order': 'off',
+      'sort-imports': 'off',
     },
-    files: ['**/*.ts', '**/*.tsx'],
   })),
 
   {
@@ -84,13 +84,17 @@ const defaultRules = [
 
     languageOptions: {
       ecmaVersion: 5,
-      sourceType: 'script',
 
       parserOptions: {
-        project: ['tsconfig.json', 'packages/**/tsconfig.json', '!packages/utils/tsconfig.json'],
+        project: [
+          'tsconfig.json',
+          'packages/**/tsconfig.json',
+          '!packages/utils/tsconfig.json',
+        ],
         // projectService: true,
         tsconfigRootDir: import.meta.dirname,
       },
+      sourceType: 'script',
     },
   },
   ...scwTypescript.map(config => ({
@@ -103,22 +107,23 @@ const defaultRules = [
 
     languageOptions: {
       ecmaVersion: 5,
-      sourceType: 'script',
 
       parserOptions: {
         project: ['tsconfig.json', 'packages/**/tsconfig.json'],
       },
+      sourceType: 'script',
     },
 
     rules: {
       ...config.rules,
-      'no-console': 'off',
-      "@typescript-eslint/no-unsafe-argument": "off",
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-floating-promises': 'warn',
+      '@typescript-eslint/no-unsafe-argument': 'off',
+      'import/order': 'off',
+      'no-console': 'off',
     },
   })),
- ...oxlint.buildFromOxlintConfigFile('.oxlintrc.json'),
+
   {
     files: [
       '**/__tests__/**/*.ts{x,}',
@@ -128,14 +133,15 @@ const defaultRules = [
     ],
 
     rules: {
+      '@typescript-eslint/no-unsafe-call': 'off',
       'eslint/prefer-arrow-callback': 'off',
-      'prefer-arrow-callback': 'off',
       'import/no-extraneous-dependencies': 'off',
-      'react/jsx-key': 'off',
       'import/no-relative-packages': 'off',
+      'prefer-arrow-callback': 'off',
+      'react/jsx-key': 'off',
     },
   },
+  ...oxlint.buildFromOxlintConfigFile('.oxlintrc.json'),
 ]
-
 
 export default defaultRules

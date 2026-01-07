@@ -14,7 +14,7 @@ export async function run(): Promise<void> {
 
   console.log('Detected branch:', branch)
 
-  if (!branch.current.startsWith(branchPrefix) && !env['SKIP_BRANCH_CHECK']) {
+  if (!(branch.current.startsWith(branchPrefix) || env['SKIP_BRANCH_CHECK'])) {
     console.log('Not a renovate branch, skipping')
 
     return
@@ -39,7 +39,7 @@ export async function run(): Promise<void> {
     file.includes('pnpm-workspace.yaml'),
   )
 
-  if (!hasPackageChanges && !hasWorkspaceChanges) {
+  if (!(hasPackageChanges || hasWorkspaceChanges)) {
     console.log('No relevant changes detected, skipping')
 
     return

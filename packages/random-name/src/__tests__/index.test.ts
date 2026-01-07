@@ -23,7 +23,7 @@ describe('randomName', () => {
   })
 
   it('should never have boring-wozniak', () => {
-    const names = Array.from(new Array(1000000), () => randomName())
+    const names = Array.from(new Array(1_000_000), () => randomName())
     expect(names).not.toEqual(
       expect.arrayContaining([expect.stringMatching('boring-wozniak')]),
     )

@@ -153,7 +153,7 @@ const format =
         const value = filesize(amount, {
           base,
           exponent: exponents.findIndex(
-            exp => exp.name === computedExponent!.name,
+            exp => exp.name === computedExponent?.name,
           ),
           output: 'object',
           round: maximumFractionDigits,
@@ -172,13 +172,16 @@ const format =
       }
     }
 
+    // biome-ignore lint/style/noNonNullAssertion: should never happen
+    const exp = computedExponent!
+
     return `${new Intl.NumberFormat(locale, {
       maximumFractionDigits,
       minimumFractionDigits,
     }).format(computedValue)} ${
       short
-        ? formatShortUnit(locale, computedExponent!, unit, compoundUnit)
-        : formatLongUnit(locale, computedExponent!, unit, computedValue)
+        ? formatShortUnit(locale, exp, unit, compoundUnit)
+        : formatLongUnit(locale, exp, unit, computedValue)
     }`
   }
 

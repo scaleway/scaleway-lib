@@ -1,4 +1,4 @@
-import { writeFile, readFile } from 'node:fs/promises'
+import { readFile, writeFile } from 'node:fs/promises'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { defaultGitValues, mockSimpleGit } from '../../__mocks__/simple-git'
 import { run } from '../cli.js'
@@ -23,9 +23,13 @@ beforeEach(() => {
 
 describe('generate changeset file', () => {
   beforeEach(() => {
+    // biome-ignore lint/performance/noDelete: error
     delete process.env['SKIP_BRANCH_CHECK']
+    // biome-ignore lint/performance/noDelete: error
     delete process.env['SKIP_COMMIT']
+    // biome-ignore lint/performance/noDelete: error
     delete process.env['BRANCH_PREFIX']
+    // biome-ignore lint/performance/noDelete: error
     delete process.env['SORT_CHANGESETS']
   })
 
@@ -35,8 +39,8 @@ describe('generate changeset file', () => {
       branch: () => ({
         current: 'main',
       }),
-      show: () => undefined,
       diffSummary: () => undefined,
+      show: () => undefined,
     })
 
     await run()
@@ -54,9 +58,11 @@ describe('generate changeset file', () => {
     const push = vi.fn()
 
     mockSimpleGit.mockReturnValue({
+      add,
       branch: () => ({
         current: 'dep-upgrade/test',
       }),
+      commit,
       diffSummary: () => ({
         files: [
           {
@@ -64,14 +70,12 @@ describe('generate changeset file', () => {
           },
         ],
       }),
+      push,
+      revparse,
       show: () => `
 + "package": "version"
 + "package2": "version2"
 `,
-      revparse,
-      add,
-      commit,
-      push,
     })
 
     // Mock changeset config for this test
@@ -109,9 +113,11 @@ describe('generate changeset file', () => {
     const push = vi.fn()
 
     mockSimpleGit.mockReturnValue({
+      add,
       branch: () => ({
         current: 'main',
       }),
+      commit,
       diffSummary: () => ({
         files: [
           {
@@ -119,14 +125,12 @@ describe('generate changeset file', () => {
           },
         ],
       }),
+      push,
+      revparse,
       show: () => `
 + "package": "version"
 + "package2": "version2"
 `,
-      revparse,
-      add,
-      commit,
-      push,
     })
 
     // Mock changeset config for this test
@@ -206,9 +210,11 @@ describe('generate changeset file', () => {
     const push = vi.fn()
 
     mockSimpleGit.mockReturnValue({
+      add,
       branch: () => ({
         current: 'renovate/test',
       }),
+      commit,
       diffSummary: () => ({
         files: [
           {
@@ -216,14 +222,12 @@ describe('generate changeset file', () => {
           },
         ],
       }),
+      push,
+      revparse,
       show: () => `
 + "packagez": "version2"
 + "packagea": "version"
 `,
-      revparse,
-      add,
-      commit,
-      push,
     })
 
     // Mock changeset config for this test
@@ -257,9 +261,11 @@ describe('generate changeset file', () => {
     const push = vi.fn()
 
     mockSimpleGit.mockReturnValue({
+      add,
       branch: () => ({
         current: 'renovate/test',
       }),
+      commit,
       diffSummary: () => ({
         files: [
           {
@@ -267,14 +273,12 @@ describe('generate changeset file', () => {
           },
         ],
       }),
+      push,
+      revparse,
       show: () => `
 + "package": "version"
 + "package2": "version2"
 `,
-      revparse,
-      add,
-      commit,
-      push,
     })
 
     // Mock changeset config for this test
@@ -312,9 +316,11 @@ describe('generate changeset file', () => {
     const push = vi.fn()
 
     mockSimpleGit.mockReturnValue({
+      add,
       branch: () => ({
         current: 'renovate/test',
       }),
+      commit,
       diffSummary: () => ({
         files: [
           {
@@ -325,14 +331,12 @@ describe('generate changeset file', () => {
           },
         ],
       }),
+      push,
+      revparse,
       show: () => `
 + "packagez": "version2"
 + "packagea": "version"
 `,
-      revparse,
-      add,
-      commit,
-      push,
     })
 
     // Mock changeset config for this test

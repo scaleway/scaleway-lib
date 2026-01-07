@@ -6,7 +6,53 @@
   "dependencyDashboard": true,
   "enabledManagers": ["github-actions", "npm"],
   "extends": ["config:recommended", ":combinePatchMinorReleases"],
+  "ignorePaths": ["packages_deprecated/**/package.json"],
   "labels": ["dependencies"],
+  "packageRules": [
+    {
+      "matchDepTypes": ["engines", "peerDependencies"],
+      "rangeStrategy": "widen"
+    },
+    {
+      "autoApprove": true,
+      "automerge": true,
+      "matchManagers": ["github-actions"],
+      "semanticCommitScope": "devDeps"
+    },
+    {
+      "matchDepTypes": ["packageManager", "devDependencies"],
+      "matchUpdateTypes": ["major"],
+      "semanticCommitScope": "devDeps"
+    },
+    {
+      "matchDepTypes": ["packageManager", "devDependencies"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "semanticCommitScope": "devDeps"
+    },
+    {
+      "labels": ["UPDATE-MAJOR"],
+      "matchUpdateTypes": ["major"],
+      "minimumReleaseAge": "14 days"
+    },
+    {
+      "autoApprove": true,
+      "automerge": true,
+      "labels": ["UPDATE-MINOR"],
+      "matchUpdateTypes": ["minor"],
+      "minimumReleaseAge": "7 days"
+    },
+    {
+      "autoApprove": true,
+      "automerge": true,
+      "labels": ["UPDATE-PATCH"],
+      "matchUpdateTypes": ["patch"],
+      "minimumReleaseAge": "3 days"
+    },
+    {
+      "matchDepTypes": ["engines"],
+      "rangeStrategy": "widen"
+    }
+  ],
   "prConcurrentLimit": 10,
   "prHourlyLimit": 5,
   "rangeStrategy": "pin",
@@ -14,51 +60,5 @@
   "reviewers": ["team:console"],
   "reviewersSampleSize": 2,
   "semanticCommitScope": "deps",
-  "semanticCommitType": "chore",
-  "ignorePaths": ["packages_deprecated/**/package.json"],
-  "packageRules": [
-    {
-      "matchDepTypes": ["engines", "peerDependencies"],
-      "rangeStrategy": "widen"
-    },
-    {
-      "matchManagers": ["github-actions"],
-      "semanticCommitScope": "devDeps",
-      "automerge": true,
-      "autoApprove": true
-    },
-    {
-      "semanticCommitScope": "devDeps",
-      "matchDepTypes": ["packageManager", "devDependencies"],
-      "matchUpdateTypes": ["major"]
-    },
-    {
-      "semanticCommitScope": "devDeps",
-      "matchDepTypes": ["packageManager", "devDependencies"],
-      "matchUpdateTypes": ["minor", "patch"]
-    },
-    {
-      "labels": ["UPDATE-MAJOR"],
-      "minimumReleaseAge": "14 days",
-      "matchUpdateTypes": ["major"]
-    },
-    {
-      "labels": ["UPDATE-MINOR"],
-      "minimumReleaseAge": "7 days",
-      "matchUpdateTypes": ["minor"],
-      "automerge": true,
-      "autoApprove": true
-    },
-    {
-      "labels": ["UPDATE-PATCH"],
-      "minimumReleaseAge": "3 days",
-      "matchUpdateTypes": ["patch"],
-      "automerge": true,
-      "autoApprove": true
-    },
-    {
-      "matchDepTypes": ["engines"],
-      "rangeStrategy": "widen"
-    }
-  ]
+  "semanticCommitType": "chore"
 }

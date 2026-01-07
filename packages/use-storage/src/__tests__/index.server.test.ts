@@ -10,6 +10,7 @@ const KEY = 'test'
 
 // renderHook does not yet support server side
 // https://github.com/testing-library/react-testing-library/issues/1120
+// biome-ignore lint/suspicious/noSkippedTests: ingore this test actually
 describe.skip('useStorage - Server side', () => {
   describe('useLocalStorage', () => {
     it('works', () => {

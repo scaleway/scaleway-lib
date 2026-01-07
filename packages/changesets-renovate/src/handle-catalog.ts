@@ -52,9 +52,9 @@ export async function handleCatalogChanges(diffFiles: string[]): Promise<void> {
   }
 
   console.log('\n📝 Affected packages:')
-  affectedPackages.forEach(pkg => {
+  for (const pkg of affectedPackages) {
     console.log(`  - ${pkg}`)
-  })
+  }
 
   // Step 3: Generate changesets
   console.log('\n✏️  Creating changesets...')

@@ -1,8 +1,8 @@
 import { act, renderHook } from '@testing-library/react'
-import { createMemoryHistory } from 'history'
 import type { History } from 'history'
+import { createMemoryHistory } from 'history'
+import type { ComponentType, PropsWithChildren, ReactNode } from 'react'
 import { useLayoutEffect, useState } from 'react'
-import type { ComponentType, ReactNode, PropsWithChildren } from 'react'
 import { MemoryRouter, Router } from 'react-router-dom'
 import { describe, expect, it, test } from 'vitest'
 import useQueryParams from '..'
@@ -23,9 +23,9 @@ const HistoryRouter: ComponentType<PropsWithChildren<HistoryProps>> = ({
 
   return (
     <Router
-      navigator={history}
       location={state.location}
       navigationType={state.action}
+      navigator={history}
     >
       {children}
     </Router>
@@ -48,7 +48,7 @@ const wrapper =
     }
 
     return (
-      <MemoryRouter initialIndex={0} initialEntries={[{ pathname, search }]}>
+      <MemoryRouter initialEntries={[{ pathname, search }]} initialIndex={0}>
         {children}
       </MemoryRouter>
     )

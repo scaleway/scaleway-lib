@@ -1,6 +1,7 @@
-import type { CategoryKind } from './helpers'
+import type { categories } from './helpers'
 
-export type { CategoryKind }
+export type CategoryKind = (typeof categories)[number]
+
 export type Consent = { [K in CategoryKind]: boolean }
 
 type Integration = {

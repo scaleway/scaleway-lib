@@ -7,9 +7,9 @@
  * Script to check that dependencies use catalog references instead of hardcoded versions
  */
 
-import fs from 'fs'
-import path from 'path'
-import { fileURLToPath } from 'url'
+import fs from 'node:fs'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { parse } from 'yaml'
 
 const fileName = fileURLToPath(import.meta.url)

@@ -7,17 +7,17 @@ const localStorageMock = (() => {
   let store: Record<string, unknown> = {}
 
   return {
+    clear() {
+      store = {}
+    },
     getItem(key: string): unknown {
       return store[key] ?? null
-    },
-    setItem(key: string, value: unknown) {
-      store[key] = value?.toString()
     },
     removeItem(key: string) {
       delete store[key]
     },
-    clear() {
-      store = {}
+    setItem(key: string, value: unknown) {
+      store[key] = value?.toString()
     },
   }
 })()
@@ -95,7 +95,7 @@ describe('@outdated-browser', () => {
     // @ts-expect-error global mock
     global.SUPPORTED_BROWSERS = 'a'
     // @ts-expect-error injected globally by module
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    // oxlint-disable-next-line typescript-eslint/no-unsafe-call
     closeOutdated()
 
     return import('..').then(() => {

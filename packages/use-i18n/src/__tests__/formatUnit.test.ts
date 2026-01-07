@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest'
-import formatUnit, { supportedUnits } from '../formatUnit'
 import type { FormatUnitOptions } from '../formatUnit'
+import formatUnit, { supportedUnits } from '../formatUnit'
 
 const locales = ['en', 'fr', 'ro']
 
@@ -49,7 +49,7 @@ const tests: TestType[] = [
     'should work with base',
     { base: 2, unit },
     'en',
-    4294967296, // 4 GB
+    4_294_967_296, // 4 GB
   ]),
 ]
 

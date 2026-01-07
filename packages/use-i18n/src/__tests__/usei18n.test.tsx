@@ -82,15 +82,15 @@ const wrapper =
   } = {}) =>
   ({ children }: { children: ReactNode }) => (
     <I18n
-      loadDateLocale={loadDateLocale}
-      loadDateLocaleAsync={loadDateLocaleAsync}
       defaultLoad={defaultLoad}
       defaultLocale={defaultLocale}
       defaultTranslations={defaultTranslations}
       enableDebugKey={enableDebugKey}
       enableDefaultLocale={enableDefaultLocale}
-      localeItemStorage={localeItemStorage}
       isLocaleSupported={isLocaleSupported}
+      loadDateLocale={loadDateLocale}
+      loadDateLocaleAsync={loadDateLocaleAsync}
+      localeItemStorage={localeItemStorage}
       onTranslateError={onTranslateError}
     >
       {children}
@@ -305,10 +305,10 @@ describe('i18n hook', () => {
       const localStorageMock = vi
         .spyOn(global, 'localStorage', 'get')
         .mockReturnValue({
-          getItem: mockGetItem,
-          setItem: mockSetItem,
-          removeItem: mockRemoveItem,
           clear: vi.fn(),
+          getItem: mockGetItem,
+          removeItem: mockRemoveItem,
+          setItem: mockSetItem,
         } as unknown as Storage)
 
       const { result } = renderHook(() => useI18n(), {
@@ -336,10 +336,10 @@ describe('i18n hook', () => {
       const localStorageMock = vi
         .spyOn(global, 'localStorage', 'get')
         .mockReturnValue({
-          getItem: mockGetItem,
-          setItem: mockSetItem,
-          removeItem: mockRemoveItem,
           clear: vi.fn(),
+          getItem: mockGetItem,
+          removeItem: mockRemoveItem,
+          setItem: mockSetItem,
         } as unknown as Storage)
 
       const { result } = renderHook(() => useI18n(), {
@@ -367,10 +367,10 @@ describe('i18n hook', () => {
       const localStorageMock = vi
         .spyOn(global, 'localStorage', 'get')
         .mockReturnValueOnce({
-          getItem: mockGetItem,
-          setItem: mockSetItem,
-          removeItem: mockRemoveItem,
           clear: vi.fn(),
+          getItem: mockGetItem,
+          removeItem: mockRemoveItem,
+          setItem: mockSetItem,
         } as unknown as Storage)
 
       const { result } = renderHook(() => useI18n(), {
@@ -396,10 +396,10 @@ describe('i18n hook', () => {
       const localStorageMock = vi
         .spyOn(global, 'localStorage', 'get')
         .mockReturnValueOnce({
-          getItem: mockGetItem,
-          setItem: mockSetItem,
-          removeItem: mockRemoveItem,
           clear: vi.fn(),
+          getItem: mockGetItem,
+          removeItem: mockRemoveItem,
+          setItem: mockSetItem,
         } as unknown as Storage)
 
       const { result } = renderHook(() => useI18n(), {
@@ -509,13 +509,13 @@ describe('i18n hook', () => {
     expect(mockOnTranslateError).toHaveBeenCalledTimes(1)
 
     expect(mockOnTranslateError).toHaveBeenCalledWith({
+      currentLocale: 'fr',
+      defaultLocale: 'en',
       error: new FormatError(
         'The intl string context variable "oldFrenchVariable" was not provided to the string "onTranslateError fonction sera appelé car il manque une variable en français {oldFrenchVariable}"',
         ErrorCode.MISSING_VALUE,
         'onTranslateError fonction sera appelé car il manque une variable en français {oldFrenchVariable}',
       ),
-      defaultLocale: 'en',
-      currentLocale: 'fr',
       key: 'translate.error',
       value:
         'onTranslateError fonction sera appelé car il manque une variable en français {oldFrenchVariable}',
@@ -831,10 +831,10 @@ describe('i18n hook', () => {
       const localStorageMock = vi
         .spyOn(global, 'localStorage', 'get')
         .mockReturnValue({
-          getItem: mockGetItem,
-          setItem: mockSetItem,
-          removeItem: mockRemoveItem,
           clear: vi.fn(),
+          getItem: mockGetItem,
+          removeItem: mockRemoveItem,
+          setItem: mockSetItem,
         } as unknown as Storage)
 
       const { result } = renderHook(() => useI18n(), {
