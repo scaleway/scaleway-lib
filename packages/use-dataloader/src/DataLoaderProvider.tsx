@@ -130,9 +130,10 @@ const DataLoaderProvider: ComponentType<DataLoaderProviderProps> = ({
     [getRequest],
   )
   const clearAllCachedData = useCallback(() => {
-    Object.values(requestsRef.current).forEach(request => {
+    const requests = Object.values(requestsRef.current)
+    for (const request of requests) {
       request.clearData()
-    })
+    }
   }, [])
 
   const reload = useCallback(

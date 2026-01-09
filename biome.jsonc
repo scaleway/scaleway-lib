@@ -1,0 +1,75 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "on",
+        "useSortedAttributes": "on",
+        "useSortedKeys": "on",
+        "useSortedProperties": "on"
+      }
+    },
+    "includes": [
+      "biome.jsonc",
+      "**/biome.jsonc",
+      ".oxlintrc.json",
+      "tsconfig.json",
+      "tsconfig.build.json",
+      "**/tsconfig.json",
+      "**/tsconfig.build.json",
+      "**/*.ts",
+      "**/*.tsx",
+      "!**/package.json",
+      "!**/*.spec.ts",
+      "!**/*.spec.tsx",
+      "!**/*.test.ts",
+      "!**/*.test.tsx",
+      "!**/prebuild.ts",
+      "!**/__mocks__/**",
+      "!**/dist/**",
+      "!**/build/**",
+      "!**/.turbo/**"
+    ]
+  },
+  "extends": [
+    "./packages/biome/configs/core/biome.jsonc",
+    "./packages/biome/configs/react/biome.jsonc"
+  ],
+  "files": {
+    "includes": ["**/*", "!packages_deprecated"]
+  },
+  "linter": {
+    "rules": {
+      "complexity": {
+        "noForEach": "warn",
+        "useLiteralKeys": "off"
+      },
+      "correctness": {
+        // handle by: oxlint typescript-eslint/no-unsafe-call)
+        "noUndeclaredVariables": "off",
+        // handle by: oxlint react-hooks/exhaustive-deps
+        "useExhaustiveDependencies": "off"
+      },
+      "performance": {
+        // need to be fixed
+        "noAccumulatingSpread": "off",
+        "noBarrelFile": "off",
+        "noNamespaceImport": "off"
+      },
+      "style": {
+        // handle by: oxlint typescript/consistent-type-definitions
+        "noExportedImports": "off",
+        "useConsistentTypeDefinitions": "off"
+      },
+      "suspicious": {
+        "noDocumentCookie": "off",
+        "noEmptyBlockStatements": "off",
+        // handle by: oxlint eslint/no-explicit-any
+        "noExplicitAny": "off",
+        "useAwait": "off"
+      }
+    }
+  },
+
+  "root": true
+}

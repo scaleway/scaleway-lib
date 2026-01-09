@@ -54,7 +54,7 @@ export const defaultLoadOptions: LoadOptions = {
   queueOptions: {
     batch: {
       enabled: true,
-      flushInterval: 3_000, // in ms
+      flushInterval: 3000, // in ms
       maxItems: 20,
       maxSize: 512 * 1024, // 512 KB
     },

@@ -4,56 +4,56 @@ import { useSegmentIntegrations } from '../../useSegmentIntegrations'
 
 globalThis.fetch = vi.fn(async () =>
   Promise.resolve({
-    ok: true,
     json: async () =>
       Promise.resolve([
         {
-          name: 'Google Universal Analytics',
+          category: 'Analytics',
           creationName: 'Google Analytics',
           description:
             'Google Universal Analytics is the most popular analytics tool for the web. It’s free and provides a wide range of features. It’s especially good at measuring traffic sources and ad campaigns.',
+          name: 'Google Universal Analytics',
           website: 'http://google.com/analytics',
-          category: 'Analytics',
         },
         {
-          name: 'Salesforce custom destination (Scaleway)',
+          category: 'Other',
           creationName: 'Salesforce custom destination (Scaleway)',
           description:
             'Custom destination to transform from Group call into Track call in order to use custom actions',
+          name: 'Salesforce custom destination (Scaleway)',
           website: 'https://www.segment.com',
-          category: 'Other',
         },
         {
-          name: 'Salesforce',
+          category: 'CRM',
           creationName: 'Salesforce',
           description:
             'Salesforce is the most popular CRM on the market. It lets you store your new leads, and manage them throughout your sales pipeline as they turn into paying accounts.',
+          name: 'Salesforce',
           website: 'http://salesforce.com',
-          category: 'CRM',
         },
         {
-          name: 'Scaleway Custom',
+          category: 'Unknown Category',
           creationName: 'bonjour',
           description: 'hello',
+          name: 'Scaleway Custom',
           website: 'http://google-ta.com',
-          category: 'Unknown Category',
         },
         {
-          name: 'Google Ads (Gtag)',
+          category: 'Advertising',
           creationName: 'Google AdWords New',
           description: `Advertise on Google and put your message in front of potential customers right when they're searching for what you have to offer.`,
+          name: 'Google Ads (Gtag)',
           website: 'https://adwords.google.com',
-          category: 'Advertising',
         },
         {
-          name: 'Amplitude (Actions)',
+          category: 'Analytics',
           creationName: 'Actions Amplitude',
           description:
             'Amplitude is an event tracking and segmentation platform for your web and mobile apps. By analyzing the actions your users perform, you can gain a better understanding to drive retention, engagement, and conversion.',
+          name: 'Amplitude (Actions)',
           website: 'https://amplitude.com',
-          category: 'Analytics',
         },
       ]),
+    ok: true,
   } as unknown as Response),
 )
 

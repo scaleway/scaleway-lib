@@ -1,0 +1,42 @@
+{
+  "name": "@scaleway/biome",
+  "version": "0.0.1",
+  "description": "Scaleway's shareable configuration for biome",
+  "keywords": [
+    "biome",
+    "biome-config",
+    "lint",
+    "config",
+    "scaleway"
+  ],
+  "author": "Scaleway",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scaleway/scaleway-lib",
+    "directory": "packages/biome"
+  },
+  "bugs": {
+    "url": "https://github.com/scaleway/oxlint-config-scaleway/issues"
+  },
+  "homepage": "https://github.com/scaleway/oxlint-config-scaleway#readme",
+  "main": "index.json",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "configs/**"
+  ],
+  "exports": {
+    "./*": "./config/biome/*/biome.jsonc"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "catalog:"
+  },
+  "peerDependencies": {
+    "@biomejs/biome": "catalog:^"
+  }
+}

@@ -1,8 +1,8 @@
 // oxlint-disable eslint/max-statements
 //
 import { renderHook, waitFor } from '@testing-library/react'
-import { act } from 'react'
 import type { ReactNode } from 'react'
+import { act } from 'react'
 import { describe, expect, it, vi } from 'vitest'
 import DataLoaderProvider from '../DataLoaderProvider'
 import type { UseInfiniteDataLoaderConfig } from '../types'
@@ -14,8 +14,8 @@ const config: UseInfiniteDataLoaderConfig<
   { page: number },
   'page'
 > = {
-  getNextPage: result => result.nextPage,
   enabled: true,
+  getNextPage: result => result.nextPage,
 }
 
 const getPrerequisite = (key: string) => {
@@ -27,7 +27,7 @@ const getPrerequisite = (key: string) => {
         const resolvePromise = () => {
           if (canResolve) {
             counter += 1
-            resolve({ nextPage: counter, data: `Page ${counter - 1} data` })
+            resolve({ data: `Page ${counter - 1} data`, nextPage: counter })
           } else {
             setTimeout(() => {
               resolvePromise()
@@ -40,6 +40,8 @@ const getPrerequisite = (key: string) => {
   )
 
   return {
+    canResolve,
+    counter,
     initialProps: {
       baseParams: {
         page: 1,
@@ -50,14 +52,12 @@ const getPrerequisite = (key: string) => {
       key,
       method: getNextData,
     },
-    setCanResolve: (newState: boolean) => {
-      canResolve = newState
-    },
     resetCounter: () => {
       counter = 1
     },
-    canResolve,
-    counter,
+    setCanResolve: (newState: boolean) => {
+      canResolve = newState
+    },
   }
 }
 const wrapper = ({ children }: { children?: ReactNode }) => (
@@ -91,7 +91,7 @@ describe('useInfinitDataLoader', () => {
     })
     expect(initialProps.method).toHaveBeenCalledTimes(1)
     expect(result.current.data).toStrictEqual([
-      { nextPage: 2, data: 'Page 1 data' },
+      { data: 'Page 1 data', nextPage: 2 },
     ])
     expect(result.current.isLoading).toBeFalsy()
     expect(result.current.isLoading).toBeFalsy()
@@ -128,7 +128,7 @@ describe('useInfinitDataLoader', () => {
     })
     expect(initialProps.method).toHaveBeenCalledTimes(1)
     expect(result.current.data).toStrictEqual([
-      { nextPage: 2, data: 'Page 1 data' },
+      { data: 'Page 1 data', nextPage: 2 },
     ])
     expect(result.current.isLoading).toBeFalsy()
     expect(result.current.isFetching).toBeFalsy()
@@ -137,7 +137,7 @@ describe('useInfinitDataLoader', () => {
       result.current.loadMore()
     })
     expect(result.current.data).toStrictEqual([
-      { nextPage: 2, data: 'Page 1 data' },
+      { data: 'Page 1 data', nextPage: 2 },
     ])
     await waitFor(() => {
       expect(result.current.isFetching).toBeTruthy()
@@ -157,8 +157,8 @@ describe('useInfinitDataLoader', () => {
       expect(result.current.isFetching).toBeFalsy()
     })
     expect(result.current.data).toStrictEqual([
-      { nextPage: 2, data: 'Page 1 data' },
-      { nextPage: 3, data: 'Page 2 data' },
+      { data: 'Page 1 data', nextPage: 2 },
+      { data: 'Page 2 data', nextPage: 3 },
     ])
   })
 
@@ -193,7 +193,7 @@ describe('useInfinitDataLoader', () => {
     setCanResolve(false)
     expect(initialProps.method).toHaveBeenCalledTimes(1)
     expect(result.current.data).toStrictEqual([
-      { nextPage: 2, data: 'Page 1 data' },
+      { data: 'Page 1 data', nextPage: 2 },
     ])
     expect(result.current.isLoading).toBeFalsy()
     expect(result.current.isFetching).toBeFalsy()
@@ -204,7 +204,7 @@ describe('useInfinitDataLoader', () => {
       expect(result.current.isFetching).toBeTruthy()
     })
     expect(result.current.data).toStrictEqual([
-      { nextPage: 2, data: 'Page 1 data' },
+      { data: 'Page 1 data', nextPage: 2 },
     ])
     expect(initialProps.method).toHaveBeenCalledTimes(2)
     expect(initialProps.method).toHaveBeenCalledWith({
@@ -215,8 +215,8 @@ describe('useInfinitDataLoader', () => {
       expect(result.current.isSuccess).toBeTruthy()
     })
     expect(result.current.data).toStrictEqual([
-      { nextPage: 2, data: 'Page 1 data' },
-      { nextPage: 3, data: 'Page 2 data' },
+      { data: 'Page 1 data', nextPage: 2 },
+      { data: 'Page 2 data', nextPage: 3 },
     ])
     setCanResolve(false)
     resetCounter()
@@ -231,8 +231,8 @@ describe('useInfinitDataLoader', () => {
       expect(result.current.isSuccess).toBeTruthy()
     })
     expect(result.current.data).toStrictEqual([
-      { nextPage: 2, data: 'Page 1 data' },
-      { nextPage: 3, data: 'Page 2 data' },
+      { data: 'Page 1 data', nextPage: 2 },
+      { data: 'Page 2 data', nextPage: 3 },
     ])
   })
 
@@ -285,7 +285,7 @@ describe('useInfinitDataLoader', () => {
     setCanResolve(false)
     expect(initialProps.method).toHaveBeenCalledTimes(1)
     expect(result.current.data).toStrictEqual([
-      { nextPage: 2, data: 'Page 1 data' },
+      { data: 'Page 1 data', nextPage: 2 },
     ])
     expect(result.current.isLoading).toBeFalsy()
     expect(result.current.isFetching).toBeFalsy()
@@ -296,7 +296,7 @@ describe('useInfinitDataLoader', () => {
       expect(result.current.isFetching).toBeTruthy()
     })
     expect(result.current.data).toStrictEqual([
-      { nextPage: 2, data: 'Page 1 data' },
+      { data: 'Page 1 data', nextPage: 2 },
     ])
     expect(initialProps.method).toHaveBeenCalledTimes(2)
     expect(initialProps.method).toHaveBeenCalledWith({
@@ -316,8 +316,8 @@ describe('useInfinitDataLoader', () => {
     // (initial load + loadMore), not 3, because reload reuses existing requests
     expect(initialProps.method).toHaveBeenCalledTimes(2)
     expect(result.current.data).toStrictEqual([
-      { nextPage: 2, data: 'Page 1 data' },
-      { nextPage: 3, data: 'Page 2 data' },
+      { data: 'Page 1 data', nextPage: 2 },
+      { data: 'Page 2 data', nextPage: 3 },
     ])
     setCanResolve(false)
     resetCounter()
@@ -332,8 +332,8 @@ describe('useInfinitDataLoader', () => {
       expect(result.current.isFetching).toBeFalsy()
     })
     expect(result.current.data).toStrictEqual([
-      { nextPage: 2, data: 'Page 1 data' },
-      { nextPage: 3, data: 'Page 2 data' },
+      { data: 'Page 1 data', nextPage: 2 },
+      { data: 'Page 2 data', nextPage: 3 },
     ])
   })
 
@@ -372,7 +372,7 @@ describe('useInfinitDataLoader', () => {
     expect(result.current.isLoading).toBeFalsy()
     expect(result.current.isFetching).toBeFalsy()
     expect(result.current.data).toStrictEqual([
-      { nextPage: 2, data: 'Page 1 data' },
+      { data: 'Page 1 data', nextPage: 2 },
     ])
 
     // Trigger a loadMore
@@ -387,7 +387,7 @@ describe('useInfinitDataLoader', () => {
     })
     expect(result.current.isLoading).toBeFalsy()
     expect(result.current.data).toStrictEqual([
-      { nextPage: 2, data: 'Page 1 data' },
+      { data: 'Page 1 data', nextPage: 2 },
     ]) // Still have cached data
 
     // Resolve the loadMore
@@ -400,8 +400,8 @@ describe('useInfinitDataLoader', () => {
     expect(result.current.isLoading).toBeFalsy()
     expect(result.current.isFetching).toBeFalsy()
     expect(result.current.data).toStrictEqual([
-      { nextPage: 2, data: 'Page 1 data' },
-      { nextPage: 3, data: 'Page 2 data' },
+      { data: 'Page 1 data', nextPage: 2 },
+      { data: 'Page 2 data', nextPage: 3 },
     ])
   })
 })

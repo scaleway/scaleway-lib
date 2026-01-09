@@ -60,9 +60,9 @@ class DataLoader<ResultType, ErrorType> {
       clearTimeout(this.timeout)
     }
     this.timeout = setTimeout(() => {
-      this.observers.forEach(observer => {
+      for (const observer of this.observers) {
         observer()
-      })
+      }
     }) as unknown as number
   }
 
@@ -70,7 +70,7 @@ class DataLoader<ResultType, ErrorType> {
     return DataLoader.cachedData[this.key] as ResultType
   }
 
-  private tryLaunch = async (): Promise<ResultType> => {
+  private readonly tryLaunch = async (): Promise<ResultType> => {
     if (DataLoader.started < DataLoader.maxConcurrent) {
       DataLoader.started += 1
       DataLoader.queue[this.key] = this.launch()

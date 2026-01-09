@@ -1,5 +1,5 @@
-import { AnalyticsBrowser } from '@segment/analytics-next'
 import type { Context } from '@segment/analytics-next'
+import { AnalyticsBrowser } from '@segment/analytics-next'
 import { render, screen, waitFor } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 import SegmentProvider from '..'
@@ -17,12 +17,12 @@ describe('SegmentProvider', () => {
 
     render(
       <SegmentProvider
-        settings={settings}
-        initOptions={{}}
         areOptionsLoaded={false}
         events={{
           event: () => () => Promise.resolve(),
         }}
+        initOptions={{}}
+        settings={settings}
       >
         <TestChildren />
       </SegmentProvider>,
@@ -44,13 +44,13 @@ describe('SegmentProvider', () => {
 
     render(
       <SegmentProvider
-        settings={settings}
-        initOptions={{}}
         areOptionsLoaded={false}
-        shouldRenderOnlyWhenReady
         events={{
           event: () => () => Promise.resolve(),
         }}
+        initOptions={{}}
+        settings={settings}
+        shouldRenderOnlyWhenReady
       >
         <TestChildren />
       </SegmentProvider>,
@@ -72,13 +72,13 @@ describe('SegmentProvider', () => {
 
     const { rerender } = render(
       <SegmentProvider
-        settings={settings}
-        initOptions={{}}
         areOptionsLoaded={false}
-        shouldRenderOnlyWhenReady
         events={{
           event: () => () => Promise.resolve(),
         }}
+        initOptions={{}}
+        settings={settings}
+        shouldRenderOnlyWhenReady
       >
         <TestChildren />
       </SegmentProvider>,
@@ -92,13 +92,13 @@ describe('SegmentProvider', () => {
 
     rerender(
       <SegmentProvider
-        settings={settings}
-        initOptions={{}}
         areOptionsLoaded
-        shouldRenderOnlyWhenReady
         events={{
           event: () => () => Promise.resolve(),
         }}
+        initOptions={{}}
+        settings={settings}
+        shouldRenderOnlyWhenReady
       >
         <TestChildren />
       </SegmentProvider>,
@@ -118,12 +118,12 @@ describe('SegmentProvider', () => {
 
     const { rerender } = render(
       <SegmentProvider
-        initOptions={{}}
         areOptionsLoaded={false}
-        shouldRenderOnlyWhenReady
         events={{
           event: () => () => Promise.resolve(),
         }}
+        initOptions={{}}
+        shouldRenderOnlyWhenReady
       >
         <TestChildren />
       </SegmentProvider>,
@@ -137,12 +137,12 @@ describe('SegmentProvider', () => {
 
     rerender(
       <SegmentProvider
-        initOptions={{}}
         areOptionsLoaded
-        shouldRenderOnlyWhenReady
         events={{
           event: () => () => Promise.resolve(),
         }}
+        initOptions={{}}
+        shouldRenderOnlyWhenReady
       >
         <TestChildren />
       </SegmentProvider>,

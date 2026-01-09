@@ -112,13 +112,7 @@ export function AnalyticsProvider<T extends Events>({
     return () => {
       clearTimeout(timer)
     }
-  }, [
-    isAnalyticsReady,
-    setIsAnalyticsReady,
-    shouldRenderOnlyWhenReady,
-    timeout,
-    onError,
-  ])
+  }, [isAnalyticsReady, shouldRenderOnlyWhenReady, timeout, onError])
 
   const shouldLoad = useMemo(() => {
     if (needConsent) {

@@ -45,8 +45,12 @@ type ErrorICU = {
 
 type ErrorsICU = (ErrorICU | undefined)[]
 
-const isObject = (obj: unknown): obj is Record<string, unknown> =>
-  obj === Object(obj)
+const isObject = (obj: unknown): obj is Record<string, unknown> => {
+  // eslint-disable-next-line no-new-object
+  const newObj = new Object(obj)
+
+  return obj === newObj
+}
 
 const findICUErrors = (
   locales: { [key: string]: string },
@@ -78,7 +82,7 @@ const findICUErrors = (
 }
 
 const readFiles = async (files: string[]): Promise<ErrorsICU> => {
-  const errors = []
+  const errors: (ErrorICU | undefined)[] = []
 
   // eslint-disable-next-line @typescript-eslint/await-thenable
   for await (const file of files) {

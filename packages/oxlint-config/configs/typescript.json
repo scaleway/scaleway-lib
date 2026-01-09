@@ -1,7 +1,7 @@
 {
   "$schema": "../node_modules/oxlint/configuration_schema.json",
-  "plugins": ["typescript"],
   "extends": ["./index.json"],
+  "plugins": ["typescript"],
   "rules": {
     "typescript/adjacent-overload-signatures": "error",
     "typescript/array-type": "error",

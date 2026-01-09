@@ -51,12 +51,12 @@
   "dependencies": {
     "@formatjs/ecma402-abstract": "catalog:",
     "@formatjs/fast-memoize": "catalog:",
-    "date-fns": "catalog:",
     "filesize": "catalog:",
     "international-types": "catalog:",
     "intl-messageformat": "catalog:"
   },
   "devDependencies": {
+    "date-fns": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:"
   },

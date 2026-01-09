@@ -8,7 +8,6 @@
     "shared typescript config"
   ],
   "main": "tsconfig.json",
-
   "publishConfig": {
     "access": "public"
   },

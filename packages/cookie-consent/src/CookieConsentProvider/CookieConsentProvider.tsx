@@ -164,19 +164,19 @@ export const CookieConsentProvider: ComponentType<
 
         const cookieName = `${cookiePrefix}_${consentCategoryName}`
 
-        if (!consentValue) {
-          // If consent is set to false we have to delete the cookie
-          document.cookie = serialize(cookieName, '', {
-            ...cookiesOptions,
-            expires: new Date(0),
-          })
-        } else {
+        if (consentValue) {
           document.cookie = serialize(cookieName, consentValue.toString(), {
             ...cookiesOptions,
             maxAge:
               consentCategoryName === 'advertising'
                 ? consentAdvertisingMaxAge
                 : consentMaxAge,
+          })
+        } else {
+          // If consent is set to false we have to delete the cookie
+          document.cookie = serialize(cookieName, '', {
+            ...cookiesOptions,
+            expires: new Date(0),
           })
         }
         setCookies(prevCookies => ({

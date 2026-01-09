@@ -1,7 +1,7 @@
-import { fixupConfigRules } from '@eslint/compat'
-import { FlatCompat } from '@eslint/eslintrc'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { fixupConfigRules } from '@eslint/compat'
+import { FlatCompat } from '@eslint/eslintrc'
 import stylisticJs from './stylistic.mjs'
 
 const filename = fileURLToPath(import.meta.url)
@@ -24,30 +24,8 @@ const defaultRules = [
   {
     rules: {
       curly: 'error',
-      'no-use-before-define': 'off',
-      'import/extensions': 'off',
       'dot-notation': 'off',
-
-      'import/order': [
-        'error',
-        {
-          alphabetize: {
-            caseInsensitive: false,
-            order: 'asc',
-          },
-
-          groups: [
-            'builtin',
-            'external',
-            'internal',
-            'parent',
-            'sibling',
-            'index',
-            // "type",
-          ],
-          'newlines-between': 'never',
-        },
-      ],
+      'import/extensions': 'off',
 
       'import/no-extraneous-dependencies': [
         'error',
@@ -76,7 +54,29 @@ const defaultRules = [
         },
       ],
 
+      'import/order': [
+        'error',
+        {
+          alphabetize: {
+            caseInsensitive: false,
+            order: 'asc',
+          },
+
+          groups: [
+            'builtin',
+            'external',
+            'internal',
+            'parent',
+            'sibling',
+            'index',
+            // "type",
+          ],
+          'newlines-between': 'never',
+        },
+      ],
+
       'import/prefer-default-export': 'off',
+      'no-constant-binary-expression': 'error',
 
       'no-restricted-syntax': [
         'error',
@@ -100,6 +100,7 @@ const defaultRules = [
           selector: 'ExportAllDeclaration',
         },
       ],
+      'no-use-before-define': 'off',
 
       'padding-line-between-statements': [
         'error',
@@ -109,13 +110,12 @@ const defaultRules = [
           prev: '*',
         },
       ],
+      'prefer-object-has-own': 'error',
 
       'react/function-component-definition': 'off',
+      'react/jsx-key': 'error',
       'react/no-adjacent-inline-elements': 'error',
-      'prefer-object-has-own': 'error',
       'react/no-object-type-as-default-prop': 'error',
-      'react/static-property-placement': ['error', 'static public field'],
-      'react/state-in-constructor': ['error', 'never'],
 
       'react/sort-prop-types': [
         'error',
@@ -125,6 +125,8 @@ const defaultRules = [
           sortShapeProp: true,
         },
       ],
+      'react/state-in-constructor': ['error', 'never'],
+      'react/static-property-placement': ['error', 'static public field'],
 
       'sort-imports': [
         'error',
@@ -135,11 +137,8 @@ const defaultRules = [
       ],
 
       'sort-keys': 'off',
-      'no-constant-binary-expression': 'error',
-      'react/jsx-key': 'error',
     },
   },
 ]
-
 
 export default defaultRules

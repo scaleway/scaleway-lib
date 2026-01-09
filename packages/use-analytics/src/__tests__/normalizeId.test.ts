@@ -1,4 +1,5 @@
 // use-analytics/src/__tests__/normalizeId.test.ts
+import { it, expect, describe } from 'vitest'
 import { normalizeId } from '../analytics/normalizeId'
 
 describe('normalizeId', () => {
@@ -26,7 +27,7 @@ describe('normalizeId', () => {
   })
 
   it('should convert numbers to strings', () => {
-    expect(normalizeId(12345)).toBe('12345')
+    expect(normalizeId(12_345)).toBe('12345')
     expect(normalizeId(123e45)).toBe('1.23e+47') // Might vary based on the string conversion
   })
 

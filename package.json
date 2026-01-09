@@ -10,7 +10,7 @@
     "node": ">=20.x",
     "pnpm": ">=9.x"
   },
-  "dependencies": {
+  "devDependencies": {
     "@babel/core": "catalog:",
     "@babel/eslint-parser": "catalog:",
     "@babel/plugin-transform-runtime": "catalog:",
@@ -23,10 +23,14 @@
     "@commitlint/cli": "catalog:",
     "@commitlint/config-conventional": "catalog:",
     "@eslint/eslintrc": "catalog:",
+    "@manypkg/cli": "catalog:",
     "@rudderstack/analytics-js": "catalog:",
+    "@scaleway/changesets-renovate": "workspace:*",
     "@scaleway/eslint-config-react": "workspace:*",
+    "@scaleway/oxlint-config": "workspace:*",
     "@scaleway/tsconfig": "workspace:*",
     "@scaleway/use-segment": "catalog:",
+    "@scaleway/utils": "workspace:*",
     "@testing-library/jest-dom": "catalog:",
     "@testing-library/react": "catalog:",
     "@types/jest": "catalog:",
@@ -62,11 +66,6 @@
     "vitest-localstorage-mock": "catalog:",
     "wait-for-expect": "catalog:"
   },
-  "devDependencies": {
-    "@scaleway/changesets-renovate": "workspace:*",
-    "@scaleway/oxlint-config": "workspace:*",
-    "@scaleway/utils": "workspace:*"
-  },
   "scripts": {
     "lint": "eslint --cache . --quiet",
     "lint:fix": "pnpm run lint --fix",
@@ -91,6 +90,10 @@
     "prepare": "husky install"
   },
   "pnpm": {
+    "overrides": {
+      "vite": "$vite",
+      "vitest": "$vitest"
+    },
     "peerDependencyRules": {
       "allowedVersions": {
         "react": "18 || 19",
@@ -127,6 +130,17 @@
     ],
     "*.mdx": [
       "biome format --write ."
+    ],
+    "(*package).json": [
+      "pnpm exec manypkg check"
+    ],
+    "(*pnpm)-lock": [
+      "pnpm exec manypkg check"
+    ]
+  },
+  "manypkg": {
+    "ignoredRules": [
+      "INTERNAL_MISMATCH"
     ]
   },
   "config": {

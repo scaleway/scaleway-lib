@@ -65,8 +65,7 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
     () =>
       !!(
         enabled &&
-        (!request.dataUpdatedAt ||
-          !computedDatalifetime ||
+        (!(request.dataUpdatedAt && computedDatalifetime) ||
           (request.dataUpdatedAt &&
             computedDatalifetime &&
             request.dataUpdatedAt + computedDatalifetime < Date.now()))
@@ -79,7 +78,7 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
   const previousDataRef = useRef(request.data)
 
   // Compute the data that will be returned to the user
-  const computedData = !request.isFirstLoading ? request.data : initialData
+  const computedData = request.isFirstLoading ? initialData : request.data
 
   // isLoading is true only when there is no cache data and we're fetching data for the first time
   const isLoading =

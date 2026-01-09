@@ -53,13 +53,14 @@ export async function findChangedDependenciesFromGit(
   const newCatalog = await loadCatalogFromGit(newRevision, filePath)
 
   const bumps = new Map()
-  Object.entries(newCatalog)
-    .filter(
-      ([pkg, newVersion]) => oldCatalog[pkg] && oldCatalog[pkg] !== newVersion,
-    )
-    .forEach(([pkg, newVersion]) => {
-      bumps.set(pkg, newVersion)
-    })
+
+  const filtedPackage = Object.entries(newCatalog).filter(
+    ([pkg, newVersion]) => oldCatalog[pkg] && oldCatalog[pkg] !== newVersion,
+  )
+
+  for (const [pkg, newVersion] of filtedPackage) {
+    bumps.set(pkg, newVersion)
+  }
 
   return bumps
 }

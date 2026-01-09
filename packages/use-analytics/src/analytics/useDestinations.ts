@@ -78,7 +78,7 @@ export const useDestinations = (
       .catch(() => {
         setDestinations([])
       })
-  }, [setDestinations, config.analytics])
+  }, [config.analytics])
 
   return {
     destinations,

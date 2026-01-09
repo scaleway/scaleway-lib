@@ -1,7 +1,6 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["tsconfig.json"],
-  "ui": "stream",
   "globalEnv": ["ENVIRONMENT"],
   "tasks": {
     "//#format": {},
@@ -11,12 +10,18 @@
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$"],
-      "outputs": [
-        "build/**",
-        "dist/**",
-        "!.next/cache/**",
-        "out/**"
-      ]
+      "outputs": ["build/**", "dist/**", "!.next/cache/**", "out/**"]
+    },
+    "test:types": {
+      "dependsOn": ["^build"]
+    },
+    "test:unit": {
+      "dependsOn": ["^build"],
+      "passThroughEnv": ["VITEST_*"]
+    },
+    "test:unit:coverage": {
+      "dependsOn": ["^build"],
+      "passThroughEnv": ["VITEST_*"]
     },
 
     "typecheck": {
@@ -27,24 +32,14 @@
       "dependsOn": ["^build"],
       "inputs": ["**/*.{ts,tsx}"]
     },
-    "typecheck:go": {
-      "dependsOn": ["^build"],
-      "inputs": ["**/*.{ts,tsx}"]
-    },
     "typecheck:generate:go": {
       "dependsOn": ["^build"],
       "inputs": ["**/*.{ts,tsx}"]
     },
-    "test:unit": {
+    "typecheck:go": {
       "dependsOn": ["^build"],
-      "passThroughEnv": ["VITEST_*"]
-    },
-    "test:unit:coverage": {
-      "dependsOn": ["^build"],
-      "passThroughEnv": ["VITEST_*"]
-    },
-    "test:types": {
-      "dependsOn": ["^build"]
+      "inputs": ["**/*.{ts,tsx}"]
     }
-  }
+  },
+  "ui": "stream"
 }

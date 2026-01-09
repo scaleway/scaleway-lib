@@ -30,18 +30,18 @@ catalog:
   another-package: 2.0.0
 `
       mockSimpleGit.mockReturnValue({
-        branch: vi.fn(),
-        show: vi.fn().mockResolvedValue(mockContent),
-        diffSummary: vi.fn(),
-        revparse: vi.fn(),
         add: vi.fn(),
+        branch: vi.fn(),
         commit: vi.fn(),
+        diffSummary: vi.fn(),
         push: vi.fn(),
+        revparse: vi.fn(),
+        show: vi.fn().mockResolvedValue(mockContent),
       })
       vi.mocked(yaml.load).mockReturnValue({
         catalog: {
-          'test-package': '1.0.0',
           'another-package': '2.0.0',
+          'test-package': '1.0.0',
         },
       })
 
@@ -52,20 +52,20 @@ catalog:
       ])
       expect(yaml.load).toHaveBeenCalledWith(mockContent)
       expect(result).toEqual({
-        'test-package': '1.0.0',
         'another-package': '2.0.0',
+        'test-package': '1.0.0',
       })
     })
 
     it('should return empty object if git operation fails', async () => {
       mockSimpleGit.mockReturnValue({
-        branch: vi.fn(),
-        show: vi.fn().mockRejectedValue(new Error('File not found')),
-        diffSummary: vi.fn(),
-        revparse: vi.fn(),
         add: vi.fn(),
+        branch: vi.fn(),
         commit: vi.fn(),
+        diffSummary: vi.fn(),
         push: vi.fn(),
+        revparse: vi.fn(),
+        show: vi.fn().mockRejectedValue(new Error('File not found')),
       })
 
       const result = await loadCatalogFromGit(
@@ -87,7 +87,12 @@ catalog:
     it('should find dependencies that have changed between git revisions', async () => {
       // Mock the git operations
       mockSimpleGit.mockReturnValue({
+        add: vi.fn(),
         branch: vi.fn(),
+        commit: vi.fn(),
+        diffSummary: vi.fn(),
+        push: vi.fn(),
+        revparse: vi.fn(),
         show: vi
           .fn()
           .mockResolvedValueOnce(`
@@ -103,11 +108,6 @@ catalog:
   package-c: 3.1.0
   package-d: 4.0.0
 `),
-        diffSummary: vi.fn(),
-        revparse: vi.fn(),
-        add: vi.fn(),
-        commit: vi.fn(),
-        push: vi.fn(),
       })
 
       // Mock yaml parsing
@@ -156,18 +156,18 @@ catalog:
       vi.mocked(fs.readFile).mockImplementation((async (filePath: any) => {
         if (filePath === 'packages/package-a/package.json') {
           return JSON.stringify({
-            name: 'package-a',
             dependencies: {
               'changed-dep': 'catalog:',
             },
+            name: 'package-a',
           })
         }
         if (filePath === 'packages/package-b/package.json') {
           return JSON.stringify({
-            name: 'package-b',
             dependencies: {
               'unchanged-dep': 'catalog:',
             },
+            name: 'package-b',
           })
         }
 

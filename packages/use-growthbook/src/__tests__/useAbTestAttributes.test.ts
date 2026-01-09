@@ -14,9 +14,9 @@ describe('useAbTestAttributes', () => {
 
     useGrowthBook.mockReturnValue({
       getAttributes,
-      setAttributes,
       init: vi.fn(),
       loadFeatures: vi.fn(),
+      setAttributes,
     })
   })
 
@@ -39,6 +39,6 @@ describe('useAbTestAttributes', () => {
     } = renderHook(() => useAbTestAttributes())
     setAttributesNow({ bar: 'foo' })
     expect(setAttributes).toBeCalledTimes(1)
-    expect(setAttributes).toBeCalledWith({ foo: 'bar', bar: 'foo' })
+    expect(setAttributes).toBeCalledWith({ bar: 'foo', foo: 'bar' })
   })
 })

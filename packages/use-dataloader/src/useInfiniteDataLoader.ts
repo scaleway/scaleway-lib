@@ -85,16 +85,18 @@ export const useInfiniteDataLoader = <
   useEffect(() => {
     const notifyFn = forceRerender.current
     // Ensure observers are added after first mount
-    requestRefs.current.forEach(request => {
+    for (const request of requestRefs.current) {
       if (!request.observers.includes(notifyFn)) {
         request.addObserver(notifyFn)
       }
-    })
+    }
 
     return () => {
-      requestRefs.current.forEach(request => {
-        request.removeObserver(notifyFn)
-      })
+      for (const request of requestRefs.current) {
+        if (!request.observers.includes(notifyFn)) {
+          request.removeObserver(notifyFn)
+        }
+      }
     }
   }, [])
 
@@ -143,8 +145,7 @@ export const useInfiniteDataLoader = <
     () =>
       !!(
         enabled &&
-        (!request.dataUpdatedAt ||
-          !computedDatalifetime ||
+        (!(request.dataUpdatedAt && computedDatalifetime) ||
           (request.dataUpdatedAt &&
             computedDatalifetime &&
             request.dataUpdatedAt + computedDatalifetime < Date.now()))

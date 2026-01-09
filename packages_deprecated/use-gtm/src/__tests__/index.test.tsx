@@ -26,9 +26,9 @@ const wrapper =
   }: Omit<GTMProviderProps<DefaultEvents>, 'children'>) =>
   ({ children }: { children: ReactNode }) => (
     <GTMProvider
-      id={id}
-      events={events}
       environment={environment}
+      events={events}
+      id={id}
       onLoadError={onLoadError}
     >
       {children}

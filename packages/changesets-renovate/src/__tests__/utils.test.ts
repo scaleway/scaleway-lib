@@ -32,8 +32,8 @@ catalog:
       vi.mocked(readFile).mockResolvedValue(mockContent)
       vi.mocked(load).mockReturnValue({
         catalog: {
-          'test-package': '1.0.0',
           'another-package': '2.0.0',
+          'test-package': '1.0.0',
         },
       })
 
@@ -42,8 +42,8 @@ catalog:
       expect(readFile).toHaveBeenCalledWith('test-file.yaml', 'utf8')
       expect(load).toHaveBeenCalledWith(mockContent)
       expect(result).toEqual({
-        'test-package': '1.0.0',
         'another-package': '2.0.0',
+        'test-package': '1.0.0',
       })
     })
 
@@ -76,8 +76,8 @@ catalog:
 `
       vi.mocked(load).mockReturnValue({
         catalog: {
-          'test-package': '1.0.0',
           'another-package': '2.0.0',
+          'test-package': '1.0.0',
         },
       })
 
@@ -85,8 +85,8 @@ catalog:
 
       expect(load).toHaveBeenCalledWith(mockContent)
       expect(result).toEqual({
-        'test-package': '1.0.0',
         'another-package': '2.0.0',
+        'test-package': '1.0.0',
       })
     })
 
@@ -161,18 +161,18 @@ catalog:
       vi.mocked(readFile).mockImplementation((async (filePath: string) => {
         if (filePath === 'packages/package-a/package.json') {
           return JSON.stringify({
-            name: 'package-a',
             dependencies: {
               'changed-dep': 'catalog:',
             },
+            name: 'package-a',
           })
         }
         if (filePath === 'packages/package-b/package.json') {
           return JSON.stringify({
-            name: 'package-b',
             dependencies: {
               'unchanged-dep': 'catalog:',
             },
+            name: 'package-b',
           })
         }
 
@@ -191,10 +191,10 @@ catalog:
     it('should handle packages with no affected dependencies', async () => {
       vi.mocked(readFile).mockImplementation(async () =>
         JSON.stringify({
-          name: 'package-a',
           dependencies: {
             'unchanged-dep': 'catalog:',
           },
+          name: 'package-a',
         }),
       ) as any
 

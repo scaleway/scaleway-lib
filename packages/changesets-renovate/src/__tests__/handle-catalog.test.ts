@@ -2,12 +2,12 @@
  * @vitest-environment node
  */
 
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { mockSimpleGit } from '../../__mocks__/simple-git'
 import { createChangeset } from '../createChangeset.js'
 import {
-  findChangedDependenciesFromGit,
   findAffectedPackages,
+  findChangedDependenciesFromGit,
   handleChangesetFile,
 } from '../git-utils.js'
 import { handleCatalogChanges } from '../handle-catalog.js'
