@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.3
+
+### Patch Changes
+
+- [#2926](https://github.com/scaleway/scaleway-lib/pull/2926) [`00cc731`](https://github.com/scaleway/scaleway-lib/commit/00cc73137f24777fb20664c8a67fb9c9b61bc6a1) Thanks [@philibea](https://github.com/philibea)! - Release config of biome and oxlint
+
 ## 0.0.2
 
 ### Patch Changes
