@@ -28,7 +28,7 @@
     "configs/**"
   ],
   "exports": {
-    "./*": "./config/biome/*/biome.jsonc"
+    "./*": "./configs/biome/*/biome.jsonc"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

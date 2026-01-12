@@ -190,8 +190,8 @@ catalogs:
       specifier: 11.0.7
       version: 11.0.7
     js-yaml:
-      specifier: 4.1.0
-      version: 4.1.0
+      specifier: 4.1.1
+      version: 4.1.1
     jsdom:
       specifier: 27.4.0
       version: 27.4.0
@@ -379,7 +379,7 @@ importers:
         version: 9.1.7
       js-yaml:
         specifier: 'catalog:'
-        version: 4.1.0
+        version: 4.1.1
       jsdom:
         specifier: 'catalog:'
         version: 27.4.0
@@ -439,7 +439,7 @@ importers:
         version: 3.3.3
       js-yaml:
         specifier: 'catalog:'
-        version: 4.1.0
+        version: 4.1.1
       simple-git:
         specifier: 'catalog:'
         version: 3.30.0
@@ -6059,13 +6059,6 @@ packages:
       }
     hasBin: true
 
-  js-yaml@4.1.0:
-    resolution:
-      {
-        integrity: sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==,
-      }
-    hasBin: true
-
   js-yaml@4.1.1:
     resolution:
       {
@@ -9867,7 +9860,7 @@ snapshots:
   '@manypkg/tools@2.1.0':
     dependencies:
       jju: 1.4.0
-      js-yaml: 4.1.0
+      js-yaml: 4.1.1
       tinyglobby: 0.2.15
 
   '@napi-rs/wasm-runtime@0.2.12':
@@ -10854,7 +10847,7 @@ snapshots:
     dependencies:
       env-paths: 2.2.1
       import-fresh: 3.3.1
-      js-yaml: 4.1.0
+      js-yaml: 4.1.1
       parse-json: 5.2.0
     optionalDependencies:
       typescript: 5.9.3
@@ -12013,10 +12006,6 @@ snapshots:
     dependencies:
       argparse: 1.0.10
       esprima: 4.0.1
-
-  js-yaml@4.1.0:
-    dependencies:
-      argparse: 2.0.1
 
   js-yaml@4.1.1:
     dependencies:

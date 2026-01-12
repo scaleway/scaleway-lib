@@ -52,8 +52,6 @@ export async function findChangedDependenciesFromGit(
   const oldCatalog = await loadCatalogFromGit(oldRevision, filePath)
   const newCatalog = await loadCatalogFromGit(newRevision, filePath)
 
-  console.debug({ newCatalog, oldCatalog })
-
   const bumps = new Map()
 
   const filtedPackage = Object.entries(newCatalog).filter(
@@ -124,10 +122,8 @@ export async function findAffectedPackages(
 
       for (const dep of changedDeps) {
         if (deps[dep]) {
-          const path = pkgJsonPath.split('/')
-          const dirName = path.at(-2) ?? ''
-          console.debug(path, dirName, json.name)
           affectedPackages.add(json.name)
+
           break // No need to check other deps for this package
         }
       }
