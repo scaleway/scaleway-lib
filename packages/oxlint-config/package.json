@@ -40,6 +40,6 @@
     "oxlint": "catalog:"
   },
   "peerDependencies": {
-    "oxlint": "catalog:^"
+    "oxlint": "catalog:"
   }
 }
