@@ -25,11 +25,11 @@ export async function run(): Promise<void> {
 
   console.log('Found changed files:', diffFiles)
 
-  if (diffFiles.find(f => f.startsWith('.changeset'))) {
-    console.log('Changeset already exists, skipping')
+  // if (diffFiles.find(f => f.startsWith('.changeset'))) {
+  //   console.log('Changeset already exists, skipping')
 
-    return
-  }
+  //   return
+  // }
 
   // Handle both package.json changes and catalog changes
   const hasPackageChanges = diffFiles.some(file =>
@@ -45,16 +45,16 @@ export async function run(): Promise<void> {
     return
   }
 
-  // Handle package.json changes
-  if (hasPackageChanges) {
-    console.log('📦 Processing package.json changes...')
-    await handlePackageChanges(diffFiles)
-  }
-
   // Handle catalog changes
   if (hasWorkspaceChanges) {
     console.log('📚 Processing pnpm workspace catalog changes...')
     await handleCatalogChanges(diffFiles)
+  }
+
+  // Handle package.json changes
+  if (hasPackageChanges) {
+    console.log('📦 Processing package.json changes...')
+    await handlePackageChanges(diffFiles)
   }
 }
 
