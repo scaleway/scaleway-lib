@@ -1,5 +1,5 @@
 ---
-'eslint-config-react': patch
+'@scaleway/eslint-config-react': patch
 ---
 
 Updated dependency `@typescript-eslint/eslint-plugin` to `8.51.0`.
