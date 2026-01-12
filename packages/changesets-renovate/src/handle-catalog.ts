@@ -35,7 +35,7 @@ export async function handleCatalogChanges(diffFiles: string[]): Promise<void> {
   )
 
   if (changedDeps.size === 0) {
-    console.log('✅ No catalog dependency changes.')
+    console.log('✅ No catalog dependency changes.', { changedDeps })
 
     return
   }

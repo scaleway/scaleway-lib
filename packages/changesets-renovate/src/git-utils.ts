@@ -112,6 +112,7 @@ export async function findAffectedPackages(
         dependencies?: Record<string, string>
         devDependencies?: Record<string, string>
         peerDependencies?: Record<string, string>
+        name: string
       }
       const deps = {
         ...json.dependencies,
@@ -121,9 +122,8 @@ export async function findAffectedPackages(
 
       for (const dep of changedDeps) {
         if (deps[dep]) {
-          const path = pkgJsonPath.split('/')
-          const dirName = path.at(-2) ?? ''
-          affectedPackages.add(dirName)
+          affectedPackages.add(json.name)
+
           break // No need to check other deps for this package
         }
       }
