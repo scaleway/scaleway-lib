@@ -35,7 +35,7 @@ describe('@vi-helpers', () => {
     const transform = vi.fn()
     await shouldMatchEmotionSnapshot(<div id="test" />, { transform })
 
-    expect(transform).toHaveBeenCalledTimes(1)
+    expect(transform).toHaveBeenCalledOnce()
   })
 
   test('should render with shouldMatchEmotionSnapshotWithPortal', async () => {
@@ -46,6 +46,6 @@ describe('@vi-helpers', () => {
     const transform = vi.fn()
     await shouldMatchEmotionSnapshotWithPortal(<div id="test" />, { transform })
 
-    expect(transform).toHaveBeenCalledTimes(1)
+    expect(transform).toHaveBeenCalledOnce()
   })
 })

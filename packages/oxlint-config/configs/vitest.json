@@ -25,6 +25,8 @@
         "react/jsx-props-no-spreading": "off",
         "react/only-export-components": "off",
         "unicorn/no-array-callback-reference": "off",
+        "vitest/prefer-called-once": "error",
+        "vitest/prefer-called-times": "off",
         "vitest/prefer-lowercase-title": "error"
       }
     }
