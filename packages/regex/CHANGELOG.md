@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.7.0
+
+### Minor Changes
+
+- [#2846](https://github.com/scaleway/scaleway-lib/pull/2846) [`abe485e`](https://github.com/scaleway/scaleway-lib/commit/abe485e07c8ac15bf9af8e63b991961d5f12c309) Thanks [@MathildeJolly](https://github.com/MathildeJolly)! - feat: add webhosting username email regex
+
 ## 5.6.1
 
 ### Patch Changes
