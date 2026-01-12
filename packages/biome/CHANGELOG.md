@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.0.4
+
+### Patch Changes
+
+- [#2931](https://github.com/scaleway/scaleway-lib/pull/2931) [`a05c487`](https://github.com/scaleway/scaleway-lib/commit/a05c48711c5804ae1f197c50e0b8418d29251564) Thanks [@philibea](https://github.com/philibea)! - fix export
+
+- [#2931](https://github.com/scaleway/scaleway-lib/pull/2931) [`a05c487`](https://github.com/scaleway/scaleway-lib/commit/a05c48711c5804ae1f197c50e0b8418d29251564) Thanks [@philibea](https://github.com/philibea)! - Updated dependency `version` to `0.1.4`.
+
 ## 0.0.3
 
 ### Patch Changes
