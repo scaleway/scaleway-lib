@@ -69,7 +69,7 @@ catalog:
   mockdate: 3.0.5
   module-from-string: 3.3.1
   oxlint: 1.39.0
-  oxlint-tsgolint: 0.11.0
+  oxlint-tsgolint: 0.11.1
   query-string: 9.3.1
   react: 19.2.3
   react-dom: 19.2.3
