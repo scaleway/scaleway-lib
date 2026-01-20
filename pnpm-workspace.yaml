@@ -18,7 +18,7 @@ catalog:
   '@eslint/eslintrc': 3.3.3
   '@formatjs/ecma402-abstract': 3.0.8
   '@formatjs/fast-memoize': 3.0.3
-  '@formatjs/icu-messageformat-parser': 3.2.1
+  '@formatjs/icu-messageformat-parser': 3.3.0
   '@growthbook/growthbook-react': 1.6.2
   '@manypkg/cli': 0.25.1
   '@rudderstack/analytics-js': 3.27.0
