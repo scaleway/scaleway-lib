@@ -1,5 +1,5 @@
 // use-analytics/src/__tests__/normalizeId.test.ts
-import { it, expect, describe } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import { normalizeId } from '../analytics/normalizeId'
 
 describe('normalizeId', () => {

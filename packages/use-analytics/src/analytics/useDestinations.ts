@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import type { AnalyticsConfig, AnalyticsIntegration, Config } from '../types'
 
+const IS_BROWSER = typeof window !== 'undefined'
+
 const timeout = (time: number) => {
   const controller = new AbortController()
   setTimeout(() => {
@@ -33,12 +35,10 @@ const transformConfigToDestinations = (
  * Should be the most important as only theses destinations will load a script and set an external cookies.
  * Will return undefined if loading, empty array if no response or error, response else.
  */
-export const useDestinations = (
-  config: Config,
-): {
+export const useDestinations: (config: Config) => {
   destinations: AnalyticsIntegration[] | undefined
   isLoaded: boolean
-} => {
+} = config => {
   const [destinations, setDestinations] = useState<
     AnalyticsIntegration[] | undefined
   >(undefined)
@@ -46,9 +46,9 @@ export const useDestinations = (
   // TODO: use useDataloader to add more cache.
   useEffect(() => {
     const fetchDestinations = async () => {
-      if (config.analytics?.cdnURL && config.analytics.writeKey) {
+      if (IS_BROWSER && config.analytics?.cdnURL && config.analytics.writeKey) {
         const url = `${config.analytics.cdnURL}/sourceConfig`
-        const WRITE_KEY = window.btoa(`${config.analytics.writeKey}:`)
+        const WRITE_KEY = btoa(`${config.analytics.writeKey}:`)
         const response = await fetch(url, {
           headers: {
             Authorization: `Basic ${WRITE_KEY}`,
