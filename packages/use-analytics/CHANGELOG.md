@@ -1,5 +1,13 @@
 # Change Log
 
+## 0.0.23
+
+### Patch Changes
+
+- [#2941](https://github.com/scaleway/scaleway-lib/pull/2941) [`a74dc8e`](https://github.com/scaleway/scaleway-lib/commit/a74dc8e37a5ef1aed287e510be9718ca05356645) Thanks [@philibea](https://github.com/philibea)! - Fixed cookie consent filtering logic in CookieConsentProvider.tsx to properly handle undefined values and validate category keys
+
+- [#2924](https://github.com/scaleway/scaleway-lib/pull/2924) [`5c6c879`](https://github.com/scaleway/scaleway-lib/commit/5c6c8791ce4df5b51943ca099bf5429d7cb2e815) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@rudderstack/analytics-js` to `3.27.0`.
+
 ## 0.0.22
 
 ### Patch Changes

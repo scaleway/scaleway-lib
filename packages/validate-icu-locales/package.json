@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/validate-icu-locales",
-  "version": "3.1.15",
+  "version": "3.1.16",
   "description": "A small cli to handle icu errors on locales files",
   "engines": {
     "node": ">=20.x"
