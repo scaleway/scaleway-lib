@@ -84,7 +84,8 @@ const useStorage = <T>(
       }
 
       if (canUseDOM) {
-        window.dispatchEvent(new Event('local-storage'))
+        window.dispatchEvent(new Event('storage'))
+        window.dispatchEvent(new Event('event-storage'))
       }
     },
     [key, storage],
