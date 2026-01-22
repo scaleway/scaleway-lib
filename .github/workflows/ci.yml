@@ -30,7 +30,7 @@ jobs:
   typecheck:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v6.0.1
+      - uses: actions/checkout@v6.0.2
       - uses: pnpm/action-setup@v4.2.0
       - name: Use Node.js
         uses: actions/setup-node@v6.1.0
@@ -45,7 +45,7 @@ jobs:
   typecheck-go:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v6.0.1
+      - uses: actions/checkout@v6.0.2
       - uses: pnpm/action-setup@v4.2.0
       - name: Use Node.js
         uses: actions/setup-node@v6.1.0
@@ -96,7 +96,7 @@ jobs:
     runs-on: ubuntu-24.04
     needs: [build]
     steps:
-      - uses: actions/checkout@v6.0.1
+      - uses: actions/checkout@v6.0.2
       - uses: pnpm/action-setup@v4.2.0
       - name: Use Node.js
         uses: actions/setup-node@v6.1.0
@@ -114,7 +114,7 @@ jobs:
       matrix:
         node: ['20']
     steps:
-      - uses: actions/checkout@v6.0.1
+      - uses: actions/checkout@v6.0.2
       - uses: pnpm/action-setup@v4.2.0
       - name: Use Node.js
         uses: actions/setup-node@v6.1.0
@@ -136,7 +136,7 @@ jobs:
       matrix:
         node: ['20']
     steps:
-      - uses: actions/checkout@v6.0.1
+      - uses: actions/checkout@v6.0.2
       - uses: pnpm/action-setup@v4.2.0
       - name: Use Node.js
         uses: actions/setup-node@v6.1.0
