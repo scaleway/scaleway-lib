@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.4
+
+### Patch Changes
+
+- [#2956](https://github.com/scaleway/scaleway-lib/pull/2956) [`a2d4f9f`](https://github.com/scaleway/scaleway-lib/commit/a2d4f9f4e16483c979c06f8a09d104d075364b85) Thanks [@radhi-nasser-scaleway](https://github.com/radhi-nasser-scaleway)! - fix: wrong event dispatched on storage change
+
 ## 3.1.3
 
 ### Patch Changes
