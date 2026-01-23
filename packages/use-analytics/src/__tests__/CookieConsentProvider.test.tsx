@@ -4,6 +4,10 @@ import {
   CookieConsentProvider,
   useCookieConsent,
 } from '../cookies-consent/CookieConsentProvider'
+import {
+  getAllowedConsents,
+  getDeniedConsents,
+} from '../cookies-consent/consents'
 import type { Config } from '../types'
 
 // Mock dependencies
@@ -37,8 +41,9 @@ vi.mock('../helpers/misc', () => ({
 }))
 
 const TestComponent = () => {
-  const { allowedConsents, deniedConsents, categoriesConsent } =
-    useCookieConsent()
+  const { categoriesConsent } = useCookieConsent()
+  const allowedConsents = getAllowedConsents(categoriesConsent)
+  const deniedConsents = getDeniedConsents(categoriesConsent)
 
   return (
     <div>
@@ -162,8 +167,9 @@ describe('allowedConsents and deniedConsents', () => {
     vi.spyOn(document, 'cookie', 'get').mockReturnValueOnce(cookieString)
 
     const TestComponentWithPartialSave = () => {
-      const { allowedConsents, deniedConsents, saveConsent } =
-        useCookieConsent()
+      const { categoriesConsent, saveConsent } = useCookieConsent()
+      const allowedConsents = getAllowedConsents(categoriesConsent)
+      const deniedConsents = getDeniedConsents(categoriesConsent)
 
       const handlePartialSave = () => {
         saveConsent({

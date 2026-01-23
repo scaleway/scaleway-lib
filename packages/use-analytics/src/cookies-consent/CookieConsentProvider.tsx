@@ -21,13 +21,7 @@ import {
 import { uniq } from '../helpers/array'
 import { IS_CLIENT } from '../helpers/isClient'
 import { stringToHash } from '../helpers/misc'
-import type {
-  CategoryKind,
-  Config,
-  Consent,
-  Destination,
-  Destinations,
-} from '../types'
+import type { Config, Consent, Destination, Destinations } from '../types'
 import { isCategoryKind } from '../types'
 
 type Context = {
@@ -36,8 +30,6 @@ type Context = {
   isDestinationsLoaded: boolean
   categories: typeof CATEGORIES
   categoriesConsent: Partial<Consent>
-  allowedConsents: (keyof Consent)[]
-  deniedConsents: (keyof Consent)[]
   saveConsent: (categoriesConsent: Partial<Consent>) => void
 }
 
@@ -197,28 +189,11 @@ export const CookieConsentProvider: ComponentType<
     ],
   )
 
-  const allowedConsents = Object.keys(cookieConsent).filter(
-    (key): key is CategoryKind => {
-      if (!isCategoryKind(key)) {
-        return false
-      }
-
-      return cookieConsent[key] ?? false
-    },
-  )
-
-  const deniedConsents = Object.keys(cookieConsent).filter(
-    (key): key is CategoryKind =>
-      !allowedConsents.includes(key as CategoryKind),
-  )
-
   const value = useMemo(
     () => ({
-      allowedConsents,
       categories: CATEGORIES,
       categoriesConsent: cookieConsent,
       cookies,
-      deniedConsents,
       destinations,
       isDestinationsLoaded,
       needConsent,
@@ -228,8 +203,6 @@ export const CookieConsentProvider: ComponentType<
       destinations,
       isDestinationsLoaded,
       needConsent,
-      allowedConsents,
-      deniedConsents,
       cookieConsent,
       saveConsent,
       cookies,
