@@ -4,3 +4,4 @@ export {
   CookieConsentProvider,
   useCookieConsent,
 } from './CookieConsentProvider'
+export { getAllowedConsents, getDeniedConsents } from './consents'
