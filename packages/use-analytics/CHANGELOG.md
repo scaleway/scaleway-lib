@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.0.0
+
+### Major Changes
+
+- [#2960](https://github.com/scaleway/scaleway-lib/pull/2960) [`ad24642`](https://github.com/scaleway/scaleway-lib/commit/ad24642b075d23e1545153554daf990d11b16053) Thanks [@philibea](https://github.com/philibea)! - Remove allowedConsent, deniedConsent from provider and expose them as helpers
+
 ## 0.0.23
 
 ### Patch Changes
