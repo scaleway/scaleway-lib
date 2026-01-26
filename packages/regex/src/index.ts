@@ -10,6 +10,9 @@ export const alphanumDashDots: RegExp = /^[a-zA-Z0-9-.]*$/
 export const alphanumDashDotsOrEmpty: RegExp = /^$|^[a-zA-Z0-9-.]*$/
 export const alphanumDashDotsSpaces: RegExp = /^[a-zA-Z0-9-.\s]*$/
 export const alphanumDashLowercase: RegExp = /^[a-z0-9-]+$/
+// This regex must start with a lettern can contain letters digits and hyphens, cannot end with a hyphen
+export const alphanumDashSegment: RegExp =
+  /^[A-Za-z](?:[A-Za-z0-9-]*[A-Za-z0-9])?$/
 export const alphanumDashSpaces: RegExp = /^[a-zA-Z0-9-\s]*$/
 export const alphaUpperUnderscore: RegExp = /^[A-Z_]+$/
 

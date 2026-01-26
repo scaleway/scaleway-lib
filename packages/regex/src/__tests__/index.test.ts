@@ -16,6 +16,7 @@ import {
   alphanumDashDotsSpaces,
   alphanumDashLowercase,
   alphanumDashOrEmpty,
+  alphanumDashSegment,
   alphanumDashSpaces,
   alphanumDashUnderscore,
   alphanumDashUnderscoreDollar,
@@ -1167,6 +1168,57 @@ describe('@regex', () => {
       ['user..name', false],
     ])('should match regex %s to be %s', (string, expected) => {
       expect(kafkaUsernameRegex.test(string)).toBe(expected)
+    })
+  })
+
+  describe('alphanumDashSegment', () => {
+    // Tests a single segment that:
+    // - Must start with a letter (A-Z or a-z)
+    // - Can contain letters, digits, and hyphens in the middle
+    // - Cannot start or end with a hyphen
+    // - Must end with a letter or digit
+    // - No underscores, dots, or other special characters allowed
+    test.each([
+      // Valid: starts with letter, ends with alphanum, hyphens in middle
+      ['a', true],
+      ['Z', true],
+      ['name', true],
+      ['my-name', true],
+      ['my2name', true],
+      ['my-name123', true],
+      ['A1b-c2d', true],
+      ['x-y-z', true],
+      ['test1', true],
+      ['A', true],
+      ['a-b', true],
+
+      // Invalid: does NOT start with a letter
+      ['1name', false],
+      ['0-test', false],
+      ['9', false],
+
+      // Invalid: ends with a hyphen
+      ['name-', false],
+      ['test-a-', false],
+      ['a-', false],
+
+      // Invalid: empty or too short
+      ['', false],
+
+      // Invalid: contains forbidden characters (., _, @, !, etc.)
+      ['name.', false],
+      ['test_test', false],
+      ['test@test', false],
+      ['hello_world', false],
+      ['test!', false],
+      ['a..b', false],
+
+      // Invalid: only hyphens or invalid patterns
+      ['-', false],
+      ['--', false],
+      ['a--', false],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(alphanumDashSegment.test(string)).toBe(expected)
     })
   })
 
