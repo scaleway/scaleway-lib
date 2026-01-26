@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.8.0
+
+### Minor Changes
+
+- [#2975](https://github.com/scaleway/scaleway-lib/pull/2975) [`7f38853`](https://github.com/scaleway/scaleway-lib/commit/7f38853ffee6111a70e679452245dfe5369e2480) Thanks [@johnnydoubt](https://github.com/johnnydoubt)! - feat: add alphanumDashSegment regex for serverlessdb and datawarehouse resource names
+
 ## 5.7.0
 
 ### Minor Changes
