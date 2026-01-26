@@ -175,8 +175,8 @@ catalogs:
       specifier: 16.1.0
       version: 16.1.0
     happy-dom:
-      specifier: 20.3.4
-      version: 20.3.4
+      specifier: 20.3.7
+      version: 20.3.7
     history:
       specifier: 5.3.0
       version: 5.3.0
@@ -347,7 +347,7 @@ importers:
         version: 5.1.2(vite@7.3.1(@types/node@25.0.10)(jiti@2.6.1)(yaml@2.8.2))
       '@vitest/coverage-istanbul':
         specifier: 'catalog:'
-        version: 4.0.18(vitest@4.0.18(@types/node@25.0.10)(happy-dom@20.3.4)(jiti@2.6.1)(jsdom@27.4.0)(yaml@2.8.2))
+        version: 4.0.18(vitest@4.0.18(@types/node@25.0.10)(happy-dom@20.3.7)(jiti@2.6.1)(jsdom@27.4.0)(yaml@2.8.2))
       browserslist:
         specifier: 'catalog:'
         version: 4.28.1
@@ -374,7 +374,7 @@ importers:
         version: 17.1.0
       happy-dom:
         specifier: 'catalog:'
-        version: 20.3.4
+        version: 20.3.7
       husky:
         specifier: 'catalog:'
         version: 9.1.7
@@ -416,10 +416,10 @@ importers:
         version: 7.3.1(@types/node@25.0.10)(jiti@2.6.1)(yaml@2.8.2)
       vitest:
         specifier: 4.0.18
-        version: 4.0.18(@types/node@25.0.10)(happy-dom@20.3.4)(jiti@2.6.1)(jsdom@27.4.0)(yaml@2.8.2)
+        version: 4.0.18(@types/node@25.0.10)(happy-dom@20.3.7)(jiti@2.6.1)(jsdom@27.4.0)(yaml@2.8.2)
       vitest-localstorage-mock:
         specifier: 'catalog:'
-        version: 0.1.2(vitest@4.0.18(@types/node@25.0.10)(happy-dom@20.3.4)(jiti@2.6.1)(jsdom@27.4.0)(yaml@2.8.2))
+        version: 0.1.2(vitest@4.0.18(@types/node@25.0.10)(happy-dom@20.3.7)(jiti@2.6.1)(jsdom@27.4.0)(yaml@2.8.2))
       wait-for-expect:
         specifier: 'catalog:'
         version: 4.0.0
@@ -3545,8 +3545,8 @@ packages:
   graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
 
-  happy-dom@20.3.4:
-    resolution: {integrity: sha512-rfbiwB6OKxZFIFQ7SRnCPB2WL9WhyXsFoTfecYgeCeFSOBxvkWLaXsdv5ehzJrfqwXQmDephAKWLRQoFoJwrew==}
+  happy-dom@20.3.7:
+    resolution: {integrity: sha512-sb5IzoRl1WJKsUSRe+IloJf3z1iDq5PQ7Yk/ULMsZ5IAQEs9ZL7RsFfiKBXU7nK9QmO+iz0e59EH8r8jexTZ/g==}
     engines: {node: '>=20.0.0'}
 
   has-bigints@1.1.0:
@@ -7332,7 +7332,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@vitest/coverage-istanbul@4.0.18(vitest@4.0.18(@types/node@25.0.10)(happy-dom@20.3.4)(jiti@2.6.1)(jsdom@27.4.0)(yaml@2.8.2))':
+  '@vitest/coverage-istanbul@4.0.18(vitest@4.0.18(@types/node@25.0.10)(happy-dom@20.3.7)(jiti@2.6.1)(jsdom@27.4.0)(yaml@2.8.2))':
     dependencies:
       '@istanbuljs/schema': 0.1.3
       '@jridgewell/gen-mapping': 0.3.13
@@ -7344,7 +7344,7 @@ snapshots:
       magicast: 0.5.1
       obug: 2.1.1
       tinyrainbow: 3.0.3
-      vitest: 4.0.18(@types/node@25.0.10)(happy-dom@20.3.4)(jiti@2.6.1)(jsdom@27.4.0)(yaml@2.8.2)
+      vitest: 4.0.18(@types/node@25.0.10)(happy-dom@20.3.7)(jiti@2.6.1)(jsdom@27.4.0)(yaml@2.8.2)
     transitivePeerDependencies:
       - supports-color
 
@@ -8504,7 +8504,7 @@ snapshots:
 
   graceful-fs@4.2.11: {}
 
-  happy-dom@20.3.4:
+  happy-dom@20.3.7:
     dependencies:
       '@types/node': 25.0.10
       '@types/whatwg-mimetype': 3.0.2
@@ -10025,11 +10025,11 @@ snapshots:
       jiti: 2.6.1
       yaml: 2.8.2
 
-  vitest-localstorage-mock@0.1.2(vitest@4.0.18(@types/node@25.0.10)(happy-dom@20.3.4)(jiti@2.6.1)(jsdom@27.4.0)(yaml@2.8.2)):
+  vitest-localstorage-mock@0.1.2(vitest@4.0.18(@types/node@25.0.10)(happy-dom@20.3.7)(jiti@2.6.1)(jsdom@27.4.0)(yaml@2.8.2)):
     dependencies:
-      vitest: 4.0.18(@types/node@25.0.10)(happy-dom@20.3.4)(jiti@2.6.1)(jsdom@27.4.0)(yaml@2.8.2)
+      vitest: 4.0.18(@types/node@25.0.10)(happy-dom@20.3.7)(jiti@2.6.1)(jsdom@27.4.0)(yaml@2.8.2)
 
-  vitest@4.0.18(@types/node@25.0.10)(happy-dom@20.3.4)(jiti@2.6.1)(jsdom@27.4.0)(yaml@2.8.2):
+  vitest@4.0.18(@types/node@25.0.10)(happy-dom@20.3.7)(jiti@2.6.1)(jsdom@27.4.0)(yaml@2.8.2):
     dependencies:
       '@vitest/expect': 4.0.18
       '@vitest/mocker': 4.0.18(vite@7.3.1(@types/node@25.0.10)(jiti@2.6.1)(yaml@2.8.2))
@@ -10053,7 +10053,7 @@ snapshots:
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 25.0.10
-      happy-dom: 20.3.4
+      happy-dom: 20.3.7
       jsdom: 27.4.0
     transitivePeerDependencies:
       - jiti
