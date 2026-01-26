@@ -24,7 +24,7 @@ catalog:
   '@rudderstack/analytics-js': 3.28.1
   '@scaleway/use-segment': 1.1.11
   '@segment/analytics-next': 1.81.1
-  '@stylistic/eslint-plugin': 5.7.0
+  '@stylistic/eslint-plugin': 5.7.1
   '@testing-library/jest-dom': 6.9.1
   '@testing-library/react': 16.3.2
   '@types/jest': 30.0.0
