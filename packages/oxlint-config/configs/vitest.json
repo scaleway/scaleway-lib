@@ -18,6 +18,7 @@
         "import/no-anonymous-default-export": "off",
         "import/no-named-export": "off",
         "import/no-namespace": "off",
+        "import/no-nodejs-modules": "off",
         "import/no-unassigned-import": "off",
         "jsx_a11y/label-has-associated-control": "off",
         "node/no-process-env": "off",
