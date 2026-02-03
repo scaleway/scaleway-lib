@@ -49,7 +49,9 @@ export type IDataLoaderContext = {
   ) => DataLoader<ResultType, ErrorType>
   reload: (key?: string) => Promise<void>
   reloadAll: () => Promise<void>
+  reloadAllActive: () => Promise<void>
   reloadGroup: (startKey?: string) => Promise<void>
+  reloadGroupActive: (startKey?: string) => Promise<void>
 }
 
 export const DataLoaderContext: Context<IDataLoaderContext> =
@@ -167,6 +169,30 @@ const DataLoaderProvider: ComponentType<DataLoaderProviderProps> = ({
     )
   }, [])
 
+  const reloadGroupActive = useCallback(async (startPrefix?: string) => {
+    if (startPrefix && typeof startPrefix === 'string') {
+      await Promise.all(
+        Object.values(requestsRef.current)
+          .filter(
+            request =>
+              request.observers.length > 0 &&
+              request.key.startsWith(startPrefix),
+          )
+          .map(async request => request.load(true)),
+      )
+    } else {
+      throw new Error(KEY_IS_NOT_STRING_ERROR)
+    }
+  }, [])
+
+  const reloadAllActive = useCallback(async () => {
+    await Promise.all(
+      Object.values(requestsRef.current)
+        .filter(request => request.observers.length > 0)
+        .map(async request => request.load(true)),
+    )
+  }, [])
+
   const getCachedData = useCallback(
     (key?: string) => {
       if (key) {
@@ -204,42 +230,46 @@ const DataLoaderProvider: ComponentType<DataLoaderProviderProps> = ({
   )
 
   const value = useMemo(
-    () => ({
-      addRequest,
+    (): IDataLoaderContext => ({
+      addRequest: addRequest as IDataLoaderContext['addRequest'],
       cacheKeyPrefix,
       clearAllCachedData,
       clearCachedData,
       computeKey,
       defaultDatalifetime,
-      getCachedData,
-      getOrAddRequest,
-      getReloads,
-      getRequest,
+      getCachedData: getCachedData as IDataLoaderContext['getCachedData'],
+      getOrAddRequest: getOrAddRequest as IDataLoaderContext['getOrAddRequest'],
+      getReloads: getReloads as IDataLoaderContext['getReloads'],
+      getRequest: getRequest as IDataLoaderContext['getRequest'],
       onError,
       reload,
       reloadAll,
+      reloadAllActive,
       reloadGroup,
+      reloadGroupActive,
     }),
     [
       addRequest,
       cacheKeyPrefix,
       clearAllCachedData,
       clearCachedData,
+      computeKey,
+      defaultDatalifetime,
       getCachedData,
       getOrAddRequest,
-      getRequest,
       getReloads,
+      getRequest,
       onError,
       reload,
       reloadAll,
+      reloadAllActive,
       reloadGroup,
-      computeKey,
-      defaultDatalifetime,
+      reloadGroupActive,
     ],
   )
 
   return (
-    <DataLoaderContext.Provider value={value as IDataLoaderContext}>
+    <DataLoaderContext.Provider value={value}>
       {children}
     </DataLoaderContext.Provider>
   )

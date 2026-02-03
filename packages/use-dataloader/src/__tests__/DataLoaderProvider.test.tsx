@@ -188,7 +188,7 @@ describe('dataLoaderProvider', () => {
     const { result } = renderHook(useDataLoaderContext, {
       wrapper: wrapperWith2ConcurrentRequests,
     })
-    ;[
+    const requests = [
       result.current.addRequest(TEST_KEY, {
         method,
       }),
@@ -204,10 +204,13 @@ describe('dataLoaderProvider', () => {
       result.current.addRequest(`${TEST_KEY}-5`, {
         method,
       }),
-    ].forEach(request => {
+    ]
+
+    for (const request of requests) {
       // oxlint-disable-next-line  @typescript-eslint/no-floating-promises
-      request.load().catch(undefined)
-    })
+      request.load().catch(() => null)
+    }
+
     expect(method).toBeCalledTimes(2)
     await waitFor(() => {
       expect(method).toBeCalledTimes(4)
@@ -215,5 +218,109 @@ describe('dataLoaderProvider', () => {
     await waitFor(() => {
       expect(method).toBeCalledTimes(5)
     })
+  })
+
+  test('should reload group', async () => {
+    const method1 = vi.fn(fakePromise)
+    const method2 = vi.fn(fakePromise)
+    const method3 = vi.fn(fakePromise)
+
+    const { result } = renderHook(useDataLoaderContext, {
+      wrapper,
+    })
+    result.current.addRequest(TEST_KEY, {
+      method: method1,
+    })
+    result.current.addRequest(`${TEST_KEY}-2`, {
+      method: method2,
+    })
+    result.current.addRequest('other', {
+      method: method3,
+    })
+
+    await result.current.reloadGroup(TEST_KEY)
+    expect(method1).toHaveBeenCalledOnce()
+    expect(method2).toHaveBeenCalledOnce()
+    expect(method3).not.toHaveBeenCalled()
+
+    method1.mockClear()
+    method2.mockClear()
+    method3.mockClear()
+
+    await result.current.reloadGroup('other')
+    expect(method1).not.toHaveBeenCalled()
+    expect(method2).not.toHaveBeenCalled()
+    expect(method3).toHaveBeenCalledOnce()
+
+    method1.mockClear()
+    method2.mockClear()
+    method3.mockClear()
+
+    await result.current.reloadAll()
+    expect(method1).toHaveBeenCalledOnce()
+    expect(method2).toHaveBeenCalledOnce()
+    expect(method3).toHaveBeenCalledOnce()
+  })
+
+  test('should reload all active requests', async () => {
+    const method1 = vi.fn(fakePromise)
+    const method2 = vi.fn(fakePromise)
+    const method3 = vi.fn(fakePromise)
+
+    const { result } = renderHook(useDataLoaderContext, {
+      wrapper,
+    })
+    const request1 = result.current.addRequest(TEST_KEY, {
+      method: method1,
+    })
+    result.current.addRequest(`${TEST_KEY}-2`, {
+      method: method2,
+    })
+    result.current.addRequest('other', {
+      method: method3,
+    })
+
+    request1.addObserver(() => {})
+
+    await result.current.reloadAllActive()
+    expect(method1).toHaveBeenCalledOnce()
+    expect(method2).not.toHaveBeenCalled()
+    expect(method3).not.toHaveBeenCalled()
+  })
+
+  test('should reload group active requests', async () => {
+    const method1 = vi.fn(fakePromise)
+    const method2 = vi.fn(fakePromise)
+    const method3 = vi.fn(fakePromise)
+
+    const { result } = renderHook(useDataLoaderContext, {
+      wrapper,
+    })
+    const request1 = result.current.addRequest(TEST_KEY, {
+      method: method1,
+    })
+    result.current.addRequest(`${TEST_KEY}-2`, {
+      method: method2,
+    })
+    const request3 = result.current.addRequest('other', {
+      method: method3,
+    })
+
+    request1.addObserver(() => {})
+    request3.addObserver(() => {})
+
+    await result.current.reloadGroupActive(TEST_KEY)
+    expect(method1).toHaveBeenCalledOnce()
+    expect(method2).not.toHaveBeenCalled()
+    expect(method3).not.toHaveBeenCalled()
+
+    method1.mockClear()
+    method2.mockClear()
+    method3.mockClear()
+
+    await result.current.reloadGroupActive('other')
+    expect(method1).not.toHaveBeenCalled()
+    expect(method2).not.toHaveBeenCalled()
+    expect(method3).toHaveBeenCalledOnce()
   })
 })

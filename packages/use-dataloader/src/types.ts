@@ -130,3 +130,11 @@ export type UseInfiniteDataLoaderResult<ResultType, ErrorType> = {
   reload: () => Promise<void>
   loadMore: () => void
 }
+
+export type UseDataLoaderReloadResult = {
+  reload: (key: KeyType) => Promise<void>
+  reloadAll: () => Promise<void>
+  reloadAllActive: () => Promise<void>
+  reloadGroup: (startKey: KeyType) => Promise<void>
+  reloadGroupActive: (startKey: KeyType) => Promise<void>
+}
