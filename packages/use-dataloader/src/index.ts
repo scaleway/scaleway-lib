@@ -11,9 +11,11 @@ export type {
   OnSuccessFn,
   PromiseType,
   UseDataLoaderConfig,
+  UseDataLoaderReloadResult,
   UseDataLoaderResult,
   UseInfiniteDataLoaderConfig,
   UseInfiniteDataLoaderResult,
 } from './types'
 export { useDataLoader } from './useDataLoader'
+export { useDataLoaderReload } from './useDataLoaderReload'
 export { useInfiniteDataLoader } from './useInfiniteDataLoader'
