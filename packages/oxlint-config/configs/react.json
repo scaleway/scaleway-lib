@@ -12,6 +12,7 @@
     "react-perf/jsx-no-new-function-as-prop": "off",
     "react-perf/jsx-no-new-object-as-prop": "off",
     "react/button-has-type": "error",
+    "react/display-name": "off",
     "react/exhaustive-deps": "error",
     "react/iframe-missing-sandbox": "error",
     "react/jsx-filename-extension": [
@@ -32,6 +33,7 @@
     "react/no-direct-mutation-state": "error",
     "react/no-find-dom-node": "error",
     "react/no-is-mounted": "error",
+    "react/no-multi-comp": "error",
     "react/no-render-return-value": "error",
     "react/no-set-state": "off",
     "react/no-string-refs": "error",
