@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "jsx": "preserve",
-    "lib": ["DOM", "ES2022"],
+    "lib": ["DOM", "ES2023"],
     "module": "esnext",
     "noEmit": true,
     "skipLibCheck": true,

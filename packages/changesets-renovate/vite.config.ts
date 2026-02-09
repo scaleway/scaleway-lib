@@ -18,6 +18,9 @@ export default mergeConfig(config, {
       formats: ['es'],
       name: '@scaleway/changesets-renovate',
     },
+    rolldown: {
+      platform: 'node',
+    },
     ssr: true,
     target: ['node20'],
   },
