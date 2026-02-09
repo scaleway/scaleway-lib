@@ -50,3 +50,6 @@ yalc.lock
 # ai
 .ai
 AGENTS.md
+
+# dist compare migration
+.dist-compare

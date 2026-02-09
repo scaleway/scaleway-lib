@@ -1,6 +1,5 @@
 import react from '@vitejs/plugin-react'
-import browserslist from 'browserslist'
-import { resolveToEsbuildTarget } from 'esbuild-plugin-browserslist'
+// import browserslist from 'browserslist'
 import { readPackage } from 'read-pkg'
 import type { UserConfig } from 'vite'
 import { defineConfig } from 'vite'
@@ -22,15 +21,6 @@ const external = (id: string) => {
   return isExternal && !isBundled
 }
 
-const targets = resolveToEsbuildTarget(
-  browserslist('defaults', {
-    ignoreUnknownVersions: false,
-  }),
-  {
-    printUnknownTargets: false,
-  },
-)
-
 export const defaultConfig: UserConfig = {
   build: {
     lib: {
@@ -45,15 +35,23 @@ export const defaultConfig: UserConfig = {
       formats: ['es'],
       name: pkg.name,
     },
+    license: true,
     minify: false,
     outDir: 'dist',
-    rollupOptions: {
+    rolldownOptions: {
+      experimental: {
+        lazyBarrel: false,
+      },
       external,
       output: {
         preserveModules: true,
+        preserveModulesRoot: 'src',
       },
+      platform: 'browser',
+      preserveEntrySignatures: 'exports-only',
+      treeshake: true,
+      tsconfig: true,
     },
-    target: [...targets, 'node20'],
   },
   plugins: [
     react({

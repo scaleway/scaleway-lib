@@ -80,7 +80,6 @@ jobs:
           pnpm run lint:biome
           pnpm run oxc:quiet
 
-
   test:
     runs-on: ubuntu-24.04
     strategy:

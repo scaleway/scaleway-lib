@@ -5,7 +5,9 @@
   "type": "module",
   "private": true,
   "bin": {
-    "check-catalog-usage": "./src/check-catalog-usage.ts"
+    "check-catalog-usage": "./src/check-catalog-usage.ts",
+    "sync-peer-deps": "./src/package/sync-peer-deps.ts",
+    "compare-dist": "./src/compare/compare-dist-migration.ts"
   },
   "scripts": {
     "lint": "eslint .",
@@ -21,6 +23,8 @@
   "author": "Scaleway",
   "license": "MIT",
   "dependencies": {
+    "chalk": "catalog:",
+    "globby": "catalog:",
     "yaml": "catalog:"
   },
   "devDependencies": {

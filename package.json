@@ -110,8 +110,7 @@
     "*.ts?(x)": [
       "pnpm run format",
       "pnpm run lint:biome",
-      "pnpm run oxc:fix --quiet",
-      "eslint --cache --cache-strategy content --fix"
+      "pnpm run oxc:fix --quiet"
     ],
     "*.y?(a)ml": [
       "pnpm dlx prettier --write '**/*.{yml,yaml}' --single-quote"
@@ -141,5 +140,9 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "dependencies": {
+    "chalk": "catalog:",
+    "globby": "catalog:"
   }
 }
