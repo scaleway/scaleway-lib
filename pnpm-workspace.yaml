@@ -3,7 +3,6 @@ packages:
 
 catalog:
   '@babel/core': 7.29.0
-  '@babel/eslint-parser': 7.28.6
   '@babel/plugin-transform-runtime': 7.29.0
   '@babel/preset-env': 7.29.0
   '@babel/preset-react': 7.28.5
@@ -13,9 +12,6 @@ catalog:
   '@changesets/cli': 2.29.8
   '@commitlint/cli': 20.4.1
   '@commitlint/config-conventional': 20.4.1
-  '@emotion/eslint-plugin': 11.12.0
-  '@eslint/compat': 2.0.2
-  '@eslint/eslintrc': 3.3.3
   '@formatjs/ecma402-abstract': 3.1.1
   '@formatjs/fast-memoize': 3.1.0
   '@formatjs/icu-messageformat-parser': 3.5.1
@@ -24,7 +20,6 @@ catalog:
   '@rudderstack/analytics-js': 3.28.1
   '@scaleway/use-segment': 1.1.11
   '@segment/analytics-next': 1.81.1
-  '@stylistic/eslint-plugin': 5.7.1
   '@testing-library/jest-dom': 6.9.1
   '@testing-library/react': 16.3.2
   '@types/jest': 30.0.0
@@ -32,8 +27,6 @@ catalog:
   '@types/node': 25.2.1
   '@types/react': 19.2.11
   '@types/react-dom': 19.2.3
-  '@typescript-eslint/eslint-plugin': 8.53.1
-  '@typescript-eslint/parser': 8.53.1
   '@typescript/native-preview': 7.0.0-dev.20260208.1
   '@vitejs/plugin-react': 5.1.3
   '@vitest/coverage-istanbul': 4.0.18
@@ -43,16 +36,6 @@ catalog:
   cross-env: 10.1.0
   date-fns: 4.1.0
   esbuild-plugin-browserslist: 2.0.0
-  eslint: 9.39.2
-  eslint-config-airbnb: 19.0.4
-  eslint-config-prettier: 10.1.8
-  eslint-import-resolver-typescript: 4.4.4
-  eslint-plugin-eslint-comments: 3.2.0
-  eslint-plugin-import: 2.32.0
-  eslint-plugin-jsx-a11y: 6.10.2
-  eslint-plugin-oxlint: 1.41.0
-  eslint-plugin-react: 7.37.5
-  eslint-plugin-react-hooks: 7.0.1
   execa: 9.6.1
   fast-glob: 3.3.3
   filesize: 11.0.13
