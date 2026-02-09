@@ -12,7 +12,6 @@
   },
   "devDependencies": {
     "@babel/core": "catalog:",
-    "@babel/eslint-parser": "catalog:",
     "@babel/plugin-transform-runtime": "catalog:",
     "@babel/preset-env": "catalog:",
     "@babel/preset-react": "catalog:",
@@ -22,11 +21,9 @@
     "@changesets/cli": "catalog:",
     "@commitlint/cli": "catalog:",
     "@commitlint/config-conventional": "catalog:",
-    "@eslint/eslintrc": "catalog:",
     "@manypkg/cli": "catalog:",
     "@rudderstack/analytics-js": "catalog:",
     "@scaleway/changesets-renovate": "workspace:*",
-    "@scaleway/eslint-config-react": "workspace:*",
     "@scaleway/oxlint-config": "workspace:*",
     "@scaleway/tsconfig": "workspace:*",
     "@scaleway/use-segment": "catalog:",
@@ -44,8 +41,6 @@
     "builtin-modules": "catalog:",
     "cross-env": "catalog:",
     "esbuild-plugin-browserslist": "catalog:",
-    "eslint": "catalog:",
-    "eslint-plugin-oxlint": "catalog:",
     "fast-glob": "catalog:",
     "globals": "catalog:",
     "happy-dom": "catalog:",
@@ -67,8 +62,6 @@
     "wait-for-expect": "catalog:"
   },
   "scripts": {
-    "lint": "eslint --cache . --quiet",
-    "lint:fix": "pnpm run lint --fix",
     "lint:catalog": "pnpm check-catalog-usage",
     "oxc": "pnpm oxlint -c .oxlintrc.json --type-aware --type-check",
     "oxc:quiet": "pnpm oxc --quiet",

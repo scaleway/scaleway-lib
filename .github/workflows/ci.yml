@@ -92,22 +92,6 @@ jobs:
           pnpm install --frozen-lockfile
           pnpm run format:ci
 
-  lint:
-    runs-on: ubuntu-24.04
-    needs: [build]
-    steps:
-      - uses: actions/checkout@v6.0.2
-      - uses: pnpm/action-setup@v4.2.0
-      - name: Use Node.js
-        uses: actions/setup-node@v6.2.0
-        with:
-          node-version: 24.13.0
-          check-latest: true
-          cache: 'pnpm'
-      - run: pnpm install
-      - run: pnpm run build
-      - run: pnpm run lint
-
   test:
     runs-on: ubuntu-24.04
     strategy:
