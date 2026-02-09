@@ -151,8 +151,8 @@ catalogs:
       specifier: 6.10.2
       version: 6.10.2
     eslint-plugin-oxlint:
-      specifier: 1.41.0
-      version: 1.41.0
+      specifier: 1.42.0
+      version: 1.42.0
     eslint-plugin-react:
       specifier: 7.37.5
       version: 7.37.5
@@ -365,7 +365,7 @@ importers:
         version: 9.39.2(jiti@2.6.1)
       eslint-plugin-oxlint:
         specifier: 'catalog:'
-        version: 1.41.0
+        version: 1.42.0
       fast-glob:
         specifier: 'catalog:'
         version: 3.3.3
@@ -3289,8 +3289,8 @@ packages:
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9
 
-  eslint-plugin-oxlint@1.41.0:
-    resolution: {integrity: sha512-aoh1i3qux+2EnrF+ZZqkBi3oYl9eUgM4bKJKlszfnPJ11COXjOdXwRZVe+5HdIB3tla86sKL5SntZ7Y9TL58gQ==}
+  eslint-plugin-oxlint@1.42.0:
+    resolution: {integrity: sha512-3hB/TDbS0f+8ZnPffl0Z/wZ7Yc5NeY5slrxG60kEWInAA9047pdqRcv+Ckk/5KiL3HS2vWtHvmkavPKSFZVKxA==}
 
   eslint-plugin-react-hooks@7.0.1:
     resolution: {integrity: sha512-O0d0m04evaNzEPoSW+59Mezf8Qt0InfgGIBJnpC0h3NH/WjUAR7BIKUfysC6todmtiZ/A0oUVS8Gce0WhBrHsA==}
@@ -8128,7 +8128,7 @@ snapshots:
       safe-regex-test: 1.1.0
       string.prototype.includes: 2.0.1
 
-  eslint-plugin-oxlint@1.41.0:
+  eslint-plugin-oxlint@1.42.0:
     dependencies:
       jsonc-parser: 3.3.1
 
