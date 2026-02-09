@@ -63,6 +63,7 @@
   },
   "scripts": {
     "lint:catalog": "pnpm check-catalog-usage",
+    "lint:biome": "pnpm -w biome lint . --diagnostic-level=error --log-kind=compact",
     "oxc": "pnpm oxlint -c .oxlintrc.json --type-aware --type-check",
     "oxc:quiet": "pnpm oxc --quiet",
     "oxc:fix": "pnpm oxc --fix",
@@ -108,7 +109,7 @@
   "lint-staged": {
     "*.ts?(x)": [
       "pnpm run format",
-      "pnpm -w biome lint . --diagnostic-level=error",
+      "pnpm run lint:biome",
       "pnpm run oxc:fix --quiet",
       "eslint --cache --cache-strategy content --fix"
     ],
