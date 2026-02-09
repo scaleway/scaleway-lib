@@ -182,8 +182,8 @@ $ pnpm link @scaleway/example_package
 ### Linting
 
 ```bash
-$ pnpm run lint
-$ pnpm run lint:fix
+$ pnpm run oxc
+$ pnpm run oxc:fix
 ```
 
 ### Unit Test
