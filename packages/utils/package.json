@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/utils",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Utility scripts and tools for scaleway-lib",
   "type": "module",
   "private": true,

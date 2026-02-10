@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.0.10
+
+### Patch Changes
+
+- [#3024](https://github.com/scaleway/scaleway-lib/pull/3024) [`7fb782b`](https://github.com/scaleway/scaleway-lib/commit/7fb782b6217d6d2763fd66c7feaf2c87ee90b168) Thanks [@philibea](https://github.com/philibea)! - migrate from rollup to rolldown
+
+- Updated dependencies [[`7fb782b`](https://github.com/scaleway/scaleway-lib/commit/7fb782b6217d6d2763fd66c7feaf2c87ee90b168)]:
+  - @scaleway/random-name@5.1.4
+
 ## 1.0.9
 
 ### Patch Changes
