@@ -39,10 +39,12 @@
     "@vitest/coverage-istanbul": "catalog:",
     "browserslist": "catalog:",
     "builtin-modules": "catalog:",
+    "chalk": "catalog:",
     "cross-env": "catalog:",
     "esbuild-plugin-browserslist": "catalog:",
     "fast-glob": "catalog:",
     "globals": "catalog:",
+    "globby": "catalog:",
     "happy-dom": "catalog:",
     "husky": "catalog:",
     "js-yaml": "catalog:",
@@ -140,9 +142,5 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  },
-  "dependencies": {
-    "chalk": "catalog:",
-    "globby": "catalog:"
   }
 }
