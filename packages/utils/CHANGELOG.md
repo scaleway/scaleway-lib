@@ -1,5 +1,15 @@
 # @scaleway/utils
 
+## 0.0.5
+
+### Patch Changes
+
+- [#3025](https://github.com/scaleway/scaleway-lib/pull/3025) [`b7f96df`](https://github.com/scaleway/scaleway-lib/commit/b7f96df3a220cbd0e2b2584381de0a7156ca94a1) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@types/node` to `25.2.2`.
+
+- [#3027](https://github.com/scaleway/scaleway-lib/pull/3027) [`434fea2`](https://github.com/scaleway/scaleway-lib/commit/434fea2404bd19ef27bf96c5983dfaf3766add4a) Thanks [@philibea](https://github.com/philibea)! - fix package deps
+
+- [#3024](https://github.com/scaleway/scaleway-lib/pull/3024) [`7fb782b`](https://github.com/scaleway/scaleway-lib/commit/7fb782b6217d6d2763fd66c7feaf2c87ee90b168) Thanks [@philibea](https://github.com/philibea)! - migrate from rollup to rolldown
+
 ## 0.0.4
 
 ### Patch Changes
