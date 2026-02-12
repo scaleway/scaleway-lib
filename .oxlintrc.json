@@ -52,6 +52,7 @@
         "node/no-process-env": "off",
         "react/jsx-pascal-case": "off",
         "react/jsx-props-no-spreading": "off",
+        "react/no-multi-comp": "warn",
         "react/only-export-components": "off",
         "unicorn/escape-case": "warn",
         "unicorn/no-array-callback-reference": "off",
@@ -69,6 +70,7 @@
     "@typescript-eslint/no-redundant-type-constituents": "warn",
     "@typescript-eslint/no-unsafe-type-assertion": "warn",
     "@typescript-eslint/strict-boolean-expressions": "off",
+    "import/no-nodejs-modules": "off",
     "react/only-export-components": "warn",
     "unicorn/empty-brace-spaces": "error",
     "unicorn/prefer-global-this": "allow"
