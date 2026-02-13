@@ -2,7 +2,7 @@ import { render, renderHook, screen, waitFor } from '@testing-library/react'
 import type { ReactNode } from 'react'
 import { describe, expect, test, vi } from 'vitest'
 import DataLoaderProvider, { useDataLoaderContext } from '../DataLoaderProvider'
-import { KEY_IS_NOT_STRING_ERROR, StatusEnum } from '../constants'
+import { StatusEnum } from '../constants'
 
 const TEST_KEY = 'test'
 const PROMISE_TIMEOUT = 5
@@ -67,13 +67,6 @@ describe('dataLoaderProvider', () => {
       expect(testRequest.status).toBe(StatusEnum.SUCCESS)
     })
     expect(result.current.getCachedData(TEST_KEY)).toBeTruthy()
-    try {
-      // @ts-expect-error Should throw an error
-      await result.current.reload(3).catch(undefined)
-      throw new Error('It should throw an error')
-    } catch (error) {
-      expect((error as Error).message).toBe(KEY_IS_NOT_STRING_ERROR)
-    }
     // oxlint-disable-next-line  @typescript-eslint/no-floating-promises
     result.current.reload(TEST_KEY).catch(undefined)
     await waitFor(() => {
@@ -82,14 +75,6 @@ describe('dataLoaderProvider', () => {
     await waitFor(() => {
       expect(testRequest.status).toBe(StatusEnum.SUCCESS)
     })
-    try {
-      // @ts-expect-error Should throw an error
-      result.current.clearCachedData(3)
-      throw new Error('It should throw an error')
-    } catch (error) {
-      expect((error as Error).message).toBe(KEY_IS_NOT_STRING_ERROR)
-      expect(result.current.getCachedData(TEST_KEY)).toBeTruthy()
-    }
   })
 
   test('should add request with cache key prefix', async () => {
@@ -161,21 +146,6 @@ describe('dataLoaderProvider', () => {
     expect(result.current.getCachedData()).toStrictEqual({ test: undefined })
   })
 
-  test('should add request with bad key', () => {
-    const method = vi.fn(fakePromise)
-    const { result } = renderHook(useDataLoaderContext, {
-      wrapper,
-    })
-    try {
-      // @ts-expect-error used because we test with bad key
-      result.current.addRequest(3, {
-        method,
-      })
-    } catch (error) {
-      expect((error as Error).message).toBe(KEY_IS_NOT_STRING_ERROR)
-    }
-  })
-
   test('should delay max concurrent request', async () => {
     const method = vi.fn(
       async () =>
@@ -188,7 +158,7 @@ describe('dataLoaderProvider', () => {
     const { result } = renderHook(useDataLoaderContext, {
       wrapper: wrapperWith2ConcurrentRequests,
     })
-    ;[
+    const requests = [
       result.current.addRequest(TEST_KEY, {
         method,
       }),
@@ -204,10 +174,13 @@ describe('dataLoaderProvider', () => {
       result.current.addRequest(`${TEST_KEY}-5`, {
         method,
       }),
-    ].forEach(request => {
+    ]
+
+    for (const request of requests) {
       // oxlint-disable-next-line  @typescript-eslint/no-floating-promises
-      request.load().catch(undefined)
-    })
+      request.load().catch(() => null)
+    }
+
     expect(method).toBeCalledTimes(2)
     await waitFor(() => {
       expect(method).toBeCalledTimes(4)
@@ -215,5 +188,109 @@ describe('dataLoaderProvider', () => {
     await waitFor(() => {
       expect(method).toBeCalledTimes(5)
     })
+  })
+
+  test('should reload group', async () => {
+    const method1 = vi.fn(fakePromise)
+    const method2 = vi.fn(fakePromise)
+    const method3 = vi.fn(fakePromise)
+
+    const { result } = renderHook(useDataLoaderContext, {
+      wrapper,
+    })
+    result.current.addRequest(TEST_KEY, {
+      method: method1,
+    })
+    result.current.addRequest(`${TEST_KEY}-2`, {
+      method: method2,
+    })
+    result.current.addRequest('other', {
+      method: method3,
+    })
+
+    await result.current.reloadGroup(TEST_KEY)
+    expect(method1).toHaveBeenCalledOnce()
+    expect(method2).toHaveBeenCalledOnce()
+    expect(method3).not.toHaveBeenCalled()
+
+    method1.mockClear()
+    method2.mockClear()
+    method3.mockClear()
+
+    await result.current.reloadGroup('other')
+    expect(method1).not.toHaveBeenCalled()
+    expect(method2).not.toHaveBeenCalled()
+    expect(method3).toHaveBeenCalledOnce()
+
+    method1.mockClear()
+    method2.mockClear()
+    method3.mockClear()
+
+    await result.current.reloadAll()
+    expect(method1).toHaveBeenCalledOnce()
+    expect(method2).toHaveBeenCalledOnce()
+    expect(method3).toHaveBeenCalledOnce()
+  })
+
+  test('should reload all active requests', async () => {
+    const method1 = vi.fn(fakePromise)
+    const method2 = vi.fn(fakePromise)
+    const method3 = vi.fn(fakePromise)
+
+    const { result } = renderHook(useDataLoaderContext, {
+      wrapper,
+    })
+    const request1 = result.current.addRequest(TEST_KEY, {
+      method: method1,
+    })
+    result.current.addRequest(`${TEST_KEY}-2`, {
+      method: method2,
+    })
+    result.current.addRequest('other', {
+      method: method3,
+    })
+
+    request1.addObserver(() => {})
+
+    await result.current.reloadAllActive()
+    expect(method1).toHaveBeenCalledOnce()
+    expect(method2).not.toHaveBeenCalled()
+    expect(method3).not.toHaveBeenCalled()
+  })
+
+  test('should reload group active requests', async () => {
+    const method1 = vi.fn(fakePromise)
+    const method2 = vi.fn(fakePromise)
+    const method3 = vi.fn(fakePromise)
+
+    const { result } = renderHook(useDataLoaderContext, {
+      wrapper,
+    })
+    const request1 = result.current.addRequest(TEST_KEY, {
+      method: method1,
+    })
+    result.current.addRequest(`${TEST_KEY}-2`, {
+      method: method2,
+    })
+    const request3 = result.current.addRequest('other', {
+      method: method3,
+    })
+
+    request1.addObserver(() => {})
+    request3.addObserver(() => {})
+
+    await result.current.reloadGroupActive(TEST_KEY)
+    expect(method1).toHaveBeenCalledOnce()
+    expect(method2).not.toHaveBeenCalled()
+    expect(method3).not.toHaveBeenCalled()
+
+    method1.mockClear()
+    method2.mockClear()
+    method3.mockClear()
+
+    await result.current.reloadGroupActive('other')
+    expect(method1).not.toHaveBeenCalled()
+    expect(method2).not.toHaveBeenCalled()
+    expect(method3).toHaveBeenCalledOnce()
   })
 })

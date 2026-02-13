@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { StatusEnum } from './constants'
 import { useDataLoaderContext } from './DataLoaderProvider'
-import { marshalQueryKey } from './helpers'
 import type {
   KeyType,
   PromiseType,
@@ -46,9 +45,7 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
     setCounter(current => current + 1)
   }, [])
 
-  const queryKey = useMemo(() => marshalQueryKey(key), [key])
-
-  const request = getOrAddRequest<ResultType, ErrorType>(queryKey, {
+  const request = getOrAddRequest<ResultType, ErrorType>(key, {
     enabled,
     method: methodRef.current,
   })
