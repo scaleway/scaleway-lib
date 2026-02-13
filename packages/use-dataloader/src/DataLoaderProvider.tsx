@@ -1,12 +1,10 @@
+// oxlint-disable only-export-components
 import type { ComponentType, Context, ReactNode } from 'react'
 import { createContext, useCallback, useContext, useMemo, useRef } from 'react'
-import {
-  DEFAULT_MAX_CONCURRENT_REQUESTS,
-  KEY_IS_NOT_STRING_ERROR,
-} from './constants'
+import { DEFAULT_MAX_CONCURRENT_REQUESTS } from './constants'
 import DataLoader from './dataloader'
 import { marshalQueryKey } from './helpers'
-import type { OnErrorFn, PromiseType } from './types'
+import type { KeyType, OnErrorFn, PromiseType } from './types'
 
 type CachedData = Record<string, unknown>
 type Reloads = Record<string, () => Promise<void | unknown>>
@@ -19,37 +17,39 @@ type UseDataLoaderInitializerArgs<ResultType = unknown> = {
 
 type GetCachedDataFn = {
   (): CachedData
-  (key?: string): unknown | undefined
+  (key?: KeyType): unknown | undefined
 }
 
 type GetReloadsFn = {
   (): Reloads
-  (key?: string): (() => Promise<void | unknown>) | undefined
+  (key?: KeyType): (() => Promise<void | unknown>) | undefined
 }
 
 export type IDataLoaderContext = {
   addRequest: <ResultType, ErrorType>(
-    key: string,
+    key: KeyType,
     args: UseDataLoaderInitializerArgs<ResultType>,
   ) => DataLoader<ResultType, ErrorType>
   getOrAddRequest: <ResultType, ErrorType>(
-    key: string,
+    key: KeyType,
     args: UseDataLoaderInitializerArgs<ResultType>,
   ) => DataLoader<ResultType, ErrorType>
-  computeKey: (key: string) => string
+  computeKey: (key: KeyType) => string
   cacheKeyPrefix?: string
   defaultDatalifetime?: number
   onError?: (error: Error) => void | Promise<void>
   clearAllCachedData: () => void
-  clearCachedData: (key: string) => void
+  clearCachedData: (key: KeyType) => void
   getCachedData: GetCachedDataFn
   getReloads: GetReloadsFn
   getRequest: <ResultType, ErrorType>(
-    key: string,
+    key: KeyType,
   ) => DataLoader<ResultType, ErrorType>
-  reload: (key?: string) => Promise<void>
+  reload: (key: KeyType) => Promise<void>
   reloadAll: () => Promise<void>
-  reloadGroup: (startKey?: string) => Promise<void>
+  reloadAllActive: () => Promise<void>
+  reloadGroup: (startKey: KeyType) => Promise<void>
+  reloadGroupActive: (startKey: KeyType) => Promise<void>
 }
 
 export const DataLoaderContext: Context<IDataLoaderContext> =
@@ -77,38 +77,36 @@ const DataLoaderProvider: ComponentType<DataLoaderProviderProps> = ({
   const requestsRef = useRef<Requests>({})
 
   const computeKey = useCallback(
-    (key: string) => marshalQueryKey([cacheKeyPrefix, key]),
+    (key: KeyType) =>
+      marshalQueryKey([cacheKeyPrefix, ...(Array.isArray(key) ? key : [key])]),
     [cacheKeyPrefix],
   )
 
   const getRequest = useCallback(
-    (key: string): DataLoader<unknown, unknown> | undefined =>
+    (key: KeyType): DataLoader<unknown, unknown> | undefined =>
       requestsRef.current[computeKey(key)],
     [computeKey],
   )
 
   const addRequest = useCallback(
-    (key: string, args: UseDataLoaderInitializerArgs) => {
+    (key: KeyType, args: UseDataLoaderInitializerArgs) => {
       if (DataLoader.maxConcurrent !== maxConcurrentRequests) {
         DataLoader.maxConcurrent = maxConcurrentRequests
       }
-      if (key && typeof key === 'string') {
-        const newRequest = new DataLoader({
-          ...args,
-          key: computeKey(key),
-        })
+      const newRequest = new DataLoader({
+        ...args,
+        key: computeKey(key),
+      })
 
-        requestsRef.current[newRequest.key] = newRequest
+      requestsRef.current[newRequest.key] = newRequest
 
-        return newRequest
-      }
-      throw new Error(KEY_IS_NOT_STRING_ERROR)
+      return newRequest
     },
     [computeKey, maxConcurrentRequests],
   )
 
   const getOrAddRequest = useCallback(
-    (key: string, args: UseDataLoaderInitializerArgs) => {
+    (key: KeyType, args: UseDataLoaderInitializerArgs) => {
       const requestFound = getRequest(key)
       if (!requestFound) {
         return addRequest(key, args)
@@ -120,12 +118,8 @@ const DataLoaderProvider: ComponentType<DataLoaderProviderProps> = ({
   )
 
   const clearCachedData = useCallback(
-    (key: string) => {
-      if (key && typeof key === 'string') {
-        getRequest(key)?.clearData()
-      } else {
-        throw new Error(KEY_IS_NOT_STRING_ERROR)
-      }
+    (key: KeyType) => {
+      getRequest(key)?.clearData()
     },
     [getRequest],
   )
@@ -137,27 +131,22 @@ const DataLoaderProvider: ComponentType<DataLoaderProviderProps> = ({
   }, [])
 
   const reload = useCallback(
-    async (key?: string) => {
-      if (key && typeof key === 'string') {
-        await getRequest(key)?.load(true)
-      } else {
-        throw new Error(KEY_IS_NOT_STRING_ERROR)
-      }
+    async (key: KeyType) => {
+      await getRequest(key)?.load(true)
     },
     [getRequest],
   )
 
-  const reloadGroup = useCallback(async (startPrefix?: string) => {
-    if (startPrefix && typeof startPrefix === 'string') {
+  const reloadGroup = useCallback(
+    async (startPrefix: KeyType) => {
       await Promise.all(
         Object.values(requestsRef.current)
-          .filter(request => request.key.startsWith(startPrefix))
+          .filter(request => request.key.startsWith(computeKey(startPrefix)))
           .map(async request => request.load(true)),
       )
-    } else {
-      throw new Error(KEY_IS_NOT_STRING_ERROR)
-    }
-  }, [])
+    },
+    [computeKey],
+  )
 
   const reloadAll = useCallback(async () => {
     await Promise.all(
@@ -167,12 +156,34 @@ const DataLoaderProvider: ComponentType<DataLoaderProviderProps> = ({
     )
   }, [])
 
+  const reloadGroupActive = useCallback(
+    async (startPrefix: KeyType) => {
+      await Promise.all(
+        Object.values(requestsRef.current)
+          .filter(
+            request =>
+              request.observers.length > 0 &&
+              request.key.startsWith(computeKey(startPrefix)),
+          )
+          .map(async request => request.load(true)),
+      )
+    },
+    [computeKey],
+  )
+
+  const reloadAllActive = useCallback(async () => {
+    await Promise.all(
+      Object.values(requestsRef.current)
+        .filter(request => request.observers.length > 0)
+        .map(async request => request.load(true)),
+    )
+  }, [])
+
   const getCachedData = useCallback(
-    (key?: string) => {
+    (key?: KeyType) => {
       if (key) {
         return getRequest(key)?.getData()
       }
-
       return Object.values(requestsRef.current).reduce<CachedData>(
         (acc, request) => ({
           ...acc,
@@ -185,13 +196,12 @@ const DataLoaderProvider: ComponentType<DataLoaderProviderProps> = ({
   )
 
   const getReloads = useCallback(
-    (key?: string) => {
+    (key?: KeyType) => {
       if (key) {
         return getRequest(key)
           ? async () => getRequest(key)?.load(true)
           : undefined
       }
-
       return Object.entries(requestsRef.current).reduce<Reloads>(
         (acc, [requestKey, { load }]) => ({
           ...acc,
@@ -204,21 +214,23 @@ const DataLoaderProvider: ComponentType<DataLoaderProviderProps> = ({
   )
 
   const value = useMemo(
-    () => ({
-      addRequest,
+    (): IDataLoaderContext => ({
+      addRequest: addRequest as IDataLoaderContext['addRequest'],
       cacheKeyPrefix,
       clearAllCachedData,
       clearCachedData,
       computeKey,
       defaultDatalifetime,
-      getCachedData,
-      getOrAddRequest,
-      getReloads,
-      getRequest,
+      getCachedData: getCachedData as IDataLoaderContext['getCachedData'],
+      getOrAddRequest: getOrAddRequest as IDataLoaderContext['getOrAddRequest'],
+      getReloads: getReloads as IDataLoaderContext['getReloads'],
+      getRequest: getRequest as IDataLoaderContext['getRequest'],
       onError,
       reload,
       reloadAll,
+      reloadAllActive,
       reloadGroup,
+      reloadGroupActive,
     }),
     [
       addRequest,
@@ -235,11 +247,13 @@ const DataLoaderProvider: ComponentType<DataLoaderProviderProps> = ({
       reloadGroup,
       computeKey,
       defaultDatalifetime,
+      reloadAllActive,
+      reloadGroupActive,
     ],
   )
 
   return (
-    <DataLoaderContext.Provider value={value as IDataLoaderContext}>
+    <DataLoaderContext.Provider value={value}>
       {children}
     </DataLoaderContext.Provider>
   )
