@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.1.0
+
+### Minor Changes
+
+- [#3031](https://github.com/scaleway/scaleway-lib/pull/3031) [`19f42ba`](https://github.com/scaleway/scaleway-lib/commit/19f42ba76d9558b1aea197e8cb0f5d502bbb6dc2) Thanks [@etienne-scaleway](https://github.com/etienne-scaleway)! - Allow array keys in all data loader functions exposed by provider
+
 ## 6.0.4
 
 ### Patch Changes
