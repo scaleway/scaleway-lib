@@ -121,8 +121,8 @@ catalogs:
       specifier: 11.0.13
       version: 11.0.13
     globals:
-      specifier: 17.3.0
-      version: 17.3.0
+      specifier: 17.4.0
+      version: 17.4.0
     globby:
       specifier: 16.1.1
       version: 16.1.1
@@ -311,7 +311,7 @@ importers:
         version: 3.3.3
       globals:
         specifier: 'catalog:'
-        version: 17.3.0
+        version: 17.4.0
       globby:
         specifier: 'catalog:'
         version: 16.1.1
@@ -2716,8 +2716,8 @@ packages:
     resolution: {integrity: sha512-wHTUcDUoZ1H5/0iVqEudYW4/kAlN5cZ3j/bXn0Dpbizl9iaUVeWSHqiOjsgk6OW2bkLclbBjzewBz6weQ1zA2Q==}
     engines: {node: '>=18'}
 
-  globals@17.3.0:
-    resolution: {integrity: sha512-yMqGUQVVCkD4tqjOJf3TnrvaaHDMYp4VlUSObbkIiuCPe/ofdMBFIAcBbCSRFWOnos6qRiTVStDwqPLUclaxIw==}
+  globals@17.4.0:
+    resolution: {integrity: sha512-hjrNztw/VajQwOLsMNT1cbJiH2muO3OROCHnbehc8eY5JyD2gqz4AcMHPqgaOR59DjgUjYAYLeH699g/eWi2jw==}
     engines: {node: '>=18'}
 
   globby@11.1.0:
@@ -6380,7 +6380,7 @@ snapshots:
     dependencies:
       ini: 4.1.1
 
-  globals@17.3.0: {}
+  globals@17.4.0: {}
 
   globby@11.1.0:
     dependencies:
