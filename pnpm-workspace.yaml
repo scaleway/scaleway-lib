@@ -41,7 +41,7 @@ catalog:
   fast-glob: 3.3.3
   filesize: 11.0.13
   globals: 17.3.0
-  globby: 16.1.0
+  globby: 16.1.1
   happy-dom: 20.6.1
   history: 5.3.0
   husky: 9.1.7
@@ -53,7 +53,7 @@ catalog:
   mockdate: 3.0.5
   module-from-string: 3.3.1
   oxlint: 1.43.0
-  oxlint-tsgolint: 0.14.1
+  oxlint-tsgolint: 0.14.2
   query-string: 9.3.1
   react: 19.2.4
   react-dom: 19.2.4
