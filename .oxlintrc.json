@@ -57,8 +57,10 @@
         "unicorn/escape-case": "warn",
         "unicorn/no-array-callback-reference": "off",
         "unicorn/no-hex-escape": "warn",
+        "vitest/no-importing-vitest-globals": "off",
         "vitest/prefer-called-once": "error",
         "vitest/prefer-called-times": "off",
+        "vitest/prefer-import-in-mock": "off",
         "vitest/prefer-lowercase-title": "error"
       }
     }

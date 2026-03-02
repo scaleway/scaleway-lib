@@ -16,4 +16,4 @@ export type ToolConfig = Pick<
 
 export type TrackingCallback = NonNullable<Context['trackingCallback']>
 
-export type ErrorCallback = (error: Error | string) => void | null
+export type ErrorCallback = ((error: Error | string) => void) | null
