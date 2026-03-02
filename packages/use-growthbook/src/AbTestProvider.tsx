@@ -63,7 +63,12 @@ export const AbTestProvider: ComponentType<AbTestProviderProps> = ({
   }, [growthbook, config, loadConfig])
 
   useEffect(() => {
-    loadFeature().catch(errorCallback)
+    loadFeature().catch((error: unknown) => {
+      if (errorCallback && error instanceof Error) {
+        errorCallback(error)
+      }
+      return null
+    })
   }, [loadFeature, errorCallback])
 
   // avoid multiple instances of growthbook when attributes of the Providers changes.
@@ -75,7 +80,12 @@ export const AbTestProvider: ComponentType<AbTestProviderProps> = ({
           ...currentAttributes,
           ...attributes,
         })
-        .catch(errorCallback)
+        .catch((error: unknown) => {
+          if (errorCallback && error instanceof Error) {
+            errorCallback(error)
+          }
+          return null
+        })
     }
   }, [attributes, growthbook, errorCallback])
 

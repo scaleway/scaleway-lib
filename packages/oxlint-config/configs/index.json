@@ -187,7 +187,6 @@
     "unicorn/no-for-loop": "off",
     "unicorn/no-hex-escape": "error",
     "unicorn/no-instanceof-array": "error",
-
     "unicorn/no-instanceof-builtins": "error",
     "unicorn/no-invalid-remove-event-listener": "off",
     "unicorn/no-lonely-if": "error",
@@ -252,6 +251,7 @@
     "unicorn/prefer-string-slice": "off",
     "unicorn/prefer-string-starts-ends-with": "error",
     "unicorn/prefer-string-trim-start-end": "error",
+    "unicorn/prefer-ternary": ["error", "only-single-line"],
     "unicorn/prefer-top-level-await": "off",
     "unicorn/prefer-type-error": "error",
     "unicorn/require-array-join-separator": "error",

@@ -6,8 +6,10 @@ import DataLoader from './dataloader'
 import { marshalQueryKey } from './helpers'
 import type { KeyType, OnErrorFn, PromiseType } from './types'
 
+type PromiseVoidFunc = (() => Promise<unknown>) | (() => void)
+
 type CachedData = Record<string, unknown>
-type Reloads = Record<string, () => Promise<void | unknown>>
+type Reloads = Record<string, PromiseVoidFunc>
 type Requests = Record<string, DataLoader<unknown, unknown>>
 
 type UseDataLoaderInitializerArgs<ResultType = unknown> = {
@@ -22,7 +24,7 @@ type GetCachedDataFn = {
 
 type GetReloadsFn = {
   (): Reloads
-  (key?: KeyType): (() => Promise<void | unknown>) | undefined
+  (key?: KeyType): PromiseVoidFunc | undefined
 }
 
 export type IDataLoaderContext = {
