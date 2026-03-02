@@ -17,7 +17,7 @@ catalog:
   '@formatjs/icu-messageformat-parser': 3.5.1
   '@growthbook/growthbook-react': 1.6.5
   '@manypkg/cli': 0.25.1
-  '@rudderstack/analytics-js': 3.28.1
+  '@rudderstack/analytics-js': 3.29.0
   '@scaleway/use-segment': 1.1.11
   '@segment/analytics-next': 1.81.1
   '@testing-library/jest-dom': 6.9.1
