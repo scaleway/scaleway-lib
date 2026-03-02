@@ -181,8 +181,8 @@ catalogs:
       specifier: 0.4.0
       version: 0.4.0
     simple-git:
-      specifier: 3.32.1
-      version: 3.32.1
+      specifier: 3.32.3
+      version: 3.32.3
     tstyche:
       specifier: 6.2.0
       version: 6.2.0
@@ -386,7 +386,7 @@ importers:
         version: 4.1.1
       simple-git:
         specifier: 'catalog:'
-        version: 3.32.1
+        version: 3.32.3
 
   packages/cookie-consent:
     dependencies:
@@ -3570,8 +3570,8 @@ packages:
     resolution: {integrity: sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw==}
     engines: {node: '>=14'}
 
-  simple-git@3.32.1:
-    resolution: {integrity: sha512-Hz+lu+B1hxbGq6j+r45l789BHrc0DkhwoIrMjxKzSw9+9eFwUdfqgNe4Oe9R7vaTvy/dBl5/c5ZcDu7HO00cbg==}
+  simple-git@3.32.3:
+    resolution: {integrity: sha512-56a5oxFdWlsGygOXHWrG+xjj5w9ZIt2uQbzqiIGdR/6i5iococ7WQ/bNPzWxCJdEUGUCmyMH0t9zMpRJTaKxmw==}
 
   slash@3.0.0:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
@@ -7182,7 +7182,7 @@ snapshots:
 
   signal-exit@4.1.0: {}
 
-  simple-git@3.32.1:
+  simple-git@3.32.3:
     dependencies:
       '@kwsites/file-exists': 1.1.1
       '@kwsites/promise-deferred': 1.1.1

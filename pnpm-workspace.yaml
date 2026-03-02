@@ -60,7 +60,7 @@ catalog:
   react-router-dom: 6.30.2
   read-pkg: 10.1.0
   shx: 0.4.0
-  simple-git: 3.32.1
+  simple-git: 3.32.3
   tstyche: 6.2.0
   turbo: 2.8.10
   typescript: 5.9.3
