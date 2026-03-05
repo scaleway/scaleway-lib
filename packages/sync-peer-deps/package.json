@@ -1,0 +1,41 @@
+{
+  "name": "@scaleway/sync-peer-deps",
+  "version": "0.0.1",
+  "description": "peer deps",
+  "type": "module",
+  "private": false,
+  "files": [
+    "dist"
+  ],
+  "bin": {
+    "sync-peer-deps": "./src/sync-peer-deps.ts"
+  },
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "repository": {
+    "type": "git",
+    "directory": "packages/sync-peer-deps"
+  },
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "prebuild": "shx rm -rf dist",
+    "type:generate": "tsgo --declaration -p tsconfig.build.json",
+    "build": "vite build --config vite.config.ts && pnpm run type:generate",
+    "build:profile": "npx vite-bundle-visualizer -c vite.config.ts",
+    "package:check": "pnpm publint",
+    "typecheck": "tsgo -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "chalk": "5.6.2",
+    "tinyglobby": "0.2.15"
+  }
+}
