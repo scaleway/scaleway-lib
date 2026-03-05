@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.9
+
+### Patch Changes
+
+- [#3071](https://github.com/scaleway/scaleway-lib/pull/3071) [`52668c7`](https://github.com/scaleway/scaleway-lib/commit/52668c786553bc0d059d2e89d5e70f97bcf23d2c) Thanks [@renovate](https://github.com/apps/renovate)! - new config
+
 ## 0.1.8
 
 ### Patch Changes
