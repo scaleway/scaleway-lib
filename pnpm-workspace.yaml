@@ -10,8 +10,8 @@ catalog:
   '@biomejs/biome': 2.4.5
   '@changesets/changelog-github': 0.5.2
   '@changesets/cli': 2.29.8
-  '@commitlint/cli': 20.4.2
-  '@commitlint/config-conventional': 20.4.2
+  '@commitlint/cli': 20.4.3
+  '@commitlint/config-conventional': 20.4.3
   '@formatjs/ecma402-abstract': 3.1.1
   '@formatjs/fast-memoize': 3.1.0
   '@formatjs/icu-messageformat-parser': 3.5.1
@@ -49,7 +49,7 @@ catalog:
   intl-messageformat: 11.1.2
   js-yaml: 4.1.1
   jsdom: 28.1.0
-  lint-staged: 16.3.1
+  lint-staged: 16.3.2
   mockdate: 3.0.5
   module-from-string: 3.3.1
   oxlint: 1.51.0
@@ -62,7 +62,7 @@ catalog:
   shx: 0.4.0
   simple-git: 3.32.3
   tstyche: 6.2.0
-  turbo: 2.8.12
+  turbo: 2.8.14
   typescript: 5.9.3
   use-deep-compare-effect: 1.8.1
   vite: 8.0.0-beta.16
