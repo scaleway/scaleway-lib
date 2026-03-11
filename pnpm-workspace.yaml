@@ -8,7 +8,7 @@ catalog:
   '@babel/preset-react': 7.28.5
   '@babel/preset-typescript': 7.28.5
   '@biomejs/biome': 2.4.6
-  '@changesets/changelog-github': 0.5.2
+  '@changesets/changelog-github': 0.6.0
   '@changesets/cli': 2.30.0
   '@commitlint/cli': 20.4.3
   '@commitlint/config-conventional': 20.4.3
@@ -17,7 +17,7 @@ catalog:
   '@formatjs/icu-messageformat-parser': 3.5.1
   '@growthbook/growthbook-react': 1.6.5
   '@manypkg/cli': 0.25.1
-  '@rudderstack/analytics-js': 3.29.0
+  '@rudderstack/analytics-js': 3.30.0
   '@scaleway/use-segment': 1.1.11
   '@segment/analytics-next': 1.81.2
   '@testing-library/jest-dom': 6.9.1
