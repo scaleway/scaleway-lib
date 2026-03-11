@@ -58,8 +58,8 @@ catalogs:
       specifier: 1.1.11
       version: 1.1.11
     '@segment/analytics-next':
-      specifier: 1.81.1
-      version: 1.81.1
+      specifier: 1.81.2
+      version: 1.81.2
     '@testing-library/jest-dom':
       specifier: 6.9.1
       version: 6.9.1
@@ -430,7 +430,7 @@ importers:
         version: 3.29.0
       '@segment/analytics-next':
         specifier: 'catalog:'
-        version: 1.81.1
+        version: 1.81.2
       cookie:
         specifier: 'catalog:'
         version: 1.1.1
@@ -2106,8 +2106,8 @@ packages:
   '@segment/analytics-next@1.81.0':
     resolution: {integrity: sha512-N267sNhJKGCviRAs/uQCC5TuP73WVDnd8xBDrsUHvM1J4qdDkSXT+KsoQbveQZV2fFUoLypuZ6nBP/MC5unTvg==}
 
-  '@segment/analytics-next@1.81.1':
-    resolution: {integrity: sha512-nVHNhriViptjkp4004qBbvmnW9/3brjhBv2P5Cvcg7iWW41fBzUY8FbLi+8wkmSbycT9fH1pTM3TUxB6+h0Fcg==}
+  '@segment/analytics-next@1.81.2':
+    resolution: {integrity: sha512-H35bfiE1xWePgAXE9BJrEGs7ysDiwiBhbpa76U1cOtzlMmPALtMoMIdRoHYHSz8hY/UvN3sPfk/UH9BToss3dg==}
 
   '@segment/analytics-page-tools@1.0.0':
     resolution: {integrity: sha512-o9OVB91qLB9qb0Bw1HfjmWm5AnrMNULRjx++4lBqLt8InKRX1urrRBparVlpj+yJA0sckN5ZcsfazRLuPgBYDQ==}
@@ -5737,7 +5737,7 @@ snapshots:
     transitivePeerDependencies:
       - encoding
 
-  '@segment/analytics-next@1.81.1':
+  '@segment/analytics-next@1.81.2':
     dependencies:
       '@lukeed/uuid': 2.0.1
       '@segment/analytics-core': 1.8.2
