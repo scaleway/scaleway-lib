@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.10
+
+### Patch Changes
+
+- [#3094](https://github.com/scaleway/scaleway-lib/pull/3094) [`9a160bf`](https://github.com/scaleway/scaleway-lib/commit/9a160bfaea0e6b1ada10e13a87a86bde3f297ce0) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `oxlint` to `1.53.0`.
+
 ## 0.1.9
 
 ### Patch Changes
