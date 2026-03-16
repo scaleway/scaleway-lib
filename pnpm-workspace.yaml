@@ -7,7 +7,7 @@ catalog:
   '@babel/preset-env': 7.29.0
   '@babel/preset-react': 7.28.5
   '@babel/preset-typescript': 7.28.5
-  '@biomejs/biome': 2.4.6
+  '@biomejs/biome': 2.4.7
   '@changesets/changelog-github': 0.6.0
   '@changesets/cli': 2.30.0
   '@commitlint/cli': 20.4.3
