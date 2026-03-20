@@ -12,9 +12,9 @@ catalog:
   '@changesets/cli': 2.30.0
   '@commitlint/cli': 20.4.3
   '@commitlint/config-conventional': 20.4.3
-  '@formatjs/ecma402-abstract': 3.1.1
-  '@formatjs/fast-memoize': 3.1.0
-  '@formatjs/icu-messageformat-parser': 3.5.1
+  '@formatjs/ecma402-abstract': 3.1.2
+  '@formatjs/fast-memoize': 3.1.1
+  '@formatjs/icu-messageformat-parser': 3.5.2
   '@growthbook/growthbook-react': 1.6.5
   '@manypkg/cli': 0.25.1
   '@rudderstack/analytics-js': 3.30.0
@@ -46,7 +46,7 @@ catalog:
   history: 5.3.0
   husky: 9.1.7
   international-types: 0.8.1
-  intl-messageformat: 11.1.2
+  intl-messageformat: 11.1.3
   js-yaml: 4.1.1
   jsdom: 28.1.0
   lint-staged: 16.3.2
