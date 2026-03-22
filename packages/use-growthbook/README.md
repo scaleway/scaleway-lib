@@ -23,7 +23,7 @@ ReactDOM.render(
   <React.StrictMode>
     <AbTestProvider
       config={{ apiHost: 'string', clientKey: 'string', enableDevMode: true }}
-      anonymousId="123456789"
+      anonymousId='123456789'
       trackingCallback={(experiment, result) => console.log(experiment, result)}
       errorCallback={console.error}
     >

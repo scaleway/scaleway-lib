@@ -47,9 +47,9 @@ const TestComponent = () => {
 
   return (
     <div>
-      <div data-testid="allowed-consents">{allowedConsents.join(',')}</div>
-      <div data-testid="denied-consents">{deniedConsents.join(',')}</div>
-      <div data-testid="categories-consent">
+      <div data-testid='allowed-consents'>{allowedConsents.join(',')}</div>
+      <div data-testid='denied-consents'>{deniedConsents.join(',')}</div>
+      <div data-testid='categories-consent'>
         {Object.entries(categoriesConsent).map(([cat, consent]) => (
           <div key={cat} data-testid={`consent-${cat}`}>
             {consent ? 'true' : 'false'}
@@ -179,12 +179,12 @@ describe('allowedConsents and deniedConsents', () => {
 
       return (
         <div>
-          <div data-testid="allowed-consents">{allowedConsents.join(',')}</div>
-          <div data-testid="denied-consents">{deniedConsents.join(',')}</div>
+          <div data-testid='allowed-consents'>{allowedConsents.join(',')}</div>
+          <div data-testid='denied-consents'>{deniedConsents.join(',')}</div>
           <button
-            type="button"
+            type='button'
             onClick={handlePartialSave}
-            data-testid="save-partial"
+            data-testid='save-partial'
           >
             Save Partial
           </button>

@@ -36,7 +36,7 @@ const wrapper = ({ children }: { children?: ReactNode }) => (
 )
 
 const wrapperWithCacheKey = ({ children }: { children?: ReactNode }) => (
-  <DataLoaderProvider cacheKeyPrefix="sample">{children}</DataLoaderProvider>
+  <DataLoaderProvider cacheKeyPrefix='sample'>{children}</DataLoaderProvider>
 )
 
 const wrapperWithOnError =

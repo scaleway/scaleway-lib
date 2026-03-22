@@ -2,11 +2,26 @@
   "name": "@scaleway/use-query-params",
   "version": "5.0.19",
   "description": "A small hook to handle params",
-  "engines": {
-    "node": ">=20.x"
+  "keywords": [
+    "hooks",
+    "params",
+    "query-params",
+    "react",
+    "react-dom",
+    "react-router-dom",
+    "reactjs"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scaleway/scaleway-lib",
+    "directory": "packages/use-query-params"
   },
-  "sideEffects": false,
+  "files": [
+    "dist/"
+  ],
   "type": "module",
+  "sideEffects": false,
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
@@ -16,9 +31,6 @@
       "default": "./dist/index.js"
     }
   },
-  "files": [
-    "dist/"
-  ],
   "publishConfig": {
     "access": "public"
   },
@@ -33,33 +45,21 @@
     "test:unit": "vitest --run --config vite.config.ts",
     "test:unit:coverage": "pnpm test:unit --coverage"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/scaleway/scaleway-lib",
-    "directory": "packages/use-query-params"
-  },
-  "license": "MIT",
-  "keywords": [
-    "react",
-    "react-dom",
-    "reactjs",
-    "hooks",
-    "params",
-    "react-router-dom",
-    "query-params"
-  ],
   "dependencies": {
     "history": "catalog:",
     "query-string": "catalog:"
+  },
+  "devDependencies": {
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "react-router-dom": "catalog:"
   },
   "peerDependencies": {
     "react": "18.x || 19.x",
     "react-dom": "18.x || 19.x",
     "react-router-dom": "^6.0.0"
   },
-  "devDependencies": {
-    "react": "catalog:",
-    "react-dom": "catalog:",
-    "react-router-dom": "catalog:"
+  "engines": {
+    "node": ">=20.x"
   }
 }

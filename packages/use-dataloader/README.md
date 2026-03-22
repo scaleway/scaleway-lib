@@ -55,7 +55,7 @@ const App = () => {
 
 ReactDOM.render(
   <React.StrictMode>
-    <DataLoaderProvider onError={globalOnError} cacheKeyPrefix="prefixed">
+    <DataLoaderProvider onError={globalOnError} cacheKeyPrefix='prefixed'>
       <App />
     </DataLoaderProvider>
   </React.StrictMode>,
@@ -118,10 +118,8 @@ const fakePromise = () =>
 
 function MyComponent() {
   // Use a key if you want to persist data in the DataLoaderProvider cache
-  const { data, isLoading, isFetching, isSuccess, isError, error } = useDataLoader(
-    'cache-key',
-    fakePromise,
-  )
+  const { data, isLoading, isFetching, isSuccess, isError, error } =
+    useDataLoader('cache-key', fakePromise)
 
   // This is the first time we load the data
   if (isLoading && !data) {
@@ -246,8 +244,8 @@ The hook returns an object with the following properties:
 |   Property   |                                                                 Description                                                                  |
 | :----------: | :------------------------------------------------------------------------------------------------------------------------------------------: |
 |    isIdle    |                                                    `true` if the request is not launched                                                     |
-|  isLoading   |                               `true` only during the initial fetch when there's no cached data                                              |
-|  isFetching  |                               `true` when there is an active request in progress (initial or subsequent)                                   |
+|  isLoading   |                                       `true` only during the initial fetch when there's no cached data                                       |
+|  isFetching  |                                  `true` when there is an active request in progress (initial or subsequent)                                  |
 |  isSuccess   |                                                  `true`if the request finished successfully                                                  |
 |   isError    |                                                     `true` if the request throw an error                                                     |
 |  isPolling   | `true` if the request if `enabled` is true, `pollingInterval` is defined and the status is `isLoading`,`isSuccess` or during the first fetch |

@@ -2,11 +2,27 @@
   "name": "@scaleway/cookie-consent",
   "version": "2.0.14",
   "description": "React provider to handle website end user consent cookie storage based on segment integrations",
-  "main": "./dist/index.cjs",
+  "keywords": [
+    "cookies",
+    "gdpr",
+    "hooks",
+    "react",
+    "reactjs",
+    "segment"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scaleway/scaleway-lib",
+    "directory": "packages/cookie-consent"
+  },
+  "files": [
+    "dist/"
+  ],
   "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "sideEffects": false,
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -17,9 +33,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "files": [
-    "dist/"
-  ],
   "scripts": {
     "prebuild": "shx rm -rf dist",
     "typecheck": "tsc --noEmit",
@@ -30,19 +43,6 @@
     "build:profile": "npx vite-bundle-visualizer -c vite.config.ts",
     "test:unit": "vitest --run --config vite.config.ts",
     "test:unit:coverage": "pnpm test:unit --coverage"
-  },
-  "keywords": [
-    "react",
-    "reactjs",
-    "hooks",
-    "segment",
-    "cookies",
-    "gdpr"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/scaleway/scaleway-lib",
-    "directory": "packages/cookie-consent"
   },
   "dependencies": {
     "cookie": "catalog:"

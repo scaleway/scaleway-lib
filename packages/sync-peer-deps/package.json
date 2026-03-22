@@ -1,22 +1,19 @@
 {
   "name": "@scaleway/sync-peer-deps",
   "version": "0.0.2",
-  "description": "peer deps",
-  "type": "module",
   "private": false,
-  "files": [
-    "dist"
-  ],
-  "bin": {
-    "sync-peer-deps": "./src/sync-peer-deps.ts"
-  },
-  "engines": {
-    "node": ">=22.18.0"
-  },
+  "description": "peer deps",
   "repository": {
     "type": "git",
     "directory": "packages/sync-peer-deps"
   },
+  "bin": {
+    "sync-peer-deps": "./src/sync-peer-deps.ts"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
@@ -37,5 +34,8 @@
   "dependencies": {
     "chalk": "5.6.2",
     "tinyglobby": "0.2.15"
+  },
+  "engines": {
+    "node": ">=22.18.0"
   }
 }

@@ -2,12 +2,22 @@
   "name": "@scaleway/use-growthbook",
   "version": "2.1.14",
   "description": "Utility package to expose AB test tool",
-  "engines": {
-    "node": ">=20.x"
+  "keywords": [
+    "ab",
+    "feature flags"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scaleway/scaleway-lib",
+    "directory": "packages/growthbook"
   },
-  "main": "./dist/index.cjs",
-  "sideEffects": false,
+  "files": [
+    "dist/*"
+  ],
   "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
@@ -20,9 +30,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "files": [
-    "dist/*"
-  ],
   "scripts": {
     "prebuild": "shx rm -rf dist",
     "typecheck": "tsc --noEmit",
@@ -34,16 +41,6 @@
     "test:unit": "vitest --run --config vite.config.ts",
     "test:unit:coverage": "pnpm test:unit --coverage"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/scaleway/scaleway-lib",
-    "directory": "packages/growthbook"
-  },
-  "license": "MIT",
-  "keywords": [
-    "ab",
-    "feature flags"
-  ],
   "dependencies": {
     "@growthbook/growthbook-react": "catalog:"
   },
@@ -52,5 +49,8 @@
   },
   "peerDependencies": {
     "react": "18.x || 19.x"
+  },
+  "engines": {
+    "node": ">=20.x"
   }
 }

@@ -5,30 +5,30 @@
   "keywords": [
     "biome",
     "biome-config",
-    "lint",
     "config",
+    "lint",
     "scaleway"
   ],
-  "author": "Scaleway",
+  "homepage": "https://github.com/scaleway/oxlint-config-scaleway#readme",
+  "bugs": {
+    "url": "https://github.com/scaleway/oxlint-config-scaleway/issues"
+  },
   "license": "MIT",
+  "author": "Scaleway",
   "repository": {
     "type": "git",
     "url": "https://github.com/scaleway/scaleway-lib",
     "directory": "packages/biome"
   },
-  "bugs": {
-    "url": "https://github.com/scaleway/oxlint-config-scaleway/issues"
-  },
-  "homepage": "https://github.com/scaleway/oxlint-config-scaleway#readme",
-  "main": "index.json",
-  "publishConfig": {
-    "access": "public"
-  },
   "files": [
     "configs/**"
   ],
+  "main": "index.json",
   "exports": {
     "./*": "./configs/*/biome.jsonc"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

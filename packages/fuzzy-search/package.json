@@ -2,12 +2,15 @@
   "name": "@scaleway/fuzzy-search",
   "version": "1.0.2",
   "description": "A small utility to use fuzzy search",
-  "type": "module",
-  "engines": {
-    "node": ">=20.x"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scaleway/scaleway-lib",
+    "directory": "packages/fuzzy-search"
   },
-  "main": "./dist/index.cjs",
+  "type": "module",
   "sideEffects": false,
+  "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
@@ -31,10 +34,7 @@
     "test:unit": "vitest --run --config vite.config.ts",
     "test:unit:coverage": "pnpm test:unit --coverage"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/scaleway/scaleway-lib",
-    "directory": "packages/fuzzy-search"
-  },
-  "license": "MIT"
+  "engines": {
+    "node": ">=20.x"
+  }
 }
