@@ -5,10 +5,7 @@
  */
 
 // Export types
-export type {
-  DependencyError,
-  WorkspaceData,
-} from './check-catalog-usage.ts'
+export type { DependencyError, WorkspaceData } from './check-catalog-usage.ts'
 // Export the catalog validation functions
 export {
   checkDependencies,

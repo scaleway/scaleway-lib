@@ -3,18 +3,18 @@
   "version": "1.1.4",
   "description": "Scaleway shared tsconfig",
   "keywords": [
-    "typescript",
+    "shared typescript config",
     "tsconfig",
-    "shared typescript config"
+    "typescript"
   ],
-  "main": "tsconfig.json",
-  "publishConfig": {
-    "access": "public"
-  },
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/scaleway/scaleway-lib",
     "directory": "packages/tsconfig"
   },
-  "license": "MIT"
+  "main": "tsconfig.json",
+  "publishConfig": {
+    "access": "public"
+  }
 }

@@ -44,8 +44,8 @@
       "!!**/.expo-shared",
       "!!**/android/build",
       "!!**/ios/build",
-      "!!**/DerivedData/**/*"
-    ]
+      "!!**/DerivedData/**/*",
+    ],
   },
   "formatter": {
     "attributePosition": "auto",
@@ -55,7 +55,7 @@
     "indentWidth": 2,
     "lineEnding": "lf",
     "lineWidth": 80,
-    "bracketSpacing": true
+    "bracketSpacing": true,
   },
   "assist": {
     "actions": {
@@ -67,10 +67,10 @@
         // Enforce ordering of a JS object properties.
         "useSortedKeys": "off",
 
-        "useSortedProperties": "off"
-      }
+        "useSortedProperties": "off",
+      },
     },
-    "includes": ["**", "!**/package.json"]
+    "includes": ["**", "!**/package.json"],
   },
   "linter": {
     "enabled": true,
@@ -117,7 +117,7 @@
         "noAutofocus": "off",
 
         /** ------------------------ CSS Rules ------------------------ **/
-        "useGenericFontNames": "error"
+        "useGenericFontNames": "error",
       },
       "complexity": {
         /** ------------------------ JavaScript Rules ------------------------ **/
@@ -130,8 +130,8 @@
         "noExcessiveCognitiveComplexity": {
           "level": "error",
           "options": {
-            "maxAllowedComplexity": 20
-          }
+            "maxAllowedComplexity": 20,
+          },
         },
         "noExcessiveNestedTestSuites": "error",
         "noExtraBooleanCast": "error",
@@ -172,7 +172,7 @@
         "noImplicitCoercions": "off",
 
         /** ------------------------ CSS Rules ------------------------ **/
-        "noImportantStyles": "off"
+        "noImportantStyles": "off",
       },
       "correctness": {
         /** ------------------------ JavaScript Rules ------------------------ **/
@@ -204,7 +204,7 @@
         "noUnusedFunctionParameters": "error",
         "noUnusedImports": {
           "fix": "safe",
-          "level": "error"
+          "level": "error",
         },
         "noUnusedLabels": "error",
         "noUnusedPrivateClassMembers": "error",
@@ -239,7 +239,7 @@
         "noUnknownPseudoElement": "error",
         "noUnknownTypeSelector": "error",
         "noUnknownUnit": "error",
-        "noUnmatchableAnbSelector": "error"
+        "noUnmatchableAnbSelector": "error",
       },
       "nursery": {
         "useSortedClasses": {
@@ -247,9 +247,9 @@
           "level": "error",
           "options": {
             "attributes": ["className"],
-            "functions": ["clsx", "cva", "tw", "twMerge", "cn", "twJoin", "tv"]
-          }
-        }
+            "functions": ["clsx", "cva", "tw", "twMerge", "cn", "twJoin", "tv"],
+          },
+        },
       },
       "performance": {
         /** ------------------------ JavaScript Rules ------------------------ **/
@@ -264,7 +264,7 @@
         "useTopLevelRegex": "error",
 
         "noAwaitInLoops": "off",
-        "noReExportAll": "off"
+        "noReExportAll": "off",
       },
       "security": {
         /** ------------------------ JavaScript Rules ------------------------ **/
@@ -274,7 +274,7 @@
         "noDangerouslySetInnerHtmlWithChildren": "error",
         "noGlobalEval": "error",
 
-        "noSecrets": "off"
+        "noSecrets": "off",
       },
       "style": {
         /** ------------------------ JavaScript Rules ------------------------ **/
@@ -310,8 +310,8 @@
         "useConsistentTypeDefinitions": {
           "level": "error",
           "options": {
-            "style": "type"
-          }
+            "style": "type",
+          },
         },
         "useConst": "error",
         "useDefaultParameterLast": "error",
@@ -324,8 +324,8 @@
           "level": "info",
           "options": {
             "requireAscii": true,
-            "filenameCases": ["camelCase", "PascalCase", "kebab-case"]
-          }
+            "filenameCases": ["camelCase", "PascalCase", "kebab-case"],
+          },
         },
         "useForOf": "error",
         "useFragmentSyntax": "error",
@@ -363,7 +363,7 @@
 
         /** ------------------------ CSS Rules ------------------------ **/
         "noDescendingSpecificity": "error",
-        "noValueAtRule": "error"
+        "noValueAtRule": "error",
       },
       "suspicious": {
         /** ------------------------ JavaScript Rules ------------------------ **/
@@ -459,9 +459,9 @@
         "noEmptyBlock": "error",
         "noImportantInKeyframe": "error",
         "noShorthandPropertyOverrides": "error",
-        "noUnknownAtRules": "error"
-      }
-    }
+        "noUnknownAtRules": "error",
+      },
+    },
   },
   "javascript": {
     "formatter": {
@@ -473,34 +473,34 @@
       "quoteProperties": "asNeeded",
       "quoteStyle": "single",
       "semicolons": "asNeeded",
-      "trailingCommas": "all"
+      "trailingCommas": "all",
     },
     "linter": {
-      "enabled": true
-    }
+      "enabled": true,
+    },
   },
   "css": {
     "formatter": {
       "enabled": true,
       "lineEnding": "lf",
       "lineWidth": 80,
-      "quoteStyle": "double"
+      "quoteStyle": "double",
     },
     "linter": {
-      "enabled": true
+      "enabled": true,
     },
     "parser": {
       "allowWrongLineComments": false,
       "cssModules": false,
-      "tailwindDirectives": true
-    }
+      "tailwindDirectives": true,
+    },
   },
   "json": {
     "assist": {
-      "enabled": true
+      "enabled": true,
     },
     "linter": {
-      "enabled": true
+      "enabled": true,
     },
     "formatter": {
       "enabled": true,
@@ -508,23 +508,23 @@
       "indentWidth": 2,
       "lineEnding": "lf",
       "lineWidth": 80,
-      "trailingCommas": "none"
+      "trailingCommas": "none",
     },
     "parser": {
       "allowComments": false,
-      "allowTrailingCommas": false
-    }
+      "allowTrailingCommas": false,
+    },
   },
   "html": {
     "formatter": {
-      "enabled": true
-    }
+      "enabled": true,
+    },
   },
   "vcs": {
     "enabled": true,
     "clientKind": "git",
     "useIgnoreFile": true,
-    "defaultBranch": "main"
+    "defaultBranch": "main",
   },
   "overrides": [
     {
@@ -550,35 +550,35 @@
         "nuxt.config.*",
         "astro.config.*",
         "svelte.config.*",
-        "tsup.config.*"
-      ]
+        "tsup.config.*",
+      ],
     },
     {
       "includes": ["**/*.{test,spec}.{ts,tsx,js,jsx}", "**/__tests__/**/*"],
       "linter": {
         "rules": {
           "complexity": {
-            "noExcessiveCognitiveComplexity": "off"
+            "noExcessiveCognitiveComplexity": "off",
           },
           "suspicious": {
             "noConsole": "off",
-            "noExplicitAny": "off"
-          }
-        }
-      }
+            "noExplicitAny": "off",
+          },
+        },
+      },
     },
     {
       "includes": ["**/scripts", "**/bin", "*.mjs", "*.cjs"],
       "linter": {
         "rules": {
           "suspicious": {
-            "noConsole": "off"
+            "noConsole": "off",
           },
           "style": {
-            "noProcessEnv": "off"
-          }
-        }
-      }
+            "noProcessEnv": "off",
+          },
+        },
+      },
     },
     {
       "includes": ["**/*.{stories,story}.{ts,tsx,js,jsx}"],
@@ -586,10 +586,10 @@
         "rules": {
           "correctness": {
             "noUnusedVariables": "off",
-            "noUnusedImports": "off"
-          }
-        }
-      }
+            "noUnusedImports": "off",
+          },
+        },
+      },
     },
     {
       "includes": ["**/*.d.ts", "**/{env,global,types}.d.ts"],
@@ -597,10 +597,10 @@
         "rules": {
           "correctness": {
             "noUnusedVariables": "off",
-            "noUndeclaredVariables": "off"
-          }
-        }
-      }
+            "noUndeclaredVariables": "off",
+          },
+        },
+      },
     },
     {
       "includes": [
@@ -613,14 +613,14 @@
         "**/*.min.js",
         "**/*.min.css",
         ".env",
-        ".env.*"
+        ".env.*",
       ],
       "formatter": {
-        "enabled": false
+        "enabled": false,
       },
       "linter": {
-        "enabled": false
-      }
+        "enabled": false,
+      },
     },
     {
       "includes": [
@@ -629,14 +629,14 @@
         "**/tsconfig.*.json",
         ".vscode/*.json",
         ".github/**/*.json",
-        ".zed/*.json"
+        ".zed/*.json",
       ],
       "json": {
         "parser": {
           "allowComments": true,
-          "allowTrailingCommas": true
-        }
-      }
-    }
-  ]
+          "allowTrailingCommas": true,
+        },
+      },
+    },
+  ],
 }

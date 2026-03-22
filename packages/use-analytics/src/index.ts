@@ -17,10 +17,7 @@ export type {
   OnEventError,
 } from './analytics/useAnalytics'
 
-export {
-  CATEGORIES,
-  THIRD_PARTY_PROVIDERS,
-} from './constants'
+export { CATEGORIES, THIRD_PARTY_PROVIDERS } from './constants'
 
 export type {
   AnalyticsIntegration,

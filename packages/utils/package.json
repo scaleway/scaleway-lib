@@ -1,27 +1,31 @@
 {
   "name": "@scaleway/utils",
   "version": "0.0.5",
-  "description": "Utility scripts and tools for scaleway-lib",
-  "type": "module",
   "private": true,
+  "description": "Utility scripts and tools for scaleway-lib",
+  "keywords": [
+    "catalog",
+    "pnpm",
+    "utilities",
+    "validation"
+  ],
+  "license": "MIT",
+  "author": "Scaleway",
   "bin": {
     "check-catalog-usage": "./src/check-catalog-usage.ts",
-    "sync-peer-deps": "./src/package/sync-peer-deps.ts",
-    "compare-dist": "./src/compare/compare-dist-migration.ts"
+    "compare-dist": "./src/compare/compare-dist-migration.ts",
+    "sync-peer-deps": "./src/package/sync-peer-deps.ts"
   },
+  "files": [
+    "src/**/*",
+    "README.md"
+  ],
+  "type": "module",
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prepublishOnly": "pnpm run build"
   },
-  "keywords": [
-    "utilities",
-    "pnpm",
-    "catalog",
-    "validation"
-  ],
-  "author": "Scaleway",
-  "license": "MIT",
   "dependencies": {
     "chalk": "catalog:",
     "globby": "catalog:",
@@ -33,9 +37,5 @@
   },
   "engines": {
     "node": ">=24.x"
-  },
-  "files": [
-    "src/**/*",
-    "README.md"
-  ]
+  }
 }

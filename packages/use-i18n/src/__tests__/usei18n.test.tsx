@@ -275,20 +275,20 @@ describe('i18n hook', () => {
     await waitFor(() => {
       expect(
         result.current.t('with.identifier', {
-          identifier: <b key="1">My resource</b>,
+          identifier: <b key='1'>My resource</b>,
         }),
       ).toEqual([
         'Are you sure you want to delete ',
-        <b key="1">My resource</b>,
+        <b key='1'>My resource</b>,
         '?',
       ])
       expect(
         result.current.t('with.identifier', {
-          identifier: <CustomComponent key="1">My resource</CustomComponent>,
+          identifier: <CustomComponent key='1'>My resource</CustomComponent>,
         }),
       ).toEqual([
         'Are you sure you want to delete ',
-        <CustomComponent key="1">My resource</CustomComponent>,
+        <CustomComponent key='1'>My resource</CustomComponent>,
         '?',
       ])
     })

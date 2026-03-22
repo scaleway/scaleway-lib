@@ -2,11 +2,24 @@
   "name": "@scaleway/use-media",
   "version": "3.0.7",
   "description": "A small hook to track CSS media query state",
-  "engines": {
-    "node": ">=20.x"
+  "keywords": [
+    "hooks",
+    "media",
+    "media queries",
+    "react",
+    "reactjs"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scaleway/scaleway-lib",
+    "directory": "packages/use-media"
   },
-  "sideEffects": false,
+  "files": [
+    "dist/"
+  ],
   "type": "module",
+  "sideEffects": false,
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
@@ -16,9 +29,6 @@
       "default": "./dist/index.js"
     }
   },
-  "files": [
-    "dist/"
-  ],
   "publishConfig": {
     "access": "public"
   },
@@ -33,23 +43,13 @@
     "test:unit": "vitest --run --config vite.config.ts",
     "test:unit:coverage": "pnpm test:unit --coverage"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/scaleway/scaleway-lib",
-    "directory": "packages/use-media"
+  "devDependencies": {
+    "react": "catalog:"
   },
-  "license": "MIT",
-  "keywords": [
-    "react",
-    "reactjs",
-    "hooks",
-    "media",
-    "media queries"
-  ],
   "peerDependencies": {
     "react": "18.x || 19.x"
   },
-  "devDependencies": {
-    "react": "catalog:"
+  "engines": {
+    "node": ">=20.x"
   }
 }

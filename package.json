@@ -5,10 +5,26 @@
     "packages/*"
   ],
   "type": "module",
-  "packageManager": "pnpm@10.32.1",
-  "engines": {
-    "node": ">=20.x",
-    "pnpm": ">=9.x"
+  "scripts": {
+    "lint:catalog": "pnpm check-catalog-usage",
+    "oxc": "pnpm oxlint -c .oxlintrc.json --type-aware --type-check",
+    "oxc:quiet": "pnpm oxc --quiet",
+    "oxc:fix": "pnpm oxc --fix",
+    "build": "pnpm turbo build",
+    "typecheck": "pnpm turbo typecheck",
+    "typecheck:generate": "pnpm turbo typecheck:generate",
+    "typecheck:go": "pnpm turbo typecheck:go",
+    "typecheck:generate:go": "pnpm turbo typecheck:generate:go",
+    "commit": "npx git-cz -a",
+    "format": "oxfmt --write .",
+    "format:check": "oxfmt --check .",
+    "format:ci": "oxfmt --check .",
+    "test:unit": "pnpm turbo test:unit",
+    "test:coverage": "pnpm test:unit -- --coverage",
+    "typecheck:global": "pnpm tsc --noEmit",
+    "test:types": "tstyche",
+    "release": "pnpm build && pnpm changeset publish",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@babel/core": "catalog:",
@@ -16,7 +32,6 @@
     "@babel/preset-env": "catalog:",
     "@babel/preset-react": "catalog:",
     "@babel/preset-typescript": "catalog:",
-    "@biomejs/biome": "catalog:",
     "@changesets/changelog-github": "catalog:",
     "@changesets/cli": "catalog:",
     "@commitlint/cli": "catalog:",
@@ -51,6 +66,7 @@
     "jsdom": "catalog:",
     "lint-staged": "catalog:",
     "mockdate": "catalog:",
+    "oxfmt": "catalog:",
     "oxlint": "catalog:",
     "oxlint-tsgolint": "catalog:",
     "read-pkg": "catalog:",
@@ -63,28 +79,42 @@
     "vitest-localstorage-mock": "catalog:",
     "wait-for-expect": "catalog:"
   },
-  "scripts": {
-    "lint:catalog": "pnpm check-catalog-usage",
-    "lint:biome": "pnpm -w biome lint . --diagnostic-level=error --log-kind=compact",
-    "oxc": "pnpm oxlint -c .oxlintrc.json --type-aware --type-check",
-    "oxc:quiet": "pnpm oxc --quiet",
-    "oxc:fix": "pnpm oxc --fix",
-    "build": "pnpm turbo build",
-    "typecheck": "pnpm turbo typecheck",
-    "typecheck:generate": "pnpm turbo typecheck:generate",
-    "typecheck:go": "pnpm turbo typecheck:go",
-    "typecheck:generate:go": "pnpm turbo typecheck:generate:go",
-    "commit": "npx git-cz -a",
-    "format": "biome check  --linter-enabled=false --write .",
-    "format:check": "biome format --verbose .",
-    "format:ci": "biome ci --linter-enabled=false .",
-    "test:unit": "pnpm turbo test:unit",
-    "test:coverage": "pnpm test:unit -- --coverage",
-    "typecheck:global": "pnpm tsc --noEmit",
-    "test:types": "tstyche",
-    "release": "pnpm build && pnpm changeset publish",
-    "prepare": "husky install"
+  "lint-staged": {
+    "*.ts?(x)": [
+      "pnpm run format",
+      "pnpm run oxc:fix --quiet"
+    ],
+    "*.y?(a)ml": [
+      "oxfmt --write ."
+    ],
+    "*.json": [
+      "oxfmt --write ."
+    ],
+    "*.mdx": [
+      "oxfmt --write ."
+    ],
+    "(*package).json": [
+      "pnpm exec manypkg check"
+    ],
+    "(*pnpm)-lock": [
+      "pnpm exec manypkg check"
+    ]
   },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "engines": {
+    "node": ">=22.x",
+    "pnpm": ">=10.x"
+  },
+  "packageManager": "pnpm@10.32.1",
   "pnpm": {
     "overrides": {
       "vite": "$vite",
@@ -98,49 +128,13 @@
       }
     },
     "onlyBuiltDependencies": [
-      "@biomejs/biome",
       "esbuild",
       "unrs-resolver"
-    ]
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
-  "lint-staged": {
-    "*.ts?(x)": [
-      "pnpm run format",
-      "pnpm run lint:biome",
-      "pnpm run oxc:fix --quiet"
-    ],
-    "*.y?(a)ml": [
-      "pnpm dlx prettier --write '**/*.{yml,yaml}' --single-quote"
-    ],
-    "*.json": [
-      "biome format --write ."
-    ],
-    "*.y(a)ml,": [
-      "pnpm dlx prettier --write '**/*.{yml,yaml}' --single-quote"
-    ],
-    "*.mdx": [
-      "biome format --write ."
-    ],
-    "(*package).json": [
-      "pnpm exec manypkg check"
-    ],
-    "(*pnpm)-lock": [
-      "pnpm exec manypkg check"
     ]
   },
   "manypkg": {
     "ignoredRules": [
       "INTERNAL_MISMATCH"
     ]
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
   }
 }

@@ -43,6 +43,7 @@ SORT_CHANGESETS=TRUE changesets-renovate
 Example:
 
 Unsorted:
+
 ```
 ---
 'package-z': patch
@@ -55,6 +56,7 @@ Updated dependency `@company/zzz-backend` to `^0.228.0`.
 ```
 
 Sorted:
+
 ```
 ---
 'package-a': patch
