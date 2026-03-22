@@ -13,8 +13,8 @@ catalogs:
       specifier: 7.29.0
       version: 7.29.0
     '@babel/preset-env':
-      specifier: 7.29.0
-      version: 7.29.0
+      specifier: 7.29.2
+      version: 7.29.2
     '@babel/preset-react':
       specifier: 7.28.5
       version: 7.28.5
@@ -221,7 +221,7 @@ importers:
         version: 7.29.0(@babel/core@7.29.0)
       '@babel/preset-env':
         specifier: 'catalog:'
-        version: 7.29.0(@babel/core@7.29.0)
+        version: 7.29.2(@babel/core@7.29.0)
       '@babel/preset-react':
         specifier: 'catalog:'
         version: 7.28.5(@babel/core@7.29.0)
@@ -1108,8 +1108,8 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0
 
-  '@babel/preset-env@7.29.0':
-    resolution: {integrity: sha512-fNEdfc0yi16lt6IZo2Qxk3knHVdfMYX33czNb4v8yWhemoBhibCpQK/uYHtSKIiO+p/zd3+8fYVXhQdOVV608w==}
+  '@babel/preset-env@7.29.2':
+    resolution: {integrity: sha512-DYD23veRYGvBFhcTY1iUvJnDNpuqNd/BzBwCvzOTKUnJjKg5kpUBh3/u9585Agdkgj+QuygG7jLfOPWMa2KVNw==}
     engines: {node: '>=6.9.0'}
     peerDependencies:
       '@babel/core': ^7.0.0-0
@@ -4764,7 +4764,7 @@ snapshots:
       '@babel/helper-create-regexp-features-plugin': 7.28.5(@babel/core@7.29.0)
       '@babel/helper-plugin-utils': 7.28.6
 
-  '@babel/preset-env@7.29.0(@babel/core@7.29.0)':
+  '@babel/preset-env@7.29.2(@babel/core@7.29.0)':
     dependencies:
       '@babel/compat-data': 7.29.0
       '@babel/core': 7.29.0
