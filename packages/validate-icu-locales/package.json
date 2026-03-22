@@ -2,11 +2,25 @@
   "name": "@scaleway/validate-icu-locales",
   "version": "3.1.19",
   "description": "A small cli to handle icu errors on locales files",
-  "engines": {
-    "node": ">=20.x"
+  "keywords": [
+    "cli",
+    "i18n",
+    "icu"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scaleway/scaleway-lib",
+    "directory": "packages/validate-icu-locales"
   },
-  "main": "./dist/index.cjs",
+  "bin": {
+    "validate-icu": "dist/index.js"
+  },
+  "files": [
+    "dist/"
+  ],
   "type": "module",
+  "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
@@ -15,12 +29,6 @@
       "require": "./dist/index.cjs",
       "default": "./dist/index.js"
     }
-  },
-  "files": [
-    "dist/"
-  ],
-  "bin": {
-    "validate-icu": "dist/index.js"
   },
   "publishConfig": {
     "access": "public"
@@ -34,17 +42,6 @@
     "test": "vitest run",
     "test:watch": "vitest"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/scaleway/scaleway-lib",
-    "directory": "packages/validate-icu-locales"
-  },
-  "license": "MIT",
-  "keywords": [
-    "icu",
-    "i18n",
-    "cli"
-  ],
   "dependencies": {
     "@formatjs/icu-messageformat-parser": "catalog:",
     "globby": "catalog:",
@@ -52,5 +49,8 @@
   },
   "devDependencies": {
     "execa": "catalog:"
+  },
+  "engines": {
+    "node": ">=20.x"
   }
 }

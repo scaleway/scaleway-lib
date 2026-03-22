@@ -46,7 +46,7 @@ import defaultTranslations from './locales/en/common'
 const App = () => (
   <I18n
     loadDateLocale={loadDateLocale}
-    defaultLocale="en"
+    defaultLocale='en'
     supportedLocales={['en']}
     defaultTranslations={defaultTranslations}
   >
@@ -77,7 +77,7 @@ const App = () => {
 
   return (
     <I18n
-      defaultLocale="en"
+      defaultLocale='en'
       supportedLocales={defaultLocales}
       defaultTranslations={defaultTranslations}
     >

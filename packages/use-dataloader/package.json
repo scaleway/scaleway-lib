@@ -2,12 +2,24 @@
   "name": "@scaleway/use-dataloader",
   "version": "6.1.0",
   "description": "A small hook to handle api requests",
-  "type": "module",
-  "engines": {
-    "node": ">=20.x"
+  "keywords": [
+    "dataloader",
+    "hooks",
+    "react",
+    "reactjs"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scaleway/scaleway-lib",
+    "directory": "packages/use-dataloader"
   },
-  "main": "./dist/index.cjs",
+  "files": [
+    "dist/"
+  ],
+  "type": "module",
   "sideEffects": false,
+  "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
@@ -20,9 +32,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "files": [
-    "dist/"
-  ],
   "scripts": {
     "prebuild": "shx rm -rf dist",
     "typecheck": "tsc --noEmit",
@@ -34,22 +43,13 @@
     "test:unit": "vitest --run --config vite.config.ts",
     "test:unit:coverage": "pnpm test:unit --coverage"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/scaleway/scaleway-lib",
-    "directory": "packages/use-dataloader"
-  },
-  "license": "MIT",
-  "keywords": [
-    "react",
-    "reactjs",
-    "hooks",
-    "dataloader"
-  ],
   "devDependencies": {
     "react": "catalog:"
   },
   "peerDependencies": {
     "react": "18.x || 19.x"
+  },
+  "engines": {
+    "node": ">=20.x"
   }
 }

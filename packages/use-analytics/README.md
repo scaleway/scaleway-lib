@@ -59,7 +59,7 @@ import events from './events'
 
 const App = () => (
   <AnalyticsProvider
-    settings={{ cdn: 'https://cdn.url', writeKey: 'WRITE_KEY' }} 
+    settings={{ cdn: 'https://cdn.url', writeKey: 'WRITE_KEY' }}
     events={events}
     onError={e => captureMessage(`Error on Analytics: ${e.message}`)}
   >

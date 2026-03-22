@@ -77,7 +77,6 @@ jobs:
           pnpm install --frozen-lockfile
           pnpm run build
           pnpm run format:ci
-          pnpm run lint:biome
           pnpm run oxc:quiet
 
   test:

@@ -3,43 +3,45 @@
   "version": "0.1.10",
   "description": "Scaleway's shareable configuration for oxlint",
   "keywords": [
+    "config",
+    "lint",
     "oxlint",
     "oxlint-config",
-    "lint",
-    "config",
     "scaleway"
   ],
-  "author": "Scaleway",
+  "homepage": "https://github.com/scaleway/oxlint-config-scaleway#readme",
+  "bugs": {
+    "url": "https://github.com/scaleway/oxlint-config-scaleway/issues"
+  },
   "license": "MIT",
+  "author": "Scaleway",
   "repository": {
     "type": "git",
     "url": "https://github.com/scaleway/scaleway-lib",
     "directory": "packages/oxlint-config"
   },
-  "bugs": {
-    "url": "https://github.com/scaleway/oxlint-config-scaleway/issues"
-  },
-  "homepage": "https://github.com/scaleway/oxlint-config-scaleway#readme",
-  "main": "index.json",
-  "publishConfig": {
-    "access": "public"
-  },
   "files": [
     "configs/**"
   ],
+  "main": "index.json",
   "exports": {
     ".": "./configs/index.json",
     "./react": "./configs/react.json",
     "./typescript": "./configs/typescript.json",
     "./vitest": "./configs/vitest.json"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
+    "oxfmt": "catalog:",
     "oxlint": "catalog:"
   },
   "peerDependencies": {
+    "oxfmt": "catalog:",
     "oxlint": "catalog:"
   }
 }

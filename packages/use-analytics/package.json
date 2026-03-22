@@ -2,11 +2,24 @@
   "name": "@scaleway/use-analytics",
   "version": "1.0.4",
   "description": "A small hook to handle events analytics",
-  "engines": {
-    "node": ">=20.x"
+  "keywords": [
+    "hooks",
+    "react",
+    "reactjs",
+    "rudderstack",
+    "segment"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scaleway/scaleway-lib",
+    "directory": "packages/use-analytics"
   },
-  "sideEffects": false,
+  "files": [
+    "dist/*"
+  ],
   "type": "module",
+  "sideEffects": false,
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -30,9 +43,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "files": [
-    "dist/*"
-  ],
   "scripts": {
     "prebuild": "shx rm -rf dist",
     "typecheck": "tsc --noEmit",
@@ -45,19 +55,6 @@
     "test:unit": "vitest --run --config vite.config.ts",
     "test:unit:coverage": "pnpm test:unit --coverage"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/scaleway/scaleway-lib",
-    "directory": "packages/use-analytics"
-  },
-  "license": "MIT",
-  "keywords": [
-    "react",
-    "reactjs",
-    "hooks",
-    "segment",
-    "rudderstack"
-  ],
   "dependencies": {
     "@rudderstack/analytics-js": "catalog:",
     "@segment/analytics-next": "catalog:",
@@ -69,5 +66,8 @@
   },
   "peerDependencies": {
     "react": "18.x || 19.x"
+  },
+  "engines": {
+    "node": ">=20.x"
   }
 }
