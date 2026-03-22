@@ -1,5 +1,11 @@
 # @scaleway/utils
 
+## 0.0.6
+
+### Patch Changes
+
+- [#3092](https://github.com/scaleway/scaleway-lib/pull/3092) [`f33a874`](https://github.com/scaleway/scaleway-lib/commit/f33a874da4f021416f792e9d7f54244d03bef69e) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@types/node` to `25.3.5`.
+
 ## 0.0.5
 
 ### Patch Changes
