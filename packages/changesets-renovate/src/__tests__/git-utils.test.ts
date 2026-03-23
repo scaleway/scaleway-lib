@@ -93,15 +93,12 @@ catalog:
         diffSummary: vi.fn(),
         push: vi.fn(),
         revparse: vi.fn(),
-        show: vi
-          .fn()
-          .mockResolvedValueOnce(`
+        show: vi.fn().mockResolvedValueOnce(`
 catalog:
   package-a: 1.0.0
   package-b: 2.0.0
   package-c: 3.0.0
-`)
-          .mockResolvedValueOnce(`
+`).mockResolvedValueOnce(`
 catalog:
   package-a: 1.1.0
   package-b: 2.0.0

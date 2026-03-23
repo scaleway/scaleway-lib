@@ -22,7 +22,7 @@ const MyApp = ({ children }: PropsWithChildren) => {
         segment, // Segment configuration used to get dynamically the integration used
       }}
       // not required
-      cookiePrefix="_scw_rgpd" // default value
+      cookiePrefix='_scw_rgpd' // default value
       consentMaxAge={13 * 30 * 24 * 60 * 60} // default value (appx 13 months)
       consentAdvertisingMaxAge={6 * 30 * 24 * 60 * 60} // default value (appx 6 months)
       cookiesOptions={{ sameSite: 'strict', secure: true, path: '/' }} // default value

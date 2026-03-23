@@ -125,7 +125,6 @@
 - [#1442](https://github.com/scaleway/scaleway-lib/pull/1442) [`c39764e`](https://github.com/scaleway/scaleway-lib/commit/c39764e869fcce3471d6c2c4e35272c86ad24f90) Thanks [@vincentaudebert](https://github.com/vincentaudebert)! - Rename few regex and camelcase all of them for more consistency. Also creates alphanumDashUnderscoreDots.
 
   Here is the full list of changes:
-
   - alphaLower -> alphaLowercase
   - alphanumdash -> alphanumDash
   - alphanumdashdots -> alphanumDashDots

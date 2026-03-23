@@ -2,24 +2,34 @@
   "name": "@scaleway/changesets-renovate",
   "version": "2.2.5",
   "description": "Automatically create changesets for Renovate and pnpm catalogs",
+  "keywords": [
+    "catalogs",
+    "changesets",
+    "pnpm",
+    "renovate",
+    "sync"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scaleway/scaleway-lib",
+    "directory": "packages/changesets-renovate"
+  },
+  "bin": {
+    "changesets-renovate": "dist/cli.js"
+  },
+  "files": [
+    "dist"
+  ],
   "type": "module",
+  "sideEffects": false,
   "module": "./dist/cli.js",
   "types": "./dist/cli.d.ts",
-  "sideEffects": false,
   "exports": {
     ".": {
       "types": "./dist/cli.d.ts",
       "default": "./dist/cli.js"
     }
-  },
-  "files": [
-    "dist"
-  ],
-  "engines": {
-    "node": ">=20.x"
-  },
-  "bin": {
-    "changesets-renovate": "dist/cli.js"
   },
   "publishConfig": {
     "access": "public"
@@ -35,23 +45,13 @@
     "test:unit": "vitest --run --config vite.config.ts",
     "test:unit:coverage": "pnpm test:unit --coverage"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/scaleway/scaleway-lib",
-    "directory": "packages/changesets-renovate"
-  },
-  "license": "MIT",
-  "keywords": [
-    "changesets",
-    "renovate",
-    "pnpm",
-    "catalogs",
-    "sync"
-  ],
   "dependencies": {
     "@types/js-yaml": "catalog:",
     "fast-glob": "catalog:",
     "js-yaml": "catalog:",
     "simple-git": "catalog:"
+  },
+  "engines": {
+    "node": ">=20.x"
   }
 }

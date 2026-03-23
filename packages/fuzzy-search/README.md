@@ -13,7 +13,7 @@ $ pnpm add @scaleway/fuzzy-search
 ## Usage
 
 ```js
-import { isFuzzyMatch } from "@scaleway/fuzzy-search";
+import { isFuzzyMatch } from '@scaleway/fuzzy-search'
 
-const match = isFuzzyMatch("test", "tests");
+const match = isFuzzyMatch('test', 'tests')
 ```

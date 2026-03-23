@@ -2,13 +2,19 @@
   "name": "@scaleway/use-random-name",
   "version": "1.0.10",
   "description": "A small react utility to generate a random name",
-  "engines": {
-    "node": ">=20.x"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scaleway/scaleway-lib",
+    "directory": "packages/use-random-name"
   },
-  "sideEffects": false,
+  "files": [
+    "dist/"
+  ],
   "type": "module",
-  "module": "./dist/index.js",
+  "sideEffects": false,
   "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
@@ -17,9 +23,6 @@
       "default": "./dist/index.js"
     }
   },
-  "files": [
-    "dist/"
-  ],
   "publishConfig": {
     "access": "public"
   },
@@ -34,19 +37,16 @@
     "test:unit": "vitest --run --config vite.config.ts",
     "test:unit:coverage": "pnpm test:unit --coverage"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/scaleway/scaleway-lib",
-    "directory": "packages/use-random-name"
-  },
-  "license": "MIT",
-  "peerDependencies": {
-    "react": ">=16.8"
+  "dependencies": {
+    "@scaleway/random-name": "workspace:*"
   },
   "devDependencies": {
     "react": "catalog:"
   },
-  "dependencies": {
-    "@scaleway/random-name": "workspace:*"
+  "peerDependencies": {
+    "react": ">=16.8"
+  },
+  "engines": {
+    "node": ">=20.x"
   }
 }
