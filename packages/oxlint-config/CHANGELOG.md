@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.11
+
+### Patch Changes
+
+- [#3124](https://github.com/scaleway/scaleway-lib/pull/3124) [`d1ec785`](https://github.com/scaleway/scaleway-lib/commit/d1ec7856adbbc7516d6e6d519508f8569202a3f1) Thanks [@philibea](https://github.com/philibea)! - fix peer deps
+
+- [#3109](https://github.com/scaleway/scaleway-lib/pull/3109) [`450896e`](https://github.com/scaleway/scaleway-lib/commit/450896eae627e01df6b0289217f6609282eff519) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `oxlint` to `1.55.0`.
+
+- [#3122](https://github.com/scaleway/scaleway-lib/pull/3122) [`9540562`](https://github.com/scaleway/scaleway-lib/commit/9540562b35b373d0f9461a857582aae4a8cd4850) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `oxlint` to `1.56.0`.
+
 ## 0.1.10
 
 ### Patch Changes
