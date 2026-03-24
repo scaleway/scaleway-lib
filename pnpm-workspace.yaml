@@ -10,8 +10,8 @@ catalog:
   '@biomejs/biome': 2.4.7
   '@changesets/changelog-github': 0.6.0
   '@changesets/cli': 2.30.0
-  '@commitlint/cli': 20.4.4
-  '@commitlint/config-conventional': 20.4.4
+  '@commitlint/cli': 20.5.0
+  '@commitlint/config-conventional': 20.5.0
   '@formatjs/ecma402-abstract': 3.1.1
   '@formatjs/fast-memoize': 3.1.0
   '@formatjs/icu-messageformat-parser': 3.5.1
