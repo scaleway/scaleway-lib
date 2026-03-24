@@ -40,7 +40,7 @@ exports[`formatDate > should work with format "hour", for date = "2020-02-13T15:
 
 exports[`formatDate > should work with format "hour", for date = "2020-02-13T15:28:00.000Z" and locale "en" 1`] = `"February 13, 2020 at 3:28 PM"`;
 
-exports[`formatDate > should work with format "hour", for date = "2020-02-13T15:28:00.000Z" and locale "es" 1`] = `"13 de febrero de 2020 a las 15:28"`;
+exports[`formatDate > should work with format "hour", for date = "2020-02-13T15:28:00.000Z" and locale "es" 1`] = `"13 de febrero de 2020, 15:28"`;
 
 exports[`formatDate > should work with format "hour", for date = "2020-02-13T15:28:00.000Z" and locale "fr" 1`] = `"13 février 2020 à 15:28"`;
 
@@ -50,7 +50,7 @@ exports[`formatDate > should work with format "hour", for date = "1581607680000"
 
 exports[`formatDate > should work with format "hour", for date = "1581607680000" and locale "en" 1`] = `"February 13, 2020 at 3:28 PM"`;
 
-exports[`formatDate > should work with format "hour", for date = "1581607680000" and locale "es" 1`] = `"13 de febrero de 2020 a las 15:28"`;
+exports[`formatDate > should work with format "hour", for date = "1581607680000" and locale "es" 1`] = `"13 de febrero de 2020, 15:28"`;
 
 exports[`formatDate > should work with format "hour", for date = "1581607680000" and locale "fr" 1`] = `"13 février 2020 à 15:28"`;
 
@@ -60,7 +60,7 @@ exports[`formatDate > should work with format "hour", for date = "new Date(2020,
 
 exports[`formatDate > should work with format "hour", for date = "new Date(2020, 1, 13, 16, 28)" and locale "en" 1`] = `"February 13, 2020 at 4:28 PM"`;
 
-exports[`formatDate > should work with format "hour", for date = "new Date(2020, 1, 13, 16, 28)" and locale "es" 1`] = `"13 de febrero de 2020 a las 16:28"`;
+exports[`formatDate > should work with format "hour", for date = "new Date(2020, 1, 13, 16, 28)" and locale "es" 1`] = `"13 de febrero de 2020, 16:28"`;
 
 exports[`formatDate > should work with format "hour", for date = "new Date(2020, 1, 13, 16, 28)" and locale "fr" 1`] = `"13 février 2020 à 16:28"`;
 
@@ -190,7 +190,7 @@ exports[`formatDate > should work with format "second", for date = "2020-02-13T1
 
 exports[`formatDate > should work with format "second", for date = "2020-02-13T15:28:00.000Z" and locale "en" 1`] = `"February 13, 2020 at 3:28:00 PM"`;
 
-exports[`formatDate > should work with format "second", for date = "2020-02-13T15:28:00.000Z" and locale "es" 1`] = `"13 de febrero de 2020 a las 15:28:00"`;
+exports[`formatDate > should work with format "second", for date = "2020-02-13T15:28:00.000Z" and locale "es" 1`] = `"13 de febrero de 2020, 15:28:00"`;
 
 exports[`formatDate > should work with format "second", for date = "2020-02-13T15:28:00.000Z" and locale "fr" 1`] = `"13 février 2020 à 15:28:00"`;
 
@@ -200,7 +200,7 @@ exports[`formatDate > should work with format "second", for date = "158160768000
 
 exports[`formatDate > should work with format "second", for date = "1581607680000" and locale "en" 1`] = `"February 13, 2020 at 3:28:00 PM"`;
 
-exports[`formatDate > should work with format "second", for date = "1581607680000" and locale "es" 1`] = `"13 de febrero de 2020 a las 15:28:00"`;
+exports[`formatDate > should work with format "second", for date = "1581607680000" and locale "es" 1`] = `"13 de febrero de 2020, 15:28:00"`;
 
 exports[`formatDate > should work with format "second", for date = "1581607680000" and locale "fr" 1`] = `"13 février 2020 à 15:28:00"`;
 
@@ -210,7 +210,7 @@ exports[`formatDate > should work with format "second", for date = "new Date(202
 
 exports[`formatDate > should work with format "second", for date = "new Date(2020, 1, 13, 16, 28)" and locale "en" 1`] = `"February 13, 2020 at 4:28:00 PM"`;
 
-exports[`formatDate > should work with format "second", for date = "new Date(2020, 1, 13, 16, 28)" and locale "es" 1`] = `"13 de febrero de 2020 a las 16:28:00"`;
+exports[`formatDate > should work with format "second", for date = "new Date(2020, 1, 13, 16, 28)" and locale "es" 1`] = `"13 de febrero de 2020, 16:28:00"`;
 
 exports[`formatDate > should work with format "second", for date = "new Date(2020, 1, 13, 16, 28)" and locale "fr" 1`] = `"13 février 2020 à 16:28:00"`;
 
