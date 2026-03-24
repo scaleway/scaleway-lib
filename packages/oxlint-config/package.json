@@ -37,11 +37,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "oxfmt": "catalog:",
     "oxlint": "catalog:"
   },
   "peerDependencies": {
-    "oxfmt": "catalog:",
-    "oxlint": "catalog:"
+    "oxlint": ">=1.55.0"
   }
 }
