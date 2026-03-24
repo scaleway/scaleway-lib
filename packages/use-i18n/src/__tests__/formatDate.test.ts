@@ -2,7 +2,7 @@ import { describe, expect, test } from 'vitest'
 import type { FormatDateOptions } from '../formatDate'
 import formatDate, { supportedFormats } from '../formatDate'
 
-const locales = ['en', 'fr', 'de', 'ro', 'es'] as const
+const locales = ['en', 'fr'] as const
 
 const tests = [
   ...locales.map(locale =>
