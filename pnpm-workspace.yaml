@@ -49,7 +49,7 @@ catalog:
   intl-messageformat: 11.1.3
   js-yaml: 4.1.1
   jsdom: 29.0.1
-  lint-staged: 16.3.2
+  lint-staged: 16.4.0
   mockdate: 3.0.5
   module-from-string: 3.3.1
   oxfmt: 0.41.0
