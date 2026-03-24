@@ -407,9 +407,6 @@ importers:
 
   packages/oxlint-config:
     devDependencies:
-      oxfmt:
-        specifier: 'catalog:'
-        version: 0.41.0
       oxlint:
         specifier: 'catalog:'
         version: 1.55.0(oxlint-tsgolint@0.16.0)
