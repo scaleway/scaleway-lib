@@ -95,7 +95,7 @@ jobs:
           cache: 'pnpm'
       - run: pnpm install
       - run: pnpm run test:coverage
-      - uses: codecov/codecov-action@v5.5.2
+      - uses: codecov/codecov-action@v5.5.3
         with:
           files: packages/**/coverage/cobertura-coverage.xml
           token: ${{ secrets.CODECOV_TOKEN }}
