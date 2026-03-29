@@ -70,7 +70,7 @@ catalog:
   vitest: 4.1.0
   vitest-localstorage-mock: 0.1.2
   wait-for-expect: 4.0.0
-  yaml: 2.8.2
+  yaml: 2.8.3
 
 catalogMode: strict
 
