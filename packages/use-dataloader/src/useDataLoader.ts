@@ -10,7 +10,6 @@ import type {
   UseDataLoaderResult,
 } from './types'
 
-// oxlint-disable-next-line unicorn/empty-brace-spaces
 const noop = () => {}
 
 export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
@@ -159,7 +158,7 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
   }, [needLoad, request])
 
   useEffect(() => {
-    let interval: NodeJS.Timeout | undefined
+    let interval: ReturnType<typeof setInterval>
 
     if (pollingInterval) {
       interval = setInterval(() => {
