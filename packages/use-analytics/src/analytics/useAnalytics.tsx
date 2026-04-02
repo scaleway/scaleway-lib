@@ -1,4 +1,7 @@
-import type { LoadOptions } from '@rudderstack/analytics-js'
+import type {
+  LoadOptions,
+  RudderAnalytics as RudderAnalyticsType,
+} from '@rudderstack/analytics-js'
 import { RudderAnalytics } from '@rudderstack/analytics-js'
 import type { JSX, ReactNode } from 'react'
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
@@ -12,7 +15,7 @@ import {
 } from './constants'
 import { normalizeIdsMigration } from './normalizeIdsMigration'
 
-export type Analytics = RudderAnalytics
+export type Analytics = RudderAnalyticsType
 
 export type OnEventError = (error: Error) => Promise<void> | void
 
