@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.10
+
+### Patch Changes
+
+- [#3114](https://github.com/scaleway/scaleway-lib/pull/3114) [`77e3be3`](https://github.com/scaleway/scaleway-lib/commit/77e3be30056da4c21727024a1ba9e1abc7b88d4d) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@biomejs/biome` to `2.4.8`.
+
 ## 0.0.9
 
 ### Patch Changes

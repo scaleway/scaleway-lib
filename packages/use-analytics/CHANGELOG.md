@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.0.5
+
+### Patch Changes
+
+- [#3098](https://github.com/scaleway/scaleway-lib/pull/3098) [`5529cc9`](https://github.com/scaleway/scaleway-lib/commit/5529cc91a4f859f63aa60f56432bcc0104278667) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@segment/analytics-next` to `1.82.0`.
+
+- [#3141](https://github.com/scaleway/scaleway-lib/pull/3141) [`cd8f108`](https://github.com/scaleway/scaleway-lib/commit/cd8f10894786fc85ac5ca72cf314e3a95ee4e882) Thanks [@alexandre-combemorel](https://github.com/alexandre-combemorel)! - add explicit export type for rudderstack
+
 ## 1.0.4
 
 ### Patch Changes
