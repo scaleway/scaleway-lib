@@ -2,7 +2,7 @@ import { renderHook, waitFor } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 import { useSegmentIntegrations } from '../../useSegmentIntegrations'
 
-globalThis.fetch = vi.fn(async () =>
+globalThis.fetch = vi.fn<() => Promise<Response>>(async () =>
   Promise.resolve({ ok: false } as unknown as Response),
 )
 
@@ -17,13 +17,19 @@ describe('cookieConsent - useSegmentIntegrations', () => {
       }),
     )
 
-    await waitFor(() => {
-      expect(result.current.integrations).toStrictEqual([])
-    })
+    await waitFor(
+      () => {
+        expect(result.current.integrations).toStrictEqual([])
+      },
+      { timeout: 1000 },
+    )
 
-    await waitFor(() => {
-      expect(globalThis.fetch).toHaveBeenCalled()
-    })
+    await waitFor(
+      () => {
+        expect(globalThis.fetch).toHaveBeenCalled()
+      },
+      { timeout: 1000 },
+    )
 
     expect(result.current.isLoaded).toBeTruthy()
   })

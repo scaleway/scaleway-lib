@@ -34,11 +34,12 @@
     "access": "public"
   },
   "scripts": {
-    "prebuild": "shx rm -rf dist",
+    "check": "vp check",
     "typecheck": "tsgo --noEmit",
     "type:generate": "tsgo --declaration -p tsconfig.build.json",
     "build": "vite build --config vite.config.ts && pnpm run type:generate",
     "build:profile": "npx vite-bundle-visualizer -c vite.config.ts",
+    "test": "TZ=UTC LANG=en_US.UTF8 NODE_ENV=test vitest --run --config vite.config.ts",
     "test:unit": "TZ=UTC LANG=en_US.UTF8 NODE_ENV=test vitest --run --config vite.config.ts",
     "test:unit:coverage": "pnpm test:unit --coverage"
   },

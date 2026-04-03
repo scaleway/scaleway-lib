@@ -8,9 +8,12 @@ describe('cookieConsent - useSegmentIntegrations', () => {
       useSegmentIntegrations({ segment: null }),
     )
 
-    await waitFor(() => {
-      expect(result.current.integrations).toStrictEqual([])
-    })
+    await waitFor(
+      () => {
+        expect(result.current.integrations).toStrictEqual([])
+      },
+      { timeout: 1000 },
+    )
     expect(result.current.isLoaded).toBeTruthy()
   })
 })

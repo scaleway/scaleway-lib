@@ -1,8 +1,6 @@
 import react from '@vitejs/plugin-react'
-// import browserslist from 'browserslist'
 import { readPackage } from 'read-pkg'
-import type { UserConfig } from 'vite'
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vite-plus'
 
 const pkg = await readPackage()
 
@@ -21,7 +19,7 @@ const external = (id: string) => {
   return isExternal && !isBundled
 }
 
-export const defaultConfig: UserConfig = {
+export default defineConfig({
   build: {
     lib: {
       entry: 'src/index.ts',
@@ -58,6 +56,49 @@ export const defaultConfig: UserConfig = {
       jsxRuntime: 'automatic',
     }),
   ],
-}
+  run: {
+    cache: {
+      scripts: true,
+      tasks: true,
+    },
+  },
+})
 
-export default defineConfig(defaultConfig)
+export const defaultConfig = {
+  build: {
+    lib: {
+      entry: 'src/index.ts',
+      fileName: (format: string, filename: string) => {
+        if (format === 'es') {
+          return `${filename}.js`
+        }
+
+        return `${filename}.${format}`
+      },
+      formats: ['es'],
+      name: pkg.name,
+    },
+    license: true,
+    minify: false,
+    outDir: 'dist',
+    rolldownOptions: {
+      experimental: {
+        lazyBarrel: false,
+      },
+      external,
+      output: {
+        preserveModules: true,
+        preserveModulesRoot: 'src',
+      },
+      platform: 'browser',
+      preserveEntrySignatures: 'exports-only',
+      treeshake: true,
+      tsconfig: true,
+    },
+  },
+  plugins: [
+    react({
+      jsxRuntime: 'automatic',
+    }),
+  ],
+}

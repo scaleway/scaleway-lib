@@ -51,9 +51,7 @@ type SegmentIntegrationsHook = (config: Config) => {
   isLoaded: boolean
 }
 // Will return undefined if loading, empty array if no response or error, response else
-export const useSegmentIntegrations: SegmentIntegrationsHook = (
-  config: Config,
-) => {
+const useSegmentIntegrations: SegmentIntegrationsHook = (config: Config) => {
   const [integrations, setIntegrations] = useState<Integrations | undefined>(
     undefined,
   )
@@ -93,3 +91,5 @@ export const useSegmentIntegrations: SegmentIntegrationsHook = (
     isLoaded: integrations !== undefined,
   }
 }
+
+export { useSegmentIntegrations }
