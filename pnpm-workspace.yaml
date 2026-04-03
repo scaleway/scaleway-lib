@@ -27,7 +27,7 @@ catalog:
   '@types/node': 25.3.5
   '@types/react': 19.2.14
   '@types/react-dom': 19.2.3
-  '@typescript/native-preview': 7.0.0-dev.20260330.1
+  '@typescript/native-preview': 7.0.0-dev.20260331.1
   '@vitejs/plugin-react': 6.0.1
   '@vitest/coverage-istanbul': 4.1.2
   browserslist: 4.28.2
