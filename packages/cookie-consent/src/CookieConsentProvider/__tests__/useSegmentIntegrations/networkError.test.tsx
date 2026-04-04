@@ -2,7 +2,9 @@ import { renderHook, waitFor } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 import { useSegmentIntegrations } from '../../useSegmentIntegrations'
 
-globalThis.fetch = vi.fn(async () => Promise.reject(new Error('randomError')))
+globalThis.fetch = vi.fn<() => Promise<Response>>(async () =>
+  Promise.reject(new Error('randomError')),
+)
 
 describe('cookieConsent - useSegmentIntegrations', () => {
   it('should call segment and return empty array if any error occurs in the fetch', async () => {
@@ -15,13 +17,19 @@ describe('cookieConsent - useSegmentIntegrations', () => {
       }),
     )
 
-    await waitFor(() => {
-      expect(result.current.integrations).toStrictEqual([])
-    })
+    await waitFor(
+      () => {
+        expect(result.current.integrations).toStrictEqual([])
+      },
+      { timeout: 1000 },
+    )
 
-    await waitFor(() => {
-      expect(globalThis.fetch).toHaveBeenCalled()
-    })
+    await waitFor(
+      () => {
+        expect(globalThis.fetch).toHaveBeenCalled()
+      },
+      { timeout: 1000 },
+    )
     expect(result.current.isLoaded).toBeTruthy()
   })
 })

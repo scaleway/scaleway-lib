@@ -142,8 +142,8 @@ $ git clone git@github.com:scaleway/scaleway-lib.git
 $ cd scaleway-lib
 $ pnpm install
 $ # ... do your changes ...
-$ pnpm run lint
-$ pnpm run test
+$ pnpm vp check
+$ pnpm vp test
 ```
 
 ### Link against another project (with `yalc`) => FAVORED
@@ -182,17 +182,17 @@ $ pnpm link @scaleway/example_package
 ### Linting
 
 ```bash
-$ pnpm run oxc
-$ pnpm run oxc:fix
+$ pnpm vp check
+$ pnpm vp check --fix
 ```
 
 ### Unit Test
 
 ```bash
-$ pnpm run test # Will run all tests
-$ pnpm run test --updateSnapshot # Will update all snapshots
-$ pnpm run test:watch # Will watch tests and only rerun the one who are modified
-$ pnpm run test:coverage # Will generate a coverage report
+$ pnpm vp test # Will run all tests
+$ pnpm vp test --updateSnapshot # Will update all snapshots
+$ pnpm vp test # Will watch tests and only rerun the one who are modified (built-in watch mode)
+$ pnpm vp test --coverage # Will generate a coverage report
 ```
 
 ## Lerna
@@ -209,6 +209,29 @@ Lerna also allows us to use [PNPM workspaces](https://pnpm.io/workspaces) to man
 $ pnpm add -W -D new_dependency # Add a new devDependency to root project
 $ cd packages/package_name && pnpm add new_dependency
 $ cd packages/package_name && pnpm remove old_dependency
+```
+
+## Vite+
+
+This project uses [Vite+](https://viteplus.dev/) as the unified development toolchain. Vite+ provides:
+
+- **Fast builds** with Vite and Rolldown
+- **Linting and formatting** with Oxc (50-100× faster than ESLint/Prettier)
+- **Type checking** with tsgo
+- **Testing** with Vitest
+- **Task orchestration** with built-in caching
+
+### Common commands
+
+```bash
+$ pnpm vp dev       # Start development server
+$ pnpm vp build     # Build for production
+$ pnpm vp check     # Lint, format, and type check
+$ pnpm vp check --fix # Auto-fix linting and formatting issues
+$ pnpm vp test      # Run tests
+$ pnpm vp test --coverage # Run tests with coverage
+$ pnpm vp typecheck # Run type checking
+$ pnpm vp run <task> # Run tasks with dependency-aware execution
 ```
 
 ## Notes
@@ -239,7 +262,7 @@ We enforce the [conventionnal commits](https://www.conventionalcommits.org) conv
 
 ### On git hooks
 
-We have a [husky](https://github.com/typicode/husky) hook on `pre-commit` and `pre-push` which will ensure the file you committed matches the configured formating (`eslint` + `prettier`)
+We have a [husky](https://github.com/typicode/husky) hook on `pre-commit` and `pre-push` which will ensure the file you committed matches the configured formating (Vite+ check)
 
 We also have one on `commit-msg` which will ensure you commit message respects our commit convention
 
@@ -252,5 +275,5 @@ We follow the [semver](http://semver.org/) semantic.
 ## Contributing Guidelines
 
 - Ensure tests are still ok and code coverage have not decreased
-- Follow linter rules ([tldr](#linting)).
+- Follow linter rules (Vite+ check).
 - CI is enforced, you won't be able to merge unless pipeline is successful.

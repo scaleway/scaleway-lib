@@ -43,7 +43,7 @@ const CookieConsentContext: Context<CookieContext | undefined> = createContext<
   CookieContext | undefined
 >(undefined)
 
-export const useCookieConsent: () => CookieContext = (): CookieContext => {
+const useCookieConsent = (): CookieContext => {
   const context = useContext(CookieConsentContext)
   if (context === undefined) {
     throw new Error(
@@ -64,9 +64,7 @@ type CookieConsentProviderProps = PropsWithChildren<{
   cookiesOptions?: SerializeOptions
 }>
 
-export const CookieConsentProvider: ComponentType<
-  CookieConsentProviderProps
-> = ({
+const CookieConsentProvider: ComponentType<CookieConsentProviderProps> = ({
   children,
   isConsentRequired,
   essentialIntegrations,
@@ -258,3 +256,6 @@ export const CookieConsentProvider: ComponentType<
     </CookieConsentContext.Provider>
   )
 }
+
+export { CookieConsentProvider }
+export { useCookieConsent }

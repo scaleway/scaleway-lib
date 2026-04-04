@@ -7,24 +7,24 @@
   "type": "module",
   "scripts": {
     "lint:catalog": "pnpm check-catalog-usage",
-    "oxc": "pnpm oxlint -c .oxlintrc.json --type-aware --type-check",
-    "oxc:quiet": "pnpm oxc --quiet",
-    "oxc:fix": "pnpm oxc --fix",
-    "build": "pnpm turbo build",
-    "typecheck": "pnpm turbo typecheck",
-    "typecheck:generate": "pnpm turbo typecheck:generate",
-    "typecheck:go": "pnpm turbo typecheck:go",
-    "typecheck:generate:go": "pnpm turbo typecheck:generate:go",
     "commit": "npx git-cz -a",
-    "format": "oxfmt --write .",
-    "format:check": "oxfmt --check .",
-    "format:ci": "oxfmt --check .",
-    "test:unit": "pnpm turbo test:unit",
-    "test:coverage": "pnpm test:unit -- --coverage",
-    "typecheck:global": "pnpm tsc --noEmit",
+    "dev": "pnpm -r --parallel run dev",
+    "build": "vp run --filter '@scaleway/*' build",
+    "check": "vp check",
+    "format": "vp fmt . --write",
+    "check:fix": "vp check --fix",
+    "test": "vp run --filter '@scaleway/*' --filter '!@scaleway/biome' --filter '!@scaleway/oxlint-config' --filter '!@scaleway/tsconfig' --filter '!@scaleway/utils' test",
+    "test:unit": "vp run --filter '@scaleway/*' test:unit",
+    "test:coverage": "vp run --filter '@scaleway/*' test:coverage",
+    "typecheck": "vp run --filter '@scaleway/*' typecheck",
+    "typecheck:global": "vp run --filter '@scaleway/*' typecheck",
+    "typecheck:generate": "vp run --filter '@scaleway/*' type:generate",
+    "typecheck:go": "pnpm typecheck",
+    "typecheck:generate:go": "pnpm typecheck:generate",
     "test:types": "tstyche",
     "release": "pnpm build && pnpm changeset publish",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "run": "pnpm run"
   },
   "devDependencies": {
     "@babel/core": "catalog:",
@@ -39,7 +39,6 @@
     "@manypkg/cli": "catalog:",
     "@rudderstack/analytics-js": "catalog:",
     "@scaleway/changesets-renovate": "workspace:*",
-    "@scaleway/oxlint-config": "workspace:*",
     "@scaleway/tsconfig": "workspace:*",
     "@scaleway/use-segment": "catalog:",
     "@scaleway/utils": "workspace:*",
@@ -66,32 +65,28 @@
     "jsdom": "catalog:",
     "lint-staged": "catalog:",
     "mockdate": "catalog:",
-    "oxfmt": "catalog:",
-    "oxlint": "catalog:",
-    "oxlint-tsgolint": "catalog:",
     "read-pkg": "catalog:",
     "shx": "catalog:",
     "tstyche": "catalog:",
-    "turbo": "catalog:",
     "typescript": "catalog:",
     "vite": "catalog:",
+    "vite-plus": "catalog:",
     "vitest": "catalog:",
     "vitest-localstorage-mock": "catalog:",
     "wait-for-expect": "catalog:"
   },
   "lint-staged": {
     "*.ts?(x)": [
-      "pnpm run format",
-      "pnpm run oxc:fix --quiet"
+      "vp check --fix"
     ],
     "*.y?(a)ml": [
-      "oxfmt --write ."
+      "vp check --fix"
     ],
     "*.json": [
-      "oxfmt --write ."
+      "vp check --fix"
     ],
     "*.mdx": [
-      "oxfmt --write ."
+      "vp check --fix"
     ],
     "(*package).json": [
       "pnpm exec manypkg check"

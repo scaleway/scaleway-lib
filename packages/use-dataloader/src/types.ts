@@ -1,22 +1,20 @@
 type PrimitiveType = string | number | boolean | null | undefined | Date
-export type KeyType = string | number | PrimitiveType[]
+type KeyType = string | number | PrimitiveType[]
 
-export class PromiseType<T = unknown> extends Promise<T> {
+class PromiseType<T = unknown> extends Promise<T> {
   cancel?: () => void
 }
 
-export type OnErrorFn<ErrorType = Error> =
+type OnErrorFn<ErrorType = Error> =
   | ((err: ErrorType) => void | Promise<void>)
   | undefined
-export type OnSuccessFn<ResultType> =
+type OnSuccessFn<ResultType> =
   | ((result: ResultType) => void | Promise<void>)
   | undefined
-export type OnCancelFn = (() => void | Promise<void>) | undefined
-export type NeedPollingType<ResultType> =
-  | boolean
-  | ((data?: ResultType) => boolean)
+type OnCancelFn = (() => void | Promise<void>) | undefined
+type NeedPollingType<ResultType> = boolean | ((data?: ResultType) => boolean)
 
-export type UseDataLoaderConfig<ResultType, ErrorType> = {
+type UseDataLoaderConfig<ResultType, ErrorType> = {
   /**
    * Launch request automatically on mount
    * @default true
@@ -55,7 +53,7 @@ export type UseDataLoaderConfig<ResultType, ErrorType> = {
   needPolling?: NeedPollingType<ResultType>
 }
 
-export type UseDataLoaderResult<ResultType, ErrorType> = {
+type UseDataLoaderResult<ResultType, ErrorType> = {
   /**
    * Return initialData if no data is fetched or not present in the cache otherwise return the data fetched
    */
@@ -98,7 +96,7 @@ export type UseDataLoaderResult<ResultType, ErrorType> = {
   reload: () => Promise<void>
 }
 
-export type UseInfiniteDataLoaderConfig<
+type UseInfiniteDataLoaderConfig<
   ResultType,
   ErrorType extends Error,
   ParamsType extends Record<string, unknown>,
@@ -117,7 +115,7 @@ export type UseInfiniteDataLoaderConfig<
   initialData?: ResultType[]
 }
 
-export type UseInfiniteDataLoaderResult<ResultType, ErrorType> = {
+type UseInfiniteDataLoaderResult<ResultType, ErrorType> = {
   data?: ResultType[]
   error?: ErrorType
   isError: boolean
@@ -129,4 +127,17 @@ export type UseInfiniteDataLoaderResult<ResultType, ErrorType> = {
   isLoadingFirstPage: boolean
   reload: () => Promise<void>
   loadMore: () => void
+}
+
+export type {
+  KeyType,
+  PromiseType,
+  OnErrorFn,
+  OnSuccessFn,
+  OnCancelFn,
+  NeedPollingType,
+  UseDataLoaderConfig,
+  UseDataLoaderResult,
+  UseInfiniteDataLoaderConfig,
+  UseInfiniteDataLoaderResult,
 }

@@ -2,7 +2,7 @@ import { renderHook, waitFor } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 import { useSegmentIntegrations } from '../../useSegmentIntegrations'
 
-globalThis.fetch = vi.fn(async () =>
+globalThis.fetch = vi.fn<() => Promise<Response>>(async () =>
   Promise.resolve({
     json: async () =>
       Promise.resolve([
@@ -10,7 +10,7 @@ globalThis.fetch = vi.fn(async () =>
           category: 'Analytics',
           creationName: 'Google Analytics',
           description:
-            'Google Universal Analytics is the most popular analytics tool for the web. It’s free and provides a wide range of features. It’s especially good at measuring traffic sources and ad campaigns.',
+            'Google Universal Analytics is the most popular analytics tool for the web. It's free and provides a wide range of features. It's especially good at measuring traffic sources and ad campaigns.',
           name: 'Google Universal Analytics',
           website: 'http://google.com/analytics',
         },
@@ -98,7 +98,14 @@ describe('cookieConsent - useSegmentIntegrations', () => {
           name: 'Amplitude (Actions)',
         },
       ])
-    })
+    }, { timeout: 1000 })
+
+    await waitFor(() => {
+      expect(globalThis.fetch).toHaveBeenCalled()
+    }, { timeout: 1000 })
+    expect(result.current.isLoaded).toBeTruthy()
+  })
+})
 
     await waitFor(() => {
       expect(globalThis.fetch).toHaveBeenCalled()

@@ -67,6 +67,7 @@ catalog:
   typescript: 6.0.2
   use-deep-compare-effect: 1.8.1
   vite: 8.0.3
+  vite-plus: 0.1.15
   vitest: 4.1.2
   vitest-localstorage-mock: 0.1.2
   wait-for-expect: 4.0.0

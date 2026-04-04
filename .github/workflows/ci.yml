@@ -13,9 +13,6 @@ jobs:
       matrix:
         node: ['24']
     runs-on: ubuntu-24.04
-    env:
-      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
-      TURBO_CACHE: 'remote:rw'
     steps:
       - uses: actions/checkout@v6
       - uses: pnpm/action-setup@v5.0.0
@@ -25,7 +22,7 @@ jobs:
       - name: build
         run: |
           pnpm install --frozen-lockfile
-          pnpm run build
+          pnpm build
 
   typecheck:
     runs-on: ubuntu-24.04
@@ -61,9 +58,6 @@ jobs:
   lint:
     runs-on: ubuntu-24.04
     needs: [build]
-    env:
-      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
-      TURBO_CACHE: 'remote:rw'
     steps:
       - uses: actions/checkout@v6
       - uses: pnpm/action-setup@v5.0.0
@@ -75,9 +69,8 @@ jobs:
       - name: lint
         run: |
           pnpm install --frozen-lockfile
-          pnpm run build
-          pnpm run format:ci
-          pnpm run oxc:quiet
+          pnpm build
+          pnpm check
 
   test:
     runs-on: ubuntu-24.04
@@ -94,7 +87,7 @@ jobs:
           check-latest: true
           cache: 'pnpm'
       - run: pnpm install
-      - run: pnpm run test:coverage
+      - run: pnpm test
       - uses: codecov/codecov-action@v5.5.4
         with:
           files: packages/**/coverage/cobertura-coverage.xml
@@ -116,4 +109,4 @@ jobs:
           check-latest: true
           cache: 'pnpm'
       - run: pnpm install
-      - run: pnpm run test:types
+      - run: pnpm test:types
