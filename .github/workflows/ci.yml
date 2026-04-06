@@ -18,7 +18,7 @@ jobs:
       TURBO_CACHE: 'remote:rw'
     steps:
       - uses: actions/checkout@v6
-      - uses: pnpm/action-setup@v4.4.0
+      - uses: pnpm/action-setup@v5.0.0
       - uses: actions/setup-node@v6.3.0
         with:
           node-version: ${{ matrix.node }}
@@ -32,11 +32,11 @@ jobs:
     needs: [build]
     steps:
       - uses: actions/checkout@v6.0.2
-      - uses: pnpm/action-setup@v4.4.0
+      - uses: pnpm/action-setup@v5.0.0
       - name: Use Node.js
         uses: actions/setup-node@v6.3.0
         with:
-          node-version: 24.14.0
+          node-version: 24.14.1
           check-latest: true
           cache: 'pnpm'
       - run: pnpm install
@@ -48,11 +48,11 @@ jobs:
     needs: [build]
     steps:
       - uses: actions/checkout@v6.0.2
-      - uses: pnpm/action-setup@v4.4.0
+      - uses: pnpm/action-setup@v5.0.0
       - name: Use Node.js
         uses: actions/setup-node@v6.3.0
         with:
-          node-version: 24.14.0
+          node-version: 24.14.1
           check-latest: true
           cache: 'pnpm'
       - run: pnpm install
@@ -66,10 +66,10 @@ jobs:
       TURBO_CACHE: 'remote:rw'
     steps:
       - uses: actions/checkout@v6
-      - uses: pnpm/action-setup@v4.4.0
+      - uses: pnpm/action-setup@v5.0.0
       - uses: actions/setup-node@v6.3.0
         with:
-          node-version: 24.14.0
+          node-version: 24.14.1
           check-latest: true
           cache: 'pnpm'
       - name: lint
@@ -86,7 +86,7 @@ jobs:
         node: ['24']
     steps:
       - uses: actions/checkout@v6.0.2
-      - uses: pnpm/action-setup@v4.4.0
+      - uses: pnpm/action-setup@v5.0.0
       - name: Use Node.js
         uses: actions/setup-node@v6.3.0
         with:
@@ -108,7 +108,7 @@ jobs:
         node: ['24']
     steps:
       - uses: actions/checkout@v6.0.2
-      - uses: pnpm/action-setup@v4.4.0
+      - uses: pnpm/action-setup@v5.0.0
       - name: Use Node.js
         uses: actions/setup-node@v6.3.0
         with:
