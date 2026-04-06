@@ -1,5 +1,11 @@
 # @scaleway/utils
 
+## 0.0.7
+
+### Patch Changes
+
+- [#3158](https://github.com/scaleway/scaleway-lib/pull/3158) [`63d882a`](https://github.com/scaleway/scaleway-lib/commit/63d882a280651f1853b8a0ff68d86247a5a3289f) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `globby` to `16.2.0`.
+
 ## 0.0.6
 
 ### Patch Changes
