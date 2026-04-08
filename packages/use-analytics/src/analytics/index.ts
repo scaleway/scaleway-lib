@@ -10,6 +10,6 @@ export type {
 export {
   AnalyticsProvider,
   useAnalytics,
-  AnalyticsContext,
+  AnalyticsContext as AnalyticsContextTestUtil,
 } from './useAnalytics'
 export { useDestinations } from './useDestinations'

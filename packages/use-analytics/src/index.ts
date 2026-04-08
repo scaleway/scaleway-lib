@@ -1,5 +1,5 @@
 export {
-  AnalyticsContext,
+  AnalyticsContextTestUtil,
   AnalyticsProvider,
   normalizeIdsMigration,
   useAnalytics,
