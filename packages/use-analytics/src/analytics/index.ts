@@ -1,3 +1,5 @@
+import { AnalyticsContext } from './useAnalytics'
+
 export { defaultLoadOptions } from './constants'
 export { normalizeId } from './normalizeId'
 export { normalizeIdsMigration } from './normalizeIdsMigration'
@@ -10,6 +12,9 @@ export type {
 export {
   AnalyticsProvider,
   useAnalytics,
-  AnalyticsContext as AnalyticsContextTestUtil,
+  AnalyticsContext,
 } from './useAnalytics'
+export const testUtils = {
+  AnalyticsContext,
+}
 export { useDestinations } from './useDestinations'
