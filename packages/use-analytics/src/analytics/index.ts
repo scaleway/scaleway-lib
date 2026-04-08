@@ -7,5 +7,9 @@ export type {
   AnalyticsProviderProps,
   OnEventError,
 } from './useAnalytics'
-export { AnalyticsProvider, useAnalytics } from './useAnalytics'
+export {
+  AnalyticsProvider,
+  useAnalytics,
+  AnalyticsContext,
+} from './useAnalytics'
 export { useDestinations } from './useDestinations'

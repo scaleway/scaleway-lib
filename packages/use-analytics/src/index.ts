@@ -1,4 +1,5 @@
 export {
+  AnalyticsContext,
   AnalyticsProvider,
   normalizeIdsMigration,
   useAnalytics,

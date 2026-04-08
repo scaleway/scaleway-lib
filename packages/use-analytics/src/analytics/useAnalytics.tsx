@@ -31,9 +31,9 @@ type AnalyticsContextInterface<T extends Events = Events> = {
   isAnalyticsReady: boolean
 }
 
-const AnalyticsContext = createContext<AnalyticsContextInterface | undefined>(
-  undefined,
-)
+export const AnalyticsContext = createContext<
+  AnalyticsContextInterface | undefined
+>(undefined)
 
 export function useAnalytics<T extends Events>(): AnalyticsContextInterface<T> {
   const context = useContext<AnalyticsContextInterface<T> | undefined>(
