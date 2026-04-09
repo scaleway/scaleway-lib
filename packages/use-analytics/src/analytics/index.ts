@@ -14,7 +14,9 @@ export {
   useAnalytics,
   AnalyticsContext,
 } from './useAnalytics'
-export const testUtils = {
+export const testUtils: {
+  AnalyticsContext: typeof AnalyticsContext
+} = {
   AnalyticsContext,
 }
 export { useDestinations } from './useDestinations'

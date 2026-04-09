@@ -1,5 +1,5 @@
 ---
-"@scaleway/use-analytics": minor
+'@scaleway/use-analytics': minor
 ---
 
 export context to improve unit test mocking
