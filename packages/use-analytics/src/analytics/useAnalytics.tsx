@@ -3,7 +3,7 @@ import type {
   RudderAnalytics as RudderAnalyticsType,
 } from '@rudderstack/analytics-js'
 import { RudderAnalytics } from '@rudderstack/analytics-js'
-import type { JSX, ReactNode } from 'react'
+import type { Context, JSX, ReactNode } from 'react'
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import { useDeepCompareEffectNoCheck } from 'use-deep-compare-effect'
 import { destSDKBaseURL, pluginsSDKBaseURL } from '../constants'
@@ -31,9 +31,8 @@ type AnalyticsContextInterface<T extends Events = Events> = {
   isAnalyticsReady: boolean
 }
 
-const AnalyticsContext = createContext<AnalyticsContextInterface | undefined>(
-  undefined,
-)
+export const AnalyticsContext: Context<AnalyticsContextInterface | undefined> =
+  createContext<AnalyticsContextInterface | undefined>(undefined)
 
 export function useAnalytics<T extends Events>(): AnalyticsContextInterface<T> {
   const context = useContext<AnalyticsContextInterface<T> | undefined>(

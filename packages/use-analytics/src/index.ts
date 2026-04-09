@@ -1,4 +1,5 @@
 export {
+  testUtils,
   AnalyticsProvider,
   normalizeIdsMigration,
   useAnalytics,
