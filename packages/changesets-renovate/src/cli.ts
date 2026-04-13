@@ -7,7 +7,7 @@ import { simpleGit } from 'simple-git'
 import { handleCatalogChanges } from './handle-catalog.js'
 import { handlePackageChanges } from './handle-packages.js'
 
-export async function run(): Promise<void> {
+async function run(): Promise<void> {
   // Original Renovate mode
   const branch = await simpleGit().branch()
   const branchPrefix = env['BRANCH_PREFIX'] ?? 'renovate/'
@@ -25,7 +25,7 @@ export async function run(): Promise<void> {
 
   console.log('Found changed files:', diffFiles)
 
-  if (diffFiles.find(f => f.startsWith('.changeset'))) {
+  if (diffFiles.some(f => f.startsWith('.changeset'))) {
     console.log('Changeset already exists, skipping')
 
     return
@@ -58,4 +58,6 @@ export async function run(): Promise<void> {
   }
 }
 
-run().catch(console.error)
+await run().catch(console.error)
+
+export { run }
