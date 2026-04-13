@@ -169,11 +169,11 @@ catalogs:
       specifier: 9.3.1
       version: 9.3.1
     react:
-      specifier: 19.2.4
-      version: 19.2.4
+      specifier: 19.2.5
+      version: 19.2.5
     react-dom:
-      specifier: 19.2.4
-      version: 19.2.4
+      specifier: 19.2.5
+      version: 19.2.5
     react-router-dom:
       specifier: 6.30.2
       version: 6.30.2
@@ -260,7 +260,7 @@ importers:
         version: link:packages/tsconfig
       '@scaleway/use-segment':
         specifier: 'catalog:'
-        version: 1.1.11(react@19.2.4)
+        version: 1.1.11(react@19.2.5)
       '@scaleway/utils':
         specifier: workspace:*
         version: link:packages/utils
@@ -269,7 +269,7 @@ importers:
         version: 6.9.1
       '@testing-library/react':
         specifier: 'catalog:'
-        version: 16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+        version: 16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       '@types/jest':
         specifier: 'catalog:'
         version: 30.0.0
@@ -399,7 +399,7 @@ importers:
     devDependencies:
       react:
         specifier: 'catalog:'
-        version: 19.2.4
+        version: 19.2.5
 
   packages/fuzzy-search: {}
 
@@ -439,27 +439,27 @@ importers:
         version: 1.1.1
       use-deep-compare-effect:
         specifier: 'catalog:'
-        version: 1.8.1(react@19.2.4)
+        version: 1.8.1(react@19.2.5)
     devDependencies:
       react:
         specifier: 'catalog:'
-        version: 19.2.4
+        version: 19.2.5
 
   packages/use-dataloader:
     devDependencies:
       react:
         specifier: 'catalog:'
-        version: 19.2.4
+        version: 19.2.5
 
   packages/use-growthbook:
     dependencies:
       '@growthbook/growthbook-react':
         specifier: 'catalog:'
-        version: 1.6.5(react@19.2.4)
+        version: 1.6.5(react@19.2.5)
     devDependencies:
       react:
         specifier: 'catalog:'
-        version: 19.2.4
+        version: 19.2.5
 
   packages/use-i18n:
     dependencies:
@@ -484,16 +484,16 @@ importers:
         version: 4.1.0
       react:
         specifier: 'catalog:'
-        version: 19.2.4
+        version: 19.2.5
       react-dom:
         specifier: 'catalog:'
-        version: 19.2.4(react@19.2.4)
+        version: 19.2.5(react@19.2.5)
 
   packages/use-media:
     devDependencies:
       react:
         specifier: 'catalog:'
-        version: 19.2.4
+        version: 19.2.5
 
   packages/use-query-params:
     dependencies:
@@ -506,13 +506,13 @@ importers:
     devDependencies:
       react:
         specifier: 'catalog:'
-        version: 19.2.4
+        version: 19.2.5
       react-dom:
         specifier: 'catalog:'
-        version: 19.2.4(react@19.2.4)
+        version: 19.2.5(react@19.2.5)
       react-router-dom:
         specifier: 'catalog:'
-        version: 6.30.2(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+        version: 6.30.2(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
 
   packages/use-random-name:
     dependencies:
@@ -522,13 +522,13 @@ importers:
     devDependencies:
       react:
         specifier: 'catalog:'
-        version: 19.2.4
+        version: 19.2.5
 
   packages/use-storage:
     devDependencies:
       react:
         specifier: 'catalog:'
-        version: 19.2.4
+        version: 19.2.5
 
   packages/utils:
     dependencies:
@@ -3626,10 +3626,10 @@ packages:
     resolution: {integrity: sha512-y3bGgqKj3QBdxLbLkomlohkvsA8gdAiUQlSBJnBhfn+BPxg4bc62d8TcBW15wavDfgexCgccckhcZvywyQYPOw==}
     hasBin: true
 
-  react-dom@19.2.4:
-    resolution: {integrity: sha512-AXJdLo8kgMbimY95O2aKQqsz2iWi9jMgKJhRBAxECE4IFxfcazB2LmzloIoibJI3C12IlY20+KFaLv+71bUJeQ==}
+  react-dom@19.2.5:
+    resolution: {integrity: sha512-J5bAZz+DXMMwW/wV3xzKke59Af6CHY7G4uYLN1OvBcKEsWOs4pQExj86BBKamxl/Ik5bx9whOrvBlSDfWzgSag==}
     peerDependencies:
-      react: ^19.2.4
+      react: ^19.2.5
 
   react-is@17.0.2:
     resolution: {integrity: sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==}
@@ -3650,8 +3650,8 @@ packages:
     peerDependencies:
       react: '>=16.8'
 
-  react@19.2.4:
-    resolution: {integrity: sha512-9nfp2hYpCwOjAN+8TZFGhtWEwgvWHXqESH8qT89AT/lWklpLON22Lc8pEtnpsZz7VmawabSU0gCjnj8aC0euHQ==}
+  react@19.2.5:
+    resolution: {integrity: sha512-llUJLzz1zTUBrskt2pwZgLq59AemifIftw4aB7JxOqf1HY2FDaGDxgwpAPVzHU1kdWabH7FauP4i1oEeer2WCA==}
     engines: {node: '>=0.10.0'}
 
   read-pkg@10.1.0:
@@ -5544,10 +5544,10 @@ snapshots:
     dependencies:
       '@formatjs/fast-memoize': 3.1.1
 
-  '@growthbook/growthbook-react@1.6.5(react@19.2.4)':
+  '@growthbook/growthbook-react@1.6.5(react@19.2.5)':
     dependencies:
       '@growthbook/growthbook': 1.6.5
-      react: 19.2.4
+      react: 19.2.5
 
   '@growthbook/growthbook@1.6.5':
     dependencies:
@@ -5889,11 +5889,11 @@ snapshots:
 
   '@rudderstack/analytics-js@3.31.0': {}
 
-  '@scaleway/use-segment@1.1.11(react@19.2.4)':
+  '@scaleway/use-segment@1.1.11(react@19.2.5)':
     dependencies:
       '@segment/analytics-next': 1.81.0
-      react: 19.2.4
-      use-deep-compare-effect: 1.8.1(react@19.2.4)
+      react: 19.2.5
+      use-deep-compare-effect: 1.8.1(react@19.2.5)
     transitivePeerDependencies:
       - encoding
 
@@ -6002,12 +6002,12 @@ snapshots:
       picocolors: 1.1.1
       redent: 3.0.0
 
-  '@testing-library/react@16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
+  '@testing-library/react@16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)':
     dependencies:
       '@babel/runtime': 7.28.6
       '@testing-library/dom': 10.4.1
-      react: 19.2.4
-      react-dom: 19.2.4(react@19.2.4)
+      react: 19.2.5
+      react-dom: 19.2.5(react@19.2.5)
     optionalDependencies:
       '@types/react': 19.2.14
       '@types/react-dom': 19.2.3(@types/react@19.2.14)
@@ -7312,28 +7312,28 @@ snapshots:
       minimist: 1.2.8
       strip-json-comments: 2.0.1
 
-  react-dom@19.2.4(react@19.2.4):
+  react-dom@19.2.5(react@19.2.5):
     dependencies:
-      react: 19.2.4
+      react: 19.2.5
       scheduler: 0.27.0
 
   react-is@17.0.2: {}
 
   react-is@18.3.1: {}
 
-  react-router-dom@6.30.2(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
+  react-router-dom@6.30.2(react-dom@19.2.5(react@19.2.5))(react@19.2.5):
     dependencies:
       '@remix-run/router': 1.23.1
-      react: 19.2.4
-      react-dom: 19.2.4(react@19.2.4)
-      react-router: 6.30.2(react@19.2.4)
+      react: 19.2.5
+      react-dom: 19.2.5(react@19.2.5)
+      react-router: 6.30.2(react@19.2.5)
 
-  react-router@6.30.2(react@19.2.4):
+  react-router@6.30.2(react@19.2.5):
     dependencies:
       '@remix-run/router': 1.23.1
-      react: 19.2.4
+      react: 19.2.5
 
-  react@19.2.4: {}
+  react@19.2.5: {}
 
   read-pkg@10.1.0:
     dependencies:
@@ -7679,11 +7679,11 @@ snapshots:
       escalade: 3.2.0
       picocolors: 1.1.1
 
-  use-deep-compare-effect@1.8.1(react@19.2.4):
+  use-deep-compare-effect@1.8.1(react@19.2.5):
     dependencies:
       '@babel/runtime': 7.28.6
       dequal: 2.0.3
-      react: 19.2.4
+      react: 19.2.5
 
   validate-npm-package-license@3.0.4:
     dependencies:
