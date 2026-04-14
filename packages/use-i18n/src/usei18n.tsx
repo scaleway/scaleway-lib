@@ -396,7 +396,10 @@ const I18nContextProvider = <LocalSupportedType extends string>({
 
       return formatDistanceToNowStrict(finalDate, {
         locale: dateFnsLocale,
-        ...options,
+        ...(options ?? {
+          addSuffix: true,
+          unit: 'day',
+        }),
       })
     },
     [dateFnsLocale],
