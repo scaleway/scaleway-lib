@@ -131,12 +131,11 @@
     "eslint/valid-typeof": "error",
     "eslint/yoda": "error",
 
-
     "import/consistent-type-specifier-style": "error",
     "import/default": "error",
     "import/export": "error",
     "import/no-default-export": "off",
-    "import/no-named-export":"off",
+    "import/no-named-export": "off",
     "import/exports-last": "off",
     "import/group-exports": "off",
     "import/namespace": "off",
@@ -172,7 +171,7 @@
     "unicorn/no-hex-escape": "error",
     "unicorn/no-null": "off",
     "unicorn/no-useless-undefined": "off",
-    "unicorn/prefer-object-from-entries":"off",
-    "unicorn/prefer-string-replace-all":"off",
+    "unicorn/prefer-object-from-entries": "off",
+    "unicorn/prefer-string-replace-all": "off"
   }
 }

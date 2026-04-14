@@ -31,7 +31,7 @@
         "vitest/prefer-called-times": "off",
         "vitest/prefer-import-in-mock": "off",
         "vitest/prefer-lowercase-title": "error",
-        "vitest/require-test-timeout": "off",
+        "vitest/require-test-timeout": "off"
       }
     }
   ],

@@ -1,5 +1,5 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-import { expect, test } from 'tstyche'
+/**/
+import { expect as typeExpect, test as typeTest } from 'tstyche'
 import { useI18n } from '../usei18n'
 
 const ListLocales = ['es', 'en', 'fr', 'fr-FR', 'en-GB'] as const
@@ -12,51 +12,56 @@ type Locale = {
   'describe.john': '{name} is {age} years old'
 }
 
-test('i18n - namespaceTranslation', () => {
+typeTest('i18n - namespaceTranslation', () => {
   const { namespaceTranslation } = useI18n<Locale, Locales>()
 
   // Single key
-  expect(namespaceTranslation).type.not.toBeCallableWith('hello')
+  typeExpect(namespaceTranslation).type.not.toBeCallableWith('hello')
 
   // Multiple keys
-  expect(namespaceTranslation).type.not.toBeCallableWith('doe.john')
+  typeExpect(namespaceTranslation).type.not.toBeCallableWith('doe.john')
 
-  expect(namespaceTranslation('doe')('john')).type.toBe<string>()
+  typeExpect(namespaceTranslation('doe')('john')).type.toBe<string>()
 
-  expect(namespaceTranslation('doe')).type.not.toBeCallableWith('doesnotexists')
+  typeExpect(namespaceTranslation('doe')).type.not.toBeCallableWith(
+    'doesnotexists',
+  )
 
   // With a param
-  expect(namespaceTranslation('doe')).type.not.toBeCallableWith('child')
-  expect(
+  typeExpect(namespaceTranslation('doe')).type.not.toBeCallableWith('child')
+  typeExpect(
     namespaceTranslation('doe')('child', {
       name: 'Name',
     }),
   ).type.toBe<string>()
-  expect(namespaceTranslation('doe')).type.not.toBeCallableWith(
+  typeExpect(namespaceTranslation('doe')).type.not.toBeCallableWith(
     'doesnotexists',
     {
       name: 'Name',
     },
   )
-  expect(namespaceTranslation('doe')).type.not.toBeCallableWith('child', {
+  typeExpect(namespaceTranslation('doe')).type.not.toBeCallableWith('child', {
     doesnotexists: 'Name',
   })
 
-  expect(namespaceTranslation('doe')).type.not.toBeCallableWith('child', {})
-  expect(namespaceTranslation('doe')).type.not.toBeCallableWith('child')
+  typeExpect(namespaceTranslation('doe')).type.not.toBeCallableWith('child', {})
+  typeExpect(namespaceTranslation('doe')).type.not.toBeCallableWith('child')
 
   // With multiple params
-  expect(
+  typeExpect(
     namespaceTranslation('describe')('john', {
       age: '30',
       name: 'John',
     }),
   ).type.toBe<string>()
 
-  expect(namespaceTranslation('describe')).type.not.toBeCallableWith('john', {})
-  expect(namespaceTranslation('describe')).type.not.toBeCallableWith('john')
+  typeExpect(namespaceTranslation('describe')).type.not.toBeCallableWith(
+    'john',
+    {},
+  )
+  typeExpect(namespaceTranslation('describe')).type.not.toBeCallableWith('john')
 
   // Required generic
   const { namespaceTranslation: namespaceTranslation2 } = useI18n<Locale>()
-  expect(namespaceTranslation2).type.not.toBeCallableWith('test')
+  typeExpect(namespaceTranslation2).type.not.toBeCallableWith('test')
 })

@@ -3,7 +3,7 @@
 import { useEffect, useLayoutEffect, useState } from 'react'
 import type { Effect } from './types'
 
-// oxlint-disable unicorn/empty-brace-spaces
+//
 function noop() {}
 
 export const mockMediaQueryList: MediaQueryList = {
@@ -37,7 +37,7 @@ const createUseMedia =
           return
         }
 
-        setState(Boolean(mediaQueryList.matches))
+        setState(mediaQueryList.matches)
       }
 
       mediaQueryList.addEventListener('change', onChange)

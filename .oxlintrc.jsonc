@@ -7,18 +7,18 @@
     "perf": "deny",
     "restriction": "deny",
     "style": "deny",
-    "suspicious": "deny"
+    "suspicious": "deny",
   },
   "extends": [
     "./packages/oxlint-config/configs/index.json",
     "./packages/oxlint-config/configs/react.json",
-    "./packages/oxlint-config/configs/typescript.json"
+    "./packages/oxlint-config/configs/typescript.json",
   ],
   "ignorePatterns": [
     "packages_deprecated/**",
     "**/package.config.d.ts",
     "global.d.ts",
-    "packages/eslint-config-react"
+    "packages/eslint-config-react",
   ],
   "overrides": [
     {
@@ -40,19 +40,19 @@
         "eslint/max-statements": [
           "error",
           {
-            "max": 30
-          }
+            "max": 30,
+          },
         ],
-        "eslint/no-negated-condition":"off",
+        "eslint/no-negated-condition": "off",
         "eslint/no-alert": "off",
         "eslint/no-console": "off",
 
         "import/export": "off",
         "import/no-anonymous-default-export": "off",
         "import/no-unassigned-import": "off",
-        "import/no-relative-parent-imports":"off",
-        "import/no-default-export":"off",
-        "import/no-namespace":"off",
+        "import/no-relative-parent-imports": "off",
+        "import/no-default-export": "off",
+        "import/no-namespace": "off",
 
         "jsx_a11y/label-has-associated-control": "off",
         "node/no-process-env": "off",
@@ -65,8 +65,8 @@
         "unicorn/escape-case": "warn",
         "unicorn/no-array-callback-reference": "off",
         "unicorn/no-hex-escape": "warn",
-        "unicorn/no-new-array":"off",
-        "unicorn/no-useless-promise-resolve-reject":"off",
+        "unicorn/no-new-array": "off",
+        "unicorn/no-useless-promise-resolve-reject": "off",
 
         "vitest/no-importing-vitest-globals": "off",
         "vitest/prefer-called-exactly-once-with": "off",
@@ -74,18 +74,22 @@
         "vitest/prefer-called-times": "off",
         "vitest/prefer-import-in-mock": "off",
         "vitest/prefer-lowercase-title": "error",
-        "vitest/prefer-strict-boolean-matchers":"off",
+        "vitest/prefer-strict-boolean-matchers": "off",
         "vitest/require-test-timeout": "off",
-      }
-    }
+      },
+    },
   ],
   "rules": {
-    "@typescript-eslint/no-deprecated": "warn",
-    "@typescript-eslint/no-dynamic-delete": "warn",
-    "@typescript-eslint/no-misused-spread": "warn",
-    "@typescript-eslint/no-redundant-type-constituents": "warn",
-    "@typescript-eslint/no-unsafe-type-assertion": "warn",
-    "@typescript-eslint/strict-boolean-expressions": "off",
+    "typescript/strict-boolean-expressions": "off",
+
+    // warn to be fixed
+    "typescript/no-deprecated": "warn",
+    "typescript/no-dynamic-delete": "warn",
+    "typescript/no-redundant-type-constituents": "warn",
+    "typescript/no-misused-spread": "warn",
+    "typescript/no-unsafe-type-assertion": "warn",
+    "typescript/strict-void-return": "warn",
+    "typescript/no-useless-default-assignment": "warn",
 
     "import/no-nodejs-modules": "off",
 
@@ -93,17 +97,18 @@
 
     "eslint/no-negated-condition": "off",
 
+    "unicorn/prefer-import-meta-properties": "warn",
     "unicorn/empty-brace-spaces": "error",
     "unicorn/prefer-global-this": "allow",
-    "unicorn/no-object-as-default-parameter":"off",
+    "unicorn/no-object-as-default-parameter": "off",
     "unicorn/prefer-query-selector": "off",
-    "unicorn/prefer-string-slice":"off",
+    "unicorn/prefer-string-slice": "off",
     "unicorn/prefer-code-point": "off",
-    "unicorn/prefer-ternary": "off"
+    "unicorn/prefer-ternary": "off",
   },
   "settings": {
     "vitest": {
-      "typecheck": true
-    }
-  }
+      "typecheck": true,
+    },
+  },
 }
