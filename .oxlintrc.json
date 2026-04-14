@@ -27,7 +27,8 @@
         "**/__mocks__/*.{ts,tsx}",
         "**/*.test.{ts,tsx}",
         "**/*.spec.{ts,tsx}",
-        "vitest.setup.ts"
+        "vitest.setup.ts",
+        "vite.config.ts",
       ],
       "plugins": ["import", "oxc", "vitest"],
       "rules": {
@@ -35,33 +36,46 @@
         "@typescript-eslint/no-explicit-any": "warn",
         "@typescript-eslint/no-unsafe-argument": "warn",
         "@typescript-eslint/require-await": "warn",
+
         "eslint/max-statements": [
           "error",
           {
             "max": 30
           }
         ],
+        "eslint/no-negated-condition":"off",
         "eslint/no-alert": "off",
         "eslint/no-console": "off",
+
         "import/export": "off",
         "import/no-anonymous-default-export": "off",
-        "import/no-named-export": "off",
-        "import/no-namespace": "off",
         "import/no-unassigned-import": "off",
+        "import/no-relative-parent-imports":"off",
+        "import/no-default-export":"off",
+        "import/no-namespace":"off",
+
         "jsx_a11y/label-has-associated-control": "off",
         "node/no-process-env": "off",
+
         "react/jsx-pascal-case": "off",
         "react/jsx-props-no-spreading": "off",
         "react/no-multi-comp": "warn",
         "react/only-export-components": "off",
+
         "unicorn/escape-case": "warn",
         "unicorn/no-array-callback-reference": "off",
         "unicorn/no-hex-escape": "warn",
+        "unicorn/no-new-array":"off",
+        "unicorn/no-useless-promise-resolve-reject":"off",
+
         "vitest/no-importing-vitest-globals": "off",
+        "vitest/prefer-called-exactly-once-with": "off",
         "vitest/prefer-called-once": "error",
         "vitest/prefer-called-times": "off",
         "vitest/prefer-import-in-mock": "off",
-        "vitest/prefer-lowercase-title": "error"
+        "vitest/prefer-lowercase-title": "error",
+        "vitest/prefer-strict-boolean-matchers":"off",
+        "vitest/require-test-timeout": "off",
       }
     }
   ],
@@ -72,10 +86,20 @@
     "@typescript-eslint/no-redundant-type-constituents": "warn",
     "@typescript-eslint/no-unsafe-type-assertion": "warn",
     "@typescript-eslint/strict-boolean-expressions": "off",
+
     "import/no-nodejs-modules": "off",
+
     "react/only-export-components": "warn",
+
+    "eslint/no-negated-condition": "off",
+
     "unicorn/empty-brace-spaces": "error",
-    "unicorn/prefer-global-this": "allow"
+    "unicorn/prefer-global-this": "allow",
+    "unicorn/no-object-as-default-parameter":"off",
+    "unicorn/prefer-query-selector": "off",
+    "unicorn/prefer-string-slice":"off",
+    "unicorn/prefer-code-point": "off",
+    "unicorn/prefer-ternary": "off"
   },
   "settings": {
     "vitest": {

@@ -25,6 +25,7 @@
     "typescript/no-this-alias": "error",
     "typescript/no-unnecessary-type-constraint": "error",
     "typescript/no-unsafe-declaration-merging": "error",
+    "typescript/no-unnecessary-type-arguments":"off",
     "typescript/no-unsafe-member-access": "error",
     "typescript/no-var-requires": "error",
     "typescript/prefer-as-const": "error",
@@ -32,6 +33,7 @@
     "typescript/prefer-for-of": "error",
     "typescript/prefer-function-type": "off",
     "typescript/prefer-literal-enum-member": "off",
+    "typescript/prefer-regexp-exec": "off",
     "typescript/prefer-ts-expect-error": "off",
     "typescript/triple-slash-reference": "error"
   }

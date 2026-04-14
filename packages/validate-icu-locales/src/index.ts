@@ -46,7 +46,7 @@ type ErrorICU = {
 type ErrorsICU = (ErrorICU | undefined)[]
 
 const isObject = (obj: unknown): obj is Record<string, unknown> => {
-  // eslint-disable-next-line no-new-object
+  //
   const newObj = new Object(obj)
 
   return obj === newObj

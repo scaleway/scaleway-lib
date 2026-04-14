@@ -82,7 +82,7 @@ async function processPackageJson(filePath: string): Promise<number> {
 
       await writeFile(
         filePath,
-        JSON.stringify(packageJson, null, indent),
+        JSON.stringify(packageJson, undefined, indent),
         'utf8',
       )
     }
@@ -140,6 +140,6 @@ async function syncPeerDependencies(): Promise<void> {
 }
 
 // Execute the main function
-syncPeerDependencies().catch((error: unknown) => {
+await syncPeerDependencies().catch((error: unknown) => {
   consoleError(chalk.red('GLOBAL Error synchronizing dependencies:'), error)
 })
