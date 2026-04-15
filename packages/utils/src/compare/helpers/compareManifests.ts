@@ -1,5 +1,5 @@
 // oxlint-disable eslint/max-statements, eslint/complexity
-// oxlint-disable typescript/no-unsafe-assignment, typescript-eslint/no-unsafe-call
+// oxlint-disable typescript/no-unsafe-assignment
 import { readFileSync, writeFileSync } from 'node:fs'
 import { COLORS } from '../config.ts'
 import type { Manifest } from '../types.ts'
@@ -13,10 +13,15 @@ export const compareManifests = (
   // biome-ignore lint/complexity/noExcessiveCognitiveComplexity: ok here
 ) => {
   logger('Comparing manifests...')
-  // oxlint-disable-next-line typescript/no-unsafe-assignment
-  const baseline: Manifest = JSON.parse(readFileSync(baselinePath, 'utf8'))
-  // oxlint-disable-next-line typescript/no-unsafe-assignment
-  const current: Manifest = JSON.parse(readFileSync(currentPath, 'utf8'))
+  const baseJson = readFileSync(baselinePath, {
+    encoding: 'utf8',
+  })
+
+  const currentJson = readFileSync(currentPath, {
+    encoding: 'utf8',
+  })
+  const baseline: Manifest = JSON.parse(baseJson)
+  const current: Manifest = JSON.parse(currentJson)
 
   let report = 'Migration Comparison Report\n'
   report += `Generated: ${new Date().toISOString()}\n`
@@ -71,7 +76,7 @@ export const compareManifests = (
 
       if (missingFiles && missingFiles.length > 0) {
         report += '  Missing files:\n'
-        report += `${missingFiles.map(f => `    ${f}`).join('\n')}\n`
+        report += `${missingFiles.map(f => f).join('\n')}\n`
       }
     }
 

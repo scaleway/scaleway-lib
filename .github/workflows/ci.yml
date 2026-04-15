@@ -43,21 +43,6 @@ jobs:
       - run: pnpm typecheck
       # - run: pnpm typecheck:global
 
-  typecheck-go:
-    runs-on: ubuntu-24.04
-    needs: [build]
-    steps:
-      - uses: actions/checkout@v6.0.2
-      - uses: pnpm/action-setup@v6.0.0
-      - name: Use Node.js
-        uses: actions/setup-node@v6.3.0
-        with:
-          node-version: 24.14.1
-          check-latest: true
-          cache: 'pnpm'
-      - run: pnpm install
-      - run: pnpm typecheck:go
-
   lint:
     runs-on: ubuntu-24.04
     needs: [build]

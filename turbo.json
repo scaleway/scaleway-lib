@@ -13,7 +13,8 @@
       "outputs": ["build/**", "dist/**", "!.next/cache/**", "out/**"]
     },
     "test:types": {
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build"],
+      "passThroughEnv": ["VITEST_*"]
     },
     "test:unit": {
       "dependsOn": ["^build"],

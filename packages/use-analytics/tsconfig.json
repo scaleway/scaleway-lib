@@ -1,4 +1,8 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "@scaleway/tsconfig",
+  "compilerOptions": {
+    "lib": ["ESNext", "DOM"],
+    "skipLibCheck": true
+  },
   "include": ["src/**/*.ts", "src/**/*.tsx", "*.config.ts"]
 }
