@@ -13,6 +13,7 @@
     "react-perf/jsx-no-new-object-as-prop": "off",
     "react/button-has-type": "error",
     "react/display-name": "off",
+    "react/hook-use-state": "off",
     "react/exhaustive-deps": "error",
     "react/iframe-missing-sandbox": "error",
     "react/jsx-filename-extension": [

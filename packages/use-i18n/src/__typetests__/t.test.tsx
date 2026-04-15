@@ -1,4 +1,4 @@
-import { expect, test } from 'tstyche'
+import { expect as typeExpect, test as typeTest } from 'tstyche'
 import { useI18n } from '../usei18n'
 
 type I18NLocale = {
@@ -9,43 +9,43 @@ type I18NLocale = {
   'describe.john': '{name} is {age} years old'
 }
 
-test('i18n - t', () => {
+typeTest('i18n - t', () => {
   const { t } = useI18n<I18NLocale>()
-  expect(t('hello')).type.toBe<string>()
+  typeExpect(t('hello')).type.toBe<string>()
   // Single key
-  expect(t).type.not.toBeCallableWith('keydoesnotexists')
+  typeExpect(t).type.not.toBeCallableWith('keydoesnotexists')
 
   // Multiple keys
-  expect(t('doe.john')).type.toBe<string>()
-  expect(t).type.not.toBeCallableWith('doe.doesnotexists')
+  typeExpect(t('doe.john')).type.toBe<string>()
+  typeExpect(t).type.not.toBeCallableWith('doe.doesnotexists')
 
   // With a param
-  expect(
+  typeExpect(
     t('doe.child', {
       name: 'Name',
     }),
   ).type.toBe<string>()
-  expect(t).type.not.toBeCallableWith('doe.doesnotexists', {
+  typeExpect(t).type.not.toBeCallableWith('doe.doesnotexists', {
     name: 'Name',
   })
 
-  expect(t).type.not.toBeCallableWith('doe.child', {})
+  typeExpect(t).type.not.toBeCallableWith('doe.child', {})
 
-  expect(t).type.not.toBeCallableWith('doe.child')
+  typeExpect(t).type.not.toBeCallableWith('doe.child')
 
   // With multiple params
-  expect(
+  typeExpect(
     t('describe.john', {
       age: '30',
       name: 'John',
     }),
   ).type.toBe<string>()
 
-  expect(t).type.not.toBeCallableWith('describe.john', {})
-  expect(t).type.not.toBeCallableWith('describe.john')
+  typeExpect(t).type.not.toBeCallableWith('describe.john', {})
+  typeExpect(t).type.not.toBeCallableWith('describe.john')
 
   // With react components as param value
-  expect(
+  typeExpect(
     t('doe.child', {
       name: (
         <p>
@@ -57,5 +57,5 @@ test('i18n - t', () => {
 
   // Required generic
   const { t: t2 } = useI18n<Record<'', string>>()
-  expect(t2).type.not.toBeCallableWith('test')
+  typeExpect(t2).type.not.toBeCallableWith('test')
 })

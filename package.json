@@ -7,7 +7,7 @@
   "type": "module",
   "scripts": {
     "lint:catalog": "pnpm check-catalog-usage",
-    "oxc": "pnpm oxlint -c .oxlintrc.json --type-aware --type-check",
+    "oxc": "pnpm oxlint -c .oxlintrc.jsonc --type-aware --type-check",
     "oxc:quiet": "pnpm oxc --quiet",
     "oxc:fix": "pnpm oxc --fix",
     "build": "pnpm turbo build",
