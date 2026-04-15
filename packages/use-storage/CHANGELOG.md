@@ -1,5 +1,12 @@
 # Change Log
 
+## 3.1.7
+
+### Patch Changes
+
+- [#3182](https://github.com/scaleway/scaleway-lib/pull/3182) [`636f7d4`](https://github.com/scaleway/scaleway-lib/commit/636f7d4e21ecf0f868f307048c27668cd4ba7856) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `react` to `19.2.5`.
+  Updated dependency `react-dom` to `19.2.5`.
+
 ## 3.1.6
 
 ### Patch Changes

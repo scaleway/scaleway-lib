@@ -1,5 +1,14 @@
 # Change Log
 
+## 7.2.11
+
+### Patch Changes
+
+- [#3182](https://github.com/scaleway/scaleway-lib/pull/3182) [`636f7d4`](https://github.com/scaleway/scaleway-lib/commit/636f7d4e21ecf0f868f307048c27668cd4ba7856) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `react` to `19.2.5`.
+  Updated dependency `react-dom` to `19.2.5`.
+
+- [#3143](https://github.com/scaleway/scaleway-lib/pull/3143) [`875585e`](https://github.com/scaleway/scaleway-lib/commit/875585eb2dc9cade590cc58e69f9e2b7b253f36a) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `filesize` to `11.0.15`.
+
 ## 7.2.10
 
 ### Patch Changes
