@@ -1,5 +1,5 @@
 /**/
-import { expect as typeExpect, test as typeTest } from 'tstyche'
+import { describe, expectTypeOf, it } from 'vitest'
 import { useI18n } from '../usei18n'
 
 const ListLocales = ['es', 'en', 'fr', 'fr-FR', 'en-GB'] as const
@@ -12,56 +12,59 @@ type Locale = {
   'describe.john': '{name} is {age} years old'
 }
 
-typeTest('i18n - namespaceTranslation', () => {
-  const { namespaceTranslation } = useI18n<Locale, Locales>()
+describe('i18n - namespaceTranslation', () => {
+  it('should work with namespaceTranslation function', () => {
+    const { namespaceTranslation } = useI18n<Locale, Locales>()
 
-  // Single key
-  typeExpect(namespaceTranslation).type.not.toBeCallableWith('hello')
+    expectTypeOf(namespaceTranslation).parameters.not.toEqualTypeOf<['hello']>()
 
-  // Multiple keys
-  typeExpect(namespaceTranslation).type.not.toBeCallableWith('doe.john')
+    expectTypeOf(namespaceTranslation).parameters.not.toEqualTypeOf<
+      ['doe.john']
+    >()
 
-  typeExpect(namespaceTranslation('doe')('john')).type.toBe<string>()
+    expectTypeOf(namespaceTranslation('doe')('john')).toEqualTypeOf<string>()
 
-  typeExpect(namespaceTranslation('doe')).type.not.toBeCallableWith(
-    'doesnotexists',
-  )
+    expectTypeOf(namespaceTranslation('doe'))
+      .parameter(0)
+      .not.toEqualTypeOf<'doesnotexists'>()
 
-  // With a param
-  typeExpect(namespaceTranslation('doe')).type.not.toBeCallableWith('child')
-  typeExpect(
-    namespaceTranslation('doe')('child', {
-      name: 'Name',
-    }),
-  ).type.toBe<string>()
-  typeExpect(namespaceTranslation('doe')).type.not.toBeCallableWith(
-    'doesnotexists',
-    {
-      name: 'Name',
-    },
-  )
-  typeExpect(namespaceTranslation('doe')).type.not.toBeCallableWith('child', {
-    doesnotexists: 'Name',
+    expectTypeOf(namespaceTranslation('doe')).parameters.not.toEqualTypeOf<
+      ['child']
+    >()
+    expectTypeOf(
+      namespaceTranslation('doe')('child', {
+        name: 'Name',
+      }),
+    ).toEqualTypeOf<string>()
+    expectTypeOf(namespaceTranslation('doe')).parameters.not.toEqualTypeOf<
+      ['doesnotexists', { name: string }]
+    >()
+    expectTypeOf(namespaceTranslation('doe')).parameters.not.toEqualTypeOf<
+      ['child', { doesnotexists: string }]
+    >()
+
+    expectTypeOf(namespaceTranslation('doe')).parameters.not.toEqualTypeOf<
+      ['child', Record<string, never>]
+    >()
+    expectTypeOf(namespaceTranslation('doe')).parameters.not.toEqualTypeOf<
+      ['child']
+    >()
+
+    expectTypeOf(
+      namespaceTranslation('describe')('john', {
+        age: '30',
+        name: 'John',
+      }),
+    ).toEqualTypeOf<string>()
+
+    expectTypeOf(namespaceTranslation('describe')).parameters.not.toEqualTypeOf<
+      ['john', Record<string, never>]
+    >()
+    expectTypeOf(namespaceTranslation('describe')).parameters.not.toEqualTypeOf<
+      ['john']
+    >()
+
+    const { namespaceTranslation: namespaceTranslation2 } = useI18n<Locale>()
+    expectTypeOf(namespaceTranslation2).parameter(0).not.toEqualTypeOf<'test'>()
   })
-
-  typeExpect(namespaceTranslation('doe')).type.not.toBeCallableWith('child', {})
-  typeExpect(namespaceTranslation('doe')).type.not.toBeCallableWith('child')
-
-  // With multiple params
-  typeExpect(
-    namespaceTranslation('describe')('john', {
-      age: '30',
-      name: 'John',
-    }),
-  ).type.toBe<string>()
-
-  typeExpect(namespaceTranslation('describe')).type.not.toBeCallableWith(
-    'john',
-    {},
-  )
-  typeExpect(namespaceTranslation('describe')).type.not.toBeCallableWith('john')
-
-  // Required generic
-  const { namespaceTranslation: namespaceTranslation2 } = useI18n<Locale>()
-  typeExpect(namespaceTranslation2).type.not.toBeCallableWith('test')
 })

@@ -45,7 +45,7 @@ export const defaultConfig = mergeConfig(viteConfig, {
     },
     css: true,
     environment: 'node',
-    exclude: ['**/__typetests__/**', 'node_modules', '**/dist/**'],
+    exclude: ['node_modules', '**/dist/**', '**/__typetests__/**'],
     globals: true,
     logHeapUsage: true,
     mockReset: true,
@@ -58,6 +58,12 @@ export const defaultConfig = mergeConfig(viteConfig, {
       },
     },
     setupFiles: ['vitest-localstorage-mock'],
+
+    typecheck: {
+      enabled: true,
+
+      include: ['**/__typetests__/**/*.test.?(c|m)[jt]s?(x)'],
+    },
   },
 })
 

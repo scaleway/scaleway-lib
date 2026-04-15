@@ -22,8 +22,9 @@
     "sourceMap": true,
     "strict": true,
     "target": "ESNext",
+    "lib": ["ES2023"],
     "useUnknownInCatchVariables": true
   },
-  "extends": "../../tsconfig.json",
+  "extends": "@scaleway/tsconfig",
   "include": ["src/**/*.ts", "src/types/**/*.ts"]
 }

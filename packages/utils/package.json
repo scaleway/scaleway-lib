@@ -22,8 +22,6 @@
   ],
   "type": "module",
   "scripts": {
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
