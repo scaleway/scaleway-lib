@@ -480,7 +480,7 @@ describe('i18n hook', () => {
   })
 
   it('should call onTranslateError when there is a sync issue to remove/add variable in one traduction of a language', async () => {
-    const mockOnTranslateError = vi.fn()
+    const mockOnTranslateError = vi.fn(() => {})
 
     const { result } = renderHook(() => useI18n<Locale, Locales>(), {
       wrapper: wrapper({

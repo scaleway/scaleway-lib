@@ -52,8 +52,8 @@ catalog:
   lint-staged: 16.4.0
   mockdate: 3.0.5
   module-from-string: 3.3.1
-  oxfmt: 0.44.0
-  oxlint: 1.58.0
+  oxfmt: 0.45.0
+  oxlint: 1.60.0
   oxlint-tsgolint: 0.21.0
   query-string: 9.3.1
   react: 19.2.5
@@ -79,5 +79,5 @@ packageManagerStrictVersion: true
 savePrefix: ''
 
 supportedArchitectures:
-  cpu: [ x64, arm64 ]
-  os: [ darwin, current ]
+  cpu: [x64, arm64]
+  os: [darwin, current]

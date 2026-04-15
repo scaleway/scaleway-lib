@@ -22,7 +22,7 @@ describe('randomName', () => {
     expect(name.split('!').length).toBe(3)
   })
 
-  it('should never have boring-wozniak', () => {
+  it('should never have boring-wozniak', { timeout: 5000 }, () => {
     const names = Array.from(new Array(1_000_000), () => randomName())
     expect(names).not.toEqual(
       expect.arrayContaining([expect.stringMatching('boring-wozniak')]),

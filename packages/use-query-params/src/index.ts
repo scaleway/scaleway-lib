@@ -10,6 +10,7 @@ type SetQueryParams = <T extends ParsedQueryDefault>(
   options?: Options,
 ) => void
 
+// oxlint-disable-next-line typescript/no-unnecessary-type-parameters
 type ReplaceQueryParams = <T extends ParsedQueryDefault>(
   newParams: T,
   options?: Options,
