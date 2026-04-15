@@ -1,5 +1,15 @@
 # @scaleway/utils
 
+## 0.0.7
+
+### Patch Changes
+
+- [#3174](https://github.com/scaleway/scaleway-lib/pull/3174) [`6ad90e2`](https://github.com/scaleway/scaleway-lib/commit/6ad90e2e83a470f5028b9efaff0d04fc363bceda) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@types/node` to `25.5.2`.
+
+- [#3117](https://github.com/scaleway/scaleway-lib/pull/3117) [`e1c5c9b`](https://github.com/scaleway/scaleway-lib/commit/e1c5c9b5f517ac1546a7e7d93a11160dffbff679) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@types/node` to `25.5.0`.
+
+- [#3158](https://github.com/scaleway/scaleway-lib/pull/3158) [`63d882a`](https://github.com/scaleway/scaleway-lib/commit/63d882a280651f1853b8a0ff68d86247a5a3289f) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `globby` to `16.2.0`.
+
 ## 0.0.6
 
 ### Patch Changes

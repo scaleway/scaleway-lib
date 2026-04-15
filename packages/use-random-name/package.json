@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/use-random-name",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "A small react utility to generate a random name",
   "license": "MIT",
   "repository": {

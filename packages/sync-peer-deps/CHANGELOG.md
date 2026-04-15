@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.0.3
+
+### Patch Changes
+
+- [#3180](https://github.com/scaleway/scaleway-lib/pull/3180) [`b9b758c`](https://github.com/scaleway/scaleway-lib/commit/b9b758c816960d73dfe0a6fc0ebf8a3892c83b36) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `tinyglobby` to `0.2.16`.
+
 ## 0.0.2
 
 ### Patch Changes
