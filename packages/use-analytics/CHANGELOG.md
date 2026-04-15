@@ -1,5 +1,18 @@
 # Change Log
 
+## 1.1.0
+
+### Minor Changes
+
+- [#3171](https://github.com/scaleway/scaleway-lib/pull/3171) [`011df14`](https://github.com/scaleway/scaleway-lib/commit/011df14f2451621afd538f92e4625c044e3ea479) Thanks [@alexandre-combemorel](https://github.com/alexandre-combemorel)! - export context to improve unit test mocking
+
+### Patch Changes
+
+- [#3182](https://github.com/scaleway/scaleway-lib/pull/3182) [`636f7d4`](https://github.com/scaleway/scaleway-lib/commit/636f7d4e21ecf0f868f307048c27668cd4ba7856) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `react` to `19.2.5`.
+  Updated dependency `react-dom` to `19.2.5`.
+
+- [#3149](https://github.com/scaleway/scaleway-lib/pull/3149) [`e06ae8d`](https://github.com/scaleway/scaleway-lib/commit/e06ae8dc821518e87146ad8a85b3830eff0eacf3) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@rudderstack/analytics-js` to `3.31.0`.
+
 ## 1.0.5
 
 ### Patch Changes
