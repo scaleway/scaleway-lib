@@ -5,6 +5,7 @@
   "description": "peer deps",
   "repository": {
     "type": "git",
+    "url": "https://github.com/scaleway/scaleway-lib",
     "directory": "packages/sync-peer-deps"
   },
   "bin": {
