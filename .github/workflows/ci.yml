@@ -18,7 +18,7 @@ jobs:
       TURBO_CACHE: 'remote:rw'
     steps:
       - uses: actions/checkout@v6
-      - uses: pnpm/action-setup@v6.0.1
+      - uses: pnpm/action-setup@v6.0.3
       - uses: actions/setup-node@v6.3.0
         with:
           node-version: ${{ matrix.node }}
@@ -32,7 +32,7 @@ jobs:
     needs: [build]
     steps:
       - uses: actions/checkout@v6.0.2
-      - uses: pnpm/action-setup@v6.0.1
+      - uses: pnpm/action-setup@v6.0.3
       - name: Use Node.js
         uses: actions/setup-node@v6.3.0
         with:
@@ -51,7 +51,7 @@ jobs:
       TURBO_CACHE: 'remote:rw'
     steps:
       - uses: actions/checkout@v6
-      - uses: pnpm/action-setup@v6.0.1
+      - uses: pnpm/action-setup@v6.0.3
       - uses: actions/setup-node@v6.3.0
         with:
           node-version: 24.15.0
@@ -71,7 +71,7 @@ jobs:
         node: ['24']
     steps:
       - uses: actions/checkout@v6.0.2
-      - uses: pnpm/action-setup@v6.0.1
+      - uses: pnpm/action-setup@v6.0.3
       - name: Use Node.js
         uses: actions/setup-node@v6.3.0
         with:
@@ -93,7 +93,7 @@ jobs:
         node: ['24']
     steps:
       - uses: actions/checkout@v6.0.2
-      - uses: pnpm/action-setup@v6.0.1
+      - uses: pnpm/action-setup@v6.0.3
       - name: Use Node.js
         uses: actions/setup-node@v6.3.0
         with:
