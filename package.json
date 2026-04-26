@@ -53,7 +53,6 @@
     "builtin-modules": "catalog:",
     "chalk": "catalog:",
     "cross-env": "catalog:",
-    "esbuild-plugin-browserslist": "catalog:",
     "fast-glob": "catalog:",
     "globals": "catalog:",
     "globby": "catalog:",
