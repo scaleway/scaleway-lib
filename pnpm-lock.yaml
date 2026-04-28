@@ -43,8 +43,8 @@ catalogs:
       specifier: 3.1.2
       version: 3.1.2
     '@formatjs/icu-messageformat-parser':
-      specifier: 3.5.4
-      version: 3.5.4
+      specifier: 3.5.5
+      version: 3.5.5
     '@growthbook/growthbook-react':
       specifier: 1.6.5
       version: 1.6.5
@@ -139,8 +139,8 @@ catalogs:
       specifier: 0.8.1
       version: 0.8.1
     intl-messageformat:
-      specifier: 11.2.1
-      version: 11.2.1
+      specifier: 11.2.2
+      version: 11.2.2
     js-yaml:
       specifier: 4.1.1
       version: 4.1.1
@@ -475,7 +475,7 @@ importers:
         version: 0.8.1
       intl-messageformat:
         specifier: 'catalog:'
-        version: 11.2.1
+        version: 11.2.2
     devDependencies:
       date-fns:
         specifier: 'catalog:'
@@ -551,7 +551,7 @@ importers:
     dependencies:
       '@formatjs/icu-messageformat-parser':
         specifier: 'catalog:'
-        version: 3.5.4
+        version: 3.5.5
       globby:
         specifier: 'catalog:'
         version: 16.2.0
@@ -1715,11 +1715,11 @@ packages:
   '@formatjs/fast-memoize@3.1.2':
     resolution: {integrity: sha512-vPnriihkfK0lzoQGaXq+qXH23VsYyansRTkTgo2aTG0k1NjLFyZimFVdfj4C9JkSE5dm7CEngcQ5TTc1yAyBfQ==}
 
-  '@formatjs/icu-messageformat-parser@3.5.4':
-    resolution: {integrity: sha512-JVY39ROgLt+pIYngo6piyj4OVfZmXs/2FkC4wLS+ql1Eig/sGJKB7YwDO/5bkJFkfwaFAeIpgEiJc8hiYxNalw==}
+  '@formatjs/icu-messageformat-parser@3.5.5':
+    resolution: {integrity: sha512-ASMon8BNlKHgQQpZx84xI80EXRS90GlsEU4wEulCKCzrMtUdrfEvFc9UEYmRbvEvtFQLZ4qHXnisUy6PuFjwyA==}
 
-  '@formatjs/icu-skeleton-parser@2.1.4':
-    resolution: {integrity: sha512-8bSFZbrlvGX11ywMZxtgkPBt5Q8/etyts7j7j+GWpOVK1g43zwMIH3LZxk43HAtEP7L/jtZ+OZaMiFTOiBj9CA==}
+  '@formatjs/icu-skeleton-parser@2.1.5':
+    resolution: {integrity: sha512-9Kc6tMaAPZKTGevdfcvx5zT3v4BTfamo+djJE29wF6ds1QLhoA09MZNDpWMZaebWzuoOTIXhDvgmqmjSlUOGlw==}
 
   '@formatjs/intl-localematcher@0.8.2':
     resolution: {integrity: sha512-q05KMYGJLyqFNFtIb8NhWLF5X3aK/k0wYt7dnRFuy6aLQL+vUwQ1cg5cO4qawEiINybeCPXAWlprY2mSBjSXAQ==}
@@ -3082,8 +3082,8 @@ packages:
     resolution: {integrity: sha512-agE4QfB2Lkp9uICn7BAqoscw4SZP9kTE2hxiFI3jBPmXJfdqiahTbUuKGsMoN2GtqL9AxhYioAcVvgsb1HvRbA==}
     engines: {node: '>= 0.10'}
 
-  intl-messageformat@11.2.1:
-    resolution: {integrity: sha512-1gAVEUt3wEPvTqML4Fsw9klZV5j0vszQxayP/fi6gUroAc8AUHiNaisBKLWxybL1AdWq1mP07YV1q8v4N92ilQ==}
+  intl-messageformat@11.2.2:
+    resolution: {integrity: sha512-yUfyIkPGqMvvk2onw2xBJeLsjXdiYUYebR8mmZVQYBuZUJsFGVht48Ftm1khgu8EZ0n+izX4rAEj3fLAilkh9g==}
 
   is-arrayish@0.2.1:
     resolution: {integrity: sha512-zz06S8t0ozoDXMG+ube26zeCTNXcKIPJZJi8hBrF4idCLms4CG9QtK7qBl1boi5ODzFpjswb5JPmHCbMpjaYzg==}
@@ -5544,11 +5544,11 @@ snapshots:
 
   '@formatjs/fast-memoize@3.1.2': {}
 
-  '@formatjs/icu-messageformat-parser@3.5.4':
+  '@formatjs/icu-messageformat-parser@3.5.5':
     dependencies:
-      '@formatjs/icu-skeleton-parser': 2.1.4
+      '@formatjs/icu-skeleton-parser': 2.1.5
 
-  '@formatjs/icu-skeleton-parser@2.1.4': {}
+  '@formatjs/icu-skeleton-parser@2.1.5': {}
 
   '@formatjs/intl-localematcher@0.8.2':
     dependencies:
@@ -6783,10 +6783,10 @@ snapshots:
 
   interpret@1.4.0: {}
 
-  intl-messageformat@11.2.1:
+  intl-messageformat@11.2.2:
     dependencies:
       '@formatjs/fast-memoize': 3.1.2
-      '@formatjs/icu-messageformat-parser': 3.5.4
+      '@formatjs/icu-messageformat-parser': 3.5.5
 
   is-arrayish@0.2.1: {}
 
