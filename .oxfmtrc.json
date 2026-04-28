@@ -13,6 +13,7 @@
   "bracketSpacing": true,
   "ignorePatterns": [
     "packages_deprecated",
+    "pnpm-workspace.yaml",
     "**/_generated",
     "**/*.gen.*",
     "**/.next",
