@@ -105,6 +105,7 @@
     "unicorn/prefer-string-slice": "off",
     "unicorn/prefer-code-point": "off",
     "unicorn/prefer-ternary": "off",
+    "explicit-member-accessibility": "warn",
   },
   "settings": {
     "vitest": {

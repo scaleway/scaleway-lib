@@ -54,7 +54,7 @@ catalog:
   mockdate: 3.0.5
   module-from-string: 3.3.1
   oxfmt: 0.46.0
-  oxlint: 1.60.0
+  oxlint: 1.61.0
   oxlint-tsgolint: 0.22.0
   query-string: 9.3.1
   react: 19.2.5
