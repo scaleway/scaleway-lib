@@ -118,8 +118,8 @@ catalogs:
       specifier: 3.3.3
       version: 3.3.3
     filesize:
-      specifier: 11.0.16
-      version: 11.0.16
+      specifier: 11.0.17
+      version: 11.0.17
     globals:
       specifier: 17.5.0
       version: 17.5.0
@@ -469,7 +469,7 @@ importers:
         version: 3.1.2
       filesize:
         specifier: 'catalog:'
-        version: 11.0.16
+        version: 11.0.17
       international-types:
         specifier: 'catalog:'
         version: 0.8.1
@@ -2924,8 +2924,8 @@ packages:
     resolution: {integrity: sha512-d+l3qxjSesT4V7v2fh+QnmFnUWv9lSpjarhShNTgBOfA0ttejbQUAlHLitbjkoRiDulW0OPoQPYIGhIC8ohejg==}
     engines: {node: '>=18'}
 
-  filesize@11.0.16:
-    resolution: {integrity: sha512-XMcUu0Zxnh0L8rY5b5vrdKKs0H3l3osTp9vNEBulRmwLqYfuQe5SJCagpA0/sGMJx2KHbD+IWOyd6QsJQuYEkQ==}
+  filesize@11.0.17:
+    resolution: {integrity: sha512-oHLTvMLw6imZUl1se/RBQrFlyy50nXce4sU7yGR6Qc0JgCwqnfiFsAnEwotdGmfKLD7SArGUk2/5STU0k8LOBQ==}
     engines: {node: '>= 10.8.0'}
 
   fill-range@7.1.1:
@@ -6637,7 +6637,7 @@ snapshots:
     dependencies:
       is-unicode-supported: 2.1.0
 
-  filesize@11.0.16: {}
+  filesize@11.0.17: {}
 
   fill-range@7.1.1:
     dependencies:
