@@ -5,8 +5,7 @@ on:
   merge_group:
 
 jobs:
-  main:
-    name: Validate PR title
+  check-title:
     runs-on: ubuntu-slim
     permissions:
       pull-requests: read
