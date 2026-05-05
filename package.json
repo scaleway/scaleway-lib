@@ -20,8 +20,7 @@
     "test:unit": "pnpm turbo test:unit",
     "test:coverage": "pnpm test:unit -- --coverage",
     "test:types": "pnpm turbo test:types",
-    "release": "pnpm build && pnpm changeset publish",
-    "prepare": "husky install"
+    "release": "pnpm build && pnpm changeset publish"
   },
   "devDependencies": {
     "@babel/core": "catalog:",
@@ -56,7 +55,6 @@
     "globals": "catalog:",
     "globby": "catalog:",
     "happy-dom": "catalog:",
-    "husky": "catalog:",
     "js-yaml": "catalog:",
     "jsdom": "catalog:",
     "lint-staged": "catalog:",

@@ -5,19 +5,12 @@ on:
   merge_group:
 
 jobs:
-  check-title:
-    runs-on: ubuntu-24.04
+  main:
+    name: Validate PR title
+    runs-on: ubuntu-slim
+    permissions:
+      pull-requests: read
     steps:
-      - uses: actions/checkout@v6.0.2
-      - uses: pnpm/action-setup@v6.0.5
-      - name: Use Node.js
-        uses: actions/setup-node@v6.4.0
-        with:
-          node-version: 24.15.0
-          check-latest: true
-          cache: 'pnpm'
-      - run: pnpm install
-      - name: Check PR title
+      - uses: amannn/action-semantic-pull-request@v6
         env:
-          TITLE: ${{ github.event.pull_request.title }}
-        run: echo "$TITLE" | pnpm commitlint
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
