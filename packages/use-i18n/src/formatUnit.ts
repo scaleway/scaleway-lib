@@ -172,7 +172,6 @@ const format =
       }
     }
 
-    // biome-ignore lint/style/noNonNullAssertion: should never happen
     const exp = computedExponent!
 
     return `${new Intl.NumberFormat(locale, {

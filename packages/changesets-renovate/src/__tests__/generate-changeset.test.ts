@@ -23,13 +23,9 @@ beforeEach(() => {
 
 describe('generate changeset file', () => {
   beforeEach(() => {
-    // biome-ignore lint/performance/noDelete: error
     delete process.env['SKIP_BRANCH_CHECK']
-    // biome-ignore lint/performance/noDelete: error
     delete process.env['SKIP_COMMIT']
-    // biome-ignore lint/performance/noDelete: error
     delete process.env['BRANCH_PREFIX']
-    // biome-ignore lint/performance/noDelete: error
     delete process.env['SORT_CHANGESETS']
   })
 

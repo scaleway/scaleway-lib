@@ -2,7 +2,6 @@
 
 // oxlint-disable eslint/no-console
 // oxlint-disable eslint/max-statements
-// biome-ignore-all lint/style/noNonNullAssertion: error
 
 import { copyFileSync, existsSync, mkdirSync, readFileSync } from 'node:fs'
 import {
