@@ -10,7 +10,6 @@ export const compareManifests = (
   baselinePath: string,
   currentPath: string,
   reportPath: string,
-  // biome-ignore lint/complexity/noExcessiveCognitiveComplexity: ok here
 ) => {
   logger('Comparing manifests...')
   const baseJson = readFileSync(baselinePath, {

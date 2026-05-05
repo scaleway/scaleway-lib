@@ -170,7 +170,6 @@ describe('abTestProvider', () => {
     // Re-render with different attributes
     if (rerenderFn) {
       await act(async () => {
-        // biome-ignore lint/style/noNonNullAssertion: error
         rerenderFn!(
           <AbTestProvider
             attributes={{
@@ -233,7 +232,6 @@ describe('abTestProvider', () => {
     // Re-render with the SAME EXACT object references
     if (rerenderFn) {
       await act(async () => {
-        // biome-ignore lint/style/noNonNullAssertion: error
         rerenderFn!(
           <AbTestProvider
             attributes={sharedAttributes} // Same config object
