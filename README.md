@@ -169,6 +169,28 @@ $ pnpm run build && yalc publish --push --sig # --push will automatically update
 
 > :warning: `yalc` create a `yalc.lock` and updates the `package.json` in the target project. **Make sure to not commit these changes**
 
+#### Testing a package in a pnpm workspace
+
+If you need to test a package that is used in more than one project in a pnpm workspace, it can be tedious to add the package in all projects and you might still have issues with modules resolution.
+
+In order to install your local package in all the projects of the monorepo, you can use the pnpm overrides feature:
+
+- first install the package using yalc (`yalc add @scaleway/package`) at the root of the pnpm workspace
+- then add a pnpm override to use the yalc version in the whole workspace
+
+Example `package.json`:
+
+```json
+"dependencies": {
+  "@scaleway/package": "file:.yalc/@scaleway/package", // <- added by yalc
+}
+"pnpm": {
+  "overrides": {
+    "@scaleway/package": "$@scaleway/package", // <- tell pnpm to use the version referenced in the dependencies
+  }
+}
+```
+
 ### Link against another project (with `pnpm link`)
 
 ```bash
