@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.1.1
+
+### Patch Changes
+
+- [#3214](https://github.com/scaleway/scaleway-lib/pull/3214) [`1bf0d09`](https://github.com/scaleway/scaleway-lib/commit/1bf0d09abb1c48651e1633dc49fddec020671046) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@segment/analytics-next` to `1.83.0`.
+
+- [#3235](https://github.com/scaleway/scaleway-lib/pull/3235) [`a253948`](https://github.com/scaleway/scaleway-lib/commit/a253948721f5e191e39e787c959577c7d5de5662) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@rudderstack/analytics-js` to `3.31.1`.
+
 ## 1.1.0
 
 ### Minor Changes
