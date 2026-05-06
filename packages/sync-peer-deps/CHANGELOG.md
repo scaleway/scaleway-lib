@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.0.4
+
+### Patch Changes
+
+- [#3249](https://github.com/scaleway/scaleway-lib/pull/3249) [`289536b`](https://github.com/scaleway/scaleway-lib/commit/289536b18f7670dfe1eef9abf4df08d3350dc9f1) Thanks [@chambo-e](https://github.com/chambo-e)! - correct bin path
+
 ## 0.0.3
 
 ### Patch Changes

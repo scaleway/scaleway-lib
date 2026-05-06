@@ -1,5 +1,20 @@
 # Change Log
 
+## 7.2.12
+
+### Patch Changes
+
+- [#3210](https://github.com/scaleway/scaleway-lib/pull/3210) [`5583c30`](https://github.com/scaleway/scaleway-lib/commit/5583c308957c3b42504f0194e78f8aee133672be) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `filesize` to `11.0.16`.
+
+- [#3233](https://github.com/scaleway/scaleway-lib/pull/3233) [`47bfd46`](https://github.com/scaleway/scaleway-lib/commit/47bfd46f809f60543c27968c3d058908413ee54a) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@formatjs/fast-memoize` to `3.1.3`.
+  Updated dependency `@formatjs/icu-messageformat-parser` to `3.5.6`.
+  Updated dependency `intl-messageformat` to `11.2.3`.
+
+- [#3222](https://github.com/scaleway/scaleway-lib/pull/3222) [`7368e4f`](https://github.com/scaleway/scaleway-lib/commit/7368e4fcf9efaf0df221282163b93fedfda9efbd) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@formatjs/icu-messageformat-parser` to `3.5.5`.
+  Updated dependency `intl-messageformat` to `11.2.2`.
+
+- [#3229](https://github.com/scaleway/scaleway-lib/pull/3229) [`cb2ab8b`](https://github.com/scaleway/scaleway-lib/commit/cb2ab8bb98de0a9d58ae4a715ba22d18be9e6b7f) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `filesize` to `11.0.17`.
+
 ## 7.2.11
 
 ### Patch Changes
