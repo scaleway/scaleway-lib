@@ -13,7 +13,6 @@
     "build": "pnpm turbo build",
     "typecheck": "pnpm turbo typecheck",
     "typecheck:generate": "pnpm turbo typecheck:generate",
-    "commit": "npx git-cz -a",
     "format": "oxfmt --write .",
     "format:check": "oxfmt --check .",
     "format:ci": "oxfmt --check .",
@@ -30,8 +29,6 @@
     "@babel/preset-typescript": "catalog:",
     "@changesets/changelog-github": "catalog:",
     "@changesets/cli": "catalog:",
-    "@commitlint/cli": "catalog:",
-    "@commitlint/config-conventional": "catalog:",
     "@manypkg/cli": "catalog:",
     "@rudderstack/analytics-js": "catalog:",
     "@scaleway/changesets-renovate": "workspace:*",
@@ -91,16 +88,6 @@
     "(*pnpm)-lock": [
       "pnpm exec manypkg check"
     ]
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
   },
   "engines": {
     "node": ">=22.x",
