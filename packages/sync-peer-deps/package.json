@@ -9,7 +9,7 @@
     "directory": "packages/sync-peer-deps"
   },
   "bin": {
-    "sync-peer-deps": "./src/sync-peer-deps.ts"
+    "sync-peer-deps": "./dist/index.js"
   },
   "files": [
     "dist"
