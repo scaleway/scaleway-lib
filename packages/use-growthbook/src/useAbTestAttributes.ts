@@ -1,10 +1,7 @@
 import { useGrowthBook } from '@growthbook/growthbook-react'
 import type { Attributes } from './types'
 
-export const useAbTestAttributes = (): [
-  Attributes,
-  (attributes: Attributes) => void,
-] => {
+export const useAbTestAttributes = (): [Attributes, (attributes: Attributes) => void] => {
   const growthBook = useGrowthBook()
 
   const attributes = growthBook.getAttributes()

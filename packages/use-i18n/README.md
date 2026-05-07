@@ -30,8 +30,7 @@ Use of local `variables` and `namespace` to dynamically load locales.
 your loaders will be:
 
 ```js
-const load = ({ locale, namespace }) =>
-  import(`./locales/${locale}/${namespace}`)
+const load = ({ locale, namespace }) => import(`./locales/${locale}/${namespace}`)
 const loadDateLocale = locale => import(`date-fns/locale/${locale}/index`)
 ```
 
@@ -46,7 +45,7 @@ import defaultTranslations from './locales/en/common'
 const App = () => (
   <I18n
     loadDateLocale={loadDateLocale}
-    defaultLocale='en'
+    defaultLocale="en"
     supportedLocales={['en']}
     defaultTranslations={defaultTranslations}
   >
@@ -72,15 +71,10 @@ const App = () => {
     title: 'Welcome to I18n hooks',
   }
 
-  const load = ({ locale, namespace }) =>
-    import(`./locales/${locale}/${namespace}`)
+  const load = ({ locale, namespace }) => import(`./locales/${locale}/${namespace}`)
 
   return (
-    <I18n
-      defaultLocale='en'
-      supportedLocales={defaultLocales}
-      defaultTranslations={defaultTranslations}
-    >
+    <I18n defaultLocale="en" supportedLocales={defaultLocales} defaultTranslations={defaultTranslations}>
       <Page />
     </I18n>
   )

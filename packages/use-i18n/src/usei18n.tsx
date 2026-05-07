@@ -1,21 +1,10 @@
 import type { NumberFormatOptions } from '@formatjs/ecma402-abstract'
-import type {
-  Locale as DateFnsLocale,
-  FormatDistanceToNowOptions,
-  FormatDistanceToNowStrictOptions,
-} from 'date-fns'
+import type { Locale as DateFnsLocale, FormatDistanceToNowOptions, FormatDistanceToNowStrictOptions } from 'date-fns'
 import { formatDistanceToNow } from 'date-fns/formatDistanceToNow'
 import { formatDistanceToNowStrict } from 'date-fns/formatDistanceToNowStrict'
 import type { BaseLocale } from 'international-types'
 import type { ReactElement, ReactNode } from 'react'
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react'
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import type { FormatDateOptions } from './formatDate'
 import dateFormat from './formatDate'
 import type { IntlListFormatOptions } from './formatters'
@@ -25,9 +14,7 @@ import unitFormat from './formatUnit'
 import type { ReactParamsObject, ScopedTranslateFn, TranslateFn } from './types'
 
 // Export types that are used in the public API
-export type SupportedLocalesType<LocalSupportedType extends string> = (
-  locale: string,
-) => locale is LocalSupportedType
+export type SupportedLocalesType<LocalSupportedType extends string> = (locale: string) => locale is LocalSupportedType
 
 export type TranslationsByLocales = Record<string, BaseLocale>
 
@@ -39,9 +26,7 @@ export type LoadTranslationsFn<LocalSupportedType extends string> = ({
   locale: LocalSupportedType
 }) => Promise<{ default: BaseLocale }>
 
-export type LoadLocaleFn<LocalSupportedType extends string> = (
-  locale: LocalSupportedType,
-) => DateFnsLocale
+export type LoadLocaleFn<LocalSupportedType extends string> = (locale: LocalSupportedType) => DateFnsLocale
 
 export type LoadLocaleFnAsync<LocalSupportedType extends string> = (
   locale: LocalSupportedType,
@@ -55,21 +40,14 @@ export type RequiredGenericContext<
   LocaleParam extends BaseLocale,
   LocalSupportedType extends string,
 > = keyof LocaleParam extends never
-  ? Omit<
-      Context<LocaleParam, LocalSupportedType>,
-      't' | 'namespaceTranslation'
-    > & {
+  ? Omit<Context<LocaleParam, LocalSupportedType>, 't' | 'namespaceTranslation'> & {
       t: (str: 'You must pass a generic argument to useI18n()') => void
-      namespaceTranslation: (
-        str: 'You must pass a generic argument to useI18n()',
-      ) => void
+      namespaceTranslation: (str: 'You must pass a generic argument to useI18n()') => void
     }
   : Context<LocaleParam, LocalSupportedType>
 
-const areNamespacesLoaded = (
-  namespaces: string[],
-  loadedNamespaces: string[] = [],
-) => namespaces.every(n => loadedNamespaces.includes(n))
+const areNamespacesLoaded = (namespaces: string[], loadedNamespaces: string[] = []) =>
+  namespaces.every(n => loadedNamespaces.includes(n))
 
 const getCurrentLocale = <LocalSupportedType extends string>({
   defaultLocale,
@@ -84,17 +62,12 @@ const getCurrentLocale = <LocalSupportedType extends string>({
     const { languages: browserLocales } = navigator
     const currentLocalFromlocalStorage = localStorage.getItem(localeItemStorage)
 
-    if (
-      currentLocalFromlocalStorage &&
-      isLocaleSupported(currentLocalFromlocalStorage)
-    ) {
+    if (currentLocalFromlocalStorage && isLocaleSupported(currentLocalFromlocalStorage)) {
       return currentLocalFromlocalStorage
     }
     localStorage.removeItem(localeItemStorage)
 
-    const findedBrowserLocal = browserLocales.find(locale =>
-      isLocaleSupported(locale),
-    )
+    const findedBrowserLocal = browserLocales.find(locale => isLocaleSupported(locale))
 
     if (findedBrowserLocal) {
       localStorage.setItem(localeItemStorage, findedBrowserLocal)
@@ -112,37 +85,19 @@ const getCurrentLocale = <LocalSupportedType extends string>({
   return defaultLocale
 }
 
-export type Context<
-  LocaleParam extends BaseLocale,
-  LocalSupportedType extends string,
-> = {
+export type Context<LocaleParam extends BaseLocale, LocalSupportedType extends string> = {
   currentLocale: LocalSupportedType
   dateFnsLocale?: DateFnsLocale
-  datetime: (
-    date: Date | number,
-    options?: Intl.DateTimeFormatOptions,
-  ) => string
-  formatDate: (
-    value: Date | number | string,
-    options?: FormatDateOptions,
-  ) => string
+  datetime: (date: Date | number, options?: Intl.DateTimeFormatOptions) => string
+  formatDate: (value: Date | number | string, options?: FormatDateOptions) => string
   formatList: (listFormat: string[], options?: IntlListFormatOptions) => string
   formatNumber: (numb: number, options?: NumberFormatOptions) => string
   formatUnit: (value: number, options: FormatUnitOptions) => string
-  loadTranslations: (
-    namespace: string,
-    load?: LoadTranslationsFn<LocalSupportedType>,
-  ) => Promise<string>
+  loadTranslations: (namespace: string, load?: LoadTranslationsFn<LocalSupportedType>) => Promise<string>
   namespaces: string[]
   namespaceTranslation: ScopedTranslateFn<LocaleParam>
-  relativeTime: (
-    date: Date | number,
-    options?: FormatDistanceToNowOptions,
-  ) => string
-  relativeTimeStrict: (
-    date: Date | number,
-    options?: FormatDistanceToNowStrictOptions,
-  ) => string
+  relativeTime: (date: Date | number, options?: FormatDistanceToNowOptions) => string
+  relativeTimeStrict: (date: Date | number, options?: FormatDistanceToNowStrictOptions) => string
   setTranslations: React.Dispatch<React.SetStateAction<TranslationsByLocales>>
   switchLocale: (locale: LocalSupportedType) => Promise<void>
   t: TranslateFn<LocaleParam>
@@ -163,18 +118,12 @@ export function useI18n<
     throw new Error('useI18n must be used within a I18nProvider')
   }
 
-  return context as unknown as RequiredGenericContext<
-    LocaleParam,
-    LocalSupportedType
-  >
+  return context as unknown as RequiredGenericContext<LocaleParam, LocalSupportedType>
 }
 
-export function useTranslation<
-  LocaleParam extends BaseLocale = BaseLocale,
-  LocalSupportedType extends string = '',
->(
+export function useTranslation<LocaleParam extends BaseLocale = BaseLocale, LocalSupportedType extends string = ''>(
   namespaces: [string, ...string[]],
-  load: LoadTranslationsFn<LocalSupportedType> | undefined = undefined,
+  load?: LoadTranslationsFn<LocalSupportedType> | undefined,
 ): RequiredGenericContext<LocaleParam, LocalSupportedType> & {
   isLoaded: boolean
 } {
@@ -189,15 +138,10 @@ export function useTranslation<
   const key = namespaces.join(',')
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    key
-      .split(',')
-      .map(async (namespace: string) => loadTranslations(namespace, load))
+    key.split(',').map(async (namespace: string) => loadTranslations(namespace, load))
   }, [loadTranslations, key, load])
 
-  const isLoaded = useMemo(
-    () => areNamespacesLoaded(namespaces, loadedNamespaces),
-    [loadedNamespaces, namespaces],
-  )
+  const isLoaded = useMemo(() => areNamespacesLoaded(namespaces, loadedNamespaces), [loadedNamespaces, namespaces])
 
   return {
     ...context,
@@ -254,8 +198,7 @@ const I18nContextProvider = <LocalSupportedType extends string>({
       localeItemStorage,
     }),
   )
-  const [translations, setTranslations] =
-    useState<TranslationsByLocales>(defaultTranslations)
+  const [translations, setTranslations] = useState<TranslationsByLocales>(defaultTranslations)
   const [namespaces, setNamespaces] = useState<string[]>([])
 
   const [dateFnsLocale, setDateFnsLocale] = useState<DateFnsLocale | undefined>(
@@ -295,10 +238,7 @@ const I18nContextProvider = <LocalSupportedType extends string>({
   }, [currentLocale, dateFnsLocale, setDateFns, setDateFnsLocale])
 
   const loadTranslations = useCallback(
-    async (
-      namespace: string,
-      load: LoadTranslationsFn<LocalSupportedType> = defaultLoad,
-    ) => {
+    async (namespace: string, load: LoadTranslationsFn<LocalSupportedType> = defaultLoad) => {
       const result = {
         [currentLocale]: { default: {} },
         defaultLocale: { default: {} },
@@ -352,8 +292,7 @@ const I18nContextProvider = <LocalSupportedType extends string>({
   )
 
   const formatNumber = useCallback(
-    (numb: number, options?: NumberFormatOptions) =>
-      formatters.getNumberFormat(currentLocale, options).format(numb),
+    (numb: number, options?: NumberFormatOptions) => formatters.getNumberFormat(currentLocale, options).format(numb),
     [currentLocale],
   )
 
@@ -367,14 +306,12 @@ const I18nContextProvider = <LocalSupportedType extends string>({
   // Once https://github.com/tc39/proposal-smart-unit-preferences is stable we should
   // be able to use formatNumber directly
   const formatUnit = useCallback(
-    (value: number, options: FormatUnitOptions) =>
-      unitFormat(currentLocale, value, options),
+    (value: number, options: FormatUnitOptions) => unitFormat(currentLocale, value, options),
     [currentLocale],
   )
 
   const formatDate = useCallback(
-    (value: Date | number | string, options: FormatDateOptions = 'short') =>
-      dateFormat(currentLocale, value, options),
+    (value: Date | number | string, options: FormatDateOptions = 'short') => dateFormat(currentLocale, value, options),
     [currentLocale],
   )
 
@@ -406,10 +343,7 @@ const I18nContextProvider = <LocalSupportedType extends string>({
   )
 
   const relativeTime = useCallback(
-    (
-      date: Date | number,
-      options: FormatDistanceToNowOptions = { addSuffix: true },
-    ) => {
+    (date: Date | number, options: FormatDistanceToNowOptions = { addSuffix: true }) => {
       const finalDate = new Date(date)
 
       return formatDistanceToNow(finalDate, {
@@ -435,9 +369,7 @@ const I18nContextProvider = <LocalSupportedType extends string>({
 
       if (context) {
         try {
-          return formatters
-            .getTranslationFormat(value, currentLocale)
-            .format(context) as string
+          return formatters.getTranslationFormat(value, currentLocale).format(context) as string
         } catch (error) {
           onTranslateError?.({
             currentLocale,
@@ -450,21 +382,13 @@ const I18nContextProvider = <LocalSupportedType extends string>({
           // with default locale nothing should break or it's normal to not ignore it.
           const defaultValue = translations[defaultLocale]?.[key] as string
 
-          return formatters
-            .getTranslationFormat(defaultValue, defaultLocale)
-            .format(context) as string
+          return formatters.getTranslationFormat(defaultValue, defaultLocale).format(context) as string
         }
       }
 
       return value
     },
-    [
-      currentLocale,
-      translations,
-      enableDebugKey,
-      defaultLocale,
-      onTranslateError,
-    ],
+    [currentLocale, translations, enableDebugKey, defaultLocale, onTranslateError],
   )
 
   const namespaceTranslation = useCallback(

@@ -5,16 +5,10 @@ export class PromiseType<T = unknown> extends Promise<T> {
   cancel?: () => void
 }
 
-export type OnErrorFn<ErrorType = Error> =
-  | ((err: ErrorType) => void | Promise<void>)
-  | undefined
-export type OnSuccessFn<ResultType> =
-  | ((result: ResultType) => void | Promise<void>)
-  | undefined
+export type OnErrorFn<ErrorType = Error> = ((err: ErrorType) => void | Promise<void>) | undefined
+export type OnSuccessFn<ResultType> = ((result: ResultType) => void | Promise<void>) | undefined
 export type OnCancelFn = (() => void | Promise<void>) | undefined
-export type NeedPollingType<ResultType> =
-  | boolean
-  | ((data?: ResultType) => boolean)
+export type NeedPollingType<ResultType> = boolean | ((data?: ResultType) => boolean)
 
 export type UseDataLoaderConfig<ResultType, ErrorType> = {
   /**
@@ -107,10 +101,7 @@ export type UseInfiniteDataLoaderConfig<
   /**
    * If return undefined it consider that there are no remaining page to load
    */
-  getNextPage: (
-    lastRes: ResultType,
-    lastParams: ParamsType,
-  ) => ParamsType[ParamsKey]
+  getNextPage: (lastRes: ResultType, lastParams: ParamsType) => ParamsType[ParamsKey]
   /**
    * The initial data if no one is present in the cache before the request
    */

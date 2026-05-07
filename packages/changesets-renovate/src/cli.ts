@@ -32,12 +32,8 @@ async function run(): Promise<void> {
   }
 
   // Handle both package.json changes and catalog changes
-  const hasPackageChanges = diffFiles.some(file =>
-    file.includes('package.json'),
-  )
-  const hasWorkspaceChanges = diffFiles.some(file =>
-    file.includes('pnpm-workspace.yaml'),
-  )
+  const hasPackageChanges = diffFiles.some(file => file.includes('package.json'))
+  const hasWorkspaceChanges = diffFiles.some(file => file.includes('pnpm-workspace.yaml'))
 
   if (!(hasPackageChanges || hasWorkspaceChanges)) {
     console.log('No relevant changes detected, skipping')

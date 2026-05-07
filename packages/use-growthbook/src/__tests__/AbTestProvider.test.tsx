@@ -1,18 +1,12 @@
 import { act, render } from '@testing-library/react'
 import type { ComponentProps } from 'react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import {
-  getAttributes,
-  init,
-  setAttributes,
-} from '../../__mocks__/@growthbook/growthbook-react'
+import { getAttributes, init, setAttributes } from '../../__mocks__/@growthbook/growthbook-react'
 import { AbTestProvider } from '../AbTestProvider'
 
 // Import mock functions from our mocks
 
-type TrackingCallback = ComponentProps<
-  typeof AbTestProvider
->['trackingCallback']
+type TrackingCallback = ComponentProps<typeof AbTestProvider>['trackingCallback']
 
 type ErrorCallback = ComponentProps<typeof AbTestProvider>['errorCallback']
 

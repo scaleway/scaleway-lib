@@ -15,7 +15,6 @@
     "typecheck:generate": "pnpm turbo typecheck:generate",
     "format": "oxfmt --write .",
     "format:check": "oxfmt --check .",
-    "format:ci": "oxfmt --check .",
     "test:unit": "pnpm turbo test:unit",
     "test:coverage": "pnpm test:unit -- --coverage",
     "test:types": "pnpm turbo test:types",

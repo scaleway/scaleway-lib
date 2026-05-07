@@ -14,12 +14,7 @@
     "./packages/oxlint-config/configs/react.json",
     "./packages/oxlint-config/configs/typescript.json",
   ],
-  "ignorePatterns": [
-    "packages_deprecated/**",
-    "**/package.config.d.ts",
-    "global.d.ts",
-    "packages/eslint-config-react",
-  ],
+  "ignorePatterns": ["packages_deprecated/**", "**/package.config.d.ts", "global.d.ts", "packages/eslint-config-react"],
   "overrides": [
     {
       "files": [

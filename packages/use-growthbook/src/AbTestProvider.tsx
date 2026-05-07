@@ -1,13 +1,7 @@
 import { GrowthBook, GrowthBookProvider } from '@growthbook/growthbook-react'
 import type { ComponentType, ReactNode } from 'react'
 import { useCallback, useEffect, useMemo } from 'react'
-import type {
-  Attributes,
-  ErrorCallback,
-  LoadConfig,
-  ToolConfig,
-  TrackingCallback,
-} from './types'
+import type { Attributes, ErrorCallback, LoadConfig, ToolConfig, TrackingCallback } from './types'
 
 type AbTestProviderProps = {
   children: ReactNode
@@ -47,10 +41,7 @@ export const AbTestProvider: ComponentType<AbTestProviderProps> = ({
   attributes,
   loadConfig,
 }) => {
-  const growthbook = useMemo(
-    () => getGrowthBookInstance({ config, trackingCallback }),
-    [trackingCallback, config],
-  )
+  const growthbook = useMemo(() => getGrowthBookInstance({ config, trackingCallback }), [trackingCallback, config])
 
   const loadFeature = useCallback(async () => {
     if (config.clientKey) {
@@ -89,7 +80,5 @@ export const AbTestProvider: ComponentType<AbTestProviderProps> = ({
     }
   }, [attributes, growthbook, errorCallback])
 
-  return (
-    <GrowthBookProvider growthbook={growthbook}>{children}</GrowthBookProvider>
-  )
+  return <GrowthBookProvider growthbook={growthbook}>{children}</GrowthBookProvider>
 }

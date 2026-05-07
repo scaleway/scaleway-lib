@@ -23,18 +23,10 @@ export const THIRD_PARTY_PROVIDERS = [
   } as const,
 ] as const
 
-export const CATEGORIES = [
-  'essential',
-  'functional',
-  'marketing',
-  'analytics',
-  'advertising',
-] as const
+export const CATEGORIES = ['essential', 'functional', 'marketing', 'analytics', 'advertising'] as const
 
-export const destSDKBaseURL = (cdnUrl: string): string =>
-  `${cdnUrl}/cdn/v3/modern/js-integrations` as const
-export const pluginsSDKBaseURL = (cdnUrl: string): string =>
-  `${cdnUrl}/cdn/v3/modern/plugins` as const
+export const destSDKBaseURL = (cdnUrl: string): string => `${cdnUrl}/cdn/v3/modern/js-integrations` as const
+export const pluginsSDKBaseURL = (cdnUrl: string): string => `${cdnUrl}/cdn/v3/modern/plugins` as const
 
 export const COOKIE_PREFIX: string = '_scw_rgpd' as const
 export const HASH_COOKIE: string = `${COOKIE_PREFIX}_hash` as const

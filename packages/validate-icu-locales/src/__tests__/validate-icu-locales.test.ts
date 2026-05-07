@@ -90,13 +90,9 @@ describe('validate-icu-locales CLI', () => {
 
   it('should succeed with valid ICU strings', async () => {
     // This should not throw an error as all ICU strings are valid
-    const { stderr } = await execa(
-      'node',
-      ['dist/index.js', 'src/__tests__/locales/valid.ts'],
-      {
-        cwd: process.cwd(),
-      },
-    )
+    const { stderr } = await execa('node', ['dist/index.js', 'src/__tests__/locales/valid.ts'], {
+      cwd: process.cwd(),
+    })
 
     // Should not contain any errors
     expect(stderr).not.toContain('errors')
@@ -104,13 +100,9 @@ describe('validate-icu-locales CLI', () => {
 
   it('should succeed with valid JSON ICU strings', async () => {
     // This should not throw an error as all ICU strings are valid
-    const { stderr } = await execa(
-      'node',
-      ['dist/index.js', 'src/__tests__/locales/valid.json'],
-      {
-        cwd: process.cwd(),
-      },
-    )
+    const { stderr } = await execa('node', ['dist/index.js', 'src/__tests__/locales/valid.json'], {
+      cwd: process.cwd(),
+    })
 
     // Should not contain any errors
     expect(stderr).not.toContain('errors')

@@ -5,16 +5,10 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 type ParsedQueryDefault = ParsedQuery<string | boolean | number | undefined>
 
-type SetQueryParams = <T extends ParsedQueryDefault>(
-  nextParams: Partial<T>,
-  options?: Options,
-) => void
+type SetQueryParams = <T extends ParsedQueryDefault>(nextParams: Partial<T>, options?: Options) => void
 
 // oxlint-disable-next-line typescript/no-unnecessary-type-parameters
-type ReplaceQueryParams = <T extends ParsedQueryDefault>(
-  newParams: T,
-  options?: Options,
-) => void
+type ReplaceQueryParams = <T extends ParsedQueryDefault>(newParams: T, options?: Options) => void
 
 type UseQueryParamsResult<T extends ParsedQueryDefault> = {
   queryParams: T
@@ -40,9 +34,7 @@ type Options = {
 }
 
 // === Hook ===
-const useQueryParams = <
-  T extends ParsedQueryDefault,
->(): UseQueryParamsResult<T> => {
+const useQueryParams = <T extends ParsedQueryDefault>(): UseQueryParamsResult<T> => {
   const navigate = useNavigate()
   const location = useLocation()
 

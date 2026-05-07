@@ -7,9 +7,7 @@ import { getAllFiles } from './getAllFiles.ts'
 const { log: logger } = console
 
 export const generateManifest = (outputFile: string) => {
-  const packages = readdirSync(PACKAGES_DIR).filter(item =>
-    statSync(join(PACKAGES_DIR, item)).isDirectory(),
-  )
+  const packages = readdirSync(PACKAGES_DIR).filter(item => statSync(join(PACKAGES_DIR, item)).isDirectory())
   logger(`Generating manifest for ${packages.length} packages...`)
 
   const manifest: Manifest = {

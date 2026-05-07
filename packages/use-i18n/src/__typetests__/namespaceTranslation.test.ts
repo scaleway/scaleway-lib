@@ -18,37 +18,23 @@ describe('i18n - namespaceTranslation', () => {
 
     expectTypeOf(namespaceTranslation).parameters.not.toEqualTypeOf<['hello']>()
 
-    expectTypeOf(namespaceTranslation).parameters.not.toEqualTypeOf<
-      ['doe.john']
-    >()
+    expectTypeOf(namespaceTranslation).parameters.not.toEqualTypeOf<['doe.john']>()
 
     expectTypeOf(namespaceTranslation('doe')('john')).toEqualTypeOf<string>()
 
-    expectTypeOf(namespaceTranslation('doe'))
-      .parameter(0)
-      .not.toEqualTypeOf<'doesnotexists'>()
+    expectTypeOf(namespaceTranslation('doe')).parameter(0).not.toEqualTypeOf<'doesnotexists'>()
 
-    expectTypeOf(namespaceTranslation('doe')).parameters.not.toEqualTypeOf<
-      ['child']
-    >()
+    expectTypeOf(namespaceTranslation('doe')).parameters.not.toEqualTypeOf<['child']>()
     expectTypeOf(
       namespaceTranslation('doe')('child', {
         name: 'Name',
       }),
     ).toEqualTypeOf<string>()
-    expectTypeOf(namespaceTranslation('doe')).parameters.not.toEqualTypeOf<
-      ['doesnotexists', { name: string }]
-    >()
-    expectTypeOf(namespaceTranslation('doe')).parameters.not.toEqualTypeOf<
-      ['child', { doesnotexists: string }]
-    >()
+    expectTypeOf(namespaceTranslation('doe')).parameters.not.toEqualTypeOf<['doesnotexists', { name: string }]>()
+    expectTypeOf(namespaceTranslation('doe')).parameters.not.toEqualTypeOf<['child', { doesnotexists: string }]>()
 
-    expectTypeOf(namespaceTranslation('doe')).parameters.not.toEqualTypeOf<
-      ['child', Record<string, never>]
-    >()
-    expectTypeOf(namespaceTranslation('doe')).parameters.not.toEqualTypeOf<
-      ['child']
-    >()
+    expectTypeOf(namespaceTranslation('doe')).parameters.not.toEqualTypeOf<['child', Record<string, never>]>()
+    expectTypeOf(namespaceTranslation('doe')).parameters.not.toEqualTypeOf<['child']>()
 
     expectTypeOf(
       namespaceTranslation('describe')('john', {
@@ -57,12 +43,8 @@ describe('i18n - namespaceTranslation', () => {
       }),
     ).toEqualTypeOf<string>()
 
-    expectTypeOf(namespaceTranslation('describe')).parameters.not.toEqualTypeOf<
-      ['john', Record<string, never>]
-    >()
-    expectTypeOf(namespaceTranslation('describe')).parameters.not.toEqualTypeOf<
-      ['john']
-    >()
+    expectTypeOf(namespaceTranslation('describe')).parameters.not.toEqualTypeOf<['john', Record<string, never>]>()
+    expectTypeOf(namespaceTranslation('describe')).parameters.not.toEqualTypeOf<['john']>()
 
     const { namespaceTranslation: namespaceTranslation2 } = useI18n<Locale>()
     expectTypeOf(namespaceTranslation2).parameter(0).not.toEqualTypeOf<'test'>()

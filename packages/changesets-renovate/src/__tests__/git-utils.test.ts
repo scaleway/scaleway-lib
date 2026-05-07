@@ -3,11 +3,7 @@ import fg from 'fast-glob'
 import * as yaml from 'js-yaml'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { mockSimpleGit } from '../../__mocks__/simple-git'
-import {
-  findAffectedPackages,
-  findChangedDependenciesFromGit,
-  loadCatalogFromGit,
-} from '../git-utils.js'
+import { findAffectedPackages, findChangedDependenciesFromGit, loadCatalogFromGit } from '../git-utils.js'
 
 const { globSync } = fg
 
@@ -47,9 +43,7 @@ catalog:
 
       const result = await loadCatalogFromGit('abc123', 'pnpm-workspace.yaml')
 
-      expect(mockSimpleGit().show).toHaveBeenCalledWith([
-        'abc123:pnpm-workspace.yaml',
-      ])
+      expect(mockSimpleGit().show).toHaveBeenCalledWith(['abc123:pnpm-workspace.yaml'])
       expect(yaml.load).toHaveBeenCalledWith(mockContent)
       expect(result).toEqual({
         'another-package': '2.0.0',
@@ -68,10 +62,7 @@ catalog:
         show: vi.fn().mockRejectedValue(new Error('File not found')),
       })
 
-      const result = await loadCatalogFromGit(
-        'nonexistent',
-        'pnpm-workspace.yaml',
-      )
+      const result = await loadCatalogFromGit('nonexistent', 'pnpm-workspace.yaml')
 
       expect(result).toEqual({})
     })
@@ -143,10 +134,7 @@ catalog:
   describe('findAffectedPackages', () => {
     it('should find packages affected by dependency changes', async () => {
       // Mock file system reads for package.json files
-      vi.mocked(globSync).mockReturnValue([
-        'packages/package-a/package.json',
-        'packages/package-b/package.json',
-      ])
+      vi.mocked(globSync).mockReturnValue(['packages/package-a/package.json', 'packages/package-b/package.json'])
 
       // oxlint-disable @typescript-eslint/require-await
       // oxlint-disable typescript-eslint/no-unsafe-argument

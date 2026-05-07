@@ -4,12 +4,7 @@
 // oxlint-disable eslint/max-statements
 
 import { copyFileSync, existsSync, mkdirSync, readFileSync } from 'node:fs'
-import {
-  BASELINE_FILE,
-  CURRENT_FILE,
-  OUTPUT_DIR,
-  REPORT_FILE,
-} from './config.ts'
+import { BASELINE_FILE, CURRENT_FILE, OUTPUT_DIR, REPORT_FILE } from './config.ts'
 import { compareManifests } from './helpers/compareManifests.ts'
 import { generateManifest } from './helpers/generateManifest.ts'
 
@@ -25,9 +20,7 @@ function main(): void {
 
   // Check if baseline exists
   if (!existsSync(BASELINE_FILE)) {
-    console.log(
-      'No baseline manifest found. Creating one for future comparison.',
-    )
+    console.log('No baseline manifest found. Creating one for future comparison.')
     console.log('To compare with a previous version:')
     console.log('1. Run this script before migration to create baseline')
     console.log('2. Run migration')

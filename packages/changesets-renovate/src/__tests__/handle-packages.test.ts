@@ -54,10 +54,7 @@ describe('handle-packages', () => {
   })
 
   it('should create changeset when there are package changes', async () => {
-    const diffFiles = [
-      'packages/pkg-a/package.json',
-      'packages/pkg-b/package.json',
-    ]
+    const diffFiles = ['packages/pkg-a/package.json', 'packages/pkg-b/package.json']
 
     // Mock getPackagesNames to return some package names
     vi.mocked(getPackagesNames).mockResolvedValue(['pkg-a', 'pkg-b'])
@@ -80,22 +77,10 @@ describe('handle-packages', () => {
 
     await handlePackageChanges(diffFiles)
 
-    expect(getPackagesNames).toHaveBeenCalledWith([
-      'packages/pkg-a/package.json',
-      'packages/pkg-b/package.json',
-    ])
+    expect(getPackagesNames).toHaveBeenCalledWith(['packages/pkg-a/package.json', 'packages/pkg-b/package.json'])
     expect(mockSimpleGit().revparse).toHaveBeenCalledWith(['--short', 'HEAD'])
-    expect(getBumpsFromGit).toHaveBeenCalledWith([
-      'packages/pkg-a/package.json',
-      'packages/pkg-b/package.json',
-    ])
-    expect(createChangeset).toHaveBeenCalledWith(
-      '.changeset/renovate-def456.md',
-      packageBumps,
-      ['pkg-a', 'pkg-b'],
-    )
-    expect(handleChangesetFile).toHaveBeenCalledWith(
-      '.changeset/renovate-def456.md',
-    )
+    expect(getBumpsFromGit).toHaveBeenCalledWith(['packages/pkg-a/package.json', 'packages/pkg-b/package.json'])
+    expect(createChangeset).toHaveBeenCalledWith('.changeset/renovate-def456.md', packageBumps, ['pkg-a', 'pkg-b'])
+    expect(handleChangesetFile).toHaveBeenCalledWith('.changeset/renovate-def456.md')
   })
 })

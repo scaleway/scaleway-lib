@@ -1,18 +1,11 @@
-import type {
-  LoadOptions,
-  RudderAnalytics as RudderAnalyticsType,
-} from '@rudderstack/analytics-js'
+import type { LoadOptions, RudderAnalytics as RudderAnalyticsType } from '@rudderstack/analytics-js'
 import { RudderAnalytics } from '@rudderstack/analytics-js'
 import type { Context, JSX, ReactNode } from 'react'
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import { useDeepCompareEffectNoCheck } from 'use-deep-compare-effect'
 import { destSDKBaseURL, pluginsSDKBaseURL } from '../constants'
 import type { CategoryKind } from '../types'
-import {
-  defaultConsentOptions,
-  defaultLoadOptions,
-  defaultTimeout,
-} from './constants'
+import { defaultConsentOptions, defaultLoadOptions, defaultTimeout } from './constants'
 import { normalizeIdsMigration } from './normalizeIdsMigration'
 
 export type Analytics = RudderAnalyticsType
@@ -20,10 +13,7 @@ export type Analytics = RudderAnalyticsType
 export type OnEventError = (error: Error) => Promise<void> | void
 
 type EventFunction = (...args: never[]) => Promise<void> | void
-type Events = Record<
-  string,
-  (analytics?: Analytics, onEventError?: OnEventError) => EventFunction
->
+type Events = Record<string, (analytics?: Analytics, onEventError?: OnEventError) => EventFunction>
 
 type AnalyticsContextInterface<T extends Events = Events> = {
   analytics: Analytics | undefined
@@ -31,8 +21,9 @@ type AnalyticsContextInterface<T extends Events = Events> = {
   isAnalyticsReady: boolean
 }
 
-export const AnalyticsContext: Context<AnalyticsContextInterface | undefined> =
-  createContext<AnalyticsContextInterface | undefined>(undefined)
+export const AnalyticsContext: Context<AnalyticsContextInterface | undefined> = createContext<
+  AnalyticsContextInterface | undefined
+>(undefined)
 
 export function useAnalytics<T extends Events>(): AnalyticsContextInterface<T> {
   const context = useContext<AnalyticsContextInterface<T> | undefined>(
@@ -90,17 +81,12 @@ export function AnalyticsProvider<T extends Events>({
   timeout,
 }: AnalyticsProviderProps<T>): JSX.Element {
   const [isAnalyticsReady, setIsAnalyticsReady] = useState(false)
-  const [internalAnalytics, setAnalytics] = useState<Analytics | undefined>(
-    undefined,
-  )
+  const [internalAnalytics, setAnalytics] = useState<Analytics | undefined>(undefined)
 
   // This effect will unlock the case where we have a failure with the load of the analytics.load as rudderstack doesn't provider any solution for this case.
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout> | undefined
-    if (
-      !isAnalyticsReady &&
-      (Number.isFinite(timeout) || shouldRenderOnlyWhenReady)
-    ) {
+    if (!isAnalyticsReady && (Number.isFinite(timeout) || shouldRenderOnlyWhenReady)) {
       timer = setTimeout(() => {
         setIsAnalyticsReady(true)
         onError?.(new Error('Timeout'))
@@ -180,8 +166,7 @@ export function AnalyticsProvider<T extends Events>({
     }
   }, [events, internalAnalytics, isAnalyticsReady, onEventError])
 
-  const shouldRender =
-    !shouldRenderOnlyWhenReady || (isAnalyticsReady && !needConsent)
+  const shouldRender = !shouldRenderOnlyWhenReady || (isAnalyticsReady && !needConsent)
 
   useDeepCompareEffectNoCheck(() => {
     internalAnalytics?.consent({
@@ -193,11 +178,7 @@ export function AnalyticsProvider<T extends Events>({
     })
   }, [allowedConsents, deniedConsents])
 
-  return (
-    <AnalyticsContext.Provider value={value}>
-      {shouldRender ? children : null}
-    </AnalyticsContext.Provider>
-  )
+  return <AnalyticsContext.Provider value={value}>{shouldRender ? children : null}</AnalyticsContext.Provider>
 }
 
 export default AnalyticsProvider

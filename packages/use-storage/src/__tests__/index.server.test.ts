@@ -30,9 +30,7 @@ describe.skip('useStorage - Server side', () => {
     })
 
     it('works with initialValue', () => {
-      const { result } = renderHook(() =>
-        useLocalStorage<string>(KEY, 'initial'),
-      )
+      const { result } = renderHook(() => useLocalStorage<string>(KEY, 'initial'))
       expect(result.current[0]).toBe('initial')
     })
   })
@@ -58,9 +56,7 @@ describe.skip('useStorage - Server side', () => {
     })
 
     it('works with initialValue', () => {
-      const { result } = renderHook(() =>
-        useSessionStorage<string>(KEY, 'initial'),
-      )
+      const { result } = renderHook(() => useSessionStorage<string>(KEY, 'initial'))
       expect(result.current[0]).toBe('initial')
     })
   })

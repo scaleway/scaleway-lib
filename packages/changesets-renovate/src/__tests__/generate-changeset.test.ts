@@ -89,9 +89,7 @@ describe('generate changeset file', () => {
     process.env['BRANCH_PREFIX'] = 'dep-upgrade/'
     await run()
 
-    expect(console.log).not.toHaveBeenCalledWith(
-      'Not a renovate branch, skipping',
-    )
+    expect(console.log).not.toHaveBeenCalledWith('Not a renovate branch, skipping')
     expect(mockedReadFile).toHaveBeenCalledWith(file, 'utf8')
     expect(mockedWriteFile).toMatchSnapshot()
     expect(add).toHaveBeenCalledWith(fileName)
@@ -144,9 +142,7 @@ describe('generate changeset file', () => {
     process.env['SKIP_BRANCH_CHECK'] = 'TRUE'
     await run()
 
-    expect(console.log).not.toHaveBeenCalledWith(
-      'Not a renovate branch, skipping',
-    )
+    expect(console.log).not.toHaveBeenCalledWith('Not a renovate branch, skipping')
     expect(mockedReadFile).toHaveBeenCalledWith(file, 'utf8')
     expect(mockedWriteFile).toMatchSnapshot()
     expect(add).toHaveBeenCalledWith(fileName)
@@ -172,9 +168,7 @@ describe('generate changeset file', () => {
 
     await run()
 
-    expect(console.log).toHaveBeenCalledWith(
-      'Changeset already exists, skipping',
-    )
+    expect(console.log).toHaveBeenCalledWith('Changeset already exists, skipping')
   })
 
   it('should skip no package.json files have been modified', async () => {
@@ -191,9 +185,7 @@ describe('generate changeset file', () => {
 
     await run()
 
-    expect(console.log).toHaveBeenCalledWith(
-      'No relevant changes detected, skipping',
-    )
+    expect(console.log).toHaveBeenCalledWith('No relevant changes detected, skipping')
   })
 
   it('should generate changeset file, commit and push', async () => {
@@ -295,9 +287,7 @@ describe('generate changeset file', () => {
     expect(mockedReadFile).toHaveBeenCalledWith(file, 'utf8')
     expect(mockedWriteFile).toMatchSnapshot()
     expect(add).not.toHaveBeenCalledWith(fileName)
-    expect(commit).not.toHaveBeenCalledWith(
-      `chore: add changeset renovate-${rev}`,
-    )
+    expect(commit).not.toHaveBeenCalledWith(`chore: add changeset renovate-${rev}`)
     expect(push).not.toHaveBeenCalledOnce()
   })
 
@@ -358,9 +348,7 @@ describe('generate changeset file', () => {
     expect(mockedReadFile).toHaveBeenCalledWith(fileB, 'utf8')
     expect(mockedWriteFile).toMatchSnapshot()
     expect(add).not.toHaveBeenCalledWith(fileName)
-    expect(commit).not.toHaveBeenCalledWith(
-      `chore: add changeset renovate-${rev}`,
-    )
+    expect(commit).not.toHaveBeenCalledWith(`chore: add changeset renovate-${rev}`)
     expect(push).not.toHaveBeenCalledOnce()
   })
 

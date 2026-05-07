@@ -55,7 +55,7 @@ const App = () => {
 
 ReactDOM.render(
   <React.StrictMode>
-    <DataLoaderProvider onError={globalOnError} cacheKeyPrefix='prefixed'>
+    <DataLoaderProvider onError={globalOnError} cacheKeyPrefix="prefixed">
       <App />
     </DataLoaderProvider>
   </React.StrictMode>,
@@ -113,13 +113,11 @@ ReactDOM.render(
 ```js
 import { useDataLoader } from '@scaleway-lib/use-dataloader'
 
-const fakePromise = () =>
-  new Promise(resolve => setTimeout(resolve('test'), 1000))
+const fakePromise = () => new Promise(resolve => setTimeout(resolve('test'), 1000))
 
 function MyComponent() {
   // Use a key if you want to persist data in the DataLoaderProvider cache
-  const { data, isLoading, isFetching, isSuccess, isError, error } =
-    useDataLoader('cache-key', fakePromise)
+  const { data, isLoading, isFetching, isSuccess, isError, error } = useDataLoader('cache-key', fakePromise)
 
   // This is the first time we load the data
   if (isLoading && !data) {

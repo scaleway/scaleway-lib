@@ -6,24 +6,12 @@ const locales = ['en', 'fr', 'ro']
 
 type TestType = [string, FormatUnitOptions, string, number]
 
-const SUPPORTED_UNITS = Object.keys(
-  supportedUnits,
-) as FormatUnitOptions['unit'][]
+const SUPPORTED_UNITS = Object.keys(supportedUnits) as FormatUnitOptions['unit'][]
 
 const tests: TestType[] = [
-  ...SUPPORTED_UNITS.map<TestType>(unit => [
-    'should work with',
-    { unit },
-    'fr',
-    12.56,
-  ]),
+  ...SUPPORTED_UNITS.map<TestType>(unit => ['should work with', { unit }, 'fr', 12.56]),
   ...SUPPORTED_UNITS.flatMap(unit =>
-    locales.map<TestType>(locale => [
-      `should work with locale ${locale} and`,
-      { unit },
-      locale,
-      12.56,
-    ]),
+    locales.map<TestType>(locale => [`should work with locale ${locale} and`, { unit }, locale, 12.56]),
   ),
   ...SUPPORTED_UNITS.flatMap(unit =>
     locales.map<TestType>(locale => [

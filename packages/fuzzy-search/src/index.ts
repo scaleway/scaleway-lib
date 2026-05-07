@@ -42,11 +42,7 @@ export const levenshteinDistance = (query: string, slice: string): number => {
  * isFuzzyMatch("mrecury", "mercury") = false
  * isFuzzyMatch("mrecury", "mercury", 2) = true
  */
-export const isFuzzyMatch = (
-  query: string,
-  target: string,
-  maxDistance = 1,
-): boolean => {
+export const isFuzzyMatch = (query: string, target: string, maxDistance = 1): boolean => {
   const normQuery = normalizeString(query)
   const normTarget = normalizeString(target)
 

@@ -6,13 +6,6 @@
     "outDir": "dist",
     "rootDir": "src"
   },
-  "exclude": [
-    "*.config.ts",
-    "*.setup.ts",
-    "**/__tests__",
-    "**/__mocks__",
-    "**/__typetests__",
-    "src/**/*.test.tsx"
-  ],
+  "exclude": ["*.config.ts", "*.setup.ts", "**/__tests__", "**/__mocks__", "**/__typetests__", "src/**/*.test.tsx"],
   "extends": "./tsconfig.json"
 }

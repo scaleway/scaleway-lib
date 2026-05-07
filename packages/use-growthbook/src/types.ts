@@ -9,10 +9,7 @@ export type Attributes = Record<string, string | number | undefined>
  */
 export type LoadConfig = NonNullable<Parameters<GrowthBook['init']>[0]>
 
-export type ToolConfig = Pick<
-  Context,
-  'apiHost' | 'clientKey' | 'enableDevMode' | 'debug' | 'stickyBucketService'
->
+export type ToolConfig = Pick<Context, 'apiHost' | 'clientKey' | 'enableDevMode' | 'debug' | 'stickyBucketService'>
 
 export type TrackingCallback = NonNullable<Context['trackingCallback']>
 

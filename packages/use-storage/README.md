@@ -24,9 +24,7 @@ const Component = () => {
   return (
     <div>
       <span>{value}</span>
-      <button onClick={() => setValue('test from hook')}>
-        Click me to set value to "test from hook"
-      </button>
+      <button onClick={() => setValue('test from hook')}>Click me to set value to "test from hook"</button>
       <button onClick={() => localStorage.setItem('key', 'test from window')}>
         Click me to set value to "test from window"
       </button>
@@ -47,9 +45,7 @@ const Component = () => {
   return (
     <div>
       <span>{value}</span>
-      <button onClick={() => setValue('test from hook')}>
-        Click me to set value to "test from hook"
-      </button>
+      <button onClick={() => setValue('test from hook')}>Click me to set value to "test from hook"</button>
       <button onClick={() => localStorage.setItem('key', 'test from window')}>
         Click me to set value to "test from window"
       </button>
@@ -70,9 +66,7 @@ const Component = () => {
   return (
     <div>
       <span>{value}</span> // Will be "initial" of no other value is already set
-      <button onClick={() => setValue('test from hook')}>
-        Click me to set value to "test from hook"
-      </button>
+      <button onClick={() => setValue('test from hook')}>Click me to set value to "test from hook"</button>
       <button onClick={() => localStorage.setItem('key', 'test from window')}>
         Click me to set value to "test from window"
       </button>

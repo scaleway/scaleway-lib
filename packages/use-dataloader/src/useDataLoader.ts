@@ -3,12 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { StatusEnum } from './constants'
 import { useDataLoaderContext } from './DataLoaderProvider'
-import type {
-  KeyType,
-  PromiseType,
-  UseDataLoaderConfig,
-  UseDataLoaderResult,
-} from './types'
+import type { KeyType, PromiseType, UseDataLoaderConfig, UseDataLoaderResult } from './types'
 
 const noop = () => {}
 
@@ -28,11 +23,7 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
     dataLifetime,
   } = config ?? {}
 
-  const {
-    getOrAddRequest,
-    onError: onGlobalError,
-    defaultDatalifetime,
-  } = useDataLoaderContext()
+  const { getOrAddRequest, onError: onGlobalError, defaultDatalifetime } = useDataLoaderContext()
   const computedDatalifetime = dataLifetime ?? defaultDatalifetime
   const methodRef = useRef(method)
   const onSuccessRef = useRef(onSuccess)
@@ -62,9 +53,7 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
       !!(
         enabled &&
         (!(request.dataUpdatedAt && computedDatalifetime) ||
-          (request.dataUpdatedAt &&
-            computedDatalifetime &&
-            request.dataUpdatedAt + computedDatalifetime < Date.now()))
+          (request.dataUpdatedAt && computedDatalifetime && request.dataUpdatedAt + computedDatalifetime < Date.now()))
       ),
     [enabled, request.dataUpdatedAt, computedDatalifetime],
   )
@@ -78,13 +67,10 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
 
   // isLoading is true only when there is no cache data and we're fetching data for the first time
   const isLoading =
-    !computedData &&
-    request.isFirstLoading &&
-    (request.status === StatusEnum.LOADING || optimisticIsLoadingRef.current)
+    !computedData && request.isFirstLoading && (request.status === StatusEnum.LOADING || optimisticIsLoadingRef.current)
 
   // isFetching is true when there is an active request in progress
-  const isFetching =
-    request.status === StatusEnum.LOADING || optimisticIsLoadingRef.current
+  const isFetching = request.status === StatusEnum.LOADING || optimisticIsLoadingRef.current
 
   const isSuccess = request.status === StatusEnum.SUCCESS
 
@@ -94,8 +80,7 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
 
   const isPolling = !!(
     pollingInterval &&
-    ((typeof needPolling === 'function' &&
-      (request.isFirstLoading || needPolling(request.data))) ||
+    ((typeof needPolling === 'function' && (request.isFirstLoading || needPolling(request.data))) ||
       (typeof needPolling !== 'function' && needPolling))
   )
 
@@ -166,9 +151,7 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
           (needPollingRef.current &&
             typeof needPollingRef.current === 'function' &&
             needPollingRef.current(request.data)) ||
-          (typeof needPollingRef.current !== 'function' &&
-            needPollingRef.current &&
-            !request.isCalled)
+          (typeof needPollingRef.current !== 'function' && needPollingRef.current && !request.isCalled)
         ) {
           const onSuccessLoad = onSuccessRef.current ?? noop
           const onFailedLoad = onErrorRef.current ?? noop

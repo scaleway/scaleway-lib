@@ -6,38 +6,18 @@ const locales = ['en', 'fr'] as const
 
 const tests = [
   ...locales.map(locale =>
-    supportedFormats.map(format => [
-      format,
-      'new Date(2020, 1, 13, 16, 28)',
-      locale,
-      new Date(2020, 1, 13, 16, 28),
-    ]),
+    supportedFormats.map(format => [format, 'new Date(2020, 1, 13, 16, 28)', locale, new Date(2020, 1, 13, 16, 28)]),
   ),
+  ...locales.map(locale => supportedFormats.map(format => [format, '1581607680000', locale, 1_581_607_680_000])),
   ...locales.map(locale =>
-    supportedFormats.map(format => [
-      format,
-      '1581607680000',
-      locale,
-      1_581_607_680_000,
-    ]),
-  ),
-  ...locales.map(locale =>
-    supportedFormats.map(format => [
-      format,
-      '2020-02-13T15:28:00.000Z',
-      locale,
-      '2020-02-13T15:28:00.000Z',
-    ]),
+    supportedFormats.map(format => [format, '2020-02-13T15:28:00.000Z', locale, '2020-02-13T15:28:00.000Z']),
   ),
 ].flat() as [FormatDateOptions, string, string, Date | string | number][]
 
 describe('formatDate', () => {
-  test.each(tests)(
-    'should work with format "%s", for date = "%s" and locale "%s"',
-    (format, _, locale, date) => {
-      expect(formatDate(locale, date, format)).toMatchSnapshot()
-    },
-  )
+  test.each(tests)('should work with format "%s", for date = "%s" and locale "%s"', (format, _, locale, date) => {
+    expect(formatDate(locale, date, format)).toMatchSnapshot()
+  })
 
   test.each(locales)('should work with custom format and locale %s', locale => {
     const format: FormatDateOptions = {
@@ -52,13 +32,9 @@ describe('formatDate', () => {
       year: '2-digit',
     }
 
-    expect(
-      formatDate(locale, new Date(2020, 1, 13, 16, 28), format),
-    ).toMatchSnapshot()
+    expect(formatDate(locale, new Date(2020, 1, 13, 16, 28), format)).toMatchSnapshot()
     expect(formatDate(locale, 1_581_607_680_000, format)).toMatchSnapshot()
-    expect(
-      formatDate(locale, '2020-02-13T15:28:00.000Z', format),
-    ).toMatchSnapshot()
+    expect(formatDate(locale, '2020-02-13T15:28:00.000Z', format)).toMatchSnapshot()
   })
 
   test('should return passed object if not valid date', () => {

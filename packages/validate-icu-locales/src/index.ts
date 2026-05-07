@@ -52,10 +52,7 @@ const isObject = (obj: unknown): obj is Record<string, unknown> => {
   return obj === newObj
 }
 
-const findICUErrors = (
-  locales: { [key: string]: string },
-  filePath: string,
-): ErrorsICU => {
+const findICUErrors = (locales: { [key: string]: string }, filePath: string): ErrorsICU => {
   const errors = Object.entries(locales)
     .map(([key, value]) => {
       try {

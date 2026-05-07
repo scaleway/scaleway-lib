@@ -1,8 +1,5 @@
 export { DATALIFE_TIME, POLLING_INTERVAL } from './constants'
-export {
-  default as DataLoaderProvider,
-  useDataLoaderContext,
-} from './DataLoaderProvider'
+export { default as DataLoaderProvider, useDataLoaderContext } from './DataLoaderProvider'
 export type {
   KeyType,
   NeedPollingType,

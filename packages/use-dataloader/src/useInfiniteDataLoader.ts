@@ -2,15 +2,10 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { StatusEnum } from './constants'
-import { useDataLoaderContext } from './DataLoaderProvider'
 import type DataLoader from './dataloader'
+import { useDataLoaderContext } from './DataLoaderProvider'
 import { marshalQueryKey } from './helpers'
-import type {
-  KeyType,
-  PromiseType,
-  UseInfiniteDataLoaderConfig,
-  UseInfiniteDataLoaderResult,
-} from './types'
+import type { KeyType, PromiseType, UseInfiniteDataLoaderConfig, UseInfiniteDataLoaderResult } from './types'
 
 /**
  * This hook can be used for promises that have a "Load More" so page change but we want to keep the previous data and append the next one
@@ -25,19 +20,9 @@ export const useInfiniteDataLoader = <
   method: (params: ParamsType) => PromiseType<ResultType>,
   baseParams: ParamsType,
   pageParamKey: ParamsPageKey,
-  config?: UseInfiniteDataLoaderConfig<
-    ResultType,
-    ErrorType,
-    ParamsType,
-    ParamsPageKey
-  >,
+  config?: UseInfiniteDataLoaderConfig<ResultType, ErrorType, ParamsType, ParamsPageKey>,
 ): UseInfiniteDataLoaderResult<ResultType, ErrorType> => {
-  const {
-    getOrAddRequest,
-    computeKey,
-    onError: onGlobalError,
-    defaultDatalifetime,
-  } = useDataLoaderContext()
+  const { getOrAddRequest, computeKey, onError: onGlobalError, defaultDatalifetime } = useDataLoaderContext()
 
   const {
     enabled = true,
@@ -54,9 +39,8 @@ export const useInfiniteDataLoader = <
   const [page, setPage] = useState(baseParams[pageParamKey])
   const nextPageRef = useRef<typeof page | undefined>(page)
 
-  const getNextPageFnRef = useRef(
-    (...params: Parameters<NonNullable<typeof getNextPage>>) =>
-      getNextPage ? getNextPage(...params) : undefined,
+  const getNextPageFnRef = useRef((...params: Parameters<NonNullable<typeof getNextPage>>) =>
+    getNextPage ? getNextPage(...params) : undefined,
   )
 
   const paramsArgs = {
@@ -65,14 +49,9 @@ export const useInfiniteDataLoader = <
   }
 
   const getMethodRef = useRef(async () => method(paramsArgs))
-  const getOnSuccessRef = useRef(
-    async (...params: Parameters<NonNullable<typeof onSuccess>>) =>
-      onSuccess?.(...params),
-  )
+  const getOnSuccessRef = useRef(async (...params: Parameters<NonNullable<typeof onSuccess>>) => onSuccess?.(...params))
 
-  const getOnErrorRef = useRef(
-    async (err: ErrorType) => onError?.(err) ?? onGlobalError?.(err),
-  )
+  const getOnErrorRef = useRef(async (err: ErrorType) => onError?.(err) ?? onGlobalError?.(err))
 
   const [, setCounter] = useState(0)
 
@@ -101,11 +80,7 @@ export const useInfiniteDataLoader = <
   }, [])
 
   const getCurrentRequest = () => {
-    const currentQueryKey = marshalQueryKey([
-      baseQueryKey,
-      'infinite',
-      page as string | number,
-    ])
+    const currentQueryKey = marshalQueryKey([baseQueryKey, 'infinite', page as string | number])
 
     // Clean bad requests in the array
     requestRefs.current = requestRefs.current.filter(request => {
@@ -118,9 +93,7 @@ export const useInfiniteDataLoader = <
       return false
     })
 
-    const requestInRef = requestRefs.current.find(request =>
-      request.key.endsWith(currentQueryKey),
-    )
+    const requestInRef = requestRefs.current.find(request => request.key.endsWith(currentQueryKey))
 
     if (!requestInRef) {
       const request = getOrAddRequest<ResultType, ErrorType>(currentQueryKey, {
@@ -146,9 +119,7 @@ export const useInfiniteDataLoader = <
       !!(
         enabled &&
         (!(request.dataUpdatedAt && computedDatalifetime) ||
-          (request.dataUpdatedAt &&
-            computedDatalifetime &&
-            request.dataUpdatedAt + computedDatalifetime < Date.now()))
+          (request.dataUpdatedAt && computedDatalifetime && request.dataUpdatedAt + computedDatalifetime < Date.now()))
       ),
     [enabled, request.dataUpdatedAt, computedDatalifetime],
   )
@@ -164,25 +135,17 @@ export const useInfiniteDataLoader = <
 
   // Current request is loading and its the first request added in the refs
   const isLoadingFirstPage =
-    (request.status === StatusEnum.LOADING || optimisticIsLoadingRef.current) &&
-    requestRefs.current.length <= 1
+    (request.status === StatusEnum.LOADING || optimisticIsLoadingRef.current) && requestRefs.current.length <= 1
 
   const isSuccess = request.status === StatusEnum.SUCCESS
 
   const isError = request.status === StatusEnum.ERROR
 
-  const isIdle = requestRefs.current.every(
-    req => req.status === StatusEnum.IDLE && !enabled,
-  )
+  const isIdle = requestRefs.current.every(req => req.status === StatusEnum.IDLE && !enabled)
 
   const reload = useCallback(async () => {
     await Promise.all(
-      requestRefs.current.map(async req =>
-        req
-          .load(true)
-          .then(getOnSuccessRef.current)
-          .catch(getOnErrorRef.current),
-      ),
+      requestRefs.current.map(async req => req.load(true).then(getOnSuccessRef.current).catch(getOnErrorRef.current)),
     )
   }, [])
 
@@ -217,10 +180,7 @@ export const useInfiniteDataLoader = <
       request
         .load()
         .then(async result => {
-          nextPageRef.current = getNextPageFnRef.current(
-            result,
-            paramsArgs,
-          ) as typeof page
+          nextPageRef.current = getNextPageFnRef.current(result, paramsArgs) as typeof page
           await onSuccessLoad(result)
         })
         .catch(onFailedLoad)
@@ -238,24 +198,18 @@ export const useInfiniteDataLoader = <
   }, [onError, onGlobalError])
 
   useEffect(() => {
-    getNextPageFnRef.current = (...params) =>
-      getNextPage ? getNextPage(...params) : undefined
+    getNextPageFnRef.current = (...params) => (getNextPage ? getNextPage(...params) : undefined)
   }, [getNextPage])
 
   const computedData =
-    isLoadingFirstPage ||
-    [...requestRefs.current].filter(dataloader => !!dataloader.data).length ===
-      0
+    isLoadingFirstPage || [...requestRefs.current].filter(dataloader => !!dataloader.data).length === 0
       ? initialData
       : ([...requestRefs.current]
           .filter(dataloader => !!dataloader.data)
           .map(dataloader => dataloader.data) as ResultType[])
 
   // isLoading is true only when there is no cache data and we're fetching data for the first time
-  const isLoading =
-    !computedData &&
-    request.isFirstLoading &&
-    request.status === StatusEnum.LOADING
+  const isLoading = !computedData && request.isFirstLoading && request.status === StatusEnum.LOADING
 
   const data = useMemo<UseInfiniteDataLoaderResult<ResultType, ErrorType>>(
     () => ({
@@ -271,17 +225,7 @@ export const useInfiniteDataLoader = <
       loadMore: loadMoreRef.current,
       reload,
     }),
-    [
-      computedData,
-      isIdle,
-      isLoading,
-      isFetching,
-      isSuccess,
-      isError,
-      request.error,
-      isLoadingFirstPage,
-      reload,
-    ],
+    [computedData, isIdle, isLoading, isFetching, isSuccess, isError, request.error, isLoadingFirstPage, reload],
   )
 
   return data

@@ -3,12 +3,7 @@
   "extends": ["./index.json"],
   "overrides": [
     {
-      "files": [
-        "**/__tests__/**/*.{ts,tsx}",
-        "**/__mocks__/**/*.{ts,tsx}",
-        "**/*.test.{ts,tsx}",
-        "**/*.spec.{ts,tsx}"
-      ],
+      "files": ["**/__tests__/**/*.{ts,tsx}", "**/__mocks__/**/*.{ts,tsx}", "**/*.test.{ts,tsx}", "**/*.spec.{ts,tsx}"],
       "plugins": ["import", "oxc", "vitest"],
       "rules": {
         "@typescript-eslint/consistent-type-imports": "off",

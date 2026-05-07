@@ -47,11 +47,7 @@ For React projects using TypeScript, extend both configurations:
 
 ```json
 {
-  "extends": [
-    "@scaleway/oxlint-config",
-    "@scaleway/oxlint-config/react",
-    "@scaleway/oxlint-config/typescript"
-  ]
+  "extends": ["@scaleway/oxlint-config", "@scaleway/oxlint-config/react", "@scaleway/oxlint-config/typescript"]
 }
 ```
 

@@ -2,8 +2,7 @@ import { CATEGORIES } from './constants'
 
 export type CategoryKind = (typeof CATEGORIES)[number]
 
-export const isCategoryKind = (key: string): key is CategoryKind =>
-  CATEGORIES.includes(key as CategoryKind)
+export const isCategoryKind = (key: string): key is CategoryKind => CATEGORIES.includes(key as CategoryKind)
 
 // Uniton type
 type Provider = 'custom'

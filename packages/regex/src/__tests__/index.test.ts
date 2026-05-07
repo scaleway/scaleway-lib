@@ -101,14 +101,7 @@ const whitespace = ' \t\n\r\u000B\u000C'
 const macAddress1 = '1F:B5:FA:47:CD:C4'
 const nineDigitsCodeTest = '012345678'
 const linuxPaths = {
-  BAD: [
-    '/var/test@',
-    '/var/test/',
-    '/var/test@',
-    '/var//test',
-    '//',
-    '/var/test-',
-  ],
+  BAD: ['/var/test@', '/var/test/', '/var/test@', '/var//test', '//', '/var/test-'],
   GOOD: ['/var', '/var/test', '/var/test_', '/var_/test', '/'],
 }
 const uuidTest = '550e8400-e29b-41d4-a716-446655440000'
@@ -300,9 +293,7 @@ describe('@regex', () => {
       [cronTest, false],
       [macAddress1, false],
     ])('should match regex %s to be %s', (string, expected) => {
-      expect(alphanumDashUnderscoreDotsSpacesParenthesis.test(string)).toBe(
-        expected,
-      )
+      expect(alphanumDashUnderscoreDotsSpacesParenthesis.test(string)).toBe(expected)
     })
   })
 
@@ -492,12 +483,8 @@ describe('@regex', () => {
 
   describe('absoluteLinuxPath', () => {
     test.each([
-      ...linuxPaths.GOOD.map(
-        (testStr: string) => [testStr, true] as [string, boolean],
-      ),
-      ...linuxPaths.BAD.map(
-        (testStr: string) => [testStr, false] as [string, boolean],
-      ),
+      ...linuxPaths.GOOD.map((testStr: string) => [testStr, true] as [string, boolean]),
+      ...linuxPaths.BAD.map((testStr: string) => [testStr, false] as [string, boolean]),
     ])('should match regex %s to be %s', (string, expected) => {
       expect(absoluteLinuxPath.test(string)).toBe(expected)
     })

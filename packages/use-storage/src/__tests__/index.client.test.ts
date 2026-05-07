@@ -90,9 +90,7 @@ describe('useStorage - Client side', () => {
     })
 
     it('works with initialValue', () => {
-      const { result } = renderHook(() =>
-        useLocalStorage<string>(KEY, 'initial'),
-      )
+      const { result } = renderHook(() => useLocalStorage<string>(KEY, 'initial'))
       expect(result.current[0]).toBe('initial')
     })
 
@@ -101,9 +99,7 @@ describe('useStorage - Client side', () => {
         window.localStorage.setItem(KEY, '"previous"')
       })
 
-      const { result } = renderHook(() =>
-        useLocalStorage<string>(KEY, 'initial'),
-      )
+      const { result } = renderHook(() => useLocalStorage<string>(KEY, 'initial'))
       expect(result.current[0]).toBe('previous')
     })
 
@@ -112,9 +108,7 @@ describe('useStorage - Client side', () => {
         window.localStorage.setItem(KEY, 'previous')
       })
 
-      const { result } = renderHook(() =>
-        useLocalStorage<string>(KEY, 'initial'),
-      )
+      const { result } = renderHook(() => useLocalStorage<string>(KEY, 'initial'))
       expect(result.current[0]).toBe('initial')
     })
   })
@@ -200,9 +194,7 @@ describe('useStorage - Client side', () => {
     })
 
     it('works with initialValue', () => {
-      const { result } = renderHook(() =>
-        useSessionStorage<string>(KEY, 'initial'),
-      )
+      const { result } = renderHook(() => useSessionStorage<string>(KEY, 'initial'))
       expect(result.current[0]).toBe('initial')
     })
 
@@ -211,9 +203,7 @@ describe('useStorage - Client side', () => {
         window.sessionStorage.setItem(KEY, '"previous"')
       })
 
-      const { result } = renderHook(() =>
-        useSessionStorage<string>(KEY, 'initial'),
-      )
+      const { result } = renderHook(() => useSessionStorage<string>(KEY, 'initial'))
       expect(result.current[0]).toBe('previous')
     })
 
@@ -222,9 +212,7 @@ describe('useStorage - Client side', () => {
         window.sessionStorage.setItem(KEY, 'previous')
       })
 
-      const { result } = renderHook(() =>
-        useSessionStorage<string>(KEY, 'initial'),
-      )
+      const { result } = renderHook(() => useSessionStorage<string>(KEY, 'initial'))
       expect(result.current[0]).toBe('initial')
     })
   })
