@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/oxfmt-config",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Scaleway's shareable configuration for oxfmt",
   "keywords": [
     "config",

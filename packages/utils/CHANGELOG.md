@@ -1,5 +1,11 @@
 # @scaleway/utils
 
+## 0.1.0
+
+### Minor Changes
+
+- [#3260](https://github.com/scaleway/scaleway-lib/pull/3260) [`fc77491`](https://github.com/scaleway/scaleway-lib/commit/fc774913339006a3d60d57dccc91fd99de6dad46) Thanks [@chambo-e](https://github.com/chambo-e)! - remove sync-peer-deps. Replaced by @scaleway/sync-peer-deps
+
 ## 0.0.7
 
 ### Patch Changes
