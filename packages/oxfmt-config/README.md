@@ -13,7 +13,6 @@ npm install --save-dev @scaleway/oxfmt-config
 Create a `oxfmt.config.ts` file in your project root:
 
 ```ts
-import { defineConfig } from 'oxfmt'
 import config from '@scaleway/oxfmt-config'
 
 export default config
