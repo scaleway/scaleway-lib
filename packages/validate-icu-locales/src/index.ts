@@ -8,8 +8,8 @@ import type { ParseArgsConfig } from 'node:util'
 import { parseArgs } from 'node:util'
 import type { Location } from '@formatjs/icu-messageformat-parser'
 import { parse } from '@formatjs/icu-messageformat-parser'
-import { globby } from 'globby'
 import { importFromString } from 'module-from-string'
+import { glob } from 'tinyglobby'
 
 type ParserError = {
   // it's a enum inside @formatjs, don't use it today
@@ -134,7 +134,7 @@ if (!pattern) {
   process.exit(1)
 }
 
-const files = await globby(pattern)
+const files = await glob(pattern)
 
 if (files.length === 0) {
   console.error('There is no files matching this pattern', pattern)
