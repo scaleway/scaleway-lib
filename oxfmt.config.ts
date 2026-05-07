@@ -4,7 +4,6 @@ import { defineConfig } from 'oxfmt'
 export default defineConfig({
   ...config,
   ignorePatterns: [
-    'packages_deprecated',
     'pnpm-workspace.yaml',
     '**/dist',
     '**/.turbo',
