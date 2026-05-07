@@ -1,5 +1,5 @@
 ---
-"@scaleway/oxfmt-config": major
+'@scaleway/oxfmt-config': major
 ---
 
 introduce @scaleway/oxfmt-config
