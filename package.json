@@ -50,7 +50,6 @@
     "cross-env": "catalog:",
     "fast-glob": "catalog:",
     "globals": "catalog:",
-    "globby": "catalog:",
     "happy-dom": "catalog:",
     "js-yaml": "catalog:",
     "jsdom": "catalog:",

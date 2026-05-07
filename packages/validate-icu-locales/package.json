@@ -44,8 +44,8 @@
   },
   "dependencies": {
     "@formatjs/icu-messageformat-parser": "catalog:",
-    "globby": "catalog:",
-    "module-from-string": "catalog:"
+    "module-from-string": "catalog:",
+    "tinyglobby": "catalog:"
   },
   "devDependencies": {
     "execa": "catalog:"
