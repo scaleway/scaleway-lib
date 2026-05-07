@@ -6,7 +6,6 @@
   "dependencyDashboard": true,
   "enabledManagers": ["github-actions", "npm"],
   "extends": ["config:recommended", ":combinePatchMinorReleases"],
-  "ignorePaths": ["packages_deprecated/**/package.json"],
   "labels": ["dependencies"],
   "packageRules": [
     {

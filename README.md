@@ -37,12 +37,6 @@ scaleway-lib is a set of NPM packages used at Scaleway.
   ![npm bundle size](https://packagephobia.com/badge?p=@scaleway/cookie-consent)
   ![npm](https://img.shields.io/npm/v/@scaleway/cookie-consent)
 
-- [`@scaleway/countries`](./packages_deprecated/countries/README.md): ISO 3166/3166-2 coutries JSON database.
-
-  ![npm](https://img.shields.io/npm/dm/@scaleway/countries)
-  ![npm bundle size](https://packagephobia.com/badge?p=@scaleway/countries)
-  ![npm](https://img.shields.io/npm/v/@scaleway/countries)
-
 - [`@scaleway/eslint-config-react`](./packages/eslint-config-react/README.md): A shared eslint react opiniated configuration. Available in Javascript and Typescript.
 
   ![npm](https://img.shields.io/npm/dm/@scaleway/eslint-config-react)

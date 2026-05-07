@@ -1,5 +1,0 @@
-scripts
-!.npmignore
-generate.py
-poetry.lock
-pyproject.toml
