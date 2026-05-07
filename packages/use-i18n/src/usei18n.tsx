@@ -123,7 +123,7 @@ export function useI18n<
 
 export function useTranslation<LocaleParam extends BaseLocale = BaseLocale, LocalSupportedType extends string = ''>(
   namespaces: [string, ...string[]],
-  load?: LoadTranslationsFn<LocalSupportedType> | undefined,
+  load?: LoadTranslationsFn<LocalSupportedType>,
 ): RequiredGenericContext<LocaleParam, LocalSupportedType> & {
   isLoaded: boolean
 } {
