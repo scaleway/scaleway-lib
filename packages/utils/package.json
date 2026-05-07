@@ -13,8 +13,7 @@
   "author": "Scaleway",
   "bin": {
     "check-catalog-usage": "./src/check-catalog-usage.ts",
-    "compare-dist": "./src/compare/compare-dist-migration.ts",
-    "sync-peer-deps": "./src/package/sync-peer-deps.ts"
+    "compare-dist": "./src/compare/compare-dist-migration.ts"
   },
   "files": [
     "src/**/*",
@@ -25,8 +24,6 @@
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
-    "chalk": "catalog:",
-    "globby": "catalog:",
     "yaml": "catalog:"
   },
   "devDependencies": {
