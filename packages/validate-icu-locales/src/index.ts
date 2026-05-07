@@ -8,8 +8,8 @@ import type { ParseArgsConfig } from 'node:util'
 import { parseArgs } from 'node:util'
 import type { Location } from '@formatjs/icu-messageformat-parser'
 import { parse } from '@formatjs/icu-messageformat-parser'
-import { glob } from 'tinyglobby'
 import { importFromString } from 'module-from-string'
+import { glob } from 'tinyglobby'
 
 type ParserError = {
   // it's a enum inside @formatjs, don't use it today
