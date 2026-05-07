@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.23
+
+### Patch Changes
+
+- [#3261](https://github.com/scaleway/scaleway-lib/pull/3261) [`de9697e`](https://github.com/scaleway/scaleway-lib/commit/de9697eaf1d2ad3a42f3c467e387bebda18c6a28) Thanks [@chambo-e](https://github.com/chambo-e)! - replace globby with tinyglobby
+
 ## 3.1.22
 
 ### Patch Changes
