@@ -12,20 +12,14 @@ const timeout = (time: number) => {
   return controller
 }
 
-const transformConfigToDestinations = (
-  config: AnalyticsConfig,
-): AnalyticsIntegration[] => {
+const transformConfigToDestinations = (config: AnalyticsConfig): AnalyticsIntegration[] => {
   const { destinations } = config.source
 
-  const dest = destinations.map(
-    ({ destinationDefinition, config: { consentManagement } }) => ({
-      consents: consentManagement.flatMap(({ consents }) =>
-        consents.map(({ consent }) => consent),
-      ),
-      displayName: destinationDefinition.displayName,
-      name: destinationDefinition.name,
-    }),
-  )
+  const dest = destinations.map(({ destinationDefinition, config: { consentManagement } }) => ({
+    consents: consentManagement.flatMap(({ consents }) => consents.map(({ consent }) => consent)),
+    displayName: destinationDefinition.displayName,
+    name: destinationDefinition.name,
+  }))
 
   return dest
 }
@@ -39,9 +33,7 @@ export const useDestinations: (config: Config) => {
   destinations: AnalyticsIntegration[] | undefined
   isLoaded: boolean
 } = config => {
-  const [destinations, setDestinations] = useState<
-    AnalyticsIntegration[] | undefined
-  >(undefined)
+  const [destinations, setDestinations] = useState<AnalyticsIntegration[] | undefined>(undefined)
 
   // TODO: use useDataloader to add more cache.
   useEffect(() => {

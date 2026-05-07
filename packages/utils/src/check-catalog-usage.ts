@@ -52,9 +52,7 @@ function checkDependencies(
 
   for (const [pkgName, version] of Object.entries(deps)) {
     if (catalogPackages.includes(pkgName) && version !== 'catalog:') {
-      console.error(
-        `❌ Error: Package "${pkgName}" in "${filePath}" should use "catalog:" but uses "${version}"`,
-      )
+      console.error(`❌ Error: Package "${pkgName}" in "${filePath}" should use "catalog:" but uses "${version}"`)
       errors.push({ filePath, pkgName, version })
     }
   }
@@ -96,32 +94,19 @@ function main(): Promise<void> | void {
     console.log('Catalog packages found:', catalogPackages)
 
     // Check root package.json
-    const rootPackageJson = JSON.parse(
-      fs.readFileSync(rootPackageJsonPath, 'utf8'),
-    ) as {
+    const rootPackageJson = JSON.parse(fs.readFileSync(rootPackageJsonPath, 'utf8')) as {
       dependencies?: Record<string, string>
       devDependencies?: Record<string, string>
     }
     const errors: DependencyError[] = []
 
-    checkDependencies(
-      rootPackageJson.dependencies,
-      'package.json',
-      catalogPackages,
-      errors,
-    )
-    checkDependencies(
-      rootPackageJson.devDependencies,
-      'package.json',
-      catalogPackages,
-      errors,
-    )
+    checkDependencies(rootPackageJson.dependencies, 'package.json', catalogPackages, errors)
+    checkDependencies(rootPackageJson.devDependencies, 'package.json', catalogPackages, errors)
 
     // Check packages/*/package.json files
     const packagesDir = join(rootDir, 'packages')
     const packageDirs = readdirSync(packagesDir).filter(
-      file =>
-        fs.statSync(join(packagesDir, file)).isDirectory() && file !== 'utils', // Skip the utils package itself
+      file => fs.statSync(join(packagesDir, file)).isDirectory() && file !== 'utils', // Skip the utils package itself
     )
 
     for (const pkgDir of packageDirs) {
@@ -132,40 +117,22 @@ function main(): Promise<void> | void {
             dependencies?: Record<string, string>
             devDependencies?: Record<string, string>
           }
-          checkDependencies(
-            pkgJson.dependencies,
-            `packages/${pkgDir}/package.json`,
-            catalogPackages,
-            errors,
-          )
-          checkDependencies(
-            pkgJson.devDependencies,
-            `packages/${pkgDir}/package.json`,
-            catalogPackages,
-            errors,
-          )
+          checkDependencies(pkgJson.dependencies, `packages/${pkgDir}/package.json`, catalogPackages, errors)
+          checkDependencies(pkgJson.devDependencies, `packages/${pkgDir}/package.json`, catalogPackages, errors)
         } catch (error) {
-          console.error(
-            `Error reading ${pkgJsonPath}:`,
-            error instanceof Error ? error.message : String(error),
-          )
+          console.error(`Error reading ${pkgJsonPath}:`, error instanceof Error ? error.message : String(error))
         }
       }
     }
 
     if (errors.length > 0) {
-      console.error(
-        '\n❌ Found dependencies that should use catalog: references',
-      )
+      console.error('\n❌ Found dependencies that should use catalog: references')
       process.exit(1)
     } else {
       console.log('\n✅ All catalog packages are properly referenced')
     }
   } catch (error) {
-    console.error(
-      'Error:',
-      error instanceof Error ? error.message : String(error),
-    )
+    console.error('Error:', error instanceof Error ? error.message : String(error))
     process.exit(1)
   }
 }

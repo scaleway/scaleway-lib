@@ -5,10 +5,7 @@ import { load } from 'js-yaml'
 
 const { globSync } = fg
 
-export function shouldIgnorePackage(
-  packageName: string,
-  ignoredPackages: string[],
-): boolean {
+export function shouldIgnorePackage(packageName: string, ignoredPackages: string[]): boolean {
   return ignoredPackages.some(ignoredPackage => {
     if (ignoredPackage.endsWith('*')) {
       return packageName.startsWith(ignoredPackage.slice(0, -1))
@@ -19,9 +16,7 @@ export function shouldIgnorePackage(
 }
 
 export async function getChangesetIgnoredPackages(): Promise<string[]> {
-  const changesetConfig = JSON.parse(
-    await readFile('.changeset/config.json', 'utf8'),
-  ) as {
+  const changesetConfig = JSON.parse(await readFile('.changeset/config.json', 'utf8')) as {
     ignore?: string[]
   }
 
@@ -59,9 +54,7 @@ export async function getPackagesNames(files: string[]): Promise<string[]> {
  * @param filePath Path to the YAML file containing the catalog
  * @returns Catalog object or empty object if not found
  */
-export async function loadCatalogFromFile(
-  filePath: string,
-): Promise<Record<string, string>> {
+export async function loadCatalogFromFile(filePath: string): Promise<Record<string, string>> {
   try {
     const content = await readFile(filePath, 'utf8')
     const parsed = load(content) as {
@@ -81,9 +74,7 @@ export async function loadCatalogFromFile(
  * @param content Content of the pnpm-workspace.yaml file
  * @returns Catalog object or empty object if not found
  */
-export function loadCatalogFromWorkspaceContent(
-  content: string,
-): Record<string, string> {
+export function loadCatalogFromWorkspaceContent(content: string): Record<string, string> {
   try {
     const parsed = load(content) as {
       catalog?: Record<string, string>
@@ -108,9 +99,7 @@ export function findChangedDependencies(
   newCatalog: Record<string, string>,
 ): string[] {
   return Object.entries(newCatalog)
-    .filter(
-      ([pkg, newVersion]) => oldCatalog[pkg] && oldCatalog[pkg] !== newVersion,
-    )
+    .filter(([pkg, newVersion]) => oldCatalog[pkg] && oldCatalog[pkg] !== newVersion)
     .map(([pkg]) => pkg)
 }
 

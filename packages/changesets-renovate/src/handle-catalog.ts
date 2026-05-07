@@ -3,36 +3,24 @@
 import { simpleGit } from 'simple-git'
 import { createChangeset } from './createChangeset.js'
 
-const {
-  findChangedDependenciesFromGit,
-  findAffectedPackages,
-  handleChangesetFile,
-} = await import('./git-utils.js')
+const { findChangedDependenciesFromGit, findAffectedPackages, handleChangesetFile } = await import('./git-utils.js')
 /**
  * Handle pnpm workspace catalog changes
  */
 export async function handleCatalogChanges(diffFiles: string[]): Promise<void> {
-  const workspaceFiles = diffFiles.filter(file =>
-    file.includes('pnpm-workspace.yaml'),
-  )
+  const workspaceFiles = diffFiles.filter(file => file.includes('pnpm-workspace.yaml'))
 
   if (workspaceFiles.length === 0) {
     return
   }
 
-  console.log(
-    '🔍 Detected pnpm workspace changes, checking for catalog updates...',
-  )
+  console.log('🔍 Detected pnpm workspace changes, checking for catalog updates...')
 
   // Compare catalogs between HEAD~1 and HEAD
   console.log('🔍 Comparing catalogs: HEAD~1 -> HEAD')
 
   // Step 1: Find changed deps using git history
-  const changedDeps = await findChangedDependenciesFromGit(
-    'HEAD~1',
-    'HEAD',
-    'pnpm-workspace.yaml',
-  )
+  const changedDeps = await findChangedDependenciesFromGit('HEAD~1', 'HEAD', 'pnpm-workspace.yaml')
 
   if (changedDeps.size === 0) {
     console.log('✅ No catalog dependency changes.', { changedDeps })

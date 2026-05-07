@@ -7,12 +7,8 @@ const SEGMENT_COOKIES_KEY = {
   USER_ID: 'ajs_user_id',
 }
 
-export const userMigrationsTraits = (
-  rudderAnalytics: RudderAnalytics,
-): void => {
-  const segmentAnonymousId = localStorage.getItem(
-    SEGMENT_COOKIES_KEY.ANONYMOUS_ID,
-  )
+export const userMigrationsTraits = (rudderAnalytics: RudderAnalytics): void => {
+  const segmentAnonymousId = localStorage.getItem(SEGMENT_COOKIES_KEY.ANONYMOUS_ID)
   const segmentUserId = localStorage.getItem(SEGMENT_COOKIES_KEY.USER_ID)
   const segmentGroupId = localStorage.getItem(SEGMENT_COOKIES_KEY.GROUP_ID)
   const rudderUserId = rudderAnalytics.getUserId()

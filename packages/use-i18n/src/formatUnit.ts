@@ -15,16 +15,7 @@ const exponents = [
 ] as const
 
 type Exponent = (typeof exponents)[number]
-type ExponentName =
-  | ''
-  | 'kilo'
-  | 'mega'
-  | 'giga'
-  | 'tera'
-  | 'peta'
-  | 'exa'
-  | 'zetta'
-  | 'yotta'
+type ExponentName = '' | 'kilo' | 'mega' | 'giga' | 'tera' | 'peta' | 'exa' | 'zetta' | 'yotta'
 
 const frOctet = {
   plural: 'octets',
@@ -66,42 +57,21 @@ const compoundUnitsSymbols = {
 type Unit = 'bit' | 'byte'
 type CompoundUnit = 'second'
 
-const formatShortUnit = (
-  locale: string,
-  exponent: Exponent,
-  unit: Unit,
-  compoundUnit?: CompoundUnit,
-) => {
+const formatShortUnit = (locale: string, exponent: Exponent, unit: Unit, compoundUnit?: CompoundUnit) => {
   let shortenedUnit = symbols.short[unit]
 
-  if (
-    unit === 'byte' &&
-    Object.keys(localesWhoFavorOctetOverByte).includes(locale)
-  ) {
+  if (unit === 'byte' && Object.keys(localesWhoFavorOctetOverByte).includes(locale)) {
     shortenedUnit = symbols.short.octet
   }
 
-  return `${exponent.symbol}${shortenedUnit}${
-    compoundUnit ? compoundUnitsSymbols[compoundUnit] : ''
-  }`
+  return `${exponent.symbol}${shortenedUnit}${compoundUnit ? compoundUnitsSymbols[compoundUnit] : ''}`
 }
 
-const formatLongUnit = (
-  locale: string,
-  exponent: Exponent,
-  unit: Unit,
-  amount: number,
-) => {
+const formatLongUnit = (locale: string, exponent: Exponent, unit: Unit, amount: number) => {
   let translation = symbols.long[unit]
 
-  if (
-    unit === 'byte' &&
-    Object.keys(localesWhoFavorOctetOverByte).includes(locale)
-  ) {
-    translation =
-      localesWhoFavorOctetOverByte[
-        locale as keyof typeof localesWhoFavorOctetOverByte
-      ]
+  if (unit === 'byte' && Object.keys(localesWhoFavorOctetOverByte).includes(locale)) {
+    translation = localesWhoFavorOctetOverByte[locale as keyof typeof localesWhoFavorOctetOverByte]
   }
 
   return `${exponent.name}${
@@ -152,9 +122,7 @@ const format =
       if (computedExponent) {
         const value = filesize(amount, {
           base,
-          exponent: exponents.findIndex(
-            exp => exp.name === computedExponent?.name,
-          ),
+          exponent: exponents.findIndex(exp => exp.name === computedExponent?.name),
           output: 'object',
           round: maximumFractionDigits,
         })
@@ -178,22 +146,17 @@ const format =
       maximumFractionDigits,
       minimumFractionDigits,
     }).format(computedValue)} ${
-      short
-        ? formatShortUnit(locale, exp, unit, compoundUnit)
-        : formatLongUnit(locale, exp, unit, computedValue)
+      short ? formatShortUnit(locale, exp, unit, compoundUnit) : formatLongUnit(locale, exp, unit, computedValue)
     }`
   }
 
 type SimpleUnits = `${ExponentName}${Unit}${'-humanized' | ''}`
 type ComplexUnits = `${Unit}${'s' | ''}${'-humanized' | ''}`
 
-type PerSecondUnit =
-  `${ExponentName | ''}bit${'s' | ''}${'-per-second' | ''}${'-humanized' | ''}`
+type PerSecondUnit = `${ExponentName | ''}bit${'s' | ''}${'-per-second' | ''}${'-humanized' | ''}`
 type SupportedUnits = SimpleUnits | ComplexUnits | PerSecondUnit
 
-export const supportedUnits: Partial<
-  Record<SupportedUnits, ReturnType<typeof format>>
-> = {
+export const supportedUnits: Partial<Record<SupportedUnits, ReturnType<typeof format>>> = {
   // bits
   'bits-humanized': format({ humanize: true, unit: 'bit' }),
   'bits-per-second-humanized': format({
@@ -255,10 +218,7 @@ export type FormatUnitOptions = {
   base?: 2 | 10
 }
 
-const formatUnit = (
-  locale: string,
-  number: number,
-  { unit, ...options }: FormatUnitOptions,
-): string => supportedUnits[unit]?.(locale, number, options) ?? ''
+const formatUnit = (locale: string, number: number, { unit, ...options }: FormatUnitOptions): string =>
+  supportedUnits[unit]?.(locale, number, options) ?? ''
 
 export default formatUnit

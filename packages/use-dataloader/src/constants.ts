@@ -20,16 +20,7 @@ export const POLLING_INTERVAL: TimeMapPolling = {
   '10S': 10 * SECOND,
 } as const
 
-export type KeyDataLifeTime =
-  | '1h'
-  | '1m'
-  | '2h'
-  | '3m'
-  | '5m'
-  | '5S'
-  | '10S'
-  | '30S'
-  | 'NONE'
+export type KeyDataLifeTime = '1h' | '1m' | '2h' | '3m' | '5m' | '5S' | '10S' | '30S' | 'NONE'
 export type TimeMapDataLifeTime = Record<KeyDataLifeTime, number>
 
 export const DATALIFE_TIME: TimeMapDataLifeTime = {

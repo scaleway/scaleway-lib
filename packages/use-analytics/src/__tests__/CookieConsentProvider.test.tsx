@@ -1,13 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import {
-  CookieConsentProvider,
-  useCookieConsent,
-} from '../cookies-consent/CookieConsentProvider'
-import {
-  getAllowedConsents,
-  getDeniedConsents,
-} from '../cookies-consent/consents'
+import { getAllowedConsents, getDeniedConsents } from '../cookies-consent/consents'
+import { CookieConsentProvider, useCookieConsent } from '../cookies-consent/CookieConsentProvider'
 import type { Config } from '../types'
 
 // Mock dependencies
@@ -47,9 +41,9 @@ const TestComponent = () => {
 
   return (
     <div>
-      <div data-testid='allowed-consents'>{allowedConsents.join(',')}</div>
-      <div data-testid='denied-consents'>{deniedConsents.join(',')}</div>
-      <div data-testid='categories-consent'>
+      <div data-testid="allowed-consents">{allowedConsents.join(',')}</div>
+      <div data-testid="denied-consents">{deniedConsents.join(',')}</div>
+      <div data-testid="categories-consent">
         {Object.entries(categoriesConsent).map(([cat, consent]) => (
           <div key={cat} data-testid={`consent-${cat}`}>
             {consent ? 'true' : 'false'}
@@ -79,9 +73,7 @@ describe('allowedConsents and deniedConsents', () => {
       </CookieConsentProvider>,
     )
 
-    expect(screen.getByTestId('allowed-consents').textContent).toBe(
-      'essential,functional,analytics,advertising',
-    )
+    expect(screen.getByTestId('allowed-consents').textContent).toBe('essential,functional,analytics,advertising')
     expect(screen.getByTestId('denied-consents').textContent).toBe('')
   })
 
@@ -93,9 +85,7 @@ describe('allowedConsents and deniedConsents', () => {
     )
 
     expect(screen.getByTestId('allowed-consents').textContent).toBe('')
-    expect(screen.getByTestId('denied-consents').textContent).toBe(
-      'essential,functional,analytics,advertising',
-    )
+    expect(screen.getByTestId('denied-consents').textContent).toBe('essential,functional,analytics,advertising')
   })
 
   it('should correctly categorize consents based on cookie values', () => {
@@ -119,20 +109,13 @@ describe('allowedConsents and deniedConsents', () => {
       </CookieConsentProvider>,
     )
 
-    expect(screen.getByTestId('allowed-consents').textContent).toBe(
-      'essential,analytics',
-    )
-    expect(screen.getByTestId('denied-consents').textContent).toBe(
-      'functional,advertising',
-    )
+    expect(screen.getByTestId('allowed-consents').textContent).toBe('essential,analytics')
+    expect(screen.getByTestId('denied-consents').textContent).toBe('functional,advertising')
   })
 
   it('should handle undefined consent values as false', () => {
     // Set some cookies with undefined values analytics and advertising are missing (undefined)
-    const cookieArray = [
-      'consent_essential=false',
-      'consent_functional=false',
-    ] as const
+    const cookieArray = ['consent_essential=false', 'consent_functional=false'] as const
 
     // Join to create cookie string
     const cookieString = cookieArray.join('; ')
@@ -146,9 +129,7 @@ describe('allowedConsents and deniedConsents', () => {
     )
 
     expect(screen.getByTestId('allowed-consents').textContent).toBe('')
-    expect(screen.getByTestId('denied-consents').textContent).toBe(
-      'essential,functional,analytics,advertising',
-    )
+    expect(screen.getByTestId('denied-consents').textContent).toBe('essential,functional,analytics,advertising')
   })
 
   it('should handle partial consent updates correctly', async () => {
@@ -179,13 +160,9 @@ describe('allowedConsents and deniedConsents', () => {
 
       return (
         <div>
-          <div data-testid='allowed-consents'>{allowedConsents.join(',')}</div>
-          <div data-testid='denied-consents'>{deniedConsents.join(',')}</div>
-          <button
-            type='button'
-            onClick={handlePartialSave}
-            data-testid='save-partial'
-          >
+          <div data-testid="allowed-consents">{allowedConsents.join(',')}</div>
+          <div data-testid="denied-consents">{deniedConsents.join(',')}</div>
+          <button type="button" onClick={handlePartialSave} data-testid="save-partial">
             Save Partial
           </button>
         </div>
@@ -199,11 +176,7 @@ describe('allowedConsents and deniedConsents', () => {
     )
 
     // Initial state
-    expect(screen.getByTestId('allowed-consents').textContent).toBe(
-      'essential,functional',
-    )
-    expect(screen.getByTestId('denied-consents').textContent).toBe(
-      'analytics,advertising',
-    )
+    expect(screen.getByTestId('allowed-consents').textContent).toBe('essential,functional')
+    expect(screen.getByTestId('denied-consents').textContent).toBe('analytics,advertising')
   })
 })

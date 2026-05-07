@@ -47,22 +47,14 @@ async function processPackageJson(filePath: string): Promise<number> {
     }
 
     let changesCount = 0
-    const packageName =
-      packageJson.name ?? path.basename(path.dirname(filePath))
+    const packageName = packageJson.name ?? path.basename(path.dirname(filePath))
 
     // Compare and update peerDependencies
-    for (const [pkg, peerVersion] of Object.entries(
-      packageJson.peerDependencies,
-    )) {
-      if (
-        packageJson.devDependencies[pkg] &&
-        packageJson.devDependencies[pkg] !== peerVersion
-      ) {
+    for (const [pkg, peerVersion] of Object.entries(packageJson.peerDependencies)) {
+      if (packageJson.devDependencies[pkg] && packageJson.devDependencies[pkg] !== peerVersion) {
         const devVersion = packageJson.devDependencies[pkg]
         log(
-          chalk.yellow(
-            `Updating ${chalk.bold(pkg)} in ${chalk.cyan(packageName)}:`,
-          ),
+          chalk.yellow(`Updating ${chalk.bold(pkg)} in ${chalk.cyan(packageName)}:`),
           chalk.red(peerVersion),
           chalk.gray('→'),
           chalk.green(devVersion),
@@ -80,11 +72,7 @@ async function processPackageJson(filePath: string): Promise<number> {
       const match = content.match(reg)
       const indent = match?.[1]?.length ?? 2
 
-      await writeFile(
-        filePath,
-        JSON.stringify(packageJson, undefined, indent),
-        'utf8',
-      )
+      await writeFile(filePath, JSON.stringify(packageJson, undefined, indent), 'utf8')
     }
 
     return changesCount
@@ -121,17 +109,9 @@ async function syncPeerDependencies(): Promise<void> {
 
     // Summary
     if (totalChanges > 0) {
-      log(
-        chalk.green(
-          `\n✅ Updated ${totalChanges} dependencies across ${processedFiles} files`,
-        ),
-      )
+      log(chalk.green(`\n✅ Updated ${totalChanges} dependencies across ${processedFiles} files`))
     } else {
-      log(
-        chalk.green(
-          '\n✅ All peerDependencies are already in sync with devDependencies',
-        ),
-      )
+      log(chalk.green('\n✅ All peerDependencies are already in sync with devDependencies'))
     }
   } catch (error) {
     consoleError(chalk.red('Error synchronizing dependencies:'), error)

@@ -23,13 +23,9 @@ describe('i18n - t', () => {
         name: 'Name',
       }),
     ).toEqualTypeOf<string>()
-    expectTypeOf(t).parameters.not.toEqualTypeOf<
-      ['doe.doesnotexists', { name: string }]
-    >()
+    expectTypeOf(t).parameters.not.toEqualTypeOf<['doe.doesnotexists', { name: string }]>()
 
-    expectTypeOf(t).parameters.not.toEqualTypeOf<
-      ['doe.child', Record<string, never>]
-    >()
+    expectTypeOf(t).parameters.not.toEqualTypeOf<['doe.child', Record<string, never>]>()
 
     expectTypeOf(t).parameters.not.toEqualTypeOf<['doe.child']>()
 
@@ -40,9 +36,7 @@ describe('i18n - t', () => {
       }),
     ).toEqualTypeOf<string>()
 
-    expectTypeOf(t).parameters.not.toEqualTypeOf<
-      ['describe.john', Record<string, never>]
-    >()
+    expectTypeOf(t).parameters.not.toEqualTypeOf<['describe.john', Record<string, never>]>()
     expectTypeOf(t).parameters.not.toEqualTypeOf<['describe.john']>()
 
     expectTypeOf(

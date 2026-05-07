@@ -1,8 +1,8 @@
 import { render, renderHook, screen, waitFor } from '@testing-library/react'
 import type { ReactNode } from 'react'
 import { describe, expect, test, vi } from 'vitest'
-import DataLoaderProvider, { useDataLoaderContext } from '../DataLoaderProvider'
 import { StatusEnum } from '../constants'
+import DataLoaderProvider, { useDataLoaderContext } from '../DataLoaderProvider'
 
 const TEST_KEY = 'test'
 const PROMISE_TIMEOUT = 5
@@ -20,19 +20,13 @@ const fakeNullPromise = async () =>
     }, PROMISE_TIMEOUT)
   })
 
-const wrapper = ({ children }: { children: ReactNode }) => (
-  <DataLoaderProvider>{children}</DataLoaderProvider>
-)
+const wrapper = ({ children }: { children: ReactNode }) => <DataLoaderProvider>{children}</DataLoaderProvider>
 
 const wrapperWithCacheKey = ({ children }: { children?: ReactNode }) => (
-  <DataLoaderProvider cacheKeyPrefix='sample'>{children}</DataLoaderProvider>
+  <DataLoaderProvider cacheKeyPrefix="sample">{children}</DataLoaderProvider>
 )
 
-const wrapperWith2ConcurrentRequests = ({
-  children,
-}: {
-  children?: ReactNode
-}) => (
+const wrapperWith2ConcurrentRequests = ({ children }: { children?: ReactNode }) => (
   <DataLoaderProvider maxConcurrentRequests={2}>{children}</DataLoaderProvider>
 )
 

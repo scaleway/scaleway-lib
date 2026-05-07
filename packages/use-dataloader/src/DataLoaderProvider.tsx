@@ -44,9 +44,7 @@ export type IDataLoaderContext = {
   clearCachedData: (key: KeyType) => void
   getCachedData: GetCachedDataFn
   getReloads: GetReloadsFn
-  getRequest: <ResultType, ErrorType>(
-    key: KeyType,
-  ) => DataLoader<ResultType, ErrorType>
+  getRequest: <ResultType, ErrorType>(key: KeyType) => DataLoader<ResultType, ErrorType>
   reload: (key: KeyType) => Promise<void>
   reloadAll: () => Promise<void>
   reloadAllActive: () => Promise<void>
@@ -79,14 +77,12 @@ const DataLoaderProvider: ComponentType<DataLoaderProviderProps> = ({
   const requestsRef = useRef<Requests>({})
 
   const computeKey = useCallback(
-    (key: KeyType) =>
-      marshalQueryKey([cacheKeyPrefix, ...(Array.isArray(key) ? key : [key])]),
+    (key: KeyType) => marshalQueryKey([cacheKeyPrefix, ...(Array.isArray(key) ? key : [key])]),
     [cacheKeyPrefix],
   )
 
   const getRequest = useCallback(
-    (key: KeyType): DataLoader<unknown, unknown> | undefined =>
-      requestsRef.current[computeKey(key)],
+    (key: KeyType): DataLoader<unknown, unknown> | undefined => requestsRef.current[computeKey(key)],
     [computeKey],
   )
 
@@ -151,22 +147,14 @@ const DataLoaderProvider: ComponentType<DataLoaderProviderProps> = ({
   )
 
   const reloadAll = useCallback(async () => {
-    await Promise.all(
-      Object.values(requestsRef.current).map(async request =>
-        request.load(true),
-      ),
-    )
+    await Promise.all(Object.values(requestsRef.current).map(async request => request.load(true)))
   }, [])
 
   const reloadGroupActive = useCallback(
     async (startPrefix: KeyType) => {
       await Promise.all(
         Object.values(requestsRef.current)
-          .filter(
-            request =>
-              request.observers.length > 0 &&
-              request.key.startsWith(computeKey(startPrefix)),
-          )
+          .filter(request => request.observers.length > 0 && request.key.startsWith(computeKey(startPrefix)))
           .map(async request => request.load(true)),
       )
     },
@@ -200,9 +188,7 @@ const DataLoaderProvider: ComponentType<DataLoaderProviderProps> = ({
   const getReloads = useCallback(
     (key?: KeyType) => {
       if (key) {
-        return getRequest(key)
-          ? async () => getRequest(key)?.load(true)
-          : undefined
+        return getRequest(key) ? async () => getRequest(key)?.load(true) : undefined
       }
       return Object.entries(requestsRef.current).reduce<Reloads>(
         (acc, [requestKey, { load }]) => ({
@@ -254,14 +240,9 @@ const DataLoaderProvider: ComponentType<DataLoaderProviderProps> = ({
     ],
   )
 
-  return (
-    <DataLoaderContext.Provider value={value}>
-      {children}
-    </DataLoaderContext.Provider>
-  )
+  return <DataLoaderContext.Provider value={value}>{children}</DataLoaderContext.Provider>
 }
 
-export const useDataLoaderContext = (): IDataLoaderContext =>
-  useContext(DataLoaderContext)
+export const useDataLoaderContext = (): IDataLoaderContext => useContext(DataLoaderContext)
 
 export default DataLoaderProvider

@@ -22,19 +22,10 @@ declare abstract class IntlListFormat {
 }
 
 type BaseFormatters = {
-  getNumberFormat(
-    locales?: string | string[],
-    opts?: NumberFormatOptions,
-  ): Intl.NumberFormat
-  getDateTimeFormat(
-    ...args: ConstructorParameters<typeof Intl.DateTimeFormat>
-  ): Intl.DateTimeFormat
-  getPluralRules(
-    ...args: ConstructorParameters<typeof Intl.PluralRules>
-  ): Intl.PluralRules
-  getListFormat(
-    ...args: ConstructorParameters<typeof IntlListFormat>
-  ): IntlListFormat
+  getNumberFormat(locales?: string | string[], opts?: NumberFormatOptions): Intl.NumberFormat
+  getDateTimeFormat(...args: ConstructorParameters<typeof Intl.DateTimeFormat>): Intl.DateTimeFormat
+  getPluralRules(...args: ConstructorParameters<typeof Intl.PluralRules>): Intl.PluralRules
+  getListFormat(...args: ConstructorParameters<typeof IntlListFormat>): IntlListFormat
 }
 
 function createFastMemoizeCache<V>(): Cache<string, V> {
@@ -56,8 +47,7 @@ function createFastMemoizeCache<V>(): Cache<string, V> {
 
 const baseFormatters: BaseFormatters = {
   getDateTimeFormat: memoize(
-    (...args: ConstructorParameters<typeof Intl.DateTimeFormat>) =>
-      new Intl.DateTimeFormat(...args),
+    (...args: ConstructorParameters<typeof Intl.DateTimeFormat>) => new Intl.DateTimeFormat(...args),
     {
       cache: createFastMemoizeCache<Intl.DateTimeFormat>(),
       strategy: strategies.variadic,
@@ -73,32 +63,23 @@ const baseFormatters: BaseFormatters = {
     },
   ),
   getNumberFormat: memoize(
-    (...args: ConstructorParameters<typeof Intl.NumberFormat>) =>
-      new Intl.NumberFormat(...args),
+    (...args: ConstructorParameters<typeof Intl.NumberFormat>) => new Intl.NumberFormat(...args),
     {
       cache: createFastMemoizeCache<Intl.NumberFormat>(),
       strategy: strategies.variadic,
     },
   ),
-  getPluralRules: memoize(
-    (...args: ConstructorParameters<typeof Intl.PluralRules>) =>
-      new Intl.PluralRules(...args),
-    {
-      cache: createFastMemoizeCache<Intl.PluralRules>(),
-      strategy: strategies.variadic,
-    },
-  ),
+  getPluralRules: memoize((...args: ConstructorParameters<typeof Intl.PluralRules>) => new Intl.PluralRules(...args), {
+    cache: createFastMemoizeCache<Intl.PluralRules>(),
+    strategy: strategies.variadic,
+  }),
 }
 
 type Formatters = BaseFormatters & {
-  getTranslationFormat(
-    ...args: ConstructorParameters<typeof IntlTranslationFormat>
-  ): IntlTranslationFormat
+  getTranslationFormat(...args: ConstructorParameters<typeof IntlTranslationFormat>): IntlTranslationFormat
 }
 
-type TranslationFormatParameter = ConstructorParameters<
-  typeof IntlTranslationFormat
->
+type TranslationFormatParameter = ConstructorParameters<typeof IntlTranslationFormat>
 
 const formatters: Formatters = {
   ...baseFormatters,

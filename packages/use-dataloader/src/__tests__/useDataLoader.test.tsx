@@ -31,29 +31,22 @@ const initialProps = {
   key: 'test',
   method: vi.fn(fakeSuccessPromise),
 }
-const wrapper = ({ children }: { children?: ReactNode }) => (
-  <DataLoaderProvider>{children}</DataLoaderProvider>
-)
+const wrapper = ({ children }: { children?: ReactNode }) => <DataLoaderProvider>{children}</DataLoaderProvider>
 
 const wrapperWithCacheKey = ({ children }: { children?: ReactNode }) => (
-  <DataLoaderProvider cacheKeyPrefix='sample'>{children}</DataLoaderProvider>
+  <DataLoaderProvider cacheKeyPrefix="sample">{children}</DataLoaderProvider>
 )
 
 const wrapperWithOnError =
   (onError: (err: Error) => void) =>
-  ({ children }: { children?: ReactNode }) => (
-    <DataLoaderProvider onError={onError}>{children}</DataLoaderProvider>
-  )
+  ({ children }: { children?: ReactNode }) => <DataLoaderProvider onError={onError}>{children}</DataLoaderProvider>
 
 describe('useDataLoader', () => {
   test('should render correctly without options', async () => {
-    const { result } = renderHook(
-      props => useDataLoader(props.key, props.method),
-      {
-        initialProps,
-        wrapper,
-      },
-    )
+    const { result } = renderHook(props => useDataLoader(props.key, props.method), {
+      initialProps,
+      wrapper,
+    })
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBeTruthy()
     expect(result.current.previousData).toBe(undefined)
@@ -68,25 +61,17 @@ describe('useDataLoader', () => {
   })
 
   test('should render correctly with a complexe key', async () => {
-    const key = [
-      'baseKey',
-      ['null', null],
-      ['boolean', false],
-      ['number', 10],
-    ].flat()
+    const key = ['baseKey', ['null', null], ['boolean', false], ['number', 10]].flat()
 
     const initProps = {
       ...initialProps,
       key,
     }
 
-    const { result, rerender } = renderHook(
-      props => useDataLoader(props.key, props.method),
-      {
-        initialProps: initProps,
-        wrapper,
-      },
-    )
+    const { result, rerender } = renderHook(props => useDataLoader(props.key, props.method), {
+      initialProps: initProps,
+      wrapper,
+    })
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBeTruthy()
     expect(result.current.previousData).toBe(undefined)
@@ -127,13 +112,10 @@ describe('useDataLoader', () => {
       key: 'test-not-enabled-then-reload',
       method,
     }
-    const { rerender, result } = renderHook(
-      props => useDataLoader(props.key, props.method, props.config),
-      {
-        initialProps: testProps,
-        wrapper,
-      },
-    )
+    const { rerender, result } = renderHook(props => useDataLoader(props.key, props.method, props.config), {
+      initialProps: testProps,
+      wrapper,
+    })
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBeFalsy()
     expect(method).toBeCalledTimes(0)
@@ -154,19 +136,16 @@ describe('useDataLoader', () => {
   })
 
   test('should render correctly without keepPreviousData', async () => {
-    const { result } = renderHook(
-      props => useDataLoader(props.key, props.method, props.config),
-      {
-        initialProps: {
-          ...initialProps,
-          config: {
-            keepPreviousData: false,
-          },
-          key: 'test-2',
+    const { result } = renderHook(props => useDataLoader(props.key, props.method, props.config), {
+      initialProps: {
+        ...initialProps,
+        config: {
+          keepPreviousData: false,
         },
-        wrapper,
+        key: 'test-2',
       },
-    )
+      wrapper,
+    })
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBeTruthy()
     await waitFor(() => {
@@ -177,22 +156,19 @@ describe('useDataLoader', () => {
   })
 
   test('should render correctly with result null', async () => {
-    const { result } = renderHook(
-      props => useDataLoader(props.key, props.method, props.config),
-      {
-        initialProps: {
-          ...initialProps,
-          key: 'test-3',
-          method: async () =>
-            new Promise(resolve => {
-              setTimeout(() => {
-                resolve(null)
-              }, PROMISE_TIMEOUT)
-            }),
-        },
-        wrapper,
+    const { result } = renderHook(props => useDataLoader(props.key, props.method, props.config), {
+      initialProps: {
+        ...initialProps,
+        key: 'test-3',
+        method: async () =>
+          new Promise(resolve => {
+            setTimeout(() => {
+              resolve(null)
+            }, PROMISE_TIMEOUT)
+          }),
       },
-    )
+      wrapper,
+    })
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBeTruthy()
     await waitFor(() => {
@@ -260,16 +236,13 @@ describe('useDataLoader', () => {
   })
 
   test('should render correctly with enabled true', async () => {
-    const { result } = renderHook(
-      props => useDataLoader(props.key, props.method, props.config),
-      {
-        initialProps: {
-          ...initialProps,
-          key: 'test-5',
-        },
-        wrapper,
+    const { result } = renderHook(props => useDataLoader(props.key, props.method, props.config), {
+      initialProps: {
+        ...initialProps,
+        key: 'test-5',
       },
-    )
+      wrapper,
+    })
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBeTruthy()
     await waitFor(() => {
@@ -297,8 +270,7 @@ describe('useDataLoader', () => {
       key: 'test-key-update',
     }
     const { result, rerender } = renderHook(
-      () =>
-        useDataLoader(propsToPass.key, propsToPass.method, propsToPass.config),
+      () => useDataLoader(propsToPass.key, propsToPass.method, propsToPass.config),
       {
         wrapper,
       },
@@ -351,13 +323,10 @@ describe('useDataLoader', () => {
         }),
     )
 
-    const { result, rerender } = renderHook(
-      props => useDataLoader(props.key, props.method, props.config),
-      {
-        initialProps: pollingProps,
-        wrapper,
-      },
-    )
+    const { result, rerender } = renderHook(props => useDataLoader(props.key, props.method, props.config), {
+      initialProps: pollingProps,
+      wrapper,
+    })
     expect(result.current.data).toBe(undefined)
     expect(result.current.isPolling).toBeTruthy()
     expect(result.current.isFetching).toBeTruthy()
@@ -443,13 +412,10 @@ describe('useDataLoader', () => {
       ),
     } as UseDataLoaderHookProps
 
-    const { result } = renderHook(
-      props => useDataLoader(props.key, props.method, props.config),
-      {
-        initialProps: pollingProps,
-        wrapper,
-      },
-    )
+    const { result } = renderHook(props => useDataLoader(props.key, props.method, props.config), {
+      initialProps: pollingProps,
+      wrapper,
+    })
     expect(result.current.data).toBe(undefined)
     expect(result.current.isPolling).toBeFalsy()
     expect(result.current.isLoading).toBeTruthy()
@@ -477,13 +443,10 @@ describe('useDataLoader', () => {
       ),
     } as UseDataLoaderHookProps
 
-    const { result } = renderHook(
-      props => useDataLoader(props.key, props.method, props.config),
-      {
-        initialProps: pollingProps,
-        wrapper,
-      },
-    )
+    const { result } = renderHook(props => useDataLoader(props.key, props.method, props.config), {
+      initialProps: pollingProps,
+      wrapper,
+    })
     expect(result.current.data).toBe(undefined)
     expect(result.current.isPolling).toBeTruthy()
     expect(result.current.isLoading).toBeTruthy()
@@ -512,13 +475,10 @@ describe('useDataLoader', () => {
       ),
     } as UseDataLoaderHookProps
 
-    const { result } = renderHook(
-      props => useDataLoader(props.key, props.method, props.config),
-      {
-        initialProps: pollingProps,
-        wrapper,
-      },
-    )
+    const { result } = renderHook(props => useDataLoader(props.key, props.method, props.config), {
+      initialProps: pollingProps,
+      wrapper,
+    })
     expect(result.current.data).toBe(undefined)
     expect(result.current.isPolling).toBeFalsy()
     expect(result.current.isLoading).toBeTruthy()
@@ -547,13 +507,10 @@ describe('useDataLoader', () => {
       ),
     } as UseDataLoaderHookProps
 
-    const { result } = renderHook(
-      props => useDataLoader(props.key, props.method, props.config),
-      {
-        initialProps: pollingProps,
-        wrapper,
-      },
-    )
+    const { result } = renderHook(props => useDataLoader(props.key, props.method, props.config), {
+      initialProps: pollingProps,
+      wrapper,
+    })
     expect(result.current.data).toBe(undefined)
     expect(result.current.isPolling).toBeTruthy()
     expect(result.current.isLoading).toBeTruthy()
@@ -585,19 +542,16 @@ describe('useDataLoader', () => {
       ...initialProps,
       method,
     }
-    const { result } = renderHook(
-      props => useDataLoader(props.key, props.method, props.config),
-      {
-        initialProps: {
-          ...initProps,
-          config: {
-            enabled: false,
-          },
-          key: 'test-7',
+    const { result } = renderHook(props => useDataLoader(props.key, props.method, props.config), {
+      initialProps: {
+        ...initProps,
+        config: {
+          enabled: false,
         },
-        wrapper,
+        key: 'test-7',
       },
-    )
+      wrapper,
+    })
     expect(result.current.data).toBe(undefined)
     expect(result.current.isIdle).toBeTruthy()
     result.current.reload().catch(() => null)
@@ -614,19 +568,16 @@ describe('useDataLoader', () => {
 
   test('should call onSuccess', async () => {
     const onSuccess = vi.fn()
-    const { result } = renderHook(
-      props => useDataLoader(props.key, props.method, props.config),
-      {
-        initialProps: {
-          ...initialProps,
-          config: {
-            onSuccess,
-          },
-          key: 'test-8',
+    const { result } = renderHook(props => useDataLoader(props.key, props.method, props.config), {
+      initialProps: {
+        ...initialProps,
+        config: {
+          onSuccess,
         },
-        wrapper,
+        key: 'test-8',
       },
-    )
+      wrapper,
+    })
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBeTruthy()
     await waitFor(() => {
@@ -640,25 +591,22 @@ describe('useDataLoader', () => {
     const onSuccess = vi.fn()
     const onError = vi.fn()
     const error = new Error('Test error')
-    const { result } = renderHook(
-      props => useDataLoader(props.key, props.method, props.config),
-      {
-        initialProps: {
-          config: {
-            onError,
-            onSuccess,
-          },
-          key: 'test-9',
-          method: async () =>
-            new Promise((_, reject) => {
-              setTimeout(() => {
-                reject(error)
-              }, PROMISE_TIMEOUT)
-            }),
+    const { result } = renderHook(props => useDataLoader(props.key, props.method, props.config), {
+      initialProps: {
+        config: {
+          onError,
+          onSuccess,
         },
-        wrapper,
+        key: 'test-9',
+        method: async () =>
+          new Promise((_, reject) => {
+            setTimeout(() => {
+              reject(error)
+            }, PROMISE_TIMEOUT)
+          }),
       },
-    )
+      wrapper,
+    })
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBeTruthy()
     await waitFor(() => {
@@ -677,25 +625,22 @@ describe('useDataLoader', () => {
     const onError = vi.fn()
     const error = new Error('Test error')
     const onErrorProvider = vi.fn()
-    const { result } = renderHook(
-      props => useDataLoader(props.key, props.method, props.config),
-      {
-        initialProps: {
-          config: {
-            onError,
-            onSuccess,
-          },
-          key: 'test-10',
-          method: async () =>
-            new Promise((_, reject) => {
-              setTimeout(() => {
-                reject(error)
-              }, PROMISE_TIMEOUT)
-            }),
+    const { result } = renderHook(props => useDataLoader(props.key, props.method, props.config), {
+      initialProps: {
+        config: {
+          onError,
+          onSuccess,
         },
-        wrapper: wrapperWithOnError(onErrorProvider),
+        key: 'test-10',
+        method: async () =>
+          new Promise((_, reject) => {
+            setTimeout(() => {
+              reject(error)
+            }, PROMISE_TIMEOUT)
+          }),
       },
-    )
+      wrapper: wrapperWithOnError(onErrorProvider),
+    })
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBeTruthy()
     await waitFor(() => {
@@ -714,24 +659,21 @@ describe('useDataLoader', () => {
     const onSuccess = vi.fn()
     const error = new Error('Test error')
     const onErrorProvider = vi.fn()
-    const { result } = renderHook(
-      props => useDataLoader(props.key, props.method, props.config),
-      {
-        initialProps: {
-          config: {
-            onSuccess,
-          },
-          key: 'test-11',
-          method: async () =>
-            new Promise((_, reject) => {
-              setTimeout(() => {
-                reject(error)
-              }, PROMISE_TIMEOUT)
-            }),
+    const { result } = renderHook(props => useDataLoader(props.key, props.method, props.config), {
+      initialProps: {
+        config: {
+          onSuccess,
         },
-        wrapper: wrapperWithOnError(onErrorProvider),
+        key: 'test-11',
+        method: async () =>
+          new Promise((_, reject) => {
+            setTimeout(() => {
+              reject(error)
+            }, PROMISE_TIMEOUT)
+          }),
       },
-    )
+      wrapper: wrapperWithOnError(onErrorProvider),
+    })
 
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBeTruthy()
@@ -754,29 +696,26 @@ describe('useDataLoader', () => {
       success = true
     })
     const error = new Error('Test error')
-    const { result } = renderHook(
-      props => useDataLoader(props.key, props.method, props.config),
-      {
-        initialProps: {
-          config: {
-            onError,
-            onSuccess,
-          },
-          key: 'test-12',
-          method: async () =>
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
-                if (success) {
-                  resolve(true)
-                } else {
-                  reject(error)
-                }
-              }, PROMISE_TIMEOUT)
-            }),
+    const { result } = renderHook(props => useDataLoader(props.key, props.method, props.config), {
+      initialProps: {
+        config: {
+          onError,
+          onSuccess,
         },
-        wrapper,
+        key: 'test-12',
+        method: async () =>
+          new Promise((resolve, reject) => {
+            setTimeout(() => {
+              if (success) {
+                resolve(true)
+              } else {
+                reject(error)
+              }
+            }, PROMISE_TIMEOUT)
+          }),
       },
-    )
+      wrapper,
+    })
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBeTruthy()
     await waitFor(() => {
@@ -864,25 +803,16 @@ describe('useDataLoader', () => {
         }),
     )
     const { result } = renderHook<
-      [
-        ReturnType<typeof useDataLoader>,
-        ReturnType<typeof useDataLoaderContext>,
-      ],
+      [ReturnType<typeof useDataLoader>, ReturnType<typeof useDataLoaderContext>],
       UseDataLoaderHookProps
-    >(
-      props => [
-        useDataLoader(props.key, props.method, props.config),
-        useDataLoaderContext(),
-      ],
-      {
-        initialProps: {
-          ...initialProps,
-          key: 'test-15',
-          method: mockedFn,
-        },
-        wrapper,
+    >(props => [useDataLoader(props.key, props.method, props.config), useDataLoaderContext()], {
+      initialProps: {
+        ...initialProps,
+        key: 'test-15',
+        method: mockedFn,
       },
-    )
+      wrapper,
+    })
 
     expect(result.current[0].data).toBe(undefined)
     expect(result.current[0].isLoading).toBeTruthy()
@@ -1028,13 +958,10 @@ describe('useDataLoader', () => {
       method,
     }
 
-    const { result } = renderHook(
-      props => useDataLoader(props.key, props.method, props.config),
-      {
-        initialProps: testProps,
-        wrapper,
-      },
-    )
+    const { result } = renderHook(props => useDataLoader(props.key, props.method, props.config), {
+      initialProps: testProps,
+      wrapper,
+    })
 
     // Initially, isLoading should be true (first load with no cache)
     expect(result.current.isLoading).toBeTruthy()

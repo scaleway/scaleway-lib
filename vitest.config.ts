@@ -1,6 +1,6 @@
 import { defineConfig, mergeConfig } from 'vitest/config'
-import { defaultConfig as viteConfig } from './vite.config'
 import type { Plugin } from 'vitest/config'
+import { defaultConfig as viteConfig } from './vite.config'
 /**
  * @deprecated https://github.com/vitest-dev/vitest/issues/9935
  */

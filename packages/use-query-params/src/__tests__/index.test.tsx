@@ -10,10 +10,7 @@ import useQueryParams from '..'
 type HistoryProps = {
   history: History
 }
-const HistoryRouter: ComponentType<PropsWithChildren<HistoryProps>> = ({
-  history,
-  children,
-}) => {
+const HistoryRouter: ComponentType<PropsWithChildren<HistoryProps>> = ({ history, children }) => {
   const [state, setState] = useState({
     action: history.action,
     location: history.location,
@@ -22,26 +19,14 @@ const HistoryRouter: ComponentType<PropsWithChildren<HistoryProps>> = ({
   useLayoutEffect(() => history.listen(setState), [history])
 
   return (
-    <Router
-      location={state.location}
-      navigationType={state.action}
-      navigator={history}
-    >
+    <Router location={state.location} navigationType={state.action} navigator={history}>
       {children}
     </Router>
   )
 }
 
 const wrapper =
-  ({
-    pathname = '/one',
-    search,
-    history,
-  }: {
-    pathname?: string
-    search: string
-    history?: History
-  }) =>
+  ({ pathname = '/one', search, history }: { pathname?: string; search: string; history?: History }) =>
   ({ children }: { children: ReactNode }) => {
     if (history) {
       return <HistoryRouter history={history}>{children}</HistoryRouter>

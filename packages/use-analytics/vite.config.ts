@@ -7,11 +7,7 @@ const config = mergeConfig(defaultConfig, vitestDefaultConfig)
 export default mergeConfig(config, {
   build: {
     lib: {
-      entry: [
-        'src/index.ts',
-        'src/analytics/index.ts',
-        'src/cookies-consent/index.ts',
-      ],
+      entry: ['src/index.ts', 'src/analytics/index.ts', 'src/cookies-consent/index.ts'],
       formats: ['es', 'cjs'],
     },
   },

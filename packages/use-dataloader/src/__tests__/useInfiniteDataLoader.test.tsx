@@ -8,12 +8,7 @@ import DataLoaderProvider from '../DataLoaderProvider'
 import type { UseInfiniteDataLoaderConfig } from '../types'
 import { useInfiniteDataLoader } from '../useInfiniteDataLoader'
 
-const config: UseInfiniteDataLoaderConfig<
-  { nextPage: number; data: string },
-  Error,
-  { page: number },
-  'page'
-> = {
+const config: UseInfiniteDataLoaderConfig<{ nextPage: number; data: string }, Error, { page: number }, 'page'> = {
   enabled: true,
   getNextPage: result => result.nextPage,
 }
@@ -60,22 +55,13 @@ const getPrerequisite = (key: string) => {
     },
   }
 }
-const wrapper = ({ children }: { children?: ReactNode }) => (
-  <DataLoaderProvider>{children}</DataLoaderProvider>
-)
+const wrapper = ({ children }: { children?: ReactNode }) => <DataLoaderProvider>{children}</DataLoaderProvider>
 
 describe('useInfinitDataLoader', () => {
   it('should get the first page on mount while enabled', async () => {
     const { setCanResolve, initialProps } = getPrerequisite('test1')
     const { result } = renderHook(
-      props =>
-        useInfiniteDataLoader(
-          props.key,
-          props.method,
-          props.baseParams,
-          'page',
-          config,
-        ),
+      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
       {
         initialProps,
         wrapper,
@@ -90,9 +76,7 @@ describe('useInfinitDataLoader', () => {
       expect(result.current.isSuccess).toBeTruthy()
     })
     expect(initialProps.method).toHaveBeenCalledOnce()
-    expect(result.current.data).toStrictEqual([
-      { data: 'Page 1 data', nextPage: 2 },
-    ])
+    expect(result.current.data).toStrictEqual([{ data: 'Page 1 data', nextPage: 2 }])
     expect(result.current.isLoading).toBeFalsy()
     expect(result.current.isLoading).toBeFalsy()
     expect(result.current.isFetching).toBeFalsy()
@@ -101,14 +85,7 @@ describe('useInfinitDataLoader', () => {
   it('should get the first and loadMore one page on mount while enabled', async () => {
     const { setCanResolve, initialProps } = getPrerequisite('test2')
     const { result } = renderHook(
-      props =>
-        useInfiniteDataLoader(
-          props.key,
-          props.method,
-          props.baseParams,
-          'page',
-          config,
-        ),
+      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
       {
         initialProps,
         wrapper,
@@ -127,18 +104,14 @@ describe('useInfinitDataLoader', () => {
       expect(result.current.isSuccess).toBeTruthy()
     })
     expect(initialProps.method).toHaveBeenCalledOnce()
-    expect(result.current.data).toStrictEqual([
-      { data: 'Page 1 data', nextPage: 2 },
-    ])
+    expect(result.current.data).toStrictEqual([{ data: 'Page 1 data', nextPage: 2 }])
     expect(result.current.isLoading).toBeFalsy()
     expect(result.current.isFetching).toBeFalsy()
     setCanResolve(false)
     act(() => {
       result.current.loadMore()
     })
-    expect(result.current.data).toStrictEqual([
-      { data: 'Page 1 data', nextPage: 2 },
-    ])
+    expect(result.current.data).toStrictEqual([{ data: 'Page 1 data', nextPage: 2 }])
     await waitFor(() => {
       expect(result.current.isFetching).toBeTruthy()
     })
@@ -163,17 +136,9 @@ describe('useInfinitDataLoader', () => {
   })
 
   it('should get the first and loadMore one page on mount while enabled then reload', async () => {
-    const { setCanResolve, initialProps, resetCounter } =
-      getPrerequisite('test3')
+    const { setCanResolve, initialProps, resetCounter } = getPrerequisite('test3')
     const { result } = renderHook(
-      props =>
-        useInfiniteDataLoader(
-          props.key,
-          props.method,
-          props.baseParams,
-          'page',
-          config,
-        ),
+      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
       {
         initialProps,
         wrapper,
@@ -192,9 +157,7 @@ describe('useInfinitDataLoader', () => {
     })
     setCanResolve(false)
     expect(initialProps.method).toHaveBeenCalledOnce()
-    expect(result.current.data).toStrictEqual([
-      { data: 'Page 1 data', nextPage: 2 },
-    ])
+    expect(result.current.data).toStrictEqual([{ data: 'Page 1 data', nextPage: 2 }])
     expect(result.current.isLoading).toBeFalsy()
     expect(result.current.isFetching).toBeFalsy()
     act(() => {
@@ -203,9 +166,7 @@ describe('useInfinitDataLoader', () => {
     await waitFor(() => {
       expect(result.current.isFetching).toBeTruthy()
     })
-    expect(result.current.data).toStrictEqual([
-      { data: 'Page 1 data', nextPage: 2 },
-    ])
+    expect(result.current.data).toStrictEqual([{ data: 'Page 1 data', nextPage: 2 }])
     expect(initialProps.method).toHaveBeenCalledTimes(2)
     expect(initialProps.method).toHaveBeenCalledWith({
       page: 2,
@@ -237,8 +198,7 @@ describe('useInfinitDataLoader', () => {
   })
 
   it('should get the first and loadMore one page on mount while not enabled then enabled then reload', async () => {
-    const { setCanResolve, initialProps, resetCounter } =
-      getPrerequisite('test4')
+    const { setCanResolve, initialProps, resetCounter } = getPrerequisite('test4')
     const localInitialProps = {
       ...initialProps,
       config: {
@@ -247,14 +207,7 @@ describe('useInfinitDataLoader', () => {
       },
     }
     const { result, rerender } = renderHook(
-      props =>
-        useInfiniteDataLoader(
-          props.key,
-          props.method,
-          props.baseParams,
-          'page',
-          props.config,
-        ),
+      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', props.config),
       {
         initialProps: localInitialProps,
         wrapper,
@@ -284,9 +237,7 @@ describe('useInfinitDataLoader', () => {
     })
     setCanResolve(false)
     expect(initialProps.method).toHaveBeenCalledOnce()
-    expect(result.current.data).toStrictEqual([
-      { data: 'Page 1 data', nextPage: 2 },
-    ])
+    expect(result.current.data).toStrictEqual([{ data: 'Page 1 data', nextPage: 2 }])
     expect(result.current.isLoading).toBeFalsy()
     expect(result.current.isFetching).toBeFalsy()
     act(() => {
@@ -295,9 +246,7 @@ describe('useInfinitDataLoader', () => {
     await waitFor(() => {
       expect(result.current.isFetching).toBeTruthy()
     })
-    expect(result.current.data).toStrictEqual([
-      { data: 'Page 1 data', nextPage: 2 },
-    ])
+    expect(result.current.data).toStrictEqual([{ data: 'Page 1 data', nextPage: 2 }])
     expect(initialProps.method).toHaveBeenCalledTimes(2)
     expect(initialProps.method).toHaveBeenCalledWith({
       page: 2,
@@ -338,19 +287,10 @@ describe('useInfinitDataLoader', () => {
   })
 
   it('should differentiate between isLoading and isFetching', async () => {
-    const { setCanResolve, initialProps } = getPrerequisite(
-      'test-isLoading-vs-isFetching',
-    )
+    const { setCanResolve, initialProps } = getPrerequisite('test-isLoading-vs-isFetching')
 
     const { result } = renderHook(
-      props =>
-        useInfiniteDataLoader(
-          props.key,
-          props.method,
-          props.baseParams,
-          'page',
-          config,
-        ),
+      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
       {
         initialProps,
         wrapper,
@@ -371,9 +311,7 @@ describe('useInfinitDataLoader', () => {
     // After first load, isLoading should be false but isFetching should also be false
     expect(result.current.isLoading).toBeFalsy()
     expect(result.current.isFetching).toBeFalsy()
-    expect(result.current.data).toStrictEqual([
-      { data: 'Page 1 data', nextPage: 2 },
-    ])
+    expect(result.current.data).toStrictEqual([{ data: 'Page 1 data', nextPage: 2 }])
 
     // Trigger a loadMore
     setCanResolve(false)
@@ -386,9 +324,7 @@ describe('useInfinitDataLoader', () => {
       expect(result.current.isFetching).toBeTruthy()
     })
     expect(result.current.isLoading).toBeFalsy()
-    expect(result.current.data).toStrictEqual([
-      { data: 'Page 1 data', nextPage: 2 },
-    ]) // Still have cached data
+    expect(result.current.data).toStrictEqual([{ data: 'Page 1 data', nextPage: 2 }]) // Still have cached data
 
     // Resolve the loadMore
     setCanResolve(true)

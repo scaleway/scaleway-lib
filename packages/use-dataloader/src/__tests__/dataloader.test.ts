@@ -67,11 +67,7 @@ describe('dataloader class', () => {
     expect(method).toBeCalledTimes(0)
 
     // simulate multiple call in //
-    await Promise.all([
-      instance.load().catch(undefined),
-      instance.load().catch(undefined),
-      instance.load(),
-    ])
+    await Promise.all([instance.load().catch(undefined), instance.load().catch(undefined), instance.load()])
 
     expect(method).toHaveBeenCalledOnce()
     instance.clearData()

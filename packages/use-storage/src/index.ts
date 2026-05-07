@@ -1,11 +1,5 @@
 // oxlint-disable unicorn/no-typeof-undefined
-import {
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-  useSyncExternalStore,
-} from 'react'
+import { useCallback, useEffect, useMemo, useState, useSyncExternalStore } from 'react'
 
 declare global {
   // oxlint-disable-next-line typescript/consistent-type-definitions
@@ -49,8 +43,7 @@ const useStorage = <T>(
   },
 ): ReturnStorage<T> => {
   const storage = useMemo(
-    () =>
-      options?.kind === 'session' ? window.sessionStorage : window.localStorage,
+    () => (options?.kind === 'session' ? window.sessionStorage : window.localStorage),
     [options?.kind],
   )
 
@@ -106,11 +99,7 @@ const useStorage = <T>(
   return [parsedValue, setValue]
 }
 
-export const useSessionStorage = <T>(
-  key: string,
-  initialValue?: T,
-): ReturnStorage<T> => useStorage<T>(key, { initialValue, kind: 'session' })
-export const useLocalStorage = <T>(
-  key: string,
-  initialValue?: T,
-): ReturnStorage<T> => useStorage<T>(key, { initialValue, kind: 'local' })
+export const useSessionStorage = <T>(key: string, initialValue?: T): ReturnStorage<T> =>
+  useStorage<T>(key, { initialValue, kind: 'session' })
+export const useLocalStorage = <T>(key: string, initialValue?: T): ReturnStorage<T> =>
+  useStorage<T>(key, { initialValue, kind: 'local' })

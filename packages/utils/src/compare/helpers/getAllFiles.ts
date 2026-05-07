@@ -14,9 +14,7 @@ function getAllFiles(dirPath: string, relativeTo: string): FileInfo[] {
         scan(fullPath)
       } else {
         files.push({
-          checksum: createHash('sha256')
-            .update(readFileSync(fullPath))
-            .digest('hex'),
+          checksum: createHash('sha256').update(readFileSync(fullPath)).digest('hex'),
           path: relative(relativeTo, fullPath),
           size: stat.size,
         })

@@ -65,9 +65,7 @@ export async function findChangedDependenciesFromGit(
   return bumps
 }
 
-export async function getBumpsFromGit(
-  files: string[],
-): Promise<Map<string, string>> {
+export async function getBumpsFromGit(files: string[]): Promise<Map<string, string>> {
   const bumps = new Map()
 
   const promises = files.map(async file => {

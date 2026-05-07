@@ -5,11 +5,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { mockSimpleGit } from '../../__mocks__/simple-git'
 import { createChangeset } from '../createChangeset.js'
-import {
-  findAffectedPackages,
-  findChangedDependenciesFromGit,
-  handleChangesetFile,
-} from '../git-utils.js'
+import { findAffectedPackages, findChangedDependenciesFromGit, handleChangesetFile } from '../git-utils.js'
 import { handleCatalogChanges } from '../handle-catalog.js'
 
 // Mock all external dependencies
@@ -50,11 +46,7 @@ describe('handle-catalog', () => {
 
     await handleCatalogChanges(diffFiles)
 
-    expect(findChangedDependenciesFromGit).toHaveBeenCalledWith(
-      'HEAD~1',
-      'HEAD',
-      'pnpm-workspace.yaml',
-    )
+    expect(findChangedDependenciesFromGit).toHaveBeenCalledWith('HEAD~1', 'HEAD', 'pnpm-workspace.yaml')
     expect(findAffectedPackages).not.toHaveBeenCalled()
     expect(createChangeset).not.toHaveBeenCalled()
   })
@@ -71,11 +63,7 @@ describe('handle-catalog', () => {
 
     await handleCatalogChanges(diffFiles)
 
-    expect(findChangedDependenciesFromGit).toHaveBeenCalledWith(
-      'HEAD~1',
-      'HEAD',
-      'pnpm-workspace.yaml',
-    )
+    expect(findChangedDependenciesFromGit).toHaveBeenCalledWith('HEAD~1', 'HEAD', 'pnpm-workspace.yaml')
     expect(findAffectedPackages).toHaveBeenCalledWith(['dep-a'])
     expect(createChangeset).not.toHaveBeenCalled()
   })
@@ -88,9 +76,7 @@ describe('handle-catalog', () => {
     vi.mocked(findChangedDependenciesFromGit).mockResolvedValue(changedDeps)
 
     // Mock findAffectedPackages to return some packages
-    vi.mocked(findAffectedPackages).mockResolvedValue(
-      new Set(['pkg-1', 'pkg-2']),
-    )
+    vi.mocked(findAffectedPackages).mockResolvedValue(new Set(['pkg-1', 'pkg-2']))
 
     // Mock simpleGit to return a short hash
     mockSimpleGit.mockReturnValue({
@@ -103,20 +89,10 @@ describe('handle-catalog', () => {
 
     await handleCatalogChanges(diffFiles)
 
-    expect(findChangedDependenciesFromGit).toHaveBeenCalledWith(
-      'HEAD~1',
-      'HEAD',
-      'pnpm-workspace.yaml',
-    )
+    expect(findChangedDependenciesFromGit).toHaveBeenCalledWith('HEAD~1', 'HEAD', 'pnpm-workspace.yaml')
     expect(findAffectedPackages).toHaveBeenCalledWith(['dep-a'])
     expect(mockSimpleGit().revparse).toHaveBeenCalledWith(['--short', 'HEAD'])
-    expect(createChangeset).toHaveBeenCalledWith(
-      '.changeset/renovate-abc123.md',
-      changedDeps,
-      ['pkg-1', 'pkg-2'],
-    )
-    expect(handleChangesetFile).toHaveBeenCalledWith(
-      '.changeset/renovate-abc123.md',
-    )
+    expect(createChangeset).toHaveBeenCalledWith('.changeset/renovate-abc123.md', changedDeps, ['pkg-1', 'pkg-2'])
+    expect(handleChangesetFile).toHaveBeenCalledWith('.changeset/renovate-abc123.md')
   })
 })

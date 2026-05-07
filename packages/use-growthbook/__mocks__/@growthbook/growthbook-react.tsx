@@ -30,11 +30,7 @@ export class MockGrowthBook {
 export const GrowthBook = MockGrowthBook
 
 // Export the provider component
-export const GrowthBookProvider = ({
-  children,
-}: {
-  children: ReactNode
-}): ReactNode => children
+export const GrowthBookProvider = ({ children }: { children: ReactNode }): ReactNode => children
 
 // Export hook
 export const useGrowthBook = vi.fn(() => new MockGrowthBook())

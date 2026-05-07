@@ -150,10 +150,7 @@ catalog:
 
   describe('findAffectedPackages', () => {
     beforeEach(() => {
-      vi.mocked(globSync).mockReturnValue([
-        'packages/package-a/package.json',
-        'packages/package-b/package.json',
-      ])
+      vi.mocked(globSync).mockReturnValue(['packages/package-a/package.json', 'packages/package-b/package.json'])
     })
 
     it('should find packages affected by dependency changes', async () => {

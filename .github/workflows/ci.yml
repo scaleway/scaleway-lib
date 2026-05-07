@@ -61,7 +61,7 @@ jobs:
         run: |
           pnpm install --frozen-lockfile
           pnpm run build
-          pnpm run format:ci
+          pnpm run format:check
           pnpm run oxc:quiet
 
   test:

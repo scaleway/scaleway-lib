@@ -13,30 +13,19 @@ describe('marshalQueryKey', () => {
 
   test('should accept primitive array', () => {
     const date = new Date('2021')
-    expect(
-      marshalQueryKey(['defaultKey', 3, null, false, date, true]),
-    ).toStrictEqual('defaultKey.3.false.2021-01-01T00:00:00.000Z.true')
+    expect(marshalQueryKey(['defaultKey', 3, null, false, date, true])).toStrictEqual(
+      'defaultKey.3.false.2021-01-01T00:00:00.000Z.true',
+    )
 
     expect(
       marshalQueryKey(
-        [
-          'default key',
-          ['number', 3],
-          ['null', null],
-          ['false', false],
-          ['date', date],
-          ['boolean', true],
-        ].flat(),
+        ['default key', ['number', 3], ['null', null], ['false', false], ['date', date], ['boolean', true]].flat(),
       ),
-    ).toStrictEqual(
-      'default key.number.3.null.false.false.date.2021-01-01T00:00:00.000Z.boolean.true',
-    )
+    ).toStrictEqual('default key.number.3.null.false.false.date.2021-01-01T00:00:00.000Z.boolean.true')
   })
 
   test('should not accept object', () => {
     // @ts-expect-error used because we test with bad key
-    expect(marshalQueryKey(['default key', { object: 'no' }])).toStrictEqual(
-      'default key.[object Object]',
-    )
+    expect(marshalQueryKey(['default key', { object: 'no' }])).toStrictEqual('default key.[object Object]')
   })
 })

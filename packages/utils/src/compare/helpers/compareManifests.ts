@@ -6,11 +6,7 @@ import type { Manifest } from '../types.ts'
 
 const { log: logger, error: logError } = console
 
-export const compareManifests = (
-  baselinePath: string,
-  currentPath: string,
-  reportPath: string,
-) => {
+export const compareManifests = (baselinePath: string, currentPath: string, reportPath: string) => {
   logger('Comparing manifests...')
   const baseJson = readFileSync(baselinePath, {
     encoding: 'utf8',
@@ -30,9 +26,7 @@ export const compareManifests = (
   const currentPackages = Object.keys(current.packages).toSorted()
 
   const newPackages = currentPackages.filter(p => !baselinePackages.includes(p))
-  const missingPackages = baselinePackages.filter(
-    p => !currentPackages.includes(p),
-  )
+  const missingPackages = baselinePackages.filter(p => !currentPackages.includes(p))
 
   if (newPackages.length > 0) {
     report += `\n${COLORS.GREEN}New packages:${COLORS.NC}\n`
@@ -44,19 +38,13 @@ export const compareManifests = (
     report += `${missingPackages.join('\n')}\n`
   }
 
-  const commonPackages = baselinePackages.filter(p =>
-    currentPackages.includes(p),
-  )
+  const commonPackages = baselinePackages.filter(p => currentPackages.includes(p))
 
   for (const pkg of commonPackages) {
     logError(`Comparing ${pkg}...`)
 
-    const baselineFiles = baseline.packages[pkg]?.files
-      .map(f => f.path)
-      .toSorted()
-    const currentFiles = current.packages[pkg]?.files
-      .map(f => f.path)
-      .toSorted()
+    const baselineFiles = baseline.packages[pkg]?.files.map(f => f.path).toSorted()
+    const currentFiles = current.packages[pkg]?.files.map(f => f.path).toSorted()
 
     const newFiles = currentFiles?.filter(f => !baselineFiles?.includes(f))
     const missingFiles = baselineFiles?.filter(f => !currentFiles?.includes(f))
@@ -82,17 +70,11 @@ export const compareManifests = (
     const modifiedFiles: string[] = []
     if (commonFiles) {
       for (const file of commonFiles) {
-        const baselineFile = baseline.packages[pkg]?.files.find(
-          ({ path }) => path === file,
-        )
+        const baselineFile = baseline.packages[pkg]?.files.find(({ path }) => path === file)
 
-        const currentFile = current.packages[pkg]?.files.find(
-          ({ path }) => path === file,
-        )
+        const currentFile = current.packages[pkg]?.files.find(({ path }) => path === file)
         if (baselineFile?.checksum !== currentFile?.checksum) {
-          modifiedFiles.push(
-            `${file} (${baselineFile?.size} → ${currentFile?.size} bytes)`,
-          )
+          modifiedFiles.push(`${file} (${baselineFile?.size} → ${currentFile?.size} bytes)`)
         }
       }
     }
