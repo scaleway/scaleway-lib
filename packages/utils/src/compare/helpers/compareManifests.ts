@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 // oxlint-disable eslint/max-statements, eslint/complexity
 // oxlint-disable typescript/no-unsafe-assignment
 import { readFileSync, writeFileSync } from 'node:fs'
