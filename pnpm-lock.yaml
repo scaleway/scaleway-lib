@@ -228,6 +228,9 @@ importers:
       '@scaleway/changesets-renovate':
         specifier: workspace:*
         version: link:packages/changesets-renovate
+      '@scaleway/oxfmt-config':
+        specifier: workspace:*
+        version: link:packages/oxfmt-config
       '@scaleway/oxlint-config':
         specifier: workspace:*
         version: link:packages/oxlint-config
@@ -350,6 +353,12 @@ importers:
         version: 3.36.0
 
   packages/fuzzy-search: {}
+
+  packages/oxfmt-config:
+    devDependencies:
+      oxfmt:
+        specifier: 'catalog:'
+        version: 0.47.0
 
   packages/oxlint-config:
     devDependencies:

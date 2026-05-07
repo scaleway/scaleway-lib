@@ -31,6 +31,7 @@
     "@manypkg/cli": "catalog:",
     "@rudderstack/analytics-js": "catalog:",
     "@scaleway/changesets-renovate": "workspace:*",
+    "@scaleway/oxfmt-config": "workspace:*",
     "@scaleway/oxlint-config": "workspace:*",
     "@scaleway/tsconfig": "workspace:*",
     "@scaleway/utils": "workspace:*",
