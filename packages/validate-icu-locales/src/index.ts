@@ -9,7 +9,6 @@ import type { ParseArgsConfig } from 'node:util'
 import { parseArgs } from 'node:util'
 import type { Location } from '@formatjs/icu-messageformat-parser'
 import { parse } from '@formatjs/icu-messageformat-parser'
-import { importFromString } from 'module-from-string'
 import type { GlobOptions } from 'tinyglobby'
 import { glob, escapePath } from 'tinyglobby'
 
@@ -98,16 +97,11 @@ const readFiles = async (files: string[]): Promise<ErrorsICU> => {
 
     if (extension === 'ts' || extension === 'js') {
       try {
-        const data = await readFile(file)
-        const javascriptFile = data.toString()
+        const data: unknown = await import(file)
 
-        const mod: unknown = await importFromString(javascriptFile, {
-          transformOptions: { loader: 'ts' },
-        })
-
-        if (isObject(mod)) {
-          if ('default' in mod) {
-            const { default: locales } = mod as { default: Locales }
+        if (isObject(data)) {
+          if ('default' in data) {
+            const { default: locales } = data as { default: Locales }
 
             const ICUErrors = findICUErrors(locales, file)
             errors.push(...ICUErrors)
@@ -155,7 +149,7 @@ const globWithGitignore = async (patterns: string, opts: Omit<GlobOptions, 'patt
   }
 }
 
-const files = await globWithGitignore(pattern, {})
+const files = await globWithGitignore(pattern, { absolute: true })
 
 if (files.length === 0) {
   console.error('There is no files matching this pattern', pattern)
