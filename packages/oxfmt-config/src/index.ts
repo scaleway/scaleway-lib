@@ -24,6 +24,7 @@ const config: OxfmtConfig = defineConfig({
     order: 'asc',
   },
   ignorePatterns: [
+    'CHANGELOG.md',
     '.changeset',
     'pnpm-workspace.yaml',
     '**/_generated',

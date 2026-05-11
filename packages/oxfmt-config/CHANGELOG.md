@@ -6,6 +6,7 @@
 
 - [#3266](https://github.com/scaleway/scaleway-lib/pull/3266) [`6326628`](https://github.com/scaleway/scaleway-lib/commit/6326628ff256a7df136e82fe0cda8ae0447d8bbe) Thanks [@chambo-e](https://github.com/chambo-e)! - Add default ignorePatterns including:
 
+  - CHANGELOG.md
   - .changeset
   - pnpm-workspace.yaml
   - \*\*/\_generated
