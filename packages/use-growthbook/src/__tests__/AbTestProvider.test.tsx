@@ -71,7 +71,7 @@ describe('abTestProvider', () => {
       setTimeout(resolve, 10)
     })
 
-    expect(init).toBeCalled()
+    expect(init).toHaveBeenCalled()
   })
 
   it('should not call growthbook.init when clientKey is empty', async () => {
@@ -99,7 +99,7 @@ describe('abTestProvider', () => {
       setTimeout(resolve, 10)
     })
 
-    expect(init).not.toBeCalled()
+    expect(init).not.toHaveBeenCalled()
   })
 
   it('should handle errors during initialization', async () => {
@@ -131,7 +131,7 @@ describe('abTestProvider', () => {
     })
 
     // Check if errorCallback was called with the right error
-    expect(errorCallback).toBeCalled()
+    expect(errorCallback).toHaveBeenCalled()
   })
 
   it('should update attributes when they change', async () => {
@@ -188,7 +188,7 @@ describe('abTestProvider', () => {
       setTimeout(resolve, 10)
     })
 
-    expect(setAttributes).toBeCalled()
+    expect(setAttributes).toHaveBeenCalled()
   })
 
   it('should not update attributes when they are the same object reference', async () => {

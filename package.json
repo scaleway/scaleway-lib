@@ -60,7 +60,7 @@
   "lint-staged": {
     "*.ts?(x)": [
       "pnpm run format",
-      "pnpm run oxc:fix --quiet"
+      "pnpm run oxc --quiet"
     ],
     "*.y?(a)ml": [
       "oxfmt --write ."

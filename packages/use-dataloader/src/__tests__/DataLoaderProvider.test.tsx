@@ -130,9 +130,9 @@ describe('dataLoaderProvider', () => {
     const unknownReload = result.current.getReloads('unknown')
     expect(unknownReload).toBeUndefined()
     await reloads['test']?.()
-    expect(method).toBeCalledTimes(3)
+    expect(method).toHaveBeenCalledTimes(3)
     await result.current.reloadAll()
-    expect(method).toBeCalledTimes(4)
+    expect(method).toHaveBeenCalledTimes(4)
     result.current.clearCachedData(TEST_KEY)
     result.current.clearCachedData('unknown')
     expect(result.current.getCachedData(TEST_KEY)).toBeUndefined()
@@ -175,12 +175,12 @@ describe('dataLoaderProvider', () => {
       request.load().catch(() => null)
     }
 
-    expect(method).toBeCalledTimes(2)
+    expect(method).toHaveBeenCalledTimes(2)
     await waitFor(() => {
-      expect(method).toBeCalledTimes(4)
+      expect(method).toHaveBeenCalledTimes(4)
     })
     await waitFor(() => {
-      expect(method).toBeCalledTimes(5)
+      expect(method).toHaveBeenCalledTimes(5)
     })
   })
 

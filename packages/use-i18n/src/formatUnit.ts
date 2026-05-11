@@ -119,6 +119,7 @@ const format =
     let computedValue = amount
 
     if (humanize) {
+      // oxlint-disable-next-line branches-sharing-code
       if (computedExponent) {
         const value = filesize(amount, {
           base,

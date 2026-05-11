@@ -35,6 +35,6 @@ describe('useAbTestAttributes', () => {
     } = renderHook(() => useAbTestAttributes())
     setAttributesNow({ bar: 'foo' })
     expect(setAttributes).toHaveBeenCalledOnce()
-    expect(setAttributes).toBeCalledWith({ bar: 'foo', foo: 'bar' })
+    expect(setAttributes).toHaveBeenCalledWith({ bar: 'foo', foo: 'bar' })
   })
 })
