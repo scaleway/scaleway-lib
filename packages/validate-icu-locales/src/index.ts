@@ -3,13 +3,15 @@
 // oxlint-disable eslint/no-console
 // oxlint-disable eslint/max-statements
 
+import { execSync } from 'node:child_process'
 import { readFile } from 'node:fs/promises'
 import type { ParseArgsConfig } from 'node:util'
 import { parseArgs } from 'node:util'
 import type { Location } from '@formatjs/icu-messageformat-parser'
 import { parse } from '@formatjs/icu-messageformat-parser'
 import { importFromString } from 'module-from-string'
-import { glob } from 'tinyglobby'
+import type { GlobOptions } from 'tinyglobby'
+import { glob, escapePath } from 'tinyglobby'
 
 type ParserError = {
   // it's a enum inside @formatjs, don't use it today
@@ -17,11 +19,6 @@ type ParserError = {
   message: string
   location: Location
 }
-// export interface ParserError {
-//   kind: ErrorKind;
-//   message: string;
-//   location: Location;
-// }
 
 const options: ParseArgsConfig['options'] = {
   ignoreTag: {
@@ -81,7 +78,7 @@ const findICUErrors = (locales: { [key: string]: string }, filePath: string): Er
 const readFiles = async (files: string[]): Promise<ErrorsICU> => {
   const errors: (ErrorICU | undefined)[] = []
 
-  // eslint-disable-next-line @typescript-eslint/await-thenable
+  // oxlint-disable-next-line await-thenable
   for await (const file of files) {
     const extension = file.split('.').pop()
 
@@ -134,7 +131,31 @@ if (!pattern) {
   process.exit(1)
 }
 
-const files = await glob(pattern)
+// Taken from https://superchupu.dev/tinyglobby/migration#gitignore
+const globWithGitignore = async (patterns: string, opts: Omit<GlobOptions, 'patterns'> = {}) => {
+  const { cwd = process.cwd(), ...restOptions } = opts
+
+  try {
+    const gitIgnored = execSync('git ls-files --others --ignored --exclude-standard --directory', {
+      cwd,
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+    })
+      .split('\n')
+      .filter(Boolean)
+      .map(p => escapePath(p))
+
+    return await glob(patterns, {
+      ...restOptions,
+      cwd,
+      ignore: [...(restOptions.ignore ?? []), ...gitIgnored],
+    })
+  } catch {
+    return glob(patterns, opts)
+  }
+}
+
+const files = await globWithGitignore(pattern, {})
 
 if (files.length === 0) {
   console.error('There is no files matching this pattern', pattern)
