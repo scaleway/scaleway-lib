@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.2.0
+
+### Minor Changes
+
+- [#3278](https://github.com/scaleway/scaleway-lib/pull/3278) [`fb88180`](https://github.com/scaleway/scaleway-lib/commit/fb881802fa4fb458c8c16c0d685d32a6d49a52c5) Thanks [@chambo-e](https://github.com/chambo-e)! - transparent gitignore support
+
 ## 3.1.24
 
 ### Patch Changes
