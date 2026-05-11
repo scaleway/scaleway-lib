@@ -72,6 +72,9 @@ catalogs:
     date-fns:
       specifier: 4.1.0
       version: 4.1.0
+    deepmerge-ts:
+      specifier: 7.1.5
+      version: 7.1.5
     execa:
       specifier: 9.6.1
       version: 9.6.1
@@ -292,6 +295,10 @@ importers:
   packages/fuzzy-search: {}
 
   packages/oxfmt-config:
+    dependencies:
+      deepmerge-ts:
+        specifier: 'catalog:'
+        version: 7.1.5
     devDependencies:
       oxfmt:
         specifier: 'catalog:'
@@ -1858,6 +1865,10 @@ packages:
   deep-extend@0.6.0:
     resolution: {integrity: sha512-LOHxIOaPYdHlJRtCQfDIVZtfw/ufM8+rVj649RIHzcm/vGwQRXFt6OPqIFWsm2XEMrNIEtWR64sY1LEKD2vAOA==}
     engines: {node: '>=4.0.0'}
+
+  deepmerge-ts@7.1.5:
+    resolution: {integrity: sha512-HOJkrhaYsweh+W+e74Yn7YStZOilkoPb6fycpwNLKzSPtruFs48nYis0zy5yJz1+ktUhHxoRDJ27RQAWLIJVJw==}
+    engines: {node: '>=16.0.0'}
 
   dequal@2.0.3:
     resolution: {integrity: sha512-0je+qPKHEMohvfRTCEo3CrPG6cAzAYgmzKyxRiYSSDkS6eGJdyVJm7WaYA5ECaAD9wLB2T4EEeymA5aFVcYXCA==}
@@ -4313,6 +4324,8 @@ snapshots:
   decode-uri-component@0.4.1: {}
 
   deep-extend@0.6.0: {}
+
+  deepmerge-ts@7.1.5: {}
 
   dequal@2.0.3: {}
 
