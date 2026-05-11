@@ -36,7 +36,6 @@ catalog:
   jsdom: 29.1.1
   lint-staged: 16.4.0
   mockdate: 3.0.5
-  module-from-string: 3.3.1
   oxfmt: 0.47.0
   oxlint: 1.62.0
   oxlint-tsgolint: 0.22.1
