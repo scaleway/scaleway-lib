@@ -50,7 +50,7 @@ describe('dataloader class', () => {
       notifyChanges,
     })
     instance.removeObserver(() => {})
-    expect(method).toBeCalledTimes(0)
+    expect(method).toHaveBeenCalledTimes(0)
     await instance.load()
     expect(method).toHaveBeenCalledOnce()
     instance.clearData()
@@ -64,7 +64,7 @@ describe('dataloader class', () => {
       method,
       notifyChanges,
     })
-    expect(method).toBeCalledTimes(0)
+    expect(method).toHaveBeenCalledTimes(0)
 
     // simulate multiple call in //
     await Promise.all([instance.load().catch(undefined), instance.load().catch(undefined), instance.load()])
@@ -82,14 +82,14 @@ describe('dataloader class', () => {
       notifyChanges: notify,
     })
     expect(instance.getData()).toBe(undefined)
-    expect(notify).toBeCalledTimes(0)
+    expect(notify).toHaveBeenCalledTimes(0)
 
     // don't await as we will cancel this instance before
     instance.load().catch(() => null)
 
     expect(method).toHaveBeenCalledOnce()
     instance.cancel()
-    expect(notify).toBeCalledTimes(0)
+    expect(notify).toHaveBeenCalledTimes(0)
 
     expect(instance.getData()).toBe(undefined)
     instance.clearData()
@@ -103,7 +103,7 @@ describe('dataloader class', () => {
       method,
       notifyChanges: notify,
     })
-    expect(notify).toBeCalledTimes(0)
+    expect(notify).toHaveBeenCalledTimes(0)
     await instance.load()
     expect(method).toHaveBeenCalledOnce()
     expect(notify).toHaveBeenCalledOnce()
@@ -152,7 +152,7 @@ describe('dataloader class', () => {
     expect(onError).toHaveBeenCalledOnce()
   })
 
-  test('should create instance with cancel', async () => {
+  test('should create instance with cancel and properly set status after', async () => {
     const method = vi.fn(fakeSuccessPromise)
     const notifyChanges = vi.fn()
 
@@ -162,7 +162,7 @@ describe('dataloader class', () => {
       notifyChanges,
     })
 
-    expect(notifyChanges).toBeCalledTimes(0)
+    expect(notifyChanges).toHaveBeenCalledTimes(0)
 
     await instance.load().catch(undefined)
     expect(notifyChanges).toHaveBeenCalledOnce()
@@ -171,7 +171,7 @@ describe('dataloader class', () => {
     await waitForExpect(() => {
       expect(instance.status).toBe(StatusEnum.IDLE)
     })
-    expect(notifyChanges).toBeCalledTimes(2)
+    expect(notifyChanges).toHaveBeenCalledTimes(2)
   })
 
   test('should create instance with error and cancel', async () => {
@@ -190,7 +190,7 @@ describe('dataloader class', () => {
       expect(instance.status).toBe(StatusEnum.IDLE)
     })
     expect(notifyChanges).toHaveBeenCalledOnce()
-    expect(onError).toBeCalledTimes(0)
+    expect(onError).toHaveBeenCalledTimes(0)
     await waitForExpect(async () => {
       expect(await res).toBeUndefined()
     })
@@ -215,7 +215,7 @@ describe('dataloader class', () => {
     }
 
     await waitForExpect(() => {
-      expect(method).toBeCalledTimes(5)
+      expect(method).toHaveBeenCalledTimes(5)
     })
   })
 })

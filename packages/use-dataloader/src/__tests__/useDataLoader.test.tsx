@@ -118,7 +118,7 @@ describe('useDataLoader', () => {
     })
     expect(result.current.data).toBe(undefined)
     expect(result.current.isLoading).toBeFalsy()
-    expect(method).toBeCalledTimes(0)
+    expect(method).toHaveBeenCalledTimes(0)
     testProps.config.enabled = true
     rerender({ ...testProps })
     await waitFor(() => {
@@ -340,7 +340,7 @@ describe('useDataLoader', () => {
     await waitFor(() => {
       expect(result.current.isFetching).toBeTruthy()
     })
-    expect(pollingProps.method).toBeCalledTimes(2)
+    expect(pollingProps.method).toHaveBeenCalledTimes(2)
     expect(result.current.isPolling).toBeTruthy()
 
     await waitFor(() => {
@@ -386,7 +386,7 @@ describe('useDataLoader', () => {
     expect(result.current.data).toBe(2)
     expect(result.current.isPolling).toBeTruthy()
     expect(result.current.isSuccess).toBeFalsy()
-    expect(method2).toBeCalledTimes(2)
+    expect(method2).toHaveBeenCalledTimes(2)
     await waitFor(() => {
       expect(result.current.isSuccess).toBeTruthy()
     })
@@ -616,8 +616,8 @@ describe('useDataLoader', () => {
     expect(result.current.data).toBe(undefined)
 
     expect(onError).toHaveBeenCalledOnce()
-    expect(onError).toBeCalledWith(error)
-    expect(onSuccess).toBeCalledTimes(0)
+    expect(onError).toHaveBeenCalledWith(error)
+    expect(onSuccess).toHaveBeenCalledTimes(0)
   })
 
   test('should override onError from Provider', async () => {
@@ -650,9 +650,9 @@ describe('useDataLoader', () => {
     expect(result.current.error).toBe(error)
 
     expect(onError).toHaveBeenCalledOnce()
-    expect(onError).toBeCalledWith(error)
-    expect(onErrorProvider).toBeCalledTimes(0)
-    expect(onSuccess).toBeCalledTimes(0)
+    expect(onError).toHaveBeenCalledWith(error)
+    expect(onErrorProvider).toHaveBeenCalledTimes(0)
+    expect(onSuccess).toHaveBeenCalledTimes(0)
   })
 
   test('should call onError from Provider', async () => {
@@ -685,8 +685,8 @@ describe('useDataLoader', () => {
     expect(result.current.isError).toBeTruthy()
 
     expect(onErrorProvider).toHaveBeenCalledOnce()
-    expect(onErrorProvider).toBeCalledWith(error)
-    expect(onSuccess).toBeCalledTimes(0)
+    expect(onErrorProvider).toHaveBeenCalledWith(error)
+    expect(onSuccess).toHaveBeenCalledTimes(0)
   })
 
   test('should clear error on new response', async () => {
@@ -726,7 +726,7 @@ describe('useDataLoader', () => {
     expect(result.current.data).toBe(undefined)
 
     expect(onError).toHaveBeenCalledOnce()
-    expect(onSuccess).toBeCalledTimes(0)
+    expect(onSuccess).toHaveBeenCalledTimes(0)
 
     result.current.reload().catch(() => null)
     await waitFor(() => {
@@ -790,7 +790,7 @@ describe('useDataLoader', () => {
       expect(result.current[2]?.isSuccess).toBeTruthy()
     })
     expect(result.current[2]?.data).toBeTruthy()
-    expect(fakePromise).toBeCalledTimes(4)
+    expect(fakePromise).toHaveBeenCalledTimes(4)
   })
 
   test('should be reloaded from dataloader context', async () => {
@@ -833,7 +833,7 @@ describe('useDataLoader', () => {
     await waitFor(() => {
       expect(result.current[0].isSuccess).toBeTruthy()
     })
-    expect(mockedFn).toBeCalledTimes(2)
+    expect(mockedFn).toHaveBeenCalledTimes(2)
   })
 
   test('should render correctly with dataLifetime prevent double call', async () => {
@@ -922,7 +922,7 @@ describe('useDataLoader', () => {
     await waitFor(() => {
       expect(result.current[1]?.isFetching).toBeTruthy()
     })
-    expect(testingProps.method).toBeCalledTimes(2)
+    expect(testingProps.method).toHaveBeenCalledTimes(2)
     expect(result.current[0]?.data).toBeTruthy()
     expect(result.current[0]?.previousData).toBe(undefined)
     expect(result.current[1]?.data).toBeTruthy()

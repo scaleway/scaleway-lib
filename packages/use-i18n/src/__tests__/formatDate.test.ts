@@ -48,7 +48,7 @@ describe('formatDate', () => {
     expect(() =>
       // @ts-expect-error we check a failing case
       formatDate('fr', 1_581_607_680_000, 'not a valid format'),
-    ).toThrowError(
+    ).toThrow(
       'format "not a valid format" should be one of hour, hourOnly, long, second, short, shortWithoutDay, numeric, numericHour or a valid Intl.DateTimeFormat options object',
     )
   })
