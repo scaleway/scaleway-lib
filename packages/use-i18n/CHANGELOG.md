@@ -1,5 +1,16 @@
 # Change Log
 
+## 7.2.13
+
+### Patch Changes
+
+- [#3272](https://github.com/scaleway/scaleway-lib/pull/3272) [`04e92f8`](https://github.com/scaleway/scaleway-lib/commit/04e92f8b165e1e4bc8a063cbe199ee3090771f74) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@formatjs/fast-memoize` to `3.1.4`.
+  Updated dependency `@formatjs/icu-messageformat-parser` to `3.5.7`.
+  Updated dependency `intl-messageformat` to `11.2.4`.
+
+- [#3273](https://github.com/scaleway/scaleway-lib/pull/3273) [`1f4e629`](https://github.com/scaleway/scaleway-lib/commit/1f4e62952414a6a20b23f53e5c380c4c2957bfbf) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `react` to `19.2.6`.
+  Updated dependency `react-dom` to `19.2.6`.
+
 ## 7.2.12
 
 ### Patch Changes
