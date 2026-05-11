@@ -60,7 +60,7 @@ catalog:
   turbo: 2.9.10
   typescript: 6.0.3
   use-deep-compare-effect: 1.8.1
-  vite: 8.0.10
+  vite: 8.0.11
   vitest: 4.1.5
   vitest-localstorage-mock: 0.1.2
   wait-for-expect: 4.0.0
