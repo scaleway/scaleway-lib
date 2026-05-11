@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.0.5
+
+### Patch Changes
+
+- [#3275](https://github.com/scaleway/scaleway-lib/pull/3275) [`2ad64a1`](https://github.com/scaleway/scaleway-lib/commit/2ad64a158122224838ca5014a99325757ceabdc7) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@types/node` to `25.6.2`.
+
 ## 0.0.4
 
 ### Patch Changes
