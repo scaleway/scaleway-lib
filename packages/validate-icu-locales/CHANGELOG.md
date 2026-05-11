@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.3.0
+
+### Minor Changes
+
+- [#3279](https://github.com/scaleway/scaleway-lib/pull/3279) [`ccb42b8`](https://github.com/scaleway/scaleway-lib/commit/ccb42b8b9f7aebf9bb3c4b09eadc98c94bab61a3) Thanks [@chambo-e](https://github.com/chambo-e)! - use native dynamic import instead of module-from-string
+
 ## 3.2.0
 
 ### Minor Changes
