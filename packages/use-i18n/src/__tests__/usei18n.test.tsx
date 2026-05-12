@@ -1,4 +1,4 @@
-import { act, renderHook, waitFor } from '@testing-library/react'
+import { act, renderHook } from '@testing-library/react'
 import { enGB, fr as frDateFns } from 'date-fns/locale'
 import { MissingValueError } from 'intl-messageformat'
 import type { ComponentProps, ReactNode } from 'react'
@@ -126,7 +126,7 @@ describe('i18n hook', () => {
     // first render there is no load
     expect(result.current.t('title')).toBe('')
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       // after load of en locale
       expect(result.current.t('title')).toStrictEqual(en.title)
     })
@@ -135,7 +135,7 @@ describe('i18n hook', () => {
       await result.current.switchLocale('fr')
     })
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.t('title')).toStrictEqual(fr.title)
     })
 
@@ -143,7 +143,7 @@ describe('i18n hook', () => {
       await result.current.switchLocale('es')
     })
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.t('title')).toStrictEqual(es.title)
     })
   })
@@ -156,7 +156,7 @@ describe('i18n hook', () => {
       }),
     })
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.translations).toStrictEqual({
         en: {
           languages: 'Languages',
@@ -174,7 +174,7 @@ describe('i18n hook', () => {
       await result.current.switchLocale('fr')
     })
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.translations).toStrictEqual({
         en: {
           languages: 'Languages',
@@ -208,7 +208,7 @@ describe('i18n hook', () => {
       await result.current.switchLocale('fr')
     })
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.translations).toStrictEqual({
         en: {
           languages: 'Languages',
@@ -235,7 +235,7 @@ describe('i18n hook', () => {
       }),
     })
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.currentLocale).toBe('en')
     })
   })
@@ -245,7 +245,7 @@ describe('i18n hook', () => {
       wrapper: wrapper({ defaultLocale: 'en' }),
     })
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(
         result.current.t('with.identifier', {
           identifier: <b key="1">My resource</b>,
@@ -281,7 +281,7 @@ describe('i18n hook', () => {
         }),
       })
 
-      await waitFor(() => {
+      await vi.waitFor(() => {
         expect(result.current.currentLocale).toBe('en')
         expect(mockGetItem).toHaveBeenCalledOnce()
         expect(mockGetItem).toHaveBeenCalledWith(LOCALE_ITEM_STORAGE)
@@ -310,7 +310,7 @@ describe('i18n hook', () => {
         }),
       })
 
-      await waitFor(() => {
+      await vi.waitFor(() => {
         expect(result.current.currentLocale).toBe('en')
         expect(mockGetItem).toHaveBeenCalledOnce()
         expect(mockGetItem).toHaveBeenCalledWith(LOCALE_ITEM_STORAGE)
@@ -339,7 +339,7 @@ describe('i18n hook', () => {
         }),
       })
 
-      await waitFor(() => {
+      await vi.waitFor(() => {
         expect(result.current.currentLocale).toBe('fr')
       })
       localStorageMock.mockRestore()
@@ -366,7 +366,7 @@ describe('i18n hook', () => {
         }),
       })
 
-      await waitFor(() => {
+      await vi.waitFor(() => {
         expect(result.current.currentLocale).toBe('es')
       })
       localStorageMock.mockRestore()
@@ -387,7 +387,7 @@ describe('i18n hook', () => {
       await result.current.switchLocale('fr')
     })
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.currentLocale).toBe('fr')
     })
     expect(localStorage.getItem(LOCALE_ITEM_STORAGE)).toBe('fr')
@@ -396,7 +396,7 @@ describe('i18n hook', () => {
       await result.current.switchLocale('es')
     })
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.currentLocale).toBe('es')
     })
     expect(localStorage.getItem(LOCALE_ITEM_STORAGE)).toBe('es')
@@ -408,7 +408,7 @@ describe('i18n hook', () => {
       await result.current.switchLocale('test')
     })
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.currentLocale).toBe('es')
     })
     expect(localStorage.getItem(LOCALE_ITEM_STORAGE)).toBe('es')
@@ -427,7 +427,7 @@ describe('i18n hook', () => {
     // @ts-expect-error this key doesn't exist but enable debug key will return the key
     expect(result.current.t('test')).toBe('test')
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.t('title')).toBe('title')
       expect(result.current.t('subtitle')).toBe('subtitle')
       expect(result.current.t('plurals', { count: 0 })).toBe('plurals')
@@ -452,7 +452,7 @@ describe('i18n hook', () => {
       await result.current.switchLocale('fr')
     })
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.currentLocale).toBe('fr')
     })
 
@@ -489,7 +489,7 @@ describe('i18n hook', () => {
         defaultTranslations: { en },
       }),
     })
-    await waitFor(() => {
+    await vi.waitFor(() => {
       const identiqueTranslate = result.current.namespaceTranslation('tests')
       expect(identiqueTranslate('test.namespaces')).toStrictEqual(result.current.t('tests.test.namespaces'))
     })
@@ -528,7 +528,7 @@ describe('i18n hook', () => {
     // https://stackoverflow.com/questions/58769806/identical-strings-not-matching-in-vi
     // https://stackoverflow.com/questions/54242039/intl-numberformat-space-character-does-not-match
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(
         result.current.formatNumber(2, {
           currency: 'EUR',
@@ -573,7 +573,7 @@ describe('i18n hook', () => {
       await result.current.switchLocale('fr')
     })
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(
         result.current.formatList(vehicles, {
           style: 'long',
@@ -605,7 +605,7 @@ describe('i18n hook', () => {
     })
     const date = new Date('December 17, 1995 03:24:00')
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.datetime(date)).toBe('12/17/1995')
     })
 
@@ -647,7 +647,7 @@ describe('i18n hook', () => {
       await result.current.switchLocale('fr')
     })
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.datetime(date)).toBe('17/12/1995')
     })
 
@@ -684,7 +684,7 @@ describe('i18n hook', () => {
       await result.current.switchLocale('fr')
     })
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.dateFnsLocale?.code).toBe('fr')
       expect(result.current.relativeTime(date)).toBe('il y a plus de 20 ans')
     })
@@ -704,7 +704,7 @@ describe('i18n hook', () => {
       await result.current.switchLocale('fr')
     })
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.relativeTimeStrict(date)).toBe('il y a 3499 jours')
     })
   })
@@ -721,8 +721,13 @@ describe('i18n hook', () => {
       await result.current.switchLocale('fr')
     })
 
-    await waitFor(() => {
+<<<<<<< HEAD
+    await vi.waitFor(() => {
       expect(result.current.formatUnit(12, { short: false, unit: 'byte' })).toBe('12 octets')
+=======
+    await vi.waitFor(() => {
+      expect(result.current.formatUnit(12, { short: false, unit: 'byte' })).toEqual('12 octets')
+>>>>>>> e07e03bb (fix: use vi.waitFor)
     })
   })
 
@@ -738,7 +743,7 @@ describe('i18n hook', () => {
       await result.current.switchLocale('fr')
     })
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.formatDate(new Date(2020, 1, 13, 16, 28), 'numericHour')).toBe('2020-02-13 16:28')
     })
   })
@@ -752,7 +757,7 @@ describe('i18n hook', () => {
         }),
       })
 
-      await waitFor(() => {
+      await vi.waitFor(() => {
         expect(result.current.dateFnsLocale?.code).toBe('en-GB')
       })
     })
@@ -778,13 +783,13 @@ describe('i18n hook', () => {
         }),
       })
 
-      await waitFor(() => {
+      await vi.waitFor(() => {
         expect(result.current.currentLocale).toBe('fr')
         expect(mockGetItem).toHaveBeenCalledOnce()
         expect(mockGetItem).toHaveBeenCalledWith(LOCALE_ITEM_STORAGE)
       })
 
-      await waitFor(() => {
+      await vi.waitFor(() => {
         expect(result.current.dateFnsLocale?.code).toBe('fr')
         expect(result.current.dateFnsLocale).toMatchObject({ code: 'fr' })
       })
