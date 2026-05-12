@@ -65,7 +65,7 @@
     "*.y?(a)ml": [
       "oxfmt --write ."
     ],
-    "*.json": [
+    "*.json?(c)": [
       "oxfmt --write ."
     ],
     "*.mdx": [
