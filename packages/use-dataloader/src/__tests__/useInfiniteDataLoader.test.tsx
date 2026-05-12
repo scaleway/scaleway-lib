@@ -67,7 +67,7 @@ describe('useInfinitDataLoader', () => {
         wrapper,
       },
     )
-    expect(result.current.data).toBe(undefined)
+    expect(result.current.data).toBeUndefined()
     expect(result.current.isLoading).toBeTruthy()
     expect(result.current.isFetching).toBeTruthy()
     expect(initialProps.method).toHaveBeenCalledOnce()
@@ -91,7 +91,7 @@ describe('useInfinitDataLoader', () => {
         wrapper,
       },
     )
-    expect(result.current.data).toBe(undefined)
+    expect(result.current.data).toBeUndefined()
     expect(result.current.isLoading).toBeTruthy()
     expect(result.current.isFetching).toBeTruthy()
     expect(result.current.isFetching).toBeTruthy()
@@ -144,7 +144,7 @@ describe('useInfinitDataLoader', () => {
         wrapper,
       },
     )
-    expect(result.current.data).toBe(undefined)
+    expect(result.current.data).toBeUndefined()
     expect(result.current.isLoading).toBeTruthy()
     expect(result.current.isFetching).toBeTruthy()
     expect(initialProps.method).toHaveBeenCalledOnce()
@@ -213,17 +213,17 @@ describe('useInfinitDataLoader', () => {
         wrapper,
       },
     )
-    expect(result.current.data).toBe(undefined)
+    expect(result.current.data).toBeUndefined()
     expect(result.current.isLoading).toBeFalsy()
     expect(result.current.isFetching).toBeFalsy()
     expect(initialProps.method).toHaveBeenCalledTimes(0)
     rerender(localInitialProps)
-    expect(result.current.data).toBe(undefined)
+    expect(result.current.data).toBeUndefined()
     expect(result.current.isLoading).toBeFalsy()
     expect(result.current.isFetching).toBeFalsy()
     expect(initialProps.method).toHaveBeenCalledTimes(0)
     rerender({ ...localInitialProps, config: { ...config, enabled: true } })
-    expect(result.current.data).toBe(undefined)
+    expect(result.current.data).toBeUndefined()
     await waitFor(() => {
       expect(result.current.isFetching).toBeTruthy()
     })
@@ -300,7 +300,7 @@ describe('useInfinitDataLoader', () => {
     // Initially, isLoading should be true (first load with no cache)
     expect(result.current.isLoading).toBeTruthy()
     expect(result.current.isFetching).toBeTruthy()
-    expect(result.current.data).toBe(undefined)
+    expect(result.current.data).toBeUndefined()
 
     // Resolve the first request
     setCanResolve(true)

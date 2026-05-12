@@ -45,7 +45,7 @@ catalog:
 
       expect(mockSimpleGit().show).toHaveBeenCalledWith(['abc123:pnpm-workspace.yaml'])
       expect(yaml.load).toHaveBeenCalledWith(mockContent)
-      expect(result).toEqual({
+      expect(result).toStrictEqual({
         'another-package': '2.0.0',
         'test-package': '1.0.0',
       })
@@ -64,13 +64,13 @@ catalog:
 
       const result = await loadCatalogFromGit('nonexistent', 'pnpm-workspace.yaml')
 
-      expect(result).toEqual({})
+      expect(result).toStrictEqual({})
     })
 
     it('should return empty object if revision is empty', async () => {
       const result = await loadCatalogFromGit('', 'pnpm-workspace.yaml')
 
-      expect(result).toEqual({})
+      expect(result).toStrictEqual({})
     })
   })
 

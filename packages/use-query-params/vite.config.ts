@@ -7,6 +7,6 @@ const config = mergeConfig(defaultConfig, vitestDefaultConfig)
 export default mergeConfig(config, {
   test: {
     environment: 'jsdom',
-    setupFiles: ['./vitest.setup.ts'],
+    setupFiles: ['./vitest.setup.ts', '@testing-library/jest-dom/vitest'],
   },
 })

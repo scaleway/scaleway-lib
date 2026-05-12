@@ -1,3 +1,4 @@
+// oxlint-disable vitest/prefer-strict-equal
 import { act, renderHook } from '@testing-library/react'
 import type { History } from 'history'
 import { createMemoryHistory } from 'history'

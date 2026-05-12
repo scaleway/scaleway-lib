@@ -41,7 +41,7 @@ catalog:
 
       expect(readFile).toHaveBeenCalledWith('test-file.yaml', 'utf8')
       expect(load).toHaveBeenCalledWith(mockContent)
-      expect(result).toEqual({
+      expect(result).toStrictEqual({
         'another-package': '2.0.0',
         'test-package': '1.0.0',
       })
@@ -52,7 +52,7 @@ catalog:
 
       const result = await loadCatalogFromFile('non-existent-file.yaml')
 
-      expect(result).toEqual({})
+      expect(result).toStrictEqual({})
     })
 
     it('should return empty object if YAML parsing fails', async () => {
@@ -63,7 +63,7 @@ catalog:
 
       const result = await loadCatalogFromFile('invalid-file.yaml')
 
-      expect(result).toEqual({})
+      expect(result).toStrictEqual({})
     })
   })
 
@@ -84,7 +84,7 @@ catalog:
       const result = loadCatalogFromWorkspaceContent(mockContent)
 
       expect(load).toHaveBeenCalledWith(mockContent)
-      expect(result).toEqual({
+      expect(result).toStrictEqual({
         'another-package': '2.0.0',
         'test-package': '1.0.0',
       })
@@ -97,7 +97,7 @@ catalog:
 
       const result = loadCatalogFromWorkspaceContent('invalid content')
 
-      expect(result).toEqual({})
+      expect(result).toStrictEqual({})
     })
   })
 
@@ -138,13 +138,13 @@ catalog:
 
       const result = findChangedDependencies(oldCatalog, newCatalog)
 
-      expect(result).toEqual([])
+      expect(result).toStrictEqual([])
     })
 
     it('should handle empty catalogs', () => {
       const result = findChangedDependencies({}, {})
 
-      expect(result).toEqual([])
+      expect(result).toStrictEqual([])
     })
   })
 

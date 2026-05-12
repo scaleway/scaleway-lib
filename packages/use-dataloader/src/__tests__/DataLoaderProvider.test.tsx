@@ -47,7 +47,7 @@ describe('dataLoaderProvider', () => {
       method,
     })
 
-    expect(Object.values(result.current.getReloads()).length).toBe(1)
+    expect(Object.values(result.current.getReloads())).toHaveLength(1)
     const testRequest = result.current.getRequest(TEST_KEY)
     testRequest.addObserver(rerender)
 
@@ -83,7 +83,7 @@ describe('dataLoaderProvider', () => {
     })
 
     const testRequest = result.current.getRequest(TEST_KEY)
-    expect(Object.values(result.current.getReloads()).length).toBe(1)
+    expect(Object.values(result.current.getReloads())).toHaveLength(1)
     expect(testRequest).toBeDefined()
     expect(testRequest.status).toBe(StatusEnum.IDLE)
     // oxlint-disable-next-line  @typescript-eslint/no-floating-promises
@@ -120,11 +120,11 @@ describe('dataLoaderProvider', () => {
     const testReload = result.current.getReloads(TEST_KEY)
     expect(testReload).toBeDefined()
     if (testReload) {
-      expect(await testReload()).toBeNull()
+      await expect(testReload()).resolves.toBeNull()
     } else {
       throw new Error('It shoulded be defined')
     }
-    expect(result.current.getCachedData(TEST_KEY)).toBe(null)
+    expect(result.current.getCachedData(TEST_KEY)).toBeNull()
     expect(result.current.getCachedData()).toStrictEqual({ test: null })
     expect(result.current.getRequest(TEST_KEY)).toBeDefined()
     const unknownReload = result.current.getReloads('unknown')

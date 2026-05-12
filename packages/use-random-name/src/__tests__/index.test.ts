@@ -5,6 +5,6 @@ import { useRandomName } from '..'
 describe('useRandomName', () => {
   it('useRandomName should not be undefined', () => {
     const { result } = renderHook(() => useRandomName())
-    expect(result.current).not.toBeUndefined()
+    expect(result.current).toBeDefined()
   })
 })
