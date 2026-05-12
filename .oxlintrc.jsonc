@@ -80,6 +80,7 @@
         "vitest/no-mocks-import": "warn",
         "vitest/no-conditional-expect": "warn",
         "vitest/no-conditional-in-test": "warn",
+        "vitest/prefer-snapshot-hint": "warn"
       },
     },
   ],
@@ -110,6 +111,8 @@
     "unicorn/prefer-code-point": "off",
     "unicorn/prefer-ternary": "off",
     "explicit-member-accessibility": "warn",
+    "require-unicode-regexp": "warn",
+    "unicorn/no-negated-condition": "warn",
   },
   "settings": {
     "vitest": {

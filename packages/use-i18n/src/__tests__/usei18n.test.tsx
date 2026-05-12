@@ -90,13 +90,10 @@ const wrapper =
 
 describe('i18n hook', () => {
   beforeEach(() => {
-    vi.spyOn(window, 'navigator', 'get').mockImplementation(
-      () =>
-        ({
-          language: 'en-US',
-          languages: ['en-US', 'en'],
-        }) as unknown as Navigator,
-    )
+    vi.spyOn(window, 'navigator', 'get').mockReturnValue({
+      language: 'en-US',
+      languages: ['en-US', 'en'],
+    } as unknown as Navigator)
   })
 
   afterEach(() => {
@@ -127,11 +124,11 @@ describe('i18n hook', () => {
       wrapper: wrapper({ defaultLocale: 'en' }),
     })
     // first render there is no load
-    expect(result.current.t('title')).toEqual('')
+    expect(result.current.t('title')).toBe('')
 
     await waitFor(() => {
       // after load of en locale
-      expect(result.current.t('title')).toEqual(en.title)
+      expect(result.current.t('title')).toStrictEqual(en.title)
     })
 
     await act(async () => {
@@ -139,7 +136,7 @@ describe('i18n hook', () => {
     })
 
     await waitFor(() => {
-      expect(result.current.t('title')).toEqual(fr.title)
+      expect(result.current.t('title')).toStrictEqual(fr.title)
     })
 
     await act(async () => {
@@ -147,7 +144,7 @@ describe('i18n hook', () => {
     })
 
     await waitFor(() => {
-      expect(result.current.t('title')).toEqual(es.title)
+      expect(result.current.t('title')).toStrictEqual(es.title)
     })
   })
 
@@ -169,9 +166,9 @@ describe('i18n hook', () => {
       })
     })
 
-    expect(result.current.t('name')).toEqual('Name')
-    expect(result.current.t('lastName')).toEqual('Last Name')
-    expect(result.current.t('languages')).toEqual('Languages')
+    expect(result.current.t('name')).toBe('Name')
+    expect(result.current.t('lastName')).toBe('Last Name')
+    expect(result.current.t('languages')).toBe('Languages')
 
     await act(async () => {
       await result.current.switchLocale('fr')
@@ -191,9 +188,9 @@ describe('i18n hook', () => {
       })
     })
 
-    expect(result.current.t('name')).toEqual('Prénom')
-    expect(result.current.t('lastName')).toEqual('Nom')
-    expect(result.current.t('languages')).toEqual('')
+    expect(result.current.t('name')).toBe('Prénom')
+    expect(result.current.t('lastName')).toBe('Nom')
+    expect(result.current.t('languages')).toBe('')
   })
 
   it("should use specific load and fallback default local if the key doesn't exist", async () => {
@@ -224,9 +221,9 @@ describe('i18n hook', () => {
         },
       })
 
-      expect(result.current.t('languages')).toEqual('')
-      expect(result.current.t('lastName')).toEqual('Nom')
-      expect(result.current.t('name')).toEqual('Prénom')
+      expect(result.current.t('languages')).toBe('')
+      expect(result.current.t('lastName')).toBe('Nom')
+      expect(result.current.t('name')).toBe('Prénom')
     })
   })
 
@@ -239,7 +236,7 @@ describe('i18n hook', () => {
     })
 
     await waitFor(() => {
-      expect(result.current.currentLocale).toEqual('en')
+      expect(result.current.currentLocale).toBe('en')
     })
   })
 
@@ -253,12 +250,12 @@ describe('i18n hook', () => {
         result.current.t('with.identifier', {
           identifier: <b key="1">My resource</b>,
         }),
-      ).toEqual(['Are you sure you want to delete ', <b key="1">My resource</b>, '?'])
+      ).toStrictEqual(['Are you sure you want to delete ', <b key="1">My resource</b>, '?'])
       expect(
         result.current.t('with.identifier', {
           identifier: <CustomComponent key="1">My resource</CustomComponent>,
         }),
-      ).toEqual(['Are you sure you want to delete ', <CustomComponent key="1">My resource</CustomComponent>, '?'])
+      ).toStrictEqual(['Are you sure you want to delete ', <CustomComponent key="1">My resource</CustomComponent>, '?'])
     })
   })
 
@@ -267,7 +264,7 @@ describe('i18n hook', () => {
       vi.spyOn(global, 'navigator', 'get').mockReturnValueOnce({
         languages: ['fr'],
       } as unknown as Navigator)
-      const mockGetItem = vi.fn().mockImplementation(() => 'en')
+      const mockGetItem = vi.fn().mockReturnValue('en')
       const mockSetItem = vi.fn()
       const mockRemoveItem = vi.fn()
       const localStorageMock = vi.spyOn(global, 'localStorage', 'get').mockReturnValue({
@@ -285,7 +282,7 @@ describe('i18n hook', () => {
       })
 
       await waitFor(() => {
-        expect(result.current.currentLocale).toEqual('en')
+        expect(result.current.currentLocale).toBe('en')
         expect(mockGetItem).toHaveBeenCalledOnce()
         expect(mockGetItem).toHaveBeenCalledWith(LOCALE_ITEM_STORAGE)
       })
@@ -296,7 +293,7 @@ describe('i18n hook', () => {
       vi.spyOn(global, 'navigator', 'get').mockReturnValueOnce({
         languages: ['bz'],
       } as unknown as Navigator)
-      const mockGetItem = vi.fn().mockImplementation(() => 're')
+      const mockGetItem = vi.fn().mockReturnValue('re')
       const mockSetItem = vi.fn()
       const mockRemoveItem = vi.fn()
       const localStorageMock = vi.spyOn(global, 'localStorage', 'get').mockReturnValue({
@@ -314,7 +311,7 @@ describe('i18n hook', () => {
       })
 
       await waitFor(() => {
-        expect(result.current.currentLocale).toEqual('en')
+        expect(result.current.currentLocale).toBe('en')
         expect(mockGetItem).toHaveBeenCalledOnce()
         expect(mockGetItem).toHaveBeenCalledWith(LOCALE_ITEM_STORAGE)
       })
@@ -343,7 +340,7 @@ describe('i18n hook', () => {
       })
 
       await waitFor(() => {
-        expect(result.current.currentLocale).toEqual('fr')
+        expect(result.current.currentLocale).toBe('fr')
       })
       localStorageMock.mockRestore()
     })
@@ -370,7 +367,7 @@ describe('i18n hook', () => {
       })
 
       await waitFor(() => {
-        expect(result.current.currentLocale).toEqual('es')
+        expect(result.current.currentLocale).toBe('es')
       })
       localStorageMock.mockRestore()
     })
@@ -383,7 +380,7 @@ describe('i18n hook', () => {
         isLocaleSupported: isDefaultLocalesSupported,
       }),
     })
-    expect(result.current.currentLocale).toEqual('en')
+    expect(result.current.currentLocale).toBe('en')
     expect(localStorage.getItem(LOCALE_ITEM_STORAGE)).toBe('en')
 
     await act(async () => {
@@ -391,7 +388,7 @@ describe('i18n hook', () => {
     })
 
     await waitFor(() => {
-      expect(result.current.currentLocale).toEqual('fr')
+      expect(result.current.currentLocale).toBe('fr')
     })
     expect(localStorage.getItem(LOCALE_ITEM_STORAGE)).toBe('fr')
 
@@ -400,7 +397,7 @@ describe('i18n hook', () => {
     })
 
     await waitFor(() => {
-      expect(result.current.currentLocale).toEqual('es')
+      expect(result.current.currentLocale).toBe('es')
     })
     expect(localStorage.getItem(LOCALE_ITEM_STORAGE)).toBe('es')
 
@@ -412,7 +409,7 @@ describe('i18n hook', () => {
     })
 
     await waitFor(() => {
-      expect(result.current.currentLocale).toEqual('es')
+      expect(result.current.currentLocale).toBe('es')
     })
     expect(localStorage.getItem(LOCALE_ITEM_STORAGE)).toBe('es')
   })
@@ -428,14 +425,14 @@ describe('i18n hook', () => {
     })
 
     // @ts-expect-error this key doesn't exist but enable debug key will return the key
-    expect(result.current.t('test')).toEqual('test')
+    expect(result.current.t('test')).toBe('test')
 
     await waitFor(() => {
-      expect(result.current.t('title')).toEqual('title')
-      expect(result.current.t('subtitle')).toEqual('subtitle')
-      expect(result.current.t('plurals', { count: 0 })).toEqual('plurals')
-      expect(result.current.t('plurals', { count: 1 })).toEqual('plurals')
-      expect(result.current.t('plurals', { count: 2 })).toEqual('plurals')
+      expect(result.current.t('title')).toBe('title')
+      expect(result.current.t('subtitle')).toBe('subtitle')
+      expect(result.current.t('plurals', { count: 0 })).toBe('plurals')
+      expect(result.current.t('plurals', { count: 1 })).toBe('plurals')
+      expect(result.current.t('plurals', { count: 2 })).toBe('plurals')
     })
   })
 
@@ -456,7 +453,7 @@ describe('i18n hook', () => {
     })
 
     await waitFor(() => {
-      expect(result.current.currentLocale).toEqual('fr')
+      expect(result.current.currentLocale).toBe('fr')
     })
 
     const newVariable = 'newVariable'
@@ -494,11 +491,11 @@ describe('i18n hook', () => {
     })
     await waitFor(() => {
       const identiqueTranslate = result.current.namespaceTranslation('tests')
-      expect(identiqueTranslate('test.namespaces')).toEqual(result.current.t('tests.test.namespaces'))
+      expect(identiqueTranslate('test.namespaces')).toStrictEqual(result.current.t('tests.test.namespaces'))
     })
 
     const translate = result.current.namespaceTranslation('tests.test')
-    expect(translate('namespaces')).toEqual('test')
+    expect(translate('namespaces')).toBe('test')
   })
 
   it('should use formatNumber', async () => {
@@ -507,14 +504,14 @@ describe('i18n hook', () => {
         defaultLocale: 'en',
       }),
     })
-    expect(result.current.formatNumber(2)).toEqual('2')
+    expect(result.current.formatNumber(2)).toBe('2')
     expect(
       result.current.formatNumber(2, {
         currency: 'EUR',
         currencyDisplay: 'symbol',
         style: 'currency',
       }),
-    ).toEqual('€2.00')
+    ).toBe('€2.00')
 
     expect(
       result.current.formatNumber(2, {
@@ -522,7 +519,7 @@ describe('i18n hook', () => {
         currencyDisplay: 'symbol',
         style: 'currency',
       }),
-    ).toEqual('$2.00')
+    ).toBe('$2.00')
 
     await act(async () => {
       await result.current.switchLocale('fr')
@@ -537,10 +534,10 @@ describe('i18n hook', () => {
           currency: 'EUR',
           style: 'currency',
         }),
-      ).toEqual('2,00\u00A0€')
+      ).toBe('2,00\u00A0€')
     })
 
-    expect(result.current.formatNumber(2, { currency: 'USD', style: 'currency' })).toEqual('2,00\u00A0$US')
+    expect(result.current.formatNumber(2, { currency: 'USD', style: 'currency' })).toBe('2,00\u00A0$US')
   })
 
   it('should use formatList', async () => {
@@ -556,21 +553,21 @@ describe('i18n hook', () => {
         style: 'long',
         type: 'conjunction',
       }),
-    ).toEqual('Motorcycle, Bus, and Car')
+    ).toBe('Motorcycle, Bus, and Car')
 
     expect(
       result.current.formatList(vehicles, {
         style: 'short',
         type: 'disjunction',
       }),
-    ).toEqual('Motorcycle, Bus, or Car')
+    ).toBe('Motorcycle, Bus, or Car')
 
     expect(
       result.current.formatList(vehicles, {
         style: 'narrow',
         type: 'unit',
       }),
-    ).toEqual('Motorcycle Bus Car')
+    ).toBe('Motorcycle Bus Car')
 
     await act(async () => {
       await result.current.switchLocale('fr')
@@ -582,7 +579,7 @@ describe('i18n hook', () => {
           style: 'long',
           type: 'conjunction',
         }),
-      ).toEqual('Motorcycle, Bus et Car')
+      ).toBe('Motorcycle, Bus et Car')
     })
 
     expect(
@@ -590,14 +587,14 @@ describe('i18n hook', () => {
         style: 'short',
         type: 'disjunction',
       }),
-    ).toEqual('Motorcycle, Bus ou Car')
+    ).toBe('Motorcycle, Bus ou Car')
 
     expect(
       result.current.formatList(vehicles, {
         style: 'narrow',
         type: 'unit',
       }),
-    ).toEqual('Motorcycle Bus Car')
+    ).toBe('Motorcycle Bus Car')
   })
 
   it('should use datetime', async () => {
@@ -609,7 +606,7 @@ describe('i18n hook', () => {
     const date = new Date('December 17, 1995 03:24:00')
 
     await waitFor(() => {
-      expect(result.current.datetime(date)).toEqual('12/17/1995')
+      expect(result.current.datetime(date)).toBe('12/17/1995')
     })
 
     expect(
@@ -618,7 +615,7 @@ describe('i18n hook', () => {
         month: 'numeric',
         year: 'numeric',
       }),
-    ).toEqual('12/17/1995')
+    ).toBe('12/17/1995')
 
     expect(
       result.current.datetime(date, {
@@ -627,7 +624,7 @@ describe('i18n hook', () => {
         month: 'short',
         year: 'numeric',
       }),
-    ).toEqual('Dec 17, 1995 AD')
+    ).toBe('Dec 17, 1995 AD')
 
     expect(
       result.current.datetime(date, {
@@ -636,7 +633,7 @@ describe('i18n hook', () => {
         month: 'long',
         year: 'numeric',
       }),
-    ).toEqual('December 17, 1995 Anno Domini')
+    ).toBe('December 17, 1995 Anno Domini')
 
     expect(
       result.current.datetime(date, {
@@ -644,14 +641,14 @@ describe('i18n hook', () => {
         month: 'numeric',
         year: 'numeric',
       }),
-    ).toEqual('12/17/1995')
+    ).toBe('12/17/1995')
 
     await act(async () => {
       await result.current.switchLocale('fr')
     })
 
     await waitFor(() => {
-      expect(result.current.datetime(date)).toEqual('17/12/1995')
+      expect(result.current.datetime(date)).toBe('17/12/1995')
     })
 
     expect(
@@ -660,7 +657,7 @@ describe('i18n hook', () => {
         month: 'numeric',
         year: 'numeric',
       }),
-    ).toEqual('17/12/1995')
+    ).toBe('17/12/1995')
 
     expect(
       result.current.datetime(date, {
@@ -669,7 +666,7 @@ describe('i18n hook', () => {
         month: 'long',
         year: 'numeric',
       }),
-    ).toEqual('17 décembre 1995 après Jésus-Christ')
+    ).toBe('17 décembre 1995 après Jésus-Christ')
   })
 
   it('should relativeTime', async () => {
@@ -681,7 +678,7 @@ describe('i18n hook', () => {
     mockdate.set('4/13/2021')
     const date = new Date('September 13, 2000 15:15:00')
 
-    expect(result.current.relativeTime(date)).toEqual('over 20 years ago')
+    expect(result.current.relativeTime(date)).toBe('over 20 years ago')
 
     await act(async () => {
       await result.current.switchLocale('fr')
@@ -689,7 +686,7 @@ describe('i18n hook', () => {
 
     await waitFor(() => {
       expect(result.current.dateFnsLocale?.code).toBe('fr')
-      expect(result.current.relativeTime(date)).toEqual('il y a plus de 20 ans')
+      expect(result.current.relativeTime(date)).toBe('il y a plus de 20 ans')
     })
   })
 
@@ -702,13 +699,13 @@ describe('i18n hook', () => {
     mockdate.set('4/13/2021')
     const date = new Date('September 13, 2011 15:15:00')
 
-    expect(result.current.relativeTimeStrict(date)).toEqual('3499 days ago')
+    expect(result.current.relativeTimeStrict(date)).toBe('3499 days ago')
     await act(async () => {
       await result.current.switchLocale('fr')
     })
 
     await waitFor(() => {
-      expect(result.current.relativeTimeStrict(date)).toEqual('il y a 3499 jours')
+      expect(result.current.relativeTimeStrict(date)).toBe('il y a 3499 jours')
     })
   })
 
@@ -719,13 +716,13 @@ describe('i18n hook', () => {
       }),
     })
 
-    expect(result.current.formatUnit(12, { short: false, unit: 'byte' })).toEqual('12 bytes')
+    expect(result.current.formatUnit(12, { short: false, unit: 'byte' })).toBe('12 bytes')
     await act(async () => {
       await result.current.switchLocale('fr')
     })
 
     await waitFor(() => {
-      expect(result.current.formatUnit(12, { short: false, unit: 'byte' })).toEqual('12 octets')
+      expect(result.current.formatUnit(12, { short: false, unit: 'byte' })).toBe('12 octets')
     })
   })
 
@@ -736,13 +733,13 @@ describe('i18n hook', () => {
       }),
     })
 
-    expect(result.current.formatDate(new Date(2020, 1, 13, 16, 28), 'numericHour')).toEqual('2020-02-13 4:28 PM')
+    expect(result.current.formatDate(new Date(2020, 1, 13, 16, 28), 'numericHour')).toBe('2020-02-13 4:28 PM')
     await act(async () => {
       await result.current.switchLocale('fr')
     })
 
     await waitFor(() => {
-      expect(result.current.formatDate(new Date(2020, 1, 13, 16, 28), 'numericHour')).toEqual('2020-02-13 16:28')
+      expect(result.current.formatDate(new Date(2020, 1, 13, 16, 28), 'numericHour')).toBe('2020-02-13 16:28')
     })
   })
 
@@ -756,7 +753,7 @@ describe('i18n hook', () => {
       })
 
       await waitFor(() => {
-        expect(result.current.dateFnsLocale?.code).toEqual('en-GB')
+        expect(result.current.dateFnsLocale?.code).toBe('en-GB')
       })
     })
 
@@ -764,7 +761,7 @@ describe('i18n hook', () => {
       vi.spyOn(global, 'navigator', 'get').mockReturnValueOnce({
         languages: ['fr'],
       } as unknown as Navigator)
-      const mockGetItem = vi.fn().mockImplementation(() => 'fr')
+      const mockGetItem = vi.fn().mockReturnValue('fr')
       const mockSetItem = vi.fn()
       const mockRemoveItem = vi.fn()
       const localStorageMock = vi.spyOn(global, 'localStorage', 'get').mockReturnValue({
@@ -782,13 +779,13 @@ describe('i18n hook', () => {
       })
 
       await waitFor(() => {
-        expect(result.current.currentLocale).toEqual('fr')
+        expect(result.current.currentLocale).toBe('fr')
         expect(mockGetItem).toHaveBeenCalledOnce()
         expect(mockGetItem).toHaveBeenCalledWith(LOCALE_ITEM_STORAGE)
       })
 
       await waitFor(() => {
-        expect(result.current.dateFnsLocale?.code).toEqual('fr')
+        expect(result.current.dateFnsLocale?.code).toBe('fr')
         expect(result.current.dateFnsLocale).toMatchObject({ code: 'fr' })
       })
 

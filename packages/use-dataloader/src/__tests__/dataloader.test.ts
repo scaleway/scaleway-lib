@@ -81,7 +81,7 @@ describe('dataloader class', () => {
       method,
       notifyChanges: notify,
     })
-    expect(instance.getData()).toBe(undefined)
+    expect(instance.getData()).toBeUndefined()
     expect(notify).toHaveBeenCalledTimes(0)
 
     // don't await as we will cancel this instance before
@@ -91,7 +91,7 @@ describe('dataloader class', () => {
     instance.cancel()
     expect(notify).toHaveBeenCalledTimes(0)
 
-    expect(instance.getData()).toBe(undefined)
+    expect(instance.getData()).toBeUndefined()
     instance.clearData()
   })
 
@@ -121,7 +121,7 @@ describe('dataloader class', () => {
     })
     await instance.load()
     expect(method).toHaveBeenCalledOnce()
-    expect(instance.getData()).toBe(null)
+    expect(instance.getData()).toBeNull()
   })
   test('should create instance with undefined data', async () => {
     const method = vi.fn(fakeUndefinedPromise)
@@ -134,7 +134,7 @@ describe('dataloader class', () => {
     })
     await instance.load()
     expect(method).toHaveBeenCalledOnce()
-    expect(instance.getData()).toBe(undefined)
+    expect(instance.getData()).toBeUndefined()
   })
 
   test('should create instance with error', async () => {
@@ -192,7 +192,7 @@ describe('dataloader class', () => {
     expect(notifyChanges).toHaveBeenCalledOnce()
     expect(onError).toHaveBeenCalledTimes(0)
     await waitForExpect(async () => {
-      expect(await res).toBeUndefined()
+      await expect(res).resolves.toBeUndefined()
     })
   })
 

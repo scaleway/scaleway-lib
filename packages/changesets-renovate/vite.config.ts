@@ -25,6 +25,6 @@ export default mergeConfig(config, {
     target: ['node20'],
   },
   test: {
-    setupFiles: ['./vitest.setup.ts'],
+    setupFiles: ['./vitest.setup.ts', '@testing-library/jest-dom/vitest'],
   },
 })

@@ -24,7 +24,7 @@ describe('useAbTestAttributes', () => {
     } = renderHook(() => useAbTestAttributes())
 
     expect(getAttributes).toHaveBeenCalledOnce()
-    expect(attributes).toEqual({ foo: 'bar' })
+    expect(attributes).toStrictEqual({ foo: 'bar' })
   })
 
   it('should allow to set Attributes through Growthbook', () => {
