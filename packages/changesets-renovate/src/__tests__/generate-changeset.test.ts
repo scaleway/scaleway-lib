@@ -1,10 +1,14 @@
 import { readFile, writeFile } from 'node:fs/promises'
+import { defaultConfig, read } from '@changesets/config'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { defaultGitValues, mockSimpleGit } from '../../__mocks__/simple-git'
 import { run } from '../cli.js'
 
 // Mock all external dependencies
 vi.mock('node:fs/promises')
+vi.mock('@changesets/config')
+
+vi.mocked(read).mockResolvedValue(defaultConfig)
 
 const mockedWriteFile = vi.mocked(writeFile)
 const mockedReadFile = vi.mocked(readFile)
@@ -12,13 +16,7 @@ const mockedReadFile = vi.mocked(readFile)
 beforeEach(() => {
   vi.spyOn(console, 'log')
   // Mock readFile to return empty config by default
-  mockedReadFile.mockImplementation(async path => {
-    if (path === '.changeset/config.json') {
-      return '{}'
-    }
-
-    return '{}'
-  })
+  vi.clearAllMocks()
 })
 
 describe('generate changeset file', () => {
@@ -76,9 +74,6 @@ describe('generate changeset file', () => {
 
     // Mock changeset config for this test
     mockedReadFile.mockImplementation(async path => {
-      if (path === '.changeset/config.json') {
-        return '{}'
-      }
       if (path === 'test/package.json') {
         return `{"name":"packageName","version":"1.0.0"}`
       }
@@ -129,9 +124,6 @@ describe('generate changeset file', () => {
 
     // Mock changeset config for this test
     mockedReadFile.mockImplementation(async path => {
-      if (path === '.changeset/config.json') {
-        return '{}'
-      }
       if (path === 'test/package.json') {
         return `{"name":"packageName","version":"1.0.0"}`
       }
@@ -220,9 +212,6 @@ describe('generate changeset file', () => {
 
     // Mock changeset config for this test
     mockedReadFile.mockImplementation(async path => {
-      if (path === '.changeset/config.json') {
-        return '{}'
-      }
       if (path === 'test/package.json') {
         return `{"name":"packageName","version":"1.0.0"}`
       }
@@ -271,9 +260,6 @@ describe('generate changeset file', () => {
 
     // Mock changeset config for this test
     mockedReadFile.mockImplementation(async path => {
-      if (path === '.changeset/config.json') {
-        return '{}'
-      }
       if (path === 'test/package.json') {
         return `{"name":"packageName","version":"1.0.0"}`
       }
@@ -327,9 +313,6 @@ describe('generate changeset file', () => {
 
     // Mock changeset config for this test
     mockedReadFile.mockImplementation(async path => {
-      if (path === '.changeset/config.json') {
-        return '{}'
-      }
       if (path === 'test-a/package.json') {
         return `{"name":"packageNameA","version":"1.0.0"}`
       }
@@ -375,9 +358,6 @@ describe('generate changeset file', () => {
 
     // Mock changeset config for this test
     mockedReadFile.mockImplementation(async path => {
-      if (path === '.changeset/config.json') {
-        return '{}'
-      }
       if (path === 'package.json') {
         return `{"name":"packageName","workspaces":[]}`
       }
@@ -414,9 +394,6 @@ describe('generate changeset file', () => {
 
     // Mock changeset config for this test
     mockedReadFile.mockImplementation(async path => {
-      if (path === '.changeset/config.json') {
-        return '{}'
-      }
       if (path === 'package.json') {
         return `{"name":"packageName"}`
       }
@@ -451,11 +428,10 @@ describe('generate changeset file', () => {
 `,
     })
 
+    vi.mocked(read).mockResolvedValue({ ...defaultConfig, ignore: ['packageName'] })
+
     // Mock changeset config for this test
     mockedReadFile.mockImplementation(async path => {
-      if (path === '.changeset/config.json') {
-        return '{"ignore":["packageName"]}'
-      }
       if (path === 'test/package.json') {
         return `{"name":"packageName","version":"1.0.0"}`
       }
@@ -490,11 +466,10 @@ describe('generate changeset file', () => {
 `,
     })
 
+    vi.mocked(read).mockResolvedValue({ ...defaultConfig, ignore: ['@example/*'] })
+
     // Mock changeset config for this test
     mockedReadFile.mockImplementation(async path => {
-      if (path === '.changeset/config.json') {
-        return '{"ignore":["@example/*"]}'
-      }
       if (path === 'test/package.json') {
         return `{"name":"@example/test","version":"1.0.0"}`
       }

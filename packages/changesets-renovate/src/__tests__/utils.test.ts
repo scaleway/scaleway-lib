@@ -1,4 +1,5 @@
 import { readFile } from 'node:fs/promises'
+import { defaultConfig, read } from '@changesets/config'
 import { glob } from 'tinyglobby'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { parse } from 'yaml'
@@ -13,6 +14,9 @@ import {
 vi.mock('node:fs/promises')
 vi.mock('yaml')
 vi.mock('tinyglobby')
+vi.mock('@changesets/config')
+
+vi.mocked(read).mockResolvedValue(defaultConfig)
 
 describe('pnpm-catalogs-utils', () => {
   beforeEach(() => {
@@ -188,12 +192,10 @@ catalog:
     })
 
     it('should find packages affected by dependency changes and respect changeset ignore config', async () => {
+      vi.mocked(read).mockResolvedValue({ ...defaultConfig, ignore: ['package-c'] })
+
       // Mock file system reads for package.json files
       vi.mocked(readFile).mockImplementation((async (filePath: string) => {
-        if (filePath === '.changeset/config.json') {
-          return '{"ignore":["package-c"]}'
-        }
-
         if (filePath === 'packages/package-a/package.json') {
           return JSON.stringify({
             dependencies: {
@@ -257,13 +259,7 @@ catalog:
     })
 
     it('should handle file read errors gracefully', async () => {
-      vi.mocked(readFile).mockImplementation(async filePath => {
-        if (filePath === '.changeset/config.json') {
-          return '{"ignore":["package-c"]}'
-        }
-
-        throw new Error('File read error')
-      })
+      vi.mocked(readFile).mockRejectedValue(new Error('File read error'))
 
       const result = await findAffectedPackages(['changed-dep'])
 

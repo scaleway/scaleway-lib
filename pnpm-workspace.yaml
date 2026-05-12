@@ -4,11 +4,14 @@ packages:
 catalog:
   '@changesets/changelog-github': 0.7.0
   '@changesets/cli': 2.31.0
+  '@changesets/config': 3.1.4
+  '@changesets/should-skip-package': 0.1.2
   '@formatjs/ecma402-abstract': 3.2.0
   '@formatjs/fast-memoize': 3.1.4
   '@formatjs/icu-messageformat-parser': 3.5.7
   '@growthbook/growthbook-react': 1.6.5
   '@manypkg/cli': 0.25.1
+  '@manypkg/get-packages': 3.1.0
   '@rudderstack/analytics-js': 3.31.1
   '@segment/analytics-next': 1.84.0
   '@testing-library/jest-dom': 6.9.1
