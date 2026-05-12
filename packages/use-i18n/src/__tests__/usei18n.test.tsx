@@ -1,7 +1,6 @@
 import { act, renderHook, waitFor } from '@testing-library/react'
 import { enGB, fr as frDateFns } from 'date-fns/locale'
 import { MissingValueError } from 'intl-messageformat'
-import mockdate from 'mockdate'
 import type { ComponentProps, ReactNode } from 'react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import I18n, { useI18n, useTranslation } from '..'
@@ -94,11 +93,12 @@ describe('i18n hook', () => {
       language: 'en-US',
       languages: ['en-US', 'en'],
     } as unknown as Navigator)
+    vi.useFakeTimers()
   })
 
   afterEach(() => {
     localStorage.clear()
-    mockdate.reset()
+    vi.useRealTimers()
   })
 
   it('useTranslation should not be defined without I18nProvider', () => {
@@ -675,7 +675,7 @@ describe('i18n hook', () => {
         defaultLocale: 'en',
       }),
     })
-    mockdate.set('4/13/2021')
+    vi.setSystemTime(new Date('4/13/2021'))
     const date = new Date('September 13, 2000 15:15:00')
 
     expect(result.current.relativeTime(date)).toBe('over 20 years ago')
@@ -696,7 +696,7 @@ describe('i18n hook', () => {
         defaultLocale: 'en',
       }),
     })
-    mockdate.set('4/13/2021')
+    vi.setSystemTime(new Date('4/13/2021'))
     const date = new Date('September 13, 2011 15:15:00')
 
     expect(result.current.relativeTimeStrict(date)).toBe('3499 days ago')

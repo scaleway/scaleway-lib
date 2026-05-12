@@ -44,7 +44,6 @@
     "js-yaml": "catalog:",
     "jsdom": "catalog:",
     "lint-staged": "catalog:",
-    "mockdate": "catalog:",
     "oxfmt": "catalog:",
     "oxlint": "catalog:",
     "oxlint-tsgolint": "catalog:",
