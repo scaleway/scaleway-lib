@@ -15,9 +15,6 @@ catalogs:
     '@changesets/config':
       specifier: 3.1.4
       version: 3.1.4
-    '@changesets/should-skip-package':
-      specifier: 0.1.2
-      version: 0.1.2
     '@formatjs/ecma402-abstract':
       specifier: 3.2.0
       version: 3.2.0
@@ -33,9 +30,6 @@ catalogs:
     '@manypkg/cli':
       specifier: 0.25.1
       version: 0.25.1
-    '@manypkg/get-packages':
-      specifier: 3.1.0
-      version: 3.1.0
     '@rudderstack/analytics-js':
       specifier: 3.31.1
       version: 3.31.1
@@ -273,12 +267,6 @@ importers:
       '@changesets/config':
         specifier: 'catalog:'
         version: 3.1.4
-      '@changesets/should-skip-package':
-        specifier: 'catalog:'
-        version: 0.1.2
-      '@manypkg/get-packages':
-        specifier: 'catalog:'
-        version: 3.1.0
       simple-git:
         specifier: 'catalog:'
         version: 3.36.0

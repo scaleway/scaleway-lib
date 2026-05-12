@@ -1,26 +1,24 @@
 import { readFile, writeFile } from 'node:fs/promises'
-import { defaultConfig, read } from '@changesets/config'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import * as changesetConfig from '@changesets/config'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { defaultGitValues, mockSimpleGit } from '../../__mocks__/simple-git'
 import { run } from '../cli.js'
 
 // Mock all external dependencies
 vi.mock('node:fs/promises')
-vi.mock('@changesets/config')
 
-vi.mocked(read).mockResolvedValue(defaultConfig)
+vi.spyOn(changesetConfig, 'read').mockResolvedValue(changesetConfig.defaultConfig)
 
 const mockedWriteFile = vi.mocked(writeFile)
 const mockedReadFile = vi.mocked(readFile)
 
-beforeEach(() => {
-  vi.spyOn(console, 'log')
-  // Mock readFile to return empty config by default
-  vi.clearAllMocks()
-})
-
 describe('generate changeset file', () => {
   beforeEach(() => {
+    vi.spyOn(console, 'log')
+  })
+
+  afterEach(() => {
+    vi.restoreAllMocks()
     delete process.env['SKIP_BRANCH_CHECK']
     delete process.env['SKIP_COMMIT']
     delete process.env['BRANCH_PREFIX']
@@ -428,50 +426,12 @@ describe('generate changeset file', () => {
 `,
     })
 
-    vi.mocked(read).mockResolvedValue({ ...defaultConfig, ignore: ['packageName'] })
+    vi.spyOn(changesetConfig, 'read').mockResolvedValue({ ...changesetConfig.defaultConfig, ignore: ['packageName'] })
 
     // Mock changeset config for this test
     mockedReadFile.mockImplementation(async path => {
       if (path === 'test/package.json') {
         return `{"name":"packageName","version":"1.0.0"}`
-      }
-
-      return '{}'
-    })
-
-    await run()
-
-    expect(mockedReadFile).toHaveBeenCalledWith(file, 'utf8')
-    expect(console.log).toHaveBeenCalledWith('No packages modified, skipping')
-  })
-
-  it('should ignore changeset ignored packages with star', async () => {
-    const file = 'test/package.json'
-
-    mockSimpleGit.mockReturnValue({
-      ...defaultGitValues,
-      branch: () => ({
-        current: 'renovate/test',
-      }),
-      diffSummary: () => ({
-        files: [
-          {
-            file,
-          },
-        ],
-      }),
-      show: () => `
-+ "package": "version"
-+ "package2": "version2"
-`,
-    })
-
-    vi.mocked(read).mockResolvedValue({ ...defaultConfig, ignore: ['@example/*'] })
-
-    // Mock changeset config for this test
-    mockedReadFile.mockImplementation(async path => {
-      if (path === 'test/package.json') {
-        return `{"name":"@example/test","version":"1.0.0"}`
       }
 
       return '{}'

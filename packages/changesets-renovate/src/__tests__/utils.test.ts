@@ -1,5 +1,5 @@
 import { readFile } from 'node:fs/promises'
-import { defaultConfig, read } from '@changesets/config'
+import * as changesetConfig from '@changesets/config'
 import { glob } from 'tinyglobby'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { parse } from 'yaml'
@@ -14,9 +14,8 @@ import {
 vi.mock('node:fs/promises')
 vi.mock('yaml')
 vi.mock('tinyglobby')
-vi.mock('@changesets/config')
 
-vi.mocked(read).mockResolvedValue(defaultConfig)
+vi.spyOn(changesetConfig, 'read').mockResolvedValue(changesetConfig.defaultConfig)
 
 describe('pnpm-catalogs-utils', () => {
   beforeEach(() => {
@@ -167,6 +166,7 @@ catalog:
             dependencies: {
               'changed-dep': 'catalog:',
             },
+            version: '1.0.0',
             name: 'package-a',
           })
         }
@@ -175,6 +175,7 @@ catalog:
             dependencies: {
               'unchanged-dep': 'catalog:',
             },
+            version: '1.0.0',
             name: 'package-b',
           })
         }
@@ -192,7 +193,7 @@ catalog:
     })
 
     it('should find packages affected by dependency changes and respect changeset ignore config', async () => {
-      vi.mocked(read).mockResolvedValue({ ...defaultConfig, ignore: ['package-c'] })
+      vi.spyOn(changesetConfig, 'read').mockResolvedValue({ ...changesetConfig.defaultConfig, ignore: ['package-c'] })
 
       // Mock file system reads for package.json files
       vi.mocked(readFile).mockImplementation((async (filePath: string) => {
@@ -201,6 +202,7 @@ catalog:
             dependencies: {
               'changed-dep': 'catalog:',
             },
+            version: '1.0.0',
             name: 'package-a',
           })
         }
@@ -209,6 +211,7 @@ catalog:
             dependencies: {
               'unchanged-dep': 'catalog:',
             },
+            version: '1.0.0',
             name: 'package-b',
           })
         }
@@ -217,6 +220,7 @@ catalog:
             dependencies: {
               'changed-dep': 'catalog:',
             },
+            version: '1.0.0',
             name: 'package-c',
           })
         }
@@ -240,6 +244,7 @@ catalog:
           dependencies: {
             'unchanged-dep': 'catalog:',
           },
+          version: '1.0.0',
           name: 'package-a',
         }),
       ) as any
