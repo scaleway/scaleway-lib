@@ -25,12 +25,12 @@ function shouldSkipPackage(
   return !packageJson.version
 }
 
-export async function getChangesetconfig() {
+export async function getChangesetConfig(): ReturnType<typeof read> {
   return read(process.cwd())
 }
 
 export async function getPackagesNames(files: string[]): Promise<string[]> {
-  const config = await getChangesetconfig()
+  const config = await getChangesetConfig()
   const packages: string[] = []
 
   const promises = files.map(async file => {
@@ -123,7 +123,7 @@ export async function findAffectedPackages(
     return new Set()
   }
 
-  const config = await getChangesetconfig()
+  const config = await getChangesetConfig()
   const packageJsonPaths = await glob(packageJsonGlob, { expandDirectories: false })
   const affectedPackages = new Set<string>()
 
