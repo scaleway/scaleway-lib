@@ -442,4 +442,45 @@ describe('generate changeset file', () => {
     expect(mockedReadFile).toHaveBeenCalledWith(file, 'utf8')
     expect(console.log).toHaveBeenCalledWith('No packages modified, skipping')
   })
+
+  it('should ignore private packages if config said so', async () => {
+    const file = 'test/package.json'
+
+    mockSimpleGit.mockReturnValue({
+      ...defaultGitValues,
+      branch: () => ({
+        current: 'renovate/test',
+      }),
+      diffSummary: () => ({
+        files: [
+          {
+            file,
+          },
+        ],
+      }),
+      show: () => `
++ "package": "version"
++ "package2": "version2"
+`,
+    })
+
+    vi.spyOn(changesetConfig, 'read').mockResolvedValue({
+      ...changesetConfig.defaultConfig,
+      privatePackages: { version: false, tag: false },
+    })
+
+    // Mock changeset config for this test
+    mockedReadFile.mockImplementation(async path => {
+      if (path === 'test/package.json') {
+        return `{"name":"packageName","version":"1.0.0", "private": true }`
+      }
+
+      return '{}'
+    })
+
+    await run()
+
+    expect(mockedReadFile).toHaveBeenCalledWith(file, 'utf8')
+    expect(console.log).toHaveBeenCalledWith('No packages modified, skipping')
+  })
 })
