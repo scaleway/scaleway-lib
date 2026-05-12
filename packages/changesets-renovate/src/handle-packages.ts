@@ -1,9 +1,9 @@
 // oxlint-disable eslint/max-statements
 // oxlint-disable eslint/no-console
 import { simpleGit } from 'simple-git'
-import { createChangeset } from './createChangeset.js'
-import { getBumpsFromGit, handleChangesetFile } from './git-utils.js'
-import { getPackagesNames } from './utils.js'
+import { createChangeset } from './createChangeset.ts'
+import { getBumpsFromGit, handleChangesetFile } from './git-utils.ts'
+import { getPackagesNames } from './utils.ts'
 
 /**
  * Handle package.json changes (original Renovate flow)

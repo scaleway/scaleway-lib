@@ -1,9 +1,7 @@
 import { readFile } from 'node:fs/promises'
 import path from 'node:path'
-import fg from 'fast-glob'
-import { load } from 'js-yaml'
-
-const { globSync } = fg
+import { glob } from 'tinyglobby'
+import { parse } from 'yaml'
 
 export function shouldIgnorePackage(packageName: string, ignoredPackages: string[]): boolean {
   return ignoredPackages.some(ignoredPackage => {
@@ -57,7 +55,7 @@ export async function getPackagesNames(files: string[]): Promise<string[]> {
 export async function loadCatalogFromFile(filePath: string): Promise<Record<string, string>> {
   try {
     const content = await readFile(filePath, 'utf8')
-    const parsed = load(content) as {
+    const parsed = parse(content) as {
       catalog?: Record<string, string>
     } | null
 
@@ -76,7 +74,7 @@ export async function loadCatalogFromFile(filePath: string): Promise<Record<stri
  */
 export function loadCatalogFromWorkspaceContent(content: string): Record<string, string> {
   try {
-    const parsed = load(content) as {
+    const parsed = parse(content) as {
       catalog?: Record<string, string>
     } | null
 
@@ -117,7 +115,8 @@ export async function findAffectedPackages(
     return new Set()
   }
 
-  const packageJsonPaths = globSync(packageJsonGlob)
+  const ignoredPackages = await getChangesetIgnoredPackages()
+  const packageJsonPaths = await glob(packageJsonGlob, { expandDirectories: false })
   const affectedPackages = new Set<string>()
 
   for (const pkgJsonPath of packageJsonPaths) {
@@ -126,11 +125,16 @@ export async function findAffectedPackages(
         dependencies?: Record<string, string>
         devDependencies?: Record<string, string>
         peerDependencies?: Record<string, string>
+        name: string
       }
       const deps = {
         ...json.dependencies,
         ...json.devDependencies,
         ...json.peerDependencies,
+      }
+
+      if (shouldIgnorePackage(json.name, ignoredPackages)) {
+        break
       }
 
       for (const dep of changedDeps) {

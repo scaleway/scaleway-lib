@@ -4,15 +4,15 @@
 
 import { env } from 'node:process'
 import { simpleGit } from 'simple-git'
-import { handleCatalogChanges } from './handle-catalog.js'
-import { handlePackageChanges } from './handle-packages.js'
+import { handleCatalogChanges } from './handle-catalog.ts'
+import { handlePackageChanges } from './handle-packages.ts'
 
 async function run(): Promise<void> {
   // Original Renovate mode
   const branch = await simpleGit().branch()
   const branchPrefix = env['BRANCH_PREFIX'] ?? 'renovate/'
 
-  console.log('Detected branch:', branch)
+  console.log('Detected branch:', branch.current)
 
   if (!(branch.current.startsWith(branchPrefix) || env['SKIP_BRANCH_CHECK'])) {
     console.log('Not a renovate branch, skipping')

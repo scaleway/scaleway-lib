@@ -1,15 +1,13 @@
 import fs from 'node:fs/promises'
-import fg from 'fast-glob'
-import * as yaml from 'js-yaml'
+import { glob } from 'tinyglobby'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { parse } from 'yaml'
 import { mockSimpleGit } from '../../__mocks__/simple-git'
 import { findAffectedPackages, findChangedDependenciesFromGit, loadCatalogFromGit } from '../git-utils.js'
 
-const { globSync } = fg
-
 // Mock all external dependencies
-vi.mock('js-yaml')
-vi.mock('fast-glob')
+vi.mock('yaml')
+vi.mock('tinyglobby')
 vi.mock('node:fs/promises')
 
 describe('pnpm-catalogs-git-utils', () => {
@@ -34,7 +32,7 @@ catalog:
         revparse: vi.fn(),
         show: vi.fn().mockResolvedValue(mockContent),
       })
-      vi.mocked(yaml.load).mockReturnValue({
+      vi.mocked(parse).mockReturnValue({
         catalog: {
           'another-package': '2.0.0',
           'test-package': '1.0.0',
@@ -44,7 +42,7 @@ catalog:
       const result = await loadCatalogFromGit('abc123', 'pnpm-workspace.yaml')
 
       expect(mockSimpleGit().show).toHaveBeenCalledWith(['abc123:pnpm-workspace.yaml'])
-      expect(yaml.load).toHaveBeenCalledWith(mockContent)
+      expect(parse).toHaveBeenCalledWith(mockContent)
       expect(result).toStrictEqual({
         'another-package': '2.0.0',
         'test-package': '1.0.0',
@@ -99,7 +97,7 @@ catalog:
       })
 
       // Mock yaml parsing
-      vi.mocked(yaml.load).mockImplementation((content: string) => {
+      vi.mocked(parse).mockImplementation((content: string) => {
         if (content.includes('1.0.0')) {
           return {
             catalog: {
@@ -134,7 +132,7 @@ catalog:
   describe('findAffectedPackages', () => {
     it('should find packages affected by dependency changes', async () => {
       // Mock file system reads for package.json files
-      vi.mocked(globSync).mockReturnValue(['packages/package-a/package.json', 'packages/package-b/package.json'])
+      vi.mocked(glob).mockResolvedValue(['packages/package-a/package.json', 'packages/package-b/package.json'])
 
       // oxlint-disable @typescript-eslint/require-await
       // oxlint-disable typescript-eslint/no-unsafe-argument
@@ -161,7 +159,7 @@ catalog:
 
       const result = await findAffectedPackages(['changed-dep'])
 
-      expect(globSync).toHaveBeenCalledWith('packages/*/package.json')
+      expect(glob).toHaveBeenCalledWith('packages/*/package.json', { expandDirectories: false })
       expect(result).toBeInstanceOf(Set)
       expect(result.size).toBe(1)
       expect(result).toContain('package-a')
