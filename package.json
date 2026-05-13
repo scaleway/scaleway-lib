@@ -37,6 +37,7 @@
     "@types/react-dom": "catalog:",
     "@typescript/native-preview": "catalog:",
     "@vitejs/plugin-react": "catalog:",
+    "@vitest/coverage-istanbul": "catalog:",
     "browserslist": "catalog:",
     "chalk": "catalog:",
     "fast-glob": "catalog:",
@@ -82,23 +83,6 @@
     "pnpm": ">=10.x"
   },
   "packageManager": "pnpm@11.0.0",
-  "pnpm": {
-    "overrides": {
-      "vite": "$vite",
-      "vitest": "$vitest"
-    },
-    "peerDependencyRules": {
-      "allowedVersions": {
-        "react": "18 || 19",
-        "react-dom": "18 || 19",
-        "@types/react": "18 || 19"
-      }
-    },
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "unrs-resolver"
-    ]
-  },
   "manypkg": {
     "ignoredRules": [
       "INTERNAL_MISMATCH"

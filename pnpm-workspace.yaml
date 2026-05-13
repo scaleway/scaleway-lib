@@ -1,6 +1,9 @@
 packages:
   - packages/*
 
+allowBuilds:
+  esbuild: true
+
 catalog:
   '@changesets/changelog-github': 0.7.0
   '@changesets/cli': 2.31.0
@@ -20,6 +23,7 @@ catalog:
   '@types/react-dom': 19.2.3
   '@typescript/native-preview': 7.0.0-dev.20260509.2
   '@vitejs/plugin-react': 6.0.1
+  '@vitest/coverage-istanbul': 4.1.6
   browserslist: 4.28.2
   chalk: 5.6.2
   cookie: 1.1.1
@@ -58,7 +62,15 @@ catalog:
 catalogMode: strict
 cleanupUnusedCatalogs: true
 
-packageManagerStrictVersion: true
+overrides:
+  vite: $vite
+  vitest: $vitest
+
+peerDependencyRules:
+  allowedVersions:
+    '@types/react': 18 || 19
+    react: 18 || 19
+    react-dom: 18 || 19
 
 savePrefix: ''
 
