@@ -12,35 +12,25 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/scaleway/scaleway-lib",
+    "url": "git+https://github.com/scaleway/scaleway-lib.git",
     "directory": "packages/changesets-renovate"
   },
   "bin": {
-    "changesets-renovate": "dist/cli.js"
+    "changesets-renovate": "dist/cli.mjs"
   },
   "files": [
     "dist"
   ],
   "type": "module",
-  "sideEffects": false,
-  "module": "./dist/cli.js",
-  "types": "./dist/cli.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/cli.d.ts",
-      "default": "./dist/cli.js"
-    }
-  },
+  "module": "./dist/cli.mjs",
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "prebuild": "shx rm -rf dist",
+    "prepack": "cp ../../.npmignore .",
     "typecheck": "tsgo --noEmit",
-    "type:generate": "tsgo --declaration -p tsconfig.build.json",
-    "build": "vite build --config vite.config.ts && pnpm run type:generate",
-    "build:profile": "npx vite-bundle-visualizer -c vite.config.ts",
-    "test:unit": "vitest --run --config vite.config.ts",
+    "build": "tsdown --config tsdown.config.ts",
+    "test:unit": "vitest --run",
     "test:unit:coverage": "pnpm test:unit --coverage"
   },
   "dependencies": {
@@ -50,6 +40,6 @@
     "yaml": "catalog:"
   },
   "engines": {
-    "node": ">=20.x"
+    "node": ">=24"
   }
 }

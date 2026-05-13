@@ -10,35 +10,23 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/scaleway/scaleway-lib",
+    "url": "git+https://github.com/scaleway/scaleway-lib.git",
     "directory": "packages/validate-icu-locales"
   },
   "bin": {
-    "validate-icu": "dist/index.js"
+    "validate-icu": "dist/index.mjs"
   },
   "files": [
     "dist/"
   ],
   "type": "module",
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "require": "./dist/index.cjs",
-      "default": "./dist/index.js"
-    }
-  },
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "prebuild": "shx rm -rf dist",
+    "prepack": "cp ../../.npmignore .",
     "typecheck": "tsgo --noEmit",
-    "type:generate": "tsgo --declaration -p tsconfig.build.json",
-    "build": "vite build --config vite.config.ts && pnpm run type:generate",
-    "build:profile": "npx vite-bundle-visualizer -c vite.config.ts",
+    "build": "tsdown --config tsdown.config.ts",
     "test": "vitest run",
     "test:watch": "vitest"
   },
@@ -50,6 +38,6 @@
     "execa": "catalog:"
   },
   "engines": {
-    "node": ">=20.x"
+    "node": ">=24"
   }
 }

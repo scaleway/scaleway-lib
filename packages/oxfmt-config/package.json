@@ -12,7 +12,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/scaleway/scaleway-lib",
+    "url": "git+https://github.com/scaleway/scaleway-lib.git",
     "directory": "packages/oxfmt-config"
   },
   "type": "module",
@@ -29,10 +29,9 @@
     "access": "public"
   },
   "scripts": {
-    "prebuild": "shx rm -rf dist",
+    "prepack": "cp ../../.npmignore .",
     "typecheck": "tsgo --noEmit",
-    "type:generate": "tsgo --declaration -p tsconfig.build.json",
-    "build": "vite build --config vite.config.ts && pnpm run type:generate",
+    "build": "tsdown --config tsdown.config.ts",
     "build:profile": "npx vite-bundle-visualizer -c vite.config.ts"
   },
   "dependencies": {

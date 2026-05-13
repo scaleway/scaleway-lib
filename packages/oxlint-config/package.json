@@ -9,21 +9,15 @@
     "oxlint-config",
     "scaleway"
   ],
-  "homepage": "https://github.com/scaleway/oxlint-config-scaleway#readme",
-  "bugs": {
-    "url": "https://github.com/scaleway/oxlint-config-scaleway/issues"
-  },
   "license": "MIT",
-  "author": "Scaleway",
   "repository": {
     "type": "git",
-    "url": "https://github.com/scaleway/scaleway-lib",
+    "url": "git+https://github.com/scaleway/scaleway-lib.git",
     "directory": "packages/oxlint-config"
   },
   "files": [
     "configs/**"
   ],
-  "main": "index.json",
   "exports": {
     ".": "./configs/index.json",
     "./react": "./configs/react.json",
@@ -34,7 +28,7 @@
     "access": "public"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepack": "cp ../../.npmignore ."
   },
   "devDependencies": {
     "oxlint": "catalog:"

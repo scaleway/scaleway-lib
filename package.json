@@ -6,6 +6,7 @@
   ],
   "type": "module",
   "scripts": {
+    "preinstall": "git config --local include.path $PWD/.gitconfig",
     "lint:catalog": "pnpm check-catalog-usage",
     "oxc": "pnpm oxlint -c .oxlintrc.jsonc --type-aware --type-check",
     "oxc:quiet": "pnpm oxc --quiet",
@@ -21,6 +22,7 @@
     "release": "pnpm build && pnpm changeset publish"
   },
   "devDependencies": {
+    "@arethetypeswrong/core": "catalog:",
     "@changesets/changelog-github": "catalog:",
     "@changesets/cli": "catalog:",
     "@manypkg/cli": "catalog:",
@@ -46,11 +48,12 @@
     "oxfmt": "catalog:",
     "oxlint": "catalog:",
     "oxlint-tsgolint": "catalog:",
+    "publint": "catalog:",
     "read-pkg": "catalog:",
     "shx": "catalog:",
+    "tsdown": "catalog:",
     "turbo": "catalog:",
     "typescript": "catalog:",
-    "vite": "catalog:",
     "vitest": "catalog:",
     "vitest-localstorage-mock": "catalog:",
     "wait-for-expect": "catalog:"
