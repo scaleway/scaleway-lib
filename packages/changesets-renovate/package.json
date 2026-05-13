@@ -22,7 +22,6 @@
     "dist"
   ],
   "type": "module",
-  "module": "./dist/cli.mjs",
   "publishConfig": {
     "access": "public"
   },

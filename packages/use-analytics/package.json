@@ -21,21 +21,10 @@
   "type": "module",
   "sideEffects": false,
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
-    },
-    "./analytics": {
-      "types": "./dist/analytics/index.d.ts",
-      "import": "./dist/analytics/index.js",
-      "default": "./dist/analytics/index.js"
-    },
-    "./cookies-consent": {
-      "types": "./dist/cookies-consent/index.d.ts",
-      "import": "./dist/cookies-consent/index.js",
-      "default": "./dist/cookies-consent/index.js"
-    }
+    ".": "./dist/index.js",
+    "./analytics": "./dist/analytics/index.js",
+    "./cookies-consent": "./dist/cookies-consent/index.js",
+    "./package.json": "./package.json"
   },
   "publishConfig": {
     "access": "public"

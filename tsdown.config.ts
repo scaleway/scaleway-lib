@@ -12,4 +12,5 @@ export const defaultConfig = defineConfig({
   },
   publint: true,
   unbundle: true,
+  exports: true,
 })

@@ -16,6 +16,10 @@
     "dist"
   ],
   "type": "module",
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./package.json": "./package.json"
+  },
   "scripts": {
     "prepack": "cp ../../.npmignore .",
     "build": "tsdown --config tsdown.config.ts",

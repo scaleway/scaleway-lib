@@ -5,6 +5,7 @@ export default mergeConfig(
   defaultConfig,
   defineConfig({
     dts: false,
+    exports: false,
     platform: 'node',
     target: ['node24'],
   }),
