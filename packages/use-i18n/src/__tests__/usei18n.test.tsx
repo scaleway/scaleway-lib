@@ -721,13 +721,8 @@ describe('i18n hook', () => {
       await result.current.switchLocale('fr')
     })
 
-<<<<<<< HEAD
     await vi.waitFor(() => {
       expect(result.current.formatUnit(12, { short: false, unit: 'byte' })).toBe('12 octets')
-=======
-    await vi.waitFor(() => {
-      expect(result.current.formatUnit(12, { short: false, unit: 'byte' })).toEqual('12 octets')
->>>>>>> e07e03bb (fix: use vi.waitFor)
     })
   })
 
