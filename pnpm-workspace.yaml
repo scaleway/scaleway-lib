@@ -1,11 +1,6 @@
 packages:
   - packages/*
 
-pmOnFail: error
-
-allowBuilds:
-  esbuild: true
-
 catalog:
   '@changesets/changelog-github': 0.7.0
   '@changesets/cli': 2.31.0
@@ -63,6 +58,11 @@ catalog:
 
 catalogMode: strict
 cleanupUnusedCatalogs: true
+
+pmOnFail: error
+
+allowBuilds:
+  esbuild: true
 
 overrides:
   vite: $vite
