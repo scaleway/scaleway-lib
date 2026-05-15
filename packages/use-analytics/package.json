@@ -12,7 +12,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/scaleway/scaleway-lib",
+    "url": "git+https://github.com/scaleway/scaleway-lib.git",
     "directory": "packages/use-analytics"
   },
   "files": [
@@ -23,20 +23,14 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.js",
       "default": "./dist/index.js"
     },
     "./analytics": {
       "types": "./dist/analytics/index.d.ts",
-      "require": "./dist/analytics/index.cjs",
-      "import": "./dist/analytics/index.js",
       "default": "./dist/analytics/index.js"
     },
     "./cookies-consent": {
       "types": "./dist/cookies-consent/index.d.ts",
-      "require": "./dist/cookies-consent/index.cjs",
-      "import": "./dist/cookies-consent/index.js",
       "default": "./dist/cookies-consent/index.js"
     }
   },
@@ -44,13 +38,9 @@
     "access": "public"
   },
   "scripts": {
-    "prebuild": "shx rm -rf dist",
     "typecheck": "tsgo --noEmit",
-    "type:generate": "tsgo --declaration -p tsconfig.build.json",
-    "build": "vite build --config vite.config.ts && pnpm run type:generate",
-    "build:profile": "npx vite-bundle-visualizer -c vite.config.ts",
-    "lintpublish": "publint",
-    "test:unit": "vitest --run --config vite.config.ts",
+    "build": "tsdown",
+    "test:unit": "vitest --run",
     "test:unit:coverage": "pnpm test:unit --coverage"
   },
   "dependencies": {

@@ -2,20 +2,20 @@ import type { ReactNode } from 'react'
 import { vi } from 'vitest'
 
 // Create mock functions
-export const init = vi.fn()
-export const getAttributes = vi.fn()
-export const setAttributes = vi.fn()
-export const loadFeatures = vi.fn()
+export const init: ReturnType<typeof vi.fn> = vi.fn()
+export const getAttributes: ReturnType<typeof vi.fn> = vi.fn()
+export const setAttributes: ReturnType<typeof vi.fn> = vi.fn()
+export const loadFeatures: ReturnType<typeof vi.fn> = vi.fn()
 
 // Create a mock class for GrowthBook
 export class MockGrowthBook {
-  init = init
+  init: typeof init = init
 
-  getAttributes = getAttributes
+  getAttributes: typeof getAttributes = getAttributes
 
-  setAttributes = setAttributes
+  setAttributes: typeof setAttributes = setAttributes
 
-  loadFeatures = loadFeatures
+  loadFeatures: typeof loadFeatures = loadFeatures
 
   constructor() {
     // Reset mocks for each instance

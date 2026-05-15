@@ -3,33 +3,25 @@
   "version": "0.0.5",
   "private": false,
   "description": "peer deps",
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/scaleway/scaleway-lib",
+    "url": "git+https://github.com/scaleway/scaleway-lib.git",
     "directory": "packages/sync-peer-deps"
   },
   "bin": {
-    "sync-peer-deps": "./dist/index.js"
+    "sync-peer-deps": "./dist/index.mjs"
   },
   "files": [
     "dist"
   ],
   "type": "module",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "require": "./dist/index.cjs",
-      "default": "./dist/index.js"
-    }
+    ".": "./dist/index.mjs",
+    "./package.json": "./package.json"
   },
   "scripts": {
-    "prebuild": "shx rm -rf dist",
-    "type:generate": "tsgo --declaration -p tsconfig.build.json",
-    "build": "vite build --config vite.config.ts && pnpm run type:generate",
-    "build:profile": "npx vite-bundle-visualizer -c vite.config.ts",
-    "package:check": "pnpm publint",
+    "build": "tsdown",
     "typecheck": "tsgo -p tsconfig.json --noEmit"
   },
   "dependencies": {
@@ -41,6 +33,6 @@
     "@types/picomatch": "catalog:"
   },
   "engines": {
-    "node": ">=22.18.0"
+    "node": ">=24"
   }
 }

@@ -1,4 +1,1 @@
-**/__tests__/**
-src
-.eslintrc.cjs
-!.npmignore
+../../.npmignore

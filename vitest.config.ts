@@ -1,7 +1,7 @@
-import { defineConfig, mergeConfig } from 'vitest/config'
-import { defaultConfig as viteConfig } from './vite.config'
+import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vitest/config'
 
-export const defaultConfig = mergeConfig(viteConfig, {
+export const defaultConfig = defineConfig({
   test: {
     allowOnly: false,
     clearMocks: true,
@@ -44,6 +44,9 @@ export const defaultConfig = mergeConfig(viteConfig, {
       include: ['**/__typetests__/**/*.test.?(c|m)[jt]s?(x)'],
     },
   },
+  plugins: [
+    react({
+      jsxRuntime: 'automatic',
+    }),
+  ],
 })
-
-export default defineConfig(defaultConfig)
