@@ -21,18 +21,25 @@
   "type": "module",
   "sideEffects": false,
   "exports": {
-    ".": "./dist/index.js",
-    "./analytics": "./dist/analytics/index.js",
-    "./cookies-consent": "./dist/cookies-consent/index.js",
-    "./package.json": "./package.json"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./analytics": {
+      "types": "./dist/analytics/index.d.ts",
+      "default": "./dist/analytics/index.js"
+    },
+    "./cookies-consent": {
+      "types": "./dist/cookies-consent/index.d.ts",
+      "default": "./dist/cookies-consent/index.js"
+    }
   },
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "prepack": "cp ../../.npmignore .",
     "typecheck": "tsgo --noEmit",
-    "build": "tsdown --config tsdown.config.ts",
+    "build": "tsdown",
     "test:unit": "vitest --run",
     "test:unit:coverage": "pnpm test:unit --coverage"
   },

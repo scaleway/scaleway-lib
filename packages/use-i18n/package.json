@@ -30,9 +30,8 @@
     "access": "public"
   },
   "scripts": {
-    "prepack": "cp ../../.npmignore .",
     "typecheck": "tsgo --noEmit",
-    "build": "tsdown --config tsdown.config.ts",
+    "build": "tsdown",
     "test:unit": "TZ=UTC LANG=en_US.UTF8 NODE_ENV=test vitest --run",
     "test:unit:coverage": "pnpm test:unit --coverage",
     "test:types": "pnpm test:unit --typecheck.only"

@@ -21,8 +21,7 @@
     "./package.json": "./package.json"
   },
   "scripts": {
-    "prepack": "cp ../../.npmignore .",
-    "build": "tsdown --config tsdown.config.ts",
+    "build": "tsdown",
     "typecheck": "tsgo -p tsconfig.json --noEmit"
   },
   "dependencies": {

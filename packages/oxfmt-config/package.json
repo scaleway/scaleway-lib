@@ -26,9 +26,8 @@
     "access": "public"
   },
   "scripts": {
-    "prepack": "cp ../../.npmignore .",
     "typecheck": "tsgo --noEmit",
-    "build": "tsdown --config tsdown.config.ts",
+    "build": "tsdown",
     "build:profile": "npx vite-bundle-visualizer -c vite.config.ts"
   },
   "dependencies": {

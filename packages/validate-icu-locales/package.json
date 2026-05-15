@@ -24,9 +24,8 @@
     "access": "public"
   },
   "scripts": {
-    "prepack": "cp ../../.npmignore .",
     "typecheck": "tsgo --noEmit",
-    "build": "tsdown --config tsdown.config.ts",
+    "build": "tsdown",
     "test": "vitest run",
     "test:watch": "vitest"
   },
