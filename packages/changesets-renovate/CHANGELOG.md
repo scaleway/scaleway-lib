@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.3.0
+
+### Minor Changes
+
+- [#3286](https://github.com/scaleway/scaleway-lib/pull/3286) [`936f2fd`](https://github.com/scaleway/scaleway-lib/commit/936f2fda9192887bd706a3d39f15664a9ef3886c) Thanks [@chambo-e](https://github.com/chambo-e)! - Migrate js-yaml to yaml and fast-glob to tinyglobby
+
+  Respect changesets ignorePackages in catalog mode
+
 ## 2.2.6
 
 ### Patch Changes
