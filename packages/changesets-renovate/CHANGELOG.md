@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.4.0
+
+### Minor Changes
+
+- [#3288](https://github.com/scaleway/scaleway-lib/pull/3288) [`2ea3b57`](https://github.com/scaleway/scaleway-lib/commit/2ea3b5791e64abbdb521a0c87175306ed47e023a) Thanks [@chambo-e](https://github.com/chambo-e)! - Respect [privatePackages](https://github.com/changesets/changesets/blob/main/docs/config-file-options.md#privatepackages-object-or-false) changeset options
+
+  To disable renovate changesets on private packages you can now set `"privatePackages": false` in your `.changeset/config.json`
+
 ## 2.3.0
 
 ### Minor Changes
