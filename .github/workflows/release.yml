@@ -37,7 +37,7 @@ jobs:
         with:
           node-version: 24.15.0
           cache: 'pnpm'
-      - run: pnpm install
+      - run: pnpm install && pnpm build && pnpm install
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1.8.0
