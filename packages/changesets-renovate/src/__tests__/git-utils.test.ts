@@ -1,9 +1,7 @@
-import fs from 'node:fs/promises'
-import { glob } from 'tinyglobby'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { parse } from 'yaml'
 import { mockSimpleGit } from '../../__mocks__/simple-git'
-import { findAffectedPackages, findChangedDependenciesFromGit, loadCatalogFromGit } from '../git-utils.js'
+import { findChangedDependenciesFromGit, loadCatalogFromGit } from '../git-utils.js'
 
 // Mock all external dependencies
 vi.mock('yaml')
@@ -126,44 +124,6 @@ catalog:
       expect(packages).toContain('package-c')
       expect(packages).not.toContain('package-b') // Unchanged
       expect(packages).not.toContain('package-d') // New package
-    })
-  })
-
-  describe('findAffectedPackages', () => {
-    it('should find packages affected by dependency changes', async () => {
-      // Mock file system reads for package.json files
-      vi.mocked(glob).mockResolvedValue(['packages/package-a/package.json', 'packages/package-b/package.json'])
-
-      // oxlint-disable @typescript-eslint/require-await
-      // oxlint-disable typescript-eslint/no-unsafe-argument
-      vi.mocked(fs.readFile).mockImplementation((async (filePath: any) => {
-        if (filePath === 'packages/package-a/package.json') {
-          return JSON.stringify({
-            dependencies: {
-              'changed-dep': 'catalog:',
-            },
-            name: 'package-a',
-          })
-        }
-        if (filePath === 'packages/package-b/package.json') {
-          return JSON.stringify({
-            dependencies: {
-              'unchanged-dep': 'catalog:',
-            },
-            name: 'package-b',
-          })
-        }
-
-        return '{}'
-      }) as any)
-
-      const result = await findAffectedPackages(['changed-dep'])
-
-      expect(glob).toHaveBeenCalledWith('packages/*/package.json', { expandDirectories: false })
-      expect(result).toBeInstanceOf(Set)
-      expect(result.size).toBe(1)
-      expect(result).toContain('package-a')
-      expect(result).not.toContain('package-b')
     })
   })
 })
