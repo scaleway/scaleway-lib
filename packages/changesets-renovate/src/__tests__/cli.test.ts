@@ -8,7 +8,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 vi.mock('node:fs')
 vi.mock('node:fs/promise')
 vi.mock('node:child_process')
-vi.mock('fast-glob')
+vi.mock('tinyglobby')
 
 // We can't easily test the CLI script as it runs immediately when imported
 // Instead, let's test the utility functions that the CLI script uses

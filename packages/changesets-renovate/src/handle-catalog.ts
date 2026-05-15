@@ -1,9 +1,9 @@
 // oxlint-disable eslint/max-statements
 // oxlint-disable eslint/no-console
 import { simpleGit } from 'simple-git'
-import { createChangeset } from './createChangeset.js'
+import { createChangeset } from './createChangeset.ts'
 
-const { findChangedDependenciesFromGit, findAffectedPackages, handleChangesetFile } = await import('./git-utils.js')
+const { findChangedDependenciesFromGit, findAffectedPackages, handleChangesetFile } = await import('./git-utils.ts')
 /**
  * Handle pnpm workspace catalog changes
  */

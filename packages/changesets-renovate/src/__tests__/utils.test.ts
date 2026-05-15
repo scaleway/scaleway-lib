@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises'
-import fg from 'fast-glob'
-import { load } from 'js-yaml'
+import { glob } from 'tinyglobby'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { parse } from 'yaml'
 import {
   findAffectedPackages,
   findChangedDependencies,
@@ -9,12 +9,10 @@ import {
   loadCatalogFromWorkspaceContent,
 } from '../utils.js'
 
-const { globSync } = fg
-
 // Mock all external dependencies
 vi.mock('node:fs/promises')
-vi.mock('js-yaml')
-vi.mock('fast-glob')
+vi.mock('yaml')
+vi.mock('tinyglobby')
 
 describe('pnpm-catalogs-utils', () => {
   beforeEach(() => {
@@ -30,7 +28,7 @@ catalog:
   another-package: 2.0.0
 `
       vi.mocked(readFile).mockResolvedValue(mockContent)
-      vi.mocked(load).mockReturnValue({
+      vi.mocked(parse).mockReturnValue({
         catalog: {
           'another-package': '2.0.0',
           'test-package': '1.0.0',
@@ -40,7 +38,7 @@ catalog:
       const result = await loadCatalogFromFile('test-file.yaml')
 
       expect(readFile).toHaveBeenCalledWith('test-file.yaml', 'utf8')
-      expect(load).toHaveBeenCalledWith(mockContent)
+      expect(parse).toHaveBeenCalledWith(mockContent)
       expect(result).toStrictEqual({
         'another-package': '2.0.0',
         'test-package': '1.0.0',
@@ -57,7 +55,7 @@ catalog:
 
     it('should return empty object if YAML parsing fails', async () => {
       vi.mocked(readFile).mockResolvedValue('invalid yaml' as any)
-      vi.mocked(load).mockImplementation(() => {
+      vi.mocked(parse).mockImplementation(() => {
         throw new Error('Invalid YAML')
       })
 
@@ -74,7 +72,7 @@ catalog:
   test-package: 1.0.0
   another-package: 2.0.0
 `
-      vi.mocked(load).mockReturnValue({
+      vi.mocked(parse).mockReturnValue({
         catalog: {
           'another-package': '2.0.0',
           'test-package': '1.0.0',
@@ -83,7 +81,7 @@ catalog:
 
       const result = loadCatalogFromWorkspaceContent(mockContent)
 
-      expect(load).toHaveBeenCalledWith(mockContent)
+      expect(parse).toHaveBeenCalledWith(mockContent)
       expect(result).toStrictEqual({
         'another-package': '2.0.0',
         'test-package': '1.0.0',
@@ -91,7 +89,7 @@ catalog:
     })
 
     it('should return empty object if parsing fails', () => {
-      vi.mocked(load).mockImplementation(() => {
+      vi.mocked(parse).mockImplementation(() => {
         throw new Error('Invalid YAML')
       })
 
@@ -150,7 +148,11 @@ catalog:
 
   describe('findAffectedPackages', () => {
     beforeEach(() => {
-      vi.mocked(globSync).mockReturnValue(['packages/package-a/package.json', 'packages/package-b/package.json'])
+      vi.mocked(glob).mockResolvedValue([
+        'packages/package-a/package.json',
+        'packages/package-b/package.json',
+        'packages/package-c/package.json',
+      ])
     })
 
     it('should find packages affected by dependency changes', async () => {
@@ -178,11 +180,56 @@ catalog:
 
       const result = await findAffectedPackages(['changed-dep'])
 
-      expect(globSync).toHaveBeenCalledWith('packages/*/package.json')
+      expect(glob).toHaveBeenCalledWith('packages/*/package.json', { expandDirectories: false })
       expect(result).toBeInstanceOf(Set)
       expect(result.size).toBe(1)
       expect(result).toContain('package-a')
       expect(result).not.toContain('package-b')
+    })
+
+    it('should find packages affected by dependency changes and respect changeset ignore config', async () => {
+      // Mock file system reads for package.json files
+      vi.mocked(readFile).mockImplementation((async (filePath: string) => {
+        if (filePath === '.changeset/config.json') {
+          return '{"ignore":["package-c"]}'
+        }
+
+        if (filePath === 'packages/package-a/package.json') {
+          return JSON.stringify({
+            dependencies: {
+              'changed-dep': 'catalog:',
+            },
+            name: 'package-a',
+          })
+        }
+        if (filePath === 'packages/package-b/package.json') {
+          return JSON.stringify({
+            dependencies: {
+              'unchanged-dep': 'catalog:',
+            },
+            name: 'package-b',
+          })
+        }
+        if (filePath === 'packages/package-c/package.json') {
+          return JSON.stringify({
+            dependencies: {
+              'changed-dep': 'catalog:',
+            },
+            name: 'package-c',
+          })
+        }
+
+        return '{}'
+      }) as any)
+
+      const result = await findAffectedPackages(['changed-dep'])
+
+      expect(glob).toHaveBeenCalledWith('packages/*/package.json', { expandDirectories: false })
+      expect(result).toBeInstanceOf(Set)
+      expect(result.size).toBe(1)
+      expect(result).toContain('package-a')
+      expect(result).not.toContain('package-b')
+      expect(result).not.toContain('package-c')
     })
 
     it('should handle packages with no affected dependencies', async () => {
@@ -204,13 +251,19 @@ catalog:
     it('should handle empty dependency list', async () => {
       const result = await findAffectedPackages([])
 
-      expect(globSync).not.toHaveBeenCalled()
+      expect(glob).not.toHaveBeenCalled()
       expect(result).toBeInstanceOf(Set)
       expect(result.size).toBe(0)
     })
 
     it('should handle file read errors gracefully', async () => {
-      vi.mocked(readFile).mockRejectedValue(new Error('File read error'))
+      vi.mocked(readFile).mockImplementation(async filePath => {
+        if (filePath === '.changeset/config.json') {
+          return '{"ignore":["package-c"]}'
+        }
+
+        throw new Error('File read error')
+      })
 
       const result = await findAffectedPackages(['changed-dep'])
 

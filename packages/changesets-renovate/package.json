@@ -44,10 +44,9 @@
     "test:unit:coverage": "pnpm test:unit --coverage"
   },
   "dependencies": {
-    "@types/js-yaml": "catalog:",
-    "fast-glob": "catalog:",
-    "js-yaml": "catalog:",
-    "simple-git": "catalog:"
+    "simple-git": "catalog:",
+    "tinyglobby": "catalog:",
+    "yaml": "catalog:"
   },
   "engines": {
     "node": ">=20.x"

@@ -1,11 +1,9 @@
 // oxlint-disable eslint/no-console
 import { readFile } from 'node:fs/promises'
 import { env } from 'node:process'
-import fg from 'fast-glob'
-import { load } from 'js-yaml'
 import { simpleGit } from 'simple-git'
-
-const { globSync } = fg
+import { glob } from 'tinyglobby'
+import { parse } from 'yaml'
 
 /**
  * Load catalog from pnpm workspace file at specific git revision
@@ -25,7 +23,7 @@ export async function loadCatalogFromGit(
 
     const git = simpleGit()
     const content = await git.show([`${revision}:${filePath}`])
-    const parsed = load(content) as {
+    const parsed = parse(content) as {
       catalog?: Record<string, string>
     } | null
 
@@ -101,7 +99,7 @@ export async function findAffectedPackages(
     return new Set()
   }
 
-  const packageJsonPaths = globSync(packageJsonGlob)
+  const packageJsonPaths = await glob(packageJsonGlob, { expandDirectories: false })
   const affectedPackages = new Set<string>()
 
   for (const pkgJsonPath of packageJsonPaths) {
