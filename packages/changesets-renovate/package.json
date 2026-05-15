@@ -44,6 +44,7 @@
     "test:unit:coverage": "pnpm test:unit --coverage"
   },
   "dependencies": {
+    "@changesets/config": "catalog:",
     "simple-git": "catalog:",
     "tinyglobby": "catalog:",
     "yaml": "catalog:"

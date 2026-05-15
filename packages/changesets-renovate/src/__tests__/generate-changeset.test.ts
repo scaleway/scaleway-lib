@@ -1,28 +1,24 @@
 import { readFile, writeFile } from 'node:fs/promises'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import * as changesetConfig from '@changesets/config'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { defaultGitValues, mockSimpleGit } from '../../__mocks__/simple-git'
 import { run } from '../cli.js'
 
 // Mock all external dependencies
 vi.mock('node:fs/promises')
 
+vi.spyOn(changesetConfig, 'read').mockResolvedValue(changesetConfig.defaultConfig)
+
 const mockedWriteFile = vi.mocked(writeFile)
 const mockedReadFile = vi.mocked(readFile)
 
-beforeEach(() => {
-  vi.spyOn(console, 'log')
-  // Mock readFile to return empty config by default
-  mockedReadFile.mockImplementation(async path => {
-    if (path === '.changeset/config.json') {
-      return '{}'
-    }
-
-    return '{}'
-  })
-})
-
 describe('generate changeset file', () => {
   beforeEach(() => {
+    vi.spyOn(console, 'log')
+  })
+
+  afterEach(() => {
+    vi.restoreAllMocks()
     delete process.env['SKIP_BRANCH_CHECK']
     delete process.env['SKIP_COMMIT']
     delete process.env['BRANCH_PREFIX']
@@ -76,9 +72,6 @@ describe('generate changeset file', () => {
 
     // Mock changeset config for this test
     mockedReadFile.mockImplementation(async path => {
-      if (path === '.changeset/config.json') {
-        return '{}'
-      }
       if (path === 'test/package.json') {
         return `{"name":"packageName","version":"1.0.0"}`
       }
@@ -129,9 +122,6 @@ describe('generate changeset file', () => {
 
     // Mock changeset config for this test
     mockedReadFile.mockImplementation(async path => {
-      if (path === '.changeset/config.json') {
-        return '{}'
-      }
       if (path === 'test/package.json') {
         return `{"name":"packageName","version":"1.0.0"}`
       }
@@ -220,9 +210,6 @@ describe('generate changeset file', () => {
 
     // Mock changeset config for this test
     mockedReadFile.mockImplementation(async path => {
-      if (path === '.changeset/config.json') {
-        return '{}'
-      }
       if (path === 'test/package.json') {
         return `{"name":"packageName","version":"1.0.0"}`
       }
@@ -271,9 +258,6 @@ describe('generate changeset file', () => {
 
     // Mock changeset config for this test
     mockedReadFile.mockImplementation(async path => {
-      if (path === '.changeset/config.json') {
-        return '{}'
-      }
       if (path === 'test/package.json') {
         return `{"name":"packageName","version":"1.0.0"}`
       }
@@ -327,9 +311,6 @@ describe('generate changeset file', () => {
 
     // Mock changeset config for this test
     mockedReadFile.mockImplementation(async path => {
-      if (path === '.changeset/config.json') {
-        return '{}'
-      }
       if (path === 'test-a/package.json') {
         return `{"name":"packageNameA","version":"1.0.0"}`
       }
@@ -375,9 +356,6 @@ describe('generate changeset file', () => {
 
     // Mock changeset config for this test
     mockedReadFile.mockImplementation(async path => {
-      if (path === '.changeset/config.json') {
-        return '{}'
-      }
       if (path === 'package.json') {
         return `{"name":"packageName","workspaces":[]}`
       }
@@ -414,9 +392,6 @@ describe('generate changeset file', () => {
 
     // Mock changeset config for this test
     mockedReadFile.mockImplementation(async path => {
-      if (path === '.changeset/config.json') {
-        return '{}'
-      }
       if (path === 'package.json') {
         return `{"name":"packageName"}`
       }
@@ -451,11 +426,10 @@ describe('generate changeset file', () => {
 `,
     })
 
+    vi.spyOn(changesetConfig, 'read').mockResolvedValue({ ...changesetConfig.defaultConfig, ignore: ['packageName'] })
+
     // Mock changeset config for this test
     mockedReadFile.mockImplementation(async path => {
-      if (path === '.changeset/config.json') {
-        return '{"ignore":["packageName"]}'
-      }
       if (path === 'test/package.json') {
         return `{"name":"packageName","version":"1.0.0"}`
       }
@@ -469,7 +443,7 @@ describe('generate changeset file', () => {
     expect(console.log).toHaveBeenCalledWith('No packages modified, skipping')
   })
 
-  it('should ignore changeset ignored packages with star', async () => {
+  it('should ignore private packages if config said so', async () => {
     const file = 'test/package.json'
 
     mockSimpleGit.mockReturnValue({
@@ -490,13 +464,15 @@ describe('generate changeset file', () => {
 `,
     })
 
+    vi.spyOn(changesetConfig, 'read').mockResolvedValue({
+      ...changesetConfig.defaultConfig,
+      privatePackages: { version: false, tag: false },
+    })
+
     // Mock changeset config for this test
     mockedReadFile.mockImplementation(async path => {
-      if (path === '.changeset/config.json') {
-        return '{"ignore":["@example/*"]}'
-      }
       if (path === 'test/package.json') {
-        return `{"name":"@example/test","version":"1.0.0"}`
+        return `{"name":"packageName","version":"1.0.0", "private": true }`
       }
 
       return '{}'

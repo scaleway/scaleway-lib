@@ -1,28 +1,36 @@
 import { readFile } from 'node:fs/promises'
 import path from 'node:path'
+import { read } from '@changesets/config'
 import { glob } from 'tinyglobby'
 import { parse } from 'yaml'
 
-export function shouldIgnorePackage(packageName: string, ignoredPackages: string[]): boolean {
-  return ignoredPackages.some(ignoredPackage => {
-    if (ignoredPackage.endsWith('*')) {
-      return packageName.startsWith(ignoredPackage.slice(0, -1))
-    }
-
-    return packageName === ignoredPackage
-  })
-}
-
-export async function getChangesetIgnoredPackages(): Promise<string[]> {
-  const changesetConfig = JSON.parse(await readFile('.changeset/config.json', 'utf8')) as {
-    ignore?: string[]
+function shouldSkipPackage(
+  packageJson: { version?: string; name: string; private?: boolean },
+  {
+    ignore,
+    allowPrivatePackages,
+  }: {
+    ignore: readonly string[]
+    allowPrivatePackages: boolean
+  },
+) {
+  if (ignore?.includes(packageJson.name)) {
+    return true
   }
 
-  return changesetConfig.ignore ?? []
+  if (packageJson.private && !allowPrivatePackages) {
+    return true
+  }
+
+  return !packageJson.version
+}
+
+export async function getChangesetConfig(): ReturnType<typeof read> {
+  return read(process.cwd())
 }
 
 export async function getPackagesNames(files: string[]): Promise<string[]> {
-  const ignoredPackages = await getChangesetIgnoredPackages()
+  const config = await getChangesetConfig()
   const packages: string[] = []
 
   const promises = files.map(async file => {
@@ -32,7 +40,7 @@ export async function getPackagesNames(files: string[]): Promise<string[]> {
       version?: string
     }
 
-    if (shouldIgnorePackage(data.name, ignoredPackages)) {
+    if (shouldSkipPackage(data, { ignore: config.ignore, allowPrivatePackages: config.privatePackages.version })) {
       return
     }
 
@@ -115,7 +123,7 @@ export async function findAffectedPackages(
     return new Set()
   }
 
-  const ignoredPackages = await getChangesetIgnoredPackages()
+  const config = await getChangesetConfig()
   const packageJsonPaths = await glob(packageJsonGlob, { expandDirectories: false })
   const affectedPackages = new Set<string>()
 
@@ -133,7 +141,7 @@ export async function findAffectedPackages(
         ...json.peerDependencies,
       }
 
-      if (shouldIgnorePackage(json.name, ignoredPackages)) {
+      if (shouldSkipPackage(json, { ignore: config.ignore, allowPrivatePackages: config.privatePackages.version })) {
         break
       }
 

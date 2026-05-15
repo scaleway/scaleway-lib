@@ -1,4 +1,5 @@
 import { readFile } from 'node:fs/promises'
+import * as changesetConfig from '@changesets/config'
 import { glob } from 'tinyglobby'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { parse } from 'yaml'
@@ -13,6 +14,8 @@ import {
 vi.mock('node:fs/promises')
 vi.mock('yaml')
 vi.mock('tinyglobby')
+
+vi.spyOn(changesetConfig, 'read').mockResolvedValue(changesetConfig.defaultConfig)
 
 describe('pnpm-catalogs-utils', () => {
   beforeEach(() => {
@@ -163,6 +166,7 @@ catalog:
             dependencies: {
               'changed-dep': 'catalog:',
             },
+            version: '1.0.0',
             name: 'package-a',
           })
         }
@@ -171,6 +175,7 @@ catalog:
             dependencies: {
               'unchanged-dep': 'catalog:',
             },
+            version: '1.0.0',
             name: 'package-b',
           })
         }
@@ -188,17 +193,16 @@ catalog:
     })
 
     it('should find packages affected by dependency changes and respect changeset ignore config', async () => {
+      vi.spyOn(changesetConfig, 'read').mockResolvedValue({ ...changesetConfig.defaultConfig, ignore: ['package-c'] })
+
       // Mock file system reads for package.json files
       vi.mocked(readFile).mockImplementation((async (filePath: string) => {
-        if (filePath === '.changeset/config.json') {
-          return '{"ignore":["package-c"]}'
-        }
-
         if (filePath === 'packages/package-a/package.json') {
           return JSON.stringify({
             dependencies: {
               'changed-dep': 'catalog:',
             },
+            version: '1.0.0',
             name: 'package-a',
           })
         }
@@ -207,6 +211,7 @@ catalog:
             dependencies: {
               'unchanged-dep': 'catalog:',
             },
+            version: '1.0.0',
             name: 'package-b',
           })
         }
@@ -215,6 +220,7 @@ catalog:
             dependencies: {
               'changed-dep': 'catalog:',
             },
+            version: '1.0.0',
             name: 'package-c',
           })
         }
@@ -238,6 +244,7 @@ catalog:
           dependencies: {
             'unchanged-dep': 'catalog:',
           },
+          version: '1.0.0',
           name: 'package-a',
         }),
       ) as any
@@ -257,13 +264,7 @@ catalog:
     })
 
     it('should handle file read errors gracefully', async () => {
-      vi.mocked(readFile).mockImplementation(async filePath => {
-        if (filePath === '.changeset/config.json') {
-          return '{"ignore":["package-c"]}'
-        }
-
-        throw new Error('File read error')
-      })
+      vi.mocked(readFile).mockRejectedValue(new Error('File read error'))
 
       const result = await findAffectedPackages(['changed-dep'])
 

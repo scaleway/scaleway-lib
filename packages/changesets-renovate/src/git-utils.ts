@@ -1,8 +1,6 @@
 // oxlint-disable eslint/no-console
-import { readFile } from 'node:fs/promises'
 import { env } from 'node:process'
 import { simpleGit } from 'simple-git'
-import { glob } from 'tinyglobby'
 import { parse } from 'yaml'
 
 /**
@@ -83,53 +81,6 @@ export async function getBumpsFromGit(files: string[]): Promise<Map<string, stri
   await Promise.all(promises)
 
   return bumps
-}
-
-/**
- * Find packages affected by dependency changes
- * @param changedDeps Array of changed dependency names
- * @param packageJsonGlob Glob pattern to find package.json files
- * @returns Set of package names that are affected by the changes
- */
-export async function findAffectedPackages(
-  changedDeps: string[],
-  packageJsonGlob = 'packages/*/package.json',
-): Promise<Set<string>> {
-  if (changedDeps.length === 0) {
-    return new Set()
-  }
-
-  const packageJsonPaths = await glob(packageJsonGlob, { expandDirectories: false })
-  const affectedPackages = new Set<string>()
-
-  for (const pkgJsonPath of packageJsonPaths) {
-    try {
-      const json = JSON.parse(await readFile(pkgJsonPath, 'utf8')) as {
-        dependencies?: Record<string, string>
-        devDependencies?: Record<string, string>
-        peerDependencies?: Record<string, string>
-        name: string
-      }
-      const deps = {
-        ...json.dependencies,
-        ...json.devDependencies,
-        ...json.peerDependencies,
-      }
-
-      for (const dep of changedDeps) {
-        if (deps[dep]) {
-          affectedPackages.add(json.name)
-
-          break // No need to check other deps for this package
-        }
-      }
-    } catch {
-      // Silently ignore errors in production code
-      // Tests can check for specific error cases
-    }
-  }
-
-  return affectedPackages
 }
 
 export async function handleChangesetFile(fileName: string) {

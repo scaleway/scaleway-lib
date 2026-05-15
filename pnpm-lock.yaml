@@ -12,6 +12,9 @@ catalogs:
     '@changesets/cli':
       specifier: 2.31.0
       version: 2.31.0
+    '@changesets/config':
+      specifier: 3.1.4
+      version: 3.1.4
     '@formatjs/ecma402-abstract':
       specifier: 3.2.0
       version: 3.2.0
@@ -261,6 +264,9 @@ importers:
 
   packages/changesets-renovate:
     dependencies:
+      '@changesets/config':
+        specifier: 'catalog:'
+        version: 3.1.4
       simple-git:
         specifier: 'catalog:'
         version: 3.36.0
