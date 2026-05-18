@@ -48,7 +48,7 @@ catalog:
   simple-git: 3.36.0
   tinyglobby: 0.2.16
   tsdown: 0.22.0
-  turbo: 2.9.12
+  turbo: 2.9.14
   typescript: 6.0.3
   use-deep-compare-effect: 1.8.1
   vitest: 4.1.6
