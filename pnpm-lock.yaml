@@ -160,8 +160,8 @@ catalogs:
       specifier: 4.0.0
       version: 4.0.0
     yaml:
-      specifier: 2.8.4
-      version: 2.8.4
+      specifier: 2.9.0
+      version: 2.9.0
 
 overrides:
   vitest: 4.1.6
@@ -220,7 +220,7 @@ importers:
         version: 7.0.0-dev.20260515.1
       '@vitejs/plugin-react':
         specifier: 'catalog:'
-        version: 6.0.2(vite@8.0.12(@types/node@25.6.2)(yaml@2.8.4))
+        version: 6.0.2(vite@8.0.12(@types/node@25.6.2)(yaml@2.9.0))
       '@vitest/coverage-istanbul':
         specifier: 'catalog:'
         version: 4.1.6(vitest@4.1.6)
@@ -268,7 +268,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: 4.1.6
-        version: 4.1.6(@types/node@25.6.2)(@vitest/coverage-istanbul@4.1.6)(happy-dom@20.9.0)(jsdom@29.1.1)(vite@8.0.12(@types/node@25.6.2)(yaml@2.8.4))
+        version: 4.1.6(@types/node@25.6.2)(@vitest/coverage-istanbul@4.1.6)(happy-dom@20.9.0)(jsdom@29.1.1)(vite@8.0.12(@types/node@25.6.2)(yaml@2.9.0))
       vitest-localstorage-mock:
         specifier: 'catalog:'
         version: 0.1.2(vitest@4.1.6)
@@ -289,7 +289,7 @@ importers:
         version: 0.2.16
       yaml:
         specifier: 'catalog:'
-        version: 2.8.4
+        version: 2.9.0
 
   packages/fuzzy-search: {}
 
@@ -433,7 +433,7 @@ importers:
     dependencies:
       yaml:
         specifier: 'catalog:'
-        version: 2.8.4
+        version: 2.9.0
     devDependencies:
       '@types/node':
         specifier: 'catalog:'
@@ -2981,6 +2981,11 @@ packages:
     engines: {node: '>= 14.6'}
     hasBin: true
 
+  yaml@2.9.0:
+    resolution: {integrity: sha512-2AvhNX3mb8zd6Zy7INTtSpl1F15HW6Wnqj0srWlkKLcpYl/gMIMJiyuGq2KeI2YFxUPjdlB+3Lc10seMLtL4cA==}
+    engines: {node: '>= 14.6'}
+    hasBin: true
+
   yocto-queue@1.2.2:
     resolution: {integrity: sha512-4LCcse/U2MHZ63HAJVE+v71o7yOdIe4cZ70Wpf8D/IyjDKYQLV5GD46B+hSTjJsvV5PztjvHoU580EftxjDZFQ==}
     engines: {node: '>=12.20'}
@@ -3900,10 +3905,10 @@ snapshots:
       '@typescript/native-preview-win32-arm64': 7.0.0-dev.20260515.1
       '@typescript/native-preview-win32-x64': 7.0.0-dev.20260515.1
 
-  '@vitejs/plugin-react@6.0.2(vite@8.0.12(@types/node@25.6.2)(yaml@2.8.4))':
+  '@vitejs/plugin-react@6.0.2(vite@8.0.12(@types/node@25.6.2)(yaml@2.9.0))':
     dependencies:
       '@rolldown/pluginutils': 1.0.0
-      vite: 8.0.12(@types/node@25.6.2)(yaml@2.8.4)
+      vite: 8.0.12(@types/node@25.6.2)(yaml@2.9.0)
 
   '@vitest/coverage-istanbul@4.1.6(vitest@4.1.6)':
     dependencies:
@@ -3917,7 +3922,7 @@ snapshots:
       magicast: 0.5.2
       obug: 2.1.1
       tinyrainbow: 3.1.0
-      vitest: 4.1.6(@types/node@25.6.2)(@vitest/coverage-istanbul@4.1.6)(happy-dom@20.9.0)(jsdom@29.1.1)(vite@8.0.12(@types/node@25.6.2)(yaml@2.8.4))
+      vitest: 4.1.6(@types/node@25.6.2)(@vitest/coverage-istanbul@4.1.6)(happy-dom@20.9.0)(jsdom@29.1.1)(vite@8.0.12(@types/node@25.6.2)(yaml@2.9.0))
     transitivePeerDependencies:
       - supports-color
 
@@ -3930,13 +3935,13 @@ snapshots:
       chai: 6.2.2
       tinyrainbow: 3.1.0
 
-  '@vitest/mocker@4.1.6(vite@8.0.12(@types/node@25.6.2)(yaml@2.8.4))':
+  '@vitest/mocker@4.1.6(vite@8.0.12(@types/node@25.6.2)(yaml@2.9.0))':
     dependencies:
       '@vitest/spy': 4.1.6
       estree-walker: 3.0.3
       magic-string: 0.30.21
     optionalDependencies:
-      vite: 8.0.12(@types/node@25.6.2)(yaml@2.8.4)
+      vite: 8.0.12(@types/node@25.6.2)(yaml@2.9.0)
 
   '@vitest/pretty-format@4.1.6':
     dependencies:
@@ -5172,7 +5177,7 @@ snapshots:
 
   validate-npm-package-name@6.0.2: {}
 
-  vite@8.0.12(@types/node@25.6.2)(yaml@2.8.4):
+  vite@8.0.12(@types/node@25.6.2)(yaml@2.9.0):
     dependencies:
       lightningcss: 1.32.0
       picomatch: 4.0.4
@@ -5182,16 +5187,16 @@ snapshots:
     optionalDependencies:
       '@types/node': 25.6.2
       fsevents: 2.3.3
-      yaml: 2.8.4
+      yaml: 2.9.0
 
   vitest-localstorage-mock@0.1.2(vitest@4.1.6):
     dependencies:
-      vitest: 4.1.6(@types/node@25.6.2)(@vitest/coverage-istanbul@4.1.6)(happy-dom@20.9.0)(jsdom@29.1.1)(vite@8.0.12(@types/node@25.6.2)(yaml@2.8.4))
+      vitest: 4.1.6(@types/node@25.6.2)(@vitest/coverage-istanbul@4.1.6)(happy-dom@20.9.0)(jsdom@29.1.1)(vite@8.0.12(@types/node@25.6.2)(yaml@2.9.0))
 
-  vitest@4.1.6(@types/node@25.6.2)(@vitest/coverage-istanbul@4.1.6)(happy-dom@20.9.0)(jsdom@29.1.1)(vite@8.0.12(@types/node@25.6.2)(yaml@2.8.4)):
+  vitest@4.1.6(@types/node@25.6.2)(@vitest/coverage-istanbul@4.1.6)(happy-dom@20.9.0)(jsdom@29.1.1)(vite@8.0.12(@types/node@25.6.2)(yaml@2.9.0)):
     dependencies:
       '@vitest/expect': 4.1.6
-      '@vitest/mocker': 4.1.6(vite@8.0.12(@types/node@25.6.2)(yaml@2.8.4))
+      '@vitest/mocker': 4.1.6(vite@8.0.12(@types/node@25.6.2)(yaml@2.9.0))
       '@vitest/pretty-format': 4.1.6
       '@vitest/runner': 4.1.6
       '@vitest/snapshot': 4.1.6
@@ -5208,7 +5213,7 @@ snapshots:
       tinyexec: 1.1.1
       tinyglobby: 0.2.16
       tinyrainbow: 3.1.0
-      vite: 8.0.12(@types/node@25.6.2)(yaml@2.8.4)
+      vite: 8.0.12(@types/node@25.6.2)(yaml@2.9.0)
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 25.6.2
@@ -5275,6 +5280,8 @@ snapshots:
   yallist@3.1.1: {}
 
   yaml@2.8.4: {}
+
+  yaml@2.9.0: {}
 
   yocto-queue@1.2.2: {}
 
