@@ -115,8 +115,8 @@ catalogs:
       specifier: 0.22.1
       version: 0.22.1
     publint:
-      specifier: 0.3.20
-      version: 0.3.20
+      specifier: 0.3.21
+      version: 0.3.21
     query-string:
       specifier: 9.3.1
       version: 9.3.1
@@ -250,7 +250,7 @@ importers:
         version: 0.22.1
       publint:
         specifier: 'catalog:'
-        version: 0.3.20
+        version: 0.3.21
       read-pkg:
         specifier: 'catalog:'
         version: 10.1.0
@@ -259,7 +259,7 @@ importers:
         version: 0.4.0
       tsdown:
         specifier: 'catalog:'
-        version: 0.22.0(@arethetypeswrong/core@0.18.2)(@typescript/native-preview@7.0.0-dev.20260512.1)(publint@0.3.20)(typescript@6.0.3)
+        version: 0.22.0(@arethetypeswrong/core@0.18.2)(@typescript/native-preview@7.0.0-dev.20260512.1)(publint@0.3.21)(typescript@6.0.3)
       turbo:
         specifier: 'catalog:'
         version: 2.9.12
@@ -2359,8 +2359,8 @@ packages:
   proto-list@1.2.4:
     resolution: {integrity: sha512-vtK/94akxsTMhe0/cbfpR+syPuszcuwhqVjJq26CuNDgFGj682oRBXOP5MJpv2r7JtE8MsiepGIqvvOTBwn2vA==}
 
-  publint@0.3.20:
-    resolution: {integrity: sha512-UWqFYP7VBVCe9l/leEEGJrDs6Am4K4KapLmLi5qbt+9fA+Ny38ghdW+bw1nYfVqCK8/3kgsxjjhFjTYqYYRpyw==}
+  publint@0.3.21:
+    resolution: {integrity: sha512-OqejcnMV6E9zel2oCrUOJEiiFkGiAAni0A6ibfQNh1k9Gu5z4F+Yso8lllam7AzmV6Do0vp7u3UpZNRBwuXaHQ==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -4760,7 +4760,7 @@ snapshots:
 
   proto-list@1.2.4: {}
 
-  publint@0.3.20:
+  publint@0.3.21:
     dependencies:
       '@publint/pack': 0.1.4
       package-manager-detector: 1.6.0
@@ -5089,7 +5089,7 @@ snapshots:
 
   tree-kill@1.2.2: {}
 
-  tsdown@0.22.0(@arethetypeswrong/core@0.18.2)(@typescript/native-preview@7.0.0-dev.20260512.1)(publint@0.3.20)(typescript@6.0.3):
+  tsdown@0.22.0(@arethetypeswrong/core@0.18.2)(@typescript/native-preview@7.0.0-dev.20260512.1)(publint@0.3.21)(typescript@6.0.3):
     dependencies:
       ansis: 4.2.0
       cac: 7.0.0
@@ -5108,7 +5108,7 @@ snapshots:
       unconfig-core: 7.5.0
     optionalDependencies:
       '@arethetypeswrong/core': 0.18.2
-      publint: 0.3.20
+      publint: 0.3.21
       typescript: 6.0.3
     transitivePeerDependencies:
       - '@ts-macro/tsc'
