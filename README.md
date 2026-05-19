@@ -84,15 +84,20 @@ scaleway-lib is a set of NPM packages used at Scaleway.
   ![npm](https://img.shields.io/npm/dm/@scaleway/use-i18n)
   ![npm](https://img.shields.io/npm/v/@scaleway/use-i18n)
 
-- [`@scaleway/validate-icu-locales`](./packages/validate-icu-locales/README.md): A small cli to check ICU locales error
-
-  ![npm](https://img.shields.io/npm/dm/@scaleway/validate-icu-locales)
-  ![npm](https://img.shields.io/npm/v/@scaleway/validate-icu-locales)
-
 - [`@scaleway/use-storage`](./packages/use-storage/README.md): A React hook to interact with local/session storage in reactive way with the same API as setState
 
   ![npm](https://img.shields.io/npm/dm/@scaleway/use-storage)
   ![npm](https://img.shields.io/npm/v/@scaleway/use-storage)
+
+- [`@scaleway/use-visual-persistence`](./packages/use-visual-persistence/README.md)
+
+  ![npm](https://img.shields.io/npm/dm/@scaleway/use-visual-persistence)
+  ![npm](https://img.shields.io/npm/v/@scaleway/use-visual-persistence)
+
+- [`@scaleway/validate-icu-locales`](./packages/validate-icu-locales/README.md): A small cli to check ICU locales error
+
+  ![npm](https://img.shields.io/npm/dm/@scaleway/validate-icu-locales)
+  ![npm](https://img.shields.io/npm/v/@scaleway/validate-icu-locales)
 
 ## Development
 
