@@ -1,3 +1,4 @@
+// oxlint-disable eslint/max-statements
 // oxlint-disable eslint/no-console
 
 import { env } from 'node:process'
@@ -23,11 +24,11 @@ async function run(): Promise<void> {
 
   console.log('Found changed files:', diffFiles)
 
-  // if (diffFiles.some(f => f.startsWith('.changeset'))) {
-  //   console.log('Changeset already exists, skipping')
+  if (diffFiles.some(f => f.startsWith('.changeset'))) {
+    console.log('Changeset already exists, skipping')
 
-  //   return
-  // }
+    return
+  }
 
   // Handle both package.json changes and catalog changes
   const hasPackageChanges = diffFiles.some(file => file.includes('package.json'))

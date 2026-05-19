@@ -1,5 +1,5 @@
 import { readFile } from 'node:fs/promises'
-import path from 'node:path'
+import { env } from 'node:process'
 import { read } from '@changesets/config'
 import { glob } from 'tinyglobby'
 import { parse } from 'yaml'
@@ -29,7 +29,7 @@ export async function getChangesetConfig(): ReturnType<typeof read> {
   return read(process.cwd())
 }
 
-export async function getPackagesNames(files: string[]): Promise<string[]> {
+export async function getPackagesNames(files: string[], packageBumps: Map<string, string>): Promise<string[]> {
   const config = await getChangesetConfig()
   const packages: string[] = []
 
@@ -38,6 +38,17 @@ export async function getPackagesNames(files: string[]): Promise<string[]> {
       name: string
       workspaces?: string[]
       version?: string
+      dependencies?: Record<string, string>
+      devDependencies?: Record<string, string>
+    }
+
+    const packageJsonDeps = new Set([
+      ...Object.keys(data.dependencies ?? {}),
+      ...(env['EXCLUDE_DEVDEPS'] ? [] : Object.keys(data.devDependencies ?? {})),
+    ])
+
+    if (!packageBumps.keys().some(value => packageJsonDeps.has(value))) {
+      return
     }
 
     if (shouldSkipPackage(data, { ignore: config.ignore, allowPrivatePackages: config.privatePackages.version })) {
@@ -132,24 +143,22 @@ export async function findAffectedPackages(
       const json = JSON.parse(await readFile(pkgJsonPath, 'utf8')) as {
         dependencies?: Record<string, string>
         devDependencies?: Record<string, string>
-        peerDependencies?: Record<string, string>
         name: string
       }
-      const deps = {
-        ...json.dependencies,
-        ...json.devDependencies,
-        ...json.peerDependencies,
-      }
 
-      if (shouldSkipPackage(json, { ignore: config.ignore, allowPrivatePackages: config.privatePackages.version })) {
-        break
-      }
+      const packageJsonDeps = new Set([
+        ...Object.keys(json.dependencies ?? {}),
+        ...(env['EXCLUDE_DEVDEPS'] ? [] : Object.keys(json.devDependencies ?? {})),
+      ])
 
-      for (const dep of changedDeps) {
-        if (deps[dep]) {
-          const dirName = path.basename(path.dirname(pkgJsonPath))
-          affectedPackages.add(dirName)
-          break // No need to check other deps for this package
+      if (
+        changedDeps.some(value => packageJsonDeps.has(value)) &&
+        !shouldSkipPackage(json, { ignore: config.ignore, allowPrivatePackages: config.privatePackages.version })
+      ) {
+        for (const dep of changedDeps) {
+          if (packageJsonDeps.has(dep)) {
+            affectedPackages.add(json.name)
+          }
         }
       }
     } catch {
