@@ -2,7 +2,7 @@ import { readFile, writeFile } from 'node:fs/promises'
 import * as changesetConfig from '@changesets/config'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { defaultGitValues, mockSimpleGit } from '../../__mocks__/simple-git'
-import { run } from '../cli.js'
+import { run } from '../generateChangeset.js'
 
 // Mock all external dependencies
 vi.mock('node:fs/promises')
@@ -73,7 +73,7 @@ describe('generate changeset file', () => {
     // Mock changeset config for this test
     mockedReadFile.mockImplementation(async path => {
       if (path === 'test/package.json') {
-        return `{"name":"packageName","version":"1.0.0"}`
+        return `{"name":"packageName","version":"1.0.0","dependencies": { "package": "1.0.0", "package2": "1.2.2" }}`
       }
 
       return '{}'
@@ -123,7 +123,7 @@ describe('generate changeset file', () => {
     // Mock changeset config for this test
     mockedReadFile.mockImplementation(async path => {
       if (path === 'test/package.json') {
-        return `{"name":"packageName","version":"1.0.0"}`
+        return `{"name":"packageName","version":"1.0.0","dependencies": { "package": "1.0.0", "package2": "1.2.2" }}`
       }
 
       return '{}'
@@ -211,7 +211,7 @@ describe('generate changeset file', () => {
     // Mock changeset config for this test
     mockedReadFile.mockImplementation(async path => {
       if (path === 'test/package.json') {
-        return `{"name":"packageName","version":"1.0.0"}`
+        return `{"name":"packageName","version":"1.0.0","dependencies": { "packagez": "1.0.0", "package2": "1.2.2" }}`
       }
 
       return '{}'
@@ -259,7 +259,7 @@ describe('generate changeset file', () => {
     // Mock changeset config for this test
     mockedReadFile.mockImplementation(async path => {
       if (path === 'test/package.json') {
-        return `{"name":"packageName","version":"1.0.0"}`
+        return `{"name":"packageName","version":"1.0.0","dependencies": { "package": "1.0.0", "package2": "1.2.2" }}`
       }
 
       return '{}'
@@ -312,10 +312,10 @@ describe('generate changeset file', () => {
     // Mock changeset config for this test
     mockedReadFile.mockImplementation(async path => {
       if (path === 'test-a/package.json') {
-        return `{"name":"packageNameA","version":"1.0.0"}`
+        return `{"name":"packageNameA","version":"1.0.0","dependencies": { "packagez": "1.0.0" }}`
       }
       if (path === 'test-b/package.json') {
-        return `{"name":"packageNameB","version":"1.1.1"}`
+        return `{"name":"packageNameB","version":"1.0.0","dependencies": { "packagea": "1.0.0" }}`
       }
 
       return '{}'

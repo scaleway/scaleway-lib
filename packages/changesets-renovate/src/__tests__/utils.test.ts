@@ -21,6 +21,7 @@ describe('pnpm-catalogs-utils', () => {
   beforeEach(() => {
     // Clear all mocks
     vi.clearAllMocks()
+    delete process.env['EXCLUDE_DEVDEPS']
   })
 
   describe('loadCatalogFromFile', () => {
@@ -174,6 +175,42 @@ catalog:
           return JSON.stringify({
             dependencies: {
               'unchanged-dep': 'catalog:',
+            },
+            version: '1.0.0',
+            name: 'package-b',
+          })
+        }
+
+        return '{}'
+      }) as any)
+
+      const result = await findAffectedPackages(['changed-dep'])
+
+      expect(glob).toHaveBeenCalledWith('packages/*/package.json', { expandDirectories: false })
+      expect(result).toBeInstanceOf(Set)
+      expect(result.size).toBe(1)
+      expect(result).toContain('package-a')
+      expect(result).not.toContain('package-b')
+    })
+
+    it('should find packages affected by dependency changes and respect EXCLUDE_DEVDEPS', async () => {
+      process.env['EXCLUDE_DEVDEPS'] = 'true'
+
+      // Mock file system reads for package.json files
+      vi.mocked(readFile).mockImplementation((async (filePath: string) => {
+        if (filePath === 'packages/package-a/package.json') {
+          return JSON.stringify({
+            dependencies: {
+              'changed-dep': 'catalog:',
+            },
+            version: '1.0.0',
+            name: 'package-a',
+          })
+        }
+        if (filePath === 'packages/package-b/package.json') {
+          return JSON.stringify({
+            devDependencies: {
+              'changed-dep': 'catalog:',
             },
             version: '1.0.0',
             name: 'package-b',

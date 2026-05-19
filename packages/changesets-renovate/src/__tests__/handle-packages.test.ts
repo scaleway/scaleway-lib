@@ -48,8 +48,8 @@ describe('handle-packages', () => {
 
     await handlePackageChanges(diffFiles)
 
-    expect(getPackagesNames).toHaveBeenCalledWith(['package.json'])
-    expect(getBumpsFromGit).not.toHaveBeenCalled()
+    expect(getBumpsFromGit).toHaveBeenCalledWith(['package.json'])
+    expect(getPackagesNames).toHaveBeenCalledWith(['package.json'], undefined)
     expect(createChangeset).not.toHaveBeenCalled()
   })
 
@@ -77,9 +77,15 @@ describe('handle-packages', () => {
 
     await handlePackageChanges(diffFiles)
 
-    expect(getPackagesNames).toHaveBeenCalledWith(['packages/pkg-a/package.json', 'packages/pkg-b/package.json'])
-    expect(mockSimpleGit().revparse).toHaveBeenCalledWith(['--short', 'HEAD'])
     expect(getBumpsFromGit).toHaveBeenCalledWith(['packages/pkg-a/package.json', 'packages/pkg-b/package.json'])
+    expect(getPackagesNames).toHaveBeenCalledWith(
+      ['packages/pkg-a/package.json', 'packages/pkg-b/package.json'],
+      new Map([
+        ['pkg-a', 'patch'],
+        ['pkg-b', 'minor'],
+      ]),
+    )
+    expect(mockSimpleGit().revparse).toHaveBeenCalledWith(['--short', 'HEAD'])
     expect(createChangeset).toHaveBeenCalledWith('.changeset/renovate-def456.md', packageBumps, ['pkg-a', 'pkg-b'])
     expect(handleChangesetFile).toHaveBeenCalledWith('.changeset/renovate-def456.md')
   })

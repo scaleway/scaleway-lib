@@ -17,7 +17,8 @@ export async function handlePackageChanges(diffFiles: string[]): Promise<void> {
     return
   }
 
-  const packageNames = await getPackagesNames(files)
+  const packageBumps = await getBumpsFromGit(files)
+  const packageNames = await getPackagesNames(files, packageBumps)
 
   if (packageNames.length === 0) {
     console.log('No packages modified, skipping')
@@ -27,7 +28,6 @@ export async function handlePackageChanges(diffFiles: string[]): Promise<void> {
 
   const shortHash = (await simpleGit().revparse(['--short', 'HEAD'])).trim()
   const fileName = `.changeset/renovate-${shortHash}.md`
-  const packageBumps = await getBumpsFromGit(files)
 
   await createChangeset(fileName, packageBumps, packageNames)
   await handleChangesetFile(fileName)
