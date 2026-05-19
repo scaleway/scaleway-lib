@@ -1,5 +1,11 @@
 # @scaleway/utils
 
+## 0.1.2
+
+### Patch Changes
+
+- [#3312](https://github.com/scaleway/scaleway-lib/pull/3312) [`33a4ef0`](https://github.com/scaleway/scaleway-lib/commit/33a4ef0cad41762eeadcbc1312e0b7fadc1c497d) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `yaml` to `2.9.0`.
+
 ## 0.1.1
 
 ### Patch Changes

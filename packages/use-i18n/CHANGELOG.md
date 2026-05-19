@@ -1,5 +1,20 @@
 # Change Log
 
+## 8.0.0
+
+### Major Changes
+
+- [#3257](https://github.com/scaleway/scaleway-lib/pull/3257) [`c39a555`](https://github.com/scaleway/scaleway-lib/commit/c39a555d8053446417687df398fc91ebbef29e73) Thanks [@chambo-e](https://github.com/chambo-e)! - update to ESM only
+
+### Patch Changes
+
+- [#3302](https://github.com/scaleway/scaleway-lib/pull/3302) [`b12ff9a`](https://github.com/scaleway/scaleway-lib/commit/b12ff9a7469f65d3d6f025dd7e848436a85c2b1b) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@formatjs/fast-memoize` to `3.1.5`.
+  Updated dependency `@formatjs/icu-messageformat-parser` to `3.5.8`.
+  Updated dependency `intl-messageformat` to `11.2.5`.
+
+- [#3311](https://github.com/scaleway/scaleway-lib/pull/3311) [`277b9e8`](https://github.com/scaleway/scaleway-lib/commit/277b9e8c255ba2113226059836b9e21ad4c812a6) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@formatjs/icu-messageformat-parser` to `3.5.9`.
+  Updated dependency `intl-messageformat` to `11.2.6`.
+
 ## 7.2.13
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # Change Log
 
+## 2.0.0
+
+### Major Changes
+
+- [#3257](https://github.com/scaleway/scaleway-lib/pull/3257) [`c39a555`](https://github.com/scaleway/scaleway-lib/commit/c39a555d8053446417687df398fc91ebbef29e73) Thanks [@chambo-e](https://github.com/chambo-e)! - update to ESM only
+
+### Patch Changes
+
+- [#3307](https://github.com/scaleway/scaleway-lib/pull/3307) [`fe48234`](https://github.com/scaleway/scaleway-lib/commit/fe48234165b83b3a18db78bbb051f7eca6defb60) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@rudderstack/analytics-js` to `3.31.2`.
+
 ## 1.1.3
 
 ### Patch Changes
