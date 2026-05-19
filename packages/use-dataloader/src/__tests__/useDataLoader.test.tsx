@@ -2,7 +2,7 @@
 
 import { renderHook, waitFor } from '@testing-library/react'
 import type { ReactNode } from 'react'
-import { describe, expect, test, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import DataLoaderProvider, { useDataLoaderContext } from '../DataLoaderProvider'
 import type { KeyType, UseDataLoaderConfig } from '../types'
 import { useDataLoader } from '../useDataLoader'
@@ -42,7 +42,7 @@ const wrapperWithOnError =
   ({ children }: { children?: ReactNode }) => <DataLoaderProvider onError={onError}>{children}</DataLoaderProvider>
 
 describe('useDataLoader', () => {
-  test('should render correctly without options', async () => {
+  it('should render correctly without options', async () => {
     const { result } = renderHook(props => useDataLoader(props.key, props.method), {
       initialProps,
       wrapper,
@@ -60,7 +60,7 @@ describe('useDataLoader', () => {
     expect(result.current.previousData).toBeUndefined()
   })
 
-  test('should render correctly with a complexe key', async () => {
+  it('should render correctly with a complexe key', async () => {
     const key = ['baseKey', ['null', null], ['boolean', false], ['number', 10]].flat()
 
     const initProps = {
@@ -91,7 +91,7 @@ describe('useDataLoader', () => {
     expect(result.current.previousData).toBeUndefined()
   })
 
-  test('should render correctly without request enabled then enable it', async () => {
+  it('should render correctly without request enabled then enable it', async () => {
     let resolveIt = false
     const method = vi.fn(async () => {
       const promiseFn = async () =>
@@ -135,7 +135,7 @@ describe('useDataLoader', () => {
     expect(result.current.data).toBeTruthy()
   })
 
-  test('should render correctly without keepPreviousData', async () => {
+  it('should render correctly without keepPreviousData', async () => {
     const { result } = renderHook(props => useDataLoader(props.key, props.method, props.config), {
       initialProps: {
         ...initialProps,
@@ -155,7 +155,7 @@ describe('useDataLoader', () => {
     expect(result.current.isLoading).toBeFalsy()
   })
 
-  test('should render correctly with result null', async () => {
+  it('should render correctly with result null', async () => {
     const { result } = renderHook(props => useDataLoader(props.key, props.method, props.config), {
       initialProps: {
         ...initialProps,
@@ -178,7 +178,7 @@ describe('useDataLoader', () => {
     expect(result.current.isLoading).toBeFalsy()
   })
 
-  test('should render and cache correctly with cacheKeyPrefix', async () => {
+  it('should render and cache correctly with cacheKeyPrefix', async () => {
     let resolveIt = false
     const method = vi.fn(async () => {
       const promiseFn = async () =>
@@ -235,7 +235,7 @@ describe('useDataLoader', () => {
     expect(result.current[1]?.data).toBeTruthy()
   })
 
-  test('should render correctly with enabled true', async () => {
+  it('should render correctly with enabled true', async () => {
     const { result } = renderHook(props => useDataLoader(props.key, props.method, props.config), {
       initialProps: {
         ...initialProps,
@@ -264,7 +264,7 @@ describe('useDataLoader', () => {
     expect(result.current.isLoading).toBeFalsy()
   })
 
-  test('should render correctly with key update', async () => {
+  it('should render correctly with key update', async () => {
     const propsToPass = {
       ...initialProps,
       key: 'test-key-update',
@@ -297,7 +297,7 @@ describe('useDataLoader', () => {
     expect(result.current.isLoading).toBeFalsy()
   })
 
-  test('should render correctly with pooling', async () => {
+  it('should render correctly with pooling', async () => {
     const pollingProps = {
       config: {
         needPolling: () => true,
@@ -395,7 +395,7 @@ describe('useDataLoader', () => {
     expect(result.current.data).toBe(2)
   })
 
-  test('should render correctly without pooling and needPolling', async () => {
+  it('should render correctly without pooling and needPolling', async () => {
     const pollingProps = {
       config: {
         needPolling: () => true,
@@ -426,7 +426,7 @@ describe('useDataLoader', () => {
     expect(result.current.data).toBeTruthy()
     expect(result.current.isSuccess).toBeTruthy()
   })
-  test('should render correctly with pooling and needPolling true', async () => {
+  it('should render correctly with pooling and needPolling true', async () => {
     const pollingProps = {
       config: {
         needPolling: true,
@@ -458,7 +458,7 @@ describe('useDataLoader', () => {
     expect(result.current.isSuccess).toBeTruthy()
   })
 
-  test('should render correctly with pooling and needPolling false', async () => {
+  it('should render correctly with pooling and needPolling false', async () => {
     const pollingProps = {
       config: {
         needPolling: false,
@@ -490,7 +490,7 @@ describe('useDataLoader', () => {
     expect(result.current.isSuccess).toBeTruthy()
   })
 
-  test('should render correctly with pooling and needPolling function false', async () => {
+  it('should render correctly with pooling and needPolling function false', async () => {
     const pollingProps = {
       config: {
         needPolling: () => false,
@@ -523,7 +523,7 @@ describe('useDataLoader', () => {
     expect(result.current.isSuccess).toBeTruthy()
   })
 
-  test('should render correctly with enabled off', async () => {
+  it('should render correctly with enabled off', async () => {
     let resolveIt = false
     const method = vi.fn(async () => {
       const promiseFn = async () =>
@@ -566,7 +566,7 @@ describe('useDataLoader', () => {
     expect(result.current.data).toBeTruthy()
   })
 
-  test('should call onSuccess', async () => {
+  it('should call onSuccess', async () => {
     const onSuccess = vi.fn()
     const { result } = renderHook(props => useDataLoader(props.key, props.method, props.config), {
       initialProps: {
@@ -587,7 +587,7 @@ describe('useDataLoader', () => {
     expect(onSuccess).toHaveBeenCalledOnce()
   })
 
-  test('should call onError', async () => {
+  it('should call onError', async () => {
     const onSuccess = vi.fn()
     const onError = vi.fn()
     const error = new Error('Test error')
@@ -620,7 +620,7 @@ describe('useDataLoader', () => {
     expect(onSuccess).toHaveBeenCalledTimes(0)
   })
 
-  test('should override onError from Provider', async () => {
+  it('should override onError from Provider', async () => {
     const onSuccess = vi.fn()
     const onError = vi.fn()
     const error = new Error('Test error')
@@ -655,7 +655,7 @@ describe('useDataLoader', () => {
     expect(onSuccess).toHaveBeenCalledTimes(0)
   })
 
-  test('should call onError from Provider', async () => {
+  it('should call onError from Provider', async () => {
     const onSuccess = vi.fn()
     const error = new Error('Test error')
     const onErrorProvider = vi.fn()
@@ -689,7 +689,7 @@ describe('useDataLoader', () => {
     expect(onSuccess).toHaveBeenCalledTimes(0)
   })
 
-  test('should clear error on new response', async () => {
+  it('should clear error on new response', async () => {
     let success = false
     const onSuccess = vi.fn()
     const onError = vi.fn(() => {
@@ -737,7 +737,7 @@ describe('useDataLoader', () => {
     expect(result.current.isError).toBeFalsy()
   })
 
-  test('should use cached data', async () => {
+  it('should use cached data', async () => {
     const fakePromise = vi.fn(initialProps.method)
     const testDate = new Date()
     const { result } = renderHook(
@@ -793,7 +793,7 @@ describe('useDataLoader', () => {
     expect(fakePromise).toHaveBeenCalledTimes(4)
   })
 
-  test('should be reloaded from dataloader context', async () => {
+  it('should be reloaded from dataloader context', async () => {
     const mockedFn = vi.fn(
       async () =>
         new Promise(resolve => {
@@ -836,7 +836,7 @@ describe('useDataLoader', () => {
     expect(mockedFn).toHaveBeenCalledTimes(2)
   })
 
-  test('should render correctly with dataLifetime prevent double call', async () => {
+  it('should render correctly with dataLifetime prevent double call', async () => {
     const testingProps = {
       config: {
         dataLifetime: 1000,
@@ -877,7 +877,7 @@ describe('useDataLoader', () => {
     expect(result.current[1]?.previousData).toBeUndefined()
   })
 
-  test('should render correctly with dataLifetime dont prevent double call', async () => {
+  it('should render correctly with dataLifetime dont prevent double call', async () => {
     const method = vi.fn(
       async () =>
         new Promise(resolve => {
@@ -935,7 +935,7 @@ describe('useDataLoader', () => {
     })
   })
 
-  test('should differentiate between isLoading and isFetching', async () => {
+  it('should differentiate between isLoading and isFetching', async () => {
     let resolveIt = false
     const method = vi.fn(async () => {
       const promiseFn = async () =>

@@ -5,7 +5,7 @@ import { createMemoryHistory } from 'history'
 import type { ComponentType, PropsWithChildren, ReactNode } from 'react'
 import { useLayoutEffect, useState } from 'react'
 import { MemoryRouter, Router } from 'react-router-dom'
-import { describe, expect, it, test } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import useQueryParams from '..'
 
 type HistoryProps = {
@@ -244,7 +244,7 @@ describe('useQueryParam', () => {
     })
   })
 
-  test('should erase params', () => {
+  it('should erase params', () => {
     const { result } = renderHook(() => useQueryParams(), {
       wrapper: wrapper({ search: '' }),
     })
@@ -270,7 +270,7 @@ describe('useQueryParam', () => {
     })
   })
 
-  test('should correctly set query params with array', () => {
+  it('should correctly set query params with array', () => {
     const { result, rerender } = renderHook(() => useQueryParams(), {
       wrapper: wrapper({ search: '' }),
     })
@@ -286,7 +286,7 @@ describe('useQueryParam', () => {
     rerender()
   })
 
-  test('should correctly with existing array', () => {
+  it('should correctly with existing array', () => {
     const { result } = renderHook(() => useQueryParams(), {
       wrapper: wrapper({ search: 'names=John,,Jane,,,' }),
     })
@@ -296,7 +296,7 @@ describe('useQueryParam', () => {
     })
   })
 
-  test('should work correctly when search is empty', () => {
+  it('should work correctly when search is empty', () => {
     const { result } = renderHook(() => useQueryParams(), {
       wrapper: wrapper({ search: '' }),
     })
@@ -314,7 +314,7 @@ describe('useQueryParam', () => {
     expect(result.current.queryParams).toEqual({})
   })
 
-  test('should work correctly when have multiple useQueryParams', () => {
+  it('should work correctly when have multiple useQueryParams', () => {
     const { result } = renderHook(
       () => ({
         qp1: useQueryParams(),

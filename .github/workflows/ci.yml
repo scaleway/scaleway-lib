@@ -11,7 +11,7 @@ jobs:
   build:
     strategy:
       matrix:
-        node: ['24']
+        node: ['24.15.0']
     runs-on: ubuntu-24.04
     env:
       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
@@ -22,10 +22,8 @@ jobs:
       - uses: actions/setup-node@v6.4.0
         with:
           node-version: ${{ matrix.node }}
-      - name: build
-        run: |
-          pnpm install --frozen-lockfile
-          pnpm run build
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run build
 
   typecheck:
     runs-on: ubuntu-24.04
@@ -39,9 +37,23 @@ jobs:
           node-version: 24.15.0
           check-latest: true
           cache: 'pnpm'
-      - run: pnpm install
+      - run: pnpm install --frozen-lockfile && pnpm build && pnpm install --frozen-lockfile
       - run: pnpm typecheck
-      # - run: pnpm typecheck:global
+
+  format:
+    runs-on: ubuntu-24.04
+    needs: [build]
+    steps:
+      - uses: actions/checkout@v6.0.2
+      - uses: pnpm/action-setup@2e223e0f0d2b8fd9872cbadb8b7428e5f8b5556d # Temporary fix for https://github.com/pnpm/action-setup/issues/225
+      - name: Use Node.js
+        uses: actions/setup-node@v6.4.0
+        with:
+          node-version: 24.15.0
+          check-latest: true
+          cache: 'pnpm'
+      - run: pnpm install --frozen-lockfile && pnpm build && pnpm install --frozen-lockfile
+      - run: pnpm run format:check
 
   lint:
     runs-on: ubuntu-24.04
@@ -57,18 +69,15 @@ jobs:
           node-version: 24.15.0
           check-latest: true
           cache: 'pnpm'
-      - name: lint
-        run: |
-          pnpm install --frozen-lockfile
-          pnpm run build
-          pnpm run format:check
-          pnpm run oxc:quiet
+      - run: pnpm install --frozen-lockfile && pnpm build && pnpm install --frozen-lockfile
+      - run: pnpm run lint --format=github
 
   test:
     runs-on: ubuntu-24.04
+    needs: [build]
     strategy:
       matrix:
-        node: ['24']
+        node: ['24.15.0']
     steps:
       - uses: actions/checkout@v6.0.2
       - uses: pnpm/action-setup@2e223e0f0d2b8fd9872cbadb8b7428e5f8b5556d # Temporary fix for https://github.com/pnpm/action-setup/issues/225
@@ -78,8 +87,8 @@ jobs:
           node-version: ${{ matrix.node }}
           check-latest: true
           cache: 'pnpm'
-      - run: pnpm install
-      - run: pnpm run test:coverage
+      - run: pnpm install --frozen-lockfile && pnpm build && pnpm install --frozen-lockfile
+      - run: pnpm run test:unit:coverage
       - uses: codecov/codecov-action@v6.0.0
         with:
           files: packages/**/coverage/cobertura-coverage.xml
@@ -88,16 +97,13 @@ jobs:
 
   test-types:
     runs-on: ubuntu-24.04
-    strategy:
-      matrix:
-        node: ['24']
     steps:
       - uses: actions/checkout@v6.0.2
       - uses: pnpm/action-setup@2e223e0f0d2b8fd9872cbadb8b7428e5f8b5556d # Temporary fix for https://github.com/pnpm/action-setup/issues/225
       - name: Use Node.js
         uses: actions/setup-node@v6.4.0
         with:
-          node-version: ${{ matrix.node }}
+          node-version: 24.15.0
           check-latest: true
           cache: 'pnpm'
       - run: pnpm install

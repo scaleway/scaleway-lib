@@ -1,19 +1,15 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "categories": {
-    "correctness": "deny",
-    "nursery": "off",
-    "pedantic": "deny",
-    "perf": "deny",
-    "restriction": "deny",
-    "style": "deny",
-    "suspicious": "deny",
-  },
   "extends": [
     "./packages/oxlint-config/configs/index.json",
     "./packages/oxlint-config/configs/react.json",
     "./packages/oxlint-config/configs/typescript.json",
   ],
+  "options": {
+    "reportUnusedDisableDirectives": "error",
+    "typeAware": true,
+    "typeCheck": true,
+  },
   "ignorePatterns": ["**/package.config.d.ts", "global.d.ts", "packages/eslint-config-react"],
   "overrides": [
     {

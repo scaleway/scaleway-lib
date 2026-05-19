@@ -26,8 +26,7 @@
   "scripts": {
     "typecheck": "tsgo --noEmit",
     "build": "tsdown",
-    "test": "vitest run",
-    "test:watch": "vitest"
+    "test": "vitest run"
   },
   "dependencies": {
     "@formatjs/icu-messageformat-parser": "catalog:",
