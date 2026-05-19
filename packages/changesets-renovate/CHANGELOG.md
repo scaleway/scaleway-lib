@@ -1,5 +1,21 @@
 # Change Log
 
+## 3.0.0
+
+### Major Changes
+
+- [#3257](https://github.com/scaleway/scaleway-lib/pull/3257) [`c39a555`](https://github.com/scaleway/scaleway-lib/commit/c39a555d8053446417687df398fc91ebbef29e73) Thanks [@chambo-e](https://github.com/chambo-e)! - Node.js 24+ required
+
+  Support for older versions is dropped
+
+### Minor Changes
+
+- [#3318](https://github.com/scaleway/scaleway-lib/pull/3318) [`aa5f5fb`](https://github.com/scaleway/scaleway-lib/commit/aa5f5fbe8b4aea15614e39d680970ed5925871ec) Thanks [@chambo-e](https://github.com/chambo-e)! - introduce quick and dirty EXCLUDE_DEVDEPS flag
+
+### Patch Changes
+
+- [#3312](https://github.com/scaleway/scaleway-lib/pull/3312) [`33a4ef0`](https://github.com/scaleway/scaleway-lib/commit/33a4ef0cad41762eeadcbc1312e0b7fadc1c497d) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `yaml` to `2.9.0`.
+
 ## 2.4.0
 
 ### Minor Changes

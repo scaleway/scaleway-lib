@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.0
+
+### Major Changes
+
+- [#3257](https://github.com/scaleway/scaleway-lib/pull/3257) [`c39a555`](https://github.com/scaleway/scaleway-lib/commit/c39a555d8053446417687df398fc91ebbef29e73) Thanks [@chambo-e](https://github.com/chambo-e)! - update to ESM only
+
 ## 5.8.1
 
 ### Patch Changes
@@ -125,6 +131,7 @@
 - [#1442](https://github.com/scaleway/scaleway-lib/pull/1442) [`c39764e`](https://github.com/scaleway/scaleway-lib/commit/c39764e869fcce3471d6c2c4e35272c86ad24f90) Thanks [@vincentaudebert](https://github.com/vincentaudebert)! - Rename few regex and camelcase all of them for more consistency. Also creates alphanumDashUnderscoreDots.
 
   Here is the full list of changes:
+
   - alphaLower -> alphaLowercase
   - alphanumdash -> alphanumDash
   - alphanumdashdots -> alphanumDashDots

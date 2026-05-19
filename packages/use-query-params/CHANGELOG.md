@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.0
+
+### Major Changes
+
+- [#3257](https://github.com/scaleway/scaleway-lib/pull/3257) [`c39a555`](https://github.com/scaleway/scaleway-lib/commit/c39a555d8053446417687df398fc91ebbef29e73) Thanks [@chambo-e](https://github.com/chambo-e)! - update to ESM only
+
 ## 5.0.21
 
 ### Patch Changes
