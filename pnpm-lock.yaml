@@ -400,6 +400,12 @@ importers:
         specifier: 'catalog:'
         version: 19.2.6(react@19.2.6)
 
+  packages/use-interval:
+    devDependencies:
+      react:
+        specifier: 'catalog:'
+        version: 19.2.6
+
   packages/use-query-params:
     dependencies:
       history:
