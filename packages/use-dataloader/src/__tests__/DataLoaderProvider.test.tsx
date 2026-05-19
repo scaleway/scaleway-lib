@@ -1,6 +1,6 @@
 import { render, renderHook, screen, waitFor } from '@testing-library/react'
 import type { ReactNode } from 'react'
-import { describe, expect, test, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { StatusEnum } from '../constants'
 import DataLoaderProvider, { useDataLoaderContext } from '../DataLoaderProvider'
 
@@ -31,12 +31,12 @@ const wrapperWith2ConcurrentRequests = ({ children }: { children?: ReactNode }) 
 )
 
 describe('dataLoaderProvider', () => {
-  test('should render correctly', () => {
+  it('should render correctly', () => {
     render(<DataLoaderProvider>Test</DataLoaderProvider>)
     expect(screen.getByText('Test')).toBeTruthy()
   })
 
-  test('should add request', async () => {
+  it('should add request', async () => {
     const method = vi.fn(fakePromise)
     const { result, rerender } = renderHook(useDataLoaderContext, {
       wrapper,
@@ -71,7 +71,7 @@ describe('dataLoaderProvider', () => {
     })
   })
 
-  test('should add request with cache key prefix', async () => {
+  it('should add request with cache key prefix', async () => {
     const method = vi.fn(fakePromise)
     const { result } = renderHook(useDataLoaderContext, {
       wrapper: wrapperWithCacheKey,
@@ -104,7 +104,7 @@ describe('dataLoaderProvider', () => {
     })
   })
 
-  test('should add request with result is null', async () => {
+  it('should add request with result is null', async () => {
     const method = vi.fn(fakeNullPromise)
     const { result } = renderHook(useDataLoaderContext, {
       wrapper,
@@ -140,7 +140,7 @@ describe('dataLoaderProvider', () => {
     expect(result.current.getCachedData()).toStrictEqual({ test: undefined })
   })
 
-  test('should delay max concurrent request', async () => {
+  it('should delay max concurrent request', async () => {
     const method = vi.fn(
       async () =>
         new Promise(resolve => {
@@ -171,7 +171,6 @@ describe('dataLoaderProvider', () => {
     ]
 
     for (const request of requests) {
-      // oxlint-disable-next-line  @typescript-eslint/no-floating-promises
       request.load().catch(() => null)
     }
 
@@ -184,7 +183,7 @@ describe('dataLoaderProvider', () => {
     })
   })
 
-  test('should reload group', async () => {
+  it('should reload group', async () => {
     const method1 = vi.fn(fakePromise)
     const method2 = vi.fn(fakePromise)
     const method3 = vi.fn(fakePromise)
@@ -226,7 +225,7 @@ describe('dataLoaderProvider', () => {
     expect(method3).toHaveBeenCalledOnce()
   })
 
-  test('should reload all active requests', async () => {
+  it('should reload all active requests', async () => {
     const method1 = vi.fn(fakePromise)
     const method2 = vi.fn(fakePromise)
     const method3 = vi.fn(fakePromise)
@@ -252,7 +251,7 @@ describe('dataLoaderProvider', () => {
     expect(method3).not.toHaveBeenCalled()
   })
 
-  test('should reload group active requests', async () => {
+  it('should reload group active requests', async () => {
     const method1 = vi.fn(fakePromise)
     const method2 = vi.fn(fakePromise)
     const method3 = vi.fn(fakePromise)

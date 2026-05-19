@@ -1,4 +1,4 @@
-import { describe, expect, test, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import waitForExpect from 'wait-for-expect'
 import { StatusEnum } from '../constants'
 import DataLoader from '../dataloader'
@@ -41,7 +41,7 @@ const fakeLongErrorPromise = async () =>
   })
 
 describe('dataloader class', () => {
-  test('should create instance then load then destroy', async () => {
+  it('should create instance then load then destroy', async () => {
     const method = vi.fn(fakeSuccessPromise)
     const notifyChanges = vi.fn()
     const instance = new DataLoader({
@@ -56,7 +56,7 @@ describe('dataloader class', () => {
     instance.clearData()
   })
 
-  test('should create instance then load multiple times', async () => {
+  it('should create instance then load multiple times', async () => {
     const method = vi.fn(fakeSuccessPromise)
     const notifyChanges = vi.fn()
     const instance = new DataLoader({
@@ -73,7 +73,7 @@ describe('dataloader class', () => {
     instance.clearData()
   })
 
-  test('should create instance with cancel', () => {
+  it('should create instance with cancel', () => {
     const notify = vi.fn()
     const method = vi.fn(fakeSuccessPromise)
     const instance = new DataLoader({
@@ -95,7 +95,7 @@ describe('dataloader class', () => {
     instance.clearData()
   })
 
-  test('should create instance without cancel', async () => {
+  it('should create instance without cancel', async () => {
     const notify = vi.fn()
     const method = vi.fn(fakeSuccessPromise)
     const instance = new DataLoader({
@@ -111,7 +111,7 @@ describe('dataloader class', () => {
     instance.clearData()
   })
 
-  test('should create instance with null data', async () => {
+  it('should create instance with null data', async () => {
     const method = vi.fn(fakeNullPromise)
     const notifyChanges = vi.fn()
     const instance = new DataLoader({
@@ -123,7 +123,7 @@ describe('dataloader class', () => {
     expect(method).toHaveBeenCalledOnce()
     expect(instance.getData()).toBeNull()
   })
-  test('should create instance with undefined data', async () => {
+  it('should create instance with undefined data', async () => {
     const method = vi.fn(fakeUndefinedPromise)
     const notifyChanges = vi.fn()
 
@@ -137,7 +137,7 @@ describe('dataloader class', () => {
     expect(instance.getData()).toBeUndefined()
   })
 
-  test('should create instance with error', async () => {
+  it('should create instance with error', async () => {
     const method = vi.fn(fakeErrorPromise)
     const notifyChanges = vi.fn()
     const onError = vi.fn()
@@ -152,7 +152,7 @@ describe('dataloader class', () => {
     expect(onError).toHaveBeenCalledOnce()
   })
 
-  test('should create instance with cancel and properly set status after', async () => {
+  it('should create instance with cancel and properly set status after', async () => {
     const method = vi.fn(fakeSuccessPromise)
     const notifyChanges = vi.fn()
 
@@ -174,7 +174,7 @@ describe('dataloader class', () => {
     expect(notifyChanges).toHaveBeenCalledTimes(2)
   })
 
-  test('should create instance with error and cancel', async () => {
+  it('should create instance with error and cancel', async () => {
     const method = vi.fn(fakeLongErrorPromise)
     const notifyChanges = vi.fn()
     const onError = vi.fn()
@@ -196,7 +196,7 @@ describe('dataloader class', () => {
     })
   })
 
-  test('should launch multiple dataloader', async () => {
+  it('should launch multiple dataloader', async () => {
     const method = vi.fn(fakeErrorPromise)
     const notifyChanges = vi.fn()
 

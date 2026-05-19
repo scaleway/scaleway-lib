@@ -106,7 +106,6 @@ class DataLoader<ResultType, ErrorType> {
       const data = await this.method()
 
       // This can be set to false with .cancel even while the launch is pending
-      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
       if (!this.isCancelled) {
         DataLoader.cachedData[this.key] = data
         this.status = StatusEnum.SUCCESS

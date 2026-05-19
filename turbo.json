@@ -24,22 +24,9 @@
       "dependsOn": ["^build"],
       "passThroughEnv": ["VITEST_*"]
     },
-
     "typecheck": {
       "dependsOn": ["^build"],
       "inputs": ["**/*.{ts,tsx}", "tsconfig.json"]
-    },
-    "typecheck:generate": {
-      "dependsOn": ["^build"],
-      "inputs": ["**/*.{ts,tsx}"]
-    },
-    "typecheck:generate:go": {
-      "dependsOn": ["^build"],
-      "inputs": ["**/*.{ts,tsx}"]
-    },
-    "typecheck:go": {
-      "dependsOn": ["^build"],
-      "inputs": ["**/*.{ts,tsx}"]
     }
   },
   "ui": "stream"

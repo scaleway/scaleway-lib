@@ -1,4 +1,4 @@
-import { describe, expect, test } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import type { FormatDateOptions } from '../formatDate'
 import formatDate, { supportedFormats } from '../formatDate'
 
@@ -15,11 +15,11 @@ const tests = [
 ].flat() as [FormatDateOptions, string, string, Date | string | number][]
 
 describe('formatDate', () => {
-  test.each(tests)('should work with format "%s", for date = "%s" and locale "%s"', (format, _, locale, date) => {
+  it.each(tests)('should work with format "%s", for date = "%s" and locale "%s"', (format, _, locale, date) => {
     expect(formatDate(locale, date, format)).toMatchSnapshot()
   })
 
-  test.each(locales)('should work with custom format and locale %s', locale => {
+  it.each(locales)('should work with custom format and locale %s', locale => {
     const format: FormatDateOptions = {
       day: 'numeric',
       era: 'short',
@@ -37,14 +37,14 @@ describe('formatDate', () => {
     expect(formatDate(locale, '2020-02-13T15:28:00.000Z', format)).toMatchSnapshot()
   })
 
-  test('should return passed object if not valid date', () => {
+  it('should return passed object if not valid date', () => {
     expect(
       // @ts-expect-error we check a failing case
       formatDate('fr', { not: 'a valid date' }),
     ).toMatchSnapshot()
   })
 
-  test('should throw if shorthand format is invalid', () => {
+  it('should throw if shorthand format is invalid', () => {
     expect(() =>
       // @ts-expect-error we check a failing case
       formatDate('fr', 1_581_607_680_000, 'not a valid format'),

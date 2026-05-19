@@ -1,4 +1,4 @@
-import { describe, expect, test } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import type { FormatUnitOptions } from '../formatUnit'
 import formatUnit, { supportedUnits } from '../formatUnit'
 
@@ -42,14 +42,14 @@ const tests: TestType[] = [
 ]
 
 describe('formatUnit', () => {
-  test('should return empty string for unknown unit', () => {
+  it('should return empty string for unknown unit', () => {
     expect(
       // @ts-expect-error We test the use case when unit is unknown
       formatUnit('fr', 123, { unit: 'unknown' }),
     ).toMatchSnapshot()
   })
 
-  test.each(tests)('%s %o', (_, options, locale, amount) => {
+  it.each(tests)('%s %o', (_, options, locale, amount) => {
     expect(formatUnit(locale, amount, options)).toMatchSnapshot()
   })
 })

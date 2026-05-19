@@ -1,4 +1,3 @@
-// oxlint-disable eslint/no-console
 import { env } from 'node:process'
 import { simpleGit } from 'simple-git'
 import { parse } from 'yaml'

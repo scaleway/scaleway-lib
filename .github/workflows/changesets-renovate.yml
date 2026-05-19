@@ -35,8 +35,6 @@ jobs:
           node-version: 24.15.0
           check-latest: true
           cache: 'pnpm'
-      - run: pnpm install
-      - run: pnpm run build
-      - run: pnpm install
+      - run: pnpm install --frozen-lockfile && pnpm build && pnpm install --frozen-lockfile
       - name: Run changesets-renovate
         run: pnpm exec changesets-renovate

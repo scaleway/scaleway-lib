@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 // oxlint-disable eslint/no-console
-// oxlint-disable eslint/max-statements
 
 import { copyFileSync, existsSync, mkdirSync, readFileSync } from 'node:fs'
 import { BASELINE_FILE, CURRENT_FILE, OUTPUT_DIR, REPORT_FILE } from './config.ts'

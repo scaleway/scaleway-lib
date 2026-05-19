@@ -8,16 +8,15 @@
   "scripts": {
     "preinstall": "git config --local include.path $PWD/.gitconfig",
     "lint:catalog": "pnpm check-catalog-usage",
-    "oxc": "pnpm oxlint -c .oxlintrc.jsonc --type-aware --type-check",
-    "oxc:quiet": "pnpm oxc --quiet",
-    "oxc:fix": "pnpm oxc --fix",
+    "lint": "oxlint -c .oxlintrc.jsonc",
+    "lint:fix": "pnpm lint:fix -- --fix",
     "build": "pnpm turbo build",
     "typecheck": "pnpm turbo typecheck",
     "typecheck:generate": "pnpm turbo typecheck:generate",
     "format": "oxfmt --write .",
     "format:check": "oxfmt --check .",
     "test:unit": "pnpm turbo test:unit",
-    "test:coverage": "pnpm test:unit -- --coverage",
+    "test:unit:coverage": "pnpm turbo test:unit:coverage",
     "test:types": "pnpm turbo test:types",
     "release": "pnpm build && pnpm changeset publish"
   },
@@ -61,7 +60,7 @@
   "lint-staged": {
     "*.ts?(x)": [
       "pnpm run format",
-      "pnpm run oxc --quiet"
+      "pnpm run lint --quiet"
     ],
     "*.y?(a)ml": [
       "oxfmt --write ."
