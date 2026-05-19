@@ -1,6 +1,6 @@
 ---
-'use-i18n': patch
-'validate-icu-locales': patch
+'@scaleway/use-i18n': patch
+'@scaleway/validate-icu-locales': patch
 ---
 
 Updated dependency `@formatjs/icu-messageformat-parser` to `3.5.9`.

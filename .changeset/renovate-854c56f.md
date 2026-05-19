@@ -1,5 +1,5 @@
 ---
-'use-analytics': patch
+'@scaleway/use-analytics': patch
 ---
 
 Updated dependency `@rudderstack/analytics-js` to `3.31.2`.
