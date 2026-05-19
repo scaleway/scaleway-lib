@@ -17,12 +17,12 @@ import React from 'react'
 import { useInterval } from '@scaleway/use-interval'
 
 const Component = () => {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(0)
 
   useInterval(() => {
-    setCount(count + 1);
-  }, 1000);
+    setCount(count + 1)
+  }, 1000)
 
-  return <h1>{count}</h1>;
+  return <h1>{count}</h1>
 }
 ```
