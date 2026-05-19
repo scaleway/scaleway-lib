@@ -435,6 +435,16 @@ importers:
         specifier: 'catalog:'
         version: 19.2.6
 
+  packages/use-visual-persistence:
+    dependencies:
+      '@scaleway/use-storage':
+        specifier: workspace:*
+        version: link:../use-storage
+    devDependencies:
+      react:
+        specifier: 'catalog:'
+        version: 19.2.6
+
   packages/utils:
     dependencies:
       yaml:

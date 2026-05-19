@@ -77,6 +77,8 @@
         "vitest/no-conditional-expect": "warn",
         "vitest/no-conditional-in-test": "warn",
         "vitest/prefer-snapshot-hint": "warn",
+        "vitest/prefer-to-be-falsy": "off",
+        "vitest/prefer-to-be-truthy": "off",
       },
     },
   ],
