@@ -1,11 +1,14 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "assignees": ["team:console"],
-  "assigneesSampleSize": 1,
-  "automerge": false,
-  "dependencyDashboard": true,
   "enabledManagers": ["github-actions", "npm"],
-  "extends": ["config:recommended", ":combinePatchMinorReleases"],
+  "extends": [
+    "config:best-practices",
+    "config:js-app",
+    "abandonments:recommended",
+    ":combinePatchMinorReleases",
+    ":gitSignOff",
+    ":configMigration"
+  ],
   "labels": ["dependencies"],
   "packageRules": [
     {
@@ -13,51 +16,28 @@
       "rangeStrategy": "widen"
     },
     {
-      "autoApprove": true,
-      "automerge": true,
+      "matchDepTypes": ["dependencies"],
+      "semanticCommitType": "chore"
+    },
+    {
       "matchManagers": ["github-actions"],
       "semanticCommitScope": "devDeps"
     },
     {
       "matchDepTypes": ["packageManager", "devDependencies"],
-      "matchUpdateTypes": ["major"],
       "semanticCommitScope": "devDeps"
     },
     {
-      "matchDepTypes": ["packageManager", "devDependencies"],
-      "matchUpdateTypes": ["minor", "patch"],
-      "semanticCommitScope": "devDeps"
+      "matchPackageNames": ["/^@scaleway//"],
+      "minimumReleaseAge": null
     },
     {
-      "labels": ["UPDATE-MAJOR"],
-      "matchUpdateTypes": ["major"],
-      "minimumReleaseAge": "14 days"
-    },
-    {
-      "autoApprove": true,
-      "automerge": true,
-      "labels": ["UPDATE-MINOR"],
-      "matchUpdateTypes": ["minor"],
-      "minimumReleaseAge": "7 days"
-    },
-    {
-      "autoApprove": true,
-      "automerge": true,
-      "labels": ["UPDATE-PATCH"],
-      "matchUpdateTypes": ["patch"],
-      "minimumReleaseAge": "3 days"
-    },
-    {
-      "matchDepTypes": ["engines"],
-      "rangeStrategy": "widen"
+      "groupName": "Testing library",
+      "groupSlug": "testing-library",
+      "matchPackageNames": ["/^@testing-library/"]
     }
   ],
   "prConcurrentLimit": 10,
-  "prHourlyLimit": 5,
-  "rangeStrategy": "pin",
-  "rebaseWhen": "auto",
   "reviewers": ["team:console"],
-  "reviewersSampleSize": 2,
-  "semanticCommitScope": "deps",
-  "semanticCommitType": "chore"
+  "reviewersSampleSize": 2
 }
