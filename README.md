@@ -55,6 +55,11 @@ scaleway-lib is a set of NPM packages used at Scaleway.
   ![npm](https://img.shields.io/npm/dm/@scaleway/regex)
   ![npm](https://img.shields.io/npm/v/@scaleway/regex)
 
+- [`@scaleway/use-countdown`](./packages/use-countdown/README.md)
+
+  ![npm](https://img.shields.io/npm/dm/@scaleway/use-countdown)
+  ![npm](https://img.shields.io/npm/v/@scaleway/use-countdown)
+
 - [`@scaleway/use-dataloader`](./packages/use-dataloader/README.md):
   A tiny react hook to to handle api requests.
 
