@@ -13,7 +13,7 @@ describe('useinterval', () => {
     vi.restoreAllMocks()
   })
 
-  it('with a delay of 100 ms', () => {
+  it('should start with a delay of 100 ms', () => {
     const callback = vi.fn()
     renderHook(() => {
       useInterval(callback, 100)
@@ -21,5 +21,15 @@ describe('useinterval', () => {
     vi.advanceTimersByTime(300)
     expect(setInterval).toHaveBeenCalledOnce()
     expect(callback).toHaveBeenCalledTimes(3)
+  })
+
+  it('should not start interval if null is passed', () => {
+    const callback = vi.fn()
+    renderHook(() => {
+      useInterval(callback, null)
+    })
+    vi.advanceTimersByTime(300)
+    expect(setInterval).toHaveBeenCalledTimes(0)
+    expect(callback).toHaveBeenCalledTimes(0)
   })
 })
