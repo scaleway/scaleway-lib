@@ -54,6 +54,6 @@
     "react-dom": "18.x || 19.x"
   },
   "engines": {
-    "node": ">=20.x"
+    "node": ">=24.x"
   }
 }

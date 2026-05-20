@@ -25,6 +25,6 @@
     "test:unit:coverage": "pnpm test:unit --coverage"
   },
   "engines": {
-    "node": ">=20.x"
+    "node": ">=24.x"
   }
 }
