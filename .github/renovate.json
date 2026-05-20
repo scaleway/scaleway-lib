@@ -1,61 +1,34 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "assignees": ["team:console"],
-  "assigneesSampleSize": 1,
-  "automerge": false,
-  "dependencyDashboard": true,
   "enabledManagers": ["github-actions", "npm"],
-  "extends": ["config:recommended", ":combinePatchMinorReleases"],
-  "labels": ["dependencies"],
+  "extends": ["config:best-practices", ":combinePatchMinorReleases"],
+  "ignorePaths": [
+    "**/node_modules/**",
+    "**/bower_components/**",
+    "**/vendor/**",
+    "**/__tests__/**",
+    "**/__fixtures__/**"
+  ],
   "packageRules": [
     {
       "matchDepTypes": ["engines", "peerDependencies"],
       "rangeStrategy": "widen"
     },
     {
-      "autoApprove": true,
-      "automerge": true,
-      "matchManagers": ["github-actions"],
+      "matchManagers": ["github-actions", "packageManager", "devDependencies"],
       "semanticCommitScope": "devDeps"
     },
     {
-      "matchDepTypes": ["packageManager", "devDependencies"],
-      "matchUpdateTypes": ["major"],
-      "semanticCommitScope": "devDeps"
+      "matchPackageNames": ["/^@scaleway//"],
+      "minimumReleaseAge": null
     },
     {
-      "matchDepTypes": ["packageManager", "devDependencies"],
-      "matchUpdateTypes": ["minor", "patch"],
-      "semanticCommitScope": "devDeps"
-    },
-    {
-      "labels": ["UPDATE-MAJOR"],
-      "matchUpdateTypes": ["major"],
-      "minimumReleaseAge": "14 days"
-    },
-    {
-      "autoApprove": true,
-      "automerge": true,
-      "labels": ["UPDATE-MINOR"],
-      "matchUpdateTypes": ["minor"],
-      "minimumReleaseAge": "7 days"
-    },
-    {
-      "autoApprove": true,
-      "automerge": true,
-      "labels": ["UPDATE-PATCH"],
-      "matchUpdateTypes": ["patch"],
-      "minimumReleaseAge": "3 days"
-    },
-    {
-      "matchDepTypes": ["engines"],
-      "rangeStrategy": "widen"
+      "groupName": "Testing library",
+      "groupSlug": "testing-library",
+      "matchPackageNames": ["/^@testing-library/"]
     }
   ],
   "prConcurrentLimit": 10,
-  "prHourlyLimit": 5,
-  "rangeStrategy": "pin",
-  "rebaseWhen": "auto",
   "reviewers": ["team:console"],
   "reviewersSampleSize": 2,
   "semanticCommitScope": "deps",
