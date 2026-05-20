@@ -2,13 +2,6 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "enabledManagers": ["github-actions", "npm"],
   "extends": ["config:best-practices", ":combinePatchMinorReleases"],
-  "ignorePaths": [
-    "**/node_modules/**",
-    "**/bower_components/**",
-    "**/vendor/**",
-    "**/__tests__/**",
-    "**/__fixtures__/**"
-  ],
   "packageRules": [
     {
       "matchDepTypes": ["engines", "peerDependencies"],
