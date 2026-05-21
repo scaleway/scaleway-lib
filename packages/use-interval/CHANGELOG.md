@@ -1,5 +1,11 @@
 # @scaleway/use-interval
 
+## 1.0.1
+
+### Patch Changes
+
+- [`091ca18`](https://github.com/scaleway/scaleway-lib/commit/091ca18320d312666e1bf13fb57f69baa6b83206) Thanks [@chambo-e](https://github.com/chambo-e)! - fix: try to add provenance back
+
 ## 1.0.0
 
 ### Major Changes
