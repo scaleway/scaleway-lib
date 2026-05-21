@@ -1,5 +1,11 @@
 # @scaleway/utils
 
+## 0.1.3
+
+### Patch Changes
+
+- [#3332](https://github.com/scaleway/scaleway-lib/pull/3332) [`8d42145`](https://github.com/scaleway/scaleway-lib/commit/8d42145625c9a82b803e27e0b11119d95001ac15) Thanks [@chambo-e](https://github.com/chambo-e)! - try to add provenance
+
 ## 0.1.2
 
 ### Patch Changes
