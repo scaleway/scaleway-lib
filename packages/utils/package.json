@@ -20,6 +20,9 @@
     "README.md"
   ],
   "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "prepublishOnly": "pnpm run build"
   },
