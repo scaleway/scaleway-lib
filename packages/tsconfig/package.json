@@ -15,7 +15,8 @@
   },
   "main": "tsconfig.json",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   },
   "scripts": {
     "prepack": "cp ../../.npmignore ."
