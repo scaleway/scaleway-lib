@@ -1,0 +1,37 @@
+{
+  "name": "@scaleway/use-interval",
+  "version": "0.0.1",
+  "description": "A react hook to save element dismissal locally",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scaleway/scaleway-lib.git",
+    "directory": "packages/use-visual-persistence"
+  },
+  "files": [
+    "dist/"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "scripts": {
+    "typecheck": "tsgo --noEmit",
+    "build": "tsdown",
+    "test:unit": "vitest --run",
+    "test:unit:coverage": "pnpm test:unit --coverage"
+  },
+  "devDependencies": {
+    "react": "catalog:"
+  },
+  "peerDependencies": {
+    "react": ">=16.8"
+  }
+}
