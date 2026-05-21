@@ -1,5 +1,11 @@
 # @scaleway/use-interval
 
+## 1.0.2
+
+### Patch Changes
+
+- [`53a997b`](https://github.com/scaleway/scaleway-lib/commit/53a997bce69a8e1ac16e27a575941096e4b603e4) Thanks [@chambo-e](https://github.com/chambo-e)! - provenance with pnpm
+
 ## 1.0.1
 
 ### Patch Changes
