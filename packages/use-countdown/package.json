@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/use-countdown",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Tiny react hook for a countdown",
   "license": "MIT",
   "repository": {

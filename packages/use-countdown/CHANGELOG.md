@@ -1,5 +1,11 @@
 # @scaleway/use-countdown
 
+## 1.0.1
+
+### Patch Changes
+
+- [`9d4b8e1`](https://github.com/scaleway/scaleway-lib/commit/9d4b8e112f867c049c2bff339fa837ea3893bf58) Thanks [@chambo-e](https://github.com/chambo-e)! - properly set pnpm provenance
+
 ## 1.0.0
 
 ### Major Changes

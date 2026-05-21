@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/use-interval",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A react hook to save element dismissal locally",
   "license": "MIT",
   "repository": {
