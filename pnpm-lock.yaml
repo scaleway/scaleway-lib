@@ -350,6 +350,12 @@ importers:
         specifier: 'catalog:'
         version: 19.2.6
 
+  packages/use-clipboard:
+    devDependencies:
+      react:
+        specifier: 'catalog:'
+        version: 19.2.6
+
   packages/use-countdown:
     devDependencies:
       react:
