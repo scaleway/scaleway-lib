@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/changesets-renovate",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Automatically create changesets for Renovate and pnpm catalogs",
   "keywords": [
     "catalogs",

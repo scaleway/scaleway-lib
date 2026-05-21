@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/regex",
-  "version": "6.0.1",
+  "version": "6.0.2",
   "description": "A small utility to use regex",
   "license": "MIT",
   "repository": {
