@@ -28,9 +28,6 @@
     "access": "public",
     "provenance": true
   },
-  "scripts": {
-    "prepack": "cp ../../.npmignore ."
-  },
   "devDependencies": {
     "oxlint": "catalog:"
   },
