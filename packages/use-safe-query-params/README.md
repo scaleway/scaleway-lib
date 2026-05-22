@@ -2,6 +2,8 @@
 
 A hook and an helper to safely interact with queryParams making sure that data match a zod schema
 
+This package targets react-router v5 for now. An update to support react-router v7 is planned
+
 ## Install
 
 ```bash
