@@ -12,7 +12,7 @@
       "semanticCommitType": "chore"
     },
     {
-      "matchManagers": ["dockerfile", "github-actions"],
+      "matchManagers": ["github-actions"],
       "semanticCommitScope": "devDeps"
     },
     {
