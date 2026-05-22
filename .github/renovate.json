@@ -2,6 +2,7 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "enabledManagers": ["github-actions", "npm"],
   "extends": ["config:best-practices", "config:js-app", ":combinePatchMinorReleases", ":gitSignOff"],
+  "labels": ["dependencies"],
   "packageRules": [
     {
       "matchDepTypes": ["engines", "peerDependencies"],
