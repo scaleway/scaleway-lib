@@ -32,7 +32,5 @@
   ],
   "prConcurrentLimit": 10,
   "reviewers": ["team:console"],
-  "reviewersSampleSize": 2,
-  "semanticCommitScope": "deps",
-  "semanticCommitType": "chore"
+  "reviewersSampleSize": 2
 }
