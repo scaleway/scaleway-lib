@@ -2,11 +2,25 @@
   "name": "@scaleway/use-safe-query-params",
   "version": "0.0.1",
   "description": "A hook and an helper to safely interact with queryParams making sure that data match a zod schema",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scaleway/scaleway-lib.git",
+    "directory": "packages/use-safe-query-params"
+  },
   "files": [
-    "dist"
+    "dist/"
   ],
   "type": "module",
   "sideEffects": false,
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "typecheck": "tsgo --noEmit",
     "build": "tsdown",
