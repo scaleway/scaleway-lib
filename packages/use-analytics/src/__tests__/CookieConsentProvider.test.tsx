@@ -54,6 +54,28 @@ const TestComponent = () => {
   )
 }
 
+const TestComponentWithPartialSave = () => {
+  const { categoriesConsent, saveConsent } = useCookieConsent()
+  const allowedConsents = getAllowedConsents(categoriesConsent)
+  const deniedConsents = getDeniedConsents(categoriesConsent)
+
+  const handlePartialSave = () => {
+    saveConsent({
+      analytics: true, // Only change this one
+    })
+  }
+
+  return (
+    <div>
+      <div data-testid="allowed-consents">{allowedConsents.join(',')}</div>
+      <div data-testid="denied-consents">{deniedConsents.join(',')}</div>
+      <button type="button" onClick={handlePartialSave} data-testid="save-partial">
+        Save Partial
+      </button>
+    </div>
+  )
+}
+
 describe('allowedConsents and deniedConsents', () => {
   const mockConfig: Config = {
     analytics: {
@@ -146,28 +168,6 @@ describe('allowedConsents and deniedConsents', () => {
     const cookieString = cookieArray.join('; ')
 
     vi.spyOn(document, 'cookie', 'get').mockReturnValueOnce(cookieString)
-
-    const TestComponentWithPartialSave = () => {
-      const { categoriesConsent, saveConsent } = useCookieConsent()
-      const allowedConsents = getAllowedConsents(categoriesConsent)
-      const deniedConsents = getDeniedConsents(categoriesConsent)
-
-      const handlePartialSave = () => {
-        saveConsent({
-          analytics: true, // Only change this one
-        })
-      }
-
-      return (
-        <div>
-          <div data-testid="allowed-consents">{allowedConsents.join(',')}</div>
-          <div data-testid="denied-consents">{deniedConsents.join(',')}</div>
-          <button type="button" onClick={handlePartialSave} data-testid="save-partial">
-            Save Partial
-          </button>
-        </div>
-      )
-    }
 
     render(
       <CookieConsentProvider isConsentRequired config={mockConfig}>
