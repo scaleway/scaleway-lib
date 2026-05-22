@@ -20,6 +20,7 @@ catalog:
   '@types/react': 19.2.15
   '@types/react-dom': 19.2.3
   '@typescript/native-preview': 7.0.0-dev.20260522.1
+  '@types/react-router-dom': 5.3.3
   '@vitejs/plugin-react': 6.0.2
   '@vitest/coverage-istanbul': 4.1.7
   browserslist: 4.28.2
@@ -40,6 +41,7 @@ catalog:
   publint: 0.3.21
   react: 19.2.6
   react-dom: 19.2.6
+  react-router-dom: 5.3.4
   read-pkg: 10.1.0
   simple-git: 3.36.0
   tinyglobby: 0.2.16
@@ -51,6 +53,7 @@ catalog:
   vitest-localstorage-mock: 0.1.2
   wait-for-expect: 4.0.0
   yaml: 2.9.0
+  zod: 4.4.3
 
 catalogMode: strict
 cleanupUnusedCatalogs: true

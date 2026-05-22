@@ -1,0 +1,27 @@
+{
+  "name": "@scaleway/use-safe-query-params",
+  "version": "0.0.1",
+  "description": "A hook and an helper to safely interact with queryParams making sure that data match a zod schema",
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "scripts": {
+    "typecheck": "tsgo --noEmit",
+    "build": "tsdown",
+    "test:unit": "vitest --run",
+    "test:unit:coverage": "pnpm test:unit --coverage"
+  },
+  "devDependencies": {
+    "@types/react-router-dom": "catalog:",
+    "react": "catalog:",
+    "react-router-dom": "catalog:",
+    "zod": "catalog:"
+  },
+  "peerDependencies": {
+    "react": "18.x || 19.x",
+    "react-router-dom": "5.x",
+    "zod": "4.x"
+  }
+}
