@@ -4,10 +4,8 @@
   "extends": [
     "config:best-practices",
     "config:js-app",
-    "abandonments:recommended",
     ":combinePatchMinorReleases",
-    ":gitSignOff",
-    ":configMigration"
+    ":gitSignOff"
   ],
   "labels": ["dependencies"],
   "packageRules": [
