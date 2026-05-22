@@ -1,7 +1,14 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "enabledManagers": ["github-actions", "npm"],
-  "extends": ["config:best-practices", "config:js-app", ":combinePatchMinorReleases", ":gitSignOff"],
+  "extends": [
+    "config:best-practices",
+    "config:js-app",
+    "abandonments:recommended",
+    ":combinePatchMinorReleases",
+    ":gitSignOff",
+    ":configMigration"
+  ],
   "labels": ["dependencies"],
   "packageRules": [
     {
