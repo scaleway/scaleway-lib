@@ -1,14 +1,22 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "enabledManagers": ["github-actions", "npm"],
-  "extends": ["config:best-practices", ":combinePatchMinorReleases"],
+  "extends": ["config:best-practices", "config:js-app", ":combinePatchMinorReleases", ":gitSignOff"],
   "packageRules": [
     {
       "matchDepTypes": ["engines", "peerDependencies"],
       "rangeStrategy": "widen"
     },
     {
-      "matchManagers": ["github-actions", "packageManager", "devDependencies"],
+      "matchDepTypes": ["dependencies"],
+      "semanticCommitType": "chore"
+    },
+    {
+      "matchManagers": ["dockerfile", "github-actions"],
+      "semanticCommitScope": "devDeps"
+    },
+    {
+      "matchDepTypes": ["packageManager", "devDependencies"],
       "semanticCommitScope": "devDeps"
     },
     {
