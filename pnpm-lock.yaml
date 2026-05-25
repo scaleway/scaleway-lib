@@ -305,6 +305,21 @@ importers:
 
   packages/random-name: {}
 
+  packages/react-router:
+    devDependencies:
+      '@types/react-router-dom':
+        specifier: 'catalog:'
+        version: 5.3.3
+      react:
+        specifier: 'catalog:'
+        version: 19.2.6
+      react-router-dom:
+        specifier: 'catalog:'
+        version: 5.3.4(react@19.2.6)
+      zod:
+        specifier: 'catalog:'
+        version: 4.4.3
+
   packages/regex: {}
 
   packages/sync-peer-deps:
@@ -415,21 +430,6 @@ importers:
       react:
         specifier: 'catalog:'
         version: 19.2.6
-
-  packages/use-safe-query-params:
-    devDependencies:
-      '@types/react-router-dom':
-        specifier: 'catalog:'
-        version: 5.3.3
-      react:
-        specifier: 'catalog:'
-        version: 19.2.6
-      react-router-dom:
-        specifier: 'catalog:'
-        version: 5.3.4(react@19.2.6)
-      zod:
-        specifier: 'catalog:'
-        version: 4.4.3
 
   packages/use-storage:
     devDependencies:

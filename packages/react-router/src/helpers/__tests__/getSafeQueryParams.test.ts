@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { z } from 'zod'
-import { getSafeQueryParams } from './getSafeQueryParams'
+import { getSafeQueryParams } from '../getSafeQueryParams'
 
 function coerceToArray<Schema extends z.ZodArray<z.ZodTypeAny>>(schema: Schema) {
   // oxlint-disable-next-line no-unsafe-return

@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { z } from 'zod'
-import { useSafeQueryParams } from './useSafeQueryParams'
+import { useSafeQueryParams } from '../useSafeQueryParams'
 
 function coerceToArray<Schema extends z.ZodArray<z.ZodTypeAny>>(schema: Schema) {
   // oxlint-disable-next-line no-unsafe-return
@@ -25,7 +25,7 @@ const schema = z.object({
 
 const { location } = globalThis
 
-describe('usesafequeryparams', () => {
+describe('useSafeQueryParams', () => {
   beforeEach(() => {
     // Allow reset of the url, as globalThis.replaceState is not trully mocked
     // the type force is due to typescript bug
@@ -60,6 +60,17 @@ describe('usesafequeryparams', () => {
     result.current.setQueryParams({ aNumber: 10, tags: ['prod', 'staging'] }, { keepExisting: false })
     expect(mockHistoryReplace).toHaveBeenCalledWith({
       search: 'aNumber=10&tags=prod&tags=staging',
+    })
+  })
+
+  it('should handle setqueryparams with undefined values', () => {
+    globalThis.location.search = ''
+
+    const { result } = renderHook(() => useSafeQueryParams({ schema }))
+
+    result.current.setQueryParams({ aNumber: 10, tags: undefined })
+    expect(mockHistoryReplace).toHaveBeenCalledWith({
+      search: 'aNumber=10',
     })
   })
 })

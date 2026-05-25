@@ -1,12 +1,12 @@
 {
-  "name": "@scaleway/use-safe-query-params",
-  "version": "0.0.1",
+  "name": "@scaleway/react-router",
+  "version": "4.0.0",
   "description": "A hook and an helper to safely interact with queryParams making sure that data match a zod schema",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/scaleway/scaleway-lib.git",
-    "directory": "packages/use-safe-query-params"
+    "directory": "packages/react-router"
   },
   "files": [
     "dist/"

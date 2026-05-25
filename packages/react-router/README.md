@@ -1,19 +1,23 @@
-# @scaleway/use-safe-query-params
+# @scaleway/react-router
 
-A hook and an helper to safely interact with queryParams making sure that data match a zod schema
+A collection of hooks and helpers to work with react-router
 
 This package targets react-router v5 for now. An update to support react-router v7 is planned
 
 ## Install
 
 ```bash
-$ pnpm add @scaleway/use-safe-query-params
+$ pnpm add @scaleway/react-router
 ```
 
 ## Usage
 
+### useSafeQueryParams
+
+A hook to safely interact with queryParams making sure that data match a zod schema
+
 ```tsx
-import { useSafeQueryParams } from '@scaleway/use-safe-query-params'
+import { useSafeQueryParams } from '@scaleway/react-router'
 import { z } from 'zod'
 
 export const Schema = z.object({

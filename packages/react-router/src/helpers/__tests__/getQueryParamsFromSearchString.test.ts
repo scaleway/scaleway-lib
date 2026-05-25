@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { getQueryParamsFromSearchString } from './getQueryParamsFromSearchString'
+import { getQueryParamsFromSearchString } from '../getQueryParamsFromSearchString'
 
 describe('getqueryparamsfromsearchstring', () => {
   it('should work with simple case', () => {

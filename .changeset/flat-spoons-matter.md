@@ -1,5 +1,5 @@
 ---
-"@scaleway/use-safe-query-params": major
+"@scaleway/react-router": major
 ---
 
-introduce @scaleway/use-safe-query-params
+introduce @scaleway/react-router
