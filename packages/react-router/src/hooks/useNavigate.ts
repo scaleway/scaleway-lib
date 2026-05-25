@@ -7,7 +7,7 @@ export const useNavigate = () => {
 
   const navigate = useCallback(
     (
-      to: string,
+      to: Parameters<ReturnType<typeof useHistory>['push']>[0],
       options?: {
         replace?: boolean
         state?: unknown

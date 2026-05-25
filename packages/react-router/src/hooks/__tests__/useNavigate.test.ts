@@ -27,4 +27,21 @@ describe('useNavigate', () => {
     expect(mockHistoryReplace).toHaveBeenCalledWith('/root', undefined)
     expect(mockHistoryPush).toHaveBeenCalledTimes(0)
   })
+
+  it('should work with a complex to', () => {
+    const { result } = renderHook(() => useNavigate())
+
+    result.current({
+      pathname: '/root',
+      search: 'hello=world',
+    })
+    expect(mockHistoryPush).toHaveBeenCalledWith(
+      {
+        pathname: '/root',
+        search: 'hello=world',
+      },
+      undefined,
+    )
+    expect(mockHistoryReplace).toHaveBeenCalledTimes(0)
+  })
 })
