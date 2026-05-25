@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/phonenumber",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A phone number utility library based on awesome-phonenumber",
   "license": "MIT",
   "repository": {
