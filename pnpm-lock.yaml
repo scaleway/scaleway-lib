@@ -69,6 +69,9 @@ catalogs:
     '@vitest/coverage-istanbul':
       specifier: 4.1.7
       version: 4.1.7
+    awesome-phonenumber:
+      specifier: 7.8.0
+      version: 7.8.0
     browserslist:
       specifier: 4.28.2
       version: 4.28.2
@@ -302,6 +305,12 @@ importers:
       oxlint:
         specifier: 'catalog:'
         version: 1.66.0(oxlint-tsgolint@0.23.0)
+
+  packages/phonenumber:
+    dependencies:
+      awesome-phonenumber:
+        specifier: 'catalog:'
+        version: 7.8.0
 
   packages/random-name: {}
 
@@ -1526,6 +1535,10 @@ packages:
   ast-kit@3.0.0-beta.1:
     resolution: {integrity: sha512-trmleAnZ2PxN/loHWVhhx1qeOHSRXq4TDsBBxq3GqeJitfk3+jTQ+v/C1km/KYq9M7wKqCewMh+/NAvVH7m+bw==}
     engines: {node: '>=20.19.0'}
+
+  awesome-phonenumber@7.8.0:
+    resolution: {integrity: sha512-zw23nvKt6gLGgCrKZ5Z7ZK0lm3k39/uZTw+cWp5tpiXVfEFSt9AEVFDzSycws76G64xOMrIVp2upYvJxwRgzvw==}
+    engines: {node: '>=18'}
 
   baseline-browser-mapping@2.10.13:
     resolution: {integrity: sha512-BL2sTuHOdy0YT1lYieUxTw/QMtPBC3pmlJC6xk8BBYVv6vcw3SGdKemQ+Xsx9ik2F/lYDO9tqsFQH1r9PFuHKw==}
@@ -3917,6 +3930,8 @@ snapshots:
       '@babel/parser': 8.0.0-rc.4
       estree-walker: 3.0.3
       pathe: 2.0.3
+
+  awesome-phonenumber@7.8.0: {}
 
   baseline-browser-mapping@2.10.13: {}
 
