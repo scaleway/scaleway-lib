@@ -83,10 +83,10 @@ scaleway-lib is a set of NPM packages used at Scaleway.
   ![npm](https://img.shields.io/npm/dm/@scaleway/use-interval)
   ![npm](https://img.shields.io/npm/v/@scaleway/use-interval)
 
-- [`@scaleway/use-safe-query-params`](./packages/use-safe-query-params/README.md):
+- [`@scaleway/react-router`](./packages/react-router/README.md):
 
-  ![npm](https://img.shields.io/npm/dm/@scaleway/use-safe-query-params)
-  ![npm](https://img.shields.io/npm/v/@scaleway/use-safe-query-params)
+  ![npm](https://img.shields.io/npm/dm/@scaleway/react-router)
+  ![npm](https://img.shields.io/npm/v/@scaleway/react-router)
 
 - [`@scaleway/use-storage`](./packages/use-storage/README.md): A React hook to interact with local/session storage in reactive way with the same API as setState
 
