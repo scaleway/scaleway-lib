@@ -70,9 +70,6 @@ jobs:
   test:
     runs-on: ubuntu-24.04
     needs: [build]
-    strategy:
-      matrix:
-        node: ['24.15.0']
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - uses: pnpm/action-setup@2e223e0f0d2b8fd9872cbadb8b7428e5f8b5556d # Temporary fix for https://github.com/pnpm/action-setup/issues/225
