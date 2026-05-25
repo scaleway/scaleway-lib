@@ -1,4 +1,0 @@
-{
-  "extends": "@scaleway/tsconfig",
-  "include": ["src/**/*.ts", "src/**/*.tsx"]
-}
