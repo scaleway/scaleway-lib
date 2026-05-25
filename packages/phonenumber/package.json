@@ -1,0 +1,33 @@
+{
+  "name": "@scaleway/phonenumber",
+  "version": "0.0.1",
+  "description": "A phone number utility library based on awesome-phonenumber",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scaleway/scaleway-lib.git",
+    "directory": "packages/phonenumber"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "typecheck": "tsgo --noEmit",
+    "build": "tsdown",
+    "test:unit": "vitest --run",
+    "test:unit:coverage": "pnpm test:unit --coverage"
+  },
+  "dependencies": {
+    "awesome-phonenumber": "catalog:"
+  },
+  "engines": {
+    "node": ">=24.x"
+  }
+}
