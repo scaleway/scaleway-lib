@@ -45,3 +45,19 @@ const Component = () => {
   )
 }
 ```
+
+### useNavigate
+
+A polyfill of [useNavigate](https://reactrouter.com/6.30.3/hooks/use-navigate) which should respect the same interface
+
+```tsx
+import { useNavigate } from '@scaleway/react-router'
+
+const Component = () => {
+  const navigate = useNavigate()
+
+  navigate('/root')
+  navigate('/root', { replace: true })
+  navigate({ pathname: '/root', search: 'hello=world' })
+}
+```
