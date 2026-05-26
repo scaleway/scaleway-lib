@@ -1,6 +1,46 @@
 import { renderHook, act } from '@testing-library/react'
 import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest'
-import { useClipboard } from '../'
+import { useClipboard, copyToClipboard } from '../'
+
+describe('copyToClipboard', () => {
+  beforeEach(() => {
+    Object.defineProperty(navigator, 'clipboard', {
+      value: { writeText: vi.fn() },
+      writable: true,
+      configurable: true,
+    })
+  })
+
+  it('should copy text to clipboard successfully', async () => {
+    const writeTextSpy = vi.fn().mockResolvedValue(undefined)
+    navigator.clipboard.writeText = writeTextSpy
+
+    await copyToClipboard('test text')
+
+    expect(writeTextSpy).toHaveBeenCalledWith('test text')
+  })
+
+  it('should call onError callback when clipboard fails', async () => {
+    const error = new Error('Clipboard error')
+    const writeTextSpy = vi.fn().mockRejectedValue(error)
+    navigator.clipboard.writeText = writeTextSpy
+    const onErrorSpy = vi.fn()
+
+    await copyToClipboard('test text', { onError: onErrorSpy })
+
+    expect(onErrorSpy).toHaveBeenCalledWith(error)
+    expect(writeTextSpy).toHaveBeenCalledWith('test text')
+  })
+
+  it('should handle clipboard error without onError callback', async () => {
+    const error = new Error('Clipboard error')
+    const writeTextSpy = vi.fn().mockRejectedValue(error)
+    navigator.clipboard.writeText = writeTextSpy
+
+    await expect(copyToClipboard('test text')).resolves.toBeUndefined()
+    expect(writeTextSpy).toHaveBeenCalledWith('test text')
+  })
+})
 
 describe('hooks - useClipboard', () => {
   beforeEach(() => {

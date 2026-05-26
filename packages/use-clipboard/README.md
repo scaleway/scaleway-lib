@@ -8,6 +8,8 @@ $ pnpm add @scaleway/use-clipboard
 
 ## Usage
 
+### Hook
+
 ```tsx
 import { useClipboard } from '@scaleway/use-clipboard'
 
@@ -20,5 +22,19 @@ const Component = () => {
       <button onClick={setCopied}>Copy text</button>
     </div>
   )
+}
+```
+
+### Standalone function
+
+```tsx
+import { copyToClipboard } from '@scaleway/use-clipboard'
+
+const handleCopy = async () => {
+  await copyToClipboard('text to copy', {
+    onError: error => {
+      console.error('Copy failed:', error)
+    },
+  })
 }
 ```
