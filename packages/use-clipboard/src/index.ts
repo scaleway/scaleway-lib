@@ -11,6 +11,18 @@ type IOptions =
     }
   | undefined
 
+type ICopyOptions = {
+  onError?: (error: unknown) => void
+}
+
+export async function copyToClipboard(text: string, options?: ICopyOptions): Promise<void> {
+  try {
+    await navigator.clipboard.writeText(text)
+  } catch (error: unknown) {
+    options?.onError?.(error)
+  }
+}
+
 export function useClipboard(text: string, options?: IOptions): [boolean, () => Promise<void>] {
   const [isCopied, setIsCopied] = useState(false)
   const successDuration = options && options.successDuration
