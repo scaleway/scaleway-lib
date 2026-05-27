@@ -8,7 +8,7 @@
  */
 
 import fs, { readFileSync, readdirSync, existsSync } from 'node:fs'
-import { parse, join, dirname } from 'node:path'
+import path from 'node:path'
 import { parse as parseYaml } from 'yaml'
 
 const dirName = import.meta.dirname
@@ -64,16 +64,16 @@ function findWorkspaceFile(startDir: string = dirName): string {
 
   console.debug('findWorkspaceFile', startDir)
   // Traverse up the directory tree to find pnpm-workspace.yaml
-  while (currentDir !== parse(currentDir).root) {
-    const workspacePath = join(currentDir, 'pnpm-workspace.yaml')
+  while (currentDir !== path.parse(currentDir).root) {
+    const workspacePath = path.join(currentDir, 'pnpm-workspace.yaml')
     if (existsSync(workspacePath)) {
       return workspacePath
     }
-    currentDir = dirname(currentDir)
+    currentDir = path.dirname(currentDir)
   }
 
   // If not found, try the conventional location
-  const rootWorkspacePath = join(dirName, '..', '..', 'pnpm-workspace.yaml')
+  const rootWorkspacePath = path.join(dirName, '..', '..', 'pnpm-workspace.yaml')
   if (fs.existsSync(rootWorkspacePath)) {
     return rootWorkspacePath
   }
@@ -85,8 +85,8 @@ function findWorkspaceFile(startDir: string = dirName): string {
 function main(): Promise<void> | void {
   try {
     const workspacePath = findWorkspaceFile()
-    const rootDir = dirname(workspacePath)
-    const rootPackageJsonPath = join(rootDir, 'package.json')
+    const rootDir = path.dirname(workspacePath)
+    const rootPackageJsonPath = path.join(rootDir, 'package.json')
 
     // Get catalog packages
     const catalogPackages = getCatalogPackages(workspacePath)
@@ -104,13 +104,13 @@ function main(): Promise<void> | void {
     checkDependencies(rootPackageJson.devDependencies, 'package.json', catalogPackages, errors)
 
     // Check packages/*/package.json files
-    const packagesDir = join(rootDir, 'packages')
+    const packagesDir = path.join(rootDir, 'packages')
     const packageDirs = readdirSync(packagesDir).filter(
-      file => fs.statSync(join(packagesDir, file)).isDirectory() && file !== 'utils', // Skip the utils package itself
+      file => fs.statSync(path.join(packagesDir, file)).isDirectory() && file !== 'utils', // Skip the utils package itself
     )
 
     for (const pkgDir of packageDirs) {
-      const pkgJsonPath = join(packagesDir, pkgDir, 'package.json')
+      const pkgJsonPath = path.join(packagesDir, pkgDir, 'package.json')
       if (fs.existsSync(pkgJsonPath)) {
         try {
           const pkgJson = JSON.parse(readFileSync(pkgJsonPath, 'utf8')) as {
