@@ -1,5 +1,11 @@
 # @scaleway/use-clipboard
 
+## 1.1.0
+
+### Minor Changes
+
+- [#3372](https://github.com/scaleway/scaleway-lib/pull/3372) [`6bd86ea`](https://github.com/scaleway/scaleway-lib/commit/6bd86ea3265c9a891b902ea570eef36cbf7f6882) Thanks [@philibea](https://github.com/philibea)! - Add a copyToClipboard function
+
 ## 1.0.1
 
 ### Patch Changes
