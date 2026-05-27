@@ -19,7 +19,7 @@ catalog:
   '@types/picomatch': 4.0.3
   '@types/react': 19.2.15
   '@types/react-dom': 19.2.3
-  '@typescript/native-preview': 7.0.0-dev.20260523.1
+  '@typescript/native-preview': 7.0.0-dev.20260524.1
   '@types/react-router-dom': 5.3.3
   '@vitejs/plugin-react': 6.0.2
   '@vitest/coverage-istanbul': 4.1.7
