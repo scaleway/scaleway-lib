@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { readFile, writeFile } from 'node:fs/promises'
-import { basename, dirname } from 'node:path'
+import path from 'node:path'
 import chalk from 'chalk'
 import { globSync } from 'tinyglobby'
 
@@ -48,7 +48,7 @@ async function processPackageJson(filePath: string): Promise<number> {
     }
 
     let changesCount = 0
-    const packageName = packageJson.name ?? basename(dirname(filePath))
+    const packageName = packageJson.name ?? path.basename(path.dirname(filePath))
 
     // Compare and update peerDependencies
     for (const [pkg, peerVersion] of Object.entries(packageJson.peerDependencies)) {

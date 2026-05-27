@@ -1,5 +1,5 @@
 import { existsSync, readdirSync, statSync, writeFileSync } from 'node:fs'
-import { join } from 'node:path'
+import path from 'node:path'
 import { PACKAGES_DIR } from '../config.ts'
 import type { Manifest, PackageInfo } from '../types.ts'
 import { getAllFiles } from './getAllFiles.ts'
@@ -7,7 +7,7 @@ import { getAllFiles } from './getAllFiles.ts'
 const { log: logger } = console
 
 export const generateManifest = (outputFile: string) => {
-  const packages = readdirSync(PACKAGES_DIR).filter(item => statSync(join(PACKAGES_DIR, item)).isDirectory())
+  const packages = readdirSync(PACKAGES_DIR).filter(item => statSync(path.join(PACKAGES_DIR, item)).isDirectory())
   logger(`Generating manifest for ${packages.length} packages...`)
 
   const manifest: Manifest = {
@@ -17,7 +17,7 @@ export const generateManifest = (outputFile: string) => {
   }
 
   for (const pkg of packages) {
-    const packageDist = join(PACKAGES_DIR, pkg, 'dist')
+    const packageDist = path.join(PACKAGES_DIR, pkg, 'dist')
     if (existsSync(packageDist)) {
       logger(`  Processing ${pkg}...`)
       const files = getAllFiles(packageDist, packageDist)

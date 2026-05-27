@@ -1,12 +1,12 @@
-import { join, resolve } from 'node:path'
+import path from 'node:path'
 
 // Configuration
-export const MONOREPO_ROOT = resolve(import.meta.dirname, '../../../')
-export const PACKAGES_DIR = join(MONOREPO_ROOT, '')
-export const OUTPUT_DIR = join(MONOREPO_ROOT, '../.dist-compare')
-export const BASELINE_FILE = join(OUTPUT_DIR, 'baseline-manifest.json')
-export const CURRENT_FILE = join(OUTPUT_DIR, 'current-manifest.json')
-export const REPORT_FILE = join(OUTPUT_DIR, 'migration-compare-report.txt')
+export const MONOREPO_ROOT = path.resolve(import.meta.dirname, '../../../')
+export const PACKAGES_DIR = path.join(MONOREPO_ROOT, '')
+export const OUTPUT_DIR = path.join(MONOREPO_ROOT, '../.dist-compare')
+export const BASELINE_FILE = path.join(OUTPUT_DIR, 'baseline-manifest.json')
+export const CURRENT_FILE = path.join(OUTPUT_DIR, 'current-manifest.json')
+export const REPORT_FILE = path.join(OUTPUT_DIR, 'migration-compare-report.txt')
 
 // Colors for output
 export const COLORS = {
