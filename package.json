@@ -81,7 +81,7 @@
     "node": ">=24.x",
     "pnpm": ">=11.x"
   },
-  "packageManager": "pnpm@11.3.0",
+  "packageManager": "pnpm@11.4.0",
   "manypkg": {
     "ignoredRules": [
       "INTERNAL_MISMATCH"
