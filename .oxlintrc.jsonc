@@ -1,10 +1,6 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "extends": [
-    "./packages/oxlint-config/configs/index.json",
-    "./packages/oxlint-config/configs/react.json",
-    "./packages/oxlint-config/configs/typescript.json",
-  ],
+  "extends": ["./packages/oxlint-config/configs/index.json", "./packages/oxlint-config/configs/react.json"],
   "options": {
     "reportUnusedDisableDirectives": "error",
     "typeAware": true,
