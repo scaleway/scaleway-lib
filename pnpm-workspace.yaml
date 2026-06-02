@@ -55,6 +55,7 @@ catalog:
   yaml: 2.9.0
   zod: 4.4.3
   awesome-phonenumber: 7.8.0
+  '@testing-library/user-event': 14.6.1
 
 catalogMode: strict
 cleanupUnusedCatalogs: true
