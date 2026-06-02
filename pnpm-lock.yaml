@@ -82,8 +82,8 @@ catalogs:
       specifier: 1.1.1
       version: 1.1.1
     date-fns:
-      specifier: 4.3.0
-      version: 4.3.0
+      specifier: 4.4.0
+      version: 4.4.0
     deepmerge-ts:
       specifier: 7.1.5
       version: 7.1.5
@@ -416,7 +416,7 @@ importers:
     devDependencies:
       date-fns:
         specifier: 'catalog:'
-        version: 4.3.0
+        version: 4.4.0
       react:
         specifier: 'catalog:'
         version: 19.2.6
@@ -1619,8 +1619,8 @@ packages:
   dataloader@1.4.0:
     resolution: {integrity: sha512-68s5jYdlvasItOJnCuI2Q9s4q98g0pCyL3HrcKJu8KNugUl8ahgmZYg38ysLTgQjjXX3H8CJLkAvWrclWfcalw==}
 
-  date-fns@4.3.0:
-    resolution: {integrity: sha512-OYcL+3N/jyWbYdFGqoMAhytDgxP9pbYPUUiRCOgn4Fewaadk9l/Wam4Avciiyp2BgkpfQyBV9B+ehnVJych+eQ==}
+  date-fns@4.4.0:
+    resolution: {integrity: sha512-+1UMbeh68lH1SegH83CGWwpb6OHHbpSgr3+s5Eww5M4CAgswBpoWS0AjTOfEJ33HiYKz1hdj/KTFprzXHmq/6w==}
 
   debug@4.4.3:
     resolution: {integrity: sha512-RGwwWnwQvkVfavKVt22FGLw+xYSdzARwm0ru6DhTVA3umU5hZc28V3kO4stgYryrTlLpuvgI9GiijltAjNbcqA==}
@@ -4015,7 +4015,7 @@ snapshots:
 
   dataloader@1.4.0: {}
 
-  date-fns@4.3.0: {}
+  date-fns@4.4.0: {}
 
   debug@4.4.3:
     dependencies:
