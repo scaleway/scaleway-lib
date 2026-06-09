@@ -28,12 +28,14 @@
     "test:unit:coverage": "pnpm test:unit --coverage"
   },
   "devDependencies": {
+    "@scaleway/sdk-client": "catalog:",
     "@types/react-router-dom": "catalog:",
     "react": "catalog:",
     "react-router-dom": "catalog:",
     "zod": "catalog:"
   },
   "peerDependencies": {
+    "@scaleway/sdk-client": "^2.4.0",
     "react": "18.x || 19.x",
     "react-router-dom": "5.x",
     "zod": "4.x"

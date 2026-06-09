@@ -36,6 +36,9 @@ catalogs:
     '@rudderstack/analytics-js':
       specifier: 3.31.2
       version: 3.31.2
+    '@scaleway/sdk-client':
+      specifier: 2.4.0
+      version: 2.4.0
     '@segment/analytics-next':
       specifier: 1.84.0
       version: 1.84.0
@@ -322,6 +325,9 @@ importers:
 
   packages/react-router:
     devDependencies:
+      '@scaleway/sdk-client':
+        specifier: 'catalog:'
+        version: 2.4.0
       '@types/react-router-dom':
         specifier: 'catalog:'
         version: 5.3.3
@@ -1341,6 +1347,10 @@ packages:
 
   '@rudderstack/analytics-js@3.31.2':
     resolution: {integrity: sha512-A1C3yTuUb3pqwC/ZnNExVpoX5lGZkJILRPL+a1HMvoNeshBPmIk1jthbt8mXGoL6lii7CVNqPqEdYGd+smI83w==}
+
+  '@scaleway/sdk-client@2.4.0':
+    resolution: {integrity: sha512-nJQoji0H1TBp8aIPxv6KIzksPrOBVubrcWclZwAnwT68Pb0F78aoAsYkCuWeHhiTFilGj0qbmdZ2gn+ETYKMhw==}
+    engines: {node: '>=20.20.2'}
 
   '@sec-ant/readable-stream@0.4.1':
     resolution: {integrity: sha512-831qok9r2t8AlxLko40y2ebgSDhenenCatLVeW/uBtnHPyhHOvG0C7TvfgecV+wHzIm5KUICgzmVpWS+IMEAeg==}
@@ -3807,6 +3817,8 @@ snapshots:
   '@rolldown/pluginutils@1.0.1': {}
 
   '@rudderstack/analytics-js@3.31.2': {}
+
+  '@scaleway/sdk-client@2.4.0': {}
 
   '@sec-ant/readable-stream@0.4.1': {}
 
