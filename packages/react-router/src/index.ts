@@ -2,3 +2,5 @@ export { getQueryParamsFromSearchString } from './helpers/getQueryParamsFromSear
 export { getSafeQueryParams } from './helpers/getSafeQueryParams'
 export { useSafeQueryParams } from './hooks/useSafeQueryParams'
 export { useNavigate } from './hooks/useNavigate'
+export { useOnLeave } from './hooks/useOnLeave'
+export { useRouteParams } from './hooks/useRouteParams'
