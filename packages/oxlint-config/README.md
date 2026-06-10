@@ -2,6 +2,8 @@
 
 Scaleway's shareable configuration for [oxlint](https://oxc.rs/docs/guide/usage/linter.html).
 
+> ⚠️ This package does not follow semver for now. Breaking can be introduced in minor/patch versions
+
 ## Installation
 
 ```bash
@@ -14,7 +16,7 @@ Create a `.oxlintrc.json` file in your project root:
 
 ```json
 {
-  "extends": ["@scaleway/oxlint-config"]
+  "extends": ["./node_modules/@scaleway/oxlint-config/configs/index.json"]
 }
 ```
 
@@ -26,28 +28,10 @@ For React projects, extend the React configuration:
 
 ```json
 {
-  "extends": ["@scaleway/oxlint-config", "@scaleway/oxlint-config/react"]
-}
-```
-
-#### TypeScript
-
-For TypeScript projects, extend the TypeScript configuration:
-
-```json
-{
-  "extends": ["@scaleway/oxlint-config", "@scaleway/oxlint-config/typescript"]
-```
-
-}
-
-#### Combined React and TypeScript
-
-For React projects using TypeScript, extend both configurations:
-
-```json
-{
-  "extends": ["@scaleway/oxlint-config", "@scaleway/oxlint-config/react", "@scaleway/oxlint-config/typescript"]
+  "extends": [
+    "./node_modules/@scaleway/oxlint-config/configs/index.json",
+    "./node_modules/@scaleway/oxlint-config/configs/react.json"
+  ]
 }
 ```
 
@@ -55,7 +39,6 @@ For React projects using TypeScript, extend both configurations:
 
 1. **Base rules** (`@scaleway/oxlint-config`): Core rules for all JavaScript/TypeScript projects
 2. **React rules** (`@scaleway/oxlint-config/react`): React-specific rules
-3. **TypeScript rules** (`@scaleway/oxlint-config/typescript`): TypeScript-specific rules
 
 ## License
 

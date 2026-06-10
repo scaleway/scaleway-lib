@@ -21,7 +21,6 @@
   "exports": {
     ".": "./configs/index.json",
     "./react": "./configs/react.json",
-    "./typescript": "./configs/typescript.json",
     "./vitest": "./configs/vitest.json"
   },
   "publishConfig": {

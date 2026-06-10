@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// oxlint-disable eslint/max-statements, eslint/complexity
+// oxlint-disable eslint/max-statements
 // oxlint-disable typescript/no-unsafe-assignment
 import { readFileSync, writeFileSync } from 'node:fs'
 import { COLORS } from '../config.ts'
