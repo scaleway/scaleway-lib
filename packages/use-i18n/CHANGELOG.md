@@ -1,5 +1,13 @@
 # Change Log
 
+## 8.0.4
+
+### Patch Changes
+
+- [#3407](https://github.com/scaleway/scaleway-lib/pull/3407) [`a0d698b`](https://github.com/scaleway/scaleway-lib/commit/a0d698b67ff92ebccd0bd5ea30cf4dbaff9c3c8e) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@formatjs/fast-memoize` to `3.1.6`.
+  Updated dependency `@formatjs/icu-messageformat-parser` to `3.5.11`.
+  Updated dependency `intl-messageformat` to `11.2.8`.
+
 ## 8.0.3
 
 ### Patch Changes
