@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.0
+
+### Minor Changes
+
+- [#3382](https://github.com/scaleway/scaleway-lib/pull/3382) [`09d9038`](https://github.com/scaleway/scaleway-lib/commit/09d9038c3f97b5ecfd850d51be130e9a90f71df2) Thanks [@chambo-e](https://github.com/chambo-e)! - do not enable whole oxlint categories
+
+  typescript config has been merged with the main one
+
 ## 0.1.17
 
 ### Patch Changes

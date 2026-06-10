@@ -1,5 +1,11 @@
 # @scaleway/react-router
 
+## 5.1.0
+
+### Minor Changes
+
+- [#3387](https://github.com/scaleway/scaleway-lib/pull/3387) [`6409e95`](https://github.com/scaleway/scaleway-lib/commit/6409e95f9eb2eec4ffff81c19b8baa2c5ebc90be) Thanks [@chambo-e](https://github.com/chambo-e)! - add useOnLeave hook
+
 ## 5.0.1
 
 ### Patch Changes
