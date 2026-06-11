@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/react-router",
-  "version": "5.2.1",
+  "version": "5.2.2",
   "description": "A hook and an helper to safely interact with queryParams making sure that data match a zod schema",
   "license": "MIT",
   "repository": {
