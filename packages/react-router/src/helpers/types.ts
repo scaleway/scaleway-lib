@@ -1,4 +1,3 @@
-// oxlint-disable typescript/no-empty-object-type
 // oxlint-disable typescript/ban-types
 // oxlint-disable no-unused-vars
 
