@@ -1,5 +1,11 @@
 # @scaleway/react-router
 
+## 5.2.0
+
+### Minor Changes
+
+- [#3413](https://github.com/scaleway/scaleway-lib/pull/3413) [`4c6dc19`](https://github.com/scaleway/scaleway-lib/commit/4c6dc19dc6592944025bb9e6bb04b271e39f2903) Thanks [@chambo-e](https://github.com/chambo-e)! - introduce useRouteParams
+
 ## 5.1.0
 
 ### Minor Changes
