@@ -1,5 +1,11 @@
 # @scaleway/react-router
 
+## 5.2.1
+
+### Patch Changes
+
+- [#3418](https://github.com/scaleway/scaleway-lib/pull/3418) [`c7dd65d`](https://github.com/scaleway/scaleway-lib/commit/c7dd65dc0fa5292064d4e63b1175d1c14c62a995) Thanks [@chambo-e](https://github.com/chambo-e)! - properly export isRoute and createRoute
+
 ## 5.2.0
 
 ### Minor Changes
