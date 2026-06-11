@@ -1,5 +1,11 @@
 # @scaleway/react-router
 
+## 5.2.2
+
+### Patch Changes
+
+- [`a9bac14`](https://github.com/scaleway/scaleway-lib/commit/a9bac146e1ee76f7e92f145c85b132f22e1f7418) Thanks [@chambo-e](https://github.com/chambo-e)! - export QueryParamsBase, Route, RouteAny types
+
 ## 5.2.1
 
 ### Patch Changes
