@@ -15,6 +15,10 @@
     "url": "git+https://github.com/scaleway/scaleway-lib.git",
     "directory": "packages/changesets-renovate"
   },
+  "bugs": {
+    "url": "https://github.com/scaleway/scaleway-lib/issues"
+  },
+  "homepage": "https://github.com/scaleway/scaleway-lib/tree/main/packages/changesets-renovate#readme",
   "bin": {
     "changesets-renovate": "dist/cli.mjs"
   },
