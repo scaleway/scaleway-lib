@@ -1,6 +1,9 @@
 {
   "name": "@scaleway/changesets-renovate",
   "version": "3.0.3",
+  "bugs": {
+    "url": "https://github.com/scaleway/scaleway-lib/issues"
+  },
   "description": "Automatically create changesets for Renovate and pnpm catalogs",
   "keywords": [
     "catalogs",
