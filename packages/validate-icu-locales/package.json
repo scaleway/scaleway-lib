@@ -7,6 +7,10 @@
     "i18n",
     "icu"
   ],
+  "homepage": "https://github.com/scaleway/scaleway-lib/tree/main/packages/validate-icu-locales",
+  "bugs": {
+    "url": "https://github.com/scaleway/scaleway-lib/issues"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",

@@ -9,6 +9,10 @@
     "oxlint-config",
     "scaleway"
   ],
+  "homepage": "https://github.com/scaleway/scaleway-lib/tree/main/packages/oxlint-config",
+  "bugs": {
+    "url": "https://github.com/scaleway/scaleway-lib/issues"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",

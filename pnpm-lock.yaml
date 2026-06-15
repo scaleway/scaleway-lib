@@ -156,6 +156,9 @@ catalogs:
     use-deep-compare-effect:
       specifier: 1.8.1
       version: 1.8.1
+    vitest:
+      specifier: 4.1.8
+      version: 4.1.8
     vitest-localstorage-mock:
       specifier: 0.1.2
       version: 0.1.2
@@ -168,9 +171,6 @@ catalogs:
     zod:
       specifier: 4.4.3
       version: 4.4.3
-
-overrides:
-  vitest: 4.1.8
 
 importers:
 
@@ -273,7 +273,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       vitest:
-        specifier: 4.1.8
+        specifier: 'catalog:'
         version: 4.1.8(@types/node@25.9.3)(@vitest/coverage-istanbul@4.1.8)(happy-dom@20.10.2)(jsdom@29.1.1)(vite@8.0.16(@types/node@25.9.3)(yaml@2.9.0))
       vitest-localstorage-mock:
         specifier: 'catalog:'
@@ -2935,7 +2935,7 @@ packages:
   vitest-localstorage-mock@0.1.2:
     resolution: {integrity: sha512-1oee6iDWhhquzVogssbpwQi6a2F3L+nCKF2+qqyCs5tH0sOYRyTqnsfj2dtmEQiL4xtJkHLn42hEjHGESlsJHw==}
     peerDependencies:
-      vitest: 4.1.8
+      vitest: '*'
 
   vitest@4.1.8:
     resolution: {integrity: sha512-flY6ScbCIt9HThs+C5HS7jvGOB560DJtk/Z15IQROTA6zEy49Nh8T/dofWTQL+n3vswqn87sbJNiuqw1SDp5Ig==}

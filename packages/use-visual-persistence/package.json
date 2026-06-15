@@ -2,6 +2,10 @@
   "name": "@scaleway/use-visual-persistence",
   "version": "1.0.1",
   "description": "A react hook to save element dismissal locally",
+  "homepage": "https://github.com/scaleway/scaleway-lib/tree/main/packages/use-visual-persistence",
+  "bugs": {
+    "url": "https://github.com/scaleway/scaleway-lib/issues"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
