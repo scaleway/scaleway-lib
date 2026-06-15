@@ -2,6 +2,10 @@
   "name": "@scaleway/react-router",
   "version": "5.2.2",
   "description": "A hook and an helper to safely interact with queryParams making sure that data match a zod schema",
+  "homepage": "https://github.com/scaleway/scaleway-lib/tree/main/packages/react-router",
+  "bugs": {
+    "url": "https://github.com/scaleway/scaleway-lib/issues"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",

@@ -7,6 +7,10 @@
     "tsconfig",
     "typescript"
   ],
+  "homepage": "https://github.com/scaleway/scaleway-lib/tree/main/packages/tsconfig",
+  "bugs": {
+    "url": "https://github.com/scaleway/scaleway-lib/issues"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",

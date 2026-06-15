@@ -3,6 +3,10 @@
   "version": "1.0.3",
   "private": false,
   "description": "peer deps",
+  "homepage": "https://github.com/scaleway/scaleway-lib/tree/main/packages/sync-peer-deps",
+  "bugs": {
+    "url": "https://github.com/scaleway/scaleway-lib/issues"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",

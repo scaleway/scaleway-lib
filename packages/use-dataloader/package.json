@@ -8,6 +8,10 @@
     "react",
     "reactjs"
   ],
+  "homepage": "https://github.com/scaleway/scaleway-lib/tree/main/packages/use-dataloader",
+  "bugs": {
+    "url": "https://github.com/scaleway/scaleway-lib/issues"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",

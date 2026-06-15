@@ -68,9 +68,6 @@ optimisticRepeatInstall: false
 allowBuilds:
   esbuild: true
 
-overrides:
-  vitest: $vitest
-
 peerDependencyRules:
   allowedVersions:
     '@types/react': 18 || 19

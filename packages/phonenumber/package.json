@@ -2,6 +2,10 @@
   "name": "@scaleway/phonenumber",
   "version": "1.0.0",
   "description": "A phone number utility library based on awesome-phonenumber",
+  "homepage": "https://github.com/scaleway/scaleway-lib/tree/main/packages/phonenumber",
+  "bugs": {
+    "url": "https://github.com/scaleway/scaleway-lib/issues"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",

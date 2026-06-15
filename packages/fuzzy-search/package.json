@@ -2,6 +2,10 @@
   "name": "@scaleway/fuzzy-search",
   "version": "2.0.2",
   "description": "A small utility to use fuzzy search",
+  "homepage": "https://github.com/scaleway/scaleway-lib/tree/main/packages/fuzzy-search",
+  "bugs": {
+    "url": "https://github.com/scaleway/scaleway-lib/issues"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
