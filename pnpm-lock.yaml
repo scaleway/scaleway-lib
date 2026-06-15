@@ -52,8 +52,8 @@ catalogs:
       specifier: 14.6.1
       version: 14.6.1
     '@types/node':
-      specifier: 25.9.2
-      version: 25.9.2
+      specifier: 25.9.3
+      version: 25.9.3
     '@types/picomatch':
       specifier: 4.0.3
       version: 4.0.3
@@ -184,7 +184,7 @@ importers:
         version: 0.7.0
       '@changesets/cli':
         specifier: 'catalog:'
-        version: 2.31.0(@types/node@25.9.2)
+        version: 2.31.0(@types/node@25.9.3)
       '@manypkg/cli':
         specifier: 'catalog:'
         version: 0.25.1
@@ -217,7 +217,7 @@ importers:
         version: 14.6.1(@testing-library/dom@10.4.1)
       '@types/node':
         specifier: 'catalog:'
-        version: 25.9.2
+        version: 25.9.3
       '@types/react':
         specifier: 'catalog:'
         version: 19.2.17
@@ -229,7 +229,7 @@ importers:
         version: 7.0.0-dev.20260611.2
       '@vitejs/plugin-react':
         specifier: 'catalog:'
-        version: 6.0.2(vite@8.0.16(@types/node@25.9.2)(yaml@2.9.0))
+        version: 6.0.2(vite@8.0.16(@types/node@25.9.3)(yaml@2.9.0))
       '@vitest/coverage-istanbul':
         specifier: 'catalog:'
         version: 4.1.8(vitest@4.1.8)
@@ -274,7 +274,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: 4.1.8
-        version: 4.1.8(@types/node@25.9.2)(@vitest/coverage-istanbul@4.1.8)(happy-dom@20.10.2)(jsdom@29.1.1)(vite@8.0.16(@types/node@25.9.2)(yaml@2.9.0))
+        version: 4.1.8(@types/node@25.9.3)(@vitest/coverage-istanbul@4.1.8)(happy-dom@20.10.2)(jsdom@29.1.1)(vite@8.0.16(@types/node@25.9.3)(yaml@2.9.0))
       vitest-localstorage-mock:
         specifier: 'catalog:'
         version: 0.1.2(vitest@4.1.8)
@@ -354,7 +354,7 @@ importers:
     devDependencies:
       '@types/node':
         specifier: 'catalog:'
-        version: 25.9.2
+        version: 25.9.3
       '@types/picomatch':
         specifier: 'catalog:'
         version: 4.0.3
@@ -476,7 +476,7 @@ importers:
     devDependencies:
       '@types/node':
         specifier: 'catalog:'
-        version: 25.9.2
+        version: 25.9.3
       typescript:
         specifier: 'catalog:'
         version: 6.0.3
@@ -1477,6 +1477,9 @@ packages:
 
   '@types/node@25.9.2':
     resolution: {integrity: sha512-G05zqtJhcDLb8uslf5EjCxXg9G1KQxiV8OS0R26IC//Eoyitzqe8z37I7cqvnZlrlSfgocQRfSn/AHBZJJFyGw==}
+
+  '@types/node@25.9.3':
+    resolution: {integrity: sha512-603BddQMv3pUcr4U2dhujk83N2tTDVr/34wII2B6bJy6g+8WD6yUb11jszNs0gdi4PesVWl7ABt8nYMVpnLUcg==}
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
@@ -3258,7 +3261,7 @@ snapshots:
     transitivePeerDependencies:
       - encoding
 
-  '@changesets/cli@2.31.0(@types/node@25.9.2)':
+  '@changesets/cli@2.31.0(@types/node@25.9.3)':
     dependencies:
       '@changesets/apply-release-plan': 7.1.1
       '@changesets/assemble-release-plan': 6.0.10
@@ -3274,7 +3277,7 @@ snapshots:
       '@changesets/should-skip-package': 0.1.2
       '@changesets/types': 6.1.0
       '@changesets/write': 0.4.0
-      '@inquirer/external-editor': 1.0.3(@types/node@25.9.2)
+      '@inquirer/external-editor': 1.0.3(@types/node@25.9.3)
       '@manypkg/get-packages': 1.1.3
       ansi-colors: 4.1.3
       enquirer: 2.4.1
@@ -3452,12 +3455,12 @@ snapshots:
     dependencies:
       dom-mutator: 0.6.0
 
-  '@inquirer/external-editor@1.0.3(@types/node@25.9.2)':
+  '@inquirer/external-editor@1.0.3(@types/node@25.9.3)':
     dependencies:
       chardet: 2.1.1
       iconv-lite: 0.7.2
     optionalDependencies:
-      '@types/node': 25.9.2
+      '@types/node': 25.9.3
 
   '@istanbuljs/schema@0.1.6': {}
 
@@ -3958,6 +3961,10 @@ snapshots:
     dependencies:
       undici-types: 7.24.6
 
+  '@types/node@25.9.3':
+    dependencies:
+      undici-types: 7.24.6
+
   '@types/normalize-package-data@2.4.4': {}
 
   '@types/picomatch@4.0.3': {}
@@ -4018,10 +4025,10 @@ snapshots:
       '@typescript/native-preview-win32-arm64': 7.0.0-dev.20260611.2
       '@typescript/native-preview-win32-x64': 7.0.0-dev.20260611.2
 
-  '@vitejs/plugin-react@6.0.2(vite@8.0.16(@types/node@25.9.2)(yaml@2.9.0))':
+  '@vitejs/plugin-react@6.0.2(vite@8.0.16(@types/node@25.9.3)(yaml@2.9.0))':
     dependencies:
       '@rolldown/pluginutils': 1.0.1
-      vite: 8.0.16(@types/node@25.9.2)(yaml@2.9.0)
+      vite: 8.0.16(@types/node@25.9.3)(yaml@2.9.0)
 
   '@vitest/coverage-istanbul@4.1.8(vitest@4.1.8)':
     dependencies:
@@ -4035,7 +4042,7 @@ snapshots:
       magicast: 0.5.3
       obug: 2.1.2
       tinyrainbow: 3.1.0
-      vitest: 4.1.8(@types/node@25.9.2)(@vitest/coverage-istanbul@4.1.8)(happy-dom@20.10.2)(jsdom@29.1.1)(vite@8.0.16(@types/node@25.9.2)(yaml@2.9.0))
+      vitest: 4.1.8(@types/node@25.9.3)(@vitest/coverage-istanbul@4.1.8)(happy-dom@20.10.2)(jsdom@29.1.1)(vite@8.0.16(@types/node@25.9.3)(yaml@2.9.0))
     transitivePeerDependencies:
       - supports-color
 
@@ -4048,13 +4055,13 @@ snapshots:
       chai: 6.2.2
       tinyrainbow: 3.1.0
 
-  '@vitest/mocker@4.1.8(vite@8.0.16(@types/node@25.9.2)(yaml@2.9.0))':
+  '@vitest/mocker@4.1.8(vite@8.0.16(@types/node@25.9.3)(yaml@2.9.0))':
     dependencies:
       '@vitest/spy': 4.1.8
       estree-walker: 3.0.3
       magic-string: 0.30.21
     optionalDependencies:
-      vite: 8.0.16(@types/node@25.9.2)(yaml@2.9.0)
+      vite: 8.0.16(@types/node@25.9.3)(yaml@2.9.0)
 
   '@vitest/pretty-format@4.1.8':
     dependencies:
@@ -5256,7 +5263,7 @@ snapshots:
 
   value-equal@1.0.1: {}
 
-  vite@8.0.16(@types/node@25.9.2)(yaml@2.9.0):
+  vite@8.0.16(@types/node@25.9.3)(yaml@2.9.0):
     dependencies:
       lightningcss: 1.32.0
       picomatch: 4.0.4
@@ -5264,18 +5271,18 @@ snapshots:
       rolldown: 1.0.3
       tinyglobby: 0.2.17
     optionalDependencies:
-      '@types/node': 25.9.2
+      '@types/node': 25.9.3
       fsevents: 2.3.3
       yaml: 2.9.0
 
   vitest-localstorage-mock@0.1.2(vitest@4.1.8):
     dependencies:
-      vitest: 4.1.8(@types/node@25.9.2)(@vitest/coverage-istanbul@4.1.8)(happy-dom@20.10.2)(jsdom@29.1.1)(vite@8.0.16(@types/node@25.9.2)(yaml@2.9.0))
+      vitest: 4.1.8(@types/node@25.9.3)(@vitest/coverage-istanbul@4.1.8)(happy-dom@20.10.2)(jsdom@29.1.1)(vite@8.0.16(@types/node@25.9.3)(yaml@2.9.0))
 
-  vitest@4.1.8(@types/node@25.9.2)(@vitest/coverage-istanbul@4.1.8)(happy-dom@20.10.2)(jsdom@29.1.1)(vite@8.0.16(@types/node@25.9.2)(yaml@2.9.0)):
+  vitest@4.1.8(@types/node@25.9.3)(@vitest/coverage-istanbul@4.1.8)(happy-dom@20.10.2)(jsdom@29.1.1)(vite@8.0.16(@types/node@25.9.3)(yaml@2.9.0)):
     dependencies:
       '@vitest/expect': 4.1.8
-      '@vitest/mocker': 4.1.8(vite@8.0.16(@types/node@25.9.2)(yaml@2.9.0))
+      '@vitest/mocker': 4.1.8(vite@8.0.16(@types/node@25.9.3)(yaml@2.9.0))
       '@vitest/pretty-format': 4.1.8
       '@vitest/runner': 4.1.8
       '@vitest/snapshot': 4.1.8
@@ -5292,10 +5299,10 @@ snapshots:
       tinyexec: 1.2.4
       tinyglobby: 0.2.17
       tinyrainbow: 3.1.0
-      vite: 8.0.16(@types/node@25.9.2)(yaml@2.9.0)
+      vite: 8.0.16(@types/node@25.9.3)(yaml@2.9.0)
       why-is-node-running: 2.3.0
     optionalDependencies:
-      '@types/node': 25.9.2
+      '@types/node': 25.9.3
       '@vitest/coverage-istanbul': 4.1.8(vitest@4.1.8)
       happy-dom: 20.10.2
       jsdom: 29.1.1
