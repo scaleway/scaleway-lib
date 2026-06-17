@@ -22,7 +22,7 @@ catalog:
   '@typescript/native-preview': 7.0.0-dev.20260613.1
   '@types/react-router-dom': 5.3.3
   '@vitejs/plugin-react': 6.0.2
-  '@vitest/coverage-istanbul': 4.1.8
+  '@vitest/coverage-istanbul': 4.1.9
   browserslist: 4.28.2
   chalk: 5.6.2
   cookie: 1.1.1
@@ -49,7 +49,7 @@ catalog:
   turbo: 2.9.18
   typescript: 6.0.3
   use-deep-compare-effect: 1.8.1
-  vitest: 4.1.8
+  vitest: 4.1.9
   vitest-localstorage-mock: 0.1.2
   wait-for-expect: 4.0.0
   yaml: 2.9.0
