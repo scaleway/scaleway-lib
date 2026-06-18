@@ -32,6 +32,6 @@
     "awesome-phonenumber": "catalog:"
   },
   "engines": {
-    "node": ">=24.x"
+    "node": "24.x | 25.x | 26.x"
   }
 }
