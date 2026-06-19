@@ -30,7 +30,7 @@ catalog:
   deepmerge-ts: 7.1.5
   execa: 9.6.1
   filesize: 11.0.17
-  happy-dom: 20.10.3
+  happy-dom: 20.10.4
   international-types: 0.8.1
   intl-messageformat: 11.2.8
   jsdom: 29.1.1
