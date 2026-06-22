@@ -11,6 +11,8 @@
     "react-perf/jsx-no-new-array-as-prop": "off",
     "react-perf/jsx-no-new-function-as-prop": "off",
     "react-perf/jsx-no-new-object-as-prop": "off",
+
+    "react/react-compiler": "error",
     "react/button-has-type": "error",
     "react/display-name": "off",
     "react/hook-use-state": "off",
