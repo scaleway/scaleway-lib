@@ -165,6 +165,7 @@ const I18nContextProvider = <LocalSupportedType extends string>({
   localeItemStorage = LOCALE_ITEM_STORAGE,
   onLoadDateLocaleError,
   onTranslateError,
+  onLoadTranslationError,
   isLocaleSupported,
 }: {
   children: ReactNode
@@ -178,6 +179,7 @@ const I18nContextProvider = <LocalSupportedType extends string>({
   enableDebugKey: boolean
   localeItemStorage: string
   isLocaleSupported: SupportedLocalesType<LocalSupportedType>
+  onLoadTranslationError: (error: unknown | Error) => void
   onTranslateError?: ({
     error,
     currentLocale,
@@ -245,20 +247,31 @@ const I18nContextProvider = <LocalSupportedType extends string>({
       }
       // load default en language
       if (enableDefaultLocale && currentLocale !== defaultLocale) {
-        result.defaultLocale = await load({
-          locale: defaultLocale,
-          namespace,
-        })
+        try {
+          const defaultLocaleLoad = await load({
+            locale: defaultLocale,
+            namespace,
+          })
+
+          result.defaultLocale = defaultLocaleLoad
+        } catch (error: unknown) {
+          onLoadTranslationError?.(error)
+        }
       }
 
-      result[currentLocale] = await load({
-        locale: currentLocale,
-        namespace,
-      })
+      try {
+        const defaultCurrentLocaleLoad = await load({
+          locale: currentLocale,
+          namespace,
+        })
+        result[currentLocale] = defaultCurrentLocaleLoad
+      } catch (error: unknown) {
+        onLoadTranslationError?.(error)
+      }
 
       const trad: Record<string, string> = {
         ...result.defaultLocale.default,
-        ...result[currentLocale].default,
+        ...result[currentLocale]?.default,
       }
 
       setTranslations(prevState => ({
@@ -277,7 +290,7 @@ const I18nContextProvider = <LocalSupportedType extends string>({
 
       return namespace
     },
-    [defaultLoad, currentLocale, enableDefaultLocale, defaultLocale],
+    [defaultLoad, currentLocale, enableDefaultLocale, defaultLocale, onLoadTranslationError],
   )
 
   const switchLocale = useCallback(
