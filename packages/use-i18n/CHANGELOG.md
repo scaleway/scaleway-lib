@@ -1,5 +1,11 @@
 # Change Log
 
+## 8.0.5
+
+### Patch Changes
+
+- [#3460](https://github.com/scaleway/scaleway-lib/pull/3460) [`0214160`](https://github.com/scaleway/scaleway-lib/commit/021416001279dd12abdb92ebcd8f3ace11535c7a) Thanks [@philibea](https://github.com/philibea)! - handle load translation in case of network issues
+
 ## 8.0.4
 
 ### Patch Changes
