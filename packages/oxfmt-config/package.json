@@ -30,7 +30,7 @@
     "access": "public"
   },
   "scripts": {
-    "typecheck": "tsgo --noEmit",
+    "typecheck": "tsc --noEmit",
     "build": "tsdown",
     "build:profile": "npx vite-bundle-visualizer -c vite.config.ts"
   },
