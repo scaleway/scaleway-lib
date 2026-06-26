@@ -56,6 +56,11 @@ const getPrerequisite = (key: string) => {
   }
 }
 const wrapper = ({ children }: { children?: ReactNode }) => <DataLoaderProvider>{children}</DataLoaderProvider>
+const wrapperWithLifetime =
+  (lifetime: number) =>
+  ({ children }: { children?: ReactNode }) => (
+    <DataLoaderProvider defaultDatalifetime={lifetime}>{children}</DataLoaderProvider>
+  )
 
 describe('useInfinitDataLoader', () => {
   it('should get the first page on mount while enabled', async () => {
@@ -297,47 +302,587 @@ describe('useInfinitDataLoader', () => {
       },
     )
 
-    // Initially, isLoading should be true (first load with no cache)
     expect(result.current.isLoading).toBeTruthy()
     expect(result.current.isFetching).toBeTruthy()
     expect(result.current.data).toBeUndefined()
 
-    // Resolve the first request
     setCanResolve(true)
     await waitFor(() => {
       expect(result.current.isSuccess).toBeTruthy()
     })
 
-    // After first load, isLoading should be false but isFetching should also be false
     expect(result.current.isLoading).toBeFalsy()
     expect(result.current.isFetching).toBeFalsy()
     expect(result.current.data).toStrictEqual([{ data: 'Page 1 data', nextPage: 2 }])
 
-    // Trigger a loadMore
     setCanResolve(false)
     act(() => {
       result.current.loadMore()
     })
 
-    // During loadMore, isLoading should be false (we have cached data) but isFetching should be true
     await waitFor(() => {
       expect(result.current.isFetching).toBeTruthy()
     })
     expect(result.current.isLoading).toBeFalsy()
-    expect(result.current.data).toStrictEqual([{ data: 'Page 1 data', nextPage: 2 }]) // Still have cached data
+    expect(result.current.data).toStrictEqual([{ data: 'Page 1 data', nextPage: 2 }])
 
-    // Resolve the loadMore
     setCanResolve(true)
     await waitFor(() => {
       expect(result.current.isSuccess).toBeTruthy()
     })
 
-    // After loadMore, both should be false again
     expect(result.current.isLoading).toBeFalsy()
     expect(result.current.isFetching).toBeFalsy()
     expect(result.current.data).toStrictEqual([
       { data: 'Page 1 data', nextPage: 2 },
       { data: 'Page 2 data', nextPage: 3 },
     ])
+  })
+
+  it('should call onError callback when request fails', async () => {
+    const onErrorMock = vi.fn()
+    const { initialProps } = getPrerequisite('test-error')
+    const localConfig = {
+      ...config,
+      onError: onErrorMock,
+    }
+
+    const failingMethod = vi.fn(async () => {
+      throw new Error('Network error')
+    })
+
+    const localInitialProps = {
+      ...initialProps,
+      method: failingMethod,
+    }
+
+    const { result } = renderHook(
+      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', localConfig),
+      {
+        initialProps: localInitialProps,
+        wrapper,
+      },
+    )
+
+    await waitFor(
+      () => {
+        expect(result.current.isError).toBeTruthy()
+      },
+      { timeout: 2000 },
+    )
+
+    expect(onErrorMock).toHaveBeenCalled()
+  })
+
+  it('should call onSuccess callback when request succeeds', async () => {
+    const onSuccessMock = vi.fn()
+    const { setCanResolve, initialProps } = getPrerequisite('test-success')
+    const localConfig = {
+      ...config,
+      onSuccess: onSuccessMock,
+    }
+
+    const { result } = renderHook(
+      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', localConfig),
+      {
+        initialProps,
+        wrapper,
+      },
+    )
+
+    setCanResolve(true)
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBeTruthy()
+    })
+
+    expect(onSuccessMock).toHaveBeenCalledWith({ data: 'Page 1 data', nextPage: 2 })
+  })
+
+  it('should use initialData when provided', async () => {
+    const { setCanResolve, initialProps } = getPrerequisite('test-initial-data')
+    const localInitialProps = {
+      ...initialProps,
+      config: {
+        ...config,
+        initialData: [{ data: 'Initial data', nextPage: 1 }],
+      },
+    }
+
+    const { result } = renderHook(
+      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', props.config),
+      {
+        initialProps: localInitialProps,
+        wrapper,
+      },
+    )
+
+    expect(result.current.data).toStrictEqual([{ data: 'Initial data', nextPage: 1 }])
+    expect(result.current.isLoading).toBeFalsy()
+
+    setCanResolve(true)
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBeTruthy()
+    })
+
+    expect(result.current.data).toStrictEqual([{ data: 'Page 1 data', nextPage: 2 }])
+  })
+
+  it('should return hasNextPage false when getNextPage returns undefined', async () => {
+    const noNextPageConfig: UseInfiniteDataLoaderConfig<
+      { nextPage: number | undefined; data: string },
+      Error,
+      { page: number | undefined },
+      'page'
+    > = {
+      enabled: true,
+      getNextPage: () => undefined,
+    }
+
+    const { setCanResolve, initialProps } = getPrerequisite('test-no-next-page')
+    const localMethod = vi.fn(
+      async () =>
+        new Promise<{ nextPage: number | undefined; data: string }>(resolve => {
+          resolve({ data: 'Last page', nextPage: undefined })
+        }),
+    )
+
+    const localInitialProps = {
+      ...initialProps,
+      method: localMethod,
+    }
+
+    const { result } = renderHook(
+      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', noNextPageConfig),
+      {
+        initialProps: localInitialProps,
+        wrapper,
+      },
+    )
+
+    setCanResolve(true)
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBeTruthy()
+    })
+
+    expect(result.current.hasNextPage).toBeFalsy()
+    expect(result.current.data).toStrictEqual([{ data: 'Last page', nextPage: undefined }])
+  })
+
+  it('should reset page when baseKey changes', async () => {
+    const { setCanResolve, initialProps } = getPrerequisite('test-key-change')
+
+    const { result, rerender } = renderHook(
+      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
+      {
+        initialProps,
+        wrapper,
+      },
+    )
+
+    setCanResolve(true)
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBeTruthy()
+    })
+
+    act(() => {
+      result.current.loadMore()
+    })
+    await waitFor(() => {
+      expect(result.current.isFetching).toBeTruthy()
+    })
+    setCanResolve(true)
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBeTruthy()
+    })
+
+    expect(result.current.data).toHaveLength(2)
+
+    const newInitialProps = {
+      ...initialProps,
+      key: 'test-key-change-new',
+      baseParams: { page: 1 },
+    }
+
+    rerender(newInitialProps)
+
+    // Page should be reset
+    await waitFor(() => {
+      expect(result.current.isFetching).toBeTruthy()
+    })
+    setCanResolve(true)
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBeTruthy()
+    })
+
+    expect(result.current.data).toHaveLength(1)
+  })
+
+  it('should set isIdle when enabled is false', async () => {
+    const { initialProps } = getPrerequisite('test-idle')
+    const localInitialProps = {
+      ...initialProps,
+      config: {
+        ...config,
+        enabled: false,
+      },
+    }
+
+    const { result } = renderHook(
+      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', props.config),
+      {
+        initialProps: localInitialProps,
+        wrapper,
+      },
+    )
+
+    expect(result.current.isIdle).toBeTruthy()
+    expect(result.current.isLoading).toBeFalsy()
+    expect(result.current.isFetching).toBeFalsy()
+    expect(initialProps.method).not.toHaveBeenCalled()
+  })
+
+  it('should handle multiple loadMore calls in sequence', async () => {
+    const { setCanResolve, initialProps } = getPrerequisite('test-multiple-load-more')
+
+    const { result } = renderHook(
+      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
+      {
+        initialProps,
+        wrapper,
+      },
+    )
+
+    setCanResolve(true)
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBeTruthy()
+    })
+
+    // Load multiple pages
+    setCanResolve(false)
+    act(() => {
+      result.current.loadMore()
+    })
+    await waitFor(() => {
+      expect(result.current.isFetching).toBeTruthy()
+    })
+    setCanResolve(true)
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBeTruthy()
+    })
+
+    setCanResolve(false)
+    act(() => {
+      result.current.loadMore()
+    })
+    await waitFor(() => {
+      expect(result.current.isFetching).toBeTruthy()
+    })
+    setCanResolve(true)
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBeTruthy()
+    })
+
+    expect(result.current.data).toHaveLength(3)
+    expect(result.current.data?.[0]).toEqual({ data: 'Page 1 data', nextPage: 2 })
+    expect(result.current.data?.[1]).toEqual({ data: 'Page 2 data', nextPage: 3 })
+    expect(result.current.data?.[2]).toEqual({ data: 'Page 3 data', nextPage: 4 })
+  })
+
+  it('should handle reload after error', async () => {
+    const { setCanResolve, initialProps, resetCounter } = getPrerequisite('test-reload-error')
+
+    const { result } = renderHook(
+      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
+      {
+        initialProps,
+        wrapper,
+      },
+    )
+
+    setCanResolve(true)
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBeTruthy()
+    })
+
+    expect(result.current.data).toStrictEqual([{ data: 'Page 1 data', nextPage: 2 }])
+
+    resetCounter()
+    setCanResolve(false)
+    act(() => {
+      result.current.reload().catch(() => {})
+    })
+
+    await waitFor(() => {
+      expect(result.current.isFetching).toBeTruthy()
+    })
+
+    setCanResolve(true)
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBeTruthy()
+    })
+
+    expect(result.current.data).toStrictEqual([{ data: 'Page 1 data', nextPage: 2 }])
+  })
+
+  it('should use keepPreviousData option', async () => {
+    const { setCanResolve, initialProps } = getPrerequisite('test-keep-previous')
+    const localConfig = {
+      ...config,
+      keepPreviousData: true,
+    }
+
+    const { result } = renderHook(
+      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', localConfig),
+      {
+        initialProps,
+        wrapper,
+      },
+    )
+
+    setCanResolve(true)
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBeTruthy()
+    })
+
+    const firstData = result.current.data
+
+    setCanResolve(false)
+    act(() => {
+      result.current.loadMore()
+    })
+
+    expect(result.current.data).toEqual(firstData)
+
+    await waitFor(() => {
+      expect(result.current.isFetching).toBeTruthy()
+    })
+    setCanResolve(true)
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBeTruthy()
+    })
+
+    expect(result.current.data).toHaveLength(2)
+  })
+
+  it('should handle stale page scenario when baseKey changes', async () => {
+    const { setCanResolve, initialProps, resetCounter } = getPrerequisite('test-stale-page')
+
+    const { result, rerender } = renderHook(
+      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
+      {
+        initialProps,
+        wrapper,
+      },
+    )
+
+    setCanResolve(true)
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBeTruthy()
+    })
+
+    expect(result.current.data).toStrictEqual([{ data: 'Page 1 data', nextPage: 2 }])
+    expect(result.current.hasNextPage).toBeTruthy()
+
+    setCanResolve(false)
+    act(() => {
+      result.current.loadMore()
+    })
+    await waitFor(() => {
+      expect(result.current.isFetching).toBeTruthy()
+    })
+    setCanResolve(true)
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBeTruthy()
+    })
+
+    expect(result.current.data).toHaveLength(2)
+    expect(result.current.hasNextPage).toBeTruthy()
+
+    resetCounter()
+
+    const newInitialProps = {
+      ...initialProps,
+      key: 'test-stale-page-new-key',
+      baseParams: { page: 1 },
+    }
+
+    rerender(newInitialProps)
+
+    await waitFor(() => {
+      expect(result.current.isFetching).toBeTruthy()
+    })
+
+    expect(result.current.data).toBeUndefined()
+    expect(result.current.isLoading).toBeTruthy()
+
+    // Resolve the new first page
+    setCanResolve(true)
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBeTruthy()
+    })
+
+    // Should only have one page (the new first page)
+    expect(result.current.data).toHaveLength(1)
+    expect(result.current.data?.[0]).toEqual({ data: 'Page 1 data', nextPage: 2 })
+  })
+
+  it('should restore nextPageRef on remount and allow loadMore', async () => {
+    const { setCanResolve, initialProps, resetCounter } = getPrerequisite('test-remount-load-more')
+
+    // First mount - load page 1 then loadMore page 2
+    const { result, unmount } = renderHook(
+      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
+      {
+        initialProps,
+        wrapper,
+      },
+    )
+
+    setCanResolve(true)
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBeTruthy()
+    })
+
+    setCanResolve(false)
+    act(() => {
+      result.current.loadMore()
+    })
+    await waitFor(() => {
+      expect(result.current.isFetching).toBeTruthy()
+    })
+    setCanResolve(true)
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBeTruthy()
+    })
+
+    expect(result.current.data).toHaveLength(2)
+    expect(result.current.hasNextPage).toBeTruthy()
+
+    // Unmount the hook (simulates navigating away)
+    unmount()
+
+    // Reset counter to simulate fresh data for the remount
+    resetCounter()
+
+    // Second mount - should restore nextPageRef from cached data
+    const { result: result2 } = renderHook(
+      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
+      {
+        initialProps,
+        wrapper,
+      },
+    )
+
+    // Should have cached data restored
+    await waitFor(() => {
+      expect(result2.current.isSuccess).toBeTruthy()
+    })
+
+    // nextPageRef should be restored - hasNextPage should be true
+    expect(result2.current.hasNextPage).toBeTruthy()
+
+    // loadMore should work - it should trigger a new method call
+    const callsBeforeLoadMore = initialProps.method.mock.calls.length
+    setCanResolve(false)
+    act(() => {
+      result2.current.loadMore()
+    })
+    await waitFor(() => {
+      expect(result2.current.isFetching).toBeTruthy()
+    })
+
+    // Should have made one more call (for the next page)
+    expect(initialProps.method.mock.calls.length).toBe(callsBeforeLoadMore + 1)
+  })
+
+  it('should restore nextPage from cached data on remount without reload when data is fresh', async () => {
+    const { setCanResolve, initialProps } = getPrerequisite('test-remount-fresh-cache')
+    const wrapperFresh = wrapperWithLifetime(10_000)
+
+    const { result, unmount } = renderHook(
+      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
+      {
+        initialProps,
+        wrapper: wrapperFresh,
+      },
+    )
+
+    setCanResolve(true)
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBeTruthy()
+    })
+
+    act(() => {
+      result.current.loadMore()
+    })
+    await waitFor(() => {
+      expect(result.current.data).toHaveLength(2)
+    })
+
+    expect(result.current.hasNextPage).toBeTruthy()
+
+    unmount()
+
+    // Remount with fresh cache (within 10s lifetime) - nextPage should be restored from cached data
+    const { result: result2 } = renderHook(
+      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
+      {
+        initialProps,
+        wrapper: wrapperFresh,
+      },
+    )
+
+    await waitFor(() => {
+      expect(result2.current.isSuccess).toBeTruthy()
+    })
+
+    expect(result2.current.hasNextPage).toBeTruthy()
+
+    // loadMore should trigger exactly one new method call for the next page
+    const callsBeforeLoadMore = initialProps.method.mock.calls.length
+    act(() => {
+      result2.current.loadMore()
+    })
+    await waitFor(() => {
+      expect(result2.current.isFetching).toBeTruthy()
+    })
+
+    expect(initialProps.method.mock.calls.length).toBe(callsBeforeLoadMore + 1)
+  })
+
+  it('should keep hasNextPage accurate after remount with fresh cache (no stale useMemo)', async () => {
+    const { setCanResolve, initialProps } = getPrerequisite('test-remount-hasNextPage-accurate')
+    const wrapperFresh = wrapperWithLifetime(10_000)
+
+    const { result, unmount } = renderHook(
+      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
+      {
+        initialProps,
+        wrapper: wrapperFresh,
+      },
+    )
+
+    setCanResolve(true)
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBeTruthy()
+    })
+
+    expect(result.current.hasNextPage).toBeTruthy()
+    unmount()
+
+    const { result: result2 } = renderHook(
+      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
+      {
+        initialProps,
+        wrapper: wrapperFresh,
+      },
+    )
+
+    await waitFor(() => {
+      expect(result2.current.isSuccess).toBeTruthy()
+    })
+
+    // hasNextPage must be true (not stale false from useMemo)
+    expect(result2.current.hasNextPage).toBeTruthy()
   })
 })
