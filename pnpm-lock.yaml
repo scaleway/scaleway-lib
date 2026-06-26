@@ -7,8 +7,8 @@ settings:
 catalogs:
   default:
     '@arethetypeswrong/core':
-      specifier: 0.18.3
-      version: 0.18.3
+      specifier: 0.18.4
+      version: 0.18.4
     '@changesets/changelog-github':
       specifier: 0.7.0
       version: 0.7.0
@@ -175,7 +175,7 @@ importers:
     devDependencies:
       '@arethetypeswrong/core':
         specifier: 'catalog:'
-        version: 0.18.3
+        version: 0.18.4
       '@changesets/changelog-github':
         specifier: 'catalog:'
         version: 0.7.0
@@ -262,7 +262,7 @@ importers:
         version: 10.1.0
       tsdown:
         specifier: 'catalog:'
-        version: 0.22.3(@arethetypeswrong/core@0.18.3)(publint@0.3.21)(typescript@7.0.1-rc)(typescript@7.0.1-rc)
+        version: 0.22.3(@arethetypeswrong/core@0.18.4)(publint@0.3.21)(typescript@7.0.1-rc)(typescript@7.0.1-rc)
       turbo:
         specifier: 'catalog:'
         version: 2.9.18
@@ -499,8 +499,8 @@ packages:
   '@andrewbranch/untar.js@1.0.3':
     resolution: {integrity: sha512-Jh15/qVmrLGhkKJBdXlK1+9tY4lZruYjsgkDFj08ZmDiWVBLJcqkok7Z0/R0In+i1rScBpJlSvrTS2Lm41Pbnw==}
 
-  '@arethetypeswrong/core@0.18.3':
-    resolution: {integrity: sha512-sWBB/tdIktaT5xMq0Dz6CJyqcf6oMNdmiKiuPU1lWoJLTL6gjRSsksBuSgqot21hylkklBQY1wiSu+PkZhW7sw==}
+  '@arethetypeswrong/core@0.18.4':
+    resolution: {integrity: sha512-M5F0ePyN6h2Z6XxRiyIPqjGbltotXLjR0CKA0uKspsDu0QmgTNYvRb4RSQPMUs2ZXZHCCYpbaZbFbYOXLxCjUA==}
     engines: {node: '>=20'}
 
   '@asamuzakjp/css-color@5.1.11':
@@ -3139,7 +3139,7 @@ snapshots:
 
   '@andrewbranch/untar.js@1.0.3': {}
 
-  '@arethetypeswrong/core@0.18.3':
+  '@arethetypeswrong/core@0.18.4':
     dependencies:
       '@andrewbranch/untar.js': 1.0.3
       '@loaderkit/resolve': 1.0.6
@@ -5299,7 +5299,7 @@ snapshots:
 
   tree-kill@1.2.2: {}
 
-  tsdown@0.22.3(@arethetypeswrong/core@0.18.3)(publint@0.3.21)(typescript@7.0.1-rc)(typescript@7.0.1-rc):
+  tsdown@0.22.3(@arethetypeswrong/core@0.18.4)(publint@0.3.21)(typescript@7.0.1-rc)(typescript@7.0.1-rc):
     dependencies:
       ansis: 4.3.1
       cac: 7.0.0
@@ -5317,7 +5317,7 @@ snapshots:
       tree-kill: 1.2.2
       unconfig-core: 7.5.0
     optionalDependencies:
-      '@arethetypeswrong/core': 0.18.3
+      '@arethetypeswrong/core': 0.18.4
       publint: 0.3.21
       typescript: 7.0.1-rc
     transitivePeerDependencies:
