@@ -1,0 +1,31 @@
+{
+  "name": "@scaleway/auth-scw",
+  "version": "1.0.0",
+  "description": "Auth Scaleway",
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "typecheck": "tsgo --noEmit",
+    "build": "tsdown",
+    "test:unit": "vitest --run",
+    "test:unit:coverage": "pnpm test:unit --coverage"
+  },
+  "devDependencies": {
+    "@scaleway/sdk-client": "catalog:",
+    "@types/react": "catalog:",
+    "cookie": "catalog:",
+    "date-fns": "catalog:",
+    "react": "catalog:",
+    "zod": "catalog:"
+  },
+  "peerDependencies": {
+    "@scaleway/sdk-client": "catalog:",
+    "cookie": "catalog:",
+    "date-fns": "catalog:",
+    "react": "catalog:",
+    "zod": "catalog:"
+  }
+}
