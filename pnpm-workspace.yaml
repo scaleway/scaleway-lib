@@ -28,7 +28,7 @@ catalog:
   date-fns: 4.4.0
   deepmerge-ts: 7.1.5
   execa: 9.6.1
-  filesize: 11.0.17
+  filesize: 11.0.18
   happy-dom: 20.10.6
   international-types: 0.8.1
   intl-messageformat: 11.2.9
