@@ -14,7 +14,7 @@
     "./package.json": "./package.json"
   },
   "scripts": {
-    "typecheck": "tsgo --noEmit",
+    "typecheck": "tsc --noEmit",
     "build": "tsdown",
     "test:unit": "vitest --run",
     "test:unit:coverage": "pnpm test:unit --coverage"
