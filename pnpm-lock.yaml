@@ -94,8 +94,8 @@ catalogs:
       specifier: 9.6.1
       version: 9.6.1
     filesize:
-      specifier: 11.0.17
-      version: 11.0.17
+      specifier: 11.0.18
+      version: 11.0.18
     happy-dom:
       specifier: 20.10.6
       version: 20.10.6
@@ -415,7 +415,7 @@ importers:
         version: 3.1.6
       filesize:
         specifier: 'catalog:'
-        version: 11.0.17
+        version: 11.0.18
       international-types:
         specifier: 'catalog:'
         version: 0.8.1
@@ -1973,8 +1973,8 @@ packages:
     resolution: {integrity: sha512-d+l3qxjSesT4V7v2fh+QnmFnUWv9lSpjarhShNTgBOfA0ttejbQUAlHLitbjkoRiDulW0OPoQPYIGhIC8ohejg==}
     engines: {node: '>=18'}
 
-  filesize@11.0.17:
-    resolution: {integrity: sha512-oHLTvMLw6imZUl1se/RBQrFlyy50nXce4sU7yGR6Qc0JgCwqnfiFsAnEwotdGmfKLD7SArGUk2/5STU0k8LOBQ==}
+  filesize@11.0.18:
+    resolution: {integrity: sha512-d/SiIKVaIP7DqL14JfADiSi/TFoo3bmNJYQ6wR5d52/e9Nd/tEsooP/0RD4pgzrjNO6cFOQvSmsWSs84M9OFAw==}
     engines: {node: '>= 10.8.0'}
 
   fill-range@7.1.1:
@@ -4443,7 +4443,7 @@ snapshots:
     dependencies:
       is-unicode-supported: 2.1.0
 
-  filesize@11.0.17: {}
+  filesize@11.0.18: {}
 
   fill-range@7.1.1:
     dependencies:
