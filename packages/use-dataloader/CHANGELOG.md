@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0
+
+### Minor Changes
+
+- [#3466](https://github.com/scaleway/scaleway-lib/pull/3466) [`d2eb5b0`](https://github.com/scaleway/scaleway-lib/commit/d2eb5b085131de5a0cf3e3be3639a0b82fb055db) Thanks [@dmzski](https://github.com/dmzski)! - Fix: Stale page when base query key change
+
 ## 7.0.2
 
 ### Patch Changes
