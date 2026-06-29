@@ -6,7 +6,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/scaleway/scaleway-lib.git",
-    "directory": "packages/random-name"
+    "directory": "packages/auth-scw"
   },
   "type": "module",
   "exports": {
