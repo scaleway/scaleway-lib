@@ -47,8 +47,6 @@ const AuthStoreManager = {
   getJwt: vi.fn((): JWT | null => MOCK_ENCODED_JWT_COOKIE.jwt),
 }
 
-const useGetDediboxRedirectionUrlWithToken = vi.fn(() => vi.fn((url: string) => `${url}`))
-
 export {
   MOCK_ENCODED_JWT_COOKIE,
   AuthScwProvider,
@@ -58,5 +56,4 @@ export {
   mockRenewToken,
   useAuthScw,
   AuthStoreManager,
-  useGetDediboxRedirectionUrlWithToken,
 }
