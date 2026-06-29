@@ -6,8 +6,6 @@ import { AuthStoreManager, setCookieConfig } from './authStoreManager'
 import { clientSingleton } from './createClient'
 import { decodeToken, encodeToken, getCookieJWT, refreshSession } from './helpers'
 import { proxyJwt } from './proxyJwt'
-import { useLoginMethods } from './useLoginMethods'
-import { useMemberLoginMethods } from './useMemberLoginMethods'
 
 export type AuthProviderParamType = ConfigAuthProvider & {
   children: ReactNode
@@ -25,7 +23,6 @@ export const AuthScwProvider = ({
   clientSettings,
   IamV1Alpha1,
   IamUnauthenticatedV1Alpha1,
-  AccountV3UnauthenticatedUser,
   children,
   cookieSuffix,
   cookieConfig,
@@ -37,7 +34,6 @@ export const AuthScwProvider = ({
     clientSettings,
     IamV1Alpha1,
     IamUnauthenticatedV1Alpha1,
-    AccountV3UnauthenticatedUser,
   })
   const initAudienceId = useCallback(() => {
     AuthStoreManager.setSuffixKey(cookieSuffix)
@@ -155,27 +151,6 @@ export const AuthScwProvider = ({
     setCurrentAudienceId(undefined)
   }, [getJwtToken, currentAudienceId])
 
-  const {
-    initiateOidcLogin,
-    initiateAuthenticationCodeLogin,
-    resendAuthenticationCode,
-    loginSession,
-    loginOrganizations,
-    startWebAuthnAuthentication,
-  } = useLoginMethods()
-
-  const {
-    iamMemberSearchOrganization,
-    iamMemberInitiateOAuth2Login,
-    iamMemberInitiateSamlLogin,
-    iamMemberCreateOAuth2Login,
-    iamMemberCreatePasswordLogin,
-    iamMemberInitiateMagicCodeLogin,
-    iamMemberCreateMagicCodeLogin,
-    iamMemberCheckLoginMFAOTP,
-    iamMemberCommitLogin,
-  } = useMemberLoginMethods()
-
   const jti = useMemo(() => {
     if (currentAudienceId) {
       const cookieJWT = getCookieJWT(currentAudienceId)
@@ -202,51 +177,12 @@ export const AuthScwProvider = ({
       encodeToken,
       getJWT,
       getJwtToken,
-      iamMemberCheckLoginMFAOTP,
-      iamMemberCommitLogin,
-      iamMemberCreateMagicCodeLogin,
-      iamMemberCreateOAuth2Login,
-      iamMemberCreatePasswordLogin,
-      iamMemberInitiateMagicCodeLogin,
-      iamMemberInitiateOAuth2Login,
-      iamMemberInitiateSamlLogin,
-      iamMemberSearchOrganization,
-      initiateAuthenticationCodeLogin,
-      initiateOidcLogin,
       jti,
-      loginOrganizations,
-      loginSession,
       logout,
-      resendAuthenticationCode,
       setAudienceId,
       setJWT,
-      startWebAuthnAuthentication,
     }),
-    [
-      currentAudienceId,
-      jti,
-      isAuthenticated,
-      getJWT,
-      getJwtToken,
-      initiateOidcLogin,
-      initiateAuthenticationCodeLogin,
-      resendAuthenticationCode,
-      loginOrganizations,
-      loginSession,
-      iamMemberSearchOrganization,
-      iamMemberInitiateOAuth2Login,
-      iamMemberInitiateSamlLogin,
-      iamMemberCreateOAuth2Login,
-      iamMemberCreatePasswordLogin,
-      iamMemberInitiateMagicCodeLogin,
-      iamMemberCreateMagicCodeLogin,
-      iamMemberCheckLoginMFAOTP,
-      iamMemberCommitLogin,
-      logout,
-      setJWT,
-      setAudienceId,
-      startWebAuthnAuthentication,
-    ],
+    [getJWT, getJwtToken, logout, setJWT, setAudienceId, currentAudienceId, isAuthenticated, jti],
   )
 
   return <AuthScwContext value={value}>{children}</AuthScwContext>

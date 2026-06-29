@@ -2,19 +2,7 @@ import type { ReactNode } from 'react'
 import { vi } from 'vitest'
 import type { AuthScwContextType } from '../src/index'
 import type { Accountv3 } from '../src/types/account/index'
-import type { JWT } from '../src/types/account/types'
-import type { Iamv1alpha1 } from '../src/types/iam/index'
-
-const MOCK_OIDC_LOGIN: Accountv3.InitiateOIDCLoginResponse = {
-  securityToken: 'token123',
-  url: 'http://myreidrecturl',
-}
-
-const MOCK_SAML_LOGIN: Iamv1alpha1.InitiateSamlLoginResponse = {
-  relayState: 'relayState',
-  samlRequest: 'samlRequest',
-  url: 'http://myreidrecturl',
-}
+import type { JWT } from '../src/types/iam/types'
 
 const MOCK_ENCODED_JWT_COOKIE = {
   jwt: {
@@ -35,45 +23,7 @@ const MOCK_ENCODED_JWT_COOKIE = {
 
 const mockGetJWT = vi.fn(() => Promise.resolve({ ...MOCK_ENCODED_JWT_COOKIE, source: 'cookie' as const }))
 const mockGetJwtToken = vi.fn(() => Promise.resolve(MOCK_ENCODED_JWT_COOKIE.token))
-const mockIamMemberCheckLoginMFAOTP = vi.fn(() => Promise.resolve())
-const mockIamMemberCommitLogin = vi.fn(() => Promise.resolve(MOCK_ENCODED_JWT_COOKIE))
-const mockIamMemberCreateMagicCodeLogin = vi.fn(() => Promise.resolve({ id: 'id', mfaRequired: false }))
-const mockIamMemberCreateOAuth2Login = vi.fn(() => Promise.resolve({ id: 'id', mfaRequired: false }))
-const mockIamMemberInitiateMagicCodeLogin = vi.fn(() => Promise.resolve())
-const mockIamMemberInitiateOAuth2Login = vi.fn(() => Promise.resolve(MOCK_OIDC_LOGIN))
-const mockIamMemberInitiateSamlLogin = vi.fn(() => Promise.resolve(MOCK_SAML_LOGIN))
-const mockIamMemberPasswordLogin = vi.fn(() => Promise.resolve({ id: 'id', mfaRequired: false }))
 
-const mockIamMemberSearchOrganization = vi.fn<() => Promise<Iamv1alpha1.OrganizationSummary>>(() =>
-  Promise.resolve({
-    id: 'id-organization-1',
-    loginMagicCodeEnabled: true,
-    loginOauth2Enabled: true,
-    loginPasswordEnabled: true,
-    loginSamlEnabled: true,
-    name: 'organization-1',
-  }),
-)
-
-const mockInitiateOidcLogin = vi.fn(() => Promise.resolve(MOCK_OIDC_LOGIN))
-const mockStartWebAuthnAuthentication = vi.fn(() => Promise.resolve({ id: 'ceremony-id' }))
-const mockInitiatePasswordlessLogin = vi.fn(() => Promise.resolve())
-const mockLoginOrganizations = vi.fn(() =>
-  Promise.resolve({
-    organizationsLoginInformation: [
-      {
-        organizationId: 'id',
-        organizationName: 'name',
-        ...MOCK_ENCODED_JWT_COOKIE,
-      },
-    ],
-  }),
-)
-const mockLoginSession = vi.fn(() => Promise.resolve({ id: 'mocked-login-session-id' }))
-const mockInitiateAuthenticationCodeLogin = vi.fn(() => Promise.resolve({}))
-const mockResendAuthenticationCode = vi.fn(function mockResendAuthenticationCode() {
-  return Promise.resolve()
-})
 const mockLogout = vi.fn()
 const mockRenewToken = vi.fn(() => Promise.resolve(MOCK_ENCODED_JWT_COOKIE))
 
@@ -84,24 +34,9 @@ const defaultMockUseAuthScw: AuthScwContextType = {
   encodeToken: vi.fn(),
   getJWT: mockGetJWT,
   getJwtToken: mockGetJwtToken,
-  iamMemberCheckLoginMFAOTP: mockIamMemberCheckLoginMFAOTP,
-  iamMemberCommitLogin: mockIamMemberCommitLogin,
-  iamMemberCreateMagicCodeLogin: mockIamMemberCreateMagicCodeLogin,
-  iamMemberCreateOAuth2Login: mockIamMemberCreateOAuth2Login,
-  iamMemberCreatePasswordLogin: mockIamMemberPasswordLogin,
-  iamMemberInitiateMagicCodeLogin: mockIamMemberInitiateMagicCodeLogin,
-  iamMemberInitiateOAuth2Login: mockIamMemberInitiateOAuth2Login,
-  iamMemberInitiateSamlLogin: mockIamMemberInitiateSamlLogin,
-  iamMemberSearchOrganization: mockIamMemberSearchOrganization,
-  initiateAuthenticationCodeLogin: mockInitiateAuthenticationCodeLogin,
-  initiateOidcLogin: mockInitiateOidcLogin,
-  loginOrganizations: mockLoginOrganizations,
-  loginSession: mockLoginSession,
   logout: mockLogout,
-  resendAuthenticationCode: mockResendAuthenticationCode,
   setAudienceId: vi.fn(),
   setJWT: vi.fn(),
-  startWebAuthnAuthentication: mockStartWebAuthnAuthentication,
 } satisfies AuthScwContextType
 
 const useAuthScw = vi.fn<() => AuthScwContextType>(() => defaultMockUseAuthScw)
@@ -115,27 +50,10 @@ const AuthStoreManager = {
 const useGetDediboxRedirectionUrlWithToken = vi.fn(() => vi.fn((url: string) => `${url}`))
 
 export {
-  MOCK_OIDC_LOGIN,
   MOCK_ENCODED_JWT_COOKIE,
   AuthScwProvider,
   defaultMockUseAuthScw,
   mockGetJWT,
-  mockInitiateAuthenticationCodeLogin,
-  mockResendAuthenticationCode,
-  mockIamMemberCheckLoginMFAOTP,
-  mockIamMemberCommitLogin,
-  mockIamMemberCreateMagicCodeLogin,
-  mockIamMemberCreateOAuth2Login,
-  mockIamMemberInitiateMagicCodeLogin,
-  mockIamMemberInitiateOAuth2Login,
-  mockIamMemberInitiateSamlLogin,
-  mockIamMemberPasswordLogin,
-  mockIamMemberSearchOrganization,
-  mockInitiateOidcLogin,
-  mockStartWebAuthnAuthentication,
-  mockInitiatePasswordlessLogin,
-  mockLoginOrganizations,
-  mockLoginSession,
   mockLogout,
   mockRenewToken,
   useAuthScw,

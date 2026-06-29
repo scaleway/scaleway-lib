@@ -1,14 +1,4 @@
 import type { EncodedJWT } from '../../../types'
-import type { Accountv3 } from '../../../types/account'
-
-export const MOCK_OIDC_LOGIN: Accountv3.InitiateOIDCLoginResponse = {
-  securityToken: 'token123',
-  url: 'http://myreidrecturl',
-}
-
-export const MOCK_LOGIN_SESSION: Accountv3.LoginSession = {
-  id: '123456',
-}
 
 export const MOCK_AUDIENCE_ID = '8ff64ee7-41e0-42ea-a3a2-1e760b64690a'
 export const MOCK_ISSUER_ID = '8ff64ee7-41e0-42ea-a3a2-1e760b64690a'

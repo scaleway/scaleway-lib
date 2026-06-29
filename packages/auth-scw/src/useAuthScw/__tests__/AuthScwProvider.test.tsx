@@ -3,12 +3,10 @@ import { createClient, API } from '@scaleway/sdk-client'
 import { act, renderHook, waitFor } from '@testing-library/react'
 import type { ReactNode } from 'react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { mockInitiateAuthenticationCodeLogin, mockInitiateOidcLogin, mockLoginOrganizations } from '../../../mocks'
 import { AuthScwProvider, useAuthScw } from '../AuthScwProvider'
 import { AuthStoreManager } from '../authStoreManager'
-import { MOCK_AUDIENCE_ID, MOCK_ENCODED_JWT_COOKIE, MOCK_LOGIN_SESSION } from './__mocks__/auth'
+import { MOCK_AUDIENCE_ID, MOCK_ENCODED_JWT_COOKIE } from './__mocks__/auth'
 
-const mockCreateLoginSession = vi.fn(() => Promise.resolve(MOCK_LOGIN_SESSION))
 const mockDeleteJwt = vi.fn(() => Promise.resolve())
 const mockRenewJwt = vi.fn(() => Promise.resolve(MOCK_ENCODED_JWT_COOKIE))
 
@@ -22,23 +20,13 @@ class IamUnauthenticatedV1Alpha1 extends API {
   renewJWT = mockRenewJwt
 }
 
-class AccountV3UnauthenticatedUser {
-  initiateOIDCLogin = mockInitiateOidcLogin
-  initiateAuthenticationCodeLogin = mockInitiateAuthenticationCodeLogin
-  createLoginSession = mockCreateLoginSession
-  logInOrganizations = mockLoginOrganizations
-}
-
 const Wrapper = ({ children }: { children: ReactNode }) => {
   const client = createClient()
 
   return (
     <AuthScwProvider
       IamV1Alpha1={IamV1Alpha1}
-      // @ts-expect-error no need to define all class properties for testing
       IamUnauthenticatedV1Alpha1={IamUnauthenticatedV1Alpha1}
-      // @ts-expect-error no need to define all class properties for testing
-      AccountV3UnauthenticatedUser={AccountV3UnauthenticatedUser}
       clientSettings={client.settings}
       cookieSuffix={DEFAULT_COOKIE_SUFFIX}
       cookieConfig={{
@@ -153,53 +141,6 @@ describe('useauthscw provider', () => {
       })
 
       expect(mockRenewJwt).toHaveBeenCalledOnce()
-    })
-
-    it('should initiate oidc login correctly', async () => {
-      const { result } = renderHook(useAuthScw, { wrapper: Wrapper })
-
-      await act(async () =>
-        result.current.initiateOidcLogin({
-          identityProvider: 'google',
-          redirectUrl: 'http://myredirecturl',
-          accountRedirectUri: 'https://account.console.scaleway.com',
-        }),
-      )
-
-      expect(mockInitiateOidcLogin).toHaveBeenCalledOnce()
-      await waitFor(() => {
-        expect(result.current.audienceId).toStrictEqual(undefined)
-      })
-    })
-
-    it('should initiate a login with authentication code correctly', async () => {
-      const { result } = renderHook(useAuthScw, { wrapper: Wrapper })
-
-      await act(async () =>
-        result.current.initiateAuthenticationCodeLogin({
-          email: 'test@test.fr',
-        }),
-      )
-
-      expect(mockInitiateAuthenticationCodeLogin).toHaveBeenCalledOnce()
-      expect(result.current.audienceId).toEqual(undefined)
-    })
-
-    it('should pre login correctly', async () => {
-      const { result } = renderHook(useAuthScw, { wrapper: Wrapper })
-
-      await act(async () =>
-        result.current.loginSession({
-          password: {
-            email: 'test@test.com',
-            password: '12345678',
-            redirectUrl: '',
-          },
-        }),
-      )
-
-      expect(mockCreateLoginSession).toHaveBeenCalledOnce()
-      expect(result.current.audienceId).toStrictEqual(undefined)
     })
 
     it('should logout and clear all', async () => {
