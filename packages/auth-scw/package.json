@@ -2,6 +2,12 @@
   "name": "@scaleway/auth-scw",
   "version": "1.0.0",
   "description": "Auth Scaleway",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scaleway/scaleway-lib.git",
+    "directory": "packages/random-name"
+  },
   "type": "module",
   "exports": {
     ".": "./dist/index.mjs",
