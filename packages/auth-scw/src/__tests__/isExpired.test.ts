@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { isExpired, SESSION_EXPIRED_SAFETY } from './isExpired'
+import { isExpired, SESSION_EXPIRED_SAFETY } from '../isExpired'
 
 describe('isexpired', () => {
   it('should return true if the current time is past the expiry time minus safety margin', () => {

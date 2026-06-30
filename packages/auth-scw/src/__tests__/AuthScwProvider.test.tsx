@@ -3,9 +3,9 @@ import { createClient, API } from '@scaleway/sdk-client'
 import { act, renderHook, waitFor } from '@testing-library/react'
 import type { ReactNode } from 'react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { AuthScwProvider, useAuthScw } from '../AuthScwProvider'
-import { AuthStoreManager } from '../authStoreManager'
-import { MOCK_AUDIENCE_ID, MOCK_ENCODED_JWT_COOKIE } from './__mocks__/auth'
+import { MOCK_AUDIENCE_ID, MOCK_ENCODED_JWT_COOKIE } from '../../mocks/index'
+import { AuthScwProvider, useAuthScw } from '../useAuthScw/AuthScwProvider'
+import { AuthStoreManager } from '../useAuthScw/authStoreManager'
 
 const mockDeleteJwt = vi.fn(() => Promise.resolve())
 const mockRenewJwt = vi.fn(() => Promise.resolve(MOCK_ENCODED_JWT_COOKIE))

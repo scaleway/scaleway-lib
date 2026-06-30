@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
-import { COOKIE_CONFIG } from '../../constants'
-import { AuthStoreManager } from '../authStoreManager'
-import { MOCK_ENCODED_JWT_COOKIE } from './__mocks__/auth'
+import { MOCK_ENCODED_JWT_COOKIE } from '../../mocks/index'
+import { COOKIE_CONFIG } from '../constants'
+import { AuthStoreManager } from '../useAuthScw/authStoreManager'
 
 // turn secure flag to false to let vitest store cookies in a "not secure" env. Only for testing
 COOKIE_CONFIG.secure = false

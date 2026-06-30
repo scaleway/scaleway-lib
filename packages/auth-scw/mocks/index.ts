@@ -5,7 +5,7 @@ import type { JWT, EncodedJWT } from '../src/types/iam/types'
 
 const MOCK_ENCODED_JWT_COOKIE = {
   jwt: {
-    audienceId: 'audienceIdTest',
+    audienceId: '8ff64ee7-41e0-42ea-a3a2-1e760b64690a',
     expiresAt: new Date(Date.now() + 60 * 60 * 1000),
     ip: '51.159.46.153',
     issuerId: '8ff64ee7-41e0-42ea-a3a2-1e760b64690a',
@@ -45,6 +45,9 @@ const AuthScwProvider = ({ children }: { children: ReactNode }) => children
 const AuthStoreManager = {
   getJwt: vi.fn((): JWT | null => MOCK_ENCODED_JWT_COOKIE.jwt),
 }
+
+export const MOCK_AUDIENCE_ID = '8ff64ee7-41e0-42ea-a3a2-1e760b64690a'
+export const MOCK_ISSUER_ID = '8ff64ee7-41e0-42ea-a3a2-1e760b64690a'
 
 export {
   MOCK_ENCODED_JWT_COOKIE,
