@@ -55,7 +55,8 @@ catalog:
   zod: 4.4.3
   awesome-phonenumber: 7.8.0
   '@testing-library/user-event': 14.6.1
-  '@scaleway/sdk-client': 2.4.1
+  '@scaleway/sdk-client': 2.4.0
+  '@scaleway/sdk-iam': 2.9.4
 
 catalogMode: strict
 cleanupUnusedCatalogs: true
@@ -78,3 +79,7 @@ savePrefix: ''
 supportedArchitectures:
   cpu: [ x64, arm64 ]
   os: [ darwin, current ]
+
+minimumReleaseAgeExclude:
+  - '@scaleway/sdk-iam@2.9.4'
+  - '@scaleway/sdk-std@2.4.3'

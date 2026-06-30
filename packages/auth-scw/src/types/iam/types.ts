@@ -1,63 +1,11 @@
 // eslint-disable-next-line no-abusive-eslint-disable
 /* oxlint-disable */
 import { API as ParentAPI } from '@scaleway/sdk-client'
+import type { Iamv1alpha1 } from '@scaleway/sdk-iam'
 
-export type JWT = {
-  /**
-   * JWT ID.
-   */
-  jti: string
-  /**
-   * ID of the user who issued the JWT.
-   */
-  issuerId: string
-  /**
-   * ID of the user targeted by the JWT.
-   */
-  audienceId: string
-  /**
-   * Creation date of the JWT.
-   */
-  createdAt?: Date
-  /**
-   * Last update date of the JWT.
-   */
-  updatedAt?: Date
-  /**
-   * Expiration date of the JWT.
-   */
-  expiresAt?: Date
-  /**
-   * IP address used during the creation of the JWT.
-   */
-  ip: string
-  /**
-   * User-agent used during the creation of the JWT.
-   */
-  userAgent: string
-}
-
-export type EncodedJWT = {
-  /**
-   * The renewed JWT.
-   */
-  jwt?: JWT
-  /**
-   * The encoded token of the renewed JWT.
-   */
-  token: string
-  /**
-   * The encoded renew token. This token is necessary to renew the JWT.
-   */
-  renewToken: string
-}
-
-export type DeleteJWTRequest = {
-  /**
-   * JWT ID of the JWT to delete.
-   */
-  jti: string
-}
+export type JWT = Iamv1alpha1.JWT
+export type EncodedJWT = Iamv1alpha1.EncodedJWT
+export type DeleteJWTRequest = Iamv1alpha1.DeleteJWTRequest
 
 export type UnauthenticatedApiRenewJWTRequest = {
   /**

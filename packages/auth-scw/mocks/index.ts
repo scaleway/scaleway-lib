@@ -1,8 +1,7 @@
 import type { ReactNode } from 'react'
 import { vi } from 'vitest'
 import type { AuthScwContextType } from '../src/index'
-import type { Accountv3 } from '../src/types/account/index'
-import type { JWT } from '../src/types/iam/types'
+import type { JWT, EncodedJWT } from '../src/types/iam/types'
 
 const MOCK_ENCODED_JWT_COOKIE = {
   jwt: {
@@ -19,7 +18,7 @@ const MOCK_ENCODED_JWT_COOKIE = {
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZW5ld19rZXkiOiI2M2I0MWQ1MDU0ODU2ZWQ1MTZmMDFkNzFiZGU5ODY3ZGZhMjYzMDc0MWQ4YTEzMzkyNmNmYTM0MWE0ZmMzMWZmIn0.dPCsziFL2czNHUnK33_ESNII0s-uMSQFqpuu13URiqk',
   token:
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI4ZmY2NGVlNy00MWUwLTQyZWEtYTNhMi0xZTc2MGI2NDY5MGEiLCJhdWQiOiI4ZmY2NGVlNy00MWUwLTQyZWEtYTNhMi0xZTc2MGI2NDY5MGEiLCJleHAiOjE3MDA1NjMyNjgsImlhdCI6MTcwMDU1OTY2OCwianRpIjoiZjNkMzE2NmUtMGI0Yi00OTRjLWE3ZTQtYjhlN2Y3OGE0MThiIn0.Up9NEZ2UiT0HV4x9Eqz6QBG-aqIs0pFBtLe0cBmkP24',
-} satisfies Accountv3.LogInResponse
+} satisfies EncodedJWT
 
 const mockGetJWT = vi.fn(() => Promise.resolve({ ...MOCK_ENCODED_JWT_COOKIE, source: 'cookie' as const }))
 const mockGetJwtToken = vi.fn(() => Promise.resolve(MOCK_ENCODED_JWT_COOKIE.token))
