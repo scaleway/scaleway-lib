@@ -2,16 +2,32 @@
   "name": "@scaleway/auth-scw",
   "version": "1.0.0",
   "description": "Auth Scaleway",
+  "homepage": "https://github.com/scaleway/scaleway-lib/tree/main/packages/auth-scw",
+  "bugs": {
+    "url": "https://github.com/scaleway/scaleway-lib/issues"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/scaleway/scaleway-lib.git",
     "directory": "packages/auth-scw"
   },
+  "files": [
+    "dist/*"
+  ],
   "type": "module",
+  "sideEffects": false,
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": "./dist/index.js",
     "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "exports": {
+      ".": "./dist/index.js",
+      "./package.json": "./package.json"
+    },
+    "access": "public"
   },
   "scripts": {
     "typecheck": "tsc --noEmit",
