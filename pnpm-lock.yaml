@@ -39,6 +39,9 @@ catalogs:
     '@scaleway/sdk-client':
       specifier: 2.4.1
       version: 2.4.1
+    '@scaleway/sdk-iam':
+      specifier: 2.9.4
+      version: 2.9.4
     '@segment/analytics-next':
       specifier: 1.84.0
       version: 1.84.0
@@ -283,13 +286,16 @@ importers:
     devDependencies:
       '@scaleway/sdk-client':
         specifier: 'catalog:'
-        version: 2.4.0
+        version: 2.4.1
+      '@scaleway/sdk-iam':
+        specifier: 'catalog:'
+        version: 2.9.4(@scaleway/sdk-client@2.4.1)
       '@types/react':
         specifier: 'catalog:'
         version: 19.2.17
       cookie:
         specifier: 'catalog:'
-        version: 1.1.1
+        version: 2.0.0
       date-fns:
         specifier: 'catalog:'
         version: 4.4.0
@@ -1375,9 +1381,25 @@ packages:
   '@rudderstack/analytics-js@3.31.4':
     resolution: {integrity: sha512-dqjdzUwstrKem+wbQyadvr7BnCEhmczFaZ3NIrlkaErVXMO51FnUG1DC3YdCrybLsxi4/ys+wbs3p5TcQZ60hg==}
 
+  '@scaleway/random-name@5.1.4':
+    resolution: {integrity: sha512-+rDbZG1317VGovkE79dLaDe0n1cCwtQUrQ1KxMct8vzzZwRA+viiU6VQePMSmu/MMhed2OUtDSM45tbmwE7BeQ==}
+    engines: {node: '>=20.x'}
+
   '@scaleway/sdk-client@2.4.1':
     resolution: {integrity: sha512-UZ9/LMgrydheKTvnsuWGs1kqGHUpYf4WhaAoYt2B6Vf6hCt7lwyTt2mjZcANCyQSFZCugvGKNIcc6MmtNLkoEw==}
     engines: {node: '>=20.20.2'}
+
+  '@scaleway/sdk-iam@2.9.4':
+    resolution: {integrity: sha512-60bi5lpKMBjPATaTrw1i7RQE65gWcgonVClzI9nup5tb+2YtGBJ2ngVFnYyKn7uaQ09vFZ9kVB8HbE3Yry5JnQ==}
+    engines: {node: '>=20.20.2'}
+    peerDependencies:
+      '@scaleway/sdk-client': ^2.4.1
+
+  '@scaleway/sdk-std@2.4.3':
+    resolution: {integrity: sha512-F0upnsjG2JRJ7pZq8xi8S/WCD9WvFG5Ez3zq64cm7h0UZKIWzvpOBtds92ZMSkg1sS5TIYbQuxyBYSvOLqJSIg==}
+    engines: {node: '>=20.20.2'}
+    peerDependencies:
+      '@scaleway/sdk-client': ^2.4.1
 
   '@sec-ant/readable-stream@0.4.1':
     resolution: {integrity: sha512-831qok9r2t8AlxLko40y2ebgSDhenenCatLVeW/uBtnHPyhHOvG0C7TvfgecV+wHzIm5KUICgzmVpWS+IMEAeg==}
@@ -3943,7 +3965,19 @@ snapshots:
 
   '@rudderstack/analytics-js@3.31.4': {}
 
+  '@scaleway/random-name@5.1.4': {}
+
   '@scaleway/sdk-client@2.4.1': {}
+
+  '@scaleway/sdk-iam@2.9.4(@scaleway/sdk-client@2.4.1)':
+    dependencies:
+      '@scaleway/random-name': 5.1.4
+      '@scaleway/sdk-client': 2.4.1
+      '@scaleway/sdk-std': 2.4.3(@scaleway/sdk-client@2.4.1)
+
+  '@scaleway/sdk-std@2.4.3(@scaleway/sdk-client@2.4.1)':
+    dependencies:
+      '@scaleway/sdk-client': 2.4.1
 
   '@sec-ant/readable-stream@0.4.1': {}
 

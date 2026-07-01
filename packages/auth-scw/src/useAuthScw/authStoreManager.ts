@@ -1,4 +1,4 @@
-import { parse, serialize } from 'cookie'
+import { parseCookie, stringifySetCookie } from 'cookie'
 import { COOKIE_CONFIG } from '../constants'
 import type { AudienceIdType, EncodedJWT, CookieConfigType } from '../types'
 import { audienceIdSchema, jwtSchema } from '../zodSchemas'
@@ -19,7 +19,9 @@ const getUniqueHostnameString = (inputString: string) => inputString.replaceAll(
 export const setCookieConfig = (COOKIE_CONFIG_PARAM: CookieConfigType) => (cookieConfig = COOKIE_CONFIG_PARAM)
 
 const setCookie = (value: object, key: string, maxAge = COOKIE_AGE) => {
-  document.cookie = serialize(key, JSON.stringify(value), {
+  document.cookie = stringifySetCookie({
+    name: key,
+    value: JSON.stringify(value),
     domain: DOMAIN,
     httpOnly: cookieConfig.httpOnly,
     maxAge,
@@ -30,7 +32,7 @@ const setCookie = (value: object, key: string, maxAge = COOKIE_AGE) => {
 }
 
 const getCookie = (key: string) => {
-  const cookies = parse(document.cookie)
+  const cookies = parseCookie(document.cookie)
   if (key in cookies && cookies[key]) {
     const cookieSessionString = cookies[key]
 
@@ -45,7 +47,9 @@ const getCookie = (key: string) => {
 }
 
 const deleteCookie = (key: string) => {
-  document.cookie = serialize(key, '', {
+  document.cookie = stringifySetCookie({
+    name: key,
+    value: '',
     domain: DOMAIN,
     httpOnly: cookieConfig.httpOnly,
     maxAge: -1,
