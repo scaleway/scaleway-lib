@@ -23,7 +23,7 @@ const MOCK_ENCODED_JWT_COOKIE = {
 const mockGetJWT = vi.fn(() => Promise.resolve({ ...MOCK_ENCODED_JWT_COOKIE, source: 'cookie' as const }))
 const mockGetJwtToken = vi.fn(() => Promise.resolve(MOCK_ENCODED_JWT_COOKIE.token))
 
-const mockLogout = vi.fn()
+const mockLogout = vi.fn<() => Promise<void>>()
 const mockRenewToken = vi.fn(() => Promise.resolve(MOCK_ENCODED_JWT_COOKIE))
 
 const defaultMockUseAuthScw: AuthScwContextType = {
