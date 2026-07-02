@@ -143,6 +143,30 @@ describe('useauthscw provider', () => {
       expect(mockRenewJwt).toHaveBeenCalledOnce()
     })
 
+    it('should fail to renew jwt', async () => {
+      mockRenewJwt.mockRejectedValueOnce(new Error('Renew failed'))
+
+      AuthStoreManager.setSuffixKey(DEFAULT_COOKIE_SUFFIX)
+      AuthStoreManager.setJwt({
+        jwtInfo: {
+          ...MOCK_ENCODED_JWT_COOKIE,
+          jwt: {
+            ...MOCK_ENCODED_JWT_COOKIE.jwt,
+            expiresAt: new Date(),
+          },
+        },
+      })
+
+      const { result } = renderHook(useAuthScw, { wrapper: Wrapper })
+
+      await waitFor(async () => {
+        const currentJWT = await result.current.getJWT()
+        expect(currentJWT).toBeUndefined()
+      })
+
+      expect(mockRenewJwt).toHaveBeenCalledOnce()
+    })
+
     it('should logout and clear all', async () => {
       AuthStoreManager.setJwt({ jwtInfo: MOCK_ENCODED_JWT_COOKIE })
       // set another random audienceID
