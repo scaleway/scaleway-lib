@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/auth-scw",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Auth Scaleway",
   "homepage": "https://github.com/scaleway/scaleway-lib/tree/main/packages/auth-scw",
   "bugs": {
