@@ -14,7 +14,7 @@ jobs:
     permissions: write-all
     steps:
       - name: Pull Secrets
-        uses: scaleway/action-scw-secret@5f90362adbd69da0064facea1de3aed3441e404c # v0.0.10
+        uses: scaleway/action-scw-secret@3658f2234f185b17405d19254557b34484bf4f99 # v0.0.11
         with:
           secret-names: |
             NPM_TOKEN, /npm/token_scaleway_lib
