@@ -83,9 +83,6 @@ export const AuthStoreManager = {
   deleteJwt(audienceId: string) {
     deleteCookie(AuthStoreManager.getKeySession(audienceId))
   },
-  deleteOldJwt() {
-    deleteCookie(AuthStoreManager.getOldKeySession())
-  },
 
   getAudienceId(): string | null {
     const cookieParsed = getCookie(AuthStoreManager.getKeyAudienceId())
@@ -117,19 +114,6 @@ export const AuthStoreManager = {
 
   getKeySession(audienceId: string) {
     return `${KEY_SESSION}${AuthStoreManager.SUFFIX_KEY}_${audienceId}`
-  },
-
-  getOldJwt(): EncodedJWT | null {
-    const cookieParsed = getCookie(AuthStoreManager.getOldKeySession())
-    if (cookieParsed && AuthStoreManager.typeGuardJWT(cookieParsed)) {
-      return cookieParsed
-    }
-
-    return null
-  },
-
-  getOldKeySession() {
-    return `${KEY_SESSION}${AuthStoreManager.SUFFIX_KEY}`
   },
 
   getUniqueHostnameString,
