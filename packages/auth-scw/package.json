@@ -1,0 +1,51 @@
+{
+  "name": "@scaleway/auth-scw",
+  "version": "0.0.0",
+  "description": "Auth Scaleway",
+  "homepage": "https://github.com/scaleway/scaleway-lib/tree/main/packages/auth-scw",
+  "bugs": {
+    "url": "https://github.com/scaleway/scaleway-lib/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scaleway/scaleway-lib.git",
+    "directory": "packages/auth-scw"
+  },
+  "files": [
+    "dist/*"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "tsdown",
+    "test:unit": "vitest --run",
+    "test:unit:coverage": "pnpm test:unit --coverage"
+  },
+  "devDependencies": {
+    "@scaleway/sdk-client": "catalog:",
+    "@scaleway/sdk-iam": "catalog:",
+    "@types/react": "catalog:",
+    "cookie": "catalog:",
+    "date-fns": "catalog:",
+    "react": "catalog:",
+    "zod": "catalog:"
+  },
+  "peerDependencies": {
+    "@scaleway/sdk-client": "catalog:",
+    "@scaleway/sdk-iam": "catalog:",
+    "cookie": "catalog:",
+    "date-fns": "catalog:",
+    "react": "catalog:",
+    "zod": "catalog:"
+  }
+}
