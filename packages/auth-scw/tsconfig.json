@@ -1,8 +1,4 @@
 {
   "extends": "@scaleway/tsconfig",
-  "compilerOptions": {
-    "target": "esnext",
-    "module": "ESNext"
-  },
   "include": ["src/**/*.ts", "src/**/*.tsx"]
 }
