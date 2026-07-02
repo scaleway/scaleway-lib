@@ -2,26 +2,29 @@ packages:
   - packages/*
 
 catalog:
-  '@arethetypeswrong/core': 0.18.4
-  '@changesets/changelog-github': 0.7.0
-  '@changesets/cli': 2.31.0
-  '@changesets/config': 3.1.4
-  '@formatjs/ecma402-abstract': 3.2.0
-  '@formatjs/fast-memoize': 3.1.6
-  '@formatjs/icu-messageformat-parser': 3.5.12
-  '@growthbook/growthbook-react': 1.6.5
-  '@manypkg/cli': 0.25.1
-  '@rudderstack/analytics-js': 3.31.4
-  '@segment/analytics-next': 1.84.0
-  '@testing-library/jest-dom': 6.9.1
-  '@testing-library/react': 16.3.2
-  '@types/node': 25.9.4
-  '@types/picomatch': 4.0.3
-  '@types/react': 19.2.17
-  '@types/react-dom': 19.2.3
-  '@types/react-router-dom': 5.3.3
-  '@vitejs/plugin-react': 6.0.3
-  '@vitest/coverage-istanbul': 4.1.9
+  "@arethetypeswrong/core": 0.18.4
+  "@changesets/changelog-github": 0.7.0
+  "@changesets/cli": 2.31.0
+  "@changesets/config": 3.1.4
+  "@formatjs/ecma402-abstract": 3.2.0
+  "@formatjs/fast-memoize": 3.1.6
+  "@scaleway/sdk-iam": 2.9.4
+  "@formatjs/icu-messageformat-parser": 3.5.12
+  "@growthbook/growthbook-react": 1.6.5
+  "@manypkg/cli": 0.25.1
+  "@rudderstack/analytics-js": 3.31.4
+  "@scaleway/sdk-client": 2.4.1
+  "@segment/analytics-next": 1.84.0
+  "@testing-library/jest-dom": 6.9.1
+  "@testing-library/react": 16.3.2
+  "@testing-library/user-event": 14.6.1
+  "@types/node": 25.9.4
+  "@types/picomatch": 4.0.3
+  "@types/react-dom": 19.2.3
+  "@types/react": 19.2.17
+  "@vitejs/plugin-react": 6.0.3
+  "@vitest/coverage-istanbul": 4.1.9
+  awesome-phonenumber: 7.8.0
   browserslist: 4.28.4
   chalk: 5.6.2
   cookie: 2.0.1
@@ -30,6 +33,7 @@ catalog:
   execa: 9.6.1
   filesize: 11.0.19
   happy-dom: 20.10.6
+  history: 5.3.0
   international-types: 0.8.1
   intl-messageformat: 11.2.9
   jsdom: 29.1.1
@@ -38,10 +42,11 @@ catalog:
   oxlint: 1.72.0
   oxlint-tsgolint: 0.24.0
   publint: 0.3.21
+  query-string: 7.1.1
   react: 19.2.7
   react-dom: 19.2.7
-  react-router-dom: 5.3.4
   read-pkg: 10.1.0
+  regexparam: 3.0.0
   simple-git: 3.36.0
   tinyglobby: 0.2.17
   tsdown: 0.22.3
@@ -53,11 +58,6 @@ catalog:
   wait-for-expect: 4.0.0
   yaml: 2.9.0
   zod: 4.4.3
-  awesome-phonenumber: 7.8.0
-  '@testing-library/user-event': 14.6.1
-  '@scaleway/sdk-client': 2.4.1
-  '@scaleway/sdk-iam': 2.9.4
-
 catalogMode: strict
 cleanupUnusedCatalogs: true
 
@@ -70,7 +70,7 @@ allowBuilds:
 
 peerDependencyRules:
   allowedVersions:
-    '@types/react': 18 || 19
+    "@types/react": 18 || 19
     react: 18 || 19
     react-dom: 18 || 19
 
