@@ -1,5 +1,11 @@
 # Change Log
 
+## 8.0.7
+
+### Patch Changes
+
+- [#3484](https://github.com/scaleway/scaleway-lib/pull/3484) [`0f668c6`](https://github.com/scaleway/scaleway-lib/commit/0f668c6efec0d6db6983bbcdda7bc700a45ab24c) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `filesize` to `11.0.19`.
+
 ## 8.0.6
 
 ### Patch Changes
