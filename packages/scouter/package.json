@@ -1,0 +1,51 @@
+{
+  "name": "@scaleway/scouter",
+  "version": "0.0.0",
+  "description": "A router for React apps, forked from react-router v5 with extra helpers and hooks",
+  "homepage": "https://github.com/scaleway/scaleway-lib/tree/main/packages/scouter",
+  "bugs": {
+    "url": "https://github.com/scaleway/scaleway-lib/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scaleway/scaleway-lib.git",
+    "directory": "packages/scouter"
+  },
+  "files": [
+    "dist/"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "tsdown",
+    "test:unit": "vitest --run",
+    "test:unit:coverage": "pnpm test:unit --coverage"
+  },
+  "devDependencies": {
+    "@scaleway/sdk-client": "catalog:",
+    "@types/react": "catalog:",
+    "history": "catalog:",
+    "query-string": "catalog:",
+    "react": "catalog:",
+    "regexparam": "catalog:",
+    "zod": "catalog:"
+  },
+  "peerDependencies": {
+    "@scaleway/sdk-client": "^2.4.0",
+    "history": "^5.3.0",
+    "query-string": "^7.1.1",
+    "react": "18.x || 19.x",
+    "regexparam": "3.x",
+    "zod": "4.x"
+  }
+}
