@@ -35,7 +35,7 @@ catalog:
   jsdom: 29.1.1
   lint-staged: 17.0.8
   oxfmt: 0.57.0
-  oxlint: 1.69.0
+  oxlint: 1.72.0
   oxlint-tsgolint: 0.23.0
   publint: 0.3.21
   react: 19.2.7
