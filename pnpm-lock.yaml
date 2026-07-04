@@ -85,8 +85,8 @@ catalogs:
       specifier: 5.6.2
       version: 5.6.2
     cookie:
-      specifier: 2.0.0
-      version: 2.0.0
+      specifier: 2.0.1
+      version: 2.0.1
     date-fns:
       specifier: 4.4.0
       version: 4.4.0
@@ -295,7 +295,7 @@ importers:
         version: 19.2.17
       cookie:
         specifier: 'catalog:'
-        version: 2.0.0
+        version: 2.0.1
       date-fns:
         specifier: 'catalog:'
         version: 4.4.0
@@ -395,7 +395,7 @@ importers:
         version: 1.84.0
       cookie:
         specifier: 'catalog:'
-        version: 2.0.0
+        version: 2.0.1
       use-deep-compare-effect:
         specifier: 'catalog:'
         version: 1.8.1(react@19.2.7)
@@ -1840,8 +1840,8 @@ packages:
   convert-source-map@2.0.0:
     resolution: {integrity: sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==}
 
-  cookie@2.0.0:
-    resolution: {integrity: sha512-hRSFuKJ6SYHrFVNltQdagQFMk7e0Q/VrORTGqZGyUAmmhA3EwPeldHCTg0HqUaDodQOfQDe7qXuOtpf4lwCsaA==}
+  cookie@2.0.1:
+    resolution: {integrity: sha512-yuToqVvRrj6pfDXREyQAAv8SkAEk/8GS3jQRTiUMm66TVtBYmqQeoEjL2Lmq8Rpo6271vH76InTChTitEAm65w==}
     engines: {node: '>=22'}
 
   cross-spawn@7.0.6:
@@ -4364,7 +4364,7 @@ snapshots:
 
   convert-source-map@2.0.0: {}
 
-  cookie@2.0.0: {}
+  cookie@2.0.1: {}
 
   cross-spawn@7.0.6:
     dependencies:
