@@ -1,4 +1,4 @@
-import { parse, stringify } from 'query-string'
+import queryString from 'query-string'
 import { useCallback, useMemo } from 'react'
 import { useHistory } from '../useHistory'
 import { useLocation } from '../useLocation'
@@ -41,13 +41,13 @@ export const useQueryParams = <T extends QueryParams>(): {
 
   const currentState = useMemo(
     // oxlint-disable-next-line typescript/no-unsafe-type-assertion
-    () => parse(location.search, { arrayFormat: 'comma', parseBooleans: true, parseNumbers: true }) as T,
+    () => queryString.parse(location.search, { arrayFormat: 'comma', parseBooleans: true, parseNumbers: true }) as T,
     [location.search],
   )
 
   const stringyFormat = useCallback(
     (params: Partial<T>): string =>
-      stringify(params, {
+      queryString.stringify(params, {
         arrayFormat: 'comma',
         skipEmptyString: true,
         skipNull: true,
