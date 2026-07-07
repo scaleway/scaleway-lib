@@ -31,21 +31,20 @@
     "test:unit": "vitest --run",
     "test:unit:coverage": "pnpm test:unit --coverage"
   },
+  "dependencies": {
+    "history": "catalog:",
+    "query-string": "catalog:",
+    "regexparam": "catalog:"
+  },
   "devDependencies": {
     "@scaleway/sdk-client": "catalog:",
     "@types/react": "catalog:",
-    "history": "catalog:",
-    "query-string": "catalog:",
     "react": "catalog:",
-    "regexparam": "catalog:",
     "zod": "catalog:"
   },
   "peerDependencies": {
     "@scaleway/sdk-client": "^2.4.0",
-    "history": "^5.3.0",
-    "query-string": "^7.1.1",
     "react": "18.x || 19.x",
-    "regexparam": "3.x",
     "zod": "4.x"
   }
 }

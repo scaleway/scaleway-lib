@@ -353,6 +353,16 @@ importers:
   packages/regex: {}
 
   packages/scouter:
+    dependencies:
+      history:
+        specifier: 'catalog:'
+        version: 5.3.0
+      query-string:
+        specifier: 'catalog:'
+        version: 7.1.1
+      regexparam:
+        specifier: 'catalog:'
+        version: 3.0.0
     devDependencies:
       '@scaleway/sdk-client':
         specifier: 'catalog:'
@@ -360,18 +370,9 @@ importers:
       '@types/react':
         specifier: 'catalog:'
         version: 19.2.17
-      history:
-        specifier: 'catalog:'
-        version: 5.3.0
-      query-string:
-        specifier: 'catalog:'
-        version: 7.1.1
       react:
         specifier: 'catalog:'
         version: 19.2.7
-      regexparam:
-        specifier: 'catalog:'
-        version: 3.0.0
       zod:
         specifier: 'catalog:'
         version: 4.4.3
