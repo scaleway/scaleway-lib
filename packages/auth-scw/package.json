@@ -16,7 +16,7 @@
     "dist/*"
   ],
   "type": "module",
-  "sideEffects": false,
+  "sideEffects": true,
   "types": "./dist/index.d.ts",
   "exports": {
     ".": "./dist/index.js",
