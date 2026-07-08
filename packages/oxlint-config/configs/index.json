@@ -49,7 +49,7 @@
     "eslint/no-dupe-else-if": "error",
     "eslint/no-dupe-keys": "error",
     "eslint/no-duplicate-case": "error",
-    "eslint/no-duplicate-imports": "off",
+    "eslint/no-duplicate-imports": ["error", { "allowSeparateTypeImports": true }],
     "eslint/no-empty": "error",
     "eslint/no-empty-character-class": "error",
     "eslint/no-empty-function": "off",
@@ -122,7 +122,7 @@
     "eslint/valid-typeof": "error",
     "eslint/yoda": "error",
 
-    "import/consistent-type-specifier-style": "error",
+    "import/consistent-type-specifier-style": ["error", "prefer-top-level"],
     "import/default": "error",
     "import/export": "error",
     "import/no-default-export": "off",
