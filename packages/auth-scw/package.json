@@ -38,11 +38,15 @@
   },
   "devDependencies": {
     "@scaleway/sdk-client": "catalog:",
+    "@scaleway/sdk-iam": "catalog:",
     "@types/react": "catalog:",
     "react": "catalog:"
   },
   "peerDependencies": {
     "@scaleway/sdk-client": "catalog:",
     "react": "catalog:"
+  },
+  "inlinedDependencies": {
+    "@scaleway/sdk-iam": "2.9.4"
   }
 }
