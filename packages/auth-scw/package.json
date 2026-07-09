@@ -16,7 +16,7 @@
     "dist/*"
   ],
   "type": "module",
-  "sideEffects": true,
+  "sideEffects": false,
   "types": "./dist/index.d.ts",
   "exports": {
     ".": "./dist/index.js",
@@ -32,13 +32,17 @@
     "test:unit:coverage": "pnpm test:unit --coverage"
   },
   "dependencies": {
-    "@scaleway/sdk-client": "catalog:",
     "cookie": "catalog:",
     "date-fns": "catalog:",
-    "react": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@types/react": "catalog:"
+    "@scaleway/sdk-client": "catalog:",
+    "@types/react": "catalog:",
+    "react": "catalog:"
+  },
+  "peerDependencies": {
+    "@scaleway/sdk-client": "catalog:",
+    "react": "catalog:"
   }
 }
