@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.1
+
+### Patch Changes
+
+- [#3501](https://github.com/scaleway/scaleway-lib/pull/3501) [`2e5a80e`](https://github.com/scaleway/scaleway-lib/commit/2e5a80e330c3573120d8b717b5761288c4d0301e) Thanks [@chambo-e](https://github.com/chambo-e)! - enable no-duplicate-imports
+
 ## 0.2.0
 
 ### Minor Changes

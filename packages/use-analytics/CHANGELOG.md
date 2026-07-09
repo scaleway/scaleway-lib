@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.0.5
+
+### Patch Changes
+
+- [#3493](https://github.com/scaleway/scaleway-lib/pull/3493) [`fdeaf66`](https://github.com/scaleway/scaleway-lib/commit/fdeaf6643cf5b4207281555c6994b53556f288ab) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `cookie` to `2.0.1`.
+
 ## 2.0.4
 
 ### Patch Changes
