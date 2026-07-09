@@ -31,21 +31,20 @@
     "test:unit": "vitest --run",
     "test:unit:coverage": "pnpm test:unit --coverage"
   },
+  "dependencies": {
+    "cookie": "catalog:",
+    "date-fns": "catalog:",
+    "zod": "catalog:"
+  },
   "devDependencies": {
     "@scaleway/sdk-client": "catalog:",
     "@scaleway/sdk-iam": "catalog:",
     "@types/react": "catalog:",
-    "cookie": "catalog:",
-    "date-fns": "catalog:",
-    "react": "catalog:",
-    "zod": "catalog:"
+    "react": "catalog:"
   },
   "peerDependencies": {
     "@scaleway/sdk-client": "catalog:",
     "@scaleway/sdk-iam": "catalog:",
-    "cookie": "catalog:",
-    "date-fns": "catalog:",
-    "react": "catalog:",
-    "zod": "catalog:"
+    "react": ">=18.0"
   }
 }

@@ -286,6 +286,16 @@ importers:
         version: 4.0.0
 
   packages/auth-scw:
+    dependencies:
+      cookie:
+        specifier: 'catalog:'
+        version: 2.0.1
+      date-fns:
+        specifier: 'catalog:'
+        version: 4.4.0
+      zod:
+        specifier: 'catalog:'
+        version: 4.4.3
     devDependencies:
       '@scaleway/sdk-client':
         specifier: 'catalog:'
@@ -296,18 +306,9 @@ importers:
       '@types/react':
         specifier: 'catalog:'
         version: 19.2.17
-      cookie:
-        specifier: 'catalog:'
-        version: 2.0.1
-      date-fns:
-        specifier: 'catalog:'
-        version: 4.4.0
       react:
         specifier: 'catalog:'
         version: 19.2.7
-      zod:
-        specifier: 'catalog:'
-        version: 4.4.3
 
   packages/changesets-renovate:
     dependencies:
