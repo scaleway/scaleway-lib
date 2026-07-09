@@ -44,9 +44,7 @@
   },
   "peerDependencies": {
     "@scaleway/sdk-client": "catalog:",
+    "@scaleway/sdk-iam": "catalog:",
     "react": "catalog:"
-  },
-  "inlinedDependencies": {
-    "@scaleway/sdk-iam": "2.9.4"
   }
 }
