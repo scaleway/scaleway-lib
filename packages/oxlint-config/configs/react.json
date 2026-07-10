@@ -15,6 +15,7 @@
     "react/display-name": "off",
     "react/hook-use-state": "off",
     "react/exhaustive-deps": "error",
+    "react/rules-of-hooks": "error",
     "react/iframe-missing-sandbox": "error",
     "react/jsx-filename-extension": [
       "error",
