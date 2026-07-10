@@ -1,0 +1,31 @@
+{
+  "name": "@scaleway/units",
+  "version": "0.0.1",
+  "description": "Library to handle units and unit conversion",
+  "homepage": "https://github.com/scaleway/scaleway-lib/tree/main/packages/units",
+  "bugs": {
+    "url": "https://github.com/scaleway/scaleway-lib/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scaleway/scaleway-lib.git",
+    "directory": "packages/units"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "tsdown",
+    "test:unit": "vitest --run",
+    "test:unit:coverage": "pnpm test:unit --coverage"
+  }
+}

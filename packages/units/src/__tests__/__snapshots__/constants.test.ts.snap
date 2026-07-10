@@ -1,0 +1,21 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`constants > DAYS_IN_MONTH 1`] = `30.416666666666668`;
+
+exports[`constants > DAYS_IN_WEEK 1`] = `7`;
+
+exports[`constants > DAYS_IN_YEAR 1`] = `365`;
+
+exports[`constants > HOURS_IN_DAY 1`] = `24`;
+
+exports[`constants > HOURS_IN_MONTH 1`] = `730`;
+
+exports[`constants > MONTHS_IN_YEAR 1`] = `12`;
+
+exports[`constants > SECONDS_IN_DAY 1`] = `86400`;
+
+exports[`constants > SECONDS_IN_HOUR 1`] = `3600`;
+
+exports[`constants > SECONDS_IN_MINUTE 1`] = `60`;
+
+exports[`constants > SECONDS_IN_MONTH 1`] = `2628000`;
