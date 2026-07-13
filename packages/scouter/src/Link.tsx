@@ -12,8 +12,14 @@ export type LinkProps = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'heref'> &
 
 export const Link = forwardRef(
   ({ to, replace, component, ...inProps }: LinkProps, ref: ForwardedRef<HTMLAnchorElement>) => {
-    const [props] = useLinkProps(to, inProps, { replace })
+    const [props, navigate] = useLinkProps(to, inProps, { replace })
 
-    return createElement(component ?? 'a', { ...props, ref })
+    const resolvedComponent = component ?? 'a'
+
+    return createElement(resolvedComponent, {
+      ...props,
+      ref,
+      navigate: typeof resolvedComponent === 'string' ? undefined : navigate,
+    })
   },
 )
