@@ -1,5 +1,11 @@
 # @scaleway/auth-scw
 
+## 1.0.1
+
+### Patch Changes
+
+- [#3505](https://github.com/scaleway/scaleway-lib/pull/3505) [`042c5e9`](https://github.com/scaleway/scaleway-lib/commit/042c5e91a52060a8feb4b872e2bdb5064866ce5b) Thanks [@alexandre-combemorel](https://github.com/alexandre-combemorel)! - fix: switch peerdeps to deps
+
 ## 1.0.0
 
 ### Major Changes

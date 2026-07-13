@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.2
+
+### Patch Changes
+
+- [#3512](https://github.com/scaleway/scaleway-lib/pull/3512) [`7ce38db`](https://github.com/scaleway/scaleway-lib/commit/7ce38db7fee524c756bda673b8cf78ff1c39ffff) Thanks [@chambo-e](https://github.com/chambo-e)! - enable react/rules-of-hooks
+
 ## 0.2.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @scaleway/scouter
 
+## 1.0.1
+
+### Patch Changes
+
+- [`264a4bd`](https://github.com/scaleway/scaleway-lib/commit/264a4bd8a580220330e5836319d0777aa4de71a5) Thanks [@etienne-scaleway](https://github.com/etienne-scaleway)! - Fix Link forward navigate
+
 ## 1.0.0
 
 ### Major Changes
