@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/scouter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A router for React apps, forked from react-router v5 with extra helpers and hooks",
   "homepage": "https://github.com/scaleway/scaleway-lib/tree/main/packages/scouter",
   "bugs": {
