@@ -1,4 +1,3 @@
-// oxlint-disable vitest/prefer-expect-assertions
 import { renderHook } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import { MemoryRouter, Route, useLocation } from '../index'

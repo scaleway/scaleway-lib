@@ -9,7 +9,7 @@ helpers (`createRoute`) and query params validation backed by [zod](https://zod.
 ## Install
 
 ```bash
-$ pnpm add @scaleway/scouter
+pnpm add @scaleway/scouter
 ```
 
 ## Usage

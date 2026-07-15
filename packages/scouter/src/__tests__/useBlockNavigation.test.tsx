@@ -1,4 +1,4 @@
-// oxlint-disable vitest/prefer-expect-assertions vitest/require-top-level-describe max-statements vitest/no-conditional-in-test typescript/strict-void-return
+// oxlint-disable  vitest/require-top-level-describe max-statements vitest/no-conditional-in-test typescript/strict-void-return
 import { act, render, renderHook, screen, waitFor } from '@testing-library/react'
 import { userEvent } from '@testing-library/user-event'
 import { createMemoryHistory } from 'history'

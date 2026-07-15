@@ -3,7 +3,7 @@
 ## Install
 
 ```bash
-$ pnpm add @scaleway/use-clipboard
+pnpm add @scaleway/use-clipboard
 ```
 
 ## Usage

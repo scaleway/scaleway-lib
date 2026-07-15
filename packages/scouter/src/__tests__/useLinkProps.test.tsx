@@ -1,4 +1,4 @@
-// oxlint-disable vitest/require-top-level-describe vitest/prefer-expect-assertions typescript/no-unsafe-assignment typescript/no-unsafe-argument typescript/no-unsafe-type-assertion typescript/no-explicit-any typescript/unbound-method
+// oxlint-disable vitest/require-top-level-describe typescript/no-unsafe-assignment typescript/no-unsafe-argument typescript/no-unsafe-type-assertion typescript/no-explicit-any typescript/unbound-method
 import { act, renderHook } from '@testing-library/react'
 import { expect, test, vi } from 'vitest'
 import { MemoryRouter, Route, useLinkProps } from '../index'

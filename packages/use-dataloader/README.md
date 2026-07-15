@@ -9,7 +9,7 @@
 ## Install
 
 ```bash
-$ pnpm add @scaleway/use-dataloader
+pnpm add @scaleway/use-dataloader
 ```
 
 ## How to use

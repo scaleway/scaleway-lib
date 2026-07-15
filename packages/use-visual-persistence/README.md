@@ -7,7 +7,7 @@ A react hook to save element dismissal locally
 ## Install
 
 ```bash
-$ pnpm add @scaleway/use-visual-persistence
+pnpm add @scaleway/use-visual-persistence
 ```
 
 ## Usage

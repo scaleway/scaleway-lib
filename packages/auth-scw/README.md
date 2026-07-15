@@ -16,7 +16,7 @@ pnpm add @scaleway/auth-scw
 
 ### Prerequisites
 
-```
+```text
 cd packages/auth-scw
 ```
 
@@ -27,15 +27,15 @@ pnpm build # Build the package
 pnpm watch # Build the package and watch for changes
 ```
 
-# Repo pattern
+## Repo pattern
 
-## How does renew token works? Single or multiple organisation
+### How does renew token works? Single or multiple organisation
 
 **Reminder:** A COOKIE is used to syncronise jwt between tabs
 
 When users open severals tabs, syncronoisation of token between tabs can become tedious, here are the scenarios:
 
-### Single organisation
+#### Single organisation
 
 Let say you have 2 tabs on the same organisation, `tab1`, `tab2` with the same JWT, let's call it, `JWT_A`
 
@@ -56,7 +56,7 @@ Let say you have 2 tabs on the same organisation, `tab1`, `tab2` with the same J
 1. A renew request on `tab1` is attempted with the last JWT from cookie (so JWT_B) and also because both tabs are on the same organisation therefore, the same jwt can be used for both.
 2. the renew happen without issue and both tabs can be used without problems
 
-### Multiple organisation
+#### Multiple organisation
 
 Alright, read the Single organisation scenario if you haven't.
 Here let's consider we have `tab1` and `tab2` on `Orga_A` with `JWT_A` and `tab3` on `Orga_B` with `JWT_B`:

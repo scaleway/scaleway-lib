@@ -1,4 +1,3 @@
-// oxlint-disable vitest/prefer-expect-assertions
 import { describe, expect, it } from 'vitest'
 import { z } from 'zod'
 import { getSafeQueryParams } from '../helpers/getSafeQueryParams'

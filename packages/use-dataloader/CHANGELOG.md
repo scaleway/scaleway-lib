@@ -429,7 +429,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-- force new update because of https://status.npmjs.org/incidents/wy4002vc8ryc ([#433](https://github.com/scaleway/scaleway-lib/issues/433)) ([3182928](https://github.com/scaleway/scaleway-lib/commit/31829280a082e6688e2df0e13ecf6d1ee5aceae6))
+- force new update because of <https://status.npmjs.org/incidents/wy4002vc8ryc> ([#433](https://github.com/scaleway/scaleway-lib/issues/433)) ([3182928](https://github.com/scaleway/scaleway-lib/commit/31829280a082e6688e2df0e13ecf6d1ee5aceae6))
 
 ## 2.5.0 (2021-10-11)
 

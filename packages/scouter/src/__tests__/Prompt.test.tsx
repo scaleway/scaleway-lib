@@ -1,4 +1,4 @@
-// oxlint-disable vitest/require-top-level-describe vitest/prefer-expect-assertions vitest/no-conditional-in-test vitest/no-conditional-expect
+// oxlint-disable vitest/require-top-level-describe vitest/no-conditional-in-test vitest/no-conditional-expect
 import { render } from '@testing-library/react'
 import { Action, createMemoryHistory } from 'history'
 import type { Transition } from 'history'

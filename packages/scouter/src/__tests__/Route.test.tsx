@@ -1,4 +1,4 @@
-// oxlint-disable vitest/prefer-expect-assertions vitest/require-top-level-describe
+// oxlint-disable vitest/require-top-level-describe
 import '@testing-library/jest-dom'
 import { act, render, screen } from '@testing-library/react'
 import { createMemoryHistory as createHistory } from 'history'

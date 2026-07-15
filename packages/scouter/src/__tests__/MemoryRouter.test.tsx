@@ -1,4 +1,4 @@
-// oxlint-disable vitest/require-top-level-describe vitest/prefer-expect-assertions unicorn/no-negated-condition vitest/no-conditional-in-test
+// oxlint-disable vitest/require-top-level-describe unicorn/no-negated-condition vitest/no-conditional-in-test
 import { render, screen } from '@testing-library/react'
 import { expect, test } from 'vitest'
 import type { History, Location, Match } from '../index'

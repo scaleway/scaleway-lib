@@ -1,13 +1,13 @@
 # `@scaleway/use-interval`
 
-Based on https://overreacted.io/making-setinterval-declarative-with-react-hooks/
+Based on <https://overreacted.io/making-setinterval-declarative-with-react-hooks/>
 
 ---
 
 ## Install
 
 ```bash
-$ pnpm add @scaleway/use-interval
+pnpm add @scaleway/use-interval
 ```
 
 ## Usage

@@ -1,4 +1,3 @@
-// oxlint-disable vitest/prefer-expect-assertions
 import { act, renderHook } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import type { Location } from '../index'

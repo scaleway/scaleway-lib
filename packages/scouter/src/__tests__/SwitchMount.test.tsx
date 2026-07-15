@@ -1,4 +1,4 @@
-// oxlint-disable vitest/require-top-level-describe vitest/prefer-expect-assertions
+// oxlint-disable vitest/require-top-level-describe
 import { act, render } from '@testing-library/react'
 import { createMemoryHistory as createHistory } from 'history'
 import { useEffect } from 'react'

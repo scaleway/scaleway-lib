@@ -1,4 +1,4 @@
-// oxlint-disable vitest/require-top-level-describe vitest/prefer-expect-assertions
+// oxlint-disable vitest/require-top-level-describe
 import { render } from '@testing-library/react'
 import { expect, test } from 'vitest'
 import type { Location, Match } from '../index'

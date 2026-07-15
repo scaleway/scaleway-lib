@@ -1,4 +1,4 @@
-// oxlint-disable vitest/require-top-level-describe vitest/prefer-expect-assertions
+// oxlint-disable vitest/require-top-level-describe
 import { renderHook } from '@testing-library/react'
 import { expect, test } from 'vitest'
 import { createRoute, MemoryRouter, Route, useRouteParams } from '../index'

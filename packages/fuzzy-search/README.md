@@ -7,7 +7,7 @@ A fuzzy search utility
 ## Install
 
 ```bash
-$ pnpm add @scaleway/fuzzy-search
+pnpm add @scaleway/fuzzy-search
 ```
 
 ## Usage
