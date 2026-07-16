@@ -1,4 +1,4 @@
-// oxlint-disable vitest/prefer-expect-assertions typescript/no-unsafe-argument typescript/no-unsafe-type-assertion typescript/no-explicit-any
+// oxlint-disable typescript/no-unsafe-argument typescript/no-unsafe-type-assertion typescript/no-explicit-any
 import { describe, expect, it } from 'vitest'
 import { generatePath } from '../index'
 

@@ -427,7 +427,7 @@ describe('useDataLoader', () => {
     expect(result.current.isSuccess).toBeTruthy()
   })
   it('should render correctly with pooling and needPolling true', async () => {
-    const pollingProps = {
+    const pollingProps: UseDataLoaderHookProps = {
       config: {
         needPolling: true,
         pollingInterval: 1000,
@@ -441,7 +441,7 @@ describe('useDataLoader', () => {
             }, PROMISE_TIMEOUT)
           }),
       ),
-    } as UseDataLoaderHookProps
+    }
 
     const { result } = renderHook(props => useDataLoader(props.key, props.method, props.config), {
       initialProps: pollingProps,

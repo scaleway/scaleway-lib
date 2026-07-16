@@ -7,7 +7,7 @@ A react hook acting as a countdown timer
 ## Install
 
 ```bash
-$ pnpm add @scaleway/use-countdown
+pnpm add @scaleway/use-countdown
 ```
 
 ## Usage

@@ -1,4 +1,4 @@
-// oxlint-disable vitest/require-top-level-describe vitest/prefer-expect-assertions typescript/no-explicit-any
+// oxlint-disable vitest/require-top-level-describe typescript/no-explicit-any
 import { act, render, screen } from '@testing-library/react'
 import { createMemoryHistory as createHistory } from 'history'
 import { expect, test } from 'vitest'

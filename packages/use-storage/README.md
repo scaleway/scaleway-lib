@@ -7,7 +7,7 @@ A React hook to interact with local/session storage in reactive way with the sam
 ## Install
 
 ```bash
-$ pnpm add @scaleway/use-storage
+pnpm add @scaleway/use-storage
 ```
 
 ## Usage

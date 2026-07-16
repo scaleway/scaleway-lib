@@ -58,7 +58,7 @@ For each package:
 
 ## Example Output
 
-```
+```text
 Migration Comparison Report
 Generated: Mon Dec 14 15:53:32 UTC 2025
 =================================

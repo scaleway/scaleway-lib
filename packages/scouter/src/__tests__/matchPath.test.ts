@@ -1,4 +1,3 @@
-// oxlint-disable vitest/prefer-expect-assertions
 import { describe, expect, it } from 'vitest'
 import type { MaybeMatch } from '../matchPath'
 import { matchPath, matchPaths } from '../matchPath'

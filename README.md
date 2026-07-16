@@ -108,12 +108,12 @@ scaleway-lib is a set of NPM packages used at Scaleway.
 ### Locally
 
 ```bash
-$ git clone git@github.com:scaleway/scaleway-lib.git
-$ cd scaleway-lib
-$ pnpm install
-$ # ... do your changes ...
-$ pnpm run lint
-$ pnpm run test:unit
+git clone git@github.com:scaleway/scaleway-lib.git
+cd scaleway-lib
+pnpm install
+# ... do your changes ...
+pnpm run lint
+pnpm run test:unit
 ```
 
 ### Link against another project (with `yalc`) => FAVORED
@@ -121,18 +121,18 @@ $ pnpm run test:unit
 > [`yalc`](https://github.com/whitecolor/yalc) is a tool aiming to simplify working with local npm packages by providing a different workflow than `npm/yarn/pnpm link`, hence avoiding most of their issues with module resolving.
 
 ```bash
-$ pnpm install -g yalc # Make sure to have the yalc binary
+pnpm install -g yalc # Make sure to have the yalc binary
 ```
 
 ```bash
-$ cd scaleway-lib/packages/example_package
-$ pnpm run build && yalc publish
-$ # Now it's ready to install in your project
-$ cd ../../../project-something
-$ yalc add @scaleway/package-name
-$ cd ../scaleway-lib/packages/example_package
-$ # If you do some changes into your package
-$ pnpm run build && yalc publish --push --sig # --push will automatically update the package on projects where it have been added, --sig updates the signature hash to trigger webpack update
+cd scaleway-lib/packages/example_package
+pnpm run build && yalc publish
+# Now it's ready to install in your project
+cd ../../../project-something
+yalc add @scaleway/package-name
+cd ../scaleway-lib/packages/example_package
+# If you do some changes into your package
+pnpm run build && yalc publish --push --sig # --push will automatically update the package on projects where it have been added, --sig updates the signature hash to trigger webpack update
 ```
 
 > :warning: since [1.0.0.pre.51 (2021-04-23)](https://github.com/wclr/yalc/blob/master/CHANGELOG.md#100pre51-2021-04-23), `yalc publish` needs the `--sig` option to trigger webpack module actual update.
@@ -164,25 +164,25 @@ Example `package.json`:
 ### Link against another project (with `pnpm link`)
 
 ```bash
-$ cd packages/example_package && pnpm link
-$ cd - && pnpm run build # rebuild the package
-$ # Now it's ready to link into your project
-$ cd ../project-something
-$ pnpm link @scaleway/example_package
+cd packages/example_package && pnpm link
+cd - && pnpm run build # rebuild the package
+# Now it's ready to link into your project
+cd ../project-something
+pnpm link @scaleway/example_package
 ```
 
 ### Linting
 
 ```bash
-$ pnpm run lint
-$ pnpm run lint:fix
+pnpm run lint
+pnpm run lint:fix
 ```
 
 ### Unit Test
 
 ```bash
-$ pnpm run test:unit # Will run all tests
-$ pnpm run test:unit:coverage # Will generate a coverage report
+pnpm run test:unit # Will run all tests
+pnpm run test:unit:coverage # Will generate a coverage report
 ```
 
 ## Notes

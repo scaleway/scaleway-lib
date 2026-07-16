@@ -1,4 +1,4 @@
-// oxlint-disable vitest/prefer-expect-assertions typescript/no-deprecated
+// oxlint-disable typescript/no-deprecated
 import { act, renderHook } from '@testing-library/react'
 import { createMemoryHistory } from 'history'
 import { describe, expect, it, vi } from 'vitest'

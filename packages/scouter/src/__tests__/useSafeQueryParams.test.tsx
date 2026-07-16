@@ -1,4 +1,4 @@
-// oxlint-disable vitest/prefer-expect-assertions typescript/no-explicit-any
+// oxlint-disable typescript/no-explicit-any
 import { act, renderHook } from '@testing-library/react'
 import { createMemoryHistory } from 'history'
 import { describe, expect, it, vi } from 'vitest'

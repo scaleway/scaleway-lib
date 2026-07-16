@@ -5,7 +5,7 @@
 ## Install
 
 ```bash
-$ pnpm add @scaleway/use-i18n
+pnpm add @scaleway/use-i18n
 ```
 
 ## Usage
@@ -17,7 +17,7 @@ Use of local `variables` and `namespace` to dynamically load locales.
 
 **Exemple :**
 
-```
+```text
 📦locales
  ┣ 📂de
  ┃ ┗ 📜common.json
@@ -164,7 +164,7 @@ It accepts an `options` as second parameter which can eiter be one of predefined
 
 Shorthand formats:
 
-```
+```text
 "long" => "February 13, 2020"
 "short" => (default) "Feb 13, 2020"
 "hour" => "February 13, 2020, 4:28 PM"
@@ -285,7 +285,7 @@ There is also a compound variant which can only be used with bits:
 
 Here is the full list of available units:
 
-```
+```text
 bits-humanized
 bits-per-second-humanized
 bit
