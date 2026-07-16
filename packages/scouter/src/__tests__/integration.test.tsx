@@ -2,8 +2,9 @@
 import '@testing-library/jest-dom'
 import { act, render, screen } from '@testing-library/react'
 import { createMemoryHistory as createHistory } from 'history'
+import { useEffect, useState } from 'react'
 import { describe, expect, it, test } from 'vitest'
-import { MemoryRouter, Redirect, Route, Switch, useLocation } from '../index'
+import { MemoryRouter, Redirect, Route, Switch, useLocation, useNavigate } from '../index'
 import { Router } from '../Router'
 
 test('renders routes correctly', () => {
@@ -119,4 +120,105 @@ test('location changes trigger re-renders', () => {
   })
 
   expect(renderCount).toBeGreaterThan(countAfterInitial)
+})
+
+test('batches multiple navigations in a microtask (no intermediate render)', async () => {
+  const history = createHistory({ initialEntries: ['/start'] })
+
+  const seenLocations: string[] = []
+
+  function Tracker() {
+    const location = useLocation()
+    seenLocations.push(location.pathname)
+    return <div>{location.pathname}</div>
+  }
+
+  function App() {
+    const navigate = useNavigate()
+    const [count, setCount] = useState(0)
+
+    useEffect(() => {
+      if (count === 0) {
+        // Simulate the real-world scenario: navigate + setState inside a
+        // microtask (Promise continuation). With useSyncExternalStore the
+        // first navigate would trigger a synchronous re-render before
+        // setCount runs, causing the component to see '/intermediate'.
+        Promise.resolve().then(() => {
+          navigate('/intermediate')
+          setCount(1)
+          navigate('/final')
+        })
+      }
+    }, [count, navigate])
+
+    return <Tracker />
+  }
+
+  render(
+    <Router history={history}>
+      <App />
+    </Router>,
+  )
+
+  expect(screen.getByText('/start')).toBeInTheDocument()
+
+  await act(async () => {
+    await Promise.resolve()
+  })
+
+  // Should see '/start' (initial) and '/final' (batched), but NOT '/intermediate'
+  expect(seenLocations).toContain('/start')
+  expect(seenLocations).toContain('/final')
+  expect(seenLocations).not.toContain('/intermediate')
+})
+
+test('does not unmount components during batched navigations', async () => {
+  const history = createHistory({ initialEntries: ['/start'] })
+
+  let unmountCount = 0
+
+  function Sticky() {
+    useEffect(() => {
+      return () => {
+        unmountCount++
+      }
+    }, [])
+    return <div>Sticky</div>
+  }
+
+  function App() {
+    const navigate = useNavigate()
+
+    useEffect(() => {
+      // Navigate to /intermediate (would unmount Sticky), then immediately
+      // back to /start (where Sticky lives). With batching, Sticky should
+      // never unmount because React only renders the final location.
+      Promise.resolve().then(() => {
+        navigate('/intermediate')
+        navigate('/start')
+      })
+    }, [navigate])
+
+    return (
+      <Switch>
+        <Route path="/intermediate" render={() => <div>Intermediate</div>} />
+        <Route render={() => <Sticky />} />
+      </Switch>
+    )
+  }
+
+  render(
+    <Router history={history}>
+      <App />
+    </Router>,
+  )
+
+  expect(screen.getByText('Sticky')).toBeInTheDocument()
+
+  await act(async () => {
+    await Promise.resolve()
+  })
+
+  expect(unmountCount).toBe(0)
+  expect(screen.getByText('Sticky')).toBeInTheDocument()
 })
