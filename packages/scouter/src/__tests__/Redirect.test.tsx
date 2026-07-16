@@ -1,4 +1,4 @@
-// oxlint-disable typescript/no-explicit-any vitest/prefer-expect-assertions typescript/no-unsafe-type-assertion typescript/no-unsafe-assignment
+// oxlint-disable typescript/no-explicit-any typescript/no-unsafe-type-assertion typescript/no-unsafe-assignment
 import { render } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import { MemoryRouter, Redirect, Route, Switch } from '../index'

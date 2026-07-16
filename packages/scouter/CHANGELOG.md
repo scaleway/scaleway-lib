@@ -1,5 +1,11 @@
 # @scaleway/scouter
 
+## 1.0.2
+
+### Patch Changes
+
+- [#3530](https://github.com/scaleway/scaleway-lib/pull/3530) [`e4a950e`](https://github.com/scaleway/scaleway-lib/commit/e4a950e4befd59911ca86f6f410e63027569305a) Thanks [@etienne-scaleway](https://github.com/etienne-scaleway)! - Batch history changes by using state+context instead of useSyncExternalStore
+
 ## 1.0.1
 
 ### Patch Changes

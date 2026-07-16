@@ -3,7 +3,7 @@
 ## Install
 
 ```bash
-$ pnpm add --dev @scaleway/tsconfig
+pnpm add --dev @scaleway/tsconfig
 ```
 
 ## Usage

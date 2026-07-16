@@ -5,7 +5,7 @@
 ## Install
 
 ```bash
-$ pnpm add --global @scaleway/changesets-renovate
+pnpm add --global @scaleway/changesets-renovate
 ```
 
 ## Usage
@@ -44,7 +44,7 @@ Example:
 
 Unsorted:
 
-```
+```text
 ---
 'package-z': patch
 'package-a': patch
@@ -57,7 +57,7 @@ Updated dependency `@company/zzz-backend` to `^0.228.0`.
 
 Sorted:
 
-```
+```text
 ---
 'package-a': patch
 'package-z': patch
@@ -68,4 +68,4 @@ Updated dependency `@company/zzz-backend` to `^0.228.0`.
 Updated dependency `@company/zzz` to `0.228.0`.
 ```
 
-It's inspired by this GitHub Action from Backstage: https://github.com/backstage/backstage/blob/master/.github/workflows/sync_renovate-changesets.yml
+It's inspired by this GitHub Action from Backstage: <https://github.com/backstage/backstage/blob/master/.github/workflows/sync_renovate-changesets.yml>

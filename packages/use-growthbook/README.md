@@ -6,7 +6,7 @@ The idea of this package is to propose a _facade pattern_ above GrowthBook React
 ## Install
 
 ```bash
-$ pnpm add @scaleway/use-growthbook
+pnpm add @scaleway/use-growthbook
 ```
 
 ## How to use

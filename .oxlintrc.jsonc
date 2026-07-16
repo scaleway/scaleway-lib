@@ -63,7 +63,7 @@
         "vitest/prefer-lowercase-title": "error",
         "vitest/prefer-strict-boolean-matchers": "off",
         "vitest/require-test-timeout": "off",
-        "vitest/prefer-expect-assertions": "warn",
+        "vitest/prefer-expect-assertions": "off",
         "vitest/max-expects": "off",
         "vitest/require-mock-type-parameters": "warn",
         "vitest/consistent-test-it": "warn",

@@ -1,4 +1,4 @@
-// oxlint-disable vitest/prefer-expect-assertions typescript/no-unsafe-type-assertion typescript/no-unsafe-argument
+// oxlint-disable typescript/no-unsafe-type-assertion typescript/no-unsafe-argument
 import { describe, expect, it } from 'vitest'
 import { buildQueryString, createRoute, isRoute } from '../helpers/route'
 

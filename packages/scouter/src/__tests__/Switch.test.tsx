@@ -1,4 +1,4 @@
-// oxlint-disable vitest/require-top-level-describe vitest/prefer-expect-assertions
+// oxlint-disable vitest/require-top-level-describe
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it, test, vi } from 'vitest'
 import { MemoryRouter, Redirect, Route, Switch } from '../index'

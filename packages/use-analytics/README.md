@@ -5,7 +5,7 @@
 ## Install
 
 ```bash
-$ pnpm add @scaleway/use-analytics
+pnpm add @scaleway/use-analytics
 ```
 
 ## Usage
@@ -14,7 +14,7 @@ $ pnpm add @scaleway/use-analytics
 
 Create an events directory with all you specific events.
 
-```
+```text
 events
  ┣ pageTypes
  ┃ ┗ index.ts
