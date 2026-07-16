@@ -221,8 +221,8 @@ catalogs:
       specifier: 3.2.0
       version: 3.2.0
     '@formatjs/fast-memoize':
-      specifier: 3.1.6
-      version: 3.1.6
+      specifier: 3.1.7
+      version: 3.1.7
     '@formatjs/icu-messageformat-parser':
       specifier: 3.5.13
       version: 3.5.13
@@ -649,7 +649,7 @@ importers:
         version: 3.2.0
       '@formatjs/fast-memoize':
         specifier: 'catalog:'
-        version: 3.1.6
+        version: 3.1.7
       filesize:
         specifier: 'catalog:'
         version: 11.0.22
@@ -959,6 +959,9 @@ packages:
 
   '@formatjs/fast-memoize@3.1.6':
     resolution: {integrity: sha512-H5aexk1Le7T9TPmscacZ+1pR6CTa2n1wq+HDVGXhH8TzUlQQpeXzZs91dRtmFHrbeNbjPFPfQujUqm7MHgVoXQ==}
+
+  '@formatjs/fast-memoize@3.1.7':
+    resolution: {integrity: sha512-zXfhLpvA6T7+efdt9JLbBwZ00tT7NsBMDVnDu8rpHeNNv8KfRZAMo2gkG0k9lK/Nzc//3kJ9pImsfuJxk3KhUA==}
 
   '@formatjs/icu-messageformat-parser@3.5.13':
     resolution: {integrity: sha512-Y50dQ09tjkv9cCTSGaQYo9Rgx5COBCqBhXuU7b8ZMAec+oA6ePZv7prycY3iYz9iD0J2LjB8/Eys1so4Xguptg==}
@@ -3699,6 +3702,8 @@ snapshots:
   '@formatjs/fast-memoize@3.1.1': {}
 
   '@formatjs/fast-memoize@3.1.6': {}
+
+  '@formatjs/fast-memoize@3.1.7': {}
 
   '@formatjs/icu-messageformat-parser@3.5.13':
     dependencies:
