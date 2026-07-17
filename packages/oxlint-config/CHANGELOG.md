@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.3
+
+### Patch Changes
+
+- [#3545](https://github.com/scaleway/scaleway-lib/pull/3545) [`b3d53ef`](https://github.com/scaleway/scaleway-lib/commit/b3d53ef217149b495fcb0a2b17a1e17acaf3cc71) Thanks [@philibea](https://github.com/philibea)! - chore update to 1.74.0
+
 ## 0.2.2
 
 ### Patch Changes
