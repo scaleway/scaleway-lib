@@ -51,7 +51,7 @@ catalog:
   tinyglobby: 0.2.17
   tsdown: 0.22.7
   turbo: 2.10.5
-  typescript: 7.0.1-rc
+  typescript: 7.0.2
   use-deep-compare-effect: 1.8.1
   vitest: 4.1.10
   vitest-localstorage-mock: 0.1.2
