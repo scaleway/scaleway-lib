@@ -1,5 +1,11 @@
 # @scaleway/oxfmt-config
 
+## 1.1.4
+
+### Patch Changes
+
+- [#3534](https://github.com/scaleway/scaleway-lib/pull/3534) [`81683e9`](https://github.com/scaleway/scaleway-lib/commit/81683e94f37039cb1b010ea8fd1d783c5790c9c7) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency oxfmt to v0.59.0
+
 ## 1.1.3
 
 ### Patch Changes
