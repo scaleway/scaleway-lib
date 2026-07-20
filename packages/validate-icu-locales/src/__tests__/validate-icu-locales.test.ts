@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest'
 describe('validate-icu-locales CLI', () => {
   it('should detect ICU syntax errors in JavaScript files', async () => {
     try {
-      await execa('node', ['dist/index.js', 'src/__tests__/locales/*.js'], {
+      await execa('node', ['dist/index.mjs', 'src/__tests__/locales/*.js'], {
         cwd: process.cwd(),
         reject: true,
       })
@@ -23,7 +23,7 @@ describe('validate-icu-locales CLI', () => {
 
   it('should detect ICU syntax errors in TypeScript files', async () => {
     try {
-      await execa('node', ['dist/index.js', 'src/__tests__/locales/*.ts'], {
+      await execa('node', ['dist/index.mjs', 'src/__tests__/locales/*.ts'], {
         cwd: process.cwd(),
         reject: true,
       })
@@ -39,7 +39,7 @@ describe('validate-icu-locales CLI', () => {
 
   it('should detect ICU syntax errors in JSON files', async () => {
     try {
-      await execa('node', ['dist/index.js', 'src/__tests__/locales/*.json'], {
+      await execa('node', ['dist/index.mjs', 'src/__tests__/locales/*.json'], {
         cwd: process.cwd(),
         reject: true,
       })
@@ -55,7 +55,7 @@ describe('validate-icu-locales CLI', () => {
 
   it('should fail when no pattern is provided', async () => {
     try {
-      await execa('node', ['dist/index.js'], {
+      await execa('node', ['dist/index.mjs'], {
         cwd: process.cwd(),
         reject: true,
       })
@@ -70,7 +70,7 @@ describe('validate-icu-locales CLI', () => {
 
   it('should correctly identify specific error types', async () => {
     try {
-      await execa('node', ['dist/index.js', 'src/__tests__/locales/en-ts.ts'], {
+      await execa('node', ['dist/index.mjs', 'src/__tests__/locales/en-ts.ts'], {
         cwd: process.cwd(),
         reject: true,
       })
@@ -90,7 +90,7 @@ describe('validate-icu-locales CLI', () => {
 
   it('should succeed with valid ICU strings', async () => {
     // This should not throw an error as all ICU strings are valid
-    const { stderr } = await execa('node', ['dist/index.js', 'src/__tests__/locales/valid.ts'], {
+    const { stderr } = await execa('node', ['dist/index.mjs', 'src/__tests__/locales/valid.ts'], {
       cwd: process.cwd(),
     })
 
@@ -100,7 +100,7 @@ describe('validate-icu-locales CLI', () => {
 
   it('should succeed with valid JSON ICU strings', async () => {
     // This should not throw an error as all ICU strings are valid
-    const { stderr } = await execa('node', ['dist/index.js', 'src/__tests__/locales/valid.json'], {
+    const { stderr } = await execa('node', ['dist/index.mjs', 'src/__tests__/locales/valid.json'], {
       cwd: process.cwd(),
     })
 

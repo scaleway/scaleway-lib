@@ -30,7 +30,7 @@
   "scripts": {
     "typecheck": "tsc --noEmit",
     "build": "tsdown",
-    "test": "vitest run"
+    "test:unit": "vitest run"
   },
   "dependencies": {
     "@formatjs/icu-messageformat-parser": "catalog:",
