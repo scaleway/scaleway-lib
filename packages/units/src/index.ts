@@ -10,5 +10,6 @@ export {
   DAYS_IN_YEAR,
   HOURS_IN_DAY,
   HOURS_IN_MONTH,
+  HOURS_IN_YEAR,
   MONTHS_IN_YEAR,
 } from './constants'
