@@ -1,5 +1,11 @@
 # @scaleway/units
 
+## 1.0.1
+
+### Patch Changes
+
+- [#3550](https://github.com/scaleway/scaleway-lib/pull/3550) [`ee09b49`](https://github.com/scaleway/scaleway-lib/commit/ee09b49464c2ed5a326889a7d4ad88846e2f2cc4) Thanks [@chambo-e](https://github.com/chambo-e)! - add HOURS_IN_YEAR constant
+
 ## 1.0.0
 
 ### Major Changes
