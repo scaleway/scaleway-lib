@@ -10,6 +10,8 @@ exports[`constants > HOURS_IN_DAY 1`] = `24`;
 
 exports[`constants > HOURS_IN_MONTH 1`] = `730`;
 
+exports[`constants > HOURS_IN_YEAR 1`] = `8760`;
+
 exports[`constants > MONTHS_IN_YEAR 1`] = `12`;
 
 exports[`constants > SECONDS_IN_DAY 1`] = `86400`;
