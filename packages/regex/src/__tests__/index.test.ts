@@ -56,6 +56,7 @@ import {
   uppercaseBasicDomain,
   uppercaseBasicSubdomain,
   url,
+  urlWithoutProtocol,
   uuid,
   webhostingUsernameEmailRegex,
 } from '..'
@@ -1239,6 +1240,49 @@ describe('@regex', () => {
       [uuidTest, true],
     ])('should match regex %s to be %s', (string, expected) => {
       expect(uuid.test(string)).toBe(expected)
+    })
+  })
+
+  describe('urlWithoutProtocol', () => {
+    it.each([
+      //  Valid URLs without protocol
+      ['console.scaleway.com', true],
+      ['www.scaleway.com', true],
+      ['scaleway.online', true],
+      ['255.255.255.255', true],
+      ['www.example.com/product', true],
+      ['example.com/path/to/resource', true],
+      ['sub.domain.example.com', true],
+      ['test.co.uk', true],
+      ['a.b.c.d.e.f.com', true],
+      ['example.com/', true],
+
+      //  Invalid because they contain a port, query‑string or fragment
+      ['www.scaleway.com:8080', false],
+      ['www.example.com/products?id=1&page=2', false],
+      ['www.example.com#up', false],
+      ['example.com:443', false],
+      ['example.com:8080/path?query=value#hash', false],
+
+      //  Invalid: contains protocol
+      ['http://console.scaleway.com', false],
+      ['https://www.scaleway.com', false],
+      ['ftp://example.com', false],
+
+      //  Invalid: no TLD (single segment)
+      ['localhost', false],
+      ['example', false],
+      ['a', false],
+
+      //  Invalid: empty or whitespace
+      ['', false],
+      [' ', false],
+
+      //  Invalid: special characters not allowed
+      ['example .com', false],
+      ['example..com', false],
+    ])('should match %s → %s', (input, expected) => {
+      expect(urlWithoutProtocol.test(input)).toBe(expected)
     })
   })
 })
