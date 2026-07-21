@@ -48,6 +48,8 @@ export const sixDigitsCode: RegExp = /^[0-9]{6}$/
 export const nineDigitsCode: RegExp = /^[0-9]{9}$/
 export const elevenDigitsCode: RegExp = /^[0-9]{11}$/
 export const url: RegExp = /^http(s)?:\/\/?[\w.-]+(?:\.[\w.-]+)+[\w\-._~:/?#[\]@!$&'()*+,;=.]+$/
+export const urlWithoutProtocol =
+  /^(?:(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}|(?:\d{1,3}\.){3}\d{1,3})(?:\/[A-Za-z0-9._~!$&'()*+,;=:@-]*)*$/
 export const hexadecimal: RegExp = /^[0-9a-fA-F]+$/
 export const s3BucketName: RegExp = /^[a-z0-9][-.a-z0-9]{1,61}[a-z0-9]$/
 export const uuid: RegExp = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
