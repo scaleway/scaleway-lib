@@ -1,0 +1,9 @@
+{
+  "extends": "@scaleway/tsconfig",
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "compilerOptions": {
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "types": ["node"]
+  }
+}
