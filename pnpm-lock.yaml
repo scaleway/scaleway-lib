@@ -244,6 +244,9 @@ catalogs:
     '@segment/analytics-next':
       specifier: 1.84.1
       version: 1.84.1
+    '@testing-library/dom':
+      specifier: 10.4.1
+      version: 10.4.1
     '@testing-library/jest-dom':
       specifier: 7.0.0
       version: 7.0.0
@@ -408,6 +411,9 @@ importers:
       '@scaleway/utils':
         specifier: workspace:*
         version: link:packages/utils
+      '@testing-library/dom':
+        specifier: 'catalog:'
+        version: 10.4.1
       '@testing-library/jest-dom':
         specifier: 'catalog:'
         version: 7.0.0(@testing-library/dom@10.4.1)
