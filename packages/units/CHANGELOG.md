@@ -1,5 +1,11 @@
 # @scaleway/units
 
+## 1.0.2
+
+### Patch Changes
+
+- [#3561](https://github.com/scaleway/scaleway-lib/pull/3561) [`e4ed71b`](https://github.com/scaleway/scaleway-lib/commit/e4ed71b794aaff6bc6a07c771989c5801fcf0030) Thanks [@chambo-e](https://github.com/chambo-e)! - export units types
+
 ## 1.0.1
 
 ### Patch Changes

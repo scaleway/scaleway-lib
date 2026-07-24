@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/units",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Library to handle units and unit conversion",
   "homepage": "https://github.com/scaleway/scaleway-lib/tree/main/packages/units",
   "bugs": {
