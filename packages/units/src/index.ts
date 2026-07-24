@@ -13,3 +13,5 @@ export {
   HOURS_IN_YEAR,
   MONTHS_IN_YEAR,
 } from './constants'
+export type { Unit } from './convertUnit'
+export type { TimeUnit } from './convertDuration'
