@@ -48,7 +48,7 @@ const exponents = {
   },
 } as const
 
-type Unit = keyof typeof exponents
+export type Unit = keyof typeof exponents
 
 type ConvertUnitArgs = {
   from?: Unit

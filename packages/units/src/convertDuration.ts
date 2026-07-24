@@ -1,4 +1,4 @@
-type Unit = 'milliseconds' | 'seconds' | 'minutes' | 'hours' | 'days' | 'weeks' | 'months' | 'years'
+export type TimeUnit = 'milliseconds' | 'seconds' | 'minutes' | 'hours' | 'days' | 'weeks' | 'months' | 'years'
 
 const MILLISECONDS_IN_SECOND = 1000
 const SECONDS_IN_MINUTE = 60
@@ -10,7 +10,7 @@ const DAYS_IN_WEEK = 7
 const HOURS_IN_MONTH = (DAYS_IN_YEAR / MONTHS_IN_YEAR) * HOURS_IN_DAY
 const DAYS_IN_MONTH = HOURS_IN_MONTH / HOURS_IN_DAY
 
-const millisecondsInUnit: Record<Unit, number> = {
+const millisecondsInUnit: Record<TimeUnit, number> = {
   milliseconds: 1,
   seconds: MILLISECONDS_IN_SECOND,
   minutes: MILLISECONDS_IN_SECOND * SECONDS_IN_MINUTE,
@@ -22,8 +22,8 @@ const millisecondsInUnit: Record<Unit, number> = {
 }
 
 type ConvertUnitArgs = {
-  from?: Unit
-  to?: Unit
+  from?: TimeUnit
+  to?: TimeUnit
 }
 
 /**
