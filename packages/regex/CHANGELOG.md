@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.1.0
+
+### Minor Changes
+
+- [#3553](https://github.com/scaleway/scaleway-lib/pull/3553) [`1f689fb`](https://github.com/scaleway/scaleway-lib/commit/1f689fb1d30065d42bd7843a3df9ccfd64d35754) Thanks [@johnnydoubt](https://github.com/johnnydoubt)! - feat: add urlWithoutProtocol regex for cockpit otlp exporters
+
 ## 6.0.2
 
 ### Patch Changes
