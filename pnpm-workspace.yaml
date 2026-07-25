@@ -43,8 +43,8 @@ catalog:
   oxlint-tsgolint: 0.25.0
   publint: 0.3.21
   query-string: 9.4.1
-  react: 19.2.7
-  react-dom: 19.2.7
+  react: 19.2.8
+  react-dom: 19.2.8
   read-pkg: 10.1.0
   regexparam: 3.0.0
   simple-git: 3.36.0
