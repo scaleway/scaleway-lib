@@ -41,7 +41,7 @@ catalog:
   oxfmt: 0.60.0
   oxlint: 1.75.0
   oxlint-tsgolint: 7.0.2001
-  publint: 0.3.21
+  publint: 0.3.22
   query-string: 9.4.1
   react: 19.2.8
   react-dom: 19.2.8
