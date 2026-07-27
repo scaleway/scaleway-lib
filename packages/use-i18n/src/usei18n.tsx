@@ -1,5 +1,10 @@
 import type { NumberFormatOptions } from '@formatjs/ecma402-abstract'
-import { formatDuration as formatDurationFns, intervalToDuration } from 'date-fns'
+import {
+  formatDuration as formatDurationFns,
+  intervalToDuration,
+  formatDistanceToNow,
+  formatDistanceToNowStrict,
+} from 'date-fns'
 import type {
   FormatDistanceToNowOptions,
   FormatDistanceToNowStrictOptions,
@@ -7,8 +12,6 @@ import type {
   FormatDurationOptions as FnsFormatDurationOptions,
   Duration,
 } from 'date-fns'
-import { formatDistanceToNow } from 'date-fns/formatDistanceToNow'
-import { formatDistanceToNowStrict } from 'date-fns/formatDistanceToNowStrict'
 import type { BaseLocale } from 'international-types'
 import type { ReactElement, ReactNode } from 'react'
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
