@@ -71,6 +71,7 @@ type ConvertUnitArgs = {
  *
  * @param amount - The numeric value to convert.
  * @param options - Conversion options.
+ * @param options.precision - Number amount of digits precision.
  * @param options.from - Unit prefix of `amount`. Defaults to `'unit'` (no prefix).
  * @param options.to - Unit prefix to convert `amount` into. Defaults to `'unit'` (no prefix).
  * @param options.base - `10` for SI/decimal prefixes (1 kilo = 1000) or `2` for
@@ -101,5 +102,7 @@ export const convertUnit = (
   const prefix = base === 10 ? 'si' : 'iec'
   const power = exponents[from][prefix] - exponents[to][prefix]
 
+  // This manual cast is here to reduce issues with JS decimals precision
+  // for exemple: 2800000000 * (10**-30) === 2.8000000000000004e-2
   return Number((amount * Math.pow(base, power)).toPrecision(precision))
 }
