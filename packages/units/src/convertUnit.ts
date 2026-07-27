@@ -54,6 +54,7 @@ type ConvertUnitArgs = {
   from?: Unit
   to?: Unit
   base?: 2 | 10
+  precision?: number
 }
 
 /**
@@ -93,9 +94,12 @@ type ConvertUnitArgs = {
  * // 2.5 kilograms -> grams (decimal) — works for any SI quantity, not just data
  * convertUnit(2.5, { from: 'kilo', to: 'unit' }) // 2500
  */
-export const convertUnit = (amount: number, { from = 'unit', to = 'unit', base = 10 }: ConvertUnitArgs) => {
+export const convertUnit = (
+  amount: number,
+  { from = 'unit', to = 'unit', base = 10, precision = 10 }: ConvertUnitArgs,
+) => {
   const prefix = base === 10 ? 'si' : 'iec'
   const power = exponents[from][prefix] - exponents[to][prefix]
 
-  return amount * Math.pow(base, power)
+  return Number((amount * Math.pow(base, power)).toPrecision(precision))
 }
