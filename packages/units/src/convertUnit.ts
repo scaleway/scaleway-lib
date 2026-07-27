@@ -103,6 +103,6 @@ export const convertUnit = (
   const power = exponents[from][prefix] - exponents[to][prefix]
 
   // This manual cast is here to reduce issues with JS decimals precision
-  // for exemple: 2800000000 * (10**-30) === 2.8000000000000004e-2
+  // eg: 2800000000 * (10**-30) === 2.8000000000000004e-2
   return Number((amount * Math.pow(base, power)).toPrecision(precision))
 }
