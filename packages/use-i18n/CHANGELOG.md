@@ -1,5 +1,18 @@
 # Change Log
 
+## 8.1.0
+
+### Minor Changes
+
+- [#3562](https://github.com/scaleway/scaleway-lib/pull/3562) [`5f68da5`](https://github.com/scaleway/scaleway-lib/commit/5f68da5df1834ccca580b4cb861f6c8eefe433da) Thanks [@chambo-e](https://github.com/chambo-e)! - new `formatDuration` function
+
+  Basic usage
+  `formatDuration(3605) => 1 hour 5 seconds`
+  Clock format output
+  `formatDuration(3605, 'clock') => 01:00:05`
+  With date-fns formatDuration options
+  `formatDuration(3605, { zero: true, format: ['days', 'hours', 'minutes', 'seconds']}) => 0 days 1 hour 0 minutes 5 seconds`
+
 ## 8.0.9
 
 ### Patch Changes
