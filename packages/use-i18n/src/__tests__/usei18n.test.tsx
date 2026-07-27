@@ -698,6 +698,44 @@ describe('i18n hook', () => {
     })
   })
 
+  it('should formatDuration', async () => {
+    const { result } = renderHook(() => useI18n<Locale, Locales>(), {
+      wrapper: wrapper({
+        defaultLocale: 'en',
+      }),
+    })
+    vi.setSystemTime(new Date('4/13/2021'))
+
+    expect(result.current.formatDuration(3600)).toBe('1 hour')
+    expect(result.current.formatDuration(13250)).toBe('3 hours 40 minutes 50 seconds')
+    expect(
+      result.current.formatDuration(13250, {
+        delimiter: ', ',
+        zero: true,
+        format: ['days', 'hours', 'minutes', 'seconds'],
+      }),
+    ).toBe('0 days, 3 hours, 40 minutes, 50 seconds')
+    expect(result.current.formatDuration(13250, 'clock')).toBe('03:40:50')
+    expect(result.current.formatDuration(0)).toBe('')
+    expect(result.current.formatDuration(0, 'clock')).toBe('00:00:00')
+
+    await act(async () => {
+      await result.current.switchLocale('fr')
+    })
+
+    expect(result.current.formatDuration(13250)).toBe('3 heures 40 minutes 50 secondes')
+    expect(
+      result.current.formatDuration(13250, {
+        delimiter: ', ',
+        zero: true,
+        format: ['days', 'hours', 'minutes', 'seconds'],
+      }),
+    ).toBe('0 jours, 3 heures, 40 minutes, 50 secondes')
+    expect(result.current.formatDuration(13250, 'clock')).toBe('03:40:50')
+    expect(result.current.formatDuration(0)).toBe('')
+    expect(result.current.formatDuration(0, 'clock')).toBe('00:00:00')
+  })
+
   it('should relativeTimeStrict', async () => {
     const { result } = renderHook(() => useI18n<Locale, Locales>(), {
       wrapper: wrapper({

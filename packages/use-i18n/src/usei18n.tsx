@@ -1,7 +1,17 @@
 import type { NumberFormatOptions } from '@formatjs/ecma402-abstract'
-import type { Locale as DateFnsLocale, FormatDistanceToNowOptions, FormatDistanceToNowStrictOptions } from 'date-fns'
-import { formatDistanceToNow } from 'date-fns/formatDistanceToNow'
-import { formatDistanceToNowStrict } from 'date-fns/formatDistanceToNowStrict'
+import {
+  formatDuration as formatDurationFns,
+  intervalToDuration,
+  formatDistanceToNow,
+  formatDistanceToNowStrict,
+} from 'date-fns'
+import type {
+  FormatDistanceToNowOptions,
+  FormatDistanceToNowStrictOptions,
+  Locale as DateFnsLocale,
+  FormatDurationOptions as FnsFormatDurationOptions,
+  Duration,
+} from 'date-fns'
 import type { BaseLocale } from 'international-types'
 import type { ReactElement, ReactNode } from 'react'
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
@@ -85,6 +95,8 @@ const getCurrentLocale = <LocalSupportedType extends string>({
   return defaultLocale
 }
 
+type FormatDurationOptions = Omit<FnsFormatDurationOptions, 'locale'> | 'clock'
+
 export type Context<LocaleParam extends BaseLocale, LocalSupportedType extends string> = {
   currentLocale: LocalSupportedType
   dateFnsLocale?: DateFnsLocale
@@ -93,6 +105,7 @@ export type Context<LocaleParam extends BaseLocale, LocalSupportedType extends s
   formatList: (listFormat: string[], options?: IntlListFormatOptions) => string
   formatNumber: (numb: number, options?: NumberFormatOptions) => string
   formatUnit: (value: number, options: FormatUnitOptions) => string
+  formatDuration: (value: number, options?: FormatDurationOptions) => string
   loadTranslations: (namespace: string, load?: LoadTranslationsFn<LocalSupportedType>) => Promise<string>
   namespaces: string[]
   namespaceTranslation: ScopedTranslateFn<LocaleParam>
@@ -120,6 +133,8 @@ export function useI18n<
 
   return context as unknown as RequiredGenericContext<LocaleParam, LocalSupportedType>
 }
+
+const padNumber = (num: number) => String(num).padStart(2, '0')
 
 export function useTranslation<LocaleParam extends BaseLocale = BaseLocale, LocalSupportedType extends string = ''>(
   namespaces: [string, ...string[]],
@@ -153,6 +168,7 @@ export function useTranslation<LocaleParam extends BaseLocale = BaseLocale, Loca
 
 const initialDefaultTranslations = {}
 
+// oxlint-disable-next-line max-statements
 const I18nContextProvider = <LocalSupportedType extends string>({
   children,
   defaultLoad,
@@ -355,6 +371,34 @@ const I18nContextProvider = <LocalSupportedType extends string>({
     [dateFnsLocale],
   )
 
+  const formatDuration = useCallback(
+    (durationInSeconds: number, format?: FormatDurationOptions): string => {
+      const duration: Duration = {
+        years: 0,
+        months: 0,
+        weeks: 0,
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        ...intervalToDuration({
+          end: durationInSeconds * 1000,
+          start: 0,
+        }),
+      }
+
+      if (format === 'clock') {
+        return `${padNumber(duration.hours ?? 0)}:${padNumber(duration.minutes ?? 0)}:${padNumber(duration.seconds ?? 0)}`
+      }
+
+      return formatDurationFns(duration, {
+        locale: dateFnsLocale,
+        ...format,
+      })
+    },
+    [dateFnsLocale],
+  )
+
   const relativeTime = useCallback(
     (date: Date | number, options: FormatDistanceToNowOptions = { addSuffix: true }) => {
       const finalDate = new Date(date)
@@ -421,6 +465,7 @@ const I18nContextProvider = <LocalSupportedType extends string>({
       formatList,
       formatNumber,
       formatUnit,
+      formatDuration,
       loadTranslations,
       namespaces,
       namespaceTranslation,
@@ -439,6 +484,7 @@ const I18nContextProvider = <LocalSupportedType extends string>({
       formatList,
       formatNumber,
       formatUnit,
+      formatDuration,
       loadTranslations,
       namespaceTranslation,
       namespaces,
