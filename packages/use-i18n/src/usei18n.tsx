@@ -379,7 +379,7 @@ const I18nContextProvider = <LocalSupportedType extends string>({
           hours: 0,
           minutes: 0,
           seconds: 0,
-        } as Duration),
+        } satisfies Duration),
         ...intervalToDuration({
           end: durationInSeconds * 1000,
           start: 0,
