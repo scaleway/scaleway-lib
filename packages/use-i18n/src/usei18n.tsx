@@ -370,16 +370,14 @@ const I18nContextProvider = <LocalSupportedType extends string>({
 
   const formatDuration = useCallback(
     (durationInSeconds: number, format?: FormatDurationOptions): string => {
-      const duration = {
-        ...({
-          years: 0,
-          months: 0,
-          weeks: 0,
-          days: 0,
-          hours: 0,
-          minutes: 0,
-          seconds: 0,
-        } satisfies Duration),
+      const duration: Duration = {
+        years: 0,
+        months: 0,
+        weeks: 0,
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
         ...intervalToDuration({
           end: durationInSeconds * 1000,
           start: 0,
