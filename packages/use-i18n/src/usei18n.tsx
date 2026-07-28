@@ -95,7 +95,7 @@ const getCurrentLocale = <LocalSupportedType extends string>({
   return defaultLocale
 }
 
-type FormatDurationOptions = Omit<FnsFormatDurationOptions, 'locale'> | 'clock'
+type FormatDurationOptions = Omit<FnsFormatDurationOptions, 'locale'> | 'clock' | 'clock-milliseconds'
 
 export type Context<LocaleParam extends BaseLocale, LocalSupportedType extends string> = {
   currentLocale: LocalSupportedType
@@ -134,7 +134,7 @@ export function useI18n<
   return context as unknown as RequiredGenericContext<LocaleParam, LocalSupportedType>
 }
 
-const padNumber = (num: number) => String(num).padStart(2, '0')
+const padNumberWithZeros = (num: number, targetLength = 2) => String(num).padStart(targetLength, '0')
 
 export function useTranslation<LocaleParam extends BaseLocale = BaseLocale, LocalSupportedType extends string = ''>(
   namespaces: [string, ...string[]],
@@ -387,10 +387,22 @@ const I18nContextProvider = <LocalSupportedType extends string>({
         }),
       }
 
-      if (format === 'clock') {
-        return `${padNumber(duration.hours ?? 0)}:${padNumber(duration.minutes ?? 0)}:${padNumber(duration.seconds ?? 0)}`
+      if (format === 'clock-milliseconds') {
+        // This method has not floiating point issue
+        // While number % 1 has
+        const parts = durationInSeconds.toString().split('.')
+        const decimal = parts[1] ? parseFloat('0.' + parts[1]) : 0
+        const milliseconds = decimal * 1000
+
+        return `${padNumberWithZeros(duration.hours ?? 0)}:${padNumberWithZeros(duration.minutes ?? 0)}:${padNumberWithZeros(duration.seconds ?? 0)}:${padNumberWithZeros(milliseconds ?? 0, 3)}`
       }
 
+      if (format === 'clock') {
+        return `${padNumberWithZeros(duration.hours ?? 0)}:${padNumberWithZeros(duration.minutes ?? 0)}:${padNumberWithZeros(duration.seconds ?? 0)}`
+      }
+
+      // date-fns does not handle milliseconds yet
+      // https://github.com/date-fns/date-fns/issues/3958
       return formatDurationFns(duration, {
         locale: dateFnsLocale,
         ...format,

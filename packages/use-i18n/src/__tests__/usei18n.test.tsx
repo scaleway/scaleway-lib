@@ -719,6 +719,10 @@ describe('i18n hook', () => {
     expect(result.current.formatDuration(0)).toBe('')
     expect(result.current.formatDuration(0, 'clock')).toBe('00:00:00')
 
+    expect(result.current.formatDuration(0.03)).toBe('')
+    expect(result.current.formatDuration(0.03, 'clock')).toBe('00:00:00')
+    expect(result.current.formatDuration(0.03, 'clock-milliseconds')).toBe('00:00:00:030')
+
     await act(async () => {
       await result.current.switchLocale('fr')
     })
