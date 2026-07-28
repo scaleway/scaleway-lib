@@ -1,5 +1,11 @@
 # Change Log
 
+## 8.1.1
+
+### Patch Changes
+
+- [`ff32d61`](https://github.com/scaleway/scaleway-lib/commit/ff32d61424743025fe0374a0bd9fe843a8256f31) Thanks [@chambo-e](https://github.com/chambo-e)! - new clock-milliseconds formatDuration format
+
 ## 8.1.0
 
 ### Minor Changes

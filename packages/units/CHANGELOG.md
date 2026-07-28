@@ -1,5 +1,11 @@
 # @scaleway/units
 
+## 1.0.3
+
+### Patch Changes
+
+- [#3580](https://github.com/scaleway/scaleway-lib/pull/3580) [`d41838d`](https://github.com/scaleway/scaleway-lib/commit/d41838d634c927ed34b79b0aa2d55e2268ce9607) Thanks [@chambo-e](https://github.com/chambo-e)! - properly handle decimal precision
+
 ## 1.0.2
 
 ### Patch Changes
