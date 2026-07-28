@@ -32,4 +32,11 @@ describe('convertUnit', () => {
     expect.hasAssertions()
     expect(convertUnit(amount, options)).toBe(expectResult)
   })
+
+  it('should properly return round float', () => {
+    // 2800000000 * (10**-30) === 2.8000000000000004e-2
+    // while 2800000000 / (10**9) properly returns 2.8
+    // Welcome to javascript hell
+    expect(convertUnit(2800000000, { to: 'giga' })).toBe(2.8)
+  })
 })

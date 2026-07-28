@@ -54,6 +54,7 @@ type ConvertUnitArgs = {
   from?: Unit
   to?: Unit
   base?: 2 | 10
+  precision?: number
 }
 
 /**
@@ -70,6 +71,7 @@ type ConvertUnitArgs = {
  *
  * @param amount - The numeric value to convert.
  * @param options - Conversion options.
+ * @param options.precision - Number amount of digits precision.
  * @param options.from - Unit prefix of `amount`. Defaults to `'unit'` (no prefix).
  * @param options.to - Unit prefix to convert `amount` into. Defaults to `'unit'` (no prefix).
  * @param options.base - `10` for SI/decimal prefixes (1 kilo = 1000) or `2` for
@@ -93,9 +95,14 @@ type ConvertUnitArgs = {
  * // 2.5 kilograms -> grams (decimal) — works for any SI quantity, not just data
  * convertUnit(2.5, { from: 'kilo', to: 'unit' }) // 2500
  */
-export const convertUnit = (amount: number, { from = 'unit', to = 'unit', base = 10 }: ConvertUnitArgs) => {
+export const convertUnit = (
+  amount: number,
+  { from = 'unit', to = 'unit', base = 10, precision = 10 }: ConvertUnitArgs,
+) => {
   const prefix = base === 10 ? 'si' : 'iec'
   const power = exponents[from][prefix] - exponents[to][prefix]
 
-  return amount * Math.pow(base, power)
+  // This manual cast is here to reduce issues with JS decimals precision
+  // eg: 2800000000 * (10**-30) === 2.8000000000000004e-2
+  return Number((amount * Math.pow(base, power)).toPrecision(precision))
 }
