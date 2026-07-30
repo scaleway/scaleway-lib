@@ -1,5 +1,11 @@
 # Change Log
 
+## 8.2.0
+
+### Minor Changes
+
+- [#3590](https://github.com/scaleway/scaleway-lib/pull/3590) [`5f0ae73`](https://github.com/scaleway/scaleway-lib/commit/5f0ae7314a7496ee10786157168faae1ee91e6f3) Thanks [@chambo-e](https://github.com/chambo-e)! - support bytes-per-second
+
 ## 8.1.1
 
 ### Patch Changes
