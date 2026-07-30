@@ -153,7 +153,7 @@ const format =
 type SimpleUnits = `${ExponentName}${Unit}${'-humanized' | ''}`
 type ComplexUnits = `${Unit}${'s' | ''}${'-humanized' | ''}`
 
-type PerSecondUnit = `${ExponentName | ''}bit${'s' | ''}${'-per-second' | ''}${'-humanized' | ''}`
+type PerSecondUnit = `${ExponentName | ''}${'bit' | 'byte'}${'s' | ''}${'-per-second' | ''}${'-humanized' | ''}`
 type SupportedUnits = SimpleUnits | ComplexUnits | PerSecondUnit
 
 export const supportedUnits: Partial<Record<SupportedUnits, ReturnType<typeof format>>> = {
@@ -190,10 +190,20 @@ export const supportedUnits: Partial<Record<SupportedUnits, ReturnType<typeof fo
 
   // bytes
   'bytes-humanized': format({ humanize: true, unit: 'byte' }),
+  'bytes-per-second-humanized': format({
+    compoundUnit: 'second',
+    humanize: true,
+    unit: 'byte',
+  }),
   ...exponents.reduce(
     (acc, exponent) => ({
       ...acc,
       [`${exponent.name}byte`]: format({ exponent, unit: 'byte' }),
+      [`${exponent.name}byte-per-second`]: format({
+        compoundUnit: 'second',
+        exponent,
+        unit: 'byte',
+      }),
       [`${exponent.name}byte-humanized`]: format({
         exponent,
         humanize: true,
