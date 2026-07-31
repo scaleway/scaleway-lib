@@ -13,7 +13,7 @@ catalog:
   "@manypkg/cli": 0.25.1
   "@rudderstack/analytics-js": 3.31.6
   "@scaleway/sdk-client": 2.4.2
-  "@scaleway/sdk-iam": 2.9.4
+  "@scaleway/sdk-iam": 2.10.0
   "@segment/analytics-next": 1.84.1
   "@testing-library/jest-dom": 7.0.0
   "@testing-library/react": 16.3.2

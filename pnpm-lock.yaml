@@ -239,8 +239,8 @@ catalogs:
       specifier: 2.4.2
       version: 2.4.2
     '@scaleway/sdk-iam':
-      specifier: 2.9.4
-      version: 2.9.4
+      specifier: 2.10.0
+      version: 2.10.0
     '@segment/analytics-next':
       specifier: 1.84.1
       version: 1.84.1
@@ -507,7 +507,7 @@ importers:
         version: 2.4.2
       '@scaleway/sdk-iam':
         specifier: 'catalog:'
-        version: 2.9.4(@scaleway/sdk-client@2.4.2)
+        version: 2.10.0(@scaleway/sdk-client@2.4.2)
       '@types/react':
         specifier: 'catalog:'
         version: 19.2.17
@@ -1568,25 +1568,25 @@ packages:
   '@rudderstack/analytics-js@3.31.6':
     resolution: {integrity: sha512-mrP82pP09FTiKnjdd9Vhaak4UeQpwilRCWGCB52lZwiE980VOU2L1HK7zeB1kUHlX5twnIJlAfuqmRK5bBZwbQ==}
 
-  '@scaleway/random-name@5.1.4':
-    resolution: {integrity: sha512-+rDbZG1317VGovkE79dLaDe0n1cCwtQUrQ1KxMct8vzzZwRA+viiU6VQePMSmu/MMhed2OUtDSM45tbmwE7BeQ==}
-    engines: {node: '>=20.x'}
+  '@scaleway/random-name@6.0.2':
+    resolution: {integrity: sha512-fhR2aCzxoZlOZcCM42srbALdpdqMy79LwOK5mVf4sGG1uknn095mr5PQ/0/zwfk/FX2KycZwbKJzr4zP6CG3Zg==}
+    engines: {node: '>=24.x'}
 
   '@scaleway/sdk-client@2.4.2':
     resolution: {integrity: sha512-sVAtA3D8Jxi8z04o6+kJebDlR9oOGPlHUyiKVLIcdAZCbaOR7aO8VRfwwTzVgA6YK/xLfpyzFc8XDb8BafAP1A==}
     engines: {node: '>=20.20.2'}
 
-  '@scaleway/sdk-iam@2.9.4':
-    resolution: {integrity: sha512-60bi5lpKMBjPATaTrw1i7RQE65gWcgonVClzI9nup5tb+2YtGBJ2ngVFnYyKn7uaQ09vFZ9kVB8HbE3Yry5JnQ==}
+  '@scaleway/sdk-iam@2.10.0':
+    resolution: {integrity: sha512-FAZwz0gWZ0GZEdTnBIopewVWDkx1vWoGMWvB1zetw99FkJxma8DBSyppTUSFwCixAQkMZ9kFZYo4b/FKMpNk2w==}
     engines: {node: '>=20.20.2'}
     peerDependencies:
-      '@scaleway/sdk-client': ^2.4.1
+      '@scaleway/sdk-client': ^2.5.0
 
-  '@scaleway/sdk-std@2.4.3':
-    resolution: {integrity: sha512-F0upnsjG2JRJ7pZq8xi8S/WCD9WvFG5Ez3zq64cm7h0UZKIWzvpOBtds92ZMSkg1sS5TIYbQuxyBYSvOLqJSIg==}
+  '@scaleway/sdk-std@2.5.0':
+    resolution: {integrity: sha512-O14wek9Nrct6VcxfGvlGKUyiZmDyRvzdWCPkOrncBq+OshYpXHtcCrV1U7DQESJXL/+YQ8mBU8iVPm9qOsmgBg==}
     engines: {node: '>=20.20.2'}
     peerDependencies:
-      '@scaleway/sdk-client': ^2.4.1
+      '@scaleway/sdk-client': 2.5.0
 
   '@sec-ant/readable-stream@0.4.1':
     resolution: {integrity: sha512-831qok9r2t8AlxLko40y2ebgSDhenenCatLVeW/uBtnHPyhHOvG0C7TvfgecV+wHzIm5KUICgzmVpWS+IMEAeg==}
@@ -4135,17 +4135,17 @@ snapshots:
 
   '@rudderstack/analytics-js@3.31.6': {}
 
-  '@scaleway/random-name@5.1.4': {}
+  '@scaleway/random-name@6.0.2': {}
 
   '@scaleway/sdk-client@2.4.2': {}
 
-  '@scaleway/sdk-iam@2.9.4(@scaleway/sdk-client@2.4.2)':
+  '@scaleway/sdk-iam@2.10.0(@scaleway/sdk-client@2.4.2)':
     dependencies:
-      '@scaleway/random-name': 5.1.4
+      '@scaleway/random-name': 6.0.2
       '@scaleway/sdk-client': 2.4.2
-      '@scaleway/sdk-std': 2.4.3(@scaleway/sdk-client@2.4.2)
+      '@scaleway/sdk-std': 2.5.0(@scaleway/sdk-client@2.4.2)
 
-  '@scaleway/sdk-std@2.4.3(@scaleway/sdk-client@2.4.2)':
+  '@scaleway/sdk-std@2.5.0(@scaleway/sdk-client@2.4.2)':
     dependencies:
       '@scaleway/sdk-client': 2.4.2
 
