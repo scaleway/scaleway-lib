@@ -38,7 +38,7 @@ catalog:
   intl-messageformat: 11.2.12
   jsdom: 30.0.0
   lint-staged: 17.2.0
-  oxfmt: 0.60.0
+  oxfmt: 0.61.0
   oxlint: 1.76.0
   oxlint-tsgolint: 7.0.2001
   publint: 0.3.22
