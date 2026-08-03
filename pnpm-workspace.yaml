@@ -12,7 +12,7 @@ catalog:
   "@growthbook/growthbook-react": 1.6.5
   "@manypkg/cli": 0.25.1
   "@rudderstack/analytics-js": 3.31.6
-  "@scaleway/sdk-client": 2.4.2
+  "@scaleway/sdk-client": 2.6.0
   "@scaleway/sdk-iam": 2.11.0
   "@segment/analytics-next": 1.84.1
   "@testing-library/jest-dom": 7.0.0
