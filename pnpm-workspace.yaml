@@ -36,7 +36,7 @@ catalog:
   history: 5.3.0
   international-types: 0.8.1
   intl-messageformat: 11.2.13
-  jsdom: 30.0.0
+  jsdom: 30.0.1
   lint-staged: 17.2.0
   oxfmt: 0.61.0
   oxlint: 1.76.0
