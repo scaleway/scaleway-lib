@@ -15,11 +15,10 @@ jobs:
       TURBO_CACHE: 'remote:rw'
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
-      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+      - uses: pnpm/setup@v1
         with:
-          node-version-file: .nvmrc
-          cache: 'pnpm'
+          cache: true
+          install: false # pnpm/setup does not yet supports frozen lockfile https://github.com/pnpm/setup/issues/10
       - run: pnpm install --frozen-lockfile
       - run: pnpm run build
 
@@ -28,12 +27,10 @@ jobs:
     needs: [build]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
-      - name: Use Node.js
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+      - uses: pnpm/setup@v1
         with:
-          node-version-file: .nvmrc
-          cache: 'pnpm'
+          cache: true
+          install: false # pnpm/setup does not yet supports frozen lockfile https://github.com/pnpm/setup/issues/10
       - run: pnpm install --frozen-lockfile && pnpm build && pnpm install --frozen-lockfile
       - run: pnpm typecheck
 
@@ -42,12 +39,10 @@ jobs:
     needs: [build]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
-      - name: Use Node.js
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+      - uses: pnpm/setup@v1
         with:
-          node-version-file: .nvmrc
-          cache: 'pnpm'
+          cache: true
+          install: false # pnpm/setup does not yet supports frozen lockfile https://github.com/pnpm/setup/issues/10
       - run: pnpm install --frozen-lockfile && pnpm build && pnpm install --frozen-lockfile
       - run: pnpm run format:check
 
@@ -59,11 +54,10 @@ jobs:
       TURBO_CACHE: 'remote:rw'
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
-      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+      - uses: pnpm/setup@v1
         with:
-          node-version-file: .nvmrc
-          cache: 'pnpm'
+          cache: true
+          install: false # pnpm/setup does not yet supports frozen lockfile https://github.com/pnpm/setup/issues/10
       - run: pnpm install --frozen-lockfile && pnpm build && pnpm install --frozen-lockfile
       - run: pnpm run lint --format=github
 
@@ -75,12 +69,11 @@ jobs:
         node: [24, 26]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
-      - name: Use Node.js
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+      - uses: pnpm/setup@v1
         with:
-          node-version: ${{ matrix.node }}
-          cache: 'pnpm'
+          runtime: node@${{ matrix.node }}
+          cache: true
+          install: false # pnpm/setup does not yet supports frozen lockfile https://github.com/pnpm/setup/issues/10
       - run: pnpm install --frozen-lockfile && pnpm build && pnpm install --frozen-lockfile
       - run: pnpm run test:unit:coverage
       - uses: codecov/codecov-action@fb8b3582c8e4def4969c97caa2f19720cb33a72f # v7.0.0
@@ -93,11 +86,9 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
-      - name: Use Node.js
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+      - uses: pnpm/setup@v1
         with:
-          node-version-file: .nvmrc
-          cache: 'pnpm'
+          cache: true
+          install: false # pnpm/setup does not yet supports frozen lockfile https://github.com/pnpm/setup/issues/10
       - run: pnpm install
       - run: pnpm run test:types
