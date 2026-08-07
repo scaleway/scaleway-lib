@@ -1,5 +1,12 @@
 # Change Log
 
+## 8.2.1
+
+### Patch Changes
+
+- [#3600](https://github.com/scaleway/scaleway-lib/pull/3600) [`a7a5cd1`](https://github.com/scaleway/scaleway-lib/commit/a7a5cd1fbcd8db44419250b86996b2788cc3b827) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@formatjs/icu-messageformat-parser` to `3.5.16`.
+  Updated dependency `intl-messageformat` to `11.2.13`.
+
 ## 8.2.0
 
 ### Minor Changes
