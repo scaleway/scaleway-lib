@@ -18,7 +18,7 @@ catalog:
   "@testing-library/jest-dom": 7.0.0
   "@testing-library/react": 16.3.2
   "@testing-library/user-event": 14.6.3
-  "@types/node": 26.1.2
+  "@types/node": 26.2.0
   "@types/picomatch": 4.0.3
   "@types/react-dom": 19.2.4
   "@types/react": 19.2.18
