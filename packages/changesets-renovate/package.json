@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "@changesets/config": "catalog:",
+    "@changesets/types": "catalog:",
     "simple-git": "catalog:",
     "tinyglobby": "catalog:",
     "yaml": "catalog:"

@@ -7,7 +7,11 @@ import { run } from '../generateChangeset.js'
 // Mock all external dependencies
 vi.mock('node:fs/promises')
 
-vi.spyOn(changesetConfig, 'read').mockResolvedValue(changesetConfig.defaultConfig)
+vi.spyOn(changesetConfig, 'readConfig').mockResolvedValue({
+  config: changesetConfig.defaultConfig,
+  errors: undefined,
+  warnings: [],
+})
 
 const mockedWriteFile = vi.mocked(writeFile)
 const mockedReadFile = vi.mocked(readFile)
@@ -426,7 +430,11 @@ describe('generate changeset file', () => {
 `,
     })
 
-    vi.spyOn(changesetConfig, 'read').mockResolvedValue({ ...changesetConfig.defaultConfig, ignore: ['packageName'] })
+    vi.spyOn(changesetConfig, 'readConfig').mockResolvedValue({
+      config: { ...changesetConfig.defaultConfig, ignore: ['packageName'] },
+      errors: undefined,
+      warnings: [],
+    })
 
     // Mock changeset config for this test
     mockedReadFile.mockImplementation(async path => {
@@ -464,9 +472,13 @@ describe('generate changeset file', () => {
 `,
     })
 
-    vi.spyOn(changesetConfig, 'read').mockResolvedValue({
-      ...changesetConfig.defaultConfig,
-      privatePackages: { version: false, tag: false },
+    vi.spyOn(changesetConfig, 'readConfig').mockResolvedValue({
+      config: {
+        ...changesetConfig.defaultConfig,
+        privatePackages: { version: false, tag: false },
+      },
+      errors: undefined,
+      warnings: [],
     })
 
     // Mock changeset config for this test

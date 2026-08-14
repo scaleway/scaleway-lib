@@ -15,7 +15,11 @@ vi.mock('node:fs/promises')
 vi.mock('yaml')
 vi.mock('tinyglobby')
 
-vi.spyOn(changesetConfig, 'read').mockResolvedValue(changesetConfig.defaultConfig)
+vi.spyOn(changesetConfig, 'readConfig').mockResolvedValue({
+  config: changesetConfig.defaultConfig,
+  errors: undefined,
+  warnings: [],
+})
 
 describe('pnpm-catalogs-utils', () => {
   beforeEach(() => {
@@ -230,7 +234,11 @@ catalog:
     })
 
     it('should find packages affected by dependency changes and respect changeset ignore config', async () => {
-      vi.spyOn(changesetConfig, 'read').mockResolvedValue({ ...changesetConfig.defaultConfig, ignore: ['package-c'] })
+      vi.spyOn(changesetConfig, 'readConfig').mockResolvedValue({
+        config: { ...changesetConfig.defaultConfig, ignore: ['package-c'] },
+        errors: undefined,
+        warnings: [],
+      })
 
       // Mock file system reads for package.json files
       vi.mocked(readFile).mockImplementation((async (filePath: string) => {
