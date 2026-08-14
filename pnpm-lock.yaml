@@ -290,8 +290,8 @@ catalogs:
       specifier: 4.4.0
       version: 4.4.0
     deepmerge-ts:
-      specifier: 7.1.5
-      version: 7.1.5
+      specifier: 7.1.6
+      version: 7.1.6
     execa:
       specifier: 10.0.1
       version: 10.0.1
@@ -536,7 +536,7 @@ importers:
     dependencies:
       deepmerge-ts:
         specifier: 'catalog:'
-        version: 7.1.5
+        version: 7.1.6
     devDependencies:
       oxfmt:
         specifier: 'catalog:'
@@ -2050,8 +2050,8 @@ packages:
     resolution: {integrity: sha512-LOHxIOaPYdHlJRtCQfDIVZtfw/ufM8+rVj649RIHzcm/vGwQRXFt6OPqIFWsm2XEMrNIEtWR64sY1LEKD2vAOA==}
     engines: {node: '>=4.0.0'}
 
-  deepmerge-ts@7.1.5:
-    resolution: {integrity: sha512-HOJkrhaYsweh+W+e74Yn7YStZOilkoPb6fycpwNLKzSPtruFs48nYis0zy5yJz1+ktUhHxoRDJ27RQAWLIJVJw==}
+  deepmerge-ts@7.1.6:
+    resolution: {integrity: sha512-gQhL1ksGBLQbHeAo47YU6cs2ahd3Pv+8PFYoWogNZbQnNwQyOh9Ad5kbeHFiWwbKdeWQJ5Z7Y7mwb9ew2hXBLw==}
     engines: {node: '>=16.0.0'}
 
   defu@6.1.7:
@@ -4389,7 +4389,7 @@ snapshots:
 
   deep-extend@0.6.0: {}
 
-  deepmerge-ts@7.1.5: {}
+  deepmerge-ts@7.1.6: {}
 
   defu@6.1.7: {}
 
