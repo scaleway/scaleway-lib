@@ -1,6 +1,7 @@
 import { readFile } from 'node:fs/promises'
 import { env } from 'node:process'
-import { read } from '@changesets/config'
+import { readConfig } from '@changesets/config'
+import { Config } from '@changesets/types'
 import { glob } from 'tinyglobby'
 import { parse } from 'yaml'
 
@@ -25,8 +26,14 @@ function shouldSkipPackage(
   return !packageJson.version
 }
 
-export async function getChangesetConfig(): ReturnType<typeof read> {
-  return read(process.cwd())
+export async function getChangesetConfig(): Promise<Config> {
+  const config = await readConfig(process.cwd())
+
+  if (config.errors) {
+    throw config.errors
+  }
+
+  return config.config
 }
 
 export async function getPackagesNames(files: string[], packageBumps: Map<string, string>): Promise<string[]> {
