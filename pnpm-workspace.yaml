@@ -3,9 +3,9 @@ packages:
 
 catalog:
   "@arethetypeswrong/core": 0.18.5
-  "@changesets/changelog-github": 0.7.0
+  "@changesets/changelog-github": 1.0.0
   "@changesets/cli": 3.0.0
-  "@changesets/config": 3.1.4
+  "@changesets/config": 4.0.0
   "@formatjs/ecma402-abstract": 3.2.0
   "@formatjs/fast-memoize": 3.1.7
   "@formatjs/icu-messageformat-parser": 3.5.16
