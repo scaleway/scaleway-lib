@@ -28,7 +28,7 @@ jobs:
         run: |
           git config --global user.name 'Scaleway Bot'
           git config --global user.email 'github@scaleway.com'
-      - uses: pnpm/setup@v1
+      - uses: pnpm/setup@v2
         with:
           cache: true
           install: false # pnpm/setup does not yet supports frozen lockfile https://github.com/pnpm/setup/issues/10
