@@ -239,8 +239,8 @@ catalogs:
       specifier: 2.6.0
       version: 2.6.0
     '@scaleway/sdk-iam':
-      specifier: 2.11.0
-      version: 2.11.0
+      specifier: 2.12.0
+      version: 2.12.0
     '@segment/analytics-next':
       specifier: 1.84.1
       version: 1.84.1
@@ -507,7 +507,7 @@ importers:
         version: 2.6.0
       '@scaleway/sdk-iam':
         specifier: 'catalog:'
-        version: 2.11.0(@scaleway/sdk-client@2.6.0)
+        version: 2.12.0(@scaleway/sdk-client@2.6.0)
       '@types/react':
         specifier: 'catalog:'
         version: 19.2.18
@@ -1452,8 +1452,8 @@ packages:
     resolution: {integrity: sha512-o8mq/Yv9BgiYdWmBRK7MKeBB+J+0fMTzZ/s4c/lke6L/QRSXKl7itEMA7F3tH+LPyXN9w12BBhmIu7dRG6fJGw==}
     engines: {node: '>=20.20.2'}
 
-  '@scaleway/sdk-iam@2.11.0':
-    resolution: {integrity: sha512-IKzrWBRprytfne9w6I6ippssFEBIs5/FNgkeOPPVPxmuw8uJYcb4029Amb73vnxyCXIt/j2cgTGLTM/oidTBYQ==}
+  '@scaleway/sdk-iam@2.12.0':
+    resolution: {integrity: sha512-wqFs8ZiGqv/8wB12Gn4heCjLMJQkYKYY8Uyhx0KahRGiBSsTGI3f2EdYiIje/0ZWIUThZWqlAELMg1r08v0OUA==}
     engines: {node: '>=20.20.2'}
     peerDependencies:
       '@scaleway/sdk-client': ^2.6.0
@@ -3922,7 +3922,7 @@ snapshots:
 
   '@scaleway/sdk-client@2.6.0': {}
 
-  '@scaleway/sdk-iam@2.11.0(@scaleway/sdk-client@2.6.0)':
+  '@scaleway/sdk-iam@2.12.0(@scaleway/sdk-client@2.6.0)':
     dependencies:
       '@scaleway/random-name': 6.0.2
       '@scaleway/sdk-client': 2.6.0
