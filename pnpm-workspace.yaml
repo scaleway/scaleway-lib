@@ -9,7 +9,7 @@ catalog:
   "@formatjs/ecma402-abstract": 3.2.0
   "@formatjs/fast-memoize": 3.1.7
   "@formatjs/icu-messageformat-parser": 3.5.16
-  "@growthbook/growthbook-react": 1.6.5
+  "@growthbook/growthbook-react": 1.7.0
   "@manypkg/cli": 0.25.1
   "@rudderstack/analytics-js": 3.31.6
   "@scaleway/sdk-client": 2.6.0
