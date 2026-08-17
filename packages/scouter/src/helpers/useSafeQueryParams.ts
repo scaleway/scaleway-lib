@@ -58,7 +58,6 @@ export const useSafeQueryParams = <T extends z.ZodObject<any>>({
     (partialData: Partial<z.infer<T>>, options: SetQueryParamsOptions = DEFAULT_SETQUERYPARAMS_OPTIONS) => {
       // Use history.location.search, to avoid re-memo this function when queryParams change,
       // it makes it easier to use this function as hook dependency
-      // oxlint-disable-next-line unicorn/no-negated-condition
       const searchParams = new URLSearchParams(options.keepExisting !== false ? history.location.search : undefined)
       Object.keys(partialData).forEach(key => {
         searchParams.delete(key)

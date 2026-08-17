@@ -1,4 +1,3 @@
-// oxlint-disable only-export-components
 import type { ComponentType, Context, ReactNode } from 'react'
 import { createContext, useCallback, useContext, useMemo, useRef } from 'react'
 import { DEFAULT_MAX_CONCURRENT_REQUESTS } from './constants'

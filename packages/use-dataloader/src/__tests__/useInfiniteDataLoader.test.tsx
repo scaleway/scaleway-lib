@@ -1,5 +1,3 @@
-// oxlint-disable eslint/max-statements
-//
 import { renderHook, waitFor } from '@testing-library/react'
 import type { ReactNode } from 'react'
 import { act } from 'react'
