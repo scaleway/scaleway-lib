@@ -1,5 +1,15 @@
 # @scaleway/scouter
 
+## 1.1.0
+
+### Minor Changes
+
+- [#3637](https://github.com/scaleway/scaleway-lib/pull/3637) [`ef93671`](https://github.com/scaleway/scaleway-lib/commit/ef93671772a0c6485ad6f459fc959d35638ff709) Thanks [@alexandre-combemorel](https://github.com/alexandre-combemorel)! - feat: export Router component from Scouter
+
+### Patch Changes
+
+- [#3614](https://github.com/scaleway/scaleway-lib/pull/3614) [`810da8e`](https://github.com/scaleway/scaleway-lib/commit/810da8e549ba457e7e1d6903a532e138c65760cb) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `query-string` to `9.5.0`.
+
 ## 1.0.2
 
 ### Patch Changes
