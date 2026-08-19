@@ -29,7 +29,7 @@ catalog:
   chalk: 6.0.0
   cookie: 2.0.1
   date-fns: 4.4.0
-  deepmerge-ts: 7.1.6
+  deepmerge-ts: 8.0.1
   execa: 10.0.1
   filesize: 11.0.22
   happy-dom: 20.11.2
