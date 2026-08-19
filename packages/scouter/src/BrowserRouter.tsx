@@ -3,7 +3,7 @@ import type { PropsWithChildren } from 'react'
 import { useState } from 'react'
 import { Router } from './Router'
 
-export const BrowserRouter = (props: PropsWithChildren<{ history: BrowserHistory }>) => {
+export const BrowserRouter = (props: PropsWithChildren<{ history?: BrowserHistory }>) => {
   const { children, history: historyProps } = props
   const [history] = useState(() => historyProps ?? createBrowserHistory())
 
