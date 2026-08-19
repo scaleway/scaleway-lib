@@ -2,4 +2,4 @@
 "@scaleway/scouter": minor
 ---
 
-feat: add history as a props
+feat: export Router component from Scouter
