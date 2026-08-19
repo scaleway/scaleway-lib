@@ -19,3 +19,5 @@ export const react = defineConfig({
 export const vitest = defineConfig({
   extends: [vitestConfig],
 })
+
+export { ignorePatterns } from './ignorePatterns'

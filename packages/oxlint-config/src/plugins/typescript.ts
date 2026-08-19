@@ -3,115 +3,475 @@ import { defineConfig } from 'oxlint'
 export default defineConfig({
   plugins: ['typescript'],
   rules: {
-    'typescript/adjacent-overload-signatures': 'off',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/adjacent-overload-signatures
+     */
+    'typescript/adjacent-overload-signatures': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/array-type
+     * No consensus as of yet
+     */
     'typescript/array-type': 'off',
-    'typescript/await-thenable': 'off',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/await-thenable
+     */
+    'typescript/await-thenable': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/ban-ts-comment
+     * No consensus as of yet
+     */
     'typescript/ban-ts-comment': 'off',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/ban-tslint-comment
+     * No consensus as of yet
+     */
     'typescript/ban-tslint-comment': 'off',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/ban-types
+     * No consensus as of yet
+     */
     'typescript/ban-types': 'off',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/class-literal-property-style
+     * No consensus as of yet
+     */
     'typescript/class-literal-property-style': 'off',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/consistent-generic-constructors
+     * No consensus as of yet
+     */
     'typescript/consistent-generic-constructors': 'off',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/consistent-indexed-object-style
+     * No consensus as of yet
+     */
     'typescript/consistent-indexed-object-style': 'off',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/consistent-return
+     * No consensus as of yet
+     */
     'typescript/consistent-return': 'off',
-    'typescript/consistent-type-assertions': 'off',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/consistent-type-assertions
+     */
+    'typescript/consistent-type-assertions': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/consistent-type-definitions
+     * No consensus as of yet
+     */
     'typescript/consistent-type-definitions': 'off',
-    'typescript/consistent-type-exports': 'off',
-    'typescript/consistent-type-imports': 'off',
-    'typescript/dot-notation': 'off',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/consistent-type-exports
+     */
+    'typescript/consistent-type-exports': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/consistent-type-imports
+     */
+    'typescript/consistent-type-imports': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/dot-notation
+     */
+    'typescript/dot-notation': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/explicit-function-return-type
+     */
     'typescript/explicit-function-return-type': 'off',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/explicit-member-accessibility
+     * No consensus as of yet
+     */
     'typescript/explicit-member-accessibility': 'off',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/explicit-module-boundary-types
+     * No consensus as of yet
+     */
     'typescript/explicit-module-boundary-types': 'off',
-    'typescript/method-signature-style': 'off',
-    'typescript/no-array-delete': 'off',
-    'typescript/no-base-to-string': 'off',
-    'typescript/no-confusing-non-null-assertion': 'off',
-    'typescript/no-confusing-void-expression': 'off',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/method-signature-style
+     */
+    'typescript/method-signature-style': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-array-delete
+     */
+    'typescript/no-array-delete': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-base-to-string
+     */
+    'typescript/no-base-to-string': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-confusing-non-null-assertion
+     */
+    'typescript/no-confusing-non-null-assertion': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-confusing-void-expression
+     */
+    'typescript/no-confusing-void-expression': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-deprecated
+     * No consensus as of yet
+     */
     'typescript/no-deprecated': 'off',
-    'typescript/no-duplicate-enum-values': 'off',
-    'typescript/no-duplicate-type-constituents': 'off',
-    'typescript/no-dynamic-delete': 'off',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-duplicate-enum-values
+     */
+    'typescript/no-duplicate-enum-values': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-duplicate-type-constituents
+     */
+    'typescript/no-duplicate-type-constituents': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-dynamic-delete
+     */
+    'typescript/no-dynamic-delete': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-empty-interface
+     * No consensus as of yet
+     */
     'typescript/no-empty-interface': 'off',
-    'typescript/no-empty-object-type': 'off',
-    'typescript/no-explicit-any': 'off',
-    'typescript/no-extra-non-null-assertion': 'off',
-    'typescript/no-extraneous-class': 'off',
-    'typescript/no-floating-promises': 'off',
-    'typescript/no-for-in-array': 'off',
-    'typescript/no-implied-eval': 'off',
-    'typescript/no-import-type-side-effects': 'off',
-    'typescript/no-inferrable-types': 'off',
-    'typescript/no-invalid-void-type': 'off',
-    'typescript/no-meaningless-void-operator': 'off',
-    'typescript/no-misused-new': 'off',
-    'typescript/no-misused-promises': 'off',
-    'typescript/no-misused-spread': 'off',
-    'typescript/no-mixed-enums': 'off',
-    'typescript/no-namespace': 'off',
-    'typescript/no-non-null-asserted-nullish-coalescing': 'off',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-empty-object-type
+     */
+    'typescript/no-empty-object-type': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-explicit-any
+     */
+    'typescript/no-explicit-any': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-extra-non-null-assertion
+     */
+    'typescript/no-extra-non-null-assertion': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-extraneous-class
+     */
+    'typescript/no-extraneous-class': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-floating-promises
+     */
+    'typescript/no-floating-promises': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-for-in-array
+     */
+    'typescript/no-for-in-array': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-implied-eval
+     */
+    'typescript/no-implied-eval': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-import-type-side-effects
+     */
+    'typescript/no-import-type-side-effects': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-inferrable-types
+     */
+    'typescript/no-inferrable-types': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-invalid-void-type
+     */
+    'typescript/no-invalid-void-type': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-meaningless-void-operator
+     */
+    'typescript/no-meaningless-void-operator': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-misused-new
+     */
+    'typescript/no-misused-new': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-misused-promises
+     */
+    'typescript/no-misused-promises': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-misused-spread
+     */
+    'typescript/no-misused-spread': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-mixed-enums
+     */
+    'typescript/no-mixed-enums': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-namespace
+     */
+    'typescript/no-namespace': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-non-null-asserted-nullish-coalescing
+     */
+    'typescript/no-non-null-asserted-nullish-coalescing': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-non-null-asserted-optional-chain
+     * No consensus as of yet
+     */
     'typescript/no-non-null-asserted-optional-chain': 'off',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-non-null-assertion
+     * No consensus as of yet
+     */
     'typescript/no-non-null-assertion': 'off',
-    'typescript/no-redundant-type-constituents': 'off',
-    'typescript/no-require-imports': 'off',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-redundant-type-constituents
+     */
+    'typescript/no-redundant-type-constituents': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-require-imports
+     */
+    'typescript/no-require-imports': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-restricted-types
+     * No consensus as of yet
+     */
     'typescript/no-restricted-types': 'off',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-this-alias
+     * No consensus as of yet
+     */
     'typescript/no-this-alias': 'off',
-    'typescript/no-unnecessary-boolean-literal-compare': 'off',
-    'typescript/no-unnecessary-condition': 'off',
-    'typescript/no-unnecessary-parameter-property-assignment': 'off',
-    'typescript/no-unnecessary-qualifier': 'off',
-    'typescript/no-unnecessary-template-expression': 'off',
-    'typescript/no-unnecessary-type-arguments': 'off',
-    'typescript/no-unnecessary-type-assertion': 'off',
-    'typescript/no-unnecessary-type-constraint': 'off',
-    'typescript/no-unnecessary-type-conversion': 'off',
-    'typescript/no-unnecessary-type-parameters': 'off',
-    'typescript/no-unsafe-argument': 'off',
-    'typescript/no-unsafe-assignment': 'off',
-    'typescript/no-unsafe-call': 'off',
-    'typescript/no-unsafe-declaration-merging': 'off',
-    'typescript/no-unsafe-enum-comparison': 'off',
-    'typescript/no-unsafe-function-type': 'off',
-    'typescript/no-unsafe-member-access': 'off',
-    'typescript/no-unsafe-return': 'off',
-    'typescript/no-unsafe-type-assertion': 'off',
-    'typescript/no-unsafe-unary-minus': 'off',
-    'typescript/no-useless-default-assignment': 'off',
-    'typescript/no-useless-empty-export': 'off',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-unnecessary-boolean-literal-compare
+     */
+    'typescript/no-unnecessary-boolean-literal-compare': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-unnecessary-condition
+     */
+    'typescript/no-unnecessary-condition': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-unnecessary-parameter-property-assignment
+     */
+    'typescript/no-unnecessary-parameter-property-assignment': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-unnecessary-qualifier
+     */
+    'typescript/no-unnecessary-qualifier': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-unnecessary-template-expression
+     */
+    'typescript/no-unnecessary-template-expression': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-unnecessary-type-arguments
+     */
+    'typescript/no-unnecessary-type-arguments': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-unnecessary-type-assertion
+     */
+    'typescript/no-unnecessary-type-assertion': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-unnecessary-type-constraint
+     */
+    'typescript/no-unnecessary-type-constraint': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-unnecessary-type-conversion
+     */
+    'typescript/no-unnecessary-type-conversion': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-unnecessary-type-parameters
+     */
+    'typescript/no-unnecessary-type-parameters': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-unsafe-argument
+     */
+    'typescript/no-unsafe-argument': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-unsafe-assignment
+     */
+    'typescript/no-unsafe-assignment': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-unsafe-call
+     */
+    'typescript/no-unsafe-call': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-unsafe-declaration-merging
+     */
+    'typescript/no-unsafe-declaration-merging': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-unsafe-enum-comparison
+     */
+    'typescript/no-unsafe-enum-comparison': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-unsafe-function-type
+     */
+    'typescript/no-unsafe-function-type': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-unsafe-member-access
+     */
+    'typescript/no-unsafe-member-access': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-unsafe-return
+     */
+    'typescript/no-unsafe-return': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-unsafe-type-assertion
+     */
+    'typescript/no-unsafe-type-assertion': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-unsafe-unary-minus
+     */
+    'typescript/no-unsafe-unary-minus': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-useless-default-assignment
+     */
+    'typescript/no-useless-default-assignment': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-useless-empty-export
+     */
+    'typescript/no-useless-empty-export': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-var-requires
+     * No consensus as of yet
+     */
     'typescript/no-var-requires': 'off',
-    'typescript/no-wrapper-object-types': 'off',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-wrapper-object-types
+     */
+    'typescript/no-wrapper-object-types': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/non-nullable-type-assertion-style
+     * No consensus as of yet
+     */
     'typescript/non-nullable-type-assertion-style': 'off',
-    'typescript/only-throw-error': 'off',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/only-throw-error
+     */
+    'typescript/only-throw-error': 'warn',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/parameter-properties
+     * No consensus as of yet
+     */
     'typescript/parameter-properties': 'off',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/prefer-as-const
+     * No consensus as of yet
+     */
     'typescript/prefer-as-const': 'off',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/prefer-enum-initializers
+     * No consensus as of yet
+     */
     'typescript/prefer-enum-initializers': 'off',
-    'typescript/prefer-find': 'off',
-    'typescript/prefer-for-of': 'off',
-    'typescript/prefer-function-type': 'off',
-    'typescript/prefer-includes': 'off',
-    'typescript/prefer-literal-enum-member': 'off',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/prefer-find
+     */
+    'typescript/prefer-find': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/prefer-for-of
+     */
+    'typescript/prefer-for-of': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/prefer-function-type
+     */
+    'typescript/prefer-function-type': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/prefer-includes
+     */
+    'typescript/prefer-includes': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/prefer-literal-enum-member
+     */
+    'typescript/prefer-literal-enum-member': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/prefer-namespace-keyword
+     * No consensus as of yet
+     */
     'typescript/prefer-namespace-keyword': 'off',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/prefer-nullish-coalescing
+     * No consensus as of yet
+     */
     'typescript/prefer-nullish-coalescing': 'off',
-    'typescript/prefer-optional-chain': 'off',
-    'typescript/prefer-promise-reject-errors': 'off',
-    'typescript/prefer-readonly': 'off',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/prefer-optional-chain
+     */
+    'typescript/prefer-optional-chain': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/prefer-promise-reject-errors
+     */
+    'typescript/prefer-promise-reject-errors': 'warn',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/prefer-readonly
+     */
+    'typescript/prefer-readonly': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/prefer-readonly-parameter-types
+     * No consensus as of yet
+     */
     'typescript/prefer-readonly-parameter-types': 'off',
-    'typescript/prefer-reduce-type-parameter': 'off',
-    'typescript/prefer-regexp-exec': 'off',
-    'typescript/prefer-return-this-type': 'off',
-    'typescript/prefer-string-starts-ends-with': 'off',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/prefer-reduce-type-parameter
+     */
+    'typescript/prefer-reduce-type-parameter': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/prefer-regexp-exec
+     */
+    'typescript/prefer-regexp-exec': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/prefer-return-this-type
+     */
+    'typescript/prefer-return-this-type': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/prefer-string-starts-ends-with
+     */
+    'typescript/prefer-string-starts-ends-with': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/prefer-ts-expect-error
+     * No consensus as of yet
+     */
     'typescript/prefer-ts-expect-error': 'off',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/promise-function-async
+     * No consensus as of yet
+     */
     'typescript/promise-function-async': 'off',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/related-getter-setter-pairs
+     * No consensus as of yet
+     */
     'typescript/related-getter-setter-pairs': 'off',
-    'typescript/require-array-sort-compare': 'off',
-    'typescript/require-await': 'off',
-    'typescript/restrict-plus-operands': 'off',
-    'typescript/restrict-template-expressions': 'off',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/require-array-sort-compare
+     */
+    'typescript/require-array-sort-compare': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/require-await
+     */
+    'typescript/require-await': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/restrict-plus-operands
+     */
+    'typescript/restrict-plus-operands': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/restrict-template-expressions
+     */
+    'typescript/restrict-template-expressions': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/return-await
+     * No consensus as of yet
+     */
     'typescript/return-await': 'off',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/strict-boolean-expressions
+     * No consensus as of yet
+     */
     'typescript/strict-boolean-expressions': 'off',
-    'typescript/strict-void-return': 'off',
-    'typescript/switch-exhaustiveness-check': 'off',
-    'typescript/triple-slash-reference': 'off',
-    'typescript/unbound-method': 'off',
-    'typescript/unified-signatures': 'off',
-    'typescript/use-unknown-in-catch-callback-variable': 'off',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/strict-void-return
+     */
+    'typescript/strict-void-return': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/switch-exhaustiveness-check
+     */
+    'typescript/switch-exhaustiveness-check': 'warn',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/triple-slash-reference
+     */
+    'typescript/triple-slash-reference': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/unbound-method
+     */
+    'typescript/unbound-method': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/unified-signatures
+     */
+    'typescript/unified-signatures': 'warn',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/use-unknown-in-catch-callback-variable
+     */
+    'typescript/use-unknown-in-catch-callback-variable': 'error',
   },
 })
