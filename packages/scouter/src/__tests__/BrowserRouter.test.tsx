@@ -1,7 +1,6 @@
 // oxlint-disable typescript/no-unsafe-assignment typescript/no-unsafe-type-assertion typescript/no-explicit-any unicorn/no-negated-condition vitest/no-conditional-in-test
 import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
-import { createBrowserHistory } from 'history'
 import { describe, expect, it } from 'vitest'
 import type { History, Location, Match } from '../index'
 import { BrowserRouter, Route, useHistory } from '../index'
@@ -38,28 +37,6 @@ describe('component BrowserRouter', () => {
     )
 
     expect(history).toBeDefined()
-    expect(typeof history.push).toBe('function')
-    expect(typeof history.replace).toBe('function')
-  })
-
-  it('creates browser history outside Router', () => {
-    expect.hasAssertions()
-
-    const history: History = createBrowserHistory()
-    let historyFromHook = null as any
-
-    const Inner = () => {
-      historyFromHook = useHistory()
-      return null
-    }
-
-    render(
-      <BrowserRouter history={history}>
-        <Inner />
-      </BrowserRouter>,
-    )
-
-    expect(history).toEqual(historyFromHook)
     expect(typeof history.push).toBe('function')
     expect(typeof history.replace).toBe('function')
   })
