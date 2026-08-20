@@ -1,5 +1,13 @@
 # @scaleway/oxfmt-config
 
+## 1.1.5
+
+### Patch Changes
+
+- [#3629](https://github.com/scaleway/scaleway-lib/pull/3629) [`acf8c2d`](https://github.com/scaleway/scaleway-lib/commit/acf8c2d28ad18b96238f2411eb3ca10f072d9941) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `deepmerge-ts` to `7.1.6`.
+
+- [#3638](https://github.com/scaleway/scaleway-lib/pull/3638) [`f3e135e`](https://github.com/scaleway/scaleway-lib/commit/f3e135e6f7d05deba46b8f59b763c54a3e94a645) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `deepmerge-ts` to `8.0.1`.
+
 ## 1.1.4
 
 ### Patch Changes
