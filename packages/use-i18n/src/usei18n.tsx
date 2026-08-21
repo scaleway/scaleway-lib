@@ -59,14 +59,24 @@ export type RequiredGenericContext<
 const areNamespacesLoaded = (namespaces: string[], loadedNamespaces: string[] = []) =>
   namespaces.every(n => loadedNamespaces.includes(n))
 
+const setLangAttribute = (locale: string, rootElement?: Element) => {
+  if (rootElement) {
+    rootElement.setAttribute('lang', locale)
+  } else {
+    document.documentElement.lang = locale
+  }
+}
+
 const getCurrentLocale = <LocalSupportedType extends string>({
   defaultLocale,
   isLocaleSupported,
   localeItemStorage,
+  rootElement,
 }: {
   defaultLocale: LocalSupportedType
   isLocaleSupported: SupportedLocalesType<LocalSupportedType>
   localeItemStorage: string
+  rootElement?: Element
 }): LocalSupportedType => {
   if (typeof window !== 'undefined') {
     const { languages: browserLocales } = navigator
@@ -77,16 +87,18 @@ const getCurrentLocale = <LocalSupportedType extends string>({
     }
     localStorage.removeItem(localeItemStorage)
 
-    const findedBrowserLocal = browserLocales.find(locale => isLocaleSupported(locale))
+    const foundBrowserLocale = browserLocales.find(locale => isLocaleSupported(locale))
 
-    if (findedBrowserLocal) {
-      localStorage.setItem(localeItemStorage, findedBrowserLocal)
+    if (foundBrowserLocale) {
+      localStorage.setItem(localeItemStorage, foundBrowserLocale)
+      setLangAttribute(foundBrowserLocale, rootElement)
 
-      return findedBrowserLocal
+      return foundBrowserLocale
     }
 
     if (defaultLocale && isLocaleSupported(defaultLocale)) {
       localStorage.setItem(localeItemStorage, defaultLocale)
+      setLangAttribute(defaultLocale, rootElement)
 
       return defaultLocale
     }
@@ -171,6 +183,7 @@ const initialDefaultTranslations = {}
 // oxlint-disable-next-line max-statements
 const I18nContextProvider = <LocalSupportedType extends string>({
   children,
+  rootElement,
   defaultLoad,
   defaultLocale,
   defaultTranslations = initialDefaultTranslations,
@@ -185,6 +198,7 @@ const I18nContextProvider = <LocalSupportedType extends string>({
   isLocaleSupported,
 }: {
   children: ReactNode
+  rootElement?: Element
   defaultLoad: LoadTranslationsFn<LocalSupportedType>
   loadDateLocale?: LoadLocaleFn<LocalSupportedType>
   loadDateLocaleAsync: LoadLocaleFnAsync<LocalSupportedType>
@@ -214,6 +228,7 @@ const I18nContextProvider = <LocalSupportedType extends string>({
       defaultLocale,
       isLocaleSupported,
       localeItemStorage,
+      rootElement,
     }),
   )
   const [translations, setTranslations] = useState<TranslationsByLocales>(defaultTranslations)
@@ -313,11 +328,12 @@ const I18nContextProvider = <LocalSupportedType extends string>({
     async (locale: LocalSupportedType) => {
       if (isLocaleSupported(locale)) {
         localStorage.setItem(localeItemStorage, locale)
+        setLangAttribute(locale, rootElement)
         setCurrentLocale(locale)
         await setDateFns(locale)
       }
     },
-    [setDateFns, localeItemStorage, setCurrentLocale, isLocaleSupported],
+    [setDateFns, localeItemStorage, setCurrentLocale, isLocaleSupported, rootElement],
   )
 
   const formatNumber = useCallback(
