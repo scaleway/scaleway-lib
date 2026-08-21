@@ -23,7 +23,7 @@ catalog:
   "@types/react-dom": 19.2.4
   "@types/react": 19.2.18
   "@vitejs/plugin-react": 6.0.5
-  "@vitest/coverage-istanbul": 4.1.10
+  "@vitest/coverage-istanbul": 4.1.11
   awesome-phonenumber: 7.8.0
   browserslist: 4.28.8
   chalk: 6.0.0
@@ -53,7 +53,7 @@ catalog:
   turbo: 2.10.10
   typescript: 7.0.2
   use-deep-compare-effect: 1.8.1
-  vitest: 4.1.10
+  vitest: 4.1.11
   vitest-localstorage-mock: 0.1.2
   wait-for-expect: 4.0.0
   yaml: 2.9.0
