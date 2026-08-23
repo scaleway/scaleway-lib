@@ -22,7 +22,7 @@ catalog:
   "@types/picomatch": 4.0.3
   "@types/react-dom": 19.2.4
   "@types/react": 19.2.18
-  "@vitejs/plugin-react": 6.0.5
+  "@vitejs/plugin-react": 6.1.0
   "@vitest/coverage-istanbul": 4.1.10
   awesome-phonenumber: 7.8.0
   browserslist: 4.28.8
