@@ -1,8 +1,8 @@
+// oxlint-disable eslint/max-classes-per-file
 import type { Client as SDKClient, Settings } from '@scaleway/sdk-client'
 import { API as SDKAPI } from '@scaleway/sdk-client'
 import type { z } from 'zod'
 import type { audienceIdSchema, jwtSchema } from '../zodSchemas'
-// oxlint-disable eslint/max-classes-per-file
 import type { Iamv1alpha1 } from './iam'
 
 export type EncodedJWT = z.infer<typeof jwtSchema>
