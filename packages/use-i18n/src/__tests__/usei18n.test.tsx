@@ -71,9 +71,10 @@ const wrapper =
     enableDefaultLocale = false,
     localeItemStorage = LOCALE_ITEM_STORAGE,
     isLocaleSupported = isDefaultLocalesSupported,
+    rootElement = undefined,
     onTranslateError = defaultOnTranslateError,
     onLoadTranslationError = defaultOnLoadTranslationError,
-  } = {}) =>
+  }: Partial<ComponentProps<typeof I18n>> = {}) =>
   ({ children }: { children: ReactNode }) => (
     <I18n
       defaultLoad={defaultLoad}
@@ -87,6 +88,7 @@ const wrapper =
       localeItemStorage={localeItemStorage}
       onTranslateError={onTranslateError}
       onLoadTranslationError={onLoadTranslationError}
+      rootElement={rootElement}
     >
       {children}
     </I18n>
@@ -420,6 +422,84 @@ describe('i18n hook', () => {
       expect(result.current.currentLocale).toBe('es')
     })
     expect(localStorage.getItem(LOCALE_ITEM_STORAGE)).toBe('es')
+  })
+
+  describe('lang attribute', () => {
+    it('should set lang attribute on documentElement from navigator locale', async () => {
+      document.documentElement.lang = ''
+      vi.spyOn(global, 'navigator', 'get').mockReturnValueOnce({
+        languages: ['fr'],
+      } as unknown as Navigator)
+
+      renderHook(() => useI18n(), {
+        wrapper: wrapper({
+          defaultLocale: 'es',
+          isLocaleSupported: isDefaultLocalesSupported,
+        }),
+      })
+
+      await vi.waitFor(() => {
+        expect(document.documentElement.lang).toBe('fr')
+      })
+    })
+
+    it('should set lang attribute on documentElement from defaultLocale', async () => {
+      document.documentElement.lang = ''
+      vi.spyOn(global, 'navigator', 'get').mockReturnValueOnce({
+        languages: [],
+      } as unknown as Navigator)
+
+      renderHook(() => useI18n(), {
+        wrapper: wrapper({
+          defaultLocale: 'es',
+          isLocaleSupported: isDefaultLocalesSupported,
+        }),
+      })
+
+      await vi.waitFor(() => {
+        expect(document.documentElement.lang).toBe('es')
+      })
+    })
+
+    it('should set lang attribute on provided rootElement', async () => {
+      const rootElement = document.createElement('html')
+
+      renderHook(() => useI18n(), {
+        wrapper: wrapper({
+          defaultLocale: 'en',
+          isLocaleSupported: isDefaultLocalesSupported,
+          rootElement,
+        }),
+      })
+
+      await vi.waitFor(() => {
+        expect(rootElement.getAttribute('lang')).toBe('en')
+      })
+    })
+
+    it('should update lang attribute on provided rootElement when switching locale', async () => {
+      const rootElement = document.createElement('html')
+
+      const { result } = renderHook(() => useI18n<Locale, Locales>(), {
+        wrapper: wrapper({
+          defaultLocale: 'en',
+          isLocaleSupported: isDefaultLocalesSupported,
+          rootElement,
+        }),
+      })
+
+      await vi.waitFor(() => {
+        expect(rootElement.getAttribute('lang')).toBe('en')
+      })
+
+      await act(async () => {
+        await result.current.switchLocale('fr')
+      })
+
+      await vi.waitFor(() => {
+        expect(rootElement.getAttribute('lang')).toBe('fr')
+      })
+    })
   })
 
   it('should translate correctly with enableDebugKey and return key', async () => {

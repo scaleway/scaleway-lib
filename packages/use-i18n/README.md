@@ -81,6 +81,27 @@ const App = () => {
 }
 ```
 
+### Set the `lang` attribute
+
+`I18n` automatically sets the `lang` attribute on the root element based on the current locale so screen readers and browsers can pick the right language.
+
+By default the attribute is set on `document.documentElement`. You can provide your own root element (for example when rendering into a portal or a specific container) through the `rootElement` prop:
+
+```ts
+import I18n from '@scaleway/use-i18n'
+
+const rootElement = document.querySelector('#app-root')!
+const root = createRoot(rootElement)
+
+root.render(
+  <I18n defaultLocale="en" rootElement={rootElement}>
+    <Page />
+  </I18n>
+)
+```
+
+The `lang` attribute is updated whenever the current locale is resolved (from `localStorage`, the browser navigator or `defaultLocale`) and whenever the locale is switched with `switchLocale`.
+
 ### useTranslation & useI18n
 
 Theses both hooks are using the same context.
