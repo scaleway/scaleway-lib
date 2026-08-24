@@ -214,36 +214,12 @@ catalogs:
     '@changesets/cli':
       specifier: 2.31.1
       version: 2.31.1
-    '@changesets/config':
-      specifier: 3.1.4
-      version: 3.1.4
-    '@formatjs/ecma402-abstract':
-      specifier: 3.2.0
-      version: 3.2.0
-    '@formatjs/fast-memoize':
-      specifier: 3.1.7
-      version: 3.1.7
-    '@formatjs/icu-messageformat-parser':
-      specifier: 3.5.17
-      version: 3.5.17
-    '@growthbook/growthbook-react':
-      specifier: 1.7.0
-      version: 1.7.0
     '@manypkg/cli':
       specifier: 0.25.1
       version: 0.25.1
     '@rudderstack/analytics-js':
       specifier: 3.31.8
       version: 3.31.8
-    '@scaleway/sdk-client':
-      specifier: 2.6.0
-      version: 2.6.0
-    '@scaleway/sdk-iam':
-      specifier: 2.12.0
-      version: 2.12.0
-    '@segment/analytics-next':
-      specifier: 1.84.1
-      version: 1.84.1
     '@testing-library/dom':
       specifier: 10.4.1
       version: 10.4.1
@@ -259,9 +235,6 @@ catalogs:
     '@types/node':
       specifier: 26.2.0
       version: 26.2.0
-    '@types/picomatch':
-      specifier: 4.0.3
-      version: 4.0.3
     '@types/react':
       specifier: 19.2.18
       version: 19.2.18
@@ -274,42 +247,15 @@ catalogs:
     '@vitest/coverage-istanbul':
       specifier: 4.1.11
       version: 4.1.11
-    awesome-phonenumber:
-      specifier: 7.8.0
-      version: 7.8.0
     browserslist:
       specifier: 4.28.8
       version: 4.28.8
     chalk:
       specifier: 6.0.0
       version: 6.0.0
-    cookie:
-      specifier: 2.0.1
-      version: 2.0.1
-    date-fns:
-      specifier: 4.4.0
-      version: 4.4.0
-    deepmerge-ts:
-      specifier: 8.0.1
-      version: 8.0.1
-    execa:
-      specifier: 10.0.1
-      version: 10.0.1
-    filesize:
-      specifier: 11.0.22
-      version: 11.0.22
     happy-dom:
       specifier: 20.11.6
       version: 20.11.6
-    history:
-      specifier: 5.3.0
-      version: 5.3.0
-    international-types:
-      specifier: 0.8.1
-      version: 0.8.1
-    intl-messageformat:
-      specifier: 11.2.14
-      version: 11.2.14
     jsdom:
       specifier: 30.0.1
       version: 30.0.1
@@ -328,27 +274,9 @@ catalogs:
     publint:
       specifier: 0.3.24
       version: 0.3.24
-    query-string:
-      specifier: 9.5.0
-      version: 9.5.0
-    react:
-      specifier: 19.2.8
-      version: 19.2.8
-    react-dom:
-      specifier: 19.2.8
-      version: 19.2.8
     read-pkg:
       specifier: 10.1.0
       version: 10.1.0
-    regexparam:
-      specifier: 3.0.0
-      version: 3.0.0
-    simple-git:
-      specifier: 3.36.0
-      version: 3.36.0
-    tinyglobby:
-      specifier: 0.2.17
-      version: 0.2.17
     tsdown:
       specifier: 0.22.14
       version: 0.22.14
@@ -358,24 +286,12 @@ catalogs:
     typescript:
       specifier: 7.0.2
       version: 7.0.2
-    use-deep-compare-effect:
-      specifier: 1.8.1
-      version: 1.8.1
     vitest:
       specifier: 4.1.11
       version: 4.1.11
     vitest-localstorage-mock:
       specifier: 0.1.2
       version: 0.1.2
-    wait-for-expect:
-      specifier: 4.0.0
-      version: 4.0.0
-    yaml:
-      specifier: 2.9.0
-      version: 2.9.0
-    zod:
-      specifier: 4.4.3
-      version: 4.4.3
 
 importers:
 
@@ -486,9 +402,6 @@ importers:
       vitest-localstorage-mock:
         specifier: 'catalog:'
         version: 0.1.2(vitest@4.1.11)
-      wait-for-expect:
-        specifier: 'catalog:'
-        version: 4.0.0
 
   packages/auth-scw:
     dependencies:
@@ -3178,9 +3091,6 @@ packages:
     resolution: {integrity: sha512-o8qghlI8NZHU1lLPrpi2+Uq7abh4GGPpYANlalzWxyWteJOCsr/P+oPBA49TOLu5FTZO4d3F9MnWJfiMo4BkmA==}
     engines: {node: '>=18'}
 
-  wait-for-expect@4.0.0:
-    resolution: {integrity: sha512-mcH2HYUUHhdFGHVJkgwkBxRihZO4VSuPyh6xhYHz7LEnYkcaLbTAEEsTpYiFw4UY45XdTZYYIaquuMucw9wWMw==}
-
   webidl-conversions@3.0.1:
     resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
 
@@ -5378,8 +5288,6 @@ snapshots:
   w3c-xmlserializer@5.0.0:
     dependencies:
       xml-name-validator: 5.0.0
-
-  wait-for-expect@4.0.0: {}
 
   webidl-conversions@3.0.1: {}
 

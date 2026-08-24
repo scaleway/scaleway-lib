@@ -55,8 +55,7 @@
     "turbo": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:",
-    "vitest-localstorage-mock": "catalog:",
-    "wait-for-expect": "catalog:"
+    "vitest-localstorage-mock": "catalog:"
   },
   "lint-staged": {
     "*.ts?(x)": [

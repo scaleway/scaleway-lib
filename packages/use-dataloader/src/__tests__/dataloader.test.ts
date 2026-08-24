@@ -1,5 +1,4 @@
 import { describe, expect, it, vi } from 'vitest'
-import waitForExpect from 'wait-for-expect'
 import { StatusEnum } from '../constants'
 import DataLoader from '../dataloader'
 
@@ -168,10 +167,10 @@ describe('dataloader class', () => {
     expect(notifyChanges).toHaveBeenCalledOnce()
 
     instance.cancel()
-    await waitForExpect(() => {
+    await vi.waitFor(() => {
       expect(instance.status).toBe(StatusEnum.IDLE)
+      expect(notifyChanges).toHaveBeenCalledTimes(2)
     })
-    expect(notifyChanges).toHaveBeenCalledTimes(2)
   })
 
   it('should create instance with error and cancel', async () => {
@@ -186,12 +185,12 @@ describe('dataloader class', () => {
     })
     const res = instance.load().catch(onError)
     instance.cancel()
-    await waitForExpect(() => {
+    await vi.waitFor(() => {
       expect(instance.status).toBe(StatusEnum.IDLE)
+      expect(notifyChanges).toHaveBeenCalledOnce()
     })
-    expect(notifyChanges).toHaveBeenCalledOnce()
     expect(onError).toHaveBeenCalledTimes(0)
-    await waitForExpect(async () => {
+    await vi.waitFor(async () => {
       await expect(res).resolves.toBeUndefined()
     })
   })
@@ -214,7 +213,7 @@ describe('dataloader class', () => {
       await instance.load().catch(() => null)
     }
 
-    await waitForExpect(() => {
+    await vi.waitFor(() => {
       expect(method).toHaveBeenCalledTimes(5)
     })
   })

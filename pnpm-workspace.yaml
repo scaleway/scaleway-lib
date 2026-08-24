@@ -55,7 +55,6 @@ catalog:
   use-deep-compare-effect: 1.8.1
   vitest: 4.1.11
   vitest-localstorage-mock: 0.1.2
-  wait-for-expect: 4.0.0
   yaml: 2.9.0
   zod: 4.4.3
   '@testing-library/dom': 10.4.1
