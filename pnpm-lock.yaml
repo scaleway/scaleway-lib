@@ -214,12 +214,36 @@ catalogs:
     '@changesets/cli':
       specifier: 2.31.1
       version: 2.31.1
+    '@changesets/config':
+      specifier: 3.1.4
+      version: 3.1.4
+    '@formatjs/ecma402-abstract':
+      specifier: 3.2.0
+      version: 3.2.0
+    '@formatjs/fast-memoize':
+      specifier: 3.1.7
+      version: 3.1.7
+    '@formatjs/icu-messageformat-parser':
+      specifier: 3.5.17
+      version: 3.5.17
+    '@growthbook/growthbook-react':
+      specifier: 1.7.0
+      version: 1.7.0
     '@manypkg/cli':
       specifier: 0.25.1
       version: 0.25.1
     '@rudderstack/analytics-js':
       specifier: 3.31.8
       version: 3.31.8
+    '@scaleway/sdk-client':
+      specifier: 2.6.0
+      version: 2.6.0
+    '@scaleway/sdk-iam':
+      specifier: 2.12.0
+      version: 2.12.0
+    '@segment/analytics-next':
+      specifier: 1.84.1
+      version: 1.84.1
     '@testing-library/dom':
       specifier: 10.4.1
       version: 10.4.1
@@ -230,11 +254,14 @@ catalogs:
       specifier: 16.3.2
       version: 16.3.2
     '@testing-library/user-event':
-      specifier: 14.6.5
-      version: 14.6.5
+      specifier: 14.6.6
+      version: 14.6.6
     '@types/node':
       specifier: 26.2.0
       version: 26.2.0
+    '@types/picomatch':
+      specifier: 4.0.3
+      version: 4.0.3
     '@types/react':
       specifier: 19.2.18
       version: 19.2.18
@@ -247,15 +274,42 @@ catalogs:
     '@vitest/coverage-istanbul':
       specifier: 4.1.11
       version: 4.1.11
+    awesome-phonenumber:
+      specifier: 7.8.0
+      version: 7.8.0
     browserslist:
       specifier: 4.28.8
       version: 4.28.8
     chalk:
       specifier: 6.0.0
       version: 6.0.0
+    cookie:
+      specifier: 2.0.1
+      version: 2.0.1
+    date-fns:
+      specifier: 4.4.0
+      version: 4.4.0
+    deepmerge-ts:
+      specifier: 8.0.1
+      version: 8.0.1
+    execa:
+      specifier: 10.0.1
+      version: 10.0.1
+    filesize:
+      specifier: 11.0.22
+      version: 11.0.22
     happy-dom:
       specifier: 20.11.6
       version: 20.11.6
+    history:
+      specifier: 5.3.0
+      version: 5.3.0
+    international-types:
+      specifier: 0.8.1
+      version: 0.8.1
+    intl-messageformat:
+      specifier: 11.2.14
+      version: 11.2.14
     jsdom:
       specifier: 30.0.1
       version: 30.0.1
@@ -274,9 +328,27 @@ catalogs:
     publint:
       specifier: 0.3.24
       version: 0.3.24
+    query-string:
+      specifier: 9.5.0
+      version: 9.5.0
+    react:
+      specifier: 19.2.8
+      version: 19.2.8
+    react-dom:
+      specifier: 19.2.8
+      version: 19.2.8
     read-pkg:
       specifier: 10.1.0
       version: 10.1.0
+    regexparam:
+      specifier: 3.0.0
+      version: 3.0.0
+    simple-git:
+      specifier: 3.36.0
+      version: 3.36.0
+    tinyglobby:
+      specifier: 0.2.17
+      version: 0.2.17
     tsdown:
       specifier: 0.22.14
       version: 0.22.14
@@ -286,12 +358,21 @@ catalogs:
     typescript:
       specifier: 7.0.2
       version: 7.0.2
+    use-deep-compare-effect:
+      specifier: 1.8.1
+      version: 1.8.1
     vitest:
       specifier: 4.1.11
       version: 4.1.11
     vitest-localstorage-mock:
       specifier: 0.1.2
       version: 0.1.2
+    yaml:
+      specifier: 2.9.0
+      version: 2.9.0
+    zod:
+      specifier: 4.4.3
+      version: 4.4.3
 
 importers:
 
@@ -338,7 +419,7 @@ importers:
         version: 16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@testing-library/user-event':
         specifier: 'catalog:'
-        version: 14.6.5(@testing-library/dom@10.4.1)
+        version: 14.6.6(@testing-library/dom@10.4.1)
       '@types/node':
         specifier: 'catalog:'
         version: 26.2.0
@@ -1452,8 +1533,8 @@ packages:
       '@types/react-dom':
         optional: true
 
-  '@testing-library/user-event@14.6.5':
-    resolution: {integrity: sha512-FhqjldLTpteueBaKflhNFlMT3+PM0O5fiBUivht6b9CZ1eesJyy7+g3Jr7XwJzt/Hip3ZG5hWwK1MX1FuDiE4w==}
+  '@testing-library/user-event@14.6.6':
+    resolution: {integrity: sha512-Jbs9FpkkIDw8FgSc6kOVsOv8JuuqGAL7J4X1oot77JxAoDlkNn2GRkd0aYRVuQ+pVQAiHWVkE4rX/dkF5fBiCw==}
     engines: {node: '>=12', npm: '>=6'}
     peerDependencies:
       '@testing-library/dom': '>=7.21.4'
@@ -3947,7 +4028,7 @@ snapshots:
       '@types/react': 19.2.18
       '@types/react-dom': 19.2.4(@types/react@19.2.18)
 
-  '@testing-library/user-event@14.6.5(@testing-library/dom@10.4.1)':
+  '@testing-library/user-event@14.6.6(@testing-library/dom@10.4.1)':
     dependencies:
       '@testing-library/dom': 10.4.1
 
