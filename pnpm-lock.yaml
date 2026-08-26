@@ -239,8 +239,8 @@ catalogs:
       specifier: 2.6.0
       version: 2.6.0
     '@scaleway/sdk-iam':
-      specifier: 2.12.0
-      version: 2.12.0
+      specifier: 2.13.0
+      version: 2.13.0
     '@segment/analytics-next':
       specifier: 1.84.1
       version: 1.84.1
@@ -290,8 +290,8 @@ catalogs:
       specifier: 4.4.0
       version: 4.4.0
     deepmerge-ts:
-      specifier: 8.0.1
-      version: 8.0.1
+      specifier: 8.0.2
+      version: 8.0.2
     execa:
       specifier: 10.0.1
       version: 10.0.1
@@ -501,7 +501,7 @@ importers:
         version: 2.6.0
       '@scaleway/sdk-iam':
         specifier: 'catalog:'
-        version: 2.12.0(@scaleway/sdk-client@2.6.0)
+        version: 2.13.0(@scaleway/sdk-client@2.6.0)
       '@types/react':
         specifier: 'catalog:'
         version: 19.2.18
@@ -530,7 +530,7 @@ importers:
     dependencies:
       deepmerge-ts:
         specifier: 'catalog:'
-        version: 8.0.1
+        version: 8.0.2
     devDependencies:
       oxfmt:
         specifier: 'catalog:'
@@ -1452,8 +1452,8 @@ packages:
     resolution: {integrity: sha512-o8mq/Yv9BgiYdWmBRK7MKeBB+J+0fMTzZ/s4c/lke6L/QRSXKl7itEMA7F3tH+LPyXN9w12BBhmIu7dRG6fJGw==}
     engines: {node: '>=20.20.2'}
 
-  '@scaleway/sdk-iam@2.12.0':
-    resolution: {integrity: sha512-wqFs8ZiGqv/8wB12Gn4heCjLMJQkYKYY8Uyhx0KahRGiBSsTGI3f2EdYiIje/0ZWIUThZWqlAELMg1r08v0OUA==}
+  '@scaleway/sdk-iam@2.13.0':
+    resolution: {integrity: sha512-brC8NpjdIJ8HsGqhPE+8HCOUQRB5Hjwz6QAoD8tZFw8+I5rfYzWgQujwX/We4bQNckmH5akxZqyFZgJ+08Gs/g==}
     engines: {node: '>=20.20.2'}
     peerDependencies:
       '@scaleway/sdk-client': ^2.6.0
@@ -2053,9 +2053,9 @@ packages:
     resolution: {integrity: sha512-LOHxIOaPYdHlJRtCQfDIVZtfw/ufM8+rVj649RIHzcm/vGwQRXFt6OPqIFWsm2XEMrNIEtWR64sY1LEKD2vAOA==}
     engines: {node: '>=4.0.0'}
 
-  deepmerge-ts@8.0.1:
-    resolution: {integrity: sha512-szCXE7YLCvLKR9bFPJcvsezOShdalctSvrgN/LM/QGUEPZQajwjmsMObZ6/DuANT5lxzM/wtO8Feubwdkz8myA==}
-    engines: {node: '>=16.0.0'}
+  deepmerge-ts@8.0.2:
+    resolution: {integrity: sha512-uqbvqLUMrc6p0MO+WBRtTxY55hmyh94WRwI5a++PZe54X+bfVh59FSN7uWCBCW1CCVjzjnrwzfI8zidE2obMMw==}
+    engines: {node: '>=16.9.0'}
 
   defu@6.1.7:
     resolution: {integrity: sha512-7z22QmUWiQ/2d0KkdYmANbRUVABpZ9SNYyH5vx6PZ+nE5bcC0l7uFvEfHlyld/HcGBFTL536ClDt3DEcSlEJAQ==}
@@ -3925,7 +3925,7 @@ snapshots:
 
   '@scaleway/sdk-client@2.6.0': {}
 
-  '@scaleway/sdk-iam@2.12.0(@scaleway/sdk-client@2.6.0)':
+  '@scaleway/sdk-iam@2.13.0(@scaleway/sdk-client@2.6.0)':
     dependencies:
       '@scaleway/random-name': 6.0.2
       '@scaleway/sdk-client': 2.6.0
@@ -4392,7 +4392,7 @@ snapshots:
 
   deep-extend@0.6.0: {}
 
-  deepmerge-ts@8.0.1: {}
+  deepmerge-ts@8.0.2: {}
 
   defu@6.1.7: {}
 
