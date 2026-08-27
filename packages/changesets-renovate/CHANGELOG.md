@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.0.4
+
+### Patch Changes
+
+- [#3663](https://github.com/scaleway/scaleway-lib/pull/3663) [`42d9b37`](https://github.com/scaleway/scaleway-lib/commit/42d9b376405de038804d80ac2501521ac963a0a1) Thanks [@philibea](https://github.com/philibea)! - Fix catalog changeset generation failing to identify affected workspace packages. `findAffectedPackages` now auto-discovers workspace package globs from `pnpm-workspace.yaml` (`packages` field) and the root `package.json` (`workspaces` field) instead of relying on a hardcoded `packages/*/package.json` default, which missed packages in non-default layouts (e.g. `apps/*`).
+
+  Fixes https://github.com/scaleway/scaleway-lib/issues/3134
+
 ## 3.0.3
 
 ### Patch Changes
