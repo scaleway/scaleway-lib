@@ -23,7 +23,7 @@ catalog:
   "@testing-library/user-event": 14.6.6
   "@types/node": 26.2.0
   "@types/picomatch": 4.0.3
-  "@types/react-dom": 19.2.4
+  "@types/react-dom": 19.2.5
   "@types/react": 19.2.18
   "@vitejs/plugin-react": 6.1.0
   "@vitest/coverage-istanbul": 4.1.11
