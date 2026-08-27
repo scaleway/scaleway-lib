@@ -1,0 +1,9 @@
+**/__tests__/**
+src
+!.npmignore
+tsconfig.json
+tsdown.config.ts
+vitest.config.ts
+vitest.setup.ts
+.turbo
+coverage

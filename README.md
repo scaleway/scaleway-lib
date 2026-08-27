@@ -103,6 +103,11 @@ scaleway-lib is a set of NPM packages used at Scaleway.
   ![npm](https://img.shields.io/npm/dm/@scaleway/validate-icu-locales)
   ![npm](https://img.shields.io/npm/v/@scaleway/validate-icu-locales)
 
+- [`@scaleway/utility-types`](./packages/utility-types/README.md): Shared TypeScript utility types used across Scaleway projects.
+
+  ![npm](https://img.shields.io/npm/dm/@scaleway/utility-types)
+  ![npm](https://img.shields.io/npm/v/@scaleway/utility-types)
+
 ## Development
 
 ### Locally
