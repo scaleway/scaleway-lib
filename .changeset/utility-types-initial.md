@@ -1,5 +1,5 @@
 ---
-'@scaleway/utility-types': minor
+'@scaleway/types': minor
 ---
 
-Initial release of `@scaleway/utility-types`, a types-only package exposing shared TypeScript utility types
+Initial release of `@scaleway/types`, a types-only package exposing shared TypeScript utility types

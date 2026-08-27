@@ -595,7 +595,11 @@ importers:
 
   packages/tsconfig: {}
 
-  packages/types: {}
+  packages/types:
+    devDependencies:
+      typescript:
+        specifier: '>=4.1'
+        version: 7.0.2
 
   packages/units: {}
 

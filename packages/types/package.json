@@ -1,14 +1,13 @@
 {
-  "name": "@scaleway/utility-types",
-  "version": "0.0.0",
+  "name": "@scaleway/types",
+  "version": "1.0.0",
   "description": "A set of shared TypeScript utility types used across Scaleway projects",
   "keywords": [
     "shared-types",
     "types",
-    "typescript",
-    "utility-types"
+    "typescript"
   ],
-  "homepage": "https://github.com/scaleway/scaleway-lib/tree/main/packages/utility-types",
+  "homepage": "https://github.com/scaleway/scaleway-lib/tree/main/packages/types",
   "bugs": {
     "url": "https://github.com/scaleway/scaleway-lib/issues"
   },
@@ -16,7 +15,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/scaleway/scaleway-lib.git",
-    "directory": "packages/utility-types"
+    "directory": "packages/types"
   },
   "type": "module",
   "sideEffects": false,
@@ -34,7 +33,10 @@
     "test:unit": "vitest --run",
     "test:unit:coverage": "pnpm test:unit --coverage"
   },
-  "engines": {
-    "node": "24.x || 25.x || 26.x"
+  "devDependencies": {
+    "typescript": ">=4.1"
+  },
+  "peerDependencies": {
+    "typescript": ">=4.1"
   }
 }
