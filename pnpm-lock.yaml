@@ -595,6 +595,8 @@ importers:
 
   packages/tsconfig: {}
 
+  packages/types: {}
+
   packages/units: {}
 
   packages/use-analytics:
@@ -703,8 +705,6 @@ importers:
       react:
         specifier: 'catalog:'
         version: 19.2.8
-
-  packages/utility-types: {}
 
   packages/utils:
     dependencies:
