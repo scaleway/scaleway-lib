@@ -6,6 +6,7 @@ import { parse } from 'yaml'
 import {
   findAffectedPackages,
   findChangedDependencies,
+  getWorkspacePackageGlobs,
   loadCatalogFromFile,
   loadCatalogFromWorkspaceContent,
 } from '../utils.js'
@@ -150,8 +151,117 @@ catalog:
     })
   })
 
+  describe('getWorkspacePackageGlobs', () => {
+    it('should discover globs from pnpm-workspace.yaml', async () => {
+      vi.mocked(readFile).mockImplementation((async (filePath: string) => {
+        if (filePath === 'pnpm-workspace.yaml') {
+          return 'packages:\n  - packages/*\n  - apps/*'
+        }
+
+        const error = new Error('not found') as NodeJS.ErrnoException
+        error.code = 'ENOENT'
+        throw error
+      }) as any)
+      vi.mocked(parse).mockReturnValue({ packages: ['packages/*', 'apps/*'] })
+
+      const result = await getWorkspacePackageGlobs()
+
+      expect(result).toStrictEqual(['packages/*/package.json', 'apps/*/package.json'])
+    })
+
+    it('should discover globs from root package.json workspaces', async () => {
+      vi.mocked(readFile).mockImplementation((async (filePath: string) => {
+        if (filePath === 'package.json') {
+          return JSON.stringify({ workspaces: ['packages/*', 'tools/*'] })
+        }
+
+        const error = new Error('not found') as NodeJS.ErrnoException
+        error.code = 'ENOENT'
+        throw error
+      }) as any)
+
+      const result = await getWorkspacePackageGlobs()
+
+      expect(result).toStrictEqual(['packages/*/package.json', 'tools/*/package.json'])
+    })
+
+    it('should support workspaces as { packages: [] } object', async () => {
+      vi.mocked(readFile).mockImplementation((async (filePath: string) => {
+        if (filePath === 'package.json') {
+          return JSON.stringify({ workspaces: { packages: ['apps/*'] } })
+        }
+
+        const error = new Error('not found') as NodeJS.ErrnoException
+        error.code = 'ENOENT'
+        throw error
+      }) as any)
+
+      const result = await getWorkspacePackageGlobs()
+
+      expect(result).toStrictEqual(['apps/*/package.json'])
+    })
+
+    it('should merge and deduplicate globs from both sources', async () => {
+      vi.mocked(readFile).mockImplementation((async (filePath: string) => {
+        if (filePath === 'pnpm-workspace.yaml') {
+          return 'packages:\n  - packages/*'
+        }
+        if (filePath === 'package.json') {
+          return JSON.stringify({ workspaces: ['packages/*', 'apps/*'] })
+        }
+
+        return '{}'
+      }) as any)
+      vi.mocked(parse).mockReturnValue({ packages: ['packages/*'] })
+
+      const result = await getWorkspacePackageGlobs()
+
+      expect(result).toStrictEqual(['packages/*/package.json', 'apps/*/package.json'])
+    })
+
+    it('should fall back to empty array when no workspace config exists', async () => {
+      vi.mocked(readFile).mockImplementation((async () => {
+        const error = new Error('not found') as NodeJS.ErrnoException
+        error.code = 'ENOENT'
+        throw error
+      }) as any)
+
+      const result = await getWorkspacePackageGlobs()
+
+      expect(result).toStrictEqual([])
+    })
+
+    it('should strip trailing slashes from workspace patterns', async () => {
+      vi.mocked(readFile).mockImplementation((async (filePath: string) => {
+        if (filePath === 'pnpm-workspace.yaml') {
+          return 'packages:\n  - packages/*/'
+        }
+
+        const error = new Error('not found') as NodeJS.ErrnoException
+        error.code = 'ENOENT'
+        throw error
+      }) as any)
+      vi.mocked(parse).mockReturnValue({ packages: ['packages/*/'] })
+
+      const result = await getWorkspacePackageGlobs()
+
+      expect(result).toStrictEqual(['packages/*/package.json'])
+    })
+  })
+
   describe('findAffectedPackages', () => {
     beforeEach(() => {
+      // Default workspace discovery returns the legacy default glob
+      vi.mocked(readFile).mockImplementation((async (filePath: string) => {
+        if (filePath === 'pnpm-workspace.yaml') {
+          return 'packages:\n  - packages/*'
+        }
+
+        const error = new Error('not found') as NodeJS.ErrnoException
+        error.code = 'ENOENT'
+        throw error
+      }) as any)
+      vi.mocked(parse).mockReturnValue({ packages: ['packages/*'] })
       vi.mocked(glob).mockResolvedValue([
         'packages/package-a/package.json',
         'packages/package-b/package.json',
@@ -186,7 +296,7 @@ catalog:
 
       const result = await findAffectedPackages(['changed-dep'])
 
-      expect(glob).toHaveBeenCalledWith('packages/*/package.json', { expandDirectories: false })
+      expect(glob).toHaveBeenCalledWith(['packages/*/package.json'], { expandDirectories: false })
       expect(result).toBeInstanceOf(Set)
       expect(result.size).toBe(1)
       expect(result).toContain('package-a')
@@ -222,7 +332,7 @@ catalog:
 
       const result = await findAffectedPackages(['changed-dep'])
 
-      expect(glob).toHaveBeenCalledWith('packages/*/package.json', { expandDirectories: false })
+      expect(glob).toHaveBeenCalledWith(['packages/*/package.json'], { expandDirectories: false })
       expect(result).toBeInstanceOf(Set)
       expect(result.size).toBe(1)
       expect(result).toContain('package-a')
@@ -267,7 +377,7 @@ catalog:
 
       const result = await findAffectedPackages(['changed-dep'])
 
-      expect(glob).toHaveBeenCalledWith('packages/*/package.json', { expandDirectories: false })
+      expect(glob).toHaveBeenCalledWith(['packages/*/package.json'], { expandDirectories: false })
       expect(result).toBeInstanceOf(Set)
       expect(result.size).toBe(1)
       expect(result).toContain('package-a')
@@ -306,6 +416,68 @@ catalog:
       const result = await findAffectedPackages(['changed-dep'])
 
       expect(result).toBeInstanceOf(Set)
+      expect(result.size).toBe(0)
+    })
+
+    it('should respect explicitly provided packageJsonGlobs over discovered ones', async () => {
+      vi.mocked(glob).mockResolvedValue(['apps/app-a/package.json'])
+      vi.mocked(readFile).mockImplementation((async (filePath: string) => {
+        if (filePath === 'apps/app-a/package.json') {
+          return JSON.stringify({
+            dependencies: {
+              'changed-dep': 'catalog:',
+            },
+            version: '1.0.0',
+            name: 'app-a',
+          })
+        }
+
+        return '{}'
+      }) as any)
+
+      const result = await findAffectedPackages(['changed-dep'], ['apps/*/package.json'])
+
+      expect(glob).toHaveBeenCalledWith(['apps/*/package.json'], { expandDirectories: false })
+      expect(result.size).toBe(1)
+      expect(result).toContain('app-a')
+    })
+
+    it('should discover non-default workspace layouts (apps/*) from pnpm-workspace.yaml', async () => {
+      vi.mocked(readFile).mockImplementation((async (filePath: string) => {
+        if (filePath === 'pnpm-workspace.yaml') {
+          return 'packages:\n  - apps/*'
+        }
+        if (filePath === 'apps/app-a/package.json') {
+          return JSON.stringify({
+            dependencies: {
+              'changed-dep': 'catalog:',
+            },
+            version: '1.0.0',
+            name: 'app-a',
+          })
+        }
+
+        const error = new Error('not found') as NodeJS.ErrnoException
+        error.code = 'ENOENT'
+        throw error
+      }) as any)
+      vi.mocked(parse).mockReturnValue({ packages: ['apps/*'] })
+      vi.mocked(glob).mockResolvedValue(['apps/app-a/package.json'])
+
+      const result = await findAffectedPackages(['changed-dep'])
+
+      expect(glob).toHaveBeenCalledWith(['apps/*/package.json'], { expandDirectories: false })
+      expect(result.size).toBe(1)
+      expect(result).toContain('app-a')
+    })
+
+    it('should fall back to packages/*/package.json when no workspace config is found', async () => {
+      vi.mocked(readFile).mockRejectedValue(new Error('File read error'))
+      vi.mocked(glob).mockResolvedValue(['packages/package-a/package.json'])
+
+      const result = await findAffectedPackages(['changed-dep'])
+
+      expect(glob).toHaveBeenCalledWith(['packages/*/package.json'], { expandDirectories: false })
       expect(result.size).toBe(0)
     })
   })

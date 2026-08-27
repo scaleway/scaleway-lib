@@ -4,6 +4,56 @@ import { read } from '@changesets/config'
 import { glob } from 'tinyglobby'
 import { parse } from 'yaml'
 
+/**
+ * Discover workspace package globs from pnpm-workspace.yaml (`packages` field)
+ * and/or the root package.json (`workspaces` field).
+ *
+ * Supports both npm/yarn workspaces (string or string[] or { packages: [] })
+ * and pnpm workspaces. Each returned glob is normalized to point at a
+ * package.json file (e.g. the glob `packages` with a star wildcard becomes
+ * `packages/<star>/package.json`).
+ *
+ * @returns Array of glob patterns pointing to package.json files. Falls back
+ * to the default `packages/<star>/package.json` pattern when no workspace
+ * config is found.
+ */
+export async function getWorkspacePackageGlobs(): Promise<string[]> {
+  const globs: string[] = []
+
+  // 1. pnpm-workspace.yaml `packages:` field
+  try {
+    const content = await readFile('pnpm-workspace.yaml', 'utf8')
+    const parsed = parse(content) as {
+      packages?: string[]
+    } | null
+
+    if (Array.isArray(parsed?.packages)) {
+      globs.push(...parsed.packages.map(pkg => `${pkg.replace(/\/$/u, '')}/package.json`))
+    }
+  } catch {
+    // pnpm-workspace.yaml may not exist (npm/yarn monorepo)
+  }
+
+  // 2. Root package.json `workspaces` field (npm/yarn)
+  try {
+    const content = await readFile('package.json', 'utf8')
+    const parsed = JSON.parse(content) as {
+      workspaces?: string[] | { packages?: string[] }
+    }
+
+    const workspaces = Array.isArray(parsed.workspaces) ? parsed.workspaces : parsed.workspaces?.packages
+
+    if (Array.isArray(workspaces)) {
+      globs.push(...workspaces.map(pkg => `${pkg.replace(/\/$/u, '')}/package.json`))
+    }
+  } catch {
+    // Root package.json may not exist or be unreadable
+  }
+
+  // Deduplicate while preserving order
+  return [...new Set(globs)]
+}
+
 function shouldSkipPackage(
   packageJson: { version?: string; name: string; private?: boolean },
   {
@@ -123,19 +173,23 @@ export function findChangedDependencies(
 /**
  * Find packages affected by dependency changes
  * @param changedDeps Array of changed dependency names
- * @param packageJsonGlob Glob pattern to find package.json files
+ * @param packageJsonGlobs Glob patterns to find package.json files. When
+ * omitted, workspace globs are auto-discovered from pnpm-workspace.yaml and
+ * the root package.json, falling back to the default `packages/<star>/package.json`.
  * @returns Set of package names that are affected by the changes
  */
-export async function findAffectedPackages(
-  changedDeps: string[],
-  packageJsonGlob = 'packages/*/package.json',
-): Promise<Set<string>> {
+export async function findAffectedPackages(changedDeps: string[], packageJsonGlobs?: string[]): Promise<Set<string>> {
   if (changedDeps.length === 0) {
     return new Set()
   }
 
+  const globs = packageJsonGlobs && packageJsonGlobs.length > 0 ? packageJsonGlobs : await getWorkspacePackageGlobs()
+
+  // Fall back to a sensible default if nothing was discovered
+  const patterns = globs.length > 0 ? globs : ['packages/*/package.json']
+
   const config = await getChangesetConfig()
-  const packageJsonPaths = await glob(packageJsonGlob, { expandDirectories: false })
+  const packageJsonPaths = await glob(patterns, { expandDirectories: false })
   const affectedPackages = new Set<string>()
 
   for (const pkgJsonPath of packageJsonPaths) {
