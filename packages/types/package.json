@@ -34,7 +34,7 @@
     "test:unit:coverage": "pnpm test:unit --coverage"
   },
   "devDependencies": {
-    "typescript": ">=4.1"
+    "typescript": "7.0.2"
   },
   "peerDependencies": {
     "typescript": ">=4.1"
