@@ -598,7 +598,7 @@ importers:
   packages/types:
     devDependencies:
       typescript:
-        specifier: '>=4.1'
+        specifier: 7.0.2
         version: 7.0.2
 
   packages/units: {}
