@@ -1,5 +1,16 @@
 # Change Log
 
+## 8.3.0
+
+### Minor Changes
+
+- [#3642](https://github.com/scaleway/scaleway-lib/pull/3642) [`8909bb3`](https://github.com/scaleway/scaleway-lib/commit/8909bb31e79c357c06c58025e74df3a3664f694e) Thanks [@chambo-e](https://github.com/chambo-e)! - `I18n` now sets the `lang` attribute on the root element based on the current locale. By default the attribute is set on `document.documentElement`, but you can target a specific element with the new `rootElement` prop. The attribute is updated on mount and whenever the locale is switched with `switchLocale`.
+
+### Patch Changes
+
+- [#3639](https://github.com/scaleway/scaleway-lib/pull/3639) [`9ec0e82`](https://github.com/scaleway/scaleway-lib/commit/9ec0e828a0e6c17208711e4e3c4fff87d1c3f167) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@formatjs/icu-messageformat-parser` to `3.5.17`.
+  Updated dependency `intl-messageformat` to `11.2.14`.
+
 ## 8.2.1
 
 ### Patch Changes
