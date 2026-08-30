@@ -19,7 +19,7 @@ catalog:
   "@scaleway/sdk-iam": 2.13.0
   "@segment/analytics-next": 1.84.1
   "@testing-library/jest-dom": 7.0.1
-  "@testing-library/react": 16.3.2
+  "@testing-library/react": 16.3.3
   "@testing-library/user-event": 14.6.6
   "@types/node": 26.4.0
   "@types/picomatch": 4.0.3
