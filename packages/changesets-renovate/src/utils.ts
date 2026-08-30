@@ -189,7 +189,8 @@ export async function findAffectedPackages(changedDeps: string[], packageJsonGlo
   const patterns = globs.length > 0 ? globs : ['packages/*/package.json']
 
   const config = await getChangesetConfig()
-  const packageJsonPaths = await glob(patterns, { expandDirectories: false })
+  const ignore = ['**/node_modules/**']
+  const packageJsonPaths = await glob(patterns, { expandDirectories: false, ignore })
   const affectedPackages = new Set<string>()
 
   for (const pkgJsonPath of packageJsonPaths) {
