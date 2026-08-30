@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.0
+
+### Minor Changes
+
+- [#3676](https://github.com/scaleway/scaleway-lib/pull/3676) [`bc358f5`](https://github.com/scaleway/scaleway-lib/commit/bc358f5baf9a9f850b9c8c736bafd205bf51543a) Thanks [@philibea](https://github.com/philibea)! - OOM on global pattern that can match node_modules paths
+
 ## 3.0.4
 
 ### Patch Changes
