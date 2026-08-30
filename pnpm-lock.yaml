@@ -239,8 +239,8 @@ catalogs:
       specifier: 2.6.0
       version: 2.6.0
     '@scaleway/sdk-iam':
-      specifier: 2.13.0
-      version: 2.13.0
+      specifier: 2.14.0
+      version: 2.14.0
     '@segment/analytics-next':
       specifier: 1.84.1
       version: 1.84.1
@@ -501,7 +501,7 @@ importers:
         version: 2.6.0
       '@scaleway/sdk-iam':
         specifier: 'catalog:'
-        version: 2.13.0(@scaleway/sdk-client@2.6.0)
+        version: 2.14.0(@scaleway/sdk-client@2.6.0)
       '@types/react':
         specifier: 'catalog:'
         version: 19.2.18
@@ -1458,14 +1458,14 @@ packages:
     resolution: {integrity: sha512-o8mq/Yv9BgiYdWmBRK7MKeBB+J+0fMTzZ/s4c/lke6L/QRSXKl7itEMA7F3tH+LPyXN9w12BBhmIu7dRG6fJGw==}
     engines: {node: '>=20.20.2'}
 
-  '@scaleway/sdk-iam@2.13.0':
-    resolution: {integrity: sha512-brC8NpjdIJ8HsGqhPE+8HCOUQRB5Hjwz6QAoD8tZFw8+I5rfYzWgQujwX/We4bQNckmH5akxZqyFZgJ+08Gs/g==}
+  '@scaleway/sdk-iam@2.14.0':
+    resolution: {integrity: sha512-U18Sa5iQnwsgTXZUsKwWWbqZ2sNI1H3IjClX+4ouBWfOD0SocwU1aqA2HNA0Pc4yJifL2isfMEQOwtRFBzE5yg==}
     engines: {node: '>=20.20.2'}
     peerDependencies:
       '@scaleway/sdk-client': ^2.6.0
 
-  '@scaleway/sdk-std@2.6.0':
-    resolution: {integrity: sha512-3cLlukdkmut/rp3oPSvNgEULa8N8Q0gAyyDFgtGItQI8z6OVjSDKPC8c5DVxAqhalag2UpayNkluRhsSh3HOUQ==}
+  '@scaleway/sdk-std@2.7.0':
+    resolution: {integrity: sha512-EnVTmkjZXO7/ix8AIUCHKHYSwFMI4w0oyxzYhU2ZcISYWKDhk5p7ZWUcVLghsBC6ajZD2qejbTe6+iUMfZGt+g==}
     engines: {node: '>=20.20.2'}
     peerDependencies:
       '@scaleway/sdk-client': 2.6.0
@@ -3931,13 +3931,13 @@ snapshots:
 
   '@scaleway/sdk-client@2.6.0': {}
 
-  '@scaleway/sdk-iam@2.13.0(@scaleway/sdk-client@2.6.0)':
+  '@scaleway/sdk-iam@2.14.0(@scaleway/sdk-client@2.6.0)':
     dependencies:
       '@scaleway/random-name': 6.0.2
       '@scaleway/sdk-client': 2.6.0
-      '@scaleway/sdk-std': 2.6.0(@scaleway/sdk-client@2.6.0)
+      '@scaleway/sdk-std': 2.7.0(@scaleway/sdk-client@2.6.0)
 
-  '@scaleway/sdk-std@2.6.0(@scaleway/sdk-client@2.6.0)':
+  '@scaleway/sdk-std@2.7.0(@scaleway/sdk-client@2.6.0)':
     dependencies:
       '@scaleway/sdk-client': 2.6.0
 
