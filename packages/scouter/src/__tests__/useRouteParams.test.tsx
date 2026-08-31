@@ -12,7 +12,7 @@ test('returns params from route context', () => {
     ),
   })
 
-  expect(result.current).toEqual({ id: '123' })
+  expect(result.current).toStrictEqual({ id: '123' })
 })
 
 test('updates when route changes', () => {
@@ -36,5 +36,5 @@ test('returns empty object when no params', () => {
     ),
   })
 
-  expect(result.current).toEqual({})
+  expect(result.current).toStrictEqual({})
 })

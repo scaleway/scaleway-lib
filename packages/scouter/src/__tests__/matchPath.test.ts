@@ -106,7 +106,7 @@ describe('matchPath', () => {
       const pathname = '/users/123'
       const match = matchPath(pathname, path)
       expect(match).not.toBeNull()
-      expect(match?.params).toEqual({ id: '123' })
+      expect(match?.params).toStrictEqual({ id: '123' })
     })
 
     it('extracts multiple dynamic params', () => {
@@ -114,7 +114,7 @@ describe('matchPath', () => {
       const pathname = '/users/123/posts/456'
       const match = matchPath(pathname, path)
       expect(match).not.toBeNull()
-      expect(match?.params).toEqual({ userId: '123', postId: '456' })
+      expect(match?.params).toStrictEqual({ userId: '123', postId: '456' })
     })
 
     it('decodes URL encoded params', () => {
@@ -122,7 +122,7 @@ describe('matchPath', () => {
       const pathname = '/a%20dynamic%20segment'
       const match = matchPath(pathname, path)
       expect(match).not.toBeNull()
-      expect(match?.params).toEqual({ id: 'a dynamic segment' })
+      expect(match?.params).toStrictEqual({ id: 'a dynamic segment' })
     })
   })
 

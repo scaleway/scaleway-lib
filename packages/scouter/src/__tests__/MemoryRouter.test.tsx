@@ -1,4 +1,4 @@
-// oxlint-disable vitest/require-top-level-describe unicorn/no-negated-condition vitest/no-conditional-in-test
+// oxlint-disable vitest/require-top-level-describe vitest/no-conditional-in-test
 import { render, screen } from '@testing-library/react'
 import { expect, test } from 'vitest'
 import type { History, Location, Match } from '../index'
@@ -117,5 +117,5 @@ test('provides root route context', () => {
   )
 
   expect(match!).toBeDefined()
-  expect(match!.params).toEqual({})
+  expect(match!.params).toStrictEqual({})
 })

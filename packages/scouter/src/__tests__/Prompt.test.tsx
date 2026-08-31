@@ -16,7 +16,7 @@ test('with when=true blocks navigation', () => {
     </Router>,
   )
 
-  expect(blockSpy).toHaveBeenCalled()
+  expect(blockSpy).toHaveBeenCalledTimes(1)
 })
 
 test('with when=false does not block navigation', () => {
@@ -29,7 +29,7 @@ test('with when=false does not block navigation', () => {
     </Router>,
   )
 
-  expect(blockSpy).not.toHaveBeenCalled()
+  expect(blockSpy).not.toHaveBeenCalledTimes(1)
 })
 
 test('with when function returning true blocks navigation', () => {
@@ -42,7 +42,7 @@ test('with when function returning true blocks navigation', () => {
     </Router>,
   )
 
-  expect(blockSpy).toHaveBeenCalled()
+  expect(blockSpy).toHaveBeenCalledTimes(1)
 })
 
 test('when function receives Transition parameter', () => {
@@ -63,7 +63,7 @@ test('when function receives Transition parameter', () => {
     </Router>,
   )
 
-  expect(blockSpy).toHaveBeenCalled()
+  expect(blockSpy).toHaveBeenCalledTimes(1)
 
   const blockCallback = blockSpy.mock.calls[0]?.[0]
   if (blockCallback) {
@@ -87,7 +87,7 @@ test('confirms navigation when globalThis.confirm returns true', () => {
     </Router>,
   )
 
-  expect(blockSpy).toHaveBeenCalled()
+  expect(blockSpy).toHaveBeenCalledTimes(1)
   const blockCallback = blockSpy.mock.calls[0]?.[0]
 
   if (blockCallback) {
@@ -104,7 +104,7 @@ test('confirms navigation when globalThis.confirm returns true', () => {
     blockCallback(mockTransition)
 
     expect(globalThis.confirm).toHaveBeenCalledWith('Are you sure?')
-    expect(unblockSpy).not.toHaveBeenCalled()
+    expect(unblockSpy).not.toHaveBeenCalledTimes(1)
 
     globalThis.confirm = originalConfirm
   }
@@ -120,7 +120,7 @@ test('blocks navigation when globalThis.confirm returns false', () => {
     </Router>,
   )
 
-  expect(blockSpy).toHaveBeenCalled()
+  expect(blockSpy).toHaveBeenCalledTimes(1)
   const blockCallback = blockSpy.mock.calls[0]?.[0]
 
   if (blockCallback) {
@@ -151,7 +151,7 @@ test('calls unblock and retry when user confirms', () => {
     </Router>,
   )
 
-  expect(blockSpy).toHaveBeenCalled()
+  expect(blockSpy).toHaveBeenCalledTimes(1)
   const blockCallback = blockSpy.mock.calls[0]?.[0]
 
   if (blockCallback) {
@@ -167,7 +167,7 @@ test('calls unblock and retry when user confirms', () => {
 
     blockCallback(mockTransition)
 
-    expect(retrySpy).toHaveBeenCalled()
+    expect(retrySpy).toHaveBeenCalledTimes(1)
 
     globalThis.confirm = originalConfirm
   }
@@ -183,7 +183,7 @@ test('does not call retry when user cancels', () => {
     </Router>,
   )
 
-  expect(blockSpy).toHaveBeenCalled()
+  expect(blockSpy).toHaveBeenCalledTimes(1)
   const blockCallback = blockSpy.mock.calls[0]?.[0]
 
   if (blockCallback) {
@@ -199,7 +199,7 @@ test('does not call retry when user cancels', () => {
 
     blockCallback(mockTransition)
 
-    expect(retrySpy).not.toHaveBeenCalled()
+    expect(retrySpy).not.toHaveBeenCalledTimes(1)
 
     globalThis.confirm = originalConfirm
   }

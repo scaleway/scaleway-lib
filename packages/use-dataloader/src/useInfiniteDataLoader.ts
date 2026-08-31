@@ -1,5 +1,3 @@
-// oxlint-disable eslint/max-statements
-
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { StatusEnum } from './constants'
 import type DataLoader from './dataloader'

@@ -37,7 +37,7 @@ describe('useLocation', () => {
     expect(result.current.pathname).toBe('/test')
     expect(result.current.search).toBe('?foo=bar')
     expect(result.current.hash).toBe('#section')
-    expect(result.current.state).toEqual({ from: 'home' })
+    expect(result.current.state).toStrictEqual({ from: 'home' })
   })
 
   it('updates when location changes', () => {

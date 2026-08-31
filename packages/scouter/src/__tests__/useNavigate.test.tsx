@@ -126,7 +126,7 @@ describe('useNavigate', () => {
       result.current.navigate({ pathname: '/target' }, { state: { from: 'home' } })
     })
 
-    expect(location!.state).toEqual({ from: 'home' })
+    expect(location!.state).toStrictEqual({ from: 'home' })
   })
 
   it('navigate with hash', () => {
@@ -242,7 +242,7 @@ describe('useNavigate', () => {
       result.current.navigate('/target', { state: { key: 'value' } })
     })
 
-    expect(location!.state).toEqual({ key: 'value' })
+    expect(location!.state).toStrictEqual({ key: 'value' })
   })
 
   it('navigate with replace and state', () => {
@@ -272,6 +272,6 @@ describe('useNavigate', () => {
     })
 
     expect(location!.pathname).toBe('/target')
-    expect(location!.state).toEqual({ replaced: true })
+    expect(location!.state).toStrictEqual({ replaced: true })
   })
 })

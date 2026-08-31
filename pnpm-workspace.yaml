@@ -16,16 +16,16 @@ catalog:
   "@manypkg/cli": 0.25.1
   "@rudderstack/analytics-js": 3.32.0
   "@scaleway/sdk-client": 2.6.0
-  "@scaleway/sdk-iam": 2.13.0
+  "@scaleway/sdk-iam": 2.14.0
   "@segment/analytics-next": 1.84.1
   "@testing-library/jest-dom": 7.0.1
-  "@testing-library/react": 16.3.2
+  "@testing-library/react": 16.3.3
   "@testing-library/user-event": 14.6.6
-  "@types/node": 26.3.0
+  "@types/node": 26.4.0
   "@types/picomatch": 4.0.3
   "@types/react-dom": 19.2.5
   "@types/react": 19.2.18
-  "@vitejs/plugin-react": 6.1.0
+  "@vitejs/plugin-react": 6.1.1
   "@vitest/coverage-istanbul": 4.1.11
   awesome-phonenumber: 7.8.0
   browserslist: 4.28.8
@@ -35,12 +35,12 @@ catalog:
   deepmerge-ts: 8.0.2
   execa: 10.0.1
   filesize: 11.0.22
-  happy-dom: 20.11.6
+  happy-dom: 20.11.13
   history: 5.3.0
   international-types: 0.8.1
   intl-messageformat: 11.2.14
   jsdom: 30.0.1
-  lint-staged: 17.3.0
+  lint-staged: 17.4.1
   oxfmt: 0.65.0
   oxlint: 1.80.0
   oxlint-tsgolint: 7.0.2001
@@ -53,7 +53,7 @@ catalog:
   simple-git: 3.36.0
   tinyglobby: 0.2.17
   tsdown: 0.22.14
-  turbo: 2.10.11
+  turbo: 2.10.12
   typescript: 7.0.2
   use-deep-compare-effect: 1.8.1
   vitest: 4.1.11

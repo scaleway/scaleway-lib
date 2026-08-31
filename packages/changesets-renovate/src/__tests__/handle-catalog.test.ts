@@ -35,9 +35,9 @@ describe('handle-catalog', () => {
     await handleCatalogChanges(diffFiles)
 
     // Should not call any of the main functions
-    expect(findChangedDependenciesFromGit).not.toHaveBeenCalled()
-    expect(findAffectedPackages).not.toHaveBeenCalled()
-    expect(createChangeset).not.toHaveBeenCalled()
+    expect(findChangedDependenciesFromGit).not.toHaveBeenCalledTimes(1)
+    expect(findAffectedPackages).not.toHaveBeenCalledTimes(1)
+    expect(createChangeset).not.toHaveBeenCalledTimes(1)
   })
 
   it('should handle case with no catalog dependency changes', async () => {
@@ -49,8 +49,8 @@ describe('handle-catalog', () => {
     await handleCatalogChanges(diffFiles)
 
     expect(findChangedDependenciesFromGit).toHaveBeenCalledWith('HEAD~1', 'HEAD', 'pnpm-workspace.yaml')
-    expect(findAffectedPackages).not.toHaveBeenCalled()
-    expect(createChangeset).not.toHaveBeenCalled()
+    expect(findAffectedPackages).not.toHaveBeenCalledTimes(1)
+    expect(createChangeset).not.toHaveBeenCalledTimes(1)
   })
 
   it('should handle case with catalog changes but no affected packages', async () => {
@@ -67,7 +67,7 @@ describe('handle-catalog', () => {
 
     expect(findChangedDependenciesFromGit).toHaveBeenCalledWith('HEAD~1', 'HEAD', 'pnpm-workspace.yaml')
     expect(findAffectedPackages).toHaveBeenCalledWith(['dep-a'])
-    expect(createChangeset).not.toHaveBeenCalled()
+    expect(createChangeset).not.toHaveBeenCalledTimes(1)
   })
 
   it('should create changeset when there are affected packages', async () => {

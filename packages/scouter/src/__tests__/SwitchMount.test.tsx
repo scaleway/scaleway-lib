@@ -27,17 +27,17 @@ test('does not remount when switching between matching routes', () => {
     </Router>,
   )
 
-  expect(mountCalls).toEqual(['mount one'])
+  expect(mountCalls).toStrictEqual(['mount one'])
 
   act(() => {
     history.push('/hello/sub')
   })
 
-  expect(mountCalls).toEqual(['mount one'])
+  expect(mountCalls).toStrictEqual(['mount one'])
 
   act(() => {
     history.push('/world')
   })
 
-  expect(mountCalls).toEqual(['mount one', 'mount two'])
+  expect(mountCalls).toStrictEqual(['mount one', 'mount two'])
 })
