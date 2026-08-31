@@ -36,7 +36,7 @@ describe('useSafeQueryParams', () => {
       ),
     })
 
-    expect(result.current.queryParams).toEqual({
+    expect(result.current.queryParams).toStrictEqual({
       name: 'john',
       age: '30',
     })
@@ -104,8 +104,8 @@ describe('useSafeQueryParams', () => {
       result.current.setQueryParams({ name: 'john' }, { push: true })
     })
 
-    expect(pushSpy).toHaveBeenCalled()
-    expect(replaceSpy).not.toHaveBeenCalled()
+    expect(pushSpy).toHaveBeenCalledTimes(1)
+    expect(replaceSpy).not.toHaveBeenCalledTimes(1)
   })
 
   it('setQueryParams with push=false (default)', () => {
@@ -125,8 +125,8 @@ describe('useSafeQueryParams', () => {
       result.current.setQueryParams({ name: 'john' })
     })
 
-    expect(replaceSpy).toHaveBeenCalled()
-    expect(pushSpy).not.toHaveBeenCalled()
+    expect(replaceSpy).toHaveBeenCalledTimes(1)
+    expect(pushSpy).not.toHaveBeenCalledTimes(1)
   })
 
   it('handles array values in setQueryParams', () => {
@@ -206,7 +206,7 @@ describe('useSafeQueryParams', () => {
 
     const searchParams = new URLSearchParams(history.location.search)
     const nameValues = searchParams.getAll('name')
-    expect(nameValues).toEqual(['jane'])
+    expect(nameValues).toStrictEqual(['jane'])
   })
 
   it('updates when location changes', () => {
@@ -238,7 +238,7 @@ describe('useSafeQueryParams', () => {
       ),
     })
 
-    expect(result.current.queryParams).toEqual({})
+    expect(result.current.queryParams).toStrictEqual({})
   })
 
   it('handles complex nested schema validation', () => {
@@ -257,7 +257,7 @@ describe('useSafeQueryParams', () => {
       ),
     })
 
-    expect(result.current.queryParams).toEqual({
+    expect(result.current.queryParams).toStrictEqual({
       search: 'test',
       page: '1',
       limit: '10',
@@ -281,7 +281,7 @@ describe('useSafeQueryParams', () => {
       result.current.setQueryParams({ name: 'john' }, { keepExisting: false, push: true })
     })
 
-    expect(pushSpy).toHaveBeenCalled()
+    expect(pushSpy).toHaveBeenCalledTimes(1)
     expect(history.location.search).not.toContain('existing=value')
     expect(history.location.search).toContain('name=john')
   })

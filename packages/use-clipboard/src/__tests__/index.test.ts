@@ -149,7 +149,7 @@ describe('hooks - useClipboard', () => {
 
     unmount()
 
-    expect(clearTimeoutSpy).toHaveBeenCalledOnce()
+    expect(clearTimeoutSpy).toHaveBeenCalledTimes(1)
   })
 
   it('should update clipboard text when text prop changes', async () => {

@@ -19,7 +19,7 @@ describe('useinterval', () => {
       useInterval(callback, 100)
     })
     vi.advanceTimersByTime(300)
-    expect(setInterval).toHaveBeenCalledOnce()
+    expect(setInterval).toHaveBeenCalledTimes(1)
     expect(callback).toHaveBeenCalledTimes(3)
   })
 

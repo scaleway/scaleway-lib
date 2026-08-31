@@ -148,8 +148,8 @@ describe('useQueryParams', () => {
       result.current.setQueryParams({ name: 'jane' }, { push: true })
     })
 
-    expect(pushSpy).toHaveBeenCalled()
-    expect(replaceSpy).not.toHaveBeenCalled()
+    expect(pushSpy).toHaveBeenCalledTimes(1)
+    expect(replaceSpy).not.toHaveBeenCalledTimes(1)
   })
 
   it('default option uses history.replace', () => {
@@ -169,8 +169,8 @@ describe('useQueryParams', () => {
       result.current.setQueryParams({ name: 'jane' })
     })
 
-    expect(replaceSpy).toHaveBeenCalled()
-    expect(pushSpy).not.toHaveBeenCalled()
+    expect(replaceSpy).toHaveBeenCalledTimes(1)
+    expect(pushSpy).not.toHaveBeenCalledTimes(1)
   })
 
   it('does not update URL when params have not changed', () => {
@@ -190,8 +190,8 @@ describe('useQueryParams', () => {
       result.current.setQueryParams({ name: 'john' })
     })
 
-    expect(pushSpy).not.toHaveBeenCalled()
-    expect(replaceSpy).not.toHaveBeenCalled()
+    expect(pushSpy).not.toHaveBeenCalledTimes(1)
+    expect(replaceSpy).not.toHaveBeenCalledTimes(1)
   })
 
   it('handles null values by omitting them', () => {

@@ -117,5 +117,5 @@ test('provides root route context', () => {
   )
 
   expect(match!).toBeDefined()
-  expect(match!.params).toEqual({})
+  expect(match!.params).toStrictEqual({})
 })

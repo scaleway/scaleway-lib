@@ -16,7 +16,7 @@ describe('getSafeQueryParams', () => {
     })
 
     expect(result.errors).toBeNull()
-    expect(result.queryParams).toEqual({
+    expect(result.queryParams).toStrictEqual({
       name: 'john',
       age: '30',
     })
@@ -29,7 +29,7 @@ describe('getSafeQueryParams', () => {
     })
 
     expect(result.errors).toBeNull()
-    expect(result.queryParams).toEqual({})
+    expect(result.queryParams).toStrictEqual({})
   })
 
   it('with array params', () => {
@@ -39,7 +39,7 @@ describe('getSafeQueryParams', () => {
     })
 
     expect(result.errors).toBeNull()
-    expect(result.queryParams).toEqual({
+    expect(result.queryParams).toStrictEqual({
       tags: ['admin', 'user'],
     })
   })
@@ -51,7 +51,7 @@ describe('getSafeQueryParams', () => {
     })
 
     // Invalid params should be filtered out
-    expect(result.queryParams).toEqual({
+    expect(result.queryParams).toStrictEqual({
       name: 'john',
     })
   })
@@ -68,7 +68,7 @@ describe('getSafeQueryParams', () => {
     })
 
     // The invalid param should be removed from result
-    expect(result.queryParams).toEqual({
+    expect(result.queryParams).toStrictEqual({
       valid: 'john',
     })
   })
@@ -102,7 +102,7 @@ describe('getSafeQueryParams', () => {
     })
 
     expect(result.errors).toBeNull()
-    expect(result.queryParams).toEqual({
+    expect(result.queryParams).toStrictEqual({
       search: 'test',
       page: '1',
       limit: '10',
@@ -125,7 +125,7 @@ describe('getSafeQueryParams', () => {
 
     expect(result.errors).toBeDefined()
     expect(result.errors).toHaveLength(2)
-    expect(result.queryParams).toEqual({
+    expect(result.queryParams).toStrictEqual({
       valid: 'john',
     })
   })
@@ -142,7 +142,7 @@ describe('getSafeQueryParams', () => {
     })
 
     expect(result.errors).toBeDefined()
-    expect(result.queryParams).toEqual({})
+    expect(result.queryParams).toStrictEqual({})
   })
 
   it('handles array validation errors', () => {
@@ -156,7 +156,7 @@ describe('getSafeQueryParams', () => {
     })
 
     expect(result.errors).toBeDefined()
-    expect(result.queryParams).toEqual({})
+    expect(result.queryParams).toStrictEqual({})
   })
 
   it('handles mixed valid and invalid array items', () => {
@@ -171,7 +171,7 @@ describe('getSafeQueryParams', () => {
     })
 
     expect(result.errors).toBeDefined()
-    expect(result.queryParams).toEqual({
+    expect(result.queryParams).toStrictEqual({
       tags: ['valid', 'other'],
     })
   })

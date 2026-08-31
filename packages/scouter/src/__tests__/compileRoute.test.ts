@@ -14,13 +14,13 @@ describe('compileRoute', () => {
   it('compiles a path with params', () => {
     const result = compileRoute('/users/:id')
 
-    expect(result.exact.keys).toEqual(['id'])
+    expect(result.exact.keys).toStrictEqual(['id'])
   })
 
   it('compiles a path with multiple params', () => {
     const result = compileRoute('/users/:userId/posts/:postId')
 
-    expect(result.exact.keys).toEqual(['userId', 'postId'])
+    expect(result.exact.keys).toStrictEqual(['userId', 'postId'])
   })
 
   it('returns cached result for same path', () => {
@@ -68,7 +68,7 @@ describe('compileRoute', () => {
     const result1 = compileRoute('/path/beyond-limit')
     const result2 = compileRoute('/path/beyond-limit')
 
-    expect(result1).toEqual(result2)
+    expect(result1).toStrictEqual(result2)
   })
 
   it('exact pattern matches exactly', () => {

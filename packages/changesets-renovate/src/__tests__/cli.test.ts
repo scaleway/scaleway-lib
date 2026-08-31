@@ -25,6 +25,6 @@ describe('pnpm-catalogs CLI integration', () => {
 
     // We can't easily test the actual CLI execution in isolation
     // The utility functions are tested separately
-    expect(true).toBeTruthy()
+    expect(true).toBe(true)
   })
 })

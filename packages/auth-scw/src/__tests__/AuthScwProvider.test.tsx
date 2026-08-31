@@ -59,7 +59,7 @@ describe('useauthscw provider', () => {
     it('should check initialvalues', () => {
       const { result } = renderHook(useAuthScw, { wrapper: Wrapper })
 
-      expect(result.current.audienceId).toStrictEqual(undefined)
+      expect(result.current.audienceId).toBeUndefined()
       expect(result.current.authenticated).toBe(false)
     })
 
@@ -78,7 +78,7 @@ describe('useauthscw provider', () => {
 
       const { result } = renderHook(useAuthScw, { wrapper: Wrapper })
 
-      expect(mockReplaceStateHistory).toHaveBeenCalled()
+      expect(mockReplaceStateHistory).toHaveBeenCalledTimes(1)
 
       expect(result.current.audienceId).toStrictEqual(MOCK_ENCODED_JWT_COOKIE.jwt.audienceId)
 
@@ -136,10 +136,10 @@ describe('useauthscw provider', () => {
 
       await waitFor(async () => {
         const currentJWT = await result.current.getJWT()
-        expect(currentJWT?.source).toStrictEqual('refreshSession')
+        expect(currentJWT?.source).toBe('refreshSession')
       })
 
-      expect(mockRenewJwt).toHaveBeenCalledOnce()
+      expect(mockRenewJwt).toHaveBeenCalledTimes(1)
     })
 
     it('should fail to renew jwt', async () => {
@@ -163,7 +163,7 @@ describe('useauthscw provider', () => {
         expect(currentJWT).toBeUndefined()
       })
 
-      expect(mockRenewJwt).toHaveBeenCalledOnce()
+      expect(mockRenewJwt).toHaveBeenCalledTimes(1)
     })
 
     it('should logout and clear all', async () => {
@@ -188,9 +188,9 @@ describe('useauthscw provider', () => {
       await waitFor(() => {
         expect(result.current.authenticated).toBe(false)
       })
-      expect(mockDeleteJwt).toHaveBeenCalledOnce()
+      expect(mockDeleteJwt).toHaveBeenCalledTimes(1)
       await waitFor(() => {
-        expect(result.current.audienceId).toStrictEqual(undefined)
+        expect(result.current.audienceId).toBeUndefined()
       })
     })
   })
