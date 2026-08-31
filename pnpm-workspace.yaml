@@ -59,7 +59,7 @@ catalog:
   vitest: 4.1.11
   vitest-localstorage-mock: 0.1.2
   yaml: 2.9.0
-  zod: 4.4.3
+  zod: 4.5.1
   '@testing-library/dom': 10.4.1
 catalogMode: strict
 cleanupUnusedCatalogs: true
