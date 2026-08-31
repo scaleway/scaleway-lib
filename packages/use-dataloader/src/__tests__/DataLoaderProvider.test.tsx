@@ -33,7 +33,7 @@ const wrapperWith2ConcurrentRequests = ({ children }: { children?: ReactNode }) 
 describe('dataLoaderProvider', () => {
   it('should render correctly', () => {
     render(<DataLoaderProvider>Test</DataLoaderProvider>)
-    expect(screen.getByText('Test')).toBe(true)
+    expect(screen.getByText('Test')).toBeDefined()
   })
 
   it('should add request', async () => {
