@@ -1,8 +1,8 @@
 import { readFile } from 'node:fs/promises'
 import { env } from 'node:process'
 import { read } from '@changesets/config'
-import { glob } from 'tinyglobby'
 import { parse } from 'yaml'
+import { globWithGitignore } from './globWithGitignore'
 
 /**
  * Discover workspace package globs from pnpm-workspace.yaml (`packages` field)
@@ -189,8 +189,7 @@ export async function findAffectedPackages(changedDeps: string[], packageJsonGlo
   const patterns = globs.length > 0 ? globs : ['packages/*/package.json']
 
   const config = await getChangesetConfig()
-  const ignore = ['**/node_modules/**']
-  const packageJsonPaths = await glob(patterns, { expandDirectories: false, ignore })
+  const packageJsonPaths = await globWithGitignore(patterns, { expandDirectories: false })
   const affectedPackages = new Set<string>()
 
   for (const pkgJsonPath of packageJsonPaths) {
