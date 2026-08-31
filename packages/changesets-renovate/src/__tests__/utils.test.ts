@@ -11,17 +11,29 @@ import {
   loadCatalogFromWorkspaceContent,
 } from '../utils.js'
 
+const { execSyncMock, escapePathMock, globMock } = vi.hoisted(() => ({
+  execSyncMock: vi.fn(() => 'node_modules/\ndist/\n'),
+  escapePathMock: vi.fn((p: string) => p),
+  globMock: vi.fn(),
+}))
+
 // Mock all external dependencies
 vi.mock('node:fs/promises')
+vi.mock('node:child_process', () => ({
+  execSync: execSyncMock,
+}))
 vi.mock('yaml')
-vi.mock('tinyglobby')
-
-vi.spyOn(changesetConfig, 'read').mockResolvedValue(changesetConfig.defaultConfig)
+vi.mock('tinyglobby', () => ({
+  glob: globMock,
+  escapePath: escapePathMock,
+}))
 
 describe('pnpm-catalogs-utils', () => {
   beforeEach(() => {
     // Clear all mocks
     vi.clearAllMocks()
+    vi.spyOn(changesetConfig, 'read').mockResolvedValue(changesetConfig.defaultConfig)
+    vi.spyOn(process, 'cwd').mockReturnValue('/mock/repo')
     delete process.env['EXCLUDE_DEVDEPS']
   })
 
@@ -296,10 +308,15 @@ catalog:
 
       const result = await findAffectedPackages(['changed-dep'])
 
-      expect(glob).toHaveBeenCalledWith(
-        ['packages/*/package.json'],
-        expect.objectContaining({ expandDirectories: false }),
+      expect(execSyncMock).toHaveBeenCalledWith(
+        'git ls-files --others --ignored --exclude-standard --directory',
+        expect.objectContaining({ cwd: process.cwd() }),
       )
+      expect(glob).toHaveBeenCalledWith(['packages/*/package.json'], {
+        expandDirectories: false,
+        cwd: '/mock/repo',
+        ignore: ['node_modules/', 'dist/'],
+      })
       expect(result).toBeInstanceOf(Set)
       expect(result.size).toBe(1)
       expect(result).toContain('package-a')
@@ -335,10 +352,11 @@ catalog:
 
       const result = await findAffectedPackages(['changed-dep'])
 
-      expect(glob).toHaveBeenCalledWith(
-        ['packages/*/package.json'],
-        expect.objectContaining({ expandDirectories: false }),
-      )
+      expect(glob).toHaveBeenCalledWith(['packages/*/package.json'], {
+        expandDirectories: false,
+        cwd: '/mock/repo',
+        ignore: ['node_modules/', 'dist/'],
+      })
       expect(result).toBeInstanceOf(Set)
       expect(result.size).toBe(1)
       expect(result).toContain('package-a')
@@ -383,10 +401,11 @@ catalog:
 
       const result = await findAffectedPackages(['changed-dep'])
 
-      expect(glob).toHaveBeenCalledWith(
-        ['packages/*/package.json'],
-        expect.objectContaining({ expandDirectories: false }),
-      )
+      expect(glob).toHaveBeenCalledWith(['packages/*/package.json'], {
+        expandDirectories: false,
+        cwd: '/mock/repo',
+        ignore: ['node_modules/', 'dist/'],
+      })
       expect(result).toBeInstanceOf(Set)
       expect(result.size).toBe(1)
       expect(result).toContain('package-a')
@@ -446,7 +465,11 @@ catalog:
 
       const result = await findAffectedPackages(['changed-dep'], ['apps/*/package.json'])
 
-      expect(glob).toHaveBeenCalledWith(['apps/*/package.json'], expect.objectContaining({ expandDirectories: false }))
+      expect(glob).toHaveBeenCalledWith(['apps/*/package.json'], {
+        expandDirectories: false,
+        cwd: '/mock/repo',
+        ignore: ['node_modules/', 'dist/'],
+      })
       expect(result.size).toBe(1)
       expect(result).toContain('app-a')
     })
@@ -475,7 +498,11 @@ catalog:
 
       const result = await findAffectedPackages(['changed-dep'])
 
-      expect(glob).toHaveBeenCalledWith(['apps/*/package.json'], expect.objectContaining({ expandDirectories: false }))
+      expect(glob).toHaveBeenCalledWith(['apps/*/package.json'], {
+        expandDirectories: false,
+        cwd: '/mock/repo',
+        ignore: ['node_modules/', 'dist/'],
+      })
       expect(result.size).toBe(1)
       expect(result).toContain('app-a')
     })
@@ -486,10 +513,11 @@ catalog:
 
       const result = await findAffectedPackages(['changed-dep'])
 
-      expect(glob).toHaveBeenCalledWith(
-        ['packages/*/package.json'],
-        expect.objectContaining({ expandDirectories: false }),
-      )
+      expect(glob).toHaveBeenCalledWith(['packages/*/package.json'], {
+        expandDirectories: false,
+        cwd: '/mock/repo',
+        ignore: ['node_modules/', 'dist/'],
+      })
       expect(result.size).toBe(0)
     })
   })
