@@ -722,8 +722,10 @@ export default defineConfig({
     'eslint/require-yield': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/eslint/sort-imports
+     * @note declaration ordering is handled by oxfmt. Here we only sort imports members
+     * ignoreCase is set to true to be consistent with oxfmt
      */
-    'eslint/sort-imports': 'error',
+    'eslint/sort-imports': ['error', { ignoreCase: true, ignoreDeclarationSort: true }],
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/eslint/sort-keys
      */
