@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/oxlint-config",
-  "version": "0.2.3",
+  "version": "1.0.0",
   "description": "Scaleway's shareable configuration for oxlint",
   "keywords": [
     "config",
