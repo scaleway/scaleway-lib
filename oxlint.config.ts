@@ -4,6 +4,7 @@ import { defineConfig } from 'oxlint'
 export default defineConfig({
   extends: [base, react, vitest],
   ignorePatterns,
+  // All of the custom rules below should be removed
   overrides: [
     {
       files: ['**/*.{test,spec}.{ts,tsx,js,jsx}', '**/__tests__/**/*.{ts,tsx,js,jsx}'],
