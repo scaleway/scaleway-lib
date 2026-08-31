@@ -1,6 +1,5 @@
 import { readFile, writeFile } from 'node:fs/promises'
 import * as changesetConfig from '@changesets/config'
-import type * as ChangesetConfig from '@changesets/config'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { defaultGitValues, mockSimpleGit } from '../../__mocks__/simple-git'
 import { run } from '../generateChangeset.js'
@@ -9,7 +8,7 @@ import { run } from '../generateChangeset.js'
 vi.mock('node:fs/promises')
 
 vi.mock('@changesets/config', async importOriginal => {
-  const actual = await importOriginal<typeof ChangesetConfig>()
+  const actual = await importOriginal<typeof changesetConfig>()
 
   return {
     ...actual,

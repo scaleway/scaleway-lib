@@ -1,6 +1,5 @@
 import { readFile } from 'node:fs/promises'
 import * as changesetConfig from '@changesets/config'
-import type * as ChangesetConfig from '@changesets/config'
 import { glob } from 'tinyglobby'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { parse } from 'yaml'
@@ -30,7 +29,7 @@ vi.mock('tinyglobby', () => ({
 }))
 
 vi.mock('@changesets/config', async importOriginal => {
-  const actual = await importOriginal<typeof ChangesetConfig>()
+  const actual = await importOriginal<typeof changesetConfig>()
 
   return {
     ...actual,
