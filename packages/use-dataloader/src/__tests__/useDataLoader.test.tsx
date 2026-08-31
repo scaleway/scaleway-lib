@@ -363,8 +363,8 @@ describe('useDataLoader', () => {
     expect(result.current.isFetching).toBeFalsy()
     await waitFor(() => {
       expect(result.current.isFetching).toBeTruthy()
+      expect(result.current.isSuccess).toBeFalsy()
     })
-    expect(result.current.isSuccess).toBeFalsy()
     await waitFor(() => {
       expect(result.current.isSuccess).toBeTruthy()
     })
@@ -382,10 +382,10 @@ describe('useDataLoader', () => {
     })
     await waitFor(() => {
       expect(result.current.isFetching).toBeTruthy()
+      expect(result.current.isSuccess).toBeFalsy()
     })
     expect(result.current.data).toBe(2)
     expect(result.current.isPolling).toBeTruthy()
-    expect(result.current.isSuccess).toBeFalsy()
     expect(method2).toHaveBeenCalledTimes(2)
     await waitFor(() => {
       expect(result.current.isSuccess).toBeTruthy()
