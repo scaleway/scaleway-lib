@@ -1,7 +1,8 @@
+import { execSync } from 'node:child_process'
 import { readFile } from 'node:fs/promises'
 import { env } from 'node:process'
 import { read } from '@changesets/config'
-import { glob } from 'tinyglobby'
+import { escapePath, glob, GlobOptions } from 'tinyglobby'
 import { parse } from 'yaml'
 
 /**
@@ -170,6 +171,30 @@ export function findChangedDependencies(
     .map(([pkg]) => pkg)
 }
 
+// Taken from https://superchupu.dev/tinyglobby/migration#gitignore
+const globWithGitignore = async (patterns: string | readonly string[], opts: Omit<GlobOptions, 'patterns'> = {}) => {
+  const { cwd = process.cwd(), ...restOptions } = opts
+
+  try {
+    const gitIgnored = execSync('git ls-files --others --ignored --exclude-standard --directory', {
+      cwd,
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+    })
+      .split('\n')
+      .filter(Boolean)
+      .map(p => escapePath(p))
+
+    return await glob(patterns, {
+      ...restOptions,
+      cwd,
+      ignore: [...(restOptions.ignore ?? []), ...gitIgnored],
+    })
+  } catch {
+    return glob(patterns, opts)
+  }
+}
+
 /**
  * Find packages affected by dependency changes
  * @param changedDeps Array of changed dependency names
@@ -189,8 +214,7 @@ export async function findAffectedPackages(changedDeps: string[], packageJsonGlo
   const patterns = globs.length > 0 ? globs : ['packages/*/package.json']
 
   const config = await getChangesetConfig()
-  const ignore = ['**/node_modules/**']
-  const packageJsonPaths = await glob(patterns, { expandDirectories: false, ignore })
+  const packageJsonPaths = await globWithGitignore(patterns, { expandDirectories: false })
   const affectedPackages = new Set<string>()
 
   for (const pkgJsonPath of packageJsonPaths) {
