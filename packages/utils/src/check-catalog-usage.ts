@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 // oxlint-disable eslint/no-console
-// oxlint-disable eslint/max-statements
 
 /**
  * Script to check that dependencies use catalog references instead of hardcoded versions

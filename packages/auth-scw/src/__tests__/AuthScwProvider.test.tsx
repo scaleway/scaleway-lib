@@ -1,4 +1,3 @@
-// oxlint-disable max-classes-per-file
 import { createClient, API } from '@scaleway/sdk-client'
 import { act, renderHook, waitFor } from '@testing-library/react'
 import type { ReactNode } from 'react'

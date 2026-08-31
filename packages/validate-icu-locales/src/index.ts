@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 // oxlint-disable eslint/no-console
-// oxlint-disable eslint/max-statements
 
 import { execSync } from 'node:child_process'
 import { readFile } from 'node:fs/promises'

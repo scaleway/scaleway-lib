@@ -1,4 +1,3 @@
-// oxlint-disable eslint/max-statements
 // oxlint-disable eslint/no-console
 
 import { env } from 'node:process'

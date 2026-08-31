@@ -8,7 +8,7 @@
   "scripts": {
     "preinstall": "git config --local include.path $PWD/.gitconfig",
     "lint:catalog": "pnpm check-catalog-usage",
-    "lint": "oxlint -c .oxlintrc.jsonc",
+    "lint": "oxlint",
     "lint:fix": "pnpm lint:fix -- --fix",
     "build": "pnpm turbo build",
     "typecheck": "pnpm turbo typecheck",
@@ -63,13 +63,13 @@
       "pnpm run lint --quiet"
     ],
     "*.y?(a)ml": [
-      "oxfmt --write ."
+      "pnpm run format"
     ],
     "*.json?(c)": [
-      "oxfmt --write ."
+      "pnpm run format"
     ],
     "*.mdx": [
-      "oxfmt --write ."
+      "pnpm run format"
     ],
     "(*package).json": [
       "pnpm exec manypkg check"

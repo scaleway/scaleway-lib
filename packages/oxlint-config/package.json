@@ -19,21 +19,24 @@
     "url": "git+https://github.com/scaleway/scaleway-lib.git",
     "directory": "packages/oxlint-config"
   },
-  "files": [
-    "configs/**"
-  ],
+  "type": "module",
+  "types": "./dist/index.d.ts",
   "exports": {
-    ".": "./configs/index.json",
-    "./react": "./configs/react.json",
-    "./vitest": "./configs/vitest.json"
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
   },
   "publishConfig": {
     "access": "public"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "tsdown",
+    "build:profile": "npx vite-bundle-visualizer -c vite.config.ts"
   },
   "devDependencies": {
     "oxlint": "catalog:"
   },
   "peerDependencies": {
-    "oxlint": ">=1.55.0"
+    "oxlint": ">=1.78.0"
   }
 }

@@ -4,6 +4,18 @@ import { execSync } from 'node:child_process'
 import type { GlobOptions } from 'tinyglobby'
 import { glob, escapePath } from 'tinyglobby'
 
+const mergeIgnore = (value: string | readonly string[] | undefined): readonly string[] => {
+  if (value === undefined) {
+    return []
+  }
+
+  if (typeof value === 'string') {
+    return [value]
+  }
+
+  return value
+}
+
 // Taken from https://superchupu.dev/tinyglobby/migration#gitignore
 export const globWithGitignore = async (patterns: string[], opts: Omit<GlobOptions, 'patterns'> = {}) => {
   const { cwd = process.cwd(), ...restOptions } = opts
@@ -18,12 +30,7 @@ export const globWithGitignore = async (patterns: string[], opts: Omit<GlobOptio
       .filter(Boolean)
       .map(p => escapePath(p))
 
-    const existingIgnore: readonly string[] =
-      restOptions.ignore === undefined
-        ? []
-        : Array.isArray(restOptions.ignore)
-          ? restOptions.ignore
-          : [restOptions.ignore]
+    const existingIgnore = mergeIgnore(restOptions.ignore)
 
     const ignore = [...existingIgnore, ...gitIgnored]
 

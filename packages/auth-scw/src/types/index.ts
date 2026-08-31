@@ -1,4 +1,3 @@
-// oxlint-disable eslint/max-classes-per-file
 import type { Client as SDKClient, Settings } from '@scaleway/sdk-client'
 import { API as SDKAPI } from '@scaleway/sdk-client'
 import type { z } from 'zod'

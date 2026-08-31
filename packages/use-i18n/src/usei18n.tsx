@@ -180,7 +180,6 @@ export function useTranslation<LocaleParam extends BaseLocale = BaseLocale, Loca
 
 const initialDefaultTranslations = {}
 
-// oxlint-disable-next-line max-statements
 const I18nContextProvider = <LocalSupportedType extends string>({
   children,
   rootElement,

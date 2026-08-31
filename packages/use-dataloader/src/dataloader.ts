@@ -1,5 +1,3 @@
-// oxlint-disable eslint/max-statements
-//
 import { DEFAULT_MAX_CONCURRENT_REQUESTS, StatusEnum } from './constants'
 import type { PromiseType } from './types'
 
