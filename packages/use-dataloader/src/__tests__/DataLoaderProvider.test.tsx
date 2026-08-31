@@ -33,7 +33,7 @@ const wrapperWith2ConcurrentRequests = ({ children }: { children?: ReactNode }) 
 describe('dataLoaderProvider', () => {
   it('should render correctly', () => {
     render(<DataLoaderProvider>Test</DataLoaderProvider>)
-    expect(screen.getByText('Test')).toBeTruthy()
+    expect(screen.getByText('Test')).toBe(true)
   })
 
   it('should add request', async () => {
@@ -56,11 +56,11 @@ describe('dataLoaderProvider', () => {
     // oxlint-disable-next-line  @typescript-eslint/no-floating-promises
     testRequest.load().catch(undefined)
     expect(testRequest.status).toBe(StatusEnum.LOADING)
-    expect(method).toHaveBeenCalledOnce()
+    expect(method).toHaveBeenCalledTimes(1)
     await waitFor(() => {
       expect(testRequest.status).toBe(StatusEnum.SUCCESS)
     })
-    expect(result.current.getCachedData(TEST_KEY)).toBeTruthy()
+    expect(result.current.getCachedData(TEST_KEY)).toBe(true)
     // oxlint-disable-next-line  @typescript-eslint/no-floating-promises
     result.current.reload(TEST_KEY).catch(undefined)
     await waitFor(() => {
@@ -91,9 +91,9 @@ describe('dataLoaderProvider', () => {
     await waitFor(() => {
       expect(testRequest.status).toBe(StatusEnum.SUCCESS)
     })
-    expect(method).toHaveBeenCalledOnce()
-    expect(testRequest.data).toBeTruthy()
-    expect(result.current.getCachedData(TEST_KEY)).toBeTruthy()
+    expect(method).toHaveBeenCalledTimes(1)
+    expect(testRequest.data).toBe(true)
+    expect(result.current.getCachedData(TEST_KEY)).toBe(true)
     // oxlint-disable-next-line  @typescript-eslint/no-floating-promises
     result.current.reload(TEST_KEY).catch(undefined)
     await waitFor(() => {
@@ -113,7 +113,7 @@ describe('dataLoaderProvider', () => {
       method,
     })
     await request.load()
-    expect(method).toHaveBeenCalledOnce()
+    expect(method).toHaveBeenCalledTimes(1)
     expect(result.current.getRequest(TEST_KEY).status).toBe(StatusEnum.SUCCESS)
     const reloads = result.current.getReloads()
     expect(reloads).toHaveProperty(TEST_KEY)
@@ -202,27 +202,27 @@ describe('dataLoaderProvider', () => {
     })
 
     await result.current.reloadGroup(TEST_KEY)
-    expect(method1).toHaveBeenCalledOnce()
-    expect(method2).toHaveBeenCalledOnce()
-    expect(method3).not.toHaveBeenCalled()
+    expect(method1).toHaveBeenCalledTimes(1)
+    expect(method2).toHaveBeenCalledTimes(1)
+    expect(method3).not.toHaveBeenCalledTimes(1)
 
     method1.mockClear()
     method2.mockClear()
     method3.mockClear()
 
     await result.current.reloadGroup('other')
-    expect(method1).not.toHaveBeenCalled()
-    expect(method2).not.toHaveBeenCalled()
-    expect(method3).toHaveBeenCalledOnce()
+    expect(method1).not.toHaveBeenCalledTimes(1)
+    expect(method2).not.toHaveBeenCalledTimes(1)
+    expect(method3).toHaveBeenCalledTimes(1)
 
     method1.mockClear()
     method2.mockClear()
     method3.mockClear()
 
     await result.current.reloadAll()
-    expect(method1).toHaveBeenCalledOnce()
-    expect(method2).toHaveBeenCalledOnce()
-    expect(method3).toHaveBeenCalledOnce()
+    expect(method1).toHaveBeenCalledTimes(1)
+    expect(method2).toHaveBeenCalledTimes(1)
+    expect(method3).toHaveBeenCalledTimes(1)
   })
 
   it('should reload all active requests', async () => {
@@ -246,9 +246,9 @@ describe('dataLoaderProvider', () => {
     request1.addObserver(() => {})
 
     await result.current.reloadAllActive()
-    expect(method1).toHaveBeenCalledOnce()
-    expect(method2).not.toHaveBeenCalled()
-    expect(method3).not.toHaveBeenCalled()
+    expect(method1).toHaveBeenCalledTimes(1)
+    expect(method2).not.toHaveBeenCalledTimes(1)
+    expect(method3).not.toHaveBeenCalledTimes(1)
   })
 
   it('should reload group active requests', async () => {
@@ -273,17 +273,17 @@ describe('dataLoaderProvider', () => {
     request3.addObserver(() => {})
 
     await result.current.reloadGroupActive(TEST_KEY)
-    expect(method1).toHaveBeenCalledOnce()
-    expect(method2).not.toHaveBeenCalled()
-    expect(method3).not.toHaveBeenCalled()
+    expect(method1).toHaveBeenCalledTimes(1)
+    expect(method2).not.toHaveBeenCalledTimes(1)
+    expect(method3).not.toHaveBeenCalledTimes(1)
 
     method1.mockClear()
     method2.mockClear()
     method3.mockClear()
 
     await result.current.reloadGroupActive('other')
-    expect(method1).not.toHaveBeenCalled()
-    expect(method2).not.toHaveBeenCalled()
-    expect(method3).toHaveBeenCalledOnce()
+    expect(method1).not.toHaveBeenCalledTimes(1)
+    expect(method2).not.toHaveBeenCalledTimes(1)
+    expect(method3).toHaveBeenCalledTimes(1)
   })
 })

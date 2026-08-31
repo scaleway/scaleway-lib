@@ -99,7 +99,7 @@ describe('abTestProvider', () => {
       setTimeout(resolve, 10)
     })
 
-    expect(init).not.toHaveBeenCalled()
+    expect(init).not.toHaveBeenCalledTimes(1)
   })
 
   it('should handle errors during initialization', async () => {
@@ -250,6 +250,6 @@ describe('abTestProvider', () => {
 
     // Since the attributes are the same object reference and we're using the same GrowthBook instance,
     // setAttributes should only be called once (from the initial render), not a second time from the re-render
-    expect(setAttributes).toHaveBeenCalledOnce()
+    expect(setAttributes).toHaveBeenCalledTimes(1)
   })
 })

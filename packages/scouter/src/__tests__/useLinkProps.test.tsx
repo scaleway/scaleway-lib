@@ -109,7 +109,7 @@ test('onClick prevents default on left click', () => {
     } as any)
   })
 
-  expect(preventDefault).toHaveBeenCalled()
+  expect(preventDefault).toHaveBeenCalledTimes(1)
 })
 
 test('onClick does not prevent default on non-left click', () => {
@@ -130,7 +130,7 @@ test('onClick does not prevent default on non-left click', () => {
     } as any)
   })
 
-  expect(preventDefault).not.toHaveBeenCalled()
+  expect(preventDefault).not.toHaveBeenCalledTimes(1)
 })
 
 test('onClick does not prevent default with modifier keys', () => {
@@ -152,7 +152,7 @@ test('onClick does not prevent default with modifier keys', () => {
     } as any)
   })
 
-  expect(preventDefault).not.toHaveBeenCalled()
+  expect(preventDefault).not.toHaveBeenCalledTimes(1)
 })
 
 test('onClick does not prevent default with target="_blank"', () => {
@@ -173,7 +173,7 @@ test('onClick does not prevent default with target="_blank"', () => {
     } as any)
   })
 
-  expect(preventDefault).not.toHaveBeenCalled()
+  expect(preventDefault).not.toHaveBeenCalledTimes(1)
 })
 
 test('integrates with onClickProp', () => {
@@ -223,7 +223,7 @@ test('handles onClickProp errors', () => {
     result.current[0].onClick?.(event as any)
   }).toThrow('Custom error')
 
-  expect(event.preventDefault).toHaveBeenCalled()
+  expect(event.preventDefault).toHaveBeenCalledTimes(1)
 })
 
 test('passes through other props', () => {

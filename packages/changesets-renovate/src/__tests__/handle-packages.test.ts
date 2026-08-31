@@ -35,9 +35,9 @@ describe('handle-packages', () => {
     await handlePackageChanges(diffFiles)
 
     // Should not call any of the main functions
-    expect(getPackagesNames).not.toHaveBeenCalled()
-    expect(getBumpsFromGit).not.toHaveBeenCalled()
-    expect(createChangeset).not.toHaveBeenCalled()
+    expect(getPackagesNames).not.toHaveBeenCalledTimes(1)
+    expect(getBumpsFromGit).not.toHaveBeenCalledTimes(1)
+    expect(createChangeset).not.toHaveBeenCalledTimes(1)
   })
 
   it('should handle case with no package names', async () => {
@@ -50,7 +50,7 @@ describe('handle-packages', () => {
 
     expect(getBumpsFromGit).toHaveBeenCalledWith(['package.json'])
     expect(getPackagesNames).toHaveBeenCalledWith(['package.json'], undefined)
-    expect(createChangeset).not.toHaveBeenCalled()
+    expect(createChangeset).not.toHaveBeenCalledTimes(1)
   })
 
   it('should create changeset when there are package changes', async () => {

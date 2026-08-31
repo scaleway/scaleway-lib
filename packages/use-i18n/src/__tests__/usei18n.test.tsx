@@ -293,7 +293,7 @@ describe('i18n hook', () => {
 
       await vi.waitFor(() => {
         expect(result.current.currentLocale).toBe('en')
-        expect(mockGetItem).toHaveBeenCalledOnce()
+        expect(mockGetItem).toHaveBeenCalledTimes(1)
         expect(mockGetItem).toHaveBeenCalledWith(LOCALE_ITEM_STORAGE)
       })
       localStorageMock.mockRestore()
@@ -322,7 +322,7 @@ describe('i18n hook', () => {
 
       await vi.waitFor(() => {
         expect(result.current.currentLocale).toBe('en')
-        expect(mockGetItem).toHaveBeenCalledOnce()
+        expect(mockGetItem).toHaveBeenCalledTimes(1)
         expect(mockGetItem).toHaveBeenCalledWith(LOCALE_ITEM_STORAGE)
       })
       localStorageMock.mockRestore()
@@ -549,7 +549,7 @@ describe('i18n hook', () => {
       `On translate sync issue with variable between locales ${newVariable}`,
     )
 
-    expect(mockOnTranslateError).toHaveBeenCalledOnce()
+    expect(mockOnTranslateError).toHaveBeenCalledTimes(1)
 
     expect(mockOnTranslateError).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -910,7 +910,7 @@ describe('i18n hook', () => {
 
       await vi.waitFor(() => {
         expect(result.current.currentLocale).toBe('fr')
-        expect(mockGetItem).toHaveBeenCalledOnce()
+        expect(mockGetItem).toHaveBeenCalledTimes(1)
         expect(mockGetItem).toHaveBeenCalledWith(LOCALE_ITEM_STORAGE)
       })
 
@@ -937,7 +937,7 @@ describe('i18n hook', () => {
       })
 
       await vi.waitFor(() => {
-        expect(mockOnLoadTranslationError).toHaveBeenCalledOnce()
+        expect(mockOnLoadTranslationError).toHaveBeenCalledTimes(1)
         expect(mockOnLoadTranslationError).toHaveBeenCalledWith(expect.any(Error))
       })
 
@@ -967,7 +967,7 @@ describe('i18n hook', () => {
       })
 
       await vi.waitFor(() => {
-        expect(mockOnLoadTranslationError).toHaveBeenCalledOnce()
+        expect(mockOnLoadTranslationError).toHaveBeenCalledTimes(1)
         expect(mockOnLoadTranslationError).toHaveBeenCalledWith(expect.any(Error))
       })
 
@@ -997,7 +997,7 @@ describe('i18n hook', () => {
       })
 
       await vi.waitFor(() => {
-        expect(mockOnLoadTranslationError).toHaveBeenCalledOnce()
+        expect(mockOnLoadTranslationError).toHaveBeenCalledTimes(1)
         expect(result.current.t('title')).toBe('French Title')
       })
     })
@@ -1015,7 +1015,7 @@ describe('i18n hook', () => {
 
       await vi.waitFor(() => {
         expect(result.current.t('title')).toBe(en.title)
-        expect(mockOnLoadTranslationError).not.toHaveBeenCalled()
+        expect(mockOnLoadTranslationError).not.toHaveBeenCalledTimes(1)
       })
     })
 
@@ -1037,7 +1037,7 @@ describe('i18n hook', () => {
       })
 
       await vi.waitFor(() => {
-        expect(mockOnLoadTranslationError).toHaveBeenCalled()
+        expect(mockOnLoadTranslationError).toHaveBeenCalledTimes(1)
         expect(result.current.t('name')).toBe('Name')
       })
     })
@@ -1068,7 +1068,7 @@ describe('i18n hook', () => {
       })
 
       await vi.waitFor(() => {
-        expect(mockOnLoadTranslationError).toHaveBeenCalled()
+        expect(mockOnLoadTranslationError).toHaveBeenCalledTimes(1)
         expect(result.current.t('title')).toBe('')
       })
     })

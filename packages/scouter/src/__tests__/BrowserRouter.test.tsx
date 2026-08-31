@@ -90,7 +90,7 @@ describe('component BrowserRouter', () => {
     )
 
     expect(match!).toBeDefined()
-    expect(match!.params).toEqual({})
+    expect(match!.params).toStrictEqual({})
   })
 
   it('uses current browser location', () => {

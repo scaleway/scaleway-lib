@@ -87,7 +87,7 @@ describe('generate changeset file', () => {
     expect(mockedWriteFile).toMatchSnapshot()
     expect(add).toHaveBeenCalledWith(fileName)
     expect(commit).toHaveBeenCalledWith(`chore: add ${fileName}`)
-    expect(push).toHaveBeenCalledOnce()
+    expect(push).toHaveBeenCalledTimes(1)
   })
 
   it('should not skip if not in renovate branch, when branch check skip is true', async () => {
@@ -137,7 +137,7 @@ describe('generate changeset file', () => {
     expect(mockedWriteFile).toMatchSnapshot()
     expect(add).toHaveBeenCalledWith(fileName)
     expect(commit).toHaveBeenCalledWith(`chore: add ${fileName}`)
-    expect(push).toHaveBeenCalledOnce()
+    expect(push).toHaveBeenCalledTimes(1)
   })
 
   it('should skip if .changeset is already modified', async () => {
@@ -223,7 +223,7 @@ describe('generate changeset file', () => {
     expect(mockedWriteFile).toMatchSnapshot()
     expect(add).toHaveBeenCalledWith(fileName)
     expect(commit).toHaveBeenCalledWith(`chore: add ${fileName}`)
-    expect(push).toHaveBeenCalledOnce()
+    expect(push).toHaveBeenCalledTimes(1)
   })
 
   it('should generate changeset file, but skip commit and push', async () => {
@@ -272,7 +272,7 @@ describe('generate changeset file', () => {
     expect(mockedWriteFile).toMatchSnapshot()
     expect(add).not.toHaveBeenCalledWith(fileName)
     expect(commit).not.toHaveBeenCalledWith(`chore: add changeset renovate-${rev}`)
-    expect(push).not.toHaveBeenCalledOnce()
+    expect(push).not.toHaveBeenCalledTimes(1)
   })
 
   it('should generate sorted changeset file, but skip commit and push', async () => {
@@ -330,7 +330,7 @@ describe('generate changeset file', () => {
     expect(mockedWriteFile).toMatchSnapshot()
     expect(add).not.toHaveBeenCalledWith(fileName)
     expect(commit).not.toHaveBeenCalledWith(`chore: add changeset renovate-${rev}`)
-    expect(push).not.toHaveBeenCalledOnce()
+    expect(push).not.toHaveBeenCalledTimes(1)
   })
 
   it('should ignore workspace package.json', async () => {

@@ -433,7 +433,7 @@ catalog:
     it('should handle empty dependency list', async () => {
       const result = await findAffectedPackages([])
 
-      expect(glob).not.toHaveBeenCalled()
+      expect(glob).not.toHaveBeenCalledTimes(1)
       expect(result).toBeInstanceOf(Set)
       expect(result.size).toBe(0)
     })

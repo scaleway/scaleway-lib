@@ -46,15 +46,15 @@ describe('useDataLoader', () => {
       wrapper,
     })
     expect(result.current.data).toBeUndefined()
-    expect(result.current.isLoading).toBeTruthy()
+    expect(result.current.isLoading).toBe(true)
     expect(result.current.previousData).toBeUndefined()
-    expect(initialProps.method).toHaveBeenCalledOnce()
+    expect(initialProps.method).toHaveBeenCalledTimes(1)
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy()
+      expect(result.current.isSuccess).toBe(true)
     })
-    expect(initialProps.method).toHaveBeenCalledOnce()
-    expect(result.current.data).toBeTruthy()
-    expect(result.current.isLoading).toBeFalsy()
+    expect(initialProps.method).toHaveBeenCalledTimes(1)
+    expect(result.current.data).toBe(true)
+    expect(result.current.isLoading).toBe(false)
     expect(result.current.previousData).toBeUndefined()
   })
 
@@ -71,21 +71,21 @@ describe('useDataLoader', () => {
       wrapper,
     })
     expect(result.current.data).toBeUndefined()
-    expect(result.current.isLoading).toBeTruthy()
+    expect(result.current.isLoading).toBe(true)
     expect(result.current.previousData).toBeUndefined()
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy()
+      expect(result.current.isSuccess).toBe(true)
     })
-    expect(initialProps.method).toHaveBeenCalledOnce()
-    expect(result.current.data).toBeTruthy()
-    expect(result.current.isLoading).toBeFalsy()
+    expect(initialProps.method).toHaveBeenCalledTimes(1)
+    expect(result.current.data).toBe(true)
+    expect(result.current.isLoading).toBe(false)
     expect(result.current.previousData).toBeUndefined()
 
     rerender({ ...initProps })
 
-    expect(initialProps.method).toHaveBeenCalledOnce()
-    expect(result.current.data).toBeTruthy()
-    expect(result.current.isLoading).toBeFalsy()
+    expect(initialProps.method).toHaveBeenCalledTimes(1)
+    expect(result.current.data).toBe(true)
+    expect(result.current.isLoading).toBe(false)
     expect(result.current.previousData).toBeUndefined()
   })
 
@@ -115,22 +115,22 @@ describe('useDataLoader', () => {
       wrapper,
     })
     expect(result.current.data).toBeUndefined()
-    expect(result.current.isLoading).toBeFalsy()
+    expect(result.current.isLoading).toBe(false)
     expect(method).toHaveBeenCalledTimes(0)
     testProps.config.enabled = true
     rerender({ ...testProps })
     await waitFor(() => {
-      expect(result.current.isLoading).toBeTruthy()
+      expect(result.current.isLoading).toBe(true)
     })
     expect(result.current.data).toBeUndefined()
     resolveIt = true
-    expect(method).toHaveBeenCalledOnce()
+    expect(method).toHaveBeenCalledTimes(1)
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy()
+      expect(result.current.isSuccess).toBe(true)
     })
-    expect(result.current.isLoading).toBeFalsy()
+    expect(result.current.isLoading).toBe(false)
     expect(result.current.previousData).toBeUndefined()
-    expect(result.current.data).toBeTruthy()
+    expect(result.current.data).toBe(true)
   })
 
   it('should render correctly without keepPreviousData', async () => {
@@ -145,12 +145,12 @@ describe('useDataLoader', () => {
       wrapper,
     })
     expect(result.current.data).toBeUndefined()
-    expect(result.current.isLoading).toBeTruthy()
+    expect(result.current.isLoading).toBe(true)
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy()
+      expect(result.current.isSuccess).toBe(true)
     })
-    expect(result.current.data).toBeTruthy()
-    expect(result.current.isLoading).toBeFalsy()
+    expect(result.current.data).toBe(true)
+    expect(result.current.isLoading).toBe(false)
   })
 
   it('should render correctly with result null', async () => {
@@ -168,12 +168,12 @@ describe('useDataLoader', () => {
       wrapper,
     })
     expect(result.current.data).toBeUndefined()
-    expect(result.current.isLoading).toBeTruthy()
+    expect(result.current.isLoading).toBe(true)
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy()
+      expect(result.current.isSuccess).toBe(true)
     })
     expect(result.current.data).toBeNull()
-    expect(result.current.isLoading).toBeFalsy()
+    expect(result.current.isLoading).toBe(false)
   })
 
   it('should render and cache correctly with cacheKeyPrefix', async () => {
@@ -210,27 +210,27 @@ describe('useDataLoader', () => {
     )
 
     expect(result.current[0]?.data).toBeUndefined()
-    expect(result.current[0]?.isLoading).toBeTruthy()
+    expect(result.current[0]?.isLoading).toBe(true)
     resolveIt = true
     expect(result.current[1]?.data).toBeUndefined()
-    expect(result.current[1]?.isIdle).toBeTruthy()
+    expect(result.current[1]?.isIdle).toBe(true)
     await waitFor(() => {
-      expect(result.current[0]?.isSuccess).toBeTruthy()
+      expect(result.current[0]?.isSuccess).toBe(true)
     })
-    expect(result.current[0]?.data).toBeTruthy()
+    expect(result.current[0]?.data).toBe(true)
 
     resolveIt = false
     result.current[1]?.reload().catch(() => null)
     await waitFor(() => {
-      expect(result.current[1]?.isLoading).toBeTruthy()
+      expect(result.current[1]?.isLoading).toBe(true)
     })
     expect(result.current[1]?.data).toBeUndefined()
     resolveIt = true
 
     await waitFor(() => {
-      expect(result.current[1]?.isSuccess).toBeTruthy()
+      expect(result.current[1]?.isSuccess).toBe(true)
     })
-    expect(result.current[1]?.data).toBeTruthy()
+    expect(result.current[1]?.data).toBe(true)
   })
 
   it('should render correctly with enabled true', async () => {
@@ -242,24 +242,24 @@ describe('useDataLoader', () => {
       wrapper,
     })
     expect(result.current.data).toBeUndefined()
-    expect(result.current.isLoading).toBeTruthy()
+    expect(result.current.isLoading).toBe(true)
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy()
+      expect(result.current.isSuccess).toBe(true)
     })
-    expect(result.current.data).toBeTruthy()
-    expect(result.current.isLoading).toBeFalsy()
+    expect(result.current.data).toBe(true)
+    expect(result.current.isLoading).toBe(false)
     result.current.reload().catch(() => null)
     result.current.reload().catch(() => null)
     await waitFor(() => {
-      expect(result.current.isFetching).toBeTruthy()
+      expect(result.current.isFetching).toBe(true)
     })
-    expect(result.current.data).toBeTruthy()
+    expect(result.current.data).toBe(true)
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy()
+      expect(result.current.isSuccess).toBe(true)
     })
-    expect(result.current.data).toBeTruthy()
-    expect(result.current.isSuccess).toBeTruthy()
-    expect(result.current.isLoading).toBeFalsy()
+    expect(result.current.data).toBe(true)
+    expect(result.current.isSuccess).toBe(true)
+    expect(result.current.isLoading).toBe(false)
   })
 
   it('should render correctly with key update', async () => {
@@ -275,24 +275,24 @@ describe('useDataLoader', () => {
     )
 
     expect(result.current.data).toBeUndefined()
-    expect(result.current.isLoading).toBeTruthy()
+    expect(result.current.isLoading).toBe(true)
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy()
+      expect(result.current.isSuccess).toBe(true)
     })
-    expect(result.current.isSuccess).toBeTruthy()
-    expect(result.current.isLoading).toBeFalsy()
-    expect(result.current.data).toBeTruthy()
+    expect(result.current.isSuccess).toBe(true)
+    expect(result.current.isLoading).toBe(false)
+    expect(result.current.data).toBe(true)
 
     propsToPass.key = 'key-2'
     rerender()
-    expect(result.current.isLoading).toBeTruthy()
+    expect(result.current.isLoading).toBe(true)
     expect(result.current.data).toBeUndefined()
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy()
+      expect(result.current.isSuccess).toBe(true)
     })
-    expect(result.current.data).toBeTruthy()
-    expect(result.current.isSuccess).toBeTruthy()
-    expect(result.current.isLoading).toBeFalsy()
+    expect(result.current.data).toBe(true)
+    expect(result.current.isSuccess).toBe(true)
+    expect(result.current.isLoading).toBe(false)
   })
 
   it('should render correctly with pooling', async () => {
@@ -326,28 +326,28 @@ describe('useDataLoader', () => {
       wrapper,
     })
     expect(result.current.data).toBeUndefined()
-    expect(result.current.isPolling).toBeTruthy()
-    expect(result.current.isFetching).toBeTruthy()
-    expect(pollingProps.method).toHaveBeenCalledOnce()
+    expect(result.current.isPolling).toBe(true)
+    expect(result.current.isFetching).toBe(true)
+    expect(pollingProps.method).toHaveBeenCalledTimes(1)
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy()
+      expect(result.current.isSuccess).toBe(true)
     })
-    expect(result.current.data).toBeTruthy()
-    expect(result.current.isSuccess).toBeTruthy()
-    expect(result.current.isPolling).toBeTruthy()
+    expect(result.current.data).toBe(true)
+    expect(result.current.isSuccess).toBe(true)
+    expect(result.current.isPolling).toBe(true)
     await waitFor(() => {
-      expect(result.current.isFetching).toBeTruthy()
+      expect(result.current.isFetching).toBe(true)
     })
     expect(pollingProps.method).toHaveBeenCalledTimes(2)
-    expect(result.current.isPolling).toBeTruthy()
+    expect(result.current.isPolling).toBe(true)
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy()
+      expect(result.current.isSuccess).toBe(true)
     })
-    expect(result.current.data).toBeTruthy()
-    expect(result.current.isPolling).toBeTruthy()
-    expect(result.current.isSuccess).toBeTruthy()
-    expect(result.current.isFetching).toBeFalsy()
+    expect(result.current.data).toBe(true)
+    expect(result.current.isPolling).toBe(true)
+    expect(result.current.isSuccess).toBe(true)
+    expect(result.current.isFetching).toBe(false)
     rerender({
       ...pollingProps,
       config: {
@@ -355,20 +355,20 @@ describe('useDataLoader', () => {
       },
       method: method2,
     })
-    expect(result.current.data).toBeTruthy()
-    expect(result.current.isPolling).toBeTruthy()
-    expect(result.current.isSuccess).toBeTruthy()
-    expect(result.current.isFetching).toBeFalsy()
+    expect(result.current.data).toBe(true)
+    expect(result.current.isPolling).toBe(true)
+    expect(result.current.isSuccess).toBe(true)
+    expect(result.current.isFetching).toBe(false)
     await waitFor(() => {
-      expect(result.current.isFetching).toBeTruthy()
-      expect(result.current.isSuccess).toBeFalsy()
+      expect(result.current.isFetching).toBe(true)
+      expect(result.current.isSuccess).toBe(false)
     })
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy()
+      expect(result.current.isSuccess).toBe(true)
     })
-    expect(method2).toHaveBeenCalledOnce()
-    expect(result.current.isSuccess).toBeTruthy()
-    expect(result.current.isFetching).toBeFalsy()
+    expect(method2).toHaveBeenCalledTimes(1)
+    expect(result.current.isSuccess).toBe(true)
+    expect(result.current.isFetching).toBe(false)
     expect(result.current.data).toBe(2)
 
     rerender({
@@ -379,17 +379,17 @@ describe('useDataLoader', () => {
       method: method2,
     })
     await waitFor(() => {
-      expect(result.current.isFetching).toBeTruthy()
-      expect(result.current.isSuccess).toBeFalsy()
+      expect(result.current.isFetching).toBe(true)
+      expect(result.current.isSuccess).toBe(false)
     })
     expect(result.current.data).toBe(2)
-    expect(result.current.isPolling).toBeTruthy()
+    expect(result.current.isPolling).toBe(true)
     expect(method2).toHaveBeenCalledTimes(2)
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy()
+      expect(result.current.isSuccess).toBe(true)
     })
-    expect(result.current.isPolling).toBeTruthy()
-    expect(result.current.isLoading).toBeFalsy()
+    expect(result.current.isPolling).toBe(true)
+    expect(result.current.isLoading).toBe(false)
     expect(result.current.data).toBe(2)
   })
 
@@ -415,15 +415,16 @@ describe('useDataLoader', () => {
       wrapper,
     })
     expect(result.current.data).toBeUndefined()
-    expect(result.current.isPolling).toBeFalsy()
-    expect(result.current.isLoading).toBeTruthy()
-    expect(pollingProps.method).toHaveBeenCalledOnce()
+    expect(result.current.isPolling).toBe(false)
+    expect(result.current.isLoading).toBe(true)
+    expect(pollingProps.method).toHaveBeenCalledTimes(1)
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy()
+      expect(result.current.isSuccess).toBe(true)
     })
-    expect(result.current.data).toBeTruthy()
-    expect(result.current.isSuccess).toBeTruthy()
+    expect(result.current.data).toBe(true)
+    expect(result.current.isSuccess).toBe(true)
   })
+
   it('should render correctly with pooling and needPolling true', async () => {
     const pollingProps: UseDataLoaderHookProps = {
       config: {
@@ -446,14 +447,14 @@ describe('useDataLoader', () => {
       wrapper,
     })
     expect(result.current.data).toBeUndefined()
-    expect(result.current.isPolling).toBeTruthy()
-    expect(result.current.isLoading).toBeTruthy()
-    expect(pollingProps.method).toHaveBeenCalledOnce()
+    expect(result.current.isPolling).toBe(true)
+    expect(result.current.isLoading).toBe(true)
+    expect(pollingProps.method).toHaveBeenCalledTimes(1)
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy()
+      expect(result.current.isSuccess).toBe(true)
     })
-    expect(result.current.data).toBeTruthy()
-    expect(result.current.isSuccess).toBeTruthy()
+    expect(result.current.data).toBe(true)
+    expect(result.current.isSuccess).toBe(true)
   })
 
   it('should render correctly with pooling and needPolling false', async () => {
@@ -478,14 +479,14 @@ describe('useDataLoader', () => {
       wrapper,
     })
     expect(result.current.data).toBeUndefined()
-    expect(result.current.isPolling).toBeFalsy()
-    expect(result.current.isLoading).toBeTruthy()
-    expect(pollingProps.method).toHaveBeenCalledOnce()
+    expect(result.current.isPolling).toBe(false)
+    expect(result.current.isLoading).toBe(true)
+    expect(pollingProps.method).toHaveBeenCalledTimes(1)
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy()
+      expect(result.current.isSuccess).toBe(true)
     })
-    expect(result.current.data).toBeTruthy()
-    expect(result.current.isSuccess).toBeTruthy()
+    expect(result.current.data).toBe(true)
+    expect(result.current.isSuccess).toBe(true)
   })
 
   it('should render correctly with pooling and needPolling function false', async () => {
@@ -510,15 +511,15 @@ describe('useDataLoader', () => {
       wrapper,
     })
     expect(result.current.data).toBeUndefined()
-    expect(result.current.isPolling).toBeTruthy()
-    expect(result.current.isLoading).toBeTruthy()
-    expect(pollingProps.method).toHaveBeenCalledOnce()
+    expect(result.current.isPolling).toBe(true)
+    expect(result.current.isLoading).toBe(true)
+    expect(pollingProps.method).toHaveBeenCalledTimes(1)
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy()
+      expect(result.current.isSuccess).toBe(true)
     })
-    expect(result.current.data).toBeTruthy()
-    expect(result.current.isPolling).toBeFalsy()
-    expect(result.current.isSuccess).toBeTruthy()
+    expect(result.current.data).toBe(true)
+    expect(result.current.isPolling).toBe(false)
+    expect(result.current.isSuccess).toBe(true)
   })
 
   it('should render correctly with enabled off', async () => {
@@ -551,17 +552,17 @@ describe('useDataLoader', () => {
       wrapper,
     })
     expect(result.current.data).toBeUndefined()
-    expect(result.current.isIdle).toBeTruthy()
+    expect(result.current.isIdle).toBe(true)
     result.current.reload().catch(() => null)
     await waitFor(() => {
-      expect(result.current.isLoading).toBeTruthy()
+      expect(result.current.isLoading).toBe(true)
     })
     expect(result.current.data).toBeUndefined()
     resolveIt = true
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy()
+      expect(result.current.isSuccess).toBe(true)
     })
-    expect(result.current.data).toBeTruthy()
+    expect(result.current.data).toBe(true)
   })
 
   it('should call onSuccess', async () => {
@@ -577,12 +578,12 @@ describe('useDataLoader', () => {
       wrapper,
     })
     expect(result.current.data).toBeUndefined()
-    expect(result.current.isLoading).toBeTruthy()
+    expect(result.current.isLoading).toBe(true)
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy()
+      expect(result.current.isSuccess).toBe(true)
     })
-    expect(result.current.data).toBeTruthy()
-    expect(onSuccess).toHaveBeenCalledOnce()
+    expect(result.current.data).toBe(true)
+    expect(onSuccess).toHaveBeenCalledTimes(1)
   })
 
   it('should call onError', async () => {
@@ -606,14 +607,14 @@ describe('useDataLoader', () => {
       wrapper,
     })
     expect(result.current.data).toBeUndefined()
-    expect(result.current.isLoading).toBeTruthy()
+    expect(result.current.isLoading).toBe(true)
     await waitFor(() => {
-      expect(result.current.isError).toBeTruthy()
+      expect(result.current.isError).toBe(true)
     })
     expect(result.current.error).toBe(error)
     expect(result.current.data).toBeUndefined()
 
-    expect(onError).toHaveBeenCalledOnce()
+    expect(onError).toHaveBeenCalledTimes(1)
     expect(onError).toHaveBeenCalledWith(error)
     expect(onSuccess).toHaveBeenCalledTimes(0)
   })
@@ -640,14 +641,14 @@ describe('useDataLoader', () => {
       wrapper: wrapperWithOnError(onErrorProvider),
     })
     expect(result.current.data).toBeUndefined()
-    expect(result.current.isLoading).toBeTruthy()
+    expect(result.current.isLoading).toBe(true)
     await waitFor(() => {
-      expect(result.current.isError).toBeTruthy()
+      expect(result.current.isError).toBe(true)
     })
     expect(result.current.data).toBeUndefined()
     expect(result.current.error).toBe(error)
 
-    expect(onError).toHaveBeenCalledOnce()
+    expect(onError).toHaveBeenCalledTimes(1)
     expect(onError).toHaveBeenCalledWith(error)
     expect(onErrorProvider).toHaveBeenCalledTimes(0)
     expect(onSuccess).toHaveBeenCalledTimes(0)
@@ -674,15 +675,15 @@ describe('useDataLoader', () => {
     })
 
     expect(result.current.data).toBeUndefined()
-    expect(result.current.isLoading).toBeTruthy()
+    expect(result.current.isLoading).toBe(true)
     await waitFor(() => {
-      expect(result.current.isError).toBeTruthy()
+      expect(result.current.isError).toBe(true)
     })
     expect(result.current.data).toBeUndefined()
     expect(result.current.error).toBe(error)
-    expect(result.current.isError).toBeTruthy()
+    expect(result.current.isError).toBe(true)
 
-    expect(onErrorProvider).toHaveBeenCalledOnce()
+    expect(onErrorProvider).toHaveBeenCalledTimes(1)
     expect(onErrorProvider).toHaveBeenCalledWith(error)
     expect(onSuccess).toHaveBeenCalledTimes(0)
   })
@@ -715,24 +716,24 @@ describe('useDataLoader', () => {
       wrapper,
     })
     expect(result.current.data).toBeUndefined()
-    expect(result.current.isLoading).toBeTruthy()
+    expect(result.current.isLoading).toBe(true)
     await waitFor(() => {
-      expect(result.current.isError).toBeTruthy()
+      expect(result.current.isError).toBe(true)
     })
     expect(result.current.error).toBe(error)
-    expect(result.current.isError).toBeTruthy()
+    expect(result.current.isError).toBe(true)
     expect(result.current.data).toBeUndefined()
 
-    expect(onError).toHaveBeenCalledOnce()
+    expect(onError).toHaveBeenCalledTimes(1)
     expect(onSuccess).toHaveBeenCalledTimes(0)
 
     result.current.reload().catch(() => null)
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy()
+      expect(result.current.isSuccess).toBe(true)
     })
-    expect(result.current.data).toBeTruthy()
+    expect(result.current.data).toBe(true)
     expect(result.current.error).toBeUndefined()
-    expect(result.current.isError).toBeFalsy()
+    expect(result.current.isError).toBe(false)
   })
 
   it('should use cached data', async () => {
@@ -761,33 +762,33 @@ describe('useDataLoader', () => {
     )
 
     expect(result.current[0]?.data).toBeUndefined()
-    expect(result.current[0]?.isLoading).toBeTruthy()
-    expect(result.current[0]?.isIdle).toBeFalsy()
-    expect(result.current[0]?.isSuccess).toBeFalsy()
+    expect(result.current[0]?.isLoading).toBe(true)
+    expect(result.current[0]?.isIdle).toBe(false)
+    expect(result.current[0]?.isSuccess).toBe(false)
     expect(result.current[1]?.data).toBeUndefined()
-    expect(result.current[1]?.isIdle).toBeFalsy()
-    expect(result.current[1]?.isSuccess).toBeFalsy()
-    expect(result.current[1]?.isLoading).toBeTruthy()
+    expect(result.current[1]?.isIdle).toBe(false)
+    expect(result.current[1]?.isSuccess).toBe(false)
+    expect(result.current[1]?.isLoading).toBe(true)
     await waitFor(() => {
-      expect(result.current[0]?.isSuccess).toBeTruthy()
+      expect(result.current[0]?.isSuccess).toBe(true)
     })
-    expect(result.current[0]?.data).toBeTruthy()
+    expect(result.current[0]?.data).toBe(true)
 
     result.current[1]?.reload().catch(() => null)
     await waitFor(() => {
-      expect(result.current[1]?.isFetching).toBeTruthy()
+      expect(result.current[1]?.isFetching).toBe(true)
     })
-    expect(result.current[1]?.data).toBeTruthy()
+    expect(result.current[1]?.data).toBe(true)
 
     await waitFor(() => {
-      expect(result.current[1]?.isSuccess).toBeTruthy()
+      expect(result.current[1]?.isSuccess).toBe(true)
     })
-    expect(result.current[1]?.isSuccess).toBeTruthy()
+    expect(result.current[1]?.isSuccess).toBe(true)
 
     await waitFor(() => {
-      expect(result.current[2]?.isSuccess).toBeTruthy()
+      expect(result.current[2]?.isSuccess).toBe(true)
     })
-    expect(result.current[2]?.data).toBeTruthy()
+    expect(result.current[2]?.data).toBe(true)
     expect(fakePromise).toHaveBeenCalledTimes(4)
   })
 
@@ -813,23 +814,23 @@ describe('useDataLoader', () => {
     })
 
     expect(result.current[0].data).toBeUndefined()
-    expect(result.current[0].isLoading).toBeTruthy()
+    expect(result.current[0].isLoading).toBe(true)
     expect(Object.values(result.current[1].getReloads())).toHaveLength(1)
     await waitFor(() => {
-      expect(result.current[0].isSuccess).toBeTruthy()
+      expect(result.current[0].isSuccess).toBe(true)
     })
-    expect(result.current[0].data).toBeTruthy()
-    expect(mockedFn).toHaveBeenCalledOnce()
+    expect(result.current[0].data).toBe(true)
+    expect(mockedFn).toHaveBeenCalledTimes(1)
 
     result.current[1].reloadAll().catch(() => null)
     await waitFor(() => {
-      expect(result.current[0].isFetching).toBeTruthy()
+      expect(result.current[0].isFetching).toBe(true)
     })
-    expect(result.current[0].data).toBeTruthy()
+    expect(result.current[0].data).toBe(true)
     expect(Object.values(result.current[1].getReloads())).toHaveLength(1)
 
     await waitFor(() => {
-      expect(result.current[0].isSuccess).toBeTruthy()
+      expect(result.current[0].isSuccess).toBe(true)
     })
     expect(mockedFn).toHaveBeenCalledTimes(2)
   })
@@ -858,19 +859,19 @@ describe('useDataLoader', () => {
       },
     )
     expect(result.current[0]?.data).toBeUndefined()
-    expect(result.current[0]?.isLoading).toBeTruthy()
+    expect(result.current[0]?.isLoading).toBe(true)
     expect(result.current[0]?.previousData).toBeUndefined()
-    expect(testingProps.method).toHaveBeenCalledOnce()
+    expect(testingProps.method).toHaveBeenCalledTimes(1)
     await waitFor(() => {
-      expect(result.current[0]?.isSuccess).toBeTruthy()
+      expect(result.current[0]?.isSuccess).toBe(true)
     })
     testingProps.config2.enabled = true
     rerender(testingProps)
-    expect(testingProps.method).toHaveBeenCalledOnce()
-    expect(result.current[0]?.data).toBeTruthy()
-    expect(result.current[1]?.data).toBeTruthy()
-    expect(result.current[0]?.isLoading).toBeFalsy()
-    expect(result.current[1]?.isLoading).toBeFalsy()
+    expect(testingProps.method).toHaveBeenCalledTimes(1)
+    expect(result.current[0]?.data).toBe(true)
+    expect(result.current[1]?.data).toBe(true)
+    expect(result.current[0]?.isLoading).toBe(false)
+    expect(result.current[1]?.isLoading).toBe(false)
     expect(result.current[0]?.previousData).toBeUndefined()
     expect(result.current[1]?.previousData).toBeUndefined()
   })
@@ -906,30 +907,30 @@ describe('useDataLoader', () => {
       },
     )
     expect(result.current[0]?.data).toBeUndefined()
-    expect(result.current[0]?.isLoading).toBeTruthy()
+    expect(result.current[0]?.isLoading).toBe(true)
     expect(result.current[0]?.previousData).toBeUndefined()
-    expect(testingProps.method).toHaveBeenCalledOnce()
+    expect(testingProps.method).toHaveBeenCalledTimes(1)
     await waitFor(() => {
-      expect(result.current[0]?.isSuccess).toBeTruthy()
+      expect(result.current[0]?.isSuccess).toBe(true)
     })
     testingProps.config2.enabled = true
     rerender(testingProps)
     await waitFor(() => {
-      expect(result.current[0]?.isFetching).toBeTruthy()
+      expect(result.current[0]?.isFetching).toBe(true)
     })
     await waitFor(() => {
-      expect(result.current[1]?.isFetching).toBeTruthy()
+      expect(result.current[1]?.isFetching).toBe(true)
     })
     expect(testingProps.method).toHaveBeenCalledTimes(2)
-    expect(result.current[0]?.data).toBeTruthy()
+    expect(result.current[0]?.data).toBe(true)
     expect(result.current[0]?.previousData).toBeUndefined()
-    expect(result.current[1]?.data).toBeTruthy()
+    expect(result.current[1]?.data).toBe(true)
     expect(result.current[1]?.previousData).toBeUndefined()
     await waitFor(() => {
-      expect(result.current[0]?.isSuccess).toBeTruthy()
+      expect(result.current[0]?.isSuccess).toBe(true)
     })
     await waitFor(() => {
-      expect(result.current[1]?.isSuccess).toBeTruthy()
+      expect(result.current[1]?.isSuccess).toBe(true)
     })
   })
 
@@ -962,19 +963,19 @@ describe('useDataLoader', () => {
     })
 
     // Initially, isLoading should be true (first load with no cache)
-    expect(result.current.isLoading).toBeTruthy()
-    expect(result.current.isFetching).toBeTruthy()
+    expect(result.current.isLoading).toBe(true)
+    expect(result.current.isFetching).toBe(true)
     expect(result.current.data).toBeUndefined()
 
     // Resolve the first request
     resolveIt = true
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy()
+      expect(result.current.isSuccess).toBe(true)
     })
 
     // After first load, both should be false
-    expect(result.current.isLoading).toBeFalsy()
-    expect(result.current.isFetching).toBeFalsy()
+    expect(result.current.isLoading).toBe(false)
+    expect(result.current.isFetching).toBe(false)
     expect(result.current.data).toStrictEqual({ id: 1, name: 'test' })
 
     // Trigger a reload
@@ -983,20 +984,20 @@ describe('useDataLoader', () => {
 
     // During reload, isLoading should be false (we have cached data) but isFetching should be true
     await waitFor(() => {
-      expect(result.current.isFetching).toBeTruthy()
+      expect(result.current.isFetching).toBe(true)
     })
-    expect(result.current.isLoading).toBeFalsy()
+    expect(result.current.isLoading).toBe(false)
     expect(result.current.data).toStrictEqual({ id: 1, name: 'test' }) // Still have cached data
 
     // Resolve the reload
     resolveIt = true
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy()
+      expect(result.current.isSuccess).toBe(true)
     })
 
     // After reload, both should be false again
-    expect(result.current.isLoading).toBeFalsy()
-    expect(result.current.isFetching).toBeFalsy()
+    expect(result.current.isLoading).toBe(false)
+    expect(result.current.isFetching).toBe(false)
     expect(result.current.data).toStrictEqual({ id: 1, name: 'test' })
   })
 })

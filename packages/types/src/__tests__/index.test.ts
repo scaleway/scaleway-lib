@@ -108,7 +108,7 @@ describe('singleXOR', () => {
     type B = { type: 'b'; count: number }
     type T = SingleXOR<A, B>
     const valid: T = { type: 'a', value: 'x' }
-    expect(valid).toEqual({ type: 'a', value: 'x' })
+    expect(valid).toStrictEqual({ type: 'a', value: 'x' })
   })
 
   it('allows only the second object type', () => {
@@ -116,7 +116,7 @@ describe('singleXOR', () => {
     type B = { type: 'b'; count: number }
     type T = SingleXOR<A, B>
     const valid: T = { type: 'b', count: 1 }
-    expect(valid).toEqual({ type: 'b', count: 1 })
+    expect(valid).toStrictEqual({ type: 'b', count: 1 })
   })
 
   it('rejects an object mixing both types', () => {
@@ -165,19 +165,19 @@ describe('xor', () => {
   it('allows exactly one of two object types (first)', () => {
     type T = XOR<[{ type: 'a' }, { type: 'b' }]>
     const valid: T = { type: 'a' }
-    expect(valid).toEqual({ type: 'a' })
+    expect(valid).toStrictEqual({ type: 'a' })
   })
 
   it('allows exactly one of two object types (second)', () => {
     type T = XOR<[{ type: 'a' }, { type: 'b' }]>
     const valid: T = { type: 'b' }
-    expect(valid).toEqual({ type: 'b' })
+    expect(valid).toStrictEqual({ type: 'b' })
   })
 
   it('allows exactly one of three object types', () => {
     type T = XOR<[{ type: 'a' }, { type: 'b' }, { type: 'c' }]>
     const valid: T = { type: 'c' }
-    expect(valid).toEqual({ type: 'c' })
+    expect(valid).toStrictEqual({ type: 'c' })
   })
 
   it('rejects an object with extra properties from another type', () => {
@@ -228,18 +228,18 @@ describe('deepPartial', () => {
   it('allows an empty object for a deeply nested type', () => {
     type T = DeepPartial<{ a: string; nested: { b: number }; list: string[] }>
     const valid: T = {}
-    expect(valid).toEqual({})
+    expect(valid).toStrictEqual({})
   })
 
   it('allows partial nested values', () => {
     type T = DeepPartial<{ nested: { b: number; c: string } }>
     const valid: T = { nested: { b: 1 } }
-    expect(valid).toEqual({ nested: { b: 1 } })
+    expect(valid).toStrictEqual({ nested: { b: 1 } })
   })
 
   it('allows partial array items', () => {
     type T = DeepPartial<{ list: { id: number; name: string }[] }>
     const valid: T = { list: [{ id: 1 }] }
-    expect(valid).toEqual({ list: [{ id: 1 }] })
+    expect(valid).toStrictEqual({ list: [{ id: 1 }] })
   })
 })

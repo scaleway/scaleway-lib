@@ -8,14 +8,14 @@ COOKIE_CONFIG.secure = false
 
 describe('storemanager', () => {
   it('should return null cookie when not initialized', () => {
-    expect(AuthStoreManager.getAudienceId()).toStrictEqual(null)
-    expect(AuthStoreManager.getJwt('')).toStrictEqual(null)
+    expect(AuthStoreManager.getAudienceId()).toBeNull()
+    expect(AuthStoreManager.getJwt('')).toBeNull()
   })
 
   it('should return null cookie when deleted', () => {
     AuthStoreManager.setJwt({ jwtInfo: MOCK_ENCODED_JWT_COOKIE })
     AuthStoreManager.deleteJwt(MOCK_ENCODED_JWT_COOKIE.jwt.audienceId)
-    expect(AuthStoreManager.getJwt(MOCK_ENCODED_JWT_COOKIE.jwt.audienceId)).toStrictEqual(null)
+    expect(AuthStoreManager.getJwt(MOCK_ENCODED_JWT_COOKIE.jwt.audienceId)).toBeNull()
   })
 
   it('should return encodedjwt cookie', () => {

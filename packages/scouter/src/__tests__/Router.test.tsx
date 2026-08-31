@@ -104,5 +104,5 @@ test('provides match to children', () => {
   )
 
   expect(match!).toBeDefined()
-  expect(match!.params).toEqual({})
+  expect(match!.params).toStrictEqual({})
 })

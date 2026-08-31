@@ -171,14 +171,14 @@ describe('with an array of paths', () => {
       </Router>,
     )
 
-    expect(mount).toHaveBeenCalledOnce()
+    expect(mount).toHaveBeenCalledTimes(1)
     expect(screen.getByText('Hello World')).toBeInTheDocument()
 
     act(() => {
       history.push('/world/somewhere/else')
     })
 
-    expect(mount).toHaveBeenCalledOnce()
+    expect(mount).toHaveBeenCalledTimes(1)
     expect(screen.getByText('Hello World')).toBeInTheDocument()
   })
 })
@@ -268,7 +268,7 @@ describe('the `render` prop', () => {
       </Router>,
     )
 
-    expect(props!).not.toBe(null)
-    expect(Object.keys(props!)).toEqual(['match', 'location', 'history'])
+    expect(props!).not.toBeNull()
+    expect(Object.keys(props!)).toStrictEqual(['match', 'location', 'history'])
   })
 })

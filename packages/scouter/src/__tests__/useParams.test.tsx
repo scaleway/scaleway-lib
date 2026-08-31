@@ -103,6 +103,6 @@ describe('when match is undefined', () => {
       wrapper: ({ children }) => <MemoryRouter initialEntries={['/home']}>{children}</MemoryRouter>,
     })
 
-    expect(result.current).toEqual({})
+    expect(result.current).toStrictEqual({})
   })
 })
