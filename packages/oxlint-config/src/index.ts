@@ -11,7 +11,6 @@ import vitestConfig from './plugins/vitest'
 export const base = defineConfig({
   options: {
     typeAware: true,
-    typeCheck: true,
     reportUnusedDisableDirectives: 'error',
   },
   extends: [eslint, importConfig, node, oxc, typescript, unicorn],
