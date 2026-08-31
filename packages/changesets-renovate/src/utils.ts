@@ -1,9 +1,8 @@
-import { execSync } from 'node:child_process'
 import { readFile } from 'node:fs/promises'
 import { env } from 'node:process'
 import { read } from '@changesets/config'
-import { escapePath, glob, GlobOptions } from 'tinyglobby'
 import { parse } from 'yaml'
+import { globWithGitignore } from './globWithGitignore'
 
 /**
  * Discover workspace package globs from pnpm-workspace.yaml (`packages` field)
@@ -169,30 +168,6 @@ export function findChangedDependencies(
   return Object.entries(newCatalog)
     .filter(([pkg, newVersion]) => oldCatalog[pkg] && oldCatalog[pkg] !== newVersion)
     .map(([pkg]) => pkg)
-}
-
-// Taken from https://superchupu.dev/tinyglobby/migration#gitignore
-const globWithGitignore = async (patterns: string | readonly string[], opts: Omit<GlobOptions, 'patterns'> = {}) => {
-  const { cwd = process.cwd(), ...restOptions } = opts
-
-  try {
-    const gitIgnored = execSync('git ls-files --others --ignored --exclude-standard --directory', {
-      cwd,
-      encoding: 'utf8',
-      stdio: ['ignore', 'pipe', 'ignore'],
-    })
-      .split('\n')
-      .filter(Boolean)
-      .map(p => escapePath(p))
-
-    return await glob(patterns, {
-      ...restOptions,
-      cwd,
-      ignore: [...(restOptions.ignore ?? []), ...gitIgnored],
-    })
-  } catch {
-    return glob(patterns, opts)
-  }
 }
 
 /**
