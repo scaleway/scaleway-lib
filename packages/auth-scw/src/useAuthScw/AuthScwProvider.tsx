@@ -29,7 +29,9 @@ export const AuthScwProvider = ({
   urlParamTokenName,
   onError,
 }: AuthProviderParamType) => {
-  if (cookieConfig) setCookieConfig(cookieConfig)
+  if (cookieConfig) {
+    setCookieConfig(cookieConfig)
+  }
   clientSingleton.setAPIsAndSettings({
     clientSettings,
     IamV1Alpha1,

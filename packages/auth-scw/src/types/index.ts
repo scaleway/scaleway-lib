@@ -40,10 +40,8 @@ export declare class IamV1alpha1UnauthenticatedAPI extends SDKAPI {
 }
 
 export type ConfigurationClientAPIs = {
-  IamV1Alpha1: { new (client: SDKClient): IamV1alpha1API }
-  IamUnauthenticatedV1Alpha1: {
-    new (client: SDKClient): IamV1alpha1UnauthenticatedAPI
-  }
+  IamV1Alpha1: new (client: SDKClient) => IamV1alpha1API
+  IamUnauthenticatedV1Alpha1: new (client: SDKClient) => IamV1alpha1UnauthenticatedAPI
 }
 
 export type ConfigurationClientMethods = {

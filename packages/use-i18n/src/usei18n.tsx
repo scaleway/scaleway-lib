@@ -21,10 +21,10 @@ import type { IntlListFormatOptions } from './formatters'
 import formatters from './formatters'
 import type { FormatUnitOptions } from './formatUnit'
 import unitFormat from './formatUnit'
-import type { ReactParamsObject, ScopedTranslateFn, TranslateFn } from './types'
+import { getCurrentLocale, setLangAttribute } from './helpers'
+import type { ReactParamsObject, ScopedTranslateFn, SupportedLocalesType, TranslateFn } from './types'
 
 // Export types that are used in the public API
-export type SupportedLocalesType<LocalSupportedType extends string> = (locale: string) => locale is LocalSupportedType
 
 export type TranslationsByLocales = Record<string, BaseLocale>
 
@@ -58,54 +58,6 @@ export type RequiredGenericContext<
 
 const areNamespacesLoaded = (namespaces: string[], loadedNamespaces: string[] = []) =>
   namespaces.every(n => loadedNamespaces.includes(n))
-
-const setLangAttribute = (locale: string, rootElement?: Element) => {
-  if (rootElement) {
-    rootElement.setAttribute('lang', locale)
-  } else {
-    document.documentElement.lang = locale
-  }
-}
-
-const getCurrentLocale = <LocalSupportedType extends string>({
-  defaultLocale,
-  isLocaleSupported,
-  localeItemStorage,
-  rootElement,
-}: {
-  defaultLocale: LocalSupportedType
-  isLocaleSupported: SupportedLocalesType<LocalSupportedType>
-  localeItemStorage: string
-  rootElement?: Element
-}): LocalSupportedType => {
-  if (typeof window !== 'undefined') {
-    const { languages: browserLocales } = navigator
-    const currentLocalFromlocalStorage = localStorage.getItem(localeItemStorage)
-
-    if (currentLocalFromlocalStorage && isLocaleSupported(currentLocalFromlocalStorage)) {
-      return currentLocalFromlocalStorage
-    }
-    localStorage.removeItem(localeItemStorage)
-
-    const foundBrowserLocale = browserLocales.find(locale => isLocaleSupported(locale))
-
-    if (foundBrowserLocale) {
-      localStorage.setItem(localeItemStorage, foundBrowserLocale)
-      setLangAttribute(foundBrowserLocale, rootElement)
-
-      return foundBrowserLocale
-    }
-
-    if (defaultLocale && isLocaleSupported(defaultLocale)) {
-      localStorage.setItem(localeItemStorage, defaultLocale)
-      setLangAttribute(defaultLocale, rootElement)
-
-      return defaultLocale
-    }
-  }
-
-  return defaultLocale
-}
 
 type FormatDurationOptions = Omit<FnsFormatDurationOptions, 'locale'> | 'clock' | 'clock-milliseconds'
 
@@ -406,7 +358,7 @@ const I18nContextProvider = <LocalSupportedType extends string>({
         // This method has not floiating point issue
         // While number % 1 has
         const parts = durationInSeconds.toString().split('.')
-        const decimal = parts[1] ? parseFloat('0.' + parts[1]) : 0
+        const decimal = parts[1] ? Number(`0.${parts[1]}`) : 0
         const milliseconds = decimal * 1000
 
         return `${padNumberWithZeros(duration.hours ?? 0)}:${padNumberWithZeros(duration.minutes ?? 0)}:${padNumberWithZeros(duration.seconds ?? 0)}:${padNumberWithZeros(milliseconds ?? 0, 3)}`

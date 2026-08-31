@@ -23,3 +23,5 @@ export type ScopedTranslateFn<Locale extends BaseLocale> = <Scope extends Scopes
   key: Key,
   ...params: Params<Value>['length'] extends 0 ? [] : [ReactParamsObject<Value>]
 ) => string
+
+export type SupportedLocalesType<LocalSupportedType extends string> = (locale: string) => locale is LocalSupportedType

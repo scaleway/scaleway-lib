@@ -43,8 +43,8 @@ describe('generate changeset file', () => {
       branch: () => ({
         current: 'main',
       }),
-      diffSummary: () => undefined,
-      show: () => undefined,
+      diffSummary: () => ({}),
+      show: () => '',
     })
 
     await run()
@@ -165,7 +165,7 @@ describe('generate changeset file', () => {
           },
         ],
       }),
-      show: () => undefined,
+      show: () => '',
     })
 
     await run()
@@ -182,7 +182,7 @@ describe('generate changeset file', () => {
       diffSummary: () => ({
         files: [],
       }),
-      show: () => undefined,
+      show: () => '',
     })
 
     await run()

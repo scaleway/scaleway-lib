@@ -10,7 +10,7 @@ import { Router } from '../Router'
 
 describe('without a <Router>', () => {
   it('throws an error', () => {
-    vi.spyOn(console, 'error').mockImplementation(() => {})
+    vi.spyOn(console, 'error').mockReturnValue(undefined)
 
     expect(() => {
       render(<Route />)

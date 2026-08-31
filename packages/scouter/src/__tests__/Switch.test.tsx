@@ -5,7 +5,7 @@ import { MemoryRouter, Redirect, Route, Switch } from '../index'
 
 describe('without a <Router>', () => {
   it('throws an error', () => {
-    vi.spyOn(console, 'error').mockImplementation(() => {})
+    vi.spyOn(console, 'error').mockReturnValue(undefined)
 
     expect(() => {
       render(<Switch>Hello</Switch>)

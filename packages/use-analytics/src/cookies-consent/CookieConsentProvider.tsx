@@ -87,7 +87,7 @@ export const CookieConsentProvider: ComponentType<CookieConsentProviderProps> = 
     () =>
       stringToHash(
         uniq(destinations.map(({ name }) => name))
-          .sort()
+          .toSorted()
           .join(undefined),
       ),
     [destinations],

@@ -1,3 +1,4 @@
+// oxlint-disable max-lines
 import { renderHook, waitFor } from '@testing-library/react'
 import type { ReactNode } from 'react'
 import { act } from 'react'
@@ -607,7 +608,7 @@ describe('useInfinitDataLoader', () => {
     resetCounter()
     setCanResolve(false)
     act(() => {
-      result.current.reload().catch(() => {})
+      result.current.reload().catch(() => undefined)
     })
 
     await waitFor(() => {

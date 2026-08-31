@@ -21,7 +21,7 @@ describe('handle-catalog', () => {
     vi.clearAllMocks()
 
     // Mock console.log to avoid noisy output
-    vi.spyOn(console, 'log').mockImplementation(() => {})
+    vi.spyOn(console, 'log').mockReturnValue(undefined)
   })
 
   afterEach(() => {

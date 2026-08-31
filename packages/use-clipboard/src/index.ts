@@ -25,7 +25,7 @@ export async function copyToClipboard(text: string, options?: ICopyOptions): Pro
 
 export function useClipboard(text: string, options?: IOptions): [boolean, () => Promise<void>] {
   const [isCopied, setIsCopied] = useState(false)
-  const successDuration = options && options.successDuration
+  const successDuration = options?.successDuration
 
   const paramsRef = useRef({ text, options })
 
