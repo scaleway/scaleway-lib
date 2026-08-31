@@ -2,7 +2,7 @@
 
 import { execSync } from 'node:child_process'
 import type { GlobOptions } from 'tinyglobby'
-import { glob, escapePath } from 'tinyglobby'
+import { escapePath, glob } from 'tinyglobby'
 
 const mergeIgnore = (value: string | readonly string[] | undefined): readonly string[] => {
   if (value === undefined) {

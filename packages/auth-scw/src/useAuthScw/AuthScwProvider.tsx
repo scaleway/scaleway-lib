@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import { createContext, useCallback, useContext, useMemo, useState } from 'react'
 import { isExpired } from '../isExpired'
-import type { AuthScwContextType, ConfigAuthProvider, EncodedJWT, OnError, CookieConfigType } from '../types'
+import type { AuthScwContextType, ConfigAuthProvider, CookieConfigType, EncodedJWT, OnError } from '../types'
 import { AuthStoreManager, setCookieConfig } from './authStoreManager'
 import { clientSingleton } from './createClient'
 import { decodeToken, encodeToken, getCookieJWT, refreshSession } from './helpers'

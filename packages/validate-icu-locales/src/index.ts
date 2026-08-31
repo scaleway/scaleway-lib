@@ -9,7 +9,7 @@ import { parseArgs } from 'node:util'
 import type { Location } from '@formatjs/icu-messageformat-parser'
 import { parse } from '@formatjs/icu-messageformat-parser'
 import type { GlobOptions } from 'tinyglobby'
-import { glob, escapePath } from 'tinyglobby'
+import { escapePath, glob } from 'tinyglobby'
 
 type ParserError = {
   // it's a enum inside @formatjs, don't use it today

@@ -41,7 +41,6 @@ export default defineConfig({
     'eslint/prefer-named-capture-group': 'warn',
     'eslint/prefer-template': 'warn',
     'eslint/require-unicode-regexp': 'warn',
-    'eslint/sort-imports': 'warn',
 
     'import/no-namespace': 'warn',
     'import/no-nodejs-modules': 'warn',

@@ -1,11 +1,11 @@
-import { describe, it, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import {
+  formatPhoneNumber,
+  getPhoneCountryFlag,
+  getPhoneExample,
   parsePhoneNumber,
   parsePhoneValue,
-  formatPhoneNumber,
   validatePhoneNumber,
-  getPhoneExample,
-  getPhoneCountryFlag,
 } from '..'
 
 describe('parsePhoneNumber (from awesome-phonenumber)', () => {
