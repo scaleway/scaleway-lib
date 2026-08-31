@@ -296,7 +296,10 @@ catalog:
 
       const result = await findAffectedPackages(['changed-dep'])
 
-      expect(glob).toHaveBeenCalledWith(['packages/*/package.json'], { expandDirectories: false })
+      expect(glob).toHaveBeenCalledWith(
+        ['packages/*/package.json'],
+        expect.objectContaining({ expandDirectories: false }),
+      )
       expect(result).toBeInstanceOf(Set)
       expect(result.size).toBe(1)
       expect(result).toContain('package-a')
@@ -332,7 +335,10 @@ catalog:
 
       const result = await findAffectedPackages(['changed-dep'])
 
-      expect(glob).toHaveBeenCalledWith(['packages/*/package.json'], { expandDirectories: false })
+      expect(glob).toHaveBeenCalledWith(
+        ['packages/*/package.json'],
+        expect.objectContaining({ expandDirectories: false }),
+      )
       expect(result).toBeInstanceOf(Set)
       expect(result.size).toBe(1)
       expect(result).toContain('package-a')
@@ -377,7 +383,10 @@ catalog:
 
       const result = await findAffectedPackages(['changed-dep'])
 
-      expect(glob).toHaveBeenCalledWith(['packages/*/package.json'], { expandDirectories: false })
+      expect(glob).toHaveBeenCalledWith(
+        ['packages/*/package.json'],
+        expect.objectContaining({ expandDirectories: false }),
+      )
       expect(result).toBeInstanceOf(Set)
       expect(result.size).toBe(1)
       expect(result).toContain('package-a')
@@ -437,7 +446,7 @@ catalog:
 
       const result = await findAffectedPackages(['changed-dep'], ['apps/*/package.json'])
 
-      expect(glob).toHaveBeenCalledWith(['apps/*/package.json'], { expandDirectories: false })
+      expect(glob).toHaveBeenCalledWith(['apps/*/package.json'], expect.objectContaining({ expandDirectories: false }))
       expect(result.size).toBe(1)
       expect(result).toContain('app-a')
     })
@@ -466,7 +475,7 @@ catalog:
 
       const result = await findAffectedPackages(['changed-dep'])
 
-      expect(glob).toHaveBeenCalledWith(['apps/*/package.json'], { expandDirectories: false })
+      expect(glob).toHaveBeenCalledWith(['apps/*/package.json'], expect.objectContaining({ expandDirectories: false }))
       expect(result.size).toBe(1)
       expect(result).toContain('app-a')
     })
@@ -477,7 +486,10 @@ catalog:
 
       const result = await findAffectedPackages(['changed-dep'])
 
-      expect(glob).toHaveBeenCalledWith(['packages/*/package.json'], { expandDirectories: false })
+      expect(glob).toHaveBeenCalledWith(
+        ['packages/*/package.json'],
+        expect.objectContaining({ expandDirectories: false }),
+      )
       expect(result.size).toBe(0)
     })
   })
