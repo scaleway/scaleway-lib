@@ -41,10 +41,13 @@
     "tinyglobby": "catalog:",
     "yaml": "catalog:"
   },
+  "devDependencies": {
+    "@changesets/cli": "3.x"
+  },
   "peerDependencies": {
     "@changesets/cli": "3.x"
   },
   "engines": {
-    "node": " 22.x || 24.x || 25.x || 26.x"
+    "node": " ^22.11  || 24.x || 25.x || 26.x"
   }
 }

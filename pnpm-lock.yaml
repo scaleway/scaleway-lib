@@ -511,9 +511,6 @@ importers:
 
   packages/changesets-renovate:
     dependencies:
-      '@changesets/cli':
-        specifier: 3.x
-        version: 3.0.1
       '@changesets/config':
         specifier: 'catalog:'
         version: 4.0.0
@@ -526,6 +523,10 @@ importers:
       yaml:
         specifier: 'catalog:'
         version: 2.9.0
+    devDependencies:
+      '@changesets/cli':
+        specifier: 3.x
+        version: 3.0.1
 
   packages/fuzzy-search: {}
 
