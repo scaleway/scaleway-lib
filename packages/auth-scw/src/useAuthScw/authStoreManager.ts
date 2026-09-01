@@ -1,6 +1,6 @@
 import { parseCookie, stringifySetCookie } from 'cookie'
 import { COOKIE_CONFIG } from '../constants'
-import type { AudienceIdType, EncodedJWT, CookieConfigType } from '../types'
+import type { AudienceIdType, CookieConfigType, EncodedJWT } from '../types'
 import { audienceIdSchema, jwtSchema } from '../zodSchemas'
 
 const KEY_SESSION = '_scw_session'

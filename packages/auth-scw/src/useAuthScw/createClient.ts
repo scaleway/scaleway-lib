@@ -1,11 +1,11 @@
 import {
   addAsyncHeaderInterceptor,
   createAdvancedClient,
+  SESSION_HEADER_KEY,
   withAdditionalInterceptors,
   withProfile,
-  SESSION_HEADER_KEY,
 } from '@scaleway/sdk-client'
-import type { ConfigurationClientMethods, CreateTemporaryClientType, ConfigAuthProvider } from '../types'
+import type { ConfigAuthProvider, ConfigurationClientMethods, CreateTemporaryClientType } from '../types'
 
 type ClientSingletonType = {
   setAPIsAndSettings: (params: ConfigAuthProvider) => void

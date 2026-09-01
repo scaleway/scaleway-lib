@@ -6,7 +6,7 @@
  * Script to check that dependencies use catalog references instead of hardcoded versions
  */
 
-import fs, { readFileSync, readdirSync, existsSync } from 'node:fs'
+import fs, { existsSync, readdirSync, readFileSync } from 'node:fs'
 import path from 'node:path'
 import { parse as parseYaml } from 'yaml'
 

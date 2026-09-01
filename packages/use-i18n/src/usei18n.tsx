@@ -1,16 +1,16 @@
 import type { NumberFormatOptions } from '@formatjs/ecma402-abstract'
 import {
-  formatDuration as formatDurationFns,
-  intervalToDuration,
   formatDistanceToNow,
   formatDistanceToNowStrict,
+  formatDuration as formatDurationFns,
+  intervalToDuration,
 } from 'date-fns'
 import type {
+  Locale as DateFnsLocale,
+  Duration,
+  FormatDurationOptions as FnsFormatDurationOptions,
   FormatDistanceToNowOptions,
   FormatDistanceToNowStrictOptions,
-  Locale as DateFnsLocale,
-  FormatDurationOptions as FnsFormatDurationOptions,
-  Duration,
 } from 'date-fns'
 import type { BaseLocale } from 'international-types'
 import type { ReactElement, ReactNode } from 'react'
