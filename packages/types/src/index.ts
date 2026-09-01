@@ -83,3 +83,20 @@ export type DeepPartial<T> = {
         ? DeepPartial<T[P]>
         : T[P]
 }
+
+/**
+ * A distributive version of `Omit` that preserves union types (including XOR patterns).
+ *
+ * The built-in `Omit<T, K>` does not reliably distribute over unions when the
+ * mapped type is non-homomorphic, which breaks XOR constraints that rely on
+ * `?: never` properties. This version forces distribution by using a conditional
+ * type, ensuring each union member is processed independently.
+ */
+export type DistributiveOmit<T, K extends string | number | symbol> = T extends unknown ? Omit<T, K> : never
+
+/**
+ * Enforces that at least one of the given keys is provided.
+ */
+export type AtLeastOne<T extends Record<string, unknown>> = {
+  [K in keyof T]: { [P in K]: T[P] } & { [P in Exclude<keyof T, K>]?: T[P] }
+}[keyof T]
