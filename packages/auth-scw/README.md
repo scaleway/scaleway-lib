@@ -12,6 +12,46 @@ pnpm add @scaleway/auth-scw
 
 ...
 
+### Choosing a storage backend
+
+By default, the JWT and audienceId are persisted in **cookies**. You can opt-in
+to **localStorage** with the `storageType` option:
+
+```tsx
+<AuthScwProvider
+  // ...other props
+  storageType="localStorage"
+>
+  {children}
+</AuthScwProvider>
+```
+
+| `storageType`    | Pros                                                        | Cons                                                              |
+| ---------------- | ----------------------------------------------------------- | ----------------------------------------------------------------- |
+| `'cookie'`       | Cross-tab synchronisation, sent to the server automatically | Size limits (~4KB), sent on every request                         |
+| `'localStorage'` | Larger storage limit (~5MB), not sent on every HTTP request | Origin-scoped, no cross-tab sync (use `storage` events if needed) |
+
+### Live migration from cookie to localStorage
+
+When switching from `'cookie'` to `'localStorage'` on an already-deployed app,
+set `migrateFromCookie` to migrate any existing cookie-based session to
+localStorage on provider initialization (then clean up the cookies):
+
+```tsx
+<AuthScwProvider
+  // ...other props
+  storageType="localStorage"
+  migrateFromCookie
+>
+  {children}
+</AuthScwProvider>
+```
+
+The migration runs **once**, before the provider reads the active storage. It is
+idempotent and safe to keep enabled even after all users have migrated — it is a
+no-op when nothing is found in cookies. You can also invoke it manually via the
+exported `migrateCookieToLocalStorage()` helper.
+
 ## How to dev
 
 ### Prerequisites

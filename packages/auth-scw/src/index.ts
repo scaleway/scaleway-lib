@@ -1,4 +1,4 @@
 export { EmptySession } from './constants'
-export type { AudienceIdType, AuthScwContextType, EncodedJWT } from './types'
+export type { AudienceIdType, AuthScwContextType, EncodedJWT, StorageType } from './types'
 export { AuthScwProvider, useAuthScw } from './useAuthScw'
-export { AuthStoreManager } from './useAuthScw/authStoreManager'
+export { AuthStoreManager, migrateCookieToLocalStorage } from './useAuthScw/authStoreManager'
