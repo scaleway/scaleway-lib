@@ -42,7 +42,7 @@
     "yaml": "catalog:"
   },
   "devDependencies": {
-    "@changesets/cli": "3.x"
+    "@changesets/cli": "3.0.1"
   },
   "peerDependencies": {
     "@changesets/cli": "3.x"
