@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.0
+
+### Major Changes
+
+- [#3664](https://github.com/scaleway/scaleway-lib/pull/3664) [`7374cbe`](https://github.com/scaleway/scaleway-lib/commit/7374cbe363893f4e73dacd580901be1048d066ee) Thanks [@philibea](https://github.com/philibea)! - Migrated from Changesets v2 to v3. The `@changesets/config` dependency was upgraded from v3 to v4, which renames `read` to `readConfig` and returns a `{ config, warnings, errors }` result object instead of throwing on validation errors. The GitHub Actions release workflow was also updated to use `changesets/action@v2` with the new kebab-case input names.
+
 ## 3.1.1
 
 ### Patch Changes

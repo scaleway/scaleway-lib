@@ -1,5 +1,11 @@
 # @scaleway/types
 
+## 1.2.0
+
+### Minor Changes
+
+- [#3675](https://github.com/scaleway/scaleway-lib/pull/3675) [`e5fb1fd`](https://github.com/scaleway/scaleway-lib/commit/e5fb1fd7eaf0e57a8c659cd135412c8c3417d665) Thanks [@philibea](https://github.com/philibea)! - add distributive omit, atleastone
+
 ## 1.1.0
 
 ### Minor Changes
