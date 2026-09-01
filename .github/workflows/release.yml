@@ -39,6 +39,9 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: 'pnpm'
+          registry-url: 'https://registry.npmjs.org'
+        env:
+          NODE_AUTH_TOKEN: ${{ env.NPM_TOKEN }}
       - run: pnpm install --frozen-lockfile && pnpm build && pnpm install --frozen-lockfile
       - name: Create Release Pull Request or Publish to npm
         id: changesets
@@ -47,6 +50,7 @@ jobs:
           commit-message: 'chore: release'
           pr-title: 'chore: release'
           publish-script: pnpm release
+
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ env.NPM_TOKEN }}
