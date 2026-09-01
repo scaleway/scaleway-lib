@@ -1,6 +1,6 @@
 import { readFile } from 'node:fs/promises'
 import { env } from 'node:process'
-import { read } from '@changesets/config'
+import { readConfig } from '@changesets/config'
 import { parse } from 'yaml'
 import { globWithGitignore } from './globWithGitignore'
 
@@ -75,8 +75,18 @@ function shouldSkipPackage(
   return !packageJson.version
 }
 
-export async function getChangesetConfig(): ReturnType<typeof read> {
-  return read(process.cwd())
+export async function getChangesetConfig(): Promise<NonNullable<Awaited<ReturnType<typeof readConfig>>['config']>> {
+  const result = await readConfig(process.cwd())
+
+  if (result.errors?.length) {
+    throw new Error(`Invalid changeset config:\n${result.errors.join('\n')}`)
+  }
+
+  if (!result.config) {
+    throw new Error('Invalid changeset config: no config returned')
+  }
+
+  return result.config
 }
 
 export async function getPackagesNames(files: string[], packageBumps: Map<string, string>): Promise<string[]> {

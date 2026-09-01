@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.1
+
+### Patch Changes
+
+- [#3681](https://github.com/scaleway/scaleway-lib/pull/3681) [`2ba835c`](https://github.com/scaleway/scaleway-lib/commit/2ba835c748376da8ad648001a325414194c8fd05) Thanks [@chambo-e](https://github.com/chambo-e)! - properly ignore all non git tracked
+
 ## 3.1.0
 
 ### Minor Changes

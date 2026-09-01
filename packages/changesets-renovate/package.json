@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/changesets-renovate",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "Automatically create changesets for Renovate and pnpm catalogs",
   "keywords": [
     "catalogs",
@@ -41,7 +41,13 @@
     "tinyglobby": "catalog:",
     "yaml": "catalog:"
   },
+  "devDependencies": {
+    "@changesets/cli": "3.x"
+  },
+  "peerDependencies": {
+    "@changesets/cli": "3.x"
+  },
   "engines": {
-    "node": "24.x || 25.x || 26.x"
+    "node": " ^22.11  || 24.x || 25.x || 26.x"
   }
 }

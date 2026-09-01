@@ -28,11 +28,24 @@ vi.mock('tinyglobby', () => ({
   escapePath: escapePathMock,
 }))
 
+vi.mock('@changesets/config', async importOriginal => {
+  const actual = await importOriginal<typeof changesetConfig>()
+
+  return {
+    ...actual,
+    readConfig: vi.fn().mockResolvedValue({ config: actual.defaultConfig, warnings: [], errors: undefined }),
+  }
+})
+
 describe('pnpm-catalogs-utils', () => {
   beforeEach(() => {
     // Clear all mocks
     vi.clearAllMocks()
-    vi.spyOn(changesetConfig, 'read').mockResolvedValue(changesetConfig.defaultConfig)
+    vi.mocked(changesetConfig.readConfig).mockResolvedValue({
+      config: changesetConfig.defaultConfig,
+      warnings: [],
+      errors: undefined,
+    })
     vi.spyOn(process, 'cwd').mockReturnValue('/mock/repo')
     delete process.env['EXCLUDE_DEVDEPS']
   })
@@ -364,7 +377,11 @@ catalog:
     })
 
     it('should find packages affected by dependency changes and respect changeset ignore config', async () => {
-      vi.spyOn(changesetConfig, 'read').mockResolvedValue({ ...changesetConfig.defaultConfig, ignore: ['package-c'] })
+      vi.mocked(changesetConfig.readConfig).mockResolvedValue({
+        config: { ...changesetConfig.defaultConfig, ignore: ['package-c'] },
+        warnings: [],
+        errors: undefined,
+      })
 
       // Mock file system reads for package.json files
       vi.mocked(readFile).mockImplementation((async (filePath: string) => {
