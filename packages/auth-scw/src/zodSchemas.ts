@@ -14,7 +14,7 @@ type ValidateJWTSchema = {
   renewToken: string
 }
 
-export const jwtSchema: z.ZodType<ValidateJWTSchema> = z.object({
+const rawJwtSchema: z.ZodType<ValidateJWTSchema> = z.object({
   jwt: z.object({
     audienceId: z.string().min(1),
     createdAt: z.union([z.string().min(1), z.date()]).optional(),
@@ -29,6 +29,10 @@ export const jwtSchema: z.ZodType<ValidateJWTSchema> = z.object({
   token: z.string().min(1),
 })
 
-export const audienceIdSchema = z.object({
-  audienceId: z.string().min(1),
-})
+export const jwtSchema = z.compile(rawJwtSchema)
+
+export const audienceIdSchema = z.compile(
+  z.object({
+    audienceId: z.string().min(1),
+  }),
+)

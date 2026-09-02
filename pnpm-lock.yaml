@@ -371,8 +371,8 @@ catalogs:
       specifier: 2.9.0
       version: 2.9.0
     zod:
-      specifier: 4.4.3
-      version: 4.4.3
+      specifier: 4.5.1
+      version: 4.5.1
 
 importers:
 
@@ -494,7 +494,7 @@ importers:
         version: 4.4.0
       zod:
         specifier: 'catalog:'
-        version: 4.4.3
+        version: 4.5.1
     devDependencies:
       '@scaleway/sdk-client':
         specifier: 'catalog:'
@@ -579,7 +579,7 @@ importers:
         version: 19.2.8
       zod:
         specifier: 'catalog:'
-        version: 4.4.3
+        version: 4.5.1
 
   packages/sync-peer-deps:
     dependencies:
@@ -3020,8 +3020,8 @@ packages:
   yuku-parser@0.8.7:
     resolution: {integrity: sha512-vRD9nwt4L3aYpxNqeSC4WqLv58xrXef0Ong1Mc45CTXTIpvLafx7JO05sczmQZwdLEZvywrLOGdNC5+Rp5N1BQ==}
 
-  zod@4.4.3:
-    resolution: {integrity: sha512-ytENFjIJFl2UwYglde2jchW2Hwm4GJFLDiSXWdTrJQBIN9Fcyp7n4DhxJEiWNAJMV1/BqWfW/kkg71UDcHJyTQ==}
+  zod@4.5.1:
+    resolution: {integrity: sha512-P3GqeAEOEDqKvafVGLezbg+39YW/ze4xrD4qdS0adOY8eoI3zfjv1PQM4UwQzgT8mZKXEbqtVt8K+ZKGqkMFKg==}
 
 snapshots:
 
@@ -4954,4 +4954,4 @@ snapshots:
       '@yuku-parser/binding-win32-arm64': 0.8.7
       '@yuku-parser/binding-win32-x64': 0.8.7
 
-  zod@4.4.3: {}
+  zod@4.5.1: {}
