@@ -28,6 +28,15 @@ describe('convertUnit', () => {
       expectResult: 1500000,
     },
     { desc: 'in any direction', amount: 1.5, options: { from: 'giga', to: 'mega' }, expectResult: 1500 },
+    { desc: 'with negative SI prefix', amount: 1000, options: { from: 'unit', to: 'milli' }, expectResult: 1000000000 },
+    { desc: 'from negative SI prefix to unit', amount: 1, options: { from: 'micro', to: 'unit' }, expectResult: 1e-9 },
+    { desc: 'between negative SI prefixes', amount: 1000, options: { from: 'micro', to: 'milli' }, expectResult: 1 },
+    {
+      desc: 'from positive to negative SI prefix',
+      amount: 1,
+      options: { from: 'kilo', to: 'milli' },
+      expectResult: 1000000000,
+    },
   ] as const)('should work $desc', ({ amount, options, expectResult }) => {
     expect.hasAssertions()
     expect(convertUnit(amount, options)).toBe(expectResult)

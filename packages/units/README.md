@@ -52,6 +52,11 @@ convertUnit(500, { from: 'giga', to: 'tera' })
 // convertUnit isn't data-specific — it works for any SI quantity
 convertUnit(2.5, { from: 'kilo', to: 'unit' })
 // => 2500
+
+// 1000 micrograms -> milligrams (decimal / SI)
+// negative SI prefixes work too
+convertUnit(1000, { from: 'micro', to: 'milli' })
+// => 1
 ```
 
 ### Why two bases?
@@ -66,8 +71,10 @@ Storage vendors typically advertise capacity in SI (decimal) units, while operat
 ### Supported units
 
 ```
-unit → kilo → mega → giga → tera → peta → exa → zetta → yotta
+yocto → zepto → atto → femto → pico → nano → micro → milli → unit → kilo → mega → giga → tera → peta → exa → zetta → yotta
 ```
+
+The negative prefixes (`milli`, `micro`, `nano`, `pico`, `femto`, `atto`, `zepto`, `yocto`) are SI-only and have no IEC/binary equivalent, so they only apply when using `base: 10`.
 
 `from` and `to` can be any two of these units, in either direction — the function computes the exponent difference between them for the selected base, so you're not limited to converting to/from `'unit'`.
 
