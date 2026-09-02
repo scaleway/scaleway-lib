@@ -2,6 +2,46 @@
 // https://en.wikipedia.org/wiki/Binary_prefix
 
 const exponents = {
+  // yocto
+  yocto: {
+    si: -24,
+    iec: 0,
+  },
+  // zepto
+  zepto: {
+    si: -21,
+    iec: 0,
+  },
+  // atto
+  atto: {
+    si: -18,
+    iec: 0,
+  },
+  // femto
+  femto: {
+    si: -15,
+    iec: 0,
+  },
+  // pico
+  pico: {
+    si: -12,
+    iec: 0,
+  },
+  // nano
+  nano: {
+    si: -9,
+    iec: 0,
+  },
+  // micro
+  micro: {
+    si: -6,
+    iec: 0,
+  },
+  // milli
+  milli: {
+    si: -3,
+    iec: 0,
+  },
   unit: {
     si: 3,
     iec: 0,
@@ -50,12 +90,23 @@ const exponents = {
 
 export type Unit = keyof typeof exponents
 
-type ConvertUnitArgs = {
-  from?: Unit
-  to?: Unit
-  base?: 2 | 10
-  precision?: number
-}
+type NegativeUnit = 'milli' | 'micro' | 'nano' | 'pico' | 'femto' | 'atto' | 'zepto' | 'yocto'
+
+type PositiveUnit = Exclude<Unit, NegativeUnit>
+
+type ConvertUnitArgs =
+  | {
+      base: 2
+      from?: PositiveUnit
+      to?: PositiveUnit
+      precision?: number
+    }
+  | {
+      base?: 10
+      from?: Unit
+      to?: Unit
+      precision?: number
+    }
 
 /**
  * Converts a numeric amount from one unit prefix to another, using either
@@ -66,6 +117,10 @@ type ConvertUnitArgs = {
  * converted directly in either direction (e.g. `mega` → `unit`, or
  * `tera` → `giga`). This isn't limited to bytes/bits — any decimal-prefixed
  * quantity (grams, meters, etc.) works the same way with `base: 10`.
+ *
+ * Negative prefixes (`milli`, `micro`, `nano`, `pico`, `femto`, `atto`,
+ * `zepto`, `yocto`) are SI-only: IEC has no binary equivalent, so they
+ * behave like `'unit'` when `base: 2` is used.
  *
  * @see https://en.wikipedia.org/wiki/Binary_prefix
  *
