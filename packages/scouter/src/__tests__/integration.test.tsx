@@ -178,11 +178,12 @@ test('does not unmount components during batched navigations', async () => {
   let unmountCount = 0
 
   function Sticky() {
-    useEffect(() => {
-      return () => {
+    useEffect(
+      () => () => {
         unmountCount++
-      }
-    }, [])
+      },
+      [],
+    )
     return <div>Sticky</div>
   }
 

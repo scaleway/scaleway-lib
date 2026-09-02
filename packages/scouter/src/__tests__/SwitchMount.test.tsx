@@ -12,7 +12,7 @@ test('does not remount when switching between matching routes', () => {
 
   const PersistentComponent = ({ name }: { name: string }) => {
     useEffect(() => {
-      mountCalls.push('mount ' + name)
+      mountCalls.push(`mount ${name}`)
     }, [name])
 
     return <div>Persistent</div>

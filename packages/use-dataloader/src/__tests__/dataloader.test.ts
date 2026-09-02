@@ -48,7 +48,7 @@ describe('dataloader class', () => {
       method,
       notifyChanges,
     })
-    instance.removeObserver(() => {})
+    instance.removeObserver(() => undefined)
     expect(method).toHaveBeenCalledTimes(0)
     await instance.load()
     expect(method).toHaveBeenCalledTimes(1)

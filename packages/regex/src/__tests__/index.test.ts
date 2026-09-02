@@ -1,4 +1,4 @@
-// oxlint-disable eslint/max-statements
+// oxlint-disable eslint/max-statements max-lines
 
 import { describe, expect, it } from 'vitest'
 import {

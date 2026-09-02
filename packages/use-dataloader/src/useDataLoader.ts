@@ -3,7 +3,7 @@ import { StatusEnum } from './constants'
 import { useDataLoaderContext } from './DataLoaderProvider'
 import type { KeyType, PromiseType, UseDataLoaderConfig, UseDataLoaderResult } from './types'
 
-const noop = () => {}
+const noop = () => undefined
 
 export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
   key: KeyType,

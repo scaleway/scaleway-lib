@@ -172,7 +172,7 @@ describe('useBlockNavigation - renderHook tests', () => {
 })
 
 test('form use case', async () => {
-  let resolveSubmit: () => void = () => {}
+  let resolveSubmit: () => void = () => undefined
 
   const UserForm = () => {
     const [name, setName] = useState('')

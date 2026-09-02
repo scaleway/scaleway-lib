@@ -189,7 +189,9 @@ export const useInfiniteDataLoader = <
 
   // Reset page when baseParams or pageParamKey change
   useEffect(() => {
-    if (lastSyncedBaseKeyRef.current === baseQueryKey) return
+    if (lastSyncedBaseKeyRef.current === baseQueryKey) {
+      return
+    }
     setPage(() => baseParams[pageParamKey])
     setNextPage(undefined)
     loadMoreBaseKeyRef.current = undefined

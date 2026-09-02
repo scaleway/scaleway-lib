@@ -243,7 +243,7 @@ describe('dataLoaderProvider', () => {
       method: method3,
     })
 
-    request1.addObserver(() => {})
+    request1.addObserver(() => undefined)
 
     await result.current.reloadAllActive()
     expect(method1).toHaveBeenCalledTimes(1)
@@ -269,8 +269,8 @@ describe('dataLoaderProvider', () => {
       method: method3,
     })
 
-    request1.addObserver(() => {})
-    request3.addObserver(() => {})
+    request1.addObserver(() => undefined)
+    request3.addObserver(() => undefined)
 
     await result.current.reloadGroupActive(TEST_KEY)
     expect(method1).toHaveBeenCalledTimes(1)

@@ -1,3 +1,4 @@
+// oxlint-disable max-lines
 import { readFile } from 'node:fs/promises'
 import * as changesetConfig from '@changesets/config'
 import { glob } from 'tinyglobby'

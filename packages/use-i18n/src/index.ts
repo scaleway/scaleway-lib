@@ -9,7 +9,7 @@ export type { FormatDateOptions } from './formatDate'
 export type { IntlListFormatOptions } from './formatters'
 export type { FormatUnitOptions } from './formatUnit'
 // Core types
-export type { ReactParamsObject, ScopedTranslateFn, ScopedValue, TranslateFn } from './types'
+export type { ReactParamsObject, ScopedTranslateFn, ScopedValue, SupportedLocalesType, TranslateFn } from './types'
 // Types used in the main I18nContextProvider
 export type {
   Context,
@@ -18,7 +18,6 @@ export type {
   LoadLocaleFnAsync,
   LoadTranslationsFn,
   RequiredGenericContext,
-  SupportedLocalesType,
   TranslationsByLocales,
 } from './usei18n'
 // Hook exports

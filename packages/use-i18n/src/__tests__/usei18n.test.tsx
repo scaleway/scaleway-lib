@@ -1,3 +1,4 @@
+// oxlint-disable max-lines
 import { act, renderHook } from '@testing-library/react'
 import { enGB, fr as frDateFns } from 'date-fns/locale'
 import { MissingValueError } from 'intl-messageformat'
@@ -32,8 +33,8 @@ const load = async ({ locale, namespace }: { locale: string; namespace: string }
 
 const CustomComponent = ({ children }: { children: ReactNode }) => <p style={{ fontWeight: 'bold' }}>{children}</p>
 
-const defaultOnTranslateError: OnTranslateError = () => {}
-const defaultOnLoadTranslationError: OnLoadTranslationError = () => {}
+const defaultOnTranslateError: OnTranslateError = () => undefined
+const defaultOnLoadTranslationError: OnLoadTranslationError = () => undefined
 
 const wrapper =
   ({
@@ -111,7 +112,7 @@ describe('i18n hook', () => {
   it('useTranslation should not be defined without I18nProvider', () => {
     expect.hasAssertions()
     const spy = vi.spyOn(console, 'error')
-    spy.mockImplementation(() => {})
+    spy.mockReturnValue(undefined)
 
     expect(() => renderHook(() => useTranslation(['test']))).toThrow(
       new Error('useTranslation must be used within a I18nProvider'),
@@ -122,7 +123,7 @@ describe('i18n hook', () => {
   it('useI18n should not be defined without I18nProvider', () => {
     expect.hasAssertions()
     const spy = vi.spyOn(console, 'error')
-    spy.mockImplementation(() => {})
+    spy.mockReturnValue(undefined)
 
     expect(() => renderHook(() => useI18n())).toThrow(new Error('useI18n must be used within a I18nProvider'))
     spy.mockRestore()
@@ -525,7 +526,7 @@ describe('i18n hook', () => {
   })
 
   it('should call onTranslateError when there is a sync issue to remove/add variable in one traduction of a language', async () => {
-    const mockOnTranslateError = vi.fn(() => {})
+    const mockOnTranslateError = vi.fn(() => undefined)
 
     const { result } = renderHook(() => useI18n<Locale, Locales>(), {
       wrapper: wrapper({

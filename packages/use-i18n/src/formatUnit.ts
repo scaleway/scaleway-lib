@@ -127,7 +127,7 @@ const format =
           round: maximumFractionDigits,
         })
 
-        computedValue = Number.parseFloat(value.value.toString())
+        computedValue = Number(value.value.toString())
       } else {
         const value = filesize(amount, {
           base,
@@ -136,7 +136,7 @@ const format =
         })
 
         computedExponent = exponents[value.exponent]
-        computedValue = Number.parseFloat(value.value.toString())
+        computedValue = Number(value.value.toString())
       }
     }
 

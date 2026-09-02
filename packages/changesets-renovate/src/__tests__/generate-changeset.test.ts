@@ -1,3 +1,4 @@
+// oxlint-disable max-lines
 import { readFile, writeFile } from 'node:fs/promises'
 import * as changesetConfig from '@changesets/config'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
@@ -43,8 +44,8 @@ describe('generate changeset file', () => {
       branch: () => ({
         current: 'main',
       }),
-      diffSummary: () => undefined,
-      show: () => undefined,
+      diffSummary: () => ({}),
+      show: () => '',
     })
 
     await run()
@@ -165,7 +166,7 @@ describe('generate changeset file', () => {
           },
         ],
       }),
-      show: () => undefined,
+      show: () => '',
     })
 
     await run()
@@ -182,7 +183,7 @@ describe('generate changeset file', () => {
       diffSummary: () => ({
         files: [],
       }),
-      show: () => undefined,
+      show: () => '',
     })
 
     await run()
