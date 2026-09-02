@@ -314,12 +314,12 @@ export default defineConfig({
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react_perf/jsx-no-jsx-as-prop
      * @todo No consensus as of yet
      */
-    'react-perf/jsx-no-jsx-as-prop': 'error',
+    'react-perf/jsx-no-jsx-as-prop': 'off',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react_perf/jsx-no-new-array-as-prop
      * @todo No consensus as of yet
      */
-    'react-perf/jsx-no-new-array-as-prop': 'error',
+    'react-perf/jsx-no-new-array-as-prop': 'off',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react_perf/jsx-no-new-function-as-prop
      * @todo No consensus as of yet
@@ -329,7 +329,7 @@ export default defineConfig({
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react_perf/jsx-no-new-object-as-prop
      * @todo No consensus as of yet
      */
-    'react-perf/jsx-no-new-object-as-prop': 'error',
+    'react-perf/jsx-no-new-object-as-prop': 'off',
 
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/jsx_a11y/alt-text
