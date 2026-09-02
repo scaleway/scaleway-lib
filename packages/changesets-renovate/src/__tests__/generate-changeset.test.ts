@@ -1,3 +1,4 @@
+// oxlint-disable max-lines
 import { readFile, writeFile } from 'node:fs/promises'
 import * as changesetConfig from '@changesets/config'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'

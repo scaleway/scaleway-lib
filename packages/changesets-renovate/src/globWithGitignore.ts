@@ -16,18 +16,6 @@ const mergeIgnore = (value: string | readonly string[] | undefined): readonly st
   return value
 }
 
-const mergeIgnore = (value: string | readonly string[] | undefined): readonly string[] => {
-  if (value === undefined) {
-    return []
-  }
-
-  if (typeof value === 'string') {
-    return [value]
-  }
-
-  return value
-}
-
 // Taken from https://superchupu.dev/tinyglobby/migration#gitignore
 export const globWithGitignore = async (patterns: string[], opts: Omit<GlobOptions, 'patterns'> = {}) => {
   const { cwd = process.cwd(), ...restOptions } = opts
