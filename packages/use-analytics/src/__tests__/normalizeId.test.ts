@@ -2,7 +2,7 @@
 import { describe, expect, it } from 'vitest'
 import { normalizeId } from '../analytics/normalizeId'
 
-describe('normalizeId', () => {
+describe(normalizeId, () => {
   it('should return undefined for null or undefined input', () => {
     expect(normalizeId(null)).toBeUndefined()
     expect(normalizeId(undefined)).toBeUndefined()

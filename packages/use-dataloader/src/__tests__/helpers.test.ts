@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { marshalQueryKey } from '../helpers'
 
-describe('marshalQueryKey', () => {
+describe(marshalQueryKey, () => {
   it('should accept a string', () => {
     expect(marshalQueryKey('string')).toBe('string')
   })

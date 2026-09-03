@@ -5,7 +5,7 @@ import { describe, expect, it, vi } from 'vitest'
 import { MemoryRouter, Route, useQueryParams } from '../index'
 import { Router } from '../Router'
 
-describe('useQueryParams', () => {
+describe(useQueryParams, () => {
   const wrapper = ({ children }: { children: React.ReactNode }) => (
     <MemoryRouter>
       <Route>{children}</Route>

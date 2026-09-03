@@ -6,7 +6,7 @@ import { z } from 'zod'
 import { MemoryRouter, Route, useSafeQueryParams } from '../index'
 import { Router } from '../Router'
 
-describe('useSafeQueryParams', () => {
+describe(useSafeQueryParams, () => {
   const schema = z.object({
     name: z.string().optional(),
     age: z.string().optional(),

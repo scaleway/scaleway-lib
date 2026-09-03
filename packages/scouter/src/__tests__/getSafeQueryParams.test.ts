@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { z } from 'zod'
 import { getSafeQueryParams } from '../helpers/getSafeQueryParams'
 
-describe('getSafeQueryParams', () => {
+describe(getSafeQueryParams, () => {
   const schema = z.object({
     name: z.string().optional(),
     age: z.string().optional(),

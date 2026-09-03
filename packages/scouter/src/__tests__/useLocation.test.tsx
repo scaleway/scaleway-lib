@@ -2,7 +2,7 @@ import { renderHook } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import { MemoryRouter, Route, useLocation } from '../index'
 
-describe('useLocation', () => {
+describe(useLocation, () => {
   it('returns current location', () => {
     const { result } = renderHook(() => useLocation(), {
       wrapper: ({ children }) => (

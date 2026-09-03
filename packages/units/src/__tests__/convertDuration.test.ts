@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { convertDuration } from '../convertDuration'
 
-describe('convertDuration', () => {
+describe(convertDuration, () => {
   it.each([
     {
       desc: '',

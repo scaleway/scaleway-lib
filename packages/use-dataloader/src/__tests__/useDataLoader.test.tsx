@@ -40,7 +40,7 @@ const wrapperWithOnError =
   (onError: (err: Error) => void) =>
   ({ children }: { children?: ReactNode }) => <DataLoaderProvider onError={onError}>{children}</DataLoaderProvider>
 
-describe('useDataLoader', () => {
+describe(useDataLoader, () => {
   it('should render correctly without options', async () => {
     const { result } = renderHook(props => useDataLoader(props.key, props.method), {
       initialProps,

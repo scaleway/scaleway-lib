@@ -2,7 +2,7 @@ import { act, renderHook } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { copyToClipboard, useClipboard } from '../'
 
-describe('copyToClipboard', () => {
+describe(copyToClipboard, () => {
   beforeEach(() => {
     Object.defineProperty(navigator, 'clipboard', {
       value: { writeText: vi.fn() },

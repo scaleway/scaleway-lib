@@ -51,7 +51,7 @@ describe('pnpm-catalogs-utils', () => {
     delete process.env['EXCLUDE_DEVDEPS']
   })
 
-  describe('loadCatalogFromFile', () => {
+  describe(loadCatalogFromFile, () => {
     it('should load catalog from a YAML file', async () => {
       const mockContent = `
 catalog:
@@ -96,7 +96,7 @@ catalog:
     })
   })
 
-  describe('loadCatalogFromWorkspaceContent', () => {
+  describe(loadCatalogFromWorkspaceContent, () => {
     it('should load catalog from workspace content', () => {
       const mockContent = `
 catalog:
@@ -130,7 +130,7 @@ catalog:
     })
   })
 
-  describe('findChangedDependencies', () => {
+  describe(findChangedDependencies, () => {
     it('should find dependencies that have changed versions', () => {
       const oldCatalog = {
         'package-a': '1.0.0',
@@ -177,7 +177,7 @@ catalog:
     })
   })
 
-  describe('getWorkspacePackageGlobs', () => {
+  describe(getWorkspacePackageGlobs, () => {
     it('should discover globs from pnpm-workspace.yaml', async () => {
       vi.mocked(readFile).mockImplementation((async (filePath: string) => {
         if (filePath === 'pnpm-workspace.yaml') {
@@ -275,7 +275,7 @@ catalog:
     })
   })
 
-  describe('findAffectedPackages', () => {
+  describe(findAffectedPackages, () => {
     beforeEach(() => {
       // Default workspace discovery returns the legacy default glob
       vi.mocked(readFile).mockImplementation((async (filePath: string) => {

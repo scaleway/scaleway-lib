@@ -72,7 +72,7 @@ describe('parsePhoneNumber (from awesome-phonenumber)', () => {
   })
 })
 
-describe('parsePhoneValue', () => {
+describe(parsePhoneValue, () => {
   it('should parse a valid French phone number', () => {
     const result = parsePhoneValue('+33612345678')
     expect(result.valid).toBe(true)
@@ -115,7 +115,7 @@ describe('parsePhoneValue', () => {
   })
 })
 
-describe('formatPhoneNumber', () => {
+describe(formatPhoneNumber, () => {
   it('should format in E164 format', () => {
     const result = formatPhoneNumber('+33612345678', { format: 'e164' })
     expect(result).toBe('+33612345678')
@@ -162,7 +162,7 @@ describe('formatPhoneNumber', () => {
   })
 })
 
-describe('validatePhoneNumber', () => {
+describe(validatePhoneNumber, () => {
   it('should return true for a valid French phone number', () => {
     expect(validatePhoneNumber('+33612345678')).toBe(true)
   })
@@ -192,7 +192,7 @@ describe('validatePhoneNumber', () => {
   })
 })
 
-describe('getPhoneExample', () => {
+describe(getPhoneExample, () => {
   it('should return an example number for France', () => {
     const example = getPhoneExample('FR')
     expect(example.number?.e164).toMatch(/^\+33/)
@@ -214,7 +214,7 @@ describe('getPhoneExample', () => {
   })
 })
 
-describe('getPhoneCountryFlag', () => {
+describe(getPhoneCountryFlag, () => {
   it('should return flag emoji for France', () => {
     expect(getPhoneCountryFlag('FR')).toBe('🇫🇷')
   })

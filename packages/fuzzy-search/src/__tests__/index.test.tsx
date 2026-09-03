@@ -2,13 +2,13 @@ import { describe, expect, it } from 'vitest'
 import { isFuzzyMatch, levenshteinDistance, normalizeString } from '..'
 
 describe('fuzzySearch', () => {
-  describe('normalizeString', () => {
+  describe(normalizeString, () => {
     it('returns correct string', () => {
       expect(normalizeString('île-de-France')).toBe('ile de france')
     })
   })
 
-  describe('levenshteinDistance', () => {
+  describe(levenshteinDistance, () => {
     it('returns correct lenvenshtein distance', () => {
       expect(levenshteinDistance('test', 'test')).toBe(0)
 

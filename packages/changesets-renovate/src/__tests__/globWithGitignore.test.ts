@@ -16,7 +16,7 @@ vi.mock('tinyglobby', () => ({
   escapePath: escapePathMock,
 }))
 
-describe('globWithGitignore', () => {
+describe(globWithGitignore, () => {
   beforeEach(() => {
     vi.clearAllMocks()
     vi.spyOn(process, 'cwd').mockReturnValue('/mock/repo')

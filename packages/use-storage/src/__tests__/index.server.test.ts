@@ -10,9 +10,8 @@ const KEY = 'test'
 
 // renderHook does not yet support server side
 // https://github.com/testing-library/react-testing-library/issues/1120
-// oxlint-disable vitest/no-disabled-tests
-describe.skip('useStorage - Server side', () => {
-  describe('useLocalStorage', () => {
+describe.todo('useStorage - Server side', () => {
+  describe(useLocalStorage, () => {
     it('works', () => {
       const { result } = renderHook(() => useLocalStorage<string>(KEY))
       expect(result.current[0]).toBeNull()
@@ -36,7 +35,7 @@ describe.skip('useStorage - Server side', () => {
     })
   })
 
-  describe('useSessionStorage', () => {
+  describe(useSessionStorage, () => {
     it('works', () => {
       const { result } = renderHook(() => useSessionStorage<string>(KEY))
       expect(result.current[0]).toBeNull()
