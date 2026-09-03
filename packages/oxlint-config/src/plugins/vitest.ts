@@ -298,7 +298,7 @@ export default defineConfig({
         /**
          * @see https://oxc.rs/docs/guide/usage/linter/rules/vitest/warn-todo
          */
-        'vitest/warn-todo': 'error',
+        'vitest/warn-todo': 'off',
       },
     },
   ],
