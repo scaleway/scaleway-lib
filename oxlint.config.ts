@@ -46,8 +46,6 @@ export default defineConfig({
     'oxc/branches-sharing-code': 'warn',
     'oxc/no-accumulating-spread': 'warn',
 
-    'react-perf/jsx-no-new-array-as-prop': 'warn',
-    'react-perf/jsx-no-new-object-as-prop': 'warn',
     'react/no-multi-comp': 'warn',
 
     'typescript/consistent-indexed-object-style': 'warn',
