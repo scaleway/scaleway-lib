@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { convertUnit } from '../convertUnit'
 
-describe('convertUnit', () => {
+describe(convertUnit, () => {
   it.each([
     {
       desc: 'with base 10 by default and specified units',

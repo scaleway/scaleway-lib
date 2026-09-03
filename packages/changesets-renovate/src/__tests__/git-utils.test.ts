@@ -14,7 +14,7 @@ describe('pnpm-catalogs-git-utils', () => {
     vi.clearAllMocks()
   })
 
-  describe('loadCatalogFromGit', () => {
+  describe(loadCatalogFromGit, () => {
     it('should load catalog from git at specific revision', async () => {
       const mockContent = `
 catalog:
@@ -70,7 +70,7 @@ catalog:
     })
   })
 
-  describe('findChangedDependenciesFromGit', () => {
+  describe(findChangedDependenciesFromGit, () => {
     it('should find dependencies that have changed between git revisions', async () => {
       // Mock the git operations
       mockSimpleGit.mockReturnValue({

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { randomName } from '..'
 
-describe('randomName', () => {
+describe(randomName, () => {
   it('should return a random name separated by a dash', () => {
     expect(randomName().split('-')).toHaveLength(2)
   })

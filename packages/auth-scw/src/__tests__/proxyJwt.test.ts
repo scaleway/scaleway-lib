@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { MOCK_ENCODED_JWT_COOKIE } from '../../mocks'
 import { proxyJwt } from '../useAuthScw/proxyJwt'
 
-describe('proxyJwt', () => {
+describe(proxyJwt, () => {
   it('should return the same JWT when updateJwt is undefined', () => {
     const result = proxyJwt(MOCK_ENCODED_JWT_COOKIE)
     expect(result).toBe(MOCK_ENCODED_JWT_COOKIE)

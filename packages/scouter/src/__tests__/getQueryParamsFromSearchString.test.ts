@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { getQueryParamsFromSearchString } from '../helpers/getQueryParamsFromSearchString'
 
-describe('getQueryParamsFromSearchString', () => {
+describe(getQueryParamsFromSearchString, () => {
   it('with empty search string', () => {
     expect(getQueryParamsFromSearchString('')).toStrictEqual({})
   })

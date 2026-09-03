@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 import type { Location } from '../index'
 import { MemoryRouter, Route, useLocation, useNavigate } from '../index'
 
-describe('useNavigate', () => {
+describe(useNavigate, () => {
   it('returns navigate function', () => {
     const { result } = renderHook(() => useNavigate(), {
       wrapper: ({ children }) => (

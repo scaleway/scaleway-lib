@@ -6,17 +6,17 @@ exports[`formatDate > should return passed object if not valid date 1`] = `
 }
 `;
 
-exports[`formatDate > should work with custom format and locale en 1`] = `"Thursday, F 13, 20 AD, 04:28:00 PM Coordinated Universal Time"`;
+exports[`formatDate > should work with custom format and locale en > 1_581_607_680_000 1`] = `"Thursday, F 13, 20 AD, 03:28:00 PM Coordinated Universal Time"`;
 
-exports[`formatDate > should work with custom format and locale en 2`] = `"Thursday, F 13, 20 AD, 03:28:00 PM Coordinated Universal Time"`;
+exports[`formatDate > should work with custom format and locale en > 2020-02-13T15:28:00.000Z 1`] = `"Thursday, F 13, 20 AD, 03:28:00 PM Coordinated Universal Time"`;
 
-exports[`formatDate > should work with custom format and locale en 3`] = `"Thursday, F 13, 20 AD, 03:28:00 PM Coordinated Universal Time"`;
+exports[`formatDate > should work with custom format and locale en > new Date(2020, 1, 13, 16, 28) 1`] = `"Thursday, F 13, 20 AD, 04:28:00 PM Coordinated Universal Time"`;
 
-exports[`formatDate > should work with custom format and locale fr 1`] = `"jeudi 13 F 20 ap. J.-C. 16:28:00 temps universel coordonné"`;
+exports[`formatDate > should work with custom format and locale fr > 1_581_607_680_000 1`] = `"jeudi 13 F 20 ap. J.-C. 15:28:00 temps universel coordonné"`;
 
-exports[`formatDate > should work with custom format and locale fr 2`] = `"jeudi 13 F 20 ap. J.-C. 15:28:00 temps universel coordonné"`;
+exports[`formatDate > should work with custom format and locale fr > 2020-02-13T15:28:00.000Z 1`] = `"jeudi 13 F 20 ap. J.-C. 15:28:00 temps universel coordonné"`;
 
-exports[`formatDate > should work with custom format and locale fr 3`] = `"jeudi 13 F 20 ap. J.-C. 15:28:00 temps universel coordonné"`;
+exports[`formatDate > should work with custom format and locale fr > new Date(2020, 1, 13, 16, 28) 1`] = `"jeudi 13 F 20 ap. J.-C. 16:28:00 temps universel coordonné"`;
 
 exports[`formatDate > should work with format "hour", for date = "2020-02-13T15:28:00.000Z" and locale "en" 1`] = `"February 13, 2020 at 3:28 PM"`;
 

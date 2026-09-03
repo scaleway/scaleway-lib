@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { compileRoute } from '../compileRoute'
 
-describe('compileRoute', () => {
+describe(compileRoute, () => {
   it('compiles a simple path', () => {
     const result = compileRoute('/users')
 

@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest'
-import * as constants from '../constants'
+import * as consts from '../constants'
 
 describe('constants', () => {
-  it.each(Object.entries(constants))('%s', (_, args) => {
+  it.each(Object.entries(consts))('%s', (_, args) => {
     expect(args).toMatchSnapshot()
   })
 })

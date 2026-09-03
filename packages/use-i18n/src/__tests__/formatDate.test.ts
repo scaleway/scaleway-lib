@@ -14,9 +14,9 @@ const tests = [
   ),
 ].flat() as [FormatDateOptions, string, string, Date | string | number][]
 
-describe('formatDate', () => {
+describe(formatDate, () => {
   it.each(tests)('should work with format "%s", for date = "%s" and locale "%s"', (format, _, locale, date) => {
-    expect(formatDate(locale, date, format)).toMatchSnapshot()
+    expect(formatDate(locale, date, format)).toMatchSnapshot('')
   })
 
   it.each(locales)('should work with custom format and locale %s', locale => {
@@ -32,9 +32,9 @@ describe('formatDate', () => {
       year: '2-digit',
     }
 
-    expect(formatDate(locale, new Date(2020, 1, 13, 16, 28), format)).toMatchSnapshot()
-    expect(formatDate(locale, 1_581_607_680_000, format)).toMatchSnapshot()
-    expect(formatDate(locale, '2020-02-13T15:28:00.000Z', format)).toMatchSnapshot()
+    expect(formatDate(locale, new Date(2020, 1, 13, 16, 28), format)).toMatchSnapshot('new Date(2020, 1, 13, 16, 28)')
+    expect(formatDate(locale, 1_581_607_680_000, format)).toMatchSnapshot('1_581_607_680_000')
+    expect(formatDate(locale, '2020-02-13T15:28:00.000Z', format)).toMatchSnapshot('2020-02-13T15:28:00.000Z')
   })
 
   it('should return passed object if not valid date', () => {

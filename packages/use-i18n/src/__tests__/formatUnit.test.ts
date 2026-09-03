@@ -41,7 +41,7 @@ const tests: TestType[] = [
   ]),
 ]
 
-describe('formatUnit', () => {
+describe(formatUnit, () => {
   it('should return empty string for unknown unit', () => {
     expect(
       // @ts-expect-error We test the use case when unit is unknown

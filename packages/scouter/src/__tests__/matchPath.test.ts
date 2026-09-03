@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import type { MaybeMatch } from '../matchPath'
 import { matchPath, matchPaths } from '../matchPath'
 
-describe('matchPath', () => {
+describe(matchPath, () => {
   describe('without path property on params', () => {
     it("doesn't throw an exception", () => {
       expect(() => {
@@ -139,7 +139,7 @@ describe('matchPath', () => {
   })
 })
 
-describe('matchPaths', () => {
+describe(matchPaths, () => {
   it('accepts an array as 2nd argument', () => {
     const path = ['/somewhere', '/elsewhere']
     const pathname = '/elsewhere'

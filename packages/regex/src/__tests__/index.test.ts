@@ -108,7 +108,7 @@ const linuxPaths = {
 const uuidTest = '550e8400-e29b-41d4-a716-446655440000'
 
 describe('@regex', () => {
-  describe('alpha', () => {
+  describe('regex alpha', () => {
     it.each([
       [alphanumDashText, false],
       [alphanumDashDotsText, false],
@@ -129,7 +129,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('alphaLowercase', () => {
+  describe('regex alphaLowercase', () => {
     it.each([
       [alphanumDashText, false],
       [alphanumDashDotsText, false],
@@ -150,7 +150,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('alphanum', () => {
+  describe('regex alphanum', () => {
     it.each([
       [alphanumDashText, false],
       [alphanumDashDotsText, false],
@@ -171,7 +171,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('alphaDashes', () => {
+  describe('regex alphaDashes', () => {
     it.each([
       [alphanumDashText, true],
       [alphanumDashDotsText, false],
@@ -192,7 +192,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('alphanumDash', () => {
+  describe('regex alphanumDash', () => {
     it.each([
       [alphanumDashText, true],
       [alphanumDashDotsText, false],
@@ -213,7 +213,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('alphanumDashDots', () => {
+  describe('regex alphanumDashDots', () => {
     it.each([
       [alphanumDashText, true],
       [alphanumDashDotsText, true],
@@ -234,7 +234,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('alphanumDashDotsOrEmpty', () => {
+  describe('regex alphanumDashDotsOrEmpty', () => {
     it.each([
       [alphanumDashText, true],
       [alphanumDashDotsText, true],
@@ -255,7 +255,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('alphanumDashDotsSpaces', () => {
+  describe('regex alphanumDashDotsSpaces', () => {
     it.each([
       [alphanumDashText, true],
       [alphanumDashDotsText, true],
@@ -276,7 +276,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('alphanumDashUnderscoreDotsSpacesParenthesis', () => {
+  describe('regex alphanumDashUnderscoreDotsSpacesParenthesis', () => {
     it.each([
       [alphanumDashText, true],
       [alphanumDashDotsText, true],
@@ -298,7 +298,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('alphanumDashUnderscore', () => {
+  describe('regex alphanumDashUnderscore', () => {
     it.each([
       [alphanumDashText, true],
       [alphanumDashDotsText, false],
@@ -320,7 +320,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('alphanumDashOrEmpty', () => {
+  describe('regex alphanumDashOrEmpty', () => {
     it.each([
       [alphanumDashText, true],
       [alphanumDashDotsText, false],
@@ -341,7 +341,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('alphanumDashSpaces', () => {
+  describe('regex alphanumDashSpaces', () => {
     it.each([
       [alphanumDashText, true],
       [alphanumDashDotsText, false],
@@ -362,7 +362,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('alphanumDots', () => {
+  describe('regex alphanumDots', () => {
     it.each([
       [alphanumDashText, false],
       [alphanumDashDotsText, false],
@@ -382,7 +382,7 @@ describe('@regex', () => {
       expect(alphanumDots.test(string)).toBe(expected)
     })
   })
-  describe('alphaUpperUnderscore', () => {
+  describe('regex alphaUpperUnderscore', () => {
     it.each([
       [alphanumDashText, false],
       [uppercaseUnderscoreText, true],
@@ -404,7 +404,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('alphanumLowercase', () => {
+  describe('regex alphanumLowercase', () => {
     it.each([
       [alphanumDashText, false],
       [asciiLetters, false],
@@ -424,7 +424,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('alphanumDashLowercase', () => {
+  describe('regex alphanumDashLowercase', () => {
     it.each([
       [asciiLetters, false],
       [asciiLowercase, true],
@@ -444,7 +444,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('alphanumDashUnderscoreDotsSpaces', () => {
+  describe('regex alphanumDashUnderscoreDotsSpaces', () => {
     it.each([
       [asciiLetters, true],
       [asciiLowercase, true],
@@ -463,7 +463,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('alphanumDashUnderscoreDollar', () => {
+  describe('regex alphanumDashUnderscoreDollar', () => {
     it.each([
       [asciiLetters, true],
       [asciiLowercase, true],
@@ -482,7 +482,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('absoluteLinuxPath', () => {
+  describe('regex absoluteLinuxPath', () => {
     it.each([
       ...linuxPaths.GOOD.map((testStr: string) => [testStr, true] as [string, boolean]),
       ...linuxPaths.BAD.map((testStr: string) => [testStr, false] as [string, boolean]),
@@ -491,7 +491,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('organizationAlias', () => {
+  describe('regex organizationAlias', () => {
     it.each([
       [asciiLetters, false],
       [asciiLowercase, true],
@@ -509,7 +509,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('ascii', () => {
+  describe('regex ascii', () => {
     it.each([
       [asciiLetters, true],
       [asciiLowercase, true],
@@ -527,7 +527,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('backupKey', () => {
+  describe('regex backupKey', () => {
     it.each([
       [asciiLetters, false],
       [asciiLowercase, false],
@@ -546,7 +546,7 @@ describe('@regex', () => {
       expect(backupKey.test(string)).toBe(expected)
     })
   })
-  describe('basicDomain', () => {
+  describe('regex basicDomain', () => {
     it.each([
       [asciiLetters, false],
       [asciiLowercase, false],
@@ -569,7 +569,7 @@ describe('@regex', () => {
       expect(basicDomain.test(string)).toBe(expected)
     })
   })
-  describe('uppercaseBasicDomain', () => {
+  describe('regex uppercaseBasicDomain', () => {
     it.each([
       [asciiLetters, false],
       [asciiLowercase, false],
@@ -595,7 +595,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('uppercaseBasicSubdomain', () => {
+  describe('regex uppercaseBasicSubdomain', () => {
     it.each([
       [asciiLetters, false],
       [asciiLowercase, false],
@@ -621,7 +621,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('advancedDomain', () => {
+  describe('regex advancedDomain', () => {
     it.each([
       [asciiLetters, false],
       [nonAsciiLetters, false],
@@ -646,7 +646,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('cron', () => {
+  describe('regex cron', () => {
     it.each([
       [asciiLetters, false],
       [asciiLowercase, false],
@@ -664,7 +664,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('digits', () => {
+  describe('regex digits', () => {
     it.each([
       [asciiLetters, false],
       [asciiLowercase, false],
@@ -683,7 +683,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('elevenDigitsCode', () => {
+  describe('regex elevenDigitsCode', () => {
     it.each([
       [asciiLetters, false],
       [asciiLowercase, false],
@@ -703,7 +703,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('email', () => {
+  describe('regex email', () => {
     it.each([
       [asciiLetters, false],
       [asciiLowercase, false],
@@ -722,7 +722,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('fourDigitsCode', () => {
+  describe('regex fourDigitsCode', () => {
     it.each([
       [asciiLetters, false],
       [asciiLowercase, false],
@@ -742,7 +742,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('nineDigitsCode', () => {
+  describe('regex nineDigitsCode', () => {
     it.each([
       [asciiLetters, false],
       [asciiLowercase, false],
@@ -762,7 +762,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('macAddress', () => {
+  describe('regex macAddress', () => {
     it.each([
       [asciiLetters, false],
       [asciiLowercase, false],
@@ -782,7 +782,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('phone', () => {
+  describe('regex phone', () => {
     it.each([
       [asciiLetters, false],
       [asciiLowercase, false],
@@ -803,7 +803,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('spaces', () => {
+  describe('regex spaces', () => {
     it.each([
       [asciiLetters, false],
       [asciiLowercase, false],
@@ -824,7 +824,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('sixDigitsCode', () => {
+  describe('regex sixDigitsCode', () => {
     it.each([
       [asciiLetters, false],
       [asciiLowercase, false],
@@ -846,7 +846,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('url', () => {
+  describe('regex url', () => {
     it.each([
       [asciiLetters, false],
       [asciiLowercase, false],
@@ -871,7 +871,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('hexadecimal', () => {
+  describe('regex hexadecimal', () => {
     it.each([
       [asciiLetters, false],
       [asciiLowercase, false],
@@ -891,7 +891,7 @@ describe('@regex', () => {
       expect(hexadecimal.test(string)).toBe(expected)
     })
   })
-  describe('s3BucketName', () => {
+  describe('regex s3BucketName', () => {
     it.each([
       [asciiLetters, false],
       [asciiLowercase, true],
@@ -912,7 +912,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('ipv4', () => {
+  describe('regex ipv4', () => {
     it.each([
       ['192.168.1.1', true],
       ['127.0.0.1', true],
@@ -927,7 +927,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('ipv6', () => {
+  describe('regex ipv6', () => {
     it.each([
       ['1:2:3:4:5:6:7::', true],
       ['1:2:3:4:5:6::8', true],
@@ -945,7 +945,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('ip', () => {
+  describe('regex ip', () => {
     it.each([
       ['1:2:3:4:5:6:7::', true],
       ['1:2:3:4:5:6::8', true],
@@ -962,7 +962,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('ipCidr', () => {
+  describe('regex ipCidr', () => {
     it.each([
       ['1:2:3:4:5:6:7::/48', true],
       ['1:2:3:4:5:6::8/44', true],
@@ -980,7 +980,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('ipv4Cidr', () => {
+  describe('regex ipv4Cidr', () => {
     it.each([
       ['192.168.1.1/24', true],
       ['127.0.0.1/32', true],
@@ -995,7 +995,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('ipv6Cidr', () => {
+  describe('regex ipv6Cidr', () => {
     it.each([
       ['1:2:3:4:5:6:7::/48', true],
       ['1:2:3:4:5:6::8/48', true],
@@ -1012,7 +1012,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('reverseDNS', () => {
+  describe('regex reverseDNS', () => {
     it.each([
       ['fr.example.test.', true],
       ['fr.exemple.', true],
@@ -1022,7 +1022,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('dashedIpv4', () => {
+  describe('regex dashedIpv4', () => {
     it.each([
       ['192-168-1-0', true],
       ['192.168.1.0', false],
@@ -1031,7 +1031,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('accessKeyRegex', () => {
+  describe('regex accessKeyRegex', () => {
     it.each([
       ['12301234567891234567', false],
       ['ABCABCDEFGHIJKLMNOPQ', false],
@@ -1044,7 +1044,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('pathSegment', () => {
+  describe('regex pathSegment', () => {
     it.each([
       ['/hello', false],
       ['hello', true],
@@ -1060,7 +1060,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('absolutePath', () => {
+  describe('regex absolutePath', () => {
     it.each([
       ['/hello', true],
       ['/a', true],
@@ -1079,7 +1079,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('sgPortRange', () => {
+  describe('regex sgPortRange', () => {
     it.each([
       // Valid single ports
       ['1', true],
@@ -1133,7 +1133,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('password', () => {
+  describe('regex password', () => {
     it.each([
       ['password', true],
       ['Password123!', true],
@@ -1146,7 +1146,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('kafkaUsernameRegex', () => {
+  describe('regex kafkaUsernameRegex', () => {
     it.each([
       ['username', true],
       ['user-name', true],
@@ -1159,7 +1159,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('alphanumDashSegment', () => {
+  describe('regex alphanumDashSegment', () => {
     // Tests a single segment that:
     // - Must start with a letter (A-Z or a-z)
     // - Can contain letters, digits, and hyphens in the middle
@@ -1210,7 +1210,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('webhostingUsernameEmailRegex', () => {
+  describe('regex webhostingUsernameEmailRegex', () => {
     it.each([
       ['test', true],
       ['test_test', true],
@@ -1223,7 +1223,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('uuid', () => {
+  describe('regex uuid', () => {
     it.each([
       [asciiLetters, false],
       [asciiLowercase, false],
@@ -1243,7 +1243,7 @@ describe('@regex', () => {
     })
   })
 
-  describe('urlWithoutProtocol', () => {
+  describe('regex urlWithoutProtocol', () => {
     it.each([
       //  Valid URLs without protocol
       ['console.scaleway.com', true],

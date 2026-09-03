@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { getAttributes, setAttributes, useGrowthBook } from '../../__mocks__/@growthbook/growthbook-react'
 import { useAbTestAttributes } from '../useAbTestAttributes'
 
-describe('useAbTestAttributes', () => {
+describe(useAbTestAttributes, () => {
   beforeEach(() => {
     getAttributes.mockReturnValue({ foo: 'bar' })
     setAttributes.mockResolvedValue(undefined)

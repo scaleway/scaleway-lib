@@ -2,7 +2,7 @@
 import { describe, expect, it } from 'vitest'
 import { isModifiedEvent } from '../isModifiedEvent'
 
-describe('isModifiedEvent', () => {
+describe(isModifiedEvent, () => {
   it('returns false for regular click', () => {
     const event = {
       button: 0,

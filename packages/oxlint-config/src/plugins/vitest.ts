@@ -206,7 +206,7 @@ export default defineConfig({
         /**
          * @see https://oxc.rs/docs/guide/usage/linter/rules/vitest/prefer-snapshot-hint
          */
-        'vitest/prefer-snapshot-hint': 'error',
+        'vitest/prefer-snapshot-hint': ['error', 'multi'],
         /**
          * @see https://oxc.rs/docs/guide/usage/linter/rules/vitest/prefer-spy-on
          */
@@ -294,7 +294,7 @@ export default defineConfig({
         /**
          * @see https://oxc.rs/docs/guide/usage/linter/rules/vitest/valid-title
          */
-        'vitest/valid-title': 'error',
+        'vitest/valid-title': ['error', { allowArguments: true }],
         /**
          * @see https://oxc.rs/docs/guide/usage/linter/rules/vitest/warn-todo
          */

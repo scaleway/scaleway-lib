@@ -2,7 +2,7 @@
 import { describe, expect, it } from 'vitest'
 import { generatePath } from '../index'
 
-describe('generatePath', () => {
+describe(generatePath, () => {
   it('with no parameters', () => {
     const path = '/test'
     const result = generatePath(path, {})

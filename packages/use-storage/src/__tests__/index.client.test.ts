@@ -9,7 +9,7 @@ import { useLocalStorage, useSessionStorage } from '..'
 const KEY = 'test'
 
 describe('useStorage - Client side', () => {
-  describe('useLocalStorage', () => {
+  describe(useLocalStorage, () => {
     afterEach(() => {
       window.localStorage.removeItem(KEY)
     })
@@ -113,7 +113,7 @@ describe('useStorage - Client side', () => {
     })
   })
 
-  describe('useSessionStorage', () => {
+  describe(useSessionStorage, () => {
     afterEach(() => {
       window.sessionStorage.removeItem(KEY)
     })

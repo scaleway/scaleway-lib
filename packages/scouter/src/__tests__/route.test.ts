@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 import { buildQueryString, createRoute, isRoute } from '../helpers/route'
 
 describe('route helpers', () => {
-  describe('createRoute', () => {
+  describe(createRoute, () => {
     it('creates route object', () => {
       const route = createRoute('/users')
       expect(route).toBeDefined()
@@ -80,7 +80,7 @@ describe('route helpers', () => {
     })
   })
 
-  describe('isRoute', () => {
+  describe(isRoute, () => {
     it('returns true for route objects', () => {
       const route = createRoute('/users')
       expect(isRoute(route)).toBe(true)
@@ -104,7 +104,7 @@ describe('route helpers', () => {
     })
   })
 
-  describe('buildQueryString', () => {
+  describe(buildQueryString, () => {
     it('with string', () => {
       expect(buildQueryString('foo=bar')).toBe('foo=bar')
     })
