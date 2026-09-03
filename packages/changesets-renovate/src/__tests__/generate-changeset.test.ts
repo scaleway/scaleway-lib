@@ -2,6 +2,7 @@
 import { readFile, writeFile } from 'node:fs/promises'
 import { defaultConfig, readConfig } from '@changesets/config'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import type { MockInstance } from 'vitest'
 import { defaultGitValues, mockSimpleGit } from '../../__mocks__/simple-git'
 import { run } from '../generateChangeset.js'
 
@@ -21,8 +22,11 @@ const mockedWriteFile = vi.mocked(writeFile)
 const mockedReadFile = vi.mocked(readFile)
 
 describe('generate changeset file', () => {
+  // oxlint-disable-next-line eslint/init-declarations -- assigned in beforeEach
+  let consoleLogSpy: MockInstance<typeof console.log>
+
   beforeEach(() => {
-    vi.spyOn(console, 'log')
+    consoleLogSpy = vi.spyOn(console, 'log')
     vi.mocked(readConfig).mockResolvedValue({
       config: defaultConfig,
       warnings: [],
@@ -50,7 +54,7 @@ describe('generate changeset file', () => {
 
     await run()
 
-    expect(console.log).toHaveBeenCalledWith('Not a renovate branch, skipping')
+    expect(consoleLogSpy).toHaveBeenCalledWith('Not a renovate branch, skipping')
   })
 
   it('should not skip if branch starts with custom branch prefix', async () => {
@@ -95,7 +99,7 @@ describe('generate changeset file', () => {
     process.env['BRANCH_PREFIX'] = 'dep-upgrade/'
     await run()
 
-    expect(console.log).not.toHaveBeenCalledWith('Not a renovate branch, skipping')
+    expect(consoleLogSpy).not.toHaveBeenCalledWith('Not a renovate branch, skipping')
     expect(mockedReadFile).toHaveBeenCalledWith(file, 'utf8')
     expect(mockedWriteFile).toMatchSnapshot()
     expect(add).toHaveBeenCalledWith(fileName)
@@ -145,7 +149,7 @@ describe('generate changeset file', () => {
     process.env['SKIP_BRANCH_CHECK'] = 'TRUE'
     await run()
 
-    expect(console.log).not.toHaveBeenCalledWith('Not a renovate branch, skipping')
+    expect(consoleLogSpy).not.toHaveBeenCalledWith('Not a renovate branch, skipping')
     expect(mockedReadFile).toHaveBeenCalledWith(file, 'utf8')
     expect(mockedWriteFile).toMatchSnapshot()
     expect(add).toHaveBeenCalledWith(fileName)
@@ -171,7 +175,7 @@ describe('generate changeset file', () => {
 
     await run()
 
-    expect(console.log).toHaveBeenCalledWith('Changeset already exists, skipping')
+    expect(consoleLogSpy).toHaveBeenCalledWith('Changeset already exists, skipping')
   })
 
   it('should skip no package.json files have been modified', async () => {
@@ -188,7 +192,7 @@ describe('generate changeset file', () => {
 
     await run()
 
-    expect(console.log).toHaveBeenCalledWith('No relevant changes detected, skipping')
+    expect(consoleLogSpy).toHaveBeenCalledWith('No relevant changes detected, skipping')
   })
 
   it('should generate changeset file, commit and push', async () => {
@@ -379,7 +383,7 @@ describe('generate changeset file', () => {
     await run()
 
     expect(mockedReadFile).toHaveBeenCalledWith(file, 'utf8')
-    expect(console.log).toHaveBeenCalledWith('No packages modified, skipping')
+    expect(consoleLogSpy).toHaveBeenCalledWith('No packages modified, skipping')
   })
 
   it('should ignore version package.json', async () => {
@@ -415,7 +419,7 @@ describe('generate changeset file', () => {
     await run()
 
     expect(mockedReadFile).toHaveBeenCalledWith(file, 'utf8')
-    expect(console.log).toHaveBeenCalledWith('No packages modified, skipping')
+    expect(consoleLogSpy).toHaveBeenCalledWith('No packages modified, skipping')
   })
 
   it('should ignore changeset ignored packages', async () => {
@@ -457,7 +461,7 @@ describe('generate changeset file', () => {
     await run()
 
     expect(mockedReadFile).toHaveBeenCalledWith(file, 'utf8')
-    expect(console.log).toHaveBeenCalledWith('No packages modified, skipping')
+    expect(consoleLogSpy).toHaveBeenCalledWith('No packages modified, skipping')
   })
 
   it('should ignore private packages if config said so', async () => {
@@ -502,6 +506,6 @@ describe('generate changeset file', () => {
     await run()
 
     expect(mockedReadFile).toHaveBeenCalledWith(file, 'utf8')
-    expect(console.log).toHaveBeenCalledWith('No packages modified, skipping')
+    expect(consoleLogSpy).toHaveBeenCalledWith('No packages modified, skipping')
   })
 })

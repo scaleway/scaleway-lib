@@ -26,7 +26,6 @@ export default defineConfig({
     'eslint/max-depth': 'warn',
     'eslint/max-params': 'warn',
     'eslint/no-await-in-loop': 'warn',
-    'eslint/no-console': 'warn',
     'eslint/no-implicit-coercion': 'warn',
     'eslint/no-throw-literal': 'warn',
     'eslint/prefer-destructuring': 'warn',
