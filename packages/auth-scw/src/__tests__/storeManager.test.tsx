@@ -22,7 +22,9 @@ describe('storemanager', () => {
     AuthStoreManager.setJwt({ jwtInfo: MOCK_ENCODED_JWT_COOKIE })
 
     expect(AuthStoreManager.getJwt(MOCK_ENCODED_JWT_COOKIE.jwt.audienceId)).toStrictEqual(
-      structuredClone(MOCK_ENCODED_JWT_COOKIE),
+      // structuredClone does not copy Date ref
+      // oxlint-disable-next-line unicorn/prefer-structured-clone
+      JSON.parse(JSON.stringify(MOCK_ENCODED_JWT_COOKIE)),
     )
   })
 })
