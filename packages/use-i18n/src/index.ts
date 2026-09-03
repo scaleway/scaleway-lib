@@ -1,5 +1,3 @@
-import I18nContextProvider from './usei18n'
-
 export type { NumberFormatOptions } from '@formatjs/ecma402-abstract'
 export type { FormatDistanceToNowOptions, FormatDistanceToNowStrictOptions } from 'date-fns'
 // Re-export international-types for proper TypeScript support
@@ -23,4 +21,4 @@ export type {
 // Hook exports
 export { useI18n, useTranslation } from './usei18n'
 
-export default I18nContextProvider
+export { default } from './usei18n'

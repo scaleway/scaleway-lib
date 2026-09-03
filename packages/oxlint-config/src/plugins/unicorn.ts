@@ -296,7 +296,16 @@ export default defineConfig({
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/unicorn/numeric-separators-style
      */
-    'unicorn/numeric-separators-style': 'error',
+    'unicorn/numeric-separators-style': [
+      'error',
+      {
+        number: {
+          onlyIfContainsSeparator: false,
+          groupLength: 3,
+          fractionGroupLength: 3,
+        },
+      },
+    ],
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/unicorn/prefer-add-event-listener
      */
@@ -376,7 +385,7 @@ export default defineConfig({
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/unicorn/prefer-export-from
      */
-    'unicorn/prefer-export-from': 'error',
+    'unicorn/prefer-export-from': ['error', { checkUsedVariables: false }],
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/unicorn/prefer-global-this
      */

@@ -12,12 +12,11 @@ declare global {
 }
 
 const canUseDOM =
+  // oxlint-disable-next-line typescript/prefer-optional-chain
   typeof window !== 'undefined' &&
-  !!(
-    typeof window.document !== 'undefined' &&
-    typeof window.localStorage !== 'undefined' &&
-    typeof window.sessionStorage !== 'undefined'
-  )
+  typeof window.document !== 'undefined' &&
+  typeof window.localStorage !== 'undefined' &&
+  typeof window.sessionStorage !== 'undefined'
 
 const subscribeStorage = (callback: () => void) => {
   if (canUseDOM) {

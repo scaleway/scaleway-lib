@@ -70,7 +70,7 @@ async function processPackageJson(filePath: string): Promise<number> {
     // Save changes if any were made
     if (changesCount > 0) {
       // Preserve formatting by using the same space count as the original file
-      const match = content.match(SPACE_REGEX)
+      const match = SPACE_REGEX.exec(content)
       const indent = match?.[1]?.length ?? 2
 
       await writeFile(filePath, JSON.stringify(packageJson, undefined, indent), 'utf8')

@@ -1,15 +1,15 @@
 // oxlint-disable max-lines
 import { readFile, writeFile } from 'node:fs/promises'
-import * as changesetConfig from '@changesets/config'
+import { defaultConfig, readConfig } from '@changesets/config'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { defaultGitValues, mockSimpleGit } from '../../__mocks__/simple-git'
 import { run } from '../generateChangeset.js'
 
 // Mock all external dependencies
-vi.mock('node:fs/promises')
+vi.mock(import('node:fs/promises'))
 
-vi.mock('@changesets/config', async importOriginal => {
-  const actual = await importOriginal<typeof changesetConfig>()
+vi.mock(import('@changesets/config'), async importOriginal => {
+  const actual = await importOriginal()
 
   return {
     ...actual,
@@ -23,8 +23,8 @@ const mockedReadFile = vi.mocked(readFile)
 describe('generate changeset file', () => {
   beforeEach(() => {
     vi.spyOn(console, 'log')
-    vi.mocked(changesetConfig.readConfig).mockResolvedValue({
-      config: changesetConfig.defaultConfig,
+    vi.mocked(readConfig).mockResolvedValue({
+      config: defaultConfig,
       warnings: [],
       errors: undefined,
     })
@@ -439,8 +439,8 @@ describe('generate changeset file', () => {
 `,
     })
 
-    vi.mocked(changesetConfig.readConfig).mockResolvedValue({
-      config: { ...changesetConfig.defaultConfig, ignore: ['packageName'] },
+    vi.mocked(readConfig).mockResolvedValue({
+      config: { ...defaultConfig, ignore: ['packageName'] },
       warnings: [],
       errors: undefined,
     })
@@ -481,9 +481,9 @@ describe('generate changeset file', () => {
 `,
     })
 
-    vi.mocked(changesetConfig.readConfig).mockResolvedValue({
+    vi.mocked(readConfig).mockResolvedValue({
       config: {
-        ...changesetConfig.defaultConfig,
+        ...defaultConfig,
         privatePackages: { version: false, tag: false },
       },
       warnings: [],

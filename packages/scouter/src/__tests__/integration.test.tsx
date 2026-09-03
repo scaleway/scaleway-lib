@@ -20,7 +20,7 @@ test('renders routes correctly', () => {
 test('updates when navigating', () => {
   const history = createHistory({ initialEntries: ['/page1'] })
 
-  let locations: any[] = []
+  const locations: any[] = []
 
   function LocationTracker() {
     const location = useLocation()

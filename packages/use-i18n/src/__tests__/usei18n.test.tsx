@@ -788,15 +788,15 @@ describe('i18n hook', () => {
     vi.setSystemTime(new Date('4/13/2021'))
 
     expect(result.current.formatDuration(3600)).toBe('1 hour')
-    expect(result.current.formatDuration(13250)).toBe('3 hours 40 minutes 50 seconds')
+    expect(result.current.formatDuration(13_250)).toBe('3 hours 40 minutes 50 seconds')
     expect(
-      result.current.formatDuration(13250, {
+      result.current.formatDuration(13_250, {
         delimiter: ', ',
         zero: true,
         format: ['days', 'hours', 'minutes', 'seconds'],
       }),
     ).toBe('0 days, 3 hours, 40 minutes, 50 seconds')
-    expect(result.current.formatDuration(13250, 'clock')).toBe('03:40:50')
+    expect(result.current.formatDuration(13_250, 'clock')).toBe('03:40:50')
     expect(result.current.formatDuration(0)).toBe('')
     expect(result.current.formatDuration(0, 'clock')).toBe('00:00:00')
 
@@ -808,15 +808,15 @@ describe('i18n hook', () => {
       await result.current.switchLocale('fr')
     })
 
-    expect(result.current.formatDuration(13250)).toBe('3 heures 40 minutes 50 secondes')
+    expect(result.current.formatDuration(13_250)).toBe('3 heures 40 minutes 50 secondes')
     expect(
-      result.current.formatDuration(13250, {
+      result.current.formatDuration(13_250, {
         delimiter: ', ',
         zero: true,
         format: ['days', 'hours', 'minutes', 'seconds'],
       }),
     ).toBe('0 jours, 3 heures, 40 minutes, 50 secondes')
-    expect(result.current.formatDuration(13250, 'clock')).toBe('03:40:50')
+    expect(result.current.formatDuration(13_250, 'clock')).toBe('03:40:50')
     expect(result.current.formatDuration(0)).toBe('')
     expect(result.current.formatDuration(0, 'clock')).toBe('00:00:00')
   })

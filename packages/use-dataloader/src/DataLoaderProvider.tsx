@@ -18,7 +18,7 @@ type UseDataLoaderInitializerArgs<ResultType = unknown> = {
 
 type GetCachedDataFn = {
   (): CachedData
-  (key?: KeyType): unknown | undefined
+  (key?: KeyType): unknown
 }
 
 type GetReloadsFn = {

@@ -194,7 +194,7 @@ export default defineConfig({
         /**
          * @see https://oxc.rs/docs/guide/usage/linter/rules/vitest/prefer-lowercase-title
          */
-        'vitest/prefer-lowercase-title': 'error',
+        'vitest/prefer-lowercase-title': 'off',
         /**
          * @see https://oxc.rs/docs/guide/usage/linter/rules/vitest/prefer-mock-promise-shorthand
          */

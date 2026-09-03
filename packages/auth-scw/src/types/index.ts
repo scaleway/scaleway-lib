@@ -1,5 +1,4 @@
-import type { Client as SDKClient, Settings } from '@scaleway/sdk-client'
-import { API as SDKAPI } from '@scaleway/sdk-client'
+import type { API as SDKAPI, Client as SDKClient, Settings } from '@scaleway/sdk-client'
 import type { z } from 'zod'
 import type { audienceIdSchema, jwtSchema } from '../zodSchemas'
 import type { Iamv1alpha1 } from './iam'
