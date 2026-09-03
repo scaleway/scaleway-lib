@@ -125,19 +125,18 @@ export const CookieConsentProvider: ComponentType<CookieConsentProviderProps> = 
 
         const cookieName = `${cookiePrefix}_${consentCategoryName}`
 
-        if (consentValue) {
-          document.cookie = stringifySetCookie(
-            {
-              name: cookieName,
-              value: consentValue.toString(),
-              maxAge: consentCategoryName === 'advertising' ? consentAdvertisingMaxAge : consentMaxAge,
-            },
-            cookiesOptions,
-          )
-        } else {
-          // If consent is set to false we have to delete the cookie
-          document.cookie = stringifySetCookie({ name: cookieName, value: '', expires: new Date(0) }, cookiesOptions)
-        }
+        document.cookie = consentValue
+          ? stringifySetCookie(
+              {
+                name: cookieName,
+                value: consentValue.toString(),
+                maxAge: consentCategoryName === 'advertising' ? consentAdvertisingMaxAge : consentMaxAge,
+              },
+              cookiesOptions,
+            )
+          : // If consent is set to false we have to delete the cookie
+            stringifySetCookie({ name: cookieName, value: '', expires: new Date(0) }, cookiesOptions)
+
         setCookies(prevCookies => ({
           ...prevCookies,
           [cookieName]: consentValue ? 'true' : 'false',

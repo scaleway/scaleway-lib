@@ -124,6 +124,18 @@ if (!pattern) {
   process.exit(1)
 }
 
+const mergeIgnore = (value: string | readonly string[] | undefined): readonly string[] => {
+  if (value === undefined) {
+    return []
+  }
+
+  if (typeof value === 'string') {
+    return [value]
+  }
+
+  return value
+}
+
 // Taken from https://superchupu.dev/tinyglobby/migration#gitignore
 const globWithGitignore = async (patterns: string, opts: Omit<GlobOptions, 'patterns'> = {}) => {
   const { cwd = process.cwd(), ...restOptions } = opts
@@ -138,10 +150,14 @@ const globWithGitignore = async (patterns: string, opts: Omit<GlobOptions, 'patt
       .filter(Boolean)
       .map(p => escapePath(p))
 
+    const existingIgnore = mergeIgnore(restOptions.ignore)
+
+    const ignore = [...existingIgnore, ...gitIgnored]
+
     return await glob(patterns, {
       ...restOptions,
       cwd,
-      ignore: [...(restOptions.ignore ?? []), ...gitIgnored],
+      ignore,
     })
   } catch {
     return glob(patterns, opts)

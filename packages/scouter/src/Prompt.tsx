@@ -17,6 +17,7 @@ export const Prompt = ({ message, when = true }: PromptProps) => {
 
     const unblock = history.block(tx => {
       const shouldBlock = typeof when === 'boolean' ? when : when(tx)
+      // oxlint-disable-next-line no-alert
       if (!shouldBlock || globalThis.confirm(message)) {
         unblock()
         return tx.retry()

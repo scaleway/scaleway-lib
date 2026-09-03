@@ -1,5 +1,4 @@
 // oxlint-disable typescript/no-unsafe-assignment typescript/no-unsafe-type-assertion typescript/no-explicit-any vitest/no-conditional-in-test
-import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import type { History, Location, Match } from '../index'

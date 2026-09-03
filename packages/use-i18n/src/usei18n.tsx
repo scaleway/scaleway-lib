@@ -160,7 +160,7 @@ const I18nContextProvider = <LocalSupportedType extends string>({
   enableDebugKey: boolean
   localeItemStorage: string
   isLocaleSupported: SupportedLocalesType<LocalSupportedType>
-  onLoadTranslationError: (error: unknown | Error) => void
+  onLoadTranslationError: (error: unknown) => void
   onTranslateError?: ({
     error,
     currentLocale,

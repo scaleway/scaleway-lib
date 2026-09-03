@@ -1,3 +1,1 @@
-import config from '@scaleway/oxfmt-config'
-
-export default config
+export { default } from '@scaleway/oxfmt-config'

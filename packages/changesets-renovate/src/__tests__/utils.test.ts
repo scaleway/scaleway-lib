@@ -1,6 +1,6 @@
 // oxlint-disable max-lines
 import { readFile } from 'node:fs/promises'
-import * as changesetConfig from '@changesets/config'
+import { defaultConfig, readConfig } from '@changesets/config'
 import { glob } from 'tinyglobby'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { parse } from 'yaml'
@@ -29,8 +29,8 @@ vi.mock('tinyglobby', () => ({
   escapePath: escapePathMock,
 }))
 
-vi.mock('@changesets/config', async importOriginal => {
-  const actual = await importOriginal<typeof changesetConfig>()
+vi.mock(import('@changesets/config'), async importOriginal => {
+  const actual = await importOriginal()
 
   return {
     ...actual,
@@ -42,8 +42,8 @@ describe('pnpm-catalogs-utils', () => {
   beforeEach(() => {
     // Clear all mocks
     vi.clearAllMocks()
-    vi.mocked(changesetConfig.readConfig).mockResolvedValue({
-      config: changesetConfig.defaultConfig,
+    vi.mocked(readConfig).mockResolvedValue({
+      config: defaultConfig,
       warnings: [],
       errors: undefined,
     })
@@ -378,8 +378,8 @@ catalog:
     })
 
     it('should find packages affected by dependency changes and respect changeset ignore config', async () => {
-      vi.mocked(changesetConfig.readConfig).mockResolvedValue({
-        config: { ...changesetConfig.defaultConfig, ignore: ['package-c'] },
+      vi.mocked(readConfig).mockResolvedValue({
+        config: { ...defaultConfig, ignore: ['package-c'] },
         warnings: [],
         errors: undefined,
       })

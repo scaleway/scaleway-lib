@@ -1,2 +1,3 @@
 export const stringToHash = (str: string): number =>
-  [...str].reduce((s, c) => Math.imul(31, s) + c.charCodeAt(0) || 0, 0)
+  // oxlint-disable-next-line typescript/no-misused-spread
+  [...str].reduce((h, c) => Math.imul(31, h) + (c.codePointAt(0) ?? 0), 0)

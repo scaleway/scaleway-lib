@@ -80,8 +80,8 @@ test('with component prop', () => {
   )
 
   const a = screen.getByRole('link', { name: /link/iu })
-  expect(a?.getAttribute('data-custom')).toBe('true')
-  expect(a?.getAttribute('href')).toBe('/path')
+  expect(a.dataset['custom']).toBe('true')
+  expect(a.getAttribute('href')).toBe('/path')
 })
 
 test('onClick handler prevents default and navigates', () => {
@@ -204,10 +204,10 @@ test('passes through other anchor props', () => {
   )
 
   const a = screen.getByRole('link', { name: /link/iu })
-  expect(a?.className).toBe('custom-class')
-  expect(a?.id).toBe('custom-id')
-  expect(a?.title).toBe('Custom title')
-  expect(a?.getAttribute('data-test')).toBe('value')
+  expect(a.className).toBe('custom-class')
+  expect(a.id).toBe('custom-id')
+  expect(a.title).toBe('Custom title')
+  expect(a.dataset['test']).toBe('value')
 })
 
 test('with non-left click does not navigate', () => {

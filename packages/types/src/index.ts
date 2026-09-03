@@ -41,7 +41,7 @@ export type UnionToTuple<T, L = LastOf<T>, N = [T] extends [never] ? true : fals
  * A utility used for XOR: marks every key that is only in T (and not in U)
  * as optional-never, effectively requiring those keys to be absent.
  */
-export type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never }
+export type Without<T, U> = Partial<Record<Exclude<keyof T, keyof U>, never>>
 
 /**
  * Exclusive-or of two object types: produces a type that is either

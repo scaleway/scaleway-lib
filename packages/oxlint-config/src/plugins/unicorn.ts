@@ -376,7 +376,7 @@ export default defineConfig({
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/unicorn/prefer-export-from
      */
-    'unicorn/prefer-export-from': 'error',
+    'unicorn/prefer-export-from': ['error', { checkUsedVariables: false }],
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/unicorn/prefer-global-this
      */

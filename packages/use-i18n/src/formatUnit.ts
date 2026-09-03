@@ -120,14 +120,14 @@ const format =
 
     if (humanize) {
       if (computedExponent) {
-        const value = filesize(amount, {
+        const val = filesize(amount, {
           base,
           exponent: exponents.findIndex(exp => exp.name === computedExponent?.name),
           output: 'object',
           round: maximumFractionDigits,
         })
 
-        computedValue = Number(value.value.toString())
+        computedValue = Number(val.value.toString())
       } else {
         const value = filesize(amount, {
           base,
