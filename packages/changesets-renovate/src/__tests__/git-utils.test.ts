@@ -40,13 +40,13 @@ catalog:
   another-package: 2.0.0
 `
       mockSimpleGit.mockReturnValue({
-        add: vi.fn(),
-        branch: vi.fn(),
-        commit: vi.fn(),
-        diffSummary: vi.fn(),
-        push: vi.fn(),
-        revparse: vi.fn(),
-        show: vi.fn().mockResolvedValue(mockContent),
+        add: vi.fn<() => undefined>(),
+        branch: vi.fn<() => { current: string }>(),
+        commit: vi.fn<() => undefined>(),
+        diffSummary: vi.fn<() => {}>(),
+        push: vi.fn<() => undefined>(),
+        revparse: vi.fn<() => undefined>(),
+        show: vi.fn<() => any>().mockResolvedValue(mockContent),
       })
       vi.mocked(parse).mockReturnValue({
         catalog: {
@@ -67,13 +67,13 @@ catalog:
 
     it('should return empty object if git operation fails', async () => {
       mockSimpleGit.mockReturnValue({
-        add: vi.fn(),
-        branch: vi.fn(),
-        commit: vi.fn(),
-        diffSummary: vi.fn(),
-        push: vi.fn(),
-        revparse: vi.fn(),
-        show: vi.fn().mockRejectedValue(new Error('File not found')),
+        add: vi.fn<() => undefined>(),
+        branch: vi.fn<() => { current: string }>(),
+        commit: vi.fn<() => undefined>(),
+        diffSummary: vi.fn<() => {}>(),
+        push: vi.fn<() => undefined>(),
+        revparse: vi.fn<() => undefined>(),
+        show: vi.fn<() => any>().mockRejectedValue(new Error('File not found')),
       })
 
       const result = await loadCatalogFromGit('nonexistent', 'pnpm-workspace.yaml')
@@ -92,13 +92,13 @@ catalog:
     it('should find dependencies that have changed between git revisions', async () => {
       // Mock the git operations
       mockSimpleGit.mockReturnValue({
-        add: vi.fn(),
-        branch: vi.fn(),
-        commit: vi.fn(),
-        diffSummary: vi.fn(),
-        push: vi.fn(),
-        revparse: vi.fn(),
-        show: vi.fn().mockResolvedValueOnce(`
+        add: vi.fn<() => undefined>(),
+        branch: vi.fn<() => { current: string }>(),
+        commit: vi.fn<() => undefined>(),
+        diffSummary: vi.fn<() => {}>(),
+        push: vi.fn<() => undefined>(),
+        revparse: vi.fn<() => undefined>(),
+        show: vi.fn<() => any>().mockResolvedValueOnce(`
 catalog:
   package-a: 1.0.0
   package-b: 2.0.0

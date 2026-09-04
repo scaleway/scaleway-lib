@@ -5,14 +5,14 @@ import { copyToClipboard, useClipboard } from '../'
 describe(copyToClipboard, () => {
   beforeEach(() => {
     Object.defineProperty(navigator, 'clipboard', {
-      value: { writeText: vi.fn() },
+      value: { writeText: vi.fn<() => void>() },
       writable: true,
       configurable: true,
     })
   })
 
   it('should copy text to clipboard successfully', async () => {
-    const writeTextSpy = vi.fn().mockResolvedValue(undefined)
+    const writeTextSpy = vi.fn<(data: string) => Promise<void>>().mockResolvedValue(undefined)
     navigator.clipboard.writeText = writeTextSpy
 
     await copyToClipboard('test text')
@@ -22,9 +22,9 @@ describe(copyToClipboard, () => {
 
   it('should call onError callback when clipboard fails', async () => {
     const error = new Error('Clipboard error')
-    const writeTextSpy = vi.fn().mockRejectedValue(error)
+    const writeTextSpy = vi.fn<(data: string) => Promise<void>>().mockRejectedValue(error)
     navigator.clipboard.writeText = writeTextSpy
-    const onErrorSpy = vi.fn()
+    const onErrorSpy = vi.fn<() => void>()
 
     await copyToClipboard('test text', { onError: onErrorSpy })
 
@@ -34,7 +34,7 @@ describe(copyToClipboard, () => {
 
   it('should handle clipboard error without onError callback', async () => {
     const error = new Error('Clipboard error')
-    const writeTextSpy = vi.fn().mockRejectedValue(error)
+    const writeTextSpy = vi.fn<(data: string) => Promise<void>>().mockRejectedValue(error)
     navigator.clipboard.writeText = writeTextSpy
 
     await expect(copyToClipboard('test text')).resolves.toBeUndefined()
@@ -46,7 +46,7 @@ describe('hooks - useClipboard', () => {
   beforeEach(() => {
     vi.useFakeTimers()
     Object.defineProperty(navigator, 'clipboard', {
-      value: { writeText: vi.fn() },
+      value: { writeText: vi.fn<() => void>() },
       writable: true,
       configurable: true,
     })
@@ -57,7 +57,7 @@ describe('hooks - useClipboard', () => {
   })
 
   it('should copy text to clipboard successfully', async () => {
-    const writeTextSpy = vi.fn().mockResolvedValue(undefined)
+    const writeTextSpy = vi.fn<(data: string) => Promise<void>>().mockResolvedValue(undefined)
     navigator.clipboard.writeText = writeTextSpy
 
     const { result } = renderHook(() => useClipboard('test text'))
@@ -72,7 +72,7 @@ describe('hooks - useClipboard', () => {
 
   it('should handle clipboard error', async () => {
     const error = new Error('Clipboard error')
-    const writeTextSpy = vi.fn().mockRejectedValue(error)
+    const writeTextSpy = vi.fn<(data: string) => Promise<void>>().mockRejectedValue(error)
     navigator.clipboard.writeText = writeTextSpy
 
     const { result } = renderHook(() => useClipboard('test text'))
@@ -86,9 +86,9 @@ describe('hooks - useClipboard', () => {
 
   it('should call onError callback when clipboard fails', async () => {
     const error = new Error('Clipboard error')
-    const writeTextSpy = vi.fn().mockRejectedValue(error)
+    const writeTextSpy = vi.fn<(data: string) => Promise<void>>().mockRejectedValue(error)
     navigator.clipboard.writeText = writeTextSpy
-    const onErrorSpy = vi.fn()
+    const onErrorSpy = vi.fn<() => void>()
 
     const { result } = renderHook(() => useClipboard('test text', { onError: onErrorSpy }))
 
@@ -101,7 +101,7 @@ describe('hooks - useClipboard', () => {
   })
 
   it('should reset isCopied status after successDuration', async () => {
-    const writeTextSpy = vi.fn().mockResolvedValue(undefined)
+    const writeTextSpy = vi.fn<(data: string) => Promise<void>>().mockResolvedValue(undefined)
     navigator.clipboard.writeText = writeTextSpy
 
     const { result } = renderHook(() => useClipboard('test text', { successDuration: 1000 }))
@@ -120,7 +120,7 @@ describe('hooks - useClipboard', () => {
   })
 
   it('should not reset isCopied status without successDuration', async () => {
-    const writeTextSpy = vi.fn().mockResolvedValue(undefined)
+    const writeTextSpy = vi.fn<(data: string) => Promise<void>>().mockResolvedValue(undefined)
     navigator.clipboard.writeText = writeTextSpy
 
     const { result } = renderHook(() => useClipboard('test text'))
@@ -137,7 +137,7 @@ describe('hooks - useClipboard', () => {
   })
 
   it('should clear timeout when component unmounts', async () => {
-    const writeTextSpy = vi.fn().mockResolvedValue(undefined)
+    const writeTextSpy = vi.fn<(data: string) => Promise<void>>().mockResolvedValue(undefined)
     navigator.clipboard.writeText = writeTextSpy
 
     const { unmount, result } = renderHook(() => useClipboard('test text', { successDuration: 1000 }))
@@ -153,7 +153,7 @@ describe('hooks - useClipboard', () => {
   })
 
   it('should update clipboard text when text prop changes', async () => {
-    const writeTextSpy = vi.fn().mockResolvedValue(undefined)
+    const writeTextSpy = vi.fn<(data: string) => Promise<void>>().mockResolvedValue(undefined)
     navigator.clipboard.writeText = writeTextSpy
 
     const { result, rerender } = renderHook(({ text }) => useClipboard(text), {

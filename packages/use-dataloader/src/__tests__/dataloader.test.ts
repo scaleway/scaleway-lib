@@ -41,8 +41,8 @@ const fakeLongErrorPromise = async () =>
 
 describe('dataloader class', () => {
   it('should create instance then load then destroy', async () => {
-    const method = vi.fn(fakeSuccessPromise)
-    const notifyChanges = vi.fn()
+    const method = vi.fn<typeof fakeSuccessPromise>(fakeSuccessPromise)
+    const notifyChanges = vi.fn<() => void>()
     const instance = new DataLoader({
       key: 'test-destroy',
       method,
@@ -56,8 +56,8 @@ describe('dataloader class', () => {
   })
 
   it('should create instance then load multiple times', async () => {
-    const method = vi.fn(fakeSuccessPromise)
-    const notifyChanges = vi.fn()
+    const method = vi.fn<typeof fakeSuccessPromise>(fakeSuccessPromise)
+    const notifyChanges = vi.fn<() => void>()
     const instance = new DataLoader({
       key: 'test-load',
       method,
@@ -73,8 +73,8 @@ describe('dataloader class', () => {
   })
 
   it('should create instance with cancel', () => {
-    const notify = vi.fn()
-    const method = vi.fn(fakeSuccessPromise)
+    const notify = vi.fn<() => void>()
+    const method = vi.fn<typeof fakeSuccessPromise>(fakeSuccessPromise)
     const instance = new DataLoader({
       key: 'test-cancel',
       method,
@@ -95,8 +95,8 @@ describe('dataloader class', () => {
   })
 
   it('should create instance without cancel', async () => {
-    const notify = vi.fn()
-    const method = vi.fn(fakeSuccessPromise)
+    const notify = vi.fn<() => void>()
+    const method = vi.fn<typeof fakeSuccessPromise>(fakeSuccessPromise)
     const instance = new DataLoader({
       key: 'test-without-cancel',
       method,
@@ -111,8 +111,8 @@ describe('dataloader class', () => {
   })
 
   it('should create instance with null data', async () => {
-    const method = vi.fn(fakeNullPromise)
-    const notifyChanges = vi.fn()
+    const method = vi.fn<typeof fakeNullPromise>(fakeNullPromise)
+    const notifyChanges = vi.fn<() => void>()
     const instance = new DataLoader({
       key: 'test-null',
       method,
@@ -124,8 +124,8 @@ describe('dataloader class', () => {
   })
 
   it('should create instance with undefined data', async () => {
-    const method = vi.fn(fakeUndefinedPromise)
-    const notifyChanges = vi.fn()
+    const method = vi.fn<typeof fakeUndefinedPromise>(fakeUndefinedPromise)
+    const notifyChanges = vi.fn<() => void>()
 
     const instance = new DataLoader({
       key: 'test-undefined',
@@ -138,9 +138,9 @@ describe('dataloader class', () => {
   })
 
   it('should create instance with error', async () => {
-    const method = vi.fn(fakeErrorPromise)
-    const notifyChanges = vi.fn()
-    const onError = vi.fn()
+    const method = vi.fn<typeof fakeErrorPromise>(fakeErrorPromise)
+    const notifyChanges = vi.fn<() => void>()
+    const onError = vi.fn<() => void>()
 
     const instance = new DataLoader({
       key: 'test-error',
@@ -153,8 +153,8 @@ describe('dataloader class', () => {
   })
 
   it('should create instance with cancel and properly set status after', async () => {
-    const method = vi.fn(fakeSuccessPromise)
-    const notifyChanges = vi.fn()
+    const method = vi.fn<typeof fakeSuccessPromise>(fakeSuccessPromise)
+    const notifyChanges = vi.fn<() => void>()
 
     const instance = new DataLoader({
       key: 'test-cancel',
@@ -175,9 +175,9 @@ describe('dataloader class', () => {
   })
 
   it('should create instance with error and cancel', async () => {
-    const method = vi.fn(fakeLongErrorPromise)
-    const notifyChanges = vi.fn()
-    const onError = vi.fn()
+    const method = vi.fn<typeof fakeLongErrorPromise>(fakeLongErrorPromise)
+    const notifyChanges = vi.fn<() => void>()
+    const onError = vi.fn<() => void>()
 
     const instance = new DataLoader({
       key: 'test-error-cancel',
@@ -197,8 +197,8 @@ describe('dataloader class', () => {
   })
 
   it('should launch multiple dataloader', async () => {
-    const method = vi.fn(fakeErrorPromise)
-    const notifyChanges = vi.fn()
+    const method = vi.fn<typeof fakeErrorPromise>(fakeErrorPromise)
+    const notifyChanges = vi.fn<() => void>()
 
     const instances = Array.from({ length: 5 }, (_, index) => index).map(
       index =>

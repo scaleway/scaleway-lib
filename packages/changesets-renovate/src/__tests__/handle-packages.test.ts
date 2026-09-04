@@ -61,7 +61,7 @@ describe('handle-packages', () => {
 
     // Mock simpleGit to return a short hash
     mockSimpleGit.mockReturnValue({
-      revparse: vi.fn().mockResolvedValue('def456\n'),
+      revparse: vi.fn<() => Promise<string>>().mockResolvedValue('def456\n'),
     } as any)
 
     // Mock getBumpsFromGit to return some bumps

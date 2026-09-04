@@ -12,7 +12,7 @@ vi.mock(import('@changesets/config'), async importOriginal => {
 
   return {
     ...actual,
-    readConfig: vi.fn().mockResolvedValue({ config: actual.defaultConfig, warnings: [], errors: undefined }),
+    readConfig: vi.fn<() => any>().mockResolvedValue({ config: actual.defaultConfig, warnings: [], errors: undefined }),
   }
 })
 
@@ -60,10 +60,10 @@ describe('generate changeset file', () => {
     const rev = 'test'
     const fileName = `.changeset/renovate-${rev}.md`
     const file = 'test/package.json'
-    const revparse = vi.fn().mockReturnValue(rev)
-    const add = vi.fn()
-    const commit = vi.fn()
-    const push = vi.fn()
+    const revparse = vi.fn<() => any>().mockReturnValue(rev)
+    const add = vi.fn<() => undefined>()
+    const commit = vi.fn<() => undefined>()
+    const push = vi.fn<() => undefined>()
 
     mockSimpleGit.mockReturnValue({
       add,
@@ -106,10 +106,10 @@ describe('generate changeset file', () => {
     const rev = 'test'
     const fileName = `.changeset/renovate-${rev}.md`
     const file = 'test/package.json'
-    const revparse = vi.fn().mockReturnValue(rev)
-    const add = vi.fn()
-    const commit = vi.fn()
-    const push = vi.fn()
+    const revparse = vi.fn<() => any>().mockReturnValue(rev)
+    const add = vi.fn<() => undefined>()
+    const commit = vi.fn<() => undefined>()
+    const push = vi.fn<() => undefined>()
 
     mockSimpleGit.mockReturnValue({
       add,
@@ -190,10 +190,10 @@ describe('generate changeset file', () => {
     const rev = 'test'
     const fileName = `.changeset/renovate-${rev}.md`
     const file = 'test/package.json'
-    const revparse = vi.fn().mockReturnValue(rev)
-    const add = vi.fn()
-    const commit = vi.fn()
-    const push = vi.fn()
+    const revparse = vi.fn<() => any>().mockReturnValue(rev)
+    const add = vi.fn<() => undefined>()
+    const commit = vi.fn<() => undefined>()
+    const push = vi.fn<() => undefined>()
 
     mockSimpleGit.mockReturnValue({
       add,
@@ -234,10 +234,10 @@ describe('generate changeset file', () => {
     const rev = 'test'
     const fileName = `.changeset/renovate-${rev}.md`
     const file = 'test/package.json'
-    const revparse = vi.fn().mockReturnValue(rev)
-    const add = vi.fn()
-    const commit = vi.fn()
-    const push = vi.fn()
+    const revparse = vi.fn<() => any>().mockReturnValue(rev)
+    const add = vi.fn<() => undefined>()
+    const commit = vi.fn<() => undefined>()
+    const push = vi.fn<() => undefined>()
 
     mockSimpleGit.mockReturnValue({
       add,
@@ -280,10 +280,10 @@ describe('generate changeset file', () => {
     const fileName = `.changeset/renovate-${rev}.md`
     const fileA = 'test-a/package.json'
     const fileB = 'test-b/package.json'
-    const revparse = vi.fn().mockReturnValue(rev)
-    const add = vi.fn()
-    const commit = vi.fn()
-    const push = vi.fn()
+    const revparse = vi.fn<() => any>().mockReturnValue(rev)
+    const add = vi.fn<() => undefined>()
+    const commit = vi.fn<() => undefined>()
+    const push = vi.fn<() => undefined>()
 
     mockSimpleGit.mockReturnValue({
       add,

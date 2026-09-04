@@ -37,7 +37,7 @@ describe('dataLoaderProvider', () => {
   })
 
   it('should add request', async () => {
-    const method = vi.fn(fakePromise)
+    const method = vi.fn<typeof fakePromise>(fakePromise)
     const { result, rerender } = renderHook(useDataLoaderContext, {
       wrapper,
     })
@@ -72,7 +72,7 @@ describe('dataLoaderProvider', () => {
   })
 
   it('should add request with cache key prefix', async () => {
-    const method = vi.fn(fakePromise)
+    const method = vi.fn<typeof fakePromise>(fakePromise)
     const { result } = renderHook(useDataLoaderContext, {
       wrapper: wrapperWithCacheKey,
     })
@@ -105,7 +105,7 @@ describe('dataLoaderProvider', () => {
   })
 
   it('should add request with result is null', async () => {
-    const method = vi.fn(fakeNullPromise)
+    const method = vi.fn<typeof fakeNullPromise>(fakeNullPromise)
     const { result } = renderHook(useDataLoaderContext, {
       wrapper,
     })
@@ -138,7 +138,7 @@ describe('dataLoaderProvider', () => {
   })
 
   it('should delay max concurrent request', async () => {
-    const method = vi.fn(
+    const method = vi.fn<() => Promise<boolean>>(
       async () =>
         new Promise(resolve => {
           setTimeout(() => {
@@ -181,9 +181,9 @@ describe('dataLoaderProvider', () => {
   })
 
   it('should reload group', async () => {
-    const method1 = vi.fn(fakePromise)
-    const method2 = vi.fn(fakePromise)
-    const method3 = vi.fn(fakePromise)
+    const method1 = vi.fn<typeof fakePromise>(fakePromise)
+    const method2 = vi.fn<typeof fakePromise>(fakePromise)
+    const method3 = vi.fn<typeof fakePromise>(fakePromise)
 
     const { result } = renderHook(useDataLoaderContext, {
       wrapper,
@@ -223,9 +223,9 @@ describe('dataLoaderProvider', () => {
   })
 
   it('should reload all active requests', async () => {
-    const method1 = vi.fn(fakePromise)
-    const method2 = vi.fn(fakePromise)
-    const method3 = vi.fn(fakePromise)
+    const method1 = vi.fn<typeof fakePromise>(fakePromise)
+    const method2 = vi.fn<typeof fakePromise>(fakePromise)
+    const method3 = vi.fn<typeof fakePromise>(fakePromise)
 
     const { result } = renderHook(useDataLoaderContext, {
       wrapper,
@@ -249,9 +249,9 @@ describe('dataLoaderProvider', () => {
   })
 
   it('should reload group active requests', async () => {
-    const method1 = vi.fn(fakePromise)
-    const method2 = vi.fn(fakePromise)
-    const method3 = vi.fn(fakePromise)
+    const method1 = vi.fn<typeof fakePromise>(fakePromise)
+    const method2 = vi.fn<typeof fakePromise>(fakePromise)
+    const method3 = vi.fn<typeof fakePromise>(fakePromise)
 
     const { result } = renderHook(useDataLoaderContext, {
       wrapper,
