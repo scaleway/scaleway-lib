@@ -40,12 +40,12 @@ catalog:
   another-package: 2.0.0
 `
       mockSimpleGit.mockReturnValue({
-        add: vi.fn<() => undefined>(),
+        add: vi.fn<() => void>(),
         branch: vi.fn<() => { current: string }>(),
-        commit: vi.fn<() => undefined>(),
-        diffSummary: vi.fn<() => {}>(),
-        push: vi.fn<() => undefined>(),
-        revparse: vi.fn<() => undefined>(),
+        commit: vi.fn<() => void>(),
+        diffSummary: vi.fn<() => Record<string, unknown>>(),
+        push: vi.fn<() => void>(),
+        revparse: vi.fn<() => string>(),
         show: vi.fn<() => any>().mockResolvedValue(mockContent),
       })
       vi.mocked(parse).mockReturnValue({
@@ -67,12 +67,12 @@ catalog:
 
     it('should return empty object if git operation fails', async () => {
       mockSimpleGit.mockReturnValue({
-        add: vi.fn<() => undefined>(),
+        add: vi.fn<() => void>(),
         branch: vi.fn<() => { current: string }>(),
-        commit: vi.fn<() => undefined>(),
-        diffSummary: vi.fn<() => {}>(),
-        push: vi.fn<() => undefined>(),
-        revparse: vi.fn<() => undefined>(),
+        commit: vi.fn<() => void>(),
+        diffSummary: vi.fn<() => Record<string, unknown>>(),
+        push: vi.fn<() => void>(),
+        revparse: vi.fn<() => string>(),
         show: vi.fn<() => any>().mockRejectedValue(new Error('File not found')),
       })
 
@@ -92,12 +92,12 @@ catalog:
     it('should find dependencies that have changed between git revisions', async () => {
       // Mock the git operations
       mockSimpleGit.mockReturnValue({
-        add: vi.fn<() => undefined>(),
+        add: vi.fn<() => void>(),
         branch: vi.fn<() => { current: string }>(),
-        commit: vi.fn<() => undefined>(),
-        diffSummary: vi.fn<() => {}>(),
-        push: vi.fn<() => undefined>(),
-        revparse: vi.fn<() => undefined>(),
+        commit: vi.fn<() => void>(),
+        diffSummary: vi.fn<() => Record<string, unknown>>(),
+        push: vi.fn<() => void>(),
+        revparse: vi.fn<() => string>(),
         show: vi.fn<() => any>().mockResolvedValueOnce(`
 catalog:
   package-a: 1.0.0
