@@ -1,14 +1,14 @@
 import { vi } from 'vitest'
 
 export const defaultGitValues = {
-  add: () => undefined,
+  add: (): void => undefined,
   branch: () => ({
     current: '',
   }),
-  commit: () => undefined,
+  commit: (): void => undefined,
   diffSummary: () => ({}),
-  push: () => undefined,
-  revparse: () => undefined,
+  push: (): void => undefined,
+  revparse: (): string => '',
   show: () => '',
 }
 

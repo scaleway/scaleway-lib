@@ -14,7 +14,7 @@ describe('useinterval', () => {
   })
 
   it('should start with a delay of 100 ms', () => {
-    const callback = vi.fn()
+    const callback = vi.fn<() => void>()
     renderHook(() => {
       useInterval(callback, 100)
     })
@@ -24,7 +24,7 @@ describe('useinterval', () => {
   })
 
   it('should not start interval if null is passed', () => {
-    const callback = vi.fn()
+    const callback = vi.fn<() => void>()
     renderHook(() => {
       useInterval(callback, null)
     })

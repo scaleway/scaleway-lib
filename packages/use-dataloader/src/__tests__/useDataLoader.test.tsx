@@ -48,7 +48,7 @@ const initialProps = {
     keepPreviousData: true,
   },
   key: 'test',
-  method: vi.fn(fakeSuccessPromise),
+  method: vi.fn<typeof fakeSuccessPromise>(fakeSuccessPromise),
 }
 const wrapper = ({ children }: { children?: ReactNode }) => <DataLoaderProvider>{children}</DataLoaderProvider>
 
@@ -112,7 +112,7 @@ describe(useDataLoader, () => {
 
   it('should render correctly without request enabled then enable it', async () => {
     let resolveIt = false
-    const method = vi.fn(createPollingPromise(() => resolveIt, true))
+    const method = vi.fn<() => Promise<unknown>>(createPollingPromise(() => resolveIt, true))
     const testProps = {
       config: {
         enabled: false,
@@ -188,7 +188,7 @@ describe(useDataLoader, () => {
 
   it('should render and cache correctly with cacheKeyPrefix', async () => {
     let resolveIt = false
-    const method = vi.fn(createPollingPromise(() => resolveIt, true))
+    const method = vi.fn<() => Promise<unknown>>(createPollingPromise(() => resolveIt, true))
 
     const initProps = {
       ...initialProps,
@@ -301,7 +301,7 @@ describe(useDataLoader, () => {
         pollingInterval: 1000,
       },
       key: 'test-6',
-      method: vi.fn(
+      method: vi.fn<() => Promise<boolean>>(
         async () =>
           new Promise(resolve => {
             setTimeout(() => {
@@ -311,7 +311,7 @@ describe(useDataLoader, () => {
       ),
     } as UseDataLoaderHookProps
 
-    const method2 = vi.fn(
+    const method2 = vi.fn<() => Promise<number>>(
       async () =>
         new Promise(resolve => {
           setTimeout(() => {
@@ -399,7 +399,7 @@ describe(useDataLoader, () => {
         pollingInterval: undefined,
       },
       key: 'test-needpolling-no-interval',
-      method: vi.fn(
+      method: vi.fn<() => Promise<boolean>>(
         async () =>
           new Promise(resolve => {
             setTimeout(() => {
@@ -431,7 +431,7 @@ describe(useDataLoader, () => {
         pollingInterval: 1000,
       },
       key: 'test-needpolling-no-interval',
-      method: vi.fn(
+      method: vi.fn<() => Promise<boolean>>(
         async () =>
           new Promise(resolve => {
             setTimeout(() => {
@@ -463,7 +463,7 @@ describe(useDataLoader, () => {
         pollingInterval: PROMISE_TIMEOUT,
       },
       key: 'test-needpolling-no-interval',
-      method: vi.fn(
+      method: vi.fn<() => Promise<boolean>>(
         async () =>
           new Promise(resolve => {
             setTimeout(() => {
@@ -495,7 +495,7 @@ describe(useDataLoader, () => {
         pollingInterval: PROMISE_TIMEOUT,
       },
       key: 'test-needpolling-no-interval',
-      method: vi.fn(
+      method: vi.fn<() => Promise<boolean>>(
         async () =>
           new Promise(resolve => {
             setTimeout(() => {
@@ -523,7 +523,7 @@ describe(useDataLoader, () => {
 
   it('should render correctly with enabled off', async () => {
     let resolveIt = false
-    const method = vi.fn(createPollingPromise(() => resolveIt, true))
+    const method = vi.fn<() => Promise<unknown>>(createPollingPromise(() => resolveIt, true))
 
     const initProps = {
       ...initialProps,
@@ -554,7 +554,7 @@ describe(useDataLoader, () => {
   })
 
   it('should call onSuccess', async () => {
-    const onSuccess = vi.fn()
+    const onSuccess = vi.fn<() => void>()
     const { result } = renderHook(props => useDataLoader(props.key, props.method, props.config), {
       initialProps: {
         ...initialProps,
@@ -575,8 +575,8 @@ describe(useDataLoader, () => {
   })
 
   it('should call onError', async () => {
-    const onSuccess = vi.fn()
-    const onError = vi.fn()
+    const onSuccess = vi.fn<() => void>()
+    const onError = vi.fn<() => void>()
     const error = new Error('Test error')
     const { result } = renderHook(props => useDataLoader(props.key, props.method, props.config), {
       initialProps: {
@@ -608,10 +608,10 @@ describe(useDataLoader, () => {
   })
 
   it('should override onError from Provider', async () => {
-    const onSuccess = vi.fn()
-    const onError = vi.fn()
+    const onSuccess = vi.fn<() => void>()
+    const onError = vi.fn<() => void>()
     const error = new Error('Test error')
-    const onErrorProvider = vi.fn()
+    const onErrorProvider = vi.fn<() => void>()
     const { result } = renderHook(props => useDataLoader(props.key, props.method, props.config), {
       initialProps: {
         config: {
@@ -643,9 +643,9 @@ describe(useDataLoader, () => {
   })
 
   it('should call onError from Provider', async () => {
-    const onSuccess = vi.fn()
+    const onSuccess = vi.fn<() => void>()
     const error = new Error('Test error')
-    const onErrorProvider = vi.fn()
+    const onErrorProvider = vi.fn<() => void>()
     const { result } = renderHook(props => useDataLoader(props.key, props.method, props.config), {
       initialProps: {
         config: {
@@ -678,8 +678,8 @@ describe(useDataLoader, () => {
 
   it('should clear error on new response', async () => {
     let success = false
-    const onSuccess = vi.fn()
-    const onError = vi.fn(() => {
+    const onSuccess = vi.fn<() => void>()
+    const onError = vi.fn<() => void>(() => {
       success = true
     })
     const error = new Error('Test error')
@@ -716,7 +716,7 @@ describe(useDataLoader, () => {
   })
 
   it('should use cached data', async () => {
-    const fakePromise = vi.fn(initialProps.method)
+    const fakePromise = vi.fn<typeof initialProps.method>(initialProps.method)
     const testDate = new Date()
     const { result } = renderHook(
       props => [
@@ -772,7 +772,7 @@ describe(useDataLoader, () => {
   })
 
   it('should be reloaded from dataloader context', async () => {
-    const mockedFn = vi.fn(
+    const mockedFn = vi.fn<() => Promise<boolean>>(
       async () =>
         new Promise(resolve => {
           setTimeout(() => {
@@ -825,7 +825,7 @@ describe(useDataLoader, () => {
         enabled: false,
       },
       key: 'test-datalifetime',
-      method: vi.fn(fakeSuccessPromise),
+      method: vi.fn<typeof fakeSuccessPromise>(fakeSuccessPromise),
     }
     const { result, rerender } = renderHook(
       props => [
@@ -856,7 +856,7 @@ describe(useDataLoader, () => {
   })
 
   it('should render correctly with dataLifetime dont prevent double call', async () => {
-    const method = vi.fn(
+    const method = vi.fn<() => Promise<boolean>>(
       async () =>
         new Promise(resolve => {
           setTimeout(() => {
@@ -915,7 +915,7 @@ describe(useDataLoader, () => {
 
   it('should differentiate between isLoading and isFetching', async () => {
     let resolveIt = false
-    const method = vi.fn(createPollingPromise(() => resolveIt, { id: 1, name: 'test' }))
+    const method = vi.fn<() => Promise<unknown>>(createPollingPromise(() => resolveIt, { id: 1, name: 'test' }))
 
     const testProps = {
       config: {

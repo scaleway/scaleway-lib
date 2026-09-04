@@ -31,7 +31,7 @@ vi.mock('../constants', () => ({
 }))
 
 vi.mock('../helpers/misc', () => ({
-  stringToHash: vi.fn((str: string) => `hash_${str}`),
+  stringToHash: vi.fn<(str: string) => string>((str: string) => `hash_${str}`),
 }))
 
 const TestComponent = () => {
