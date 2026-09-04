@@ -68,3 +68,11 @@ export type CookieConfigType = {
   sameSite: 'lax' | 'none' | 'strict' | boolean | undefined
   secure: boolean
 }
+
+/**
+ * Where the JWT and audienceId are persisted.
+ *
+ * - `'cookie'` (default): backward-compatible, allows synchronisation across tabs.
+ * - `'localStorage'`: scoped to a single origin, survives reloads, avoids cookie size limits.
+ */
+export type StorageType = 'cookie' | 'localStorage'

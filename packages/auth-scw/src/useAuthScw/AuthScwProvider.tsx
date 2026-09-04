@@ -1,8 +1,15 @@
 import type { ReactNode } from 'react'
 import { createContext, useCallback, useContext, useMemo, useState } from 'react'
 import { isExpired } from '../isExpired'
-import type { AuthScwContextType, ConfigAuthProvider, CookieConfigType, EncodedJWT, OnError } from '../types'
-import { AuthStoreManager, setCookieConfig } from './authStoreManager'
+import type {
+  AuthScwContextType,
+  ConfigAuthProvider,
+  CookieConfigType,
+  EncodedJWT,
+  OnError,
+  StorageType,
+} from '../types'
+import { AuthStoreManager, migrateCookieToLocalStorage, setCookieConfig, setStorageType } from './authStoreManager'
 import { clientSingleton } from './createClient'
 import { decodeToken, encodeToken, getCookieJWT, refreshSession } from './helpers'
 import { proxyJwt } from './proxyJwt'
@@ -13,6 +20,20 @@ export type AuthProviderParamType = ConfigAuthProvider & {
   urlParamTokenName: string
   onError?: OnError
   cookieConfig?: CookieConfigType
+  /**
+   * Where to persist the JWT and audienceId.
+   *
+   * Defaults to `'cookie'` for backward compatibility.
+   */
+  storageType?: StorageType
+  /**
+   * When `true` and `storageType` is `'localStorage'`, any JWT/audienceId
+   * previously stored in cookies will be migrated to localStorage on
+   * initialization, then removed from cookies. Useful for live migrations.
+   *
+   * Defaults to `false`.
+   */
+  migrateFromCookie?: boolean
 }
 
 const AuthScwContext = createContext<AuthScwContextType>({} as AuthScwContextType)
@@ -28,10 +49,13 @@ export const AuthScwProvider = ({
   cookieConfig,
   urlParamTokenName,
   onError,
+  storageType = 'cookie',
+  migrateFromCookie = false,
 }: AuthProviderParamType) => {
   if (cookieConfig) {
     setCookieConfig(cookieConfig)
   }
+  setStorageType(storageType)
   clientSingleton.setAPIsAndSettings({
     clientSettings,
     IamV1Alpha1,
@@ -39,6 +63,11 @@ export const AuthScwProvider = ({
   })
   const initAudienceId = useCallback(() => {
     AuthStoreManager.setSuffixKey(cookieSuffix)
+
+    // Live migration: cookie -> localStorage
+    if (storageType === 'localStorage' && migrateFromCookie) {
+      migrateCookieToLocalStorage()
+    }
 
     // automatic login
     const currentUrl = new URL(globalThis.location.href)
@@ -67,7 +96,7 @@ export const AuthScwProvider = ({
     }
 
     return undefined
-  }, [cookieSuffix, urlParamTokenName])
+  }, [cookieSuffix, urlParamTokenName, storageType, migrateFromCookie])
 
   const [currentAudienceId, setCurrentAudienceId] = useState<string | undefined>(() => initAudienceId())
 
