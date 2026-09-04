@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.0.11
+
+### Patch Changes
+
+- [#3702](https://github.com/scaleway/scaleway-lib/pull/3702) [`14fa445`](https://github.com/scaleway/scaleway-lib/commit/14fa4454485e6a1e5a368901a57d20c85620f758) Thanks [@chambo-e](https://github.com/chambo-e)! - Use `codePointAt` instead of `charCodeAt` in `stringToHash` so hashes are consistent for surrogate-pair characters
+
+- [#3686](https://github.com/scaleway/scaleway-lib/pull/3686) [`51e69b1`](https://github.com/scaleway/scaleway-lib/commit/51e69b14294d304b020b9a09bac9272074540027) Thanks [@chambo-e](https://github.com/chambo-e)! - immutable sort on destinations
+
 ## 2.0.10
 
 ### Patch Changes

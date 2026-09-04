@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/phonenumber",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A phone number utility library based on awesome-phonenumber",
   "homepage": "https://github.com/scaleway/scaleway-lib/tree/main/packages/phonenumber",
   "bugs": {
