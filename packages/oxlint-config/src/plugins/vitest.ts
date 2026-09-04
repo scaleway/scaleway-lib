@@ -7,6 +7,11 @@ export default defineConfig({
       plugins: ['vitest'],
       rules: {
         /**
+         * @see https://oxc.rs/docs/guide/usage/linter/rules/react/jsx-props-no-spreading
+         */
+        'react/jsx-props-no-spreading': 'off',
+
+        /**
          * @see https://oxc.rs/docs/guide/usage/linter/rules/vitest/consistent-each-for
          */
         'vitest/consistent-each-for': 'error',
