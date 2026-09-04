@@ -46,7 +46,7 @@ catalog:
         diffSummary: vi.fn<() => Record<string, unknown>>(),
         push: vi.fn<() => void>(),
         revparse: vi.fn<() => string>(),
-        show: vi.fn<() => any>().mockResolvedValue(mockContent),
+        show: vi.fn<() => string>().mockReturnValue(mockContent),
       })
       vi.mocked(parse).mockReturnValue({
         catalog: {
@@ -73,7 +73,9 @@ catalog:
         diffSummary: vi.fn<() => Record<string, unknown>>(),
         push: vi.fn<() => void>(),
         revparse: vi.fn<() => string>(),
-        show: vi.fn<() => any>().mockRejectedValue(new Error('File not found')),
+        show: vi.fn<() => string>().mockImplementation(() => {
+          throw new Error('File not found')
+        }),
       })
 
       const result = await loadCatalogFromGit('nonexistent', 'pnpm-workspace.yaml')
@@ -98,12 +100,12 @@ catalog:
         diffSummary: vi.fn<() => Record<string, unknown>>(),
         push: vi.fn<() => void>(),
         revparse: vi.fn<() => string>(),
-        show: vi.fn<() => any>().mockResolvedValueOnce(`
+        show: vi.fn<() => string>().mockReturnValueOnce(`
 catalog:
   package-a: 1.0.0
   package-b: 2.0.0
   package-c: 3.0.0
-`).mockResolvedValueOnce(`
+`).mockReturnValueOnce(`
 catalog:
   package-a: 1.1.0
   package-b: 2.0.0

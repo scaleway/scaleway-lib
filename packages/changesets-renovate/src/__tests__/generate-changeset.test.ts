@@ -12,7 +12,9 @@ vi.mock(import('@changesets/config'), async importOriginal => {
 
   return {
     ...actual,
-    readConfig: vi.fn<() => any>().mockResolvedValue({ config: actual.defaultConfig, warnings: [], errors: undefined }),
+    readConfig: vi
+      .fn<typeof readConfig>()
+      .mockResolvedValue({ config: actual.defaultConfig, warnings: [], errors: undefined }),
   }
 })
 
