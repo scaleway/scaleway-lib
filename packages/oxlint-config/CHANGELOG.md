@@ -1,5 +1,28 @@
 # Changelog
 
+## 1.1.0
+
+### Minor Changes
+
+- [#3767](https://github.com/scaleway/scaleway-lib/pull/3767) [`b007acf`](https://github.com/scaleway/scaleway-lib/commit/b007acf8d5cafaf41dee0ceedf91b8492286c4e0) Thanks [@chambo-e](https://github.com/chambo-e)! - add react configs
+
+## 1.0.1
+
+### Patch Changes
+
+- [#3700](https://github.com/scaleway/scaleway-lib/pull/3700) [`f548ce5`](https://github.com/scaleway/scaleway-lib/commit/f548ce546b17c688b76b42d30e2f8531d70f8301) Thanks [@chambo-e](https://github.com/chambo-e)! - disable vitest/warn-todo
+
+- [#3702](https://github.com/scaleway/scaleway-lib/pull/3702) [`14fa445`](https://github.com/scaleway/scaleway-lib/commit/14fa4454485e6a1e5a368901a57d20c85620f758) Thanks [@chambo-e](https://github.com/chambo-e)! - Disable `checkUsedVariables` for the `unicorn/prefer-export-from` rule so it no longer flags re-exported used variables
+  
+  Disable vitest/prefer-lowercase-title
+  
+  Enforce unicorn/numeric-separators-style on decimals too
+
+- [#3700](https://github.com/scaleway/scaleway-lib/pull/3700) [`f548ce5`](https://github.com/scaleway/scaleway-lib/commit/f548ce546b17c688b76b42d30e2f8531d70f8301) Thanks [@chambo-e](https://github.com/chambo-e)! - disable react-perf error
+
+- [#3701](https://github.com/scaleway/scaleway-lib/pull/3701) [`8a95f7f`](https://github.com/scaleway/scaleway-lib/commit/8a95f7fbf074a969c1232a98feef56a63b1a9d66) Thanks [@chambo-e](https://github.com/chambo-e)! - set allowArgument: true for vitest/valid-title
+  set multi for vitest/prefer-snapshot-hint
+
 ## 1.0.0
 
 ### Major Changes

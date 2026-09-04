@@ -46,7 +46,6 @@ describe('component BrowserRouter', () => {
     let firstHistory: any
     let secondHistory: any
 
-    // oxlint-disable-next-line react/no-multi-comp
     const TestComponent = () => {
       const history = useHistory()
       if (!firstHistory) {

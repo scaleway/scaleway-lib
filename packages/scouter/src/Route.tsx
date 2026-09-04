@@ -58,5 +58,4 @@ export const RouteInternal = ({ path, computedMatch, exact, render, children }: 
 
 export type RouteProps = Omit<RouteInternalProps, 'computedMatch'>
 
-// oxlint-disable-next-line react/no-multi-comp
 export const Route = (props: RouteProps) => <RouteInternal {...props} />

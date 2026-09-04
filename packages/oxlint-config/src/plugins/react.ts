@@ -1,3 +1,4 @@
+// oxlint-disable max-lines
 import { defineConfig } from 'oxlint'
 
 export default defineConfig({
@@ -5,36 +6,42 @@ export default defineConfig({
   rules: {
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/button-has-type
-     * @todo No consensus as of yet
      */
     'react/button-has-type': 'error',
     /**
-     * @see https://oxc.rs/docs/guide/usage/linter/rules/react/checked-requires-onchange-or-readonly
-     * @todo No consensus as of yet
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/react/capitalized-calls
      */
-    'react/checked-requires-onchange-or-readonly': 'off',
+    'react/capitalized-calls': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/react/checked-requires-onchange-or-readonly
+     */
+    'react/checked-requires-onchange-or-readonly': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/display-name
-     * @todo No consensus as of yet
      */
     'react/display-name': 'off',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/react/error-boundaries
+     */
+    'react/error-boundaries': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/exhaustive-deps
      */
     'react/exhaustive-deps': 'error',
     /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/react/exhaustive-effect-dependencies
+     */
+    'react/exhaustive-effect-dependencies': 'error',
+    /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/forbid-component-props
-     * @todo No consensus as of yet
      */
     'react/forbid-component-props': 'off',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/forbid-dom-props
-     * @todo No consensus as of yet
      */
     'react/forbid-dom-props': 'off',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/forbid-elements
-     * @todo No consensus as of yet
      */
     'react/forbid-elements': 'off',
     /**
@@ -43,47 +50,58 @@ export default defineConfig({
     'react/forward-ref-uses-ref': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/function-component-definition
-     * @todo No consensus as of yet
      */
-    'react/function-component-definition': 'off',
+    'react/function-component-definition': [
+      'error',
+      { namedComponents: 'arrow-function', unnamedComponents: 'arrow-function' },
+    ],
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/react/globals
+     */
+    'react/globals': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/hook-use-state
-     * @todo No consensus as of yet
      */
-    'react/hook-use-state': 'off',
+    'react/hook-use-state': ['error', { allowDestructuredState: true }],
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/react/hooks
+     */
+    'react/hooks': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/iframe-missing-sandbox
-     * @todo No consensus as of yet
      */
     'react/iframe-missing-sandbox': 'error',
     /**
-     * @see https://oxc.rs/docs/guide/usage/linter/rules/react/jsx-boolean-value
-     * @todo No consensus as of yet
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/react/immutability
      */
-    'react/jsx-boolean-value': 'off',
+    'react/immutability': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/react/incompatible-library
+     */
+    'react/incompatible-library': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/react/invariant
+     */
+    'react/invariant': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/react/jsx-boolean-value
+     */
+    'react/jsx-boolean-value': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/jsx-curly-brace-presence
-     * @todo No consensus as of yet
      */
-    'react/jsx-curly-brace-presence': 'off',
+    'react/jsx-curly-brace-presence': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/jsx-filename-extension
-     * @todo No consensus as of yet
      */
-    'react/jsx-filename-extension': [
-      'error',
-      {
-        extensions: ['.jsx', '.tsx'],
-      },
-    ],
+    'react/jsx-filename-extension': ['error', { extensions: ['jsx', 'tsx'] }],
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/jsx-fragments
-     * @todo No consensus as of yet
      */
-    'react/jsx-fragments': 'off',
+    'react/jsx-fragments': ['error', 'syntax'],
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/jsx-handler-names
-     * @todo No consensus as of yet
+     * @todo Needs to be reviewed
      */
     'react/jsx-handler-names': 'off',
     /**
@@ -92,84 +110,80 @@ export default defineConfig({
     'react/jsx-key': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/jsx-max-depth
-     * @todo No consensus as of yet
      */
-    'react/jsx-max-depth': 'off',
+    'react/jsx-max-depth': ['error', { max: 5 }],
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/jsx-no-comment-textnodes
-     * @todo No consensus as of yet
      */
     'react/jsx-no-comment-textnodes': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/jsx-no-constructed-context-values
-     * @todo No consensus as of yet
      */
-    'react/jsx-no-constructed-context-values': 'off',
+    'react/jsx-no-constructed-context-values': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/jsx-no-duplicate-props
      */
     'react/jsx-no-duplicate-props': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/jsx-no-literals
-     * @todo No consensus as of yet
      */
-    'react/jsx-no-literals': 'off',
+    'react/jsx-no-literals': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/jsx-no-script-url
-     * @todo No consensus as of yet
      */
-    'react/jsx-no-script-url': 'off',
+    'react/jsx-no-script-url': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/jsx-no-target-blank
-     * @todo No consensus as of yet
      */
-    'react/jsx-no-target-blank': 'off',
+    'react/jsx-no-target-blank': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/jsx-no-undef
      */
     'react/jsx-no-undef': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/jsx-no-useless-fragment
-     * @todo No consensus as of yet
      */
     'react/jsx-no-useless-fragment': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/jsx-pascal-case
-     * @todo No consensus as of yet
      */
-    'react/jsx-pascal-case': 'off',
+    'react/jsx-pascal-case': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/jsx-props-no-spread-multi
      */
     'react/jsx-props-no-spread-multi': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/jsx-props-no-spreading
-     * @todo No consensus as of yet
      */
-    'react/jsx-props-no-spreading': 'off',
+    'react/jsx-props-no-spreading': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/react/memo-dependencies
+     */
+    'react/memo-dependencies': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/no-array-index-key
-     * @todo No consensus as of yet
      */
-    'react/no-array-index-key': 'off',
+    'react/no-array-index-key': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/no-children-prop
      */
     'react/no-children-prop': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/no-clone-element
-     * @todo No consensus as of yet
      */
-    'react/no-clone-element': 'off',
+    'react/no-clone-element': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/no-danger
-     * @todo No consensus as of yet
      */
     'react/no-danger': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/no-danger-with-children
      */
     'react/no-danger-with-children': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/react/no-deriving-state-in-effects
+     */
+    'react/no-deriving-state-in-effects': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/no-did-mount-set-state
      */
@@ -192,38 +206,33 @@ export default defineConfig({
     'react/no-is-mounted': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/no-multi-comp
-     * @todo No consensus as of yet
+     * @todo Needs to be reviewed
      */
-    'react/no-multi-comp': 'error',
+    'react/no-multi-comp': 'off',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/no-namespace
-     * @todo No consensus as of yet
      */
-    'react/no-namespace': 'off',
+    'react/no-namespace': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/no-object-type-as-default-prop
-     * @todo No consensus as of yet
      */
-    'react/no-object-type-as-default-prop': 'off',
+    'react/no-object-type-as-default-prop': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/no-react-children
-     * @todo No consensus as of yet
      */
-    'react/no-react-children': 'off',
+    'react/no-react-children': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/no-redundant-should-component-update
-     * @todo No consensus as of yet
      */
-    'react/no-redundant-should-component-update': 'off',
+    'react/no-redundant-should-component-update': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/no-render-return-value
      */
     'react/no-render-return-value': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/no-set-state
-     * @todo No consensus as of yet
      */
-    'react/no-set-state': 'off',
+    'react/no-set-state': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/no-string-refs
      */
@@ -234,12 +243,10 @@ export default defineConfig({
     'react/no-this-in-sfc': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/no-unescaped-entities
-     * @todo No consensus as of yet
      */
     'react/no-unescaped-entities': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/no-unknown-property
-     * @todo No consensus as of yet
      */
     'react/no-unknown-property': 'error',
     /**
@@ -248,88 +255,101 @@ export default defineConfig({
     'react/no-unsafe': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/no-unstable-nested-components
-     * @todo No consensus as of yet
      */
-    'react/no-unstable-nested-components': 'off',
+    'react/no-unstable-nested-components': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/no-will-update-set-state
      */
     'react/no-will-update-set-state': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/only-export-components
-     * @todo No consensus as of yet
      */
-    'react/only-export-components': 'off',
+    'react/only-export-components': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/prefer-es6-class
-     * @todo No consensus as of yet
      */
-    'react/prefer-es6-class': 'off',
+    'react/prefer-es6-class': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/prefer-function-component
-     * @todo No consensus as of yet
      */
-    'react/prefer-function-component': 'off',
-    // /**
-    //  * @see https://oxc.rs/docs/guide/usage/linter/rules/react/react-compiler
-    //  * @todo No consensus as of yet
-    //  */
-    // 'react/react-compiler': 'off',
+    'react/prefer-function-component': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/react/preserve-manual-memoization
+     */
+    'react/preserve-manual-memoization': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/react/purity
+     */
+    'react/purity': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/react-in-jsx-scope
-     * @todo No consensus as of yet
      */
     'react/react-in-jsx-scope': 'off',
     /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/react/refs
+     */
+    'react/refs': 'error',
+    /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/require-render-return
-     * @todo No consensus as of yet
      */
     'react/require-render-return': 'error',
     /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/react/rule-suppression
+     */
+    'react/rule-suppression': 'off',
+    /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/rules-of-hooks
-     * @todo No consensus as of yet
      */
     'react/rules-of-hooks': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/self-closing-comp
-     * @todo No consensus as of yet
      */
-    'react/self-closing-comp': 'off',
+    'react/self-closing-comp': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/react/set-state-in-effect
+     */
+    'react/set-state-in-effect': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/react/set-state-in-render
+     */
+    'react/set-state-in-render': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/state-in-constructor
-     * @todo No consensus as of yet
      */
-    'react/state-in-constructor': 'off',
+    'react/state-in-constructor': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/react/static-components
+     */
+    'react/static-components': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/style-prop-object
-     * @todo No consensus as of yet
      */
-    'react/style-prop-object': 'off',
+    'react/style-prop-object': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/react/syntax
+     */
+    'react/syntax': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/react/todo
+     * @todo Needs to be reviewed
+     */
+    'react/todo': 'off',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/react/unsupported-syntax
+     */
+    'react/unsupported-syntax': 'error',
+    /**
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/react/use-memo
+     */
+    'react/use-memo': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/void-dom-elements-no-children
      */
     'react/void-dom-elements-no-children': 'error',
-
     /**
-     * @see https://oxc.rs/docs/guide/usage/linter/rules/react_perf/jsx-no-jsx-as-prop
-     * @todo No consensus as of yet
+     * @see https://oxc.rs/docs/guide/usage/linter/rules/react/void-use-memo
      */
-    'react-perf/jsx-no-jsx-as-prop': 'off',
-    /**
-     * @see https://oxc.rs/docs/guide/usage/linter/rules/react_perf/jsx-no-new-array-as-prop
-     * @todo No consensus as of yet
-     */
-    'react-perf/jsx-no-new-array-as-prop': 'off',
-    /**
-     * @see https://oxc.rs/docs/guide/usage/linter/rules/react_perf/jsx-no-new-function-as-prop
-     * @todo No consensus as of yet
-     */
-    'react-perf/jsx-no-new-function-as-prop': 'off',
-    /**
-     * @see https://oxc.rs/docs/guide/usage/linter/rules/react_perf/jsx-no-new-object-as-prop
-     * @todo No consensus as of yet
-     */
-    'react-perf/jsx-no-new-object-as-prop': 'off',
+    'react/void-use-memo': 'error',
 
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/jsx_a11y/alt-text
@@ -337,9 +357,8 @@ export default defineConfig({
     'jsx-a11y/alt-text': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/jsx_a11y/anchor-ambiguous-text
-     * @todo No consensus as of yet
      */
-    'jsx-a11y/anchor-ambiguous-text': 'off',
+    'jsx-a11y/anchor-ambiguous-text': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/jsx_a11y/anchor-has-content
      */

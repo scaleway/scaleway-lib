@@ -40,7 +40,24 @@ export default defineConfig({
 
     'oxc/no-accumulating-spread': 'warn',
 
-    'react/no-multi-comp': 'warn',
+    'react/exhaustive-effect-dependencies': 'warn',
+    'react/function-component-definition': [
+      'warn',
+      { namedComponents: 'arrow-function', unnamedComponents: 'arrow-function' },
+    ],
+    'react/globals': 'warn',
+    'react/hook-use-state': ['warn', { allowDestructuredState: true }],
+    'react/immutability': 'warn',
+    'react/jsx-boolean-value': 'warn',
+    'react/jsx-no-literals': 'warn',
+    'react/jsx-props-no-spreading': 'warn',
+    'react/no-clone-element': 'warn',
+    'react/no-deriving-state-in-effects': 'warn',
+    'react/no-react-children': 'warn',
+    'react/only-export-components': 'warn',
+    'react/purity': 'warn',
+    'react/refs': 'warn',
+    'react/set-state-in-effect': 'warn',
 
     'typescript/consistent-indexed-object-style': 'warn',
     'typescript/explicit-member-accessibility': 'warn',

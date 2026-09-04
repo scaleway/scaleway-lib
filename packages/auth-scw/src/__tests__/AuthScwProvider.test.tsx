@@ -34,7 +34,7 @@ const Wrapper = ({ children }: { children: ReactNode }) => {
         sameSite: 'strict',
         secure: false,
       }}
-      urlParamTokenName={'token'}
+      urlParamTokenName="token"
     >
       {children}
     </AuthScwProvider>
