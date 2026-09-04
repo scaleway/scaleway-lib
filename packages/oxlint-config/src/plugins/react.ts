@@ -51,7 +51,10 @@ export default defineConfig({
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/function-component-definition
      */
-    'react/function-component-definition': 'error',
+    'react/function-component-definition': [
+      'error',
+      { namedComponents: 'arrow-function', unnamedComponents: 'arrow-function' },
+    ],
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/globals
      */
@@ -59,7 +62,7 @@ export default defineConfig({
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/hook-use-state
      */
-    'react/hook-use-state': 'error',
+    'react/hook-use-state': ['error', { allowDestructuredState: true }],
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/hooks
      */
@@ -91,7 +94,7 @@ export default defineConfig({
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/jsx-filename-extension
      */
-    'react/jsx-filename-extension': 'error',
+    'react/jsx-filename-extension': ['error', { extensions: ['jsx', 'tsx'] }],
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/jsx-fragments
      */
@@ -347,23 +350,6 @@ export default defineConfig({
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/void-use-memo
      */
     'react/void-use-memo': 'error',
-
-    /**
-     * @see https://oxc.rs/docs/guide/usage/linter/rules/react_perf/jsx-no-jsx-as-prop
-     */
-    'react-perf/jsx-no-jsx-as-prop': 'off',
-    /**
-     * @see https://oxc.rs/docs/guide/usage/linter/rules/react_perf/jsx-no-new-array-as-prop
-     */
-    'react-perf/jsx-no-new-array-as-prop': 'off',
-    /**
-     * @see https://oxc.rs/docs/guide/usage/linter/rules/react_perf/jsx-no-new-function-as-prop
-     */
-    'react-perf/jsx-no-new-function-as-prop': 'off',
-    /**
-     * @see https://oxc.rs/docs/guide/usage/linter/rules/react_perf/jsx-no-new-object-as-prop
-     */
-    'react-perf/jsx-no-new-object-as-prop': 'off',
 
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/jsx_a11y/alt-text
