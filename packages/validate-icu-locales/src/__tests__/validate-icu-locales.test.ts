@@ -3,87 +3,59 @@ import { describe, expect, it } from 'vitest'
 
 describe('validate-icu-locales CLI', () => {
   it('should detect ICU syntax errors in JavaScript files', async () => {
-    try {
-      await execa('node', ['dist/index.mjs', 'src/__tests__/locales/*.js'], {
-        cwd: process.cwd(),
-        reject: true,
-      })
-      // If we reach here, the command didn't fail as expected
-      expect.fail('Expected command to fail with ICU errors')
-    } catch (error) {
-      // Check that the error contains information about ICU syntax errors
-      const errorMessage = (error as Error).toString()
-      // The CLI outputs errors to stderr and exits with code 1
-      expect(errorMessage).toContain('errors')
-      expect(errorMessage).toContain('EXPECT_ARGUMENT_CLOSING_BRACE')
-    }
+    const result = await execa('node', ['dist/index.mjs', 'src/__tests__/locales/*.js'], {
+      cwd: process.cwd(),
+    }).catch((error: unknown) => error)
+
+    expect(result).toBeInstanceOf(Error)
+    const errorMessage = (result as Error).toString()
+    expect(errorMessage).toContain('errors')
+    expect(errorMessage).toContain('EXPECT_ARGUMENT_CLOSING_BRACE')
   })
 
   it('should detect ICU syntax errors in TypeScript files', async () => {
-    try {
-      await execa('node', ['dist/index.mjs', 'src/__tests__/locales/*.ts'], {
-        cwd: process.cwd(),
-        reject: true,
-      })
-      // If we reach here, the command didn't fail as expected
-      expect.fail('Expected command to fail with ICU errors')
-    } catch (error) {
-      // Check that the error contains information about ICU syntax errors
-      const errorMessage = (error as Error).toString()
-      expect(errorMessage).toContain('errors')
-      expect(errorMessage).toContain('EXPECT_ARGUMENT_CLOSING_BRACE')
-    }
+    const result = await execa('node', ['dist/index.mjs', 'src/__tests__/locales/*.ts'], {
+      cwd: process.cwd(),
+    }).catch((error: unknown) => error)
+
+    expect(result).toBeInstanceOf(Error)
+    const errorMessage = (result as Error).toString()
+    expect(errorMessage).toContain('errors')
+    expect(errorMessage).toContain('EXPECT_ARGUMENT_CLOSING_BRACE')
   })
 
   it('should detect ICU syntax errors in JSON files', async () => {
-    try {
-      await execa('node', ['dist/index.mjs', 'src/__tests__/locales/*.json'], {
-        cwd: process.cwd(),
-        reject: true,
-      })
-      // If we reach here, the command didn't fail as expected
-      expect.fail('Expected command to fail with ICU errors')
-    } catch (error) {
-      // Check that the error contains information about ICU syntax errors
-      const errorMessage = (error as Error).toString()
-      expect(errorMessage).toContain('errors')
-      expect(errorMessage).toContain('EXPECT_ARGUMENT_CLOSING_BRACE')
-    }
+    const result = await execa('node', ['dist/index.mjs', 'src/__tests__/locales/*.json'], {
+      cwd: process.cwd(),
+    }).catch((error: unknown) => error)
+
+    expect(result).toBeInstanceOf(Error)
+    const errorMessage = (result as Error).toString()
+    expect(errorMessage).toContain('errors')
+    expect(errorMessage).toContain('EXPECT_ARGUMENT_CLOSING_BRACE')
   })
 
   it('should fail when no pattern is provided', async () => {
-    try {
-      await execa('node', ['dist/index.mjs'], {
-        cwd: process.cwd(),
-        reject: true,
-      })
-      // If we reach here, the command didn't fail as expected
-      expect.fail('Expected command to fail with missing pattern error')
-    } catch (error) {
-      // Check that the error contains information about missing pattern
-      const errorMessage = (error as Error).toString()
-      expect(errorMessage).toContain('Missing pattern')
-    }
+    const result = await execa('node', ['dist/index.mjs'], {
+      cwd: process.cwd(),
+    }).catch((error: unknown) => error)
+
+    expect(result).toBeInstanceOf(Error)
+    const errorMessage = (result as Error).toString()
+    expect(errorMessage).toContain('Missing pattern')
   })
 
   it('should correctly identify specific error types', async () => {
-    try {
-      await execa('node', ['dist/index.mjs', 'src/__tests__/locales/en-ts.ts'], {
-        cwd: process.cwd(),
-        reject: true,
-      })
-      // If we reach here, the command didn't fail as expected
-      expect.fail('Expected command to fail with ICU errors')
-    } catch (error) {
-      // Check that the error contains both types of errors we expect:
-      // 1. EXPECT_ARGUMENT_CLOSING_BRACE for missing closing brace
-      // 2. UNCLOSED_TAG for unclosed tag
-      const errorMessage = (error as Error).toString()
-      expect(errorMessage).toContain('EXPECT_ARGUMENT_CLOSING_BRACE')
-      expect(errorMessage).toContain('UNCLOSED_TAG')
-      expect(errorMessage).toContain('units.minutes.label')
-      expect(errorMessage).toContain('units.chevron')
-    }
+    const result = await execa('node', ['dist/index.mjs', 'src/__tests__/locales/en-ts.ts'], {
+      cwd: process.cwd(),
+    }).catch((error: unknown) => error)
+
+    expect(result).toBeInstanceOf(Error)
+    const errorMessage = (result as Error).toString()
+    expect(errorMessage).toContain('EXPECT_ARGUMENT_CLOSING_BRACE')
+    expect(errorMessage).toContain('UNCLOSED_TAG')
+    expect(errorMessage).toContain('units.minutes.label')
+    expect(errorMessage).toContain('units.chevron')
   })
 
   it('should succeed with valid ICU strings', async () => {
