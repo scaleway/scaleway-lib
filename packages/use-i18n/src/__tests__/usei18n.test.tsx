@@ -1,6 +1,7 @@
 // oxlint-disable max-lines
 import { act, renderHook } from '@testing-library/react'
 import { enGB, fr as frDateFns } from 'date-fns/locale'
+import type { BaseLocale } from 'international-types'
 import { MissingValueError } from 'intl-messageformat'
 import type { ComponentProps, ReactNode } from 'react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
@@ -35,6 +36,16 @@ const CustomComponent = ({ children }: { children: ReactNode }) => <p style={{ f
 
 const defaultOnTranslateError: OnTranslateError = () => undefined
 const defaultOnLoadTranslationError: OnLoadTranslationError = () => undefined
+
+const mockLoadRejectByLocale =
+  (rejectLocale: string, error: Error, resolveValue: BaseLocale): LoadTranslationsFn<Locales> =>
+  ({ locale }) =>
+    locale === rejectLocale ? Promise.reject(error) : Promise.resolve({ default: resolveValue })
+
+const mockLoadRejectByNamespace =
+  (rejectNamespace: string, error: Error, resolveValue: BaseLocale): LoadTranslationsFn<Locales> =>
+  ({ namespace }) =>
+    namespace === rejectNamespace ? Promise.reject(error) : Promise.resolve({ default: resolveValue })
 
 const wrapper =
   ({
@@ -952,12 +963,11 @@ describe('i18n hook', () => {
     it('should call onLoadTranslationError when loading translation fails for default locale', async () => {
       expect.hasAssertions()
       const mockOnLoadTranslationError = vi.fn<OnLoadTranslationError>()
-      const mockLoad = vi.fn<LoadTranslationsFn<Locales>>().mockImplementation(({ locale }) => {
-        if (locale === 'en') {
-          return Promise.reject(new Error('Default locale load failed'))
-        }
-        return Promise.resolve({ default: { title: 'Titre en français' } })
-      })
+      const mockLoad = vi
+        .fn<LoadTranslationsFn<Locales>>()
+        .mockImplementation(
+          mockLoadRejectByLocale('en', new Error('Default locale load failed'), { title: 'Titre en français' }),
+        )
 
       const { result } = renderHook(() => useTranslation<Locale, Locales>(['test'], mockLoad), {
         wrapper: wrapper({
@@ -982,12 +992,11 @@ describe('i18n hook', () => {
     it('should continue loading current locale even if default locale fails', async () => {
       expect.hasAssertions()
       const mockOnLoadTranslationError = vi.fn<OnLoadTranslationError>()
-      const mockLoad = vi.fn<LoadTranslationsFn<Locales>>().mockImplementation(({ locale }) => {
-        if (locale === 'en') {
-          return Promise.reject(new Error('Default locale load failed'))
-        }
-        return Promise.resolve({ default: { title: 'French Title' } })
-      })
+      const mockLoad = vi
+        .fn<LoadTranslationsFn<Locales>>()
+        .mockImplementation(
+          mockLoadRejectByLocale('en', new Error('Default locale load failed'), { title: 'French Title' }),
+        )
 
       const { result } = renderHook(() => useTranslation<Locale, Locales>(['test'], mockLoad), {
         wrapper: wrapper({
@@ -1023,12 +1032,9 @@ describe('i18n hook', () => {
     it('should call onLoadTranslationError for each namespace that fails', async () => {
       expect.hasAssertions()
       const mockOnLoadTranslationError = vi.fn<OnLoadTranslationError>()
-      const mockLoad = vi.fn<LoadTranslationsFn<Locales>>().mockImplementation(({ namespace }) => {
-        if (namespace === 'user') {
-          return Promise.reject(new Error('User namespace failed'))
-        }
-        return Promise.resolve({ default: { name: 'Name' } })
-      })
+      const mockLoad = vi
+        .fn<LoadTranslationsFn<Locales>>()
+        .mockImplementation(mockLoadRejectByNamespace('user', new Error('User namespace failed'), { name: 'Name' }))
 
       const { result } = renderHook(() => useTranslation<NamespaceLocale, Locales>(['user', 'profile'], mockLoad), {
         wrapper: wrapper({
@@ -1046,12 +1052,11 @@ describe('i18n hook', () => {
     it('should handle errors when switching locale fails', async () => {
       expect.hasAssertions()
       const mockOnLoadTranslationError = vi.fn<OnLoadTranslationError>()
-      const mockLoad = vi.fn<LoadTranslationsFn<Locales>>().mockImplementation(({ locale }) => {
-        if (locale === 'fr') {
-          return Promise.reject(new Error('French locale load failed'))
-        }
-        return Promise.resolve({ default: { title: 'English Title' } })
-      })
+      const mockLoad = vi
+        .fn<LoadTranslationsFn<Locales>>()
+        .mockImplementation(
+          mockLoadRejectByLocale('fr', new Error('French locale load failed'), { title: 'English Title' }),
+        )
 
       const { result } = renderHook(() => useTranslation<Locale, Locales>(['test'], mockLoad), {
         wrapper: wrapper({

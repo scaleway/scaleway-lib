@@ -119,11 +119,8 @@ describe('dataLoaderProvider', () => {
     expect(reloads).toHaveProperty(TEST_KEY)
     const testReload = result.current.getReloads(TEST_KEY)
     expect(testReload).toBeDefined()
-    if (testReload) {
-      await expect(testReload()).resolves.toBeNull()
-    } else {
-      throw new Error('It shoulded be defined')
-    }
+    expect(testReload).toBeDefined()
+    await expect(testReload!()).resolves.toBeNull()
     expect(result.current.getCachedData(TEST_KEY)).toBeNull()
     expect(result.current.getCachedData()).toStrictEqual({ test: null })
     expect(result.current.getRequest(TEST_KEY)).toBeDefined()

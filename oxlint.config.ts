@@ -11,7 +11,6 @@ export default defineConfig({
       plugins: ['vitest'],
       rules: {
         'vitest/no-conditional-expect': 'warn',
-        'vitest/no-conditional-in-test': 'warn',
         'vitest/no-mocks-import': 'warn',
         'vitest/prefer-expect-type-of': 'warn',
         'vitest/prefer-import-in-mock': 'warn',
