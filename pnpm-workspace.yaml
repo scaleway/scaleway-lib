@@ -61,6 +61,7 @@ catalog:
   yaml: 2.9.0
   zod: 4.5.4
   '@testing-library/dom': 10.4.1
+  pkg-pr-new: 0.0.88
 catalogMode: strict
 cleanupUnusedCatalogs: true
 

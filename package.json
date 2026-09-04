@@ -49,6 +49,7 @@
     "oxfmt": "catalog:",
     "oxlint": "catalog:",
     "oxlint-tsgolint": "catalog:",
+    "pkg-pr-new": "catalog:",
     "publint": "catalog:",
     "read-pkg": "catalog:",
     "tsdown": "catalog:",
