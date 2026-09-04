@@ -162,26 +162,25 @@ describe('abTestProvider', () => {
     getAttributes.mockReturnValue({ anonymousId: 'foo' })
 
     // Re-render with different attributes
-    if (rerenderFn) {
-      await act(async () => {
-        rerenderFn!(
-          <AbTestProvider
-            attributes={{
-              anonymousId: 'bar',
-            }}
-            config={{
-              apiHost: 'host',
-              clientKey: 'clientKey',
-              enableDevMode: true,
-            }}
-            errorCallback={errorCallback}
-            trackingCallback={trackingCallback}
-          >
-            Children
-          </AbTestProvider>,
-        )
-      })
-    }
+    expect(rerenderFn).toBeDefined()
+    await act(async () => {
+      rerenderFn!(
+        <AbTestProvider
+          attributes={{
+            anonymousId: 'bar',
+          }}
+          config={{
+            apiHost: 'host',
+            clientKey: 'clientKey',
+            enableDevMode: true,
+          }}
+          errorCallback={errorCallback}
+          trackingCallback={trackingCallback}
+        >
+          Children
+        </AbTestProvider>,
+      )
+    })
 
     // Wait for useEffect to run
     await new Promise(resolve => {
@@ -225,20 +224,19 @@ describe('abTestProvider', () => {
     getAttributes.mockReturnValue(getAttributesReturn)
 
     // Re-render with the SAME EXACT object references
-    if (rerenderFn) {
-      await act(async () => {
-        rerenderFn!(
-          <AbTestProvider
-            attributes={sharedAttributes} // Same config object
-            config={config} // Same attributes object
-            errorCallback={errorCallback}
-            trackingCallback={trackingCallback}
-          >
-            Children
-          </AbTestProvider>,
-        )
-      })
-    }
+    expect(rerenderFn).toBeDefined()
+    await act(async () => {
+      rerenderFn!(
+        <AbTestProvider
+          attributes={sharedAttributes} // Same config object
+          config={config} // Same attributes object
+          errorCallback={errorCallback}
+          trackingCallback={trackingCallback}
+        >
+          Children
+        </AbTestProvider>,
+      )
+    })
 
     // Mock getAttributes to return the same object reference on re-render
     getAttributes.mockReturnValue(getAttributesReturn)

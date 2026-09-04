@@ -7,6 +7,17 @@ import { describe, expect, it, test } from 'vitest'
 import { MemoryRouter, Redirect, Route, Switch, useLocation, useNavigate } from '../index'
 import { Router } from '../Router'
 
+const navigateOnFirstRender = (count: number, navigate: (path: string) => void, setCount: (n: number) => void) => {
+  if (count !== 0) {
+    return
+  }
+  Promise.resolve().then(() => {
+    navigate('/intermediate')
+    setCount(1)
+    navigate('/final')
+  })
+}
+
 test('renders routes correctly', () => {
   render(
     <MemoryRouter initialEntries={['/users/123']}>
@@ -138,17 +149,7 @@ test('batches multiple navigations in a microtask (no intermediate render)', asy
     const [count, setCount] = useState(0)
 
     useEffect(() => {
-      if (count === 0) {
-        // Simulate the real-world scenario: navigate + setState inside a
-        // microtask (Promise continuation). With useSyncExternalStore the
-        // first navigate would trigger a synchronous re-render before
-        // setCount runs, causing the component to see '/intermediate'.
-        Promise.resolve().then(() => {
-          navigate('/intermediate')
-          setCount(1)
-          navigate('/final')
-        })
-      }
+      navigateOnFirstRender(count, navigate, setCount)
     }, [count, navigate])
 
     return <Tracker />

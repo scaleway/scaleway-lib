@@ -38,6 +38,24 @@ vi.mock(import('@changesets/config'), async importOriginal => {
   }
 })
 
+const enoent = (): never => {
+  const error = new Error('not found') as NodeJS.ErrnoException
+  error.code = 'ENOENT'
+  throw error
+}
+
+const mockReadFileMap = (files: Record<string, string>, fallback: 'enoent' | '{}' = 'enoent') => {
+  vi.mocked(readFile).mockImplementation((async (filePath: string) => {
+    if (filePath in files) {
+      return files[filePath]
+    }
+    if (fallback === 'enoent') {
+      enoent()
+    }
+    return '{}'
+  }) as any)
+}
+
 describe('pnpm-catalogs-utils', () => {
   beforeEach(() => {
     // Clear all mocks
@@ -179,15 +197,9 @@ catalog:
 
   describe(getWorkspacePackageGlobs, () => {
     it('should discover globs from pnpm-workspace.yaml', async () => {
-      vi.mocked(readFile).mockImplementation((async (filePath: string) => {
-        if (filePath === 'pnpm-workspace.yaml') {
-          return 'packages:\n  - packages/*\n  - apps/*'
-        }
-
-        const error = new Error('not found') as NodeJS.ErrnoException
-        error.code = 'ENOENT'
-        throw error
-      }) as any)
+      mockReadFileMap({
+        'pnpm-workspace.yaml': 'packages:\n  - packages/*\n  - apps/*',
+      })
       vi.mocked(parse).mockReturnValue({ packages: ['packages/*', 'apps/*'] })
 
       const result = await getWorkspacePackageGlobs()
@@ -196,15 +208,9 @@ catalog:
     })
 
     it('should discover globs from root package.json workspaces', async () => {
-      vi.mocked(readFile).mockImplementation((async (filePath: string) => {
-        if (filePath === 'package.json') {
-          return JSON.stringify({ workspaces: ['packages/*', 'tools/*'] })
-        }
-
-        const error = new Error('not found') as NodeJS.ErrnoException
-        error.code = 'ENOENT'
-        throw error
-      }) as any)
+      mockReadFileMap({
+        'package.json': JSON.stringify({ workspaces: ['packages/*', 'tools/*'] }),
+      })
 
       const result = await getWorkspacePackageGlobs()
 
@@ -212,15 +218,9 @@ catalog:
     })
 
     it('should support workspaces as { packages: [] } object', async () => {
-      vi.mocked(readFile).mockImplementation((async (filePath: string) => {
-        if (filePath === 'package.json') {
-          return JSON.stringify({ workspaces: { packages: ['apps/*'] } })
-        }
-
-        const error = new Error('not found') as NodeJS.ErrnoException
-        error.code = 'ENOENT'
-        throw error
-      }) as any)
+      mockReadFileMap({
+        'package.json': JSON.stringify({ workspaces: { packages: ['apps/*'] } }),
+      })
 
       const result = await getWorkspacePackageGlobs()
 
@@ -228,16 +228,13 @@ catalog:
     })
 
     it('should merge and deduplicate globs from both sources', async () => {
-      vi.mocked(readFile).mockImplementation((async (filePath: string) => {
-        if (filePath === 'pnpm-workspace.yaml') {
-          return 'packages:\n  - packages/*'
-        }
-        if (filePath === 'package.json') {
-          return JSON.stringify({ workspaces: ['packages/*', 'apps/*'] })
-        }
-
-        return '{}'
-      }) as any)
+      mockReadFileMap(
+        {
+          'pnpm-workspace.yaml': 'packages:\n  - packages/*',
+          'package.json': JSON.stringify({ workspaces: ['packages/*', 'apps/*'] }),
+        },
+        '{}',
+      )
       vi.mocked(parse).mockReturnValue({ packages: ['packages/*'] })
 
       const result = await getWorkspacePackageGlobs()
@@ -258,15 +255,9 @@ catalog:
     })
 
     it('should strip trailing slashes from workspace patterns', async () => {
-      vi.mocked(readFile).mockImplementation((async (filePath: string) => {
-        if (filePath === 'pnpm-workspace.yaml') {
-          return 'packages:\n  - packages/*/'
-        }
-
-        const error = new Error('not found') as NodeJS.ErrnoException
-        error.code = 'ENOENT'
-        throw error
-      }) as any)
+      mockReadFileMap({
+        'pnpm-workspace.yaml': 'packages:\n  - packages/*/',
+      })
       vi.mocked(parse).mockReturnValue({ packages: ['packages/*/'] })
 
       const result = await getWorkspacePackageGlobs()
@@ -297,28 +288,25 @@ catalog:
 
     it('should find packages affected by dependency changes', async () => {
       // Mock file system reads for package.json files
-      vi.mocked(readFile).mockImplementation((async (filePath: string) => {
-        if (filePath === 'packages/package-a/package.json') {
-          return JSON.stringify({
+      mockReadFileMap(
+        {
+          'packages/package-a/package.json': JSON.stringify({
             dependencies: {
               'changed-dep': 'catalog:',
             },
             version: '1.0.0',
             name: 'package-a',
-          })
-        }
-        if (filePath === 'packages/package-b/package.json') {
-          return JSON.stringify({
+          }),
+          'packages/package-b/package.json': JSON.stringify({
             dependencies: {
               'unchanged-dep': 'catalog:',
             },
             version: '1.0.0',
             name: 'package-b',
-          })
-        }
-
-        return '{}'
-      }) as any)
+          }),
+        },
+        '{}',
+      )
 
       const result = await findAffectedPackages(['changed-dep'])
 
@@ -341,28 +329,25 @@ catalog:
       process.env['EXCLUDE_DEVDEPS'] = 'true'
 
       // Mock file system reads for package.json files
-      vi.mocked(readFile).mockImplementation((async (filePath: string) => {
-        if (filePath === 'packages/package-a/package.json') {
-          return JSON.stringify({
+      mockReadFileMap(
+        {
+          'packages/package-a/package.json': JSON.stringify({
             dependencies: {
               'changed-dep': 'catalog:',
             },
             version: '1.0.0',
             name: 'package-a',
-          })
-        }
-        if (filePath === 'packages/package-b/package.json') {
-          return JSON.stringify({
+          }),
+          'packages/package-b/package.json': JSON.stringify({
             devDependencies: {
               'changed-dep': 'catalog:',
             },
             version: '1.0.0',
             name: 'package-b',
-          })
-        }
-
-        return '{}'
-      }) as any)
+          }),
+        },
+        '{}',
+      )
 
       const result = await findAffectedPackages(['changed-dep'])
 
@@ -385,37 +370,32 @@ catalog:
       })
 
       // Mock file system reads for package.json files
-      vi.mocked(readFile).mockImplementation((async (filePath: string) => {
-        if (filePath === 'packages/package-a/package.json') {
-          return JSON.stringify({
+      mockReadFileMap(
+        {
+          'packages/package-a/package.json': JSON.stringify({
             dependencies: {
               'changed-dep': 'catalog:',
             },
             version: '1.0.0',
             name: 'package-a',
-          })
-        }
-        if (filePath === 'packages/package-b/package.json') {
-          return JSON.stringify({
+          }),
+          'packages/package-b/package.json': JSON.stringify({
             dependencies: {
               'unchanged-dep': 'catalog:',
             },
             version: '1.0.0',
             name: 'package-b',
-          })
-        }
-        if (filePath === 'packages/package-c/package.json') {
-          return JSON.stringify({
+          }),
+          'packages/package-c/package.json': JSON.stringify({
             dependencies: {
               'changed-dep': 'catalog:',
             },
             version: '1.0.0',
             name: 'package-c',
-          })
-        }
-
-        return '{}'
-      }) as any)
+          }),
+        },
+        '{}',
+      )
 
       const result = await findAffectedPackages(['changed-dep'])
 
@@ -467,19 +447,18 @@ catalog:
 
     it('should respect explicitly provided packageJsonGlobs over discovered ones', async () => {
       vi.mocked(glob).mockResolvedValue(['apps/app-a/package.json'])
-      vi.mocked(readFile).mockImplementation((async (filePath: string) => {
-        if (filePath === 'apps/app-a/package.json') {
-          return JSON.stringify({
+      mockReadFileMap(
+        {
+          'apps/app-a/package.json': JSON.stringify({
             dependencies: {
               'changed-dep': 'catalog:',
             },
             version: '1.0.0',
             name: 'app-a',
-          })
-        }
-
-        return '{}'
-      }) as any)
+          }),
+        },
+        '{}',
+      )
 
       const result = await findAffectedPackages(['changed-dep'], ['apps/*/package.json'])
 
@@ -493,24 +472,16 @@ catalog:
     })
 
     it('should discover non-default workspace layouts (apps/*) from pnpm-workspace.yaml', async () => {
-      vi.mocked(readFile).mockImplementation((async (filePath: string) => {
-        if (filePath === 'pnpm-workspace.yaml') {
-          return 'packages:\n  - apps/*'
-        }
-        if (filePath === 'apps/app-a/package.json') {
-          return JSON.stringify({
-            dependencies: {
-              'changed-dep': 'catalog:',
-            },
-            version: '1.0.0',
-            name: 'app-a',
-          })
-        }
-
-        const error = new Error('not found') as NodeJS.ErrnoException
-        error.code = 'ENOENT'
-        throw error
-      }) as any)
+      mockReadFileMap({
+        'pnpm-workspace.yaml': 'packages:\n  - apps/*',
+        'apps/app-a/package.json': JSON.stringify({
+          dependencies: {
+            'changed-dep': 'catalog:',
+          },
+          version: '1.0.0',
+          name: 'app-a',
+        }),
+      })
       vi.mocked(parse).mockReturnValue({ packages: ['apps/*'] })
       vi.mocked(glob).mockResolvedValue(['apps/app-a/package.json'])
 

@@ -22,6 +22,26 @@ const fakeSuccessPromise = async () =>
     }, PROMISE_TIMEOUT)
   })
 
+const createPollingPromise = (getFlag: () => boolean, value: unknown) => async () =>
+  new Promise(resolve => {
+    setInterval(() => {
+      if (getFlag()) {
+        resolve(value)
+      }
+    }, PROMISE_TIMEOUT)
+  })
+
+const createSuccessOrErrorPromise = (getSuccess: () => boolean, error: Error) =>
+  new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (getSuccess()) {
+        resolve(true)
+      } else {
+        reject(error)
+      }
+    }, PROMISE_TIMEOUT)
+  })
+
 const initialProps = {
   config: {
     enabled: true,
@@ -92,18 +112,7 @@ describe(useDataLoader, () => {
 
   it('should render correctly without request enabled then enable it', async () => {
     let resolveIt = false
-    const method = vi.fn(async () => {
-      const promiseFn = async () =>
-        new Promise(resolve => {
-          setInterval(() => {
-            if (resolveIt) {
-              resolve(true)
-            }
-          }, PROMISE_TIMEOUT)
-        })
-
-      return promiseFn()
-    })
+    const method = vi.fn(createPollingPromise(() => resolveIt, true))
     const testProps = {
       config: {
         enabled: false,
@@ -179,18 +188,7 @@ describe(useDataLoader, () => {
 
   it('should render and cache correctly with cacheKeyPrefix', async () => {
     let resolveIt = false
-    const method = vi.fn(async () => {
-      const promiseFn = async () =>
-        new Promise(resolve => {
-          setInterval(() => {
-            if (resolveIt) {
-              resolve(true)
-            }
-          }, PROMISE_TIMEOUT)
-        })
-
-      return promiseFn()
-    })
+    const method = vi.fn(createPollingPromise(() => resolveIt, true))
 
     const initProps = {
       ...initialProps,
@@ -525,18 +523,7 @@ describe(useDataLoader, () => {
 
   it('should render correctly with enabled off', async () => {
     let resolveIt = false
-    const method = vi.fn(async () => {
-      const promiseFn = async () =>
-        new Promise(resolve => {
-          setInterval(() => {
-            if (resolveIt) {
-              resolve(true)
-            }
-          }, PROMISE_TIMEOUT)
-        })
-
-      return promiseFn()
-    })
+    const method = vi.fn(createPollingPromise(() => resolveIt, true))
 
     const initProps = {
       ...initialProps,
@@ -703,16 +690,7 @@ describe(useDataLoader, () => {
           onSuccess,
         },
         key: 'test-12',
-        method: async () =>
-          new Promise((resolve, reject) => {
-            setTimeout(() => {
-              if (success) {
-                resolve(true)
-              } else {
-                reject(error)
-              }
-            }, PROMISE_TIMEOUT)
-          }),
+        method: async () => createSuccessOrErrorPromise(() => success, error),
       },
       wrapper,
     })
@@ -937,18 +915,7 @@ describe(useDataLoader, () => {
 
   it('should differentiate between isLoading and isFetching', async () => {
     let resolveIt = false
-    const method = vi.fn(async () => {
-      const promiseFn = async () =>
-        new Promise(resolve => {
-          setInterval(() => {
-            if (resolveIt) {
-              resolve({ id: 1, name: 'test' })
-            }
-          }, PROMISE_TIMEOUT)
-        })
-
-      return promiseFn()
-    })
+    const method = vi.fn(createPollingPromise(() => resolveIt, { id: 1, name: 'test' }))
 
     const testProps = {
       config: {

@@ -8,6 +8,24 @@ vi.mock('yaml')
 vi.mock('tinyglobby')
 vi.mock('node:fs/promises')
 
+const mockParseCatalog = (content: string) =>
+  content.includes('1.0.0')
+    ? {
+        catalog: {
+          'package-a': '1.0.0',
+          'package-b': '2.0.0',
+          'package-c': '3.0.0',
+        },
+      }
+    : {
+        catalog: {
+          'package-a': '1.1.0',
+          'package-b': '2.0.0',
+          'package-c': '3.1.0',
+          'package-d': '4.0.0',
+        },
+      }
+
 describe('pnpm-catalogs-git-utils', () => {
   beforeEach(() => {
     // Clear all mocks
@@ -94,27 +112,7 @@ catalog:
 `),
       })
 
-      // Mock yaml parsing
-      vi.mocked(parse).mockImplementation((content: string) => {
-        if (content.includes('1.0.0')) {
-          return {
-            catalog: {
-              'package-a': '1.0.0',
-              'package-b': '2.0.0',
-              'package-c': '3.0.0',
-            },
-          }
-        }
-
-        return {
-          catalog: {
-            'package-a': '1.1.0',
-            'package-b': '2.0.0',
-            'package-c': '3.1.0',
-            'package-d': '4.0.0',
-          },
-        }
-      })
+      vi.mocked(parse).mockImplementation(mockParseCatalog)
 
       const result = await findChangedDependenciesFromGit('abc123', 'def456')
 

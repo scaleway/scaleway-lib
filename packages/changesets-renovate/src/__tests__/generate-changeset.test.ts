@@ -1,4 +1,3 @@
-// oxlint-disable max-lines
 import { readFile, writeFile } from 'node:fs/promises'
 import { defaultConfig, readConfig } from '@changesets/config'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
@@ -19,6 +18,10 @@ vi.mock(import('@changesets/config'), async importOriginal => {
 
 const mockedWriteFile = vi.mocked(writeFile)
 const mockedReadFile = vi.mocked(readFile)
+
+const mockReadFileMap = (files: Record<string, string>) => {
+  mockedReadFile.mockImplementation((async (path: unknown) => files[path as string] ?? '{}') as never)
+}
 
 describe('generate changeset file', () => {
   beforeEach(() => {
@@ -84,12 +87,8 @@ describe('generate changeset file', () => {
     })
 
     // Mock changeset config for this test
-    mockedReadFile.mockImplementation(async path => {
-      if (path === 'test/package.json') {
-        return `{"name":"packageName","version":"1.0.0","dependencies": { "package": "1.0.0", "package2": "1.2.2" }}`
-      }
-
-      return '{}'
+    mockReadFileMap({
+      'test/package.json': `{"name":"packageName","version":"1.0.0","dependencies": { "package": "1.0.0", "package2": "1.2.2" }}`,
     })
 
     process.env['BRANCH_PREFIX'] = 'dep-upgrade/'
@@ -134,12 +133,8 @@ describe('generate changeset file', () => {
     })
 
     // Mock changeset config for this test
-    mockedReadFile.mockImplementation(async path => {
-      if (path === 'test/package.json') {
-        return `{"name":"packageName","version":"1.0.0","dependencies": { "package": "1.0.0", "package2": "1.2.2" }}`
-      }
-
-      return '{}'
+    mockReadFileMap({
+      'test/package.json': `{"name":"packageName","version":"1.0.0","dependencies": { "package": "1.0.0", "package2": "1.2.2" }}`,
     })
 
     process.env['SKIP_BRANCH_CHECK'] = 'TRUE'
@@ -222,12 +217,8 @@ describe('generate changeset file', () => {
     })
 
     // Mock changeset config for this test
-    mockedReadFile.mockImplementation(async path => {
-      if (path === 'test/package.json') {
-        return `{"name":"packageName","version":"1.0.0","dependencies": { "packagez": "1.0.0", "package2": "1.2.2" }}`
-      }
-
-      return '{}'
+    mockReadFileMap({
+      'test/package.json': `{"name":"packageName","version":"1.0.0","dependencies": { "packagez": "1.0.0", "package2": "1.2.2" }}`,
     })
 
     await run()
@@ -270,12 +261,8 @@ describe('generate changeset file', () => {
     })
 
     // Mock changeset config for this test
-    mockedReadFile.mockImplementation(async path => {
-      if (path === 'test/package.json') {
-        return `{"name":"packageName","version":"1.0.0","dependencies": { "package": "1.0.0", "package2": "1.2.2" }}`
-      }
-
-      return '{}'
+    mockReadFileMap({
+      'test/package.json': `{"name":"packageName","version":"1.0.0","dependencies": { "package": "1.0.0", "package2": "1.2.2" }}`,
     })
 
     process.env['SKIP_COMMIT'] = 'TRUE'
@@ -323,15 +310,9 @@ describe('generate changeset file', () => {
     })
 
     // Mock changeset config for this test
-    mockedReadFile.mockImplementation(async path => {
-      if (path === 'test-a/package.json') {
-        return `{"name":"packageNameA","version":"1.0.0","dependencies": { "packagez": "1.0.0" }}`
-      }
-      if (path === 'test-b/package.json') {
-        return `{"name":"packageNameB","version":"1.0.0","dependencies": { "packagea": "1.0.0" }}`
-      }
-
-      return '{}'
+    mockReadFileMap({
+      'test-a/package.json': `{"name":"packageNameA","version":"1.0.0","dependencies": { "packagez": "1.0.0" }}`,
+      'test-b/package.json': `{"name":"packageNameB","version":"1.0.0","dependencies": { "packagea": "1.0.0" }}`,
     })
 
     process.env['SKIP_COMMIT'] = 'TRUE'
@@ -368,12 +349,8 @@ describe('generate changeset file', () => {
     })
 
     // Mock changeset config for this test
-    mockedReadFile.mockImplementation(async path => {
-      if (path === 'package.json') {
-        return `{"name":"packageName","workspaces":[]}`
-      }
-
-      return '{}'
+    mockReadFileMap({
+      'package.json': `{"name":"packageName","workspaces":[]}`,
     })
 
     await run()
@@ -404,12 +381,8 @@ describe('generate changeset file', () => {
     })
 
     // Mock changeset config for this test
-    mockedReadFile.mockImplementation(async path => {
-      if (path === 'package.json') {
-        return `{"name":"packageName"}`
-      }
-
-      return '{}'
+    mockReadFileMap({
+      'package.json': `{"name":"packageName"}`,
     })
 
     await run()
@@ -446,12 +419,8 @@ describe('generate changeset file', () => {
     })
 
     // Mock changeset config for this test
-    mockedReadFile.mockImplementation(async path => {
-      if (path === 'test/package.json') {
-        return `{"name":"packageName","version":"1.0.0"}`
-      }
-
-      return '{}'
+    mockReadFileMap({
+      'test/package.json': `{"name":"packageName","version":"1.0.0"}`,
     })
 
     await run()
@@ -491,12 +460,8 @@ describe('generate changeset file', () => {
     })
 
     // Mock changeset config for this test
-    mockedReadFile.mockImplementation(async path => {
-      if (path === 'test/package.json') {
-        return `{"name":"packageName","version":"1.0.0", "private": true }`
-      }
-
-      return '{}'
+    mockReadFileMap({
+      'test/package.json': `{"name":"packageName","version":"1.0.0", "private": true }`,
     })
 
     await run()
