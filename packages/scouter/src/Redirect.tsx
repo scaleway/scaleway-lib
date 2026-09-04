@@ -45,5 +45,4 @@ export const RedirectInternal = ({ from: path, computedMatch, exact, push, to }:
 
 export type RedirectProps = Omit<RedirectInternalProps, 'computedMatch'>
 
-// oxlint-disable-next-line react/no-multi-comp
 export const Redirect = (props: RedirectProps) => <RedirectInternal {...props} />

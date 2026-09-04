@@ -315,7 +315,6 @@ test('form use case', async () => {
 test('form use case with useSafeQueryParams - query params update allowed but navigation blocked', async () => {
   const { z } = await import('zod')
 
-  // oxlint-disable-next-line react/no-multi-comp
   const UserForm = () => {
     const { setQueryParams, queryParams } = useSafeQueryParams({
       schema: z.object({
