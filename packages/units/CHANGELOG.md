@@ -1,5 +1,11 @@
 # @scaleway/units
 
+## 1.1.0
+
+### Minor Changes
+
+- [#3699](https://github.com/scaleway/scaleway-lib/pull/3699) [`78f5a6a`](https://github.com/scaleway/scaleway-lib/commit/78f5a6ac70648b172dc68294ff41a8c372b97578) Thanks [@chambo-e](https://github.com/chambo-e)! - Add support for negative SI unit prefixes (milli, micro, nano, pico, femto, atto, zepto, yocto) in `convertUnit`. Since these prefixes are SI-only, the types now reject combining them with `base: 2` (IEC)
+
 ## 1.0.3
 
 ### Patch Changes
