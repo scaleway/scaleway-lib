@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.0
+
+### Minor Changes
+
+- [#3767](https://github.com/scaleway/scaleway-lib/pull/3767) [`b007acf`](https://github.com/scaleway/scaleway-lib/commit/b007acf8d5cafaf41dee0ceedf91b8492286c4e0) Thanks [@chambo-e](https://github.com/chambo-e)! - add react configs
+
 ## 1.0.1
 
 ### Patch Changes
