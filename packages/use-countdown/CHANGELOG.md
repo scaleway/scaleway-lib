@@ -1,5 +1,11 @@
 # @scaleway/use-countdown
 
+## 1.0.2
+
+### Patch Changes
+
+- [#3771](https://github.com/scaleway/scaleway-lib/pull/3771) [`7952e74`](https://github.com/scaleway/scaleway-lib/commit/7952e74068f49e0f042e5009098f11767a6476cb) Thanks [@chambo-e](https://github.com/chambo-e)! - fix: stop recreating the countdown interval on every tick by using a functional state update
+
 ## 1.0.1
 
 ### Patch Changes
