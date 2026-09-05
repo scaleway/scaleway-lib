@@ -3,14 +3,13 @@
  */
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { mockSimpleGit } from '../../__mocks__/simple-git'
 import { createChangeset } from '../createChangeset.js'
 import { getBumpsFromGit, handleChangesetFile } from '../git-utils.js'
 import { handlePackageChanges } from '../handle-packages.js'
 import { getPackagesNames } from '../utils.js'
+import { mockSimpleGit } from './simpleGitMock'
 
 // Mock all external dependencies
-vi.mock('simple-git')
 vi.mock('../createChangeset.js')
 vi.mock('../git-utils.js')
 vi.mock('../utils.js')
