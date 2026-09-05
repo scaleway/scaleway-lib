@@ -46,7 +46,7 @@ describe(formatUnit, () => {
     expect(
       // @ts-expect-error We test the use case when unit is unknown
       formatUnit('fr', 123, { unit: 'unknown' }),
-    ).toMatchSnapshot()
+    ).toMatchSnapshot('unknown unit')
   })
 
   it.each(tests)('%s %o', (_, options, locale, amount) => {

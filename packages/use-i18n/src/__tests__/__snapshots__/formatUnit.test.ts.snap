@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`formatUnit > should return empty string for unknown unit 1`] = `""`;
+exports[`formatUnit > should return empty string for unknown unit > unknown unit 1`] = `""`;
 
 exports[`formatUnit > should work with { unit: 'bit' } 1`] = `"12,56 b"`;
 

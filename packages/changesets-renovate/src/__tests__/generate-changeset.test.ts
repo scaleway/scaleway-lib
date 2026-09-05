@@ -96,7 +96,7 @@ describe('generate changeset file', () => {
 
     expect(console.log).not.toHaveBeenCalledWith('Not a renovate branch, skipping')
     expect(mockedReadFile).toHaveBeenCalledWith(file, 'utf8')
-    expect(mockedWriteFile).toMatchSnapshot()
+    expect(mockedWriteFile).toMatchSnapshot('custom branch prefix changeset')
     expect(add).toHaveBeenCalledWith(fileName)
     expect(commit).toHaveBeenCalledWith(`chore: add ${fileName}`)
     expect(push).toHaveBeenCalledTimes(1)
@@ -142,7 +142,7 @@ describe('generate changeset file', () => {
 
     expect(console.log).not.toHaveBeenCalledWith('Not a renovate branch, skipping')
     expect(mockedReadFile).toHaveBeenCalledWith(file, 'utf8')
-    expect(mockedWriteFile).toMatchSnapshot()
+    expect(mockedWriteFile).toMatchSnapshot('branch check skip changeset')
     expect(add).toHaveBeenCalledWith(fileName)
     expect(commit).toHaveBeenCalledWith(`chore: add ${fileName}`)
     expect(push).toHaveBeenCalledTimes(1)
@@ -224,7 +224,7 @@ describe('generate changeset file', () => {
     await run()
 
     expect(mockedReadFile).toHaveBeenCalledWith(file, 'utf8')
-    expect(mockedWriteFile).toMatchSnapshot()
+    expect(mockedWriteFile).toMatchSnapshot('changeset with commit and push')
     expect(add).toHaveBeenCalledWith(fileName)
     expect(commit).toHaveBeenCalledWith(`chore: add ${fileName}`)
     expect(push).toHaveBeenCalledTimes(1)
@@ -269,7 +269,7 @@ describe('generate changeset file', () => {
     await run()
 
     expect(mockedReadFile).toHaveBeenCalledWith(file, 'utf8')
-    expect(mockedWriteFile).toMatchSnapshot()
+    expect(mockedWriteFile).toMatchSnapshot('changeset without commit and push')
     expect(add).not.toHaveBeenCalledWith(fileName)
     expect(commit).not.toHaveBeenCalledWith(`chore: add changeset renovate-${rev}`)
     expect(push).not.toHaveBeenCalledTimes(1)
@@ -321,7 +321,7 @@ describe('generate changeset file', () => {
 
     expect(mockedReadFile).toHaveBeenCalledWith(fileA, 'utf8')
     expect(mockedReadFile).toHaveBeenCalledWith(fileB, 'utf8')
-    expect(mockedWriteFile).toMatchSnapshot()
+    expect(mockedWriteFile).toMatchSnapshot('sorted changeset without commit and push')
     expect(add).not.toHaveBeenCalledWith(fileName)
     expect(commit).not.toHaveBeenCalledWith(`chore: add changeset renovate-${rev}`)
     expect(push).not.toHaveBeenCalledTimes(1)

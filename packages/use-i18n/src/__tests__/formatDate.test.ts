@@ -41,7 +41,7 @@ describe(formatDate, () => {
     expect(
       // @ts-expect-error we check a failing case
       formatDate('fr', { not: 'a valid date' }),
-    ).toMatchSnapshot()
+    ).toMatchSnapshot('invalid date')
   })
 
   it('should throw if shorthand format is invalid', () => {

@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`formatDate > should return passed object if not valid date 1`] = `
+exports[`formatDate > should return passed object if not valid date > invalid date 1`] = `
 {
   "not": "a valid date",
 }

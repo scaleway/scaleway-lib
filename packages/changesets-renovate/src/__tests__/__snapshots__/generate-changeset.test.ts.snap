@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`generate changeset file > should generate changeset file, but skip commit and push 1`] = `
+exports[`generate changeset file > should generate changeset file, but skip commit and push > changeset without commit and push 1`] = `
 [MockFunction] {
   "calls": [
     [
@@ -23,7 +23,7 @@ Updated dependency \`package2\` to \`version2\`.
 }
 `;
 
-exports[`generate changeset file > should generate changeset file, commit and push 1`] = `
+exports[`generate changeset file > should generate changeset file, commit and push > changeset with commit and push 1`] = `
 [MockFunction] {
   "calls": [
     [
@@ -46,7 +46,7 @@ Updated dependency \`packagea\` to \`version\`.
 }
 `;
 
-exports[`generate changeset file > should generate sorted changeset file, but skip commit and push 1`] = `
+exports[`generate changeset file > should generate sorted changeset file, but skip commit and push > sorted changeset without commit and push 1`] = `
 [MockFunction] {
   "calls": [
     [
@@ -70,7 +70,7 @@ Updated dependency \`packagez\` to \`version2\`.
 }
 `;
 
-exports[`generate changeset file > should not skip if branch starts with custom branch prefix 1`] = `
+exports[`generate changeset file > should not skip if branch starts with custom branch prefix > custom branch prefix changeset 1`] = `
 [MockFunction] {
   "calls": [
     [
@@ -93,7 +93,7 @@ Updated dependency \`package2\` to \`version2\`.
 }
 `;
 
-exports[`generate changeset file > should not skip if not in renovate branch, when branch check skip is true 1`] = `
+exports[`generate changeset file > should not skip if not in renovate branch, when branch check skip is true > branch check skip changeset 1`] = `
 [MockFunction] {
   "calls": [
     [
