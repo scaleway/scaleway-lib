@@ -4,9 +4,9 @@ import { mockSimpleGit } from '../../__mocks__/simple-git'
 import { findChangedDependenciesFromGit, loadCatalogFromGit } from '../git-utils.js'
 
 // Mock all external dependencies
-vi.mock('yaml')
-vi.mock('tinyglobby')
-vi.mock('node:fs/promises')
+vi.mock(import('yaml'))
+vi.mock(import('tinyglobby'))
+vi.mock(import('node:fs/promises'))
 
 const mockParseCatalog = (content: string) =>
   content.includes('1.0.0')

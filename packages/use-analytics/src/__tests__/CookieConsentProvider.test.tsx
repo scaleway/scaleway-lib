@@ -17,22 +17,30 @@ vi.mock(import('../analytics/useDestinations'), async importOriginal => {
   }
 })
 
-vi.mock('../helpers/isClient', () => ({
+vi.mock(import('../helpers/isClient'), () => ({
   IS_CLIENT: true,
 }))
 
-vi.mock('../constants', () => ({
-  CATEGORIES: ['essential', 'functional', 'analytics', 'advertising'] as const,
-  CONSENT_ADVERTISING_MAX_AGE: 2_592_000,
-  CONSENT_MAX_AGE: 31_536_000,
-  COOKIE_PREFIX: 'consent',
-  COOKIES_OPTIONS: { path: '/', sameSite: 'lax' },
-  HASH_COOKIE: 'consent_hash',
-}))
+vi.mock(
+  import('../constants'),
+  () =>
+    ({
+      CATEGORIES: ['essential', 'functional', 'analytics', 'advertising'] as const,
+      CONSENT_ADVERTISING_MAX_AGE: 2_592_000,
+      CONSENT_MAX_AGE: 31_536_000,
+      COOKIE_PREFIX: 'consent',
+      COOKIES_OPTIONS: { path: '/', sameSite: 'lax' },
+      HASH_COOKIE: 'consent_hash',
+    }) as never,
+)
 
-vi.mock('../helpers/misc', () => ({
-  stringToHash: vi.fn((str: string) => `hash_${str}`),
-}))
+vi.mock(
+  import('../helpers/misc'),
+  () =>
+    ({
+      stringToHash: vi.fn((str: string) => `hash_${str}`),
+    }) as never,
+)
 
 const TestComponent = () => {
   const { categoriesConsent } = useCookieConsent()
