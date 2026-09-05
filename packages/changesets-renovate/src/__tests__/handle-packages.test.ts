@@ -10,10 +10,10 @@ import { handlePackageChanges } from '../handle-packages.js'
 import { getPackagesNames } from '../utils.js'
 
 // Mock all external dependencies
-vi.mock('simple-git')
-vi.mock('../createChangeset.js')
-vi.mock('../git-utils.js')
-vi.mock('../utils.js')
+vi.mock(import('simple-git'))
+vi.mock(import('../createChangeset.js'))
+vi.mock(import('../git-utils.js'))
+vi.mock(import('../utils.js'))
 
 describe('handle-packages', () => {
   beforeEach(() => {

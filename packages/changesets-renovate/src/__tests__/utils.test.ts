@@ -19,12 +19,16 @@ const { execSyncMock, escapePathMock, globMock } = vi.hoisted(() => ({
 }))
 
 // Mock all external dependencies
-vi.mock('node:fs/promises')
-vi.mock('node:child_process', () => ({
-  execSync: execSyncMock,
-}))
-vi.mock('yaml')
-vi.mock('tinyglobby', () => ({
+vi.mock(import('node:fs/promises'))
+vi.mock(
+  import('node:child_process'),
+  () =>
+    ({
+      execSync: execSyncMock,
+    }) as never,
+)
+vi.mock(import('yaml'))
+vi.mock(import('tinyglobby'), () => ({
   glob: globMock,
   escapePath: escapePathMock,
 }))

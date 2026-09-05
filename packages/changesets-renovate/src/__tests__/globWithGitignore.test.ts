@@ -7,11 +7,15 @@ const { execSyncMock, escapePathMock, globMock } = vi.hoisted(() => ({
   globMock: vi.fn(),
 }))
 
-vi.mock('node:child_process', () => ({
-  execSync: execSyncMock,
-}))
+vi.mock(
+  import('node:child_process'),
+  () =>
+    ({
+      execSync: execSyncMock,
+    }) as never,
+)
 
-vi.mock('tinyglobby', () => ({
+vi.mock(import('tinyglobby'), () => ({
   glob: globMock,
   escapePath: escapePathMock,
 }))
