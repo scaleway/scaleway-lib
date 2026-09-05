@@ -239,8 +239,8 @@ catalogs:
       specifier: 2.6.0
       version: 2.6.0
     '@scaleway/sdk-iam':
-      specifier: 2.14.0
-      version: 2.14.0
+      specifier: 2.14.1
+      version: 2.14.1
     '@segment/analytics-next':
       specifier: 1.84.1
       version: 1.84.1
@@ -507,7 +507,7 @@ importers:
         version: 2.6.0
       '@scaleway/sdk-iam':
         specifier: 'catalog:'
-        version: 2.14.0(@scaleway/sdk-client@2.6.0)
+        version: 2.14.1(@scaleway/sdk-client@2.6.0)
       '@types/react':
         specifier: 'catalog:'
         version: 19.2.18
@@ -1461,17 +1461,17 @@ packages:
     resolution: {integrity: sha512-o8mq/Yv9BgiYdWmBRK7MKeBB+J+0fMTzZ/s4c/lke6L/QRSXKl7itEMA7F3tH+LPyXN9w12BBhmIu7dRG6fJGw==}
     engines: {node: '>=20.20.2'}
 
-  '@scaleway/sdk-iam@2.14.0':
-    resolution: {integrity: sha512-U18Sa5iQnwsgTXZUsKwWWbqZ2sNI1H3IjClX+4ouBWfOD0SocwU1aqA2HNA0Pc4yJifL2isfMEQOwtRFBzE5yg==}
+  '@scaleway/sdk-iam@2.14.1':
+    resolution: {integrity: sha512-4ZktYSq2ptsv2cDUKcJ0waTkNKnfXvZZm+L0/Wb5+DAvbe+HhKMao8QJTh60cDNqj/K5d3lmEpJMok8S1LSyfQ==}
     engines: {node: '>=20.20.2'}
     peerDependencies:
-      '@scaleway/sdk-client': ^2.6.0
+      '@scaleway/sdk-client': ^2.7.0
 
-  '@scaleway/sdk-std@2.7.0':
-    resolution: {integrity: sha512-EnVTmkjZXO7/ix8AIUCHKHYSwFMI4w0oyxzYhU2ZcISYWKDhk5p7ZWUcVLghsBC6ajZD2qejbTe6+iUMfZGt+g==}
+  '@scaleway/sdk-std@2.7.1':
+    resolution: {integrity: sha512-trJBTsCZ5PI8GxAwt3wPZ9as56Mxjo78Ahu6Tlg3Gw4vqgg+QcSNztwM2Z/Y5Hh80rT+kuTqaI9UHcTBU8sI1A==}
     engines: {node: '>=20.20.2'}
     peerDependencies:
-      '@scaleway/sdk-client': 2.6.0
+      '@scaleway/sdk-client': 2.7.0
 
   '@sec-ant/readable-stream@0.4.1':
     resolution: {integrity: sha512-831qok9r2t8AlxLko40y2ebgSDhenenCatLVeW/uBtnHPyhHOvG0C7TvfgecV+wHzIm5KUICgzmVpWS+IMEAeg==}
@@ -3632,13 +3632,13 @@ snapshots:
 
   '@scaleway/sdk-client@2.6.0': {}
 
-  '@scaleway/sdk-iam@2.14.0(@scaleway/sdk-client@2.6.0)':
+  '@scaleway/sdk-iam@2.14.1(@scaleway/sdk-client@2.6.0)':
     dependencies:
       '@scaleway/random-name': 6.0.2
       '@scaleway/sdk-client': 2.6.0
-      '@scaleway/sdk-std': 2.7.0(@scaleway/sdk-client@2.6.0)
+      '@scaleway/sdk-std': 2.7.1(@scaleway/sdk-client@2.6.0)
 
-  '@scaleway/sdk-std@2.7.0(@scaleway/sdk-client@2.6.0)':
+  '@scaleway/sdk-std@2.7.1(@scaleway/sdk-client@2.6.0)':
     dependencies:
       '@scaleway/sdk-client': 2.6.0
 
