@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { getAttributes, setAttributes, useGrowthBook } from '../../__mocks__/@growthbook/growthbook-react'
 import { useAbTestAttributes } from '../useAbTestAttributes'
+import { getAttributes, setAttributes, useGrowthBook } from './growthbookMock'
 
 describe(useAbTestAttributes, () => {
   beforeEach(() => {

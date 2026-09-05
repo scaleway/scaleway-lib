@@ -5,4 +5,8 @@ afterEach(() => {
   cleanup()
 })
 
-vi.mock('@growthbook/growthbook-react')
+vi.mock('@growthbook/growthbook-react', async () => {
+  const mod = await import('./src/__tests__/growthbookMock')
+
+  return mod
+})
