@@ -13,7 +13,7 @@ describe(useNavigate, () => {
       ),
     })
 
-    expect(typeof result.current).toBe('function')
+    expect(result.current).toBeTypeOf('function')
   })
 
   it('navigate with string path', () => {

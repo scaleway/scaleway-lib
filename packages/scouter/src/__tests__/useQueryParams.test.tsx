@@ -18,8 +18,8 @@ describe(useQueryParams, () => {
     expect(result.current).toHaveProperty('queryParams')
     expect(result.current).toHaveProperty('replaceQueryParams')
     expect(result.current).toHaveProperty('setQueryParams')
-    expect(typeof result.current.replaceQueryParams).toBe('function')
-    expect(typeof result.current.setQueryParams).toBe('function')
+    expect(result.current.replaceQueryParams).toBeTypeOf('function')
+    expect(result.current.setQueryParams).toBeTypeOf('function')
   })
 
   it('parses query params from URL', () => {

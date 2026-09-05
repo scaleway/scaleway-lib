@@ -1,4 +1,4 @@
-// oxlint-disable vitest/require-top-level-describe
+// oxlint-disable vitest/require-top-level-describe typescript/unbound-method
 import { render, renderHook } from '@testing-library/react'
 import { createMemoryHistory as createHistory } from 'history'
 import { describe, expect, it, test } from 'vitest'
@@ -32,12 +32,12 @@ test('returns history object from context', () => {
   })
 
   expect(result.current).toBeDefined()
-  expect(typeof result.current.push).toBe('function')
-  expect(typeof result.current.replace).toBe('function')
-  expect(typeof result.current.go).toBe('function')
-  expect(typeof result.current.back).toBe('function')
-  expect(typeof result.current.forward).toBe('function')
-  expect(typeof result.current.createHref).toBe('function')
+  expect(result.current.push).toBeTypeOf('function')
+  expect(result.current.replace).toBeTypeOf('function')
+  expect(result.current.go).toBeTypeOf('function')
+  expect(result.current.back).toBeTypeOf('function')
+  expect(result.current.forward).toBeTypeOf('function')
+  expect(result.current.createHref).toBeTypeOf('function')
 })
 
 test('history object has location property', () => {
