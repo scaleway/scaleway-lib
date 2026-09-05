@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/use-countdown",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Tiny react hook for a countdown",
   "homepage": "https://github.com/scaleway/scaleway-lib/tree/main/packages/use-countdown",
   "bugs": {
