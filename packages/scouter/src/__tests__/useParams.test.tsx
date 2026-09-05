@@ -14,7 +14,7 @@ describe('when the path has no params', () => {
       ),
     })
 
-    expect(typeof result.current).toBe('object')
+    expect(result.current).toBeTypeOf('object')
     expect(Object.keys(result.current)).toHaveLength(0)
   })
 })
@@ -31,7 +31,7 @@ describe('when the path has some params', () => {
       ),
     })
 
-    expect(typeof result.current).toBe('object')
+    expect(result.current).toBeTypeOf('object')
     expect(result.current).toMatchObject({
       slug: 'cupcakes',
     })
@@ -51,7 +51,7 @@ describe('when the path has some params', () => {
         ),
       })
 
-      expect(typeof result.current).toBe('object')
+      expect(result.current).toBeTypeOf('object')
       expect(result.current).toMatchObject({
         username: 'mjackson',
         course: 'react-router',

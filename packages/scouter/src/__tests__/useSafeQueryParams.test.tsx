@@ -24,7 +24,7 @@ describe(useSafeQueryParams, () => {
 
     expect(result.current).toHaveProperty('queryParams')
     expect(result.current).toHaveProperty('setQueryParams')
-    expect(typeof result.current.setQueryParams).toBe('function')
+    expect(result.current.setQueryParams).toBeTypeOf('function')
   })
 
   it('parses valid query params', () => {
