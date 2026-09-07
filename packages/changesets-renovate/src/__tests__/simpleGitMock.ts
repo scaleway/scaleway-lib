@@ -12,6 +12,6 @@ export const defaultGitValues = {
   show: () => '',
 }
 
-export const mockSimpleGit = vi.fn(() => defaultGitValues)
+export type GitMock = typeof defaultGitValues
 
-export const simpleGit = () => mockSimpleGit()
+export const simpleGit = vi.fn<() => GitMock>(() => defaultGitValues)

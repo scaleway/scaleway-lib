@@ -2,12 +2,16 @@
  * @vitest-environment node
  */
 
+import { simpleGit } from 'simple-git'
+import type { Mock } from 'vitest'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { createChangeset } from '../createChangeset.js'
 import { findChangedDependenciesFromGit, handleChangesetFile } from '../git-utils.js'
 import { handleCatalogChanges } from '../handle-catalog.js'
 import { findAffectedPackages } from '../utils.js'
-import { mockSimpleGit } from './simpleGitMock'
+import type { GitMock } from './simpleGitMock'
+
+const mockSimpleGit = vi.mocked(simpleGit) as unknown as Mock<() => GitMock>
 
 // Mock all external dependencies
 vi.mock('../createChangeset.js')
