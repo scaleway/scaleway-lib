@@ -28,7 +28,7 @@ catalog:
   "@vitejs/plugin-react": 6.1.1
   "@vitest/coverage-istanbul": 4.1.11
   awesome-phonenumber: 7.8.0
-  browserslist: 4.28.8
+  browserslist: 4.28.9
   chalk: 6.0.0
   cookie: 2.0.1
   date-fns: 4.4.0
