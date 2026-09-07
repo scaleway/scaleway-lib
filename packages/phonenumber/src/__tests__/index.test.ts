@@ -195,22 +195,22 @@ describe(validatePhoneNumber, () => {
 describe(getPhoneExample, () => {
   it('should return an example number for France', () => {
     const example = getPhoneExample('FR')
-    expect(example.number?.e164).toMatch(/^\+33/)
+    expect(example.number?.e164).toMatch(/^\+33/v)
   })
 
   it('should return an example number for US', () => {
     const example = getPhoneExample('US')
-    expect(example.number?.e164).toMatch(/^\+1/)
+    expect(example.number?.e164).toMatch(/^\+1/v)
   })
 
   it('should return an example number for UK', () => {
     const example = getPhoneExample('GB')
-    expect(example.number?.e164).toMatch(/^\+44/)
+    expect(example.number?.e164).toMatch(/^\+44/v)
   })
 
   it('should return an example mobile number for France', () => {
     const example = getPhoneExample('FR', 'mobile')
-    expect(example.number?.e164).toMatch(/^\+33[67]/)
+    expect(example.number?.e164).toMatch(/^\+33[67]/v)
   })
 })
 

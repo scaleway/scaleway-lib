@@ -2,7 +2,7 @@
 export const normalizeString = (string: string): string =>
   string
     .normalize('NFD')
-    .replaceAll(/[\u0300-\u036F]/g, '')
+    .replaceAll(/[\u0300-\u036F]/gv, '')
     .replaceAll('-', ' ')
     .toLowerCase()
 

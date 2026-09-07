@@ -16,7 +16,7 @@ describe('without a <Router>', () => {
 
     expect(() => {
       render(<Route />)
-    }).toThrow(/Missing RouterContext/u)
+    }).toThrow(/Missing RouterContext/v)
   })
 })
 

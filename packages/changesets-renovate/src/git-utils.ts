@@ -68,7 +68,7 @@ export async function getBumpsFromGit(files: string[]): Promise<Map<string, stri
 
     for (const change of changes.split('\n')) {
       if (change.startsWith('+ ')) {
-        const match = change.match(/"(.*?)"/g)
+        const match = change.match(/"(.*?)"/gv)
 
         if (match?.[0] && match[1]) {
           bumps.set(match[0].replaceAll('"', ''), match[1].replaceAll('"', ''))

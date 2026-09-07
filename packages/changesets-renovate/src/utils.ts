@@ -28,7 +28,7 @@ export async function getWorkspacePackageGlobs(): Promise<string[]> {
     } | null
 
     if (Array.isArray(parsed?.packages)) {
-      globs.push(...parsed.packages.map(pkg => `${pkg.replace(/\/$/u, '')}/package.json`))
+      globs.push(...parsed.packages.map(pkg => `${pkg.replace(/\/$/v, '')}/package.json`))
     }
   } catch {
     // pnpm-workspace.yaml may not exist (npm/yarn monorepo)
@@ -44,7 +44,7 @@ export async function getWorkspacePackageGlobs(): Promise<string[]> {
     const workspaces = Array.isArray(parsed.workspaces) ? parsed.workspaces : parsed.workspaces?.packages
 
     if (Array.isArray(workspaces)) {
-      globs.push(...workspaces.map(pkg => `${pkg.replace(/\/$/u, '')}/package.json`))
+      globs.push(...workspaces.map(pkg => `${pkg.replace(/\/$/v, '')}/package.json`))
     }
   } catch {
     // Root package.json may not exist or be unreadable

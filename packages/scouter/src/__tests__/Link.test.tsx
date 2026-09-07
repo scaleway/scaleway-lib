@@ -12,7 +12,7 @@ test('renders anchor tag with correct href', () => {
     </MemoryRouter>,
   )
 
-  const a = screen.getByRole('link', { name: /click me/iu })
+  const a = screen.getByRole('link', { name: /click me/iv })
   expect(a).toBeDefined()
   expect(a?.getAttribute('href')).toBe('/target')
 })
@@ -24,7 +24,7 @@ test('with to string', () => {
     </MemoryRouter>,
   )
 
-  const a = screen.getByRole('link', { name: /link/iu })
+  const a = screen.getByRole('link', { name: /link/iv })
   expect(a?.getAttribute('href')).toBe('/path')
 })
 
@@ -35,7 +35,7 @@ test('with to object', () => {
     </MemoryRouter>,
   )
 
-  const a = screen.getByRole('link', { name: /link/iu })
+  const a = screen.getByRole('link', { name: /link/iv })
   expect(a?.getAttribute('href')).toBe('/path?foo=bar#section')
 })
 
@@ -57,7 +57,7 @@ test('with replace=true', () => {
     </MemoryRouter>,
   )
 
-  const a = screen.getByRole('link', { name: /link/iu })
+  const a = screen.getByRole('link', { name: /link/iv })
   a?.click()
 
   expect(clicked).toBe(true)
@@ -79,7 +79,7 @@ test('with component prop', () => {
     </MemoryRouter>,
   )
 
-  const a = screen.getByRole('link', { name: /link/iu })
+  const a = screen.getByRole('link', { name: /link/iv })
   expect(a.dataset['custom']).toBe('true')
   expect(a.getAttribute('href')).toBe('/path')
 })
@@ -103,7 +103,7 @@ test('onClick handler prevents default and navigates', () => {
     </MemoryRouter>,
   )
 
-  const a = screen.getByRole('link', { name: /link/iu })
+  const a = screen.getByRole('link', { name: /link/iv })
   act(() => {
     a?.click()
   })
@@ -118,7 +118,7 @@ test('onClick with modifier keys does not prevent default', () => {
     </MemoryRouter>,
   )
 
-  const a = screen.getByRole('link', { name: /link/iu })
+  const a = screen.getByRole('link', { name: /link/iv })
   const event = new MouseEvent('click', {
     button: 0,
     ctrlKey: true,
@@ -139,7 +139,7 @@ test('onClick with target="_blank" does not prevent default', () => {
     </MemoryRouter>,
   )
 
-  const a = screen.getByRole('link', { name: /link/iu })
+  const a = screen.getByRole('link', { name: /link/iv })
   const event = new MouseEvent('click', {
     button: 0,
     bubbles: true,
@@ -173,7 +173,7 @@ test('onClick with event.defaultPrevented does not navigate', () => {
     </MemoryRouter>,
   )
 
-  const a = screen.getByRole('link', { name: /link/iu })
+  const a = screen.getByRole('link', { name: /link/iv })
   a?.click()
 
   expect(navigateCalled).toBe(false)
@@ -203,7 +203,7 @@ test('passes through other anchor props', () => {
     </MemoryRouter>,
   )
 
-  const a = screen.getByRole('link', { name: /link/iu })
+  const a = screen.getByRole('link', { name: /link/iv })
   expect(a.className).toBe('custom-class')
   expect(a.id).toBe('custom-id')
   expect(a.title).toBe('Custom title')
@@ -229,7 +229,7 @@ test('with non-left click does not navigate', () => {
     </MemoryRouter>,
   )
 
-  const a = screen.getByRole('link', { name: /link/iu })
+  const a = screen.getByRole('link', { name: /link/iv })
   const event = new MouseEvent('click', {
     button: 1, // middle click
     bubbles: true,

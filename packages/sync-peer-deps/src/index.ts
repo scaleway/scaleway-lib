@@ -13,7 +13,7 @@ type PackageJson = {
 
 const { log, error: consoleError } = console
 
-const SPACE_REGEX = /^\{\n(\s+)/
+const SPACE_REGEX = /^\{\n(\s+)/v
 
 /**
  * Find all package.json files recursively
