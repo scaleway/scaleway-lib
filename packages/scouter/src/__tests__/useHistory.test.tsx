@@ -18,7 +18,7 @@ describe('without a <Router>', () => {
           <TestComponent />
         </div>,
       )
-    }).toThrow(/Missing RouterContext/u)
+    }).toThrow(/Missing RouterContext/v)
   })
 })
 

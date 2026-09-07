@@ -2,4 +2,4 @@
 "@scaleway/regex": patch
 ---
 
-Fix `dashedIpv4` to be anchored so it no longer matches partial/invalid dashed IPv4 strings (e.g. `1-2-3-4-5`). Add edge-case tests across all regexes.
+Migrate all regexes to the `v` (unicodeSets) flag. Fix `email` to allow `&` and reject the smart-quote, fix the `uppercaseBasicDomain`/`uppercaseBasicSubdomain` negative-lookahead, and anchor `dashedIpv4` so it no longer matches partial/invalid values (e.g. `1-2-3-4-5`). Add edge-case tests across all regexes.

@@ -9,7 +9,7 @@ describe('without a <Router>', () => {
 
     expect(() => {
       render(<Switch>Hello</Switch>)
-    }).toThrow(/Missing RouterContext/u)
+    }).toThrow(/Missing RouterContext/v)
   })
 })
 
@@ -135,7 +135,7 @@ test('renders with non-element children', () => {
     </MemoryRouter>,
   )
 
-  expect(screen.getByText(/one/u)).toBeInTheDocument()
+  expect(screen.getByText(/one/v)).toBeInTheDocument()
 })
 
 test('handles path as array with valid strings', () => {
