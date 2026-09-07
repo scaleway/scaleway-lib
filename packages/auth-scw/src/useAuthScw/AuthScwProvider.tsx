@@ -165,7 +165,10 @@ export const AuthScwProvider = ({
     return undefined
   }, [currentAudienceId])
 
-  const isAuthenticated = useMemo(() => !!(currentAudienceId && getCookieJWT(currentAudienceId)), [currentAudienceId])
+  const isAuthenticated = useMemo(
+    () => Boolean(currentAudienceId && getCookieJWT(currentAudienceId)),
+    [currentAudienceId],
+  )
 
   const setAudienceId = useCallback((audienceId: string | undefined) => {
     setCurrentAudienceId(audienceId)

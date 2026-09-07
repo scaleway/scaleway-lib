@@ -320,19 +320,15 @@ const I18nContextProvider = <LocalSupportedType extends string>({
   const relativeTimeStrict = useCallback(
     (
       date: Date | number,
-      options: FormatDistanceToNowStrictOptions = {
-        addSuffix: true,
-        unit: 'day',
-      },
+      { addSuffix = true, unit = 'day', ...otherOptions }: FormatDistanceToNowStrictOptions = {},
     ) => {
       const finalDate = new Date(date)
 
       return formatDistanceToNowStrict(finalDate, {
         locale: dateFnsLocale,
-        ...(options ?? {
-          addSuffix: true,
-          unit: 'day',
-        }),
+        addSuffix,
+        unit,
+        ...otherOptions,
       })
     },
     [dateFnsLocale],
@@ -379,12 +375,13 @@ const I18nContextProvider = <LocalSupportedType extends string>({
   )
 
   const relativeTime = useCallback(
-    (date: Date | number, options: FormatDistanceToNowOptions = { addSuffix: true }) => {
+    (date: Date | number, { addSuffix = true, ...otherOptions }: FormatDistanceToNowOptions = {}) => {
       const finalDate = new Date(date)
 
       return formatDistanceToNow(finalDate, {
         locale: dateFnsLocale,
-        ...options,
+        addSuffix,
+        ...otherOptions,
       })
     },
     [dateFnsLocale],

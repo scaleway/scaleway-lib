@@ -48,10 +48,10 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
 
   const needLoad = useMemo(
     () =>
-      !!(
+      Boolean(
         enabled &&
         (!(request.dataUpdatedAt && computedDatalifetime) ||
-          (request.dataUpdatedAt && computedDatalifetime && request.dataUpdatedAt + computedDatalifetime < Date.now()))
+          (request.dataUpdatedAt && computedDatalifetime && request.dataUpdatedAt + computedDatalifetime < Date.now())),
       ),
     [enabled, request.dataUpdatedAt, computedDatalifetime],
   )
@@ -76,10 +76,10 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
 
   const isIdle = request.status === StatusEnum.IDLE && !enabled
 
-  const isPolling = !!(
+  const isPolling = Boolean(
     pollingInterval &&
     ((typeof needPolling === 'function' && (request.isFirstLoading || needPolling(request.data))) ||
-      (typeof needPolling !== 'function' && needPolling))
+      (typeof needPolling !== 'function' && needPolling)),
   )
 
   const reload: () => Promise<void> = useCallback(async () => {

@@ -1,8 +1,8 @@
 import { useLocalStorage } from '@scaleway/use-storage'
 import { useCallback } from 'react'
 
-export const useVisualPersistence = (key: string, options: { usePrefix: boolean } = { usePrefix: true }) => {
-  const finalKey = options.usePrefix ? `visualPersistency.${key}` : key
+export const useVisualPersistence = (key: string, { usePrefix = true }: { usePrefix?: boolean } = {}) => {
+  const finalKey = usePrefix ? `visualPersistency.${key}` : key
 
   const [isHidden, setIsHidden] = useLocalStorage<boolean>(finalKey)
 
@@ -16,7 +16,7 @@ export const useVisualPersistence = (key: string, options: { usePrefix: boolean 
 
   return {
     hide,
-    isHidden: !!isHidden,
+    isHidden: Boolean(isHidden),
     restore,
   }
 }

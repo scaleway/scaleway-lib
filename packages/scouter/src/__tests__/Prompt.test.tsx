@@ -10,9 +10,11 @@ test('with when=true blocks navigation', () => {
   const history = createMemoryHistory({ initialEntries: ['/initial'] })
   const blockSpy = vi.spyOn(history, 'block')
 
+  const condition = true
+
   render(
     <Router history={history}>
-      <Prompt message="Are you sure?" when={true} />
+      <Prompt message="Are you sure?" when={condition} />
     </Router>,
   )
 
@@ -81,9 +83,11 @@ test('confirms navigation when globalThis.confirm returns true', () => {
   const history = createMemoryHistory({ initialEntries: ['/initial'] })
   const blockSpy = vi.spyOn(history, 'block')
 
+  const condition = true
+
   render(
     <Router history={history}>
-      <Prompt message="Are you sure?" when={true} />
+      <Prompt message="Are you sure?" when={condition} />
     </Router>,
   )
 
@@ -114,9 +118,11 @@ test('blocks navigation when globalThis.confirm returns false', () => {
   const history = createMemoryHistory({ initialEntries: ['/initial'] })
   const blockSpy = vi.spyOn(history, 'block')
 
+  const condition = true
+
   render(
     <Router history={history}>
-      <Prompt message="Are you sure?" when={true} />
+      <Prompt message="Are you sure?" when={condition} />
     </Router>,
   )
 
@@ -145,9 +151,11 @@ test('calls unblock and retry when user confirms', () => {
   const history = createMemoryHistory({ initialEntries: ['/initial'] })
   const blockSpy = vi.spyOn(history, 'block')
 
+  const condition = true
+
   render(
     <Router history={history}>
-      <Prompt message="Are you sure?" when={true} />
+      <Prompt message="Are you sure?" when={condition} />
     </Router>,
   )
 
@@ -177,9 +185,11 @@ test('does not call retry when user cancels', () => {
   const history = createMemoryHistory({ initialEntries: ['/initial'] })
   const blockSpy = vi.spyOn(history, 'block')
 
+  const condition = true
+
   render(
     <Router history={history}>
-      <Prompt message="Are you sure?" when={true} />
+      <Prompt message="Are you sure?" when={condition} />
     </Router>,
   )
 

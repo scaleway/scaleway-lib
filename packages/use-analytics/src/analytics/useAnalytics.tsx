@@ -66,7 +66,7 @@ export type AnalyticsProviderProps<T> = {
   onLoaded: (analytics: Analytics) => void
 }
 
-export function AnalyticsProvider<T extends Events>({
+export const AnalyticsProvider = <T extends Events>({
   children,
   settings,
   loadOptions,
@@ -79,7 +79,7 @@ export function AnalyticsProvider<T extends Events>({
   events,
   onLoaded,
   timeout,
-}: AnalyticsProviderProps<T>): JSX.Element {
+}: AnalyticsProviderProps<T>): JSX.Element => {
   const [isAnalyticsReady, setIsAnalyticsReady] = useState(false)
   const [internalAnalytics, setAnalytics] = useState<Analytics | undefined>(undefined)
 
@@ -107,7 +107,7 @@ export function AnalyticsProvider<T extends Events>({
       return false
     }
 
-    return !!settings?.writeKey
+    return Boolean(settings?.writeKey)
   }, [settings?.writeKey, needConsent])
 
   useDeepCompareEffectNoCheck(() => {

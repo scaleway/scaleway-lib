@@ -25,7 +25,7 @@ export const clientSingleton: ClientSingletonType = {
 
   createClient({ getAsyncToken }) {
     if (!this.IamV1Alpha1 || !this.IamUnauthenticatedV1Alpha1 || !this.clientSettings) {
-      throw 'You must set apis and client settings to use package: auth-scw'
+      throw new Error('You must set apis and client settings to use package: auth-scw')
     }
 
     const client = createAdvancedClient(

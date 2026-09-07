@@ -53,7 +53,7 @@ export type AnalyticsIntegration = {
   displayName: string
 }
 
-export type Consent = { [K in CategoryKind]: boolean }
+export type Consent = Record<CategoryKind, boolean>
 
 export type Destination = {
   category: CategoryKind

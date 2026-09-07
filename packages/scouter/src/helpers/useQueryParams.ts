@@ -10,9 +10,7 @@ type Options = {
 
 type QueryParamValue = string | number | boolean | null | undefined
 
-type QueryParams = {
-  [key: string]: QueryParamValue | QueryParamValue[]
-}
+type QueryParams = Record<string, QueryParamValue | QueryParamValue[]>
 
 /**
  * @deprecated use useSafeQueryParams instead

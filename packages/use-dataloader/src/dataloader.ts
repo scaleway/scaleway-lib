@@ -61,7 +61,7 @@ class DataLoader<ResultType, ErrorType> {
       for (const observer of this.observers) {
         observer()
       }
-    }, 0) as unknown as number
+    }, 0)
   }
 
   public getData(): ResultType | undefined {

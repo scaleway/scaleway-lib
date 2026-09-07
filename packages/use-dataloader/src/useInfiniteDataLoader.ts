@@ -128,10 +128,10 @@ export const useInfiniteDataLoader = <
 
   const needLoad = useMemo(
     () =>
-      !!(
+      Boolean(
         enabled &&
         (!(request.dataUpdatedAt && computedDatalifetime) ||
-          (request.dataUpdatedAt && computedDatalifetime && request.dataUpdatedAt + computedDatalifetime < Date.now()))
+          (request.dataUpdatedAt && computedDatalifetime && request.dataUpdatedAt + computedDatalifetime < Date.now())),
       ),
     [enabled, request.dataUpdatedAt, computedDatalifetime],
   )
@@ -150,11 +150,11 @@ export const useInfiniteDataLoader = <
   const isError = request.status === StatusEnum.ERROR
   const isIdle = requestRefs.current.every(req => req.status === StatusEnum.IDLE && !enabled)
   const computedData =
-    isLoadingFirstPage || [...requestRefs.current].filter(dataloader => !!dataloader.data).length === 0
+    isLoadingFirstPage || [...requestRefs.current].filter(dataloader => Boolean(dataloader.data)).length === 0
       ? initialData
       : [...requestRefs.current]
           .map(dataloader => dataloader.data)
-          .filter((data): data is NonNullable<typeof data> => !!data)
+          .filter((data): data is NonNullable<typeof data> => Boolean(data))
   // isLoading is true only when there is no cache data and we're fetching data for the first time
   const isLoading = !computedData && request.isFirstLoading && request.status === StatusEnum.LOADING
 

@@ -69,8 +69,8 @@ const v6: string = `
 (?::(?:(?::${v6segment}){0,5}:${v4}|(?::${v6segment}){1,7}|:))
 )(?:%[0-9a-zA-Z]{1,})?
 `
-  .replace(/\s*\/\/.*$/gm, '')
-  .replace(/\n/g, '')
+  .replaceAll(/\s*\/\/.*$/gm, '')
+  .replaceAll('\n', '')
   .trim()
 
 // Pasted from `cidr-regex` package (https://github.com/silverwind/cidr-regex/blob/master/index.js)

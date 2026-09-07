@@ -1,5 +1,8 @@
 // oxlint-disable vitest/require-top-level-describe typescript/no-explicit-any
-import '@testing-library/jest-dom'
+
+// https://github.com/testing-library/jest-dom/issues/515
+// oxlint-disable-next-line import/no-unassigned-import
+import '@testing-library/jest-dom/vitest'
 import { act, render, screen } from '@testing-library/react'
 import { createMemoryHistory as createHistory } from 'history'
 import { useEffect, useState } from 'react'
@@ -11,11 +14,13 @@ const navigateOnFirstRender = (count: number, navigate: (path: string) => void, 
   if (count !== 0) {
     return
   }
-  Promise.resolve().then(() => {
-    navigate('/intermediate')
-    setCount(1)
-    navigate('/final')
-  })
+  Promise.resolve()
+    .then(() => {
+      navigate('/intermediate')
+      setCount(1)
+      navigate('/final')
+    })
+    .catch(() => undefined)
 }
 
 test('renders routes correctly', () => {
@@ -33,7 +38,7 @@ test('updates when navigating', () => {
 
   const locations: any[] = []
 
-  function LocationTracker() {
+  const LocationTracker = () => {
     const location = useLocation()
     locations.push(location.pathname)
     return <div>{location.pathname}</div>
@@ -110,7 +115,7 @@ test('location changes trigger re-renders', () => {
 
   let renderCount = 0
 
-  function Counter() {
+  const Counter = () => {
     const location = useLocation()
     renderCount++
     return <div>{location.pathname}</div>
@@ -138,13 +143,13 @@ test('batches multiple navigations in a microtask (no intermediate render)', asy
 
   const seenLocations: string[] = []
 
-  function Tracker() {
+  const Tracker = () => {
     const location = useLocation()
     seenLocations.push(location.pathname)
     return <div>{location.pathname}</div>
   }
 
-  function App() {
+  const App = () => {
     const navigate = useNavigate()
     const [count, setCount] = useState(0)
 
@@ -178,7 +183,7 @@ test('does not unmount components during batched navigations', async () => {
 
   let unmountCount = 0
 
-  function Sticky() {
+  const Sticky = () => {
     useEffect(
       () => () => {
         unmountCount++
@@ -188,17 +193,19 @@ test('does not unmount components during batched navigations', async () => {
     return <div>Sticky</div>
   }
 
-  function App() {
+  const App = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
       // Navigate to /intermediate (would unmount Sticky), then immediately
       // back to /start (where Sticky lives). With batching, Sticky should
       // never unmount because React only renders the final location.
-      Promise.resolve().then(() => {
-        navigate('/intermediate')
-        navigate('/start')
-      })
+      Promise.resolve()
+        .then(() => {
+          navigate('/intermediate')
+          navigate('/start')
+        })
+        .catch(() => undefined)
     }, [navigate])
 
     return (

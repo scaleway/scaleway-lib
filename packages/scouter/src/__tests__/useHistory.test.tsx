@@ -7,7 +7,7 @@ import { Router } from '../Router'
 
 describe('without a <Router>', () => {
   it('throws an error', () => {
-    function TestComponent() {
+    const TestComponent = () => {
       useHistory()
       return null
     }

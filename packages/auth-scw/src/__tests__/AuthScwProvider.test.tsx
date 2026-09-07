@@ -51,7 +51,7 @@ describe('useauthscw provider', () => {
     AuthStoreManager.deleteAudienceId()
     // Allow reset of the url, as globalThis.replaceState is not trully mocked
     // type force is resolving a typescript bug
-    globalThis.location = location as Location & string
+    globalThis.location = location
     globalThis.location.href = defaultURL.href
   })
 
