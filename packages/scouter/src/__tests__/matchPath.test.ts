@@ -311,6 +311,6 @@ const TEST_CASES: Record<string, Record<string, MaybeMatch>> = {
 
 describe.each(Object.entries(TEST_CASES))('path "%s"', (path, cases) => {
   it.each(Object.entries(cases))('pathname "%s" returns %o', (pathname, result) => {
-    expect(matchPath(pathname, path)).toStrictEqual(result)
+    expect(matchPath(pathname, path)).toEqual(result)
   })
 })

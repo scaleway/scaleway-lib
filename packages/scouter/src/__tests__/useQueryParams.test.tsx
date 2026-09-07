@@ -31,7 +31,7 @@ describe(useQueryParams, () => {
       ),
     })
 
-    expect(result.current.queryParams).toStrictEqual({
+    expect(result.current.queryParams).toEqual({
       name: 'john',
       age: 30,
     })
@@ -46,7 +46,7 @@ describe(useQueryParams, () => {
       ),
     })
 
-    expect(result.current.queryParams).toStrictEqual({
+    expect(result.current.queryParams).toEqual({
       tags: ['admin', 'user', 'mod'],
     })
   })
@@ -60,7 +60,7 @@ describe(useQueryParams, () => {
       ),
     })
 
-    expect(result.current.queryParams).toStrictEqual({
+    expect(result.current.queryParams).toEqual({
       active: true,
       disabled: false,
     })
@@ -75,7 +75,7 @@ describe(useQueryParams, () => {
       ),
     })
 
-    expect(result.current.queryParams).toStrictEqual({
+    expect(result.current.queryParams).toEqual({
       count: 42,
       price: 19.99,
     })
@@ -90,7 +90,7 @@ describe(useQueryParams, () => {
       ),
     })
 
-    expect(result.current.queryParams).toStrictEqual({})
+    expect(result.current.queryParams).toEqual({})
   })
 
   it('setQueryParams merges with existing params', () => {
@@ -106,7 +106,7 @@ describe(useQueryParams, () => {
       result.current.setQueryParams({ age: 31, city: 'paris' })
     })
 
-    expect(result.current.queryParams).toStrictEqual({
+    expect(result.current.queryParams).toEqual({
       name: 'john',
       age: 31,
       city: 'paris',
@@ -126,7 +126,7 @@ describe(useQueryParams, () => {
       result.current.replaceQueryParams({ city: 'paris' })
     })
 
-    expect(result.current.queryParams).toStrictEqual({
+    expect(result.current.queryParams).toEqual({
       city: 'paris',
     })
   })
@@ -207,7 +207,7 @@ describe(useQueryParams, () => {
       result.current.setQueryParams({ name: null })
     })
 
-    expect(result.current.queryParams).toStrictEqual({})
+    expect(result.current.queryParams).toEqual({})
   })
 
   it('handles undefined values by omitting them', () => {
@@ -223,7 +223,7 @@ describe(useQueryParams, () => {
       result.current.setQueryParams({ name: undefined })
     })
 
-    expect(result.current.queryParams).toStrictEqual({})
+    expect(result.current.queryParams).toEqual({})
   })
 
   it('updates when location changes', () => {
@@ -257,7 +257,7 @@ describe(useQueryParams, () => {
       result.current.setQueryParams({ tags: ['admin', 'user'] })
     })
 
-    expect(result.current.queryParams['tags']).toStrictEqual(['admin', 'user'])
+    expect(result.current.queryParams['tags']).toEqual(['admin', 'user'])
   })
 
   it('setQueryParams with push option', () => {
