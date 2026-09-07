@@ -1,7 +1,7 @@
 {
   "name": "@scaleway/use-interval",
   "version": "1.0.3",
-  "description": "A react hook to save element dismissal locally",
+  "description": "A tiny react hook to handle intervals",
   "homepage": "https://github.com/scaleway/scaleway-lib/tree/main/packages/use-interval",
   "bugs": {
     "url": "https://github.com/scaleway/scaleway-lib/issues"
@@ -10,7 +10,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/scaleway/scaleway-lib.git",
-    "directory": "packages/use-visual-persistence"
+    "directory": "packages/use-interval"
   },
   "files": [
     "dist/"
