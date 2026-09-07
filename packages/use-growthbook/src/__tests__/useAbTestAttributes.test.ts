@@ -10,8 +10,8 @@ describe(useAbTestAttributes, () => {
 
     useGrowthBook.mockReturnValue({
       getAttributes,
-      init: vi.fn(),
-      loadFeatures: vi.fn(),
+      init: vi.fn<() => void>(),
+      loadFeatures: vi.fn<() => void>(),
       setAttributes,
     })
   })

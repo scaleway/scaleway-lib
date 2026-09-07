@@ -15,7 +15,6 @@ export default defineConfig({
         'vitest/prefer-import-in-mock': 'warn',
         'vitest/prefer-spy-on': 'warn',
         'vitest/prefer-strict-equal': 'warn',
-        'vitest/require-mock-type-parameters': 'warn',
       },
     },
   ],

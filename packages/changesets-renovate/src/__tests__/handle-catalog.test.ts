@@ -82,7 +82,7 @@ describe('handle-catalog', () => {
 
     // Mock simpleGit to return a short hash
     mockSimpleGit.mockReturnValue({
-      revparse: vi.fn().mockResolvedValue('abc123\n'),
+      revparse: vi.fn<() => Promise<string>>().mockResolvedValue('abc123\n'),
     } as any)
 
     // Mock createChangeset and handleChangesetFile

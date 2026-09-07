@@ -10,10 +10,10 @@ type TrackingCallback = ComponentProps<typeof AbTestProvider>['trackingCallback'
 
 type ErrorCallback = ComponentProps<typeof AbTestProvider>['errorCallback']
 
-const errorCallback: ErrorCallback = vi.fn()
+const errorCallback: ErrorCallback = vi.fn<() => void>()
 
 describe('abTestProvider', () => {
-  const trackingCallback: TrackingCallback = vi.fn()
+  const trackingCallback: TrackingCallback = vi.fn<() => void>()
 
   beforeEach(() => {
     vi.clearAllMocks()

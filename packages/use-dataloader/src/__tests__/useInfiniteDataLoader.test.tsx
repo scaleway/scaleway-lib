@@ -15,7 +15,7 @@ const config: UseInfiniteDataLoaderConfig<{ nextPage: number; data: string }, Er
 const getPrerequisite = (key: string) => {
   let counter = 1
   let canResolve = false
-  const getNextData = vi.fn(
+  const getNextData = vi.fn<() => Promise<{ nextPage: number; data: string }>>(
     async () =>
       new Promise<{ nextPage: number; data: string }>(resolve => {
         const resolvePromise = () => {
@@ -339,14 +339,14 @@ describe('useInfinitDataLoader', () => {
   })
 
   it('should call onError callback when request fails', async () => {
-    const onErrorMock = vi.fn()
+    const onErrorMock = vi.fn<() => void>()
     const { initialProps } = getPrerequisite('test-error')
     const localConfig = {
       ...config,
       onError: onErrorMock,
     }
 
-    const failingMethod = vi.fn(async () => {
+    const failingMethod = vi.fn<() => Promise<never>>(async () => {
       throw new Error('Network error')
     })
 
@@ -374,7 +374,7 @@ describe('useInfinitDataLoader', () => {
   })
 
   it('should call onSuccess callback when request succeeds', async () => {
-    const onSuccessMock = vi.fn()
+    const onSuccessMock = vi.fn<() => void>()
     const { setCanResolve, initialProps } = getPrerequisite('test-success')
     const localConfig = {
       ...config,
@@ -438,7 +438,7 @@ describe('useInfinitDataLoader', () => {
     }
 
     const { setCanResolve, initialProps } = getPrerequisite('test-no-next-page')
-    const localMethod = vi.fn(
+    const localMethod = vi.fn<() => Promise<{ nextPage: number | undefined; data: string }>>(
       async () =>
         new Promise<{ nextPage: number | undefined; data: string }>(resolve => {
           resolve({ data: 'Last page', nextPage: undefined })

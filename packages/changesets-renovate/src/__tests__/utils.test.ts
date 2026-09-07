@@ -13,9 +13,9 @@ import {
 } from '../utils.js'
 
 const { execSyncMock, escapePathMock, globMock } = vi.hoisted(() => ({
-  execSyncMock: vi.fn(() => 'node_modules/\ndist/\n'),
-  escapePathMock: vi.fn((p: string) => p),
-  globMock: vi.fn(),
+  execSyncMock: vi.fn<() => string>(() => 'node_modules/\ndist/\n'),
+  escapePathMock: vi.fn<(p: string) => string>((p: string) => p),
+  globMock: vi.fn<() => Promise<string[]>>(),
 }))
 
 // Mock all external dependencies
@@ -34,7 +34,9 @@ vi.mock(import('@changesets/config'), async importOriginal => {
 
   return {
     ...actual,
-    readConfig: vi.fn().mockResolvedValue({ config: actual.defaultConfig, warnings: [], errors: undefined }),
+    readConfig: vi
+      .fn<typeof readConfig>()
+      .mockResolvedValue({ config: actual.defaultConfig, warnings: [], errors: undefined }),
   }
 })
 

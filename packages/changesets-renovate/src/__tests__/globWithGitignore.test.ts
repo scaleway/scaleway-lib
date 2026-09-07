@@ -2,9 +2,9 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { globWithGitignore } from '../globWithGitignore.js'
 
 const { execSyncMock, escapePathMock, globMock } = vi.hoisted(() => ({
-  execSyncMock: vi.fn(() => 'node_modules/\ndist/\n'),
-  escapePathMock: vi.fn((p: string) => p),
-  globMock: vi.fn(),
+  execSyncMock: vi.fn<() => string>(() => 'node_modules/\ndist/\n'),
+  escapePathMock: vi.fn<(p: string) => string>((p: string) => p),
+  globMock: vi.fn<() => Promise<string[]>>(),
 }))
 
 vi.mock('node:child_process', () => ({

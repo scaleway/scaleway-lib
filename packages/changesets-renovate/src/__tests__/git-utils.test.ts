@@ -40,13 +40,13 @@ catalog:
   another-package: 2.0.0
 `
       mockSimpleGit.mockReturnValue({
-        add: vi.fn(),
-        branch: vi.fn(),
-        commit: vi.fn(),
-        diffSummary: vi.fn(),
-        push: vi.fn(),
-        revparse: vi.fn(),
-        show: vi.fn().mockResolvedValue(mockContent),
+        add: vi.fn<() => void>(),
+        branch: vi.fn<() => { current: string }>(),
+        commit: vi.fn<() => void>(),
+        diffSummary: vi.fn<() => Record<string, unknown>>(),
+        push: vi.fn<() => void>(),
+        revparse: vi.fn<() => string>(),
+        show: vi.fn<() => string>().mockReturnValue(mockContent),
       })
       vi.mocked(parse).mockReturnValue({
         catalog: {
@@ -67,13 +67,15 @@ catalog:
 
     it('should return empty object if git operation fails', async () => {
       mockSimpleGit.mockReturnValue({
-        add: vi.fn(),
-        branch: vi.fn(),
-        commit: vi.fn(),
-        diffSummary: vi.fn(),
-        push: vi.fn(),
-        revparse: vi.fn(),
-        show: vi.fn().mockRejectedValue(new Error('File not found')),
+        add: vi.fn<() => void>(),
+        branch: vi.fn<() => { current: string }>(),
+        commit: vi.fn<() => void>(),
+        diffSummary: vi.fn<() => Record<string, unknown>>(),
+        push: vi.fn<() => void>(),
+        revparse: vi.fn<() => string>(),
+        show: vi.fn<() => string>().mockImplementation(() => {
+          throw new Error('File not found')
+        }),
       })
 
       const result = await loadCatalogFromGit('nonexistent', 'pnpm-workspace.yaml')
@@ -92,18 +94,18 @@ catalog:
     it('should find dependencies that have changed between git revisions', async () => {
       // Mock the git operations
       mockSimpleGit.mockReturnValue({
-        add: vi.fn(),
-        branch: vi.fn(),
-        commit: vi.fn(),
-        diffSummary: vi.fn(),
-        push: vi.fn(),
-        revparse: vi.fn(),
-        show: vi.fn().mockResolvedValueOnce(`
+        add: vi.fn<() => void>(),
+        branch: vi.fn<() => { current: string }>(),
+        commit: vi.fn<() => void>(),
+        diffSummary: vi.fn<() => Record<string, unknown>>(),
+        push: vi.fn<() => void>(),
+        revparse: vi.fn<() => string>(),
+        show: vi.fn<() => string>().mockReturnValueOnce(`
 catalog:
   package-a: 1.0.0
   package-b: 2.0.0
   package-c: 3.0.0
-`).mockResolvedValueOnce(`
+`).mockReturnValueOnce(`
 catalog:
   package-a: 1.1.0
   package-b: 2.0.0

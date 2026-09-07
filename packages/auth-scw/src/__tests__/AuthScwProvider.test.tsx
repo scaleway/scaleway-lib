@@ -6,8 +6,10 @@ import { MOCK_AUDIENCE_ID, MOCK_ENCODED_JWT_COOKIE } from '../../mocks/index'
 import { AuthScwProvider, useAuthScw } from '../useAuthScw/AuthScwProvider'
 import { AuthStoreManager } from '../useAuthScw/authStoreManager'
 
-const mockDeleteJwt = vi.fn(() => Promise.resolve())
-const mockRenewJwt = vi.fn(() => Promise.resolve(MOCK_ENCODED_JWT_COOKIE))
+const mockDeleteJwt = vi.fn<() => Promise<void>>(() => Promise.resolve())
+const mockRenewJwt = vi.fn<() => Promise<typeof MOCK_ENCODED_JWT_COOKIE>>(() =>
+  Promise.resolve(MOCK_ENCODED_JWT_COOKIE),
+)
 
 const DEFAULT_COOKIE_SUFFIX = 'test'
 
@@ -64,7 +66,7 @@ describe('useauthscw provider', () => {
     })
 
     it('should inject a token within cookie at login if token url param is present', async () => {
-      const mockReplaceStateHistory = vi.fn()
+      const mockReplaceStateHistory = vi.fn<() => void>()
 
       const currentUrl = new URL(globalThis.location.href)
 
