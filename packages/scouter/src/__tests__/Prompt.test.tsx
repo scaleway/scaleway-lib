@@ -97,15 +97,16 @@ test('confirms navigation when globalThis.confirm returns true', () => {
       retry: vi.fn<() => void>(),
     }
 
-    const confirmSpy = vi.spyOn(globalThis, 'confirm').mockReturnValue(true)
+    const originalConfirm = globalThis.confirm
+    globalThis.confirm = vi.fn<() => boolean>(() => true)
 
     const unblockSpy = vi.fn<() => void>()
     blockCallback(mockTransition)
 
-    expect(confirmSpy).toHaveBeenCalledWith('Are you sure?')
+    expect(globalThis.confirm).toHaveBeenCalledWith('Are you sure?')
     expect(unblockSpy).not.toHaveBeenCalledTimes(1)
 
-    confirmSpy.mockRestore()
+    globalThis.confirm = originalConfirm
   }
 })
 
@@ -129,13 +130,14 @@ test('blocks navigation when globalThis.confirm returns false', () => {
       retry: vi.fn<() => void>(),
     }
 
-    const confirmSpy = vi.spyOn(globalThis, 'confirm').mockReturnValue(false)
+    const originalConfirm = globalThis.confirm
+    globalThis.confirm = vi.fn<() => boolean>(() => false)
 
     blockCallback(mockTransition)
 
-    expect(confirmSpy).toHaveBeenCalledWith('Are you sure?')
+    expect(globalThis.confirm).toHaveBeenCalledWith('Are you sure?')
 
-    confirmSpy.mockRestore()
+    globalThis.confirm = originalConfirm
   }
 })
 
@@ -160,13 +162,14 @@ test('calls unblock and retry when user confirms', () => {
       retry: retrySpy,
     }
 
-    const confirmSpy = vi.spyOn(globalThis, 'confirm').mockReturnValue(true)
+    const originalConfirm = globalThis.confirm
+    globalThis.confirm = vi.fn<() => boolean>(() => true)
 
     blockCallback(mockTransition)
 
     expect(retrySpy).toHaveBeenCalledTimes(1)
 
-    confirmSpy.mockRestore()
+    globalThis.confirm = originalConfirm
   }
 })
 
@@ -191,12 +194,13 @@ test('does not call retry when user cancels', () => {
       retry: retrySpy,
     }
 
-    const confirmSpy = vi.spyOn(globalThis, 'confirm').mockReturnValue(false)
+    const originalConfirm = globalThis.confirm
+    globalThis.confirm = vi.fn<() => boolean>(() => false)
 
     blockCallback(mockTransition)
 
     expect(retrySpy).not.toHaveBeenCalledTimes(1)
 
-    confirmSpy.mockRestore()
+    globalThis.confirm = originalConfirm
   }
 })
