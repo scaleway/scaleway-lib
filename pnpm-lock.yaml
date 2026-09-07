@@ -212,8 +212,8 @@ catalogs:
       specifier: 1.0.1
       version: 1.0.1
     '@changesets/cli':
-      specifier: 3.0.1
-      version: 3.0.1
+      specifier: 3.0.2
+      version: 3.0.2
     '@changesets/config':
       specifier: 4.0.0
       version: 4.0.0
@@ -389,7 +389,7 @@ importers:
         version: 1.0.1
       '@changesets/cli':
         specifier: 'catalog:'
-        version: 3.0.1
+        version: 3.0.2
       '@manypkg/cli':
         specifier: 'catalog:'
         version: 0.25.1
@@ -531,8 +531,8 @@ importers:
         version: 2.9.0
     devDependencies:
       '@changesets/cli':
-        specifier: 3.0.1
-        version: 3.0.1
+        specifier: 3.0.2
+        version: 3.0.2
 
   packages/fuzzy-search: {}
 
@@ -860,8 +860,8 @@ packages:
     resolution: {integrity: sha512-QUcrV7878yHlWPXXPA6gqSxNKwtVHCd1K22L7ZAoJw2yGy8K4QvjwOStD75+1Q9KD9ZSUgGS94HuYdd7HOVtpA==}
     engines: {node: ^22.11 || ^24 || >=26}
 
-  '@changesets/cli@3.0.1':
-    resolution: {integrity: sha512-3IVpRSgiKDj2aRbBHKtWTXSRH2/iR3bWxau9iQUoEsZjDhRIj9nhl90k7FWMxZAJvLgJBbgMq8+qS0xQsenYsQ==}
+  '@changesets/cli@3.0.2':
+    resolution: {integrity: sha512-t/omGJj/I+Jv0kmJAkj5cstYEdUQiJnpip2F+2m3F4lQ3kAZ3o8Exep4/Fm1qq4rvw6ovlhJvZNrKdwLJ4lkuQ==}
     engines: {node: ^22.11 || ^24 || >=26, npm: '>=10.9.0', pnpm: '>=10.0.0', yarn: '>=4.5.2'}
     hasBin: true
 
@@ -3197,7 +3197,7 @@ snapshots:
       '@changesets/get-github-info': 1.0.1
       '@changesets/types': 7.0.0
 
-  '@changesets/cli@3.0.1':
+  '@changesets/cli@3.0.2':
     dependencies:
       '@changesets/apply-release-plan': 8.1.0
       '@changesets/assemble-release-plan': 7.0.0
