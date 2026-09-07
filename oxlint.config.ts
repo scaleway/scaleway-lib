@@ -27,7 +27,6 @@ export default defineConfig({
     'eslint/no-console': 'warn',
     'eslint/prefer-destructuring': 'warn',
     'eslint/prefer-named-capture-group': 'warn',
-    'eslint/require-unicode-regexp': 'warn',
 
     'import/no-nodejs-modules': 'warn',
 

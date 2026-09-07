@@ -715,7 +715,7 @@ export default defineConfig({
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/eslint/require-unicode-regexp
      */
-    'eslint/require-unicode-regexp': 'error',
+    'eslint/require-unicode-regexp': ['error', { requireFlag: 'v' }],
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/eslint/require-yield
      */
