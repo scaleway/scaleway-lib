@@ -37,6 +37,6 @@
     "oxlint": "catalog:"
   },
   "peerDependencies": {
-    "oxlint": ">=1.78.0"
+    "oxlint": ">=1.80.0"
   }
 }
