@@ -20,7 +20,7 @@ const mockedWriteFile = vi.mocked(writeFile)
 const mockedReadFile = vi.mocked(readFile)
 
 const mockReadFileMap = (files: Record<string, string>) => {
-  mockedReadFile.mockImplementation((async (path: unknown) => files[path as string] ?? '{}') as never)
+  mockedReadFile.mockImplementation(async (path: unknown) => files[path as string] ?? '{}')
 }
 
 describe('generate changeset file', () => {

@@ -45,4 +45,6 @@ export const RedirectInternal = ({ from: path, computedMatch, exact, push, to }:
 
 export type RedirectProps = Omit<RedirectInternalProps, 'computedMatch'>
 
-export const Redirect = (props: RedirectProps) => <RedirectInternal {...props} />
+export const Redirect = ({ from, exact, push, to }: RedirectProps) => (
+  <RedirectInternal from={from} exact={exact} push={push} to={to} />
+)

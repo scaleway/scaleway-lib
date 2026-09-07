@@ -58,4 +58,8 @@ export const RouteInternal = ({ path, computedMatch, exact, render, children }: 
 
 export type RouteProps = Omit<RouteInternalProps, 'computedMatch'>
 
-export const Route = (props: RouteProps) => <RouteInternal {...props} />
+export const Route = ({ path, exact, render, children }: RouteProps) => (
+  <RouteInternal path={path} exact={exact} render={render}>
+    {children}
+  </RouteInternal>
+)

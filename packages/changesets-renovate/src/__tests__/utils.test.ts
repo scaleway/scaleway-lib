@@ -103,7 +103,7 @@ catalog:
     })
 
     it('should return empty object if YAML parsing fails', async () => {
-      vi.mocked(readFile).mockResolvedValue('invalid yaml' as any)
+      vi.mocked(readFile).mockResolvedValue('invalid yaml')
       vi.mocked(parse).mockImplementation(() => {
         throw new Error('Invalid YAML')
       })
@@ -243,11 +243,11 @@ catalog:
     })
 
     it('should fall back to empty array when no workspace config exists', async () => {
-      vi.mocked(readFile).mockImplementation((async () => {
+      vi.mocked(readFile).mockImplementation(() => {
         const error = new Error('not found') as NodeJS.ErrnoException
         error.code = 'ENOENT'
         throw error
-      }) as any)
+      })
 
       const result = await getWorkspacePackageGlobs()
 

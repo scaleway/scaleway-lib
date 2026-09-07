@@ -1,5 +1,7 @@
 // oxlint-disable vitest/require-top-level-describe
-import '@testing-library/jest-dom'
+// https://github.com/testing-library/jest-dom/issues/515
+// oxlint-disable-next-line import/no-unassigned-import
+import '@testing-library/jest-dom/vitest'
 import { act, render, screen } from '@testing-library/react'
 import { createMemoryHistory as createHistory } from 'history'
 import { useEffect } from 'react'

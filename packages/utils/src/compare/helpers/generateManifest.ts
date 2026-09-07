@@ -1,7 +1,7 @@
 import { existsSync, readdirSync, statSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 import { PACKAGES_DIR } from '../config.ts'
-import type { Manifest, PackageInfo } from '../types.ts'
+import type { Manifest } from '../types.ts'
 import { getAllFiles } from './getAllFiles.ts'
 
 const { log: logger } = console
@@ -11,7 +11,7 @@ export const generateManifest = (outputFile: string) => {
   logger(`Generating manifest for ${packages.length} packages...`)
 
   const manifest: Manifest = {
-    packages: {} as Record<string, PackageInfo>,
+    packages: {},
     timestamp: new Date().toISOString(),
     vite_version: '8.0.0-beta.2',
   }

@@ -99,7 +99,7 @@ const validatePhoneNumber = (phoneNumber: string, options?: { regionCode?: strin
 const doesPhoneNumberNeedConsent = (phoneNumber: string, countriesRequiringConsent: string[]): boolean => {
   const { valid, regionCode } = parsePhoneNumber(phoneNumber)
 
-  return valid && !!regionCode && countriesRequiringConsent.includes(regionCode)
+  return valid && Boolean(regionCode) && countriesRequiringConsent.includes(regionCode)
 }
 
 export {

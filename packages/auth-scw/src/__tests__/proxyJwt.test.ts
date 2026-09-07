@@ -37,7 +37,7 @@ describe(proxyJwt, () => {
       subSecondesOfExpires,
     })
 
-    const expectedExpiresAt = new Date(MOCK_ENCODED_JWT_COOKIE.jwt!.expiresAt!)
+    const expectedExpiresAt = new Date(MOCK_ENCODED_JWT_COOKIE.jwt.expiresAt)
     expectedExpiresAt.setMinutes(expectedExpiresAt.getMinutes() - subMinuteOfExpires)
     expectedExpiresAt.setSeconds(expectedExpiresAt.getSeconds() - subSecondesOfExpires)
 
@@ -88,7 +88,7 @@ describe(proxyJwt, () => {
       subMinuteOfExpires: 0,
       subSecondesOfExpires: 0,
     })
-    expect(new Date(result.jwt!.expiresAt!).getTime()).toBe(new Date(MOCK_ENCODED_JWT_COOKIE.jwt!.expiresAt!).getTime())
+    expect(new Date(result.jwt!.expiresAt!).getTime()).toBe(new Date(MOCK_ENCODED_JWT_COOKIE.jwt.expiresAt).getTime())
   })
 
   it('should return a new object reference when shouldOutdated is true', () => {

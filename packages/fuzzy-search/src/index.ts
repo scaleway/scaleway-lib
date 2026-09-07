@@ -2,8 +2,8 @@
 export const normalizeString = (string: string): string =>
   string
     .normalize('NFD')
-    .replace(/[\u0300-\u036F]/g, '')
-    .replace(/-/g, ' ')
+    .replaceAll(/[\u0300-\u036F]/g, '')
+    .replaceAll('-', ' ')
     .toLowerCase()
 
 export const levenshteinDistance = (query: string, slice: string): number => {
