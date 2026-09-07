@@ -20,7 +20,7 @@
     "directory": "packages/use-clipboard"
   },
   "files": [
-    "dist/*"
+    "dist/"
   ],
   "type": "module",
   "sideEffects": false,

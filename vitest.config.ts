@@ -20,7 +20,7 @@ export const defaultConfig = defineConfig({
         '**.svg',
       ],
       provider: 'istanbul',
-      reporter: ['text', 'json', 'json-summary', 'html', 'lcov'],
+      reporter: ['text', 'json', 'json-summary', 'html', 'lcov', 'cobertura'],
     },
     css: true,
     environment: 'node',
