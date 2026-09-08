@@ -1,0 +1,54 @@
+{
+  "name": "@scaleway/changesets-check",
+  "version": "1.0.0",
+  "description": "Check that changesets are present and valid",
+  "keywords": [
+    "changesets",
+    "check",
+    "ci"
+  ],
+  "homepage": "https://github.com/scaleway/scaleway-lib/tree/main/packages/changesets-check",
+  "bugs": {
+    "url": "https://github.com/scaleway/scaleway-lib/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scaleway/scaleway-lib.git",
+    "directory": "packages/changesets-check"
+  },
+  "bin": {
+    "changesets-check": "dist/index.mjs"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "tsdown",
+    "test:unit": "vitest --run",
+    "test:unit:coverage": "pnpm test:unit --coverage"
+  },
+  "dependencies": {
+    "@changesets/assemble-release-plan": "catalog:",
+    "@changesets/config": "catalog:",
+    "@changesets/errors": "catalog:",
+    "@changesets/pre": "catalog:",
+    "@changesets/read": "catalog:",
+    "@manypkg/get-packages": "catalog:"
+  },
+  "devDependencies": {
+    "@changesets/cli": "3.0.2",
+    "@types/node": "catalog:"
+  },
+  "peerDependencies": {
+    "@changesets/cli": "3.x"
+  },
+  "engines": {
+    "node": "24.x || 25.x || 26.x"
+  }
+}
