@@ -7,6 +7,10 @@ export default defineConfig({
       plugins: ['vitest'],
       rules: {
         /**
+         * @see https://oxc.rs/docs/guide/usage/linter/rules/react/jsx-no-literals
+         */
+        'react/jsx-no-literals': 'off',
+        /**
          * @see https://oxc.rs/docs/guide/usage/linter/rules/react/jsx-props-no-spreading
          */
         'react/jsx-props-no-spreading': 'off',
