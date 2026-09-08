@@ -4,26 +4,7 @@ import type { CookieConfigType } from '../../types'
 import { COOKIE_AGE, DOMAIN } from './constants'
 import type { StorageBackend } from './types'
 
-let cookieConfig: CookieConfigType = COOKIE_CONFIG
-
-export const setCookieConfig = (cookieConfigParam: CookieConfigType) => {
-  cookieConfig = cookieConfigParam
-}
-
-export const getCookieConfig = () => cookieConfig
-
-const setCookie = (value: object, key: string, maxAge = COOKIE_AGE) => {
-  document.cookie = stringifySetCookie({
-    name: key,
-    value: JSON.stringify(value),
-    domain: DOMAIN,
-    httpOnly: cookieConfig.httpOnly,
-    maxAge,
-    path: cookieConfig.path,
-    sameSite: cookieConfig.sameSite,
-    secure: cookieConfig.secure,
-  })
-}
+// --- Backward-compatible module-level state ---
 
 const getCookie = (key: string) => {
   const cookies = parseCookie(document.cookie)
@@ -40,38 +21,67 @@ const getCookie = (key: string) => {
   return null
 }
 
-const deleteCookie = (key: string) => {
-  document.cookie = stringifySetCookie({
-    name: key,
-    value: '',
-    domain: DOMAIN,
-    httpOnly: cookieConfig.httpOnly,
-    maxAge: -1,
-    path: cookieConfig.path,
-    sameSite: cookieConfig.sameSite,
-    secure: cookieConfig.secure,
-  })
+// --- Factory ---
+
+export type CookieBackendOptions = {
+  cookieConfig?: CookieConfigType
+  cookieAge?: number
 }
 
-export const cookieBackend: StorageBackend = {
-  delete(key) {
-    deleteCookie(key)
-  },
-  deleteAllWithPrefix(prefix) {
-    document.cookie.split(';').forEach(cookieParam => {
-      let [audienceId] = cookieParam.split('=')
-      if (audienceId) {
-        audienceId = audienceId.trim()
-        if (audienceId.startsWith(prefix)) {
-          deleteCookie(audienceId)
-        }
-      }
+export const createCookieBackend = (options: CookieBackendOptions = {}): StorageBackend => {
+  const config = options.cookieConfig ?? COOKIE_CONFIG
+  const maxAgeDefault = options.cookieAge ?? COOKIE_AGE
+
+  const setCookie = (value: object, key: string, maxAge = maxAgeDefault) => {
+    document.cookie = stringifySetCookie({
+      name: key,
+      value: JSON.stringify(value),
+      domain: DOMAIN,
+      httpOnly: config.httpOnly,
+      maxAge,
+      path: config.path,
+      sameSite: config.sameSite,
+      secure: config.secure,
     })
-  },
-  get(key) {
-    return getCookie(key)
-  },
-  set(key, value, maxAge = COOKIE_AGE) {
-    setCookie(value, key, maxAge)
-  },
+  }
+
+  const deleteCookie = (key: string) => {
+    document.cookie = stringifySetCookie({
+      name: key,
+      value: '',
+      domain: DOMAIN,
+      httpOnly: config.httpOnly,
+      maxAge: -1,
+      path: config.path,
+      sameSite: config.sameSite,
+      secure: config.secure,
+    })
+  }
+
+  return {
+    delete(key) {
+      deleteCookie(key)
+    },
+    deleteAllWithPrefix(prefix) {
+      document.cookie.split(';').forEach(cookieParam => {
+        let [audienceId] = cookieParam.split('=')
+        if (audienceId) {
+          audienceId = audienceId.trim()
+          if (audienceId.startsWith(prefix)) {
+            deleteCookie(audienceId)
+          }
+        }
+      })
+    },
+    get(key) {
+      return getCookie(key)
+    },
+    set(key, value, maxAge = maxAgeDefault) {
+      setCookie(value, key, maxAge)
+    },
+  }
 }
+
+// --- Backward-compatible singleton ---
+
+export const cookieBackend: StorageBackend = createCookieBackend()

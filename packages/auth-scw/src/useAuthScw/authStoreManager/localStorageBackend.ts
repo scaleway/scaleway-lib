@@ -7,7 +7,7 @@ import type { StorageBackend } from './types'
  * restricted environments (e.g. sandboxed iframes, private mode in some
  * browsers, or when the quota is exceeded).
  */
-export const localStorageBackend: StorageBackend = {
+export const createLocalStorageBackend = (): StorageBackend => ({
   delete(key) {
     try {
       globalThis.localStorage.removeItem(key)
@@ -20,7 +20,7 @@ export const localStorageBackend: StorageBackend = {
       const keysToRemove: string[] = []
       for (let i = 0; i < globalThis.localStorage.length; i++) {
         const key = globalThis.localStorage.key(i)
-        if (key && key.startsWith(prefix)) {
+        if (key?.startsWith(prefix)) {
           keysToRemove.push(key)
         }
       }
@@ -32,7 +32,9 @@ export const localStorageBackend: StorageBackend = {
   get(key) {
     try {
       const raw = globalThis.localStorage.getItem(key)
-      if (!raw) return null
+      if (!raw) {
+        return null
+      }
       return JSON.parse(raw) as object
     } catch {
       return null
@@ -45,4 +47,8 @@ export const localStorageBackend: StorageBackend = {
       // ignore quota / restricted environments
     }
   },
-}
+})
+
+// --- Backward-compatible singleton ---
+
+export const localStorageBackend: StorageBackend = createLocalStorageBackend()

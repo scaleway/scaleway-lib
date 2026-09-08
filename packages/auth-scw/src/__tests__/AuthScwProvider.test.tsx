@@ -5,7 +5,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { MOCK_AUDIENCE_ID, MOCK_ENCODED_JWT_COOKIE } from '../../mocks/index'
 import { AuthScwProvider, useAuthScw } from '../useAuthScw/AuthScwProvider'
 import type { AuthProviderParamType } from '../useAuthScw/AuthScwProvider'
-import { AuthStoreManager, setStorageType } from '../useAuthScw/authStoreManager'
+import { createAuthStoreManager } from '../useAuthScw/authStoreManager'
 
 const mockDeleteJwt = vi.fn<() => Promise<void>>(() => Promise.resolve())
 const mockRenewJwt = vi.fn<() => Promise<typeof MOCK_ENCODED_JWT_COOKIE>>(() =>
@@ -32,14 +32,16 @@ const createWrapper =
         IamV1Alpha1={IamV1Alpha1}
         IamUnauthenticatedV1Alpha1={IamUnauthenticatedV1Alpha1}
         clientSettings={client.settings}
-        cookieSuffix={DEFAULT_COOKIE_SUFFIX}
-        cookieConfig={{
-          httpOnly: false,
-          path: '/',
-          sameSite: 'strict',
-          secure: false,
+        cookie={{
+          suffix: DEFAULT_COOKIE_SUFFIX,
+          config: {
+            httpOnly: false,
+            path: '/',
+            sameSite: 'strict',
+            secure: false,
+          },
         }}
-        urlParamTokenName={'token'}
+        urlParamTokenName="token"
         {...overrides}
       >
         {children}
@@ -53,12 +55,16 @@ const { location } = globalThis
 const defaultURL = new URL(globalThis.location.href)
 
 const resetStorage = () => {
-  setStorageType('cookie')
-  AuthStoreManager.setSuffixKey(DEFAULT_COOKIE_SUFFIX)
-  AuthStoreManager.deleteAllJwts()
-  AuthStoreManager.deleteAudienceId()
+  const store = createAuthStoreManager({ storageType: 'cookie', suffixKey: DEFAULT_COOKIE_SUFFIX })
+  store.deleteAllJwts()
+  store.deleteAudienceId()
   globalThis.localStorage.clear()
 }
+
+const cookieStore = () => createAuthStoreManager({ storageType: 'cookie', suffixKey: DEFAULT_COOKIE_SUFFIX })
+
+const localStorageStore = () =>
+  createAuthStoreManager({ storageType: 'localStorage', suffixKey: DEFAULT_COOKIE_SUFFIX })
 
 describe('useauthscw provider', () => {
   beforeEach(() => {
@@ -98,7 +104,7 @@ describe('useauthscw provider', () => {
 
       const currentJWT = await result.current.getJWT()
       expect(currentJWT?.jwt?.jti).toStrictEqual(MOCK_ENCODED_JWT_COOKIE.jwt.jti)
-      expect(currentJWT?.source).toBe('cookie')
+      expect(currentJWT?.source).toBe('storage')
 
       expect(result.current.audienceId).toBe(MOCK_AUDIENCE_ID)
       //  uncommented when replaceState is trully mock.
@@ -108,7 +114,8 @@ describe('useauthscw provider', () => {
 
   describe('useauthscwscw methods', () => {
     it('should check initialvalues when logged', async () => {
-      AuthStoreManager.setJwt({ jwtInfo: MOCK_ENCODED_JWT_COOKIE })
+      const store = createAuthStoreManager({ storageType: 'cookie', suffixKey: DEFAULT_COOKIE_SUFFIX })
+      store.setJwt({ jwtInfo: MOCK_ENCODED_JWT_COOKIE })
 
       const { result } = renderHook(useAuthScw, { wrapper: Wrapper })
 
@@ -119,7 +126,7 @@ describe('useauthscw provider', () => {
       expect(currentJwt?.token).toStrictEqual(MOCK_ENCODED_JWT_COOKIE.token)
       expect(currentJwt?.renewToken).toStrictEqual(MOCK_ENCODED_JWT_COOKIE.renewToken)
       // already initialized and not outdated.
-      expect(currentJwt?.source).toBe('cookie')
+      expect(currentJwt?.source).toBe('storage')
     })
 
     it('should setjwt correctly', async () => {
@@ -135,8 +142,8 @@ describe('useauthscw provider', () => {
     })
 
     it('should renew jwt correctly', async () => {
-      AuthStoreManager.setSuffixKey(DEFAULT_COOKIE_SUFFIX)
-      AuthStoreManager.setJwt({
+      const store = createAuthStoreManager({ storageType: 'cookie', suffixKey: DEFAULT_COOKIE_SUFFIX })
+      store.setJwt({
         jwtInfo: {
           ...MOCK_ENCODED_JWT_COOKIE,
           jwt: {
@@ -159,8 +166,8 @@ describe('useauthscw provider', () => {
     it('should fail to renew jwt', async () => {
       mockRenewJwt.mockRejectedValueOnce(new Error('Renew failed'))
 
-      AuthStoreManager.setSuffixKey(DEFAULT_COOKIE_SUFFIX)
-      AuthStoreManager.setJwt({
+      const store = createAuthStoreManager({ storageType: 'cookie', suffixKey: DEFAULT_COOKIE_SUFFIX })
+      store.setJwt({
         jwtInfo: {
           ...MOCK_ENCODED_JWT_COOKIE,
           jwt: {
@@ -181,9 +188,10 @@ describe('useauthscw provider', () => {
     })
 
     it('should logout and clear all', async () => {
-      AuthStoreManager.setJwt({ jwtInfo: MOCK_ENCODED_JWT_COOKIE })
+      const store = createAuthStoreManager({ storageType: 'cookie', suffixKey: DEFAULT_COOKIE_SUFFIX })
+      store.setJwt({ jwtInfo: MOCK_ENCODED_JWT_COOKIE })
       // set another random audienceID
-      AuthStoreManager.setJwt({
+      store.setJwt({
         jwtInfo: {
           ...MOCK_ENCODED_JWT_COOKIE,
           jwt: {
@@ -225,21 +233,17 @@ describe('useauthscw provider', () => {
       })
 
       // Data should be persisted in localStorage, not in cookies
-      setStorageType('cookie')
-      expect(AuthStoreManager.getJwt(MOCK_AUDIENCE_ID)).toBeNull()
-      setStorageType('localStorage')
-      expect(AuthStoreManager.getJwt(MOCK_AUDIENCE_ID)).not.toBeNull()
+      expect(cookieStore().getJwt(MOCK_AUDIENCE_ID)).toBeNull()
+      expect(localStorageStore().getJwt(MOCK_AUDIENCE_ID)).not.toBeNull()
     })
 
     it('should migrate from cookie to localStorage on init when migrateFromCookie is true', () => {
       // Seed cookie before mounting the provider
-      setStorageType('cookie')
-      AuthStoreManager.setJwt({ jwtInfo: MOCK_ENCODED_JWT_COOKIE })
+      cookieStore().setJwt({ jwtInfo: MOCK_ENCODED_JWT_COOKIE })
 
       // Sanity: cookie has data, localStorage does not
-      expect(AuthStoreManager.getJwt(MOCK_AUDIENCE_ID)).not.toBeNull()
-      setStorageType('localStorage')
-      expect(AuthStoreManager.getJwt(MOCK_AUDIENCE_ID)).toBeNull()
+      expect(cookieStore().getJwt(MOCK_AUDIENCE_ID)).not.toBeNull()
+      expect(localStorageStore().getJwt(MOCK_AUDIENCE_ID)).toBeNull()
 
       const wrapper = createWrapper({ storageType: 'localStorage', migrateFromCookie: true })
       const { result } = renderHook(useAuthScw, { wrapper })
@@ -249,18 +253,15 @@ describe('useauthscw provider', () => {
       expect(result.current.authenticated).toBe(true)
 
       // localStorage now has the jwt
-      setStorageType('localStorage')
-      expect(AuthStoreManager.getJwt(MOCK_AUDIENCE_ID)).not.toBeNull()
+      expect(localStorageStore().getJwt(MOCK_AUDIENCE_ID)).not.toBeNull()
 
       // Cookie has been cleaned
-      setStorageType('cookie')
-      expect(AuthStoreManager.getJwt(MOCK_AUDIENCE_ID)).toBeNull()
-      expect(AuthStoreManager.getAudienceId()).toBeNull()
+      expect(cookieStore().getJwt(MOCK_AUDIENCE_ID)).toBeNull()
+      expect(cookieStore().getAudienceId()).toBeNull()
     })
 
     it('should not migrate when migrateFromCookie is false', () => {
-      setStorageType('cookie')
-      AuthStoreManager.setJwt({ jwtInfo: MOCK_ENCODED_JWT_COOKIE })
+      cookieStore().setJwt({ jwtInfo: MOCK_ENCODED_JWT_COOKIE })
 
       const wrapper = createWrapper({ storageType: 'localStorage', migrateFromCookie: false })
       const { result } = renderHook(useAuthScw, { wrapper })
@@ -270,8 +271,7 @@ describe('useauthscw provider', () => {
       expect(result.current.authenticated).toBe(false)
 
       // Cookie is still intact
-      setStorageType('cookie')
-      expect(AuthStoreManager.getJwt(MOCK_AUDIENCE_ID)).not.toBeNull()
+      expect(cookieStore().getJwt(MOCK_AUDIENCE_ID)).not.toBeNull()
     })
   })
 })

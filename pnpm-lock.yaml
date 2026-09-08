@@ -410,6 +410,9 @@ importers:
       '@scaleway/sdk-iam':
         specifier: 'catalog:'
         version: 2.16.0(@scaleway/sdk-client@2.9.0)
+      '@scaleway/types':
+        specifier: workspace:*
+        version: link:../types
       '@types/react':
         specifier: 'catalog:'
         version: 19.3.0

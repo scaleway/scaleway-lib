@@ -1,31 +1,27 @@
+import type { SingleXOR } from '@scaleway/types'
 import type { ReactNode } from 'react'
 import { createContext, useCallback, useContext, useMemo, useState } from 'react'
 import { isExpired } from '../isExpired'
-import type {
-  AuthScwContextType,
-  ConfigAuthProvider,
-  CookieConfigType,
-  EncodedJWT,
-  OnError,
-  StorageType,
-} from '../types'
-import { AuthStoreManager, migrateCookieToLocalStorage, setCookieConfig, setStorageType } from './authStoreManager'
+import type { AuthScwContextType, ConfigAuthProvider, CookieOptions, EncodedJWT, OnError } from '../types'
+import { createAuthStoreManager } from './authStoreManager'
 import { clientSingleton } from './createClient'
-import { decodeToken, encodeToken, getCookieJWT, refreshSession } from './helpers'
+import { decodeToken, encodeToken, getStoredJWT, refreshSession } from './helpers'
 import { proxyJwt } from './proxyJwt'
+
+type CookieStorageOptions = {
+  storageType?: 'cookie'
+  cookie: CookieOptions
+}
+
+type LocalStorageOptions = {
+  storageType: 'localStorage'
+  cookie?: CookieOptions
+}
 
 export type AuthProviderParamType = ConfigAuthProvider & {
   children: ReactNode
-  cookieSuffix: string
   urlParamTokenName: string
   onError?: OnError
-  cookieConfig?: CookieConfigType
-  /**
-   * Where to persist the JWT and audienceId.
-   *
-   * Defaults to `'cookie'` for backward compatibility.
-   */
-  storageType?: StorageType
   /**
    * When `true` and `storageType` is `'localStorage'`, any JWT/audienceId
    * previously stored in cookies will be migrated to localStorage on
@@ -34,7 +30,7 @@ export type AuthProviderParamType = ConfigAuthProvider & {
    * Defaults to `false`.
    */
   migrateFromCookie?: boolean
-}
+} & SingleXOR<CookieStorageOptions, LocalStorageOptions>
 
 const AuthScwContext = createContext<AuthScwContextType>({} as AuthScwContextType)
 
@@ -45,28 +41,33 @@ export const AuthScwProvider = ({
   IamV1Alpha1,
   IamUnauthenticatedV1Alpha1,
   children,
-  cookieSuffix,
-  cookieConfig,
+  cookie,
   urlParamTokenName,
   onError,
   storageType = 'cookie',
   migrateFromCookie = false,
 }: AuthProviderParamType) => {
-  if (cookieConfig) {
-    setCookieConfig(cookieConfig)
-  }
-  setStorageType(storageType)
+  const storeManager = useMemo(
+    () =>
+      createAuthStoreManager({
+        storageType,
+        cookieConfig: cookie?.config,
+        cookieAge: cookie?.age,
+        suffixKey: cookie?.suffix,
+      }),
+    [storageType, cookie?.config, cookie?.age, cookie?.suffix],
+  )
+
   clientSingleton.setAPIsAndSettings({
     clientSettings,
     IamV1Alpha1,
     IamUnauthenticatedV1Alpha1,
   })
-  const initAudienceId = useCallback(() => {
-    AuthStoreManager.setSuffixKey(cookieSuffix)
 
+  const initAudienceId = () => {
     // Live migration: cookie -> localStorage
     if (storageType === 'localStorage' && migrateFromCookie) {
-      migrateCookieToLocalStorage()
+      storeManager.migrateCookieToLocalStorage()
     }
 
     // automatic login
@@ -75,11 +76,11 @@ export const AuthScwProvider = ({
 
     if (tokenRaw) {
       currentUrl.searchParams.delete(urlParamTokenName)
-      const token = decodeToken(tokenRaw)
+      const token = decodeToken(tokenRaw, storeManager)
       if (token) {
         const jwtProxy = proxyJwt(token)
         if (jwtProxy.jwt) {
-          AuthStoreManager.setJwt({ jwtInfo: jwtProxy })
+          storeManager.setJwt({ jwtInfo: jwtProxy })
         }
 
         globalThis.history.replaceState({}, '', currentUrl)
@@ -87,16 +88,16 @@ export const AuthScwProvider = ({
         return jwtProxy.jwt?.audienceId
       }
     }
-    const audienceId = AuthStoreManager.getAudienceId()
+    const audienceId = storeManager.getAudienceId()
     if (audienceId) {
-      const cookieJwt = AuthStoreManager.getJwt(audienceId)
-      if (cookieJwt) {
+      const storedJwt = storeManager.getJwt(audienceId)
+      if (storedJwt) {
         return audienceId
       }
     }
 
     return undefined
-  }, [cookieSuffix, urlParamTokenName, storageType, migrateFromCookie])
+  }
 
   const [currentAudienceId, setCurrentAudienceId] = useState<string | undefined>(() => initAudienceId())
 
@@ -105,26 +106,26 @@ export const AuthScwProvider = ({
       const currentJWT = proxyJwt(jwtInfoParam)
 
       if (currentJWT.jwt?.audienceId) {
-        AuthStoreManager.setJwt({ jwtInfo: currentJWT })
+        storeManager.setJwt({ jwtInfo: currentJWT })
         setCurrentAudienceId(currentJWT.jwt.audienceId)
       }
     },
-    [setCurrentAudienceId],
+    [setCurrentAudienceId, storeManager],
   )
 
   const getJWT: AuthScwContextType['getJWT'] = useCallback(
     async (audienceId = currentAudienceId) => {
       if (audienceId) {
-        const cookieJWT = getCookieJWT(audienceId)
+        const storedJWT = getStoredJWT(audienceId, storeManager)
 
-        if (cookieJWT?.jwt) {
-          const { renewToken, token, jwt: currentJWT } = cookieJWT
+        if (storedJWT?.jwt) {
+          const { renewToken, token, jwt: currentJWT } = storedJWT
 
           if (currentJWT.expiresAt && !isExpired(new Date(currentJWT.expiresAt))) {
             return {
               jwt: currentJWT,
               renewToken,
-              source: 'cookie' as const,
+              source: 'storage' as const,
               token,
             }
           }
@@ -151,7 +152,7 @@ export const AuthScwProvider = ({
 
       return undefined
     },
-    [currentAudienceId, setJWT, onError],
+    [currentAudienceId, setJWT, onError, storeManager],
   )
 
   const getJwtToken: AuthScwContextType['getJwtToken'] = useCallback(
@@ -168,35 +169,35 @@ export const AuthScwProvider = ({
 
   const logout: AuthScwContextType['logout'] = useCallback(() => {
     if (currentAudienceId) {
-      const cookieJWT = getCookieJWT(currentAudienceId)
-      AuthStoreManager.deleteJwt(currentAudienceId)
-      if (cookieJWT?.jwt) {
+      const storedJWT = getStoredJWT(currentAudienceId, storeManager)
+      storeManager.deleteJwt(currentAudienceId)
+      if (storedJWT?.jwt) {
         const { deleteJWT } = clientSingleton.createClient({
           getAsyncToken: getJwtToken,
         })
         // We try to delete the token, we kinda don't care if the request fail
-        deleteJWT?.({ jti: cookieJWT.jwt.jti }).catch(() => null)
+        deleteJWT?.({ jti: storedJWT.jwt.jti }).catch(() => null)
       }
     }
-    AuthStoreManager.deleteAudienceId()
+    storeManager.deleteAudienceId()
     setCurrentAudienceId(undefined)
-  }, [getJwtToken, currentAudienceId])
+  }, [getJwtToken, currentAudienceId, storeManager])
 
   const jti = useMemo(() => {
     if (currentAudienceId) {
-      const cookieJWT = getCookieJWT(currentAudienceId)
+      const storedJWT = getStoredJWT(currentAudienceId, storeManager)
 
-      if (cookieJWT?.jwt) {
-        return cookieJWT.jwt.jti
+      if (storedJWT?.jwt) {
+        return storedJWT.jwt.jti
       }
     }
 
     return undefined
-  }, [currentAudienceId])
+  }, [currentAudienceId, storeManager])
 
   const isAuthenticated = useMemo(
-    () => Boolean(currentAudienceId && getCookieJWT(currentAudienceId)),
-    [currentAudienceId],
+    () => Boolean(currentAudienceId && getStoredJWT(currentAudienceId, storeManager)),
+    [currentAudienceId, storeManager],
   )
 
   const setAudienceId = useCallback((audienceId: string | undefined) => {
@@ -207,7 +208,7 @@ export const AuthScwProvider = ({
     () => ({
       audienceId: currentAudienceId ?? undefined,
       authenticated: isAuthenticated,
-      decodeToken,
+      decodeToken: (encodedToken: string) => decodeToken(encodedToken, storeManager),
       encodeToken,
       getJWT,
       getJwtToken,
@@ -215,8 +216,9 @@ export const AuthScwProvider = ({
       logout,
       setAudienceId,
       setJWT,
+      storeManager,
     }),
-    [getJWT, getJwtToken, logout, setJWT, setAudienceId, currentAudienceId, isAuthenticated, jti],
+    [getJWT, getJwtToken, logout, setJWT, setAudienceId, currentAudienceId, isAuthenticated, jti, storeManager],
   )
 
   return <AuthScwContext value={value}>{children}</AuthScwContext>

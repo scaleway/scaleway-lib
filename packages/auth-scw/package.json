@@ -39,6 +39,7 @@
   "devDependencies": {
     "@scaleway/sdk-client": "catalog:",
     "@scaleway/sdk-iam": "catalog:",
+    "@scaleway/types": "workspace:*",
     "@types/react": "catalog:",
     "react": "catalog:"
   },
