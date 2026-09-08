@@ -1,14 +1,18 @@
+import { getAttributes, setAttributes, useGrowthBook } from '@growthbook/growthbook-react'
+import type { MockGrowthBook } from '@growthbook/growthbook-react'
 import { renderHook } from '@testing-library/react'
+import type { Mock } from 'vitest'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { useAbTestAttributes } from '../useAbTestAttributes'
-import { getAttributes, setAttributes, useGrowthBook } from './growthbookMock'
+
+const mockUseGrowthBook = vi.mocked(useGrowthBook) as unknown as Mock<() => MockGrowthBook>
 
 describe(useAbTestAttributes, () => {
   beforeEach(() => {
     getAttributes.mockReturnValue({ foo: 'bar' })
     setAttributes.mockResolvedValue(undefined)
 
-    useGrowthBook.mockReturnValue({
+    mockUseGrowthBook.mockReturnValue({
       getAttributes,
       init: vi.fn(),
       loadFeatures: vi.fn(),

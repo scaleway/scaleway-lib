@@ -1,8 +1,8 @@
+import { getAttributes, init, setAttributes } from '@growthbook/growthbook-react'
 import { act, render } from '@testing-library/react'
 import type { ComponentProps } from 'react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { AbTestProvider } from '../AbTestProvider'
-import { getAttributes, init, setAttributes } from './growthbookMock'
 
 // Import mock functions from our mocks
 
