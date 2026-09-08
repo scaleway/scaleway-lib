@@ -1,6 +1,5 @@
 import { getExample as getPhoneExample, parsePhoneNumber } from 'awesome-phonenumber'
 
-// oxlint-disable-next-line unicorn/number-literal-case
 const startingCharFlagsHexValue = 0x1_f1_e6
 
 const getRegionalIndicatorSymbol = (letter: string) =>
