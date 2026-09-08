@@ -1,5 +1,11 @@
 # @scaleway/use-clipboard
 
+## 1.1.1
+
+### Patch Changes
+
+- [#3812](https://github.com/scaleway/scaleway-lib/pull/3812) [`8702a3c`](https://github.com/scaleway/scaleway-lib/commit/8702a3cdfe78fc8234a99d16c345a43a6db71816) Thanks [@chambo-e](https://github.com/chambo-e)! - Fix npm package metadata (description, repository.directory, files and engines)
+
 ## 1.1.0
 
 ### Minor Changes

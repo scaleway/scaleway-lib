@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/use-interval",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A tiny react hook to handle intervals",
   "homepage": "https://github.com/scaleway/scaleway-lib/tree/main/packages/use-interval",
   "bugs": {

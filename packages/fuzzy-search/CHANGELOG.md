@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.0.3
+
+### Patch Changes
+
+- [#3814](https://github.com/scaleway/scaleway-lib/pull/3814) [`72e5433`](https://github.com/scaleway/scaleway-lib/commit/72e543325c6a074854d1c27b022c68cd1aa88607) Thanks [@chambo-e](https://github.com/chambo-e)! - Migrate regex literals to the `v` (unicodeSets) flag.
+
 ## 2.0.2
 
 ### Patch Changes
