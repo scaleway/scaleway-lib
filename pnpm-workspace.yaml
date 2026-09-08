@@ -40,7 +40,7 @@ catalog:
   international-types: 0.8.1
   intl-messageformat: 11.2.14
   jsdom: 30.0.1
-  lint-staged: 17.4.1
+  lint-staged: 17.5.0
   oxfmt: 0.66.0
   oxlint: 1.81.0
   oxlint-tsgolint: 7.0.2001
