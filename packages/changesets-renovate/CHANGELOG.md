@@ -1,5 +1,13 @@
 # Change Log
 
+## 4.0.1
+
+### Patch Changes
+
+- [#3812](https://github.com/scaleway/scaleway-lib/pull/3812) [`8702a3c`](https://github.com/scaleway/scaleway-lib/commit/8702a3cdfe78fc8234a99d16c345a43a6db71816) Thanks [@chambo-e](https://github.com/chambo-e)! - Fix npm package metadata (description, repository.directory, files and engines)
+
+- [#3814](https://github.com/scaleway/scaleway-lib/pull/3814) [`72e5433`](https://github.com/scaleway/scaleway-lib/commit/72e543325c6a074854d1c27b022c68cd1aa88607) Thanks [@chambo-e](https://github.com/chambo-e)! - Migrate regex literals to the `v` (unicodeSets) flag.
+
 ## 4.0.0
 
 ### Major Changes

@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.1.1
+
+### Patch Changes
+
+- [#3820](https://github.com/scaleway/scaleway-lib/pull/3820) [`384bce4`](https://github.com/scaleway/scaleway-lib/commit/384bce4a5fc1a007e3df2dcdcd1733ef4cc72f7a) Thanks [@chambo-e](https://github.com/chambo-e)! - disable unicorn/number-literal-case due to https://github.com/oxc-project/oxc/issues/21949
+
+- [#3814](https://github.com/scaleway/scaleway-lib/pull/3814) [`72e5433`](https://github.com/scaleway/scaleway-lib/commit/72e543325c6a074854d1c27b022c68cd1aa88607) Thanks [@chambo-e](https://github.com/chambo-e)! - add { "requireFlag": "v" } on eslint/require-unicode-regexp
+
+- [#3786](https://github.com/scaleway/scaleway-lib/pull/3786) [`c2435b3`](https://github.com/scaleway/scaleway-lib/commit/c2435b3c5f533a250e70cb51b9a32e8ab67ce8d0) Thanks [@renovate](https://github.com/apps/renovate)! - oxlint peerDeps >= 1.80
+
 ## 1.1.0
 
 ### Minor Changes

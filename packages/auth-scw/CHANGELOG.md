@@ -1,5 +1,11 @@
 # @scaleway/auth-scw
 
+## 1.0.3
+
+### Patch Changes
+
+- [#3811](https://github.com/scaleway/scaleway-lib/pull/3811) [`7606103`](https://github.com/scaleway/scaleway-lib/commit/76061033f5ffc28cf54ce3d623ac6064ba223cd2) Thanks [@chambo-e](https://github.com/chambo-e)! - Throw an `Error` object instead of a string literal when the client is used before `setClient`/`createClient` is configured
+
 ## 1.0.2
 
 ### Patch Changes

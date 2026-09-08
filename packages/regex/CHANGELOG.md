@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.1.1
+
+### Patch Changes
+
+- [#3814](https://github.com/scaleway/scaleway-lib/pull/3814) [`72e5433`](https://github.com/scaleway/scaleway-lib/commit/72e543325c6a074854d1c27b022c68cd1aa88607) Thanks [@chambo-e](https://github.com/chambo-e)! - Migrate all regexes to the `v` (unicodeSets) flag. Fix `email` to allow `&` and reject the smart-quote, fix the `uppercaseBasicDomain`/`uppercaseBasicSubdomain` negative-lookahead, and anchor `dashedIpv4` so it no longer matches partial/invalid values (e.g. `1-2-3-4-5`). Add edge-case tests across all regexes.
+
 ## 6.1.0
 
 ### Minor Changes

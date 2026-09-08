@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/regex",
-  "version": "6.1.0",
+  "version": "6.1.1",
   "description": "A small utility to use regex",
   "homepage": "https://github.com/scaleway/scaleway-lib/tree/main/packages/regex",
   "bugs": {
