@@ -291,8 +291,9 @@ export default defineConfig({
     'unicorn/no-zero-fractions': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/unicorn/number-literal-case
+     * Disabled due to https://github.com/oxc-project/oxc/issues/21949
      */
-    'unicorn/number-literal-case': 'error',
+    'unicorn/number-literal-case': 'off',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/unicorn/numeric-separators-style
      */
