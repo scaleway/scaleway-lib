@@ -1,5 +1,6 @@
 import { Errors } from '@scaleway/sdk-client'
 import type { EncodedJWT, RefreshSessionType } from '../types'
+import type { AuthStoreManagerInstance } from './authStoreManager'
 import { AuthStoreManager } from './authStoreManager'
 import { clientSingleton } from './createClient'
 
@@ -41,11 +42,11 @@ export const refreshSession = ({ paramsRenewRequest, setJWT, onError }: RefreshS
   return refreshSessionPromise
 }
 
-export const decodeToken = (encodedToken: string) => {
+export const decodeToken = (encodedToken: string, storeManager: AuthStoreManagerInstance = AuthStoreManager) => {
   try {
     // oxlint-disable-next-line typescript/no-unsafe-assignment
     const decodedTokenRaw = JSON.parse(atob(encodedToken))
-    if (AuthStoreManager.typeGuardJWT(decodedTokenRaw)) {
+    if (storeManager.typeGuardJWT(decodedTokenRaw)) {
       return decodedTokenRaw
     }
 
@@ -56,4 +57,6 @@ export const decodeToken = (encodedToken: string) => {
 }
 
 export const encodeToken = (jwt: EncodedJWT) => btoa(JSON.stringify(jwt))
-export const getCookieJWT = (audienceId: string) => AuthStoreManager.getJwt(audienceId)
+
+export const getStoredJWT = (audienceId: string, storeManager: AuthStoreManagerInstance = AuthStoreManager) =>
+  storeManager.getJwt(audienceId)

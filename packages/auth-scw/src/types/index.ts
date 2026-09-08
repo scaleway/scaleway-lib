@@ -10,7 +10,7 @@ export type OnError = (onError: { title: string; error: unknown; extra?: Record<
 
 type GetJWT = (audienceId?: string) => Promise<
   | (EncodedJWT & {
-      source: 'refreshSession' | 'cookie'
+      source: 'refreshSession' | 'storage'
     })
   | undefined
 >

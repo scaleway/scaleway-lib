@@ -21,8 +21,6 @@ export const EmptySession: NonNullable<EncodedJWT> = {
   token: '',
 }
 
-export const LOCAL_STORAGE_JWTS_KEY = '_scw_auth_state'
-
 export const COOKIE_CONFIG: CookieConfigType = {
   httpOnly: false,
   path: '/',

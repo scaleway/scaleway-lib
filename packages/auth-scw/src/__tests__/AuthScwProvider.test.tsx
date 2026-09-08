@@ -39,7 +39,8 @@ const createWrapper =
           sameSite: 'strict',
           secure: false,
         }}
-        urlParamTokenName={'token'}
+        urlParamTokenName="token"
+        storeManager={AuthStoreManager}
         {...overrides}
       >
         {children}
@@ -98,7 +99,7 @@ describe('useauthscw provider', () => {
 
       const currentJWT = await result.current.getJWT()
       expect(currentJWT?.jwt?.jti).toStrictEqual(MOCK_ENCODED_JWT_COOKIE.jwt.jti)
-      expect(currentJWT?.source).toBe('cookie')
+      expect(currentJWT?.source).toBe('storage')
 
       expect(result.current.audienceId).toBe(MOCK_AUDIENCE_ID)
       //  uncommented when replaceState is trully mock.
@@ -119,7 +120,7 @@ describe('useauthscw provider', () => {
       expect(currentJwt?.token).toStrictEqual(MOCK_ENCODED_JWT_COOKIE.token)
       expect(currentJwt?.renewToken).toStrictEqual(MOCK_ENCODED_JWT_COOKIE.renewToken)
       // already initialized and not outdated.
-      expect(currentJwt?.source).toBe('cookie')
+      expect(currentJwt?.source).toBe('storage')
     })
 
     it('should setjwt correctly', async () => {

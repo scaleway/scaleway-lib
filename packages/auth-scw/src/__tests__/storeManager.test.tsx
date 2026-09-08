@@ -42,7 +42,7 @@ describe.each(['cookie', 'localStorage'] satisfies StorageType[])('storemanager 
     AuthStoreManager.setJwt({ jwtInfo: MOCK_ENCODED_JWT_COOKIE })
 
     expect(AuthStoreManager.getJwt(MOCK_ENCODED_JWT_COOKIE.jwt.audienceId)).toStrictEqual(
-      // structuredClone does not copy Date ref
+      // backends round-trip through JSON, so Date becomes a string.
       // oxlint-disable-next-line unicorn/prefer-structured-clone
       JSON.parse(JSON.stringify(MOCK_ENCODED_JWT_COOKIE)),
     )
@@ -82,7 +82,7 @@ describe('storemanager storage type', () => {
   })
 })
 
-describe('migrateCookieToLocalStorage', () => {
+describe('migrate cookie to local storage', () => {
   beforeEach(() => {
     resetStorage()
     setStorageType('cookie')
@@ -113,6 +113,8 @@ describe('migrateCookieToLocalStorage', () => {
 
     // localStorage now has the data
     expect(AuthStoreManager.getJwt(MOCK_ENCODED_JWT_COOKIE.jwt.audienceId)).toStrictEqual(
+      // backends round-trip through JSON, so Date becomes a string.
+      // oxlint-disable-next-line unicorn/prefer-structured-clone
       JSON.parse(JSON.stringify(MOCK_ENCODED_JWT_COOKIE)),
     )
     expect(AuthStoreManager.getAudienceId()).toBe(MOCK_ENCODED_JWT_COOKIE.jwt.audienceId)
