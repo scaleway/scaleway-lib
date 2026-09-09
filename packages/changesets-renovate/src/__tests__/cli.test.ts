@@ -19,7 +19,7 @@ describe('pnpm-catalogs CLI integration', () => {
     vi.clearAllMocks()
   })
 
-  it('should use the utility functions correctly', async () => {
+  it('should use the utility functions correctly', () => {
     // This test just verifies that the CLI script structure is correct
     // and would call the utility functions with the right parameters
 

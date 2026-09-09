@@ -22,10 +22,10 @@ declare abstract class IntlListFormat {
 }
 
 type BaseFormatters = {
-  getNumberFormat(locales?: string | string[], opts?: NumberFormatOptions): Intl.NumberFormat
-  getDateTimeFormat(...args: ConstructorParameters<typeof Intl.DateTimeFormat>): Intl.DateTimeFormat
-  getPluralRules(...args: ConstructorParameters<typeof Intl.PluralRules>): Intl.PluralRules
-  getListFormat(...args: ConstructorParameters<typeof IntlListFormat>): IntlListFormat
+  getNumberFormat: (locales?: string | string[], opts?: NumberFormatOptions) => Intl.NumberFormat
+  getDateTimeFormat: (...args: ConstructorParameters<typeof Intl.DateTimeFormat>) => Intl.DateTimeFormat
+  getPluralRules: (...args: ConstructorParameters<typeof Intl.PluralRules>) => Intl.PluralRules
+  getListFormat: (...args: ConstructorParameters<typeof IntlListFormat>) => IntlListFormat
 }
 
 function createFastMemoizeCache<V>(): Cache<string, V> {
@@ -38,7 +38,7 @@ function createFastMemoizeCache<V>(): Cache<string, V> {
           return store.get(key)
         },
         set(key, value) {
-          return store.set(key, value)
+          store.set(key, value)
         },
       }
     },
@@ -76,7 +76,7 @@ const baseFormatters: BaseFormatters = {
 }
 
 type Formatters = BaseFormatters & {
-  getTranslationFormat(...args: ConstructorParameters<typeof IntlTranslationFormat>): IntlTranslationFormat
+  getTranslationFormat: (...args: ConstructorParameters<typeof IntlTranslationFormat>) => IntlTranslationFormat
 }
 
 type TranslationFormatParameter = ConstructorParameters<typeof IntlTranslationFormat>

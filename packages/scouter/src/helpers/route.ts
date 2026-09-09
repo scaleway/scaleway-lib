@@ -19,11 +19,11 @@ type LinkParamsTuple<Params, QueryParams> = QueryParams extends null
     : [params: Params, queryParams?: QueryParams, hash?: string]
 
 export type RouteObj<Path extends string, QueryParams extends QueryParamsBase> = {
-  withQueryParams<NewQueryParams extends QueryParamsBase>(): RouteObj<Path, NewQueryParams>
+  withQueryParams: <NewQueryParams extends QueryParamsBase>() => RouteObj<Path, NewQueryParams>
 
   readonly path: Path
 
-  link(...args: LinkArgs<Path & string, QueryParams>): string
+  link: (...args: LinkArgs<Path & string, QueryParams>) => string
 }
 
 export type RouteObjAny = {

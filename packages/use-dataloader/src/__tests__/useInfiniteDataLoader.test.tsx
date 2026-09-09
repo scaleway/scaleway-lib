@@ -346,7 +346,7 @@ describe('useInfinitDataLoader', () => {
       onError: onErrorMock,
     }
 
-    const failingMethod = vi.fn<() => Promise<never>>(async () => {
+    const failingMethod = vi.fn<() => Promise<never>>(() => {
       throw new Error('Network error')
     })
 
@@ -516,7 +516,7 @@ describe('useInfinitDataLoader', () => {
     expect(result.current.data).toHaveLength(1)
   })
 
-  it('should set isIdle when enabled is false', async () => {
+  it('should set isIdle when enabled is false', () => {
     const { initialProps } = getPrerequisite('test-idle')
     const localInitialProps = {
       ...initialProps,

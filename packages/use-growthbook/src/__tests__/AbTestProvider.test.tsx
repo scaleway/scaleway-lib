@@ -47,7 +47,7 @@ describe('abTestProvider', () => {
   })
 
   it('should call growthbook.init when clientKey is provided', async () => {
-    await act(async () => {
+    act(() => {
       render(
         <AbTestProvider
           attributes={{
@@ -75,7 +75,7 @@ describe('abTestProvider', () => {
   })
 
   it('should not call growthbook.init when clientKey is empty', async () => {
-    await act(async () => {
+    act(() => {
       render(
         <AbTestProvider
           attributes={{
@@ -106,7 +106,7 @@ describe('abTestProvider', () => {
     // Mock init to throw an error
     init.mockRejectedValueOnce(new Error('Init failed'))
 
-    await act(async () => {
+    act(() => {
       render(
         <AbTestProvider
           attributes={{
@@ -137,7 +137,7 @@ describe('abTestProvider', () => {
   it('should update attributes when they change', async () => {
     let rerenderFn: ((element: React.ReactElement) => void) | undefined = undefined
 
-    await act(async () => {
+    act(() => {
       const result = render(
         <AbTestProvider
           attributes={{
@@ -163,7 +163,7 @@ describe('abTestProvider', () => {
 
     // Re-render with different attributes
     expect(rerenderFn).toBeDefined()
-    await act(async () => {
+    act(() => {
       rerenderFn!(
         <AbTestProvider
           attributes={{
@@ -205,7 +205,7 @@ describe('abTestProvider', () => {
 
     let rerenderFn: ((element: React.ReactElement) => void) | undefined = undefined
 
-    await act(async () => {
+    act(() => {
       const result = render(
         <AbTestProvider
           attributes={sharedAttributes}
@@ -225,7 +225,7 @@ describe('abTestProvider', () => {
 
     // Re-render with the SAME EXACT object references
     expect(rerenderFn).toBeDefined()
-    await act(async () => {
+    act(() => {
       rerenderFn!(
         <AbTestProvider
           attributes={sharedAttributes} // Same config object

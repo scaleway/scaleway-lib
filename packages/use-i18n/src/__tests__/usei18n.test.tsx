@@ -83,7 +83,7 @@ const wrapper =
     enableDefaultLocale = false,
     localeItemStorage = LOCALE_ITEM_STORAGE,
     isLocaleSupported = isDefaultLocalesSupported,
-    rootElement = undefined,
+    rootElement,
     onTranslateError = defaultOnTranslateError,
     onLoadTranslationError = defaultOnLoadTranslationError,
   }: Partial<ComponentProps<typeof I18n>> = {}) =>

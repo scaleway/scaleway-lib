@@ -5,13 +5,13 @@ import { describe, expect, it, vi } from 'vitest'
 import { MemoryRouter, Route, useQueryParams } from '../index'
 import { Router } from '../Router'
 
-describe(useQueryParams, () => {
-  const wrapper = ({ children }: { children: React.ReactNode }) => (
-    <MemoryRouter>
-      <Route>{children}</Route>
-    </MemoryRouter>
-  )
+const wrapper = ({ children }: { children: React.ReactNode }) => (
+  <MemoryRouter>
+    <Route>{children}</Route>
+  </MemoryRouter>
+)
 
+describe(useQueryParams, () => {
   it('returns queryParams, replaceQueryParams, and setQueryParams', () => {
     const { result } = renderHook(() => useQueryParams(), { wrapper })
 
