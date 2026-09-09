@@ -421,7 +421,19 @@ export default defineConfig({
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/strict-boolean-expressions
      */
-    'typescript/strict-boolean-expressions': 'error',
+    'typescript/strict-boolean-expressions': [
+      'error',
+      {
+        allowAny: false,
+        allowNullableBoolean: false,
+        allowNullableEnum: false,
+        allowNullableNumber: true,
+        allowNullableObject: true,
+        allowNullableString: true,
+        allowNumber: true,
+        allowString: true,
+      },
+    ],
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/typescript/strict-void-return
      */
