@@ -79,8 +79,8 @@ describe('component BrowserRouter', () => {
     render(
       <BrowserRouter>
         <Route
-          render={props => {
-            match = props.match
+          render={({ match: matchProps }) => {
+            match = matchProps
             return null
           }}
         />
@@ -99,8 +99,8 @@ describe('component BrowserRouter', () => {
     render(
       <BrowserRouter>
         <Route
-          render={props => {
-            location = props.location
+          render={({ location: locationProps }) => {
+            location = locationProps
             return null
           }}
         />

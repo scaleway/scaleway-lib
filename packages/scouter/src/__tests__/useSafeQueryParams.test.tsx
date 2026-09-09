@@ -1,4 +1,3 @@
-// oxlint-disable typescript/no-explicit-any
 import { act, renderHook } from '@testing-library/react'
 import { createMemoryHistory } from 'history'
 import { describe, expect, it, vi } from 'vitest'
@@ -6,18 +5,18 @@ import { z } from 'zod'
 import { MemoryRouter, Route, useSafeQueryParams } from '../index'
 import { Router } from '../Router'
 
+const wrapper = ({ children }: { children: React.ReactNode }) => (
+  <MemoryRouter>
+    <Route>{children}</Route>
+  </MemoryRouter>
+)
+
 describe(useSafeQueryParams, () => {
   const schema = z.object({
     name: z.string().optional(),
     age: z.string().optional(),
     tags: z.array(z.string()).optional(),
   })
-
-  const wrapper = ({ children }: { children: React.ReactNode }) => (
-    <MemoryRouter>
-      <Route>{children}</Route>
-    </MemoryRouter>
-  )
 
   it('returns queryParams and setQueryParams', () => {
     const { result } = renderHook(() => useSafeQueryParams({ schema }), { wrapper })

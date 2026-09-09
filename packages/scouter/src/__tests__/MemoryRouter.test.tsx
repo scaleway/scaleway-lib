@@ -24,8 +24,8 @@ test('creates history with initialEntries', () => {
     <MemoryRouter initialEntries={initialEntries}>
       <Route
         path="/"
-        render={props => {
-          location = props.location
+        render={({ location: locationProps }) => {
+          location = locationProps
           return null
         }}
       />
@@ -44,8 +44,8 @@ test('creates history with initialIndex', () => {
     <MemoryRouter initialEntries={initialEntries} initialIndex={initialIndex}>
       <Route
         path="/"
-        render={props => {
-          location = props.location
+        render={({ location: locationProps }) => {
+          location = locationProps
           return null
         }}
       />
@@ -62,8 +62,8 @@ test('provides default initialEntries when not specified', () => {
     <MemoryRouter>
       <Route
         path="/"
-        render={props => {
-          location = props.location
+        render={({ location: locationProps }) => {
+          location = locationProps
           return null
         }}
       />
@@ -108,8 +108,8 @@ test('provides root route context', () => {
   render(
     <MemoryRouter>
       <Route
-        render={props => {
-          match = props.match
+        render={({ match: matchProps }) => {
+          match = matchProps
           return null
         }}
       />

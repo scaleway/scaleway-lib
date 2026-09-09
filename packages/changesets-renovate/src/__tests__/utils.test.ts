@@ -45,7 +45,7 @@ const enoent = (): never => {
 }
 
 const mockReadFileMap = (files: Record<string, string>, fallback: 'enoent' | '{}' = 'enoent') => {
-  vi.mocked(readFile).mockImplementation((async (filePath: string) => {
+  vi.mocked(readFile).mockImplementation(((filePath: string) => {
     if (filePath in files) {
       return files[filePath]
     }
@@ -270,7 +270,7 @@ catalog:
   describe(findAffectedPackages, () => {
     beforeEach(() => {
       // Default workspace discovery returns the legacy default glob
-      vi.mocked(readFile).mockImplementation((async (filePath: string) => {
+      vi.mocked(readFile).mockImplementation(((filePath: string) => {
         if (filePath === 'pnpm-workspace.yaml') {
           return 'packages:\n  - packages/*'
         }
@@ -413,7 +413,7 @@ catalog:
     })
 
     it('should handle packages with no affected dependencies', async () => {
-      vi.mocked(readFile).mockImplementation(async () =>
+      vi.mocked(readFile).mockResolvedValue(
         JSON.stringify({
           dependencies: {
             'unchanged-dep': 'catalog:',

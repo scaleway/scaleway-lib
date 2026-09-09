@@ -155,10 +155,10 @@ const I18nContextProvider = <LocalSupportedType extends string>({
   loadDateLocaleAsync: LoadLocaleFnAsync<LocalSupportedType>
   onLoadDateLocaleError?: LoadDateLocaleError
   defaultLocale: LocalSupportedType
-  defaultTranslations: TranslationsByLocales
-  enableDefaultLocale: boolean
-  enableDebugKey: boolean
-  localeItemStorage: string
+  defaultTranslations?: TranslationsByLocales
+  enableDefaultLocale?: boolean
+  enableDebugKey?: boolean
+  localeItemStorage?: string
   isLocaleSupported: SupportedLocalesType<LocalSupportedType>
   onLoadTranslationError: (error: unknown) => void
   onTranslateError?: ({

@@ -11,8 +11,8 @@ test('provides match to render prop', () => {
     <MemoryRouter initialEntries={['/test']}>
       <Route
         path="/test"
-        render={props => {
-          match = props.match
+        render={({ match: matchProps }) => {
+          match = matchProps
           return null
         }}
       />
@@ -31,8 +31,8 @@ test('provides location to render prop', () => {
     <MemoryRouter initialEntries={['/test?foo=bar']}>
       <Route
         path="/test"
-        render={props => {
-          location = props.location
+        render={({ location: locationProps }) => {
+          location = locationProps
           return null
         }}
       />
@@ -80,8 +80,8 @@ test('match params are decoded', () => {
     <MemoryRouter initialEntries={['/test/hello%20world']}>
       <Route
         path="/test/:param"
-        render={props => {
-          match = props.match
+        render={({ match: matchProps }) => {
+          match = matchProps
           return null
         }}
       />

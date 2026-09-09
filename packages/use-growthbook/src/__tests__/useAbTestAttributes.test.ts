@@ -27,13 +27,13 @@ describe(useAbTestAttributes, () => {
     expect(attributes).toStrictEqual({ foo: 'bar' })
   })
 
-  it('should allow to set Attributes through Growthbook', () => {
+  it('should allow to set Attributes through Growthbook', async () => {
     const {
       result: {
         current: [, setAttributesNow],
       },
     } = renderHook(() => useAbTestAttributes())
-    setAttributesNow({ bar: 'foo' })
+    await setAttributesNow({ bar: 'foo' })
     expect(setAttributes).toHaveBeenCalledTimes(1)
     expect(setAttributes).toHaveBeenCalledWith({ bar: 'foo', foo: 'bar' })
   })

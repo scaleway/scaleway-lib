@@ -165,9 +165,9 @@ test('handles from as array with valid strings', () => {
   expect(screen.getByText('matched')).toBeInTheDocument()
 })
 
-test('handles element without props', () => {
-  const CustomRoute = ({ children }: { children: React.ReactNode }) => <div>{children}</div>
+const CustomRoute = ({ children }: { children: React.ReactNode }) => <div>{children}</div>
 
+test('handles element without props', () => {
   render(
     <MemoryRouter initialEntries={['/test']}>
       <Switch>
