@@ -13,7 +13,7 @@ type PackageJson = {
 
 const { log, error: consoleError } = console
 
-const SPACE_REGEX = /^\{\n(\s+)/v
+const SPACE_REGEX = /^\{\n(?<indent>\s+)/v
 
 /**
  * Find all package.json files recursively
@@ -71,7 +71,7 @@ async function processPackageJson(filePath: string): Promise<number> {
     if (changesCount > 0) {
       // Preserve formatting by using the same space count as the original file
       const match = SPACE_REGEX.exec(content)
-      const indent = match?.[1]?.length ?? 2
+      const indent = match?.groups?.['indent']?.length ?? 2
 
       await writeFile(filePath, JSON.stringify(packageJson, undefined, indent), 'utf8')
     }
