@@ -1,8 +1,8 @@
 import { readFile, writeFile } from 'node:fs/promises'
 import { defaultConfig, readConfig } from '@changesets/config'
-import { defaultGitValues, mockSimpleGit } from 'simple-git'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { run } from '../generateChangeset.js'
+import { defaultGitValues, mockSimpleGit } from './gitMock.js'
 
 // Mock all external dependencies
 vi.mock(import('node:fs/promises'))

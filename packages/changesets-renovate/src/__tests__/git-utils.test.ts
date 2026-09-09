@@ -1,7 +1,7 @@
-import { mockSimpleGit } from 'simple-git'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { parse } from 'yaml'
 import { findChangedDependenciesFromGit, loadCatalogFromGit } from '../git-utils.js'
+import { mockSimpleGit } from './gitMock.js'
 
 // Mock all external dependencies
 vi.mock('yaml')
