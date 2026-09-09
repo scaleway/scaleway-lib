@@ -311,7 +311,7 @@ test('form use case', async () => {
 
   // Call resolveSubmit to finish the submit
   act(() => {
-    resolveSubmit()
+    resolveSubmit?.()
   })
 
   // Check that the navigation worked and we are now on home page
