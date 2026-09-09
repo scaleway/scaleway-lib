@@ -5,28 +5,28 @@ update:
   changeset: true
 
 catalog:
-  "@arethetypeswrong/core": 0.18.5
-  "@changesets/changelog-github": 1.0.1
-  "@changesets/cli": 3.0.2
-  "@changesets/config": 4.0.0
-  "@formatjs/ecma402-abstract": 3.2.0
-  "@formatjs/fast-memoize": 3.1.7
-  "@formatjs/icu-messageformat-parser": 3.5.17
-  "@growthbook/growthbook-react": 1.7.0
-  "@manypkg/cli": 0.25.1
-  "@rudderstack/analytics-js": 3.32.0
-  "@scaleway/sdk-client": 2.8.0
-  "@scaleway/sdk-iam": 2.15.0
-  "@segment/analytics-next": 1.84.1
-  "@testing-library/jest-dom": 7.0.1
-  "@testing-library/react": 16.3.3
-  "@testing-library/user-event": 14.6.7
-  "@types/node": 26.4.1
-  "@types/picomatch": 4.0.3
-  "@types/react-dom": 19.2.7
-  "@types/react": 19.2.18
-  "@vitejs/plugin-react": 6.1.1
-  "@vitest/coverage-istanbul": 4.1.11
+  '@arethetypeswrong/core': 0.18.5
+  '@changesets/changelog-github': 1.0.1
+  '@changesets/cli': 3.0.2
+  '@changesets/config': 4.0.0
+  '@formatjs/ecma402-abstract': 3.2.0
+  '@formatjs/fast-memoize': 3.1.7
+  '@formatjs/icu-messageformat-parser': 3.5.17
+  '@growthbook/growthbook-react': 1.7.0
+  '@manypkg/cli': 0.25.1
+  '@rudderstack/analytics-js': 3.32.0
+  '@scaleway/sdk-client': 2.8.0
+  '@scaleway/sdk-iam': 2.15.0
+  '@segment/analytics-next': 1.84.1
+  '@testing-library/jest-dom': 7.0.1
+  '@testing-library/react': 16.3.3
+  '@testing-library/user-event': 14.6.7
+  '@types/node': 26.4.1
+  '@types/picomatch': 4.0.3
+  '@types/react-dom': 19.2.7
+  '@types/react': 19.2.18
+  '@vitejs/plugin-react': 6.1.1
+  '@vitest/coverage-istanbul': 4.1.11
   awesome-phonenumber: 7.8.0
   browserslist: 4.28.9
   chalk: 6.0.0
@@ -74,16 +74,16 @@ allowBuilds:
 
 peerDependencyRules:
   allowedVersions:
-    "@types/react": 18 || 19
+    '@types/react': 18 || 19
     react: 18 || 19
     react-dom: 18 || 19
 
-savePrefix: ""
+savePrefix: ''
 
 supportedArchitectures:
-  cpu: [ x64, arm64 ]
-  os: [ darwin, current ]
+  cpu: [x64, arm64]
+  os: [darwin, current]
 
 minimumReleaseAgeExclude:
-  - "@scaleway/sdk-iam"
-  - "@scaleway/sdk-std"
+  - '@scaleway/sdk-iam'
+  - '@scaleway/sdk-std'
