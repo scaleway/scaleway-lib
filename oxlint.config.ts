@@ -37,7 +37,6 @@ export default defineConfig({
     'react/globals': 'warn',
     'react/hook-use-state': ['warn', { allowDestructuredState: true }],
     'react/immutability': 'warn',
-    'react/jsx-no-literals': 'warn',
     'react/no-clone-element': 'warn',
     'react/no-deriving-state-in-effects': 'warn',
     'react/no-react-children': 'warn',
