@@ -1,5 +1,5 @@
 ---
-"@scaleway/oxfmt-config": minor
+"@scaleway/oxfmt-config": patch
 ---
 
 add pnpm workspace in formatter
