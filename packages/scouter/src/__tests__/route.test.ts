@@ -1,4 +1,4 @@
-// oxlint-disable typescript/no-unsafe-type-assertion typescript/no-unsafe-argument typescript/unbound-method
+// oxlint-disable typescript/no-unsafe-type-assertion typescript/no-unsafe-argument
 import { describe, expect, it } from 'vitest'
 import { buildQueryString, createRoute, isRoute } from '../helpers/route'
 
@@ -8,8 +8,10 @@ describe('route helpers', () => {
       const route = createRoute('/users')
       expect(route).toBeDefined()
       expect(route.path).toBeTypeOf('string')
-      expect(route.link).toBeTypeOf('function')
-      expect(route.withQueryParams).toBeTypeOf('function')
+      // oxlint-disable-next-line vitest/prefer-expect-type-of -- method ref triggers unbound-method
+      expect(typeof route.link).toBe('function')
+      // oxlint-disable-next-line vitest/prefer-expect-type-of -- method ref triggers unbound-method
+      expect(typeof route.withQueryParams).toBe('function')
     })
 
     it('route.path returns path string', () => {
@@ -76,7 +78,8 @@ describe('route helpers', () => {
       const route = createRoute('/users')
       const routeWithQueryParams = route.withQueryParams<{ filter?: string }>()
       expect(routeWithQueryParams.path).toBe('/users')
-      expect(routeWithQueryParams.link).toBeTypeOf('function')
+      // oxlint-disable-next-line vitest/prefer-expect-type-of -- method ref triggers unbound-method
+      expect(typeof routeWithQueryParams.link).toBe('function')
     })
   })
 

@@ -1,4 +1,4 @@
-// oxlint-disable vitest/require-top-level-describe typescript/unbound-method
+// oxlint-disable vitest/require-top-level-describe
 import { render, renderHook } from '@testing-library/react'
 import { createMemoryHistory as createHistory } from 'history'
 import { describe, expect, it, test } from 'vitest'
@@ -32,12 +32,18 @@ test('returns history object from context', () => {
   })
 
   expect(result.current).toBeDefined()
-  expect(result.current.push).toBeTypeOf('function')
-  expect(result.current.replace).toBeTypeOf('function')
-  expect(result.current.go).toBeTypeOf('function')
-  expect(result.current.back).toBeTypeOf('function')
-  expect(result.current.forward).toBeTypeOf('function')
-  expect(result.current.createHref).toBeTypeOf('function')
+  // oxlint-disable-next-line vitest/prefer-expect-type-of -- method ref triggers unbound-method
+  expect(typeof result.current.push).toBe('function')
+  // oxlint-disable-next-line vitest/prefer-expect-type-of -- method ref triggers unbound-method
+  expect(typeof result.current.replace).toBe('function')
+  // oxlint-disable-next-line vitest/prefer-expect-type-of -- method ref triggers unbound-method
+  expect(typeof result.current.go).toBe('function')
+  // oxlint-disable-next-line vitest/prefer-expect-type-of -- method ref triggers unbound-method
+  expect(typeof result.current.back).toBe('function')
+  // oxlint-disable-next-line vitest/prefer-expect-type-of -- method ref triggers unbound-method
+  expect(typeof result.current.forward).toBe('function')
+  // oxlint-disable-next-line vitest/prefer-expect-type-of -- method ref triggers unbound-method
+  expect(typeof result.current.createHref).toBe('function')
 })
 
 test('history object has location property', () => {

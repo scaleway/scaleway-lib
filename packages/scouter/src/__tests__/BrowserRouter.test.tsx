@@ -1,4 +1,4 @@
-// oxlint-disable typescript/no-unsafe-assignment typescript/no-unsafe-type-assertion typescript/no-explicit-any vitest/no-conditional-in-test typescript/unbound-method
+// oxlint-disable typescript/no-unsafe-assignment typescript/no-unsafe-type-assertion typescript/no-explicit-any vitest/no-conditional-in-test
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import type { History, Location, Match } from '../index'
@@ -36,8 +36,10 @@ describe('component BrowserRouter', () => {
     )
 
     expect(history).toBeDefined()
-    expect(history.push).toBeTypeOf('function')
-    expect(history.replace).toBeTypeOf('function')
+    // oxlint-disable-next-line vitest/prefer-expect-type-of -- method ref triggers unbound-method
+    expect(typeof history.push).toBe('function')
+    // oxlint-disable-next-line vitest/prefer-expect-type-of -- method ref triggers unbound-method
+    expect(typeof history.replace).toBe('function')
   })
 
   it('history is re-created for each BrowserRouter', () => {
