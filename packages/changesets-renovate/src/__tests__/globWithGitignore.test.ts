@@ -1,20 +1,13 @@
+import { execSync } from 'node:child_process'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { globWithGitignore } from '../globWithGitignore.js'
 
-const { execSyncMock, escapePathMock, globMock } = vi.hoisted(() => ({
-  execSyncMock: vi.fn<() => string>(() => 'node_modules/\ndist/\n'),
+const { escapePathMock, globMock } = vi.hoisted(() => ({
   escapePathMock: vi.fn<(p: string) => string>((p: string) => p),
   globMock: vi.fn<() => Promise<string[]>>(),
 }))
 
-vi.mock(
-  import('node:child_process'),
-  () =>
-    ({
-      execSync: execSyncMock,
-    }) as never,
-)
-
+vi.mock(import('node:child_process'))
 vi.mock(import('tinyglobby'), () => ({
   glob: globMock,
   escapePath: escapePathMock,
@@ -23,6 +16,7 @@ vi.mock(import('tinyglobby'), () => ({
 describe(globWithGitignore, () => {
   beforeEach(() => {
     vi.clearAllMocks()
+    vi.mocked(execSync).mockReturnValue('node_modules/\ndist/\n')
     vi.spyOn(process, 'cwd').mockReturnValue('/mock/repo')
   })
 
@@ -34,7 +28,7 @@ describe(globWithGitignore, () => {
       ignore: ['**/coverage'],
     })
 
-    expect(execSyncMock).toHaveBeenCalledWith(
+    expect(vi.mocked(execSync)).toHaveBeenCalledWith(
       'git ls-files --others --ignored --exclude-standard --directory',
       expect.objectContaining({ cwd: '/mock/repo' }),
     )
@@ -69,7 +63,7 @@ describe(globWithGitignore, () => {
   })
 
   it('should escape git-ignored paths before passing them to glob', async () => {
-    execSyncMock.mockReturnValue('node_modules/\ndist/\n')
+    vi.mocked(execSync).mockReturnValue('node_modules/\ndist/\n')
     escapePathMock.mockImplementation((p: string) => `escaped:${p}`)
     globMock.mockResolvedValue([])
 
@@ -84,7 +78,7 @@ describe(globWithGitignore, () => {
   })
 
   it('should filter out empty lines from git output', async () => {
-    execSyncMock.mockReturnValue('node_modules/\n\n\ncoverage/\n')
+    vi.mocked(execSync).mockReturnValue('node_modules/\n\n\ncoverage/\n')
     globMock.mockResolvedValue([])
 
     await globWithGitignore(['**/*.ts'])
@@ -99,7 +93,7 @@ describe(globWithGitignore, () => {
 
     await globWithGitignore(['**/*.ts'], { cwd: '/custom/repo' })
 
-    expect(execSyncMock).toHaveBeenCalledWith(
+    expect(vi.mocked(execSync)).toHaveBeenCalledWith(
       'git ls-files --others --ignored --exclude-standard --directory',
       expect.objectContaining({ cwd: '/custom/repo' }),
     )
@@ -110,7 +104,7 @@ describe(globWithGitignore, () => {
   })
 
   it('should fall back to plain glob when git command fails', async () => {
-    execSyncMock.mockImplementation(() => {
+    vi.mocked(execSync).mockImplementation(() => {
       throw new Error('not a git repository')
     })
     globMock.mockResolvedValue(['src/foo.ts'])
