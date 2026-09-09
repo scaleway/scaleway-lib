@@ -10,7 +10,7 @@ function execCompiled(path: CompiledRoute, pathname: string): false | MatchParam
   // oxlint-disable-next-line typescript/no-unsafe-type-assertion
   return path.keys.reduce<Record<string, string | undefined>>((acc, key, index) => {
     const value = matches[index + 1] ?? undefined
-    acc[key] = value ? decodeURI(value) : value
+    acc[key] = value !== null && value !== undefined && value !== '' ? decodeURI(value) : value
     return acc
   }, {}) as MatchParams
 }
@@ -42,20 +42,20 @@ export function matchPath<T extends string>(
   route: string | undefined,
   options: MatchPathOptions = {},
 ): MaybeMatch<RouteParams<T>> {
-  if (!route) {
+  if (route === null || route === undefined || route === '') {
     return null
   }
 
   const pathCompiled = compileRoute(route)
   const { exact } = options
 
-  if (!pathname) {
+  if (pathname === null || pathname === undefined || pathname === '') {
     return null
   }
 
   if (exact === true) {
     const res = execCompiled(pathCompiled.exact, pathname)
-    if (!res) {
+    if (res === false) {
       return null
     }
     return {
@@ -65,7 +65,7 @@ export function matchPath<T extends string>(
     }
   }
   const res = execCompiled(pathCompiled.loose, pathname)
-  if (!res) {
+  if (res === false) {
     return null
   }
   return {

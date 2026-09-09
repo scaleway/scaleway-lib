@@ -79,7 +79,7 @@ test('history is stable across re-renders', () => {
 
   const TestComponent = () => {
     const history = useHistory()
-    if (!firstHistory) {
+    if (firstHistory === undefined) {
       firstHistory = history
     } else {
       secondHistory = history

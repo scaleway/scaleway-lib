@@ -13,7 +13,7 @@ export const useNavigate = () => {
         state?: unknown
       },
     ) => {
-      if (options?.replace) {
+      if (options?.replace === true) {
         history.replace(to, options?.state)
       } else {
         history.push(to, options?.state)

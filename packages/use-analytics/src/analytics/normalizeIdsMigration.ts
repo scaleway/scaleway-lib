@@ -10,16 +10,26 @@ export const normalizeIdsMigration = (rudderAnalytics: RudderAnalytics): void =>
   }
 
   const userId = rudderAnalytics.getUserId()
-  const normalizeUserId = userId ? normalizeId(userId) : null
+  const normalizeUserId = userId !== null && userId !== undefined && userId !== '' ? normalizeId(userId) : null
 
-  if (userId !== normalizeUserId && normalizeUserId) {
+  if (
+    userId !== normalizeUserId &&
+    normalizeUserId !== null &&
+    normalizeUserId !== undefined &&
+    normalizeUserId !== ''
+  ) {
     rudderAnalytics.identify(normalizeUserId)
   }
 
   const groupId = rudderAnalytics.getGroupId()
-  const normalizeGroupId = groupId ? normalizeId(groupId) : null
+  const normalizeGroupId = groupId !== null && groupId !== undefined && groupId !== '' ? normalizeId(groupId) : null
 
-  if (userId !== normalizeGroupId && normalizeGroupId) {
+  if (
+    userId !== normalizeGroupId &&
+    normalizeGroupId !== null &&
+    normalizeGroupId !== undefined &&
+    normalizeGroupId !== ''
+  ) {
     rudderAnalytics.group(normalizeGroupId)
   }
 }

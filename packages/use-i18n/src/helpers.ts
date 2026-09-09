@@ -23,7 +23,12 @@ export const getCurrentLocale = <LocalSupportedType extends string>({
     const { languages: browserLocales } = navigator
     const currentLocalFromlocalStorage = localStorage.getItem(localeItemStorage)
 
-    if (currentLocalFromlocalStorage && isLocaleSupported(currentLocalFromlocalStorage)) {
+    if (
+      currentLocalFromlocalStorage !== null &&
+      currentLocalFromlocalStorage !== undefined &&
+      currentLocalFromlocalStorage !== '' &&
+      isLocaleSupported(currentLocalFromlocalStorage)
+    ) {
       return currentLocalFromlocalStorage
     }
     localStorage.removeItem(localeItemStorage)

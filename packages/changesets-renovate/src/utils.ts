@@ -68,17 +68,17 @@ function shouldSkipPackage(
     return true
   }
 
-  if (packageJson.private && !allowPrivatePackages) {
+  if (packageJson.private === true && !allowPrivatePackages) {
     return true
   }
 
-  return !packageJson.version
+  return packageJson.version === null || packageJson.version === undefined || packageJson.version === ''
 }
 
 export async function getChangesetConfig(): Promise<NonNullable<Awaited<ReturnType<typeof readConfig>>['config']>> {
   const result = await readConfig(process.cwd())
 
-  if (result.errors?.length) {
+  if (result.errors !== null && result.errors !== undefined && result.errors.length > 0) {
     throw new Error(`Invalid changeset config:\n${result.errors.join('\n')}`)
   }
 
@@ -104,7 +104,9 @@ export async function getPackagesNames(files: string[], packageBumps: Map<string
 
     const packageJsonDeps = new Set([
       ...Object.keys(data.dependencies ?? {}),
-      ...(env['EXCLUDE_DEVDEPS'] ? [] : Object.keys(data.devDependencies ?? {})),
+      ...(env['EXCLUDE_DEVDEPS'] !== null && env['EXCLUDE_DEVDEPS'] !== undefined && env['EXCLUDE_DEVDEPS'] !== ''
+        ? []
+        : Object.keys(data.devDependencies ?? {})),
     ])
 
     if (!packageBumps.keys().some(value => packageJsonDeps.has(value))) {
@@ -116,7 +118,7 @@ export async function getPackagesNames(files: string[], packageBumps: Map<string
     }
 
     // Do not generate changeset for the root package.json of a monorepo
-    if (!data.workspaces && data.version) {
+    if (!data.workspaces && data.version !== null && data.version !== undefined && data.version !== '') {
       packages.push(data.name)
     }
   })
@@ -176,7 +178,13 @@ export function findChangedDependencies(
   newCatalog: Record<string, string>,
 ): string[] {
   return Object.entries(newCatalog)
-    .filter(([pkg, newVersion]) => oldCatalog[pkg] && oldCatalog[pkg] !== newVersion)
+    .filter(
+      ([pkg, newVersion]) =>
+        oldCatalog[pkg] !== null &&
+        oldCatalog[pkg] !== undefined &&
+        oldCatalog[pkg] !== '' &&
+        oldCatalog[pkg] !== newVersion,
+    )
     .map(([pkg]) => pkg)
 }
 
@@ -212,7 +220,9 @@ export async function findAffectedPackages(changedDeps: string[], packageJsonGlo
 
       const packageJsonDeps = new Set([
         ...Object.keys(json.dependencies ?? {}),
-        ...(env['EXCLUDE_DEVDEPS'] ? [] : Object.keys(json.devDependencies ?? {})),
+        ...(env['EXCLUDE_DEVDEPS'] !== null && env['EXCLUDE_DEVDEPS'] !== undefined && env['EXCLUDE_DEVDEPS'] !== ''
+          ? []
+          : Object.keys(json.devDependencies ?? {})),
       ])
 
       if (

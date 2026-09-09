@@ -30,7 +30,7 @@ export const RouteInternal = ({ path, computedMatch, exact, render, children }: 
     if (computedMatch) {
       return computedMatch
     }
-    if (!path) {
+    if (path === null || path === undefined || path.length === 0) {
       return parentRoute.match
     }
     return matchPaths(location.pathname, typeof path === 'string' ? [path] : path, { exact })
@@ -44,6 +44,7 @@ export const RouteInternal = ({ path, computedMatch, exact, render, children }: 
         if (!match) {
           return null
         }
+        // oxlint-disable-next-line typescript/strict-boolean-expressions -- ReactNode union has heterogeneous truthiness; preserve original truthy check
         if (children) {
           return children
         }

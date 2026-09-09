@@ -38,7 +38,13 @@ export const useDestinations: (config: Config) => {
   // TODO: use useDataloader to add more cache.
   useEffect(() => {
     const fetchDestinations = async () => {
-      if (IS_BROWSER && config.analytics?.cdnURL && config.analytics.writeKey) {
+      if (
+        IS_BROWSER &&
+        config.analytics?.cdnURL !== null &&
+        config.analytics?.cdnURL !== undefined &&
+        config.analytics?.cdnURL !== '' &&
+        config.analytics.writeKey
+      ) {
         const url = `${config.analytics.cdnURL}/sourceConfig`
         const WRITE_KEY = btoa(`${config.analytics.writeKey}:`)
         const response = await fetch(url, {

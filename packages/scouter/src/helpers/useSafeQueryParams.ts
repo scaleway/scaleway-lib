@@ -63,7 +63,7 @@ export const useSafeQueryParams = <T extends z.ZodObject<any>>({
         searchParams.delete(key)
         safeStoreValue({ key, searchParams, value: partialData[key] })
       })
-      history[options.push ? 'push' : 'replace']({
+      history[options.push === true ? 'push' : 'replace']({
         search: searchParams.toString(),
       })
     },

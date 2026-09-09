@@ -14,20 +14,30 @@ export const userMigrationsTraits = (rudderAnalytics: RudderAnalytics): void => 
   const rudderUserId = rudderAnalytics.getUserId()
   const rudderGroupId = rudderAnalytics.getGroupId()
 
-  if (segmentAnonymousId) {
+  if (segmentAnonymousId !== null && segmentAnonymousId !== undefined && segmentAnonymousId !== '') {
     rudderAnalytics.setAnonymousId(normalizeId(segmentAnonymousId))
   }
 
-  if (segmentUserId && (!rudderUserId || rudderUserId !== segmentUserId)) {
+  if (
+    segmentUserId !== null &&
+    segmentUserId !== undefined &&
+    segmentUserId !== '' &&
+    (rudderUserId === null || rudderUserId === undefined || rudderUserId === '' || rudderUserId !== segmentUserId)
+  ) {
     const normalizedUserId = normalizeId(segmentUserId)
-    if (normalizedUserId) {
+    if (normalizedUserId !== null && normalizedUserId !== undefined && normalizedUserId !== '') {
       rudderAnalytics.identify(normalizedUserId)
     }
   }
 
-  if (segmentGroupId && (!rudderGroupId || rudderGroupId !== segmentGroupId)) {
+  if (
+    segmentGroupId !== null &&
+    segmentGroupId !== undefined &&
+    segmentGroupId !== '' &&
+    (rudderGroupId === null || rudderGroupId === undefined || rudderGroupId === '' || rudderGroupId !== segmentGroupId)
+  ) {
     const normalizedGroupId = normalizeId(segmentGroupId)
-    if (normalizedGroupId) {
+    if (normalizedGroupId !== null && normalizedGroupId !== undefined && normalizedGroupId !== '') {
       rudderAnalytics.group(normalizedGroupId)
     }
   }

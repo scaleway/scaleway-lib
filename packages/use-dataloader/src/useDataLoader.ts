@@ -46,15 +46,22 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
     }
   }, [request, forceRerender])
 
-  const needLoad = useMemo(
-    () =>
-      Boolean(
-        enabled &&
-        (!(request.dataUpdatedAt && computedDatalifetime) ||
-          (request.dataUpdatedAt && computedDatalifetime && request.dataUpdatedAt + computedDatalifetime < Date.now())),
-      ),
-    [enabled, request.dataUpdatedAt, computedDatalifetime],
-  )
+  const needLoad = useMemo(() => {
+    if (!enabled) {
+      return false
+    }
+    if (
+      request.dataUpdatedAt !== null &&
+      request.dataUpdatedAt !== undefined &&
+      request.dataUpdatedAt !== 0 &&
+      computedDatalifetime !== null &&
+      computedDatalifetime !== undefined &&
+      computedDatalifetime !== 0
+    ) {
+      return request.dataUpdatedAt + computedDatalifetime < Date.now()
+    }
+    return true
+  }, [enabled, request.dataUpdatedAt, computedDatalifetime])
 
   const optimisticIsLoadingRef = useRef(needLoad)
 
@@ -65,6 +72,7 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
 
   // isLoading is true only when there is no cache data and we're fetching data for the first time
   const isLoading =
+    // oxlint-disable-next-line typescript/strict-boolean-expressions -- computedData is unknown ResultType; truthiness is the intended check
     !computedData && request.isFirstLoading && (request.status === StatusEnum.LOADING || optimisticIsLoadingRef.current)
 
   // isFetching is true when there is an active request in progress
@@ -76,11 +84,12 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
 
   const isIdle = request.status === StatusEnum.IDLE && !enabled
 
-  const isPolling = Boolean(
-    pollingInterval &&
+  const isPolling =
+    pollingInterval !== null &&
+    pollingInterval !== undefined &&
+    pollingInterval !== 0 &&
     ((typeof needPolling === 'function' && (request.isFirstLoading || needPolling(request.data))) ||
-      (typeof needPolling !== 'function' && needPolling)),
-  )
+      (typeof needPolling !== 'function' && needPolling))
 
   const reload: () => Promise<void> = useCallback(async () => {
     // Set optimistic loading state to true when reload is called
@@ -143,12 +152,10 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
   useEffect(() => {
     let interval: ReturnType<typeof setInterval> | undefined = undefined
 
-    if (pollingInterval) {
+    if (pollingInterval !== null && pollingInterval !== undefined && pollingInterval !== 0) {
       interval = setInterval(() => {
         if (
-          (needPollingRef.current &&
-            typeof needPollingRef.current === 'function' &&
-            needPollingRef.current(request.data)) ||
+          (typeof needPollingRef.current === 'function' && needPollingRef.current(request.data)) ||
           (typeof needPollingRef.current !== 'function' && needPollingRef.current && !request.isCalled)
         ) {
           const onSuccessLoad = onSuccessRef.current ?? noop
@@ -160,7 +167,7 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
     }
 
     return () => {
-      if (interval) {
+      if (interval !== null && interval !== undefined) {
         clearInterval(interval)
       }
     }

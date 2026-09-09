@@ -52,7 +52,12 @@ async function processPackageJson(filePath: string): Promise<number> {
 
     // Compare and update peerDependencies
     for (const [pkg, peerVersion] of Object.entries(packageJson.peerDependencies)) {
-      if (packageJson.devDependencies[pkg] && packageJson.devDependencies[pkg] !== peerVersion) {
+      if (
+        packageJson.devDependencies[pkg] !== null &&
+        packageJson.devDependencies[pkg] !== undefined &&
+        packageJson.devDependencies[pkg] !== '' &&
+        packageJson.devDependencies[pkg] !== peerVersion
+      ) {
         const devVersion = packageJson.devDependencies[pkg]
         log(
           chalk.yellow(`Updating ${chalk.bold(pkg)} in ${chalk.cyan(packageName)}:`),

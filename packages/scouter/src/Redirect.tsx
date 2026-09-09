@@ -23,7 +23,7 @@ export const RedirectInternal = ({ from: path, computedMatch, exact, push, to }:
     if (computedMatch) {
       return computedMatch
     }
-    if (!path) {
+    if (path === null || path === undefined || path.length === 0) {
       return parentRoute.match
     }
     return matchPaths(location.pathname, typeof path === 'string' ? [path] : path, { exact })
@@ -33,7 +33,7 @@ export const RedirectInternal = ({ from: path, computedMatch, exact, push, to }:
     if (!match) {
       return
     }
-    if (push) {
+    if (push === true) {
       history.push(to)
     } else {
       history.replace(to)
