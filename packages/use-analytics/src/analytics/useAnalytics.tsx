@@ -85,7 +85,7 @@ export const AnalyticsProvider = <T extends Events>({
 
   // This effect will unlock the case where we have a failure with the load of the analytics.load as rudderstack doesn't provider any solution for this case.
   useEffect(() => {
-    let timer: ReturnType<typeof setTimeout> | undefined
+    let timer: ReturnType<typeof setTimeout> | undefined = undefined
     if (!isAnalyticsReady && (Number.isFinite(timeout) || shouldRenderOnlyWhenReady)) {
       timer = setTimeout(() => {
         setIsAnalyticsReady(true)

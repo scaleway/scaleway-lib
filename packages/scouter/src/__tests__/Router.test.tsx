@@ -21,7 +21,7 @@ test('renders children', () => {
 })
 
 test('provides history to children', () => {
-  let history: any
+  let history: any = undefined
 
   const customHistory = createHistory()
 
@@ -40,7 +40,7 @@ test('provides history to children', () => {
 })
 
 test('provides location to children', () => {
-  let location: Location
+  let location: Location | undefined = undefined
 
   const history = createHistory({
     initialEntries: ['/test-location'],
@@ -61,7 +61,7 @@ test('provides location to children', () => {
 })
 
 test('updates when history changes', () => {
-  let location: Location
+  let location: Location | undefined = undefined
 
   const history = createHistory({
     initialEntries: ['/initial'],
@@ -88,7 +88,7 @@ test('updates when history changes', () => {
 })
 
 test('provides match to children', () => {
-  let match: Match
+  let match: Match | undefined = undefined
 
   const history = createHistory()
 

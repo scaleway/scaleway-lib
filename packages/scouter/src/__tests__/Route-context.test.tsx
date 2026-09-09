@@ -5,7 +5,7 @@ import type { Location, Match } from '../index'
 import { MemoryRouter, Route } from '../index'
 
 test('provides match to render prop', () => {
-  let match: Match
+  let match: Match | undefined = undefined
 
   render(
     <MemoryRouter initialEntries={['/test']}>
@@ -25,7 +25,7 @@ test('provides match to render prop', () => {
 })
 
 test('provides location to render prop', () => {
-  let location: Location
+  let location: Location | undefined = undefined
 
   render(
     <MemoryRouter initialEntries={['/test?foo=bar']}>
@@ -45,8 +45,8 @@ test('provides location to render prop', () => {
 })
 
 test('match has isExact flag', () => {
-  let exactMatch: Match
-  let looseMatch: Match
+  let exactMatch: Match | undefined = undefined
+  let looseMatch: Match | undefined = undefined
 
   render(
     <MemoryRouter initialEntries={['/test/extra']}>
@@ -74,7 +74,7 @@ test('match has isExact flag', () => {
 })
 
 test('match params are decoded', () => {
-  let match: Match
+  let match: Match | undefined = undefined
 
   render(
     <MemoryRouter initialEntries={['/test/hello%20world']}>

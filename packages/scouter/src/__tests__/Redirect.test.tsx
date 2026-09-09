@@ -49,7 +49,7 @@ describe('that always renders', () => {
 describe('inside a <Switch>', () => {
   // RRv5 allow this but we don't
   it('does not automatically interpolates params', () => {
-    let params: any
+    let params: any = undefined
 
     render(
       <MemoryRouter initialEntries={['/users/mjackson/messages/123']}>

@@ -135,7 +135,7 @@ describe('abTestProvider', () => {
   })
 
   it('should update attributes when they change', async () => {
-    let rerenderFn: ((element: React.ReactElement) => void) | undefined
+    let rerenderFn: ((element: React.ReactElement) => void) | undefined = undefined
 
     await act(async () => {
       const result = render(
@@ -203,7 +203,7 @@ describe('abTestProvider', () => {
       enableDevMode: true,
     }
 
-    let rerenderFn: ((element: React.ReactElement) => void) | undefined
+    let rerenderFn: ((element: React.ReactElement) => void) | undefined = undefined
 
     await act(async () => {
       const result = render(

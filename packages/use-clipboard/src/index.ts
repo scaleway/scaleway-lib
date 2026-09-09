@@ -34,7 +34,7 @@ export function useClipboard(text: string, options?: IOptions): [boolean, () => 
   }, [text, options])
 
   useEffect(() => {
-    let id: number | undefined
+    let id: number | undefined = undefined
     if (isCopied && successDuration) {
       id = setTimeout(() => {
         setIsCopied(false)

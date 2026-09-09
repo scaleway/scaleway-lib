@@ -257,7 +257,7 @@ describe('the `render` prop', () => {
   it('receives { match, location } props', () => {
     const history = createHistory()
 
-    let props: RouteRenderProps
+    let props: RouteRenderProps | undefined = undefined
     render(
       <Router history={history}>
         <Route
