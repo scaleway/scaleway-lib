@@ -141,7 +141,7 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
   }, [needLoad, request])
 
   useEffect(() => {
-    let interval: ReturnType<typeof setInterval>
+    let interval: ReturnType<typeof setInterval> | undefined = undefined
 
     if (pollingInterval) {
       interval = setInterval(() => {

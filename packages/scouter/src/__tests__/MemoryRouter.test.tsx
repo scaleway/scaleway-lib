@@ -18,7 +18,7 @@ test('renders children', () => {
 
 test('creates history with initialEntries', () => {
   const initialEntries = ['/initial-path']
-  let location: Location
+  let location: Location | undefined = undefined
 
   render(
     <MemoryRouter initialEntries={initialEntries}>
@@ -38,7 +38,7 @@ test('creates history with initialEntries', () => {
 test('creates history with initialIndex', () => {
   const initialEntries = ['/first', '/second', '/third']
   const initialIndex = 1
-  let location: Location
+  let location: Location | undefined = undefined
 
   render(
     <MemoryRouter initialEntries={initialEntries} initialIndex={initialIndex}>
@@ -56,7 +56,7 @@ test('creates history with initialIndex', () => {
 })
 
 test('provides default initialEntries when not specified', () => {
-  let location: Location
+  let location: Location | undefined = undefined
 
   render(
     <MemoryRouter>
@@ -74,8 +74,8 @@ test('provides default initialEntries when not specified', () => {
 })
 
 test('history is stable across re-renders', () => {
-  let firstHistory: History
-  let secondHistory: History
+  let firstHistory: History | undefined = undefined
+  let secondHistory: History | undefined = undefined
 
   const TestComponent = () => {
     const history = useHistory()
@@ -103,7 +103,7 @@ test('history is stable across re-renders', () => {
 })
 
 test('provides root route context', () => {
-  let match: Match
+  let match: Match | undefined = undefined
 
   render(
     <MemoryRouter>

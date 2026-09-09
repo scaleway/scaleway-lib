@@ -3,7 +3,7 @@ import type { EncodedJWT, RefreshSessionType } from '../types'
 import { AuthStoreManager } from './authStoreManager'
 import { clientSingleton } from './createClient'
 
-let refreshSessionPromise: Promise<EncodedJWT | undefined> | undefined
+let refreshSessionPromise: Promise<EncodedJWT | undefined> | undefined = undefined
 
 export const refreshSession = ({ paramsRenewRequest, setJWT, onError }: RefreshSessionType) => {
   if (refreshSessionPromise !== undefined) {

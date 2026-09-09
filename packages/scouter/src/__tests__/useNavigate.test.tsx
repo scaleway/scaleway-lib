@@ -17,7 +17,7 @@ describe(useNavigate, () => {
   })
 
   it('navigate with string path', () => {
-    let location: Location
+    let location: Location | undefined = undefined
 
     const { result } = renderHook(
       () => {
@@ -46,7 +46,7 @@ describe(useNavigate, () => {
   })
 
   it('navigate with object', () => {
-    let location: Location
+    let location: Location | undefined = undefined
 
     const { result } = renderHook(
       () => {
@@ -101,7 +101,7 @@ describe(useNavigate, () => {
   })
 
   it('navigate with state', () => {
-    let location: Location
+    let location: Location | undefined = undefined
 
     const { result } = renderHook(
       () => {
@@ -130,7 +130,7 @@ describe(useNavigate, () => {
   })
 
   it('navigate with hash', () => {
-    let location: Location
+    let location: Location | undefined = undefined
 
     const { result } = renderHook(
       () => {
@@ -159,7 +159,7 @@ describe(useNavigate, () => {
   })
 
   it('navigate with replace=true uses history.replace', () => {
-    let location: Location
+    let location: Location | undefined = undefined
 
     const { result } = renderHook(
       () => {
@@ -188,7 +188,7 @@ describe(useNavigate, () => {
   })
 
   it('navigate with replace=false uses history.push', () => {
-    let location: Location
+    let location: Location | undefined = undefined
 
     const { result } = renderHook(
       () => {
@@ -217,7 +217,7 @@ describe(useNavigate, () => {
   })
 
   it('navigate with state option', () => {
-    let location: Location
+    let location: Location | undefined = undefined
 
     const { result } = renderHook(
       () => {
@@ -246,7 +246,7 @@ describe(useNavigate, () => {
   })
 
   it('navigate with replace and state', () => {
-    let location: Location
+    let location: Location | undefined = undefined
 
     const { result } = renderHook(
       () => {

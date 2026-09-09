@@ -43,8 +43,8 @@ describe('component BrowserRouter', () => {
   it('history is re-created for each BrowserRouter', () => {
     expect.hasAssertions()
 
-    let firstHistory: any
-    let secondHistory: any
+    let firstHistory: any = undefined
+    let secondHistory: any = undefined
 
     const TestComponent = () => {
       const history = useHistory()
@@ -74,7 +74,7 @@ describe('component BrowserRouter', () => {
   it('provides root route context', () => {
     expect.hasAssertions()
 
-    let match: Match
+    let match: Match | undefined = undefined
 
     render(
       <BrowserRouter>
@@ -94,7 +94,7 @@ describe('component BrowserRouter', () => {
   it('uses current browser location', () => {
     expect.hasAssertions()
 
-    let location: Location
+    let location: Location | undefined = undefined
 
     render(
       <BrowserRouter>

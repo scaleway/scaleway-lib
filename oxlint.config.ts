@@ -19,7 +19,6 @@ export default defineConfig({
     },
   ],
   rules: {
-    'eslint/init-declarations': 'warn',
     'eslint/max-depth': 'warn',
     'eslint/max-params': 'warn',
     'eslint/no-await-in-loop': 'warn',
