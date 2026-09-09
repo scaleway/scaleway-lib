@@ -17,21 +17,21 @@ vi.mock(import('../analytics/useDestinations'), async importOriginal => {
   }
 })
 
-vi.mock('../helpers/isClient', () => ({
+vi.mock(import('../helpers/isClient'), () => ({
   IS_CLIENT: true,
 }))
 
-vi.mock('../constants', () => ({
-  CATEGORIES: ['essential', 'functional', 'analytics', 'advertising'] as const,
+vi.mock(import('../constants'), () => ({
+  CATEGORIES: ['essential', 'functional', 'marketing', 'analytics', 'advertising'] as const,
   CONSENT_ADVERTISING_MAX_AGE: 2_592_000,
   CONSENT_MAX_AGE: 31_536_000,
   COOKIE_PREFIX: 'consent',
-  COOKIES_OPTIONS: { path: '/', sameSite: 'lax' },
+  COOKIES_OPTIONS: { path: '/', sameSite: 'lax' } as const,
   HASH_COOKIE: 'consent_hash',
 }))
 
-vi.mock('../helpers/misc', () => ({
-  stringToHash: vi.fn<(str: string) => string>((str: string) => `hash_${str}`),
+vi.mock(import('../helpers/misc'), () => ({
+  stringToHash: vi.fn<(str: string) => number>((str: string) => str.length),
 }))
 
 const TestComponent = () => {
@@ -95,7 +95,9 @@ describe('allowedConsents and deniedConsents', () => {
       </CookieConsentProvider>,
     )
 
-    expect(screen.getByTestId('allowed-consents').textContent).toBe('essential,functional,analytics,advertising')
+    expect(screen.getByTestId('allowed-consents').textContent).toBe(
+      'essential,functional,marketing,analytics,advertising',
+    )
     expect(screen.getByTestId('denied-consents').textContent).toBe('')
   })
 
@@ -107,7 +109,9 @@ describe('allowedConsents and deniedConsents', () => {
     )
 
     expect(screen.getByTestId('allowed-consents').textContent).toBe('')
-    expect(screen.getByTestId('denied-consents').textContent).toBe('essential,functional,analytics,advertising')
+    expect(screen.getByTestId('denied-consents').textContent).toBe(
+      'essential,functional,marketing,analytics,advertising',
+    )
   })
 
   it('should correctly categorize consents based on cookie values', () => {
@@ -132,7 +136,7 @@ describe('allowedConsents and deniedConsents', () => {
     )
 
     expect(screen.getByTestId('allowed-consents').textContent).toBe('essential,analytics')
-    expect(screen.getByTestId('denied-consents').textContent).toBe('functional,advertising')
+    expect(screen.getByTestId('denied-consents').textContent).toBe('functional,marketing,advertising')
   })
 
   it('should handle undefined consent values as false', () => {
@@ -151,7 +155,9 @@ describe('allowedConsents and deniedConsents', () => {
     )
 
     expect(screen.getByTestId('allowed-consents').textContent).toBe('')
-    expect(screen.getByTestId('denied-consents').textContent).toBe('essential,functional,analytics,advertising')
+    expect(screen.getByTestId('denied-consents').textContent).toBe(
+      'essential,functional,marketing,analytics,advertising',
+    )
   })
 
   it('should handle partial consent updates correctly', async () => {
@@ -177,6 +183,6 @@ describe('allowedConsents and deniedConsents', () => {
 
     // Initial state
     expect(screen.getByTestId('allowed-consents').textContent).toBe('essential,functional')
-    expect(screen.getByTestId('denied-consents').textContent).toBe('analytics,advertising')
+    expect(screen.getByTestId('denied-consents').textContent).toBe('marketing,analytics,advertising')
   })
 })

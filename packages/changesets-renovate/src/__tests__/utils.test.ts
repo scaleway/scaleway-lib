@@ -1,4 +1,5 @@
 // oxlint-disable max-lines
+import { execSync } from 'node:child_process'
 import { readFile } from 'node:fs/promises'
 import { defaultConfig, readConfig } from '@changesets/config'
 import { glob } from 'tinyglobby'
@@ -12,19 +13,16 @@ import {
   loadCatalogFromWorkspaceContent,
 } from '../utils.js'
 
-const { execSyncMock, escapePathMock, globMock } = vi.hoisted(() => ({
-  execSyncMock: vi.fn<() => string>(() => 'node_modules/\ndist/\n'),
+const { escapePathMock, globMock } = vi.hoisted(() => ({
   escapePathMock: vi.fn<(p: string) => string>((p: string) => p),
   globMock: vi.fn<() => Promise<string[]>>(),
 }))
 
 // Mock all external dependencies
-vi.mock('node:fs/promises')
-vi.mock('node:child_process', () => ({
-  execSync: execSyncMock,
-}))
-vi.mock('yaml')
-vi.mock('tinyglobby', () => ({
+vi.mock(import('node:fs/promises'))
+vi.mock(import('node:child_process'))
+vi.mock(import('yaml'))
+vi.mock(import('tinyglobby'), () => ({
   glob: globMock,
   escapePath: escapePathMock,
 }))
@@ -62,6 +60,7 @@ describe('pnpm-catalogs-utils', () => {
   beforeEach(() => {
     // Clear all mocks
     vi.clearAllMocks()
+    vi.mocked(execSync).mockReturnValue('node_modules/\ndist/\n')
     vi.mocked(readConfig).mockResolvedValue({
       config: defaultConfig,
       warnings: [],
@@ -312,7 +311,7 @@ catalog:
 
       const result = await findAffectedPackages(['changed-dep'])
 
-      expect(execSyncMock).toHaveBeenCalledWith(
+      expect(vi.mocked(execSync)).toHaveBeenCalledWith(
         'git ls-files --others --ignored --exclude-standard --directory',
         expect.objectContaining({ cwd: process.cwd() }),
       )
