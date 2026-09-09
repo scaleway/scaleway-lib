@@ -43,12 +43,12 @@ describe('component BrowserRouter', () => {
   it('history is re-created for each BrowserRouter', () => {
     expect.hasAssertions()
 
-    let firstHistory: any = undefined
-    let secondHistory: any = undefined
+    let firstHistory: History | undefined = undefined
+    let secondHistory: History | undefined = undefined
 
     const TestComponent = () => {
       const history = useHistory()
-      if (!firstHistory) {
+      if (firstHistory === undefined) {
         firstHistory = history
       } else {
         secondHistory = history

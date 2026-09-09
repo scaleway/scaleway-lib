@@ -44,12 +44,12 @@ export const AuthScwProvider = ({
     const currentUrl = new URL(globalThis.location.href)
     const tokenRaw = currentUrl.searchParams.get(urlParamTokenName)
 
-    if (tokenRaw) {
+    if (tokenRaw !== null && tokenRaw !== undefined && tokenRaw !== '') {
       currentUrl.searchParams.delete(urlParamTokenName)
       const token = decodeToken(tokenRaw)
       if (token) {
         const jwtProxy = proxyJwt(token)
-        if (jwtProxy.jwt) {
+        if (jwtProxy.jwt !== null && jwtProxy.jwt !== undefined) {
           AuthStoreManager.setJwt({ jwtInfo: jwtProxy })
         }
 
@@ -59,7 +59,7 @@ export const AuthScwProvider = ({
       }
     }
     const audienceId = AuthStoreManager.getAudienceId()
-    if (audienceId) {
+    if (audienceId !== null && audienceId !== undefined && audienceId !== '') {
       const cookieJwt = AuthStoreManager.getJwt(audienceId)
       if (cookieJwt) {
         return audienceId
@@ -75,7 +75,11 @@ export const AuthScwProvider = ({
     (jwtInfoParam: EncodedJWT) => {
       const currentJWT = proxyJwt(jwtInfoParam)
 
-      if (currentJWT.jwt?.audienceId) {
+      if (
+        currentJWT.jwt?.audienceId !== null &&
+        currentJWT.jwt?.audienceId !== undefined &&
+        currentJWT.jwt?.audienceId !== ''
+      ) {
         AuthStoreManager.setJwt({ jwtInfo: currentJWT })
         setCurrentAudienceId(currentJWT.jwt.audienceId)
       }
@@ -85,13 +89,17 @@ export const AuthScwProvider = ({
 
   const getJWT: AuthScwContextType['getJWT'] = useCallback(
     async (audienceId = currentAudienceId) => {
-      if (audienceId) {
+      if (audienceId !== null && audienceId !== undefined && audienceId !== '') {
         const cookieJWT = getCookieJWT(audienceId)
 
         if (cookieJWT?.jwt) {
           const { renewToken, token, jwt: currentJWT } = cookieJWT
 
-          if (currentJWT.expiresAt && !isExpired(new Date(currentJWT.expiresAt))) {
+          if (
+            currentJWT.expiresAt !== null &&
+            currentJWT.expiresAt !== undefined &&
+            !isExpired(new Date(currentJWT.expiresAt))
+          ) {
             return {
               jwt: currentJWT,
               renewToken,
@@ -138,7 +146,7 @@ export const AuthScwProvider = ({
   )
 
   const logout: AuthScwContextType['logout'] = useCallback(() => {
-    if (currentAudienceId) {
+    if (currentAudienceId !== null && currentAudienceId !== undefined && currentAudienceId !== '') {
       const cookieJWT = getCookieJWT(currentAudienceId)
       AuthStoreManager.deleteJwt(currentAudienceId)
       if (cookieJWT?.jwt) {
@@ -154,7 +162,7 @@ export const AuthScwProvider = ({
   }, [getJwtToken, currentAudienceId])
 
   const jti = useMemo(() => {
-    if (currentAudienceId) {
+    if (currentAudienceId !== null && currentAudienceId !== undefined && currentAudienceId !== '') {
       const cookieJWT = getCookieJWT(currentAudienceId)
 
       if (cookieJWT?.jwt) {
@@ -166,7 +174,13 @@ export const AuthScwProvider = ({
   }, [currentAudienceId])
 
   const isAuthenticated = useMemo(
-    () => Boolean(currentAudienceId && getCookieJWT(currentAudienceId)),
+    () =>
+      Boolean(
+        currentAudienceId !== null &&
+        currentAudienceId !== undefined &&
+        currentAudienceId !== '' &&
+        getCookieJWT(currentAudienceId),
+      ),
     [currentAudienceId],
   )
 

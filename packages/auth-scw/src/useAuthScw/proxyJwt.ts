@@ -32,12 +32,13 @@ export const proxyJwt = (jwtInfoParam: EncodedJWT, updateJwt: UpdateJWT = defaul
   if (updateJwt.shouldOutdated) {
     const oldJwt = {
       ...jwtInfoParam.jwt,
-      expiresAt: jwtInfoParam.jwt?.expiresAt
-        ? subSeconds(
-            subMinutes(new Date(jwtInfoParam.jwt.expiresAt), updateJwt.subMinuteOfExpires),
-            updateJwt.subSecondesOfExpires,
-          )
-        : undefined,
+      expiresAt:
+        jwtInfoParam.jwt?.expiresAt !== null && jwtInfoParam.jwt?.expiresAt !== undefined
+          ? subSeconds(
+              subMinutes(new Date(jwtInfoParam.jwt.expiresAt), updateJwt.subMinuteOfExpires),
+              updateJwt.subSecondesOfExpires,
+            )
+          : undefined,
     }
 
     const expiredJWT = {

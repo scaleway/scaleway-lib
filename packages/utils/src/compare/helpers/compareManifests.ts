@@ -47,9 +47,9 @@ export const compareManifests = (baselinePath: string, currentPath: string, repo
     const baselineFiles = baseline.packages[pkg]?.files.map(f => f.path).toSorted()
     const currentFiles = current.packages[pkg]?.files.map(f => f.path).toSorted()
 
-    const newFiles = currentFiles?.filter(f => !baselineFiles?.includes(f))
-    const missingFiles = baselineFiles?.filter(f => !currentFiles?.includes(f))
-    const commonFiles = baselineFiles?.filter(f => currentFiles?.includes(f))
+    const newFiles = currentFiles?.filter(f => baselineFiles?.includes(f) !== true)
+    const missingFiles = baselineFiles?.filter(f => currentFiles?.includes(f) !== true)
+    const commonFiles = baselineFiles?.filter(f => currentFiles?.includes(f) === true)
 
     let hasChanges = false
 

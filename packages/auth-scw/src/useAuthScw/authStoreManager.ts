@@ -33,14 +33,10 @@ const setCookie = (value: object, key: string, maxAge = COOKIE_AGE) => {
 
 const getCookie = (key: string) => {
   const cookies = parseCookie(document.cookie)
-  if (key in cookies && cookies[key]) {
-    const cookieSessionString = cookies[key]
+  const cookieSessionString = cookies[key]
 
-    if (cookieSessionString) {
-      return JSON.parse(cookieSessionString) as object
-    }
-
-    return null
+  if (cookieSessionString !== null && cookieSessionString !== undefined && cookieSessionString !== '') {
+    return JSON.parse(cookieSessionString) as object
   }
 
   return null
@@ -68,7 +64,7 @@ export const AuthStoreManager = {
 
     document.cookie.split(';').forEach(cookieParam => {
       let [audienceId] = cookieParam.split('=')
-      if (audienceId) {
+      if (audienceId !== null && audienceId !== undefined && audienceId !== '') {
         audienceId = audienceId.trim()
         if (audienceId.startsWith(prefix)) {
           this.deleteJwt(audienceId)
@@ -101,9 +97,7 @@ export const AuthStoreManager = {
       return resultCookieParsed.data
     }
 
-    if (resultCookieParsed.error) {
-      // TODO: we can handle this error with a logout ?
-    }
+    // TODO: we can handle this error with a logout ?
 
     return null
   },

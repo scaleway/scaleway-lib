@@ -170,6 +170,7 @@ const DataLoaderProvider: ComponentType<DataLoaderProviderProps> = ({
 
   const getCachedData = useCallback(
     (key?: KeyType) => {
+      // oxlint-disable-next-line typescript/strict-boolean-expressions -- key is KeyType union (string|number|array); falsy values 0, '' are valid keys whose "absent" semantics must be preserved
       if (key) {
         return getRequest(key)?.getData()
       }
@@ -186,6 +187,7 @@ const DataLoaderProvider: ComponentType<DataLoaderProviderProps> = ({
 
   const getReloads = useCallback(
     (key?: KeyType) => {
+      // oxlint-disable-next-line typescript/strict-boolean-expressions -- key is KeyType union (string|number|array); falsy values 0, '' are valid keys whose "absent" semantics must be preserved
       if (key) {
         return getRequest(key) ? async () => getRequest(key)?.load(true) : undefined
       }

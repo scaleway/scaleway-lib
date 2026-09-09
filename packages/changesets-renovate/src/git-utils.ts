@@ -50,7 +50,11 @@ export async function findChangedDependenciesFromGit(
   const bumps = new Map()
 
   const filtedPackage = Object.entries(newCatalog).filter(
-    ([pkg, newVersion]) => oldCatalog[pkg] && oldCatalog[pkg] !== newVersion,
+    ([pkg, newVersion]) =>
+      oldCatalog[pkg] !== null &&
+      oldCatalog[pkg] !== undefined &&
+      oldCatalog[pkg] !== '' &&
+      oldCatalog[pkg] !== newVersion,
   )
 
   for (const [pkg, newVersion] of filtedPackage) {
@@ -70,7 +74,14 @@ export async function getBumpsFromGit(files: string[]): Promise<Map<string, stri
       if (change.startsWith('+ ')) {
         const match = change.match(/"(.*?)"/gv)
 
-        if (match?.[0] && match[1]) {
+        if (
+          match?.[0] !== null &&
+          match?.[0] !== undefined &&
+          match?.[0] !== '' &&
+          match[1] !== null &&
+          match[1] !== undefined &&
+          match[1] !== ''
+        ) {
           bumps.set(match[0].replaceAll('"', ''), match[1].replaceAll('"', ''))
         }
       }
@@ -83,7 +94,7 @@ export async function getBumpsFromGit(files: string[]): Promise<Map<string, stri
 }
 
 export async function handleChangesetFile(fileName: string) {
-  if (!env['SKIP_COMMIT']) {
+  if (env['SKIP_COMMIT'] === null || env['SKIP_COMMIT'] === undefined || env['SKIP_COMMIT'] === '') {
     await simpleGit().add(fileName)
     await simpleGit().commit(`chore: add ${fileName}`)
     await simpleGit().push()

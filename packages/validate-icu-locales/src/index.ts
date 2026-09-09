@@ -119,7 +119,7 @@ const readFiles = async (files: string[]): Promise<ErrorsICU> => {
   return errors
 }
 
-if (!pattern) {
+if (pattern === null || pattern === undefined || pattern === '') {
   console.error('Missing pattern: validate-icu-locales [PATTERN]')
   process.exit(1)
 }

@@ -64,7 +64,7 @@ function createRouteInternal<Path extends string, QueryParams extends QueryParam
         const path = generatePath(routePath as string, params ?? {})
         const qs = queryParams ? buildQueryString(queryParams) : ''
         const query = qs ? `?${qs}` : ''
-        const fragment = hash ? `#${hash}` : ''
+        const fragment = hash !== null && hash !== undefined && hash !== '' ? `#${hash}` : ''
         return path + query + fragment
       } catch (error) {
         // oxlint-disable-next-line no-console

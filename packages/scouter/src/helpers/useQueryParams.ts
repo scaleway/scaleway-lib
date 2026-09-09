@@ -60,7 +60,7 @@ export const useQueryParams = <T extends QueryParams>(): {
       const searchToCompare = location.search || '?'
 
       if (searchToCompare !== `?${stringifiedParams}`) {
-        const fn = options?.push ? push : replace
+        const fn = options?.push === true ? push : replace
         fn(`${location.pathname}?${stringifiedParams}`)
       }
     },

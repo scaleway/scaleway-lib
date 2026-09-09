@@ -119,6 +119,7 @@ export const useInfiniteDataLoader = <
   const request = getCurrentRequest()
 
   // Compute nextPage from current request.data during render to avoid stale closures
+  // oxlint-disable-next-line typescript/strict-boolean-expressions -- request.data is unknown ResultType; truthiness covers falsy valid results (0, '', false)
   if (request.data) {
     const computedNextPage = getNextPage ? getNextPage(request.data, paramsArgs) : undefined
     if (computedNextPage !== nextPage) {
@@ -126,15 +127,22 @@ export const useInfiniteDataLoader = <
     }
   }
 
-  const needLoad = useMemo(
-    () =>
-      Boolean(
-        enabled &&
-        (!(request.dataUpdatedAt && computedDatalifetime) ||
-          (request.dataUpdatedAt && computedDatalifetime && request.dataUpdatedAt + computedDatalifetime < Date.now())),
-      ),
-    [enabled, request.dataUpdatedAt, computedDatalifetime],
-  )
+  const needLoad = useMemo(() => {
+    if (!enabled) {
+      return false
+    }
+    if (
+      request.dataUpdatedAt !== null &&
+      request.dataUpdatedAt !== undefined &&
+      request.dataUpdatedAt !== 0 &&
+      computedDatalifetime !== null &&
+      computedDatalifetime !== undefined &&
+      computedDatalifetime !== 0
+    ) {
+      return request.dataUpdatedAt + computedDatalifetime < Date.now()
+    }
+    return true
+  }, [enabled, request.dataUpdatedAt, computedDatalifetime])
 
   const optimisticIsLoadingRef = useRef(needLoad)
   const previousDataRef = useRef(request.data)
@@ -165,6 +173,7 @@ export const useInfiniteDataLoader = <
   }, [])
 
   const loadMore = useCallback(() => {
+    // oxlint-disable-next-line typescript/strict-boolean-expressions -- nextPage is unknown page param; truthiness excludes falsy valid pages (0) which must be preserved
     if (nextPage) {
       loadMoreBaseKeyRef.current = baseQueryKey
       setPage(() => {

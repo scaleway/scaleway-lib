@@ -47,7 +47,8 @@ const useStorage = <T>(
   )
 
   const [localValue, setLocaleValue] = useState<string | null>(() =>
-    options?.initialValue ? JSON.stringify(options.initialValue) : null,
+    // oxlint-disable-next-line typescript/strict-boolean-expressions -- generic T value; truthiness is the intended check for "has initial value"
+    options?.initialValue ? JSON.stringify(options?.initialValue) : null,
   )
 
   const value = useSyncExternalStore(
@@ -84,7 +85,7 @@ const useStorage = <T>(
   )
 
   const parsedValue = useMemo(() => {
-    if (value) {
+    if (value !== null && value !== undefined && value !== '') {
       try {
         return JSON.parse(value) as T
       } catch {

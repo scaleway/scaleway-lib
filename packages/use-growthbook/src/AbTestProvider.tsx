@@ -44,7 +44,7 @@ export const AbTestProvider: ComponentType<AbTestProviderProps> = ({
   const growthbook = useMemo(() => getGrowthBookInstance({ config, trackingCallback }), [trackingCallback, config])
 
   const loadFeature = useCallback(async () => {
-    if (config.clientKey) {
+    if (config.clientKey !== null && config.clientKey !== undefined && config.clientKey !== '') {
       const initConfig = {
         ...defaultLoadConfig,
         ...loadConfig,

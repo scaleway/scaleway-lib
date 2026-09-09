@@ -49,7 +49,7 @@ export function useLinkProps(
       if (
         !event.defaultPrevented && // onClickProp prevented default
         event.button === 0 && // ignore everything but left clicks
-        (!target || target === '_self') && // let browser handle "target=_blank" etc.
+        (target === null || target === undefined || target === '' || target === '_self') && // let browser handle "target=_blank" etc.
         !isModifiedEvent(event) // ignore clicks with modifier keys
       ) {
         event.preventDefault()

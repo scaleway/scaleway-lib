@@ -56,7 +56,6 @@ export default defineConfig({
     'typescript/no-useless-default-assignment': 'warn',
     'typescript/promise-function-async': 'warn',
     'typescript/require-await': 'warn',
-    'typescript/strict-boolean-expressions': 'warn',
     'typescript/strict-void-return': 'warn',
 
     'unicorn/consistent-function-scoping': 'warn',
