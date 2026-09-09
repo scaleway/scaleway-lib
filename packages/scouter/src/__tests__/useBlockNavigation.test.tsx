@@ -1,19 +1,19 @@
-// oxlint-disable  vitest/require-top-level-describe vitest/no-conditional-in-test typescript/strict-void-return
+// oxlint-disable  vitest/require-top-level-describe vitest/no-conditional-in-test
 import { act, render, renderHook, screen, waitFor } from '@testing-library/react'
 import { userEvent } from '@testing-library/user-event'
 import { createMemoryHistory } from 'history'
 import { useEffect, useState } from 'react'
-import { describe, expect, it, test } from 'vitest'
+import { beforeAll, describe, expect, it, test } from 'vitest'
 import { Link, MemoryRouter, Route, useBlockNavigation, useNavigate, useSafeQueryParams } from '../index'
 import { Router } from '../Router'
 
-describe('useBlockNavigation - renderHook tests', () => {
-  const wrapper = ({ children }: { children: React.ReactNode }) => (
-    <MemoryRouter>
-      <Route>{children}</Route>
-    </MemoryRouter>
-  )
+const wrapper = ({ children }: { children: React.ReactNode }) => (
+  <MemoryRouter>
+    <Route>{children}</Route>
+  </MemoryRouter>
+)
 
+describe('useBlockNavigation - renderHook tests', () => {
   it('returns default values when not enabled', () => {
     const { result } = renderHook(() => useBlockNavigation(), { wrapper })
 
@@ -171,8 +171,12 @@ describe('useBlockNavigation - renderHook tests', () => {
   })
 })
 
+let resolveSubmit: () => void
+
 test('form use case', async () => {
-  let resolveSubmit: () => void = () => undefined
+  beforeAll(() => {
+    resolveSubmit = () => undefined
+  })
 
   const UserForm = () => {
     const [name, setName] = useState('')
@@ -201,7 +205,11 @@ test('form use case', async () => {
     return (
       <div>
         <Link to="/">Go home</Link>
-        <form onSubmit={handleSubmit}>
+        <form
+          onSubmit={(e: React.SubmitEvent) => {
+            handleSubmit(e).catch(() => undefined)
+          }}
+        >
           <input
             name="name"
             type="text"

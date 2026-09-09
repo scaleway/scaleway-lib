@@ -28,8 +28,8 @@ describe(useNavigate, () => {
         wrapper: ({ children }) => (
           <MemoryRouter initialEntries={['/initial']}>
             <Route
-              render={props => {
-                location = props.location
+              render={({ location: locationProps }) => {
+                location = locationProps
                 return children
               }}
             />
@@ -57,8 +57,8 @@ describe(useNavigate, () => {
         wrapper: ({ children }) => (
           <MemoryRouter initialEntries={['/initial']}>
             <Route
-              render={props => {
-                location = props.location
+              render={({ location: locationProps }) => {
+                location = locationProps
                 return children
               }}
             />
@@ -112,8 +112,8 @@ describe(useNavigate, () => {
         wrapper: ({ children }) => (
           <MemoryRouter initialEntries={['/initial']}>
             <Route
-              render={props => {
-                location = props.location
+              render={({ location: locationProps }) => {
+                location = locationProps
                 return children
               }}
             />
@@ -141,8 +141,8 @@ describe(useNavigate, () => {
         wrapper: ({ children }) => (
           <MemoryRouter initialEntries={['/initial']}>
             <Route
-              render={props => {
-                location = props.location
+              render={({ location: locationProps }) => {
+                location = locationProps
                 return children
               }}
             />
@@ -170,8 +170,8 @@ describe(useNavigate, () => {
         wrapper: ({ children }) => (
           <MemoryRouter initialEntries={['/initial']}>
             <Route
-              render={props => {
-                location = props.location
+              render={({ location: locationProps }) => {
+                location = locationProps
                 return children
               }}
             />
@@ -199,8 +199,8 @@ describe(useNavigate, () => {
         wrapper: ({ children }) => (
           <MemoryRouter initialEntries={['/initial']}>
             <Route
-              render={props => {
-                location = props.location
+              render={({ location: locationProps }) => {
+                location = locationProps
                 return children
               }}
             />
@@ -228,8 +228,8 @@ describe(useNavigate, () => {
         wrapper: ({ children }) => (
           <MemoryRouter initialEntries={['/initial']}>
             <Route
-              render={props => {
-                location = props.location
+              render={({ location: locationProps }) => {
+                location = locationProps
                 return children
               }}
             />
@@ -257,8 +257,8 @@ describe(useNavigate, () => {
         wrapper: ({ children }) => (
           <MemoryRouter initialEntries={['/initial']}>
             <Route
-              render={props => {
-                location = props.location
+              render={({ location: locationProps }) => {
+                location = locationProps
                 return children
               }}
             />

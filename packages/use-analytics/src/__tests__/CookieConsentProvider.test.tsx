@@ -154,7 +154,7 @@ describe('allowedConsents and deniedConsents', () => {
     expect(screen.getByTestId('denied-consents').textContent).toBe('essential,functional,analytics,advertising')
   })
 
-  it('should handle partial consent updates correctly', async () => {
+  it('should handle partial consent updates correctly', () => {
     // Set some cookies with undefined values analytics and advertising are missing (undefined)
     const cookieArray = [
       'consent_essential=true',

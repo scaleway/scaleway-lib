@@ -28,8 +28,8 @@ test('provides history to children', () => {
   render(
     <Router history={customHistory}>
       <Route
-        render={props => {
-          history = props.history
+        render={({ history: historyProps }) => {
+          history = historyProps
           return null
         }}
       />
@@ -49,8 +49,8 @@ test('provides location to children', () => {
   render(
     <Router history={history}>
       <Route
-        render={props => {
-          location = props.location
+        render={({ location: locationProps }) => {
+          location = locationProps
           return null
         }}
       />
@@ -70,9 +70,9 @@ test('updates when history changes', () => {
   render(
     <Router history={history}>
       <Route
-        render={props => {
-          location = props.location
-          return <div>{props.location.pathname}</div>
+        render={({ location: locationProps }) => {
+          location = locationProps
+          return <div>{locationProps.pathname}</div>
         }}
       />
     </Router>,
@@ -95,8 +95,8 @@ test('provides match to children', () => {
   render(
     <Router history={history}>
       <Route
-        render={props => {
-          match = props.match
+        render={({ match: propsMatch }) => {
+          match = propsMatch
           return null
         }}
       />

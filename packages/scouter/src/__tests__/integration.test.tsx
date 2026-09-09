@@ -193,6 +193,8 @@ test('does not unmount components during batched navigations', async () => {
     return <div>Sticky</div>
   }
 
+  // This is a false positive it use Sticky that is defined above
+  // oxlint-disable-next-line unicorn/consistent-function-scoping
   const App = () => {
     const navigate = useNavigate()
 

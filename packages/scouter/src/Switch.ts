@@ -45,6 +45,7 @@ export const Switch = ({ children }: SwitchProps) => {
   // here because toArray adds keys to all child elements and we do not want
   // to trigger an unmount/remount for two <Route>s that render the same
   // component at different URLs.
+  // oxlint-disable-next-line react/no-react-children
   Children.forEach(children, child => {
     if (!match && isValidElement(child)) {
       element = child
@@ -57,6 +58,6 @@ export const Switch = ({ children }: SwitchProps) => {
     }
   })
 
-  // oxlint-disable-next-line typescript/no-explicit-any, typescript/no-unsafe-type-assertion typescript/no-unsafe-argument
+  // oxlint-disable-next-line typescript/no-explicit-any, typescript/no-unsafe-type-assertion typescript/no-unsafe-argument react/no-clone-element
   return match ? cloneElement(element as any, { computedMatch: match }) : null
 }

@@ -28,7 +28,7 @@ const options: ParseArgsConfig['options'] = {
 
 const { values, positionals } = parseArgs({ allowPositionals: true, options })
 
-const pattern = positionals[0]
+const [pattern] = positionals
 
 type Locales = Record<string, string>
 type ErrorICU = {

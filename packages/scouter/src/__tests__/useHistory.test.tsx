@@ -5,13 +5,13 @@ import { describe, expect, it, test } from 'vitest'
 import { MemoryRouter, Route, useHistory } from '../index'
 import { Router } from '../Router'
 
+const TestComponent = () => {
+  useHistory()
+  return null
+}
+
 describe('without a <Router>', () => {
   it('throws an error', () => {
-    const TestComponent = () => {
-      useHistory()
-      return null
-    }
-
     expect(() => {
       render(
         <div>

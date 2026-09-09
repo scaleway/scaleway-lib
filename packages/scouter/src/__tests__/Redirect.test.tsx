@@ -57,8 +57,8 @@ describe('inside a <Switch>', () => {
           <Redirect from="/users/:username/messages/:messageId" to="/:username/messages/:messageId" />
           <Route
             path="/:username/messages/:messageId"
-            render={({ match }) => {
-              params = match.params
+            render={({ match: { params: paramsProps } }) => {
+              params = paramsProps
               return null
             }}
           />
