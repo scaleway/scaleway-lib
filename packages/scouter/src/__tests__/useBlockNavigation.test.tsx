@@ -171,7 +171,7 @@ describe('useBlockNavigation - renderHook tests', () => {
   })
 })
 
-let resolveSubmit: () => void
+let resolveSubmit: (() => void) | undefined = undefined
 
 test('form use case', async () => {
   beforeAll(() => {
