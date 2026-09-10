@@ -23,22 +23,22 @@ export const alphanumDashUnderscoreDotsSpaces: RegExp = /^[a-zA-Z0-9\-.\s_]*$/v
 export const alphanumDashUnderscoreDollar: RegExp = /^[a-zA-Z0-9_$\-]*$/v
 export const alphanumDots: RegExp = /^[a-zA-Z0-9.]*$/v
 export const alphanumLowercase: RegExp = /^[a-z0-9]+$/v
-export const absoluteLinuxPath: RegExp = /(^\/$|^(\/[a-zA-Z0-9_]+)*$)/v
+export const absoluteLinuxPath: RegExp = /(?:^\/$|^(?:\/[a-zA-Z0-9_]+)*$)/v
 
 // oxlint-disable-next-line eslint/no-control-regex
 export const ascii: RegExp = /^[\u0000-\u007F]+$/v
 export const organizationAlias: RegExp = /^[a-z0-9]{2,32}$/v
 export const backupKey: RegExp = /^[A-Z0-9]{8}$|^[A-Z0-9]{32}$/v
-export const basicDomain: RegExp = /^[a-z0-9\-]+(\.[a-z0-9\-]{1,63})+$/v
-export const uppercaseBasicDomain: RegExp = /^(?![\-])[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]{1,63})+$/v
-export const uppercaseBasicSubdomain: RegExp = /^(?![\-])[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]{1,63})+$/v
+export const basicDomain: RegExp = /^[a-z0-9\-]+(?:\.[a-z0-9\-]{1,63})+$/v
+export const uppercaseBasicDomain: RegExp = /^(?![\-])[a-zA-Z0-9\-]+(?:\.[a-zA-Z0-9\-]{1,63})+$/v
+export const uppercaseBasicSubdomain: RegExp = /^(?![\-])[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-]+(?:\.[a-zA-Z0-9\-]{1,63})+$/v
 // It will include special character that are non ASCII but valid for internationalized domain names (IDN)
 export const advancedDomainName: RegExp =
   /^(?:(?:(?:[a-zA-Z0-9À-ÖØ-öø-ÿ](?:[a-zA-Z0-9À-ÖØ-öø-ÿ\-]{0,61}[a-zA-Z0-9À-ÖØ-öø-ÿ])?)\.)+[a-zA-Z]{2,}|(?:[0-9]{1,3}\.){3}[0-9]{1,3})(?::[\d]{1,5})?$/v
 
-export const cron: RegExp = /^((((\d+,)+\d+|(\d+(\/|-)\d+)|\d+|\*|\*\/\d+) ?){5,7})$/v
+export const cron: RegExp = /^(?:(?:(?:(?:\d+,)+\d+|(?:\d+(?:\/|-)\d+)|\d+|\*|\*\/\d+) ?){5,7})$/v
 export const digits: RegExp = /^[0-9]*$/v
-export const macAddress: RegExp = /^([0-9a-fA-F][0-9a-fA-F]:){5}([0-9a-fA-F][0-9a-fA-F])$/v
+export const macAddress: RegExp = /^(?:[0-9a-fA-F][0-9a-fA-F]:){5}(?:[0-9a-fA-F][0-9a-fA-F])$/v
 // Used by W3C
 export const email: RegExp = /^[&a-zA-Z0-9.!#$%’*+\/=?^_`\{\|\}~\-]+@[a-zA-Z0-9\-]+(?:\.[a-zA-Z0-9\-]+)*$/v
 export const fourDigitsCode: RegExp = /^[0-9]{4}$/v
@@ -47,7 +47,7 @@ export const spaces: RegExp = /^\s*$/v
 export const sixDigitsCode: RegExp = /^[0-9]{6}$/v
 export const nineDigitsCode: RegExp = /^[0-9]{9}$/v
 export const elevenDigitsCode: RegExp = /^[0-9]{11}$/v
-export const url: RegExp = /^http(s)?:\/\/?[\w.\-]+(?:\.[\w.\-]+)+[&\w\-._~:\/?#\[\]@!$'\(\)*+,;=.]+$/v
+export const url: RegExp = /^http(?:s)?:\/\/?[\w.\-]+(?:\.[\w.\-]+)+[&\w\-._~:\/?#\[\]@!$'\(\)*+,;=.]+$/v
 export const urlWithoutProtocol =
   /^(?:(?:[a-zA-Z0-9\-]+\.)+[a-zA-Z]{2,}|(?:\d{1,3}\.){3}\d{1,3})(?:\/[&A-Za-z0-9._~!$'\(\)*+,;=:@\-]*)*$/v
 export const hexadecimal: RegExp = /^[0-9a-fA-F]+$/v
@@ -83,22 +83,22 @@ export const ipv6: RegExp = new RegExp(`^${v6}$`, 'v')
 export const ipCidr: RegExp = new RegExp(`(?:^${cidrv4}$)|(?:^${cidrv6}$)`, 'v')
 export const ipv4Cidr: RegExp = new RegExp(`^${cidrv4}$`, 'v')
 export const ipv6Cidr: RegExp = new RegExp(`^${cidrv6}$`, 'v')
-export const reverseDNS: RegExp = /^[a-z0-9\-]+(\.[a-z0-9\-]{1,63})+(\.)$/v
+export const reverseDNS: RegExp = /^[a-z0-9\-]+(?:\.[a-z0-9\-]{1,63})+(?:\.)$/v
 export const dashedIpv4: RegExp =
-  /^(\b25[0-5]|\b2[0-4][0-9]|\b[01]?[0-9][0-9]?)(-(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/v
+  /^(?:\b25[0-5]|\b2[0-4][0-9]|\b[01]?[0-9][0-9]?)(?:-(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/v
 
-export const pathSegment: RegExp = /^[_a-zA-Z0-9]([\-_.a-zA-Z0-9]*[_a-zA-Z0-9])?$/v
-export const absolutePath: RegExp = /^\/(([\w. \-]*)[^\s?]\/?)+$/v
+export const pathSegment: RegExp = /^[_a-zA-Z0-9](?:[\-_.a-zA-Z0-9]*[_a-zA-Z0-9])?$/v
+export const absolutePath: RegExp = /^\/(?:(?:[\w. \-]*)[^\s?]\/?)+$/v
 
 // A port range between 1 to 65535 separated by an hypen or a single number
 export const sgPortRange: RegExp =
-  /^(6553[0-5]|655[0-2][0-9]|65[0-4][0-9]{2}|6[0-4][0-9]{3}|[1-5]?[0-9]{1,4})(-(6553[0-5]|655[0-2][0-9]|65[0-4][0-9]{2}|6[0-4][0-9]{3}|[1-5]?[0-9]{1,4}))?$/v
+  /^(?:6553[0-5]|655[0-2][0-9]|65[0-4][0-9]{2}|6[0-4][0-9]{3}|[1-5]?[0-9]{1,4})(?:-(?:6553[0-5]|655[0-2][0-9]|65[0-4][0-9]{2}|6[0-4][0-9]{3}|[1-5]?[0-9]{1,4}))?$/v
 
 // Include all characters except backtick ` and @ as first character
 export const password: RegExp = /^(?!@)[^`]*$/v
 
 // A kafka username contains lowercase letters and numbers, with each segment starting and ending with a letter or number. Hyphens are only allowed in the middle of segments. Example: "username", "user-name", "my-group.user-name"
-export const kafkaUsernameRegex: RegExp = /^[a-z0-9]([\-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([\-a-z0-9]*[a-z0-9])?)*$/v
+export const kafkaUsernameRegex: RegExp = /^[a-z0-9](?:[\-a-z0-9]*[a-z0-9])?(?:\.[a-z0-9](?:[\-a-z0-9]*[a-z0-9])?)*$/v
 
 // The username cannot begin or end with a period, cannot contain two consecutive periods, and can only contain letters, numbers, periods, hyphens, and underscores. Example: "test", "test_test", "test-test"
 export const webhostingUsernameEmailRegex: RegExp = /^(?!.*\.\.)[a-zA-Z0-9_\-][a-zA-Z0-9._\-]*[a-zA-Z0-9_\-]$/v

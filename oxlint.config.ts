@@ -29,7 +29,6 @@ export default defineConfig({
         'eslint/max-params': 'warn',
         'eslint/no-await-in-loop': 'warn',
         'eslint/no-console': 'warn',
-        'eslint/prefer-named-capture-group': 'warn',
 
         'import/no-nodejs-modules': 'warn',
 
