@@ -1,5 +1,11 @@
 # @scaleway/use-clipboard
 
+## 1.1.2
+
+### Patch Changes
+
+- [#3828](https://github.com/scaleway/scaleway-lib/pull/3828) [`7122b1d`](https://github.com/scaleway/scaleway-lib/commit/7122b1d0adfeb8e6581f9b26bef3489794f93b31) Thanks [@philibea](https://github.com/philibea)! - fix oxlint eslint/init-declarations violations
+
 ## 1.1.1
 
 ### Patch Changes
