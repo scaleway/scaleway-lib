@@ -1,5 +1,11 @@
 # @scaleway/units
 
+## 1.1.1
+
+### Patch Changes
+
+- [#3844](https://github.com/scaleway/scaleway-lib/pull/3844) [`b124417`](https://github.com/scaleway/scaleway-lib/commit/b1244178d61ccc33f97189416fb275f7e751a21d) Thanks [@chambo-e](https://github.com/chambo-e)! - fix(units): use canonical SI exponents so negative prefixes (nano, milli, etc.) convert correctly
+
 ## 1.1.0
 
 ### Minor Changes

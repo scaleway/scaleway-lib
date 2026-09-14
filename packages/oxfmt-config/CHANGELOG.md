@@ -1,5 +1,11 @@
 # @scaleway/oxfmt-config
 
+## 1.1.7
+
+### Patch Changes
+
+- [#3830](https://github.com/scaleway/scaleway-lib/pull/3830) [`c4e82e7`](https://github.com/scaleway/scaleway-lib/commit/c4e82e72f00c9c9c17a65652002ee2b6646b074c) Thanks [@alexandre-combemorel](https://github.com/alexandre-combemorel)! - add pnpm workspace in formatter
+
 ## 1.1.6
 
 ### Patch Changes

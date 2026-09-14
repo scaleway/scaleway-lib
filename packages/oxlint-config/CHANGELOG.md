@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.2
+
+### Patch Changes
+
+- [#3822](https://github.com/scaleway/scaleway-lib/pull/3822) [`83410fe`](https://github.com/scaleway/scaleway-lib/commit/83410fed2c42da5898dcc3ecdcb1ab37d456df9b) Thanks [@chambo-e](https://github.com/chambo-e)! - disable react/jsx-no-literals in tests files
+
+- [#3829](https://github.com/scaleway/scaleway-lib/pull/3829) [`52cab65`](https://github.com/scaleway/scaleway-lib/commit/52cab65f3d1f2620eec1ae270c2fc489694c68b3) Thanks [@chambo-e](https://github.com/chambo-e)! - typescript/strict-boolean-expressions is now more flexible and only checks for bool/any/enums
+
 ## 1.1.1
 
 ### Patch Changes
