@@ -1,5 +1,15 @@
 # @scaleway/auth-scw
 
+## 1.0.4
+
+### Patch Changes
+
+- [#3828](https://github.com/scaleway/scaleway-lib/pull/3828) [`7122b1d`](https://github.com/scaleway/scaleway-lib/commit/7122b1d0adfeb8e6581f9b26bef3489794f93b31) Thanks [@philibea](https://github.com/philibea)! - fix oxlint eslint/init-declarations violations
+
+- [#3842](https://github.com/scaleway/scaleway-lib/pull/3842) [`321be7d`](https://github.com/scaleway/scaleway-lib/commit/321be7daacd3bfc50ffff4ee466e6badb195f8fe) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `zod` to `4.6.2`.
+
+- [#3837](https://github.com/scaleway/scaleway-lib/pull/3837) [`14d95db`](https://github.com/scaleway/scaleway-lib/commit/14d95db9f5ab45603af88627445be5d2e2261c54) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `zod` to `4.6.0`.
+
 ## 1.0.3
 
 ### Patch Changes

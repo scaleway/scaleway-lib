@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.0.12
+
+### Patch Changes
+
+- [#3828](https://github.com/scaleway/scaleway-lib/pull/3828) [`7122b1d`](https://github.com/scaleway/scaleway-lib/commit/7122b1d0adfeb8e6581f9b26bef3489794f93b31) Thanks [@philibea](https://github.com/philibea)! - fix oxlint eslint/init-declarations violations
+
+- [#3835](https://github.com/scaleway/scaleway-lib/pull/3835) [`c1a31a6`](https://github.com/scaleway/scaleway-lib/commit/c1a31a6521e449ec96a5a406286c7b7d36718aae) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@rudderstack/analytics-js` to `3.33.0`.
+
 ## 2.0.11
 
 ### Patch Changes
