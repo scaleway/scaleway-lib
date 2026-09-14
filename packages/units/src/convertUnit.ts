@@ -43,47 +43,47 @@ const exponents = {
     iec: 0,
   },
   unit: {
-    si: 3,
+    si: 0,
     iec: 0,
   },
   // kilo
   kilo: {
-    si: 6,
+    si: 3,
     iec: 10,
   },
   // mega
   mega: {
-    si: 9,
+    si: 6,
     iec: 20,
   },
   // giga
   giga: {
-    si: 12,
+    si: 9,
     iec: 30,
   },
   // tera
   tera: {
-    si: 15,
+    si: 12,
     iec: 40,
   },
   // peta
   peta: {
-    si: 18,
+    si: 15,
     iec: 50,
   },
   // exa
   exa: {
-    si: 21,
+    si: 18,
     iec: 60,
   },
   // zetta
   zetta: {
-    si: 24,
+    si: 21,
     iec: 70,
   },
   // yotta
   yotta: {
-    si: 27,
+    si: 24,
     iec: 80,
   },
 } as const

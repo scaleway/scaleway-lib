@@ -32,16 +32,18 @@ describe(convertUnit, () => {
       desc: 'with negative SI prefix',
       amount: 1000,
       options: { from: 'unit', to: 'milli' },
-      expectResult: 1_000_000_000,
+      expectResult: 1_000_000,
     },
-    { desc: 'from negative SI prefix to unit', amount: 1, options: { from: 'micro', to: 'unit' }, expectResult: 1e-9 },
+    { desc: 'from negative SI prefix to unit', amount: 1, options: { from: 'micro', to: 'unit' }, expectResult: 1e-6 },
     { desc: 'between negative SI prefixes', amount: 1000, options: { from: 'micro', to: 'milli' }, expectResult: 1 },
     {
       desc: 'from positive to negative SI prefix',
       amount: 1,
       options: { from: 'kilo', to: 'milli' },
-      expectResult: 1_000_000_000,
+      expectResult: 1_000_000,
     },
+    { desc: 'from unit to nano', amount: 1, options: { from: 'unit', to: 'nano' }, expectResult: 1e9 },
+    { desc: 'from nano to unit', amount: 1, options: { from: 'nano', to: 'unit' }, expectResult: 1e-9 },
   ] as const)('should work $desc', ({ amount, options, expectResult }) => {
     expect.hasAssertions()
     expect(convertUnit(amount, options)).toBe(expectResult)
