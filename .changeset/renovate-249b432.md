@@ -1,0 +1,6 @@
+---
+'@scaleway/changesets-renovate': patch
+'@scaleway/utils': patch
+---
+
+Updated dependency `yaml` to `2.9.1`.
