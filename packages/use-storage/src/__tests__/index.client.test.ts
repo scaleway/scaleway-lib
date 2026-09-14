@@ -11,7 +11,7 @@ const KEY = 'test'
 describe('useStorage - Client side', () => {
   describe(useLocalStorage, () => {
     afterEach(() => {
-      window.localStorage.removeItem(KEY)
+      globalThis.localStorage.removeItem(KEY)
     })
 
     it('works', () => {
@@ -22,14 +22,14 @@ describe('useStorage - Client side', () => {
         result.current[1]('hello')
       })
 
-      expect(window.localStorage.getItem(KEY)).toBe('"hello"')
+      expect(globalThis.localStorage.getItem(KEY)).toBe('"hello"')
       expect(result.current[0]).toBe('hello')
 
       act(() => {
         result.current[1](undefined)
       })
 
-      expect(window.localStorage.getItem(KEY)).toBeNull()
+      expect(globalThis.localStorage.getItem(KEY)).toBeNull()
       expect(result.current[0]).toBeNull()
     })
 
@@ -41,14 +41,14 @@ describe('useStorage - Client side', () => {
         result.current[1](true)
       })
 
-      expect(window.localStorage.getItem(KEY)).toBe('true')
+      expect(globalThis.localStorage.getItem(KEY)).toBe('true')
       expect(result.current[0]).toBe(true)
 
       act(() => {
         result.current[1](false)
       })
 
-      expect(window.localStorage.getItem(KEY)).toBe('false')
+      expect(globalThis.localStorage.getItem(KEY)).toBe('false')
       expect(result.current[0]).toBe(false)
     })
 
@@ -60,20 +60,20 @@ describe('useStorage - Client side', () => {
         result.current[1](1)
       })
 
-      expect(window.localStorage.getItem(KEY)).toBe('1')
+      expect(globalThis.localStorage.getItem(KEY)).toBe('1')
       expect(result.current[0]).toBe(1)
 
       act(() => {
         result.current[1](0)
       })
 
-      expect(window.localStorage.getItem(KEY)).toBe('0')
+      expect(globalThis.localStorage.getItem(KEY)).toBe('0')
       expect(result.current[0]).toBe(0)
     })
 
     it('works already set value', () => {
       act(() => {
-        window.localStorage.setItem(KEY, '"previous"')
+        globalThis.localStorage.setItem(KEY, '"previous"')
       })
 
       const { result } = renderHook(() => useLocalStorage<string>(KEY))
@@ -82,7 +82,7 @@ describe('useStorage - Client side', () => {
 
     it('works already set invalid value', () => {
       act(() => {
-        window.localStorage.setItem(KEY, 'previous')
+        globalThis.localStorage.setItem(KEY, 'previous')
       })
 
       const { result } = renderHook(() => useLocalStorage<string>(KEY))
@@ -96,7 +96,7 @@ describe('useStorage - Client side', () => {
 
     it('works with initialValue and already set value', () => {
       act(() => {
-        window.localStorage.setItem(KEY, '"previous"')
+        globalThis.localStorage.setItem(KEY, '"previous"')
       })
 
       const { result } = renderHook(() => useLocalStorage<string>(KEY, 'initial'))
@@ -105,7 +105,7 @@ describe('useStorage - Client side', () => {
 
     it('works with initialValue and already set invalid value', () => {
       act(() => {
-        window.localStorage.setItem(KEY, 'previous')
+        globalThis.localStorage.setItem(KEY, 'previous')
       })
 
       const { result } = renderHook(() => useLocalStorage<string>(KEY, 'initial'))
@@ -115,7 +115,7 @@ describe('useStorage - Client side', () => {
 
   describe(useSessionStorage, () => {
     afterEach(() => {
-      window.sessionStorage.removeItem(KEY)
+      globalThis.sessionStorage.removeItem(KEY)
     })
 
     it('works', () => {
@@ -126,14 +126,14 @@ describe('useStorage - Client side', () => {
         result.current[1]('hello')
       })
 
-      expect(window.sessionStorage.getItem(KEY)).toBe('"hello"')
+      expect(globalThis.sessionStorage.getItem(KEY)).toBe('"hello"')
       expect(result.current[0]).toBe('hello')
 
       act(() => {
         result.current[1](undefined)
       })
 
-      expect(window.sessionStorage.getItem(KEY)).toBeNull()
+      expect(globalThis.sessionStorage.getItem(KEY)).toBeNull()
       expect(result.current[0]).toBeNull()
     })
 
@@ -145,14 +145,14 @@ describe('useStorage - Client side', () => {
         result.current[1](true)
       })
 
-      expect(window.sessionStorage.getItem(KEY)).toBe('true')
+      expect(globalThis.sessionStorage.getItem(KEY)).toBe('true')
       expect(result.current[0]).toBe(true)
 
       act(() => {
         result.current[1](false)
       })
 
-      expect(window.sessionStorage.getItem(KEY)).toBe('false')
+      expect(globalThis.sessionStorage.getItem(KEY)).toBe('false')
       expect(result.current[0]).toBe(false)
     })
 
@@ -164,20 +164,20 @@ describe('useStorage - Client side', () => {
         result.current[1](1)
       })
 
-      expect(window.sessionStorage.getItem(KEY)).toBe('1')
+      expect(globalThis.sessionStorage.getItem(KEY)).toBe('1')
       expect(result.current[0]).toBe(1)
 
       act(() => {
         result.current[1](0)
       })
 
-      expect(window.sessionStorage.getItem(KEY)).toBe('0')
+      expect(globalThis.sessionStorage.getItem(KEY)).toBe('0')
       expect(result.current[0]).toBe(0)
     })
 
     it('works already set value', () => {
       act(() => {
-        window.sessionStorage.setItem(KEY, '"previous"')
+        globalThis.sessionStorage.setItem(KEY, '"previous"')
       })
 
       const { result } = renderHook(() => useSessionStorage<string>(KEY))
@@ -186,7 +186,7 @@ describe('useStorage - Client side', () => {
 
     it('works already set invalid value', () => {
       act(() => {
-        window.sessionStorage.setItem(KEY, 'previous')
+        globalThis.sessionStorage.setItem(KEY, 'previous')
       })
 
       const { result } = renderHook(() => useSessionStorage<string>(KEY))
@@ -200,7 +200,7 @@ describe('useStorage - Client side', () => {
 
     it('works with initialValue and already set value', () => {
       act(() => {
-        window.sessionStorage.setItem(KEY, '"previous"')
+        globalThis.sessionStorage.setItem(KEY, '"previous"')
       })
 
       const { result } = renderHook(() => useSessionStorage<string>(KEY, 'initial'))
@@ -209,7 +209,7 @@ describe('useStorage - Client side', () => {
 
     it('works with initialValue and already set invalid value', () => {
       act(() => {
-        window.sessionStorage.setItem(KEY, 'previous')
+        globalThis.sessionStorage.setItem(KEY, 'previous')
       })
 
       const { result } = renderHook(() => useSessionStorage<string>(KEY, 'initial'))

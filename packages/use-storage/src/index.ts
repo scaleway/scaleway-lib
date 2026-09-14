@@ -1,4 +1,3 @@
-// oxlint-disable unicorn/no-typeof-undefined
 import { useCallback, useEffect, useMemo, useState, useSyncExternalStore } from 'react'
 
 declare global {
@@ -11,23 +10,18 @@ declare global {
   }
 }
 
-const canUseDOM =
-  // oxlint-disable-next-line typescript/prefer-optional-chain
-  typeof window !== 'undefined' &&
-  typeof window.document !== 'undefined' &&
-  typeof window.localStorage !== 'undefined' &&
-  typeof window.sessionStorage !== 'undefined'
+const canUseDOM = typeof globalThis !== 'undefined' && 'localStorage' in globalThis && 'sessionStorage' in globalThis
 
 const subscribeStorage = (callback: () => void) => {
   if (canUseDOM) {
-    window.addEventListener('storage', callback)
-    window.addEventListener('event-storage', callback)
+    globalThis.addEventListener('storage', callback)
+    globalThis.addEventListener('event-storage', callback)
   }
 
   return () => {
     if (canUseDOM) {
-      window.removeEventListener('storage', callback)
-      window.removeEventListener('event-storage', callback)
+      globalThis.removeEventListener('storage', callback)
+      globalThis.removeEventListener('event-storage', callback)
     }
   }
 }
@@ -42,7 +36,7 @@ const useStorage = <T>(
   },
 ): ReturnStorage<T> => {
   const storage = useMemo(
-    () => (options?.kind === 'session' ? window.sessionStorage : window.localStorage),
+    () => (options?.kind === 'session' ? globalThis.sessionStorage : globalThis.localStorage),
     [options?.kind],
   )
 
@@ -76,8 +70,8 @@ const useStorage = <T>(
       }
 
       if (canUseDOM) {
-        window.dispatchEvent(new Event('storage'))
-        window.dispatchEvent(new Event('event-storage'))
+        globalThis.dispatchEvent(new Event('storage'))
+        globalThis.dispatchEvent(new Event('event-storage'))
       }
     },
     [key, storage],

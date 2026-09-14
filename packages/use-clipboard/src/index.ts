@@ -35,7 +35,7 @@ export function useClipboard(text: string, options?: IOptions): [boolean, () => 
 
   useEffect(() => {
     let id: number | undefined = undefined
-    if (isCopied && successDuration) {
+    if (isCopied && successDuration !== undefined && successDuration > 0) {
       id = setTimeout(() => {
         setIsCopied(false)
       }, successDuration)
@@ -47,10 +47,10 @@ export function useClipboard(text: string, options?: IOptions): [boolean, () => 
 
   const setCopied = useCallback(async () => {
     try {
-      await navigator.clipboard.writeText(paramsRef.current?.text)
+      await navigator.clipboard.writeText(paramsRef.current.text)
       setIsCopied(true)
     } catch (error: unknown) {
-      paramsRef.current?.options?.onError?.(error)
+      paramsRef.current.options?.onError?.(error)
       setIsCopied(false)
     }
   }, [])
