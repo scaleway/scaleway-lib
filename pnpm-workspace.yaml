@@ -23,8 +23,8 @@ catalog:
   '@testing-library/user-event': 14.6.7
   '@types/node': 26.5.1
   '@types/picomatch': 4.0.3
-  '@types/react-dom': 19.2.7
-  '@types/react': 19.2.18
+  '@types/react-dom': 19.3.0
+  '@types/react': 19.3.0
   '@vitejs/plugin-react': 6.1.1
   '@vitest/coverage-istanbul': 4.1.11
   awesome-phonenumber: 7.8.0
@@ -46,8 +46,8 @@ catalog:
   oxlint-tsgolint: 7.0.2001
   publint: 0.3.24
   query-string: 9.5.1
-  react: 19.2.8
-  react-dom: 19.2.8
+  react: 19.3.0
+  react-dom: 19.3.0
   read-pkg: 10.1.0
   regexparam: 3.0.0
   simple-git: 3.36.0
