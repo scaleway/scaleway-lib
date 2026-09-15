@@ -1,7 +1,8 @@
+import type { Attributes, InitResponse } from '@growthbook/growthbook-react'
+import { GrowthBook } from '@growthbook/growthbook-react'
 import { act, render } from '@testing-library/react'
 import type { ComponentProps } from 'react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { getAttributes, init, setAttributes } from '../../__mocks__/@growthbook/growthbook-react'
 import { AbTestProvider } from '../AbTestProvider'
 
 // Import mock functions from our mocks
@@ -12,16 +13,33 @@ type ErrorCallback = ComponentProps<typeof AbTestProvider>['errorCallback']
 
 const errorCallback: ErrorCallback = vi.fn<() => void>()
 
+const getAttributes = vi.fn<() => Record<string, unknown>>()
+const setAttributes = vi.fn<(attr: Attributes) => Promise<void>>()
+const init = vi.fn<() => Promise<InitResponse>>()
+
 describe('abTestProvider', () => {
   const trackingCallback: TrackingCallback = vi.fn<() => void>()
 
   beforeEach(() => {
-    vi.clearAllMocks()
-    // Reset the mock functions
-    init.mockResolvedValue(undefined)
+    init.mockResolvedValue({ success: true, source: 'init' })
     getAttributes.mockReturnValue({})
     setAttributes.mockResolvedValue(undefined)
+
+    vi.mocked(GrowthBook).mockImplementation(
+      class {
+        public getAttributes = getAttributes
+        public init = init
+        public loadFeatures = vi.fn<() => Promise<void>>()
+        public setAttributes = setAttributes
+      } as unknown as typeof GrowthBook,
+    )
   })
+
+  // afterEach(() => {
+  //       vi.clearAllMocks()
+  //   // Reset the mock functions
+
+  // })
 
   it('should create GrowthBook instance', () => {
     render(

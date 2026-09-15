@@ -2,8 +2,9 @@
  * @vitest-environment node
  */
 
+import type { Response, SimpleGit } from 'simple-git'
+import { simpleGit } from 'simple-git'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { mockSimpleGit } from '../../__mocks__/simple-git'
 import { createChangeset } from '../createChangeset.js'
 import { findChangedDependenciesFromGit, handleChangesetFile } from '../git-utils.js'
 import { handleCatalogChanges } from '../handle-catalog.js'
@@ -81,9 +82,11 @@ describe('handle-catalog', () => {
     vi.mocked(findAffectedPackages).mockResolvedValue(new Set(['pkg-1', 'pkg-2']))
 
     // Mock simpleGit to return a short hash
-    mockSimpleGit.mockReturnValue({
-      revparse: vi.fn<() => Promise<string>>().mockResolvedValue('abc123\n'),
-    } as any)
+    const revparseMock = vi.fn<() => Response<string>>().mockResolvedValue('abc123\n')
+    // Mock simpleGit to return a short hash
+    vi.mocked(simpleGit).mockReturnValue({
+      revparse: revparseMock,
+    } as unknown as SimpleGit)
 
     // Mock createChangeset and handleChangesetFile
     vi.mocked(createChangeset).mockResolvedValue(undefined)
@@ -93,7 +96,7 @@ describe('handle-catalog', () => {
 
     expect(findChangedDependenciesFromGit).toHaveBeenCalledWith('HEAD~1', 'HEAD', 'pnpm-workspace.yaml')
     expect(findAffectedPackages).toHaveBeenCalledWith(['dep-a'])
-    expect(mockSimpleGit().revparse).toHaveBeenCalledWith(['--short', 'HEAD'])
+    expect(revparseMock).toHaveBeenCalledWith(['--short', 'HEAD'])
     expect(createChangeset).toHaveBeenCalledWith('.changeset/renovate-abc123.md', changedDeps, ['pkg-1', 'pkg-2'])
     expect(handleChangesetFile).toHaveBeenCalledWith('.changeset/renovate-abc123.md')
   })

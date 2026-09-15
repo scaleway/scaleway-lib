@@ -1,7 +1,8 @@
 import { readFile, writeFile } from 'node:fs/promises'
 import { defaultConfig, readConfig } from '@changesets/config'
+import type { SimpleGit } from 'simple-git'
+import { simpleGit } from 'simple-git'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { defaultGitValues, mockSimpleGit } from '../../__mocks__/simple-git'
 import { run } from '../generateChangeset.js'
 
 // Mock all external dependencies
@@ -44,14 +45,13 @@ describe('generate changeset file', () => {
   })
 
   it('should skip if not in renovate branch', async () => {
-    mockSimpleGit.mockReturnValue({
-      ...defaultGitValues,
+    vi.mocked(simpleGit).mockReturnValue({
       branch: () => ({
         current: 'main',
       }),
       diffSummary: () => ({}),
       show: () => '',
-    })
+    } as unknown as SimpleGit)
 
     await run()
 
@@ -67,7 +67,7 @@ describe('generate changeset file', () => {
     const commit = vi.fn<() => void>()
     const push = vi.fn<() => void>()
 
-    mockSimpleGit.mockReturnValue({
+    vi.mocked(simpleGit).mockReturnValue({
       add,
       branch: () => ({
         current: 'dep-upgrade/test',
@@ -86,7 +86,7 @@ describe('generate changeset file', () => {
 + "package": "version"
 + "package2": "version2"
 `,
-    })
+    } as unknown as SimpleGit)
 
     // Mock changeset config for this test
     mockReadFileMap({
@@ -113,7 +113,7 @@ describe('generate changeset file', () => {
     const commit = vi.fn<() => void>()
     const push = vi.fn<() => void>()
 
-    mockSimpleGit.mockReturnValue({
+    vi.mocked(simpleGit).mockReturnValue({
       add,
       branch: () => ({
         current: 'main',
@@ -132,7 +132,7 @@ describe('generate changeset file', () => {
 + "package": "version"
 + "package2": "version2"
 `,
-    })
+    } as unknown as SimpleGit)
 
     // Mock changeset config for this test
     mockReadFileMap({
@@ -151,8 +151,7 @@ describe('generate changeset file', () => {
   })
 
   it('should skip if .changeset is already modified', async () => {
-    mockSimpleGit.mockReturnValue({
-      ...defaultGitValues,
+    vi.mocked(simpleGit).mockReturnValue({
       branch: () => ({
         current: 'renovate/test',
       }),
@@ -164,7 +163,7 @@ describe('generate changeset file', () => {
         ],
       }),
       show: () => '',
-    })
+    } as unknown as SimpleGit)
 
     await run()
 
@@ -172,8 +171,7 @@ describe('generate changeset file', () => {
   })
 
   it('should skip no package.json files have been modified', async () => {
-    mockSimpleGit.mockReturnValue({
-      ...defaultGitValues,
+    vi.mocked(simpleGit).mockReturnValue({
       branch: () => ({
         current: 'renovate/test',
       }),
@@ -181,7 +179,7 @@ describe('generate changeset file', () => {
         files: [],
       }),
       show: () => '',
-    })
+    } as unknown as SimpleGit)
 
     await run()
 
@@ -197,7 +195,7 @@ describe('generate changeset file', () => {
     const commit = vi.fn<() => void>()
     const push = vi.fn<() => void>()
 
-    mockSimpleGit.mockReturnValue({
+    vi.mocked(simpleGit).mockReturnValue({
       add,
       branch: () => ({
         current: 'renovate/test',
@@ -216,7 +214,7 @@ describe('generate changeset file', () => {
 + "packagez": "version2"
 + "packagea": "version"
 `,
-    })
+    } as unknown as SimpleGit)
 
     // Mock changeset config for this test
     mockReadFileMap({
@@ -241,7 +239,7 @@ describe('generate changeset file', () => {
     const commit = vi.fn<() => void>()
     const push = vi.fn<() => void>()
 
-    mockSimpleGit.mockReturnValue({
+    vi.mocked(simpleGit).mockReturnValue({
       add,
       branch: () => ({
         current: 'renovate/test',
@@ -260,7 +258,7 @@ describe('generate changeset file', () => {
 + "package": "version"
 + "package2": "version2"
 `,
-    })
+    } as unknown as SimpleGit)
 
     // Mock changeset config for this test
     mockReadFileMap({
@@ -287,7 +285,7 @@ describe('generate changeset file', () => {
     const commit = vi.fn<() => void>()
     const push = vi.fn<() => void>()
 
-    mockSimpleGit.mockReturnValue({
+    vi.mocked(simpleGit).mockReturnValue({
       add,
       branch: () => ({
         current: 'renovate/test',
@@ -309,7 +307,7 @@ describe('generate changeset file', () => {
 + "packagez": "version2"
 + "packagea": "version"
 `,
-    })
+    } as unknown as SimpleGit)
 
     // Mock changeset config for this test
     mockReadFileMap({
@@ -332,8 +330,7 @@ describe('generate changeset file', () => {
   it('should ignore workspace package.json', async () => {
     const file = 'package.json'
 
-    mockSimpleGit.mockReturnValue({
-      ...defaultGitValues,
+    vi.mocked(simpleGit).mockReturnValue({
       branch: () => ({
         current: 'renovate/test',
       }),
@@ -348,7 +345,7 @@ describe('generate changeset file', () => {
 + "package": "version"
 + "package2": "version2"
 `,
-    })
+    } as unknown as SimpleGit)
 
     // Mock changeset config for this test
     mockReadFileMap({
@@ -364,8 +361,7 @@ describe('generate changeset file', () => {
   it('should ignore version package.json', async () => {
     const file = 'package.json'
 
-    mockSimpleGit.mockReturnValue({
-      ...defaultGitValues,
+    vi.mocked(simpleGit).mockReturnValue({
       branch: () => ({
         current: 'renovate/test',
       }),
@@ -380,7 +376,7 @@ describe('generate changeset file', () => {
 + "package": "version"
 + "package2": "version2"
 `,
-    })
+    } as unknown as SimpleGit)
 
     // Mock changeset config for this test
     mockReadFileMap({
@@ -396,8 +392,7 @@ describe('generate changeset file', () => {
   it('should ignore changeset ignored packages', async () => {
     const file = 'test/package.json'
 
-    mockSimpleGit.mockReturnValue({
-      ...defaultGitValues,
+    vi.mocked(simpleGit).mockReturnValue({
       branch: () => ({
         current: 'renovate/test',
       }),
@@ -412,7 +407,7 @@ describe('generate changeset file', () => {
 + "package": "version"
 + "package2": "version2"
 `,
-    })
+    } as unknown as SimpleGit)
 
     vi.mocked(readConfig).mockResolvedValue({
       config: { ...defaultConfig, ignore: ['packageName'] },
@@ -434,8 +429,7 @@ describe('generate changeset file', () => {
   it('should ignore private packages if config said so', async () => {
     const file = 'test/package.json'
 
-    mockSimpleGit.mockReturnValue({
-      ...defaultGitValues,
+    vi.mocked(simpleGit).mockReturnValue({
       branch: () => ({
         current: 'renovate/test',
       }),
@@ -450,7 +444,7 @@ describe('generate changeset file', () => {
 + "package": "version"
 + "package2": "version2"
 `,
-    })
+    } as unknown as SimpleGit)
 
     vi.mocked(readConfig).mockResolvedValue({
       config: {

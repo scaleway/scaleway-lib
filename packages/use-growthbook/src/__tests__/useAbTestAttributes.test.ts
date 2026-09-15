@@ -1,19 +1,23 @@
+import type { Attributes, GrowthBook, InitResponse } from '@growthbook/growthbook-react'
+import { useGrowthBook } from '@growthbook/growthbook-react'
 import { renderHook } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { getAttributes, setAttributes, useGrowthBook } from '../../__mocks__/@growthbook/growthbook-react'
 import { useAbTestAttributes } from '../useAbTestAttributes'
+
+const getAttributes = vi.fn<() => Record<string, unknown>>()
+const setAttributes = vi.fn<(attr: Attributes) => Promise<void>>()
 
 describe(useAbTestAttributes, () => {
   beforeEach(() => {
     getAttributes.mockReturnValue({ foo: 'bar' })
     setAttributes.mockResolvedValue(undefined)
 
-    useGrowthBook.mockReturnValue({
+    vi.mocked(useGrowthBook).mockReturnValue({
       getAttributes,
-      init: vi.fn<() => void>(),
-      loadFeatures: vi.fn<() => void>(),
+      init: vi.fn<() => Promise<InitResponse>>(),
+      loadFeatures: vi.fn<() => Promise<void>>(),
       setAttributes,
-    })
+    } as unknown as GrowthBook)
   })
 
   it('should allow to get attributes from GrowthBook', () => {

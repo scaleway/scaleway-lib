@@ -1,6 +1,7 @@
+import type { SimpleGit } from 'simple-git'
+import { simpleGit } from 'simple-git'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { parse } from 'yaml'
-import { mockSimpleGit } from '../../__mocks__/simple-git'
 import { findChangedDependenciesFromGit, loadCatalogFromGit } from '../git-utils.js'
 
 // Mock all external dependencies
@@ -39,15 +40,16 @@ catalog:
   test-package: 1.0.0
   another-package: 2.0.0
 `
-      mockSimpleGit.mockReturnValue({
+      const show = vi.fn<() => string>().mockReturnValue(mockContent)
+      vi.mocked(simpleGit).mockReturnValue({
         add: vi.fn<() => void>(),
         branch: vi.fn<() => { current: string }>(),
         commit: vi.fn<() => void>(),
         diffSummary: vi.fn<() => Record<string, unknown>>(),
         push: vi.fn<() => void>(),
         revparse: vi.fn<() => string>(),
-        show: vi.fn<() => string>().mockReturnValue(mockContent),
-      })
+        show,
+      } as unknown as SimpleGit)
       vi.mocked(parse).mockReturnValue({
         catalog: {
           'another-package': '2.0.0',
@@ -57,7 +59,7 @@ catalog:
 
       const result = await loadCatalogFromGit('abc123', 'pnpm-workspace.yaml')
 
-      expect(mockSimpleGit().show).toHaveBeenCalledWith(['abc123:pnpm-workspace.yaml'])
+      expect(show).toHaveBeenCalledWith(['abc123:pnpm-workspace.yaml'])
       expect(parse).toHaveBeenCalledWith(mockContent)
       expect(result).toStrictEqual({
         'another-package': '2.0.0',
@@ -66,7 +68,7 @@ catalog:
     })
 
     it('should return empty object if git operation fails', async () => {
-      mockSimpleGit.mockReturnValue({
+      vi.mocked(simpleGit).mockReturnValue({
         add: vi.fn<() => void>(),
         branch: vi.fn<() => { current: string }>(),
         commit: vi.fn<() => void>(),
@@ -76,7 +78,7 @@ catalog:
         show: vi.fn<() => string>().mockImplementation(() => {
           throw new Error('File not found')
         }),
-      })
+      } as unknown as SimpleGit)
 
       const result = await loadCatalogFromGit('nonexistent', 'pnpm-workspace.yaml')
 
@@ -93,7 +95,7 @@ catalog:
   describe(findChangedDependenciesFromGit, () => {
     it('should find dependencies that have changed between git revisions', async () => {
       // Mock the git operations
-      mockSimpleGit.mockReturnValue({
+      vi.mocked(simpleGit).mockReturnValue({
         add: vi.fn<() => void>(),
         branch: vi.fn<() => { current: string }>(),
         commit: vi.fn<() => void>(),
@@ -112,7 +114,7 @@ catalog:
   package-c: 3.1.0
   package-d: 4.0.0
 `),
-      })
+      } as unknown as SimpleGit)
 
       vi.mocked(parse).mockImplementation(mockParseCatalog)
 

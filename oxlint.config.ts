@@ -59,15 +59,5 @@ export default defineConfig({
         'unicorn/prefer-object-from-entries': 'warn',
       },
     },
-    {
-      files: ['**/*.{test,spec}.{ts,tsx,js,jsx}', '**/__tests__/**/*.{ts,tsx,js,jsx}'],
-      plugins: ['vitest'],
-      rules: {
-        'vitest/no-mocks-import': 'warn',
-        'vitest/prefer-expect-type-of': 'warn',
-        'vitest/prefer-spy-on': 'warn',
-        'vitest/prefer-strict-equal': 'warn',
-      },
-    },
   ],
 })
