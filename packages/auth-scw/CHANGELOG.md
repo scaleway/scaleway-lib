@@ -1,5 +1,42 @@
 # @scaleway/auth-scw
 
+## 1.1.0
+
+### Minor Changes
+
+- [#3698](https://github.com/scaleway/scaleway-lib/pull/3698) [`76d0d6c`](https://github.com/scaleway/scaleway-lib/commit/76d0d6c676ac0e2b6dadda6eb4ac15d508f2d597) Thanks [@philibea](https://github.com/philibea)! - Add `storageType` option to choose between `cookie` (default) and `localStorage` backends. Add `migrateFromCookie` option to live-migrate existing cookie-based sessions to localStorage on provider initialization. Both options are backward-compatible.
+
+### Patch Changes
+
+- [#3698](https://github.com/scaleway/scaleway-lib/pull/3698) [`76d0d6c`](https://github.com/scaleway/scaleway-lib/commit/76d0d6c676ac0e2b6dadda6eb4ac15d508f2d597) Thanks [@philibea](https://github.com/philibea)! - Group the three cookie-related provider props (`cookieSuffix`, `cookieConfig`, `cookieAge`) into a single `cookie` option object, enforce it with an XOR type from `@scaleway/types`, make `storageType` immutable after creation, and expose the store manager through the context.
+  
+  **Cookie options grouped:**
+  
+  ```tsx
+  // before
+  <AuthScwProvider cookieSuffix="…" cookieConfig={{…}} cookieAge={…} storageType="cookie" …>
+  
+  // after — cookie storage (default), cookie required
+  <AuthScwProvider cookie={{ suffix: '…', config: {…}, age: … }} …>
+  
+  // after — localStorage, cookie optional (only needed for migration suffix)
+  <AuthScwProvider storageType="localStorage" …>
+  ```
+  
+  The `SingleXOR` from `@scaleway/types` enforces that `cookie` is required when `storageType` is `'cookie'` (or omitted) and optional when `storageType` is `'localStorage'`.
+  
+  **`storageType` is now immutable:**
+  
+  `setStorageType` has been removed from the store manager instance and from the module-level exports. The storage type is set at creation time via `createAuthStoreManager({ storageType })` and cannot be changed afterwards — this prevents dangerous mid-session backend switches that could leak data or cause inconsistent state. `suffixKey` is also set at creation time.
+  
+  **`storeManager` exposed via context:**
+  
+  The provider's `storeManager` instance is now accessible via `useAuthScw().storeManager`. Consumers should use this instead of importing the `AuthStoreManager` singleton.
+  
+  **`AuthStoreManager` singleton deprecated:**
+  
+  The exported `AuthStoreManager` singleton now emits a `console.warn` on first access, directing users to `useAuthScw().storeManager` or `createAuthStoreManager()`. It will be removed in a future major version.
+
 ## 1.0.4
 
 ### Patch Changes

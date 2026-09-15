@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.0.6
+
+### Patch Changes
+
+- [#3843](https://github.com/scaleway/scaleway-lib/pull/3843) [`e113582`](https://github.com/scaleway/scaleway-lib/commit/e1135825e35701a912772a7cdd4e7e4b0b7b5f5e) Thanks [@chambo-e](https://github.com/chambo-e)! - Validate parsed `package.json` files (require a `name` and `version` string) and throw an explicit error for invalid files instead of proceeding
+
 ## 1.0.5
 
 ### Patch Changes
