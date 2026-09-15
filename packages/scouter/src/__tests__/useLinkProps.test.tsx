@@ -24,7 +24,7 @@ test('returns onClick handler', () => {
     ),
   })
 
-  expect(typeof result.current[0].onClick).toBe('function')
+  expect(result.current[0].onClick).toBeTypeOf('function')
 })
 
 test('onClick navigates with push by default', () => {

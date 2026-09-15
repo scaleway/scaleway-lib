@@ -311,6 +311,8 @@ const TEST_CASES: Record<string, Record<string, MaybeMatch>> = {
 
 describe.each(Object.entries(TEST_CASES))('path "%s"', (path, cases) => {
   it.each(Object.entries(cases))('pathname "%s" returns %o', (pathname, result) => {
+    // We want to perform a shallow compare
+    // oxlint-disable-next-line vitest/prefer-strict-equal
     expect(matchPath(pathname, path)).toEqual(result)
   })
 })

@@ -14,6 +14,6 @@ export const defaultGitValues = {
 
 export const mockSimpleGit = vi.fn(() => defaultGitValues)
 
-const simpleGit = () => mockSimpleGit()
+const simpleGit = vi.fn(() => mockSimpleGit())
 
 export { simpleGit }

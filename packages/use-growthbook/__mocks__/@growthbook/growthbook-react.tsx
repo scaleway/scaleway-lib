@@ -8,23 +8,25 @@ export const setAttributes: ReturnType<typeof vi.fn> = vi.fn()
 export const loadFeatures: ReturnType<typeof vi.fn> = vi.fn()
 
 // Create a mock class for GrowthBook
-export class MockGrowthBook {
-  init: typeof init = init
+const MockGrowthBook = vi.fn(
+  class MockGrowthBook {
+    init: typeof init = init
 
-  getAttributes: typeof getAttributes = getAttributes
+    getAttributes: typeof getAttributes = getAttributes
 
-  setAttributes: typeof setAttributes = setAttributes
+    setAttributes: typeof setAttributes = setAttributes
 
-  loadFeatures: typeof loadFeatures = loadFeatures
+    loadFeatures: typeof loadFeatures = loadFeatures
 
-  constructor() {
-    // Reset mocks for each instance
-    this.init.mockResolvedValue(undefined)
-    this.getAttributes.mockReturnValue({})
-    this.setAttributes.mockResolvedValue(undefined)
-    this.loadFeatures.mockResolvedValue(undefined)
-  }
-}
+    constructor() {
+      // Reset mocks for each instance
+      this.init.mockResolvedValue(undefined)
+      this.getAttributes.mockReturnValue({})
+      this.setAttributes.mockResolvedValue(undefined)
+      this.loadFeatures.mockResolvedValue(undefined)
+    }
+  },
+)
 
 // Export the constructor
 export const GrowthBook = MockGrowthBook
