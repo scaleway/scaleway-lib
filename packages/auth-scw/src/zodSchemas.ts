@@ -24,6 +24,7 @@ const rawJwtSchema: z.ZodType<ValidateJWTSchema> = z.object({
     jti: z.string().min(1),
     updatedAt: z.union([z.string().min(1), z.date()]).optional(),
     userAgent: z.string().min(1),
+    srn: z.string(),
   }),
   renewToken: z.string().min(1),
   token: z.string().min(1),
