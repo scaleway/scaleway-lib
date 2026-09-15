@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.3
+
+### Patch Changes
+
+- [#3852](https://github.com/scaleway/scaleway-lib/pull/3852) [`2de0308`](https://github.com/scaleway/scaleway-lib/commit/2de0308deef8faceb6d6eac37b23f79555b0133f) Thanks [@chambo-e](https://github.com/chambo-e)! - disable jsx-no-literals and scope vitest to test files only
+
 ## 1.1.2
 
 ### Patch Changes

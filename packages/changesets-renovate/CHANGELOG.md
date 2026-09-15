@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.2
+
+### Patch Changes
+
+- [#3847](https://github.com/scaleway/scaleway-lib/pull/3847) [`9f28662`](https://github.com/scaleway/scaleway-lib/commit/9f28662eef8bdd89a36122c019b427f4a20a436b) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `yaml` to `2.9.1`.
+
 ## 4.0.1
 
 ### Patch Changes
