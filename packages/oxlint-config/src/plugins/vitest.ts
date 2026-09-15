@@ -3,13 +3,9 @@ import { defineConfig } from 'oxlint'
 export default defineConfig({
   overrides: [
     {
-      files: ['**/*.{test,spec}.{ts,tsx,js,jsx}', '**/__tests__/**/*.{ts,tsx,js,jsx}'],
+      files: ['**/*.test.{ts,tsx,js,jsx}', '**/__tests__/**/*.{ts,tsx,js,jsx}'],
       plugins: ['vitest'],
       rules: {
-        /**
-         * @see https://oxc.rs/docs/guide/usage/linter/rules/react/jsx-no-literals
-         */
-        'react/jsx-no-literals': 'off',
         /**
          * @see https://oxc.rs/docs/guide/usage/linter/rules/react/jsx-props-no-spreading
          */
