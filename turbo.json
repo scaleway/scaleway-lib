@@ -2,7 +2,9 @@
   "$schema": "https://turbo.build/schema.json",
   "globalEnv": ["ENVIRONMENT"],
   "tasks": {
-    "//#format": {},
+    "format": {
+      "dependsOn": ["^build"]
+    },
     "//#lint:fix": {
       "cache": false
     },
