@@ -126,8 +126,9 @@ export default defineConfig({
     'react/jsx-no-duplicate-props': 'error',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/jsx-no-literals
+     * @note conflict with react/jsx-curly-brace-presence
      */
-    'react/jsx-no-literals': 'error',
+    'react/jsx-no-literals': 'off',
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/jsx-no-script-url
      */
