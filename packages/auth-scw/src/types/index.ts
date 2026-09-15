@@ -1,5 +1,6 @@
 import type { API as SDKAPI, Client as SDKClient, Settings } from '@scaleway/sdk-client'
 import type { z } from 'zod'
+import type { AuthStoreManagerInstance } from '../useAuthScw/authStoreManager'
 import type { audienceIdSchema, jwtSchema } from '../zodSchemas'
 import type { Iamv1alpha1 } from './iam'
 
@@ -10,7 +11,7 @@ export type OnError = (onError: { title: string; error: unknown; extra?: Record<
 
 type GetJWT = (audienceId?: string) => Promise<
   | (EncodedJWT & {
-      source: 'refreshSession' | 'cookie'
+      source: 'refreshSession' | 'storage'
     })
   | undefined
 >
@@ -28,6 +29,7 @@ export type AuthScwContextType = {
   getJwtToken: (audienceId?: string) => Promise<GetJwtTokenResponse>
   logout: () => void
   authenticated: boolean
+  storeManager: AuthStoreManagerInstance
 }
 
 export declare class IamV1alpha1API extends SDKAPI {
@@ -68,3 +70,20 @@ export type CookieConfigType = {
   sameSite: 'lax' | 'none' | 'strict' | boolean | undefined
   secure: boolean
 }
+
+export type CookieOptions = {
+  /** Suffix appended to storage keys to namespace sessions. */
+  suffix: string
+  /** Cookie attributes (httpOnly, path, sameSite, secure). Defaults to `COOKIE_CONFIG`. */
+  config?: CookieConfigType
+  /** Cookie max-age in seconds. Defaults to `COOKIE_AGE` (31 days). */
+  age?: number
+}
+
+/**
+ * Where the JWT and audienceId are persisted.
+ *
+ * - `'cookie'` (default): backward-compatible, allows synchronisation across tabs.
+ * - `'localStorage'`: scoped to a single origin, survives reloads, avoids cookie size limits.
+ */
+export type StorageType = 'cookie' | 'localStorage'
