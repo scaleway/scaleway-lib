@@ -16,6 +16,7 @@ export const EmptySession: NonNullable<EncodedJWT> = {
     jti: '',
     updatedAt: undefined,
     userAgent: '',
+    srn: '',
   },
   renewToken: '',
   token: '',

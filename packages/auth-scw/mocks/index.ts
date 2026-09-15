@@ -10,6 +10,7 @@ const MOCK_ENCODED_JWT_COOKIE = {
     userAgent: encodeURIComponent(
       'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36',
     ),
+    srn: '',
   },
   renewToken:
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZW5ld19rZXkiOiI2M2I0MWQ1MDU0ODU2ZWQ1MTZmMDFkNzFiZGU5ODY3ZGZhMjYzMDc0MWQ4YTEzMzkyNmNmYTM0MWE0ZmMzMWZmIn0.dPCsziFL2czNHUnK33_ESNII0s-uMSQFqpuu13URiqk',
