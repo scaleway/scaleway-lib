@@ -201,8 +201,8 @@ catalogs:
       specifier: 11.0.23
       version: 11.0.23
     happy-dom:
-      specifier: 20.14.3
-      version: 20.14.3
+      specifier: 20.14.5
+      version: 20.14.5
     history:
       specifier: 5.3.0
       version: 5.3.0
@@ -351,7 +351,7 @@ importers:
         version: 6.0.0
       happy-dom:
         specifier: 'catalog:'
-        version: 20.14.3
+        version: 20.14.5
       jsdom:
         specifier: 'catalog:'
         version: 30.0.1
@@ -387,7 +387,7 @@ importers:
         version: 7.0.2
       vitest:
         specifier: 'catalog:'
-        version: 4.1.11(@types/node@26.5.1)(@vitest/coverage-istanbul@4.1.11)(happy-dom@20.14.3)(jsdom@30.0.1)(vite@8.3.0(@types/node@26.5.1)(yaml@2.9.1))
+        version: 4.1.11(@types/node@26.5.1)(@vitest/coverage-istanbul@4.1.11)(happy-dom@20.14.5)(jsdom@30.0.1)(vite@8.3.0(@types/node@26.5.1)(yaml@2.9.1))
       vitest-localstorage-mock:
         specifier: 'catalog:'
         version: 0.1.2(vitest@4.1.11)
@@ -2053,8 +2053,8 @@ packages:
   graceful-fs@4.2.10:
     resolution: {integrity: sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==}
 
-  happy-dom@20.14.3:
-    resolution: {integrity: sha512-0KMb/Eh8rsd+aMNkOk5h8LkAjo9Na1aksnEGmsuZf+GXl6UkAdIi0VbUHU7d59lXhNmawODgwwuCMiZpCxwwCw==}
+  happy-dom@20.14.5:
+    resolution: {integrity: sha512-x/RzkpWO40bTjIoT30iQtt64FLLmH/iRcUCN2X//bLx7H3ifkdfPXyqsro/OYtqzIAhiLMMA7mmiOR9C3NOKjQ==}
     engines: {node: '>=20.0.0'}
 
   has-flag@4.0.0:
@@ -3618,7 +3618,7 @@ snapshots:
       picocolors: 1.1.1
       redent: 3.0.0
     optionalDependencies:
-      vitest: 4.1.11(@types/node@26.5.1)(@vitest/coverage-istanbul@4.1.11)(happy-dom@20.14.3)(jsdom@30.0.1)(vite@8.3.0(@types/node@26.5.1)(yaml@2.9.1))
+      vitest: 4.1.11(@types/node@26.5.1)(@vitest/coverage-istanbul@4.1.11)(happy-dom@20.14.5)(jsdom@30.0.1)(vite@8.3.0(@types/node@26.5.1)(yaml@2.9.1))
 
   '@testing-library/react@16.3.3(@testing-library/dom@10.4.1)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
     dependencies:
@@ -3762,7 +3762,7 @@ snapshots:
       magicast: 0.5.5
       obug: 2.2.1
       tinyrainbow: 3.1.1
-      vitest: 4.1.11(@types/node@26.5.1)(@vitest/coverage-istanbul@4.1.11)(happy-dom@20.14.3)(jsdom@30.0.1)(vite@8.3.0(@types/node@26.5.1)(yaml@2.9.1))
+      vitest: 4.1.11(@types/node@26.5.1)(@vitest/coverage-istanbul@4.1.11)(happy-dom@20.14.5)(jsdom@30.0.1)(vite@8.3.0(@types/node@26.5.1)(yaml@2.9.1))
     transitivePeerDependencies:
       - supports-color
 
@@ -4057,7 +4057,7 @@ snapshots:
 
   graceful-fs@4.2.10: {}
 
-  happy-dom@20.14.3:
+  happy-dom@20.14.5:
     dependencies:
       '@types/node': 26.5.1
       '@types/whatwg-mimetype': 3.0.2
@@ -4733,9 +4733,9 @@ snapshots:
 
   vitest-localstorage-mock@0.1.2(vitest@4.1.11):
     dependencies:
-      vitest: 4.1.11(@types/node@26.5.1)(@vitest/coverage-istanbul@4.1.11)(happy-dom@20.14.3)(jsdom@30.0.1)(vite@8.3.0(@types/node@26.5.1)(yaml@2.9.1))
+      vitest: 4.1.11(@types/node@26.5.1)(@vitest/coverage-istanbul@4.1.11)(happy-dom@20.14.5)(jsdom@30.0.1)(vite@8.3.0(@types/node@26.5.1)(yaml@2.9.1))
 
-  vitest@4.1.11(@types/node@26.5.1)(@vitest/coverage-istanbul@4.1.11)(happy-dom@20.14.3)(jsdom@30.0.1)(vite@8.3.0(@types/node@26.5.1)(yaml@2.9.1)):
+  vitest@4.1.11(@types/node@26.5.1)(@vitest/coverage-istanbul@4.1.11)(happy-dom@20.14.5)(jsdom@30.0.1)(vite@8.3.0(@types/node@26.5.1)(yaml@2.9.1)):
     dependencies:
       '@vitest/expect': 4.1.11
       '@vitest/mocker': 4.1.11(vite@8.3.0(@types/node@26.5.1)(yaml@2.9.1))
@@ -4760,7 +4760,7 @@ snapshots:
     optionalDependencies:
       '@types/node': 26.5.1
       '@vitest/coverage-istanbul': 4.1.11(supports-color@7.2.0)(vitest@4.1.11)
-      happy-dom: 20.14.3
+      happy-dom: 20.14.5
       jsdom: 30.0.1
     transitivePeerDependencies:
       - msw
