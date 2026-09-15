@@ -145,7 +145,7 @@ describe('hooks - useClipboard', () => {
     await act(async () => {
       await result.current[1]()
     })
-    const clearTimeoutSpy = vi.spyOn(window, 'clearTimeout')
+    const clearTimeoutSpy = vi.spyOn(globalThis, 'clearTimeout')
 
     unmount()
 

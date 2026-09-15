@@ -108,7 +108,7 @@ const wrapper =
 
 describe('i18n hook', () => {
   beforeEach(() => {
-    vi.spyOn(window, 'navigator', 'get').mockReturnValue({
+    vi.spyOn(globalThis, 'navigator', 'get').mockReturnValue({
       language: 'en-US',
       languages: ['en-US', 'en'],
     } as unknown as Navigator)
@@ -283,13 +283,13 @@ describe('i18n hook', () => {
 
   describe('getCurrentLocale', () => {
     it('should set current locale from localStorage', async () => {
-      vi.spyOn(global, 'navigator', 'get').mockReturnValueOnce({
+      vi.spyOn(globalThis, 'navigator', 'get').mockReturnValueOnce({
         languages: ['fr'],
       } as unknown as Navigator)
       const mockGetItem = vi.fn<() => string>().mockReturnValue('en')
       const mockSetItem = vi.fn<() => void>()
       const mockRemoveItem = vi.fn<() => void>()
-      const localStorageMock = vi.spyOn(global, 'localStorage', 'get').mockReturnValue({
+      const localStorageMock = vi.spyOn(globalThis, 'localStorage', 'get').mockReturnValue({
         clear: vi.fn<() => void>(),
         getItem: mockGetItem,
         removeItem: mockRemoveItem,
@@ -312,13 +312,13 @@ describe('i18n hook', () => {
     })
 
     it('should not set current locale from localStorage when this value is not supported', async () => {
-      vi.spyOn(global, 'navigator', 'get').mockReturnValueOnce({
+      vi.spyOn(globalThis, 'navigator', 'get').mockReturnValueOnce({
         languages: ['bz'],
       } as unknown as Navigator)
       const mockGetItem = vi.fn<() => string>().mockReturnValue('re')
       const mockSetItem = vi.fn<() => void>()
       const mockRemoveItem = vi.fn<() => void>()
-      const localStorageMock = vi.spyOn(global, 'localStorage', 'get').mockReturnValue({
+      const localStorageMock = vi.spyOn(globalThis, 'localStorage', 'get').mockReturnValue({
         clear: vi.fn<() => void>(),
         getItem: mockGetItem,
         removeItem: mockRemoveItem,
@@ -341,13 +341,13 @@ describe('i18n hook', () => {
     })
 
     it('should set current locale from navigator', async () => {
-      vi.spyOn(global, 'navigator', 'get').mockReturnValueOnce({
+      vi.spyOn(globalThis, 'navigator', 'get').mockReturnValueOnce({
         languages: ['fr'],
       } as unknown as Navigator)
       const mockGetItem = vi.fn<() => void>()
       const mockSetItem = vi.fn<() => void>()
       const mockRemoveItem = vi.fn<() => void>()
-      const localStorageMock = vi.spyOn(global, 'localStorage', 'get').mockReturnValueOnce({
+      const localStorageMock = vi.spyOn(globalThis, 'localStorage', 'get').mockReturnValueOnce({
         clear: vi.fn<() => void>(),
         getItem: mockGetItem,
         removeItem: mockRemoveItem,
@@ -368,13 +368,13 @@ describe('i18n hook', () => {
     })
 
     it('should set current locale from defaultLocale', async () => {
-      vi.spyOn(global, 'navigator', 'get').mockReturnValueOnce({
+      vi.spyOn(globalThis, 'navigator', 'get').mockReturnValueOnce({
         languages: [],
       } as unknown as Navigator)
       const mockGetItem = vi.fn<() => void>()
       const mockSetItem = vi.fn<() => void>()
       const mockRemoveItem = vi.fn<() => void>()
-      const localStorageMock = vi.spyOn(global, 'localStorage', 'get').mockReturnValueOnce({
+      const localStorageMock = vi.spyOn(globalThis, 'localStorage', 'get').mockReturnValueOnce({
         clear: vi.fn<() => void>(),
         getItem: mockGetItem,
         removeItem: mockRemoveItem,
@@ -439,7 +439,7 @@ describe('i18n hook', () => {
   describe('lang attribute', () => {
     it('should set lang attribute on documentElement from navigator locale', async () => {
       document.documentElement.lang = ''
-      vi.spyOn(global, 'navigator', 'get').mockReturnValueOnce({
+      vi.spyOn(globalThis, 'navigator', 'get').mockReturnValueOnce({
         languages: ['fr'],
       } as unknown as Navigator)
 
@@ -457,7 +457,7 @@ describe('i18n hook', () => {
 
     it('should set lang attribute on documentElement from defaultLocale', async () => {
       document.documentElement.lang = ''
-      vi.spyOn(global, 'navigator', 'get').mockReturnValueOnce({
+      vi.spyOn(globalThis, 'navigator', 'get').mockReturnValueOnce({
         languages: [],
       } as unknown as Navigator)
 
@@ -900,13 +900,13 @@ describe('i18n hook', () => {
     })
 
     it('should load correct date-fns based on current local', async () => {
-      vi.spyOn(global, 'navigator', 'get').mockReturnValueOnce({
+      vi.spyOn(globalThis, 'navigator', 'get').mockReturnValueOnce({
         languages: ['fr'],
       } as unknown as Navigator)
       const mockGetItem = vi.fn<() => string>().mockReturnValue('fr')
       const mockSetItem = vi.fn<() => void>()
       const mockRemoveItem = vi.fn<() => void>()
-      const localStorageMock = vi.spyOn(global, 'localStorage', 'get').mockReturnValue({
+      const localStorageMock = vi.spyOn(globalThis, 'localStorage', 'get').mockReturnValue({
         clear: vi.fn<() => void>(),
         getItem: mockGetItem,
         removeItem: mockRemoveItem,

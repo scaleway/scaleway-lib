@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import type { AnalyticsConfig, AnalyticsIntegration, Config } from '../types'
 
-const IS_BROWSER = typeof window !== 'undefined'
+const IS_BROWSER = typeof globalThis !== 'undefined' && 'window' in globalThis
 
 const timeout = (time: number) => {
   const controller = new AbortController()

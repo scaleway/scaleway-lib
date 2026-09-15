@@ -44,14 +44,14 @@ describe.todo('useStorage - Server side', () => {
         result.current[1]('hello')
       })
 
-      expect(window.sessionStorage.getItem(KEY)).toBe('"hello"')
+      expect(globalThis.sessionStorage.getItem(KEY)).toBe('"hello"')
       expect(result.current[0]).toBe('hello')
 
       act(() => {
         result.current[1](undefined)
       })
 
-      expect(window.sessionStorage.getItem(KEY)).toBeNull()
+      expect(globalThis.sessionStorage.getItem(KEY)).toBeNull()
       expect(result.current[0]).toBeNull()
     })
 

@@ -1,10 +1,8 @@
 #!/usr/bin/env node
-
-// oxlint-disable eslint/no-console
+// oxlint-disable import/no-nodejs-modules, eslint/no-console
 
 import { execSync } from 'node:child_process'
 import { readFile } from 'node:fs/promises'
-import type { ParseArgsConfig } from 'node:util'
 import { parseArgs } from 'node:util'
 import type { Location } from '@formatjs/icu-messageformat-parser'
 import { parse } from '@formatjs/icu-messageformat-parser'
@@ -18,13 +16,13 @@ type ParserError = {
   location: Location
 }
 
-const options: ParseArgsConfig['options'] = {
+const options = {
   ignoreTag: {
     default: false,
     short: 'i',
     type: 'boolean',
   },
-}
+} as const
 
 const { values, positionals } = parseArgs({ allowPositionals: true, options })
 
@@ -52,8 +50,7 @@ const findICUErrors = (locales: Record<string, string>, filePath: string): Error
     .map(([key, value]) => {
       try {
         parse(value, {
-          // Need to cast as node doesn't allow generic to parseArgs
-          ignoreTag: values['ignoreTag'] as boolean,
+          ignoreTag: values.ignoreTag,
         })
 
         return undefined
@@ -73,6 +70,43 @@ const findICUErrors = (locales: Record<string, string>, filePath: string): Error
   return errors
 }
 
+const handleJson = async (file: string) => {
+  try {
+    const data = await readFile(file)
+    const jsonFile = data.toString()
+
+    const locales = JSON.parse(jsonFile) as Locales
+
+    const ICUErrors = findICUErrors(locales, file)
+    return ICUErrors
+  } catch (error) {
+    console.error({ error, file })
+    return []
+  }
+}
+
+const handleFile = async (file: string) => {
+  try {
+    const data: unknown = await import(file)
+
+    if (isObject(data)) {
+      if ('default' in data) {
+        const { default: locales } = data as { default: Locales }
+
+        const ICUErrors = findICUErrors(locales, file)
+        return ICUErrors
+      }
+      console.error('export default from:', file, 'is not an object')
+    } else {
+      console.error(file, 'is not an object')
+    }
+    return []
+  } catch (error) {
+    console.error({ error, file })
+    return []
+  }
+}
+
 const readFiles = async (files: string[]): Promise<ErrorsICU> => {
   const errors: (ErrorICU | undefined)[] = []
 
@@ -81,45 +115,18 @@ const readFiles = async (files: string[]): Promise<ErrorsICU> => {
     const extension = file.split('.').pop()
 
     if (extension === 'json') {
-      try {
-        const data = await readFile(file)
-        const jsonFile = data.toString()
-
-        const locales = JSON.parse(jsonFile) as Locales
-
-        const ICUErrors = findICUErrors(locales, file)
-        errors.push(...ICUErrors)
-      } catch (error) {
-        console.error({ error, file })
-      }
+      errors.push(...(await handleJson(file)))
     }
 
     if (extension === 'ts' || extension === 'js') {
-      try {
-        const data: unknown = await import(file)
-
-        if (isObject(data)) {
-          if ('default' in data) {
-            const { default: locales } = data as { default: Locales }
-
-            const ICUErrors = findICUErrors(locales, file)
-            errors.push(...ICUErrors)
-          } else {
-            console.error('export default from:', file, 'is not an object')
-          }
-        } else {
-          console.error(file, 'is not an object')
-        }
-      } catch (error) {
-        console.error({ error, file })
-      }
+      errors.push(...(await handleFile(file)))
     }
   }
 
   return errors
 }
 
-if (!pattern) {
+if (typeof pattern !== 'string' || pattern.length === 0) {
   console.error('Missing pattern: validate-icu-locales [PATTERN]')
   process.exit(1)
 }

@@ -19,10 +19,6 @@ export default defineConfig({
         'packages/regex/**/*.{ts,tsx}',
         'packages/utils/**/*.{ts,tsx}',
         'packages/validate-icu-locales/**/*.{ts,tsx}',
-        'packages/sync-peer-deps/**/*.{ts,tsx}',
-        'packages/use-clipboard/**/*.{ts,tsx}',
-        'packages/use-interval/**/*.{ts,tsx}',
-        'packages/phonenumber/**/*.{ts,tsx}',
       ],
       rules: {
         'eslint/max-depth': 'warn',
@@ -60,7 +56,6 @@ export default defineConfig({
         'unicorn/max-nested-calls': 'warn',
         'unicorn/no-await-expression-member': 'warn',
         'unicorn/no-document-cookie': 'warn',
-        'unicorn/prefer-global-this': 'warn',
         'unicorn/prefer-object-from-entries': 'warn',
       },
     },

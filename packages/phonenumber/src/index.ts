@@ -89,7 +89,7 @@ const formatPhoneNumber = (
 const validatePhoneNumber = (phoneNumber: string, options?: { regionCode?: string }): boolean => {
   try {
     const parsed = parsePhoneNumber(phoneNumber, options)
-    return parsed.valid ?? false
+    return parsed.valid
   } catch {
     return false
   }

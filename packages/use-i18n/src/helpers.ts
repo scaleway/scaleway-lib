@@ -19,26 +19,26 @@ export const getCurrentLocale = <LocalSupportedType extends string>({
   localeItemStorage: string
   rootElement?: Element
 }): LocalSupportedType => {
-  if (typeof window !== 'undefined') {
-    const { languages: browserLocales } = navigator
-    const currentLocalFromlocalStorage = localStorage.getItem(localeItemStorage)
+  if (typeof globalThis !== 'undefined' && 'localStorage' in globalThis && 'navigator' in globalThis) {
+    const { languages: browserLocales } = globalThis.navigator
+    const currentLocalFromlocalStorage = globalThis.localStorage.getItem(localeItemStorage)
 
-    if (currentLocalFromlocalStorage && isLocaleSupported(currentLocalFromlocalStorage)) {
+    if (currentLocalFromlocalStorage !== null && isLocaleSupported(currentLocalFromlocalStorage)) {
       return currentLocalFromlocalStorage
     }
-    localStorage.removeItem(localeItemStorage)
+    globalThis.localStorage.removeItem(localeItemStorage)
 
     const foundBrowserLocale = browserLocales.find(locale => isLocaleSupported(locale))
 
     if (foundBrowserLocale !== undefined) {
-      localStorage.setItem(localeItemStorage, foundBrowserLocale)
+      globalThis.localStorage.setItem(localeItemStorage, foundBrowserLocale)
       setLangAttribute(foundBrowserLocale, rootElement)
 
       return foundBrowserLocale
     }
 
     if (defaultLocale && isLocaleSupported(defaultLocale)) {
-      localStorage.setItem(localeItemStorage, defaultLocale)
+      globalThis.localStorage.setItem(localeItemStorage, defaultLocale)
       setLangAttribute(defaultLocale, rootElement)
 
       return defaultLocale

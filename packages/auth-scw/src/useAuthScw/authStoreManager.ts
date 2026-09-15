@@ -12,7 +12,7 @@ let cookieConfig: CookieConfigType = COOKIE_CONFIG
 // location.host will include the port number, so we need to keep it on local case..
 // const DOMAIN = typeof window !== 'undefined' ? globalThis.location.host : ''
 // keep window as we used this package into e2e node execution
-const DOMAIN = typeof window !== 'undefined' ? globalThis.location.hostname : ''
+const DOMAIN = typeof globalThis !== 'undefined' && 'location' in globalThis ? globalThis.location.hostname : ''
 
 const getUniqueHostnameString = (inputString: string) => inputString.replaceAll('.', '_').replaceAll('-', '_')
 

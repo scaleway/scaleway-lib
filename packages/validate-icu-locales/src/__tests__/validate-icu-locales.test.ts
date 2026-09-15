@@ -1,5 +1,5 @@
 import { execa } from 'execa'
-import { describe, expect, it } from 'vitest'
+import { assert, describe, expect, it } from 'vitest'
 
 describe('validate-icu-locales CLI', () => {
   it('should detect ICU syntax errors in JavaScript files', async () => {
@@ -7,8 +7,8 @@ describe('validate-icu-locales CLI', () => {
       cwd: process.cwd(),
     }).catch((error: unknown) => error)
 
-    expect(result).toBeInstanceOf(Error)
-    const errorMessage = (result as Error).toString()
+    assert.instanceOf(result, Error)
+    const errorMessage = result.toString()
     expect(errorMessage).toContain('errors')
     expect(errorMessage).toContain('EXPECT_ARGUMENT_CLOSING_BRACE')
   })
@@ -18,8 +18,8 @@ describe('validate-icu-locales CLI', () => {
       cwd: process.cwd(),
     }).catch((error: unknown) => error)
 
-    expect(result).toBeInstanceOf(Error)
-    const errorMessage = (result as Error).toString()
+    assert.instanceOf(result, Error)
+    const errorMessage = result.toString()
     expect(errorMessage).toContain('errors')
     expect(errorMessage).toContain('EXPECT_ARGUMENT_CLOSING_BRACE')
   })
@@ -29,8 +29,8 @@ describe('validate-icu-locales CLI', () => {
       cwd: process.cwd(),
     }).catch((error: unknown) => error)
 
-    expect(result).toBeInstanceOf(Error)
-    const errorMessage = (result as Error).toString()
+    assert.instanceOf(result, Error)
+    const errorMessage = result.toString()
     expect(errorMessage).toContain('errors')
     expect(errorMessage).toContain('EXPECT_ARGUMENT_CLOSING_BRACE')
   })
@@ -40,8 +40,8 @@ describe('validate-icu-locales CLI', () => {
       cwd: process.cwd(),
     }).catch((error: unknown) => error)
 
-    expect(result).toBeInstanceOf(Error)
-    const errorMessage = (result as Error).toString()
+    assert.instanceOf(result, Error)
+    const errorMessage = result.toString()
     expect(errorMessage).toContain('Missing pattern')
   })
 
@@ -50,8 +50,8 @@ describe('validate-icu-locales CLI', () => {
       cwd: process.cwd(),
     }).catch((error: unknown) => error)
 
-    expect(result).toBeInstanceOf(Error)
-    const errorMessage = (result as Error).toString()
+    assert.instanceOf(result, Error)
+    const errorMessage = result.toString()
     expect(errorMessage).toContain('EXPECT_ARGUMENT_CLOSING_BRACE')
     expect(errorMessage).toContain('UNCLOSED_TAG')
     expect(errorMessage).toContain('units.minutes.label')

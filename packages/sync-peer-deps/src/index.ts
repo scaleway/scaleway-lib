@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// oxlint-disable import/no-nodejs-modules
 import { readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import chalk from 'chalk'
@@ -32,6 +33,15 @@ function findPackageJsonFiles(cwd: string): string[] {
   }
 }
 
+const isPackageJson = (value: unknown): value is PackageJson => {
+  if (typeof value !== 'object' || value === null) {
+    return false
+  }
+  // oxlint-disable-next-line typescript/no-unsafe-type-assertion
+  const obj = value as Record<string, unknown>
+  return typeof obj['name'] === 'string' && typeof obj['version'] === 'string'
+}
+
 /**
  * Process a single package.json file
  * Returns the number of changes made
@@ -40,7 +50,13 @@ async function processPackageJson(filePath: string): Promise<number> {
   try {
     // Read and parse the file
     const content = await readFile(filePath, 'utf8')
-    const packageJson = JSON.parse(content) as PackageJson
+    const rawJson: unknown = JSON.parse(content)
+
+    if (!isPackageJson(rawJson)) {
+      throw new Error(`invalid package.json in ${filePath}`)
+    }
+
+    const packageJson = rawJson
 
     // Skip if no peerDependencies or devDependencies
     if (!(packageJson.peerDependencies && packageJson.devDependencies)) {
@@ -52,7 +68,7 @@ async function processPackageJson(filePath: string): Promise<number> {
 
     // Compare and update peerDependencies
     for (const [pkg, peerVersion] of Object.entries(packageJson.peerDependencies)) {
-      if (packageJson.devDependencies[pkg] && packageJson.devDependencies[pkg] !== peerVersion) {
+      if (packageJson.devDependencies[pkg] !== undefined && packageJson.devDependencies[pkg] !== peerVersion) {
         const devVersion = packageJson.devDependencies[pkg]
         log(
           chalk.yellow(`Updating ${chalk.bold(pkg)} in ${chalk.cyan(packageName)}:`),
@@ -101,6 +117,8 @@ async function syncPeerDependencies(): Promise<void> {
 
     // Process each package.json file
     for (const file of files) {
+      // We volontarily execute sequentially
+      // oxlint-disable-next-line no-await-in-loop
       const changes = await processPackageJson(file)
       totalChanges += changes
       if (changes > 0) {
