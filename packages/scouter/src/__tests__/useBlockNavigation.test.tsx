@@ -19,10 +19,10 @@ describe('useBlockNavigation - renderHook tests', () => {
 
     expect(result.current.enabled).toBe(false)
     expect(result.current.hasPendingNavigation).toBe(false)
-    expect(typeof result.current.setEnabled).toBe('function')
-    expect(typeof result.current.continueNavigation).toBe('function')
-    expect(typeof result.current.discardNavigation).toBe('function')
-    expect(typeof result.current.unblockImmediatly).toBe('function')
+    expect(result.current.setEnabled).toBeTypeOf('function')
+    expect(result.current.continueNavigation).toBeTypeOf('function')
+    expect(result.current.discardNavigation).toBeTypeOf('function')
+    expect(result.current.unblockImmediatly).toBeTypeOf('function')
   })
 
   it('continueNavigation does nothing when not enabled', () => {

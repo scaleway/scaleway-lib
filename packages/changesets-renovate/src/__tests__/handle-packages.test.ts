@@ -2,8 +2,9 @@
  * @vitest-environment node
  */
 
+import type { Response, SimpleGit } from 'simple-git'
+import { simpleGit } from 'simple-git'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { mockSimpleGit } from '../../__mocks__/simple-git'
 import { createChangeset } from '../createChangeset.js'
 import { getBumpsFromGit, handleChangesetFile } from '../git-utils.js'
 import { handlePackageChanges } from '../handle-packages.js'
@@ -59,10 +60,11 @@ describe('handle-packages', () => {
     // Mock getPackagesNames to return some package names
     vi.mocked(getPackagesNames).mockResolvedValue(['pkg-a', 'pkg-b'])
 
+    const revparseMock = vi.fn<() => Response<string>>().mockResolvedValue('def456\n')
     // Mock simpleGit to return a short hash
-    mockSimpleGit.mockReturnValue({
-      revparse: vi.fn<() => Promise<string>>().mockResolvedValue('def456\n'),
-    } as any)
+    vi.mocked(simpleGit).mockReturnValue({
+      revparse: revparseMock,
+    } as unknown as SimpleGit)
 
     // Mock getBumpsFromGit to return some bumps
     const packageBumps = new Map([
@@ -85,7 +87,7 @@ describe('handle-packages', () => {
         ['pkg-b', 'minor'],
       ]),
     )
-    expect(mockSimpleGit().revparse).toHaveBeenCalledWith(['--short', 'HEAD'])
+    expect(vi.mocked(revparseMock)).toHaveBeenCalledWith(['--short', 'HEAD'])
     expect(createChangeset).toHaveBeenCalledWith('.changeset/renovate-def456.md', packageBumps, ['pkg-a', 'pkg-b'])
     expect(handleChangesetFile).toHaveBeenCalledWith('.changeset/renovate-def456.md')
   })

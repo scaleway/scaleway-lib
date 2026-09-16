@@ -36,8 +36,10 @@ describe('component BrowserRouter', () => {
     )
 
     expect(history).toBeDefined()
+    // oxlint-disable vitest/prefer-expect-type-of
     expect(typeof history.push).toBe('function')
     expect(typeof history.replace).toBe('function')
+    // oxlint-enable vitest/prefer-expect-type-of
   })
 
   it('history is re-created for each BrowserRouter', () => {
@@ -107,7 +109,8 @@ describe('component BrowserRouter', () => {
       </BrowserRouter>,
     )
 
-    expect(location!).toBeDefined()
-    expect(typeof location!.pathname).toBe('string')
+    expect(location).toBeDefined()
+    // oxlint-disable-next-line typescript/no-non-null-assertion
+    expect(location!.pathname).toBeTypeOf('string')
   })
 })

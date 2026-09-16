@@ -1,216 +1,210 @@
-// oxlint-disable vitest/require-top-level-describe vitest/no-conditional-in-test vitest/no-conditional-expect
+// oxlint-disable vitest/no-conditional-in-test vitest/no-conditional-expect
 import { render } from '@testing-library/react'
 import { Action, createMemoryHistory } from 'history'
 import type { Transition } from 'history'
-import { expect, test, vi } from 'vitest'
+import { beforeAll, describe, expect, it, vi } from 'vitest'
 import { Prompt } from '../index'
 import { Router } from '../Router'
 
-test('with when=true blocks navigation', () => {
-  const history = createMemoryHistory({ initialEntries: ['/initial'] })
-  const blockSpy = vi.spyOn(history, 'block')
+describe(Prompt, () => {
+  beforeAll(() => {
+    globalThis.confirm = () => false
+  })
 
-  const condition = true
+  it('with when=true blocks navigation', () => {
+    const history = createMemoryHistory({ initialEntries: ['/initial'] })
+    const blockSpy = vi.spyOn(history, 'block')
 
-  render(
-    <Router history={history}>
-      <Prompt message="Are you sure?" when={condition} />
-    </Router>,
-  )
+    const condition = true
 
-  expect(blockSpy).toHaveBeenCalledTimes(1)
-})
+    render(
+      <Router history={history}>
+        <Prompt message="Are you sure?" when={condition} />
+      </Router>,
+    )
 
-test('with when=false does not block navigation', () => {
-  const history = createMemoryHistory({ initialEntries: ['/initial'] })
-  const blockSpy = vi.spyOn(history, 'block')
+    expect(blockSpy).toHaveBeenCalledTimes(1)
+  })
 
-  render(
-    <Router history={history}>
-      <Prompt message="Are you sure?" when={false} />
-    </Router>,
-  )
+  it('with when=false does not block navigation', () => {
+    const history = createMemoryHistory({ initialEntries: ['/initial'] })
+    const blockSpy = vi.spyOn(history, 'block')
 
-  expect(blockSpy).not.toHaveBeenCalledTimes(1)
-})
+    render(
+      <Router history={history}>
+        <Prompt message="Are you sure?" when={false} />
+      </Router>,
+    )
 
-test('with when function returning true blocks navigation', () => {
-  const history = createMemoryHistory({ initialEntries: ['/initial'] })
-  const blockSpy = vi.spyOn(history, 'block')
+    expect(blockSpy).not.toHaveBeenCalledTimes(1)
+  })
 
-  render(
-    <Router history={history}>
-      <Prompt message="Are you sure?" when={() => true} />
-    </Router>,
-  )
+  it('with when function returning true blocks navigation', () => {
+    const history = createMemoryHistory({ initialEntries: ['/initial'] })
+    const blockSpy = vi.spyOn(history, 'block')
 
-  expect(blockSpy).toHaveBeenCalledTimes(1)
-})
+    render(
+      <Router history={history}>
+        <Prompt message="Are you sure?" when={() => true} />
+      </Router>,
+    )
 
-test('when function receives Transition parameter', () => {
-  const history = createMemoryHistory({ initialEntries: ['/initial'] })
-  const blockSpy = vi.spyOn(history, 'block')
+    expect(blockSpy).toHaveBeenCalledTimes(1)
+  })
 
-  let capturedTransition: Transition | null = null
+  it('when function receives Transition parameter', () => {
+    const history = createMemoryHistory({ initialEntries: ['/initial'] })
+    const blockSpy = vi.spyOn(history, 'block')
 
-  render(
-    <Router history={history}>
-      <Prompt
-        message="Are you sure?"
-        when={(tx: Transition) => {
-          capturedTransition = tx
-          return false
-        }}
-      />
-    </Router>,
-  )
+    let capturedTransition: Transition | null = null
 
-  expect(blockSpy).toHaveBeenCalledTimes(1)
+    render(
+      <Router history={history}>
+        <Prompt
+          message="Are you sure?"
+          when={(tx: Transition) => {
+            capturedTransition = tx
+            return false
+          }}
+        />
+      </Router>,
+    )
 
-  const blockCallback = blockSpy.mock.calls[0]?.[0]
-  if (blockCallback) {
-    const mockTransition: Transition = {
-      action: Action.Pop,
-      location: history.location,
-      retry: vi.fn<() => void>(),
+    expect(blockSpy).toHaveBeenCalledTimes(1)
+
+    const blockCallback = blockSpy.mock.calls[0]?.[0]
+    if (blockCallback) {
+      const mockTransition: Transition = {
+        action: Action.Pop,
+        location: history.location,
+        retry: vi.fn<() => void>(),
+      }
+      blockCallback(mockTransition)
+      expect(capturedTransition).toBe(mockTransition)
     }
-    blockCallback(mockTransition)
-    expect(capturedTransition).toBe(mockTransition)
-  }
-})
+  })
 
-test('confirms navigation when globalThis.confirm returns true', () => {
-  const history = createMemoryHistory({ initialEntries: ['/initial'] })
-  const blockSpy = vi.spyOn(history, 'block')
+  it('confirms navigation when globalThis.confirm returns true', () => {
+    const history = createMemoryHistory({ initialEntries: ['/initial'] })
+    const blockSpy = vi.spyOn(history, 'block')
 
-  const condition = true
+    const condition = true
 
-  render(
-    <Router history={history}>
-      <Prompt message="Are you sure?" when={condition} />
-    </Router>,
-  )
+    render(
+      <Router history={history}>
+        <Prompt message="Are you sure?" when={condition} />
+      </Router>,
+    )
 
-  expect(blockSpy).toHaveBeenCalledTimes(1)
-  const blockCallback = blockSpy.mock.calls[0]?.[0]
+    expect(blockSpy).toHaveBeenCalledTimes(1)
+    const blockCallback = blockSpy.mock.calls[0]?.[0]
 
-  if (blockCallback) {
-    const mockTransition: Transition = {
-      action: Action.Pop,
-      location: history.location,
-      retry: vi.fn<() => void>(),
+    if (blockCallback) {
+      const mockTransition: Transition = {
+        action: Action.Pop,
+        location: history.location,
+        retry: vi.fn<() => void>(),
+      }
+
+      vi.spyOn(globalThis, 'confirm').mockReturnValue(true)
+
+      const unblockSpy = vi.fn<() => void>()
+      blockCallback(mockTransition)
+
+      expect(globalThis.confirm).toHaveBeenCalledWith('Are you sure?')
+      expect(unblockSpy).not.toHaveBeenCalledTimes(1)
     }
+  })
 
-    const originalConfirm = globalThis.confirm
-    globalThis.confirm = vi.fn<() => boolean>(() => true)
+  it('blocks navigation when globalThis.confirm returns false', () => {
+    const history = createMemoryHistory({ initialEntries: ['/initial'] })
+    const blockSpy = vi.spyOn(history, 'block')
 
-    const unblockSpy = vi.fn<() => void>()
-    blockCallback(mockTransition)
+    const condition = true
 
-    expect(globalThis.confirm).toHaveBeenCalledWith('Are you sure?')
-    expect(unblockSpy).not.toHaveBeenCalledTimes(1)
+    render(
+      <Router history={history}>
+        <Prompt message="Are you sure?" when={condition} />
+      </Router>,
+    )
 
-    globalThis.confirm = originalConfirm
-  }
-})
+    expect(blockSpy).toHaveBeenCalledTimes(1)
+    const blockCallback = blockSpy.mock.calls[0]?.[0]
 
-test('blocks navigation when globalThis.confirm returns false', () => {
-  const history = createMemoryHistory({ initialEntries: ['/initial'] })
-  const blockSpy = vi.spyOn(history, 'block')
+    if (blockCallback) {
+      const mockTransition: Transition = {
+        action: Action.Pop,
+        location: history.location,
+        retry: vi.fn<() => void>(),
+      }
 
-  const condition = true
+      vi.spyOn(globalThis, 'confirm').mockReturnValue(false)
 
-  render(
-    <Router history={history}>
-      <Prompt message="Are you sure?" when={condition} />
-    </Router>,
-  )
+      blockCallback(mockTransition)
 
-  expect(blockSpy).toHaveBeenCalledTimes(1)
-  const blockCallback = blockSpy.mock.calls[0]?.[0]
-
-  if (blockCallback) {
-    const mockTransition: Transition = {
-      action: Action.Pop,
-      location: history.location,
-      retry: vi.fn<() => void>(),
+      expect(globalThis.confirm).toHaveBeenCalledWith('Are you sure?')
     }
+  })
 
-    const originalConfirm = globalThis.confirm
-    globalThis.confirm = vi.fn<() => boolean>(() => false)
+  it('calls unblock and retry when user confirms', () => {
+    const history = createMemoryHistory({ initialEntries: ['/initial'] })
+    const blockSpy = vi.spyOn(history, 'block')
 
-    blockCallback(mockTransition)
+    const condition = true
 
-    expect(globalThis.confirm).toHaveBeenCalledWith('Are you sure?')
+    render(
+      <Router history={history}>
+        <Prompt message="Are you sure?" when={condition} />
+      </Router>,
+    )
 
-    globalThis.confirm = originalConfirm
-  }
-})
+    expect(blockSpy).toHaveBeenCalledTimes(1)
+    const blockCallback = blockSpy.mock.calls[0]?.[0]
 
-test('calls unblock and retry when user confirms', () => {
-  const history = createMemoryHistory({ initialEntries: ['/initial'] })
-  const blockSpy = vi.spyOn(history, 'block')
+    if (blockCallback) {
+      const retrySpy = vi.fn<() => void>()
+      const mockTransition: Transition = {
+        action: Action.Pop,
+        location: history.location,
+        retry: retrySpy,
+      }
 
-  const condition = true
+      vi.spyOn(globalThis, 'confirm').mockReturnValue(true)
 
-  render(
-    <Router history={history}>
-      <Prompt message="Are you sure?" when={condition} />
-    </Router>,
-  )
+      blockCallback(mockTransition)
 
-  expect(blockSpy).toHaveBeenCalledTimes(1)
-  const blockCallback = blockSpy.mock.calls[0]?.[0]
-
-  if (blockCallback) {
-    const retrySpy = vi.fn<() => void>()
-    const mockTransition: Transition = {
-      action: Action.Pop,
-      location: history.location,
-      retry: retrySpy,
+      expect(retrySpy).toHaveBeenCalledTimes(1)
     }
+  })
 
-    const originalConfirm = globalThis.confirm
-    globalThis.confirm = vi.fn<() => boolean>(() => true)
+  it('does not call retry when user cancels', () => {
+    const history = createMemoryHistory({ initialEntries: ['/initial'] })
+    const blockSpy = vi.spyOn(history, 'block')
 
-    blockCallback(mockTransition)
+    const condition = true
 
-    expect(retrySpy).toHaveBeenCalledTimes(1)
+    render(
+      <Router history={history}>
+        <Prompt message="Are you sure?" when={condition} />
+      </Router>,
+    )
 
-    globalThis.confirm = originalConfirm
-  }
-})
+    expect(blockSpy).toHaveBeenCalledTimes(1)
+    const blockCallback = blockSpy.mock.calls[0]?.[0]
 
-test('does not call retry when user cancels', () => {
-  const history = createMemoryHistory({ initialEntries: ['/initial'] })
-  const blockSpy = vi.spyOn(history, 'block')
+    if (blockCallback) {
+      const retrySpy = vi.fn<() => void>()
+      const mockTransition: Transition = {
+        action: Action.Pop,
+        location: history.location,
+        retry: retrySpy,
+      }
 
-  const condition = true
+      vi.spyOn(globalThis, 'confirm').mockReturnValue(false)
 
-  render(
-    <Router history={history}>
-      <Prompt message="Are you sure?" when={condition} />
-    </Router>,
-  )
+      blockCallback(mockTransition)
 
-  expect(blockSpy).toHaveBeenCalledTimes(1)
-  const blockCallback = blockSpy.mock.calls[0]?.[0]
-
-  if (blockCallback) {
-    const retrySpy = vi.fn<() => void>()
-    const mockTransition: Transition = {
-      action: Action.Pop,
-      location: history.location,
-      retry: retrySpy,
+      expect(retrySpy).not.toHaveBeenCalledTimes(1)
     }
-
-    const originalConfirm = globalThis.confirm
-    globalThis.confirm = vi.fn<() => boolean>(() => false)
-
-    blockCallback(mockTransition)
-
-    expect(retrySpy).not.toHaveBeenCalledTimes(1)
-
-    globalThis.confirm = originalConfirm
-  }
+  })
 })

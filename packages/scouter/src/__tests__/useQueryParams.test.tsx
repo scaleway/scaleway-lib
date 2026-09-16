@@ -18,8 +18,8 @@ describe(useQueryParams, () => {
     expect(result.current).toHaveProperty('queryParams')
     expect(result.current).toHaveProperty('replaceQueryParams')
     expect(result.current).toHaveProperty('setQueryParams')
-    expect(typeof result.current.replaceQueryParams).toBe('function')
-    expect(typeof result.current.setQueryParams).toBe('function')
+    expect(result.current.replaceQueryParams).toBeTypeOf('function')
+    expect(result.current.setQueryParams).toBeTypeOf('function')
   })
 
   it('parses query params from URL', () => {
@@ -31,10 +31,12 @@ describe(useQueryParams, () => {
       ),
     })
 
-    expect(result.current.queryParams).toEqual({
-      name: 'john',
-      age: 30,
-    })
+    expect(JSON.stringify(result.current.queryParams)).toStrictEqual(
+      JSON.stringify({
+        age: 30,
+        name: 'john',
+      }),
+    )
   })
 
   it('parses comma-separated arrays', () => {
@@ -46,9 +48,11 @@ describe(useQueryParams, () => {
       ),
     })
 
-    expect(result.current.queryParams).toEqual({
-      tags: ['admin', 'user', 'mod'],
-    })
+    expect(JSON.stringify(result.current.queryParams)).toStrictEqual(
+      JSON.stringify({
+        tags: ['admin', 'user', 'mod'],
+      }),
+    )
   })
 
   it('parses boolean values', () => {
@@ -60,10 +64,12 @@ describe(useQueryParams, () => {
       ),
     })
 
-    expect(result.current.queryParams).toEqual({
-      active: true,
-      disabled: false,
-    })
+    expect(JSON.stringify(result.current.queryParams)).toStrictEqual(
+      JSON.stringify({
+        active: true,
+        disabled: false,
+      }),
+    )
   })
 
   it('parses number values', () => {
@@ -75,10 +81,12 @@ describe(useQueryParams, () => {
       ),
     })
 
-    expect(result.current.queryParams).toEqual({
-      count: 42,
-      price: 19.99,
-    })
+    expect(JSON.stringify(result.current.queryParams)).toStrictEqual(
+      JSON.stringify({
+        count: 42,
+        price: 19.99,
+      }),
+    )
   })
 
   it('handles empty query string', () => {
@@ -90,7 +98,7 @@ describe(useQueryParams, () => {
       ),
     })
 
-    expect(result.current.queryParams).toEqual({})
+    expect(JSON.stringify(result.current.queryParams)).toBe('{}')
   })
 
   it('setQueryParams merges with existing params', () => {
@@ -106,11 +114,13 @@ describe(useQueryParams, () => {
       result.current.setQueryParams({ age: 31, city: 'paris' })
     })
 
-    expect(result.current.queryParams).toEqual({
-      name: 'john',
-      age: 31,
-      city: 'paris',
-    })
+    expect(JSON.stringify(result.current.queryParams)).toStrictEqual(
+      JSON.stringify({
+        age: 31,
+        city: 'paris',
+        name: 'john',
+      }),
+    )
   })
 
   it('replaceQueryParams replaces all params', () => {
@@ -126,9 +136,11 @@ describe(useQueryParams, () => {
       result.current.replaceQueryParams({ city: 'paris' })
     })
 
-    expect(result.current.queryParams).toEqual({
-      city: 'paris',
-    })
+    expect(JSON.stringify(result.current.queryParams)).toStrictEqual(
+      JSON.stringify({
+        city: 'paris',
+      }),
+    )
   })
 
   it('push option uses history.push', () => {
@@ -207,7 +219,7 @@ describe(useQueryParams, () => {
       result.current.setQueryParams({ name: null })
     })
 
-    expect(result.current.queryParams).toEqual({})
+    expect(JSON.stringify(result.current.queryParams)).toBe('{}')
   })
 
   it('handles undefined values by omitting them', () => {
@@ -223,7 +235,7 @@ describe(useQueryParams, () => {
       result.current.setQueryParams({ name: undefined })
     })
 
-    expect(result.current.queryParams).toEqual({})
+    expect(JSON.stringify(result.current.queryParams)).toBe('{}')
   })
 
   it('updates when location changes', () => {
@@ -257,7 +269,7 @@ describe(useQueryParams, () => {
       result.current.setQueryParams({ tags: ['admin', 'user'] })
     })
 
-    expect(result.current.queryParams['tags']).toEqual(['admin', 'user'])
+    expect(result.current.queryParams['tags']).toStrictEqual(['admin', 'user'])
   })
 
   it('setQueryParams with push option', () => {
