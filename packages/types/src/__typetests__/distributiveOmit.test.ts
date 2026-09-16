@@ -28,4 +28,19 @@ describe('distributive omit', () => {
     expectTypeOf<Omitted>().toHaveProperty('href')
     expectTypeOf<Omitted>().not.toHaveProperty('to')
   })
+
+  // The XOR exclusivity invariant must survive the omit: after removing `to`
+  // and re-adding it via intersection, the result is a concrete object requiring
+  // `to` — not a collapsed `any`. This is the behavior `@ultraviolet/ui`'s Link
+  // relies on (the deferred `Omit` form is what `no-redundant-type-constituents`
+  // flags downstream).
+  it('preserves the XOR invariant after omitting one branch key', () => {
+    type LinkProps = XOR<[{ href: string; to?: never }, { to: string; href?: never }]>
+    type Omitted = DistributiveOmit<LinkProps, 'to'> & { to: string }
+
+    // The intersection did NOT collapse to `any`: `to` is a required key, so a
+    // value missing it must not be assignable.
+    expectTypeOf<{ href: string }>().not.toExtend<Omitted>()
+    expectTypeOf<{ href: string; to: string }>().toExtend<Omitted>()
+  })
 })
