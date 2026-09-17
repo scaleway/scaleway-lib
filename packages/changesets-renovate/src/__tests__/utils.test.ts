@@ -1,7 +1,6 @@
-// oxlint-disable max-lines
 import { execSync } from 'node:child_process'
-import { readFile } from 'node:fs/promises'
 import { defaultConfig, readConfig } from '@changesets/config'
+import { vol } from 'memfs'
 import { glob } from 'tinyglobby'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { parse } from 'yaml'
@@ -38,28 +37,11 @@ vi.mock(import('@changesets/config'), async importOriginal => {
   }
 })
 
-const enoent = (): never => {
-  const error = new Error('not found') as NodeJS.ErrnoException
-  error.code = 'ENOENT'
-  throw error
-}
-
-const mockReadFileMap = (files: Record<string, string>, fallback: 'enoent' | '{}' = 'enoent') => {
-  vi.mocked(readFile).mockImplementation(((filePath: string) => {
-    if (filePath in files) {
-      return files[filePath]
-    }
-    if (fallback === 'enoent') {
-      enoent()
-    }
-    return '{}'
-  }) as any)
-}
-
 describe('pnpm-catalogs-utils', () => {
   beforeEach(() => {
     // Clear all mocks
     vi.clearAllMocks()
+    vol.reset()
     vi.mocked(execSync).mockReturnValue('node_modules/\ndist/\n')
     vi.mocked(readConfig).mockResolvedValue({
       config: defaultConfig,
@@ -67,7 +49,7 @@ describe('pnpm-catalogs-utils', () => {
       errors: undefined,
     })
     vi.spyOn(process, 'cwd').mockReturnValue('/mock/repo')
-    delete process.env['EXCLUDE_DEVDEPS']
+    vi.stubEnv('EXCLUDE_DEVDEPS', undefined)
   })
 
   describe(loadCatalogFromFile, () => {
@@ -77,7 +59,7 @@ catalog:
   test-package: 1.0.0
   another-package: 2.0.0
 `
-      vi.mocked(readFile).mockResolvedValue(mockContent)
+      vol.fromJSON({ 'test-file.yaml': mockContent })
       vi.mocked(parse).mockReturnValue({
         catalog: {
           'another-package': '2.0.0',
@@ -87,7 +69,6 @@ catalog:
 
       const result = await loadCatalogFromFile('test-file.yaml')
 
-      expect(readFile).toHaveBeenCalledWith('test-file.yaml', 'utf8')
       expect(parse).toHaveBeenCalledWith(mockContent)
       expect(result).toStrictEqual({
         'another-package': '2.0.0',
@@ -96,15 +77,13 @@ catalog:
     })
 
     it('should return empty object if file reading fails', async () => {
-      vi.mocked(readFile).mockRejectedValue(new Error('File not found'))
-
       const result = await loadCatalogFromFile('non-existent-file.yaml')
 
       expect(result).toStrictEqual({})
     })
 
     it('should return empty object if YAML parsing fails', async () => {
-      vi.mocked(readFile).mockResolvedValue('invalid yaml')
+      vol.fromJSON({ 'invalid-file.yaml': 'invalid yaml' })
       vi.mocked(parse).mockImplementation(() => {
         throw new Error('Invalid YAML')
       })
@@ -198,7 +177,7 @@ catalog:
 
   describe(getWorkspacePackageGlobs, () => {
     it('should discover globs from pnpm-workspace.yaml', async () => {
-      mockReadFileMap({
+      vol.fromJSON({
         'pnpm-workspace.yaml': 'packages:\n  - packages/*\n  - apps/*',
       })
       vi.mocked(parse).mockReturnValue({ packages: ['packages/*', 'apps/*'] })
@@ -209,7 +188,7 @@ catalog:
     })
 
     it('should discover globs from root package.json workspaces', async () => {
-      mockReadFileMap({
+      vol.fromJSON({
         'package.json': JSON.stringify({ workspaces: ['packages/*', 'tools/*'] }),
       })
 
@@ -219,7 +198,7 @@ catalog:
     })
 
     it('should support workspaces as { packages: [] } object', async () => {
-      mockReadFileMap({
+      vol.fromJSON({
         'package.json': JSON.stringify({ workspaces: { packages: ['apps/*'] } }),
       })
 
@@ -229,13 +208,10 @@ catalog:
     })
 
     it('should merge and deduplicate globs from both sources', async () => {
-      mockReadFileMap(
-        {
-          'pnpm-workspace.yaml': 'packages:\n  - packages/*',
-          'package.json': JSON.stringify({ workspaces: ['packages/*', 'apps/*'] }),
-        },
-        '{}',
-      )
+      vol.fromJSON({
+        'pnpm-workspace.yaml': 'packages:\n  - packages/*',
+        'package.json': JSON.stringify({ workspaces: ['packages/*', 'apps/*'] }),
+      })
       vi.mocked(parse).mockReturnValue({ packages: ['packages/*'] })
 
       const result = await getWorkspacePackageGlobs()
@@ -244,19 +220,13 @@ catalog:
     })
 
     it('should fall back to empty array when no workspace config exists', async () => {
-      vi.mocked(readFile).mockImplementation(() => {
-        const error = new Error('not found') as NodeJS.ErrnoException
-        error.code = 'ENOENT'
-        throw error
-      })
-
       const result = await getWorkspacePackageGlobs()
 
       expect(result).toStrictEqual([])
     })
 
     it('should strip trailing slashes from workspace patterns', async () => {
-      mockReadFileMap({
+      vol.fromJSON({
         'pnpm-workspace.yaml': 'packages:\n  - packages/*/',
       })
       vi.mocked(parse).mockReturnValue({ packages: ['packages/*/'] })
@@ -270,15 +240,7 @@ catalog:
   describe(findAffectedPackages, () => {
     beforeEach(() => {
       // Default workspace discovery returns the legacy default glob
-      vi.mocked(readFile).mockImplementation(((filePath: string) => {
-        if (filePath === 'pnpm-workspace.yaml') {
-          return 'packages:\n  - packages/*'
-        }
-
-        const error = new Error('not found') as NodeJS.ErrnoException
-        error.code = 'ENOENT'
-        throw error
-      }) as any)
+      vol.fromJSON({ 'pnpm-workspace.yaml': 'packages:\n  - packages/*' })
       vi.mocked(parse).mockReturnValue({ packages: ['packages/*'] })
       vi.mocked(glob).mockResolvedValue([
         'packages/package-a/package.json',
@@ -288,26 +250,22 @@ catalog:
     })
 
     it('should find packages affected by dependency changes', async () => {
-      // Mock file system reads for package.json files
-      mockReadFileMap(
-        {
-          'packages/package-a/package.json': JSON.stringify({
-            dependencies: {
-              'changed-dep': 'catalog:',
-            },
-            version: '1.0.0',
-            name: 'package-a',
-          }),
-          'packages/package-b/package.json': JSON.stringify({
-            dependencies: {
-              'unchanged-dep': 'catalog:',
-            },
-            version: '1.0.0',
-            name: 'package-b',
-          }),
-        },
-        '{}',
-      )
+      vol.fromJSON({
+        'packages/package-a/package.json': JSON.stringify({
+          dependencies: {
+            'changed-dep': 'catalog:',
+          },
+          version: '1.0.0',
+          name: 'package-a',
+        }),
+        'packages/package-b/package.json': JSON.stringify({
+          dependencies: {
+            'unchanged-dep': 'catalog:',
+          },
+          version: '1.0.0',
+          name: 'package-b',
+        }),
+      })
 
       const result = await findAffectedPackages(['changed-dep'])
 
@@ -327,28 +285,24 @@ catalog:
     })
 
     it('should find packages affected by dependency changes and respect EXCLUDE_DEVDEPS', async () => {
-      process.env['EXCLUDE_DEVDEPS'] = 'true'
+      vi.stubEnv('EXCLUDE_DEVDEPS', 'true')
 
-      // Mock file system reads for package.json files
-      mockReadFileMap(
-        {
-          'packages/package-a/package.json': JSON.stringify({
-            dependencies: {
-              'changed-dep': 'catalog:',
-            },
-            version: '1.0.0',
-            name: 'package-a',
-          }),
-          'packages/package-b/package.json': JSON.stringify({
-            devDependencies: {
-              'changed-dep': 'catalog:',
-            },
-            version: '1.0.0',
-            name: 'package-b',
-          }),
-        },
-        '{}',
-      )
+      vol.fromJSON({
+        'packages/package-a/package.json': JSON.stringify({
+          dependencies: {
+            'changed-dep': 'catalog:',
+          },
+          version: '1.0.0',
+          name: 'package-a',
+        }),
+        'packages/package-b/package.json': JSON.stringify({
+          devDependencies: {
+            'changed-dep': 'catalog:',
+          },
+          version: '1.0.0',
+          name: 'package-b',
+        }),
+      })
 
       const result = await findAffectedPackages(['changed-dep'])
 
@@ -370,33 +324,29 @@ catalog:
         errors: undefined,
       })
 
-      // Mock file system reads for package.json files
-      mockReadFileMap(
-        {
-          'packages/package-a/package.json': JSON.stringify({
-            dependencies: {
-              'changed-dep': 'catalog:',
-            },
-            version: '1.0.0',
-            name: 'package-a',
-          }),
-          'packages/package-b/package.json': JSON.stringify({
-            dependencies: {
-              'unchanged-dep': 'catalog:',
-            },
-            version: '1.0.0',
-            name: 'package-b',
-          }),
-          'packages/package-c/package.json': JSON.stringify({
-            dependencies: {
-              'changed-dep': 'catalog:',
-            },
-            version: '1.0.0',
-            name: 'package-c',
-          }),
-        },
-        '{}',
-      )
+      vol.fromJSON({
+        'packages/package-a/package.json': JSON.stringify({
+          dependencies: {
+            'changed-dep': 'catalog:',
+          },
+          version: '1.0.0',
+          name: 'package-a',
+        }),
+        'packages/package-b/package.json': JSON.stringify({
+          dependencies: {
+            'unchanged-dep': 'catalog:',
+          },
+          version: '1.0.0',
+          name: 'package-b',
+        }),
+        'packages/package-c/package.json': JSON.stringify({
+          dependencies: {
+            'changed-dep': 'catalog:',
+          },
+          version: '1.0.0',
+          name: 'package-c',
+        }),
+      })
 
       const result = await findAffectedPackages(['changed-dep'])
 
@@ -413,15 +363,18 @@ catalog:
     })
 
     it('should handle packages with no affected dependencies', async () => {
-      vi.mocked(readFile).mockResolvedValue(
-        JSON.stringify({
-          dependencies: {
-            'unchanged-dep': 'catalog:',
-          },
-          version: '1.0.0',
-          name: 'package-a',
-        }),
-      ) as any
+      const packageJson = JSON.stringify({
+        dependencies: {
+          'unchanged-dep': 'catalog:',
+        },
+        version: '1.0.0',
+        name: 'package-a',
+      })
+      vol.fromJSON({
+        'packages/package-a/package.json': packageJson,
+        'packages/package-b/package.json': packageJson,
+        'packages/package-c/package.json': packageJson,
+      })
 
       const result = await findAffectedPackages(['non-existent-dep'])
 
@@ -438,8 +391,6 @@ catalog:
     })
 
     it('should handle file read errors gracefully', async () => {
-      vi.mocked(readFile).mockRejectedValue(new Error('File read error'))
-
       const result = await findAffectedPackages(['changed-dep'])
 
       expect(result).toBeInstanceOf(Set)
@@ -448,18 +399,15 @@ catalog:
 
     it('should respect explicitly provided packageJsonGlobs over discovered ones', async () => {
       vi.mocked(glob).mockResolvedValue(['apps/app-a/package.json'])
-      mockReadFileMap(
-        {
-          'apps/app-a/package.json': JSON.stringify({
-            dependencies: {
-              'changed-dep': 'catalog:',
-            },
-            version: '1.0.0',
-            name: 'app-a',
-          }),
-        },
-        '{}',
-      )
+      vol.fromJSON({
+        'apps/app-a/package.json': JSON.stringify({
+          dependencies: {
+            'changed-dep': 'catalog:',
+          },
+          version: '1.0.0',
+          name: 'app-a',
+        }),
+      })
 
       const result = await findAffectedPackages(['changed-dep'], ['apps/*/package.json'])
 
@@ -473,7 +421,7 @@ catalog:
     })
 
     it('should discover non-default workspace layouts (apps/*) from pnpm-workspace.yaml', async () => {
-      mockReadFileMap({
+      vol.fromJSON({
         'pnpm-workspace.yaml': 'packages:\n  - apps/*',
         'apps/app-a/package.json': JSON.stringify({
           dependencies: {
@@ -498,7 +446,7 @@ catalog:
     })
 
     it('should fall back to packages/*/package.json when no workspace config is found', async () => {
-      vi.mocked(readFile).mockRejectedValue(new Error('File read error'))
+      vol.reset()
       vi.mocked(glob).mockResolvedValue(['packages/package-a/package.json'])
 
       const result = await findAffectedPackages(['changed-dep'])

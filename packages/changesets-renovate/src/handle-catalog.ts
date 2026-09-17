@@ -47,7 +47,8 @@ export async function handleCatalogChanges(diffFiles: string[]): Promise<void> {
   // Step 3: Generate changesets
   console.log('\n✏️  Creating changesets...')
   const packageNames = [...affectedPackages.keys()]
-  const shortHash = (await simpleGit().revparse(['--short', 'HEAD'])).trim()
+  const shortRawHash = await simpleGit().revparse(['--short', 'HEAD'])
+  const shortHash = shortRawHash.trim()
   const fileName = `.changeset/renovate-${shortHash}.md`
   await createChangeset(fileName, changedDeps, packageNames)
   await handleChangesetFile(fileName)

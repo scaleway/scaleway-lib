@@ -51,17 +51,21 @@ const wrapper =
   ({
     loadDateLocaleAsync = async (locale: string) => {
       if (locale === 'en') {
-        return (await import('date-fns/locale/en-GB')).enGB
+        const enLocales = await import('date-fns/locale/en-GB')
+        return enLocales.enGB
       }
       if (locale === 'fr') {
-        return (await import('date-fns/locale/fr')).fr
+        const frLocales = await import('date-fns/locale/fr')
+        return frLocales.fr
       }
 
       if (locale === 'es') {
-        return (await import('date-fns/locale/es')).es
+        const esLocales = await import('date-fns/locale/es')
+        return esLocales.es
       }
 
-      return (await import('date-fns/locale/en-GB')).enGB
+      const enLocales = await import('date-fns/locale/en-GB')
+      return enLocales.enGB
     },
     loadDateLocale = (locale: string) => {
       if (locale === 'en') {

@@ -25,7 +25,8 @@ export async function handlePackageChanges(diffFiles: string[]): Promise<void> {
     return
   }
 
-  const shortHash = (await simpleGit().revparse(['--short', 'HEAD'])).trim()
+  const shortRawHash = await simpleGit().revparse(['--short', 'HEAD'])
+  const shortHash = shortRawHash.trim()
   const fileName = `.changeset/renovate-${shortHash}.md`
 
   await createChangeset(fileName, packageBumps, packageNames)
