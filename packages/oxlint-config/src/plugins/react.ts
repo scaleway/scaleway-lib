@@ -111,7 +111,7 @@ export default defineConfig({
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/jsx-max-depth
      */
-    'react/jsx-max-depth': ['error', { max: 5 }],
+    'react/jsx-max-depth': ['error', { max: 8 }],
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/jsx-no-comment-textnodes
      */
