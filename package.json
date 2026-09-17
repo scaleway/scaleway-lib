@@ -45,6 +45,7 @@
     "happy-dom": "catalog:",
     "jsdom": "catalog:",
     "lint-staged": "catalog:",
+    "memfs": "catalog:",
     "oxfmt": "catalog:",
     "oxlint": "catalog:",
     "oxlint-tsgolint": "catalog:",

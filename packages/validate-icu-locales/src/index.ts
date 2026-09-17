@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// oxlint-disable import/no-nodejs-modules, eslint/no-console
+// oxlint-disable eslint/no-console
 
 import { execSync } from 'node:child_process'
 import { readFile } from 'node:fs/promises'

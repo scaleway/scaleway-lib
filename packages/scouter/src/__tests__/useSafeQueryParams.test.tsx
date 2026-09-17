@@ -163,8 +163,8 @@ describe(useSafeQueryParams, () => {
     })
 
     act(() => {
-      // oxlint-disable-next-line typescript/no-unsafe-assignment typescript/no-unsafe-type-assertion
-      result.current.setQueryParams({ name: null as any })
+      // @ts-expect-error we try with null
+      result.current.setQueryParams({ name: null })
     })
 
     expect(history.location.search).not.toContain('name=')

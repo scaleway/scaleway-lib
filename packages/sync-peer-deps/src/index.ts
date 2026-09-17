@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-// oxlint-disable import/no-nodejs-modules
 import { readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import chalk from 'chalk'

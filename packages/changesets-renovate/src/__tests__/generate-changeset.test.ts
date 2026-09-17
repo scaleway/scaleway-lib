@@ -1,5 +1,5 @@
-import { readFile, writeFile } from 'node:fs/promises'
 import { defaultConfig, readConfig } from '@changesets/config'
+import { vol } from 'memfs'
 import type { SimpleGit } from 'simple-git'
 import { simpleGit } from 'simple-git'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
@@ -7,7 +7,6 @@ import { run } from '../generateChangeset.js'
 
 // Mock all external dependencies
 vi.mock(import('node:fs/promises'))
-
 vi.mock(import('@changesets/config'), async importOriginal => {
   const actual = await importOriginal()
 
@@ -19,15 +18,10 @@ vi.mock(import('@changesets/config'), async importOriginal => {
   }
 })
 
-const mockedWriteFile = vi.mocked(writeFile)
-const mockedReadFile = vi.mocked(readFile)
-
-const mockReadFileMap = (files: Record<string, string>) => {
-  mockedReadFile.mockImplementation(async (path: unknown) => await Promise.resolve(files[path as string] ?? '{}'))
-}
-
 describe('generate changeset file', () => {
   beforeEach(() => {
+    vol.reset()
+    vol.mkdirSync('/.changeset', { recursive: true })
     vi.spyOn(console, 'log')
     vi.mocked(readConfig).mockResolvedValue({
       config: defaultConfig,
@@ -38,10 +32,10 @@ describe('generate changeset file', () => {
 
   afterEach(() => {
     vi.restoreAllMocks()
-    delete process.env['SKIP_BRANCH_CHECK']
-    delete process.env['SKIP_COMMIT']
-    delete process.env['BRANCH_PREFIX']
-    delete process.env['SORT_CHANGESETS']
+    vi.stubEnv('SKIP_BRANCH_CHECK', undefined)
+    vi.stubEnv('SKIP_COMMIT', undefined)
+    vi.stubEnv('BRANCH_PREFIX', undefined)
+    vi.stubEnv('SORT_CHANGESETS', undefined)
   })
 
   it('should skip if not in renovate branch', async () => {
@@ -88,17 +82,15 @@ describe('generate changeset file', () => {
 `,
     } as unknown as SimpleGit)
 
-    // Mock changeset config for this test
-    mockReadFileMap({
+    vol.fromJSON({
       'test/package.json': `{"name":"packageName","version":"1.0.0","dependencies": { "package": "1.0.0", "package2": "1.2.2" }}`,
     })
 
-    process.env['BRANCH_PREFIX'] = 'dep-upgrade/'
+    vi.stubEnv('BRANCH_PREFIX', 'dep-upgrade/')
     await run()
 
     expect(console.log).not.toHaveBeenCalledWith('Not a renovate branch, skipping')
-    expect(mockedReadFile).toHaveBeenCalledWith(file, 'utf8')
-    expect(mockedWriteFile).toMatchSnapshot()
+    expect(vol.readFileSync(fileName, 'utf8')).toMatchSnapshot()
     expect(add).toHaveBeenCalledWith(fileName)
     expect(commit).toHaveBeenCalledWith(`chore: add ${fileName}`)
     expect(push).toHaveBeenCalledTimes(1)
@@ -134,17 +126,15 @@ describe('generate changeset file', () => {
 `,
     } as unknown as SimpleGit)
 
-    // Mock changeset config for this test
-    mockReadFileMap({
+    vol.fromJSON({
       'test/package.json': `{"name":"packageName","version":"1.0.0","dependencies": { "package": "1.0.0", "package2": "1.2.2" }}`,
     })
 
-    process.env['SKIP_BRANCH_CHECK'] = 'TRUE'
+    vi.stubEnv('SKIP_BRANCH_CHECK', 'TRUE')
     await run()
 
     expect(console.log).not.toHaveBeenCalledWith('Not a renovate branch, skipping')
-    expect(mockedReadFile).toHaveBeenCalledWith(file, 'utf8')
-    expect(mockedWriteFile).toMatchSnapshot()
+    expect(vol.readFileSync(fileName, 'utf8')).toMatchSnapshot()
     expect(add).toHaveBeenCalledWith(fileName)
     expect(commit).toHaveBeenCalledWith(`chore: add ${fileName}`)
     expect(push).toHaveBeenCalledTimes(1)
@@ -216,15 +206,13 @@ describe('generate changeset file', () => {
 `,
     } as unknown as SimpleGit)
 
-    // Mock changeset config for this test
-    mockReadFileMap({
+    vol.fromJSON({
       'test/package.json': `{"name":"packageName","version":"1.0.0","dependencies": { "packagez": "1.0.0", "package2": "1.2.2" }}`,
     })
 
     await run()
 
-    expect(mockedReadFile).toHaveBeenCalledWith(file, 'utf8')
-    expect(mockedWriteFile).toMatchSnapshot()
+    expect(vol.readFileSync(fileName, 'utf8')).toMatchSnapshot()
     expect(add).toHaveBeenCalledWith(fileName)
     expect(commit).toHaveBeenCalledWith(`chore: add ${fileName}`)
     expect(push).toHaveBeenCalledTimes(1)
@@ -260,16 +248,14 @@ describe('generate changeset file', () => {
 `,
     } as unknown as SimpleGit)
 
-    // Mock changeset config for this test
-    mockReadFileMap({
+    vol.fromJSON({
       'test/package.json': `{"name":"packageName","version":"1.0.0","dependencies": { "package": "1.0.0", "package2": "1.2.2" }}`,
     })
 
-    process.env['SKIP_COMMIT'] = 'TRUE'
+    vi.stubEnv('SKIP_COMMIT', 'TRUE')
     await run()
 
-    expect(mockedReadFile).toHaveBeenCalledWith(file, 'utf8')
-    expect(mockedWriteFile).toMatchSnapshot()
+    expect(vol.readFileSync(fileName, 'utf8')).toMatchSnapshot()
     expect(add).not.toHaveBeenCalledWith(fileName)
     expect(commit).not.toHaveBeenCalledWith(`chore: add changeset renovate-${rev}`)
     expect(push).not.toHaveBeenCalledTimes(1)
@@ -309,19 +295,16 @@ describe('generate changeset file', () => {
 `,
     } as unknown as SimpleGit)
 
-    // Mock changeset config for this test
-    mockReadFileMap({
+    vol.fromJSON({
       'test-a/package.json': `{"name":"packageNameA","version":"1.0.0","dependencies": { "packagez": "1.0.0" }}`,
       'test-b/package.json': `{"name":"packageNameB","version":"1.0.0","dependencies": { "packagea": "1.0.0" }}`,
     })
 
-    process.env['SKIP_COMMIT'] = 'TRUE'
-    process.env['SORT_CHANGESETS'] = 'TRUE'
+    vi.stubEnv('SKIP_COMMIT', 'TRUE')
+    vi.stubEnv('SORT_CHANGESETS', 'TRUE')
     await run()
 
-    expect(mockedReadFile).toHaveBeenCalledWith(fileA, 'utf8')
-    expect(mockedReadFile).toHaveBeenCalledWith(fileB, 'utf8')
-    expect(mockedWriteFile).toMatchSnapshot()
+    expect(vol.readFileSync(fileName, 'utf8')).toMatchSnapshot()
     expect(add).not.toHaveBeenCalledWith(fileName)
     expect(commit).not.toHaveBeenCalledWith(`chore: add changeset renovate-${rev}`)
     expect(push).not.toHaveBeenCalledTimes(1)
@@ -347,14 +330,12 @@ describe('generate changeset file', () => {
 `,
     } as unknown as SimpleGit)
 
-    // Mock changeset config for this test
-    mockReadFileMap({
+    vol.fromJSON({
       'package.json': `{"name":"packageName","workspaces":[]}`,
     })
 
     await run()
 
-    expect(mockedReadFile).toHaveBeenCalledWith(file, 'utf8')
     expect(console.log).toHaveBeenCalledWith('No packages modified, skipping')
   })
 
@@ -378,14 +359,12 @@ describe('generate changeset file', () => {
 `,
     } as unknown as SimpleGit)
 
-    // Mock changeset config for this test
-    mockReadFileMap({
+    vol.fromJSON({
       'package.json': `{"name":"packageName"}`,
     })
 
     await run()
 
-    expect(mockedReadFile).toHaveBeenCalledWith(file, 'utf8')
     expect(console.log).toHaveBeenCalledWith('No packages modified, skipping')
   })
 
@@ -415,14 +394,12 @@ describe('generate changeset file', () => {
       errors: undefined,
     })
 
-    // Mock changeset config for this test
-    mockReadFileMap({
+    vol.fromJSON({
       'test/package.json': `{"name":"packageName","version":"1.0.0"}`,
     })
 
     await run()
 
-    expect(mockedReadFile).toHaveBeenCalledWith(file, 'utf8')
     expect(console.log).toHaveBeenCalledWith('No packages modified, skipping')
   })
 
@@ -455,14 +432,12 @@ describe('generate changeset file', () => {
       errors: undefined,
     })
 
-    // Mock changeset config for this test
-    mockReadFileMap({
+    vol.fromJSON({
       'test/package.json': `{"name":"packageName","version":"1.0.0", "private": true }`,
     })
 
     await run()
 
-    expect(mockedReadFile).toHaveBeenCalledWith(file, 'utf8')
     expect(console.log).toHaveBeenCalledWith('No packages modified, skipping')
   })
 })

@@ -15,7 +15,7 @@ class DataLoader<ResultType, ErrorType> {
 
   public static cachedData: Record<string, unknown> = {}
 
-  public static queue: Record<string, PromiseType> = {}
+  public static queue = new Map<string, PromiseType>()
 
   public key: string
 
@@ -71,14 +71,17 @@ class DataLoader<ResultType, ErrorType> {
   private readonly tryLaunch = async (): Promise<ResultType> => {
     if (DataLoader.started < DataLoader.maxConcurrent) {
       DataLoader.started += 1
-      DataLoader.queue[this.key] = this.launch()
+      DataLoader.queue.set(this.key, this.launch())
     } else {
-      DataLoader.queue[this.key] = new Promise(resolve => {
-        setTimeout(resolve, 0)
-      }).then(this.tryLaunch)
+      DataLoader.queue.set(
+        this.key,
+        new Promise(resolve => {
+          setTimeout(resolve, 0)
+        }).then(this.tryLaunch),
+      )
     }
 
-    return DataLoader.queue[this.key] as Promise<ResultType>
+    return DataLoader.queue.get(this.key) as Promise<ResultType>
   }
 
   public load = async (force = false): Promise<ResultType> => {
@@ -90,10 +93,10 @@ class DataLoader<ResultType, ErrorType> {
         this.notifyChanges()
       }
 
-      DataLoader.queue[this.key] = this.tryLaunch()
+      DataLoader.queue.set(this.key, this.tryLaunch())
     }
 
-    return DataLoader.queue[this.key] as Promise<ResultType>
+    return DataLoader.queue.get(this.key) as Promise<ResultType>
   }
 
   public launch = async (): Promise<ResultType | undefined> => {
@@ -114,7 +117,7 @@ class DataLoader<ResultType, ErrorType> {
       this.isCalled = false
       this.isFirstLoading = false
       DataLoader.started -= 1
-      delete DataLoader.queue[this.key]
+      DataLoader.queue.delete(this.key)
       this.notifyChanges()
 
       return data
@@ -126,7 +129,7 @@ class DataLoader<ResultType, ErrorType> {
       this.isCalled = false
       this.isFirstLoading = false
       DataLoader.started -= 1
-      delete DataLoader.queue[this.key]
+      DataLoader.queue.delete(this.key)
       this.notifyChanges()
 
       if (!this.isCancelled) {
@@ -143,7 +146,7 @@ class DataLoader<ResultType, ErrorType> {
 
   public cancel(): void {
     DataLoader.started -= 1
-    delete DataLoader.queue[this.key]
+    DataLoader.queue.delete(this.key)
     this.isCancelled = true
     this.status = StatusEnum.IDLE
   }

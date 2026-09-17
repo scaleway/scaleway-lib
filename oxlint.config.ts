@@ -4,9 +4,9 @@ import { defineConfig } from 'oxlint'
 export default defineConfig({
   extends: [base, react, vitest],
   ignorePatterns,
-  // All of the custom rules below should be removed
   overrides: [
     {
+      // This override needs to be removed
       files: [
         'packages/scouter/**/*.{ts,tsx}',
         'packages/changesets-renovate/**/*.{ts,tsx}',
@@ -26,10 +26,6 @@ export default defineConfig({
         'eslint/no-await-in-loop': 'warn',
         'eslint/no-console': 'warn',
 
-        'import/no-nodejs-modules': 'warn',
-
-        'node/no-process-env': 'warn',
-
         'oxc/no-accumulating-spread': 'warn',
 
         'react/exhaustive-effect-dependencies': 'warn',
@@ -44,8 +40,6 @@ export default defineConfig({
 
         'typescript/explicit-member-accessibility': 'warn',
         'typescript/no-confusing-void-expression': 'warn',
-        'typescript/no-dynamic-delete': 'warn',
-        'typescript/no-explicit-any': 'warn',
         'typescript/no-non-null-assertion': 'warn',
         'typescript/no-unnecessary-condition': 'warn',
         'typescript/no-unsafe-argument': 'warn',
@@ -54,9 +48,20 @@ export default defineConfig({
         'typescript/strict-boolean-expressions': 'warn',
 
         'unicorn/max-nested-calls': 'warn',
-        'unicorn/no-await-expression-member': 'warn',
         'unicorn/no-document-cookie': 'warn',
         'unicorn/prefer-object-from-entries': 'warn',
+      },
+    },
+    {
+      // node only packages
+      files: [
+        'packages/changesets-renovate/**',
+        'packages/sync-peer-deps/**',
+        'packages/utils/**',
+        'packages/validate-icu-locales/**',
+      ],
+      rules: {
+        'import/no-nodejs-modules': 'off',
       },
     },
   ],
