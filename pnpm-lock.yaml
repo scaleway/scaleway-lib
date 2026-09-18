@@ -138,8 +138,8 @@ catalogs:
       specifier: 3.33.0
       version: 3.33.0
     '@scaleway/sdk-client':
-      specifier: 2.9.0
-      version: 2.9.0
+      specifier: 2.10.0
+      version: 2.10.0
     '@scaleway/sdk-iam':
       specifier: 2.16.0
       version: 2.16.0
@@ -412,10 +412,10 @@ importers:
     devDependencies:
       '@scaleway/sdk-client':
         specifier: 'catalog:'
-        version: 2.9.0
+        version: 2.10.0
       '@scaleway/sdk-iam':
         specifier: 'catalog:'
-        version: 2.16.0(@scaleway/sdk-client@2.9.0)
+        version: 2.16.0(@scaleway/sdk-client@2.10.0)
       '@scaleway/types':
         specifier: workspace:*
         version: link:../types
@@ -487,7 +487,7 @@ importers:
     devDependencies:
       '@scaleway/sdk-client':
         specifier: 'catalog:'
-        version: 2.9.0
+        version: 2.10.0
       '@types/react':
         specifier: 'catalog:'
         version: 19.3.0
@@ -1492,8 +1492,8 @@ packages:
     resolution: {integrity: sha512-fhR2aCzxoZlOZcCM42srbALdpdqMy79LwOK5mVf4sGG1uknn095mr5PQ/0/zwfk/FX2KycZwbKJzr4zP6CG3Zg==}
     engines: {node: '>=24.x'}
 
-  '@scaleway/sdk-client@2.9.0':
-    resolution: {integrity: sha512-2U2WXMvqZTW+zrtG359iG9TREt4Gio6fNUdgMacjJgKwA/MQx9IXOSlQXmU/0I//WKtP9wLQozcSP9uf5kM3SA==}
+  '@scaleway/sdk-client@2.10.0':
+    resolution: {integrity: sha512-gOvTleBSftmXllx12lbRkE5Sl6siBoj2u5LPv4FRYFKtbS+obAKH67iAlw5rqOyHtU4UR4eBL3AWUiRI/LZtcw==}
 
   '@scaleway/sdk-iam@2.16.0':
     resolution: {integrity: sha512-lofzsDS1EQanD0su6L59UrDiKC8JmFlmreGVVV3C05wBFez9uUVqFHuoBSkZ59bTV1NptCk3iPfVyBqwtRk2HA==}
@@ -3819,17 +3819,17 @@ snapshots:
 
   '@scaleway/random-name@6.0.2': {}
 
-  '@scaleway/sdk-client@2.9.0': {}
+  '@scaleway/sdk-client@2.10.0': {}
 
-  '@scaleway/sdk-iam@2.16.0(@scaleway/sdk-client@2.9.0)':
+  '@scaleway/sdk-iam@2.16.0(@scaleway/sdk-client@2.10.0)':
     dependencies:
       '@scaleway/random-name': 6.0.2
-      '@scaleway/sdk-client': 2.9.0
-      '@scaleway/sdk-std': 2.8.1(@scaleway/sdk-client@2.9.0)
+      '@scaleway/sdk-client': 2.10.0
+      '@scaleway/sdk-std': 2.8.1(@scaleway/sdk-client@2.10.0)
 
-  '@scaleway/sdk-std@2.8.1(@scaleway/sdk-client@2.9.0)':
+  '@scaleway/sdk-std@2.8.1(@scaleway/sdk-client@2.10.0)':
     dependencies:
-      '@scaleway/sdk-client': 2.9.0
+      '@scaleway/sdk-client': 2.10.0
 
   '@sec-ant/readable-stream@0.4.1': {}
 
