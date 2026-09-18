@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.2
+
+### Patch Changes
+
+- [#3863](https://github.com/scaleway/scaleway-lib/pull/3863) [`3cee142`](https://github.com/scaleway/scaleway-lib/commit/3cee142b0789681bb2d35c7c070e4e9c43e7cb4e) Thanks [@chambo-e](https://github.com/chambo-e)! - Migrate dataloader queue to a Map. Should not impact usage
+
 ## 7.1.1
 
 ### Patch Changes
