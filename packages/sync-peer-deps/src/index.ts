@@ -15,6 +15,12 @@ const { log, error: consoleError } = console
 
 const SPACE_REGEX = /^\{\n(?<indent>\s+)/v
 
+// ponytail: regex heuristic, not a full semver parser. Skips peers that express
+// an intentional broad range (||, comparators, *, x-ranges) so a dev pin like
+// ^19.3.0 can't clobber "18.x || 19.x" / ">=16.8". Upgrade to semver satisfies()
+// if more complex drift detection is ever needed.
+const BROAD_RANGE_REGEX = /\|\||[<>=]|\*|\d+\.x/v
+
 /**
  * Find all package.json files recursively
  */
@@ -45,7 +51,7 @@ const isPackageJson = (value: unknown): value is PackageJson => {
  * Process a single package.json file
  * Returns the number of changes made
  */
-async function processPackageJson(filePath: string): Promise<number> {
+export async function processPackageJson(filePath: string): Promise<number> {
   try {
     // Read and parse the file
     const content = await readFile(filePath, 'utf8')
@@ -67,8 +73,21 @@ async function processPackageJson(filePath: string): Promise<number> {
 
     // Compare and update peerDependencies
     for (const [pkg, peerVersion] of Object.entries(packageJson.peerDependencies)) {
+      // Skip intentional broad ranges (e.g. "18.x || 19.x", ">=16.8") — they
+      // express supported versions, not a pin that should track the dev install.
+      if (BROAD_RANGE_REGEX.test(peerVersion)) {
+        continue
+      }
+
       if (packageJson.devDependencies[pkg] !== undefined && packageJson.devDependencies[pkg] !== peerVersion) {
         const devVersion = packageJson.devDependencies[pkg]
+
+        // Skip pnpm catalog: / workspace: references — they are not publishable
+        // semver and would leak an invalid version into peerDependencies.
+        if (devVersion.startsWith('catalog:') || devVersion.startsWith('workspace:')) {
+          continue
+        }
+
         log(
           chalk.yellow(`Updating ${chalk.bold(pkg)} in ${chalk.cyan(packageName)}:`),
           chalk.red(peerVersion),
@@ -137,7 +156,11 @@ async function syncPeerDependencies(): Promise<void> {
   }
 }
 
-// Execute the main function
-await syncPeerDependencies().catch((error: unknown) => {
-  consoleError(chalk.red('GLOBAL Error synchronizing dependencies:'), error)
-})
+// Execute the main function only when run directly as a CLI entrypoint.
+const isMain = import.meta.url === `file://${process.argv[1]}`
+
+if (isMain) {
+  await syncPeerDependencies().catch((error: unknown) => {
+    consoleError(chalk.red('GLOBAL Error synchronizing dependencies:'), error)
+  })
+}
