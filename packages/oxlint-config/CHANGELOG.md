@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.4
+
+### Patch Changes
+
+- [#3866](https://github.com/scaleway/scaleway-lib/pull/3866) [`1b2c027`](https://github.com/scaleway/scaleway-lib/commit/1b2c027b04b4cd511d8e1fabecbaa86241b82312) Thanks [@chambo-e](https://github.com/chambo-e)! - increase react/jsx-max-depth to 8
+
 ## 1.1.3
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @scaleway/auth-scw
 
+## 1.1.1
+
+### Patch Changes
+
+- [#3861](https://github.com/scaleway/scaleway-lib/pull/3861) [`3fc40dd`](https://github.com/scaleway/scaleway-lib/commit/3fc40dd6a6cba2c43e301023f71daad45b30fb4c) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `zod` to `4.6.5`.
+
+- [#3856](https://github.com/scaleway/scaleway-lib/pull/3856) [`4ad43ee`](https://github.com/scaleway/scaleway-lib/commit/4ad43eefee0dff4fb0d8c6d0813eb490e8527ed1) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `zod` to `4.6.4`.
+
 ## 1.1.0
 
 ### Minor Changes
