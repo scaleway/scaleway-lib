@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.1.0
+
+### Minor Changes
+
+- [#3875](https://github.com/scaleway/scaleway-lib/pull/3875) [`29d39af`](https://github.com/scaleway/scaleway-lib/commit/29d39af8d5b1ebc147fcc19ed0e0110dd3780ef3) Thanks [@philibea](https://github.com/philibea)! - ignore range peer deps
+
 ## 1.0.6
 
 ### Patch Changes
