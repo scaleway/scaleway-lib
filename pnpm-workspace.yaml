@@ -11,7 +11,7 @@ catalog:
   '@changesets/config': 4.0.0
   '@formatjs/ecma402-abstract': 3.2.0
   '@formatjs/fast-memoize': 3.1.7
-  '@formatjs/icu-messageformat-parser': 3.5.18
+  '@formatjs/icu-messageformat-parser': 3.5.19
   '@growthbook/growthbook-react': 1.7.0
   '@manypkg/cli': 0.25.1
   '@rudderstack/analytics-js': 3.33.1
