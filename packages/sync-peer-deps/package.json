@@ -29,7 +29,9 @@
   },
   "scripts": {
     "build": "tsdown",
-    "typecheck": "tsc -p tsconfig.json --noEmit"
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test:unit": "vitest --run",
+    "test:unit:coverage": "pnpm test:unit --coverage"
   },
   "dependencies": {
     "chalk": "catalog:",
