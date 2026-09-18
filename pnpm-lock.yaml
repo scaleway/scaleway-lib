@@ -135,8 +135,8 @@ catalogs:
       specifier: 0.25.1
       version: 0.25.1
     '@rudderstack/analytics-js':
-      specifier: 3.33.0
-      version: 3.33.0
+      specifier: 3.33.1
+      version: 3.33.1
     '@scaleway/sdk-client':
       specifier: 2.10.0
       version: 2.10.0
@@ -300,7 +300,7 @@ importers:
         version: 0.25.1
       '@rudderstack/analytics-js':
         specifier: 'catalog:'
-        version: 3.33.0
+        version: 3.33.1
       '@scaleway/changesets-renovate':
         specifier: workspace:*
         version: link:packages/changesets-renovate
@@ -528,7 +528,7 @@ importers:
     dependencies:
       '@rudderstack/analytics-js':
         specifier: 'catalog:'
-        version: 3.33.0
+        version: 3.33.1
       '@segment/analytics-next':
         specifier: 'catalog:'
         version: 1.84.3
@@ -1485,8 +1485,8 @@ packages:
   '@rolldown/pluginutils@1.0.1':
     resolution: {integrity: sha512-2j9bGt5Jh8hj+vPtgzPtl72j0yRxHAyumoo6TNfAjsLB04UtpSvPbPcDcBMxz7n+9CYB0c1GxQFxYRg2jimqGw==}
 
-  '@rudderstack/analytics-js@3.33.0':
-    resolution: {integrity: sha512-PbmwL13iGiyK8zGgfX5G5hx+ZURPwNBFyh7SfTYfHNRcH4RENdE+anLoK9I/3uCbzypBcO8y751qIUUQ+G/Szg==}
+  '@rudderstack/analytics-js@3.33.1':
+    resolution: {integrity: sha512-vh2B4nO1HEER19Oa6bsT3dsU/Dds5eC5t18XqN0HHVnsOJd71AKh4nvmF1NratbjLkf/Ya1OsizUioBiejzHuA==}
 
   '@scaleway/random-name@6.0.2':
     resolution: {integrity: sha512-fhR2aCzxoZlOZcCM42srbALdpdqMy79LwOK5mVf4sGG1uknn095mr5PQ/0/zwfk/FX2KycZwbKJzr4zP6CG3Zg==}
@@ -3815,7 +3815,7 @@ snapshots:
 
   '@rolldown/pluginutils@1.0.1': {}
 
-  '@rudderstack/analytics-js@3.33.0': {}
+  '@rudderstack/analytics-js@3.33.1': {}
 
   '@scaleway/random-name@6.0.2': {}
 
