@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     env:
       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
       TURBO_CACHE: 'remote:rw'
@@ -24,7 +24,7 @@ jobs:
       - run: pnpm run build
 
   typecheck:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     needs: [build]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -32,7 +32,7 @@ jobs:
       - run: pnpm typecheck
 
   format:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     needs: [build]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -40,7 +40,7 @@ jobs:
       - run: pnpm run format:check
 
   lint:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     needs: [build]
     env:
       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
@@ -51,7 +51,7 @@ jobs:
       - run: pnpm run lint --format=github
 
   test:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     needs: [build]
     strategy:
       matrix:
@@ -70,7 +70,7 @@ jobs:
           verbose: true
 
   test-types:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     needs: [build]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
