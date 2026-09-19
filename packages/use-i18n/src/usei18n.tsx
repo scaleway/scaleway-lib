@@ -254,7 +254,7 @@ const I18nContextProvider = <LocalSupportedType extends string>({
       const trad = {
         ...result[defaultLocale]?.default,
         ...result[currentLocale]?.default,
-      } as Record<string, string>
+      }
 
       setTranslations(prevState => ({
         ...prevState,

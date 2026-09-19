@@ -51,7 +51,7 @@ const mockLoadReturnUndefinedForLocale =
   (undefinedLocale: string, resolveValue: BaseLocale): LoadTranslationsFn<Locales> =>
   ({ locale }) =>
     locale === undefinedLocale
-      ? (Promise.resolve(undefined) as unknown as Promise<{ default: BaseLocale }>)
+      ? Promise.resolve({ default: undefined as unknown as BaseLocale })
       : Promise.resolve({ default: resolveValue })
 
 const mockLoadByLocale =
