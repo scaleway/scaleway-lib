@@ -47,6 +47,18 @@ const mockLoadRejectByNamespace =
   ({ namespace }) =>
     namespace === rejectNamespace ? Promise.reject(error) : Promise.resolve({ default: resolveValue })
 
+const mockLoadReturnUndefinedForLocale =
+  (undefinedLocale: string, resolveValue: BaseLocale): LoadTranslationsFn<Locales> =>
+  ({ locale }) =>
+    locale === undefinedLocale
+      ? (Promise.resolve(undefined) as unknown as Promise<{ default: BaseLocale }>)
+      : Promise.resolve({ default: resolveValue })
+
+const mockLoadByLocale =
+  (enValue: BaseLocale, otherValue: BaseLocale): LoadTranslationsFn<Locales> =>
+  ({ locale }) =>
+    locale === 'en' ? Promise.resolve({ default: enValue }) : Promise.resolve({ default: otherValue })
+
 const wrapper =
   ({
     loadDateLocaleAsync = async (locale: string) => {
@@ -272,16 +284,21 @@ describe('i18n hook', () => {
     })
 
     await vi.waitFor(() => {
+      const resourceText = 'My resource'
       expect(
         result.current.t('with.identifier', {
-          identifier: <b key="1">My resource</b>,
+          identifier: <b key="1">{resourceText}</b>,
         }),
-      ).toStrictEqual(['Are you sure you want to delete ', <b key="1">My resource</b>, '?'])
+      ).toStrictEqual(['Are you sure you want to delete ', <b key="1">{resourceText}</b>, '?'])
       expect(
         result.current.t('with.identifier', {
-          identifier: <CustomComponent key="1">My resource</CustomComponent>,
+          identifier: <CustomComponent key="1">{resourceText}</CustomComponent>,
         }),
-      ).toStrictEqual(['Are you sure you want to delete ', <CustomComponent key="1">My resource</CustomComponent>, '?'])
+      ).toStrictEqual([
+        'Are you sure you want to delete ',
+        <CustomComponent key="1">{resourceText}</CustomComponent>,
+        '?',
+      ])
     })
   })
 
@@ -1080,6 +1097,70 @@ describe('i18n hook', () => {
       await vi.waitFor(() => {
         expect(mockOnLoadTranslationError).toHaveBeenCalledTimes(1)
         expect(result.current.t('title')).toBe('')
+      })
+    })
+  })
+
+  describe('loadTranslations result key', () => {
+    it('should use defaultLocale variable value as key, not literal "defaultLocale" string', async () => {
+      expect.hasAssertions()
+      const mockLoad = vi
+        .fn<LoadTranslationsFn<Locales>>()
+        .mockImplementation(mockLoadByLocale({ title: 'English Title' }, { title: 'French Title' }))
+
+      const { result } = renderHook(() => useTranslation<Locale, Locales>(['test'], mockLoad), {
+        wrapper: wrapper({
+          defaultLocale: 'en',
+          enableDefaultLocale: true,
+        }),
+      })
+
+      await vi.waitFor(() => {
+        const { translations } = result.current
+
+        expect(translations['en']).toBeDefined()
+        expect(translations['en']?.['title']).toBe('English Title')
+        expect(translations['defaultLocale']).toBeUndefined()
+      })
+    })
+
+    it('should not crash when load returns undefined for default locale', async () => {
+      expect.hasAssertions()
+      const mockOnLoadTranslationError = vi.fn<OnLoadTranslationError>()
+      const mockLoad = vi
+        .fn<LoadTranslationsFn<Locales>>()
+        .mockImplementation(mockLoadReturnUndefinedForLocale('fr', { title: 'English Title' }))
+
+      const { result } = renderHook(() => useTranslation<Locale, Locales>(['test'], mockLoad), {
+        wrapper: wrapper({
+          defaultLocale: 'fr',
+          enableDefaultLocale: true,
+          onLoadTranslationError: mockOnLoadTranslationError,
+        }),
+      })
+
+      await vi.waitFor(() => {
+        expect(result.current.t('title')).toBe('English Title')
+      })
+    })
+
+    it('should not crash when load returns undefined for current locale', async () => {
+      expect.hasAssertions()
+      const mockOnLoadTranslationError = vi.fn<OnLoadTranslationError>()
+      const mockLoad = vi
+        .fn<LoadTranslationsFn<Locales>>()
+        .mockImplementation(mockLoadReturnUndefinedForLocale('en', { title: 'English Title' }))
+
+      const { result } = renderHook(() => useTranslation<Locale, Locales>(['test'], mockLoad), {
+        wrapper: wrapper({
+          defaultLocale: 'fr',
+          enableDefaultLocale: true,
+          onLoadTranslationError: mockOnLoadTranslationError,
+        }),
+      })
+
+      await vi.waitFor(() => {
+        expect(result.current.t('title')).toBe('English Title')
       })
     })
   })
