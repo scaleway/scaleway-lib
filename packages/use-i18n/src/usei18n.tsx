@@ -223,9 +223,9 @@ const I18nContextProvider = <LocalSupportedType extends string>({
 
   const loadTranslations = useCallback(
     async (namespace: string, load: LoadTranslationsFn<LocalSupportedType> = defaultLoad) => {
-      const result = {
+      const result: Record<string, { default: BaseLocale } | undefined> = {
         [currentLocale]: { default: {} },
-        defaultLocale: { default: {} },
+        [defaultLocale]: { default: {} },
       }
       // load default en language
       if (enableDefaultLocale && currentLocale !== defaultLocale) {
@@ -235,7 +235,7 @@ const I18nContextProvider = <LocalSupportedType extends string>({
             namespace,
           })
 
-          result.defaultLocale = defaultLocaleLoad
+          result[defaultLocale] = defaultLocaleLoad
         } catch (error: unknown) {
           onLoadTranslationError?.(error)
         }
@@ -251,8 +251,8 @@ const I18nContextProvider = <LocalSupportedType extends string>({
         onLoadTranslationError?.(error)
       }
 
-      const trad: Record<string, string> = {
-        ...result.defaultLocale.default,
+      const trad = {
+        ...result[defaultLocale]?.default,
         ...result[currentLocale]?.default,
       }
 
@@ -260,7 +260,7 @@ const I18nContextProvider = <LocalSupportedType extends string>({
         ...prevState,
         [defaultLocale]: {
           ...prevState[defaultLocale],
-          ...result.defaultLocale.default,
+          ...result[defaultLocale]?.default,
         },
         [currentLocale]: {
           ...prevState[currentLocale],
