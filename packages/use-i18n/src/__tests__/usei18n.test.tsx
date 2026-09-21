@@ -28,8 +28,8 @@ type OnLoadTranslationError = ComponentProps<typeof I18n>['onLoadTranslationErro
 
 const isDefaultLocalesSupported = (locale: string): locale is Locales => ListLocales.includes(locale as Locales)
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 const load = async ({ locale, namespace }: { locale: string; namespace: string }) =>
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   import(`./locales/namespaces/${locale}/${namespace}.json`)
 
 const CustomComponent = ({ children }: { children: ReactNode }) => <p style={{ fontWeight: 'bold' }}>{children}</p>
@@ -78,9 +78,8 @@ const wrapper =
       return enGB
     },
 
-    defaultLoad = async ({ locale }: { locale: string }) =>
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-      import(`./locales/${locale}.ts`),
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+    defaultLoad = async ({ locale }: { locale: string }) => import(`./locales/${locale}.ts`),
     defaultLocale = 'en',
     defaultTranslations = {},
     enableDebugKey = false,

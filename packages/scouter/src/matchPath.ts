@@ -7,7 +7,6 @@ function execCompiled(path: CompiledRoute, pathname: string): false | MatchParam
   if (!matches) {
     return false
   }
-  // oxlint-disable-next-line typescript/no-unsafe-type-assertion
   return path.keys.reduce<Record<string, string | undefined>>((acc, key, index) => {
     const value = matches[index + 1] ?? undefined
     acc[key] = value ? decodeURI(value) : value
