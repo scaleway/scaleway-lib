@@ -44,7 +44,6 @@ export default defineConfig({
         'typescript/no-unnecessary-condition': 'warn',
         'typescript/no-unsafe-argument': 'warn',
         'typescript/no-unsafe-type-assertion': 'warn',
-        'typescript/promise-function-async': 'warn',
         'typescript/strict-boolean-expressions': 'warn',
 
         'unicorn/max-nested-calls': 'warn',

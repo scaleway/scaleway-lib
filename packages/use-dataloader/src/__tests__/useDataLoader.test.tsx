@@ -31,7 +31,7 @@ const createPollingPromise = (getFlag: () => boolean, value: unknown) => async (
     }, PROMISE_TIMEOUT)
   })
 
-const createSuccessOrErrorPromise = (getSuccess: () => boolean, error: Error) =>
+const createSuccessOrErrorPromise = async (getSuccess: () => boolean, error: Error) =>
   new Promise((resolve, reject) => {
     setTimeout(() => {
       if (getSuccess()) {
