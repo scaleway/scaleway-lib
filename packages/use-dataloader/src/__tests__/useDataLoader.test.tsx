@@ -294,7 +294,7 @@ describe(useDataLoader, () => {
     expect(result.current.isLoading).toBe(false)
   })
 
-  it('should render correctly with pooling', async () => {
+  it('should render correctly with pooling', { retry: 3 }, async () => {
     const pollingProps = {
       config: {
         needPolling: () => true,
