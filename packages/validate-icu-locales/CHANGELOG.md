@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.11
+
+### Patch Changes
+
+- [#3877](https://github.com/scaleway/scaleway-lib/pull/3877) [`8d6e79a`](https://github.com/scaleway/scaleway-lib/commit/8d6e79ac98d5d9cb544aefe6fbff4d5b42962105) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@formatjs/icu-messageformat-parser` to `3.5.19`.
+
 ## 4.0.10
 
 ### Patch Changes

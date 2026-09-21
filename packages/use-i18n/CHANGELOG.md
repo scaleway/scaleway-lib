@@ -1,5 +1,15 @@
 # Change Log
 
+## 8.3.4
+
+### Patch Changes
+
+- [#3882](https://github.com/scaleway/scaleway-lib/pull/3882) [`d04cba4`](https://github.com/scaleway/scaleway-lib/commit/d04cba434f6f94db9152eb797a61dfe8f31526ab) Thanks [@philibea](https://github.com/philibea)! - Fix TypeError crash when `loadTranslations` uses literal key `"defaultLocale"` instead of the variable's value, and add optional chaining to prevent crash when `load()` returns `undefined`.
+
+- [#3889](https://github.com/scaleway/scaleway-lib/pull/3889) [`d8a592b`](https://github.com/scaleway/scaleway-lib/commit/d8a592b342b8768ace0b4073bfef488d14dcd938) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `intl-messageformat` to `12.1.0`.
+
+- [#3880](https://github.com/scaleway/scaleway-lib/pull/3880) [`ea3a742`](https://github.com/scaleway/scaleway-lib/commit/ea3a742e8386604c7ee6a69b9f7f4039e1a8c139) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `intl-messageformat` to `12.0.0`.
+
 ## 8.3.3
 
 ### Patch Changes
