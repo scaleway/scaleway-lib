@@ -62,7 +62,7 @@ catalog:
   zod: 4.6.5
   '@testing-library/dom': 10.4.2
   pkg-pr-new: 0.0.88
-  memfs: 4.78.0
+  memfs: 4.78.1
 catalogMode: strict
 cleanupUnusedCatalogs: true
 
