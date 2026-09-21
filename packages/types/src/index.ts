@@ -87,12 +87,17 @@ export type DeepPartial<T> = {
 /**
  * A distributive version of `Omit` that preserves union types (including XOR patterns).
  *
- * The built-in `Omit<T, K>` does not reliably distribute over unions when the
- * mapped type is non-homomorphic, which breaks XOR constraints that rely on
- * `?: never` properties. This version forces distribution by using a conditional
- * type, ensuring each union member is processed independently.
+ * Uses an inline homomorphic mapped type `{ [P in Exclude<keyof T, K>]: T[P] }`
+ * rather than `Omit<T, K>`. When the source `T` is an unresolved conditional or
+ * intersection (e.g. an XOR union), `Omit<T, K>` stays deferred through later
+ * inference and intersections — which trips `no-redundant-type-constituents`
+ * downstream (e.g. `ComponentProps<typeof Link>` from `@ultraviolet/ui`, whose
+ * `ForwardRefExoticComponent<DistributiveOmit<P, K> & {...}>` path keeps the
+ * `Omit` wrapper deferred). The inline mapped type resolves eagerly.
  */
-export type DistributiveOmit<T, K extends string | number | symbol> = T extends unknown ? Omit<T, K> : never
+export type DistributiveOmit<T, K extends string | number | symbol> = T extends unknown
+  ? { [P in Exclude<keyof T, K>]: T[P] }
+  : never
 
 /**
  * Enforces that at least one of the given keys is provided.
