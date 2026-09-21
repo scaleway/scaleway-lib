@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.3
+
+### Patch Changes
+
+- [#3870](https://github.com/scaleway/scaleway-lib/pull/3870) [`eda19aa`](https://github.com/scaleway/scaleway-lib/commit/eda19aa8dd43d06cb99943c60c22ff9f6a8f340f) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@changesets/config` to `4.0.1`.
+
 ## 4.0.2
 
 ### Patch Changes
