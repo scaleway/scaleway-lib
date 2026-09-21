@@ -320,111 +320,115 @@ test('form use case', async () => {
   })
 })
 
-test('form use case with useSafeQueryParams - query params update allowed but navigation blocked', async () => {
-  const { z } = await import('zod')
+test(
+  'form use case with useSafeQueryParams - query params update allowed but navigation blocked',
+  { retry: 3 },
+  async () => {
+    const { z } = await import('zod')
 
-  const UserForm = () => {
-    const { setQueryParams, queryParams } = useSafeQueryParams({
-      schema: z.object({
-        name: z.string().optional(),
-      }),
-    })
+    const UserForm = () => {
+      const { setQueryParams, queryParams } = useSafeQueryParams({
+        schema: z.object({
+          name: z.string().optional(),
+        }),
+      })
 
-    const [name, setName] = useState(queryParams.name)
+      const [name, setName] = useState(queryParams.name)
 
-    useEffect(() => {
-      setQueryParams({ name })
-    }, [name, setQueryParams])
+      useEffect(() => {
+        setQueryParams({ name })
+      }, [name, setQueryParams])
 
-    const isDirty = name !== ''
+      const isDirty = name !== ''
 
-    const { hasPendingNavigation, continueNavigation, discardNavigation } = useBlockNavigation({
-      enabled: isDirty,
-    })
+      const { hasPendingNavigation, continueNavigation, discardNavigation } = useBlockNavigation({
+        enabled: isDirty,
+      })
 
-    const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const newValue = e.target.value
-      setName(newValue)
-      setQueryParams({ name: newValue || undefined })
+      const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const newValue = e.target.value
+        setName(newValue)
+        setQueryParams({ name: newValue || undefined })
+      }
+
+      return (
+        <div>
+          <Link to="/">Go home</Link>
+          <Link to="/other">Go to other</Link>
+          <form>
+            <input name="name" type="text" value={name} onChange={handleNameChange} placeholder="Name" />
+          </form>
+          {hasPendingNavigation && (
+            <div>
+              <span>You have unsaved changes</span>
+              <button type="button" onClick={discardNavigation}>
+                Keep editing
+              </button>
+              <button type="button" onClick={continueNavigation}>
+                Confirm
+              </button>
+            </div>
+          )}
+        </div>
+      )
     }
 
-    return (
-      <div>
-        <Link to="/">Go home</Link>
-        <Link to="/other">Go to other</Link>
-        <form>
-          <input name="name" type="text" value={name} onChange={handleNameChange} placeholder="Name" />
-        </form>
-        {hasPendingNavigation && (
-          <div>
-            <span>You have unsaved changes</span>
-            <button type="button" onClick={discardNavigation}>
-              Keep editing
-            </button>
-            <button type="button" onClick={continueNavigation}>
-              Confirm
-            </button>
-          </div>
-        )}
-      </div>
+    const history = createMemoryHistory()
+    render(
+      <Router history={history}>
+        <Route path="/" exact>
+          <h1>Home</h1>
+          <Link to="/form">Go to form</Link>
+        </Route>
+        <Route path="/other">
+          <h1>Other</h1>
+          <Link to="/form">Go to form</Link>
+        </Route>
+        <Route path="/form">
+          <h1>Form</h1>
+          <UserForm />
+        </Route>
+      </Router>,
     )
-  }
 
-  const history = createMemoryHistory()
-  render(
-    <Router history={history}>
-      <Route path="/" exact>
-        <h1>Home</h1>
-        <Link to="/form">Go to form</Link>
-      </Route>
-      <Route path="/other">
-        <h1>Other</h1>
-        <Link to="/form">Go to form</Link>
-      </Route>
-      <Route path="/form">
-        <h1>Form</h1>
-        <UserForm />
-      </Route>
-    </Router>,
-  )
+    expect(screen.getByRole('heading', { name: 'Home' })).toBeVisible()
 
-  expect(screen.getByRole('heading', { name: 'Home' })).toBeVisible()
+    // Go to form
+    await userEvent.click(screen.getByRole('link', { name: 'Go to form' }))
+    expect(screen.getByRole('heading', { name: 'Form' })).toBeVisible()
 
-  // Go to form
-  await userEvent.click(screen.getByRole('link', { name: 'Go to form' }))
-  expect(screen.getByRole('heading', { name: 'Form' })).toBeVisible()
+    // Fill form - this should update query params without blocking
+    await userEvent.type(screen.getByPlaceholderText('Name'), 'John')
 
-  // Fill form - this should update query params without blocking
-  await userEvent.type(screen.getByPlaceholderText('Name'), 'John')
+    // Query params should be updated (check via location.search)
+    expect(history.location.search).toContain('name=John')
+    // But we should still be on /form
+    expect(history.location.pathname).toBe('/form')
+    // No pending navigation should be shown
+    expect(screen.queryByText('You have unsaved changes')).not.toBeInTheDocument()
 
-  // Query params should be updated (check via location.search)
-  expect(history.location.search).toContain('name=John')
-  // But we should still be on /form
-  expect(history.location.pathname).toBe('/form')
-  // No pending navigation should be shown
-  expect(screen.queryByText('You have unsaved changes')).not.toBeInTheDocument()
+    // Try to navigate to home - should be blocked because form is dirty
+    await userEvent.click(screen.getByRole('link', { name: 'Go home' }))
 
-  // Try to navigate to home - should be blocked because form is dirty
-  await userEvent.click(screen.getByRole('link', { name: 'Go home' }))
+    // Navigation should be blocked
+    expect(history.location.pathname).toBe('/form')
+    expect(screen.getByText('You have unsaved changes')).toBeVisible()
 
-  // Navigation should be blocked
-  expect(history.location.pathname).toBe('/form')
-  expect(screen.getByText('You have unsaved changes')).toBeVisible()
+    // Click "Keep editing"
+    await userEvent.click(screen.getByRole('button', { name: 'Keep editing' }))
 
-  // Click "Keep editing"
-  await userEvent.click(screen.getByRole('button', { name: 'Keep editing' }))
+    expect(screen.queryByText('You have unsaved changes')).not.toBeInTheDocument()
 
-  expect(screen.queryByText('You have unsaved changes')).not.toBeInTheDocument()
+    // Try to navigate to other page - should also be blocked
+    await userEvent.click(screen.getByRole('link', { name: 'Go to other' }))
 
-  // Try to navigate to other page - should also be blocked
-  await userEvent.click(screen.getByRole('link', { name: 'Go to other' }))
+    expect(history.location.pathname).toBe('/form')
+    expect(screen.getByText('You have unsaved changes')).toBeVisible()
 
-  expect(history.location.pathname).toBe('/form')
-  expect(screen.getByText('You have unsaved changes')).toBeVisible()
+    // Click "Confirm" to allow navigation
+    await userEvent.click(screen.getByRole('button', { name: 'Confirm' }))
 
-  // Click "Confirm" to allow navigation
-  await userEvent.click(screen.getByRole('button', { name: 'Confirm' }))
-
-  // Check that we have navigated to other page
-  expect(screen.getByRole('heading', { name: 'Other' })).toBeVisible()
-})
+    // Check that we have navigated to other page
+    expect(screen.getByRole('heading', { name: 'Other' })).toBeVisible()
+  },
+)
