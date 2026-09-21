@@ -126,8 +126,8 @@ catalogs:
       specifier: 3.1.7
       version: 3.1.7
     '@formatjs/icu-messageformat-parser':
-      specifier: 3.5.18
-      version: 3.5.18
+      specifier: 3.5.19
+      version: 3.5.19
     '@growthbook/growthbook-react':
       specifier: 1.7.0
       version: 1.7.0
@@ -648,7 +648,7 @@ importers:
     dependencies:
       '@formatjs/icu-messageformat-parser':
         specifier: 'catalog:'
-        version: 3.5.18
+        version: 3.5.19
       tinyglobby:
         specifier: 'catalog:'
         version: 0.2.17
