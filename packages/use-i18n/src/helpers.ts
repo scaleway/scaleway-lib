@@ -1,5 +1,10 @@
 import type { SupportedLocalesType } from './types'
 
+// POSIX-style locale identifiers (e.g. `en-US@posix`) are not valid BCP 47 language
+// tags and are rejected by `Intl` APIs. Strip the `@modifier` suffix so the locale
+// is safe to pass to `Intl.NumberFormat`, `Intl.DateTimeFormat`, etc.
+const sanitizeLocale = (locale: string): string => locale.split('@')[0] ?? locale
+
 export const setLangAttribute = (locale: string, rootElement?: Element) => {
   if (rootElement) {
     rootElement.setAttribute('lang', locale)
@@ -21,20 +26,33 @@ export const getCurrentLocale = <LocalSupportedType extends string>({
 }): LocalSupportedType => {
   if (typeof globalThis !== 'undefined' && 'localStorage' in globalThis && 'navigator' in globalThis) {
     const { languages: browserLocales } = globalThis.navigator
-    const currentLocalFromlocalStorage = globalThis.localStorage.getItem(localeItemStorage)
+    const currentLocalFromLocalStorage = globalThis.localStorage.getItem(localeItemStorage)
 
-    if (currentLocalFromlocalStorage !== null && isLocaleSupported(currentLocalFromlocalStorage)) {
-      return currentLocalFromlocalStorage
+    if (currentLocalFromLocalStorage) {
+      const sanitized = sanitizeLocale(currentLocalFromLocalStorage)
+
+      if (isLocaleSupported(sanitized)) {
+        // fix corrupted values in localStorage on next load
+        if (sanitized !== currentLocalFromLocalStorage) {
+          globalThis.localStorage.setItem(localeItemStorage, sanitized)
+        }
+
+        return sanitized
+      }
     }
     globalThis.localStorage.removeItem(localeItemStorage)
 
-    const foundBrowserLocale = browserLocales.find(locale => isLocaleSupported(locale))
+    const foundBrowserLocale = browserLocales.find(locale => isLocaleSupported(sanitizeLocale(locale)))
 
     if (foundBrowserLocale !== undefined) {
-      globalThis.localStorage.setItem(localeItemStorage, foundBrowserLocale)
-      setLangAttribute(foundBrowserLocale, rootElement)
+      const sanitized = sanitizeLocale(foundBrowserLocale)
 
-      return foundBrowserLocale
+      globalThis.localStorage.setItem(localeItemStorage, sanitized)
+      setLangAttribute(sanitized, rootElement)
+
+      if (isLocaleSupported(sanitized)) {
+        return sanitized
+      }
     }
 
     if (defaultLocale && isLocaleSupported(defaultLocale)) {

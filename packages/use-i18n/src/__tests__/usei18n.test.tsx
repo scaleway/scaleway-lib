@@ -413,6 +413,91 @@ describe('i18n hook', () => {
       })
       localStorageMock.mockRestore()
     })
+
+    it('should sanitize POSIX locale modifiers from navigator.languages', async () => {
+      vi.spyOn(globalThis, 'navigator', 'get').mockReturnValueOnce({
+        languages: ['en-US@posix', 'en'],
+      } as unknown as Navigator)
+      const mockGetItem = vi.fn<() => void>()
+      const mockSetItem = vi.fn<() => void>()
+      const mockRemoveItem = vi.fn<() => void>()
+      const localStorageMock = vi.spyOn(globalThis, 'localStorage', 'get').mockReturnValue({
+        clear: vi.fn<() => void>(),
+        getItem: mockGetItem,
+        removeItem: mockRemoveItem,
+        setItem: mockSetItem,
+      } as unknown as Storage)
+
+      const { result } = renderHook(() => useI18n(), {
+        wrapper: wrapper({
+          defaultLocale: 'en',
+          isLocaleSupported: isDefaultLocalesSupported,
+        }),
+      })
+
+      await vi.waitFor(() => {
+        expect(result.current.currentLocale).toBe('en')
+        expect(mockSetItem).toHaveBeenCalledWith(LOCALE_ITEM_STORAGE, 'en')
+        expect(mockSetItem).not.toHaveBeenCalledWith(LOCALE_ITEM_STORAGE, 'en-US@posix')
+      })
+      localStorageMock.mockRestore()
+    })
+
+    it('should sanitize POSIX locale modifiers from localStorage', async () => {
+      vi.spyOn(globalThis, 'navigator', 'get').mockReturnValueOnce({
+        languages: ['en'],
+      } as unknown as Navigator)
+      const mockGetItem = vi.fn<() => string>().mockReturnValue('en-US@posix')
+      const mockSetItem = vi.fn<() => void>()
+      const mockRemoveItem = vi.fn<() => void>()
+      const localStorageMock = vi.spyOn(globalThis, 'localStorage', 'get').mockReturnValue({
+        clear: vi.fn<() => void>(),
+        getItem: mockGetItem,
+        removeItem: mockRemoveItem,
+        setItem: mockSetItem,
+      } as unknown as Storage)
+
+      const { result } = renderHook(() => useI18n(), {
+        wrapper: wrapper({
+          defaultLocale: 'en',
+          isLocaleSupported: isDefaultLocalesSupported,
+        }),
+      })
+
+      await vi.waitFor(() => {
+        expect(result.current.currentLocale).toBe('en')
+        expect(mockSetItem).toHaveBeenCalledWith(LOCALE_ITEM_STORAGE, 'en')
+      })
+      localStorageMock.mockRestore()
+    })
+
+    it('should not throw when formatting numbers with a sanitized POSIX locale', async () => {
+      vi.spyOn(globalThis, 'navigator', 'get').mockReturnValueOnce({
+        languages: ['en-US@posix', 'en'],
+      } as unknown as Navigator)
+      const mockGetItem = vi.fn<() => void>()
+      const mockSetItem = vi.fn<() => void>()
+      const mockRemoveItem = vi.fn<() => void>()
+      const localStorageMock = vi.spyOn(globalThis, 'localStorage', 'get').mockReturnValue({
+        clear: vi.fn<() => void>(),
+        getItem: mockGetItem,
+        removeItem: mockRemoveItem,
+        setItem: mockSetItem,
+      } as unknown as Storage)
+
+      const { result } = renderHook(() => useI18n(), {
+        wrapper: wrapper({
+          defaultLocale: 'en',
+          isLocaleSupported: isDefaultLocalesSupported,
+        }),
+      })
+
+      await vi.waitFor(() => {
+        expect(result.current.currentLocale).toBe('en')
+      })
+      expect(() => result.current.formatNumber(1000)).not.toThrow()
+      localStorageMock.mockRestore()
+    })
   })
 
   it('should switch locale', async () => {
