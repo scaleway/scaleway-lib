@@ -1,0 +1,33 @@
+{
+  "name": "@scaleway/npm-trust",
+  "version": "0.0.1",
+  "private": false,
+  "description": "Configure npm trusted publishers (GitHub Actions) for workspace packages",
+  "homepage": "https://github.com/scaleway/scaleway-lib/tree/main/packages/npm-trust",
+  "bugs": {
+    "url": "https://github.com/scaleway/scaleway-lib/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scaleway/scaleway-lib.git",
+    "directory": "packages/npm-trust"
+  },
+  "bin": {
+    "npm-trust": "dist/index.mjs"
+  },
+  "files": [
+    "dist/"
+  ],
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "tsdown"
+  },
+  "engines": {
+    "node": "24.x || 25.x || 26.x"
+  }
+}

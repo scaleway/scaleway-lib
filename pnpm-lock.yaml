@@ -444,6 +444,8 @@ importers:
 
   packages/fuzzy-search: {}
 
+  packages/npm-trust: {}
+
   packages/oxfmt-config:
     dependencies:
       deepmerge-ts:
@@ -634,9 +636,6 @@ importers:
       '@types/node':
         specifier: 'catalog:'
         version: 26.6.2
-      typescript:
-        specifier: 'catalog:'
-        version: 7.0.2
 
   packages/validate-icu-locales:
     dependencies:
