@@ -210,8 +210,8 @@ catalogs:
       specifier: 0.8.1
       version: 0.8.1
     intl-messageformat:
-      specifier: 12.1.0
-      version: 12.1.0
+      specifier: 12.1.1
+      version: 12.1.1
     jsdom:
       specifier: 30.1.0
       version: 30.1.0
@@ -587,7 +587,7 @@ importers:
         version: 0.8.1
       intl-messageformat:
         specifier: 'catalog:'
-        version: 12.1.0
+        version: 12.1.1
     devDependencies:
       date-fns:
         specifier: 'catalog:'
@@ -2249,8 +2249,8 @@ packages:
   international-types@0.8.1:
     resolution: {integrity: sha512-tajBCAHo4I0LIFlmQ9ZWfjMWVyRffzuvfbXCd6ssFt5u1Zw15DN0UBpVTItXdNa1ls+cpQt3Yw8+TxsfGF8JcA==}
 
-  intl-messageformat@12.1.0:
-    resolution: {integrity: sha512-wOZHCRUYx5jdVJ8VCLYpVF27YjLA0DxVQfm1gGm1caXC8HyTgWezaZkW3fZWREQHS3aL5gTK7xKI4VKZJTcd1Q==}
+  intl-messageformat@12.1.1:
+    resolution: {integrity: sha512-ZNwni2Ihmge8FZ0O+n7JQXHNAZfFGN/ovLrIxyfFK/bEsnHV2bG3W75Z24GdKmMepiq21SiMfANNPze+xjSCHA==}
 
   is-plain-obj@4.1.0:
     resolution: {integrity: sha512-+Pgi+vMuUNkJyExiMBt5IlFoMyKnr5zhJ4Uspz58WOhBF5QoIZkFyNHIbBAtHwzVAgk5RtndVNsDRN61/mmDqg==}
@@ -4400,7 +4400,7 @@ snapshots:
 
   international-types@0.8.1: {}
 
-  intl-messageformat@12.1.0:
+  intl-messageformat@12.1.1:
     dependencies:
       '@formatjs/fast-memoize': 3.1.7
       '@formatjs/icu-messageformat-parser': 3.5.19
