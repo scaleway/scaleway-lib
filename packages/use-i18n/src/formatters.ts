@@ -63,6 +63,7 @@ type TranslationFormatParameter = ConstructorParameters<typeof IntlTranslationFo
 const formatters: Formatters = {
   ...baseFormatters,
   getTranslationFormat: memoize(
+    // oxlint-disable-next-line max-params
     (
       message: TranslationFormatParameter[0],
       locales: TranslationFormatParameter[1],

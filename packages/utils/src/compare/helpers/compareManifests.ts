@@ -5,10 +5,8 @@ import { readFileSync, writeFileSync } from 'node:fs'
 import { COLORS } from '../config.ts'
 import type { Manifest } from '../types.ts'
 
-const { log: logger, error: logError } = console
-
 export const compareManifests = (baselinePath: string, currentPath: string, reportPath: string) => {
-  logger('Comparing manifests...')
+  console.log('Comparing manifests...')
   const baseJson = readFileSync(baselinePath, {
     encoding: 'utf8',
   })
@@ -42,7 +40,7 @@ export const compareManifests = (baselinePath: string, currentPath: string, repo
   const commonPackages = baselinePackages.filter(p => currentPackages.includes(p))
 
   for (const pkg of commonPackages) {
-    logError(`Comparing ${pkg}...`)
+    console.error(`Comparing ${pkg}...`)
 
     const baselineFiles = baseline.packages[pkg]?.files.map(f => f.path).toSorted()
     const currentFiles = current.packages[pkg]?.files.map(f => f.path).toSorted()
@@ -90,10 +88,10 @@ export const compareManifests = (baselinePath: string, currentPath: string, repo
     }
 
     if (!hasChanges) {
-      logError(`✓ ${pkg}: No changes`)
+      console.error(`✓ ${pkg}: No changes`)
     }
   }
 
   writeFileSync(reportPath, report)
-  logger(`\nComparison complete. Report saved to: ${reportPath}`)
+  console.log(`\nComparison complete. Report saved to: ${reportPath}`)
 }

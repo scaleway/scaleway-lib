@@ -49,7 +49,7 @@ describe(formatUnit, () => {
     ).toMatchSnapshot()
   })
 
-  it.each(tests)('%s %o', (_, options, locale, amount) => {
+  it.for(tests)('%s %o', ([, options, locale, amount]) => {
     expect(formatUnit(locale, amount, options)).toMatchSnapshot()
   })
 })

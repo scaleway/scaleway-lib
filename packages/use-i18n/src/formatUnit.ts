@@ -57,6 +57,7 @@ const compoundUnitsSymbols = {
 type Unit = 'bit' | 'byte'
 type CompoundUnit = 'second'
 
+// oxlint-disable-next-line max-params
 const formatShortUnit = (locale: string, exponent: Exponent, unit: Unit, compoundUnit?: CompoundUnit) => {
   let shortenedUnit = symbols.short[unit]
 
@@ -67,6 +68,7 @@ const formatShortUnit = (locale: string, exponent: Exponent, unit: Unit, compoun
   return `${exponent.symbol}${shortenedUnit}${compoundUnit ? compoundUnitsSymbols[compoundUnit] : ''}`
 }
 
+// oxlint-disable-next-line max-params
 const formatLongUnit = (locale: string, exponent: Exponent, unit: Unit, amount: number) => {
   let translation = symbols.long[unit]
 
@@ -165,26 +167,26 @@ export const supportedUnits: Partial<Record<SupportedUnits, ReturnType<typeof fo
     unit: 'bit',
   }),
   ...exponents.reduce(
-    (acc, exponent) => ({
-      ...acc,
-      [`${exponent.name}bit`]: format({ exponent, unit: 'bit' }),
-      [`${exponent.name}bit-per-second`]: format({
-        compoundUnit: 'second',
-        exponent,
-        unit: 'bit',
+    (acc, exponent) =>
+      Object.assign(acc, {
+        [`${exponent.name}bit`]: format({ exponent, unit: 'bit' }),
+        [`${exponent.name}bit-per-second`]: format({
+          compoundUnit: 'second',
+          exponent,
+          unit: 'bit',
+        }),
+        [`${exponent.name}bit-humanized`]: format({
+          exponent,
+          humanize: true,
+          unit: 'bit',
+        }),
+        [`${exponent.name}bit-per-second-humanized`]: format({
+          compoundUnit: 'second',
+          exponent,
+          humanize: true,
+          unit: 'bit',
+        }),
       }),
-      [`${exponent.name}bit-humanized`]: format({
-        exponent,
-        humanize: true,
-        unit: 'bit',
-      }),
-      [`${exponent.name}bit-per-second-humanized`]: format({
-        compoundUnit: 'second',
-        exponent,
-        humanize: true,
-        unit: 'bit',
-      }),
-    }),
     {},
   ),
 
@@ -196,20 +198,20 @@ export const supportedUnits: Partial<Record<SupportedUnits, ReturnType<typeof fo
     unit: 'byte',
   }),
   ...exponents.reduce(
-    (acc, exponent) => ({
-      ...acc,
-      [`${exponent.name}byte`]: format({ exponent, unit: 'byte' }),
-      [`${exponent.name}byte-per-second`]: format({
-        compoundUnit: 'second',
-        exponent,
-        unit: 'byte',
+    (acc, exponent) =>
+      Object.assign(acc, {
+        [`${exponent.name}byte`]: format({ exponent, unit: 'byte' }),
+        [`${exponent.name}byte-per-second`]: format({
+          compoundUnit: 'second',
+          exponent,
+          unit: 'byte',
+        }),
+        [`${exponent.name}byte-humanized`]: format({
+          exponent,
+          humanize: true,
+          unit: 'byte',
+        }),
       }),
-      [`${exponent.name}byte-humanized`]: format({
-        exponent,
-        humanize: true,
-        unit: 'byte',
-      }),
-    }),
     {},
   ),
 }

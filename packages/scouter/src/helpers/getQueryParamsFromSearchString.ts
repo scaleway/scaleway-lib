@@ -6,9 +6,8 @@ export const getQueryParamsFromSearchString = (search: string) => {
   return [...searchParams.keys()].reduce<Record<string, any>>((record, key) => {
     const allValues = searchParams.getAll(key)
 
-    return {
-      ...record,
-      [key]: allValues.length > 1 ? allValues : allValues[0],
-    }
+    record[key] = allValues.length > 1 ? allValues : allValues[0]
+
+    return record
   }, {})
 }
