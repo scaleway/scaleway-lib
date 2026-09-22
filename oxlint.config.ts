@@ -10,6 +10,7 @@ export default defineConfig({
       files: [
         'packages/scouter/**/*.{ts,tsx}',
         'packages/changesets-renovate/**/*.{ts,tsx}',
+        'packages/pnpm-auto-release/**/*.{ts,tsx}',
         'packages/use-i18n/**/*.{ts,tsx}',
         'packages/use-dataloader/**/*.{ts,tsx}',
         'packages/auth-scw/**/*.{ts,tsx}',
@@ -56,12 +57,14 @@ export default defineConfig({
       // node only packages
       files: [
         'packages/changesets-renovate/**',
+        'packages/pnpm-auto-release/**',
         'packages/sync-peer-deps/**',
         'packages/utils/**',
         'packages/validate-icu-locales/**',
       ],
       rules: {
         'import/no-nodejs-modules': 'off',
+        'node/no-process-env': 'off',
       },
     },
   ],
