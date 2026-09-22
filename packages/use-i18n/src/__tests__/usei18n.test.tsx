@@ -24,7 +24,7 @@ type NamespaceLocale = {
 }
 
 type OnTranslateError = ComponentProps<typeof I18n>['onTranslateError']
-type OnLoadTranslationError = ComponentProps<typeof I18n>['onLoadTranslationError']
+type OnLoadTranslationError = Exclude<ComponentProps<typeof I18n>['onLoadTranslationError'], undefined>
 
 const isDefaultLocalesSupported = (locale: string): locale is Locales => ListLocales.includes(locale as Locales)
 

@@ -14,7 +14,7 @@ export const useNavigate = () => {
       },
     ) => {
       if (options?.replace) {
-        history.replace(to, options?.state)
+        history.replace(to, options.state)
       } else {
         history.push(to, options?.state)
       }

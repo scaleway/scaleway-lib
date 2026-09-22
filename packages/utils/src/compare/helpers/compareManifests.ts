@@ -59,7 +59,7 @@ export const compareManifests = (baselinePath: string, currentPath: string, repo
 
       if (newFiles && newFiles.length > 0) {
         report += '  New files:\n'
-        report += `${newFiles?.map(f => `    ${f}`).join('\n')}\n`
+        report += `${newFiles.map(f => `    ${f}`).join('\n')}\n`
       }
 
       if (missingFiles && missingFiles.length > 0) {

@@ -2,7 +2,7 @@
 import { act, render, screen } from '@testing-library/react'
 import type { ForwardedRef, HTMLAttributes } from 'react'
 import React from 'react'
-import { expect, test } from 'vitest'
+import { assert, expect, test } from 'vitest'
 import { Link, MemoryRouter, Route } from '../index'
 
 test('renders anchor tag with correct href', () => {
@@ -13,8 +13,8 @@ test('renders anchor tag with correct href', () => {
   )
 
   const a = screen.getByRole('link', { name: /click me/iv })
-  expect(a).toBeDefined()
-  expect(a?.getAttribute('href')).toBe('/target')
+  assert.exists(a)
+  expect(a.getAttribute('href')).toBe('/target')
 })
 
 test('with to string', () => {
@@ -25,7 +25,8 @@ test('with to string', () => {
   )
 
   const a = screen.getByRole('link', { name: /link/iv })
-  expect(a?.getAttribute('href')).toBe('/path')
+  assert.exists(a)
+  expect(a.getAttribute('href')).toBe('/path')
 })
 
 test('with to object', () => {
@@ -36,7 +37,8 @@ test('with to object', () => {
   )
 
   const a = screen.getByRole('link', { name: /link/iv })
-  expect(a?.getAttribute('href')).toBe('/path?foo=bar#section')
+  assert.exists(a)
+  expect(a.getAttribute('href')).toBe('/path?foo=bar#section')
 })
 
 test('with replace=true', () => {
@@ -58,7 +60,8 @@ test('with replace=true', () => {
   )
 
   const a = screen.getByRole('link', { name: /link/iv })
-  a?.click()
+  assert.exists(a)
+  a.click()
 
   expect(clicked).toBe(true)
 })
@@ -104,8 +107,9 @@ test('onClick handler prevents default and navigates', () => {
   )
 
   const a = screen.getByRole('link', { name: /link/iv })
+  assert.exists(a)
   act(() => {
-    a?.click()
+    a.click()
   })
 
   expect(navigateCalled).toBe(true)
@@ -126,7 +130,8 @@ test('onClick with modifier keys does not prevent default', () => {
     cancelable: true,
   })
 
-  const defaultPrevented = !a?.dispatchEvent(event)
+  assert.exists(a)
+  const defaultPrevented = !a.dispatchEvent(event)
   expect(defaultPrevented).toBe(false)
 })
 
@@ -146,7 +151,8 @@ test('onClick with target="_blank" does not prevent default', () => {
     cancelable: true,
   })
 
-  const defaultPrevented = !a?.dispatchEvent(event)
+  assert.exists(a)
+  const defaultPrevented = !a.dispatchEvent(event)
   expect(defaultPrevented).toBe(false)
 })
 
@@ -174,7 +180,8 @@ test('onClick with event.defaultPrevented does not navigate', () => {
   )
 
   const a = screen.getByRole('link', { name: /link/iv })
-  a?.click()
+  assert.exists(a)
+  a.click()
 
   expect(navigateCalled).toBe(false)
 })
@@ -236,7 +243,8 @@ test('with non-left click does not navigate', () => {
     cancelable: true,
   })
 
-  a?.dispatchEvent(event)
+  assert.exists(a)
+  a.dispatchEvent(event)
 
   expect(navigateCalled).toBe(false)
 })

@@ -35,7 +35,7 @@ export type RouteObjAny = {
 /**
  * Build a query string that supports array values (e.g., ?status=a&status=b)
  */
-export function buildQueryString(params: string | Record<string, string | string[] | undefined>): string {
+export function buildQueryString(params: string | Record<string, string | string[] | undefined | null>): string {
   if (typeof params === 'string') {
     return new URLSearchParams(params).toString()
   }
