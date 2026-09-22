@@ -32,20 +32,19 @@
     "test:unit:coverage": "pnpm test:unit --coverage"
   },
   "dependencies": {
+    "@scaleway/sdk-iam": "catalog:",
     "cookie": "catalog:",
     "date-fns": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {
     "@scaleway/sdk-client": "catalog:",
-    "@scaleway/sdk-iam": "catalog:",
     "@scaleway/types": "workspace:*",
     "@types/react": "catalog:",
     "react": "catalog:"
   },
   "peerDependencies": {
-    "@scaleway/sdk-client": "catalog:",
-    "@scaleway/sdk-iam": "catalog:",
+    "@scaleway/sdk-client": "2.x",
     "react": ">=18.0"
   }
 }

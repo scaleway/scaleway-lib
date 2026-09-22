@@ -397,6 +397,9 @@ importers:
 
   packages/auth-scw:
     dependencies:
+      '@scaleway/sdk-iam':
+        specifier: 'catalog:'
+        version: 2.17.0(@scaleway/sdk-client@2.10.0)
       cookie:
         specifier: 'catalog:'
         version: 2.0.1
@@ -410,9 +413,6 @@ importers:
       '@scaleway/sdk-client':
         specifier: 'catalog:'
         version: 2.10.0
-      '@scaleway/sdk-iam':
-        specifier: 'catalog:'
-        version: 2.17.0(@scaleway/sdk-client@2.10.0)
       '@scaleway/types':
         specifier: workspace:*
         version: link:../types
