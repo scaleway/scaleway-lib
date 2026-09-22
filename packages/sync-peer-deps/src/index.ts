@@ -157,7 +157,7 @@ async function syncPeerDependencies(): Promise<void> {
 }
 
 // Execute the main function only when run directly as a CLI entrypoint.
-const isMain = import.meta.url === `file://${process.argv[1]}`
+const isMain = process.argv[1] === import.meta.filename
 
 if (isMain) {
   await syncPeerDependencies().catch((error: unknown) => {
