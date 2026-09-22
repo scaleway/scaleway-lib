@@ -36,7 +36,7 @@ Exits with code `1` if any public package is not yet published on npm. Use this 
 ```
 Options:
   -f, --file <workflow>   GitHub Actions workflow file (default: deploy-package.yml)
-  -r, --repo <owner/name> GitHub repository (default: philibea/frontends-libs)
+  -r, --repo <owner/name> GitHub repository
       --dry-run           Report what would happen, no changes
       --check             Only check for unpublished packages; exit 1 if any found
   -y, --yes               Skip prompts, answer yes to everything
