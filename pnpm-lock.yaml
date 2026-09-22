@@ -301,6 +301,9 @@ importers:
       '@scaleway/changesets-renovate':
         specifier: workspace:*
         version: link:packages/changesets-renovate
+      '@scaleway/npm-trust':
+        specifier: workspace:*
+        version: link:packages/npm-trust
       '@scaleway/oxfmt-config':
         specifier: workspace:*
         version: link:packages/oxfmt-config
