@@ -24,7 +24,7 @@ describe(proxyJwt, () => {
       subSecondesOfExpires: 10,
     })
     expect(result.jwt?.expiresAt).toBeDefined()
-    expect(result.jwt?.expiresAt).not.toBe(MOCK_ENCODED_JWT_COOKIE.jwt?.expiresAt)
+    expect(result.jwt?.expiresAt).not.toBe(MOCK_ENCODED_JWT_COOKIE.jwt.expiresAt)
     expect(result.jwt?.expiresAt).toBeInstanceOf(Date)
   })
 
@@ -55,10 +55,10 @@ describe(proxyJwt, () => {
       subMinuteOfExpires: 5,
       subSecondesOfExpires: 5,
     })
-    expect(result.jwt?.audienceId).toBe(MOCK_ENCODED_JWT_COOKIE.jwt?.audienceId)
-    expect(result.jwt?.ip).toBe(MOCK_ENCODED_JWT_COOKIE.jwt?.ip)
-    expect(result.jwt?.issuerId).toBe(MOCK_ENCODED_JWT_COOKIE.jwt?.issuerId)
-    expect(result.jwt?.jti).toBe(MOCK_ENCODED_JWT_COOKIE.jwt?.jti)
+    expect(result.jwt?.audienceId).toBe(MOCK_ENCODED_JWT_COOKIE.jwt.audienceId)
+    expect(result.jwt?.ip).toBe(MOCK_ENCODED_JWT_COOKIE.jwt.ip)
+    expect(result.jwt?.issuerId).toBe(MOCK_ENCODED_JWT_COOKIE.jwt.issuerId)
+    expect(result.jwt?.jti).toBe(MOCK_ENCODED_JWT_COOKIE.jwt.jti)
     expect(result.token).toBe(MOCK_ENCODED_JWT_COOKIE.token)
     expect(result.renewToken).toBe(MOCK_ENCODED_JWT_COOKIE.renewToken)
   })
@@ -78,7 +78,7 @@ describe(proxyJwt, () => {
       subSecondesOfExpires: 5,
     })
     expect(result.jwt?.expiresAt).toBeUndefined()
-    expect(result.jwt?.audienceId).toBe(MOCK_ENCODED_JWT_COOKIE.jwt?.audienceId)
+    expect(result.jwt?.audienceId).toBe(MOCK_ENCODED_JWT_COOKIE.jwt.audienceId)
     expect(result.token).toBe(MOCK_ENCODED_JWT_COOKIE.token)
   })
 

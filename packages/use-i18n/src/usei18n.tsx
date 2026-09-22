@@ -160,7 +160,7 @@ const I18nContextProvider = <LocalSupportedType extends string>({
   enableDebugKey?: boolean
   localeItemStorage?: string
   isLocaleSupported: SupportedLocalesType<LocalSupportedType>
-  onLoadTranslationError: (error: unknown) => void
+  onLoadTranslationError?: (error: unknown) => void
   onTranslateError?: ({
     error,
     currentLocale,
@@ -357,7 +357,7 @@ const I18nContextProvider = <LocalSupportedType extends string>({
         const decimal = parts[1] ? Number(`0.${parts[1]}`) : 0
         const milliseconds = decimal * 1000
 
-        return `${padNumberWithZeros(duration.hours ?? 0)}:${padNumberWithZeros(duration.minutes ?? 0)}:${padNumberWithZeros(duration.seconds ?? 0)}:${padNumberWithZeros(milliseconds ?? 0, 3)}`
+        return `${padNumberWithZeros(duration.hours ?? 0)}:${padNumberWithZeros(duration.minutes ?? 0)}:${padNumberWithZeros(duration.seconds ?? 0)}:${padNumberWithZeros(milliseconds, 3)}`
       }
 
       if (format === 'clock') {

@@ -45,7 +45,7 @@ export function buildQueryString(params: string | Record<string, string | string
       value.forEach(v => {
         searchParams.append(key, v)
       })
-    } else if (value !== null && value !== undefined) {
+    } else if (value !== undefined) {
       searchParams.append(key, value)
     }
   })

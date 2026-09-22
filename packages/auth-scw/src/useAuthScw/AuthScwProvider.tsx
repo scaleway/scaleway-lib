@@ -176,7 +176,7 @@ export const AuthScwProvider = ({
           getAsyncToken: getJwtToken,
         })
         // We try to delete the token, we kinda don't care if the request fail
-        deleteJWT?.({ jti: storedJWT.jwt.jti }).catch(() => null)
+        deleteJWT({ jti: storedJWT.jwt.jti }).catch(() => null)
       }
     }
     storeManager.deleteAudienceId()

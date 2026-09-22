@@ -64,11 +64,11 @@ function shouldSkipPackage(
     allowPrivatePackages: boolean
   },
 ) {
-  if (ignore?.includes(packageJson.name)) {
+  if (ignore.includes(packageJson.name)) {
     return true
   }
 
-  if (packageJson.private && !allowPrivatePackages) {
+  if (packageJson.private === true && !allowPrivatePackages) {
     return true
   }
 
