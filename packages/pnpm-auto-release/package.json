@@ -27,12 +27,15 @@
     "dist"
   ],
   "type": "module",
+  "exports": {
+    "./package.json": "./package.json"
+  },
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
     "build": "tsdown",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
     "test:unit": "vitest --run",
     "test:unit:coverage": "pnpm test:unit --coverage"
   },
