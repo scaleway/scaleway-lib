@@ -188,7 +188,6 @@ if (process.argv[1] !== undefined && realpathSync(process.argv[1]) === realpathS
   try {
     main()
   } catch (error) {
-    // oxlint-disable-next-line eslint/no-console
     console.error(error)
     process.exit(1)
   }

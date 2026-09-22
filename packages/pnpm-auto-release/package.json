@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/pnpm-auto-release",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Bump and publish changed packages in a pnpm monorepo via changesets",
   "keywords": [
     "changesets",
@@ -43,6 +43,7 @@
     "@types/node": "catalog:"
   },
   "engines": {
-    "node": "24.x || 25.x || 26.x"
+    "node": "24.x || 25.x || 26.x",
+    "pnpm": ">=12.6"
   }
 }
