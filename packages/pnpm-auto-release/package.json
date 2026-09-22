@@ -1,0 +1,48 @@
+{
+  "name": "@scaleway/pnpm-auto-release",
+  "version": "1.0.0",
+  "description": "Bump and publish changed packages in a pnpm monorepo via changesets",
+  "keywords": [
+    "changesets",
+    "cli",
+    "monorepo",
+    "pnpm",
+    "publish",
+    "release"
+  ],
+  "homepage": "https://github.com/scaleway/scaleway-lib/tree/main/packages/pnpm-auto-release",
+  "bugs": {
+    "url": "https://github.com/scaleway/scaleway-lib/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scaleway/scaleway-lib.git",
+    "directory": "packages/pnpm-auto-release"
+  },
+  "bin": {
+    "pnpm-auto-release": "dist/cli.mjs"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "exports": {
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test:unit": "vitest --run",
+    "test:unit:coverage": "pnpm test:unit --coverage"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:"
+  },
+  "engines": {
+    "node": "24.x || 25.x || 26.x"
+  }
+}
