@@ -7,19 +7,17 @@ import { AuthScwProvider, useAuthScw } from '../useAuthScw/AuthScwProvider'
 import type { AuthProviderParamType } from '../useAuthScw/AuthScwProvider'
 import { createAuthStoreManager } from '../useAuthScw/authStoreManager'
 
-const mockDeleteJwt = vi.fn<() => Promise<void>>(() => Promise.resolve())
-const mockRenewJwt = vi.fn<() => Promise<typeof MOCK_ENCODED_JWT_COOKIE>>(() =>
-  Promise.resolve(MOCK_ENCODED_JWT_COOKIE),
-)
+const mockDeleteJwt = vi.fn<() => Promise<void>>()
+const mockRenewJwt = vi.fn<() => Promise<typeof MOCK_ENCODED_JWT_COOKIE>>()
 
 const DEFAULT_COOKIE_SUFFIX = 'test'
 
 class IamV1Alpha1 extends API {
-  deleteJWT = mockDeleteJwt
+  public deleteJWT = mockDeleteJwt
 }
 
 class IamUnauthenticatedV1Alpha1 extends API {
-  renewJWT = mockRenewJwt
+  public renewJWT = mockRenewJwt
 }
 
 const createWrapper =
@@ -143,6 +141,7 @@ describe('useauthscw provider', () => {
 
     it('should renew jwt correctly', async () => {
       const store = createAuthStoreManager({ storageType: 'cookie', suffixKey: DEFAULT_COOKIE_SUFFIX })
+      mockRenewJwt.mockResolvedValue(MOCK_ENCODED_JWT_COOKIE)
       store.setJwt({
         jwtInfo: {
           ...MOCK_ENCODED_JWT_COOKIE,
@@ -200,6 +199,7 @@ describe('useauthscw provider', () => {
           },
         },
       })
+      mockDeleteJwt.mockResolvedValue()
 
       const { result } = renderHook(useAuthScw, { wrapper: Wrapper })
 

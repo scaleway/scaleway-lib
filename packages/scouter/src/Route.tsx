@@ -40,6 +40,8 @@ export const RouteInternal = ({ path, computedMatch, exact, render, children }: 
 
   return (
     <RouteContext.Provider value={ctxValue}>
+      {/* False positive */}
+      {/* oxlint-disable-next-line typescript/promise-function-async */}
       {(() => {
         if (!match) {
           return null
