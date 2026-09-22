@@ -180,6 +180,38 @@ export function findChangedDependencies(
     .map(([pkg]) => pkg)
 }
 
+const findAffectedDepsInPackageJson = async (
+  pkgJsonPath: string,
+  changedDeps: string[],
+  config: Awaited<ReturnType<typeof getChangesetConfig>>,
+) => {
+  const affectedPackages = new Set<string>()
+
+  const json = JSON.parse(await readFile(pkgJsonPath, 'utf8')) as {
+    dependencies?: Record<string, string>
+    devDependencies?: Record<string, string>
+    name: string
+  }
+
+  const packageJsonDeps = new Set([
+    ...Object.keys(json.dependencies ?? {}),
+    ...(env['EXCLUDE_DEVDEPS'] ? [] : Object.keys(json.devDependencies ?? {})),
+  ])
+
+  if (
+    changedDeps.some(value => packageJsonDeps.has(value)) &&
+    !shouldSkipPackage(json, { ignore: config.ignore, allowPrivatePackages: config.privatePackages.version })
+  ) {
+    for (const dep of changedDeps) {
+      if (packageJsonDeps.has(dep)) {
+        affectedPackages.add(json.name)
+      }
+    }
+  }
+
+  return affectedPackages
+}
+
 /**
  * Find packages affected by dependency changes
  * @param changedDeps Array of changed dependency names
@@ -204,27 +236,9 @@ export async function findAffectedPackages(changedDeps: string[], packageJsonGlo
 
   for (const pkgJsonPath of packageJsonPaths) {
     try {
-      const json = JSON.parse(await readFile(pkgJsonPath, 'utf8')) as {
-        dependencies?: Record<string, string>
-        devDependencies?: Record<string, string>
-        name: string
-      }
-
-      const packageJsonDeps = new Set([
-        ...Object.keys(json.dependencies ?? {}),
-        ...(env['EXCLUDE_DEVDEPS'] ? [] : Object.keys(json.devDependencies ?? {})),
-      ])
-
-      if (
-        changedDeps.some(value => packageJsonDeps.has(value)) &&
-        !shouldSkipPackage(json, { ignore: config.ignore, allowPrivatePackages: config.privatePackages.version })
-      ) {
-        for (const dep of changedDeps) {
-          if (packageJsonDeps.has(dep)) {
-            affectedPackages.add(json.name)
-          }
-        }
-      }
+      // Sequential is intended here
+      // oxlint-disable-next-line no-await-in-loop
+      affectedPackages.union(await findAffectedDepsInPackageJson(pkgJsonPath, changedDeps, config))
     } catch {
       // Silently ignore errors in production code
       // Tests can check for specific error cases

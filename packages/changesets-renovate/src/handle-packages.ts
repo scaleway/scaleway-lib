@@ -1,4 +1,3 @@
-// oxlint-disable eslint/no-console
 import { simpleGit } from 'simple-git'
 import { createChangeset } from './createChangeset.ts'
 import { getBumpsFromGit, handleChangesetFile } from './git-utils.ts'

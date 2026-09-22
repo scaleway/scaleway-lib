@@ -15,15 +15,17 @@ type ValidateJWTSchema = {
   renewToken: string
 }
 
+const dateScheme = z.union([z.string().min(1), z.date()])
+
 const rawJwtSchema: z.ZodType<ValidateJWTSchema> = z.object({
   jwt: z.object({
     audienceId: z.string().min(1),
-    createdAt: z.union([z.string().min(1), z.date()]).optional(),
-    expiresAt: z.union([z.string().min(1), z.date()]).optional(),
+    createdAt: dateScheme.optional(),
+    expiresAt: dateScheme.optional(),
     ip: z.string().min(1),
     issuerId: z.string().min(1),
     jti: z.string().min(1),
-    updatedAt: z.union([z.string().min(1), z.date()]).optional(),
+    updatedAt: dateScheme.optional(),
     userAgent: z.string().min(1),
     srn: z.string().optional(),
   }),

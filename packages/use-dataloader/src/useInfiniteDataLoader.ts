@@ -13,6 +13,7 @@ export const useInfiniteDataLoader = <
   ErrorType extends Error = Error,
   ParamsType extends Record<string, unknown> = Record<string, unknown>,
   ParamsPageKey extends keyof ParamsType = keyof ParamsType,
+  // oxlint-disable-next-line max-params
 >(
   baseKey: KeyType,
   method: (params: ParamsType) => PromiseType<ResultType>,

@@ -4,11 +4,9 @@ import { PACKAGES_DIR } from '../config.ts'
 import type { Manifest } from '../types.ts'
 import { getAllFiles } from './getAllFiles.ts'
 
-const { log: logger } = console
-
 export const generateManifest = (outputFile: string) => {
   const packages = readdirSync(PACKAGES_DIR).filter(item => statSync(path.join(PACKAGES_DIR, item)).isDirectory())
-  logger(`Generating manifest for ${packages.length} packages...`)
+  console.log(`Generating manifest for ${packages.length} packages...`)
 
   const manifest: Manifest = {
     packages: {},
@@ -19,7 +17,7 @@ export const generateManifest = (outputFile: string) => {
   for (const pkg of packages) {
     const packageDist = path.join(PACKAGES_DIR, pkg, 'dist')
     if (existsSync(packageDist)) {
-      logger(`  Processing ${pkg}...`)
+      console.log(`  Processing ${pkg}...`)
       const files = getAllFiles(packageDist, packageDist)
 
       manifest.packages[pkg] = {
@@ -28,7 +26,7 @@ export const generateManifest = (outputFile: string) => {
         total_size: files.reduce((sum, f) => sum + f.size, 0),
       }
     } else {
-      logger(`  Warning: No dist folder for ${pkg}`)
+      console.log(`  Warning: No dist folder for ${pkg}`)
     }
   }
 

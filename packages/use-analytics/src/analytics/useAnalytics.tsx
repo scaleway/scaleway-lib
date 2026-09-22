@@ -81,7 +81,7 @@ export const AnalyticsProvider = <T extends Events>({
   timeout,
 }: AnalyticsProviderProps<T>): JSX.Element => {
   const [isAnalyticsReady, setIsAnalyticsReady] = useState(false)
-  const [internalAnalytics, setAnalytics] = useState<Analytics | undefined>(undefined)
+  const [internalAnalytics, setInternalAnalytics] = useState<Analytics | undefined>(undefined)
 
   // This effect will unlock the case where we have a failure with the load of the analytics.load as rudderstack doesn't provider any solution for this case.
   useEffect(() => {
@@ -130,7 +130,7 @@ export const AnalyticsProvider = <T extends Events>({
           normalizeIdsMigration(analytics)
 
           onLoaded(rudderAnalytics)
-          setAnalytics(analytics)
+          setInternalAnalytics(analytics)
         },
         pluginsSDKBaseURL: pluginsSDKBaseURL(settings.cdnURL),
         ...loadOptions,
@@ -150,14 +150,10 @@ export const AnalyticsProvider = <T extends Events>({
   }, [settings, loadOptions, shouldLoad])
 
   const value = useMemo<AnalyticsContextInterface<T>>(() => {
-    const curiedEvents = Object.entries(events).reduce(
-      (acc, [eventName, eventFn]) => ({
-        ...acc,
-        [eventName]: eventFn(internalAnalytics, onEventError),
-      }),
+    const curiedEvents = Object.fromEntries(
+      Object.entries(events).map(([eventName, eventFn]) => [eventName, eventFn(internalAnalytics, onEventError)]),
       // oxlint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
-      {} as { [K in keyof T]: ReturnType<T[K]> },
-    )
+    ) as { [K in keyof T]: ReturnType<T[K]> }
 
     return {
       analytics: internalAnalytics,
