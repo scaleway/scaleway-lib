@@ -6,14 +6,6 @@ exports[`formatUnit > should work with { unit: 'bit' } 1`] = `"12,56 b"`;
 
 exports[`formatUnit > should work with { unit: 'bit-humanized' } 1`] = `"13 b"`;
 
-exports[`formatUnit > should work with { unit: 'bit-humanized' } 2`] = `"13 bps"`;
-
-exports[`formatUnit > should work with { unit: 'bit-humanized' } 3`] = `"12,56 b"`;
-
-exports[`formatUnit > should work with { unit: 'bit-humanized' } 4`] = `"12,56 bps"`;
-
-exports[`formatUnit > should work with { unit: 'bit-humanized' } 5`] = `"13 b"`;
-
 exports[`formatUnit > should work with { unit: 'bit-per-second' } 1`] = `"12,56 bps"`;
 
 exports[`formatUnit > should work with { unit: 'bit-per-second-humanized' } 1`] = `"13 bps"`;
@@ -32,10 +24,6 @@ exports[`formatUnit > should work with { unit: 'bytes-humanized' } 1`] = `"13 o"
 
 exports[`formatUnit > should work with { unit: 'bytes-per-second-humanized' } 1`] = `"13 ops"`;
 
-exports[`formatUnit > should work with { unit: 'bytes-per-second-humanized' } 2`] = `"13 o"`;
-
-exports[`formatUnit > should work with { unit: 'bytes-per-second-humanized' } 3`] = `"13 ops"`;
-
 exports[`formatUnit > should work with { unit: 'exabit' } 1`] = `"12,56 Eb"`;
 
 exports[`formatUnit > should work with { unit: 'exabit-humanized' } 1`] = `"0 Eb"`;
@@ -44,29 +32,13 @@ exports[`formatUnit > should work with { unit: 'exabit-per-second' } 1`] = `"12,
 
 exports[`formatUnit > should work with { unit: 'exabit-per-second-humanized' } 1`] = `"0 Ebps"`;
 
-exports[`formatUnit > should work with { unit: 'exabit-per-second-humanized' } 2`] = `"12,56 Ebps"`;
-
-exports[`formatUnit > should work with { unit: 'exabit-per-second-humanized' } 3`] = `"0 Eb"`;
-
-exports[`formatUnit > should work with { unit: 'exabit-per-second-humanized' } 4`] = `"0 Ebps"`;
-
 exports[`formatUnit > should work with { unit: 'exabyte' } 1`] = `"12,56 Eo"`;
 
 exports[`formatUnit > should work with { unit: 'exabyte-humanized' } 1`] = `"0 Eo"`;
 
 exports[`formatUnit > should work with { unit: 'exabyte-per-second' } 1`] = `"12,56 Eops"`;
 
-exports[`formatUnit > should work with { unit: 'exabyte-per-second' } 2`] = `"12,56 Eops"`;
-
 exports[`formatUnit > should work with { unit: 'gigabit' } 1`] = `"12,56 Gb"`;
-
-exports[`formatUnit > should work with { unit: 'gigabit' } 2`] = `"12,56 Mbps"`;
-
-exports[`formatUnit > should work with { unit: 'gigabit' } 3`] = `"0 Mb"`;
-
-exports[`formatUnit > should work with { unit: 'gigabit' } 4`] = `"0 Mbps"`;
-
-exports[`formatUnit > should work with { unit: 'gigabit' } 5`] = `"12,56 Gb"`;
 
 exports[`formatUnit > should work with { unit: 'gigabit-humanized' } 1`] = `"0 Gb"`;
 
@@ -75,10 +47,6 @@ exports[`formatUnit > should work with { unit: 'gigabit-per-second' } 1`] = `"12
 exports[`formatUnit > should work with { unit: 'gigabit-per-second-humanized' } 1`] = `"0 Gbps"`;
 
 exports[`formatUnit > should work with { unit: 'gigabyte' } 1`] = `"12,56 Go"`;
-
-exports[`formatUnit > should work with { unit: 'gigabyte' } 2`] = `"0 Mo"`;
-
-exports[`formatUnit > should work with { unit: 'gigabyte' } 3`] = `"12,56 Go"`;
 
 exports[`formatUnit > should work with { unit: 'gigabyte-humanized' } 1`] = `"0 Go"`;
 
@@ -92,23 +60,11 @@ exports[`formatUnit > should work with { unit: 'kilobit-per-second' } 1`] = `"12
 
 exports[`formatUnit > should work with { unit: 'kilobit-per-second-humanized' } 1`] = `"0,01 Kbps"`;
 
-exports[`formatUnit > should work with { unit: 'kilobit-per-second-humanized' } 2`] = `"12,56 Kb"`;
-
-exports[`formatUnit > should work with { unit: 'kilobit-per-second-humanized' } 3`] = `"12,56 Kbps"`;
-
-exports[`formatUnit > should work with { unit: 'kilobit-per-second-humanized' } 4`] = `"0,01 Kb"`;
-
-exports[`formatUnit > should work with { unit: 'kilobit-per-second-humanized' } 5`] = `"0,01 Kbps"`;
-
 exports[`formatUnit > should work with { unit: 'kilobyte' } 1`] = `"12,56 Ko"`;
 
 exports[`formatUnit > should work with { unit: 'kilobyte-humanized' } 1`] = `"0,01 Ko"`;
 
 exports[`formatUnit > should work with { unit: 'kilobyte-per-second' } 1`] = `"12,56 Kops"`;
-
-exports[`formatUnit > should work with { unit: 'kilobyte-per-second' } 2`] = `"12,56 Ko"`;
-
-exports[`formatUnit > should work with { unit: 'kilobyte-per-second' } 3`] = `"12,56 Kops"`;
 
 exports[`formatUnit > should work with { unit: 'megabit' } 1`] = `"12,56 Mb"`;
 
@@ -128,12 +84,6 @@ exports[`formatUnit > should work with { unit: 'petabit' } 1`] = `"12,56 Pb"`;
 
 exports[`formatUnit > should work with { unit: 'petabit-humanized' } 1`] = `"0 Pb"`;
 
-exports[`formatUnit > should work with { unit: 'petabit-humanized' } 2`] = `"12,56 Pb"`;
-
-exports[`formatUnit > should work with { unit: 'petabit-humanized' } 3`] = `"12,56 Pbps"`;
-
-exports[`formatUnit > should work with { unit: 'petabit-humanized' } 4`] = `"0 Pb"`;
-
 exports[`formatUnit > should work with { unit: 'petabit-per-second' } 1`] = `"12,56 Pbps"`;
 
 exports[`formatUnit > should work with { unit: 'petabit-per-second-humanized' } 1`] = `"0 Pbps"`;
@@ -144,53 +94,29 @@ exports[`formatUnit > should work with { unit: 'petabyte-humanized' } 1`] = `"0 
 
 exports[`formatUnit > should work with { unit: 'petabyte-per-second' } 1`] = `"12,56 Pops"`;
 
-exports[`formatUnit > should work with { unit: 'petabyte-per-second' } 2`] = `"12,56 Pops"`;
-
 exports[`formatUnit > should work with { unit: 'terabit' } 1`] = `"12,56 Tb"`;
 
 exports[`formatUnit > should work with { unit: 'terabit-humanized' } 1`] = `"0 Tb"`;
 
 exports[`formatUnit > should work with { unit: 'terabit-per-second' } 1`] = `"12,56 Tbps"`;
 
-exports[`formatUnit > should work with { unit: 'terabit-per-second' } 2`] = `"0 Gb"`;
-
-exports[`formatUnit > should work with { unit: 'terabit-per-second' } 3`] = `"0 Gbps"`;
-
-exports[`formatUnit > should work with { unit: 'terabit-per-second' } 4`] = `"12,56 Tb"`;
-
-exports[`formatUnit > should work with { unit: 'terabit-per-second' } 5`] = `"12,56 Tbps"`;
-
 exports[`formatUnit > should work with { unit: 'terabit-per-second-humanized' } 1`] = `"0 Tbps"`;
 
 exports[`formatUnit > should work with { unit: 'terabyte' } 1`] = `"12,56 To"`;
 
-exports[`formatUnit > should work with { unit: 'terabyte' } 2`] = `"12,56 To"`;
-
 exports[`formatUnit > should work with { unit: 'terabyte-humanized' } 1`] = `"0 To"`;
-
-exports[`formatUnit > should work with { unit: 'terabyte-humanized' } 2`] = `"0 To"`;
 
 exports[`formatUnit > should work with { unit: 'terabyte-per-second' } 1`] = `"12,56 Tops"`;
 
 exports[`formatUnit > should work with { unit: 'yottabit' } 1`] = `"12,56 Yb"`;
 
-exports[`formatUnit > should work with { unit: 'yottabit' } 2`] = `"0 Zb"`;
-
-exports[`formatUnit > should work with { unit: 'yottabit' } 3`] = `"0 Zbps"`;
-
-exports[`formatUnit > should work with { unit: 'yottabit' } 4`] = `"12,56 Yb"`;
-
 exports[`formatUnit > should work with { unit: 'yottabit-humanized' } 1`] = `"0 Yb"`;
-
-exports[`formatUnit > should work with { unit: 'yottabit-humanized' } 2`] = `"0 Yb"`;
 
 exports[`formatUnit > should work with { unit: 'yottabit-per-second' } 1`] = `"12,56 Ybps"`;
 
 exports[`formatUnit > should work with { unit: 'yottabit-per-second-humanized' } 1`] = `"0 Ybps"`;
 
 exports[`formatUnit > should work with { unit: 'yottabyte' } 1`] = `"12,56 Yo"`;
-
-exports[`formatUnit > should work with { unit: 'yottabyte' } 2`] = `"12,56 Yo"`;
 
 exports[`formatUnit > should work with { unit: 'yottabyte-humanized' } 1`] = `"0 Yo"`;
 
@@ -346,8 +272,6 @@ exports[`formatUnit > should work with base { base: 2, unit: 'zettabyte-per-seco
 
 exports[`formatUnit > should work with locale en and { unit: 'bit' } 1`] = `"12.56 b"`;
 
-exports[`formatUnit > should work with locale en and { unit: 'bit' } 2`] = `"12.56 b"`;
-
 exports[`formatUnit > should work with locale en and { unit: 'bit-humanized' } 1`] = `"13 b"`;
 
 exports[`formatUnit > should work with locale en and { unit: 'bit-per-second' } 1`] = `"12.56 bps"`;
@@ -430,8 +354,6 @@ exports[`formatUnit > should work with locale en and { unit: 'petabit-humanized'
 
 exports[`formatUnit > should work with locale en and { unit: 'petabit-per-second' } 1`] = `"12.56 Pbps"`;
 
-exports[`formatUnit > should work with locale en and { unit: 'petabit-per-second' } 2`] = `"12.56 Pbps"`;
-
 exports[`formatUnit > should work with locale en and { unit: 'petabit-per-second-humanized' } 1`] = `"0 Pbps"`;
 
 exports[`formatUnit > should work with locale en and { unit: 'petabyte' } 1`] = `"12.56 PB"`;
@@ -488,13 +410,9 @@ exports[`formatUnit > should work with locale fr and { unit: 'bit-humanized' } 1
 
 exports[`formatUnit > should work with locale fr and { unit: 'bit-per-second' } 1`] = `"12,56 bps"`;
 
-exports[`formatUnit > should work with locale fr and { unit: 'bit-per-second' } 2`] = `"12,56 bps"`;
-
 exports[`formatUnit > should work with locale fr and { unit: 'bit-per-second-humanized' } 1`] = `"13 bps"`;
 
 exports[`formatUnit > should work with locale fr and { unit: 'bits-humanized' } 1`] = `"13 b"`;
-
-exports[`formatUnit > should work with locale fr and { unit: 'bits-humanized' } 2`] = `"13 b"`;
 
 exports[`formatUnit > should work with locale fr and { unit: 'bits-per-second-humanized' } 1`] = `"13 bps"`;
 
@@ -509,8 +427,6 @@ exports[`formatUnit > should work with locale fr and { unit: 'bytes-humanized' }
 exports[`formatUnit > should work with locale fr and { unit: 'bytes-per-second-humanized' } 1`] = `"13 ops"`;
 
 exports[`formatUnit > should work with locale fr and { unit: 'exabit' } 1`] = `"12,56 Eb"`;
-
-exports[`formatUnit > should work with locale fr and { unit: 'exabit' } 2`] = `"12,56 Eb"`;
 
 exports[`formatUnit > should work with locale fr and { unit: 'exabit-humanized' } 1`] = `"0 Eb"`;
 
@@ -587,8 +503,6 @@ exports[`formatUnit > should work with locale fr and { unit: 'terabit-humanized'
 exports[`formatUnit > should work with locale fr and { unit: 'terabit-per-second' } 1`] = `"12,56 Tbps"`;
 
 exports[`formatUnit > should work with locale fr and { unit: 'terabit-per-second-humanized' } 1`] = `"0 Tbps"`;
-
-exports[`formatUnit > should work with locale fr and { unit: 'terabit-per-second-humanized' } 2`] = `"0 Tbps"`;
 
 exports[`formatUnit > should work with locale fr and { unit: 'terabyte' } 1`] = `"12,56 To"`;
 
@@ -706,8 +620,6 @@ exports[`formatUnit > should work with locale ro and { unit: 'petabit' } 1`] = `
 
 exports[`formatUnit > should work with locale ro and { unit: 'petabit-humanized' } 1`] = `"0 Pb"`;
 
-exports[`formatUnit > should work with locale ro and { unit: 'petabit-humanized' } 2`] = `"0 Pb"`;
-
 exports[`formatUnit > should work with locale ro and { unit: 'petabit-per-second' } 1`] = `"12,56 Pbps"`;
 
 exports[`formatUnit > should work with locale ro and { unit: 'petabit-per-second-humanized' } 1`] = `"0 Pbps"`;
@@ -723,8 +635,6 @@ exports[`formatUnit > should work with locale ro and { unit: 'terabit' } 1`] = `
 exports[`formatUnit > should work with locale ro and { unit: 'terabit-humanized' } 1`] = `"0 Tb"`;
 
 exports[`formatUnit > should work with locale ro and { unit: 'terabit-per-second' } 1`] = `"12,56 Tbps"`;
-
-exports[`formatUnit > should work with locale ro and { unit: 'terabit-per-second' } 2`] = `"12,56 Tbps"`;
 
 exports[`formatUnit > should work with locale ro and { unit: 'terabit-per-second-humanized' } 1`] = `"0 Tbps"`;
 
