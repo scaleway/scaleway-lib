@@ -5,7 +5,7 @@ import { clientSingleton } from './createClient'
 
 let refreshSessionPromise: Promise<EncodedJWT | undefined> | undefined = undefined
 
-export const refreshSession = ({ paramsRenewRequest, setJWT, onError }: RefreshSessionType) => {
+export const refreshSession = async ({ paramsRenewRequest, setJWT, onError }: RefreshSessionType) => {
   if (refreshSessionPromise !== undefined) {
     return refreshSessionPromise
   }

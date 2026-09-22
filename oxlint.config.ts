@@ -41,10 +41,8 @@ export default defineConfig({
         'typescript/explicit-member-accessibility': 'warn',
         'typescript/no-confusing-void-expression': 'warn',
         'typescript/no-non-null-assertion': 'warn',
-        'typescript/no-unnecessary-condition': 'warn',
         'typescript/no-unsafe-argument': 'warn',
         'typescript/no-unsafe-type-assertion': 'warn',
-        'typescript/promise-function-async': 'warn',
         'typescript/strict-boolean-expressions': 'warn',
 
         'unicorn/max-nested-calls': 'warn',

@@ -119,8 +119,7 @@ describe('route helpers', () => {
     })
 
     it('handles null/undefined values', () => {
-      // oxlint-disable-next-line typescript/no-explicit-any
-      const result = buildQueryString({ foo: 'bar', baz: null, qux: undefined } as any)
+      const result = buildQueryString({ foo: 'bar', baz: null, qux: undefined })
       expect(result).toBe('foo=bar')
     })
 

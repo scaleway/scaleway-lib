@@ -24,7 +24,7 @@ type NamespaceLocale = {
 }
 
 type OnTranslateError = ComponentProps<typeof I18n>['onTranslateError']
-type OnLoadTranslationError = ComponentProps<typeof I18n>['onLoadTranslationError']
+type OnLoadTranslationError = Exclude<ComponentProps<typeof I18n>['onLoadTranslationError'], undefined>
 
 const isDefaultLocalesSupported = (locale: string): locale is Locales => ListLocales.includes(locale as Locales)
 
@@ -39,24 +39,24 @@ const defaultOnLoadTranslationError: OnLoadTranslationError = () => undefined
 
 const mockLoadRejectByLocale =
   (rejectLocale: string, error: Error, resolveValue: BaseLocale): LoadTranslationsFn<Locales> =>
-  ({ locale }) =>
+  async ({ locale }) =>
     locale === rejectLocale ? Promise.reject(error) : Promise.resolve({ default: resolveValue })
 
 const mockLoadRejectByNamespace =
   (rejectNamespace: string, error: Error, resolveValue: BaseLocale): LoadTranslationsFn<Locales> =>
-  ({ namespace }) =>
+  async ({ namespace }) =>
     namespace === rejectNamespace ? Promise.reject(error) : Promise.resolve({ default: resolveValue })
 
 const mockLoadReturnUndefinedForLocale =
   (undefinedLocale: string, resolveValue: BaseLocale): LoadTranslationsFn<Locales> =>
-  ({ locale }) =>
+  async ({ locale }) =>
     locale === undefinedLocale
       ? Promise.resolve({ default: undefined as unknown as BaseLocale })
       : Promise.resolve({ default: resolveValue })
 
 const mockLoadByLocale =
   (enValue: BaseLocale, otherValue: BaseLocale): LoadTranslationsFn<Locales> =>
-  ({ locale }) =>
+  async ({ locale }) =>
     locale === 'en' ? Promise.resolve({ default: enValue }) : Promise.resolve({ default: otherValue })
 
 const wrapper =

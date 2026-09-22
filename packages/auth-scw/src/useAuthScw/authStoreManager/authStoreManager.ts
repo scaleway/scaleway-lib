@@ -80,7 +80,7 @@ export const createAuthStoreManager = (param?: StorageType | CreateAuthStoreMana
         return resultParsed.data
       }
 
-      if (resultParsed.error) {
+      if (resultParsed.error.issues.length > 0) {
         // TODO: we can handle this error with a logout ?
       }
 
