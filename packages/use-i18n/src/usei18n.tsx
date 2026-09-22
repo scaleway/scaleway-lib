@@ -1,4 +1,3 @@
-import type { NumberFormatOptions } from '@formatjs/ecma402-abstract'
 import {
   formatDistanceToNow,
   formatDistanceToNowStrict,
@@ -17,7 +16,6 @@ import type { ReactElement, ReactNode } from 'react'
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import type { FormatDateOptions } from './formatDate'
 import dateFormat from './formatDate'
-import type { IntlListFormatOptions } from './formatters'
 import formatters from './formatters'
 import type { FormatUnitOptions } from './formatUnit'
 import unitFormat from './formatUnit'
@@ -66,8 +64,8 @@ export type Context<LocaleParam extends BaseLocale, LocalSupportedType extends s
   dateFnsLocale?: DateFnsLocale
   datetime: (date: Date | number, options?: Intl.DateTimeFormatOptions) => string
   formatDate: (value: Date | number | string, options?: FormatDateOptions) => string
-  formatList: (listFormat: string[], options?: IntlListFormatOptions) => string
-  formatNumber: (numb: number, options?: NumberFormatOptions) => string
+  formatList: (listFormat: string[], options?: Intl.ListFormatOptions) => string
+  formatNumber: (numb: number, options?: Intl.NumberFormatOptions) => string
   formatUnit: (value: number, options: FormatUnitOptions) => string
   formatDuration: (value: number, options?: FormatDurationOptions) => string
   loadTranslations: (namespace: string, load?: LoadTranslationsFn<LocalSupportedType>) => Promise<string>
@@ -288,12 +286,13 @@ const I18nContextProvider = <LocalSupportedType extends string>({
   )
 
   const formatNumber = useCallback(
-    (numb: number, options?: NumberFormatOptions) => formatters.getNumberFormat(currentLocale, options).format(numb),
+    (numb: number, options?: Intl.NumberFormatOptions) =>
+      formatters.getNumberFormat(currentLocale, options).format(numb),
     [currentLocale],
   )
 
   const formatList = useCallback(
-    (listFormat: string[], options?: IntlListFormatOptions) =>
+    (listFormat: string[], options?: Intl.ListFormatOptions) =>
       formatters.getListFormat(currentLocale, options).format(listFormat),
     [currentLocale],
   )

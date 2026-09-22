@@ -41,7 +41,6 @@
     "test:types": "pnpm test:unit --typecheck.only"
   },
   "dependencies": {
-    "@formatjs/ecma402-abstract": "catalog:",
     "@formatjs/fast-memoize": "catalog:",
     "filesize": "catalog:",
     "international-types": "catalog:",

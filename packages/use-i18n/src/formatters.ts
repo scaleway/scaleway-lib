@@ -1,31 +1,14 @@
-import type { NumberFormatOptions } from '@formatjs/ecma402-abstract'
 import type { Cache } from '@formatjs/fast-memoize'
 import { memoize, strategies } from '@formatjs/fast-memoize'
 import IntlTranslationFormat from 'intl-messageformat'
 
 // Deeply inspired by https://github.com/formatjs/formatjs/blob/7406e526a9c5666cee22cc2316dad1fa1d88697c/packages/intl-messageformat/src/core.ts
 
-// TS does not include non standard API
-// Intl.ListFormat in at TC39 stage 4 and is widely adopted in browsers
-// So we expose homegrown types
-// https://github.com/tc39/proposal-intl-list-format
-export type IntlListFormatOptions = {
-  localeMatcher?: 'best fit' | 'lookup'
-  type?: 'conjunction' | 'disjunction' | 'unit'
-  style?: 'long' | 'short' | 'narrow'
-}
-
-declare abstract class IntlListFormat {
-  constructor(locales?: string | string[], options?: IntlListFormatOptions)
-
-  format: (items: string[]) => string
-}
-
 type BaseFormatters = {
-  getNumberFormat: (locales?: string | string[], opts?: NumberFormatOptions) => Intl.NumberFormat
+  getNumberFormat: (...args: ConstructorParameters<typeof Intl.NumberFormat>) => Intl.NumberFormat
   getDateTimeFormat: (...args: ConstructorParameters<typeof Intl.DateTimeFormat>) => Intl.DateTimeFormat
   getPluralRules: (...args: ConstructorParameters<typeof Intl.PluralRules>) => Intl.PluralRules
-  getListFormat: (...args: ConstructorParameters<typeof IntlListFormat>) => IntlListFormat
+  getListFormat: (...args: ConstructorParameters<typeof Intl.ListFormat>) => Intl.ListFormat
 }
 
 function createFastMemoizeCache<V>(): Cache<string, V> {
@@ -54,14 +37,10 @@ const baseFormatters: BaseFormatters = {
     },
   ),
 
-  getListFormat: memoize(
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    (...args) => new Intl.ListFormat(...args) as IntlListFormat,
-    {
-      cache: createFastMemoizeCache<IntlListFormat>(),
-      strategy: strategies.variadic,
-    },
-  ),
+  getListFormat: memoize((...args: ConstructorParameters<typeof Intl.ListFormat>) => new Intl.ListFormat(...args), {
+    cache: createFastMemoizeCache<Intl.ListFormat>(),
+    strategy: strategies.variadic,
+  }),
   getNumberFormat: memoize(
     (...args: ConstructorParameters<typeof Intl.NumberFormat>) => new Intl.NumberFormat(...args),
     {

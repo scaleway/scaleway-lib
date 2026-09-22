@@ -1,10 +1,8 @@
-export type { NumberFormatOptions } from '@formatjs/ecma402-abstract'
 export type { FormatDistanceToNowOptions, FormatDistanceToNowStrictOptions } from 'date-fns'
 // Re-export international-types for proper TypeScript support
 export type { BaseLocale, LocaleKeys, LocaleValue, Params, Scopes } from 'international-types'
 export type { FormatDateOptions } from './formatDate'
 // Additional types needed for proper TypeScript support
-export type { IntlListFormatOptions } from './formatters'
 export type { FormatUnitOptions } from './formatUnit'
 // Core types
 export type { ReactParamsObject, ScopedTranslateFn, ScopedValue, SupportedLocalesType, TranslateFn } from './types'
