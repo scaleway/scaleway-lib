@@ -11,8 +11,6 @@ type PackageJson = {
   [key: string]: unknown
 }
 
-const { log, error: consoleError } = console
-
 const SPACE_REGEX = /^\{\n(?<indent>\s+)/v
 
 // ponytail: regex heuristic, not a full semver parser. Skips peers that express
@@ -33,7 +31,7 @@ function findPackageJsonFiles(cwd: string): string[] {
     })
     return files
   } catch (error) {
-    consoleError(chalk.red('Error finding package.json files:'), error)
+    console.error(chalk.red('Error finding package.json files:'), error)
     return []
   }
 }
@@ -88,7 +86,7 @@ export async function processPackageJson(filePath: string): Promise<number> {
           continue
         }
 
-        log(
+        console.log(
           chalk.yellow(`Updating ${chalk.bold(pkg)} in ${chalk.cyan(packageName)}:`),
           chalk.red(peerVersion),
           chalk.gray('→'),
@@ -112,7 +110,7 @@ export async function processPackageJson(filePath: string): Promise<number> {
 
     return changesCount
   } catch (error) {
-    consoleError(chalk.red(`Error processing ${filePath}:`), error)
+    console.error(chalk.red(`Error processing ${filePath}:`), error)
     return 0
   }
 }
@@ -122,13 +120,13 @@ export async function processPackageJson(filePath: string): Promise<number> {
  */
 async function syncPeerDependencies(): Promise<void> {
   try {
-    log(chalk.blue('🔍 Finding package.json files...'))
+    console.log(chalk.blue('🔍 Finding package.json files...'))
 
     // Get current working directory
     const cwd = process.cwd()
     const files = findPackageJsonFiles(cwd)
 
-    log(chalk.blue(`Found ${files.length} package.json files`))
+    console.log(chalk.blue(`Found ${files.length} package.json files`))
 
     let totalChanges = 0
     let processedFiles = 0
@@ -146,12 +144,12 @@ async function syncPeerDependencies(): Promise<void> {
 
     // Summary
     if (totalChanges > 0) {
-      log(chalk.green(`\n✅ Updated ${totalChanges} dependencies across ${processedFiles} files`))
+      console.log(chalk.green(`\n✅ Updated ${totalChanges} dependencies across ${processedFiles} files`))
     } else {
-      log(chalk.green('\n✅ All peerDependencies are already in sync with devDependencies'))
+      console.log(chalk.green('\n✅ All peerDependencies are already in sync with devDependencies'))
     }
   } catch (error: unknown) {
-    consoleError(chalk.red('Error synchronizing dependencies:'), error)
+    console.error(chalk.red('Error synchronizing dependencies:'), error)
     process.exit(1)
   }
 }
@@ -161,6 +159,6 @@ const isMain = process.argv[1] === import.meta.filename
 
 if (isMain) {
   await syncPeerDependencies().catch((error: unknown) => {
-    consoleError(chalk.red('GLOBAL Error synchronizing dependencies:'), error)
+    console.error(chalk.red('GLOBAL Error synchronizing dependencies:'), error)
   })
 }

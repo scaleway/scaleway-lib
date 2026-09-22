@@ -178,6 +178,7 @@ const warnSingletonUsage = () => {
     return
   }
   authStoreManagerSingletonWarned = true
+  // oxlint-disable-next-line no-console
   console.warn(
     '`AuthStoreManager` singleton is deprecated. It uses shared global state that bypasses the provider. ' +
       'Use `useAuthScw().storeManager` to access the instance managed by `<AuthScwProvider>` instead. ' +

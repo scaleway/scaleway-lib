@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-// oxlint-disable eslint/no-console
-
 /**
  * Script to check that dependencies use catalog references instead of hardcoded versions
  */
@@ -39,6 +37,7 @@ function getCatalogPackages(workspacePath: string): string[] {
 }
 
 // Function to check dependencies in a package.json file
+// oxlint-disable-next-line max-params
 function checkDependencies(
   deps: Record<string, string> | undefined,
   filePath: string,

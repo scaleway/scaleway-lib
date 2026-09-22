@@ -21,13 +21,6 @@ export default defineConfig({
         'packages/validate-icu-locales/**/*.{ts,tsx}',
       ],
       rules: {
-        'eslint/max-depth': 'warn',
-        'eslint/max-params': 'warn',
-        'eslint/no-await-in-loop': 'warn',
-        'eslint/no-console': 'warn',
-
-        'oxc/no-accumulating-spread': 'warn',
-
         'react/exhaustive-effect-dependencies': 'warn',
         'react/globals': 'warn',
         'react/hook-use-state': ['warn', { allowDestructuredState: true }],
@@ -45,9 +38,7 @@ export default defineConfig({
         'typescript/no-unsafe-type-assertion': 'warn',
         'typescript/strict-boolean-expressions': 'warn',
 
-        'unicorn/max-nested-calls': 'warn',
         'unicorn/no-document-cookie': 'warn',
-        'unicorn/prefer-object-from-entries': 'warn',
       },
     },
     {
@@ -59,6 +50,7 @@ export default defineConfig({
         'packages/validate-icu-locales/**',
       ],
       rules: {
+        'eslint/no-console': 'off',
         'import/no-nodejs-modules': 'off',
       },
     },

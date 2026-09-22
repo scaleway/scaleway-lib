@@ -170,36 +170,27 @@ const DataLoaderProvider: ComponentType<DataLoaderProviderProps> = ({
 
   const getCachedData = useCallback(
     (key?: KeyType) => {
-      if (key) {
+      if (key !== undefined) {
         return getRequest(key)?.getData()
       }
-      return Object.values(requestsRef.current).reduce<CachedData>(
-        (acc, request) => ({
-          ...acc,
-          [request.key]: request.getData(),
-        }),
-        {},
-      )
+      return Object.fromEntries(
+        Object.values(requestsRef.current).map(request => [request.key, request.getData()]),
+      ) satisfies CachedData
     },
     [getRequest],
   )
 
   const getReloads = useCallback(
     (key?: KeyType) => {
-      if (key) {
+      if (key !== undefined) {
         return getRequest(key) ? async () => getRequest(key)?.load(true) : undefined
       }
-      return Object.entries(requestsRef.current).reduce<Reloads>(
-        (acc, [requestKey, { load }]) => ({
-          ...acc,
-          [requestKey]: async () => load(true),
-        }),
-        {},
-      )
+      return Object.fromEntries(
+        Object.entries(requestsRef.current).map(([requestKey, { load }]) => [requestKey, async () => load(true)]),
+      ) satisfies Reloads
     },
     [getRequest],
   )
-
   const value = useMemo(
     (): IDataLoaderContext => ({
       addRequest: addRequest as IDataLoaderContext['addRequest'],

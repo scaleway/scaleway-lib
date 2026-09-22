@@ -57,7 +57,7 @@ export const CookieConsentProvider: ComponentType<CookieConsentProviderProps> = 
   consentAdvertisingMaxAge = CONSENT_ADVERTISING_MAX_AGE,
   cookiesOptions = COOKIES_OPTIONS,
 }) => {
-  const [needConsent, setNeedsConsent] = useState(false)
+  const [needConsent, setNeedConsent] = useState(false)
   const [cookies, setCookies] = useState<Record<string, string | undefined>>(
     IS_CLIENT ? parseCookie(document.cookie) : {},
   )
@@ -98,7 +98,7 @@ export const CookieConsentProvider: ComponentType<CookieConsentProviderProps> = 
     // This is to avoid showing setting needConsent to true only to be set
     // to false after receiving source answer and flicker the UI
 
-    setNeedsConsent(
+    setNeedConsent(
       isConsentRequired && cookies[HASH_COOKIE] !== destinationsHash.toString() && analyticsDestinations !== undefined,
     )
   }, [isConsentRequired, destinationsHash, analyticsDestinations, cookies])
@@ -106,18 +106,16 @@ export const CookieConsentProvider: ComponentType<CookieConsentProviderProps> = 
   // From the unique categories names we can now build our consent object
   // and check if there is already a consent in a cookie
   // Default consent if none is found is false
-  const cookieConsent = useMemo(
+  const cookieConsent: Partial<Consent> = useMemo(
     () =>
-      CATEGORIES.reduce<Partial<Consent>>(
-        (acc, category) => ({
-          ...acc,
-          [category]: isConsentRequired || needConsent ? cookies[`${cookiePrefix}_${category}`] === 'true' : true,
-        }),
-        {},
+      Object.fromEntries(
+        CATEGORIES.map((category): [keyof Consent, boolean] => [
+          category,
+          isConsentRequired || needConsent ? cookies[`${cookiePrefix}_${category}`] === 'true' : true,
+        ]),
       ),
     [isConsentRequired, cookiePrefix, needConsent, cookies],
   )
-
   const saveConsent = useCallback(
     (categoriesConsent: Partial<Consent>) => {
       for (const [consentName, consentValue] of Object.entries(categoriesConsent)) {
@@ -156,7 +154,7 @@ export const CookieConsentProvider: ComponentType<CookieConsentProviderProps> = 
         ...prevCookies,
         [HASH_COOKIE]: destinationsHash.toString(),
       }))
-      setNeedsConsent(false)
+      setNeedConsent(false)
     },
     [destinationsHash, consentAdvertisingMaxAge, consentMaxAge, cookiePrefix, cookiesOptions],
   )

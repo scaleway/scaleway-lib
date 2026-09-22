@@ -1,5 +1,3 @@
-// oxlint-disable eslint/no-console
-
 import { env } from 'node:process'
 import { simpleGit } from 'simple-git'
 import { handleCatalogChanges } from './handle-catalog.ts'
