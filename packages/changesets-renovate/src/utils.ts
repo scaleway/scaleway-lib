@@ -209,7 +209,7 @@ const findAffectedDepsInPackageJson = async (
     }
   }
 
-  return affectedPackages
+  return [...affectedPackages]
 }
 
 /**
@@ -238,7 +238,10 @@ export async function findAffectedPackages(changedDeps: string[], packageJsonGlo
     try {
       // Sequential is intended here
       // oxlint-disable-next-line no-await-in-loop
-      affectedPackages.union(await findAffectedDepsInPackageJson(pkgJsonPath, changedDeps, config))
+      const affectedDeps = await findAffectedDepsInPackageJson(pkgJsonPath, changedDeps, config)
+      affectedDeps.forEach(item => {
+        affectedPackages.add(item)
+      })
     } catch {
       // Silently ignore errors in production code
       // Tests can check for specific error cases
