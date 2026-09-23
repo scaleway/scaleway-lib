@@ -10,15 +10,15 @@ export const loadFeatures: ReturnType<typeof vi.fn> = vi.fn()
 // Create a mock class for GrowthBook
 const MockGrowthBook = vi.fn(
   class MockGrowthBook {
-    init: typeof init = init
+    public init: typeof init = init
 
-    getAttributes: typeof getAttributes = getAttributes
+    public getAttributes: typeof getAttributes = getAttributes
 
-    setAttributes: typeof setAttributes = setAttributes
+    public setAttributes: typeof setAttributes = setAttributes
 
-    loadFeatures: typeof loadFeatures = loadFeatures
+    public loadFeatures: typeof loadFeatures = loadFeatures
 
-    constructor() {
+    public constructor() {
       // Reset mocks for each instance
       this.init.mockResolvedValue(undefined)
       this.getAttributes.mockReturnValue({})

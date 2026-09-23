@@ -31,7 +31,6 @@ export default defineConfig({
         'react/refs': 'warn',
         'react/set-state-in-effect': 'warn',
 
-        'typescript/explicit-member-accessibility': 'warn',
         'typescript/no-confusing-void-expression': 'warn',
         'typescript/no-non-null-assertion': 'warn',
         'typescript/no-unsafe-argument': 'warn',
