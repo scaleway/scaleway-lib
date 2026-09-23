@@ -1,9 +1,10 @@
 import { DEFAULT_MAX_CONCURRENT_REQUESTS, StatusEnum } from './constants'
-import type { PromiseType } from './types'
+import { isAbortError } from './helpers'
+import type { DataLoaderMethodFn, PromiseType } from './types'
 
 export type DataLoaderConstructorArgs<ResultType> = {
   key: string
-  method: () => PromiseType<ResultType>
+  method: DataLoaderMethodFn<ResultType>
   enabled?: boolean
   notifyChanges?: () => void
 }
@@ -19,7 +20,7 @@ class DataLoader<ResultType, ErrorType> {
 
   public key: string
 
-  public method: () => PromiseType<ResultType>
+  public method: DataLoaderMethodFn<ResultType>
 
   public isCalled = false
 
@@ -40,6 +41,8 @@ class DataLoader<ResultType, ErrorType> {
   public isFirstLoading = true
 
   public dataUpdatedAt?: number
+
+  private abortController?: AbortController
 
   public constructor(args: DataLoaderConstructorArgs<ResultType>) {
     this.key = args.key
@@ -101,10 +104,11 @@ class DataLoader<ResultType, ErrorType> {
 
   public launch = async (): Promise<ResultType | undefined> => {
     try {
+      this.abortController = new AbortController()
       this.isCancelled = false
       this.loadCount += 1
 
-      const data = await this.method()
+      const data = await this.method(this.abortController.signal)
 
       // This can be set to false with .cancel even while the launch is pending
       // oxlint-disable-next-line typescript/no-unnecessary-condition
@@ -123,7 +127,7 @@ class DataLoader<ResultType, ErrorType> {
 
       return data
     } catch (error) {
-      if (!this.isCancelled) {
+      if (!this.isCancelled && !isAbortError(error)) {
         this.status = StatusEnum.ERROR
         this.error = error as ErrorType
       }
@@ -133,7 +137,7 @@ class DataLoader<ResultType, ErrorType> {
       DataLoader.queue.delete(this.key)
       this.notifyChanges()
 
-      if (!this.isCancelled) {
+      if (!this.isCancelled && !isAbortError(error)) {
         throw error
       }
 
@@ -146,6 +150,9 @@ class DataLoader<ResultType, ErrorType> {
   }
 
   public cancel(): void {
+    if (this.abortController) {
+      this.abortController.abort()
+    }
     DataLoader.started -= 1
     DataLoader.queue.delete(this.key)
     this.isCancelled = true
