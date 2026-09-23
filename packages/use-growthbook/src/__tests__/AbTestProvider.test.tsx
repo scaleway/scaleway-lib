@@ -2,7 +2,7 @@ import type { Attributes, InitResponse } from '@growthbook/growthbook-react'
 import { GrowthBook } from '@growthbook/growthbook-react'
 import { act, render } from '@testing-library/react'
 import type { ComponentProps } from 'react'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { assert, beforeEach, describe, expect, it, vi } from 'vitest'
 import { AbTestProvider } from '../AbTestProvider'
 
 // Import mock functions from our mocks
@@ -16,6 +16,8 @@ const errorCallback: ErrorCallback = vi.fn<() => void>()
 const getAttributes = vi.fn<() => Record<string, unknown>>()
 const setAttributes = vi.fn<(attr: Attributes) => Promise<void>>()
 const init = vi.fn<() => Promise<InitResponse>>()
+
+const defaultFn = () => undefined
 
 describe('abTestProvider', () => {
   const trackingCallback: TrackingCallback = vi.fn<() => void>()
@@ -153,7 +155,7 @@ describe('abTestProvider', () => {
   })
 
   it('should update attributes when they change', async () => {
-    let rerenderFn: ((element: React.ReactElement) => void) | undefined = undefined
+    let rerenderFn: (element: React.ReactElement) => void = defaultFn
 
     act(() => {
       const result = render(
@@ -180,9 +182,9 @@ describe('abTestProvider', () => {
     getAttributes.mockReturnValue({ anonymousId: 'foo' })
 
     // Re-render with different attributes
-    expect(rerenderFn).toBeDefined()
+    assert.exists(rerenderFn)
     act(() => {
-      rerenderFn!(
+      rerenderFn(
         <AbTestProvider
           attributes={{
             anonymousId: 'bar',
@@ -221,7 +223,7 @@ describe('abTestProvider', () => {
       enableDevMode: true,
     }
 
-    let rerenderFn: ((element: React.ReactElement) => void) | undefined = undefined
+    let rerenderFn: (element: React.ReactElement) => void = defaultFn
 
     act(() => {
       const result = render(
@@ -242,9 +244,8 @@ describe('abTestProvider', () => {
     getAttributes.mockReturnValue(getAttributesReturn)
 
     // Re-render with the SAME EXACT object references
-    expect(rerenderFn).toBeDefined()
     act(() => {
-      rerenderFn!(
+      rerenderFn(
         <AbTestProvider
           attributes={sharedAttributes} // Same config object
           config={config} // Same attributes object

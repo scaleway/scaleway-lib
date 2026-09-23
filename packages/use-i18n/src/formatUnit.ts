@@ -142,7 +142,7 @@ const format =
       }
     }
 
-    const exp = computedExponent!
+    const exp = computedExponent ?? { symbol: '', name: '' }
 
     return `${new Intl.NumberFormat(locale, {
       maximumFractionDigits,

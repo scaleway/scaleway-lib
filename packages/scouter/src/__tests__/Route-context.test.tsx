@@ -1,11 +1,11 @@
 // oxlint-disable vitest/require-top-level-describe
 import { render } from '@testing-library/react'
-import { expect, test } from 'vitest'
+import { assert, expect, test } from 'vitest'
 import type { Location, Match } from '../index'
 import { MemoryRouter, Route } from '../index'
 
 test('provides match to render prop', () => {
-  let match: Match | undefined = undefined
+  let match: Partial<Match> = {}
 
   render(
     <MemoryRouter initialEntries={['/test']}>
@@ -19,13 +19,13 @@ test('provides match to render prop', () => {
     </MemoryRouter>,
   )
 
-  expect(match!).toBeDefined()
-  expect(match!.params).toBeDefined()
-  expect(match!.isExact).toBeDefined()
+  assert.exists(match)
+  expect(match.params).toBeDefined()
+  expect(match.isExact).toBeDefined()
 })
 
 test('provides location to render prop', () => {
-  let location: Location | undefined = undefined
+  let location: Partial<Location> = {}
 
   render(
     <MemoryRouter initialEntries={['/test?foo=bar']}>
@@ -39,14 +39,14 @@ test('provides location to render prop', () => {
     </MemoryRouter>,
   )
 
-  expect(location!).toBeDefined()
-  expect(location!.pathname).toBe('/test')
-  expect(location!.search).toBe('?foo=bar')
+  assert.exists(location)
+  expect(location.pathname).toBe('/test')
+  expect(location.search).toBe('?foo=bar')
 })
 
 test('match has isExact flag', () => {
   let exactMatch: Match | undefined = undefined
-  let looseMatch: Match | undefined = undefined
+  let looseMatch: Partial<Match> = {}
 
   render(
     <MemoryRouter initialEntries={['/test/extra']}>
@@ -68,13 +68,14 @@ test('match has isExact flag', () => {
     </MemoryRouter>,
   )
 
-  expect(exactMatch!).toBeUndefined()
-  expect(looseMatch!).toBeDefined()
-  expect(looseMatch!.isExact).toBe(false)
+  assert.exists(looseMatch)
+  expect(exactMatch).toBeUndefined()
+  expect(looseMatch).toBeDefined()
+  expect(looseMatch.isExact).toBe(false)
 })
 
 test('match params are decoded', () => {
-  let match: Match | undefined = undefined
+  let match: Partial<Match> = {}
 
   render(
     <MemoryRouter initialEntries={['/test/hello%20world']}>
@@ -88,5 +89,6 @@ test('match params are decoded', () => {
     </MemoryRouter>,
   )
 
-  expect(match!.params['param']).toBe('hello world')
+  assert.exists(match)
+  expect(match.params?.['param']).toBe('hello world')
 })

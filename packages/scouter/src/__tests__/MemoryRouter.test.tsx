@@ -1,6 +1,6 @@
 // oxlint-disable vitest/require-top-level-describe vitest/no-conditional-in-test
 import { render, screen } from '@testing-library/react'
-import { expect, test } from 'vitest'
+import { assert, expect, test } from 'vitest'
 import type { History, Location, Match } from '../index'
 import { MemoryRouter, Route, useHistory } from '../index'
 
@@ -18,7 +18,7 @@ test('renders children', () => {
 
 test('creates history with initialEntries', () => {
   const initialEntries = ['/initial-path']
-  let location: Location | undefined = undefined
+  let location: Partial<Location> = {}
 
   render(
     <MemoryRouter initialEntries={initialEntries}>
@@ -32,13 +32,13 @@ test('creates history with initialEntries', () => {
     </MemoryRouter>,
   )
 
-  expect(location!.pathname).toBe('/initial-path')
+  expect(location.pathname).toBe('/initial-path')
 })
 
 test('creates history with initialIndex', () => {
   const initialEntries = ['/first', '/second', '/third']
   const initialIndex = 1
-  let location: Location | undefined = undefined
+  let location: Partial<Location> = {}
 
   render(
     <MemoryRouter initialEntries={initialEntries} initialIndex={initialIndex}>
@@ -52,11 +52,11 @@ test('creates history with initialIndex', () => {
     </MemoryRouter>,
   )
 
-  expect(location!.pathname).toBe('/second')
+  expect(location.pathname).toBe('/second')
 })
 
 test('provides default initialEntries when not specified', () => {
-  let location: Location | undefined = undefined
+  let location: Partial<Location> = {}
 
   render(
     <MemoryRouter>
@@ -70,7 +70,7 @@ test('provides default initialEntries when not specified', () => {
     </MemoryRouter>,
   )
 
-  expect(location!.pathname).toBe('/')
+  expect(location.pathname).toBe('/')
 })
 
 test('history is stable across re-renders', () => {
@@ -99,11 +99,13 @@ test('history is stable across re-renders', () => {
     </MemoryRouter>,
   )
 
-  expect(firstHistory!).toBe(secondHistory!)
+  assert.exists(firstHistory)
+  assert.exists(secondHistory)
+  expect(firstHistory).toBe(secondHistory)
 })
 
 test('provides root route context', () => {
-  let match: Match | undefined = undefined
+  let match: Partial<Match> = {}
 
   render(
     <MemoryRouter>
@@ -116,6 +118,6 @@ test('provides root route context', () => {
     </MemoryRouter>,
   )
 
-  expect(match!).toBeDefined()
-  expect(match!.params).toStrictEqual({})
+  expect(match).toBeDefined()
+  expect(match.params).toStrictEqual({})
 })

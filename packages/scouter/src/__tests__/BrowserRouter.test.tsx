@@ -76,7 +76,7 @@ describe('component BrowserRouter', () => {
   it('provides root route context', () => {
     expect.hasAssertions()
 
-    let match: Match | undefined = undefined
+    let match: Partial<Match> = {}
 
     render(
       <BrowserRouter>
@@ -89,8 +89,8 @@ describe('component BrowserRouter', () => {
       </BrowserRouter>,
     )
 
-    expect(match!).toBeDefined()
-    expect(match!.params).toStrictEqual({})
+    expect(match).toBeDefined()
+    expect(match.params).toStrictEqual({})
   })
 
   it('uses current browser location', () => {

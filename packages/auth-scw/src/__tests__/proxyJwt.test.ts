@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest'
+import { assert, describe, expect, it } from 'vitest'
 import { MOCK_ENCODED_JWT_COOKIE } from '../../mocks'
 import { proxyJwt } from '../useAuthScw/proxyJwt'
 
@@ -41,7 +41,8 @@ describe(proxyJwt, () => {
     expectedExpiresAt.setMinutes(expectedExpiresAt.getMinutes() - subMinuteOfExpires)
     expectedExpiresAt.setSeconds(expectedExpiresAt.getSeconds() - subSecondesOfExpires)
 
-    expect(new Date(result.jwt!.expiresAt!).getTime()).toBe(expectedExpiresAt.getTime())
+    assert.exists(result.jwt?.expiresAt)
+    expect(new Date(result.jwt.expiresAt).getTime()).toBe(expectedExpiresAt.getTime())
   })
 
   it('should use default values when updateJwt is undefined', () => {
@@ -88,7 +89,9 @@ describe(proxyJwt, () => {
       subMinuteOfExpires: 0,
       subSecondesOfExpires: 0,
     })
-    expect(new Date(result.jwt!.expiresAt!).getTime()).toBe(new Date(MOCK_ENCODED_JWT_COOKIE.jwt.expiresAt).getTime())
+
+    assert.exists(result.jwt?.expiresAt)
+    expect(new Date(result.jwt.expiresAt).getTime()).toBe(new Date(MOCK_ENCODED_JWT_COOKIE.jwt.expiresAt).getTime())
   })
 
   it('should return a new object reference when shouldOutdated is true', () => {
