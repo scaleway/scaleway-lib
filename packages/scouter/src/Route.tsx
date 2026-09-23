@@ -46,7 +46,7 @@ export const RouteInternal = ({ path, computedMatch, exact, render, children }: 
         if (!match) {
           return null
         }
-        if (children) {
+        if (children !== undefined) {
           return children
         }
         if (render) {

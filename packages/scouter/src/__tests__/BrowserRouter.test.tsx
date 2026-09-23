@@ -1,7 +1,6 @@
-// oxlint-disable typescript/no-unsafe-assignment typescript/no-unsafe-type-assertion typescript/no-explicit-any vitest/no-conditional-in-test
-import { render, screen } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
-import type { History, Location, Match } from '../index'
+import { render, renderHook, screen } from '@testing-library/react'
+import { assert, describe, expect, it } from 'vitest'
+import type { Location, Match } from '../index'
 import { BrowserRouter, Route, useHistory } from '../index'
 
 describe('component BrowserRouter', () => {
@@ -22,55 +21,24 @@ describe('component BrowserRouter', () => {
   it('creates browser history', () => {
     expect.hasAssertions()
 
-    let history: History = null as any
+    const { result } = renderHook(() => useHistory(), {
+      wrapper: BrowserRouter,
+    })
 
-    const Inner = () => {
-      history = useHistory()
-      return null
-    }
-
-    render(
-      <BrowserRouter>
-        <Inner />
-      </BrowserRouter>,
-    )
-
-    expect(history).toBeDefined()
+    expect(result.current).toBeDefined()
     // oxlint-disable vitest/prefer-expect-type-of
-    expect(typeof history.push).toBe('function')
-    expect(typeof history.replace).toBe('function')
+    expect(typeof result.current.push).toBe('function')
+    expect(typeof result.current.replace).toBe('function')
     // oxlint-enable vitest/prefer-expect-type-of
   })
 
   it('history is re-created for each BrowserRouter', () => {
     expect.hasAssertions()
 
-    let firstHistory: any = undefined
-    let secondHistory: any = undefined
+    const first = renderHook(() => useHistory(), { wrapper: BrowserRouter })
+    const second = renderHook(() => useHistory(), { wrapper: BrowserRouter })
 
-    const TestComponent = () => {
-      const history = useHistory()
-      if (!firstHistory) {
-        firstHistory = history
-      } else {
-        secondHistory = history
-      }
-      return null
-    }
-
-    render(
-      <BrowserRouter>
-        <TestComponent />
-      </BrowserRouter>,
-    )
-
-    render(
-      <BrowserRouter>
-        <TestComponent />
-      </BrowserRouter>,
-    )
-
-    expect(firstHistory).not.toBe(secondHistory)
+    expect(first.result.current).not.toBe(second.result.current)
   })
 
   it('provides root route context', () => {
@@ -89,14 +57,14 @@ describe('component BrowserRouter', () => {
       </BrowserRouter>,
     )
 
-    expect(match).toBeDefined()
+    assert.exists(match.params)
     expect(match.params).toStrictEqual({})
   })
 
   it('uses current browser location', () => {
     expect.hasAssertions()
 
-    let location: Location | undefined = undefined
+    let location: Partial<Location> = {}
 
     render(
       <BrowserRouter>
@@ -109,8 +77,7 @@ describe('component BrowserRouter', () => {
       </BrowserRouter>,
     )
 
-    expect(location).toBeDefined()
-    // oxlint-disable-next-line typescript/no-non-null-assertion
-    expect(location!.pathname).toBeTypeOf('string')
+    assert.exists(location.pathname)
+    expect(location.pathname).toBeTypeOf('string')
   })
 })

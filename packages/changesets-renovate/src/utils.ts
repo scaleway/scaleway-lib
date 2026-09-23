@@ -176,7 +176,7 @@ export function findChangedDependencies(
   newCatalog: Record<string, string>,
 ): string[] {
   return Object.entries(newCatalog)
-    .filter(([pkg, newVersion]) => oldCatalog[pkg] && oldCatalog[pkg] !== newVersion)
+    .filter(([pkg, newVersion]) => pkg in oldCatalog && oldCatalog[pkg] !== newVersion)
     .map(([pkg]) => pkg)
 }
 
