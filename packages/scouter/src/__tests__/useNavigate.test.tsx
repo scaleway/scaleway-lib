@@ -1,5 +1,5 @@
 import { act, renderHook } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
+import { assert, describe, expect, it } from 'vitest'
 import type { Location } from '../index'
 import { MemoryRouter, Route, useLocation, useNavigate } from '../index'
 
@@ -17,7 +17,7 @@ describe(useNavigate, () => {
   })
 
   it('navigate with string path', () => {
-    let location: Location | undefined = undefined
+    let location: Partial<Location> = {}
 
     const { result } = renderHook(
       () => {
@@ -44,11 +44,12 @@ describe(useNavigate, () => {
       result.current.navigate('/target')
     })
 
-    expect(location!.pathname).toBe('/target')
+    assert.exists(location)
+    expect(location.pathname).toBe('/target')
   })
 
   it('navigate with object', () => {
-    let location: Location | undefined = undefined
+    let location: Partial<Location> = {}
 
     const { result } = renderHook(
       () => {
@@ -75,8 +76,9 @@ describe(useNavigate, () => {
       result.current.navigate({ pathname: '/target', search: '?foo=bar' })
     })
 
-    expect(location!.pathname).toBe('/target')
-    expect(location!.search).toBe('?foo=bar')
+    assert.exists(location)
+    expect(location.pathname).toBe('/target')
+    expect(location.search).toBe('?foo=bar')
   })
 
   it('navigate updates location', () => {
@@ -105,7 +107,7 @@ describe(useNavigate, () => {
   })
 
   it('navigate with state', () => {
-    let location: Location | undefined = undefined
+    let location: Partial<Location> = {}
 
     const { result } = renderHook(
       () => {
@@ -132,11 +134,12 @@ describe(useNavigate, () => {
       result.current.navigate({ pathname: '/target' }, { state: { from: 'home' } })
     })
 
-    expect(location!.state).toStrictEqual({ from: 'home' })
+    assert.exists(location)
+    expect(location.state).toStrictEqual({ from: 'home' })
   })
 
   it('navigate with hash', () => {
-    let location: Location | undefined = undefined
+    let location: Partial<Location> = {}
 
     const { result } = renderHook(
       () => {
@@ -163,11 +166,12 @@ describe(useNavigate, () => {
       result.current.navigate({ pathname: '/target', hash: '#section' })
     })
 
-    expect(location!.hash).toBe('#section')
+    assert.exists(location)
+    expect(location.hash).toBe('#section')
   })
 
   it('navigate with replace=true uses history.replace', () => {
-    let location: Location | undefined = undefined
+    let location: Partial<Location> = {}
 
     const { result } = renderHook(
       () => {
@@ -194,11 +198,12 @@ describe(useNavigate, () => {
       result.current.navigate('/target', { replace: true })
     })
 
-    expect(location!.pathname).toBe('/target')
+    assert.exists(location)
+    expect(location.pathname).toBe('/target')
   })
 
   it('navigate with replace=false uses history.push', () => {
-    let location: Location | undefined = undefined
+    let location: Partial<Location> = {}
 
     const { result } = renderHook(
       () => {
@@ -225,11 +230,12 @@ describe(useNavigate, () => {
       result.current.navigate('/target', { replace: false })
     })
 
-    expect(location!.pathname).toBe('/target')
+    assert.exists(location)
+    expect(location.pathname).toBe('/target')
   })
 
   it('navigate with state option', () => {
-    let location: Location | undefined = undefined
+    let location: Partial<Location> = {}
 
     const { result } = renderHook(
       () => {
@@ -256,11 +262,12 @@ describe(useNavigate, () => {
       result.current.navigate('/target', { state: { key: 'value' } })
     })
 
-    expect(location!.state).toStrictEqual({ key: 'value' })
+    assert.exists(location)
+    expect(location.state).toStrictEqual({ key: 'value' })
   })
 
   it('navigate with replace and state', () => {
-    let location: Location | undefined = undefined
+    let location: Partial<Location> = {}
 
     const { result } = renderHook(
       () => {
@@ -287,7 +294,8 @@ describe(useNavigate, () => {
       result.current.navigate('/target', { replace: true, state: { replaced: true } })
     })
 
-    expect(location!.pathname).toBe('/target')
-    expect(location!.state).toStrictEqual({ replaced: true })
+    assert.exists(location)
+    expect(location.pathname).toBe('/target')
+    expect(location.state).toStrictEqual({ replaced: true })
   })
 })

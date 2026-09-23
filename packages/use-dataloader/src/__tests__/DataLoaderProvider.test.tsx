@@ -1,6 +1,6 @@
 import { render, renderHook, screen, waitFor } from '@testing-library/react'
 import type { ReactNode } from 'react'
-import { describe, expect, it, vi } from 'vitest'
+import { assert, describe, expect, it, vi } from 'vitest'
 import { StatusEnum } from '../constants'
 import DataLoaderProvider, { useDataLoaderContext } from '../DataLoaderProvider'
 
@@ -120,7 +120,8 @@ describe('dataLoaderProvider', () => {
     const testReload = result.current.getReloads(TEST_KEY)
     expect(testReload).toBeDefined()
     expect(testReload).toBeDefined()
-    await expect(testReload!()).resolves.toBeNull()
+    assert.exists(testReload)
+    await expect(testReload()).resolves.toBeNull()
     expect(result.current.getCachedData(TEST_KEY)).toBeNull()
     expect(result.current.getCachedData()).toStrictEqual({ test: null })
     expect(result.current.getRequest(TEST_KEY)).toBeDefined()

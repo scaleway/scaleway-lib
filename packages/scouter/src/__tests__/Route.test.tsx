@@ -5,7 +5,7 @@ import '@testing-library/jest-dom/vitest'
 import { act, render, screen } from '@testing-library/react'
 import { createMemoryHistory as createHistory } from 'history'
 import { useEffect } from 'react'
-import { describe, expect, it, test, vi } from 'vitest'
+import { assert, describe, expect, it, test, vi } from 'vitest'
 import type { RouteRenderProps } from '../index'
 import { MemoryRouter, Route } from '../index'
 import { Router } from '../Router'
@@ -257,7 +257,7 @@ describe('the `render` prop', () => {
   it('receives { match, location } props', () => {
     const history = createHistory()
 
-    let props: RouteRenderProps | undefined = undefined
+    let props: Partial<RouteRenderProps> = {}
     render(
       <Router history={history}>
         <Route
@@ -270,7 +270,7 @@ describe('the `render` prop', () => {
       </Router>,
     )
 
-    expect(props!).not.toBeNull()
-    expect(Object.keys(props!)).toStrictEqual(['match', 'location', 'history'])
+    assert.exists(props)
+    expect(Object.keys(props)).toStrictEqual(['match', 'location', 'history'])
   })
 })
