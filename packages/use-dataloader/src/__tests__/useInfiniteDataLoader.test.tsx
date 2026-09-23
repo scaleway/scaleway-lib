@@ -100,9 +100,12 @@ describe('useInfinitDataLoader', () => {
     expect(result.current.isFetching).toBe(true)
     expect(result.current.isFetching).toBe(true)
     expect(initialProps.method).toHaveBeenCalledTimes(1)
-    expect(initialProps.method).toHaveBeenCalledWith({
-      page: 1,
-    })
+    expect(initialProps.method).toHaveBeenCalledWith(
+      expect.objectContaining({
+        page: 1,
+      }),
+      expect.any(AbortSignal),
+    )
     setCanResolve(true)
     await waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
@@ -120,9 +123,12 @@ describe('useInfinitDataLoader', () => {
       expect(result.current.isFetching).toBe(true)
     })
     expect(initialProps.method).toHaveBeenCalledTimes(2)
-    expect(initialProps.method).toHaveBeenCalledWith({
-      page: 2,
-    })
+    expect(initialProps.method).toHaveBeenCalledWith(
+      expect.objectContaining({
+        page: 2,
+      }),
+      expect.any(AbortSignal),
+    )
     setCanResolve(true)
     await waitFor(() => {
       expect(result.current.isFetching).toBe(true)
@@ -152,9 +158,12 @@ describe('useInfinitDataLoader', () => {
     expect(result.current.isLoading).toBe(true)
     expect(result.current.isFetching).toBe(true)
     expect(initialProps.method).toHaveBeenCalledTimes(1)
-    expect(initialProps.method).toHaveBeenCalledWith({
-      page: 1,
-    })
+    expect(initialProps.method).toHaveBeenCalledWith(
+      expect.objectContaining({
+        page: 1,
+      }),
+      expect.any(AbortSignal),
+    )
     setCanResolve(true)
     await waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
@@ -172,9 +181,12 @@ describe('useInfinitDataLoader', () => {
     })
     expect(result.current.data).toStrictEqual([{ data: 'Page 1 data', nextPage: 2 }])
     expect(initialProps.method).toHaveBeenCalledTimes(2)
-    expect(initialProps.method).toHaveBeenCalledWith({
-      page: 2,
-    })
+    expect(initialProps.method).toHaveBeenCalledWith(
+      expect.objectContaining({
+        page: 2,
+      }),
+      expect.any(AbortSignal),
+    )
     setCanResolve(true)
     await waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
@@ -232,9 +244,12 @@ describe('useInfinitDataLoader', () => {
       expect(result.current.isFetching).toBe(true)
     })
     expect(initialProps.method).toHaveBeenCalledTimes(1)
-    expect(initialProps.method).toHaveBeenCalledWith({
-      page: 1,
-    })
+    expect(initialProps.method).toHaveBeenCalledWith(
+      expect.objectContaining({
+        page: 1,
+      }),
+      expect.any(AbortSignal),
+    )
     setCanResolve(true)
     await waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
@@ -252,9 +267,12 @@ describe('useInfinitDataLoader', () => {
     })
     expect(result.current.data).toStrictEqual([{ data: 'Page 1 data', nextPage: 2 }])
     expect(initialProps.method).toHaveBeenCalledTimes(2)
-    expect(initialProps.method).toHaveBeenCalledWith({
-      page: 2,
-    })
+    expect(initialProps.method).toHaveBeenCalledWith(
+      expect.objectContaining({
+        page: 2,
+      }),
+      expect.any(AbortSignal),
+    )
     setCanResolve(true)
     await waitFor(() => {
       expect(result.current.isFetching).toBe(true)

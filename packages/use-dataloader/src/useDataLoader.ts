@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { StatusEnum } from './constants'
 import { useDataLoaderContext } from './DataLoaderProvider'
-import type { KeyType, PromiseType, UseDataLoaderConfig, UseDataLoaderResult } from './types'
+import type { DataLoaderMethodFn, KeyType, UseDataLoaderConfig, UseDataLoaderResult } from './types'
 
 const noop = () => undefined
 
 export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
   key: KeyType,
-  method: () => PromiseType<ResultType>,
+  method: DataLoaderMethodFn<ResultType>,
   config?: UseDataLoaderConfig<ResultType, ErrorType>,
 ): UseDataLoaderResult<ResultType, ErrorType> => {
   const {
@@ -43,6 +43,10 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
 
     return () => {
       request.removeObserver(forceRerender)
+
+      if (request.observers.length === 0) {
+        request.cancel()
+      }
     }
   }, [request, forceRerender])
 

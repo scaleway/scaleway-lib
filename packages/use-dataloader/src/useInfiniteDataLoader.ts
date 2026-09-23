@@ -3,7 +3,12 @@ import { StatusEnum } from './constants'
 import type DataLoader from './dataloader'
 import { useDataLoaderContext } from './DataLoaderProvider'
 import { marshalQueryKey } from './helpers'
-import type { KeyType, PromiseType, UseInfiniteDataLoaderConfig, UseInfiniteDataLoaderResult } from './types'
+import type {
+  DataLoaderMethodWithParamsFn,
+  KeyType,
+  UseInfiniteDataLoaderConfig,
+  UseInfiniteDataLoaderResult,
+} from './types'
 
 /**
  * This hook can be used for promises that have a "Load More" so page change but we want to keep the previous data and append the next one
@@ -16,7 +21,7 @@ export const useInfiniteDataLoader = <
   // oxlint-disable-next-line max-params
 >(
   baseKey: KeyType,
-  method: (params: ParamsType) => PromiseType<ResultType>,
+  method: DataLoaderMethodWithParamsFn<ResultType, ParamsType>,
   baseParams: ParamsType,
   pageParamKey: ParamsPageKey,
   config?: UseInfiniteDataLoaderConfig<ResultType, ErrorType, ParamsType, ParamsPageKey>,
@@ -46,7 +51,7 @@ export const useInfiniteDataLoader = <
     [pageParamKey]: isPageStale ? baseParams[pageParamKey] : page,
   }
 
-  const getMethodRef = useRef(async () => method(paramsArgs))
+  const getMethodRef = useRef(async (signal?: AbortSignal) => method(paramsArgs, signal))
   const getOnSuccessRef = useRef(async (...params: Parameters<NonNullable<typeof onSuccess>>) => onSuccess?.(...params))
   const getOnErrorRef = useRef(async (err: ErrorType) => onError?.(err) ?? onGlobalError?.(err))
 
@@ -70,6 +75,10 @@ export const useInfiniteDataLoader = <
         if (!request.observers.includes(notifyFn)) {
           request.removeObserver(notifyFn)
         }
+
+        if (request.observers.length === 0) {
+          request.cancel()
+        }
       }
     }
   }, [])
@@ -86,6 +95,7 @@ export const useInfiniteDataLoader = <
           return true
         }
         request.removeObserver(forceRerender.current)
+        request.cancel()
         return false
       }
 
@@ -94,6 +104,7 @@ export const useInfiniteDataLoader = <
       }
 
       request.removeObserver(forceRerender.current)
+      request.cancel()
 
       return false
     })
@@ -178,7 +189,7 @@ export const useInfiniteDataLoader = <
   }, [nextPage, baseQueryKey, baseParams, pageParamKey])
 
   useEffect(() => {
-    request.method = async () => method(paramsArgs)
+    request.method = async (signal?: AbortSignal) => method(paramsArgs, signal)
     // oxlint-disable-next-line react-hooks/exhaustive-deps
   }, [method, request])
 

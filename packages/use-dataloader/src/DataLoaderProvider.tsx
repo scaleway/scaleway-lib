@@ -3,7 +3,7 @@ import { createContext, useCallback, useContext, useMemo, useRef } from 'react'
 import { DEFAULT_MAX_CONCURRENT_REQUESTS } from './constants'
 import DataLoader from './dataloader'
 import { marshalQueryKey } from './helpers'
-import type { KeyType, OnErrorFn, PromiseType } from './types'
+import type { DataLoaderMethodFn, KeyType, OnErrorFn } from './types'
 
 type PromiseVoidFunc = (() => Promise<unknown>) | (() => void)
 
@@ -12,7 +12,7 @@ type Reloads = Record<string, PromiseVoidFunc>
 type Requests = Record<string, DataLoader<unknown, unknown>>
 
 type UseDataLoaderInitializerArgs<ResultType = unknown> = {
-  method: () => PromiseType<ResultType>
+  method: DataLoaderMethodFn<ResultType>
   enabled?: boolean
 }
 
