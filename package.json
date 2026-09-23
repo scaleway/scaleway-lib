@@ -26,6 +26,7 @@
     "@manypkg/cli": "catalog:",
     "@rudderstack/analytics-js": "catalog:",
     "@scaleway/changesets-renovate": "workspace:*",
+    "@scaleway/npm-trust": "workspace:*",
     "@scaleway/oxfmt-config": "workspace:*",
     "@scaleway/oxlint-config": "workspace:*",
     "@scaleway/tsconfig": "workspace:*",

@@ -301,6 +301,9 @@ importers:
       '@scaleway/changesets-renovate':
         specifier: workspace:*
         version: link:packages/changesets-renovate
+      '@scaleway/npm-trust':
+        specifier: workspace:*
+        version: link:packages/npm-trust
       '@scaleway/oxfmt-config':
         specifier: workspace:*
         version: link:packages/oxfmt-config
@@ -443,6 +446,8 @@ importers:
         version: 3.0.3
 
   packages/fuzzy-search: {}
+
+  packages/npm-trust: {}
 
   packages/oxfmt-config:
     dependencies:
@@ -634,9 +639,6 @@ importers:
       '@types/node':
         specifier: 'catalog:'
         version: 26.6.2
-      typescript:
-        specifier: 'catalog:'
-        version: 7.0.2
 
   packages/validate-icu-locales:
     dependencies:

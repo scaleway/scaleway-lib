@@ -48,6 +48,7 @@ export default defineConfig({
         'packages/sync-peer-deps/**',
         'packages/utils/**',
         'packages/validate-icu-locales/**',
+        'packages/npm-trust/**',
       ],
       rules: {
         'eslint/no-console': 'off',

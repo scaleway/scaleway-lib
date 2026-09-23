@@ -30,8 +30,7 @@
     "yaml": "catalog:"
   },
   "devDependencies": {
-    "@types/node": "catalog:",
-    "typescript": "catalog:"
+    "@types/node": "catalog:"
   },
   "engines": {
     "node": "24.x || 25.x || 26.x"
