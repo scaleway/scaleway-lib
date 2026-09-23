@@ -123,8 +123,8 @@ catalogs:
       specifier: 3.1.7
       version: 3.1.7
     '@formatjs/icu-messageformat-parser':
-      specifier: 3.5.19
-      version: 3.5.19
+      specifier: 3.5.20
+      version: 3.5.20
     '@growthbook/growthbook-react':
       specifier: 1.7.0
       version: 1.7.0
@@ -207,8 +207,8 @@ catalogs:
       specifier: 0.8.1
       version: 0.8.1
     intl-messageformat:
-      specifier: 12.1.1
-      version: 12.1.1
+      specifier: 12.1.2
+      version: 12.1.2
     jsdom:
       specifier: 30.1.0
       version: 30.1.0
@@ -581,7 +581,7 @@ importers:
         version: 0.8.1
       intl-messageformat:
         specifier: 'catalog:'
-        version: 12.1.1
+        version: 12.1.2
     devDependencies:
       date-fns:
         specifier: 'catalog:'
@@ -642,7 +642,7 @@ importers:
     dependencies:
       '@formatjs/icu-messageformat-parser':
         specifier: 'catalog:'
-        version: 3.5.19
+        version: 3.5.20
       tinyglobby:
         specifier: 'catalog:'
         version: 0.2.17
@@ -874,8 +874,8 @@ packages:
   '@formatjs/fast-memoize@3.1.7':
     resolution: {integrity: sha512-zXfhLpvA6T7+efdt9JLbBwZ00tT7NsBMDVnDu8rpHeNNv8KfRZAMo2gkG0k9lK/Nzc//3kJ9pImsfuJxk3KhUA==}
 
-  '@formatjs/icu-messageformat-parser@3.5.19':
-    resolution: {integrity: sha512-a5PAqgd3QPUge635SxrjPLIlTErcGwm3AMyTdmZXl0IqWXTdCx9AnuioEmvEZAV2HpeFdynLPXMvHv7dXGEWWw==}
+  '@formatjs/icu-messageformat-parser@3.5.20':
+    resolution: {integrity: sha512-DUzCb2iskGDKvLU7P+nz/rjpmN59luoTRbWHFFNYNnZTxWCKvwPI94rNll99TGZaI6XoTbDF0QGegk21GFrQZQ==}
 
   '@formatjs/icu-skeleton-parser@2.1.12':
     resolution: {integrity: sha512-ca7tZMLpfHX3sUD7hP6gE/qr6Iq89EDd3ZLeRhbsB7r0UD55DGJq+tmFLzrGrnx5StahUevQmQQVtbDRHsfDHA==}
@@ -2231,8 +2231,8 @@ packages:
   international-types@0.8.1:
     resolution: {integrity: sha512-tajBCAHo4I0LIFlmQ9ZWfjMWVyRffzuvfbXCd6ssFt5u1Zw15DN0UBpVTItXdNa1ls+cpQt3Yw8+TxsfGF8JcA==}
 
-  intl-messageformat@12.1.1:
-    resolution: {integrity: sha512-ZNwni2Ihmge8FZ0O+n7JQXHNAZfFGN/ovLrIxyfFK/bEsnHV2bG3W75Z24GdKmMepiq21SiMfANNPze+xjSCHA==}
+  intl-messageformat@12.1.2:
+    resolution: {integrity: sha512-Y7ZnMtT/04nVJnjf1/x/AkfP5we/iN0AhckDdlFPtnetk6/VTuj2OPW5SE7steMd3UNaOtky4KJJY6jwyvWfJg==}
 
   is-plain-obj@4.1.0:
     resolution: {integrity: sha512-+Pgi+vMuUNkJyExiMBt5IlFoMyKnr5zhJ4Uspz58WOhBF5QoIZkFyNHIbBAtHwzVAgk5RtndVNsDRN61/mmDqg==}
@@ -3361,7 +3361,7 @@ snapshots:
 
   '@formatjs/fast-memoize@3.1.7': {}
 
-  '@formatjs/icu-messageformat-parser@3.5.19':
+  '@formatjs/icu-messageformat-parser@3.5.20':
     dependencies:
       '@formatjs/icu-skeleton-parser': 2.1.12
 
@@ -4368,10 +4368,10 @@ snapshots:
 
   international-types@0.8.1: {}
 
-  intl-messageformat@12.1.1:
+  intl-messageformat@12.1.2:
     dependencies:
       '@formatjs/fast-memoize': 3.1.7
-      '@formatjs/icu-messageformat-parser': 3.5.19
+      '@formatjs/icu-messageformat-parser': 3.5.20
 
   is-plain-obj@4.1.0: {}
 

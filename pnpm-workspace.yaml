@@ -11,7 +11,7 @@ catalog:
   '@changesets/config': 4.0.1
   '@formatjs/ecma402-abstract': 3.2.0
   '@formatjs/fast-memoize': 3.1.7
-  '@formatjs/icu-messageformat-parser': 3.5.19
+  '@formatjs/icu-messageformat-parser': 3.5.20
   '@growthbook/growthbook-react': 1.7.0
   '@manypkg/cli': 0.25.1
   '@rudderstack/analytics-js': 3.34.1
@@ -38,7 +38,7 @@ catalog:
   happy-dom: 20.14.5
   history: 5.3.0
   international-types: 0.8.1
-  intl-messageformat: 12.1.1
+  intl-messageformat: 12.1.2
   jsdom: 30.1.0
   lint-staged: 17.5.1
   oxfmt: 0.68.0
