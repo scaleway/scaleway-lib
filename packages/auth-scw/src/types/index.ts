@@ -33,11 +33,11 @@ export type AuthScwContextType = {
 }
 
 export declare class IamV1alpha1API extends SDKAPI {
-  deleteJWT: Iamv1alpha1.API['deleteJWT']
+  public deleteJWT: Iamv1alpha1.API['deleteJWT']
 }
 
 export declare class IamV1alpha1UnauthenticatedAPI extends SDKAPI {
-  renewJWT: Iamv1alpha1.UnauthenticatedAPI['renewJWT']
+  public renewJWT: Iamv1alpha1.UnauthenticatedAPI['renewJWT']
 }
 
 export type ConfigurationClientAPIs = {
