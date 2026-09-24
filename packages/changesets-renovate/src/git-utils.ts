@@ -1,6 +1,7 @@
 import { env } from 'node:process'
 import { simpleGit } from 'simple-git'
 import { parse } from 'yaml'
+import { isPnpmWorkspaceYaml } from './utils'
 
 /**
  * Load catalog from pnpm workspace file at specific git revision
@@ -20,11 +21,13 @@ export async function loadCatalogFromGit(
 
     const git = simpleGit()
     const content = await git.show([`${revision}:${filePath}`])
-    const parsed = parse(content) as {
-      catalog?: Record<string, string>
-    } | null
+    const rawYaml: unknown = parse(content)
 
-    return parsed?.catalog ?? {}
+    if (!isPnpmWorkspaceYaml(rawYaml)) {
+      throw new Error(`invalid pnpm-workspace.yaml in ${filePath}`)
+    }
+
+    return rawYaml.catalog ?? {}
   } catch {
     // Silently ignore errors in production code
     // Tests can check for specific error cases
@@ -50,7 +53,7 @@ export async function findChangedDependenciesFromGit(
   const bumps = new Map()
 
   const filtedPackage = Object.entries(newCatalog).filter(
-    ([pkg, newVersion]) => oldCatalog[pkg] && oldCatalog[pkg] !== newVersion,
+    ([pkg, newVersion]) => pkg in oldCatalog && oldCatalog[pkg] !== newVersion,
   )
 
   for (const [pkg, newVersion] of filtedPackage) {
@@ -70,7 +73,7 @@ export async function getBumpsFromGit(files: string[]): Promise<Map<string, stri
       if (change.startsWith('+ ')) {
         const match = change.match(/"(?:.*?)"/gv)
 
-        if (match?.[0] && match[1]) {
+        if (match?.[0] !== undefined && match[1] !== undefined) {
           bumps.set(match[0].replaceAll('"', ''), match[1].replaceAll('"', ''))
         }
       }
@@ -83,7 +86,7 @@ export async function getBumpsFromGit(files: string[]): Promise<Map<string, stri
 }
 
 export async function handleChangesetFile(fileName: string) {
-  if (!env['SKIP_COMMIT']) {
+  if (!('SKIP_COMMIT' in env) || env['SKIP_COMMIT'] !== 'true') {
     await simpleGit().add(fileName)
     await simpleGit().commit(`chore: add ${fileName}`)
     await simpleGit().push()

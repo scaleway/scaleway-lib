@@ -12,7 +12,7 @@ export async function createChangeset(
     messageLines.push(`Updated dependency \`${pkg}\` to \`${bump}\`.`)
   }
 
-  if (env['SORT_CHANGESETS']) {
+  if ('SORT_CHANGESETS' in env && env['SORT_CHANGESETS'] === 'true') {
     packages.sort()
     messageLines.sort()
   }

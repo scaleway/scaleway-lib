@@ -130,7 +130,7 @@ describe('generate changeset file', () => {
       'test/package.json': `{"name":"packageName","version":"1.0.0","dependencies": { "package": "1.0.0", "package2": "1.2.2" }}`,
     })
 
-    vi.stubEnv('SKIP_BRANCH_CHECK', 'TRUE')
+    vi.stubEnv('SKIP_BRANCH_CHECK', 'true')
     await run()
 
     expect(console.log).not.toHaveBeenCalledWith('Not a renovate branch, skipping')
@@ -252,7 +252,7 @@ describe('generate changeset file', () => {
       'test/package.json': `{"name":"packageName","version":"1.0.0","dependencies": { "package": "1.0.0", "package2": "1.2.2" }}`,
     })
 
-    vi.stubEnv('SKIP_COMMIT', 'TRUE')
+    vi.stubEnv('SKIP_COMMIT', 'true')
     await run()
 
     expect(vol.readFileSync(fileName, 'utf8')).toMatchSnapshot()
@@ -300,8 +300,8 @@ describe('generate changeset file', () => {
       'test-b/package.json': `{"name":"packageNameB","version":"1.0.0","dependencies": { "packagea": "1.0.0" }}`,
     })
 
-    vi.stubEnv('SKIP_COMMIT', 'TRUE')
-    vi.stubEnv('SORT_CHANGESETS', 'TRUE')
+    vi.stubEnv('SKIP_COMMIT', 'true')
+    vi.stubEnv('SORT_CHANGESETS', 'true')
     await run()
 
     expect(vol.readFileSync(fileName, 'utf8')).toMatchSnapshot()

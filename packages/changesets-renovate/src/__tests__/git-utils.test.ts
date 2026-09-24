@@ -12,6 +12,7 @@ vi.mock(import('node:fs/promises'))
 const mockParseCatalog = (content: string) =>
   content.includes('1.0.0')
     ? {
+        packages: ['packages/*'],
         catalog: {
           'package-a': '1.0.0',
           'package-b': '2.0.0',
@@ -19,6 +20,7 @@ const mockParseCatalog = (content: string) =>
         },
       }
     : {
+        packages: ['packages/*'],
         catalog: {
           'package-a': '1.1.0',
           'package-b': '2.0.0',
@@ -51,6 +53,7 @@ catalog:
         show,
       } as unknown as SimpleGit)
       vi.mocked(parse).mockReturnValue({
+        packages: ['packages/*'],
         catalog: {
           'another-package': '2.0.0',
           'test-package': '1.0.0',

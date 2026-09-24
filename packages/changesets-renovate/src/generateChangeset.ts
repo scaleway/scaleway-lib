@@ -10,7 +10,9 @@ async function run(): Promise<void> {
 
   console.log('Detected branch:', branch.current)
 
-  if (!(branch.current.startsWith(branchPrefix) || env['SKIP_BRANCH_CHECK'])) {
+  if (
+    !(branch.current.startsWith(branchPrefix) || ('SKIP_BRANCH_CHECK' in env && env['SKIP_BRANCH_CHECK'] === 'true'))
+  ) {
     console.log('Not a renovate branch, skipping')
 
     return

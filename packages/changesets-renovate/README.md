@@ -19,7 +19,7 @@ changesets-renovate
 To skip committing the changeset.
 
 ```bash
-SKIP_COMMIT=TRUE changesets-renovate
+SKIP_COMMIT=true changesets-renovate
 ```
 
 To have a custom prefix for renovate branch name instead of `renovate/`
@@ -31,13 +31,13 @@ BRANCH_PREFIX=dep-upgrade changesets-renovate
 To skip checking the branch name starts `renovate/`
 
 ```bash
-SKIP_BRANCH_CHECK=TRUE changesets-renovate
+SKIP_BRANCH_CHECK=true changesets-renovate
 ```
 
 To sort both the package bumps and update messages alphabetically
 
 ```bash
-SORT_CHANGESETS=TRUE changesets-renovate
+SORT_CHANGESETS=true changesets-renovate
 ```
 
 Example:
