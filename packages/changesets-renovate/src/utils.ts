@@ -28,9 +28,7 @@ export const isPackageJson = (value: unknown): value is PackageJson => {
   if (typeof value !== 'object' || value === null) {
     return false
   }
-  // oxlint-disable-next-line typescript/no-unsafe-type-assertion
-  const obj = value as Record<string, unknown>
-  return typeof obj['name'] === 'string'
+  return 'name' in value && typeof value['name'] === 'string'
 }
 
 const readPackageJson = async (file: string) => {
@@ -48,9 +46,7 @@ export const isPnpmWorkspaceYaml = (value: unknown): value is PnpmWorkspaceYaml 
   if (typeof value !== 'object' || value === null) {
     return false
   }
-  // oxlint-disable-next-line typescript/no-unsafe-type-assertion
-  const obj = value as Record<string, unknown>
-  return 'packages' in obj && Array.isArray(obj['packages'])
+  return 'packages' in value && Array.isArray(value['packages'])
 }
 
 const readPnpmWorkspaceYaml = async (file: string) => {
