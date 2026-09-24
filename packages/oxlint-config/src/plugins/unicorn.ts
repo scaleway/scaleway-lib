@@ -67,7 +67,7 @@ export default defineConfig({
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/unicorn/max-nested-calls
      */
-    'unicorn/max-nested-calls': 'error',
+    'unicorn/max-nested-calls': ['error', { max: 4 }],
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/unicorn/new-for-builtins
      */
