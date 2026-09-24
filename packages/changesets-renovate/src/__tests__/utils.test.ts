@@ -1,16 +1,13 @@
+// glob resolve to a deprecated function override
+// Can be removed once tinyglobby removes it
+// oxlint-disable typescript/no-deprecated
 import { execSync } from 'node:child_process'
 import { defaultConfig, readConfig } from '@changesets/config'
 import { vol } from 'memfs'
 import { glob } from 'tinyglobby'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { parse } from 'yaml'
-import {
-  findAffectedPackages,
-  findChangedDependencies,
-  getWorkspacePackageGlobs,
-  loadCatalogFromFile,
-  loadCatalogFromWorkspaceContent,
-} from '../utils.js'
+import { findAffectedPackages, findChangedDependencies, getWorkspacePackageGlobs } from '../utils.js'
 
 const { escapePathMock, globMock } = vi.hoisted(() => ({
   escapePathMock: vi.fn<(p: string) => string>((p: string) => p),
@@ -50,82 +47,6 @@ describe('pnpm-catalogs-utils', () => {
     })
     vi.spyOn(process, 'cwd').mockReturnValue('/mock/repo')
     vi.stubEnv('EXCLUDE_DEVDEPS', undefined)
-  })
-
-  describe(loadCatalogFromFile, () => {
-    it('should load catalog from a YAML file', async () => {
-      const mockContent = `
-catalog:
-  test-package: 1.0.0
-  another-package: 2.0.0
-`
-      vol.fromJSON({ 'test-file.yaml': mockContent })
-      vi.mocked(parse).mockReturnValue({
-        catalog: {
-          'another-package': '2.0.0',
-          'test-package': '1.0.0',
-        },
-      })
-
-      const result = await loadCatalogFromFile('test-file.yaml')
-
-      expect(parse).toHaveBeenCalledWith(mockContent)
-      expect(result).toStrictEqual({
-        'another-package': '2.0.0',
-        'test-package': '1.0.0',
-      })
-    })
-
-    it('should return empty object if file reading fails', async () => {
-      const result = await loadCatalogFromFile('non-existent-file.yaml')
-
-      expect(result).toStrictEqual({})
-    })
-
-    it('should return empty object if YAML parsing fails', async () => {
-      vol.fromJSON({ 'invalid-file.yaml': 'invalid yaml' })
-      vi.mocked(parse).mockImplementation(() => {
-        throw new Error('Invalid YAML')
-      })
-
-      const result = await loadCatalogFromFile('invalid-file.yaml')
-
-      expect(result).toStrictEqual({})
-    })
-  })
-
-  describe(loadCatalogFromWorkspaceContent, () => {
-    it('should load catalog from workspace content', () => {
-      const mockContent = `
-catalog:
-  test-package: 1.0.0
-  another-package: 2.0.0
-`
-      vi.mocked(parse).mockReturnValue({
-        catalog: {
-          'another-package': '2.0.0',
-          'test-package': '1.0.0',
-        },
-      })
-
-      const result = loadCatalogFromWorkspaceContent(mockContent)
-
-      expect(parse).toHaveBeenCalledWith(mockContent)
-      expect(result).toStrictEqual({
-        'another-package': '2.0.0',
-        'test-package': '1.0.0',
-      })
-    })
-
-    it('should return empty object if parsing fails', () => {
-      vi.mocked(parse).mockImplementation(() => {
-        throw new Error('Invalid YAML')
-      })
-
-      const result = loadCatalogFromWorkspaceContent('invalid content')
-
-      expect(result).toStrictEqual({})
-    })
   })
 
   describe(findChangedDependencies, () => {
@@ -189,7 +110,7 @@ catalog:
 
     it('should discover globs from root package.json workspaces', async () => {
       vol.fromJSON({
-        'package.json': JSON.stringify({ workspaces: ['packages/*', 'tools/*'] }),
+        'package.json': JSON.stringify({ name: 'root', workspaces: ['packages/*', 'tools/*'] }),
       })
 
       const result = await getWorkspacePackageGlobs()
@@ -199,7 +120,7 @@ catalog:
 
     it('should support workspaces as { packages: [] } object', async () => {
       vol.fromJSON({
-        'package.json': JSON.stringify({ workspaces: { packages: ['apps/*'] } }),
+        'package.json': JSON.stringify({ name: 'root', workspaces: { packages: ['apps/*'] } }),
       })
 
       const result = await getWorkspacePackageGlobs()
@@ -210,7 +131,7 @@ catalog:
     it('should merge and deduplicate globs from both sources', async () => {
       vol.fromJSON({
         'pnpm-workspace.yaml': 'packages:\n  - packages/*',
-        'package.json': JSON.stringify({ workspaces: ['packages/*', 'apps/*'] }),
+        'package.json': JSON.stringify({ name: 'root', workspaces: ['packages/*', 'apps/*'] }),
       })
       vi.mocked(parse).mockReturnValue({ packages: ['packages/*'] })
 

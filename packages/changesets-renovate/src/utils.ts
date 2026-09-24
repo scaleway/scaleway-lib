@@ -4,6 +4,62 @@ import { readConfig } from '@changesets/config'
 import { parse } from 'yaml'
 import { globWithGitignore } from './globWithGitignore'
 
+type PackageJson = {
+  name: string
+  version?: string
+  workspaces?:
+    | string[]
+    | {
+        packages?: string[]
+      }
+  dependencies?: Record<string, string>
+  devDependencies?: Record<string, string>
+  peerDependencies?: Record<string, string>
+  private?: boolean
+  [key: string]: unknown
+}
+
+type PnpmWorkspaceYaml = {
+  packages: string[]
+  catalog?: Record<string, string>
+}
+
+export const isPackageJson = (value: unknown): value is PackageJson => {
+  if (typeof value !== 'object' || value === null) {
+    return false
+  }
+  return 'name' in value && typeof value['name'] === 'string'
+}
+
+const readPackageJson = async (file: string) => {
+  const content = await readFile(file, 'utf8')
+  const rawJson: unknown = JSON.parse(content)
+
+  if (!isPackageJson(rawJson)) {
+    throw new Error(`invalid package.json in ${file}`)
+  }
+
+  return rawJson
+}
+
+export const isPnpmWorkspaceYaml = (value: unknown): value is PnpmWorkspaceYaml => {
+  if (typeof value !== 'object' || value === null) {
+    return false
+  }
+  return 'packages' in value && Array.isArray(value['packages'])
+}
+
+const readPnpmWorkspaceYaml = async (file: string) => {
+  const content = await readFile(file, 'utf8')
+  const rawYaml: unknown = parse(content)
+
+  if (!isPnpmWorkspaceYaml(rawYaml)) {
+    throw new Error(`invalid pnpm-workspace.yaml in ${file}`)
+  }
+
+  return rawYaml
+}
+
 /**
  * Discover workspace package globs from pnpm-workspace.yaml (`packages` field)
  * and/or the root package.json (`workspaces` field).
@@ -22,28 +78,20 @@ export async function getWorkspacePackageGlobs(): Promise<string[]> {
 
   // 1. pnpm-workspace.yaml `packages:` field
   try {
-    const content = await readFile('pnpm-workspace.yaml', 'utf8')
-    const parsed = parse(content) as {
-      packages?: string[]
-    } | null
+    const pnpmWorkspaceYaml = await readPnpmWorkspaceYaml('pnpm-workspace.yaml')
 
-    if (Array.isArray(parsed?.packages)) {
-      globs.push(...parsed.packages.map(pkg => `${pkg.replace(/\/$/v, '')}/package.json`))
-    }
+    globs.push(...pnpmWorkspaceYaml.packages.map(pkg => `${pkg.replace(/\/$/v, '')}/package.json`))
   } catch {
     // pnpm-workspace.yaml may not exist (npm/yarn monorepo)
   }
 
   // 2. Root package.json `workspaces` field (npm/yarn)
   try {
-    const content = await readFile('package.json', 'utf8')
-    const parsed = JSON.parse(content) as {
-      workspaces?: string[] | { packages?: string[] }
-    }
+    const packageJson = await readPackageJson('package.json')
 
-    const workspaces = Array.isArray(parsed.workspaces) ? parsed.workspaces : parsed.workspaces?.packages
+    const workspaces = Array.isArray(packageJson.workspaces) ? packageJson.workspaces : packageJson.workspaces?.packages
 
-    if (Array.isArray(workspaces)) {
+    if (workspaces !== undefined) {
       globs.push(...workspaces.map(pkg => `${pkg.replace(/\/$/v, '')}/package.json`))
     }
   } catch {
@@ -55,7 +103,7 @@ export async function getWorkspacePackageGlobs(): Promise<string[]> {
 }
 
 function shouldSkipPackage(
-  packageJson: { version?: string; name: string; private?: boolean },
+  packageJson: PackageJson,
   {
     ignore,
     allowPrivatePackages,
@@ -72,13 +120,13 @@ function shouldSkipPackage(
     return true
   }
 
-  return !packageJson.version
+  return packageJson.version === undefined || packageJson.version === ''
 }
 
 export async function getChangesetConfig(): Promise<NonNullable<Awaited<ReturnType<typeof readConfig>>['config']>> {
   const result = await readConfig(process.cwd())
 
-  if (result.errors?.length) {
+  if (result.errors?.length !== undefined && result.errors.length > 0) {
     throw new Error(`Invalid changeset config:\n${result.errors.join('\n')}`)
   }
 
@@ -94,75 +142,34 @@ export async function getPackagesNames(files: string[], packageBumps: Map<string
   const packages: string[] = []
 
   const promises = files.map(async file => {
-    const data = JSON.parse(await readFile(file, 'utf8')) as {
-      name: string
-      workspaces?: string[]
-      version?: string
-      dependencies?: Record<string, string>
-      devDependencies?: Record<string, string>
-    }
+    const packageJson = await readPackageJson(file)
 
     const packageJsonDeps = new Set([
-      ...Object.keys(data.dependencies ?? {}),
-      ...(env['EXCLUDE_DEVDEPS'] ? [] : Object.keys(data.devDependencies ?? {})),
+      ...Object.keys(packageJson.dependencies ?? {}),
+      ...('EXCLUDE_DEVDEPS' in env && env['EXCLUDE_DEVDEPS'] === 'true'
+        ? []
+        : Object.keys(packageJson.devDependencies ?? {})),
     ])
 
     if (!packageBumps.keys().some(value => packageJsonDeps.has(value))) {
       return
     }
 
-    if (shouldSkipPackage(data, { ignore: config.ignore, allowPrivatePackages: config.privatePackages.version })) {
+    if (
+      shouldSkipPackage(packageJson, { ignore: config.ignore, allowPrivatePackages: config.privatePackages.version })
+    ) {
       return
     }
 
     // Do not generate changeset for the root package.json of a monorepo
-    if (!data.workspaces && data.version) {
-      packages.push(data.name)
+    if (!packageJson.workspaces && packageJson.version !== undefined && packageJson.version !== '') {
+      packages.push(packageJson.name)
     }
   })
 
   await Promise.all(promises)
 
   return packages
-}
-
-/**
- * Load catalog from a YAML file
- * @param filePath Path to the YAML file containing the catalog
- * @returns Catalog object or empty object if not found
- */
-export async function loadCatalogFromFile(filePath: string): Promise<Record<string, string>> {
-  try {
-    const content = await readFile(filePath, 'utf8')
-    const parsed = parse(content) as {
-      catalog?: Record<string, string>
-    } | null
-
-    return parsed?.catalog ?? {}
-  } catch {
-    // Silently ignore errors in production code
-    // Tests can check for specific error cases
-    return {}
-  }
-}
-
-/**
- * Load catalog from pnpm workspace YAML content
- * @param content Content of the pnpm-workspace.yaml file
- * @returns Catalog object or empty object if not found
- */
-export function loadCatalogFromWorkspaceContent(content: string): Record<string, string> {
-  try {
-    const parsed = parse(content) as {
-      catalog?: Record<string, string>
-    } | null
-
-    return parsed?.catalog ?? {}
-  } catch {
-    // Silently ignore errors in production code
-    // Tests can check for specific error cases
-    return {}
-  }
 }
 
 /**
@@ -176,7 +183,7 @@ export function findChangedDependencies(
   newCatalog: Record<string, string>,
 ): string[] {
   return Object.entries(newCatalog)
-    .filter(([pkg, newVersion]) => oldCatalog[pkg] && oldCatalog[pkg] !== newVersion)
+    .filter(([pkg, newVersion]) => pkg in oldCatalog && oldCatalog[pkg] !== newVersion)
     .map(([pkg]) => pkg)
 }
 
@@ -187,24 +194,22 @@ const findAffectedDepsInPackageJson = async (
 ) => {
   const affectedPackages = new Set<string>()
 
-  const json = JSON.parse(await readFile(pkgJsonPath, 'utf8')) as {
-    dependencies?: Record<string, string>
-    devDependencies?: Record<string, string>
-    name: string
-  }
+  const packageJson = await readPackageJson(pkgJsonPath)
 
   const packageJsonDeps = new Set([
-    ...Object.keys(json.dependencies ?? {}),
-    ...(env['EXCLUDE_DEVDEPS'] ? [] : Object.keys(json.devDependencies ?? {})),
+    ...Object.keys(packageJson.dependencies ?? {}),
+    ...('EXCLUDE_DEVDEPS' in env && env['EXCLUDE_DEVDEPS'] === 'true'
+      ? []
+      : Object.keys(packageJson.devDependencies ?? {})),
   ])
 
   if (
     changedDeps.some(value => packageJsonDeps.has(value)) &&
-    !shouldSkipPackage(json, { ignore: config.ignore, allowPrivatePackages: config.privatePackages.version })
+    !shouldSkipPackage(packageJson, { ignore: config.ignore, allowPrivatePackages: config.privatePackages.version })
   ) {
     for (const dep of changedDeps) {
       if (packageJsonDeps.has(dep)) {
-        affectedPackages.add(json.name)
+        affectedPackages.add(packageJson.name)
       }
     }
   }
