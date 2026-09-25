@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/use-analytics",
-  "version": "2.0.15",
+  "version": "2.0.16",
   "description": "A small hook to handle events analytics",
   "keywords": [
     "hooks",

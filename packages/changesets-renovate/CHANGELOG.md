@@ -1,5 +1,13 @@
 # Change Log
 
+## 4.0.4
+
+### Patch Changes
+
+- [#3917](https://github.com/scaleway/scaleway-lib/pull/3917) [`63c6ffc`](https://github.com/scaleway/scaleway-lib/commit/63c6ffc95a6852a57da91e18733e9ee312fc3093) Thanks [@chambo-e](https://github.com/chambo-e)! - Harden boolean env-var handling: `SORT_CHANGESETS`, `SKIP_BRANCH_CHECK`, `SKIP_COMMIT` and `EXCLUDE_DEVDEPS` now only activate when set to exactly `true` (previously any non-empty value, including `false`, activated them).
+  
+  Also validate `pnpm-workspace.yaml` and `package.json` when parsed: files missing the `packages`/`name` fields are now treated as invalid instead of being silently processed.
+
 ## 4.0.3
 
 ### Patch Changes
