@@ -557,6 +557,8 @@ importers:
         specifier: 'catalog:'
         version: 4.6.5
 
+  packages/srn: {}
+
   packages/sync-peer-deps:
     dependencies:
       chalk:
