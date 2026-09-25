@@ -1,0 +1,43 @@
+{
+  "name": "@scaleway/srn",
+  "version": "0.0.1",
+  "description": "Parse Scaleway Resource Names (SRN) in Node and the browser",
+  "keywords": [
+    "parser",
+    "resource",
+    "scaleway",
+    "srn"
+  ],
+  "homepage": "https://github.com/scaleway/scaleway-lib/tree/main/packages/srn",
+  "bugs": {
+    "url": "https://github.com/scaleway/scaleway-lib/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scaleway/scaleway-lib.git",
+    "directory": "packages/srn"
+  },
+  "files": [
+    "dist/"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "tsdown",
+    "test:unit": "vitest --run",
+    "test:unit:coverage": "pnpm test:unit --coverage"
+  },
+  "engines": {
+    "node": "24.x || 25.x || 26.x"
+  }
+}
