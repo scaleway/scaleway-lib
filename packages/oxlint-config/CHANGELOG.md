@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.1.5
+
+### Patch Changes
+
+- [#3921](https://github.com/scaleway/scaleway-lib/pull/3921) [`02cafa7`](https://github.com/scaleway/scaleway-lib/commit/02cafa79c4cd93870f3188171b624bd3327bacce) Thanks [@chambo-e](https://github.com/chambo-e)! - disable import/unambiguous as it's useless with ts
+
+- [#3916](https://github.com/scaleway/scaleway-lib/pull/3916) [`c4e4bea`](https://github.com/scaleway/scaleway-lib/commit/c4e4bea56e79804bd3bfcc4a15d0b6f309ef6cc1) Thanks [@alexandre-combemorel](https://github.com/alexandre-combemorel)! - change option nested call allowed to 4
+
+- [#3922](https://github.com/scaleway/scaleway-lib/pull/3922) [`524a48b`](https://github.com/scaleway/scaleway-lib/commit/524a48b72ac19555a54f2827dab24c51aded2d32) Thanks [@chambo-e](https://github.com/chambo-e)! - set allowExpressions to true in react/jsx-no-useless-fragment
+
 ## 1.1.4
 
 ### Patch Changes

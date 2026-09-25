@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/npm-trust",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": false,
   "description": "Configure npm trusted publishers (GitHub Actions) for workspace packages",
   "homepage": "https://github.com/scaleway/scaleway-lib/tree/main/packages/npm-trust",
