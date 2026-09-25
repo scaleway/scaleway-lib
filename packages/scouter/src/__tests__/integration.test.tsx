@@ -143,13 +143,9 @@ test('batches multiple navigations in a microtask (no intermediate render)', asy
 
   const seenLocations: string[] = []
 
-  const Tracker = () => {
+  const App = () => {
     const location = useLocation()
     seenLocations.push(location.pathname)
-    return <div>{location.pathname}</div>
-  }
-
-  const App = () => {
     const navigate = useNavigate()
     const [count, setCount] = useState(0)
 
@@ -157,7 +153,7 @@ test('batches multiple navigations in a microtask (no intermediate render)', asy
       navigateOnFirstRender(count, navigate, setCount)
     }, [count, navigate])
 
-    return <Tracker />
+    return <div>{location.pathname}</div>
   }
 
   render(

@@ -173,70 +173,70 @@ describe('useBlockNavigation - renderHook tests', () => {
 
 let resolveSubmit: (() => void) | undefined = undefined
 
+const BlockNavigationForm = () => {
+  const [name, setName] = useState('')
+  const [submitting, setSubmitting] = useState(false)
+
+  const isDirty = name !== ''
+
+  const navigate = useNavigate()
+
+  const { hasPendingNavigation, continueNavigation, discardNavigation, unblockImmediatly } = useBlockNavigation({
+    enabled: isDirty,
+  })
+
+  const handleSubmit = async (e: React.SubmitEvent) => {
+    e.preventDefault()
+    setSubmitting(true)
+    await new Promise<void>(r => {
+      resolveSubmit = r
+    })
+    setSubmitting(false)
+
+    unblockImmediatly()
+    navigate('/')
+  }
+
+  return (
+    <div>
+      <Link to="/">Go home</Link>
+      <form
+        onSubmit={(e: React.SubmitEvent) => {
+          handleSubmit(e).catch(() => undefined)
+        }}
+      >
+        <input
+          name="name"
+          type="text"
+          value={name}
+          onChange={e => {
+            setName(e.target.value)
+          }}
+          placeholder="Name"
+        />
+        <button type="submit" disabled={submitting}>
+          {submitting ? 'Submitting...' : 'Submit'}
+        </button>
+      </form>
+      {hasPendingNavigation && (
+        <div>
+          <span>You have unsaved changes</span>
+          <button type="button" onClick={discardNavigation}>
+            Keep editing
+          </button>
+          <button type="button" onClick={continueNavigation}>
+            Confirm
+          </button>
+        </div>
+      )}
+    </div>
+  )
+}
+
 test('form use case', async () => {
   beforeAll(() => {
     resolveSubmit = () => undefined
   })
-
-  const UserForm = () => {
-    const [name, setName] = useState('')
-    const [submitting, setSubmitting] = useState(false)
-
-    const isDirty = name !== ''
-
-    const navigate = useNavigate()
-
-    const { hasPendingNavigation, continueNavigation, discardNavigation, unblockImmediatly } = useBlockNavigation({
-      enabled: isDirty,
-    })
-
-    const handleSubmit = async (e: React.SubmitEvent) => {
-      e.preventDefault()
-      setSubmitting(true)
-      await new Promise<void>(r => {
-        resolveSubmit = r
-      })
-      setSubmitting(false)
-
-      unblockImmediatly()
-      navigate('/')
-    }
-
-    return (
-      <div>
-        <Link to="/">Go home</Link>
-        <form
-          onSubmit={(e: React.SubmitEvent) => {
-            handleSubmit(e).catch(() => undefined)
-          }}
-        >
-          <input
-            name="name"
-            type="text"
-            value={name}
-            onChange={e => {
-              setName(e.target.value)
-            }}
-            placeholder="Name"
-          />
-          <button type="submit" disabled={submitting}>
-            {submitting ? 'Submitting...' : 'Submit'}
-          </button>
-        </form>
-        {hasPendingNavigation && (
-          <div>
-            <span>You have unsaved changes</span>
-            <button type="button" onClick={discardNavigation}>
-              Keep editing
-            </button>
-            <button type="button" onClick={continueNavigation}>
-              Confirm
-            </button>
-          </div>
-        )}
-      </div>
-    )
-  }
 
   const history = createMemoryHistory()
   render(
@@ -247,7 +247,7 @@ test('form use case', async () => {
       </Route>
       <Route path="/form">
         <h1>Form</h1>
-        <UserForm />
+        <BlockNavigationForm />
       </Route>
     </Router>,
   )
