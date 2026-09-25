@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/srn",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Parse Scaleway Resource Names (SRN) in Node and the browser",
   "keywords": [
     "parser",
