@@ -9,7 +9,6 @@ catalog:
   '@changesets/changelog-github': 1.0.1
   '@changesets/cli': 3.0.3
   '@changesets/config': 4.0.1
-  '@formatjs/ecma402-abstract': 3.2.0
   '@formatjs/fast-memoize': 3.1.7
   '@formatjs/icu-messageformat-parser': 3.5.20
   '@growthbook/growthbook-react': 1.7.0
@@ -69,6 +68,7 @@ cleanupUnusedCatalogs: true
 pmOnFail: error
 # Needed as we run a pnpm install after building packages
 optimisticRepeatInstall: false
+autoDedupe: true
 
 allowBuilds:
   esbuild: true
