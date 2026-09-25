@@ -144,7 +144,7 @@ export default defineConfig({
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/jsx-no-useless-fragment
      */
-    'react/jsx-no-useless-fragment': 'error',
+    'react/jsx-no-useless-fragment': ['error', { allowExpressions: true }],
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/react/jsx-pascal-case
      */
