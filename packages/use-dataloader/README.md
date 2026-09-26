@@ -251,3 +251,64 @@ The hook returns an object with the following properties:
 |     data     |                 return the `initialData` if no data is fetched or not present in the cache otherwise return the data fetched                 |
 |    error     |                                                 return the error occured during the request                                                  |
 |    reload    |                                       allow you to reload the data (it doesn't clear the actual data)                                        |
+
+### Abort signal
+
+Every `method` function receives an optional `AbortSignal` as its last argument. This signal is managed automatically by the `DataLoader` — you don't need to create it yourself.
+
+#### How it works
+
+- When a request starts, `DataLoader` creates a new `AbortController` and passes its `signal` to your `method`.
+- When the request is cancelled (e.g. component unmount, cache invalidation, or a new request supersedes an in-flight one), `DataLoader` calls `abortController.abort()`.
+- Aborted requests are **silently ignored** — the error is not propagated to `onError` and the status is not set to `isError`.
+
+#### Using the signal with `fetch`
+
+```js
+useDataLoader('user-profile', async signal => {
+  const response = await fetch('/api/user', { signal })
+  if (!response.ok) throw new Error('Failed to fetch user')
+  return response.json()
+})
+```
+
+When the request is cancelled, `fetch` will reject with an `AbortError`. The `DataLoader` catches this error and silently discards it — your `onError` handler will not be called.
+
+#### Using the signal with Axios
+
+Axios supports `AbortSignal` via the `signal` config option:
+
+```js
+useDataLoader('projects', async signal => {
+  const { data } = await axios.get('/api/projects', { signal })
+  return data
+})
+```
+
+#### Using the signal with `useInfiniteDataLoader`
+
+The `useInfiniteDataLoader` hook also passes the `AbortSignal` as the second argument to your `method`:
+
+```js
+useInfiniteDataLoader(
+  'paginated-projects',
+  async (params, signal) => {
+    const response = await fetch(`/api/projects?page=${params.page}`, { signal })
+    return response.json()
+  },
+  { pageParamKey: 'page' },
+)
+```
+
+#### When is the signal aborted?
+
+| Scenario | Signal aborted? |
+|----------|:--------------:|
+| Component unmounts | Yes |
+| `reload()` is called while a request is in-flight | Yes |
+| Cache is cleared via `clearData()` | Yes |
+| A new request supersedes an in-flight one (same key) | Yes |
+| Request completes normally | No (signal is stale) |
+| Request fails with a non-abort error | No (signal is stale) |
+
+> **Note:** The signal is created per-request. If your `method` ignores the signal, cancellation will still prevent the result from being cached or triggering state updates, but the underlying HTTP request will continue to completion.

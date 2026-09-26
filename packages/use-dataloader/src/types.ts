@@ -49,6 +49,12 @@ export type UseDataLoaderConfig<ResultType, ErrorType> = {
   needPolling?: NeedPollingType<ResultType>
 }
 
+export type DataLoaderMethodFn<ResultType> = (signal?: AbortSignal) => PromiseType<ResultType>
+export type DataLoaderMethodWithParamsFn<ResultType, ParamsType> = (
+  params: ParamsType,
+  signal?: AbortSignal,
+) => PromiseType<ResultType>
+
 export type UseDataLoaderResult<ResultType, ErrorType> = {
   /**
    * Return initialData if no data is fetched or not present in the cache otherwise return the data fetched
