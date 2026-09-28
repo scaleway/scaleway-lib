@@ -135,6 +135,6 @@ export default defineConfig({
     /**
      * @see https://oxc.rs/docs/guide/usage/linter/rules/import/unambiguous
      */
-    'import/unambiguous': 'error',
+    'import/unambiguous': 'off',
   },
 })

@@ -1,5 +1,15 @@
 # @scaleway/auth-scw
 
+## 1.2.0
+
+### Minor Changes
+
+- [#3908](https://github.com/scaleway/scaleway-lib/pull/3908) [`200b4ee`](https://github.com/scaleway/scaleway-lib/commit/200b4ee94ff1586bade536f2b3d1b1558ec7cb7a) Thanks [@philibea](https://github.com/philibea)! - remove sdk-iam peer-deps and use it as deps. range sdk-client
+
+### Patch Changes
+
+- [#3907](https://github.com/scaleway/scaleway-lib/pull/3907) [`5f1d15b`](https://github.com/scaleway/scaleway-lib/commit/5f1d15bd201f8f61946369450d29325e1aefd369) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@scaleway/sdk-iam` to `2.19.0`.
+
 ## 1.1.1
 
 ### Patch Changes

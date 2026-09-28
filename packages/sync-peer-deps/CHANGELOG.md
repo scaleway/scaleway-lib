@@ -1,5 +1,15 @@
 # Change Log
 
+## 1.1.1
+
+### Patch Changes
+
+- [#3901](https://github.com/scaleway/scaleway-lib/pull/3901) [`d343b8c`](https://github.com/scaleway/scaleway-lib/commit/d343b8c02d8ac7a4cf5074504e361436c866698c) Thanks [@philibea](https://github.com/philibea)! - fix(sync-peer-deps): harden isMain check and expand test coverage
+  
+  Use `fileURLToPath(import.meta.url)` instead of fragile string concatenation
+  to detect CLI entrypoint. The old `file://${process.argv[1]}` pattern broke
+  on paths with spaces or URL-encoded characters.
+
 ## 1.1.0
 
 ### Minor Changes

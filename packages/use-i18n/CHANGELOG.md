@@ -1,5 +1,22 @@
 # Change Log
 
+## 9.0.0
+
+### Major Changes
+
+- [`93c64c1`](https://github.com/scaleway/scaleway-lib/commit/93c64c12955cd70cfb5e6872cfa38d161862128a) Thanks [@chambo-e](https://github.com/chambo-e)! - Remove the exported `NumberFormatOptions` and `IntlListFormatOptions` types, replacing them with the native `Intl.NumberFormatOptions` and `Intl.ListFormatOptions`, and drop the `@formatjs/ecma402-abstract` dependency. Consumers importing the removed types from `@scaleway/use-i18n` must switch to the `Intl.*` equivalents.
+
+### Patch Changes
+
+- [#3898](https://github.com/scaleway/scaleway-lib/pull/3898) [`308f01c`](https://github.com/scaleway/scaleway-lib/commit/308f01ca175225ba277c44c886ea6f31b591035d) Thanks [@radhi-nasser-scaleway](https://github.com/radhi-nasser-scaleway)! - fix(use-i18n): sanitize locale when the browser reports a POSIX-style locale (e.g. `en-US@posix`)
+
+- [#3909](https://github.com/scaleway/scaleway-lib/pull/3909) [`751ebf6`](https://github.com/scaleway/scaleway-lib/commit/751ebf64407c11c22d79b9931cc3f462bf7c6aa2) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@formatjs/icu-messageformat-parser` to `3.5.20`.
+  Updated dependency `intl-messageformat` to `12.1.2`.
+
+- [#3894](https://github.com/scaleway/scaleway-lib/pull/3894) [`9540cae`](https://github.com/scaleway/scaleway-lib/commit/9540caedbb7d1ec9ad2c6e75132ca29347f2c836) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `intl-messageformat` to `12.1.1`.
+
+- [#3911](https://github.com/scaleway/scaleway-lib/pull/3911) [`8096be2`](https://github.com/scaleway/scaleway-lib/commit/8096be22586f6e0cf2268b62d3e52c54318f6079) Thanks [@chambo-e](https://github.com/chambo-e)! - Guard against an undefined `computedExponent` in `formatUnit` (e.g. `humanize: false` with no exponent) instead of crashing on the non-null assertion
+
 ## 8.3.4
 
 ### Patch Changes
