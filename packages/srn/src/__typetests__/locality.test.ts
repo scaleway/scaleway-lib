@@ -1,4 +1,5 @@
-import { describe, expectTypeOf, it } from 'vitest'
+import { describe, expect, expectTypeOf, it } from 'vitest'
+import { stringifySRN } from '../index'
 import type {
   Locality,
   LocalityName,
@@ -8,7 +9,6 @@ import type {
   SafeParseSuccess,
   SRN,
   SRNParseError,
-  stringifySRN,
 } from '../index'
 
 // A console-style narrower union of locality names. Every member must also be
@@ -41,8 +41,12 @@ describe('srn - locality name', () => {
 })
 
 describe('srn - locality', () => {
-  it('uses LocalityName for the name field', () => {
+  it('uses LocalityName for the name field by default', () => {
     expectTypeOf<Locality['name']>().toEqualTypeOf<LocalityName>()
+  })
+
+  it('narrows name via the L parameter', () => {
+    expectTypeOf<Locality<ConsoleLocalityName>['name']>().toEqualTypeOf<ConsoleLocalityName>()
   })
 })
 
@@ -82,17 +86,26 @@ describe('srn - generic resource identifier', () => {
       SRN<string, ConsoleResource>['resourceIdentifier']
     >().toEqualTypeOf<ResourceIdentifierSegment<ConsoleResource> | null>()
   })
+
+  it('narrows locality.name on the SRN via L', () => {
+    expectTypeOf<SRN<string, string, ConsoleLocalityName>['locality']['name']>().toEqualTypeOf<ConsoleLocalityName>()
+  })
+
+  it('defaults locality.name to LocalityName when L is omitted', () => {
+    expectTypeOf<SRN['locality']['name']>().toEqualTypeOf<LocalityName>()
+  })
 })
 
 describe('srn - stringifySRN accepts narrowed SRNs', () => {
   it('accepts the default broad SRN', () => {
-    expectTypeOf<typeof stringifySRN<string, string>>().parameters.toEqualTypeOf<[SRN]>()
+    expectTypeOf(stringifySRN).parameters.toEqualTypeOf<[SRN]>()
   })
 
-  it('accepts a fully narrowed SRN<ConsoleProduct, ConsoleResource>', () => {
-    expectTypeOf<typeof stringifySRN<ConsoleProduct, ConsoleResource>>().parameters.toEqualTypeOf<
-      [SRN<ConsoleProduct, ConsoleResource>]
-    >()
+  it('accepts a fully narrowed SRN<ConsoleProduct, ConsoleResource, ConsoleLocalityName>', () => {
+    // oxlint-disable-next-line typescript/no-unsafe-type-assertion -- typetest fixture: constructing a narrowed SRN without parsing
+    const narrowed = {} as SRN<ConsoleProduct, ConsoleResource, ConsoleLocalityName>
+    // If the narrowed SRN is accepted, this line compiles.
+    expect(stringifySRN(narrowed)).toBeDefined()
   })
 })
 
