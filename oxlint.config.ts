@@ -10,7 +10,6 @@ export default defineConfig({
       files: [
         'packages/scouter/**/*.{ts,tsx}',
         'packages/changesets-renovate/**/*.{ts,tsx}',
-        'packages/pnpm-auto-release/**/*.{ts,tsx}',
         'packages/use-i18n/**/*.{ts,tsx}',
         'packages/use-dataloader/**/*.{ts,tsx}',
         'packages/auth-scw/**/*.{ts,tsx}',
@@ -52,7 +51,6 @@ export default defineConfig({
       rules: {
         'eslint/no-console': 'off',
         'import/no-nodejs-modules': 'off',
-        'node/no-process-env': 'off',
       },
     },
   ],

@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { appendFileSync, realpathSync } from 'node:fs'
 import path from 'node:path'
+import { env } from 'node:process'
 import { parseArgs } from 'node:util'
 import { CHANGESET_MESSAGE, RELEASE_SUBJECT } from './constants.ts'
 import {
@@ -11,8 +12,6 @@ import {
   findWorkspaceRoot,
   listWorkspacePackages,
 } from './utils.ts'
-
-const { log: logger } = console
 
 type WorkspacePackage = ReturnType<typeof listWorkspacePackages>[number]
 
@@ -50,7 +49,7 @@ Environment variables for registry auth:
   GH_TOKEN               GitHub token for creating releases (required with --gh-release)
 `
 
-function parseReleaseArgs(): ReleaseOptions | null {
+const parseReleaseArgs = (): ReleaseOptions | null => {
   const { values } = parseArgs({
     args: process.argv.slice(2),
     options: {
@@ -65,11 +64,11 @@ function parseReleaseArgs(): ReleaseOptions | null {
     },
   })
   if (values.help) {
-    logger(HELP)
+    console.log(HELP)
     return null
   }
   if (values['gh-release']) {
-    const ghToken = process.env['GH_TOKEN'] ?? process.env['GITHUB_TOKEN']
+    const ghToken = env['GH_TOKEN'] ?? env['GITHUB_TOKEN']
     if (ghToken === undefined) {
       throw new Error('GH_TOKEN environment variable is required for creating GitHub releases')
     }
@@ -85,32 +84,32 @@ function parseReleaseArgs(): ReleaseOptions | null {
   }
 }
 
-function gatherAffectedPackages(root: string, dryRun: boolean): { affected: WorkspacePackage[]; range: string } {
+const gatherAffectedPackages = (root: string, dryRun: boolean): { affected: WorkspacePackage[]; range: string } => {
   const packages = listWorkspacePackages(root)
   const lastSha = exec(`git log --grep="^${RELEASE_SUBJECT}" -1 --format="%H"`, { cwd: root }) || null
   const range = lastSha ?? exec('git hash-object -t tree /dev/null', { cwd: root })
   const changedFiles = exec(`git diff --name-only ${range} -- .`, { cwd: root }).split('\n').filter(Boolean)
   const affected = packages.filter(pkg => !pkg.private && changedFiles.some(f => f.startsWith(`${pkg.relativePath}/`)))
-  logger(`[release] ${affected.length} packages to bump (dryRun=${dryRun})`)
+  console.log(`[release] ${affected.length} packages to bump (dryRun=${dryRun})`)
   for (const pkg of affected) {
-    logger(`  - ${pkg.name}: ${pkg.version}`)
+    console.log(`  - ${pkg.name}: ${pkg.version}`)
   }
   return { affected, range }
 }
 
-function writeNpmrcAuth(root: string, registry: string): void {
-  const user = process.env['NPM_REGISTRY_USER']
-  const passwd = process.env['NPM_REGISTRY_PASSWD']
+const writeNpmrcAuth = (root: string, registry: string): void => {
+  const user = env['NPM_REGISTRY_USER']
+  const passwd = env['NPM_REGISTRY_PASSWD']
   if (user === undefined || passwd === undefined) {
     return
   }
   const host = registry.replace(/^https?:\/\//v, '')
   const auth = Buffer.from(`${user}:${passwd}`).toString('base64')
   appendFileSync(path.join(root, '.npmrc'), `\n//${host}/:_auth=${auth}\n`)
-  logger(`[release] authenticated to ${host}`)
+  console.log(`[release] authenticated to ${host}`)
 }
 
-function publishPackages(root: string, options: ReleaseOptions): void {
+const publishPackages = (root: string, options: ReleaseOptions): void => {
   if (options.skipPublish) {
     return
   }
@@ -119,14 +118,14 @@ function publishPackages(root: string, options: ReleaseOptions): void {
   }
   const flag = options.registry !== undefined ? ` --registry ${options.registry}` : ''
   exec(`pnpm publish -r --no-git-checks --access public --provenance ${flag}`, { cwd: root, stdio: 'inherit' })
-  logger('[release] published')
+  console.log('[release] published')
 }
 
-function bumpAndPublish(
+const bumpAndPublish = (
   root: string,
   options: ReleaseOptions,
   { affected, range }: { affected: WorkspacePackage[]; range: string },
-): WorkspacePackage[] {
+): WorkspacePackage[] => {
   createChangesets({ root, range, packages: affected, byCommit: options.byCommit, defaultSummary: options.message })
   exec('pnpm version -r --no-git-checks --tag-version-prefix ""', { cwd: root, stdio: 'inherit' })
   exec('rm -rf .changeset/*', { cwd: root })
@@ -135,26 +134,26 @@ function bumpAndPublish(
   return updated
 }
 
-function pushRelease(root: string, skipPush: boolean, newTags: string[]): void {
+const pushRelease = (root: string, skipPush: boolean, newTags: string[]): void => {
   if (skipPush) {
     return
   }
   exec('git push origin HEAD --no-verify', { cwd: root })
   for (const tag of newTags) {
     if (exec(`git ls-remote --tags origin "refs/tags/${tag}"`, { cwd: root }).length > 0) {
-      logger(`[release] tag already on remote, skipping push: ${tag}`)
+      console.log(`[release] tag already on remote, skipping push: ${tag}`)
       continue
     }
     exec(`git push origin "refs/tags/${tag}" --no-verify`, { cwd: root })
   }
-  logger('[release] pushed')
+  console.log('[release] pushed')
 }
 
-function commitTagAndPush(
+const commitTagAndPush = (
   root: string,
   options: ReleaseOptions,
   { affected, updated }: { affected: WorkspacePackage[]; updated: WorkspacePackage[] },
-): void {
+): void => {
   exec('git add -A', { cwd: root })
   exec('git commit -m "chore(release): publish" --no-verify', { cwd: root })
   exec('git fetch origin main', { cwd: root })
@@ -162,12 +161,12 @@ function commitTagAndPush(
   const newTags = createTags({ root, affectedPackages: affected, updatedPackages: updated })
   if (options.ghRelease) {
     createGithubReleases({ root, affectedPackages: affected, updatedPackages: updated })
-    logger('[release] github releases created')
+    console.log('[release] github releases created')
   }
   pushRelease(root, options.skipPush, newTags)
 }
 
-function main() {
+const main = (): void => {
   const options = parseReleaseArgs()
   if (!options) {
     return
@@ -181,7 +180,7 @@ function main() {
 
   const updated = bumpAndPublish(root, options, { affected, range })
   commitTagAndPush(root, options, { affected, updated })
-  logger('[release] done.')
+  console.log('[release] done.')
 }
 
 if (process.argv[1] !== undefined && realpathSync(process.argv[1]) === realpathSync(import.meta.filename)) {

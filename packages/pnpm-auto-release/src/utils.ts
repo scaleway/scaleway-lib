@@ -1,6 +1,7 @@
 import { execFileSync, execSync } from 'node:child_process'
 import { readFileSync } from 'node:fs'
 import path from 'node:path'
+import { env } from 'node:process'
 
 type Package = {
   name: string
@@ -9,8 +10,6 @@ type Package = {
   private?: boolean
   relativePath?: string
 }
-
-const { log: logger } = console
 
 export const findWorkspaceRoot = (start: string): string => {
   let dir = start
@@ -70,7 +69,7 @@ export const listWorkspacePackages = (root: string) => {
     }))
 }
 
-function tagExists(root: string, tag: string): boolean {
+const tagExists = (root: string, tag: string): boolean => {
   try {
     exec(`git rev-parse -q --verify refs/tags/${tag}`, { cwd: root })
     return true
@@ -81,19 +80,19 @@ function tagExists(root: string, tag: string): boolean {
   return remoteExists
 }
 
-function createTagForPackage(
+const createTagForPackage = (
   root: string,
   pkg: Package,
   { newPkg, newTags }: { newPkg: Package; newTags: string[] },
-): void {
+): void => {
   const tag = `${pkg.name}@${newPkg.version}`
   if (tagExists(root, tag)) {
-    logger(`[release] tag already exists, skipping: ${tag}`)
+    console.log(`[release] tag already exists, skipping: ${tag}`)
     return
   }
   exec(`git tag "${tag}" -m "${tag}"`, { cwd: root })
   newTags.push(tag)
-  logger(`[release] tag: ${tag}`)
+  console.log(`[release] tag: ${tag}`)
 }
 
 export const createTags = ({
@@ -124,18 +123,18 @@ const getRepoFromRemote = (root: string): string => {
   return match[1]
 }
 
-function createReleaseForPackage(root: string, pkg: Package, newPkg: Package): void {
+const createReleaseForPackage = (root: string, pkg: Package, newPkg: Package): void => {
   const tag = `${pkg.name}@${newPkg.version}`
   const releaseNotes = `Release ${tag}`
   try {
     exec(`gh release view ${tag} --repo ${getRepoFromRemote(root)} >/dev/null 2>&1`, { cwd: root })
-    logger(`[release] github release already exists: ${tag}`)
+    console.log(`[release] github release already exists: ${tag}`)
   } catch {
     exec(
       `echo "${releaseNotes}" | gh release create ${tag} --title ${tag} --notes-file - --repo ${getRepoFromRemote(root)}`,
       { cwd: root },
     )
-    logger(`[release] github release created: ${tag}`)
+    console.log(`[release] github release created: ${tag}`)
   }
 }
 
@@ -148,7 +147,7 @@ export const createGithubReleases = ({
   affectedPackages: Package[]
   updatedPackages: Package[]
 }) => {
-  const ghToken = process.env['GH_TOKEN'] ?? process.env['GITHUB_TOKEN']
+  const ghToken = env['GH_TOKEN'] ?? env['GITHUB_TOKEN']
   if (ghToken === undefined) {
     throw new Error('GH_TOKEN environment variable is required for creating GitHub releases')
   }
@@ -166,14 +165,14 @@ export const createChangesetForPackages = (root: string, packages: Package[], su
   execFile('pnpm', ['change', '--bump', 'minor', '--summary', summary, ...names], {
     cwd: root,
   })
-  logger(`changeset ${summary} ${names.join(' ')}`)
+  console.log(`changeset ${summary} ${names.join(' ')}`)
 }
 
-function processCommit(
+const processCommit = (
   root: string,
   line: string,
   { packages, defaultSummary }: { packages: Package[]; defaultSummary: string },
-): void {
+): void => {
   const [sha, subject] = line.split('\u001F')
   if (sha === undefined) {
     return
@@ -186,7 +185,7 @@ function processCommit(
   )
   if (affected.length > 0) {
     createChangesetForPackages(root, affected, subject ?? defaultSummary)
-    logger(`[release] changeset (${sha.slice(0, 7)} -> ${affected.length} pkg)`)
+    console.log(`[release] changeset (${sha.slice(0, 7)} -> ${affected.length} pkg)`)
   }
 }
 
@@ -205,7 +204,7 @@ export const createChangesets = ({
 }) => {
   if (!byCommit) {
     createChangesetForPackages(root, packages, defaultSummary)
-    logger(`[release] changeset (${packages.length} pkg)`)
+    console.log(`[release] changeset (${packages.length} pkg)`)
     return
   }
 

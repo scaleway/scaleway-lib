@@ -2,10 +2,7 @@ import { execFileSync } from 'node:child_process'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { createChangesetForPackages } from '../utils.js'
 
-// @ts-expect-error vi.fn return type is narrower than execFileSync overloads
-vi.mock(import('node:child_process'), () => ({
-  execFileSync: vi.fn<() => string>(),
-}))
+vi.mock(import('node:child_process'))
 
 const mockedExecFileSync = vi.mocked(execFileSync)
 
@@ -16,7 +13,7 @@ const basePackage = {
   relativePath: 'packages/sdk-instance',
 }
 
-function getLastCallArgs(): string[] {
+const getLastCallArgs = (): string[] => {
   const lastCall = mockedExecFileSync.mock.calls.at(-1)
   expect(lastCall).toBeDefined()
   const args = lastCall?.[1]
@@ -25,7 +22,7 @@ function getLastCallArgs(): string[] {
   return (args as readonly unknown[]).map(v => (typeof v === 'string' ? v : String(v)))
 }
 
-function getSummaryFromLastCall(): string {
+const getSummaryFromLastCall = (): string => {
   const args = getLastCallArgs()
   const idx = args.indexOf('--summary')
   expect(idx).not.toBe(-1)
@@ -37,6 +34,7 @@ function getSummaryFromLastCall(): string {
 describe('pnpm-auto-release utils', () => {
   beforeEach(() => {
     mockedExecFileSync.mockClear()
+    mockedExecFileSync.mockReturnValue('')
   })
 
   afterEach(() => {
