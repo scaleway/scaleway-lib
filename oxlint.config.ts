@@ -22,10 +22,8 @@ export default defineConfig({
       ],
       rules: {
         'react/exhaustive-effect-dependencies': 'warn',
-        'react/globals': 'warn',
         'react/hook-use-state': ['warn', { allowDestructuredState: true }],
         'react/immutability': 'warn',
-        'react/no-deriving-state-in-effects': 'warn',
         'react/only-export-components': 'warn',
         'react/purity': 'warn',
         'react/refs': 'warn',

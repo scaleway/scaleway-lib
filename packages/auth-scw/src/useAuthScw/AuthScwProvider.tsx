@@ -121,7 +121,7 @@ export const AuthScwProvider = ({
         if (storedJWT?.jwt) {
           const { renewToken, token, jwt: currentJWT } = storedJWT
 
-          if (currentJWT.expiresAt && !isExpired(new Date(currentJWT.expiresAt))) {
+          if (currentJWT.expiresAt !== undefined && !isExpired(new Date(currentJWT.expiresAt))) {
             return {
               jwt: currentJWT,
               renewToken,

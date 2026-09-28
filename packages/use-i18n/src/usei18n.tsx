@@ -217,7 +217,7 @@ const I18nContextProvider = <LocalSupportedType extends string>({
         .then()
         .catch(() => null)
     }
-  }, [currentLocale, dateFnsLocale, setDateFns, setDateFnsLocale])
+  }, [currentLocale, dateFnsLocale, setDateFns])
 
   const loadTranslations = useCallback(
     async (namespace: string, load: LoadTranslationsFn<LocalSupportedType> = defaultLoad) => {

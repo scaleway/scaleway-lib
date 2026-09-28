@@ -51,6 +51,7 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
       Boolean(
         enabled &&
         (!(request.dataUpdatedAt && computedDatalifetime) ||
+          // oxlint-disable-next-line react/purity
           (request.dataUpdatedAt && computedDatalifetime && request.dataUpdatedAt + computedDatalifetime < Date.now())),
       ),
     [enabled, request.dataUpdatedAt, computedDatalifetime],

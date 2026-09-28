@@ -94,6 +94,7 @@ export const useBlockNavigation = (options: UseBlockNavigationOptions = {}): Use
     })
     unblockRef.current = unblock
     return unblock
+    // oxlint-disable-next-line react/exhaustive-effect-dependencies
   }, [shouldBlock, history, enabled, effectCounter])
 
   const continueNavigation = useCallback(() => {

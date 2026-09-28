@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState, useSyncExternalStore } from 'react'
+import { useCallback, useMemo, useState, useSyncExternalStore } from 'react'
 
 declare global {
   // oxlint-disable-next-line typescript/consistent-type-definitions
@@ -40,8 +40,8 @@ const useStorage = <T>(
     [options?.kind],
   )
 
-  const [localValue, setLocaleValue] = useState<string | null>(() =>
-    options?.initialValue ? JSON.stringify(options.initialValue) : null,
+  const [localValue, setLocalValue] = useState<string | null>(() =>
+    options?.initialValue !== undefined ? JSON.stringify(options.initialValue) : null,
   )
 
   const value = useSyncExternalStore(
@@ -51,22 +51,18 @@ const useStorage = <T>(
     () => localValue,
   )
 
-  useEffect(() => {
-    setLocaleValue(value)
-  }, [value])
-
   const setValue = useCallback(
     (val: T | undefined) => {
       if (val !== undefined) {
         if (canUseDOM) {
           storage.setItem(key, JSON.stringify(val))
         }
-        setLocaleValue(JSON.stringify(val))
+        setLocalValue(JSON.stringify(val))
       } else {
         if (canUseDOM) {
           storage.removeItem(key)
         }
-        setLocaleValue(null)
+        setLocalValue(null)
       }
 
       if (canUseDOM) {
@@ -78,7 +74,7 @@ const useStorage = <T>(
   )
 
   const parsedValue = useMemo(() => {
-    if (value) {
+    if (value !== null) {
       try {
         return JSON.parse(value) as T
       } catch {

@@ -20,11 +20,13 @@ export const createLocalStorageBackend = (): StorageBackend => ({
       const keysToRemove: string[] = []
       for (let i = 0; i < globalThis.localStorage.length; i++) {
         const key = globalThis.localStorage.key(i)
-        if (key?.startsWith(prefix)) {
+        if (key?.startsWith(prefix) === true) {
           keysToRemove.push(key)
         }
       }
-      keysToRemove.forEach(key => globalThis.localStorage.removeItem(key))
+      keysToRemove.forEach(key => {
+        globalThis.localStorage.removeItem(key)
+      })
     } catch {
       // ignore
     }

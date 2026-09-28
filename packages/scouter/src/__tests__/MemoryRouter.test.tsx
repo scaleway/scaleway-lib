@@ -1,7 +1,7 @@
-// oxlint-disable vitest/require-top-level-describe vitest/no-conditional-in-test
-import { render, screen } from '@testing-library/react'
+// oxlint-disable vitest/require-top-level-describe
+import { render, renderHook, screen } from '@testing-library/react'
 import { assert, expect, test } from 'vitest'
-import type { History, Location, Match } from '../index'
+import type { Location, Match } from '../index'
 import { MemoryRouter, Route, useHistory } from '../index'
 
 test('renders children', () => {
@@ -32,6 +32,7 @@ test('creates history with initialEntries', () => {
     </MemoryRouter>,
   )
 
+  assert.exists(location.pathname)
   expect(location.pathname).toBe('/initial-path')
 })
 
@@ -52,6 +53,7 @@ test('creates history with initialIndex', () => {
     </MemoryRouter>,
   )
 
+  assert.exists(location.pathname)
   expect(location.pathname).toBe('/second')
 })
 
@@ -70,38 +72,19 @@ test('provides default initialEntries when not specified', () => {
     </MemoryRouter>,
   )
 
+  assert.exists(location.pathname)
   expect(location.pathname).toBe('/')
 })
 
 test('history is stable across re-renders', () => {
-  let firstHistory: History | undefined = undefined
-  let secondHistory: History | undefined = undefined
+  const { result, rerender } = renderHook(() => useHistory(), {
+    wrapper: MemoryRouter,
+  })
 
-  const TestComponent = () => {
-    const history = useHistory()
-    if (!firstHistory) {
-      firstHistory = history
-    } else {
-      secondHistory = history
-    }
-    return null
-  }
+  const firstHistory = result.current
+  rerender()
 
-  const page = render(
-    <MemoryRouter>
-      <TestComponent />
-    </MemoryRouter>,
-  )
-
-  page.rerender(
-    <MemoryRouter>
-      <TestComponent />
-    </MemoryRouter>,
-  )
-
-  assert.exists(firstHistory)
-  assert.exists(secondHistory)
-  expect(firstHistory).toBe(secondHistory)
+  expect(result.current).toBe(firstHistory)
 })
 
 test('provides root route context', () => {
@@ -118,6 +101,6 @@ test('provides root route context', () => {
     </MemoryRouter>,
   )
 
-  expect(match).toBeDefined()
+  assert.exists(match.params)
   expect(match.params).toStrictEqual({})
 })

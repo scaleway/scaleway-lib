@@ -44,7 +44,7 @@ class DataLoader<ResultType, ErrorType> {
   public constructor(args: DataLoaderConstructorArgs<ResultType>) {
     this.key = args.key
     this.method = args.method
-    if (args.enabled) {
+    if (args.enabled === true) {
       this.status = StatusEnum.LOADING
     }
     this.data = DataLoader.cachedData[this.key] as ResultType

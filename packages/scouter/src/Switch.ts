@@ -58,6 +58,6 @@ export const Switch = ({ children }: SwitchProps) => {
     }
   })
 
-  // oxlint-disable-next-line typescript/no-explicit-any, typescript/no-unsafe-type-assertion typescript/no-unsafe-argument react/no-clone-element typescript/no-unnecessary-condition
+  // oxlint-disable-next-line typescript/no-explicit-any, typescript/no-unsafe-type-assertion typescript/no-unsafe-argument react/no-clone-element typescript/no-unnecessary-condition typescript/strict-boolean-expressions
   return match ? cloneElement(element as any, { computedMatch: match }) : null
 }
