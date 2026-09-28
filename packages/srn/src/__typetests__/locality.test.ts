@@ -1,0 +1,87 @@
+import { describe, expectTypeOf, it } from 'vitest'
+import type { Locality, LocalityName, ResourceIdentifierSegment, SRN, stringifySRN } from '../index'
+
+// A console-style narrower union of locality names. Every member must also be
+// a member of LocalityName, so values of this type are assignable to it.
+type ConsoleLocalityName = 'fr-par-1' | 'fr-par-2' | 'fr-par'
+
+// A console-style narrower union of products the console handles. The library
+// does not enumerate Scaleway's product catalog (large, fast-moving, partly
+// internal); the console carries its own list and substitutes it via the
+// generic parameter.
+type ConsoleProduct = 'block' | 'iam' | 'k8s'
+
+// A console-style narrower union of resource-type keys for the products above.
+// Covers every key that can appear in a single SRN's path, since segments are
+// heterogeneous (e.g. `instances/111/disks/222` mixes `instances` and `disks`).
+type ConsoleResource = 'snapshots' | 'disks' | 'users' | 'clusters'
+
+describe('srn - locality name', () => {
+  it('accepts a narrower console union', () => {
+    expectTypeOf<ConsoleLocalityName>().toExtend<LocalityName>()
+  })
+
+  it('does not accept an arbitrary string', () => {
+    expectTypeOf<string>().not.toExtend<LocalityName>()
+  })
+
+  it('includes the empty string used for global localities', () => {
+    expectTypeOf<''>().toExtend<LocalityName>()
+  })
+})
+
+describe('srn - locality', () => {
+  it('uses LocalityName for the name field', () => {
+    expectTypeOf<Locality['name']>().toEqualTypeOf<LocalityName>()
+  })
+})
+
+describe('srn - generic product', () => {
+  it('defaults product to string', () => {
+    expectTypeOf<SRN['product']>().toEqualTypeOf<string>()
+  })
+
+  it('narrows product via the P parameter', () => {
+    expectTypeOf<SRN<ConsoleProduct>['product']>().toEqualTypeOf<ConsoleProduct>()
+  })
+})
+
+describe('srn - generic resource identifier', () => {
+  it('defaults segment name to string', () => {
+    expectTypeOf<ResourceIdentifierSegment['name']>().toEqualTypeOf<string>()
+  })
+
+  it('narrows segment name via the R parameter', () => {
+    expectTypeOf<ResourceIdentifierSegment<ConsoleResource>['name']>().toEqualTypeOf<ConsoleResource>()
+  })
+
+  it('propagates R through the parent link', () => {
+    expectTypeOf<
+      ResourceIdentifierSegment<ConsoleResource>['parent']
+    >().toEqualTypeOf<ResourceIdentifierSegment<ConsoleResource> | null>()
+  })
+
+  it('propagates R through root()', () => {
+    expectTypeOf<ResourceIdentifierSegment<ConsoleResource>['root']>().returns.toEqualTypeOf<
+      ResourceIdentifierSegment<ConsoleResource>
+    >()
+  })
+
+  it('narrows resourceIdentifier on the SRN via R', () => {
+    expectTypeOf<
+      SRN<string, ConsoleResource>['resourceIdentifier']
+    >().toEqualTypeOf<ResourceIdentifierSegment<ConsoleResource> | null>()
+  })
+})
+
+describe('srn - stringifySRN accepts narrowed SRNs', () => {
+  it('accepts the default broad SRN', () => {
+    expectTypeOf<typeof stringifySRN<string, string>>().parameters.toEqualTypeOf<[SRN]>()
+  })
+
+  it('accepts a fully narrowed SRN<ConsoleProduct, ConsoleResource>', () => {
+    expectTypeOf<typeof stringifySRN<ConsoleProduct, ConsoleResource>>().parameters.toEqualTypeOf<
+      [SRN<ConsoleProduct, ConsoleResource>]
+    >()
+  })
+})
