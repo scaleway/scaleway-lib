@@ -1,5 +1,5 @@
 import { describe, expect, expectTypeOf, it } from 'vitest'
-import { stringifySRN } from '../index'
+import { parseSRN, safeParseSRN, stringifySRN } from '../index'
 import type {
   Locality,
   LocalityName,
@@ -128,5 +128,36 @@ describe('srn - safeParseSRN result', () => {
 
   it('narrows to error via Extract<_, { success: false }>', () => {
     expectTypeOf<Extract<SafeParseResult, { success: false }>['error']>().toEqualTypeOf<SRNParseError>()
+  })
+})
+
+describe('srn - parseSRN narrows at the call site', () => {
+  it('returns the broad SRN by default', () => {
+    expectTypeOf(parseSRN).returns.toEqualTypeOf<SRN>()
+  })
+
+  it('forwards P, R, L to SRN', () => {
+    expectTypeOf(parseSRN<ConsoleProduct, ConsoleResource, ConsoleLocalityName>).returns.toEqualTypeOf<
+      SRN<ConsoleProduct, ConsoleResource, ConsoleLocalityName>
+    >()
+  })
+})
+
+describe('srn - safeParseSRN narrows at the call site', () => {
+  it('returns the broad SafeParseResult by default', () => {
+    expectTypeOf(safeParseSRN).returns.toEqualTypeOf<SafeParseResult>()
+  })
+
+  it('forwards P, R, L to the success branch data', () => {
+    expectTypeOf(safeParseSRN<ConsoleProduct, ConsoleResource, ConsoleLocalityName>).returns.toEqualTypeOf<
+      SafeParseResult<ConsoleProduct, ConsoleResource, ConsoleLocalityName>
+    >()
+  })
+
+  it('narrows data on the success branch when called with type args', () => {
+    type Narrowed = SafeParseResult<ConsoleProduct, ConsoleResource, ConsoleLocalityName>
+    expectTypeOf<Extract<Narrowed, { success: true }>['data']>().toEqualTypeOf<
+      SRN<ConsoleProduct, ConsoleResource, ConsoleLocalityName>
+    >()
   })
 })

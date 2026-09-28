@@ -185,10 +185,16 @@ export class SRNParseError extends Error {
  * Successful result of {@link safeParseSRN}. Carries the parsed {@link SRN}
  * as `data`, mirroring zod's `safeParse` return shape so it destructures the
  * same way in render code.
+ *
+ * @template P, R, L — forwarded to {@link SRN}; see {@link parseSRN}.
  */
-export type SafeParseSuccess = {
+export type SafeParseSuccess<
+  P extends string = string,
+  R extends string = string,
+  L extends LocalityName = LocalityName,
+> = {
   readonly success: true
-  readonly data: SRN
+  readonly data: SRN<P, R, L>
 }
 
 /**
@@ -211,8 +217,14 @@ export type SafeParseError = {
  *   return <Detail srn={result.data} />
  * }
  * return <ErrorView error={result.error} />
+ *
+ * @template P, R, L — forwarded to {@link SRN}; see {@link parseSRN}.
  */
-export type SafeParseResult = SafeParseSuccess | SafeParseError
+export type SafeParseResult<
+  P extends string = string,
+  R extends string = string,
+  L extends LocalityName = LocalityName,
+> = SafeParseSuccess<P, R, L> | SafeParseError
 
 /**
  * Builds the locality prefix string for a given locality type and name.
@@ -290,6 +302,15 @@ export const stringifySRN = <P extends string, R extends string, L extends Local
  * @throws {SRNParseError} if the input does not match the SRN format or
  *   the platform domain is invalid.
  *
+ * @template P — the product-name union a consumer wants to narrow `product`
+ *   to. Defaults to `string`. The parser cannot verify the union at runtime;
+ *   passing a narrower union is an assertion by the caller that the input
+ *   will only carry those products.
+ * @template R — the resource-type-key union for `resourceIdentifier` segment
+ *   names. Defaults to `string`; same caveat as `P`.
+ * @template L — the locality-name union for `locality.name`. Defaults to
+ *   {@link LocalityName}. Same caveat as `P`.
+ *
  * @example
  * const srn = parseSRN('srn://block.scw.eu/zones/it-mil-1/snapshots/22222222')
  * // srn.product             // 'block'
@@ -299,8 +320,15 @@ export const stringifySRN = <P extends string, R extends string, L extends Local
  * // srn.resourceIdentifier  // { name: 'snapshots', value: '22222222', parent: null, ... }
  * // srn.singletonSegment    // ''
  * // srn.toString()          // 'srn://block.scw.eu/zones/it-mil-1/snapshots/22222222'
+ *
+ * @example Narrowing at the parse boundary
+ * const srn = parseSRN<'block', 'snapshots', 'it-mil-1'>(input)
+ * // srn.product: 'block', srn.resourceIdentifier?.name: 'snapshots',
+ * // srn.locality.name: 'it-mil-1'
  */
-export const parseSRN = (input: string): SRN => {
+export const parseSRN = <P extends string = string, R extends string = string, L extends LocalityName = LocalityName>(
+  input: string,
+): SRN<P, R, L> => {
   const m = SRN_RE.exec(input)
   const groups = m?.groups
   if (!groups) {
@@ -333,7 +361,7 @@ export const parseSRN = (input: string): SRN => {
   const resourcePath = loc !== undefined ? path.slice(lm?.[0].length ?? 0) : path.replace(/^\/\//v, '')
 
   const segments = resourcePath.split('/')
-  let resourceIdentifier: ResourceIdentifierSegment | null = null
+  let resourceIdentifier: ResourceIdentifierSegment<R> | null = null
   let singletonSegment = ''
 
   for (let i = 0; i < segments.length; i += 2) {
@@ -346,16 +374,18 @@ export const parseSRN = (input: string): SRN => {
       singletonSegment = key
       break
     }
-    resourceIdentifier = makeSegment<string>(key, value, resourceIdentifier)
+    // oxlint-disable-next-line typescript/no-unsafe-type-assertion -- parser: the caller asserts R via the generic; runtime values come from arbitrary input
+    resourceIdentifier = makeSegment<R>(key as R, value, resourceIdentifier)
   }
 
-  // Parsed from arbitrary SRN input; cast to LocalityName. Unknown future
-  // localities parse at runtime but are not representable in the union.
+  // Parsed from arbitrary SRN input; cast to L. The caller asserts L via the
+  // generic; unknown future localities parse at runtime but may not be in L.
   // oxlint-disable-next-line typescript/no-unsafe-type-assertion -- intentional: see comment above
-  const locality: Locality = { name: locName as LocalityName, type: locType }
+  const locality: Locality<L> = { name: locName as L, type: locType }
 
   return {
-    product,
+    // oxlint-disable-next-line typescript/no-unsafe-type-assertion -- parser: the caller asserts P via the generic
+    product: product as P,
     platformDomain: platform,
     locality,
     resourcePath,
@@ -374,6 +404,10 @@ export const parseSRN = (input: string): SRN => {
  * Useful in React render code where try/catch is awkward (no conditional
  * hooks, no throwing in `useMemo`). Narrow on `result.success`:
  *
+ * @template P, R, L — forwarded to {@link parseSRN}; the caller asserts the
+ *   input will only carry those products / resource keys / localities. The
+ *   returned `data` on the success branch is `SRN<P, R, L>`.
+ *
  * @example
  * const result = safeParseSRN(input)
  * if (result.success) {
@@ -382,11 +416,24 @@ export const parseSRN = (input: string): SRN => {
  *   console.error(result.error.message)
  * }
  *
+ * @example Narrowing at the parse boundary
+ * const result = safeParseSRN<'block', 'snapshots', 'it-mil-1'>(input)
+ * if (result.success) {
+ *   // result.data.product: 'block'
+ *   // result.data.locality.name: 'it-mil-1'
+ * }
+ *
  * @see parseSRN for the throwing variant.
  */
-export const safeParseSRN = (input: string): SafeParseResult => {
+export const safeParseSRN = <
+  P extends string = string,
+  R extends string = string,
+  L extends LocalityName = LocalityName,
+>(
+  input: string,
+): SafeParseResult<P, R, L> => {
   try {
-    return { success: true, data: parseSRN(input) }
+    return { success: true, data: parseSRN<P, R, L>(input) }
   } catch (error) {
     // Never throw — that's the whole point of safeParse. SRNParseError passes
     // through; any unexpected error is wrapped so the error branch always
