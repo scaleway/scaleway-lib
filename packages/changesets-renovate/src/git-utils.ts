@@ -19,8 +19,7 @@ export async function loadCatalogFromGit(
       return {}
     }
 
-    const git = simpleGit()
-    const content = await git.show([`${revision}:${filePath}`])
+    const content = await simpleGit().show([`${revision}:${filePath}`])
     const rawYaml: unknown = parse(content)
 
     if (!isPnpmWorkspaceYaml(rawYaml)) {
