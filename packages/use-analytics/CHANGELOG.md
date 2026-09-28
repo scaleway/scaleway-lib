@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.0.17
+
+### Patch Changes
+
+- [#3928](https://github.com/scaleway/scaleway-lib/pull/3928) [`d3d3dfa`](https://github.com/scaleway/scaleway-lib/commit/d3d3dfaae45ba7e4cc9783e3e8d63e38a8e443ca) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@rudderstack/analytics-js` to `3.34.2`.
+
 ## 2.0.16
 
 ### Patch Changes

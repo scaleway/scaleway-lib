@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0
+
+### Minor Changes
+
+- [#3934](https://github.com/scaleway/scaleway-lib/pull/3934) [`1b8c7a6`](https://github.com/scaleway/scaleway-lib/commit/1b8c7a697efe3847c5b81befd958fce70d53150d) Thanks [@radhi-nasser-scaleway](https://github.com/radhi-nasser-scaleway)! - feat(regex): add alphanumPlusDashUnderscore
+
 ## 6.1.1
 
 ### Patch Changes
