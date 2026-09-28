@@ -21,6 +21,7 @@ type ReleaseOptions = {
   skipPush: boolean
   byCommit: boolean
   ghRelease: boolean
+  provenance: boolean
   registry?: string
   message: string
 }
@@ -41,6 +42,7 @@ Options:
       --skip-push        Don't push the release commit and tags
       --by-commit        Create one changeset per commit (default: one changeset for all affected packages)
       --gh-release       Create GitHub releases for the published packages
+      --no-provenance    Skip --provenance flag when publishing
   -h, --help             Show this help
 
 Environment variables for registry auth:
@@ -60,6 +62,7 @@ const parseReleaseArgs = (): ReleaseOptions | null => {
       'skip-push': { type: 'boolean', default: false },
       'by-commit': { type: 'boolean', default: false },
       'gh-release': { type: 'boolean', default: false },
+      'no-provenance': { type: 'boolean', default: false },
       help: { type: 'boolean', short: 'h', default: false },
     },
   })
@@ -79,6 +82,7 @@ const parseReleaseArgs = (): ReleaseOptions | null => {
     skipPush: values['skip-push'],
     byCommit: values['by-commit'],
     ghRelease: values['gh-release'],
+    provenance: !values['no-provenance'],
     registry: values.registry,
     message: values.message,
   }
@@ -117,7 +121,8 @@ const publishPackages = (root: string, options: ReleaseOptions): void => {
     writeNpmrcAuth(root, options.registry)
   }
   const flag = options.registry !== undefined ? ` --registry ${options.registry}` : ''
-  exec(`pnpm publish -r --no-git-checks --access public --provenance ${flag}`, { cwd: root, stdio: 'inherit' })
+  const provenanceFlag = options.provenance ? ' --provenance' : ''
+  exec(`pnpm publish -r --no-git-checks --access public${provenanceFlag}${flag}`, { cwd: root, stdio: 'inherit' })
   console.log('[release] published')
 }
 
