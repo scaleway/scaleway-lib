@@ -172,6 +172,39 @@ export class SRNParseError extends Error {
 }
 
 /**
+ * Successful result of {@link safeParseSRN}. Carries the parsed {@link SRN}
+ * as `data`, mirroring zod's `safeParse` return shape so it destructures the
+ * same way in render code.
+ */
+export type SafeParseSuccess = {
+  readonly success: true
+  readonly data: SRN
+}
+
+/**
+ * Failed result of {@link safeParseSRN}. Carries the {@link SRNParseError}
+ * as `error`, mirroring zod's `safeParse` return shape.
+ */
+export type SafeParseError = {
+  readonly success: false
+  readonly error: SRNParseError
+}
+
+/**
+ * The discriminated union returned by {@link safeParseSRN}.
+ *
+ * Narrow on `success` in render code without a try/catch:
+ *
+ * @example
+ * const result = safeParseSRN(maybeSrn)
+ * if (result.success) {
+ *   return <Detail srn={result.data} />
+ * }
+ * return <ErrorView error={result.error} />
+ */
+export type SafeParseResult = SafeParseSuccess | SafeParseError
+
+/**
  * Builds the locality prefix string for a given locality type and name.
  *
  * - `zone`   → `zones/<name>`
@@ -321,5 +354,34 @@ export const parseSRN = (input: string): SRN => {
     toString(): string {
       return stringifySRN(this)
     },
+  }
+}
+
+/**
+ * Parses an SRN string without throwing, returning a zod-style discriminated
+ * union instead.
+ *
+ * Useful in React render code where try/catch is awkward (no conditional
+ * hooks, no throwing in `useMemo`). Narrow on `result.success`:
+ *
+ * @example
+ * const result = safeParseSRN(input)
+ * if (result.success) {
+ *   console.log(result.data.locality.name)
+ * } else {
+ *   console.error(result.error.message)
+ * }
+ *
+ * @see parseSRN for the throwing variant.
+ */
+export const safeParseSRN = (input: string): SafeParseResult => {
+  try {
+    return { success: true, data: parseSRN(input) }
+  } catch (error) {
+    if (error instanceof SRNParseError) {
+      return { success: false, error }
+    }
+    // Re-throw unknown errors; only SRNParseError is part of the API contract.
+    throw error
   }
 }

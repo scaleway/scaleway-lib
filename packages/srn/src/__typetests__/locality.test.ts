@@ -1,5 +1,15 @@
 import { describe, expectTypeOf, it } from 'vitest'
-import type { Locality, LocalityName, ResourceIdentifierSegment, SRN, stringifySRN } from '../index'
+import type {
+  Locality,
+  LocalityName,
+  ResourceIdentifierSegment,
+  SafeParseError,
+  SafeParseResult,
+  SafeParseSuccess,
+  SRN,
+  SRNParseError,
+  stringifySRN,
+} from '../index'
 
 // A console-style narrower union of locality names. Every member must also be
 // a member of LocalityName, so values of this type are assignable to it.
@@ -83,5 +93,27 @@ describe('srn - stringifySRN accepts narrowed SRNs', () => {
     expectTypeOf<typeof stringifySRN<ConsoleProduct, ConsoleResource>>().parameters.toEqualTypeOf<
       [SRN<ConsoleProduct, ConsoleResource>]
     >()
+  })
+})
+
+describe('srn - safeParseSRN result', () => {
+  it('is a discriminated union on success', () => {
+    expectTypeOf<SafeParseResult>().toExtend<SafeParseSuccess | SafeParseError>()
+  })
+
+  it('carries data: SRN on the success branch', () => {
+    expectTypeOf<SafeParseSuccess['data']>().toEqualTypeOf<SRN>()
+  })
+
+  it('carries error: SRNParseError on the error branch', () => {
+    expectTypeOf<SafeParseError['error']>().toEqualTypeOf<SRNParseError>()
+  })
+
+  it('narrows to data via Extract<_, { success: true }>', () => {
+    expectTypeOf<Extract<SafeParseResult, { success: true }>['data']>().toEqualTypeOf<SRN>()
+  })
+
+  it('narrows to error via Extract<_, { success: false }>', () => {
+    expectTypeOf<Extract<SafeParseResult, { success: false }>['error']>().toEqualTypeOf<SRNParseError>()
   })
 })
