@@ -40,6 +40,7 @@ export default defineConfig({
       // node only packages
       files: [
         'packages/changesets-renovate/**',
+        'packages/pnpm-auto-release/**',
         'packages/sync-peer-deps/**',
         'packages/utils/**',
         'packages/validate-icu-locales/**',

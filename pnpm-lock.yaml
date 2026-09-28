@@ -528,6 +528,12 @@ importers:
         specifier: 'catalog:'
         version: 7.8.0
 
+  packages/pnpm-auto-release:
+    devDependencies:
+      '@types/node':
+        specifier: 'catalog:'
+        version: 26.6.2
+
   packages/random-name: {}
 
   packages/regex: {}
