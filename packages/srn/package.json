@@ -35,7 +35,8 @@
     "typecheck": "tsc --noEmit",
     "build": "tsdown",
     "test:unit": "vitest --run",
-    "test:unit:coverage": "pnpm test:unit --coverage"
+    "test:unit:coverage": "pnpm test:unit --coverage",
+    "test:types": "pnpm test:unit --typecheck.only"
   },
   "engines": {
     "node": "24.x || 25.x || 26.x"
