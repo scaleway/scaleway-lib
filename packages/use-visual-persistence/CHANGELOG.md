@@ -1,5 +1,12 @@
 # @scaleway/use-visual-persistence
 
+## 1.0.2
+
+### Patch Changes
+
+- Updated dependencies [[`6b218e5`](https://github.com/scaleway/scaleway-lib/commit/6b218e555b12a885beedb7c9c9bddd7ad63b1afb)]:
+  - @scaleway/use-storage@4.0.3
+
 ## 1.0.1
 
 ### Patch Changes

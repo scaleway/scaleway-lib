@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.3
+
+### Patch Changes
+
+- [#3913](https://github.com/scaleway/scaleway-lib/pull/3913) [`6b218e5`](https://github.com/scaleway/scaleway-lib/commit/6b218e555b12a885beedb7c9c9bddd7ad63b1afb) Thanks [@chambo-e](https://github.com/chambo-e)! - Honor falsy `initialValue` values (`0`, `false`, `''`) instead of ignoring them, and remove the effect that overwrote the local state with the stored value
+
 ## 4.0.2
 
 ### Patch Changes

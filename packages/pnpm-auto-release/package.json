@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/pnpm-auto-release",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Bump and publish changed packages in a pnpm monorepo via changesets",
   "keywords": [
     "changesets",
