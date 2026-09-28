@@ -10,7 +10,7 @@ export const alphanumDashDots: RegExp = /^[a-zA-Z0-9\-.]*$/v
 export const alphanumDashDotsOrEmpty: RegExp = /^$|^[a-zA-Z0-9\-.]*$/v
 export const alphanumDashDotsSpaces: RegExp = /^[a-zA-Z0-9\-.\s]*$/v
 export const alphanumDashLowercase: RegExp = /^[a-z0-9\-]+$/v
-// This regex must start with a lettern can contain letters digits and hyphens, cannot end with a hyphen
+// This regex must start with a letter and can contain letters digits and hyphens, cannot end with a hyphen
 export const alphanumDashSegment: RegExp = /^[A-Za-z](?:[A-Za-z0-9\-]*[A-Za-z0-9])?$/v
 export const alphanumDashSpaces: RegExp = /^[a-zA-Z0-9\-\s]*$/v
 export const alphaUpperUnderscore: RegExp = /^[A-Z_]+$/v
@@ -24,6 +24,7 @@ export const alphanumDashUnderscoreDollar: RegExp = /^[a-zA-Z0-9_$\-]*$/v
 export const alphanumDots: RegExp = /^[a-zA-Z0-9.]*$/v
 export const alphanumLowercase: RegExp = /^[a-z0-9]+$/v
 export const absoluteLinuxPath: RegExp = /(?:^\/$|^(?:\/[a-zA-Z0-9_]+)*$)/v
+export const alphanumPlusDashUnderscore: RegExp = /^[a-zA-Z0-9+\-_]*$/v
 
 // oxlint-disable-next-line eslint/no-control-regex
 export const ascii: RegExp = /^[\u0000-\u007F]+$/v
@@ -90,7 +91,7 @@ export const dashedIpv4: RegExp =
 export const pathSegment: RegExp = /^[_a-zA-Z0-9](?:[\-_.a-zA-Z0-9]*[_a-zA-Z0-9])?$/v
 export const absolutePath: RegExp = /^\/(?:(?:[\w. \-]*)[^\s?]\/?)+$/v
 
-// A port range between 1 to 65535 separated by an hypen or a single number
+// A port range between 1 to 65535 separated by an hyphen or a single number
 export const sgPortRange: RegExp =
   /^(?:6553[0-5]|655[0-2][0-9]|65[0-4][0-9]{2}|6[0-4][0-9]{3}|[1-5]?[0-9]{1,4})(?:-(?:6553[0-5]|655[0-2][0-9]|65[0-4][0-9]{2}|6[0-4][0-9]{3}|[1-5]?[0-9]{1,4}))?$/v
 
