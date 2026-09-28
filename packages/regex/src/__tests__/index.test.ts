@@ -24,6 +24,7 @@ import {
   alphanumDashUnderscoreDotsSpacesParenthesis,
   alphanumDots,
   alphanumLowercase,
+  alphanumPlusDashUnderscore,
   alphaUpperUnderscore,
   ascii,
   backupKey,
@@ -61,6 +62,7 @@ import {
   webhostingUsernameEmailRegex,
 } from '..'
 
+const alphanumDashUnderscoreText = 'test1234-_'
 const alphanumDashDotsText = 'testwithdashdots-.'
 const alphanumDashUnderscoreDotsParenthesisText = 'testwithdashdots-_. ()'
 const alphanumDashText = 'testwithdash-'
@@ -382,6 +384,38 @@ describe('@regex', () => {
       [' ', false],
     ])('should match regex %s to be %s', (string, expected) => {
       expect(alphanumDashUnderscore.test(string)).toBe(expected)
+    })
+  })
+
+  describe('regex alphanumPlusDashUnderscore', () => {
+    it.each([
+      [alphanumDashUnderscoreText, true],
+      [alphanumDashText, true],
+      [alphanumDashDotsText, false],
+      [alphanumDashUnderscoreDotsParenthesisText, false],
+      [asciiLetters, true],
+      [asciiLowercase, true],
+      [asciiUppercase, true],
+      [digitsTest, true],
+      [emailTest, false],
+      [octdigits, true],
+      [hexdigits, true],
+      [printable, false],
+      [punctuation, false],
+      [whitespace, false],
+      [cronTest, false],
+      [macAddress1, false],
+      ['', true],
+      ['a+1-_b', true],
+      ['+', true],
+      ['_', true],
+      ['-', true],
+      ['+_-a', true],
+      ['.', false],
+      [' ', false],
+      ['@', false],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(alphanumPlusDashUnderscore.test(string)).toBe(expected)
     })
   })
 
