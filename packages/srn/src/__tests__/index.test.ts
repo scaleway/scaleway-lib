@@ -100,4 +100,33 @@ describe('safeParseSRN function', () => {
   it('does not throw on invalid input', () => {
     expect(() => safeParseSRN('')).not.toThrow()
   })
+
+  it('never throws, regardless of input', () => {
+    // safeParseSRN's contract is that it never throws — it always returns a
+    // discriminated union. Feed it a battery of hostile string inputs and
+    // assert every call returns a result object with a boolean `success`.
+    const inputs: string[] = [
+      '',
+      'not-a-srn',
+      'srn://',
+      'srn://x',
+      'srn://x.y',
+      'srn://x.y/',
+      'srn://x.y/zones',
+      'srn://x.y/zones/',
+      'srn://x.y/zones/it-mil-1',
+      'srn://x.y/zones/it-mil-1/',
+      'srn://x.y/regions/fr-par',
+      'srn://x.y//',
+      'srn://x.y//singleton',
+      '////',
+      Math.random().toString(),
+    ]
+
+    for (const input of inputs) {
+      const result = safeParseSRN(input)
+      expect(result).toHaveProperty('success')
+      expect(result.success).toBeTypeOf('boolean')
+    }
+  })
 })

@@ -388,10 +388,15 @@ export const safeParseSRN = (input: string): SafeParseResult => {
   try {
     return { success: true, data: parseSRN(input) }
   } catch (error) {
+    // Never throw — that's the whole point of safeParse. SRNParseError passes
+    // through; any unexpected error is wrapped so the error branch always
+    // carries an SRNParseError and the type contract stays honest.
     if (error instanceof SRNParseError) {
       return { success: false, error }
     }
-    // Re-throw unknown errors; only SRNParseError is part of the API contract.
-    throw error
+    return {
+      success: false,
+      error: new SRNParseError(error instanceof Error ? error.message : 'parse: unknown error'),
+    }
   }
 }
