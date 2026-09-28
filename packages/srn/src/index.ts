@@ -75,9 +75,15 @@ export type LocalityName =
  *
  * `type` indicates whether the resource is scoped to a zone, a region, or
  * is global. `name` is the zone/region identifier (empty when `type` is `global`).
+ *
+ * @template L — the locality-name union a consumer wants to narrow `name` to.
+ *   Defaults to {@link LocalityName}, the closed set of every Scaleway zone,
+ *   region, and `''` (global). A console that only handles a subset can
+ *   substitute its own union (e.g. `'fr-par-1' | 'fr-par-2'`); every member
+ *   of the narrower union is also a member of `LocalityName`.
  */
-export type Locality = {
-  readonly name: LocalityName
+export type Locality<L extends LocalityName = LocalityName> = {
+  readonly name: L
   readonly type: LocalityType
 }
 
@@ -130,14 +136,18 @@ export type ResourceIdentifierSegment<R extends string = string> = {
  *   (e.g. `'block' | 'iam' | 'k8s'`).
  * @template R — the resource-type-key union for `resourceIdentifier` segment
  *   names. Defaults to `string`; see {@link ResourceIdentifierSegment}.
+ * @template L — the locality-name union for `locality.name`. Defaults to
+ *   {@link LocalityName}, the closed set of every Scaleway zone, region, and
+ *   `''` (global). A console that only handles a subset can substitute its
+ *   own union (e.g. `'fr-par-1' | 'fr-par-2'`); see {@link Locality}.
  */
-export type SRN<P extends string = string, R extends string = string> = {
+export type SRN<P extends string = string, R extends string = string, L extends LocalityName = LocalityName> = {
   /** The product namespace (e.g. `block`, `iam`, `api`). */
   readonly product: P
   /** The platform domain (e.g. `scw.eu`, `scw.cloud`). */
   readonly platformDomain: string
   /** The locality (zone, region, or global) the resource belongs to. */
-  readonly locality: Locality
+  readonly locality: Locality<L>
   /** The raw resource path after the locality prefix (e.g. `snapshots/22222222`). */
   readonly resourcePath: string
   /**
@@ -253,7 +263,7 @@ const makeSegment = <R extends string>(
  *
  * Returns `'undefined'` if both `product` and `platformDomain` are empty.
  */
-export const stringifySRN = <P extends string, R extends string>(srn: SRN<P, R>): string => {
+export const stringifySRN = <P extends string, R extends string, L extends LocalityName>(srn: SRN<P, R, L>): string => {
   if (!srn.product && !srn.platformDomain) {
     return ''
   }
