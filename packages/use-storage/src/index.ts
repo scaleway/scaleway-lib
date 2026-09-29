@@ -76,6 +76,7 @@ const useStorage = <T>(
   const parsedValue = useMemo(() => {
     if (value !== null) {
       try {
+        // oxlint-disable-next-line typescript/no-unsafe-type-assertion
         return JSON.parse(value) as T
       } catch {
         return options?.initialValue ?? null

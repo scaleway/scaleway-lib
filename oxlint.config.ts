@@ -13,12 +13,8 @@ export default defineConfig({
         'packages/use-i18n/**/*.{ts,tsx}',
         'packages/use-dataloader/**/*.{ts,tsx}',
         'packages/auth-scw/**/*.{ts,tsx}',
-        'packages/use-storage/**/*.{ts,tsx}',
         'packages/use-analytics/**/*.{ts,tsx}',
         'packages/use-growthbook/**/*.{ts,tsx}',
-        'packages/regex/**/*.{ts,tsx}',
-        'packages/utils/**/*.{ts,tsx}',
-        'packages/validate-icu-locales/**/*.{ts,tsx}',
       ],
       rules: {
         'react/exhaustive-effect-dependencies': 'warn',
