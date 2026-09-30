@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { parseSRN, SRNParseError, stringifySRN } from '../index'
+import { parseSRN, safeParseSRN, SRNParseError, stringifySRN } from '../index'
 
 describe('parseSRN function', () => {
   it('parses a zonal SRN', () => {
@@ -64,5 +64,69 @@ describe('parseSRN function', () => {
 
   it('throws when platform domain has no dot', () => {
     expect(() => parseSRN('srn://blockfoo/zones/x/y')).toThrow(SRNParseError)
+  })
+})
+
+describe('safeParseSRN function', () => {
+  it('returns a success result for a valid SRN', () => {
+    const result = safeParseSRN('srn://block.scw.eu/zones/it-mil-1/snapshots/22222222')
+    expect(result.success).toBe(true)
+    expect(result).toMatchObject({
+      data: {
+        product: 'block',
+        locality: { name: 'it-mil-1' },
+        platformDomain: 'scw.eu',
+      },
+    })
+  })
+
+  it('returns an error result for an invalid SRN', () => {
+    const result = safeParseSRN('not-a-srn')
+    expect(result.success).toBe(false)
+    expect(result).toMatchObject({
+      error: {
+        name: 'SRNParseError',
+        message: 'parse: cannot break down the provided uri',
+      },
+    })
+  })
+
+  it('returns an error result when platform domain has no dot', () => {
+    const result = safeParseSRN('srn://blockfoo/zones/x/y')
+    expect(result.success).toBe(false)
+    expect(result).toMatchObject({ error: { name: 'SRNParseError' } })
+  })
+
+  it('does not throw on invalid input', () => {
+    expect(() => safeParseSRN('')).not.toThrow()
+  })
+
+  it('never throws, regardless of input', () => {
+    // safeParseSRN's contract is that it never throws — it always returns a
+    // discriminated union. Feed it a battery of hostile string inputs and
+    // assert every call returns a result object with a boolean `success`.
+    const inputs: string[] = [
+      '',
+      'not-a-srn',
+      'srn://',
+      'srn://x',
+      'srn://x.y',
+      'srn://x.y/',
+      'srn://x.y/zones',
+      'srn://x.y/zones/',
+      'srn://x.y/zones/it-mil-1',
+      'srn://x.y/zones/it-mil-1/',
+      'srn://x.y/regions/fr-par',
+      'srn://x.y//',
+      'srn://x.y//singleton',
+      '////',
+      Math.random().toString(),
+    ]
+
+    for (const input of inputs) {
+      const result = safeParseSRN(input)
+      expect(result).toHaveProperty('success')
+      expect(result.success).toBeTypeOf('boolean')
+    }
   })
 })

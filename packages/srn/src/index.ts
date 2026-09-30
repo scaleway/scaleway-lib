@@ -33,13 +33,57 @@
 export type LocalityType = 'zone' | 'region' | 'global'
 
 /**
+ * A Scaleway locality identifier — the `name` part of a {@link Locality}.
+ *
+ * This is the closed set of locality names that Scaleway currently operates,
+ * mirrored from `scaleway-sdk-go` `scw/locality.go`. It is the union of every
+ * known zone, every known region, and the empty string (used when the
+ * locality type is `global`).
+ *
+ * Consumers that maintain their own narrower union of locality names
+ * (e.g. a console that only handles `'fr-par-1' | 'fr-par-2'`) can pass that
+ * union anywhere a `LocalityName` is expected, because every member of the
+ * narrower union is also a member of this one.
+ *
+ * Note: `parseSRN` returns this broad type for any input that parses. An SRN
+ * carrying a locality name not yet in this list still parses at runtime but is
+ * not representable at the type level — extend this union when Scaleway ships a
+ * new zone or region.
+ */
+export type LocalityName =
+  // Zones
+  | 'fr-par-1'
+  | 'fr-par-2'
+  | 'fr-par-3'
+  | 'nl-ams-1'
+  | 'nl-ams-2'
+  | 'nl-ams-3'
+  | 'pl-waw-1'
+  | 'pl-waw-2'
+  | 'pl-waw-3'
+  | 'it-mil-1'
+  // Regions
+  | 'fr-par'
+  | 'nl-ams'
+  | 'pl-waw'
+  | 'it-mil'
+  // Global (no locality prefix)
+  | ''
+
+/**
  * A locality prefix extracted from the SRN path.
  *
  * `type` indicates whether the resource is scoped to a zone, a region, or
  * is global. `name` is the zone/region identifier (empty when `type` is `global`).
+ *
+ * @template L — the locality-name union a consumer wants to narrow `name` to.
+ *   Defaults to {@link LocalityName}, the closed set of every Scaleway zone,
+ *   region, and `''` (global). A console that only handles a subset can
+ *   substitute its own union (e.g. `'fr-par-1' | 'fr-par-2'`); every member
+ *   of the narrower union is also a member of `LocalityName`.
  */
-export type Locality = {
-  readonly name: string
+export type Locality<L extends LocalityName = LocalityName> = {
+  readonly name: L
   readonly type: LocalityType
 }
 
@@ -56,16 +100,24 @@ export type Locality = {
  * For deeper paths like `srn://.../instances/111/disks/222`:
  *   root segment: { name: 'instances', value: '111', parent: null }
  *   child segment: { name: 'disks', value: '222', parent: <root> }
+ *
+ * @template R — the resource-type key union a consumer wants to narrow `name`
+ *   to. Defaults to `string`, so the parser accepts any input. A console that
+ *   knows the set of resource types for a product can substitute its own union
+ *   (e.g. `'snapshots' | 'disks' | 'users'`); every segment in the chain then
+ *   carries that narrowed type. The union should cover every key that can
+ *   appear in a single SRN's path, since segments are heterogeneous
+ *   (e.g. `instances/111/disks/222` mixes `instances` and `disks`).
  */
-export type ResourceIdentifierSegment = {
+export type ResourceIdentifierSegment<R extends string = string> = {
   /** The resource type key (e.g. `snapshots`, `disks`, `users`). */
-  readonly name: string
+  readonly name: R
   /** The resource identifier value (e.g. a UUID). */
   readonly value: string
   /** The parent segment, or `null` if this is the root of the chain. */
-  readonly parent: ResourceIdentifierSegment | null
+  readonly parent: ResourceIdentifierSegment<R> | null
   /** Returns the root segment of the chain (walks `parent` until `null`). */
-  readonly root: () => ResourceIdentifierSegment
+  readonly root: () => ResourceIdentifierSegment<R>
   /** Returns `true` if this segment is the root (has no parent). */
   readonly isRoot: () => boolean
 }
@@ -75,21 +127,34 @@ export type ResourceIdentifierSegment = {
  *
  * Produced by {@link parseSRN} and consumed by {@link stringifySRN}.
  * Use `toString()` to serialize back to the canonical SRN string form.
+ *
+ * @template P — the product-name union a consumer wants to narrow `product`
+ *   to. Defaults to `string`, so {@link parseSRN} accepts any input without
+ *   the library having to enumerate Scaleway's product catalog (which is
+ *   large, fast-moving, and partly internal). A console that knows the set
+ *   of products it handles can substitute its own union
+ *   (e.g. `'block' | 'iam' | 'k8s'`).
+ * @template R — the resource-type-key union for `resourceIdentifier` segment
+ *   names. Defaults to `string`; see {@link ResourceIdentifierSegment}.
+ * @template L — the locality-name union for `locality.name`. Defaults to
+ *   {@link LocalityName}, the closed set of every Scaleway zone, region, and
+ *   `''` (global). A console that only handles a subset can substitute its
+ *   own union (e.g. `'fr-par-1' | 'fr-par-2'`); see {@link Locality}.
  */
-export type SRN = {
+export type SRN<P extends string = string, R extends string = string, L extends LocalityName = LocalityName> = {
   /** The product namespace (e.g. `block`, `iam`, `api`). */
-  readonly product: string
+  readonly product: P
   /** The platform domain (e.g. `scw.eu`, `scw.cloud`). */
   readonly platformDomain: string
   /** The locality (zone, region, or global) the resource belongs to. */
-  readonly locality: Locality
+  readonly locality: Locality<L>
   /** The raw resource path after the locality prefix (e.g. `snapshots/22222222`). */
   readonly resourcePath: string
   /**
    * The root of the resource identifier segment chain, or `null` if the path
    * has no key/value pairs (e.g. a singleton-only or empty path).
    */
-  readonly resourceIdentifier: ResourceIdentifierSegment | null
+  readonly resourceIdentifier: ResourceIdentifierSegment<R> | null
   /**
    * The trailing singleton segment when the path ends with a key that has no
    * paired value (e.g. `ips` in `srn://...//ips`). Empty string if absent.
@@ -117,13 +182,58 @@ export class SRNParseError extends Error {
 }
 
 /**
+ * Successful result of {@link safeParseSRN}. Carries the parsed {@link SRN}
+ * as `data`, mirroring zod's `safeParse` return shape so it destructures the
+ * same way in render code.
+ *
+ * @template P, R, L — forwarded to {@link SRN}; see {@link parseSRN}.
+ */
+export type SafeParseSuccess<
+  P extends string = string,
+  R extends string = string,
+  L extends LocalityName = LocalityName,
+> = {
+  readonly success: true
+  readonly data: SRN<P, R, L>
+}
+
+/**
+ * Failed result of {@link safeParseSRN}. Carries the {@link SRNParseError}
+ * as `error`, mirroring zod's `safeParse` return shape.
+ */
+export type SafeParseError = {
+  readonly success: false
+  readonly error: SRNParseError
+}
+
+/**
+ * The discriminated union returned by {@link safeParseSRN}.
+ *
+ * Narrow on `success` in render code without a try/catch:
+ *
+ * @example
+ * const result = safeParseSRN(maybeSrn)
+ * if (result.success) {
+ *   return <Detail srn={result.data} />
+ * }
+ * return <ErrorView error={result.error} />
+ *
+ * @template P, R, L — forwarded to {@link SRN}; see {@link parseSRN}.
+ */
+export type SafeParseResult<
+  P extends string = string,
+  R extends string = string,
+  L extends LocalityName = LocalityName,
+> = SafeParseSuccess<P, R, L> | SafeParseError
+
+/**
  * Builds the locality prefix string for a given locality type and name.
  *
  * - `zone`   → `zones/<name>`
  * - `region` → `regions/<name>`
  * - `global` → `''` (no prefix)
  */
-const localityPrefix = (type: LocalityType, name: string): string => {
+const localityPrefix = (type: LocalityType, name: LocalityName): string => {
   switch (type) {
     case 'zone': {
       return `zones/${name}`
@@ -146,16 +256,16 @@ const localityPrefix = (type: LocalityType, name: string): string => {
  * Each segment is linked to its `parent`, and provides `root()` / `isRoot()`
  * helpers for traversing the chain back to the top-level resource.
  */
-const makeSegment = (
-  name: string,
+const makeSegment = <R extends string>(
+  name: R,
   value: string,
-  parent: ResourceIdentifierSegment | null,
-): ResourceIdentifierSegment => ({
+  parent: ResourceIdentifierSegment<R> | null,
+): ResourceIdentifierSegment<R> => ({
   name,
   value,
   parent,
   isRoot: () => parent === null,
-  root(): ResourceIdentifierSegment {
+  root(): ResourceIdentifierSegment<R> {
     return this.parent === null ? this : this.parent.root()
   },
 })
@@ -165,7 +275,7 @@ const makeSegment = (
  *
  * Returns `'undefined'` if both `product` and `platformDomain` are empty.
  */
-export const stringifySRN = (srn: SRN): string => {
+export const stringifySRN = <P extends string, R extends string, L extends LocalityName>(srn: SRN<P, R, L>): string => {
   if (!srn.product && !srn.platformDomain) {
     return ''
   }
@@ -192,6 +302,15 @@ export const stringifySRN = (srn: SRN): string => {
  * @throws {SRNParseError} if the input does not match the SRN format or
  *   the platform domain is invalid.
  *
+ * @template P — the product-name union a consumer wants to narrow `product`
+ *   to. Defaults to `string`. The parser cannot verify the union at runtime;
+ *   passing a narrower union is an assertion by the caller that the input
+ *   will only carry those products.
+ * @template R — the resource-type-key union for `resourceIdentifier` segment
+ *   names. Defaults to `string`; same caveat as `P`.
+ * @template L — the locality-name union for `locality.name`. Defaults to
+ *   {@link LocalityName}. Same caveat as `P`.
+ *
  * @example
  * const srn = parseSRN('srn://block.scw.eu/zones/it-mil-1/snapshots/22222222')
  * // srn.product             // 'block'
@@ -201,8 +320,15 @@ export const stringifySRN = (srn: SRN): string => {
  * // srn.resourceIdentifier  // { name: 'snapshots', value: '22222222', parent: null, ... }
  * // srn.singletonSegment    // ''
  * // srn.toString()          // 'srn://block.scw.eu/zones/it-mil-1/snapshots/22222222'
+ *
+ * @example Narrowing at the parse boundary
+ * const srn = parseSRN<'block', 'snapshots', 'it-mil-1'>(input)
+ * // srn.product: 'block', srn.resourceIdentifier?.name: 'snapshots',
+ * // srn.locality.name: 'it-mil-1'
  */
-export const parseSRN = (input: string): SRN => {
+export const parseSRN = <P extends string = string, R extends string = string, L extends LocalityName = LocalityName>(
+  input: string,
+): SRN<P, R, L> => {
   const m = SRN_RE.exec(input)
   const groups = m?.groups
   if (!groups) {
@@ -235,7 +361,7 @@ export const parseSRN = (input: string): SRN => {
   const resourcePath = loc !== undefined ? path.slice(lm?.[0].length ?? 0) : path.replace(/^\/\//v, '')
 
   const segments = resourcePath.split('/')
-  let resourceIdentifier: ResourceIdentifierSegment | null = null
+  let resourceIdentifier: ResourceIdentifierSegment<R> | null = null
   let singletonSegment = ''
 
   for (let i = 0; i < segments.length; i += 2) {
@@ -248,14 +374,18 @@ export const parseSRN = (input: string): SRN => {
       singletonSegment = key
       break
     }
-    const parent = resourceIdentifier
-    resourceIdentifier = makeSegment(key, value, parent)
+    // oxlint-disable-next-line typescript/no-unsafe-type-assertion -- parser: the caller asserts R via the generic; runtime values come from arbitrary input
+    resourceIdentifier = makeSegment<R>(key as R, value, resourceIdentifier)
   }
 
-  const locality: Locality = { name: locName, type: locType }
+  // Parsed from arbitrary SRN input; cast to L. The caller asserts L via the
+  // generic; unknown future localities parse at runtime but may not be in L.
+  // oxlint-disable-next-line typescript/no-unsafe-type-assertion -- intentional: see comment above
+  const locality: Locality<L> = { name: locName as L, type: locType }
 
   return {
-    product,
+    // oxlint-disable-next-line typescript/no-unsafe-type-assertion -- parser: the caller asserts P via the generic
+    product: product as P,
     platformDomain: platform,
     locality,
     resourcePath,
@@ -264,5 +394,56 @@ export const parseSRN = (input: string): SRN => {
     toString(): string {
       return stringifySRN(this)
     },
+  }
+}
+
+/**
+ * Parses an SRN string without throwing, returning a zod-style discriminated
+ * union instead.
+ *
+ * Useful in React render code where try/catch is awkward (no conditional
+ * hooks, no throwing in `useMemo`). Narrow on `result.success`:
+ *
+ * @template P, R, L — forwarded to {@link parseSRN}; the caller asserts the
+ *   input will only carry those products / resource keys / localities. The
+ *   returned `data` on the success branch is `SRN<P, R, L>`.
+ *
+ * @example
+ * const result = safeParseSRN(input)
+ * if (result.success) {
+ *   console.log(result.data.locality.name)
+ * } else {
+ *   console.error(result.error.message)
+ * }
+ *
+ * @example Narrowing at the parse boundary
+ * const result = safeParseSRN<'block', 'snapshots', 'it-mil-1'>(input)
+ * if (result.success) {
+ *   // result.data.product: 'block'
+ *   // result.data.locality.name: 'it-mil-1'
+ * }
+ *
+ * @see parseSRN for the throwing variant.
+ */
+export const safeParseSRN = <
+  P extends string = string,
+  R extends string = string,
+  L extends LocalityName = LocalityName,
+>(
+  input: string,
+): SafeParseResult<P, R, L> => {
+  try {
+    return { success: true, data: parseSRN<P, R, L>(input) }
+  } catch (error) {
+    // Never throw — that's the whole point of safeParse. SRNParseError passes
+    // through; any unexpected error is wrapped so the error branch always
+    // carries an SRNParseError and the type contract stays honest.
+    if (error instanceof SRNParseError) {
+      return { success: false, error }
+    }
+    return {
+      success: false,
+      error: new SRNParseError(error instanceof Error ? error.message : 'parse: unknown error'),
+    }
   }
 }
