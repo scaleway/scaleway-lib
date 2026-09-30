@@ -4,9 +4,9 @@
  * Script to check that dependencies use catalog references instead of hardcoded versions
  */
 
-import fs, { existsSync, readdirSync, readFileSync } from 'node:fs'
+import { existsSync, readdirSync, statSync } from 'node:fs'
 import path from 'node:path'
-import { parse as parseYaml } from 'yaml'
+import { readPackageJson, readPnpmWorkspaceYaml } from './utils.ts'
 
 const dirName = import.meta.dirname
 
@@ -23,8 +23,7 @@ type DependencyError = {
 
 // Function to get catalog packages from pnpm-workspace.yaml
 function getCatalogPackages(workspacePath: string): string[] {
-  const workspaceContent = readFileSync(workspacePath, 'utf8')
-  const workspaceData = parseYaml(workspaceContent) as WorkspaceData
+  const workspaceData = readPnpmWorkspaceYaml(workspacePath)
 
   const catalogPackages: string[] = []
   if (workspaceData.catalog) {
@@ -72,7 +71,7 @@ function findWorkspaceFile(startDir: string = dirName): string {
 
   // If not found, try the conventional location
   const rootWorkspacePath = path.join(dirName, '..', '..', 'pnpm-workspace.yaml')
-  if (fs.existsSync(rootWorkspacePath)) {
+  if (existsSync(rootWorkspacePath)) {
     return rootWorkspacePath
   }
 
@@ -92,10 +91,7 @@ function main(): Promise<void> | void {
     console.log('Catalog packages found:', catalogPackages)
 
     // Check root package.json
-    const rootPackageJson = JSON.parse(fs.readFileSync(rootPackageJsonPath, 'utf8')) as {
-      dependencies?: Record<string, string>
-      devDependencies?: Record<string, string>
-    }
+    const rootPackageJson = readPackageJson(rootPackageJsonPath)
     const errors: DependencyError[] = []
 
     checkDependencies(rootPackageJson.dependencies, 'package.json', catalogPackages, errors)
@@ -104,17 +100,14 @@ function main(): Promise<void> | void {
     // Check packages/*/package.json files
     const packagesDir = path.join(rootDir, 'packages')
     const packageDirs = readdirSync(packagesDir).filter(
-      file => fs.statSync(path.join(packagesDir, file)).isDirectory() && file !== 'utils', // Skip the utils package itself
+      file => statSync(path.join(packagesDir, file)).isDirectory() && file !== 'utils', // Skip the utils package itself
     )
 
     for (const pkgDir of packageDirs) {
       const pkgJsonPath = path.join(packagesDir, pkgDir, 'package.json')
-      if (fs.existsSync(pkgJsonPath)) {
+      if (existsSync(pkgJsonPath)) {
         try {
-          const pkgJson = JSON.parse(readFileSync(pkgJsonPath, 'utf8')) as {
-            dependencies?: Record<string, string>
-            devDependencies?: Record<string, string>
-          }
+          const pkgJson = readPackageJson(pkgJsonPath)
           checkDependencies(pkgJson.dependencies, `packages/${pkgDir}/package.json`, catalogPackages, errors)
           checkDependencies(pkgJson.devDependencies, `packages/${pkgDir}/package.json`, catalogPackages, errors)
         } catch (error) {
