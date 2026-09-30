@@ -237,8 +237,8 @@ catalogs:
       specifier: 4.29.1
       version: 4.29.1
     chalk:
-      specifier: 6.0.0
-      version: 6.0.0
+      specifier: 6.0.1
+      version: 6.0.1
     cookie:
       specifier: 2.0.1
       version: 2.0.1
@@ -408,7 +408,7 @@ importers:
         version: 4.29.1
       chalk:
         specifier: 'catalog:'
-        version: 6.0.0
+        version: 6.0.1
       happy-dom:
         specifier: 'catalog:'
         version: 20.14.5
@@ -569,7 +569,7 @@ importers:
     dependencies:
       chalk:
         specifier: 'catalog:'
-        version: 6.0.0
+        version: 6.0.1
       tinyglobby:
         specifier: 'catalog:'
         version: 0.2.17
@@ -2046,8 +2046,8 @@ packages:
     resolution: {integrity: sha512-NUPRluOfOiTKBKvWPtSD4PhFvWCqOi0BGStNWs57X9js7XGTprSmFoz5F0tWhR4WPjNeR9jXqdC7/UpSJTnlRg==}
     engines: {node: '>=18'}
 
-  chalk@6.0.0:
-    resolution: {integrity: sha512-2uNTXIuTTxk7ciZgAU1BQcgnchcG0xXnrs6jzkQfj9SsRa9M2s5zE8WT96hS6KmG4MzWHSrvH43DF1m4XRkrFg==}
+  chalk@6.0.1:
+    resolution: {integrity: sha512-/Ce6KNm3vIbWdMlNna6RVIZ/ICQxnJxCicet5LBKK9ZffBkqzDw0xh9EiKSljdRtiIQ1S1z4YgcscUUGzNCWrA==}
     engines: {node: '>=22'}
 
   cjs-module-lexer@1.4.3:
@@ -4240,7 +4240,7 @@ snapshots:
 
   chai@6.2.2: {}
 
-  chalk@6.0.0: {}
+  chalk@6.0.1: {}
 
   cjs-module-lexer@1.4.3: {}
 
