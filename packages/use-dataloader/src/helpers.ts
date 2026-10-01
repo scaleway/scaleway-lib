@@ -1,5 +1,7 @@
 import type { KeyType } from './types'
 
+export const isAbortError = (error: unknown) => error instanceof Error && error.name === 'AbortError'
+
 /**
  *
  * @param {KeyType} queryKey
