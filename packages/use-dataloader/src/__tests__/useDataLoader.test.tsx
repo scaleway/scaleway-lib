@@ -968,4 +968,38 @@ describe(useDataLoader, () => {
     expect(result.current.isFetching).toBe(false)
     expect(result.current.data).toStrictEqual({ id: 1, name: 'test' })
   })
+
+  it('should cancel the in-flight request when unmounted', async () => {
+    const signalRef: { current: AbortSignal | undefined } = { current: undefined }
+    const slowMethod = vi.fn<(options: { signal?: AbortSignal }) => Promise<boolean>>(
+      async ({ signal }) =>
+        new Promise<boolean>(resolve => {
+          signalRef.current = signal
+          signal?.addEventListener('abort', () => {
+            resolve(false)
+          })
+          setTimeout(() => {
+            resolve(true)
+          }, 2000)
+        }),
+    )
+
+    const { result, unmount } = renderHook(props => useDataLoader(props.key, props.method), {
+      initialProps: { ...initialProps, method: slowMethod },
+      wrapper,
+    })
+
+    await waitFor(() => {
+      expect(result.current.isLoading).toBe(true)
+    })
+    expect(signalRef.current).toBeDefined()
+    expect(signalRef.current?.aborted).toBe(false)
+
+    // Unmount while the request is still in-flight
+    unmount()
+
+    // The cleanup must cancel the request, aborting its signal
+    expect(signalRef.current?.aborted).toBe(true)
+    expect(slowMethod).toHaveBeenCalledTimes(1)
+  })
 })
