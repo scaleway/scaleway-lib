@@ -254,18 +254,18 @@ The hook returns an object with the following properties:
 
 ### Abort signal
 
-Every `method` function receives an optional `AbortSignal` as its last argument. This signal is managed automatically by the `DataLoader` — you don't need to create it yourself.
+Every `method` function receives an options object with an optional `signal: AbortSignal` property. This signal is managed automatically by the `DataLoader` — you don't need to create it yourself.
 
 #### How it works
 
-- When a request starts, `DataLoader` creates a new `AbortController` and passes its `signal` to your `method`.
+- When a request starts, `DataLoader` creates a new `AbortController` and passes its `signal` to your `method` via `method({ signal })`.
 - When the request is cancelled (e.g. component unmount, cache invalidation, or a new request supersedes an in-flight one), `DataLoader` calls `abortController.abort()`.
 - Aborted requests are **silently ignored** — the error is not propagated to `onError` and the status is not set to `isError`.
 
 #### Using the signal with `fetch`
 
 ```js
-useDataLoader('user-profile', async signal => {
+useDataLoader('user-profile', async ({ signal }) => {
   const response = await fetch('/api/user', { signal })
   if (!response.ok) throw new Error('Failed to fetch user')
   return response.json()
@@ -279,7 +279,7 @@ When the request is cancelled, `fetch` will reject with an `AbortError`. The `Da
 Axios supports `AbortSignal` via the `signal` config option:
 
 ```js
-useDataLoader('projects', async signal => {
+useDataLoader('projects', async ({ signal }) => {
   const { data } = await axios.get('/api/projects', { signal })
   return data
 })

@@ -51,7 +51,7 @@ export const useInfiniteDataLoader = <
     [pageParamKey]: isPageStale ? baseParams[pageParamKey] : page,
   }
 
-  const getMethodRef = useRef(async (signal?: AbortSignal) => method(paramsArgs, signal))
+  const getMethodRef = useRef(async (options: { signal?: AbortSignal }) => method(paramsArgs, options.signal))
   const getOnSuccessRef = useRef(async (...params: Parameters<NonNullable<typeof onSuccess>>) => onSuccess?.(...params))
   const getOnErrorRef = useRef(async (err: ErrorType) => onError?.(err) ?? onGlobalError?.(err))
 
@@ -189,7 +189,7 @@ export const useInfiniteDataLoader = <
   }, [nextPage, baseQueryKey, baseParams, pageParamKey])
 
   useEffect(() => {
-    request.method = async (signal?: AbortSignal) => method(paramsArgs, signal)
+    request.method = async (options: { signal?: AbortSignal }) => method(paramsArgs, options.signal)
     // oxlint-disable-next-line react-hooks/exhaustive-deps
   }, [method, request])
 

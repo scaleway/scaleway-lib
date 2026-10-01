@@ -222,17 +222,18 @@ describe('dataloader class', () => {
   it('should abort signal when cancel is called', async () => {
     const abortError = new Error('AbortError')
     abortError.name = 'AbortError'
-    const method = vi.fn<(signal?: AbortSignal) => Promise<boolean>>(
-      async signal =>
-        new Promise<boolean>((resolve, reject) => {
-          signal?.addEventListener('abort', () => {
-            reject(abortError)
-          })
-          setTimeout(() => {
-            resolve(true)
-          }, PROMISE_TIMEOUT)
-        }),
-    )
+    const signalRef: { current: AbortSignal | undefined } = { current: undefined }
+    const method = vi.fn<(options: { signal?: AbortSignal }) => Promise<boolean>>(async ({ signal }) => {
+      signalRef.current = signal
+      return new Promise<boolean>((resolve, reject) => {
+        signal?.addEventListener('abort', () => {
+          reject(abortError)
+        })
+        setTimeout(() => {
+          resolve(true)
+        }, PROMISE_TIMEOUT)
+      })
+    })
     const notifyChanges = vi.fn<() => void>()
     const instance = new DataLoader<boolean, Error>({
       key: 'test-abort-signal',
@@ -245,14 +246,13 @@ describe('dataloader class', () => {
       expect(method).toHaveBeenCalledTimes(1)
     })
 
-    const signal = method.mock.calls[0]?.[0]
-    expect(signal).toBeDefined()
-    expect(signal?.aborted).toBe(false)
+    expect(signalRef.current).toBeDefined()
+    expect(signalRef.current?.aborted).toBe(false)
 
     instance.cancel()
 
     await vi.waitFor(() => {
-      expect(signal?.aborted).toBe(true)
+      expect(signalRef.current?.aborted).toBe(true)
     })
   })
 })

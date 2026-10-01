@@ -108,7 +108,7 @@ class DataLoader<ResultType, ErrorType> {
       this.isCancelled = false
       this.loadCount += 1
 
-      const data = await this.method(this.abortController.signal)
+      const data = await this.method({ signal: this.abortController.signal })
 
       // This can be set to false with .cancel even while the launch is pending
       // oxlint-disable-next-line typescript/no-unnecessary-condition
