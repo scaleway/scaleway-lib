@@ -49,10 +49,12 @@ export type UseDataLoaderConfig<ResultType, ErrorType> = {
   needPolling?: NeedPollingType<ResultType>
 }
 
-export type DataLoaderMethodFn<ResultType> = (options: { signal?: AbortSignal }) => PromiseType<ResultType>
+export type DataLoaderMethodOptions = { signal?: AbortSignal }
+
+export type DataLoaderMethodFn<ResultType> = (options: DataLoaderMethodOptions) => PromiseType<ResultType>
 export type DataLoaderMethodWithParamsFn<ResultType, ParamsType> = (
   params: ParamsType,
-  signal?: AbortSignal,
+  options: DataLoaderMethodOptions,
 ) => PromiseType<ResultType>
 
 export type UseDataLoaderResult<ResultType, ErrorType> = {

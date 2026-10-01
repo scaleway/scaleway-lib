@@ -104,7 +104,7 @@ describe('useInfinitDataLoader', () => {
       expect.objectContaining({
         page: 1,
       }),
-      expect.any(AbortSignal),
+      expect.objectContaining({ signal: expect.any(AbortSignal) as AbortSignal }),
     )
     setCanResolve(true)
     await waitFor(() => {
@@ -127,7 +127,7 @@ describe('useInfinitDataLoader', () => {
       expect.objectContaining({
         page: 2,
       }),
-      expect.any(AbortSignal),
+      expect.objectContaining({ signal: expect.any(AbortSignal) as AbortSignal }),
     )
     setCanResolve(true)
     await waitFor(() => {
@@ -162,7 +162,7 @@ describe('useInfinitDataLoader', () => {
       expect.objectContaining({
         page: 1,
       }),
-      expect.any(AbortSignal),
+      expect.objectContaining({ signal: expect.any(AbortSignal) as AbortSignal }),
     )
     setCanResolve(true)
     await waitFor(() => {
@@ -185,7 +185,7 @@ describe('useInfinitDataLoader', () => {
       expect.objectContaining({
         page: 2,
       }),
-      expect.any(AbortSignal),
+      expect.objectContaining({ signal: expect.any(AbortSignal) as AbortSignal }),
     )
     setCanResolve(true)
     await waitFor(() => {
@@ -248,7 +248,7 @@ describe('useInfinitDataLoader', () => {
       expect.objectContaining({
         page: 1,
       }),
-      expect.any(AbortSignal),
+      expect.objectContaining({ signal: expect.any(AbortSignal) as AbortSignal }),
     )
     setCanResolve(true)
     await waitFor(() => {
@@ -271,7 +271,7 @@ describe('useInfinitDataLoader', () => {
       expect.objectContaining({
         page: 2,
       }),
-      expect.any(AbortSignal),
+      expect.objectContaining({ signal: expect.any(AbortSignal) as AbortSignal }),
     )
     setCanResolve(true)
     await waitFor(() => {

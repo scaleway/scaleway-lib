@@ -4,6 +4,7 @@ import type DataLoader from './dataloader'
 import { useDataLoaderContext } from './DataLoaderProvider'
 import { marshalQueryKey } from './helpers'
 import type {
+  DataLoaderMethodOptions,
   DataLoaderMethodWithParamsFn,
   KeyType,
   UseInfiniteDataLoaderConfig,
@@ -51,7 +52,7 @@ export const useInfiniteDataLoader = <
     [pageParamKey]: isPageStale ? baseParams[pageParamKey] : page,
   }
 
-  const getMethodRef = useRef(async (options: { signal?: AbortSignal }) => method(paramsArgs, options.signal))
+  const getMethodRef = useRef(async (options: DataLoaderMethodOptions) => method(paramsArgs, options))
   const getOnSuccessRef = useRef(async (...params: Parameters<NonNullable<typeof onSuccess>>) => onSuccess?.(...params))
   const getOnErrorRef = useRef(async (err: ErrorType) => onError?.(err) ?? onGlobalError?.(err))
 
@@ -189,7 +190,7 @@ export const useInfiniteDataLoader = <
   }, [nextPage, baseQueryKey, baseParams, pageParamKey])
 
   useEffect(() => {
-    request.method = async (options: { signal?: AbortSignal }) => method(paramsArgs, options.signal)
+    request.method = async (options: DataLoaderMethodOptions) => method(paramsArgs, options)
     // oxlint-disable-next-line react-hooks/exhaustive-deps
   }, [method, request])
 
