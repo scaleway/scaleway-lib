@@ -13,7 +13,7 @@ catalog:
   '@formatjs/icu-messageformat-parser': 3.5.20
   '@growthbook/growthbook-react': 1.7.0
   '@manypkg/cli': 0.25.1
-  '@rudderstack/analytics-js': 3.34.2
+  '@rudderstack/analytics-js': 3.34.3
   '@scaleway/sdk-client': 2.12.1
   '@scaleway/sdk-iam': 2.19.0
   '@segment/analytics-next': 1.84.3
