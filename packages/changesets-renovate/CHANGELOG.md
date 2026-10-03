@@ -1,5 +1,13 @@
 # Change Log
 
+## 4.0.5
+
+### Patch Changes
+
+- [#3943](https://github.com/scaleway/scaleway-lib/pull/3943) [`3468631`](https://github.com/scaleway/scaleway-lib/commit/3468631aef004e04b7643e8a513b090200a20323) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `simple-git` to `4.0.2`.
+
+- [#3935](https://github.com/scaleway/scaleway-lib/pull/3935) [`880cb2a`](https://github.com/scaleway/scaleway-lib/commit/880cb2a6c97fda580de061fc67691cb8e144d16a) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `simple-git` to `4.0.1`.
+
 ## 4.0.4
 
 ### Patch Changes
