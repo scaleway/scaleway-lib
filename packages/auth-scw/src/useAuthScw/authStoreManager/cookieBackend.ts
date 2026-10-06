@@ -33,6 +33,8 @@ export const createCookieBackend = (options: CookieBackendOptions = {}): Storage
   const maxAgeDefault = options.cookieAge ?? COOKIE_AGE
 
   const setCookie = (value: object, key: string, maxAge = maxAgeDefault) => {
+    // Need to use CookieStore when widely available
+    // oxlint-disable-next-line unicorn/no-document-cookie
     document.cookie = stringifySetCookie({
       name: key,
       value: JSON.stringify(value),
@@ -46,6 +48,8 @@ export const createCookieBackend = (options: CookieBackendOptions = {}): Storage
   }
 
   const deleteCookie = (key: string) => {
+    // Need to use CookieStore when widely available
+    // oxlint-disable-next-line unicorn/no-document-cookie
     document.cookie = stringifySetCookie({
       name: key,
       value: '',

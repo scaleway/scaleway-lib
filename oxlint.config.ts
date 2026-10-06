@@ -21,19 +21,15 @@ export default defineConfig({
         'packages/validate-icu-locales/**/*.{ts,tsx}',
       ],
       rules: {
-        'react/exhaustive-effect-dependencies': 'warn',
         'react/hook-use-state': ['warn', { allowDestructuredState: true }],
         'react/immutability': 'warn',
         'react/only-export-components': 'warn',
-        'react/purity': 'warn',
         'react/refs': 'warn',
         'react/set-state-in-effect': 'warn',
 
         'typescript/no-confusing-void-expression': 'warn',
         'typescript/no-unsafe-type-assertion': 'warn',
         'typescript/strict-boolean-expressions': 'warn',
-
-        'unicorn/no-document-cookie': 'warn',
       },
     },
     {
