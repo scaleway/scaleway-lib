@@ -123,6 +123,8 @@ export const CookieConsentProvider: ComponentType<CookieConsentProviderProps> = 
 
         const cookieName = `${cookiePrefix}_${consentCategoryName}`
 
+        // Need to use CookieStore when widely available
+        // oxlint-disable-next-line unicorn/no-document-cookie
         document.cookie = consentValue
           ? stringifySetCookie(
               {
@@ -141,6 +143,8 @@ export const CookieConsentProvider: ComponentType<CookieConsentProviderProps> = 
         }))
       }
       // We set the hash cookie to the current consented integrations
+      // Need to use CookieStore when widely available
+      // oxlint-disable-next-line unicorn/no-document-cookie
       document.cookie = stringifySetCookie(
         {
           name: HASH_COOKIE,

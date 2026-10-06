@@ -30,8 +30,6 @@ export default defineConfig({
         'typescript/no-confusing-void-expression': 'warn',
         'typescript/no-unsafe-type-assertion': 'warn',
         'typescript/strict-boolean-expressions': 'warn',
-
-        'unicorn/no-document-cookie': 'warn',
       },
     },
     {
