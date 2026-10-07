@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.0.18
+
+### Patch Changes
+
+- [#3964](https://github.com/scaleway/scaleway-lib/pull/3964) [`a2c1336`](https://github.com/scaleway/scaleway-lib/commit/a2c1336bf8a42e6d0706df936530a229193f23a2) Thanks [@chambo-e](https://github.com/chambo-e)! - properly set consent storage strategy
+
+- [#3952](https://github.com/scaleway/scaleway-lib/pull/3952) [`3507993`](https://github.com/scaleway/scaleway-lib/commit/35079931ea0778fc7b9e925bdaaec7eb536ac5c2) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@rudderstack/analytics-js` to `3.34.3`.
+
 ## 2.0.17
 
 ### Patch Changes
