@@ -3,17 +3,9 @@
 import { execSync } from 'node:child_process'
 import { readFile } from 'node:fs/promises'
 import { parseArgs } from 'node:util'
-import type { Location } from '@formatjs/icu-messageformat-parser'
 import { parse } from '@formatjs/icu-messageformat-parser'
 import type { GlobOptions } from 'tinyglobby'
 import { escapePath, glob } from 'tinyglobby'
-
-type ParserError = {
-  // it's a enum inside @formatjs, don't use it today
-  kind: string
-  message: string
-  location: Location
-}
 
 const options = {
   ignoreTag: {
@@ -29,7 +21,7 @@ const [pattern] = positionals
 
 type Locales = Record<string, string>
 type ErrorICU = {
-  message: ParserError['message']
+  message?: string
   value: string
   key: string
   filePath: string
@@ -54,12 +46,20 @@ const findICUErrors = (locales: Record<string, string>, filePath: string): Error
 
         return undefined
       } catch (error) {
-        const { message } = error as ParserError
+        if (error !== null && typeof error === 'object' && 'message' in error && typeof error.message === 'string') {
+          const { message } = error
+
+          return {
+            filePath,
+            key,
+            message,
+            value,
+          }
+        }
 
         return {
           filePath,
           key,
-          message,
           value,
         }
       }
@@ -69,12 +69,24 @@ const findICUErrors = (locales: Record<string, string>, filePath: string): Error
   return errors
 }
 
+export const isLocales = (value: unknown): value is Locales => {
+  if (typeof value !== 'object' || value === null) {
+    return false
+  }
+
+  return true
+}
+
 const handleJson = async (file: string) => {
   try {
     const data = await readFile(file)
     const jsonFile = data.toString()
 
-    const locales = JSON.parse(jsonFile) as Locales
+    const locales: unknown = JSON.parse(jsonFile)
+
+    if (!isLocales(locales)) {
+      throw new TypeError(`invalid locales file in ${file}`)
+    }
 
     const ICUErrors = findICUErrors(locales, file)
     return ICUErrors
@@ -90,7 +102,11 @@ const handleFile = async (file: string) => {
 
     if (isObject(data)) {
       if ('default' in data) {
-        const { default: locales } = data as { default: Locales }
+        const { default: locales } = data
+
+        if (!isLocales(locales)) {
+          throw new TypeError(`invalid locales file in ${file}`)
+        }
 
         const ICUErrors = findICUErrors(locales, file)
         return ICUErrors
