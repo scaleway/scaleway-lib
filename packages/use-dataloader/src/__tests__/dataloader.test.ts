@@ -218,4 +218,82 @@ describe('dataloader class', () => {
       expect(method).toHaveBeenCalledTimes(5)
     })
   })
+
+  it('should abort signal when cancel is called', async () => {
+    const abortError = new Error('AbortError')
+    abortError.name = 'AbortError'
+    const signalRef: { current: AbortSignal | undefined } = { current: undefined }
+    const method = vi.fn<(options: { signal?: AbortSignal }) => Promise<boolean>>(async ({ signal }) => {
+      signalRef.current = signal
+      return new Promise<boolean>((resolve, reject) => {
+        signal?.addEventListener('abort', () => {
+          reject(abortError)
+        })
+        setTimeout(() => {
+          resolve(true)
+        }, PROMISE_TIMEOUT)
+      })
+    })
+    const notifyChanges = vi.fn<() => void>()
+    const instance = new DataLoader<boolean, Error>({
+      key: 'test-abort-signal',
+      method,
+      notifyChanges,
+    })
+
+    instance.load().catch(() => null)
+    await vi.waitFor(() => {
+      expect(method).toHaveBeenCalledTimes(1)
+    })
+
+    expect(signalRef.current).toBeDefined()
+    expect(signalRef.current?.aborted).toBe(false)
+
+    instance.cancel()
+
+    await vi.waitFor(() => {
+      expect(signalRef.current?.aborted).toBe(true)
+    })
+  })
+
+  it('should cancel without aborting when launch was never called', () => {
+    const method = vi.fn<typeof fakeSuccessPromise>(fakeSuccessPromise)
+    const notifyChanges = vi.fn<() => void>()
+    const instance = new DataLoader({
+      key: 'test-cancel-before-launch',
+      method,
+      notifyChanges,
+    })
+
+    // cancel() before any load() — abortController is undefined, must not throw
+    expect(() => {
+      instance.cancel()
+    }).not.toThrow()
+    expect(method).toHaveBeenCalledTimes(0)
+    expect(instance.status).toBe(StatusEnum.IDLE)
+  })
+
+  it('should not set ERROR status nor rethrow when method rejects with AbortError', async () => {
+    const abortError = new Error('Aborted')
+    abortError.name = 'AbortError'
+    const method = vi.fn<() => Promise<boolean>>(
+      async () =>
+        new Promise<boolean>((_, reject) => {
+          reject(abortError)
+        }),
+    )
+    const notifyChanges = vi.fn<() => void>()
+    const instance = new DataLoader<boolean, Error>({
+      key: 'test-abort-error-no-cancel',
+      method,
+      notifyChanges,
+    })
+
+    // Rejects with AbortError without cancel() being called — isAbortError
+    // must prevent status=ERROR and must swallow the rethrow.
+    await expect(instance.load()).resolves.toBeUndefined()
+
+    expect(instance.status).not.toBe(StatusEnum.ERROR)
+    expect(instance.error).toBeUndefined()
+  })
 })

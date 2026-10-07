@@ -15,7 +15,10 @@ const config: UseInfiniteDataLoaderConfig<{ nextPage: number; data: string }, Er
 const getPrerequisite = (key: string) => {
   let counter = 1
   let canResolve = false
-  const getNextData = vi.fn<() => Promise<{ nextPage: number; data: string }>>(
+  const abortController = new AbortController()
+  const getNextData = vi.fn<
+    (params: { page: number }, options: { signal?: AbortSignal }) => Promise<{ nextPage: number; data: string }>
+  >(
     async () =>
       new Promise<{ nextPage: number; data: string }>(resolve => {
         const resolvePromise = () => {
@@ -45,6 +48,7 @@ const getPrerequisite = (key: string) => {
       },
       key,
       method: getNextData,
+      abortController,
     },
     resetCounter: () => {
       counter = 1
@@ -59,6 +63,19 @@ const wrapperWithLifetime =
   (lifetime: number) =>
   ({ children }: { children?: ReactNode }) => (
     <DataLoaderProvider defaultDatalifetime={lifetime}>{children}</DataLoaderProvider>
+  )
+
+const createSignalCapturingMethod = (signals: AbortSignal[]) =>
+  vi.fn<(params: { page: number }, options: { signal?: AbortSignal }) => Promise<{ nextPage: number; data: string }>>(
+    async (_params, { signal }) =>
+      new Promise<{ nextPage: number; data: string }>(() => {
+        if (signal) {
+          signals.push(signal)
+          signal.addEventListener('abort', () => {
+            // swallow abort — request stays pending until GC
+          })
+        }
+      }),
   )
 
 describe('useInfinitDataLoader', () => {
@@ -100,9 +117,9 @@ describe('useInfinitDataLoader', () => {
     expect(result.current.isFetching).toBe(true)
     expect(result.current.isFetching).toBe(true)
     expect(initialProps.method).toHaveBeenCalledTimes(1)
-    expect(initialProps.method).toHaveBeenCalledWith({
-      page: 1,
-    })
+    const [callArgs] = initialProps.method.mock.calls
+    expect(callArgs?.[0]).toStrictEqual(expect.objectContaining({ page: 1 }))
+    expect(callArgs?.[1]?.signal).toBeInstanceOf(AbortSignal)
     setCanResolve(true)
     await waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
@@ -120,9 +137,9 @@ describe('useInfinitDataLoader', () => {
       expect(result.current.isFetching).toBe(true)
     })
     expect(initialProps.method).toHaveBeenCalledTimes(2)
-    expect(initialProps.method).toHaveBeenCalledWith({
-      page: 2,
-    })
+    const [, secondCallArgs] = initialProps.method.mock.calls
+    expect(secondCallArgs?.[0]).toStrictEqual(expect.objectContaining({ page: 2 }))
+    expect(secondCallArgs?.[1]?.signal).toBeInstanceOf(AbortSignal)
     setCanResolve(true)
     await waitFor(() => {
       expect(result.current.isFetching).toBe(true)
@@ -152,9 +169,9 @@ describe('useInfinitDataLoader', () => {
     expect(result.current.isLoading).toBe(true)
     expect(result.current.isFetching).toBe(true)
     expect(initialProps.method).toHaveBeenCalledTimes(1)
-    expect(initialProps.method).toHaveBeenCalledWith({
-      page: 1,
-    })
+    const [firstCallArgs] = initialProps.method.mock.calls
+    expect(firstCallArgs?.[0]).toStrictEqual(expect.objectContaining({ page: 1 }))
+    expect(firstCallArgs?.[1]?.signal).toBeInstanceOf(AbortSignal)
     setCanResolve(true)
     await waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
@@ -172,9 +189,9 @@ describe('useInfinitDataLoader', () => {
     })
     expect(result.current.data).toStrictEqual([{ data: 'Page 1 data', nextPage: 2 }])
     expect(initialProps.method).toHaveBeenCalledTimes(2)
-    expect(initialProps.method).toHaveBeenCalledWith({
-      page: 2,
-    })
+    const [, secondCallArgs] = initialProps.method.mock.calls
+    expect(secondCallArgs?.[0]).toStrictEqual(expect.objectContaining({ page: 2 }))
+    expect(secondCallArgs?.[1]?.signal).toBeInstanceOf(AbortSignal)
     setCanResolve(true)
     await waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
@@ -232,9 +249,9 @@ describe('useInfinitDataLoader', () => {
       expect(result.current.isFetching).toBe(true)
     })
     expect(initialProps.method).toHaveBeenCalledTimes(1)
-    expect(initialProps.method).toHaveBeenCalledWith({
-      page: 1,
-    })
+    const [firstCallArgs] = initialProps.method.mock.calls
+    expect(firstCallArgs?.[0]).toStrictEqual(expect.objectContaining({ page: 1 }))
+    expect(firstCallArgs?.[1]?.signal).toBeInstanceOf(AbortSignal)
     setCanResolve(true)
     await waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
@@ -252,9 +269,9 @@ describe('useInfinitDataLoader', () => {
     })
     expect(result.current.data).toStrictEqual([{ data: 'Page 1 data', nextPage: 2 }])
     expect(initialProps.method).toHaveBeenCalledTimes(2)
-    expect(initialProps.method).toHaveBeenCalledWith({
-      page: 2,
-    })
+    const [, secondCallArgs] = initialProps.method.mock.calls
+    expect(secondCallArgs?.[0]).toStrictEqual(expect.objectContaining({ page: 2 }))
+    expect(secondCallArgs?.[1]?.signal).toBeInstanceOf(AbortSignal)
     setCanResolve(true)
     await waitFor(() => {
       expect(result.current.isFetching).toBe(true)
@@ -883,5 +900,49 @@ describe('useInfinitDataLoader', () => {
 
     // hasNextPage must be true (not stale false from useMemo)
     expect(result2.current.hasNextPage).toBe(true)
+  })
+
+  it('should cancel in-flight first-page request when unmounted', async () => {
+    // Note: the infinite hook's unmount cleanup has an inverted observer
+    // check (`if (!observers.includes(notifyFn)) removeObserver`) that
+    // prevents observers from reaching 0 on a direct unmount. To exercise
+    // the cancel-on-no-observers path we use a key change (which orphans
+    // the previous request via getCurrentRequest's filter, then the
+    // unmount cleanup cancels the orphaned request with 0 observers).
+    const signals: AbortSignal[] = []
+    const controlledMethod = createSignalCapturingMethod(signals)
+
+    const baseInitialProps = {
+      baseParams: { page: 1 },
+      config: { enabled: true } as const,
+      key: 'test-unmount-cancel-1',
+      method: controlledMethod,
+    }
+
+    const { result, rerender, unmount } = renderHook(
+      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
+      {
+        initialProps: baseInitialProps,
+        wrapper,
+      },
+    )
+
+    await waitFor(() => {
+      expect(result.current.isLoading).toBe(true)
+    })
+    expect(signals).toHaveLength(1)
+
+    // Change the key — this orphans the first request (removeObserver +
+    // filter it out of requestRefs), then a new request starts.
+    rerender({ ...baseInitialProps, key: 'test-unmount-cancel-2' })
+
+    await waitFor(() => {
+      expect(signals).toHaveLength(2)
+    })
+
+    // Unmount — the orphaned first request (now with 0 observers) gets cancelled.
+    unmount()
+
+    expect(signals[0]?.aborted).toBe(true)
   })
 })

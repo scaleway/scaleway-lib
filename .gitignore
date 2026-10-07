@@ -4,6 +4,7 @@ node_modules
 # we are using pnpm here
 package-lock.json
 yarn.lock
+.pnpm-store
 
 # misc
 .DS_Store
