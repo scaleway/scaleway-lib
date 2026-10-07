@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.1.2
+
+### Patch Changes
+
+- [#3944](https://github.com/scaleway/scaleway-lib/pull/3944) [`c4e469c`](https://github.com/scaleway/scaleway-lib/commit/c4e469ceca697d8f38b5bd623d504d7a7e86e3b7) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `chalk` to `6.0.1`.
+
 ## 1.1.1
 
 ### Patch Changes
