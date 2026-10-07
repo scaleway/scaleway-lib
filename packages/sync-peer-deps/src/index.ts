@@ -40,9 +40,7 @@ const isPackageJson = (value: unknown): value is PackageJson => {
   if (typeof value !== 'object' || value === null) {
     return false
   }
-  // oxlint-disable-next-line typescript/no-unsafe-type-assertion
-  const obj = value as Record<string, unknown>
-  return typeof obj['name'] === 'string' && typeof obj['version'] === 'string'
+  return 'name' in value && typeof value['name'] === 'string'
 }
 
 /**
