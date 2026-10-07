@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.1.3
+
+### Patch Changes
+
+- [#3969](https://github.com/scaleway/scaleway-lib/pull/3969) [`19eb9d7`](https://github.com/scaleway/scaleway-lib/commit/19eb9d73acf8b8ca3f03ef65ea1fdebc2b2bda5d) Thanks [@chambo-e](https://github.com/chambo-e)! - reduce package.json checking strictness
+
 ## 1.1.2
 
 ### Patch Changes
