@@ -13,6 +13,11 @@ export const defaultConsentOptions: ConsentOptions = {
    */
   discardPreConsentEvents: false,
   storage: {
+    entries: {
+      anonymousId: {
+        type: 'cookieStorage',
+      },
+    },
     type: 'cookieStorage',
   },
   trackConsent: false,
@@ -48,7 +53,7 @@ export const defaultLoadOptions: LoadOptions = {
       delivery: 'buffer',
     },
     storage: {
-      strategy: 'anonymousId',
+      enabled: true,
     },
   },
   queueOptions: {
