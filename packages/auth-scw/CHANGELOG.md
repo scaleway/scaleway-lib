@@ -1,5 +1,11 @@
 # @scaleway/auth-scw
 
+## 1.2.2
+
+### Patch Changes
+
+- [#3975](https://github.com/scaleway/scaleway-lib/pull/3975) [`46107dc`](https://github.com/scaleway/scaleway-lib/commit/46107dc80507266132e00aa420b54170254f9b00) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@scaleway/sdk-iam` to `2.21.0`.
+
 ## 1.2.1
 
 ### Patch Changes

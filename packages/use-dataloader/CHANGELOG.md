@@ -1,5 +1,18 @@
 # Change Log
 
+## 7.2.1
+
+### Patch Changes
+
+- [#3980](https://github.com/scaleway/scaleway-lib/pull/3980) [`53fdae9`](https://github.com/scaleway/scaleway-lib/commit/53fdae9aa9a05f04397f923095b91afbf3a4e636) Thanks [@philibea](https://github.com/philibea)! - Fix `cancel()` leaving `isCalled` set to `true`, which prevented
+  `load()` from re-launching after a component unmount/remount (e.g. React
+  StrictMode) or a key change. This caused requests to get stuck in `idle`
+  forever — the state would never update.
+  
+  Also fix a double-decrement of the static `DataLoader.started` counter:
+  `cancel()` no longer decrements it; `launch()`'s try/catch handles the
+  single decrement when the aborted method settles.
+
 ## 7.2.0
 
 ### Minor Changes
