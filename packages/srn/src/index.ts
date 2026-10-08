@@ -23,52 +23,38 @@
  * @see https://github.com/scaleway/scaleway-sdk-go  (Go parser of reference)
  */
 
+import type { ApiLocality, Region, Zone } from '@scaleway/sdk-client'
+
 /**
- * The locality scope of a Scaleway resource.
+ * The locality scope of a Scaleway resource, derived from `@scaleway/sdk-client`'s
+ * `ApiLocality` type:
  *
  * - `zone`   — a single availability zone (e.g. `it-mil-1`)
  * - `region` — a geographical region containing one or more zones (e.g. `fr-par`)
  * - `global` — not scoped to a zone or region (e.g. IAM resources)
+ *
+ * The SDK's `'unspecified'` scope is excluded: an SRN locality is always a
+ * zone, a region, or global.
  */
-export type LocalityType = 'zone' | 'region' | 'global'
+export type LocalityType = Exclude<ApiLocality['type'], 'unspecified'>
 
 /**
  * A Scaleway locality identifier — the `name` part of a {@link Locality}.
  *
- * This is the closed set of locality names that Scaleway currently operates,
- * mirrored from `scaleway-sdk-go` `scw/locality.go`. It is the union of every
- * known zone, every known region, and the empty string (used when the
- * locality type is `global`).
+ * Sourced from `@scaleway/sdk-client`, which is the single source of truth for
+ * Scaleway zones and regions: `Zone | Region`, plus `''` for global
+ * localities. The SDK's `Zone` and `Region` unions are open
+ * (`'fr-par-1' | … | string`), so any string is assignable — a locality name
+ * that ships after this package's release stays representable at the type
+ * level without extending anything.
  *
  * Consumers that maintain their own narrower union of locality names
  * (e.g. a console that only handles `'fr-par-1' | 'fr-par-2'`) can pass that
- * union anywhere a `LocalityName` is expected, because every member of the
- * narrower union is also a member of this one.
- *
- * Note: `parseSRN` returns this broad type for any input that parses. An SRN
- * carrying a locality name not yet in this list still parses at runtime but is
- * not representable at the type level — extend this union when Scaleway ships a
- * new zone or region.
+ * union as the `L` generic parameter of {@link SRN} / {@link parseSRN} /
+ * {@link safeParseSRN}, because every member of the narrower union is also a
+ * member of this one.
  */
-export type LocalityName =
-  // Zones
-  | 'fr-par-1'
-  | 'fr-par-2'
-  | 'fr-par-3'
-  | 'nl-ams-1'
-  | 'nl-ams-2'
-  | 'nl-ams-3'
-  | 'pl-waw-1'
-  | 'pl-waw-2'
-  | 'pl-waw-3'
-  | 'it-mil-1'
-  // Regions
-  | 'fr-par'
-  | 'nl-ams'
-  | 'pl-waw'
-  | 'it-mil'
-  // Global (no locality prefix)
-  | ''
+export type LocalityName = Zone | Region | ''
 
 /**
  * A locality prefix extracted from the SRN path.
@@ -77,10 +63,11 @@ export type LocalityName =
  * is global. `name` is the zone/region identifier (empty when `type` is `global`).
  *
  * @template L — the locality-name union a consumer wants to narrow `name` to.
- *   Defaults to {@link LocalityName}, the closed set of every Scaleway zone,
- *   region, and `''` (global). A console that only handles a subset can
- *   substitute its own union (e.g. `'fr-par-1' | 'fr-par-2'`); every member
- *   of the narrower union is also a member of `LocalityName`.
+ *   Defaults to {@link LocalityName}, the open union of every Scaleway zone,
+ *   region, and `''` (global) sourced from `@scaleway/sdk-client`. A console
+ *   that only handles a subset can substitute its own union (e.g.
+ *   `'fr-par-1' | 'fr-par-2'`); every member of the narrower union is also a
+ *   member of `LocalityName`.
  */
 export type Locality<L extends LocalityName = LocalityName> = {
   readonly name: L
@@ -137,9 +124,10 @@ export type ResourceIdentifierSegment<R extends string = string> = {
  * @template R — the resource-type-key union for `resourceIdentifier` segment
  *   names. Defaults to `string`; see {@link ResourceIdentifierSegment}.
  * @template L — the locality-name union for `locality.name`. Defaults to
- *   {@link LocalityName}, the closed set of every Scaleway zone, region, and
- *   `''` (global). A console that only handles a subset can substitute its
- *   own union (e.g. `'fr-par-1' | 'fr-par-2'`); see {@link Locality}.
+ *   {@link LocalityName}, the open union of every Scaleway zone, region, and
+ *   `''` (global) sourced from `@scaleway/sdk-client`. A console that only
+ *   handles a subset can substitute its own union (e.g. `'fr-par-1' |
+ *   'fr-par-2'`); see {@link Locality}.
  */
 export type SRN<P extends string = string, R extends string = string, L extends LocalityName = LocalityName> = {
   /** The product namespace (e.g. `block`, `iam`, `api`). */

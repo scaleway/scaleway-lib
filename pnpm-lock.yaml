@@ -563,7 +563,11 @@ importers:
         specifier: 'catalog:'
         version: 4.6.5
 
-  packages/srn: {}
+  packages/srn:
+    devDependencies:
+      '@scaleway/sdk-client':
+        specifier: 'catalog:'
+        version: 2.13.0
 
   packages/sync-peer-deps:
     dependencies:

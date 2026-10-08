@@ -3,6 +3,7 @@ import { parseSRN, safeParseSRN, stringifySRN } from '../index'
 import type {
   Locality,
   LocalityName,
+  LocalityType,
   ResourceIdentifierSegment,
   SafeParseError,
   SafeParseResult,
@@ -31,8 +32,17 @@ describe('srn - locality name', () => {
     expectTypeOf<ConsoleLocalityName>().toExtend<LocalityName>()
   })
 
-  it('does not accept an arbitrary string', () => {
-    expectTypeOf<string>().not.toExtend<LocalityName>()
+  it('accepts arbitrary strings — LocalityName is the open Zone | Region union from @scaleway/sdk-client', () => {
+    expectTypeOf<string>().toExtend<LocalityName>()
+  })
+
+  it('accepts known sdk-client zones and regions', () => {
+    expectTypeOf<'fr-par-1'>().toExtend<LocalityName>()
+    expectTypeOf<'fr-par'>().toExtend<LocalityName>()
+  })
+
+  it('is a subtype of string', () => {
+    expectTypeOf<LocalityName>().toExtend<string>()
   })
 
   it('includes the empty string used for global localities', () => {
@@ -47,6 +57,16 @@ describe('srn - locality', () => {
 
   it('narrows name via the L parameter', () => {
     expectTypeOf<Locality<ConsoleLocalityName>['name']>().toEqualTypeOf<ConsoleLocalityName>()
+  })
+})
+
+describe('srn - locality type', () => {
+  it('is the sdk-client ApiLocality scopes without unspecified', () => {
+    expectTypeOf<LocalityType>().toEqualTypeOf<'zone' | 'region' | 'global'>()
+  })
+
+  it('does not include the sdk-client unspecified scope', () => {
+    expectTypeOf<'unspecified'>().not.toExtend<LocalityType>()
   })
 })
 
