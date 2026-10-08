@@ -122,8 +122,11 @@ describe('srn - stringifySRN accepts narrowed SRNs', () => {
   })
 
   it('accepts a fully narrowed SRN<ConsoleProduct, ConsoleResource, ConsoleLocalityName>', () => {
-    // oxlint-disable-next-line typescript/no-unsafe-type-assertion -- typetest fixture: constructing a narrowed SRN without parsing
-    const narrowed = {} as SRN<ConsoleProduct, ConsoleResource, ConsoleLocalityName>
+    const narrowed = parseSRN('srn://block.scw.eu/zones/fr-par-1/snapshots/22222222', {
+      isProduct: (_v: string): _v is ConsoleProduct => _v.length > 0,
+      isResource: (_v: string): _v is ConsoleResource => _v.length > 0,
+      isLocality: (_v: string): _v is ConsoleLocalityName => _v.length > 0,
+    })
     // If the narrowed SRN is accepted, this line compiles.
     expect(stringifySRN(narrowed)).toBeDefined()
   })
@@ -152,12 +155,17 @@ describe('srn - safeParseSRN result', () => {
 })
 
 describe('srn - parseSRN narrows at the call site', () => {
-  it('returns the broad SRN by default', () => {
+  it('returns the broad SRN with the no-guard overload', () => {
     expectTypeOf(parseSRN).returns.toEqualTypeOf<SRN>()
   })
 
-  it('forwards P, R, L to SRN', () => {
-    expectTypeOf(parseSRN<ConsoleProduct, ConsoleResource, ConsoleLocalityName>).returns.toEqualTypeOf<
+  it('forwards P, R, L to SRN through its guards', () => {
+    const guards = {
+      isProduct: (_v: string): _v is ConsoleProduct => _v.length > 0,
+      isResource: (_v: string): _v is ConsoleResource => _v.length > 0,
+      isLocality: (_v: string): _v is ConsoleLocalityName => _v.length > 0,
+    }
+    expectTypeOf(parseSRN('srn://block.scw.eu/zones/fr-par-1/snapshots/22222222', guards)).toEqualTypeOf<
       SRN<ConsoleProduct, ConsoleResource, ConsoleLocalityName>
     >()
   })
@@ -169,9 +177,13 @@ describe('srn - safeParseSRN narrows at the call site', () => {
   })
 
   it('forwards P, R, L to the success branch data', () => {
-    expectTypeOf(safeParseSRN<ConsoleProduct, ConsoleResource, ConsoleLocalityName>).returns.toEqualTypeOf<
-      SafeParseResult<ConsoleProduct, ConsoleResource, ConsoleLocalityName>
-    >()
+    const guards = {
+      isProduct: (_v: string): _v is ConsoleProduct => _v.length > 0,
+      isResource: (_v: string): _v is ConsoleResource => _v.length > 0,
+      isLocality: (_v: string): _v is ConsoleLocalityName => _v.length > 0,
+    }
+    const result = safeParseSRN('srn://block.scw.eu/zones/fr-par-1/snapshots/22222222', guards)
+    expectTypeOf(result).toEqualTypeOf<SafeParseResult<ConsoleProduct, ConsoleResource, ConsoleLocalityName>>()
   })
 
   it('narrows data on the success branch when called with type args', () => {

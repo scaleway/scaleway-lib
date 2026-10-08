@@ -130,3 +130,62 @@ describe('safeParseSRN function', () => {
     }
   })
 })
+
+describe('parseSRN with runtime guards', () => {
+  const input = 'srn://block.scw.eu/zones/it-mil-1/snapshots/22222222'
+  const blockGuards = {
+    isProduct: (v: string): v is 'block' => v === 'block',
+    isResource: (v: string): v is 'snapshots' => v === 'snapshots',
+    isLocality: (v: string): v is 'it-mil-1' => v === 'it-mil-1',
+  }
+
+  it('narrows accepted values through the guards', () => {
+    const s = parseSRN(input, blockGuards)
+    expect(s.product).toBe('block')
+    expect(s.locality.name).toBe('it-mil-1')
+    expect(s.resourceIdentifier?.name).toBe('snapshots')
+    expect(s.toString()).toBe(input)
+  })
+
+  it('throws when a guard rejects the product', () => {
+    expect(() => parseSRN(input, { ...blockGuards, isProduct: (v): v is 'k8s' => v === 'k8s' })).toThrow(SRNParseError)
+  })
+
+  it('throws when a guard rejects the locality', () => {
+    expect(() => parseSRN(input, { ...blockGuards, isLocality: (v): v is 'fr-par-1' => v === 'fr-par-1' })).toThrow(
+      SRNParseError,
+    )
+  })
+
+  it('throws when a guard rejects a resource key', () => {
+    expect(() => parseSRN(input, { ...blockGuards, isResource: (v): v is 'clusters' => v === 'clusters' })).toThrow(
+      SRNParseError,
+    )
+  })
+})
+
+describe('safeParseSRN with runtime guards', () => {
+  const input = 'srn://block.scw.eu/zones/it-mil-1/snapshots/22222222'
+  const blockGuards = {
+    isProduct: (v: string): v is 'block' => v === 'block',
+    isResource: (v: string): v is 'snapshots' => v === 'snapshots',
+    isLocality: (v: string): v is 'it-mil-1' => v === 'it-mil-1',
+  }
+
+  it('returns success with data when the guards accept', () => {
+    const result = safeParseSRN(input, blockGuards)
+    expect(result.success).toBe(true)
+    expect(result).toMatchObject({ data: { product: 'block' } })
+  })
+
+  it('returns an error result when a guard rejects', () => {
+    const result = safeParseSRN(input, { ...blockGuards, isProduct: (v): v is 'k8s' => v === 'k8s' })
+    expect(result.success).toBe(false)
+    expect(result).toMatchObject({ error: { name: 'SRNParseError' } })
+  })
+
+  it('does not throw when a guard rejects', () => {
+    const rejectProduct = { ...blockGuards, isProduct: (v: string): v is 'k8s' => v === 'k8s' }
+    expect(() => safeParseSRN(input, rejectProduct)).not.toThrow()
+  })
+})
