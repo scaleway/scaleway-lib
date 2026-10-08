@@ -296,4 +296,109 @@ describe('dataloader class', () => {
     expect(instance.status).not.toBe(StatusEnum.ERROR)
     expect(instance.error).toBeUndefined()
   })
+
+  it('should reset isCalled on cancel so a subsequent load() re-launches', async () => {
+    const abortError = new Error('AbortError')
+    abortError.name = 'AbortError'
+    const method = vi.fn<(options: { signal?: AbortSignal }) => Promise<string>>(
+      async ({ signal }) =>
+        new Promise<string>((resolve, reject) => {
+          signal?.addEventListener('abort', () => {
+            reject(abortError)
+          })
+          setTimeout(() => {
+            resolve('data')
+          }, PROMISE_TIMEOUT)
+        }),
+    )
+    const notifyChanges = vi.fn<() => void>()
+    const instance = new DataLoader<string, Error>({
+      key: 'test-cancel-reload',
+      method,
+      notifyChanges,
+    })
+
+    // Start the first request, then cancel it before it resolves
+    instance.load().catch(() => null)
+    await vi.waitFor(() => {
+      expect(method).toHaveBeenCalledTimes(1)
+    })
+    instance.cancel()
+
+    // Wait for the abort to propagate
+    await vi.waitFor(() => {
+      expect(instance.status).toBe(StatusEnum.IDLE)
+    })
+
+    // load() again — this must actually re-launch (not be a no-op)
+    await instance.load()
+
+    expect(method).toHaveBeenCalledTimes(2)
+    expect(instance.getData()).toBe('data')
+    expect(instance.status).toBe(StatusEnum.SUCCESS)
+    instance.clearData()
+  })
+
+  it('should not double-decrement DataLoader.started when cancelling an in-flight request', async () => {
+    const abortError = new Error('AbortError')
+    abortError.name = 'AbortError'
+    const method = vi.fn<(options: { signal?: AbortSignal }) => Promise<boolean>>(
+      async ({ signal }) =>
+        new Promise<boolean>((resolve, reject) => {
+          signal?.addEventListener('abort', () => {
+            reject(abortError)
+          })
+          setTimeout(() => {
+            resolve(true)
+          }, 1000)
+        }),
+    )
+    const notifyChanges = vi.fn<() => void>()
+    const instance = new DataLoader<boolean, Error>({
+      key: 'test-cancel-started-count',
+      method,
+      notifyChanges,
+    })
+
+    const initialStarted = DataLoader.started
+
+    instance.load().catch(() => null)
+    await vi.waitFor(() => {
+      expect(method).toHaveBeenCalledTimes(1)
+    })
+    // While in-flight, started was incremented by exactly 1
+    expect(DataLoader.started).toBe(initialStarted + 1)
+
+    instance.cancel()
+
+    // Wait for the abort rejection to propagate through launch()'s catch
+    await vi.waitFor(() => {
+      expect(DataLoader.started).toBe(initialStarted)
+    })
+
+    // started must return to the initial value — not below it (double decrement)
+    expect(DataLoader.started).toBe(initialStarted)
+    instance.clearData()
+  })
+
+  it('should not decrement DataLoader.started when cancelling an already-completed request', async () => {
+    const method = vi.fn<typeof fakeSuccessPromise>(fakeSuccessPromise)
+    const notifyChanges = vi.fn<() => void>()
+    const instance = new DataLoader({
+      key: 'test-cancel-after-complete',
+      method,
+      notifyChanges,
+    })
+
+    const initialStarted = DataLoader.started
+
+    await instance.load()
+    // launch() try block decremented started back to initial
+    expect(DataLoader.started).toBe(initialStarted)
+
+    // Cancel after completion — must NOT decrement again
+    instance.cancel()
+    expect(DataLoader.started).toBe(initialStarted)
+    instance.clearData()
+  })
 })

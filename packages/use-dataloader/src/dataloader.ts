@@ -153,9 +153,14 @@ class DataLoader<ResultType, ErrorType> {
     if (this.abortController) {
       this.abortController.abort()
     }
-    DataLoader.started -= 1
+    // Do not decrement DataLoader.started here — launch() handles it in its
+    // try/catch when the aborted method settles. Decrementing in both places
+    // would double-count and corrupt the concurrency counter.
     DataLoader.queue.delete(this.key)
     this.isCancelled = true
+    // Reset isCalled so a subsequent load() (e.g. after a React StrictMode
+    // remount or a key change) actually re-launches instead of being a no-op.
+    this.isCalled = false
     this.status = StatusEnum.IDLE
   }
 
