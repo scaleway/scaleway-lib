@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.2
+
+### Patch Changes
+
+- [#3988](https://github.com/scaleway/scaleway-lib/pull/3988) [`664bc55`](https://github.com/scaleway/scaleway-lib/commit/664bc55220c4245cc813cc47ea0f035812239ce1) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `intl-messageformat` to `12.1.3`.
+
 ## 9.0.1
 
 ### Patch Changes
