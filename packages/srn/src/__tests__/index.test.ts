@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { parseSRN, SRNParseError, stringifySRN } from '../index'
+import { parseSRN, safeParseSRN, SRNParseError, stringifySRN } from '../index'
 
 describe('parseSRN function', () => {
   it('parses a zonal SRN', () => {
@@ -64,5 +64,128 @@ describe('parseSRN function', () => {
 
   it('throws when platform domain has no dot', () => {
     expect(() => parseSRN('srn://blockfoo/zones/x/y')).toThrow(SRNParseError)
+  })
+})
+
+describe('safeParseSRN function', () => {
+  it('returns a success result for a valid SRN', () => {
+    const result = safeParseSRN('srn://block.scw.eu/zones/it-mil-1/snapshots/22222222')
+    expect(result.success).toBe(true)
+    expect(result).toMatchObject({
+      data: {
+        product: 'block',
+        locality: { name: 'it-mil-1' },
+        platformDomain: 'scw.eu',
+      },
+    })
+  })
+
+  it('returns an error result for an invalid SRN', () => {
+    const result = safeParseSRN('not-a-srn')
+    expect(result.success).toBe(false)
+    expect(result).toMatchObject({
+      error: {
+        name: 'SRNParseError',
+        message: 'parse: cannot break down the provided uri',
+      },
+    })
+  })
+
+  it('returns an error result when platform domain has no dot', () => {
+    const result = safeParseSRN('srn://blockfoo/zones/x/y')
+    expect(result.success).toBe(false)
+    expect(result).toMatchObject({ error: { name: 'SRNParseError' } })
+  })
+
+  it('does not throw on invalid input', () => {
+    expect(() => safeParseSRN('')).not.toThrow()
+  })
+
+  it('never throws, regardless of input', () => {
+    // safeParseSRN's contract is that it never throws — it always returns a
+    // discriminated union. Feed it a battery of hostile string inputs and
+    // assert every call returns a result object with a boolean `success`.
+    const inputs: string[] = [
+      '',
+      'not-a-srn',
+      'srn://',
+      'srn://x',
+      'srn://x.y',
+      'srn://x.y/',
+      'srn://x.y/zones',
+      'srn://x.y/zones/',
+      'srn://x.y/zones/it-mil-1',
+      'srn://x.y/zones/it-mil-1/',
+      'srn://x.y/regions/fr-par',
+      'srn://x.y//',
+      'srn://x.y//singleton',
+      '////',
+      Math.random().toString(),
+    ]
+
+    for (const input of inputs) {
+      const result = safeParseSRN(input)
+      expect(result).toHaveProperty('success')
+      expect(result.success).toBeTypeOf('boolean')
+    }
+  })
+})
+
+describe('parseSRN with runtime guards', () => {
+  const input = 'srn://block.scw.eu/zones/it-mil-1/snapshots/22222222'
+  const blockGuards = {
+    isProduct: (v: string): v is 'block' => v === 'block',
+    isResource: (v: string): v is 'snapshots' => v === 'snapshots',
+    isLocality: (v: string): v is 'it-mil-1' => v === 'it-mil-1',
+  }
+
+  it('narrows accepted values through the guards', () => {
+    const s = parseSRN(input, blockGuards)
+    expect(s.product).toBe('block')
+    expect(s.locality.name).toBe('it-mil-1')
+    expect(s.resourceIdentifier?.name).toBe('snapshots')
+    expect(s.toString()).toBe(input)
+  })
+
+  it('throws when a guard rejects the product', () => {
+    expect(() => parseSRN(input, { ...blockGuards, isProduct: (v): v is 'k8s' => v === 'k8s' })).toThrow(SRNParseError)
+  })
+
+  it('throws when a guard rejects the locality', () => {
+    expect(() => parseSRN(input, { ...blockGuards, isLocality: (v): v is 'fr-par-1' => v === 'fr-par-1' })).toThrow(
+      SRNParseError,
+    )
+  })
+
+  it('throws when a guard rejects a resource key', () => {
+    expect(() => parseSRN(input, { ...blockGuards, isResource: (v): v is 'clusters' => v === 'clusters' })).toThrow(
+      SRNParseError,
+    )
+  })
+})
+
+describe('safeParseSRN with runtime guards', () => {
+  const input = 'srn://block.scw.eu/zones/it-mil-1/snapshots/22222222'
+  const blockGuards = {
+    isProduct: (v: string): v is 'block' => v === 'block',
+    isResource: (v: string): v is 'snapshots' => v === 'snapshots',
+    isLocality: (v: string): v is 'it-mil-1' => v === 'it-mil-1',
+  }
+
+  it('returns success with data when the guards accept', () => {
+    const result = safeParseSRN(input, blockGuards)
+    expect(result.success).toBe(true)
+    expect(result).toMatchObject({ data: { product: 'block' } })
+  })
+
+  it('returns an error result when a guard rejects', () => {
+    const result = safeParseSRN(input, { ...blockGuards, isProduct: (v): v is 'k8s' => v === 'k8s' })
+    expect(result.success).toBe(false)
+    expect(result).toMatchObject({ error: { name: 'SRNParseError' } })
+  })
+
+  it('does not throw when a guard rejects', () => {
+    const rejectProduct = { ...blockGuards, isProduct: (v: string): v is 'k8s' => v === 'k8s' }
+    expect(() => safeParseSRN(input, rejectProduct)).not.toThrow()
   })
 })
