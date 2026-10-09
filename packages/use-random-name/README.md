@@ -17,8 +17,8 @@ pnpm add @scaleway/use-random-name
 As a React hook
 
 ```js
-import React from 'react'
 import useRandomName from '@scaleway/random-name'
+import React from 'react'
 
 const Component = () => {
   const name = useRandomName()

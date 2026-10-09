@@ -13,8 +13,8 @@ pnpm add @scaleway/use-interval
 ## Usage
 
 ```js
-import React from 'react'
 import { useInterval } from '@scaleway/use-interval'
+import React from 'react'
 
 const Component = () => {
   const [count, setCount] = useState(0)
