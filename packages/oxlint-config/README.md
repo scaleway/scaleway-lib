@@ -21,8 +21,8 @@ The package exposes a set of [flat config](https://oxc.rs/docs/guide/usage/linte
 Create an `oxlint.config.ts` file in your project root:
 
 ```ts
-import { defineConfig } from 'oxlint'
 import { base, ignorePatterns, react, vitest } from '@scaleway/oxlint-config'
+import { defineConfig } from 'oxlint'
 
 export default defineConfig({
   extends: [base, react, vitest],
@@ -35,8 +35,8 @@ export default defineConfig({
 `base` includes rules for all JavaScript/TypeScript projects: ESLint core rules, import, Node.js, TypeScript (type-aware), unicorn, and oxc rules. It enables type-aware and type-checked linting by default.
 
 ```ts
-import { defineConfig } from 'oxlint'
 import { base } from '@scaleway/oxlint-config'
+import { defineConfig } from 'oxlint'
 
 export default defineConfig({
   extends: [base],
@@ -48,8 +48,8 @@ export default defineConfig({
 For React projects, compose the `react` preset on top of `base`. It adds React, React performance, and JSX accessibility (jsx-a11y) rules.
 
 ```ts
-import { defineConfig } from 'oxlint'
 import { base, react } from '@scaleway/oxlint-config'
+import { defineConfig } from 'oxlint'
 
 export default defineConfig({
   extends: [base, react],
@@ -61,8 +61,8 @@ export default defineConfig({
 For projects using Vitest, compose the `vitest` preset on top of `base`. It applies Vitest rules only to test files.
 
 ```ts
-import { defineConfig } from 'oxlint'
 import { base, vitest } from '@scaleway/oxlint-config'
+import { defineConfig } from 'oxlint'
 
 export default defineConfig({
   extends: [base, vitest],
@@ -74,8 +74,8 @@ export default defineConfig({
 `ignorePatterns` is a ready-made list of common paths to ignore (build output, generated code, coverage, lockfiles, framework-specific directories, and so on). It is exported separately so you can pick and choose whether to apply it.
 
 ```ts
-import { defineConfig } from 'oxlint'
 import { base, ignorePatterns } from '@scaleway/oxlint-config'
+import { defineConfig } from 'oxlint'
 
 export default defineConfig({
   extends: [base],
@@ -88,8 +88,8 @@ export default defineConfig({
 Since the presets are plain config objects, you can override any rule in your own config:
 
 ```ts
-import { defineConfig } from 'oxlint'
 import { base } from '@scaleway/oxlint-config'
+import { defineConfig } from 'oxlint'
 
 export default defineConfig({
   extends: [base],

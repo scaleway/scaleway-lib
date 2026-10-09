@@ -55,8 +55,8 @@ const App = () => (
 ```
 
 ```js
-import React from 'react'
 import I18n from '@scaleway/use-i18n'
+import React from 'react'
 
 const Page = () => {
   // this will load locales based on `./locales/${currentLocale}/common.json`
@@ -156,8 +156,8 @@ You will need sometimes to give locales to somes compoent
 In this example, we will use react-date-picker.js
 
 ```js
-import { useI18n } from '@scaleway/use-i18n'
 import { DateInput } from '@scaleway/ui'
+import { useI18n } from '@scaleway/use-i18n'
 
 const App = () => {
   const { t, currentLocale, dateFnsLocale } = useI18n()

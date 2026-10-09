@@ -15,8 +15,8 @@ pnpm add @scaleway/use-storage
 With localStorage
 
 ```js
-import React from 'react'
 import { useLocalStorage } from '@scaleway/use-storage'
+import React from 'react'
 
 const Component = () => {
   const [value, setValue] = useLocalStorage('key')
@@ -36,8 +36,8 @@ const Component = () => {
 With sessionStorage
 
 ```js
-import React from 'react'
 import { useSessionStorage } from '@scaleway/use-storage'
+import React from 'react'
 
 const Component = () => {
   const [value, setValue] = useSessionStorage('key')
@@ -57,8 +57,8 @@ const Component = () => {
 With initialValue
 
 ```js
-import React from 'react'
 import { useLocalStorage } from '@scaleway/use-storage'
+import React from 'react'
 
 const Component = () => {
   const [value, setValue] = useLocalStorage('key', 'initial')

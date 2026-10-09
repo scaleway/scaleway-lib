@@ -21,8 +21,8 @@ export default config
 Or if you want to extends defaults
 
 ```ts
-import { defineConfig } from 'oxfmt'
 import config, { mergeConfig } from '@scaleway/oxfmt-config'
+import { defineConfig } from 'oxfmt'
 
 export default mergeConfig(
   config,
