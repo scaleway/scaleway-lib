@@ -34,7 +34,7 @@ catalog:
   cookie: 2.0.1
   date-fns: 4.4.0
   deepmerge-ts: 8.0.2
-  execa: 10.0.1
+  execa: 10.1.0
   filesize: 11.0.25
   happy-dom: 20.14.5
   history: 5.3.0
