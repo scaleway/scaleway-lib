@@ -18,10 +18,8 @@ export type LocalityType = Exclude<ApiLocality['type'], 'unspecified'>
  *
  * Sourced from `@scaleway/sdk-client`, which is the single source of truth for
  * Scaleway zones and regions: `Zone | Region`, plus `''` for global
- * localities. The SDK's `Zone` and `Region` unions are open
- * (`'fr-par-1' | … | string`), so any string is assignable — a locality name
- * that ships after this package's release stays representable at the type
- * level without extending anything.
+ * localities. The SDK's `Zone` and `Region` unions enumerate the localities
+ * known at release time.
  *
  * Consumers that maintain their own narrower union of locality names
  * (e.g. a console that only handles `'fr-par-1' | 'fr-par-2'`) can pass that
@@ -340,13 +338,14 @@ export const parseSRNWide = (input: string): SRN => {
   }
 
   let locType: LocalityType = 'global'
-  let locName = ''
+  let locName: LocalityName = ''
 
   const lm = LOCALITY_RE.exec(path)
   const lmGroups = lm?.groups
   const loc = lmGroups?.['loc']
   if (loc !== undefined) {
-    locName = lmGroups?.['locName'] ?? ''
+    // oxlint-disable-next-line typescript/no-unsafe-type-assertion -- locName is parsed from the SRN path; trust it as a locality name
+    locName = (lmGroups?.['locName'] ?? '') as LocalityName
     if (loc === 'zones') {
       locType = 'zone'
     } else if (loc === 'regions') {
