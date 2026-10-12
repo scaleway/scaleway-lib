@@ -7,12 +7,24 @@ on:
   push:
     branches: ['main']
 
+# Shared task-result cache (pnpm v12.12.0+). The build job publishes signed
+# results to a Turborepo Remote Cache server (Vercel); every other job
+# restores them. The public key is safe to commit; the private key and team
+# come from secrets.
+env:
+  TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+  PNPM_REMOTE_CACHE_URL: 'https://vercel.com/api'
+  PNPM_REMOTE_CACHE_TEAM: ${{ secrets.PNPM_REMOTE_CACHE_TEAM }}
+  PNPM_REMOTE_CACHE_TRUSTED_KEYS: '{"ci-2026":"MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAENR8oEXPlIZBw+FWabZM1u1IfoYkvx7TI1i94nvfGopUlrOB7B3CVDNviJJX9a9c+3KJcpmGe+IQ6VZWurRsXuA=="}'
+  PNPM_REMOTE_CACHE_PRIVATE_KEY: ${{ secrets.PNPM_REMOTE_CACHE_PRIVATE_KEY }}
+  PNPM_REMOTE_CACHE_KEY_ID: ci-2026
+  PNPM_REMOTE_CACHE_BUILDER_ID: ci
+
 jobs:
   build:
     runs-on: ubuntu-26.04
     env:
-      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
-      TURBO_CACHE: 'remote:rw'
+      PNPM_REMOTE_CACHE_PUBLISH: 'true'
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
@@ -20,6 +32,7 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: 'pnpm'
+      - run: echo "//vercel.com/api/:_authToken=${TURBO_TOKEN}" >> ~/.npmrc
       - run: pnpm install --frozen-lockfile
       - run: pnpm run build
 

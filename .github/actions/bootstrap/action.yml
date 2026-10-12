@@ -24,5 +24,7 @@ runs:
         node-version-file: ${{ inputs.node-version-file }}
         cache: 'pnpm'
         registry-url: ${{ inputs.registry-url }}
+    - run: echo "//vercel.com/api/:_authToken=${TURBO_TOKEN}" >> ~/.npmrc
+      shell: bash
     - run: pnpm install --frozen-lockfile && pnpm build && pnpm install --frozen-lockfile
       shell: bash

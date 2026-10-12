@@ -9,7 +9,6 @@ export const defaultConfig = defineConfig({
       exclude: [
         '**/__typetests__/**',
         '.reports/**',
-        '.turbo',
         '**/.eslintrc.*',
         '**/*.d.ts',
         'build',

@@ -16,13 +16,6 @@ dist
 coverage
 .reports
 
-# turbo
-.turbo
-!.turbo/config.json
-examples/*/.turbo
-packages/*/.turbo
-tools/*/.turbo
-
 
 # VSCode extension "Local History"
 .history
@@ -32,10 +25,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 *.log
-
-# turbo
-packages/*/.turbo
-packages/*/dist
 
 #vite
 vite.config.ts.*

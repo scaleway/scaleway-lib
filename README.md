@@ -196,7 +196,7 @@ pnpm run test:unit:coverage # Will generate a coverage report
 
 This projects uses
 
-- [turbo](https://github.com/vercel/turborepo) to manage our monorepo setup
+- [pnpm pipeline](https://pnpm.io/cli/pipeline) to manage our monorepo tasks and cache
 - [tsdown](https://github.com/rolldown/tsdown) to compile and bundle our packages
 - [oxlint & oxfmt](https://github.com/oxc-project/oxc) to lint and format files
 - [vitest](https://github.com/vitest-dev/vitest) to test our packages

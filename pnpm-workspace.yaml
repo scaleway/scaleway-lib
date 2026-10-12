@@ -54,7 +54,6 @@ catalog:
   simple-git: 4.0.2
   tinyglobby: 0.2.17
   tsdown: 0.23.0
-  turbo: 2.11.7
   typescript: 7.0.2
   use-deep-compare-effect: 1.8.1
   vitest: 4.1.11
@@ -90,3 +89,37 @@ supportedArchitectures:
 
 minimumReleaseAgeExclude:
   - '@scaleway/sdk-*'
+
+# Task graph and pipeline cache (replaces turbo).
+# See https://pnpm.io/cli/pipeline
+tasks:
+  build:
+    dependsOn: ['^build']
+    outputs: ['dist/**']
+  typecheck:
+    dependsOn: ['^build']
+    inputs: ['**/*.ts', '**/*.tsx', 'tsconfig.json']
+    outputs: []
+  test:types:
+    dependsOn: ['^build']
+    outputs: []
+  test:unit:
+    dependsOn: ['^build']
+    outputs: []
+  test:unit:coverage:
+    dependsOn: ['^build']
+    outputs: []
+
+pipelines:
+  build: [build]
+  typecheck: [typecheck]
+  test:types: [test:types]
+  test:unit: [test:unit]
+  test:unit:coverage: [test:unit:coverage]
+
+# Shared task-result cache (pnpm v12.12.0+). Speaks the Turborepo Remote
+# Cache API, so results can be stored on Vercel Remote Cache. The org is
+# declared here; trust material (url, team, trustedKeys, privateKey) lives
+# in the machine config or env, never in the repo.
+remoteCache:
+  org: scaleway

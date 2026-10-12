@@ -10,13 +10,13 @@
     "lint:catalog": "pnpm check-catalog-usage",
     "lint": "oxlint",
     "lint:fix": "pnpm lint:fix -- --fix",
-    "build": "pnpm turbo build",
-    "typecheck": "pnpm turbo typecheck",
+    "build": "pnpm pipeline build --full",
+    "typecheck": "pnpm pipeline typecheck --full",
     "format": "oxfmt --write .",
     "format:check": "oxfmt --check .",
-    "test:unit": "pnpm turbo test:unit",
-    "test:unit:coverage": "pnpm turbo test:unit:coverage",
-    "test:types": "pnpm turbo test:types",
+    "test:unit": "pnpm pipeline test:unit --full",
+    "test:unit:coverage": "pnpm pipeline test:unit:coverage --full",
+    "test:types": "pnpm pipeline test:types --full",
     "release": "pnpm changeset publish"
   },
   "devDependencies": {
@@ -54,7 +54,6 @@
     "publint": "catalog:",
     "read-pkg": "catalog:",
     "tsdown": "catalog:",
-    "turbo": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:",
     "vitest-localstorage-mock": "catalog:"
@@ -83,7 +82,7 @@
   "devEngines": {
     "packageManager": {
       "name": "pnpm",
-      "version": "12.10.1",
+      "version": "12.12.0",
       "onFail": "warn"
     },
     "runtime": {
@@ -94,8 +93,9 @@
   },
   "engines": {
     "node": "24.x || 25.x || 26.x",
-    "pnpm": ">=11.x"
+    "pnpm": ">=12.12.0"
   },
+  "packageManager": "pnpm@12.12.0",
   "manypkg": {
     "ignoredRules": [
       "INTERNAL_MISMATCH"
