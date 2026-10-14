@@ -151,7 +151,7 @@ class DataLoader<ResultType, ErrorType> {
 
   public cancel(): void {
     if (this.abortController) {
-      this.abortController.abort()
+      this.abortController.abort('usedataloader: cancel request')
     }
     // Do not decrement DataLoader.started here — launch() handles it in its
     // try/catch when the aborted method settles. Decrementing in both places

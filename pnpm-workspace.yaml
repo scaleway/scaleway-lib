@@ -68,7 +68,6 @@ catalog:
 catalogMode: strict
 cleanupUnusedCatalogs: true
 
-pmOnFail: error
 # Needed as we run a pnpm install after building packages
 optimisticRepeatInstall: false
 autoDedupe: true
