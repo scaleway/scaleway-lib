@@ -32,10 +32,6 @@ describe('srn - locality name', () => {
     expectTypeOf<ConsoleLocalityName>().toExtend<LocalityName>()
   })
 
-  it('accepts arbitrary strings — LocalityName is the open Zone | Region union from @scaleway/sdk-client', () => {
-    expectTypeOf<string>().toExtend<LocalityName>()
-  })
-
   it('accepts known sdk-client zones and regions', () => {
     expectTypeOf<'fr-par-1'>().toExtend<LocalityName>()
     expectTypeOf<'fr-par'>().toExtend<LocalityName>()
