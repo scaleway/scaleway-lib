@@ -19,3 +19,4 @@ runs:
         require-lockfile: true
     - run: pnpm build && pnpm install --frozen-lockfile
       shell: bash
+    - run: node -v
