@@ -28,8 +28,8 @@ type OnLoadTranslationError = Exclude<ComponentProps<typeof I18n>['onLoadTransla
 
 const isDefaultLocalesSupported = (locale: string): locale is Locales => ListLocales.includes(locale as Locales)
 
-// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 const load = async ({ locale, namespace }: { locale: string; namespace: string }) =>
+  // oxlint-disable-next-line typescript/no-unsafe-return
   import(`./locales/namespaces/${locale}/${namespace}.json`)
 
 const CustomComponent = ({ children }: { children: ReactNode }) => <p style={{ fontWeight: 'bold' }}>{children}</p>
