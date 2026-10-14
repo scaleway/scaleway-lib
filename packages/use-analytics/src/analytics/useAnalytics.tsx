@@ -152,7 +152,6 @@ export const AnalyticsProvider = <T extends Events>({
   const value = useMemo<AnalyticsContextInterface<T>>(() => {
     const curiedEvents = Object.fromEntries(
       Object.entries(events).map(([eventName, eventFn]) => [eventName, eventFn(internalAnalytics, onEventError)]),
-      // oxlint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
     ) as { [K in keyof T]: ReturnType<T[K]> }
 
     return {
