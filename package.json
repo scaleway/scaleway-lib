@@ -1,9 +1,6 @@
 {
   "name": "root",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
   "type": "module",
   "scripts": {
     "preinstall": "git config --local include.path $PWD/.gitconfig",
@@ -88,8 +85,8 @@
     },
     "runtime": {
       "name": "node",
-      "version": "24.x || 25.x || 26.x",
-      "onFail": "error"
+      "version": "^26.x",
+      "onFail": "warn"
     }
   },
   "engines": {
