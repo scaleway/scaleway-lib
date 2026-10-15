@@ -9,6 +9,12 @@
       "rangeStrategy": "widen"
     },
     {
+      "matchManagers": ["npm"],
+      "matchDepTypes": ["devEngines"],
+      "matchDepNames": ["node"],
+      "rangeStrategy": "widen"
+    },
+    {
       "matchDepTypes": ["dependencies"],
       "semanticCommitType": "chore"
     },
