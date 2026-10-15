@@ -57,6 +57,10 @@ export const useInfiniteDataLoader = <
   const getOnErrorRef = useRef(async (err: ErrorType) => onError?.(err) ?? onGlobalError?.(err))
 
   const [, setCounter] = useState(0)
+  // Monotonic token bumped on every auto-load or reload initiation: a settled
+  // load (e.g. a launch cancelled by a React StrictMode remount) whose token
+  // is no longer current must not fire user handlers nor reset optimistic state.
+  const loadTokenRef = useRef(0)
 
   const forceRerender = useRef(() => {
     setCounter(current => current + 1)
@@ -172,8 +176,24 @@ export const useInfiniteDataLoader = <
   const isLoading = !computedData && request.isFirstLoading && request.status === StatusEnum.LOADING
 
   const reload = useCallback(async () => {
+    const loadToken = ++loadTokenRef.current
+
+    const onSuccessLoad = async (result: ResultType) => {
+      if (loadToken === loadTokenRef.current) {
+        await getOnSuccessRef.current(result)
+      }
+    }
+
+    const onErrorLoad = async (error: ErrorType) => {
+      if (loadToken === loadTokenRef.current) {
+        await getOnErrorRef.current(error)
+      }
+    }
+
     await Promise.all(
-      requestRefs.current.map(async req => req.load(true).then(getOnSuccessRef.current).catch(getOnErrorRef.current)),
+      requestRefs.current.map(async req => {
+        await req.load(true).then(onSuccessLoad).catch(onErrorLoad)
+      }),
     )
   }, [])
 
@@ -214,9 +234,21 @@ export const useInfiniteDataLoader = <
 
   useEffect(() => {
     if (needLoad) {
-      const onSuccessLoad = getOnSuccessRef.current
-      const onFailedLoad = getOnErrorRef.current
-      request.load().then(onSuccessLoad).catch(onFailedLoad)
+      const loadToken = ++loadTokenRef.current
+
+      const onSuccessLoad = async (result: ResultType) => {
+        if (loadToken === loadTokenRef.current) {
+          await getOnSuccessRef.current(result)
+        }
+      }
+
+      const onErrorLoad = async (error: ErrorType) => {
+        if (loadToken === loadTokenRef.current) {
+          await getOnErrorRef.current(error)
+        }
+      }
+
+      request.load().then(onSuccessLoad).catch(onErrorLoad)
     }
     optimisticIsLoadingRef.current = false
   }, [needLoad, request])

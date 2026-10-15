@@ -28,6 +28,10 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
   const onErrorRef = useRef(onError ?? onGlobalError)
   const needPollingRef = useRef(needPolling)
   const [, setCounter] = useState(0)
+  // Monotonic token bumped on every auto-load or reload initiation: a settled
+  // load (e.g. a launch cancelled by a React StrictMode remount) whose token
+  // is no longer current must not fire user handlers nor reset optimistic state.
+  const loadTokenRef = useRef(0)
 
   const forceRerender = useCallback(() => {
     setCounter(current => current + 1)
@@ -91,18 +95,24 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
     // Set optimistic loading state to true when reload is called
     optimisticIsLoadingRef.current = true
 
-    const onSuccessHandler = async (result: ResultType) => {
-      // Set optimistic loading state to false when request completes
-      optimisticIsLoadingRef.current = false
+    const loadToken = ++loadTokenRef.current
 
-      return onSuccessRef.current?.(result)
+    const onSuccessHandler = async (result: ResultType) => {
+      if (loadToken === loadTokenRef.current) {
+        // Set optimistic loading state to false when request completes
+        optimisticIsLoadingRef.current = false
+
+        return onSuccessRef.current?.(result)
+      }
     }
 
     const onErrorHandler = async (error: ErrorType & Error) => {
-      // Set optimistic loading state to false when request completes
-      optimisticIsLoadingRef.current = false
+      if (loadToken === loadTokenRef.current) {
+        // Set optimistic loading state to false when request completes
+        optimisticIsLoadingRef.current = false
 
-      return onErrorRef.current?.(error)
+        return onErrorRef.current?.(error)
+      }
     }
 
     return request.load(true).then(onSuccessHandler).catch(onErrorHandler)
@@ -135,13 +145,28 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
       // Set optimistic loading state to true when auto-loading is triggered
       optimisticIsLoadingRef.current = true
 
+      const loadToken = ++loadTokenRef.current
+
       const defaultOnSuccessOrError = () => {
         // Set optimistic loading state to false when request completes
         optimisticIsLoadingRef.current = false
       }
       const onSuccessLoad = onSuccessRef.current ?? defaultOnSuccessOrError
       const onFailedLoad = onErrorRef.current ?? defaultOnSuccessOrError
-      request.load().then(onSuccessLoad).catch(onFailedLoad)
+
+      const onSuccessHandler = async (result: ResultType) => {
+        if (loadToken === loadTokenRef.current) {
+          return onSuccessLoad(result)
+        }
+      }
+
+      const onErrorHandler = async (error: ErrorType & Error) => {
+        if (loadToken === loadTokenRef.current) {
+          return onFailedLoad(error)
+        }
+      }
+
+      request.load().then(onSuccessHandler).catch(onErrorHandler)
     }
   }, [needLoad, request])
 
