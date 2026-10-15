@@ -1,5 +1,16 @@
 # Change Log
 
+## 7.2.2
+
+### Patch Changes
+
+- [#4006](https://github.com/scaleway/scaleway-lib/pull/4006) [`c48ec24`](https://github.com/scaleway/scaleway-lib/commit/c48ec2462c154b8b09e3322de3efad9939ea7083) Thanks [@philibea](https://github.com/philibea)! - add a context reason to abort cancel
+
+- [#4015](https://github.com/scaleway/scaleway-lib/pull/4015) [`a903b06`](https://github.com/scaleway/scaleway-lib/commit/a903b06080d4df68e276e372434a5e4a5f4b467e) Thanks [@philibea](https://github.com/philibea)! - Ignore the result of cancelled launches under React StrictMode: a request
+  aborted by a remount can no longer overwrite the data/status of the request
+  that replaced it, nor fire user `onSuccess`/`onError` callbacks or drop the
+  new in-flight request's state.
+
 ## 7.2.1
 
 ### Patch Changes
