@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from 'vitest'
 import { StatusEnum } from '../constants'
 import DataLoader from '../dataloader'
+import type { DataLoaderMethodFn } from '../types'
 
 const PROMISE_TIMEOUT = 100
 
@@ -399,6 +400,101 @@ describe('dataloader class', () => {
     // Cancel after completion — must NOT decrement again
     instance.cancel()
     expect(DataLoader.started).toBe(initialStarted)
+    instance.clearData()
+  })
+
+  it('should ignore the result of a cancelled launch superseded by a new one', async () => {
+    // React StrictMode: launch #1 is cancelled (signal aborted) then launch #2
+    // starts while #1 is still pending. The method ignores the abort signal, so
+    // #1 still settles — but it must not write its stale result.
+    const initialStarted = DataLoader.started
+    const resolvers: { resolve: (v: string) => void }[] = []
+    const method = vi.fn<DataLoaderMethodFn<string>>(
+      async () =>
+        new Promise<string>(resolve => {
+          resolvers.push({ resolve })
+        }),
+    )
+    const notifyChanges = vi.fn<() => void>()
+    const instance = new DataLoader<string, Error>({
+      key: 'test-stale-superseded',
+      method,
+      notifyChanges,
+    })
+
+    instance.load().catch(() => null)
+    expect(method).toHaveBeenCalledTimes(1)
+    instance.cancel()
+    instance.load().catch(() => null)
+    expect(method).toHaveBeenCalledTimes(2)
+    expect(instance.status).toBe(StatusEnum.LOADING)
+
+    resolvers[1]?.resolve('fresh-data')
+    await vi.waitFor(() => {
+      expect(instance.getData()).toBe('fresh-data')
+    })
+    expect(instance.status).toBe(StatusEnum.SUCCESS)
+    const notifyCountAfterFresh = notifyChanges.mock.calls.length
+
+    // The cancelled launch settles last with stale data — must be ignored
+    resolvers[0]?.resolve('stale-data')
+    await vi.waitFor(() => {
+      expect(DataLoader.started).toBe(initialStarted)
+    })
+
+    expect(instance.getData()).toBe('fresh-data')
+    expect(instance.data).toBe('fresh-data')
+    expect(instance.status).toBe(StatusEnum.SUCCESS)
+    expect(notifyChanges).toHaveBeenCalledTimes(notifyCountAfterFresh)
+    instance.clearData()
+  })
+
+  it('should keep isFirstLoading true while a cancelled launch settles before the new one', async () => {
+    // React StrictMode: launch #1 is aborted by cancel(), then launch #2
+    // starts. #1's AbortError rejection settles after #2 started — its catch
+    // must not stomp isFirstLoading/isCalled nor drop #2's queue entry.
+    const initialStarted = DataLoader.started
+    const resolvers: { resolve: (v: string) => void; reject: (e: Error) => void }[] = []
+    const method = vi.fn<DataLoaderMethodFn<string>>(
+      async ({ signal }) =>
+        new Promise<string>((resolve, reject) => {
+          resolvers.push({ resolve, reject })
+          signal?.addEventListener('abort', () => {
+            const err = new Error('Aborted')
+            err.name = 'AbortError'
+            reject(err)
+          })
+        }),
+    )
+    const notifyChanges = vi.fn<() => void>()
+    const instance = new DataLoader<string, Error>({
+      key: 'test-stale-abort-settle',
+      method,
+      notifyChanges,
+    })
+
+    instance.load().catch(() => null)
+    instance.cancel() // aborts the signal: launch #1 rejects with AbortError
+    instance.load().catch(() => null)
+
+    expect(instance.isFirstLoading).toBe(true)
+    expect(instance.isCalled).toBe(true)
+    expect(instance.status).toBe(StatusEnum.LOADING)
+
+    await vi.waitFor(() => {
+      expect(DataLoader.started).toBe(initialStarted + 1) // only launch #2 in flight
+    })
+
+    expect(instance.isFirstLoading).toBe(true)
+    expect(instance.isCalled).toBe(true)
+    expect(instance.status).toBe(StatusEnum.LOADING)
+
+    resolvers[1]?.resolve('fresh-data')
+    await vi.waitFor(() => {
+      expect(instance.getData()).toBe('fresh-data')
+    })
+    expect(instance.isFirstLoading).toBe(false)
+    expect(instance.status).toBe(StatusEnum.SUCCESS)
     instance.clearData()
   })
 })

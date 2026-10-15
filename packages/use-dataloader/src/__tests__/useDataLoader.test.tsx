@@ -1,9 +1,10 @@
+import { render, renderHook, waitFor } from '@testing-library/react'
 // oxlint-disable max-lines
-import { renderHook, waitFor } from '@testing-library/react'
+import { act, StrictMode } from 'react'
 import type { ReactNode } from 'react'
 import { describe, expect, it, vi } from 'vitest'
 import DataLoaderProvider, { useDataLoaderContext } from '../DataLoaderProvider'
-import type { KeyType, UseDataLoaderConfig } from '../types'
+import type { DataLoaderMethodFn, KeyType, UseDataLoaderConfig } from '../types'
 import { useDataLoader } from '../useDataLoader'
 
 type UseDataLoaderHookProps = {
@@ -1001,5 +1002,127 @@ describe(useDataLoader, () => {
     // The cleanup must cancel the request, aborting its signal
     expect(signalRef.current?.aborted).toBe(true)
     expect(slowMethod).toHaveBeenCalledTimes(1)
+  })
+})
+
+describe('useDataLoader in StrictMode', () => {
+  // NOTE: StrictMode must be inline here — in this test environment, nesting
+  // StrictMode inside a component wrapper disables its effect re-invocation.
+
+  type CapturedLaunch = { signal?: AbortSignal; resolve: (value: string) => void; reject: (error: Error) => void }
+
+  const createIgnoringAbortMethod = () => {
+    const launches: CapturedLaunch[] = []
+    const method: DataLoaderMethodFn<string> = async ({ signal }) =>
+      new Promise<string>((resolve, reject) => {
+        launches.push({ signal, resolve, reject })
+      })
+    return { launches, method: vi.fn<typeof method>(method) }
+  }
+
+  const createRespectingAbortMethod = () => {
+    const launches: CapturedLaunch[] = []
+    const method: DataLoaderMethodFn<string> = async ({ signal }) =>
+      new Promise<string>((resolve, reject) => {
+        launches.push({ signal, resolve, reject })
+        signal?.addEventListener('abort', () => {
+          const error = new Error('Aborted')
+          error.name = 'AbortError'
+          reject(error)
+        })
+      })
+    return { launches, method: vi.fn<typeof method>(method) }
+  }
+
+  it('should not apply data from the cancelled first mount', async () => {
+    const { launches, method } = createIgnoringAbortMethod()
+    const onSuccess = vi.fn<(data: string) => void>()
+    const last: { current?: { data?: string; isSuccess: boolean } } = {}
+
+    const Probe = () => {
+      const { data, isSuccess } = useDataLoader('strict-ignore', method, { onSuccess })
+      last.current = { data, isSuccess }
+      return null
+    }
+
+    act(() => {
+      render(
+        <StrictMode>
+          <DataLoaderProvider>
+            <Probe />
+          </DataLoaderProvider>
+        </StrictMode>,
+      )
+    })
+
+    // StrictMode double-mounts: two launches, the first one cancelled
+    await waitFor(() => {
+      expect(method).toHaveBeenCalledTimes(2)
+    })
+    expect(launches[0]?.signal?.aborted).toBe(true)
+
+    // The fresh launch resolves first
+    act(() => {
+      launches[1]?.resolve('fresh-data')
+    })
+    await waitFor(() => {
+      expect(last.current?.isSuccess).toBe(true)
+    })
+    expect(last.current?.data).toBe('fresh-data')
+    expect(onSuccess).toHaveBeenCalledTimes(1)
+
+    // The cancelled launch resolves last with stale data — it must be ignored
+    act(() => {
+      launches[0]?.resolve('stale-data')
+    })
+    await waitFor(() => {
+      expect(onSuccess).toHaveBeenCalledTimes(1)
+    })
+    expect(last.current?.data).toBe('fresh-data')
+  })
+
+  it('should not call onError for the cancelled first mount', async () => {
+    const { launches, method } = createRespectingAbortMethod()
+    const onError = vi.fn<(error: Error) => void>()
+    const onSuccess = vi.fn<(data: string) => void>()
+    const last: { current?: { isSuccess: boolean } } = {}
+
+    const Probe = () => {
+      const { isSuccess } = useDataLoader('strict-abort', method, { onError, onSuccess })
+      last.current = { isSuccess }
+      return null
+    }
+
+    act(() => {
+      render(
+        <StrictMode>
+          <DataLoaderProvider>
+            <Probe />
+          </DataLoaderProvider>
+        </StrictMode>,
+      )
+    })
+
+    await waitFor(() => {
+      expect(method).toHaveBeenCalledTimes(2)
+    })
+    expect(launches[0]?.signal?.aborted).toBe(true)
+
+    // Let the aborted first launch settle: its AbortError must not reach onError
+    await waitFor(() => {
+      expect(onError).not.toHaveBeenCalled()
+    })
+
+    // The fresh launch completes normally and fires onSuccess once
+    act(() => {
+      launches[1]?.resolve('fresh-data')
+    })
+    await waitFor(() => {
+      expect(onSuccess).toHaveBeenCalledTimes(1)
+    })
+    await waitFor(() => {
+      expect(last.current?.isSuccess).toBe(true)
+    })
+    expect(onError).not.toHaveBeenCalled()
   })
 })

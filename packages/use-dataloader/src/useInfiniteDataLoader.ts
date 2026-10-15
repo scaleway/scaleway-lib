@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { StatusEnum } from './constants'
 import type DataLoader from './dataloader'
 import { useDataLoaderContext } from './DataLoaderProvider'
-import { marshalQueryKey } from './helpers'
+import { createTokenGuardedHandlers, marshalQueryKey } from './helpers'
 import type {
   DataLoaderMethodOptions,
   DataLoaderMethodWithParamsFn,
@@ -57,6 +57,10 @@ export const useInfiniteDataLoader = <
   const getOnErrorRef = useRef(async (err: ErrorType) => onError?.(err) ?? onGlobalError?.(err))
 
   const [, setCounter] = useState(0)
+  // Monotonic token bumped on every auto-load or reload initiation: a settled
+  // load (e.g. a launch cancelled by a React StrictMode remount) whose token
+  // is no longer current must not fire user handlers nor reset optimistic state.
+  const loadTokenRef = useRef(0)
 
   const forceRerender = useRef(() => {
     setCounter(current => current + 1)
@@ -172,8 +176,14 @@ export const useInfiniteDataLoader = <
   const isLoading = !computedData && request.isFirstLoading && request.status === StatusEnum.LOADING
 
   const reload = useCallback(async () => {
+    const { onSuccessCallback, onErrorCallback } = createTokenGuardedHandlers(
+      loadTokenRef,
+      async (result: ResultType) => getOnSuccessRef.current(result),
+      async (error: ErrorType) => getOnErrorRef.current(error),
+    )
+
     await Promise.all(
-      requestRefs.current.map(async req => req.load(true).then(getOnSuccessRef.current).catch(getOnErrorRef.current)),
+      requestRefs.current.map(async req => req.load(true).then(onSuccessCallback).catch(onErrorCallback)),
     )
   }, [])
 
@@ -214,9 +224,13 @@ export const useInfiniteDataLoader = <
 
   useEffect(() => {
     if (needLoad) {
-      const onSuccessLoad = getOnSuccessRef.current
-      const onFailedLoad = getOnErrorRef.current
-      request.load().then(onSuccessLoad).catch(onFailedLoad)
+      const { onSuccessCallback, onErrorCallback } = createTokenGuardedHandlers(
+        loadTokenRef,
+        async (result: ResultType) => getOnSuccessRef.current(result),
+        async (error: ErrorType) => getOnErrorRef.current(error),
+      )
+
+      request.load().then(onSuccessCallback).catch(onErrorCallback)
     }
     optimisticIsLoadingRef.current = false
   }, [needLoad, request])

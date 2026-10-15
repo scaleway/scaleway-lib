@@ -38,6 +38,15 @@ class DataLoader<ResultType, ErrorType> {
 
   public loadCount = 0
 
+  /**
+   * Monotonically increasing token of the current launch. Bumped on every
+   * launch() and on cancel(): a cancelled or superseded launch keeps its own
+   * token and becomes inert when it settles, so it can no longer clobber the
+   * data/status/cache of the launch that replaced it (React StrictMode
+   * remounts, key changes, forced reloads while a request is in flight).
+   */
+  public generation = 0
+
   public isFirstLoading = true
 
   public dataUpdatedAt?: number
@@ -103,6 +112,7 @@ class DataLoader<ResultType, ErrorType> {
   }
 
   public launch = async (): Promise<ResultType | undefined> => {
+    const generation = ++this.generation
     try {
       this.abortController = new AbortController()
       this.isCancelled = false
@@ -110,34 +120,38 @@ class DataLoader<ResultType, ErrorType> {
 
       const data = await this.method({ signal: this.abortController.signal })
 
-      // This can be set to false with .cancel even while the launch is pending
-      // oxlint-disable-next-line typescript/no-unnecessary-condition
-      if (!this.isCancelled) {
+      // Only the launch that is still the current one (not aborted by cancel()
+      // and not superseded by a newer launch) may touch shared state. A stale
+      // launch must stay read-only: writing would overwrite newer data.
+      if (generation === this.generation) {
         DataLoader.cachedData[this.key] = data
         this.status = StatusEnum.SUCCESS
         this.data = data
         this.error = undefined
         this.dataUpdatedAt = Date.now()
+        this.isCalled = false
+        this.isFirstLoading = false
+        DataLoader.queue.delete(this.key)
+        this.notifyChanges()
       }
-      this.isCalled = false
-      this.isFirstLoading = false
       DataLoader.started -= 1
-      DataLoader.queue.delete(this.key)
-      this.notifyChanges()
 
       return data
     } catch (error) {
-      if (!this.isCancelled && !isAbortError(error)) {
+      const isLive = generation === this.generation
+      if (isLive && !isAbortError(error)) {
         this.status = StatusEnum.ERROR
         this.error = error as ErrorType
       }
-      this.isCalled = false
-      this.isFirstLoading = false
+      if (isLive) {
+        this.isCalled = false
+        this.isFirstLoading = false
+        DataLoader.queue.delete(this.key)
+        this.notifyChanges()
+      }
       DataLoader.started -= 1
-      DataLoader.queue.delete(this.key)
-      this.notifyChanges()
 
-      if (!this.isCancelled && !isAbortError(error)) {
+      if (isLive && !isAbortError(error)) {
         throw error
       }
 
@@ -153,6 +167,8 @@ class DataLoader<ResultType, ErrorType> {
     if (this.abortController) {
       this.abortController.abort('usedataloader: cancel request')
     }
+    // Invalidate any in-flight launch so its late settle cannot write state
+    this.generation += 1
     // Do not decrement DataLoader.started here — launch() handles it in its
     // try/catch when the aborted method settles. Decrementing in both places
     // would double-count and corrupt the concurrency counter.
