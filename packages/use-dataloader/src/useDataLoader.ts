@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { StatusEnum } from './constants'
 import { useDataLoaderContext } from './DataLoaderProvider'
+import { createTokenGuardedHandlers } from './helpers'
 import type { DataLoaderMethodFn, KeyType, UseDataLoaderConfig, UseDataLoaderResult } from './types'
 
 const noop = () => undefined
@@ -95,27 +96,23 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
     // Set optimistic loading state to true when reload is called
     optimisticIsLoadingRef.current = true
 
-    const loadToken = ++loadTokenRef.current
+    const clearOptimisticLoading = () => {
+      optimisticIsLoadingRef.current = false
+    }
 
-    const onSuccessHandler = async (result: ResultType) => {
-      if (loadToken === loadTokenRef.current) {
-        // Set optimistic loading state to false when request completes
-        optimisticIsLoadingRef.current = false
-
+    const { onSuccessCallback, onErrorCallback } = createTokenGuardedHandlers(
+      loadTokenRef,
+      async (result: ResultType) => {
+        clearOptimisticLoading()
         return onSuccessRef.current?.(result)
-      }
-    }
-
-    const onErrorHandler = async (error: ErrorType & Error) => {
-      if (loadToken === loadTokenRef.current) {
-        // Set optimistic loading state to false when request completes
-        optimisticIsLoadingRef.current = false
-
+      },
+      async (error: ErrorType & Error) => {
+        clearOptimisticLoading()
         return onErrorRef.current?.(error)
-      }
-    }
+      },
+    )
 
-    return request.load(true).then(onSuccessHandler).catch(onErrorHandler)
+    return request.load(true).then(onSuccessCallback).catch(onErrorCallback)
   }, [request])
 
   useEffect(() => {
@@ -145,28 +142,17 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
       // Set optimistic loading state to true when auto-loading is triggered
       optimisticIsLoadingRef.current = true
 
-      const loadToken = ++loadTokenRef.current
-
-      const defaultOnSuccessOrError = () => {
-        // Set optimistic loading state to false when request completes
+      const clearOptimisticLoading = () => {
         optimisticIsLoadingRef.current = false
       }
-      const onSuccessLoad = onSuccessRef.current ?? defaultOnSuccessOrError
-      const onFailedLoad = onErrorRef.current ?? defaultOnSuccessOrError
 
-      const onSuccessHandler = async (result: ResultType) => {
-        if (loadToken === loadTokenRef.current) {
-          return onSuccessLoad(result)
-        }
-      }
+      const { onSuccessCallback, onErrorCallback } = createTokenGuardedHandlers(
+        loadTokenRef,
+        async (result: ResultType) => (onSuccessRef.current ?? clearOptimisticLoading)(result),
+        async (error: ErrorType & Error) => (onErrorRef.current ?? clearOptimisticLoading)(error),
+      )
 
-      const onErrorHandler = async (error: ErrorType & Error) => {
-        if (loadToken === loadTokenRef.current) {
-          return onFailedLoad(error)
-        }
-      }
-
-      request.load().then(onSuccessHandler).catch(onErrorHandler)
+      request.load().then(onSuccessCallback).catch(onErrorCallback)
     }
   }, [needLoad, request])
 

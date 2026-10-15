@@ -1087,9 +1087,9 @@ describe('i18n hook', () => {
         expect(mockOnLoadTranslationError).toHaveBeenCalledWith(expect.any(Error))
       })
 
-      const error = mockOnLoadTranslationError.mock.calls[0]?.[0]
+      const error = mockOnLoadTranslationError.mock.calls[0]?.[0] as Error
       expect(error).toBeDefined()
-      expect((error as Error).message).toBe('Default locale load failed')
+      expect(error.message).toBe('Default locale load failed')
 
       expect(result.current.t('title')).toBe('')
     })

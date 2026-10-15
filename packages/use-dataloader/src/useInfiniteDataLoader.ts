@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { StatusEnum } from './constants'
 import type DataLoader from './dataloader'
 import { useDataLoaderContext } from './DataLoaderProvider'
-import { marshalQueryKey } from './helpers'
+import { createTokenGuardedHandlers, marshalQueryKey } from './helpers'
 import type {
   DataLoaderMethodOptions,
   DataLoaderMethodWithParamsFn,
@@ -176,24 +176,14 @@ export const useInfiniteDataLoader = <
   const isLoading = !computedData && request.isFirstLoading && request.status === StatusEnum.LOADING
 
   const reload = useCallback(async () => {
-    const loadToken = ++loadTokenRef.current
-
-    const onSuccessLoad = async (result: ResultType) => {
-      if (loadToken === loadTokenRef.current) {
-        await getOnSuccessRef.current(result)
-      }
-    }
-
-    const onErrorLoad = async (error: ErrorType) => {
-      if (loadToken === loadTokenRef.current) {
-        await getOnErrorRef.current(error)
-      }
-    }
+    const { onSuccessCallback, onErrorCallback } = createTokenGuardedHandlers(
+      loadTokenRef,
+      async (result: ResultType) => getOnSuccessRef.current(result),
+      async (error: ErrorType) => getOnErrorRef.current(error),
+    )
 
     await Promise.all(
-      requestRefs.current.map(async req => {
-        await req.load(true).then(onSuccessLoad).catch(onErrorLoad)
-      }),
+      requestRefs.current.map(async req => req.load(true).then(onSuccessCallback).catch(onErrorCallback)),
     )
   }, [])
 
@@ -234,21 +224,13 @@ export const useInfiniteDataLoader = <
 
   useEffect(() => {
     if (needLoad) {
-      const loadToken = ++loadTokenRef.current
+      const { onSuccessCallback, onErrorCallback } = createTokenGuardedHandlers(
+        loadTokenRef,
+        async (result: ResultType) => getOnSuccessRef.current(result),
+        async (error: ErrorType) => getOnErrorRef.current(error),
+      )
 
-      const onSuccessLoad = async (result: ResultType) => {
-        if (loadToken === loadTokenRef.current) {
-          await getOnSuccessRef.current(result)
-        }
-      }
-
-      const onErrorLoad = async (error: ErrorType) => {
-        if (loadToken === loadTokenRef.current) {
-          await getOnErrorRef.current(error)
-        }
-      }
-
-      request.load().then(onSuccessLoad).catch(onErrorLoad)
+      request.load().then(onSuccessCallback).catch(onErrorCallback)
     }
     optimisticIsLoadingRef.current = false
   }, [needLoad, request])
