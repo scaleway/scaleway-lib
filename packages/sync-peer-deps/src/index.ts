@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
-import chalk from 'chalk'
+import { styleText } from 'node:util'
 import { globSync } from 'tinyglobby'
 
 type PackageJson = {
@@ -31,7 +31,7 @@ function findPackageJsonFiles(cwd: string): string[] {
     })
     return files
   } catch (error) {
-    console.error(chalk.red('Error finding package.json files:'), error)
+    console.error(styleText('red', 'Error finding package.json files:'), error)
     return []
   }
 }
@@ -85,10 +85,10 @@ export async function processPackageJson(filePath: string): Promise<number> {
         }
 
         console.log(
-          chalk.yellow(`Updating ${chalk.bold(pkg)} in ${chalk.cyan(packageName)}:`),
-          chalk.red(peerVersion),
-          chalk.gray('→'),
-          chalk.green(devVersion),
+          styleText('yellow', `Updating ${styleText('bold', pkg)} in ${styleText('cyan', packageName)}:`),
+          styleText('red', peerVersion),
+          styleText('gray', '→'),
+          styleText('green', devVersion),
         )
 
         // Update peerDependency to match devDependency
@@ -108,7 +108,7 @@ export async function processPackageJson(filePath: string): Promise<number> {
 
     return changesCount
   } catch (error) {
-    console.error(chalk.red(`Error processing ${filePath}:`), error)
+    console.error(styleText('red', `Error processing ${filePath}:`), error)
     return 0
   }
 }
@@ -118,13 +118,13 @@ export async function processPackageJson(filePath: string): Promise<number> {
  */
 async function syncPeerDependencies(): Promise<void> {
   try {
-    console.log(chalk.blue('🔍 Finding package.json files...'))
+    console.log(styleText('blue', '🔍 Finding package.json files...'))
 
     // Get current working directory
     const cwd = process.cwd()
     const files = findPackageJsonFiles(cwd)
 
-    console.log(chalk.blue(`Found ${files.length} package.json files`))
+    console.log(styleText('blue', `Found ${files.length} package.json files`))
 
     let totalChanges = 0
     let processedFiles = 0
@@ -142,12 +142,12 @@ async function syncPeerDependencies(): Promise<void> {
 
     // Summary
     if (totalChanges > 0) {
-      console.log(chalk.green(`\n✅ Updated ${totalChanges} dependencies across ${processedFiles} files`))
+      console.log(styleText('green', `\n✅ Updated ${totalChanges} dependencies across ${processedFiles} files`))
     } else {
-      console.log(chalk.green('\n✅ All peerDependencies are already in sync with devDependencies'))
+      console.log(styleText('green', '\n✅ All peerDependencies are already in sync with devDependencies'))
     }
   } catch (error: unknown) {
-    console.error(chalk.red('Error synchronizing dependencies:'), error)
+    console.error(styleText('red', 'Error synchronizing dependencies:'), error)
     process.exit(1)
   }
 }
@@ -157,6 +157,6 @@ const isMain = process.argv[1] === import.meta.filename
 
 if (isMain) {
   await syncPeerDependencies().catch((error: unknown) => {
-    console.error(chalk.red('GLOBAL Error synchronizing dependencies:'), error)
+    console.error(styleText('red', 'GLOBAL Error synchronizing dependencies:'), error)
   })
 }

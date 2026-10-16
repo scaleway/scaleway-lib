@@ -34,7 +34,6 @@
     "test:unit:coverage": "pnpm test:unit --coverage"
   },
   "dependencies": {
-    "chalk": "catalog:",
     "tinyglobby": "catalog:"
   },
   "devDependencies": {

@@ -236,9 +236,6 @@ catalogs:
     browserslist:
       specifier: 4.29.3
       version: 4.29.3
-    chalk:
-      specifier: 6.0.1
-      version: 6.0.1
     cookie:
       specifier: 2.0.1
       version: 2.0.1
@@ -406,9 +403,6 @@ importers:
       browserslist:
         specifier: 'catalog:'
         version: 4.29.3
-      chalk:
-        specifier: 'catalog:'
-        version: 6.0.1
       happy-dom:
         specifier: 'catalog:'
         version: 21.0.1
@@ -571,9 +565,6 @@ importers:
 
   packages/sync-peer-deps:
     dependencies:
-      chalk:
-        specifier: 'catalog:'
-        version: 6.0.1
       tinyglobby:
         specifier: 'catalog:'
         version: 0.2.17
@@ -1983,10 +1974,6 @@ packages:
   chai@6.3.0:
     resolution: {integrity: sha512-XWAtwJ6OHO+tj0EKCs0Y2UamnyOxseZWltU4x2U2wh8g4AigdjwvtUjvLP2tqkA/avxHEtzxNaqGq/YGNwckKg==}
     engines: {node: '>=18'}
-
-  chalk@6.0.1:
-    resolution: {integrity: sha512-/Ce6KNm3vIbWdMlNna6RVIZ/ICQxnJxCicet5LBKK9ZffBkqzDw0xh9EiKSljdRtiIQ1S1z4YgcscUUGzNCWrA==}
-    engines: {node: '>=22'}
 
   cjs-module-lexer@1.4.3:
     resolution: {integrity: sha512-9z8TZaGM1pfswYeXrUpzPrkx8UnWYdhJclsiYMm6x/w5+nN+8Tf/LnAgfLGQCm59qAOxU8WwHEq2vNwF6i4j+Q==}
@@ -4147,8 +4134,6 @@ snapshots:
   caniuse-lite@1.0.30001815: {}
 
   chai@6.3.0: {}
-
-  chalk@6.0.1: {}
 
   cjs-module-lexer@1.4.3: {}
 
