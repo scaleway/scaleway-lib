@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.1.4
+
+### Patch Changes
+
+- [#4024](https://github.com/scaleway/scaleway-lib/pull/4024) [`776ea3d`](https://github.com/scaleway/scaleway-lib/commit/776ea3d8f8d069790a4fadd968f54c5b439b0f42) Thanks [@chambo-e](https://github.com/chambo-e)! - Replace `chalk` with Node's built-in `styleText` (`node:util`) and drop the `chalk` dependency. Output is identical: `styleText` performs the same color auto-detection as `chalk` (TTY, `NO_COLOR`, `FORCE_COLOR`).
+
 ## 1.1.3
 
 ### Patch Changes
