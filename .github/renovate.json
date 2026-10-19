@@ -10,7 +10,7 @@
     },
     {
       "matchManagers": ["npm"],
-      "matchDepTypes": ["devEngines"],
+      "matchDepTypes": ["devEngines.runtime"],
       "matchDepNames": ["node"],
       "rangeStrategy": "widen"
     },
