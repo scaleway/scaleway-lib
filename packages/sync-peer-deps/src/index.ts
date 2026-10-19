@@ -1,8 +1,8 @@
 #!/usr/bin/env node
+import { globSync } from 'node:fs'
 import { readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { styleText } from 'node:util'
-import { globSync } from 'tinyglobby'
 
 type PackageJson = {
   name?: string
@@ -25,10 +25,10 @@ const BROAD_RANGE_REGEX = /\|\||[<>=]|\*|\d+\.x/v
 function findPackageJsonFiles(cwd: string): string[] {
   try {
     // Exclude node_modules folders
-    const files = globSync(['**/package.json', '!**/node_modules/**'], {
-      absolute: true,
+    const files = globSync('**/package.json', {
       cwd,
-    })
+      exclude: ['**/node_modules/**'],
+    }).map(p => path.resolve(cwd, p))
     return files
   } catch (error) {
     console.error(styleText('red', 'Error finding package.json files:'), error)

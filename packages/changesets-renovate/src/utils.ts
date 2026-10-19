@@ -236,7 +236,7 @@ export async function findAffectedPackages(changedDeps: string[], packageJsonGlo
   const patterns = globs.length > 0 ? globs : ['packages/*/package.json']
 
   const config = await getChangesetConfig()
-  const packageJsonPaths = await globWithGitignore(patterns, { expandDirectories: false })
+  const packageJsonPaths = await globWithGitignore(patterns)
   const affectedPackages = new Set<string>()
 
   for (const pkgJsonPath of packageJsonPaths) {

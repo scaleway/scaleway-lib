@@ -1,11 +1,10 @@
 #!/usr/bin/env node
 
 import { execSync } from 'node:child_process'
-import { readFile } from 'node:fs/promises'
+import { glob, readFile } from 'node:fs/promises'
+import path from 'node:path'
 import { parseArgs } from 'node:util'
 import { parse } from '@formatjs/icu-messageformat-parser'
-import type { GlobOptions } from 'tinyglobby'
-import { escapePath, glob } from 'tinyglobby'
 
 const options = {
   ignoreTag: {
@@ -158,9 +157,16 @@ const mergeIgnore = (value: string | readonly string[] | undefined): readonly st
   return value
 }
 
-// Taken from https://superchupu.dev/tinyglobby/migration#gitignore
-const globWithGitignore = async (patterns: string, opts: Omit<GlobOptions, 'patterns'> = {}) => {
-  const { cwd = process.cwd(), ...restOptions } = opts
+// Escapes glob metacharacters so a literal path can be used as an exclude pattern
+const escapePath = (p: string): string => p.replaceAll(/(?:[\(\)!\{\}\[\]*?\|])/gv, String.raw`\$1`)
+
+const globWithGitignore = async (
+  globPattern: string,
+  opts: {
+    exclude?: string | readonly string[]
+  } = {},
+) => {
+  const cwd = process.cwd()
 
   try {
     const gitIgnored = execSync('git ls-files --others --ignored --exclude-standard --directory', {
@@ -172,21 +178,31 @@ const globWithGitignore = async (patterns: string, opts: Omit<GlobOptions, 'patt
       .filter(Boolean)
       .map(p => escapePath(p))
 
-    const existingIgnore = mergeIgnore(restOptions.ignore)
+    const existingIgnore = mergeIgnore(opts.exclude)
 
-    const ignore = [...existingIgnore, ...gitIgnored]
+    const exclude = [...existingIgnore, ...gitIgnored]
 
-    return await glob(patterns, {
-      ...restOptions,
+    const files: string[] = []
+    for await (const file of glob(globPattern, {
       cwd,
-      ignore,
-    })
+      exclude,
+    })) {
+      files.push(file)
+    }
+
+    return files
   } catch {
-    return glob(patterns, opts)
+    const files: string[] = []
+    for await (const file of glob(globPattern)) {
+      files.push(file)
+    }
+
+    return files
   }
 }
 
-const files = await globWithGitignore(pattern, { absolute: true })
+const filesGlob = await globWithGitignore(pattern)
+const files = filesGlob.map(p => path.resolve(process.cwd(), p))
 
 if (files.length === 0) {
   console.error('There is no files matching this pattern', pattern)

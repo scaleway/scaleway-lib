@@ -6,7 +6,6 @@ import { findChangedDependenciesFromGit, loadCatalogFromGit } from '../git-utils
 
 // Mock all external dependencies
 vi.mock(import('yaml'))
-vi.mock(import('tinyglobby'))
 vi.mock(import('node:fs/promises'))
 
 const mockParseCatalog = (content: string) =>

@@ -1,27 +1,22 @@
-// glob resolve to a deprecated function override
-// Can be removed once tinyglobby removes it
-// oxlint-disable typescript/no-deprecated
 import { execSync } from 'node:child_process'
+import { glob } from 'node:fs/promises'
 import { defaultConfig, readConfig } from '@changesets/config'
 import { vol } from 'memfs'
-import { glob } from 'tinyglobby'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { parse } from 'yaml'
 import { findAffectedPackages, findChangedDependencies, getWorkspacePackageGlobs } from '../utils.js'
 
-const { escapePathMock, globMock } = vi.hoisted(() => ({
-  escapePathMock: vi.fn<(p: string) => string>((p: string) => p),
-  globMock: vi.fn<() => Promise<string[]>>(),
-}))
+const mockGlobResult = (...files: string[]) =>
+  // `glob` from node:fs/promises returns an AsyncIterator yielding strings
+  // oxlint-disable-next-line require-await -- yields are consumed by `for await`
+  (async function* glb(): AsyncGenerator<string, undefined> {
+    yield* files
+  })()
 
 // Mock all external dependencies
 vi.mock(import('node:fs/promises'))
 vi.mock(import('node:child_process'))
 vi.mock(import('yaml'))
-vi.mock(import('tinyglobby'), () => ({
-  glob: globMock,
-  escapePath: escapePathMock,
-}))
 
 vi.mock(import('@changesets/config'), async importOriginal => {
   const actual = await importOriginal()
@@ -163,11 +158,13 @@ describe('pnpm-catalogs-utils', () => {
       // Default workspace discovery returns the legacy default glob
       vol.fromJSON({ 'pnpm-workspace.yaml': 'packages:\n  - packages/*' })
       vi.mocked(parse).mockReturnValue({ packages: ['packages/*'] })
-      vi.mocked(glob).mockResolvedValue([
-        'packages/package-a/package.json',
-        'packages/package-b/package.json',
-        'packages/package-c/package.json',
-      ])
+      vi.mocked(glob).mockReturnValue(
+        mockGlobResult(
+          'packages/package-a/package.json',
+          'packages/package-b/package.json',
+          'packages/package-c/package.json',
+        ),
+      )
     })
 
     it('should find packages affected by dependency changes', async () => {
@@ -195,9 +192,8 @@ describe('pnpm-catalogs-utils', () => {
         expect.objectContaining({ cwd: process.cwd() }),
       )
       expect(glob).toHaveBeenCalledWith(['packages/*/package.json'], {
-        expandDirectories: false,
         cwd: '/mock/repo',
-        ignore: ['node_modules/', 'dist/'],
+        exclude: ['node_modules/', 'dist/'],
       })
       expect(result).toBeInstanceOf(Set)
       expect(result.size).toBe(1)
@@ -228,9 +224,8 @@ describe('pnpm-catalogs-utils', () => {
       const result = await findAffectedPackages(['changed-dep'])
 
       expect(glob).toHaveBeenCalledWith(['packages/*/package.json'], {
-        expandDirectories: false,
         cwd: '/mock/repo',
-        ignore: ['node_modules/', 'dist/'],
+        exclude: ['node_modules/', 'dist/'],
       })
       expect(result).toBeInstanceOf(Set)
       expect(result.size).toBe(1)
@@ -272,9 +267,8 @@ describe('pnpm-catalogs-utils', () => {
       const result = await findAffectedPackages(['changed-dep'])
 
       expect(glob).toHaveBeenCalledWith(['packages/*/package.json'], {
-        expandDirectories: false,
         cwd: '/mock/repo',
-        ignore: ['node_modules/', 'dist/'],
+        exclude: ['node_modules/', 'dist/'],
       })
       expect(result).toBeInstanceOf(Set)
       expect(result.size).toBe(1)
@@ -319,7 +313,7 @@ describe('pnpm-catalogs-utils', () => {
     })
 
     it('should respect explicitly provided packageJsonGlobs over discovered ones', async () => {
-      vi.mocked(glob).mockResolvedValue(['apps/app-a/package.json'])
+      vi.mocked(glob).mockReturnValue(mockGlobResult('apps/app-a/package.json'))
       vol.fromJSON({
         'apps/app-a/package.json': JSON.stringify({
           dependencies: {
@@ -333,9 +327,8 @@ describe('pnpm-catalogs-utils', () => {
       const result = await findAffectedPackages(['changed-dep'], ['apps/*/package.json'])
 
       expect(glob).toHaveBeenCalledWith(['apps/*/package.json'], {
-        expandDirectories: false,
         cwd: '/mock/repo',
-        ignore: ['node_modules/', 'dist/'],
+        exclude: ['node_modules/', 'dist/'],
       })
       expect(result.size).toBe(1)
       expect(result).toContain('app-a')
@@ -353,14 +346,13 @@ describe('pnpm-catalogs-utils', () => {
         }),
       })
       vi.mocked(parse).mockReturnValue({ packages: ['apps/*'] })
-      vi.mocked(glob).mockResolvedValue(['apps/app-a/package.json'])
+      vi.mocked(glob).mockReturnValue(mockGlobResult('apps/app-a/package.json'))
 
       const result = await findAffectedPackages(['changed-dep'])
 
       expect(glob).toHaveBeenCalledWith(['apps/*/package.json'], {
-        expandDirectories: false,
         cwd: '/mock/repo',
-        ignore: ['node_modules/', 'dist/'],
+        exclude: ['node_modules/', 'dist/'],
       })
       expect(result.size).toBe(1)
       expect(result).toContain('app-a')
@@ -368,14 +360,13 @@ describe('pnpm-catalogs-utils', () => {
 
     it('should fall back to packages/*/package.json when no workspace config is found', async () => {
       vol.reset()
-      vi.mocked(glob).mockResolvedValue(['packages/package-a/package.json'])
+      vi.mocked(glob).mockReturnValue(mockGlobResult('packages/package-a/package.json'))
 
       const result = await findAffectedPackages(['changed-dep'])
 
       expect(glob).toHaveBeenCalledWith(['packages/*/package.json'], {
-        expandDirectories: false,
         cwd: '/mock/repo',
-        ignore: ['node_modules/', 'dist/'],
+        exclude: ['node_modules/', 'dist/'],
       })
       expect(result.size).toBe(0)
     })
