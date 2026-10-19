@@ -158,7 +158,7 @@ const mergeIgnore = (value: string | readonly string[] | undefined): readonly st
 }
 
 // Escapes glob metacharacters so a literal path can be used as an exclude pattern
-const escapePath = (p: string): string => p.replaceAll(/(?:[\(\)!\{\}\[\]*?\|])/gv, String.raw`\$1`)
+const escapePath = (p: string): string => p.replaceAll(/[\(\)!\{\}\[\]*?\|]/gv, m => `\\${m}`)
 
 const globWithGitignore = async (
   globPattern: string,
