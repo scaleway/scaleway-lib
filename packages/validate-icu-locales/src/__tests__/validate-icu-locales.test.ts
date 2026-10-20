@@ -1,3 +1,4 @@
+import { rmSync, symlinkSync } from 'node:fs'
 import { execa } from 'execa'
 import { assert, describe, expect, it } from 'vitest'
 
@@ -76,5 +77,33 @@ describe('validate-icu-locales CLI', () => {
 
     // Should not contain any errors
     expect(stderr).not.toContain('errors')
+  })
+
+  it.skipIf(process.platform === 'win32')('should validate locale files reached through a symlink', async () => {
+    // tinyglobby (pre-migration) followed symlinks, so a linked locale file
+    // must still be found and validated
+    const link = 'src/__tests__/locales/linked-en.js'
+    symlinkSync('en.js', link)
+
+    try {
+      const result = await execa('node', ['dist/index.mjs', 'src/__tests__/locales/linked*.js'], {
+        cwd: process.cwd(),
+      }).catch((error: unknown) => error)
+
+      assert.instanceOf(result, Error)
+      expect(result.toString()).toContain('EXPECT_ARGUMENT_CLOSING_BRACE')
+    } finally {
+      rmSync(link)
+    }
+  })
+
+  it('should exclude gitignored paths from the pattern', async () => {
+    // dist/ is gitignored, so its build output must not be returned
+    const result = await execa('node', ['dist/index.mjs', 'dist/**'], {
+      cwd: process.cwd(),
+    }).catch((error: unknown) => error)
+
+    assert.instanceOf(result, Error)
+    expect(result.toString()).toContain('There is no files matching this pattern')
   })
 })
