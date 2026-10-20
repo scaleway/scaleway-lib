@@ -15,19 +15,19 @@ pnpm add @scaleway/use-state-reset
 ## Usage
 
 ```tsx
-import { useStateReset } from "@scaleway/use-state-reset";
+import { useStateReset } from '@scaleway/use-state-reset'
 
 const Component = ({ query }: { query: string }) => {
   // `page` is reset to 0 (the initial value) whenever `query` changes
-  const [page, setPage] = useStateReset(0, [query]);
+  const [page, setPage] = useStateReset(0, [query])
 
   return (
     <div>
       <span>Current page: {page}</span>
-      <button onClick={() => setPage((page) => page + 1)}>Next page</button>
+      <button onClick={() => setPage(page => page + 1)}>Next page</button>
     </div>
-  );
-};
+  )
+}
 ```
 
 ### API
