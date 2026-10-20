@@ -1,0 +1,4 @@
+{
+  "units.chevron": "<ip.coucou>",
+  "units.minutes.label": "{count, plural, =0 {Minute} =1 {Minute} other {Minutes"
+}
