@@ -68,7 +68,7 @@ describe(globWithGitignore, () => {
 
     expect(vi.mocked(glob)).toHaveBeenCalledWith(['**/*.ts'], {
       cwd: '/mock/repo',
-      exclude: ['node_modules/', 'dist/', `coverage\\[name\\]/`],
+      exclude: ['node_modules/', 'dist/', `coverage[[]name[]]/`],
     })
   })
 

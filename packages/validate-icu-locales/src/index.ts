@@ -157,8 +157,37 @@ const mergeIgnore = (value: string | readonly string[] | undefined): readonly st
   return value
 }
 
-// Escapes glob metacharacters so a literal path can be used as an exclude pattern
-const escapePath = (p: string): string => p.replaceAll(/[\(\)!\{\}\[\]*?\|]/gv, m => `\\${m}`)
+// Escapes glob metacharacters so a literal path can be used as an exclude pattern.
+// node:glob has no backslash escaping on POSIX: a wildcard must be contained in a
+// bracket class (`[*]` = literal `*`). `!` is not special in node's exclude patterns.
+const escapePath = (p: string): string => p.replaceAll(/[*?\[\]\{\}\(\)\|]/gv, m => `[${m}]`)
+
+// Mirrors tinyglobby's default `expandDirectories: true`: a literal, non-glob
+// pattern (e.g. a bare directory) is expanded to `<pattern>/**`. node:glob
+// doesn't do this on its own and has no `onlyFiles`, so we filter to files.
+// Only node:glob's true wildcards make a pattern dynamic; `(` `)` `!` `|` are
+// literal mid-pattern so a path like `packages/e/!bang` stays expandable.
+const isGlobPattern = (globPattern: string): boolean => /[*?\[\]\{\}]/v.test(globPattern)
+
+const globFiles = async (
+  globPattern: string,
+  opts: {
+    cwd?: string
+    exclude?: readonly string[]
+  } = {},
+) => {
+  const { cwd = process.cwd(), exclude } = opts
+  const expanded = isGlobPattern(globPattern) ? globPattern : `${globPattern.replace(/\/+$/v, '')}/**`
+
+  const files: string[] = []
+  for await (const entry of glob(expanded, { cwd, exclude, withFileTypes: true })) {
+    if (entry.isFile()) {
+      files.push(path.relative(cwd, path.join(entry.parentPath, entry.name)))
+    }
+  }
+
+  return files
+}
 
 const globWithGitignore = async (
   globPattern: string,
@@ -182,22 +211,9 @@ const globWithGitignore = async (
 
     const exclude = [...existingIgnore, ...gitIgnored]
 
-    const files: string[] = []
-    for await (const file of glob(globPattern, {
-      cwd,
-      exclude,
-    })) {
-      files.push(file)
-    }
-
-    return files
+    return await globFiles(globPattern, { cwd, exclude })
   } catch {
-    const files: string[] = []
-    for await (const file of glob(globPattern)) {
-      files.push(file)
-    }
-
-    return files
+    return await globFiles(globPattern)
   }
 }
 

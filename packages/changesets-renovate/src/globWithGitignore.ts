@@ -15,8 +15,10 @@ const mergeIgnore = (value: string | readonly string[] | undefined): readonly st
   return value
 }
 
-// Escapes glob metacharacters so a literal path can be used as an exclude pattern
-const escapePath = (p: string): string => p.replaceAll(/[\(\)!\{\}\[\]*?\|]/gv, m => `\\${m}`)
+// Escapes glob metacharacters so a literal path can be used as an exclude pattern.
+// node:glob has no backslash escaping on POSIX: a wildcard must be contained in a
+// bracket class (`[*]` = literal `*`). `!` is not special in node's exclude patterns.
+const escapePath = (p: string): string => p.replaceAll(/[*?\[\]\{\}\(\)\|]/gv, m => `[${m}]`)
 
 export const globWithGitignore = async (
   patterns: string[],
