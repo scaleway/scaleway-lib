@@ -13,7 +13,7 @@ Performance recap (measured on the scaleway-lib tree: ~40k files, 96 gitignored 
 - **sync-peer-deps**: unchanged (`~7ms`).
 - **Cold start**: importing the glob library drops from `~5.5ms` (`tinyglobby` + `fdir` + `picomatch`) to `~0.7ms` (native), for every CLI invocation.
 
-Also measured end-to-end in the console (shire: 77 packages run `validate-icu` in CI; full CLI wall time, medians of 7 runs). Outputs were byte-identical to the published `tinyglobby` versions in every case, including the extglob pattern `{,!(node_modules)/**/}locales/{en,en-GB,fr,fr-FR}.{ts,json}`.
+Also measured end-to-end in the console (77 packages run `validate-icu` in CI; full CLI wall time, medians of 7 runs). Outputs were byte-identical to the published `tinyglobby` versions in every case, including the extglob pattern `{,!(node_modules)/**/}locales/{en,en-GB,fr,fr-FR}.{ts,json}`.
 
 - **validate-icu-locales**: `179.9ms → 186.7ms` per package run (`+4%`).
 - **sync-peer-deps**: `556.5ms → 528.6ms` across the whole repo, 117 `package.json` files (`−5%`).
