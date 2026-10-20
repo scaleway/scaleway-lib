@@ -162,4 +162,30 @@ describe(useStateReset, () => {
 
     expect(result.current[0]).toBe('bar')
   })
+
+  it('should reset when an undefined dep changes to the literal "__undefined__" string', () => {
+    const { result, rerender } = renderHook(
+      ({ nextDeps }) => useStateReset(1, nextDeps),
+      { initialProps: { nextDeps: [undefined] as (string | undefined)[] } },
+    )
+
+    act(() => result.current[1](5))
+
+    rerender({ nextDeps: ['__undefined__'] })
+
+    expect(result.current[0]).toBe(1)
+  })
+
+  it('should reset when a NaN dep changes to null', () => {
+    const { result, rerender } = renderHook(
+      ({ nextDeps }) => useStateReset(1, nextDeps),
+      { initialProps: { nextDeps: [Number.NaN] as (number | null)[] } },
+    )
+
+    act(() => result.current[1](5))
+
+    rerender({ nextDeps: [null] })
+
+    expect(result.current[0]).toBe(1)
+  })
 })

@@ -9,11 +9,9 @@ type InternalState<T> = {
 };
 
 // Use JSON.stringify to have content equality for nested string[] deps, unlike a reference comparison
-// We map undefined to '__undefined__' so it is not confused with null as stringify converts undefined to null
+// A [typeof, value] tuple keeps undefined, null and NaN distinct, as JSON.stringify maps all three to null
 const getDepsKey = (deps: DepsItem[]): string =>
-  JSON.stringify(
-    deps.map((dep) => (dep === undefined ? "__undefined__" : dep)),
-  );
+  JSON.stringify(deps.map((dep) => [typeof dep, dep]));
 
 /**
  * This hook is similar to a simple useState(initialValue) but it will
