@@ -111,6 +111,21 @@ export type UseInfiniteDataLoaderConfig<
    */
   getNextPage: (lastRes: ResultType, lastParams: ParamsType) => ParamsType[ParamsKey]
   /**
+   * If provided, the page before the first loaded one can be fetched with `loadPrevious`.
+   * It receives the first loaded page and its params, if it returns undefined there is no previous page to load
+   */
+  getPreviousPage?: (firstRes: ResultType, firstParams: ParamsType) => ParamsType[ParamsKey]
+  /**
+   * The param key carrying the previous-page token when the API needs two distinct keys (eg `before` vs `after`).
+   * When it differs from `pageParamKey`, previous-page requests omit `pageParamKey`
+   * @default pageParamKey
+   */
+  previousPageParamKey?: keyof ParamsType
+  /**
+   * Maximum number of pages kept in `data`. When exceeded, pages are trimmed from the opposite end of the fetch (sliding window)
+   */
+  maxPages?: number
+  /**
    * The initial data if no one is present in the cache before the request
    */
   initialData?: ResultType[]
@@ -123,9 +138,25 @@ export type UseInfiniteDataLoaderResult<ResultType, ErrorType> = {
   isIdle: boolean
   isLoading: boolean
   isFetching: boolean
+  /**
+   * True while the next page is being fetched after `loadMore`
+   */
+  isFetchingNextPage: boolean
+  /**
+   * True while the previous page is being fetched after `loadPrevious`
+   */
+  isFetchingPreviousPage: boolean
   isSuccess: boolean
   hasNextPage: boolean
+  /**
+   * True if `getPreviousPage` returned a token for the page before the first loaded one
+   */
+  hasPreviousPage: boolean
   isLoadingFirstPage: boolean
   reload: () => Promise<void>
   loadMore: () => void
+  /**
+   * Fetch the page before the first loaded one and prepend it to `data`
+   */
+  loadPrevious: () => void
 }
