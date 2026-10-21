@@ -16,12 +16,12 @@ export type LocalityType = Exclude<ApiLocality['type'], 'unspecified'>
 /**
  * A Scaleway locality identifier — the `name` part of a {@link Locality}.
  *
- * Sourced from `@scaleway/sdk-client`, which is the single source of truth for
- * Scaleway zones and regions: `Zone | Region`, plus `''` for global
- * localities. The SDK's `Zone` and `Region` unions are open
- * (`'fr-par-1' | … | string`), so any string is assignable — a locality name
- * that ships after this package's release stays representable at the type
- * level without extending anything.
+ * `Zone | Region`, sourced from `@scaleway/sdk-client`, the single source of
+ * truth for Scaleway zones and regions. The SDK's unions are closed, so a
+ * locality that ships after this package's release requires an SDK bump to
+ * be representable at the type level. The parser still accepts such names at
+ * runtime (see {@link parseSRNWide}). `''` — the name of a global locality —
+ * is not a zone or region and lives on {@link Locality}["name"] instead.
  *
  * Consumers that maintain their own narrower union of locality names
  * (e.g. a console that only handles `'fr-par-1' | 'fr-par-2'`) can pass that
@@ -29,7 +29,7 @@ export type LocalityType = Exclude<ApiLocality['type'], 'unspecified'>
  * {@link safeParseSRN}, because every member of the narrower union is also a
  * member of this one.
  */
-export type LocalityName = Zone | Region | ''
+export type LocalityName = Zone | Region
 
 /**
  * A locality prefix extracted from the SRN path.
@@ -38,14 +38,13 @@ export type LocalityName = Zone | Region | ''
  * is global. `name` is the zone/region identifier (empty when `type` is `global`).
  *
  * @template L — the locality-name union a consumer wants to narrow `name` to.
- *   Defaults to {@link LocalityName}, the open union of every Scaleway zone,
- *   region, and `''` (global) sourced from `@scaleway/sdk-client`. A console
- *   that only handles a subset can substitute its own union (e.g.
- *   `'fr-par-1' | 'fr-par-2'`); every member of the narrower union is also a
- *   member of `LocalityName`.
+ *   Defaults to {@link LocalityName} (`Zone | Region` from
+ *   `@scaleway/sdk-client`). A console that knows its zones can substitute
+ *   its own union (e.g. `'fr-par-1' | 'fr-par-2'`).
  */
 export type Locality<L extends LocalityName = LocalityName> = {
-  readonly name: L
+  // `''` is the name of a global locality, not a zone or region.
+  readonly name: L | ''
   readonly type: LocalityType
 }
 
@@ -99,10 +98,9 @@ export type ResourceIdentifierSegment<R extends string = string> = {
  * @template R — the resource-type-key union for `resourceIdentifier` segment
  *   names. Defaults to `string`; see {@link ResourceIdentifierSegment}.
  * @template L — the locality-name union for `locality.name`. Defaults to
- *   {@link LocalityName}, the open union of every Scaleway zone, region, and
- *   `''` (global) sourced from `@scaleway/sdk-client`. A console that only
- *   handles a subset can substitute its own union (e.g. `'fr-par-1' |
- *   'fr-par-2'`); see {@link Locality}.
+ *   {@link LocalityName} (`Zone | Region` from `@scaleway/sdk-client`). A
+ *   console that knows its zones can substitute its own union (e.g.
+ *   `'fr-par-1' | 'fr-par-2'`); see {@link Locality}.
  */
 export type SRN<P extends string = string, R extends string = string, L extends LocalityName = LocalityName> = {
   /** The product namespace (e.g. `block`, `iam`, `api`). */
@@ -196,7 +194,7 @@ export type SafeParseResult<
  * - `region` → `regions/<name>`
  * - `global` → `''` (no prefix)
  */
-const localityPrefix = (type: LocalityType, name: LocalityName): string => {
+const localityPrefix = (type: LocalityType, name: LocalityName | ''): string => {
   switch (type) {
     case 'zone': {
       return `zones/${name}`
@@ -316,9 +314,22 @@ export const walkSegments = <R extends string>(
 }
 
 /**
- * Parses an SRN string into the wide (un-narrowed) {@link SRN}, so no type
- * assertions are needed: every runtime value is a `string`, which the wide
- * `SRN` accepts directly.
+ * Trust-guard bridging a parsed locality name to the SDK's closed
+ * `Zone | Region` union.
+ *
+ * A real guard is impossible: an SRN may carry a locality that ships after
+ * this release, and validating against the union would reject it. Like the
+ * resource-key guard in {@link parseSRNWide}, this performs no runtime check;
+ * consumers get real validation by narrowing through the `isLocality` guard
+ * of {@link SRNGuards}.
+ */
+const isLocalityName = (_value: string): _value is LocalityName | '' => true
+
+/**
+ * Parses an SRN string into the wide (un-narrowed) {@link SRN}. Product,
+ * platform and resource values are `string`s, which the wide `SRN` accepts
+ * directly; `locality.name` crosses the closed {@link LocalityName} union
+ * through the {@link isLocalityName} trust-guard, never an assertion.
  *
  * Public narrowing (see {@link parseSRN}) is applied separately via
  * {@link SRNGuards}; a parsed value never crosses a type assertion.
@@ -340,13 +351,16 @@ export const parseSRNWide = (input: string): SRN => {
   }
 
   let locType: LocalityType = 'global'
-  let locName = ''
+  let locName: LocalityName | '' = ''
 
   const lm = LOCALITY_RE.exec(path)
   const lmGroups = lm?.groups
   const loc = lmGroups?.['loc']
   if (loc !== undefined) {
-    locName = lmGroups?.['locName'] ?? ''
+    const rawLocName = lmGroups?.['locName'] ?? ''
+    if (isLocalityName(rawLocName)) {
+      locName = rawLocName
+    }
     if (loc === 'zones') {
       locType = 'zone'
     } else if (loc === 'regions') {

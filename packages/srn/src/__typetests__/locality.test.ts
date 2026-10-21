@@ -1,3 +1,4 @@
+import type { Region, Zone } from '@scaleway/sdk-client'
 import { describe, expect, expectTypeOf, it } from 'vitest'
 import { parseSRN, safeParseSRN, stringifySRN } from '../index'
 import type {
@@ -32,8 +33,9 @@ describe('srn - locality name', () => {
     expectTypeOf<ConsoleLocalityName>().toExtend<LocalityName>()
   })
 
-  it('accepts arbitrary strings — LocalityName is the open Zone | Region union from @scaleway/sdk-client', () => {
-    expectTypeOf<string>().toExtend<LocalityName>()
+  it('is the closed Zone | Region union from @scaleway/sdk-client — future zones need an SDK bump', () => {
+    expectTypeOf<LocalityName>().toEqualTypeOf<Zone | Region>()
+    expectTypeOf<string>().not.toExtend<LocalityName>()
   })
 
   it('accepts known sdk-client zones and regions', () => {
@@ -45,18 +47,19 @@ describe('srn - locality name', () => {
     expectTypeOf<LocalityName>().toExtend<string>()
   })
 
-  it('includes the empty string used for global localities', () => {
-    expectTypeOf<''>().toExtend<LocalityName>()
+  it('keeps the empty string for global localities on Locality.name, not on LocalityName', () => {
+    expectTypeOf<''>().toExtend<Locality['name']>()
+    expectTypeOf<''>().not.toExtend<LocalityName>()
   })
 })
 
 describe('srn - locality', () => {
-  it('uses LocalityName for the name field by default', () => {
-    expectTypeOf<Locality['name']>().toEqualTypeOf<LocalityName>()
+  it("uses LocalityName | '' for the name field by default", () => {
+    expectTypeOf<Locality['name']>().toEqualTypeOf<LocalityName | ''>()
   })
 
-  it('narrows name via the L parameter', () => {
-    expectTypeOf<Locality<ConsoleLocalityName>['name']>().toEqualTypeOf<ConsoleLocalityName>()
+  it("narrows name via the L parameter, keeping '' for global", () => {
+    expectTypeOf<Locality<ConsoleLocalityName>['name']>().toEqualTypeOf<ConsoleLocalityName | ''>()
   })
 })
 
@@ -108,11 +111,13 @@ describe('srn - generic resource identifier', () => {
   })
 
   it('narrows locality.name on the SRN via L', () => {
-    expectTypeOf<SRN<string, string, ConsoleLocalityName>['locality']['name']>().toEqualTypeOf<ConsoleLocalityName>()
+    expectTypeOf<SRN<string, string, ConsoleLocalityName>['locality']['name']>().toEqualTypeOf<
+      ConsoleLocalityName | ''
+    >()
   })
 
-  it('defaults locality.name to LocalityName when L is omitted', () => {
-    expectTypeOf<SRN['locality']['name']>().toEqualTypeOf<LocalityName>()
+  it("defaults locality.name to LocalityName | '' when L is omitted", () => {
+    expectTypeOf<SRN['locality']['name']>().toEqualTypeOf<LocalityName | ''>()
   })
 })
 
