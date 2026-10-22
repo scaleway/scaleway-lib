@@ -13,6 +13,7 @@ import type {
 
 /**
  * This hook can be used for promises that have a "Load More" so page change but we want to keep the previous data and append the next one
+ * With `getPreviousPage` it can also "Load Previous", previous pages are prepended before the current ones in `data`
  */
 export const useInfiniteDataLoader = <
   ResultType = unknown,
@@ -37,20 +38,38 @@ export const useInfiniteDataLoader = <
     initialData,
     dataLifetime,
     getNextPage,
+    getPreviousPage,
+    previousPageParamKey,
+    maxPages,
   } = config ?? {}
 
   const computedDatalifetime = dataLifetime ?? defaultDatalifetime
   const requestRefs = useRef<DataLoader<ResultType, ErrorType>[]>([])
+  // Params aligned with requestRefs, used to compute the tokens of the first and last loaded pages
+  const pageParamsRef = useRef<ParamsType[]>([])
   const [page, setPage] = useState(baseParams[pageParamKey])
   const [nextPage, setNextPage] = useState<typeof page | undefined>(page)
-  const loadMoreBaseKeyRef = useRef<string | undefined>(undefined)
+  // Token of the current page when it was fetched with loadPrevious, the current page is a forward page when undefined
+  const [previousPageTarget, setPreviousPageTarget] = useState<typeof page | undefined>(undefined)
+  // Direction of the last navigation, used to expose which direction is currently fetching
+  const [fetchDirection, setFetchDirection] = useState<'backward' | 'forward' | undefined>(undefined)
+  const navigationBaseKeyRef = useRef<string | undefined>(undefined)
   const baseQueryKey = useMemo(() => marshalQueryKey(baseKey), [baseKey])
   const lastSyncedBaseKeyRef = useRef<string>(baseQueryKey)
   const isPageStale = lastSyncedBaseKeyRef.current !== baseQueryKey
-  const paramsArgs = {
-    ...baseParams,
-    [pageParamKey]: isPageStale ? baseParams[pageParamKey] : page,
+
+  const buildPreviousParams = (token: typeof page): ParamsType => {
+    // A previous page token can go under another param key, and two-token APIs (eg `before` vs `after`) reject the forward cursor when the previous one is sent
+    const { [pageParamKey]: _forwardToken, ...params } = baseParams
+
+    return { ...params, [previousPageParamKey ?? pageParamKey]: token } as ParamsType
   }
+
+  const forwardPageToken = isPageStale ? baseParams[pageParamKey] : page
+  const paramsArgs =
+    !isPageStale && previousPageTarget !== undefined
+      ? buildPreviousParams(previousPageTarget)
+      : { ...baseParams, [pageParamKey]: forwardPageToken }
 
   const getMethodRef = useRef(async (options: DataLoaderMethodOptions) => method(paramsArgs, options))
   const getOnSuccessRef = useRef(async (...params: Parameters<NonNullable<typeof onSuccess>>) => onSuccess?.(...params))
@@ -89,59 +108,130 @@ export const useInfiniteDataLoader = <
   }, [])
 
   const getCurrentRequest = () => {
+    const isCurrentPrevious = !isPageStale && previousPageTarget !== undefined
+    const isPreviousDualKey = previousPageParamKey !== undefined && previousPageParamKey !== pageParamKey
     const effectivePage = isPageStale ? baseParams[pageParamKey] : page
-    const currentQueryKey = marshalQueryKey([baseQueryKey, 'infinite', effectivePage as string | number])
+    const currentPageKey = isCurrentPrevious
+      ? marshalQueryKey([baseQueryKey, 'infinite', previousPageTarget as string | number])
+      : marshalQueryKey([baseQueryKey, 'infinite', effectivePage as string | number])
+    // shortcut: dual-key previous requests need a distinct cache key, a forward token containing dots could collide with it
+    const currentQueryKey =
+      isCurrentPrevious && isPreviousDualKey
+        ? marshalQueryKey([baseQueryKey, 'infinite', 'previous', previousPageTarget as string | number])
+        : currentPageKey
+    const initialPageKey = marshalQueryKey([baseQueryKey, 'infinite', baseParams[pageParamKey] as string | number])
 
     // Clean bad requests in the array
-    requestRefs.current = requestRefs.current.filter(request => {
-      if (isPageStale) {
-        const initialPageKey = marshalQueryKey([baseQueryKey, 'infinite', baseParams[pageParamKey] as string | number])
-        if (request.key.endsWith(initialPageKey)) {
-          return true
+    const keptRequests: DataLoader<ResultType, ErrorType>[] = []
+    const keptParams: ParamsType[] = []
+    requestRefs.current.forEach((request, index) => {
+      const isKept = isPageStale
+        ? request.key.endsWith(initialPageKey)
+        : request.key.startsWith(computeKey(baseQueryKey))
+
+      if (isKept) {
+        const params = pageParamsRef.current[index]
+
+        if (params) {
+          keptRequests.push(request)
+          keptParams.push(params)
         }
+      } else {
         request.removeObserver(forceRerender.current)
         request.cancel()
-        return false
       }
-
-      if (request.key.startsWith(computeKey(baseQueryKey))) {
-        return true
-      }
-
-      request.removeObserver(forceRerender.current)
-      request.cancel()
-
-      return false
     })
+    requestRefs.current = keptRequests
+    pageParamsRef.current = keptParams
 
-    const requestInRef = requestRefs.current.find(request => request.key.endsWith(currentQueryKey))
+    const currentRequestIndex = requestRefs.current.findIndex(request => request.key.endsWith(currentQueryKey))
 
-    if (!requestInRef) {
-      const request = getOrAddRequest<ResultType, ErrorType>(currentQueryKey, {
-        enabled,
-        method: getMethodRef.current,
-      })
+    // Sliding window, trimmed from the opposite end of the fetch once the fetched page has data, like React Query's maxPages
+    const trimWindowPages = (currentRequest: DataLoader<ResultType, ErrorType>, position: number) => {
+      if (maxPages !== undefined && requestRefs.current.length > maxPages && currentRequest.data) {
+        const overflow = requestRefs.current.length - maxPages
+        const start = position === requestRefs.current.length - 1 ? 0 : maxPages
+        const droppedRequests = requestRefs.current.splice(start, overflow)
 
-      if (!request.observers.includes(forceRerender.current)) {
-        request.addObserver(forceRerender.current)
+        pageParamsRef.current.splice(start, overflow)
+        for (const droppedRequest of droppedRequests) {
+          droppedRequest.removeObserver(forceRerender.current)
+          droppedRequest.cancel()
+        }
       }
-      requestRefs.current.push(request)
-
-      return request
     }
 
-    return requestInRef
+    if (currentRequestIndex !== -1) {
+      const currentRequest = requestRefs.current[currentRequestIndex] as DataLoader<ResultType, ErrorType>
+
+      // Keep the current page params fresh, method or baseParams can change between renders
+      pageParamsRef.current[currentRequestIndex] = paramsArgs
+      trimWindowPages(currentRequest, currentRequestIndex)
+
+      return currentRequest
+    }
+
+    const request = getOrAddRequest<ResultType, ErrorType>(currentQueryKey, {
+      enabled,
+      method: getMethodRef.current,
+    })
+
+    if (!request.observers.includes(forceRerender.current)) {
+      request.addObserver(forceRerender.current)
+    }
+
+    if (isCurrentPrevious) {
+      // Previous pages are prepended so data stays ordered from oldest to newest
+      requestRefs.current.unshift(request)
+      pageParamsRef.current.unshift(paramsArgs)
+    } else {
+      requestRefs.current.push(request)
+      pageParamsRef.current.push(paramsArgs)
+    }
+
+    trimWindowPages(request, isCurrentPrevious ? 0 : requestRefs.current.length - 1)
+
+    return request
   }
 
   const request = getCurrentRequest()
 
-  // Compute nextPage from current request.data during render to avoid stale closures
-  if (request.data) {
-    const computedNextPage = getNextPage ? getNextPage(request.data, paramsArgs) : undefined
-    if (computedNextPage !== nextPage) {
-      setNextPage(computedNextPage)
+  // Compute nextPage from the last loaded page during render to avoid stale closures, and return the token of the previous one
+  const syncWindowTokens = (): typeof page | undefined => {
+    const edges: {
+      first?: { params: ParamsType; request: DataLoader<ResultType, ErrorType> }
+      last?: { params: ParamsType; request: DataLoader<ResultType, ErrorType> }
+    } = {}
+
+    requestRefs.current.forEach((req, index) => {
+      if (req.data) {
+        const params = pageParamsRef.current[index]
+
+        if (params) {
+          const edge = { params, request: req }
+
+          edges.first ??= edge
+          edges.last = edge
+        }
+      }
+    })
+
+    const firstEdge = edges.first
+    const lastEdge = edges.last
+
+    if (lastEdge?.request.data) {
+      const computedNextPage = getNextPage ? getNextPage(lastEdge.request.data, lastEdge.params) : undefined
+      if (computedNextPage !== nextPage) {
+        setNextPage(computedNextPage)
+      }
     }
+
+    return getPreviousPage && firstEdge?.request.data
+      ? getPreviousPage(firstEdge.request.data, firstEdge.params)
+      : undefined
   }
+
+  const previousPage = syncWindowTokens()
 
   const needLoad = useMemo(
     () =>
@@ -176,6 +266,8 @@ export const useInfiniteDataLoader = <
   const isLoading = !computedData && request.isFirstLoading && request.status === StatusEnum.LOADING
 
   const reload = useCallback(async () => {
+    // A refetch has no direction, like React Query neither isFetchingNextPage nor isFetchingPreviousPage is true during reload
+    setFetchDirection(undefined)
     const { onSuccessCallback, onErrorCallback } = createTokenGuardedHandlers(
       loadTokenRef,
       async (result: ResultType) => getOnSuccessRef.current(result),
@@ -189,15 +281,30 @@ export const useInfiniteDataLoader = <
 
   const loadMore = useCallback(() => {
     if (nextPage) {
-      loadMoreBaseKeyRef.current = baseQueryKey
+      navigationBaseKeyRef.current = baseQueryKey
+      setPreviousPageTarget(undefined)
+      setFetchDirection('forward')
       setPage(() => {
-        if (loadMoreBaseKeyRef.current !== baseQueryKey) {
+        if (navigationBaseKeyRef.current !== baseQueryKey) {
           return baseParams[pageParamKey]
         }
         return nextPage
       })
     }
   }, [nextPage, baseQueryKey, baseParams, pageParamKey])
+
+  const loadPrevious = useCallback(() => {
+    if (previousPage) {
+      navigationBaseKeyRef.current = baseQueryKey
+      setFetchDirection('backward')
+      setPreviousPageTarget(() => {
+        if (navigationBaseKeyRef.current !== baseQueryKey) {
+          return undefined
+        }
+        return previousPage
+      })
+    }
+  }, [previousPage, baseQueryKey])
 
   useEffect(() => {
     request.method = async (options: DataLoaderMethodOptions) => method(paramsArgs, options)
@@ -217,7 +324,9 @@ export const useInfiniteDataLoader = <
     }
     setPage(() => baseParams[pageParamKey])
     setNextPage(undefined)
-    loadMoreBaseKeyRef.current = undefined
+    setPreviousPageTarget(undefined)
+    setFetchDirection(undefined)
+    navigationBaseKeyRef.current = undefined
     lastSyncedBaseKeyRef.current = baseQueryKey
     // oxlint-disable-next-line react-hooks/exhaustive-deps
   }, [baseQueryKey])
@@ -248,17 +357,22 @@ export const useInfiniteDataLoader = <
       data: computedData,
       error: request.error,
       hasNextPage: nextPage !== undefined,
+      hasPreviousPage: previousPage !== undefined,
       isError,
       isFetching,
+      isFetchingNextPage: fetchDirection === 'forward' && isFetching,
+      isFetchingPreviousPage: fetchDirection === 'backward' && isFetching,
       isIdle,
       isLoading,
       isLoadingFirstPage,
       isSuccess,
       loadMore,
+      loadPrevious,
       reload,
     }),
     [
       computedData,
+      fetchDirection,
       isIdle,
       isLoading,
       isFetching,
@@ -268,7 +382,9 @@ export const useInfiniteDataLoader = <
       isLoadingFirstPage,
       reload,
       nextPage,
+      previousPage,
       loadMore,
+      loadPrevious,
     ],
   )
 
