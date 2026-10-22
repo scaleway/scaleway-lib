@@ -1,8 +1,7 @@
 #!/usr/bin/env node
 
 import { execSync } from 'node:child_process'
-import type { GlobOptions } from 'tinyglobby'
-import { escapePath, glob } from 'tinyglobby'
+import { glob } from 'node:fs/promises'
 
 const mergeIgnore = (value: string | readonly string[] | undefined): readonly string[] => {
   if (value === undefined) {
@@ -16,8 +15,19 @@ const mergeIgnore = (value: string | readonly string[] | undefined): readonly st
   return value
 }
 
-// Taken from https://superchupu.dev/tinyglobby/migration#gitignore
-export const globWithGitignore = async (patterns: string[], opts: Omit<GlobOptions, 'patterns'> = {}) => {
+// Escapes glob metacharacters so a literal path can be used as an exclude pattern.
+// node:glob has no backslash escaping on POSIX: a wildcard must be contained in a
+// bracket class (`[*]` = literal `*`). `!` is not special in node's exclude patterns.
+const escapePath = (p: string): string => p.replaceAll(/[*?\[\]\{\}\(\)\|]/gv, m => `[${m}]`)
+
+export const globWithGitignore = async (
+  patterns: string[],
+  opts: {
+    cwd?: string
+    expandDirectories?: never
+    exclude?: string | readonly string[]
+  } = {},
+) => {
   const { cwd = process.cwd(), ...restOptions } = opts
 
   try {
@@ -30,16 +40,26 @@ export const globWithGitignore = async (patterns: string[], opts: Omit<GlobOptio
       .filter(Boolean)
       .map(p => escapePath(p))
 
-    const existingIgnore = mergeIgnore(restOptions.ignore)
+    const existingIgnore = mergeIgnore(restOptions.exclude)
 
-    const ignore = [...existingIgnore, ...gitIgnored]
+    const exclude = [...existingIgnore, ...gitIgnored]
 
-    return await glob(patterns, {
+    const files: string[] = []
+    for await (const file of glob(patterns, {
       ...restOptions,
       cwd,
-      ignore,
-    })
+      exclude,
+    })) {
+      files.push(file)
+    }
+
+    return files
   } catch {
-    return glob(patterns, opts)
+    const files: string[] = []
+    for await (const file of glob(patterns, { ...restOptions, cwd, exclude: mergeIgnore(restOptions.exclude) })) {
+      files.push(file)
+    }
+
+    return files
   }
 }

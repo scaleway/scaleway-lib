@@ -215,9 +215,6 @@ catalogs:
     '@types/node':
       specifier: 26.6.5
       version: 26.6.5
-    '@types/picomatch':
-      specifier: 4.0.3
-      version: 4.0.3
     '@types/react':
       specifier: 19.3.0
       version: 19.3.0
@@ -305,9 +302,6 @@ catalogs:
     simple-git:
       specifier: 4.0.2
       version: 4.0.2
-    tinyglobby:
-      specifier: 0.2.17
-      version: 0.2.17
     tsdown:
       specifier: 0.23.1
       version: 0.23.1
@@ -485,9 +479,6 @@ importers:
       simple-git:
         specifier: 'catalog:'
         version: 4.0.2(supports-color@7.2.0)
-      tinyglobby:
-        specifier: 'catalog:'
-        version: 0.2.17
       yaml:
         specifier: 'catalog:'
         version: 2.9.1
@@ -564,17 +555,10 @@ importers:
         version: 2.16.0
 
   packages/sync-peer-deps:
-    dependencies:
-      tinyglobby:
-        specifier: 'catalog:'
-        version: 0.2.17
     devDependencies:
       '@types/node':
         specifier: 'catalog:'
         version: 26.6.5
-      '@types/picomatch':
-        specifier: 'catalog:'
-        version: 4.0.3
 
   packages/tsconfig: {}
 
@@ -705,9 +689,6 @@ importers:
       '@formatjs/icu-messageformat-parser':
         specifier: 'catalog:'
         version: 3.5.21
-      tinyglobby:
-        specifier: 'catalog:'
-        version: 0.2.17
     devDependencies:
       execa:
         specifier: 'catalog:'
@@ -1667,9 +1648,6 @@ packages:
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
-
-  '@types/picomatch@4.0.3':
-    resolution: {integrity: sha512-iG0T6+nYJ9FAPmx9SsUlnwcq1ZVRuCXcVEvWnntoPlrOpwtSTKNDC9uVAxTsC3PUvJ+99n4RpAcNgBbHX3JSnQ==}
 
   '@types/react-dom@19.3.0':
     resolution: {integrity: sha512-ZI7bU42mZXXKHn/qNLEw2IrbiINU7X5+vfgdixBHkCNpYWXjKgfQ/P+uyGb5CjOLB9UcnTeg3rylQtV2hym44Q==}
@@ -3920,8 +3898,6 @@ snapshots:
       undici-types: 8.9.0
 
   '@types/normalize-package-data@2.4.4': {}
-
-  '@types/picomatch@4.0.3': {}
 
   '@types/react-dom@19.3.0(@types/react@19.3.0)':
     dependencies:
