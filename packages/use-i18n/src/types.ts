@@ -1,5 +1,5 @@
-import type { BaseLocale, LocaleKeys, LocaleValue, Params, Scopes } from 'international-types'
 import type { ReactNode } from 'react'
+import type { BaseLocale, LocaleKeys, LocaleValue, Params, Scopes } from './international-types'
 
 export type ScopedValue<
   Locale extends BaseLocale,

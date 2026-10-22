@@ -1,9 +1,9 @@
 export type { FormatDistanceToNowOptions, FormatDistanceToNowStrictOptions } from 'date-fns'
-// Re-export international-types for proper TypeScript support
-export type { BaseLocale, LocaleKeys, LocaleValue, Params, Scopes } from 'international-types'
 export type { FormatDateOptions } from './formatDate'
 // Additional types needed for proper TypeScript support
 export type { FormatUnitOptions } from './formatUnit'
+// Re-export vendored international-types for proper TypeScript support
+export type { BaseLocale, LocaleKeys, LocaleValue, Params, Scopes } from './international-types'
 // Core types
 export type { ReactParamsObject, ScopedTranslateFn, ScopedValue, SupportedLocalesType, TranslateFn } from './types'
 // Types used in the main I18nContextProvider

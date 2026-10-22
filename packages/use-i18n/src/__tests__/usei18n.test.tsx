@@ -1,12 +1,12 @@
 // oxlint-disable max-lines
 import { act, renderHook } from '@testing-library/react'
 import { enGB, fr as frDateFns } from 'date-fns/locale'
-import type { BaseLocale } from 'international-types'
 import { MissingValueError } from 'intl-messageformat'
 import type { ComponentProps, ReactNode } from 'react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import I18n, { useI18n, useTranslation } from '..'
 import type { LoadTranslationsFn } from '..'
+import type { BaseLocale } from '../international-types'
 import en from './locales/en'
 import es from './locales/es'
 import fr from './locales/fr'
