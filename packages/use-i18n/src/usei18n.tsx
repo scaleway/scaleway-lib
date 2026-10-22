@@ -11,7 +11,6 @@ import type {
   FormatDistanceToNowOptions,
   FormatDistanceToNowStrictOptions,
 } from 'date-fns'
-import type { BaseLocale } from 'international-types'
 import type { ReactElement, ReactNode } from 'react'
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import type { FormatDateOptions } from './formatDate'
@@ -20,6 +19,7 @@ import formatters from './formatters'
 import type { FormatUnitOptions } from './formatUnit'
 import unitFormat from './formatUnit'
 import { getCurrentLocale, setLangAttribute } from './helpers'
+import type { BaseLocale } from './international-types'
 import type { ReactParamsObject, ScopedTranslateFn, SupportedLocalesType, TranslateFn } from './types'
 
 // Export types that are used in the public API
