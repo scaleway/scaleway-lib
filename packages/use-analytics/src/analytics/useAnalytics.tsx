@@ -80,15 +80,27 @@ export const AnalyticsProvider = <T extends Events>({
   onLoaded,
   timeout,
 }: AnalyticsProviderProps<T>): JSX.Element => {
-  const [isAnalyticsReady, setIsAnalyticsReady] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(false)
   const [internalAnalytics, setInternalAnalytics] = useState<Analytics | undefined>(undefined)
+
+  // Analytics can be explicitly disabled: the consumer mounts the provider with a `settings`
+  // object that has no `writeKey` (e.g. `config.analytics = null`). In that case there is
+  // nothing to load and no `analytics.ready()` to ever wait for, so analytics is considered
+  // ready immediately — otherwise consumers rendering children on `isAnalyticsReady` (or on
+  // `shouldRenderOnlyWhenReady`) stay blocked until the readiness timeout fires.
+  //
+  // We only treat an explicitly provided but empty `settings` as disabled. An undefined
+  // `settings` is ambiguous (the consumer may resolve it later, e.g. once consent is given),
+  // so it keeps the previous behaviour.
+  const isAnalyticsDisabled = settings !== undefined && !settings.writeKey
+  const isAnalyticsReady = isLoaded || isAnalyticsDisabled
 
   // This effect will unlock the case where we have a failure with the load of the analytics.load as rudderstack doesn't provider any solution for this case.
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout> | undefined = undefined
     if (!isAnalyticsReady && (Number.isFinite(timeout) || shouldRenderOnlyWhenReady)) {
       timer = setTimeout(() => {
-        setIsAnalyticsReady(true)
+        setIsLoaded(true)
         onError?.(new Error('Timeout'))
       }, timeout ?? defaultTimeout)
     }
@@ -144,7 +156,7 @@ export const AnalyticsProvider = <T extends Events>({
          *  console.log('RSA_Ready', e.detail.analyticsInstance);
          * });
          */
-        setIsAnalyticsReady(true)
+        setIsLoaded(true)
       })
     }
   }, [settings, loadOptions, shouldLoad])
@@ -161,7 +173,7 @@ export const AnalyticsProvider = <T extends Events>({
     }
   }, [events, internalAnalytics, isAnalyticsReady, onEventError])
 
-  const shouldRender = !shouldRenderOnlyWhenReady || (isAnalyticsReady && !needConsent)
+  const shouldRender = isAnalyticsDisabled || !shouldRenderOnlyWhenReady || (isAnalyticsReady && !needConsent)
 
   useDeepCompareEffectNoCheck(() => {
     internalAnalytics?.consent({
