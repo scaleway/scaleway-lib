@@ -38,11 +38,8 @@
     "test:unit:coverage": "pnpm test:unit --coverage"
   },
   "devDependencies": {
-    "@vitest/browser-playwright": "catalog:",
-    "playwright": "catalog:",
     "react": "catalog:",
-    "react-dom": "catalog:",
-    "vitest-browser-react": "catalog:"
+    "react-dom": "catalog:"
   },
   "peerDependencies": {
     "react": "18.x || 19.x"

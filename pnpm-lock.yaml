@@ -364,6 +364,9 @@ importers:
       '@vitejs/plugin-react':
         specifier: 'catalog:'
         version: 6.1.2(vite@8.3.4(@types/node@26.6.5)(yaml@2.9.1))
+      '@vitest/browser-playwright':
+        specifier: 'catalog:'
+        version: 4.1.12(playwright@1.64.1)(vite@8.3.4(@types/node@26.6.5)(yaml@2.9.1))(vitest@4.1.12)
       '@vitest/coverage-istanbul':
         specifier: 'catalog:'
         version: 4.1.12(supports-color@7.2.0)(vitest@4.1.12)
@@ -409,6 +412,9 @@ importers:
       vitest:
         specifier: 'catalog:'
         version: 4.1.12(@types/node@26.6.5)(@vitest/browser-playwright@4.1.12)(@vitest/coverage-istanbul@4.1.12)(happy-dom@21.0.3)(jsdom@30.1.3)(vite@8.3.4(@types/node@26.6.5)(yaml@2.9.1))
+      vitest-browser-react:
+        specifier: 'catalog:'
+        version: 2.3.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(vitest@4.1.12)
 
   packages/auth-scw:
     dependencies:
@@ -434,21 +440,12 @@ importers:
       '@types/react':
         specifier: 'catalog:'
         version: 19.3.0
-      '@vitest/browser-playwright':
-        specifier: 'catalog:'
-        version: 4.1.12(playwright@1.64.1)(vite@8.3.4(@types/node@26.6.5)(yaml@2.9.1))(vitest@4.1.12)
-      playwright:
-        specifier: 'catalog:'
-        version: 1.64.1
       react:
         specifier: 'catalog:'
         version: 19.3.1
       react-dom:
         specifier: 'catalog:'
         version: 19.3.1(react@19.3.1)
-      vitest-browser-react:
-        specifier: 'catalog:'
-        version: 2.3.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(vitest@4.1.12)
 
   packages/changesets-renovate:
     dependencies:
@@ -520,21 +517,12 @@ importers:
       '@types/react':
         specifier: 'catalog:'
         version: 19.3.0
-      '@vitest/browser-playwright':
-        specifier: 'catalog:'
-        version: 4.1.12(playwright@1.64.1)(vite@8.3.4(@types/node@26.6.5)(yaml@2.9.1))(vitest@4.1.12)
-      playwright:
-        specifier: 'catalog:'
-        version: 1.64.1
       react:
         specifier: 'catalog:'
         version: 19.3.1
       react-dom:
         specifier: 'catalog:'
         version: 19.3.1(react@19.3.1)
-      vitest-browser-react:
-        specifier: 'catalog:'
-        version: 2.3.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(vitest@4.1.12)
       zod:
         specifier: 'catalog:'
         version: 4.6.7
@@ -576,75 +564,39 @@ importers:
         specifier: 'catalog:'
         version: 1.8.1(react@19.3.1)
     devDependencies:
-      '@vitest/browser-playwright':
-        specifier: 'catalog:'
-        version: 4.1.12(playwright@1.64.1)(vite@8.3.4(@types/node@26.6.5)(yaml@2.9.1))(vitest@4.1.12)
-      playwright:
-        specifier: 'catalog:'
-        version: 1.64.1
       react:
         specifier: 'catalog:'
         version: 19.3.1
       react-dom:
         specifier: 'catalog:'
         version: 19.3.1(react@19.3.1)
-      vitest-browser-react:
-        specifier: 'catalog:'
-        version: 2.3.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(vitest@4.1.12)
 
   packages/use-clipboard:
     devDependencies:
-      '@vitest/browser-playwright':
-        specifier: 'catalog:'
-        version: 4.1.12(playwright@1.64.1)(vite@8.3.4(@types/node@26.6.5)(yaml@2.9.1))(vitest@4.1.12)
-      playwright:
-        specifier: 'catalog:'
-        version: 1.64.1
       react:
         specifier: 'catalog:'
         version: 19.3.1
       react-dom:
         specifier: 'catalog:'
         version: 19.3.1(react@19.3.1)
-      vitest-browser-react:
-        specifier: 'catalog:'
-        version: 2.3.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(vitest@4.1.12)
 
   packages/use-countdown:
     devDependencies:
-      '@vitest/browser-playwright':
-        specifier: 'catalog:'
-        version: 4.1.12(playwright@1.64.1)(vite@8.3.4(@types/node@26.6.5)(yaml@2.9.1))(vitest@4.1.12)
-      playwright:
-        specifier: 'catalog:'
-        version: 1.64.1
       react:
         specifier: 'catalog:'
         version: 19.3.1
       react-dom:
         specifier: 'catalog:'
         version: 19.3.1(react@19.3.1)
-      vitest-browser-react:
-        specifier: 'catalog:'
-        version: 2.3.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(vitest@4.1.12)
 
   packages/use-dataloader:
     devDependencies:
-      '@vitest/browser-playwright':
-        specifier: 'catalog:'
-        version: 4.1.12(playwright@1.64.1)(vite@8.3.4(@types/node@26.6.5)(yaml@2.9.1))(vitest@4.1.12)
-      playwright:
-        specifier: 'catalog:'
-        version: 1.64.1
       react:
         specifier: 'catalog:'
         version: 19.3.1
       react-dom:
         specifier: 'catalog:'
         version: 19.3.1(react@19.3.1)
-      vitest-browser-react:
-        specifier: 'catalog:'
-        version: 2.3.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(vitest@4.1.12)
 
   packages/use-growthbook:
     dependencies:
@@ -652,21 +604,12 @@ importers:
         specifier: 'catalog:'
         version: 1.8.0(react@19.3.1)
     devDependencies:
-      '@vitest/browser-playwright':
-        specifier: 'catalog:'
-        version: 4.1.12(playwright@1.64.1)(vite@8.3.4(@types/node@26.6.5)(yaml@2.9.1))(vitest@4.1.12)
-      playwright:
-        specifier: 'catalog:'
-        version: 1.64.1
       react:
         specifier: 'catalog:'
         version: 19.3.1
       react-dom:
         specifier: 'catalog:'
         version: 19.3.1(react@19.3.1)
-      vitest-browser-react:
-        specifier: 'catalog:'
-        version: 2.3.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(vitest@4.1.12)
 
   packages/use-i18n:
     dependencies:
@@ -680,42 +623,24 @@ importers:
         specifier: 'catalog:'
         version: 12.1.4
     devDependencies:
-      '@vitest/browser-playwright':
-        specifier: 'catalog:'
-        version: 4.1.12(playwright@1.64.1)(vite@8.3.4(@types/node@26.6.5)(yaml@2.9.1))(vitest@4.1.12)
       date-fns:
         specifier: 'catalog:'
         version: 4.4.0
-      playwright:
-        specifier: 'catalog:'
-        version: 1.64.1
       react:
         specifier: 'catalog:'
         version: 19.3.1
       react-dom:
         specifier: 'catalog:'
         version: 19.3.1(react@19.3.1)
-      vitest-browser-react:
-        specifier: 'catalog:'
-        version: 2.3.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(vitest@4.1.12)
 
   packages/use-interval:
     devDependencies:
-      '@vitest/browser-playwright':
-        specifier: 'catalog:'
-        version: 4.1.12(playwright@1.64.1)(vite@8.3.4(@types/node@26.6.5)(yaml@2.9.1))(vitest@4.1.12)
-      playwright:
-        specifier: 'catalog:'
-        version: 1.64.1
       react:
         specifier: 'catalog:'
         version: 19.3.1
       react-dom:
         specifier: 'catalog:'
         version: 19.3.1(react@19.3.1)
-      vitest-browser-react:
-        specifier: 'catalog:'
-        version: 2.3.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(vitest@4.1.12)
 
   packages/use-random-name:
     dependencies:
@@ -723,39 +648,21 @@ importers:
         specifier: workspace:*
         version: link:../random-name
     devDependencies:
-      '@vitest/browser-playwright':
-        specifier: 'catalog:'
-        version: 4.1.12(playwright@1.64.1)(vite@8.3.4(@types/node@26.6.5)(yaml@2.9.1))(vitest@4.1.12)
-      playwright:
-        specifier: 'catalog:'
-        version: 1.64.1
       react:
         specifier: 'catalog:'
         version: 19.3.1
       react-dom:
         specifier: 'catalog:'
         version: 19.3.1(react@19.3.1)
-      vitest-browser-react:
-        specifier: 'catalog:'
-        version: 2.3.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(vitest@4.1.12)
 
   packages/use-storage:
     devDependencies:
-      '@vitest/browser-playwright':
-        specifier: 'catalog:'
-        version: 4.1.12(playwright@1.64.1)(vite@8.3.4(@types/node@26.6.5)(yaml@2.9.1))(vitest@4.1.12)
-      playwright:
-        specifier: 'catalog:'
-        version: 1.64.1
       react:
         specifier: 'catalog:'
         version: 19.3.1
       react-dom:
         specifier: 'catalog:'
         version: 19.3.1(react@19.3.1)
-      vitest-browser-react:
-        specifier: 'catalog:'
-        version: 2.3.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(vitest@4.1.12)
 
   packages/use-visual-persistence:
     dependencies:
@@ -763,21 +670,12 @@ importers:
         specifier: workspace:*
         version: link:../use-storage
     devDependencies:
-      '@vitest/browser-playwright':
-        specifier: 'catalog:'
-        version: 4.1.12(playwright@1.64.1)(vite@8.3.4(@types/node@26.6.5)(yaml@2.9.1))(vitest@4.1.12)
-      playwright:
-        specifier: 'catalog:'
-        version: 1.64.1
       react:
         specifier: 'catalog:'
         version: 19.3.1
       react-dom:
         specifier: 'catalog:'
         version: 19.3.1(react@19.3.1)
-      vitest-browser-react:
-        specifier: 'catalog:'
-        version: 2.3.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(vitest@4.1.12)
 
   packages/utils:
     dependencies:

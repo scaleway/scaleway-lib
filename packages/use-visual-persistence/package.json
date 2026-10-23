@@ -35,11 +35,8 @@
     "@scaleway/use-storage": "workspace:*"
   },
   "devDependencies": {
-    "@vitest/browser-playwright": "catalog:",
-    "playwright": "catalog:",
     "react": "catalog:",
-    "react-dom": "catalog:",
-    "vitest-browser-react": "catalog:"
+    "react-dom": "catalog:"
   },
   "peerDependencies": {
     "react": ">=16.8"

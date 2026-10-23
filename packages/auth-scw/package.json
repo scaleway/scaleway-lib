@@ -41,11 +41,8 @@
     "@scaleway/sdk-client": "catalog:",
     "@scaleway/types": "workspace:*",
     "@types/react": "catalog:",
-    "@vitest/browser-playwright": "catalog:",
-    "playwright": "catalog:",
     "react": "catalog:",
-    "react-dom": "catalog:",
-    "vitest-browser-react": "catalog:"
+    "react-dom": "catalog:"
   },
   "peerDependencies": {
     "@scaleway/sdk-client": "2.x",

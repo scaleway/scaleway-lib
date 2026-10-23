@@ -33,6 +33,7 @@
     "@types/react-dom": "catalog:",
     "@typescript/native-preview": "npm:typescript@7.0.2",
     "@vitejs/plugin-react": "catalog:",
+    "@vitest/browser-playwright": "catalog:",
     "@vitest/coverage-istanbul": "catalog:",
     "browserslist": "catalog:",
     "lint-staged": "catalog:",
@@ -47,7 +48,8 @@
     "tsdown": "catalog:",
     "turbo": "catalog:",
     "typescript": "catalog:",
-    "vitest": "catalog:"
+    "vitest": "catalog:",
+    "vitest-browser-react": "catalog:"
   },
   "lint-staged": {
     "*.ts?(x)": [
