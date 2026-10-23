@@ -1,20 +1,18 @@
 // oxlint-disable vitest/require-top-level-describe
-import { render, screen } from '@testing-library/react'
 import { describe, expect, it, test, vi } from 'vitest'
+import { render } from 'vitest-browser-react'
 import { MemoryRouter, Redirect, Route, Switch } from '../index'
 
 describe('without a <Router>', () => {
-  it('throws an error', () => {
+  it('throws an error', async () => {
     vi.spyOn(console, 'error').mockReturnValue(undefined)
 
-    expect(() => {
-      render(<Switch>Hello</Switch>)
-    }).toThrow(/Missing RouterContext/v)
+    await expect(render(<Switch>Hello</Switch>)).rejects.toThrow(/Missing RouterContext/v)
   })
 })
 
-test('renders the first <Route> that matches the URL', () => {
-  render(
+test('renders the first <Route> that matches the URL', async () => {
+  const screen = await render(
     <MemoryRouter initialEntries={['/one']}>
       <Switch>
         <Route path="/one" render={() => <h1>one</h1>} />
@@ -23,11 +21,11 @@ test('renders the first <Route> that matches the URL', () => {
     </MemoryRouter>,
   )
 
-  expect(screen.getByText('one')).toBeInTheDocument()
+  expect(screen.getByText('one').element()).toBeDefined()
 })
 
-test('does not render a second <Route> that also matches the URL', () => {
-  render(
+test('does not render a second <Route> that also matches the URL', async () => {
+  const screen = await render(
     <MemoryRouter initialEntries={['/one']}>
       <Switch>
         <Route path="/one" render={() => <h1>one</h1>} />
@@ -36,11 +34,11 @@ test('does not render a second <Route> that also matches the URL', () => {
     </MemoryRouter>,
   )
 
-  expect(screen.queryByText('two')).not.toBeInTheDocument()
+  expect(screen.getByText('two').query()).toBeNull()
 })
 
-test('renders the first <Redirect> that matches the URL', () => {
-  render(
+test('renders the first <Redirect> that matches the URL', async () => {
+  const screen = await render(
     <MemoryRouter initialEntries={['/three']}>
       <Switch>
         <Route path="/one" render={() => <h1>one</h1>} />
@@ -50,11 +48,11 @@ test('renders the first <Redirect> that matches the URL', () => {
     </MemoryRouter>,
   )
 
-  expect(screen.getByText('two')).toBeInTheDocument()
+  expect(screen.getByText('two').element()).toBeDefined()
 })
 
-test('does not render a second <Redirect> that also matches the URL', () => {
-  render(
+test('does not render a second <Redirect> that also matches the URL', async () => {
+  const screen = await render(
     <MemoryRouter initialEntries={['/three']}>
       <Switch>
         <Route path="/one" render={() => <h1>one</h1>} />
@@ -65,11 +63,11 @@ test('does not render a second <Redirect> that also matches the URL', () => {
     </MemoryRouter>,
   )
 
-  expect(screen.getByText('two')).toBeInTheDocument()
+  expect(screen.getByText('two').element()).toBeDefined()
 })
 
-test('renders a Route with no `path` prop', () => {
-  render(
+test('renders a Route with no `path` prop', async () => {
+  const screen = await render(
     <MemoryRouter initialEntries={['/two']}>
       <Switch>
         <Route path="/one" render={() => <h1>one</h1>} />
@@ -78,11 +76,11 @@ test('renders a Route with no `path` prop', () => {
     </MemoryRouter>,
   )
 
-  expect(screen.getByText('two')).toBeInTheDocument()
+  expect(screen.getByText('two').element()).toBeDefined()
 })
 
-test('renders a Redirect with no `from` prop', () => {
-  render(
+test('renders a Redirect with no `from` prop', async () => {
+  const screen = await render(
     <MemoryRouter initialEntries={['/three']}>
       <Switch>
         <Route path="/one" render={() => <h1>one</h1>} />
@@ -92,11 +90,11 @@ test('renders a Redirect with no `from` prop', () => {
     </MemoryRouter>,
   )
 
-  expect(screen.getByText('one')).toBeInTheDocument()
+  expect(screen.getByText('one').element()).toBeDefined()
 })
 
-test('handles subsequent redirects', () => {
-  render(
+test('handles subsequent redirects', async () => {
+  const screen = await render(
     <MemoryRouter initialEntries={['/one']}>
       <Switch>
         <Redirect from="/one" to="/two" />
@@ -106,11 +104,11 @@ test('handles subsequent redirects', () => {
     </MemoryRouter>,
   )
 
-  expect(screen.getByText('three')).toBeInTheDocument()
+  expect(screen.getByText('three').element()).toBeDefined()
 })
 
-test('handles comments', () => {
-  render(
+test('handles comments', async () => {
+  const screen = await render(
     <MemoryRouter initialEntries={['/cupcakes']}>
       <Switch>
         <Route path="/bubblegum" render={() => <div>bub</div>} />
@@ -120,12 +118,12 @@ test('handles comments', () => {
     </MemoryRouter>,
   )
 
-  expect(screen.queryByText('bub')).not.toBeInTheDocument()
-  expect(screen.getByText('cup')).toBeInTheDocument()
+  expect(screen.getByText('bub').query()).toBeNull()
+  expect(screen.getByText('cup').element()).toBeDefined()
 })
 
-test('renders with non-element children', () => {
-  render(
+test('renders with non-element children', async () => {
+  const screen = await render(
     <MemoryRouter initialEntries={['/one']}>
       <Switch>
         <Route path="/one" render={() => <h1>one</h1>} />
@@ -135,11 +133,11 @@ test('renders with non-element children', () => {
     </MemoryRouter>,
   )
 
-  expect(screen.getByText(/one/v)).toBeInTheDocument()
+  expect(screen.getByText(/one/v).element()).toBeDefined()
 })
 
-test('handles path as array with valid strings', () => {
-  render(
+test('handles path as array with valid strings', async () => {
+  const screen = await render(
     <MemoryRouter initialEntries={['/test']}>
       <Switch>
         <Route path={['/one', '/test']} render={() => <h1>matched</h1>} />
@@ -148,11 +146,11 @@ test('handles path as array with valid strings', () => {
     </MemoryRouter>,
   )
 
-  expect(screen.getByText('matched')).toBeInTheDocument()
+  expect(screen.getByText('matched').element()).toBeDefined()
 })
 
-test('handles from as array with valid strings', () => {
-  render(
+test('handles from as array with valid strings', async () => {
+  const screen = await render(
     <MemoryRouter initialEntries={['/redirect-target']}>
       <Switch>
         <Route path="/other" render={() => <h1>other</h1>} />
@@ -162,13 +160,13 @@ test('handles from as array with valid strings', () => {
     </MemoryRouter>,
   )
 
-  expect(screen.getByText('matched')).toBeInTheDocument()
+  expect(screen.getByText('matched').element()).toBeDefined()
 })
 
 const CustomRoute = ({ children }: { children: React.ReactNode }) => <div>{children}</div>
 
-test('handles element without props', () => {
-  render(
+test('handles element without props', async () => {
+  const screen = await render(
     <MemoryRouter initialEntries={['/test']}>
       <Switch>
         <CustomRoute>Fallback content</CustomRoute>
@@ -176,11 +174,11 @@ test('handles element without props', () => {
     </MemoryRouter>,
   )
 
-  expect(screen.getByText('Fallback content')).toBeInTheDocument()
+  expect(screen.getByText('Fallback content').element()).toBeDefined()
 })
 
-test('uses parent route match when no path is provided', () => {
-  render(
+test('uses parent route match when no path is provided', async () => {
+  const screen = await render(
     <MemoryRouter initialEntries={['/parent/child']}>
       <Route path="/parent/:id">
         <Switch>
@@ -191,11 +189,11 @@ test('uses parent route match when no path is provided', () => {
     </MemoryRouter>,
   )
 
-  expect(screen.getByText('child matched')).toBeInTheDocument()
+  expect(screen.getByText('child matched').element()).toBeDefined()
 })
 
-test('handles exact prop', () => {
-  render(
+test('handles exact prop', async () => {
+  const screen = await render(
     <MemoryRouter initialEntries={['/test/extra']}>
       <Switch>
         <Route path="/test" exact render={() => <h1>exact</h1>} />
@@ -204,11 +202,11 @@ test('handles exact prop', () => {
     </MemoryRouter>,
   )
 
-  expect(screen.getByText('loose')).toBeInTheDocument()
+  expect(screen.getByText('loose').element()).toBeDefined()
 })
 
-test('handles exact match with exact=true', () => {
-  render(
+test('handles exact match with exact=true', async () => {
+  const screen = await render(
     <MemoryRouter initialEntries={['/test']}>
       <Switch>
         <Route path="/test" exact render={() => <h1>exact match</h1>} />
@@ -217,5 +215,5 @@ test('handles exact match with exact=true', () => {
     </MemoryRouter>,
   )
 
-  expect(screen.getByText('exact match')).toBeInTheDocument()
+  expect(screen.getByText('exact match').element()).toBeDefined()
 })

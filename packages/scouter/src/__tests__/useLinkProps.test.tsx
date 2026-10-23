@@ -1,10 +1,10 @@
 // oxlint-disable vitest/require-top-level-describe typescript/no-unsafe-assignment typescript/no-unsafe-argument typescript/no-unsafe-type-assertion typescript/no-explicit-any typescript/unbound-method typescript/promise-function-async
-import { act, renderHook } from '@testing-library/react'
 import { expect, test, vi } from 'vitest'
+import { renderHook } from 'vitest-browser-react'
 import { MemoryRouter, Route, useLinkProps } from '../index'
 
-test('returns href from history.createHref', () => {
-  const { result } = renderHook(() => useLinkProps('/target'), {
+test('returns href from history.createHref', async () => {
+  const { result } = await renderHook(() => useLinkProps('/target'), {
     wrapper: ({ children }) => (
       <MemoryRouter initialEntries={['/initial']}>
         <Route>{children}</Route>
@@ -15,8 +15,8 @@ test('returns href from history.createHref', () => {
   expect(result.current[0].href).toBe('/target')
 })
 
-test('returns onClick handler', () => {
-  const { result } = renderHook(() => useLinkProps('/target'), {
+test('returns onClick handler', async () => {
+  const { result } = await renderHook(() => useLinkProps('/target'), {
     wrapper: ({ children }) => (
       <MemoryRouter>
         <Route>{children}</Route>
@@ -27,10 +27,10 @@ test('returns onClick handler', () => {
   expect(result.current[0].onClick).toBeTypeOf('function')
 })
 
-test('onClick navigates with push by default', () => {
+test('onClick navigates with push by default', async () => {
   let navigateCalled = false
 
-  const { result } = renderHook(() => useLinkProps('/target', {}), {
+  const { result, act } = await renderHook(() => useLinkProps('/target', {}), {
     wrapper: ({ children }) => (
       <MemoryRouter initialEntries={['/initial']}>
         <Route
@@ -50,7 +50,7 @@ test('onClick navigates with push by default', () => {
     ),
   })
 
-  act(() => {
+  await act(() => {
     result.current[0].onClick?.({
       preventDefault: vi.fn<() => void>(),
       button: 0,
@@ -61,10 +61,10 @@ test('onClick navigates with push by default', () => {
   expect(navigateCalled).toBe(true)
 })
 
-test('onClick navigates with replace when replace=true', () => {
+test('onClick navigates with replace when replace=true', async () => {
   let replaceCalled = false
 
-  const { result } = renderHook(() => useLinkProps('/target', {}, { replace: true }), {
+  const { result, act } = await renderHook(() => useLinkProps('/target', {}, { replace: true }), {
     wrapper: ({ children }) => (
       <MemoryRouter initialEntries={['/initial']}>
         <Route
@@ -84,7 +84,7 @@ test('onClick navigates with replace when replace=true', () => {
     ),
   })
 
-  act(() => {
+  await act(() => {
     result.current[0].onClick?.({
       preventDefault: vi.fn<() => void>(),
       button: 0,
@@ -95,8 +95,8 @@ test('onClick navigates with replace when replace=true', () => {
   expect(replaceCalled).toBe(true)
 })
 
-test('onClick prevents default on left click', () => {
-  const { result } = renderHook(() => useLinkProps('/target', {}), {
+test('onClick prevents default on left click', async () => {
+  const { result, act } = await renderHook(() => useLinkProps('/target', {}), {
     wrapper: ({ children }) => (
       <MemoryRouter>
         <Route>{children}</Route>
@@ -105,7 +105,7 @@ test('onClick prevents default on left click', () => {
   })
 
   const preventDefault = vi.fn<() => void>()
-  act(() => {
+  await act(() => {
     result.current[0].onClick?.({
       preventDefault,
       button: 0,
@@ -116,8 +116,8 @@ test('onClick prevents default on left click', () => {
   expect(preventDefault).toHaveBeenCalledTimes(1)
 })
 
-test('onClick does not prevent default on non-left click', () => {
-  const { result } = renderHook(() => useLinkProps('/target', {}), {
+test('onClick does not prevent default on non-left click', async () => {
+  const { result, act } = await renderHook(() => useLinkProps('/target', {}), {
     wrapper: ({ children }) => (
       <MemoryRouter>
         <Route>{children}</Route>
@@ -126,7 +126,7 @@ test('onClick does not prevent default on non-left click', () => {
   })
 
   const preventDefault = vi.fn<() => void>()
-  act(() => {
+  await act(() => {
     result.current[0].onClick?.({
       preventDefault,
       button: 1,
@@ -137,8 +137,8 @@ test('onClick does not prevent default on non-left click', () => {
   expect(preventDefault).not.toHaveBeenCalledTimes(1)
 })
 
-test('onClick does not prevent default with modifier keys', () => {
-  const { result } = renderHook(() => useLinkProps('/target', {}), {
+test('onClick does not prevent default with modifier keys', async () => {
+  const { result, act } = await renderHook(() => useLinkProps('/target', {}), {
     wrapper: ({ children }) => (
       <MemoryRouter>
         <Route>{children}</Route>
@@ -147,7 +147,7 @@ test('onClick does not prevent default with modifier keys', () => {
   })
 
   const preventDefault = vi.fn<() => void>()
-  act(() => {
+  await act(() => {
     result.current[0].onClick?.({
       preventDefault,
       button: 0,
@@ -159,8 +159,8 @@ test('onClick does not prevent default with modifier keys', () => {
   expect(preventDefault).not.toHaveBeenCalledTimes(1)
 })
 
-test('onClick does not prevent default with target="_blank"', () => {
-  const { result } = renderHook(() => useLinkProps('/target', { target: '_blank' }), {
+test('onClick does not prevent default with target="_blank"', async () => {
+  const { result, act } = await renderHook(() => useLinkProps('/target', { target: '_blank' }), {
     wrapper: ({ children }) => (
       <MemoryRouter>
         <Route>{children}</Route>
@@ -169,7 +169,7 @@ test('onClick does not prevent default with target="_blank"', () => {
   })
 
   const preventDefault = vi.fn<() => void>()
-  act(() => {
+  await act(() => {
     result.current[0].onClick?.({
       preventDefault,
       button: 0,
@@ -180,10 +180,10 @@ test('onClick does not prevent default with target="_blank"', () => {
   expect(preventDefault).not.toHaveBeenCalledTimes(1)
 })
 
-test('integrates with onClickProp', () => {
+test('integrates with onClickProp', async () => {
   const customOnClick = vi.fn<() => void>()
 
-  const { result } = renderHook(() => useLinkProps('/target', { onClick: customOnClick }), {
+  const { result, act } = await renderHook(() => useLinkProps('/target', { onClick: customOnClick }), {
     wrapper: ({ children }) => (
       <MemoryRouter>
         <Route>{children}</Route>
@@ -197,19 +197,19 @@ test('integrates with onClickProp', () => {
     defaultPrevented: false,
   } as any
 
-  act(() => {
+  await act(() => {
     result.current[0].onClick?.(event)
   })
 
   expect(customOnClick).toHaveBeenCalledWith(event)
 })
 
-test('handles onClickProp errors', () => {
+test('handles onClickProp errors', async () => {
   const customOnClick = vi.fn<() => void>(() => {
     throw new Error('Custom error')
   })
 
-  const { result } = renderHook(() => useLinkProps('/target', { onClick: customOnClick }), {
+  const { result } = await renderHook(() => useLinkProps('/target', { onClick: customOnClick }), {
     wrapper: ({ children }) => (
       <MemoryRouter>
         <Route>{children}</Route>
@@ -230,8 +230,8 @@ test('handles onClickProp errors', () => {
   expect(event.preventDefault).toHaveBeenCalledTimes(1)
 })
 
-test('passes through other props', () => {
-  const { result } = renderHook(
+test('passes through other props', async () => {
+  const { result } = await renderHook(
     () =>
       useLinkProps('/target', {
         className: 'custom-class',
@@ -252,11 +252,11 @@ test('passes through other props', () => {
   expect(result.current[0].title).toBe('Custom title')
 })
 
-test('uses replace when navigating to same location (duplicate navigation)', () => {
+test('uses replace when navigating to same location (duplicate navigation)', async () => {
   let replaceCalled = false
   let pushCalled = false
 
-  const { result } = renderHook(() => useLinkProps('/current', {}), {
+  const { result, act } = await renderHook(() => useLinkProps('/current', {}), {
     wrapper: ({ children }) => (
       <MemoryRouter initialEntries={['/current']}>
         <Route
@@ -280,7 +280,7 @@ test('uses replace when navigating to same location (duplicate navigation)', () 
     ),
   })
 
-  act(() => {
+  await act(() => {
     result.current[0].onClick?.({
       preventDefault: vi.fn<() => void>(),
       button: 0,
@@ -292,10 +292,10 @@ test('uses replace when navigating to same location (duplicate navigation)', () 
   expect(pushCalled).toBe(false)
 })
 
-test('uses replace when navigating to same location with search', () => {
+test('uses replace when navigating to same location with search', async () => {
   let replaceCalled = false
 
-  const { result } = renderHook(() => useLinkProps({ pathname: '/current', search: '?foo=bar' }, {}), {
+  const { result, act } = await renderHook(() => useLinkProps({ pathname: '/current', search: '?foo=bar' }, {}), {
     wrapper: ({ children }) => (
       <MemoryRouter initialEntries={['/current?foo=bar']}>
         <Route
@@ -314,7 +314,7 @@ test('uses replace when navigating to same location with search', () => {
     ),
   })
 
-  act(() => {
+  await act(() => {
     result.current[0].onClick?.({
       preventDefault: vi.fn<() => void>(),
       button: 0,
@@ -325,10 +325,10 @@ test('uses replace when navigating to same location with search', () => {
   expect(replaceCalled).toBe(true)
 })
 
-test('uses push when navigating to different location even with replace=false', () => {
+test('uses push when navigating to different location even with replace=false', async () => {
   let pushCalled = false
 
-  const { result } = renderHook(() => useLinkProps('/different', {}), {
+  const { result, act } = await renderHook(() => useLinkProps('/different', {}), {
     wrapper: ({ children }) => (
       <MemoryRouter initialEntries={['/current']}>
         <Route
@@ -347,7 +347,7 @@ test('uses push when navigating to different location even with replace=false', 
     ),
   })
 
-  act(() => {
+  await act(() => {
     result.current[0].onClick?.({
       preventDefault: vi.fn<() => void>(),
       button: 0,
@@ -358,10 +358,10 @@ test('uses push when navigating to different location even with replace=false', 
   expect(pushCalled).toBe(true)
 })
 
-test('respects replace option even for duplicate navigation', () => {
+test('respects replace option even for duplicate navigation', async () => {
   let replaceCalled = false
 
-  const { result } = renderHook(() => useLinkProps('/current', {}, { replace: true }), {
+  const { result, act } = await renderHook(() => useLinkProps('/current', {}, { replace: true }), {
     wrapper: ({ children }) => (
       <MemoryRouter initialEntries={['/current']}>
         <Route
@@ -380,7 +380,7 @@ test('respects replace option even for duplicate navigation', () => {
     ),
   })
 
-  act(() => {
+  await act(() => {
     result.current[0].onClick?.({
       preventDefault: vi.fn<() => void>(),
       button: 0,

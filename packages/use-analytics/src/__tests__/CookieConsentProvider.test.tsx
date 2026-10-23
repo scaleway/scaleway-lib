@@ -1,5 +1,5 @@
-import { render, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { render } from 'vitest-browser-react'
 import { getAllowedConsents, getDeniedConsents } from '../cookies-consent/consents'
 import { CookieConsentProvider, useCookieConsent } from '../cookies-consent/CookieConsentProvider'
 import type { Config } from '../types'
@@ -88,33 +88,33 @@ describe('allowedConsents and deniedConsents', () => {
     vi.clearAllMocks()
   })
 
-  it('should have all consents allowed when consent is not required', () => {
-    render(
+  it('should have all consents allowed when consent is not required', async () => {
+    const screen = await render(
       <CookieConsentProvider isConsentRequired={false} config={mockConfig}>
         <TestComponent />
       </CookieConsentProvider>,
     )
 
-    expect(screen.getByTestId('allowed-consents').textContent).toBe(
+    expect(screen.getByTestId('allowed-consents').element().textContent).toBe(
       'essential,functional,marketing,analytics,advertising',
     )
-    expect(screen.getByTestId('denied-consents').textContent).toBe('')
+    expect(screen.getByTestId('denied-consents').element().textContent).toBe('')
   })
 
-  it('should have all consents denied when consent is required and no cookies exist', () => {
-    render(
+  it('should have all consents denied when consent is required and no cookies exist', async () => {
+    const screen = await render(
       <CookieConsentProvider isConsentRequired config={mockConfig}>
         <TestComponent />
       </CookieConsentProvider>,
     )
 
-    expect(screen.getByTestId('allowed-consents').textContent).toBe('')
-    expect(screen.getByTestId('denied-consents').textContent).toBe(
+    expect(screen.getByTestId('allowed-consents').element().textContent).toBe('')
+    expect(screen.getByTestId('denied-consents').element().textContent).toBe(
       'essential,functional,marketing,analytics,advertising',
     )
   })
 
-  it('should correctly categorize consents based on cookie values', () => {
+  it('should correctly categorize consents based on cookie values', async () => {
     // Create the cookie string array with 'consent_' prefix
     const cookieArray = [
       'consent_essential=true',
@@ -129,17 +129,17 @@ describe('allowedConsents and deniedConsents', () => {
 
     vi.spyOn(document, 'cookie', 'get').mockReturnValueOnce(cookieString)
 
-    render(
+    const screen = await render(
       <CookieConsentProvider isConsentRequired config={mockConfig}>
         <TestComponent />
       </CookieConsentProvider>,
     )
 
-    expect(screen.getByTestId('allowed-consents').textContent).toBe('essential,analytics')
-    expect(screen.getByTestId('denied-consents').textContent).toBe('functional,marketing,advertising')
+    expect(screen.getByTestId('allowed-consents').element().textContent).toBe('essential,analytics')
+    expect(screen.getByTestId('denied-consents').element().textContent).toBe('functional,marketing,advertising')
   })
 
-  it('should handle undefined consent values as false', () => {
+  it('should handle undefined consent values as false', async () => {
     // Set some cookies with undefined values analytics and advertising are missing (undefined)
     const cookieArray = ['consent_essential=false', 'consent_functional=false'] as const
 
@@ -148,19 +148,19 @@ describe('allowedConsents and deniedConsents', () => {
 
     vi.spyOn(document, 'cookie', 'get').mockReturnValueOnce(cookieString)
 
-    render(
+    const screen = await render(
       <CookieConsentProvider isConsentRequired config={mockConfig}>
         <TestComponent />
       </CookieConsentProvider>,
     )
 
-    expect(screen.getByTestId('allowed-consents').textContent).toBe('')
-    expect(screen.getByTestId('denied-consents').textContent).toBe(
+    expect(screen.getByTestId('allowed-consents').element().textContent).toBe('')
+    expect(screen.getByTestId('denied-consents').element().textContent).toBe(
       'essential,functional,marketing,analytics,advertising',
     )
   })
 
-  it('should handle partial consent updates correctly', () => {
+  it('should handle partial consent updates correctly', async () => {
     // Set some cookies with undefined values analytics and advertising are missing (undefined)
     const cookieArray = [
       'consent_essential=true',
@@ -175,14 +175,14 @@ describe('allowedConsents and deniedConsents', () => {
 
     vi.spyOn(document, 'cookie', 'get').mockReturnValueOnce(cookieString)
 
-    render(
+    const screen = await render(
       <CookieConsentProvider isConsentRequired config={mockConfig}>
         <TestComponentWithPartialSave />
       </CookieConsentProvider>,
     )
 
     // Initial state
-    expect(screen.getByTestId('allowed-consents').textContent).toBe('essential,functional')
-    expect(screen.getByTestId('denied-consents').textContent).toBe('marketing,analytics,advertising')
+    expect(screen.getByTestId('allowed-consents').element().textContent).toBe('essential,functional')
+    expect(screen.getByTestId('denied-consents').element().textContent).toBe('marketing,analytics,advertising')
   })
 })

@@ -36,7 +36,6 @@ export const defaultConfig = defineConfig({
         inline: true,
       },
     },
-    setupFiles: ['vitest-localstorage-mock'],
 
     typecheck: {
       enabled: true,

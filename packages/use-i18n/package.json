@@ -46,9 +46,12 @@
     "intl-messageformat": "catalog:"
   },
   "devDependencies": {
+    "@vitest/browser-playwright": "catalog:",
     "date-fns": "catalog:",
+    "playwright": "catalog:",
     "react": "catalog:",
-    "react-dom": "catalog:"
+    "react-dom": "catalog:",
+    "vitest-browser-react": "catalog:"
   },
   "peerDependencies": {
     "date-fns": "3.x || 4.x",

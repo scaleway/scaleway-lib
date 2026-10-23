@@ -39,7 +39,11 @@
   "devDependencies": {
     "@scaleway/sdk-client": "catalog:",
     "@types/react": "catalog:",
+    "@vitest/browser-playwright": "catalog:",
+    "playwright": "catalog:",
     "react": "catalog:",
+    "react-dom": "catalog:",
+    "vitest-browser-react": "catalog:",
     "zod": "catalog:"
   },
   "peerDependencies": {
