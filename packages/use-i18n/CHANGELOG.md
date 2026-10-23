@@ -1,5 +1,14 @@
 # Change Log
 
+## 9.0.4
+
+### Patch Changes
+
+- [#4048](https://github.com/scaleway/scaleway-lib/pull/4048) [`0195c75`](https://github.com/scaleway/scaleway-lib/commit/0195c75a4ca15df8ec823a1b882b541c75d44c92) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@formatjs/icu-messageformat-parser` to `3.5.22`.
+  Updated dependency `intl-messageformat` to `12.1.4`.
+
+- [#4044](https://github.com/scaleway/scaleway-lib/pull/4044) [`eadc968`](https://github.com/scaleway/scaleway-lib/commit/eadc968fdb98d8c56097cb59ddcebda9c458f76f) Thanks [@chambo-e](https://github.com/chambo-e)! - Vendored the `international-types` type definitions in-house (from `international-types@0.8.1`, MIT) and removed the unmaintained dependency. Adapted to this package's runtime along the way: `LocaleKeys` no longer strips `#plural` suffixes (the hook never supported that convention, so those keys were phantom and failed at runtime), and `Params` now extracts parameters from pure CLDR-category plural messages (`{n, plural, one {…} other {…}}`), which previously produced garbage parameter names. `Params` uses a cheap shape-guard before the plural templates, so type checking is ~34% faster than the original dependency (measured on a 1,000-key locale, TypeScript 7).
+
 ## 9.0.3
 
 ### Patch Changes
