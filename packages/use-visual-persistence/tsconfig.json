@@ -2,7 +2,7 @@
   "extends": "@scaleway/tsconfig",
   "compilerOptions": {
     "lib": ["ESNext", "DOM"],
-    "skipLibCheck": true
+    "types": ["node"]
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"]
 }

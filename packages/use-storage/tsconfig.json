@@ -3,6 +3,6 @@
   "include": ["src/**/*.ts", "src/**/*.tsx"],
   "compilerOptions": {
     "lib": ["ESNext", "DOM"],
-    "skipLibCheck": true
+    "types": ["node"]
   }
 }
