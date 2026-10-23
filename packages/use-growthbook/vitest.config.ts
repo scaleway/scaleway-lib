@@ -7,7 +7,6 @@ export default mergeConfig(defaultConfig, {
     browser: {
       provider: playwright(),
       enabled: true,
-      // headless defaults to process.env.CI, so local runs stay headful for debugging
       instances: [{ browser: 'chromium' }],
     },
   },
