@@ -98,7 +98,7 @@ scaleway-lib is a set of NPM packages used at Scaleway.
   ![npm](https://img.shields.io/npm/dm/@scaleway/use-visual-persistence)
   ![npm](https://img.shields.io/npm/v/@scaleway/use-visual-persistence)
 
-- [`@scaleway/validate-icu-locales`](./packages/validate-icu-locales/README.md): A small cli to check ICU locales error
+- [`@scaleway/validate-icu-locales`](./packages/validate-icu-locales/README.md): A small cli to check ICU locale errors
 
   ![npm](https://img.shields.io/npm/dm/@scaleway/validate-icu-locales)
   ![npm](https://img.shields.io/npm/v/@scaleway/validate-icu-locales)
