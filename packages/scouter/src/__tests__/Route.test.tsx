@@ -105,7 +105,6 @@ test('matches using nextContext when updating', async () => {
 
   const screen = await render(
     <Router history={history}>
-      {/* oxlint-disable-next-line typescript/dot-notation -- index signature: dot form violates noPropertyAccessFromIndexSignature */}
       <Route path="/sushi/:roll" render={({ match }) => <h1>{match.params['roll']}</h1>} />
     </Router>,
   )
@@ -121,7 +120,6 @@ describe('with dynamic segments in the path', () => {
   it('decodes them', async () => {
     const screen = await render(
       <MemoryRouter initialEntries={['/a%20dynamic%20segment']}>
-        {/* oxlint-disable-next-line typescript/dot-notation -- index signature: dot form violates noPropertyAccessFromIndexSignature */}
         <Route path="/:id" render={({ match }) => <h1>{match.params['id']}</h1>} />
       </MemoryRouter>,
     )
