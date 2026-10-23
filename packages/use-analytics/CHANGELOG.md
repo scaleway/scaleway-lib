@@ -1,5 +1,15 @@
 # Change Log
 
+## 2.0.20
+
+### Patch Changes
+
+- [#4042](https://github.com/scaleway/scaleway-lib/pull/4042) [`1490822`](https://github.com/scaleway/scaleway-lib/commit/1490822a5f188b27499399d674c5698068a62fb6) Thanks [@etienne-scaleway](https://github.com/etienne-scaleway)! - Resolve `AnalyticsProvider` readiness immediately when analytics is disabled.
+  
+  When the provider is mounted with a `settings` object that has no `writeKey` (for example the consumer's `config.analytics = null`), there is nothing to load and no `analytics.ready()` to ever wait for. `isAnalyticsReady` is now `true` right away instead of staying `false` until the readiness timeout fires, so consumers rendering their children on `isAnalyticsReady` (or with `shouldRenderOnlyWhenReady`) are no longer blocked, and no spurious timeout `onError` is reported.
+
+- [#4045](https://github.com/scaleway/scaleway-lib/pull/4045) [`f947d4c`](https://github.com/scaleway/scaleway-lib/commit/f947d4c643d9c04e41bcc8e3bd071fd5579e383b) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@rudderstack/analytics-js` to `3.35.1`.
+
 ## 2.0.19
 
 ### Patch Changes
