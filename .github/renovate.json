@@ -29,11 +29,6 @@
     {
       "matchPackageNames": ["/^@scaleway//"],
       "minimumReleaseAge": null
-    },
-    {
-      "groupName": "Testing library",
-      "groupSlug": "testing-library",
-      "matchPackageNames": ["/^@testing-library/"]
     }
   ],
   "prConcurrentLimit": 10,

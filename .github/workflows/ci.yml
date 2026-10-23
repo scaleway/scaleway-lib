@@ -52,6 +52,11 @@ jobs:
       - uses: ./.github/actions/bootstrap
         with:
           node-version: node@${{ matrix.node }}
+      - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-chromium-${{ hashFiles('pnpm-workspace.yaml') }}
+      - run: pnpm exec playwright install chromium --with-deps
       - run: pnpm run test:unit:coverage
       - uses: codecov/codecov-action@303a32d7a59b442fa8d48b6a1cc6825c09c847a5 # v7.1.1
         with:

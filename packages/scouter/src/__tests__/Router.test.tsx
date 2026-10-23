@@ -1,31 +1,32 @@
 // oxlint-disable vitest/require-top-level-describe typescript/no-explicit-any
-import { act, render, screen } from '@testing-library/react'
 import { createMemoryHistory as createHistory } from 'history'
 import { assert, expect, test } from 'vitest'
+import { render } from 'vitest-browser-react'
 import type { Location, Match } from '../index'
 import { Route } from '../index'
 import { Router } from '../Router'
+import { act } from './utils/reactAct'
 
-test('renders children', () => {
+test('renders children', async () => {
   const text = 'Hello Router'
 
   const history = createHistory()
 
-  render(
+  const screen = await render(
     <Router history={history}>
       <div>{text}</div>
     </Router>,
   )
 
-  expect(screen.getByText(text)).toBeInTheDocument()
+  expect(screen.getByText(text).element()).toBeDefined()
 })
 
-test('provides history to children', () => {
+test('provides history to children', async () => {
   let history: any = undefined
 
   const customHistory = createHistory()
 
-  render(
+  await render(
     <Router history={customHistory}>
       <Route
         render={({ history: historyProps }) => {
@@ -39,14 +40,14 @@ test('provides history to children', () => {
   expect(history).toBe(customHistory)
 })
 
-test('provides location to children', () => {
+test('provides location to children', async () => {
   let location: Partial<Location> = {}
 
   const history = createHistory({
     initialEntries: ['/test-location'],
   })
 
-  render(
+  await render(
     <Router history={history}>
       <Route
         render={({ location: locationProps }) => {
@@ -61,14 +62,14 @@ test('provides location to children', () => {
   expect(location.pathname).toBe('/test-location')
 })
 
-test('updates when history changes', () => {
+test('updates when history changes', async () => {
   let location: Partial<Location> = {}
 
   const history = createHistory({
     initialEntries: ['/initial'],
   })
 
-  render(
+  await render(
     <Router history={history}>
       <Route
         render={({ location: locationProps }) => {
@@ -82,19 +83,19 @@ test('updates when history changes', () => {
   assert.exists(location)
   expect(location.pathname).toBe('/initial')
 
-  act(() => {
+  await act(() => {
     history.push('/updated')
   })
 
   expect(location.pathname).toBe('/updated')
 })
 
-test('provides match to children', () => {
+test('provides match to children', async () => {
   let match: Partial<Match> = {}
 
   const history = createHistory()
 
-  render(
+  await render(
     <Router history={history}>
       <Route
         render={({ match: propsMatch }) => {

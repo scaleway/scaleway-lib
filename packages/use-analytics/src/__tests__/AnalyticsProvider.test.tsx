@@ -1,5 +1,6 @@
-import { act, render, screen, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { render } from 'vitest-browser-react'
+import type { RenderResult } from 'vitest-browser-react'
 import type { Analytics } from '../analytics/useAnalytics'
 import { AnalyticsProvider, useAnalytics } from '../analytics/useAnalytics'
 import type { CategoryKind } from '../types'
@@ -48,8 +49,8 @@ type Overrides = {
   onError?: (error: Error) => void
 }
 
-const renderProvider = (overrides: Overrides = {}) =>
-  render(
+const renderProvider = async (overrides: Overrides = {}) =>
+  await render(
     <AnalyticsProvider
       allowedConsents={[] as CategoryKind[]}
       deniedConsents={[] as CategoryKind[]}
@@ -61,7 +62,7 @@ const renderProvider = (overrides: Overrides = {}) =>
     </AnalyticsProvider>,
   )
 
-const readyText = () => screen.getByTestId('ready').textContent
+const readyText = (screen: RenderResult) => screen.getByTestId('ready')
 
 describe('AnalyticsProvider readiness', () => {
   beforeEach(() => {
@@ -69,68 +70,65 @@ describe('AnalyticsProvider readiness', () => {
   })
 
   it('resolves isAnalyticsReady immediately when settings has no writeKey (analytics disabled)', async () => {
-    renderProvider({ settings: { writeKey: '', cdnURL: '' }, needConsent: false, timeout: 2000 })
+    const screen = await renderProvider({ settings: { writeKey: '', cdnURL: '' }, needConsent: false, timeout: 2000 })
 
     // No timers advanced: nothing was ever loaded, so it must be ready at once.
-    await waitFor(() => {
-      expect(readyText()).toBe('ready')
-    })
+    await expect.element(readyText(screen)).toHaveTextContent('ready')
     expect(rudder.load).not.toHaveBeenCalled()
     expect(rudder.readyCallbacks).toHaveLength(0)
   })
 
   it('does not report a timeout error when analytics is disabled', async () => {
     const onError = vi.fn<(error: Error) => void>()
-    renderProvider({ settings: { writeKey: '', cdnURL: '' }, needConsent: false, timeout: 2000, onError })
-
-    await waitFor(() => {
-      expect(readyText()).toBe('ready')
+    const screen = await renderProvider({
+      settings: { writeKey: '', cdnURL: '' },
+      needConsent: false,
+      timeout: 2000,
+      onError,
     })
+
+    await expect.element(readyText(screen)).toHaveTextContent('ready')
     expect(onError).not.toHaveBeenCalled()
   })
 
-  it('still waits for analytics.ready() when a writeKey is configured', () => {
+  it('still waits for analytics.ready() when a writeKey is configured', async () => {
     const onError = vi.fn<(error: Error) => void>()
-    renderProvider({
+    const screen = await renderProvider({
       settings: { writeKey: 'write-key', cdnURL: 'https://cdn.example.com' },
       needConsent: false,
       timeout: 2000,
       onError,
     })
 
-    expect(readyText()).toBe('loading')
+    expect(readyText(screen).element().textContent).toBe('loading')
     expect(rudder.load).toHaveBeenCalledTimes(1)
     expect(onError).not.toHaveBeenCalled()
 
-    act(() => {
-      for (const fireReady of rudder.readyCallbacks) {
-        fireReady()
-      }
-    })
+    for (const fireReady of rudder.readyCallbacks) {
+      fireReady()
+    }
 
-    expect(readyText()).toBe('ready')
+    await expect.element(readyText(screen)).toHaveTextContent('ready')
   })
 
   it('renders children when disabled even if consent is required and shouldRenderOnlyWhenReady', async () => {
-    renderProvider({
+    const screen = await renderProvider({
       settings: { writeKey: '', cdnURL: '' },
       needConsent: true,
       shouldRenderOnlyWhenReady: true,
     })
 
-    await waitFor(() => {
-      expect(readyText()).toBe('ready')
-    })
+    await expect.element(readyText(screen)).toHaveTextContent('ready')
   })
 
-  it('hides children when a writeKey is configured, consent is required and shouldRenderOnlyWhenReady', () => {
-    renderProvider({
+  it('hides children when a writeKey is configured, consent is required and shouldRenderOnlyWhenReady', async () => {
+    const screen = await renderProvider({
       settings: { writeKey: 'write-key', cdnURL: 'https://cdn.example.com' },
       needConsent: true,
       shouldRenderOnlyWhenReady: true,
       timeout: 2000,
     })
 
-    expect(screen.queryByTestId('ready')).toBeNull()
+    expect(readyText(screen).query()).toBeNull()
   })
 })

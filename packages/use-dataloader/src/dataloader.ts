@@ -34,7 +34,7 @@ class DataLoader<ResultType, ErrorType> {
 
   public observers: (() => void)[] = []
 
-  public timeout?: number
+  public timeout?: ReturnType<typeof setTimeout>
 
   public loadCount = 0
 

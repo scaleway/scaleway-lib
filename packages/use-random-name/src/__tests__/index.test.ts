@@ -1,10 +1,10 @@
-import { renderHook } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
+import { renderHook } from 'vitest-browser-react'
 import { useRandomName } from '..'
 
 describe(useRandomName, () => {
-  it('useRandomName should not be undefined', () => {
-    const { result } = renderHook(() => useRandomName())
+  it('useRandomName should not be undefined', async () => {
+    const { result } = await renderHook(() => useRandomName())
     expect(result.current).toBeDefined()
   })
 })

@@ -1,9 +1,9 @@
-// oxlint-disable  vitest/require-top-level-describe vitest/no-conditional-in-test
-import { act, render, renderHook, screen, waitFor } from '@testing-library/react'
-import { userEvent } from '@testing-library/user-event'
 import { createMemoryHistory } from 'history'
 import { useEffect, useState } from 'react'
 import { beforeAll, describe, expect, it, test } from 'vitest'
+import { render, renderHook } from 'vitest-browser-react'
+// oxlint-disable  vitest/require-top-level-describe vitest/no-conditional-in-test
+import { userEvent } from 'vitest/browser'
 import { Link, MemoryRouter, Route, useBlockNavigation, useNavigate, useSafeQueryParams } from '../index'
 import { Router } from '../Router'
 
@@ -14,8 +14,8 @@ const wrapper = ({ children }: { children: React.ReactNode }) => (
 )
 
 describe('useBlockNavigation - renderHook tests', () => {
-  it('returns default values when not enabled', () => {
-    const { result } = renderHook(() => useBlockNavigation(), { wrapper })
+  it('returns default values when not enabled', async () => {
+    const { result } = await renderHook(() => useBlockNavigation(), { wrapper })
 
     expect(result.current.enabled).toBe(false)
     expect(result.current.hasPendingNavigation).toBe(false)
@@ -25,39 +25,39 @@ describe('useBlockNavigation - renderHook tests', () => {
     expect(result.current.unblockImmediatly).toBeTypeOf('function')
   })
 
-  it('continueNavigation does nothing when not enabled', () => {
-    const { result } = renderHook(() => useBlockNavigation(), { wrapper })
+  it('continueNavigation does nothing when not enabled', async () => {
+    const { result } = await renderHook(() => useBlockNavigation(), { wrapper })
 
     expect(() => {
       result.current.continueNavigation()
     }).not.toThrow()
   })
 
-  it('continueNavigation does nothing when no pending navigation', () => {
-    const { result } = renderHook(() => useBlockNavigation({ initialEnabled: true }), { wrapper })
+  it('continueNavigation does nothing when no pending navigation', async () => {
+    const { result } = await renderHook(() => useBlockNavigation({ initialEnabled: true }), { wrapper })
 
     expect(() => {
       result.current.continueNavigation()
     }).not.toThrow()
   })
 
-  it('discardNavigation does nothing when not enabled', () => {
-    const { result } = renderHook(() => useBlockNavigation(), { wrapper })
+  it('discardNavigation does nothing when not enabled', async () => {
+    const { result } = await renderHook(() => useBlockNavigation(), { wrapper })
 
     expect(() => {
       result.current.discardNavigation()
     }).not.toThrow()
   })
 
-  it('discardNavigation does nothing when no pending navigation', () => {
-    const { result } = renderHook(() => useBlockNavigation({ initialEnabled: true }), { wrapper })
+  it('discardNavigation does nothing when no pending navigation', async () => {
+    const { result } = await renderHook(() => useBlockNavigation({ initialEnabled: true }), { wrapper })
 
     expect(() => {
       result.current.discardNavigation()
     }).not.toThrow()
   })
 
-  it('unblockImmediatly allow to navigate right after', () => {
+  it('unblockImmediatly allow to navigate right after', async () => {
     const history = createMemoryHistory()
     const wrapper2 = ({ children }: { children: React.ReactNode }) => (
       <Router history={history}>
@@ -65,12 +65,12 @@ describe('useBlockNavigation - renderHook tests', () => {
       </Router>
     )
 
-    const { result } = renderHook(() => useBlockNavigation({ enabled: true }), {
+    const { result, act } = await renderHook(() => useBlockNavigation({ enabled: true }), {
       wrapper: wrapper2,
     })
 
     // Unblock immediately
-    act(() => {
+    await act(() => {
       result.current.unblockImmediatly()
       // Navigation should now be allowed
       history.push('/another')
@@ -79,53 +79,59 @@ describe('useBlockNavigation - renderHook tests', () => {
     expect(history.location.pathname).toBe('/another')
   })
 
-  it('returns enabled=true when initialEnabled=true', () => {
-    const { result } = renderHook(() => useBlockNavigation({ initialEnabled: true }), { wrapper })
+  it('returns enabled=true when initialEnabled=true', async () => {
+    const { result } = await renderHook(() => useBlockNavigation({ initialEnabled: true }), { wrapper })
 
     expect(result.current.enabled).toBe(true)
     expect(result.current.hasPendingNavigation).toBe(false)
   })
 
-  it('returns enabled=true when static enabled=true', () => {
-    const { result } = renderHook(() => useBlockNavigation({ enabled: true }), { wrapper })
+  it('returns enabled=true when static enabled=true', async () => {
+    const { result } = await renderHook(() => useBlockNavigation({ enabled: true }), { wrapper })
 
     expect(result.current.enabled).toBe(true)
   })
 
-  it('static enabled takes precedence over dynamic enabled', () => {
-    const { result } = renderHook(() => useBlockNavigation({ enabled: true, initialEnabled: false }), { wrapper })
+  it('static enabled takes precedence over dynamic enabled', async () => {
+    const { result } = await renderHook(() => useBlockNavigation({ enabled: true, initialEnabled: false }), {
+      wrapper,
+    })
 
     expect(result.current.enabled).toBe(true)
   })
 
-  it('setEnabled updates dynamic enabled state', () => {
-    const { result } = renderHook(() => useBlockNavigation({ initialEnabled: false }), { wrapper })
+  it('setEnabled updates dynamic enabled state', async () => {
+    const { result, act } = await renderHook(() => useBlockNavigation({ initialEnabled: false }), { wrapper })
 
     expect(result.current.enabled).toBe(false)
 
-    act(() => {
+    await act(() => {
       result.current.setEnabled(true)
     })
 
     expect(result.current.enabled).toBe(true)
   })
 
-  it('block navigation', () => {
+  it('block navigation', async () => {
     const history = createMemoryHistory()
     const wrapper2 = ({ children }: { children: React.ReactNode }) => (
       <Router history={history}>
         <Route>{children}</Route>
       </Router>
     )
-    const { result, rerender } = renderHook(({ enabled }: { enabled: boolean }) => useBlockNavigation({ enabled }), {
-      wrapper: wrapper2,
-      initialProps: { enabled: true },
-    })
+    const initialProps = { enabled: true }
+    const { result, rerender, act } = await renderHook(
+      (props: typeof initialProps = initialProps) => useBlockNavigation({ enabled: props.enabled }),
+      {
+        wrapper: wrapper2,
+        initialProps,
+      },
+    )
     expect(result.current.enabled).toBe(true)
     expect(result.current.hasPendingNavigation).toBe(false)
 
     // try to navigate
-    act(() => {
+    await act(() => {
       history.push('/new')
     })
 
@@ -133,7 +139,7 @@ describe('useBlockNavigation - renderHook tests', () => {
     expect(history.location.pathname).toBe('/')
 
     // Discard navigation
-    act(() => {
+    await act(() => {
       result.current.discardNavigation()
     })
 
@@ -141,7 +147,7 @@ describe('useBlockNavigation - renderHook tests', () => {
     expect(history.location.pathname).toBe('/')
 
     // try to navigate again
-    act(() => {
+    await act(() => {
       history.push('/other')
     })
 
@@ -149,7 +155,7 @@ describe('useBlockNavigation - renderHook tests', () => {
     expect(history.location.pathname).toBe('/')
 
     // this time continue the nav
-    act(() => {
+    await act(() => {
       result.current.continueNavigation()
     })
 
@@ -157,12 +163,12 @@ describe('useBlockNavigation - renderHook tests', () => {
     expect(history.location.pathname).toBe('/other')
 
     // Unblock navigation
-    rerender({ enabled: false })
+    await rerender({ enabled: false })
 
     expect(result.current.enabled).toBe(false)
 
     // try to navigate
-    act(() => {
+    await act(() => {
       history.push('/final')
     })
 
@@ -239,7 +245,7 @@ test('form use case', async () => {
   })
 
   const history = createMemoryHistory()
-  render(
+  const screen = await render(
     <Router history={history}>
       <Route path="/" exact>
         <h1>Home</h1>
@@ -252,72 +258,70 @@ test('form use case', async () => {
     </Router>,
   )
 
-  expect(screen.getByRole('heading', { name: 'Home' })).toBeVisible()
+  await expect.element(screen.getByRole('heading', { name: 'Home' })).toBeVisible()
 
-  await userEvent.click(screen.getByRole('link', { name: 'Go to form' }))
+  await screen.getByRole('link', { name: 'Go to form' }).click()
 
-  expect(screen.getByRole('heading', { name: 'Form' })).toBeVisible()
+  await expect.element(screen.getByRole('heading', { name: 'Form' })).toBeVisible()
 
   // Try to go back home -> should work because not dirty
-  await userEvent.click(screen.getByRole('link', { name: 'Go home' }))
-  expect(screen.getByRole('heading', { name: 'Home' })).toBeVisible()
+  await screen.getByRole('link', { name: 'Go home' }).click()
+  await expect.element(screen.getByRole('heading', { name: 'Home' })).toBeVisible()
 
   // Go back to form
-  await userEvent.click(screen.getByRole('link', { name: 'Go to form' }))
-  expect(screen.getByRole('heading', { name: 'Form' })).toBeVisible()
+  await screen.getByRole('link', { name: 'Go to form' }).click()
+  await expect.element(screen.getByRole('heading', { name: 'Form' })).toBeVisible()
   // Fill form
-  await userEvent.type(screen.getByPlaceholderText('Name'), 'John')
+  await userEvent.type(screen.getByPlaceholder('Name'), 'John')
   // Try to navigate
-  await userEvent.click(screen.getByRole('link', { name: 'Go home' }))
+  await screen.getByRole('link', { name: 'Go home' }).click()
 
   // Navigation should be blocked (test history.location.pathname is still /form)
   expect(history.location.pathname).toBe('/form')
   // "You have unsaved changes" should be visible
-  expect(screen.getByText('You have unsaved changes')).toBeVisible()
+  await expect.element(screen.getByText('You have unsaved changes')).toBeVisible()
 
   // Click "Keep editing"
-  await userEvent.click(screen.getByRole('button', { name: 'Keep editing' }))
+  await screen.getByRole('button', { name: 'Keep editing' }).click()
 
   // pathname is still /form
   expect(history.location.pathname).toBe('/form')
   // "You have unsaved changes" no longer visible
-  expect(screen.queryByText('You have unsaved changes')).not.toBeInTheDocument()
+  expect(screen.getByText('You have unsaved changes').query()).toBeNull()
 
   // Try to navigate to home again
-  await userEvent.click(screen.getByRole('link', { name: 'Go home' }))
+  await screen.getByRole('link', { name: 'Go home' }).click()
   // This time click Confirm
-  await userEvent.click(screen.getByRole('button', { name: 'Confirm' }))
+  await screen.getByRole('button', { name: 'Confirm' }).click()
 
   // Check that we have navigated to home
-  expect(screen.getByRole('heading', { name: 'Home' })).toBeVisible()
+  await expect.element(screen.getByRole('heading', { name: 'Home' })).toBeVisible()
 
   // Go to form again
-  await userEvent.click(screen.getByRole('link', { name: 'Go to form' }))
-  expect(screen.getByRole('heading', { name: 'Form' })).toBeVisible()
+  await screen.getByRole('link', { name: 'Go to form' }).click()
+  await expect.element(screen.getByRole('heading', { name: 'Form' })).toBeVisible()
   // Fill the form again
-  await userEvent.type(screen.getByPlaceholderText('Name'), 'Jane')
+  await userEvent.type(screen.getByPlaceholder('Name'), 'Jane')
   // Submit form
-  await userEvent.click(screen.getByRole('button', { name: 'Submit' }))
+  await screen.getByRole('button', { name: 'Submit' }).click()
 
   // Test that form is submitting
-  expect(screen.getByRole('button', { name: 'Submitting...' })).toBeVisible()
+  await expect.element(screen.getByRole('button', { name: 'Submitting...' })).toBeVisible()
 
   // Try to navigate
-  await userEvent.click(screen.getByRole('link', { name: 'Go home' }))
+  await screen.getByRole('link', { name: 'Go home' }).click()
 
   // Nav should be blocked
   expect(history.location.pathname).toBe('/form')
-  expect(screen.getByText('You have unsaved changes')).toBeVisible()
+  await expect.element(screen.getByText('You have unsaved changes')).toBeVisible()
 
-  // Call resolveSubmit to finish the submit
-  act(() => {
-    resolveSubmit?.()
-  })
+  // Call resolveSubmit to finish the submit. Called outside act on purpose:
+  // with the act environment off, React processes the pending microtask chain
+  // without "not wrapped in act" noise, and the assertion below auto-retries.
+  resolveSubmit?.()
 
   // Check that the navigation worked and we are now on home page
-  await waitFor(() => {
-    expect(screen.getByRole('heading', { name: 'Home' })).toBeVisible()
-  })
+  await expect.element(screen.getByRole('heading', { name: 'Home' })).toBeVisible()
 })
 
 test(
@@ -374,7 +378,7 @@ test(
     }
 
     const history = createMemoryHistory()
-    render(
+    const screen = await render(
       <Router history={history}>
         <Route path="/" exact>
           <h1>Home</h1>
@@ -391,44 +395,44 @@ test(
       </Router>,
     )
 
-    expect(screen.getByRole('heading', { name: 'Home' })).toBeVisible()
+    await expect.element(screen.getByRole('heading', { name: 'Home' })).toBeVisible()
 
     // Go to form
-    await userEvent.click(screen.getByRole('link', { name: 'Go to form' }))
-    expect(screen.getByRole('heading', { name: 'Form' })).toBeVisible()
+    await screen.getByRole('link', { name: 'Go to form' }).click()
+    await expect.element(screen.getByRole('heading', { name: 'Form' })).toBeVisible()
 
     // Fill form - this should update query params without blocking
-    await userEvent.type(screen.getByPlaceholderText('Name'), 'John')
+    await userEvent.type(screen.getByPlaceholder('Name'), 'John')
 
     // Query params should be updated (check via location.search)
     expect(history.location.search).toContain('name=John')
     // But we should still be on /form
     expect(history.location.pathname).toBe('/form')
     // No pending navigation should be shown
-    expect(screen.queryByText('You have unsaved changes')).not.toBeInTheDocument()
+    expect(screen.getByText('You have unsaved changes').query()).toBeNull()
 
     // Try to navigate to home - should be blocked because form is dirty
-    await userEvent.click(screen.getByRole('link', { name: 'Go home' }))
+    await screen.getByRole('link', { name: 'Go home' }).click()
 
     // Navigation should be blocked
     expect(history.location.pathname).toBe('/form')
-    expect(screen.getByText('You have unsaved changes')).toBeVisible()
+    await expect.element(screen.getByText('You have unsaved changes')).toBeVisible()
 
     // Click "Keep editing"
-    await userEvent.click(screen.getByRole('button', { name: 'Keep editing' }))
+    await screen.getByRole('button', { name: 'Keep editing' }).click()
 
-    expect(screen.queryByText('You have unsaved changes')).not.toBeInTheDocument()
+    expect(screen.getByText('You have unsaved changes').query()).toBeNull()
 
     // Try to navigate to other page - should also be blocked
-    await userEvent.click(screen.getByRole('link', { name: 'Go to other' }))
+    await screen.getByRole('link', { name: 'Go to other' }).click()
 
     expect(history.location.pathname).toBe('/form')
-    expect(screen.getByText('You have unsaved changes')).toBeVisible()
+    await expect.element(screen.getByText('You have unsaved changes')).toBeVisible()
 
     // Click "Confirm" to allow navigation
-    await userEvent.click(screen.getByRole('button', { name: 'Confirm' }))
+    await screen.getByRole('button', { name: 'Confirm' }).click()
 
     // Check that we have navigated to other page
-    expect(screen.getByRole('heading', { name: 'Other' })).toBeVisible()
+    await expect.element(screen.getByRole('heading', { name: 'Other' })).toBeVisible()
   },
 )

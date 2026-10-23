@@ -29,7 +29,8 @@
     "test:unit:coverage": "pnpm test:unit --coverage"
   },
   "devDependencies": {
-    "react": "catalog:"
+    "react": "catalog:",
+    "react-dom": "catalog:"
   },
   "peerDependencies": {
     "react": ">=18.0"

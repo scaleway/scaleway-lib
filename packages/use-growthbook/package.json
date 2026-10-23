@@ -39,7 +39,8 @@
     "@growthbook/growthbook-react": "catalog:"
   },
   "devDependencies": {
-    "react": "catalog:"
+    "react": "catalog:",
+    "react-dom": "catalog:"
   },
   "peerDependencies": {
     "react": "18.x || 19.x"

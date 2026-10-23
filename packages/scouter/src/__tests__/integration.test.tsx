@@ -1,14 +1,11 @@
 // oxlint-disable vitest/require-top-level-describe typescript/no-explicit-any
-
-// https://github.com/testing-library/jest-dom/issues/515
-// oxlint-disable-next-line import/no-unassigned-import
-import '@testing-library/jest-dom/vitest'
-import { act, render, screen } from '@testing-library/react'
 import { createMemoryHistory as createHistory } from 'history'
 import { useEffect, useState } from 'react'
 import { describe, expect, it, test } from 'vitest'
+import { render } from 'vitest-browser-react'
 import { MemoryRouter, Redirect, Route, Switch, useLocation, useNavigate } from '../index'
 import { Router } from '../Router'
+import { act } from './utils/reactAct'
 
 const navigateOnFirstRender = (count: number, navigate: (path: string) => void, setCount: (n: number) => void) => {
   if (count !== 0) {
@@ -23,17 +20,17 @@ const navigateOnFirstRender = (count: number, navigate: (path: string) => void, 
     .catch(() => undefined)
 }
 
-test('renders routes correctly', () => {
-  render(
+test('renders routes correctly', async () => {
+  const screen = await render(
     <MemoryRouter initialEntries={['/users/123']}>
       <Route path="/users/:userId" render={({ match }) => <h1>User {match.params['userId']}</h1>} />
     </MemoryRouter>,
   )
 
-  expect(screen.getByText('User 123')).toBeInTheDocument()
+  expect(screen.getByText('User 123').element()).toBeDefined()
 })
 
-test('updates when navigating', () => {
+test('updates when navigating', async () => {
   const history = createHistory({ initialEntries: ['/page1'] })
 
   const locations: any[] = []
@@ -44,7 +41,7 @@ test('updates when navigating', () => {
     return <div>{location.pathname}</div>
   }
 
-  render(
+  await render(
     <Router history={history}>
       <Route>
         <LocationTracker />
@@ -52,7 +49,7 @@ test('updates when navigating', () => {
     </Router>,
   )
 
-  act(() => {
+  await act(() => {
     history.push('/page2')
   })
 
@@ -60,8 +57,8 @@ test('updates when navigating', () => {
   expect(locations).toContain('/page2')
 })
 
-test('handles multiple redirects', () => {
-  render(
+test('handles multiple redirects', async () => {
+  const screen = await render(
     <MemoryRouter initialEntries={['/redirect1']}>
       <Switch>
         <Redirect from="/redirect1" to="/redirect2" />
@@ -71,44 +68,44 @@ test('handles multiple redirects', () => {
     </MemoryRouter>,
   )
 
-  expect(screen.getByText('Final')).toBeInTheDocument()
+  expect(screen.getByText('Final').element()).toBeDefined()
 })
 
 describe('route with exact and strict', () => {
-  it('exact matches exactly', () => {
-    render(
+  it('exact matches exactly', async () => {
+    const screen = await render(
       <MemoryRouter initialEntries={['/test']}>
         <Route exact path="/test" render={() => <h1>Matched</h1>} />
       </MemoryRouter>,
     )
 
-    expect(screen.getByText('Matched')).toBeInTheDocument()
+    expect(screen.getByText('Matched').element()).toBeDefined()
   })
 
-  it('exact does not match with extra segments', () => {
-    render(
+  it('exact does not match with extra segments', async () => {
+    const screen = await render(
       <MemoryRouter initialEntries={['/test/extra']}>
         <Route exact path="/test" render={() => <h1>Matched</h1>} />
       </MemoryRouter>,
     )
 
-    expect(screen.queryByText('Matched')).not.toBeInTheDocument()
+    expect(screen.getByText('Matched').query()).toBeNull()
   })
 })
 
-test('renders all matching routes', () => {
-  render(
+test('renders all matching routes', async () => {
+  const screen = await render(
     <MemoryRouter initialEntries={['/test']}>
       <Route path="/test" render={() => <h1>First</h1>} />
       <Route path="/test" render={() => <h1>Second</h1>} />
     </MemoryRouter>,
   )
 
-  expect(screen.getByText('First')).toBeInTheDocument()
-  expect(screen.getByText('Second')).toBeInTheDocument()
+  expect(screen.getByText('First').element()).toBeDefined()
+  expect(screen.getByText('Second').element()).toBeDefined()
 })
 
-test('location changes trigger re-renders', () => {
+test('location changes trigger re-renders', async () => {
   const history = createHistory({
     initialEntries: ['/initial'],
   })
@@ -121,7 +118,7 @@ test('location changes trigger re-renders', () => {
     return <div>{location.pathname}</div>
   }
 
-  render(
+  await render(
     <Router history={history}>
       <Route>
         <Counter />
@@ -131,7 +128,7 @@ test('location changes trigger re-renders', () => {
 
   const countAfterInitial = renderCount
 
-  act(() => {
+  await act(() => {
     history.push('/new')
   })
 
@@ -156,13 +153,13 @@ test('batches multiple navigations in a microtask (no intermediate render)', asy
     return <div>{location.pathname}</div>
   }
 
-  render(
+  // async render already lets the navigation microtask run, so the initial
+  // '/start' render is only observable via seenLocations below
+  await render(
     <Router history={history}>
       <App />
     </Router>,
   )
-
-  expect(screen.getByText('/start')).toBeInTheDocument()
 
   await act(async () => {
     await Promise.resolve()
@@ -214,18 +211,18 @@ test('does not unmount components during batched navigations', async () => {
     )
   }
 
-  render(
+  const screen = await render(
     <Router history={history}>
       <App />
     </Router>,
   )
 
-  expect(screen.getByText('Sticky')).toBeInTheDocument()
+  expect(screen.getByText('Sticky').element()).toBeDefined()
 
   await act(async () => {
     await Promise.resolve()
   })
 
   expect(unmountCount).toBe(0)
-  expect(screen.getByText('Sticky')).toBeInTheDocument()
+  expect(screen.getByText('Sticky').element()).toBeDefined()
 })

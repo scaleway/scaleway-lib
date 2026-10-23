@@ -31,12 +31,15 @@ export const defaultConfig = defineConfig({
     name: 'lib',
     reporters: ['default'],
     restoreMocks: true,
+    browser: {
+      // always headless: local runs must not open browser windows (CI is headless anyway)
+      headless: true,
+    },
     server: {
       deps: {
         inline: true,
       },
     },
-    setupFiles: ['vitest-localstorage-mock'],
 
     typecheck: {
       enabled: true,
