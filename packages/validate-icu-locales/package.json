@@ -1,7 +1,7 @@
 {
   "name": "@scaleway/validate-icu-locales",
   "version": "4.0.14",
-  "description": "A small cli to handle icu errors on locales files",
+  "description": "A small cli to handle ICU errors on locale files",
   "keywords": [
     "cli",
     "i18n",
@@ -34,9 +34,6 @@
   },
   "dependencies": {
     "@formatjs/icu-messageformat-parser": "catalog:"
-  },
-  "devDependencies": {
-    "execa": "catalog:"
   },
   "engines": {
     "node": "24.x || 25.x || 26.x"
