@@ -312,8 +312,8 @@ catalogs:
       specifier: 4.1.12
       version: 4.1.12
     vitest-localstorage-mock:
-      specifier: 0.1.2
-      version: 0.1.2
+      specifier: 0.1.3
+      version: 0.1.3
     yaml:
       specifier: 2.9.1
       version: 2.9.1
@@ -435,7 +435,7 @@ importers:
         version: 4.1.12(@types/node@26.6.5)(@vitest/coverage-istanbul@4.1.12)(happy-dom@21.0.4)(jsdom@30.1.3)(vite@8.3.4(@types/node@26.6.5)(yaml@2.9.1))
       vitest-localstorage-mock:
         specifier: 'catalog:'
-        version: 0.1.2(vitest@4.1.12)
+        version: 0.1.3(vitest@4.1.12)
 
   packages/auth-scw:
     dependencies:
@@ -2825,8 +2825,8 @@ packages:
       yaml:
         optional: true
 
-  vitest-localstorage-mock@0.1.2:
-    resolution: {integrity: sha512-1oee6iDWhhquzVogssbpwQi6a2F3L+nCKF2+qqyCs5tH0sOYRyTqnsfj2dtmEQiL4xtJkHLn42hEjHGESlsJHw==}
+  vitest-localstorage-mock@0.1.3:
+    resolution: {integrity: sha512-dQGYXIJ6nnWafvavsB7vi2Ug9z8NymyysCowVNR+wQnXpeOYhnA+G4M6PgFFhGrWP9T7qBMooSXa36PfVu+XWg==}
     peerDependencies:
       vitest: '*'
 
@@ -4800,7 +4800,7 @@ snapshots:
       fsevents: 2.3.3
       yaml: 2.9.1
 
-  vitest-localstorage-mock@0.1.2(vitest@4.1.12):
+  vitest-localstorage-mock@0.1.3(vitest@4.1.12):
     dependencies:
       vitest: 4.1.12(@types/node@26.6.5)(@vitest/coverage-istanbul@4.1.12)(happy-dom@21.0.4)(jsdom@30.1.3)(vite@8.3.4(@types/node@26.6.5)(yaml@2.9.1))
 
