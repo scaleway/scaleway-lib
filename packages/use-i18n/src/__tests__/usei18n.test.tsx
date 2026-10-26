@@ -367,7 +367,7 @@ describe('i18n hook', () => {
       const mockGetItem = vi.fn<() => void>()
       const mockSetItem = vi.fn<() => void>()
       const mockRemoveItem = vi.fn<() => void>()
-      const localStorageMock = vi.spyOn(globalThis, 'localStorage', 'get').mockReturnValueOnce({
+      const localStorageMock = vi.spyOn(globalThis, 'localStorage', 'get').mockReturnValue({
         clear: vi.fn<() => void>(),
         getItem: mockGetItem,
         removeItem: mockRemoveItem,
@@ -394,7 +394,7 @@ describe('i18n hook', () => {
       const mockGetItem = vi.fn<() => void>()
       const mockSetItem = vi.fn<() => void>()
       const mockRemoveItem = vi.fn<() => void>()
-      const localStorageMock = vi.spyOn(globalThis, 'localStorage', 'get').mockReturnValueOnce({
+      const localStorageMock = vi.spyOn(globalThis, 'localStorage', 'get').mockReturnValue({
         clear: vi.fn<() => void>(),
         getItem: mockGetItem,
         removeItem: mockRemoveItem,
