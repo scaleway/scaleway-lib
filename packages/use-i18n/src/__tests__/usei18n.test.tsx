@@ -1,8 +1,8 @@
 // oxlint-disable max-lines
-import { act, renderHook } from '@testing-library/react'
 import { MissingValueError } from 'intl-messageformat'
 import type { ComponentProps, ReactNode } from 'react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { renderHook } from 'vitest-browser-react'
 import I18n, { useI18n, useTranslation } from '..'
 import type { LoadTranslationsFn } from '..'
 import type { BaseLocale } from '../international-types'
@@ -25,7 +25,7 @@ type NamespaceLocale = {
 type OnTranslateError = ComponentProps<typeof I18n>['onTranslateError']
 type OnLoadTranslationError = Exclude<ComponentProps<typeof I18n>['onLoadTranslationError'], undefined>
 
-const isDefaultLocalesSupported = (locale: string): locale is Locales => ListLocales.some(item => item === locale)
+const isDefaultLocalesSupported = (locale: string): locale is Locales => ListLocales.includes(locale as Locales)
 
 const load = async ({ locale, namespace }: { locale: string; namespace: string }) =>
   // oxlint-disable-next-line typescript/no-unsafe-return
@@ -46,28 +46,17 @@ const mockLoadRejectByNamespace =
   async ({ namespace }) =>
     namespace === rejectNamespace ? Promise.reject(error) : Promise.resolve({ default: resolveValue })
 
-const mockLoadReturnEmptyForLocale =
-  (emptyLocale: string, resolveValue: BaseLocale): LoadTranslationsFn<Locales> =>
+const mockLoadReturnUndefinedForLocale =
+  (undefinedLocale: string, resolveValue: BaseLocale): LoadTranslationsFn<Locales> =>
   async ({ locale }) =>
-    locale === emptyLocale ? Promise.resolve({ default: {} }) : Promise.resolve({ default: resolveValue })
+    locale === undefinedLocale
+      ? Promise.resolve({ default: undefined as unknown as BaseLocale })
+      : Promise.resolve({ default: resolveValue })
 
 const mockLoadByLocale =
   (enValue: BaseLocale, otherValue: BaseLocale): LoadTranslationsFn<Locales> =>
   async ({ locale }) =>
     locale === 'en' ? Promise.resolve({ default: enValue }) : Promise.resolve({ default: otherValue })
-
-const mockStorage = (
-  getItem: Storage['getItem'],
-  setItem: Storage['setItem'],
-  removeItem: Storage['removeItem'],
-): Storage => ({
-  clear: vi.fn<() => void>(),
-  getItem,
-  key: () => null,
-  length: 0,
-  removeItem,
-  setItem,
-})
 
 const wrapper =
   ({
@@ -102,7 +91,10 @@ const wrapper =
 
 describe('i18n hook', () => {
   beforeEach(() => {
-    vi.spyOn(globalThis.navigator, 'languages', 'get').mockReturnValue(['en-US', 'en'])
+    vi.spyOn(globalThis, 'navigator', 'get').mockReturnValue({
+      language: 'en-US',
+      languages: ['en-US', 'en'],
+    } as unknown as Navigator)
     vi.useFakeTimers()
   })
 
@@ -111,28 +103,28 @@ describe('i18n hook', () => {
     vi.useRealTimers()
   })
 
-  it('useTranslation should not be defined without I18nProvider', () => {
+  it('useTranslation should not be defined without I18nProvider', async () => {
     expect.hasAssertions()
     const spy = vi.spyOn(console, 'error')
     spy.mockReturnValue(undefined)
 
-    expect(() => renderHook(() => useTranslation(['test']))).toThrow(
+    await expect(renderHook(() => useTranslation(['test']))).rejects.toThrow(
       new Error('useTranslation must be used within a I18nProvider'),
     )
     spy.mockRestore()
   })
 
-  it('useI18n should not be defined without I18nProvider', () => {
+  it('useI18n should not be defined without I18nProvider', async () => {
     expect.hasAssertions()
     const spy = vi.spyOn(console, 'error')
     spy.mockReturnValue(undefined)
 
-    expect(() => renderHook(() => useI18n())).toThrow(new Error('useI18n must be used within a I18nProvider'))
+    await expect(renderHook(() => useI18n())).rejects.toThrow(new Error('useI18n must be used within a I18nProvider'))
     spy.mockRestore()
   })
 
   it('should use defaultLoad, useTranslation, switch local and translate', async () => {
-    const { result } = renderHook(() => useTranslation<Locale, Locales>(['test']), {
+    const { result, act } = await renderHook(() => useTranslation<Locale, Locales>(['test']), {
       wrapper: wrapper({ defaultLocale: 'en' }),
     })
     // first render there is no load
@@ -143,7 +135,7 @@ describe('i18n hook', () => {
       expect(result.current.t('title')).toStrictEqual(en.title)
     })
 
-    act(() => {
+    await act(() => {
       result.current.switchLocale('fr')
     })
 
@@ -151,7 +143,7 @@ describe('i18n hook', () => {
       expect(result.current.t('title')).toStrictEqual(fr.title)
     })
 
-    act(() => {
+    await act(() => {
       result.current.switchLocale('es')
     })
 
@@ -161,12 +153,15 @@ describe('i18n hook', () => {
   })
 
   it('should use specific load on useTranslation', async () => {
-    const { result } = renderHook(() => useTranslation<NamespaceLocale, Locales>(['user', 'profile'], load), {
-      wrapper: wrapper({
-        defaultLocale: 'en',
-        isLocaleSupported: isDefaultLocalesSupported,
-      }),
-    })
+    const { result, act } = await renderHook(
+      () => useTranslation<NamespaceLocale, Locales>(['user', 'profile'], load),
+      {
+        wrapper: wrapper({
+          defaultLocale: 'en',
+          isLocaleSupported: isDefaultLocalesSupported,
+        }),
+      },
+    )
 
     await vi.waitFor(() => {
       expect(result.current.translations).toStrictEqual({
@@ -182,7 +177,7 @@ describe('i18n hook', () => {
     expect(result.current.t('lastName')).toBe('Last Name')
     expect(result.current.t('languages')).toBe('Languages')
 
-    act(() => {
+    await act(() => {
       result.current.switchLocale('fr')
     })
 
@@ -206,7 +201,7 @@ describe('i18n hook', () => {
   })
 
   it("should use specific load and fallback default local if the key doesn't exist", async () => {
-    const { result } = renderHook(() => useTranslation<NamespaceLocale, Locales>(['user'], load), {
+    const { result, act } = await renderHook(() => useTranslation<NamespaceLocale, Locales>(['user'], load), {
       wrapper: wrapper({
         defaultLocale: 'fr',
         enableDefaultLocale: true,
@@ -216,7 +211,7 @@ describe('i18n hook', () => {
 
     // current local will be 'en' based on navigator
     // await load of locales
-    act(() => {
+    await act(() => {
       result.current.switchLocale('fr')
     })
 
@@ -241,7 +236,7 @@ describe('i18n hook', () => {
 
   it('should set current locale from defaultLocale', async () => {
     expect.hasAssertions()
-    const { result } = renderHook(() => useI18n(), {
+    const { result } = await renderHook(() => useI18n(), {
       wrapper: wrapper({
         defaultLocale: 'fr',
         isLocaleSupported: isDefaultLocalesSupported,
@@ -254,7 +249,7 @@ describe('i18n hook', () => {
   })
 
   it('should work with a component', async () => {
-    const { result } = renderHook(() => useTranslation<{ 'with.identifier': 'Hello {identifier}' }>(['test']), {
+    const { result } = await renderHook(() => useTranslation<{ 'with.identifier': 'Hello {identifier}' }>(['test']), {
       wrapper: wrapper({ defaultLocale: 'en' }),
     })
 
@@ -279,15 +274,20 @@ describe('i18n hook', () => {
 
   describe('getCurrentLocale', () => {
     it('should set current locale from localStorage', async () => {
-      vi.spyOn(globalThis.navigator, 'languages', 'get').mockReturnValueOnce(['fr'])
-      const mockGetItem = vi.fn<Storage['getItem']>().mockReturnValue('en')
+      vi.spyOn(globalThis, 'navigator', 'get').mockReturnValueOnce({
+        languages: ['fr'],
+      } as unknown as Navigator)
+      const mockGetItem = vi.fn<() => string>().mockReturnValue('en')
       const mockSetItem = vi.fn<() => void>()
       const mockRemoveItem = vi.fn<() => void>()
-      const localStorageMock = vi
-        .spyOn(globalThis, 'localStorage', 'get')
-        .mockReturnValue(mockStorage(mockGetItem, mockSetItem, mockRemoveItem))
+      const localStorageMock = vi.spyOn(globalThis, 'localStorage', 'get').mockReturnValue({
+        clear: vi.fn<() => void>(),
+        getItem: mockGetItem,
+        removeItem: mockRemoveItem,
+        setItem: mockSetItem,
+      } as unknown as Storage)
 
-      const { result } = renderHook(() => useI18n(), {
+      const { result } = await renderHook(() => useI18n(), {
         wrapper: wrapper({
           defaultLocale: 'es',
           isLocaleSupported: isDefaultLocalesSupported,
@@ -303,15 +303,20 @@ describe('i18n hook', () => {
     })
 
     it('should not set current locale from localStorage when this value is not supported', async () => {
-      vi.spyOn(globalThis.navigator, 'languages', 'get').mockReturnValueOnce(['bz'])
-      const mockGetItem = vi.fn<Storage['getItem']>().mockReturnValue('re')
+      vi.spyOn(globalThis, 'navigator', 'get').mockReturnValueOnce({
+        languages: ['bz'],
+      } as unknown as Navigator)
+      const mockGetItem = vi.fn<() => string>().mockReturnValue('re')
       const mockSetItem = vi.fn<() => void>()
       const mockRemoveItem = vi.fn<() => void>()
-      const localStorageMock = vi
-        .spyOn(globalThis, 'localStorage', 'get')
-        .mockReturnValue(mockStorage(mockGetItem, mockSetItem, mockRemoveItem))
+      const localStorageMock = vi.spyOn(globalThis, 'localStorage', 'get').mockReturnValue({
+        clear: vi.fn<() => void>(),
+        getItem: mockGetItem,
+        removeItem: mockRemoveItem,
+        setItem: mockSetItem,
+      } as unknown as Storage)
 
-      const { result } = renderHook(() => useI18n(), {
+      const { result } = await renderHook(() => useI18n(), {
         wrapper: wrapper({
           defaultLocale: 'en',
           isLocaleSupported: isDefaultLocalesSupported,
@@ -327,15 +332,20 @@ describe('i18n hook', () => {
     })
 
     it('should set current locale from navigator', async () => {
-      vi.spyOn(globalThis.navigator, 'languages', 'get').mockReturnValueOnce(['fr'])
-      const mockGetItem = vi.fn<Storage['getItem']>()
+      vi.spyOn(globalThis, 'navigator', 'get').mockReturnValueOnce({
+        languages: ['fr'],
+      } as unknown as Navigator)
+      const mockGetItem = vi.fn<() => void>()
       const mockSetItem = vi.fn<() => void>()
       const mockRemoveItem = vi.fn<() => void>()
-      const localStorageMock = vi
-        .spyOn(globalThis, 'localStorage', 'get')
-        .mockReturnValue(mockStorage(mockGetItem, mockSetItem, mockRemoveItem))
+      const localStorageMock = vi.spyOn(globalThis, 'localStorage', 'get').mockReturnValueOnce({
+        clear: vi.fn<() => void>(),
+        getItem: mockGetItem,
+        removeItem: mockRemoveItem,
+        setItem: mockSetItem,
+      } as unknown as Storage)
 
-      const { result } = renderHook(() => useI18n(), {
+      const { result } = await renderHook(() => useI18n(), {
         wrapper: wrapper({
           defaultLocale: 'es',
           isLocaleSupported: isDefaultLocalesSupported,
@@ -349,15 +359,20 @@ describe('i18n hook', () => {
     })
 
     it('should set current locale from defaultLocale', async () => {
-      vi.spyOn(globalThis.navigator, 'languages', 'get').mockReturnValueOnce([])
-      const mockGetItem = vi.fn<Storage['getItem']>()
+      vi.spyOn(globalThis, 'navigator', 'get').mockReturnValueOnce({
+        languages: [],
+      } as unknown as Navigator)
+      const mockGetItem = vi.fn<() => void>()
       const mockSetItem = vi.fn<() => void>()
       const mockRemoveItem = vi.fn<() => void>()
-      const localStorageMock = vi
-        .spyOn(globalThis, 'localStorage', 'get')
-        .mockReturnValue(mockStorage(mockGetItem, mockSetItem, mockRemoveItem))
+      const localStorageMock = vi.spyOn(globalThis, 'localStorage', 'get').mockReturnValueOnce({
+        clear: vi.fn<() => void>(),
+        getItem: mockGetItem,
+        removeItem: mockRemoveItem,
+        setItem: mockSetItem,
+      } as unknown as Storage)
 
-      const { result } = renderHook(() => useI18n(), {
+      const { result } = await renderHook(() => useI18n(), {
         wrapper: wrapper({
           defaultLocale: 'es',
           isLocaleSupported: isDefaultLocalesSupported,
@@ -371,15 +386,20 @@ describe('i18n hook', () => {
     })
 
     it('should sanitize POSIX locale modifiers from navigator.languages', async () => {
-      vi.spyOn(globalThis.navigator, 'languages', 'get').mockReturnValueOnce(['en-US@posix', 'en'])
-      const mockGetItem = vi.fn<Storage['getItem']>()
+      vi.spyOn(globalThis, 'navigator', 'get').mockReturnValueOnce({
+        languages: ['en-US@posix', 'en'],
+      } as unknown as Navigator)
+      const mockGetItem = vi.fn<() => void>()
       const mockSetItem = vi.fn<() => void>()
       const mockRemoveItem = vi.fn<() => void>()
-      const localStorageMock = vi
-        .spyOn(globalThis, 'localStorage', 'get')
-        .mockReturnValue(mockStorage(mockGetItem, mockSetItem, mockRemoveItem))
+      const localStorageMock = vi.spyOn(globalThis, 'localStorage', 'get').mockReturnValue({
+        clear: vi.fn<() => void>(),
+        getItem: mockGetItem,
+        removeItem: mockRemoveItem,
+        setItem: mockSetItem,
+      } as unknown as Storage)
 
-      const { result } = renderHook(() => useI18n(), {
+      const { result } = await renderHook(() => useI18n(), {
         wrapper: wrapper({
           defaultLocale: 'en',
           isLocaleSupported: isDefaultLocalesSupported,
@@ -395,15 +415,20 @@ describe('i18n hook', () => {
     })
 
     it('should sanitize POSIX locale modifiers from localStorage', async () => {
-      vi.spyOn(globalThis.navigator, 'languages', 'get').mockReturnValueOnce(['en'])
-      const mockGetItem = vi.fn<Storage['getItem']>().mockReturnValue('en-US@posix')
+      vi.spyOn(globalThis, 'navigator', 'get').mockReturnValueOnce({
+        languages: ['en'],
+      } as unknown as Navigator)
+      const mockGetItem = vi.fn<() => string>().mockReturnValue('en-US@posix')
       const mockSetItem = vi.fn<() => void>()
       const mockRemoveItem = vi.fn<() => void>()
-      const localStorageMock = vi
-        .spyOn(globalThis, 'localStorage', 'get')
-        .mockReturnValue(mockStorage(mockGetItem, mockSetItem, mockRemoveItem))
+      const localStorageMock = vi.spyOn(globalThis, 'localStorage', 'get').mockReturnValue({
+        clear: vi.fn<() => void>(),
+        getItem: mockGetItem,
+        removeItem: mockRemoveItem,
+        setItem: mockSetItem,
+      } as unknown as Storage)
 
-      const { result } = renderHook(() => useI18n(), {
+      const { result } = await renderHook(() => useI18n(), {
         wrapper: wrapper({
           defaultLocale: 'en',
           isLocaleSupported: isDefaultLocalesSupported,
@@ -418,15 +443,20 @@ describe('i18n hook', () => {
     })
 
     it('should not throw when formatting numbers with a sanitized POSIX locale', async () => {
-      vi.spyOn(globalThis.navigator, 'languages', 'get').mockReturnValueOnce(['en-US@posix', 'en'])
-      const mockGetItem = vi.fn<Storage['getItem']>()
+      vi.spyOn(globalThis, 'navigator', 'get').mockReturnValueOnce({
+        languages: ['en-US@posix', 'en'],
+      } as unknown as Navigator)
+      const mockGetItem = vi.fn<() => void>()
       const mockSetItem = vi.fn<() => void>()
       const mockRemoveItem = vi.fn<() => void>()
-      const localStorageMock = vi
-        .spyOn(globalThis, 'localStorage', 'get')
-        .mockReturnValue(mockStorage(mockGetItem, mockSetItem, mockRemoveItem))
+      const localStorageMock = vi.spyOn(globalThis, 'localStorage', 'get').mockReturnValue({
+        clear: vi.fn<() => void>(),
+        getItem: mockGetItem,
+        removeItem: mockRemoveItem,
+        setItem: mockSetItem,
+      } as unknown as Storage)
 
-      const { result } = renderHook(() => useI18n(), {
+      const { result } = await renderHook(() => useI18n(), {
         wrapper: wrapper({
           defaultLocale: 'en',
           isLocaleSupported: isDefaultLocalesSupported,
@@ -442,7 +472,7 @@ describe('i18n hook', () => {
   })
 
   it('should switch locale', async () => {
-    const { result } = renderHook(() => useI18n<Locale, Locales>(), {
+    const { result, act } = await renderHook(() => useI18n<Locale, Locales>(), {
       wrapper: wrapper({
         defaultLocale: 'en',
         isLocaleSupported: isDefaultLocalesSupported,
@@ -451,7 +481,7 @@ describe('i18n hook', () => {
     expect(result.current.currentLocale).toBe('en')
     expect(localStorage.getItem(LOCALE_ITEM_STORAGE)).toBe('en')
 
-    act(() => {
+    await act(() => {
       result.current.switchLocale('fr')
     })
 
@@ -460,7 +490,7 @@ describe('i18n hook', () => {
     })
     expect(localStorage.getItem(LOCALE_ITEM_STORAGE)).toBe('fr')
 
-    act(() => {
+    await act(() => {
       result.current.switchLocale('es')
     })
 
@@ -469,7 +499,7 @@ describe('i18n hook', () => {
     })
     expect(localStorage.getItem(LOCALE_ITEM_STORAGE)).toBe('es')
 
-    act(() => {
+    await act(() => {
       // we test even if an incorrect typescript value is being passed to the function
 
       // @ts-expect-error expected error
@@ -485,9 +515,11 @@ describe('i18n hook', () => {
   describe('lang attribute', () => {
     it('should set lang attribute on documentElement from navigator locale', async () => {
       document.documentElement.lang = ''
-      vi.spyOn(globalThis.navigator, 'languages', 'get').mockReturnValueOnce(['fr'])
+      vi.spyOn(globalThis, 'navigator', 'get').mockReturnValueOnce({
+        languages: ['fr'],
+      } as unknown as Navigator)
 
-      renderHook(() => useI18n(), {
+      await renderHook(() => useI18n(), {
         wrapper: wrapper({
           defaultLocale: 'es',
           isLocaleSupported: isDefaultLocalesSupported,
@@ -501,9 +533,11 @@ describe('i18n hook', () => {
 
     it('should set lang attribute on documentElement from defaultLocale', async () => {
       document.documentElement.lang = ''
-      vi.spyOn(globalThis.navigator, 'languages', 'get').mockReturnValueOnce([])
+      vi.spyOn(globalThis, 'navigator', 'get').mockReturnValueOnce({
+        languages: [],
+      } as unknown as Navigator)
 
-      renderHook(() => useI18n(), {
+      await renderHook(() => useI18n(), {
         wrapper: wrapper({
           defaultLocale: 'es',
           isLocaleSupported: isDefaultLocalesSupported,
@@ -518,7 +552,7 @@ describe('i18n hook', () => {
     it('should set lang attribute on provided rootElement', async () => {
       const rootElement = document.createElement('html')
 
-      renderHook(() => useI18n(), {
+      await renderHook(() => useI18n(), {
         wrapper: wrapper({
           defaultLocale: 'en',
           isLocaleSupported: isDefaultLocalesSupported,
@@ -534,7 +568,7 @@ describe('i18n hook', () => {
     it('should update lang attribute on provided rootElement when switching locale', async () => {
       const rootElement = document.createElement('html')
 
-      const { result } = renderHook(() => useI18n<Locale, Locales>(), {
+      const { result, act } = await renderHook(() => useI18n<Locale, Locales>(), {
         wrapper: wrapper({
           defaultLocale: 'en',
           isLocaleSupported: isDefaultLocalesSupported,
@@ -546,7 +580,7 @@ describe('i18n hook', () => {
         expect(rootElement.getAttribute('lang')).toBe('en')
       })
 
-      act(() => {
+      await act(() => {
         result.current.switchLocale('fr')
       })
 
@@ -557,7 +591,7 @@ describe('i18n hook', () => {
   })
 
   it('should translate correctly with enableDebugKey and return key', async () => {
-    const { result } = renderHook(() => useI18n<Locale>(), {
+    const { result } = await renderHook(() => useI18n<Locale>(), {
       wrapper: wrapper({
         defaultLocale: 'en',
         defaultTranslations: { en },
@@ -579,9 +613,9 @@ describe('i18n hook', () => {
   })
 
   it('should call onTranslateError when there is a sync issue to remove/add variable in one traduction of a language', async () => {
-    const mockOnTranslateError = vi.fn<NonNullable<OnTranslateError>>()
+    const mockOnTranslateError = vi.fn<() => void>(() => undefined)
 
-    const { result } = renderHook(() => useI18n<Locale, Locales>(), {
+    const { result, act } = await renderHook(() => useI18n<Locale, Locales>(), {
       wrapper: wrapper({
         defaultLocale: 'en',
         defaultTranslations: { en, fr },
@@ -590,7 +624,7 @@ describe('i18n hook', () => {
       }),
     })
 
-    act(() => {
+    await act(() => {
       result.current.switchLocale('fr')
     })
 
@@ -605,14 +639,15 @@ describe('i18n hook', () => {
 
     expect(mockOnTranslateError).toHaveBeenCalledTimes(1)
 
-    const onTranslateErrorCall = mockOnTranslateError.mock.calls[0]?.[0]
-    expect(onTranslateErrorCall?.currentLocale).toBe('fr')
-    expect(onTranslateErrorCall?.defaultLocale).toBe('en')
-    expect(onTranslateErrorCall?.key).toBe('translate.error')
-    expect(onTranslateErrorCall?.value).toBe(
-      'onTranslateError fonction sera appelé car il manque une variable en français {oldFrenchVariable}',
+    expect(mockOnTranslateError).toHaveBeenCalledWith(
+      expect.objectContaining({
+        currentLocale: 'fr',
+        defaultLocale: 'en',
+        error: expect.any(MissingValueError) as unknown as MissingValueError,
+        key: 'translate.error',
+        value: 'onTranslateError fonction sera appelé car il manque une variable en français {oldFrenchVariable}',
+      }),
     )
-    expect(onTranslateErrorCall?.error).toBeInstanceOf(MissingValueError)
 
     const oldFrenchVariable = 'cette variable fonctionne'
     expect(
@@ -624,7 +659,7 @@ describe('i18n hook', () => {
   })
 
   it('should use namespaceTranslation', async () => {
-    const { result } = renderHook(() => useI18n<Locale>(), {
+    const { result } = await renderHook(() => useI18n<Locale>(), {
       wrapper: wrapper({
         defaultLocale: 'en',
         defaultTranslations: { en },
@@ -640,7 +675,7 @@ describe('i18n hook', () => {
   })
 
   it('should use formatNumber', async () => {
-    const { result } = renderHook(() => useI18n<Locale, Locales>(), {
+    const { result, act } = await renderHook(() => useI18n<Locale, Locales>(), {
       wrapper: wrapper({
         defaultLocale: 'en',
       }),
@@ -662,7 +697,7 @@ describe('i18n hook', () => {
       }),
     ).toBe('$2.00')
 
-    act(() => {
+    await act(() => {
       result.current.switchLocale('fr')
     })
 
@@ -682,7 +717,7 @@ describe('i18n hook', () => {
   })
 
   it('should use formatList', async () => {
-    const { result } = renderHook(() => useI18n<Locale, Locales>(), {
+    const { result, act } = await renderHook(() => useI18n<Locale, Locales>(), {
       wrapper: wrapper({
         defaultLocale: 'en',
       }),
@@ -710,7 +745,7 @@ describe('i18n hook', () => {
       }),
     ).toBe('Motorcycle Bus Car')
 
-    act(() => {
+    await act(() => {
       result.current.switchLocale('fr')
     })
 
@@ -739,7 +774,7 @@ describe('i18n hook', () => {
   })
 
   it('should use datetime', async () => {
-    const { result } = renderHook(() => useI18n<Locale, Locales>(), {
+    const { result, act } = await renderHook(() => useI18n<Locale, Locales>(), {
       wrapper: wrapper({
         defaultLocale: 'en',
       }),
@@ -784,7 +819,7 @@ describe('i18n hook', () => {
       }),
     ).toBe('12/17/1995')
 
-    act(() => {
+    await act(() => {
       result.current.switchLocale('fr')
     })
 
@@ -810,8 +845,8 @@ describe('i18n hook', () => {
     ).toBe('17 décembre 1995 après Jésus-Christ')
   })
 
-  it('should relativeTime', () => {
-    const { result } = renderHook(() => useI18n<Locale, Locales>(), {
+  it('should relativeTime', async () => {
+    const { result, act } = await renderHook(() => useI18n<Locale, Locales>(), {
       wrapper: wrapper({
         defaultLocale: 'en',
       }),
@@ -828,7 +863,7 @@ describe('i18n hook', () => {
     expect(result.current.relativeTime(date, { noSuffix: true, style: 'narrow' })).toBe('21y')
     expect(result.current.relativeTime(new Date('4/15/2021'), { noSuffix: true })).toBe('2 days')
 
-    act(() => {
+    await act(() => {
       result.current.switchLocale('fr')
     })
 
@@ -836,8 +871,8 @@ describe('i18n hook', () => {
     expect(result.current.relativeTime(date, { noSuffix: true })).toBe('21 ans')
   })
 
-  it('should formatDuration', () => {
-    const { result } = renderHook(() => useI18n<Locale, Locales>(), {
+  it('should formatDuration', async () => {
+    const { result, act } = await renderHook(() => useI18n<Locale, Locales>(), {
       wrapper: wrapper({
         defaultLocale: 'en',
       }),
@@ -861,7 +896,7 @@ describe('i18n hook', () => {
     expect(result.current.formatDuration(Number.NaN, 'clock-milliseconds')).toBe('00:00:00:000')
     expect(result.current.formatDuration(Number.POSITIVE_INFINITY)).toBe('')
 
-    act(() => {
+    await act(() => {
       result.current.switchLocale('fr')
     })
 
@@ -872,8 +907,8 @@ describe('i18n hook', () => {
     expect(result.current.formatDuration(0, 'clock')).toBe('00:00:00')
   })
 
-  it('should relativeTimeStrict', () => {
-    const { result } = renderHook(() => useI18n<Locale, Locales>(), {
+  it('should relativeTimeStrict', async () => {
+    const { result, act } = await renderHook(() => useI18n<Locale, Locales>(), {
       wrapper: wrapper({
         defaultLocale: 'en',
       }),
@@ -888,7 +923,8 @@ describe('i18n hook', () => {
     expect(() => result.current.relativeTimeStrict(date, { unit: 'quarter', noSuffix: true })).toThrow(
       "noSuffix is not supported with the 'quarter' unit",
     )
-    act(() => {
+
+    await act(() => {
       result.current.switchLocale('fr')
     })
 
@@ -897,14 +933,14 @@ describe('i18n hook', () => {
   })
 
   it('should formatUnit', async () => {
-    const { result } = renderHook(() => useI18n<Locale, Locales>(), {
+    const { result, act } = await renderHook(() => useI18n<Locale, Locales>(), {
       wrapper: wrapper({
         defaultLocale: 'en',
       }),
     })
 
     expect(result.current.formatUnit(12, { short: false, unit: 'byte' })).toBe('12 bytes')
-    act(() => {
+    await act(() => {
       result.current.switchLocale('fr')
     })
 
@@ -914,14 +950,14 @@ describe('i18n hook', () => {
   })
 
   it('should formatDate', async () => {
-    const { result } = renderHook(() => useI18n<Locale, Locales>(), {
+    const { result, act } = await renderHook(() => useI18n<Locale, Locales>(), {
       wrapper: wrapper({
         defaultLocale: 'en',
       }),
     })
 
     expect(result.current.formatDate(new Date(2020, 1, 13, 16, 28), 'numericHour')).toBe('2020-02-13 4:28 PM')
-    act(() => {
+    await act(() => {
       result.current.switchLocale('fr')
     })
 
@@ -936,7 +972,7 @@ describe('i18n hook', () => {
       const mockOnLoadTranslationError = vi.fn<OnLoadTranslationError>()
       const mockLoad = vi.fn<LoadTranslationsFn<Locales>>().mockRejectedValue(new Error('Network error'))
 
-      const { result } = renderHook(() => useTranslation<Locale, Locales>(['test'], mockLoad), {
+      const { result } = await renderHook(() => useTranslation<Locale, Locales>(['test'], mockLoad), {
         wrapper: wrapper({
           defaultLocale: 'en',
           onLoadTranslationError: mockOnLoadTranslationError,
@@ -945,8 +981,12 @@ describe('i18n hook', () => {
 
       await vi.waitFor(() => {
         expect(mockOnLoadTranslationError).toHaveBeenCalledTimes(1)
-        expect(mockOnLoadTranslationError).toHaveBeenCalledWith(expect.objectContaining({ message: 'Network error' }))
+        expect(mockOnLoadTranslationError).toHaveBeenCalledWith(expect.any(Error))
       })
+
+      const error = mockOnLoadTranslationError.mock.calls[0]?.[0]
+      expect(error).toBeDefined()
+      expect((error as Error).message).toBe('Network error')
 
       expect(result.current.t('title')).toBe('')
     })
@@ -960,7 +1000,7 @@ describe('i18n hook', () => {
           mockLoadRejectByLocale('en', new Error('Default locale load failed'), { title: 'Titre en français' }),
         )
 
-      const { result } = renderHook(() => useTranslation<Locale, Locales>(['test'], mockLoad), {
+      const { result } = await renderHook(() => useTranslation<Locale, Locales>(['test'], mockLoad), {
         wrapper: wrapper({
           defaultLocale: 'en',
           enableDefaultLocale: true,
@@ -970,10 +1010,12 @@ describe('i18n hook', () => {
 
       await vi.waitFor(() => {
         expect(mockOnLoadTranslationError).toHaveBeenCalledTimes(1)
-        expect(mockOnLoadTranslationError).toHaveBeenCalledWith(
-          expect.objectContaining({ message: 'Default locale load failed' }),
-        )
+        expect(mockOnLoadTranslationError).toHaveBeenCalledWith(expect.any(Error))
       })
+
+      const error = mockOnLoadTranslationError.mock.calls[0]?.[0] as Error
+      expect(error).toBeDefined()
+      expect(error.message).toBe('Default locale load failed')
 
       expect(result.current.t('title')).toBe('')
     })
@@ -987,7 +1029,7 @@ describe('i18n hook', () => {
           mockLoadRejectByLocale('en', new Error('Default locale load failed'), { title: 'French Title' }),
         )
 
-      const { result } = renderHook(() => useTranslation<Locale, Locales>(['test'], mockLoad), {
+      const { result } = await renderHook(() => useTranslation<Locale, Locales>(['test'], mockLoad), {
         wrapper: wrapper({
           defaultLocale: 'fr',
           enableDefaultLocale: true,
@@ -1005,7 +1047,7 @@ describe('i18n hook', () => {
       expect.hasAssertions()
       const mockOnLoadTranslationError = vi.fn<OnLoadTranslationError>()
 
-      const { result } = renderHook(() => useTranslation<Locale, Locales>(['test']), {
+      const { result } = await renderHook(() => useTranslation<Locale, Locales>(['test']), {
         wrapper: wrapper({
           defaultLocale: 'en',
           onLoadTranslationError: mockOnLoadTranslationError,
@@ -1025,12 +1067,15 @@ describe('i18n hook', () => {
         .fn<LoadTranslationsFn<Locales>>()
         .mockImplementation(mockLoadRejectByNamespace('user', new Error('User namespace failed'), { name: 'Name' }))
 
-      const { result } = renderHook(() => useTranslation<NamespaceLocale, Locales>(['user', 'profile'], mockLoad), {
-        wrapper: wrapper({
-          defaultLocale: 'en',
-          onLoadTranslationError: mockOnLoadTranslationError,
-        }),
-      })
+      const { result } = await renderHook(
+        () => useTranslation<NamespaceLocale, Locales>(['user', 'profile'], mockLoad),
+        {
+          wrapper: wrapper({
+            defaultLocale: 'en',
+            onLoadTranslationError: mockOnLoadTranslationError,
+          }),
+        },
+      )
 
       await vi.waitFor(() => {
         expect(mockOnLoadTranslationError).toHaveBeenCalledTimes(1)
@@ -1047,7 +1092,7 @@ describe('i18n hook', () => {
           mockLoadRejectByLocale('fr', new Error('French locale load failed'), { title: 'English Title' }),
         )
 
-      const { result } = renderHook(() => useTranslation<Locale, Locales>(['test'], mockLoad), {
+      const { result, act } = await renderHook(() => useTranslation<Locale, Locales>(['test'], mockLoad), {
         wrapper: wrapper({
           defaultLocale: 'en',
           onLoadTranslationError: mockOnLoadTranslationError,
@@ -1058,7 +1103,7 @@ describe('i18n hook', () => {
         expect(result.current.t('title')).toBe('English Title')
       })
 
-      act(() => {
+      await act(() => {
         result.current.switchLocale('fr')
       })
 
@@ -1076,7 +1121,7 @@ describe('i18n hook', () => {
         .fn<LoadTranslationsFn<Locales>>()
         .mockImplementation(mockLoadByLocale({ title: 'English Title' }, { title: 'French Title' }))
 
-      const { result } = renderHook(() => useTranslation<Locale, Locales>(['test'], mockLoad), {
+      const { result } = await renderHook(() => useTranslation<Locale, Locales>(['test'], mockLoad), {
         wrapper: wrapper({
           defaultLocale: 'en',
           enableDefaultLocale: true,
@@ -1092,14 +1137,14 @@ describe('i18n hook', () => {
       })
     })
 
-    it('should not crash when load returns empty translations for default locale', async () => {
+    it('should not crash when load returns undefined for default locale', async () => {
       expect.hasAssertions()
       const mockOnLoadTranslationError = vi.fn<OnLoadTranslationError>()
       const mockLoad = vi
         .fn<LoadTranslationsFn<Locales>>()
-        .mockImplementation(mockLoadReturnEmptyForLocale('fr', { title: 'English Title' }))
+        .mockImplementation(mockLoadReturnUndefinedForLocale('fr', { title: 'English Title' }))
 
-      const { result } = renderHook(() => useTranslation<Locale, Locales>(['test'], mockLoad), {
+      const { result } = await renderHook(() => useTranslation<Locale, Locales>(['test'], mockLoad), {
         wrapper: wrapper({
           defaultLocale: 'fr',
           enableDefaultLocale: true,
@@ -1112,14 +1157,14 @@ describe('i18n hook', () => {
       })
     })
 
-    it('should not crash when load returns empty translations for current locale', async () => {
+    it('should not crash when load returns undefined for current locale', async () => {
       expect.hasAssertions()
       const mockOnLoadTranslationError = vi.fn<OnLoadTranslationError>()
       const mockLoad = vi
         .fn<LoadTranslationsFn<Locales>>()
-        .mockImplementation(mockLoadReturnEmptyForLocale('en', { title: 'English Title' }))
+        .mockImplementation(mockLoadReturnUndefinedForLocale('en', { title: 'English Title' }))
 
-      const { result } = renderHook(() => useTranslation<Locale, Locales>(['test'], mockLoad), {
+      const { result } = await renderHook(() => useTranslation<Locale, Locales>(['test'], mockLoad), {
         wrapper: wrapper({
           defaultLocale: 'fr',
           enableDefaultLocale: true,

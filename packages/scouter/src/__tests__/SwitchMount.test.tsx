@@ -1,12 +1,13 @@
 // oxlint-disable vitest/require-top-level-describe
-import { act, render } from '@testing-library/react'
 import { createMemoryHistory as createHistory } from 'history'
 import { useEffect } from 'react'
 import { expect, test } from 'vitest'
+import { render } from 'vitest-browser-react'
 import { Route, Switch } from '../index'
 import { Router } from '../Router'
+import { act } from './utils/reactAct'
 
-test('does not remount when switching between matching routes', () => {
+test('does not remount when switching between matching routes', async () => {
   const mountCalls: string[] = []
   const history = createHistory({ initialEntries: ['/hello'] })
 
@@ -18,7 +19,7 @@ test('does not remount when switching between matching routes', () => {
     return <div>Persistent</div>
   }
 
-  render(
+  await render(
     <Router history={history}>
       <Switch>
         <Route path="/hello" render={() => <PersistentComponent name="one" />} />
@@ -29,13 +30,13 @@ test('does not remount when switching between matching routes', () => {
 
   expect(mountCalls).toStrictEqual(['mount one'])
 
-  act(() => {
+  await act(() => {
     history.push('/hello/sub')
   })
 
   expect(mountCalls).toStrictEqual(['mount one'])
 
-  act(() => {
+  await act(() => {
     history.push('/world')
   })
 

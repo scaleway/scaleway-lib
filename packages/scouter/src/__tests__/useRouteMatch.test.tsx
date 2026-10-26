@@ -1,10 +1,10 @@
 // oxlint-disable vitest/require-top-level-describe
-import { renderHook } from '@testing-library/react'
 import { expect, test } from 'vitest'
+import { renderHook } from 'vitest-browser-react'
 import { MemoryRouter, Route, useRouteMatch } from '../index'
 
-test('returns false without path', () => {
-  const { result } = renderHook(() => useRouteMatch(undefined), {
+test('returns false without path', async () => {
+  const { result } = await renderHook(() => useRouteMatch(undefined), {
     wrapper: ({ children }) => (
       <MemoryRouter initialEntries={['/test']}>
         <Route>{children}</Route>
@@ -15,8 +15,8 @@ test('returns false without path', () => {
   expect(result.current).toBe(false)
 })
 
-test('returns true with matching path', () => {
-  const { result } = renderHook(() => useRouteMatch('/test'), {
+test('returns true with matching path', async () => {
+  const { result } = await renderHook(() => useRouteMatch('/test'), {
     wrapper: ({ children }) => (
       <MemoryRouter initialEntries={['/test']}>
         <Route>{children}</Route>
@@ -27,8 +27,8 @@ test('returns true with matching path', () => {
   expect(result.current).toBe(true)
 })
 
-test('returns false with non-matching path', () => {
-  const { result } = renderHook(() => useRouteMatch('/other'), {
+test('returns false with non-matching path', async () => {
+  const { result } = await renderHook(() => useRouteMatch('/other'), {
     wrapper: ({ children }) => (
       <MemoryRouter initialEntries={['/test']}>
         <Route>{children}</Route>
@@ -39,8 +39,8 @@ test('returns false with non-matching path', () => {
   expect(result.current).toBe(false)
 })
 
-test('with exact option', () => {
-  const { result } = renderHook(
+test('with exact option', async () => {
+  const { result } = await renderHook(
     () => {
       const exactMatch = useRouteMatch('/test', { exact: true })
       const looseMatch = useRouteMatch('/test/extra', { exact: true })
@@ -59,8 +59,8 @@ test('with exact option', () => {
   expect(result.current.looseMatch).toBe(false)
 })
 
-test('updates when location changes', () => {
-  const { result } = renderHook(() => useRouteMatch('/current'), {
+test('updates when location changes', async () => {
+  const { result } = await renderHook(() => useRouteMatch('/current'), {
     wrapper: ({ children }) => (
       <MemoryRouter initialEntries={['/current']}>
         <Route>{children}</Route>
@@ -71,8 +71,8 @@ test('updates when location changes', () => {
   expect(result.current).toBe(true)
 })
 
-test('works with dynamic segments', () => {
-  const { result } = renderHook(() => useRouteMatch('/users/:id'), {
+test('works with dynamic segments', async () => {
+  const { result } = await renderHook(() => useRouteMatch('/users/:id'), {
     wrapper: ({ children }) => (
       <MemoryRouter initialEntries={['/users/123']}>
         <Route>{children}</Route>
@@ -83,8 +83,8 @@ test('works with dynamic segments', () => {
   expect(result.current).toBe(true)
 })
 
-test('works with nested routes', () => {
-  const { result } = renderHook(
+test('works with nested routes', async () => {
+  const { result } = await renderHook(
     () => {
       const parentMatch = useRouteMatch('/parent/:id')
       const childMatch = useRouteMatch('/parent/:id/child')

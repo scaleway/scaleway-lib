@@ -1,17 +1,17 @@
 // Tests covering how the router behaves when React Suspense is involved:
 // suspending route components, retries, and navigating while suspended.
 
-// oxlint-disable import/no-unassigned-import
+// require-unicode-regexp's `v` flag breaks the browser locator selector engine
+// oxlint-disable require-unicode-regexp
 
-// https://github.com/testing-library/jest-dom/issues/515
-import '@testing-library/jest-dom/vitest'
-import { act, render, screen } from '@testing-library/react'
 import { createMemoryHistory } from 'history'
 import { Suspense } from 'react'
 import { describe, expect, it, vi } from 'vitest'
+import { render } from 'vitest-browser-react'
 import { z } from 'zod'
 import { MemoryRouter, Route, Switch } from '../index'
 import { Router } from '../Router'
+import { act } from './utils/reactAct'
 import { createDeferred } from './utils/suspense'
 import {
   LocationSuspender,
@@ -26,7 +26,7 @@ describe('scouter with React Suspense', () => {
   it('suspends a route, then renders it once the promise resolves', async () => {
     const deferred = createDeferred<string>()
 
-    render(
+    const screen = await render(
       <MemoryRouter initialEntries={['/slow']}>
         <Route path="/slow">
           <Suspense fallback={<div>loading</div>}>
@@ -36,22 +36,22 @@ describe('scouter with React Suspense', () => {
       </MemoryRouter>,
     )
 
-    expect(screen.getByText('loading')).toBeInTheDocument()
-    expect(screen.queryByText(/slow loaded/v)).not.toBeInTheDocument()
+    expect(screen.getByText('loading').element()).toBeDefined()
+    expect(screen.getByText(/slow loaded/).query()).toBeNull()
 
     await act(async () => {
       await Promise.resolve()
       deferred.resolve('42')
     })
 
-    expect(screen.getByText('slow loaded: 42')).toBeInTheDocument()
-    expect(screen.queryByText('loading')).not.toBeInTheDocument()
+    expect(screen.getByText('slow loaded: 42').element()).toBeDefined()
+    expect(screen.getByText('loading').query()).toBeNull()
   })
 
   it('suspended component reads router context (params, location) once retried', async () => {
     const deferred = createDeferred<string>()
 
-    render(
+    const screen = await render(
       <MemoryRouter initialEntries={['/users/42']}>
         <Route path="/users/:id">
           <Suspense fallback={<div>loading</div>}>
@@ -61,20 +61,20 @@ describe('scouter with React Suspense', () => {
       </MemoryRouter>,
     )
 
-    expect(screen.getByText('loading')).toBeInTheDocument()
+    expect(screen.getByText('loading').element()).toBeDefined()
 
     await act(async () => {
       await Promise.resolve()
       deferred.resolve('ok')
     })
 
-    expect(screen.getByText('params:{"id":"42"} location:/users/42 value:ok')).toBeInTheDocument()
+    expect(screen.getByText('params:{"id":"42"} location:/users/42 value:ok').element()).toBeDefined()
   })
 
   it('a suspending route inside a Switch only shows its own fallback', async () => {
     const deferred = createDeferred<string>()
 
-    render(
+    const screen = await render(
       <MemoryRouter initialEntries={['/slow']}>
         <Switch>
           <Route path="/slow">
@@ -87,21 +87,21 @@ describe('scouter with React Suspense', () => {
       </MemoryRouter>,
     )
 
-    expect(screen.getByText('slow loading')).toBeInTheDocument()
+    expect(screen.getByText('slow loading').element()).toBeDefined()
 
     await act(async () => {
       await Promise.resolve()
       deferred.resolve('ok')
     })
 
-    expect(screen.getByText('slow loaded: ok')).toBeInTheDocument()
+    expect(screen.getByText('slow loaded: ok').element()).toBeDefined()
   })
 
   it('navigating away while a route is suspended does not resurrect the old route', async () => {
     const slowDeferred = createDeferred<string>()
     const history = createMemoryHistory({ initialEntries: ['/slow'] })
 
-    render(
+    const screen = await render(
       <Router history={history}>
         <Switch>
           <Route path="/slow">
@@ -114,14 +114,14 @@ describe('scouter with React Suspense', () => {
       </Router>,
     )
 
-    expect(screen.getByText('slow loading')).toBeInTheDocument()
+    expect(screen.getByText('slow loading').element()).toBeDefined()
 
     // Navigate away while slow is still suspended.
-    act(() => {
+    await act(() => {
       history.push('/fast')
     })
 
-    expect(screen.getByText('fast content')).toBeInTheDocument()
+    expect(screen.getByText('fast content').element()).toBeDefined()
 
     // The old promise resolving afterwards must not resurrect the old route.
     await act(async () => {
@@ -129,8 +129,8 @@ describe('scouter with React Suspense', () => {
       slowDeferred.resolve('late')
     })
 
-    expect(screen.queryByText(/slow loaded/v)).not.toBeInTheDocument()
-    expect(screen.getByText('fast content')).toBeInTheDocument()
+    expect(screen.getByText(/slow loaded/).query()).toBeNull()
+    expect(screen.getByText('fast content').element()).toBeDefined()
     expect(history.location.pathname).toBe('/fast')
   })
 
@@ -139,7 +139,7 @@ describe('scouter with React Suspense', () => {
     const fastDeferred = createDeferred<string>()
     const history = createMemoryHistory({ initialEntries: ['/slow'] })
 
-    render(
+    const screen = await render(
       <Router history={history}>
         <Switch>
           <Route path="/slow">
@@ -156,13 +156,13 @@ describe('scouter with React Suspense', () => {
       </Router>,
     )
 
-    expect(screen.getByText('slow loading')).toBeInTheDocument()
+    expect(screen.getByText('slow loading').element()).toBeDefined()
 
-    act(() => {
+    await act(() => {
       history.push('/fast')
     })
 
-    expect(screen.getByText('fast loading')).toBeInTheDocument()
+    expect(screen.getByText('fast loading').element()).toBeDefined()
 
     // Resolve the old one first, then the current one.
     await act(async () => {
@@ -170,22 +170,22 @@ describe('scouter with React Suspense', () => {
       slowDeferred.resolve('late')
     })
 
-    expect(screen.getByText('fast loading')).toBeInTheDocument()
+    expect(screen.getByText('fast loading').element()).toBeDefined()
 
     await act(async () => {
       await Promise.resolve()
       fastDeferred.resolve('now')
     })
 
-    expect(screen.getByText('fast loaded: now')).toBeInTheDocument()
-    expect(screen.queryByText(/slow loaded/v)).not.toBeInTheDocument()
+    expect(screen.getByText('fast loaded: now').element()).toBeDefined()
+    expect(screen.getByText(/slow loaded/).query()).toBeNull()
   })
 
   it('a same-route param change while suspended retries with the new params', async () => {
     const deferred = createDeferred<string>()
     const history = createMemoryHistory({ initialEntries: ['/users/1'] })
 
-    render(
+    const screen = await render(
       <Router history={history}>
         <Route path="/users/:id">
           <Suspense fallback={<div>loading user</div>}>
@@ -195,28 +195,28 @@ describe('scouter with React Suspense', () => {
       </Router>,
     )
 
-    expect(screen.getByText('loading user')).toBeInTheDocument()
+    expect(screen.getByText('loading user').element()).toBeDefined()
 
     // Change the param while the same component is still suspended.
-    act(() => {
+    await act(() => {
       history.push('/users/2')
     })
 
-    expect(screen.getByText('loading user')).toBeInTheDocument()
+    expect(screen.getByText('loading user').element()).toBeDefined()
 
     await act(async () => {
       await Promise.resolve()
       deferred.resolve('ok')
     })
 
-    expect(screen.getByText('params:{"id":"2"} location:/users/2 value:ok')).toBeInTheDocument()
+    expect(screen.getByText('params:{"id":"2"} location:/users/2 value:ok').element()).toBeDefined()
   })
 
   it('useSafeQueryParams reads the right query params after a suspense retry', async () => {
     const deferred = createDeferred<string>()
     const schema = z.object({ name: z.string(), age: z.string() })
 
-    render(
+    const screen = await render(
       <MemoryRouter initialEntries={['/users?name=john&age=30']}>
         <Route path="/users">
           <Suspense fallback={<div>loading</div>}>
@@ -226,14 +226,14 @@ describe('scouter with React Suspense', () => {
       </MemoryRouter>,
     )
 
-    expect(screen.getByText('loading')).toBeInTheDocument()
+    expect(screen.getByText('loading').element()).toBeDefined()
 
     await act(async () => {
       await Promise.resolve()
       deferred.resolve('ok')
     })
 
-    expect(screen.getByText('query:{"name":"john","age":"30"}')).toBeInTheDocument()
+    expect(screen.getByText('query:{"name":"john","age":"30"}').element()).toBeDefined()
   })
 
   it('useSafeQueryParams reflects a query change made while suspended', async () => {
@@ -241,7 +241,7 @@ describe('scouter with React Suspense', () => {
     const schema = z.object({ name: z.string(), age: z.string() })
     const history = createMemoryHistory({ initialEntries: ['/users?name=john&age=30'] })
 
-    render(
+    const screen = await render(
       <Router history={history}>
         <Route path="/users">
           <Suspense fallback={<div>loading</div>}>
@@ -251,28 +251,28 @@ describe('scouter with React Suspense', () => {
       </Router>,
     )
 
-    expect(screen.getByText('loading')).toBeInTheDocument()
+    expect(screen.getByText('loading').element()).toBeDefined()
 
     // Change the query params (e.g. a filter change) while still suspended.
-    act(() => {
+    await act(() => {
       history.push('/users?name=jane&age=25')
     })
 
-    expect(screen.getByText('loading')).toBeInTheDocument()
+    expect(screen.getByText('loading').element()).toBeDefined()
 
     await act(async () => {
       await Promise.resolve()
       deferred.resolve('ok')
     })
 
-    expect(screen.getByText('query:{"name":"jane","age":"25"}')).toBeInTheDocument()
+    expect(screen.getByText('query:{"name":"jane","age":"25"}').element()).toBeDefined()
   })
 
   it('when the Suspense boundary wraps the router, a navigation during suspense is not lost', async () => {
     const deferred = createDeferred<string>()
     const history = createMemoryHistory({ initialEntries: ['/slow'] })
 
-    render(
+    const screen = await render(
       // Boundary OUTSIDE the router: while suspending, the Router never
       // mounted, so its history listener may not be registered yet.
       <Suspense fallback={<div>app loading</div>}>
@@ -287,10 +287,10 @@ describe('scouter with React Suspense', () => {
       </Suspense>,
     )
 
-    expect(screen.getByText('app loading')).toBeInTheDocument()
+    expect(screen.getByText('app loading').element()).toBeDefined()
 
     // Navigate while the router itself is suspended (no listener registered).
-    act(() => {
+    await act(() => {
       history.push('/fast')
     })
 
@@ -301,15 +301,15 @@ describe('scouter with React Suspense', () => {
 
     // The navigation must not be lost after the router retries.
     expect(history.location.pathname).toBe('/fast')
-    expect(screen.queryByText(/slow loaded/v)).not.toBeInTheDocument()
-    expect(screen.getByText('fast content')).toBeInTheDocument()
+    expect(screen.getByText(/slow loaded/).query()).toBeNull()
+    expect(screen.getByText('fast content').element()).toBeDefined()
   })
 
   it('navigating twice while suspended keeps the last destination', async () => {
     const slowDeferred = createDeferred<string>()
     const history = createMemoryHistory({ initialEntries: ['/slow'] })
 
-    render(
+    const screen = await render(
       <Router history={history}>
         <Switch>
           <Route path="/slow">
@@ -323,17 +323,17 @@ describe('scouter with React Suspense', () => {
       </Router>,
     )
 
-    expect(screen.getByText('slow loading')).toBeInTheDocument()
+    expect(screen.getByText('slow loading').element()).toBeDefined()
 
     // Two quick navigations while the route is suspended: only the last one wins.
-    act(() => {
+    await act(() => {
       history.push('/middle')
       // oxlint-disable-next-line unicorn/prefer-single-call
       history.push('/final')
     })
 
-    expect(screen.getByText('final content')).toBeInTheDocument()
-    expect(screen.queryByText('middle content')).not.toBeInTheDocument()
+    expect(screen.getByText('final content').element()).toBeDefined()
+    expect(screen.getByText('middle content').query()).toBeNull()
     expect(history.location.pathname).toBe('/final')
 
     await act(async () => {
@@ -341,15 +341,15 @@ describe('scouter with React Suspense', () => {
       slowDeferred.resolve('late')
     })
 
-    expect(screen.getByText('final content')).toBeInTheDocument()
-    expect(screen.queryByText(/slow loaded/v)).not.toBeInTheDocument()
+    expect(screen.getByText('final content').element()).toBeDefined()
+    expect(screen.getByText(/slow loaded/).query()).toBeNull()
   })
 
   it('a same-route navigation while suspended retries with the new location', async () => {
     const deferred = createDeferred<string>()
     const history = createMemoryHistory({ initialEntries: ['/'] })
 
-    render(
+    const screen = await render(
       <Router history={history}>
         <Route path="/">
           <Suspense fallback={<div>loading</div>}>
@@ -359,10 +359,10 @@ describe('scouter with React Suspense', () => {
       </Router>,
     )
 
-    expect(screen.getByText('loading')).toBeInTheDocument()
+    expect(screen.getByText('loading').element()).toBeDefined()
 
     // Same route, only the search string changes while still suspended.
-    act(() => {
+    await act(() => {
       history.push({ pathname: '/', search: '?page=2' })
     })
 
@@ -371,14 +371,14 @@ describe('scouter with React Suspense', () => {
       deferred.resolve('ok')
     })
 
-    expect(screen.getByText('target:?page=2')).toBeInTheDocument()
+    expect(screen.getByText('target:?page=2').element()).toBeDefined()
   })
 
   it('state is preserved across a suspense retry (no remount)', async () => {
     const deferred = createDeferred<string>()
     const mountCount = vi.fn<() => void>()
 
-    render(
+    const screen = await render(
       <MemoryRouter initialEntries={['/stateful']}>
         <Route path="/stateful">
           <Suspense fallback={<div>loading</div>}>
@@ -388,7 +388,7 @@ describe('scouter with React Suspense', () => {
       </MemoryRouter>,
     )
 
-    expect(screen.getByText('loading')).toBeInTheDocument()
+    expect(screen.getByText('loading').element()).toBeDefined()
 
     await act(async () => {
       await Promise.resolve()
@@ -397,14 +397,14 @@ describe('scouter with React Suspense', () => {
 
     // Mounted once during the retry, not on every throw/resolve cycle.
     expect(mountCount).toHaveBeenCalledTimes(1)
-    expect(screen.getByText('state:0')).toBeInTheDocument()
+    expect(screen.getByText('state:0').element()).toBeDefined()
   })
 
   it('resolves multiple independent suspended routes at once', async () => {
     const first = createDeferred<string>()
     const second = createDeferred<string>()
 
-    render(
+    const screen = await render(
       <MemoryRouter initialEntries={['/page']}>
         <Route path="/page">
           <div>
@@ -419,8 +419,8 @@ describe('scouter with React Suspense', () => {
       </MemoryRouter>,
     )
 
-    expect(screen.getByText('first loading')).toBeInTheDocument()
-    expect(screen.getByText('second loading')).toBeInTheDocument()
+    expect(screen.getByText('first loading').element()).toBeDefined()
+    expect(screen.getByText('second loading').element()).toBeDefined()
 
     await act(async () => {
       await Promise.resolve()
@@ -428,8 +428,8 @@ describe('scouter with React Suspense', () => {
       second.resolve('2')
     })
 
-    expect(screen.getByText('first loaded: 1')).toBeInTheDocument()
-    expect(screen.getByText('second loaded: 2')).toBeInTheDocument()
+    expect(screen.getByText('first loaded: 1').element()).toBeDefined()
+    expect(screen.getByText('second loaded: 2').element()).toBeDefined()
   })
 
   it('a shared component across routes suspends fresh on each route (no stale content)', async () => {
@@ -437,7 +437,7 @@ describe('scouter with React Suspense', () => {
     const bDeferred = createDeferred<string>()
     const history = createMemoryHistory({ initialEntries: ['/a'] })
 
-    render(
+    const screen = await render(
       <Router history={history}>
         <Suspense fallback={<div>loading</div>}>
           <Switch>
@@ -448,30 +448,30 @@ describe('scouter with React Suspense', () => {
       </Router>,
     )
 
-    expect(screen.getByText('loading')).toBeInTheDocument()
+    expect(screen.getByText('loading').element()).toBeDefined()
 
     await act(async () => {
       await Promise.resolve()
       aDeferred.resolve('a data')
     })
 
-    expect(screen.getByText('A content')).toBeInTheDocument()
+    expect(screen.getByText('A content').element()).toBeDefined()
 
     // Navigate to a route that mounts the same component type. The shared
     // boundary hides the old content and shows the fallback while the new one loads.
-    act(() => {
+    await act(() => {
       history.push('/b')
     })
 
-    expect(screen.getByText('A content')).not.toBeVisible()
-    expect(screen.getByText('loading')).toBeVisible()
+    await expect.element(screen.getByText('A content')).not.toBeVisible()
+    await expect.element(screen.getByText('loading')).toBeVisible()
 
     await act(async () => {
       await Promise.resolve()
       bDeferred.resolve('b data')
     })
 
-    expect(screen.getByText('B content')).toBeVisible()
-    expect(screen.queryByText('A content')).not.toBeInTheDocument()
+    await expect.element(screen.getByText('B content')).toBeVisible()
+    expect(screen.getByText('A content').query()).toBeNull()
   })
 })

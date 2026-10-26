@@ -1,5 +1,5 @@
-import { act, renderHook } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { renderHook } from 'vitest-browser-react'
 import { copyToClipboard, useClipboard } from '../'
 
 describe(copyToClipboard, () => {
@@ -60,7 +60,7 @@ describe('hooks - useClipboard', () => {
     const writeTextSpy = vi.fn<(data: string) => Promise<void>>().mockResolvedValue(undefined)
     navigator.clipboard.writeText = writeTextSpy
 
-    const { result } = renderHook(() => useClipboard('test text'))
+    const { result, act } = await renderHook(() => useClipboard('test text'))
 
     await act(async () => {
       await result.current[1]()
@@ -75,7 +75,7 @@ describe('hooks - useClipboard', () => {
     const writeTextSpy = vi.fn<(data: string) => Promise<void>>().mockRejectedValue(error)
     navigator.clipboard.writeText = writeTextSpy
 
-    const { result } = renderHook(() => useClipboard('test text'))
+    const { result, act } = await renderHook(() => useClipboard('test text'))
     await act(async () => {
       await result.current[1]()
     })
@@ -90,7 +90,7 @@ describe('hooks - useClipboard', () => {
     navigator.clipboard.writeText = writeTextSpy
     const onErrorSpy = vi.fn<() => void>()
 
-    const { result } = renderHook(() => useClipboard('test text', { onError: onErrorSpy }))
+    const { result, act } = await renderHook(() => useClipboard('test text', { onError: onErrorSpy }))
 
     await act(async () => {
       await result.current[1]()
@@ -104,7 +104,7 @@ describe('hooks - useClipboard', () => {
     const writeTextSpy = vi.fn<(data: string) => Promise<void>>().mockResolvedValue(undefined)
     navigator.clipboard.writeText = writeTextSpy
 
-    const { result } = renderHook(() => useClipboard('test text', { successDuration: 1000 }))
+    const { result, act } = await renderHook(() => useClipboard('test text', { successDuration: 1000 }))
 
     await act(async () => {
       await result.current[1]()
@@ -112,7 +112,7 @@ describe('hooks - useClipboard', () => {
 
     expect(result.current[0]).toBe(true)
 
-    act(() => {
+    await act(() => {
       vi.advanceTimersByTime(1001)
     })
 
@@ -123,7 +123,7 @@ describe('hooks - useClipboard', () => {
     const writeTextSpy = vi.fn<(data: string) => Promise<void>>().mockResolvedValue(undefined)
     navigator.clipboard.writeText = writeTextSpy
 
-    const { result } = renderHook(() => useClipboard('test text'))
+    const { result, act } = await renderHook(() => useClipboard('test text'))
 
     await act(async () => {
       await result.current[1]()
@@ -140,14 +140,14 @@ describe('hooks - useClipboard', () => {
     const writeTextSpy = vi.fn<(data: string) => Promise<void>>().mockResolvedValue(undefined)
     navigator.clipboard.writeText = writeTextSpy
 
-    const { unmount, result } = renderHook(() => useClipboard('test text', { successDuration: 1000 }))
+    const { unmount, result, act } = await renderHook(() => useClipboard('test text', { successDuration: 1000 }))
 
     await act(async () => {
       await result.current[1]()
     })
     const clearTimeoutSpy = vi.spyOn(globalThis, 'clearTimeout')
 
-    unmount()
+    await unmount()
 
     expect(clearTimeoutSpy).toHaveBeenCalledTimes(1)
   })
@@ -156,16 +156,19 @@ describe('hooks - useClipboard', () => {
     const writeTextSpy = vi.fn<(data: string) => Promise<void>>().mockResolvedValue(undefined)
     navigator.clipboard.writeText = writeTextSpy
 
-    const { result, rerender } = renderHook(({ text }) => useClipboard(text), {
-      initialProps: { text: 'initial text' },
-    })
+    // vitest-browser-react's renderHook callback takes optional props, hence the default
+    const initialProps = { text: 'initial text' }
+    const { result, rerender, act } = await renderHook(
+      ({ text }: { text: string } = initialProps) => useClipboard(text),
+      { initialProps },
+    )
 
     await act(async () => {
       await result.current[1]()
     })
     expect(writeTextSpy).toHaveBeenCalledWith('initial text')
 
-    rerender({ text: 'updated text' })
+    await rerender({ text: 'updated text' })
 
     await act(async () => {
       await result.current[1]()

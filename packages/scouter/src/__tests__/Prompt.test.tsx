@@ -1,8 +1,8 @@
 // oxlint-disable vitest/no-conditional-in-test vitest/no-conditional-expect
-import { render } from '@testing-library/react'
 import { Action, createMemoryHistory } from 'history'
 import type { Transition } from 'history'
 import { beforeAll, describe, expect, it, vi } from 'vitest'
+import { render } from 'vitest-browser-react'
 import { Prompt } from '../index'
 import { Router } from '../Router'
 
@@ -11,13 +11,13 @@ describe(Prompt, () => {
     globalThis.confirm = () => false
   })
 
-  it('with when=true blocks navigation', () => {
+  it('with when=true blocks navigation', async () => {
     const history = createMemoryHistory({ initialEntries: ['/initial'] })
     const blockSpy = vi.spyOn(history, 'block')
 
     const condition = true
 
-    render(
+    await render(
       <Router history={history}>
         <Prompt message="Are you sure?" when={condition} />
       </Router>,
@@ -26,11 +26,11 @@ describe(Prompt, () => {
     expect(blockSpy).toHaveBeenCalledTimes(1)
   })
 
-  it('with when=false does not block navigation', () => {
+  it('with when=false does not block navigation', async () => {
     const history = createMemoryHistory({ initialEntries: ['/initial'] })
     const blockSpy = vi.spyOn(history, 'block')
 
-    render(
+    await render(
       <Router history={history}>
         <Prompt message="Are you sure?" when={false} />
       </Router>,
@@ -39,11 +39,11 @@ describe(Prompt, () => {
     expect(blockSpy).not.toHaveBeenCalledTimes(1)
   })
 
-  it('with when function returning true blocks navigation', () => {
+  it('with when function returning true blocks navigation', async () => {
     const history = createMemoryHistory({ initialEntries: ['/initial'] })
     const blockSpy = vi.spyOn(history, 'block')
 
-    render(
+    await render(
       <Router history={history}>
         <Prompt message="Are you sure?" when={() => true} />
       </Router>,
@@ -52,13 +52,13 @@ describe(Prompt, () => {
     expect(blockSpy).toHaveBeenCalledTimes(1)
   })
 
-  it('when function receives Transition parameter', () => {
+  it('when function receives Transition parameter', async () => {
     const history = createMemoryHistory({ initialEntries: ['/initial'] })
     const blockSpy = vi.spyOn(history, 'block')
 
     let capturedTransition: Transition | null = null
 
-    render(
+    await render(
       <Router history={history}>
         <Prompt
           message="Are you sure?"
@@ -84,13 +84,13 @@ describe(Prompt, () => {
     }
   })
 
-  it('confirms navigation when globalThis.confirm returns true', () => {
+  it('confirms navigation when globalThis.confirm returns true', async () => {
     const history = createMemoryHistory({ initialEntries: ['/initial'] })
     const blockSpy = vi.spyOn(history, 'block')
 
     const condition = true
 
-    render(
+    await render(
       <Router history={history}>
         <Prompt message="Are you sure?" when={condition} />
       </Router>,
@@ -116,13 +116,13 @@ describe(Prompt, () => {
     }
   })
 
-  it('blocks navigation when globalThis.confirm returns false', () => {
+  it('blocks navigation when globalThis.confirm returns false', async () => {
     const history = createMemoryHistory({ initialEntries: ['/initial'] })
     const blockSpy = vi.spyOn(history, 'block')
 
     const condition = true
 
-    render(
+    await render(
       <Router history={history}>
         <Prompt message="Are you sure?" when={condition} />
       </Router>,
@@ -146,13 +146,13 @@ describe(Prompt, () => {
     }
   })
 
-  it('calls unblock and retry when user confirms', () => {
+  it('calls unblock and retry when user confirms', async () => {
     const history = createMemoryHistory({ initialEntries: ['/initial'] })
     const blockSpy = vi.spyOn(history, 'block')
 
     const condition = true
 
-    render(
+    await render(
       <Router history={history}>
         <Prompt message="Are you sure?" when={condition} />
       </Router>,
@@ -177,13 +177,13 @@ describe(Prompt, () => {
     }
   })
 
-  it('does not call retry when user cancels', () => {
+  it('does not call retry when user cancels', async () => {
     const history = createMemoryHistory({ initialEntries: ['/initial'] })
     const blockSpy = vi.spyOn(history, 'block')
 
     const condition = true
 
-    render(
+    await render(
       <Router history={history}>
         <Prompt message="Are you sure?" when={condition} />
       </Router>,

@@ -1,6 +1,6 @@
-import { renderHook, waitFor } from '@testing-library/react'
 import type { ReactNode } from 'react'
 import { describe, expect, it, vi } from 'vitest'
+import { renderHook } from 'vitest-browser-react'
 import DataLoaderProvider from '../DataLoaderProvider'
 import { useDataLoader } from '../useDataLoader'
 
@@ -25,11 +25,11 @@ const wrapper = ({ children }: { children?: ReactNode }) => <DataLoaderProvider>
 describe('isFetching', () => {
   it('should be true while a mount-initiated load is in flight', async () => {
     const method = vi.fn<typeof fakeSuccessPromise>(fakeSuccessPromise)
-    const { result } = renderHook(() => useDataLoader('isfetching-inflight', method), { wrapper })
+    const { result } = await renderHook(() => useDataLoader('isfetching-inflight', method), { wrapper })
 
     expect(result.current.isFetching).toBe(true)
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
 
@@ -39,11 +39,11 @@ describe('isFetching', () => {
   it('should clear after a successful auto-load even when an onSuccess callback is provided', async () => {
     const method = vi.fn<typeof fakeSuccessPromise>(fakeSuccessPromise)
     const onSuccess = vi.fn<(data: unknown) => void>()
-    const { result } = renderHook(() => useDataLoader('isfetching-onsuccess', method, { onSuccess }), {
+    const { result } = await renderHook(() => useDataLoader('isfetching-onsuccess', method, { onSuccess }), {
       wrapper,
     })
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
     expect(onSuccess).toHaveBeenCalledTimes(1)
@@ -56,11 +56,11 @@ describe('isFetching', () => {
   it('should clear after a failed auto-load even when an onError callback is provided', async () => {
     const method = vi.fn<typeof fakeErrorPromise>(fakeErrorPromise)
     const onError = vi.fn<(error: Error) => void>()
-    const { result } = renderHook(() => useDataLoader('isfetching-onerror', method, { onError }), {
+    const { result } = await renderHook(() => useDataLoader('isfetching-onerror', method, { onError }), {
       wrapper,
     })
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isError).toBe(true)
     })
     expect(onError).toHaveBeenCalledTimes(1)

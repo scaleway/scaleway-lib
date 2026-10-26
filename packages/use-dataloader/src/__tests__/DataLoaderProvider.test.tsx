@@ -1,6 +1,6 @@
-import { render, renderHook, screen, waitFor } from '@testing-library/react'
 import type { ReactNode } from 'react'
 import { assert, describe, expect, it, vi } from 'vitest'
+import { render, renderHook } from 'vitest-browser-react'
 import { StatusEnum } from '../constants'
 import DataLoaderProvider from '../DataLoaderProvider'
 import { useDataLoaderContext } from '../useDataLoaderContext'
@@ -32,14 +32,14 @@ const wrapperWith2ConcurrentRequests = ({ children }: { children?: ReactNode }) 
 )
 
 describe('dataLoaderProvider', () => {
-  it('should render correctly', () => {
-    render(<DataLoaderProvider>Test</DataLoaderProvider>)
-    expect(screen.getByText('Test')).toBeDefined()
+  it('should render correctly', async () => {
+    const screen = await render(<DataLoaderProvider>Test</DataLoaderProvider>)
+    expect(screen.getByText('Test').element()).toBeDefined()
   })
 
   it('should add request', async () => {
     const method = vi.fn<typeof fakePromise>(fakePromise)
-    const { result, rerender } = renderHook(useDataLoaderContext, {
+    const { result, rerender } = await renderHook(useDataLoaderContext, {
       wrapper,
     })
     expect(result.current.getRequest(TEST_KEY)).toBeUndefined()
@@ -50,7 +50,10 @@ describe('dataLoaderProvider', () => {
 
     expect(Object.values(result.current.getReloads())).toHaveLength(1)
     const testRequest = result.current.getRequest(TEST_KEY)
-    testRequest.addObserver(rerender)
+    // rerender is async in browser mode; observers expect a void return
+    testRequest.addObserver(() => {
+      rerender().catch(() => undefined)
+    })
 
     expect(testRequest).toBeDefined()
     expect(testRequest.status).toBe(StatusEnum.IDLE)
@@ -58,23 +61,23 @@ describe('dataLoaderProvider', () => {
     testRequest.load().catch(undefined)
     expect(testRequest.status).toBe(StatusEnum.LOADING)
     expect(method).toHaveBeenCalledTimes(1)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(testRequest.status).toBe(StatusEnum.SUCCESS)
     })
     expect(result.current.getCachedData(TEST_KEY)).toBe(true)
     // oxlint-disable-next-line  @typescript-eslint/no-floating-promises
     result.current.reload(TEST_KEY).catch(undefined)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(testRequest.status).toBe(StatusEnum.LOADING)
     })
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(testRequest.status).toBe(StatusEnum.SUCCESS)
     })
   })
 
   it('should add request with cache key prefix', async () => {
     const method = vi.fn<typeof fakePromise>(fakePromise)
-    const { result } = renderHook(useDataLoaderContext, {
+    const { result } = await renderHook(useDataLoaderContext, {
       wrapper: wrapperWithCacheKey,
     })
     expect(result.current.getRequest(TEST_KEY)).toBeUndefined()
@@ -89,7 +92,7 @@ describe('dataLoaderProvider', () => {
     expect(testRequest.status).toBe(StatusEnum.IDLE)
     // oxlint-disable-next-line  @typescript-eslint/no-floating-promises
     testRequest.load().catch(undefined)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(testRequest.status).toBe(StatusEnum.SUCCESS)
     })
     expect(method).toHaveBeenCalledTimes(1)
@@ -97,17 +100,17 @@ describe('dataLoaderProvider', () => {
     expect(result.current.getCachedData(TEST_KEY)).toBe(true)
     // oxlint-disable-next-line  @typescript-eslint/no-floating-promises
     result.current.reload(TEST_KEY).catch(undefined)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(testRequest.status).toBe(StatusEnum.LOADING)
     })
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(testRequest.status).toBe(StatusEnum.SUCCESS)
     })
   })
 
   it('should add request with result is null', async () => {
     const method = vi.fn<typeof fakeNullPromise>(fakeNullPromise)
-    const { result } = renderHook(useDataLoaderContext, {
+    const { result } = await renderHook(useDataLoaderContext, {
       wrapper,
     })
     const request = result.current.getOrAddRequest(TEST_KEY, {
@@ -148,7 +151,7 @@ describe('dataLoaderProvider', () => {
           }, 100)
         }),
     )
-    const { result } = renderHook(useDataLoaderContext, {
+    const { result } = await renderHook(useDataLoaderContext, {
       wrapper: wrapperWith2ConcurrentRequests,
     })
     const requests = [
@@ -174,10 +177,10 @@ describe('dataLoaderProvider', () => {
     }
 
     expect(method).toHaveBeenCalledTimes(2)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(method).toHaveBeenCalledTimes(4)
     })
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(method).toHaveBeenCalledTimes(5)
     })
   })
@@ -187,7 +190,7 @@ describe('dataLoaderProvider', () => {
     const method2 = vi.fn<typeof fakePromise>(fakePromise)
     const method3 = vi.fn<typeof fakePromise>(fakePromise)
 
-    const { result } = renderHook(useDataLoaderContext, {
+    const { result } = await renderHook(useDataLoaderContext, {
       wrapper,
     })
     result.current.addRequest(TEST_KEY, {
@@ -229,7 +232,7 @@ describe('dataLoaderProvider', () => {
     const method2 = vi.fn<typeof fakePromise>(fakePromise)
     const method3 = vi.fn<typeof fakePromise>(fakePromise)
 
-    const { result } = renderHook(useDataLoaderContext, {
+    const { result } = await renderHook(useDataLoaderContext, {
       wrapper,
     })
     const request1 = result.current.addRequest(TEST_KEY, {
@@ -255,7 +258,7 @@ describe('dataLoaderProvider', () => {
     const method2 = vi.fn<typeof fakePromise>(fakePromise)
     const method3 = vi.fn<typeof fakePromise>(fakePromise)
 
-    const { result } = renderHook(useDataLoaderContext, {
+    const { result } = await renderHook(useDataLoaderContext, {
       wrapper,
     })
     const request1 = result.current.addRequest(TEST_KEY, {

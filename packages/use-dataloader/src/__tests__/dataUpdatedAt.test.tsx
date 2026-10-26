@@ -1,6 +1,6 @@
-import { act, render, renderHook, waitFor } from '@testing-library/react'
 import type { ReactNode } from 'react'
 import { describe, expect, it, vi } from 'vitest'
+import { render, renderHook } from 'vitest-browser-react'
 import DataLoaderProvider from '../DataLoaderProvider'
 import { useDataLoader } from '../useDataLoader'
 
@@ -18,11 +18,11 @@ const wrapper = ({ children }: { children?: ReactNode }) => <DataLoaderProvider>
 describe('dataUpdatedAt', () => {
   it('should be undefined before the first success then set to the fetch timestamp', async () => {
     const method = vi.fn<typeof fakeSuccessPromise>(fakeSuccessPromise)
-    const { result } = renderHook(() => useDataLoader('dataUpdatedAt-basic', method), { wrapper })
+    const { result } = await renderHook(() => useDataLoader('dataUpdatedAt-basic', method), { wrapper })
 
     expect(result.current.dataUpdatedAt).toBeUndefined()
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
 
@@ -31,9 +31,9 @@ describe('dataUpdatedAt', () => {
 
   it('should be updated on reload', async () => {
     const method = vi.fn<typeof fakeSuccessPromise>(fakeSuccessPromise)
-    const { result } = renderHook(() => useDataLoader('dataUpdatedAt-reload', method), { wrapper })
+    const { result, act } = await renderHook(() => useDataLoader('dataUpdatedAt-reload', method), { wrapper })
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
 
@@ -57,13 +57,13 @@ describe('dataUpdatedAt', () => {
       return null
     }
 
-    const { rerender } = render(
+    const { rerender } = await render(
       <DataLoaderProvider>
         <Probe />
       </DataLoaderProvider>,
     )
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(last.current?.dataUpdatedAt).toBeGreaterThan(0)
     })
     const firstTimestamp = last.current?.dataUpdatedAt
@@ -72,8 +72,8 @@ describe('dataUpdatedAt', () => {
     // Unmount, then remount while the data is still fresh per dataLifetime:
     // the hook must serve the cache without refetching, and the exposed
     // timestamp must still be the one of the original fetch
-    rerender(<DataLoaderProvider>{null}</DataLoaderProvider>)
-    rerender(
+    await rerender(<DataLoaderProvider>{null}</DataLoaderProvider>)
+    await rerender(
       <DataLoaderProvider>
         <Probe />
       </DataLoaderProvider>,

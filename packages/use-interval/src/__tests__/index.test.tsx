@@ -1,5 +1,5 @@
-import { renderHook } from '@testing-library/react'
 import { afterAll, beforeEach, describe, expect, it, vi } from 'vitest'
+import { renderHook } from 'vitest-browser-react'
 import { useInterval } from '..'
 
 describe('useinterval', () => {
@@ -13,9 +13,9 @@ describe('useinterval', () => {
     vi.restoreAllMocks()
   })
 
-  it('should start with a delay of 100 ms', () => {
+  it('should start with a delay of 100 ms', async () => {
     const callback = vi.fn<() => void>()
-    renderHook(() => {
+    await renderHook(() => {
       useInterval(callback, 100)
     })
     vi.advanceTimersByTime(300)
@@ -23,20 +23,20 @@ describe('useinterval', () => {
     expect(callback).toHaveBeenCalledTimes(3)
   })
 
-  it('should not start interval if delay is undefined', () => {
+  it('should not start interval if null is passed', async () => {
     const callback = vi.fn<() => void>()
-    renderHook(() => {
-      useInterval(callback, undefined as number | null | undefined)
+    await renderHook(() => {
+      useInterval(callback, null)
     })
     vi.advanceTimersByTime(300)
     expect(setInterval).toHaveBeenCalledTimes(0)
     expect(callback).toHaveBeenCalledTimes(0)
   })
 
-  it('should not start interval if null is passed', () => {
+  it('should not start interval if delay is undefined', async () => {
     const callback = vi.fn<() => void>()
-    renderHook(() => {
-      useInterval(callback, null)
+    await renderHook(() => {
+      useInterval(callback, undefined as number | null | undefined)
     })
     vi.advanceTimersByTime(300)
     expect(setInterval).toHaveBeenCalledTimes(0)

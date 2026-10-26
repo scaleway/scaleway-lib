@@ -1,27 +1,27 @@
-import { render, renderHook, screen } from '@testing-library/react'
 import { assert, describe, expect, it } from 'vitest'
+import { render, renderHook } from 'vitest-browser-react'
 import type { Location, Match } from '../index'
 import { BrowserRouter, Route, useHistory } from '../index'
 
 describe('component BrowserRouter', () => {
-  it('renders children', () => {
+  it('renders children', async () => {
     expect.hasAssertions()
 
     const text = 'Hello BrowserRouter'
 
-    render(
+    const screen = await render(
       <BrowserRouter>
         <div>{text}</div>
       </BrowserRouter>,
     )
 
-    expect(screen.getByText(text)).toBeInTheDocument()
+    expect(screen.getByText(text).element()).toBeDefined()
   })
 
-  it('creates browser history', () => {
+  it('creates browser history', async () => {
     expect.hasAssertions()
 
-    const { result } = renderHook(() => useHistory(), {
+    const { result } = await renderHook(() => useHistory(), {
       wrapper: BrowserRouter,
     })
 
@@ -32,21 +32,21 @@ describe('component BrowserRouter', () => {
     // oxlint-enable vitest/prefer-expect-type-of
   })
 
-  it('history is re-created for each BrowserRouter', () => {
+  it('history is re-created for each BrowserRouter', async () => {
     expect.hasAssertions()
 
-    const first = renderHook(() => useHistory(), { wrapper: BrowserRouter })
-    const second = renderHook(() => useHistory(), { wrapper: BrowserRouter })
+    const first = await renderHook(() => useHistory(), { wrapper: BrowserRouter })
+    const second = await renderHook(() => useHistory(), { wrapper: BrowserRouter })
 
     expect(first.result.current).not.toBe(second.result.current)
   })
 
-  it('provides root route context', () => {
+  it('provides root route context', async () => {
     expect.hasAssertions()
 
     let match: Partial<Match> = {}
 
-    render(
+    await render(
       <BrowserRouter>
         <Route
           render={({ match: matchProps }) => {
@@ -61,12 +61,12 @@ describe('component BrowserRouter', () => {
     expect(match.params).toStrictEqual({})
   })
 
-  it('uses current browser location', () => {
+  it('uses current browser location', async () => {
     expect.hasAssertions()
 
     let location: Partial<Location> = {}
 
-    render(
+    await render(
       <BrowserRouter>
         <Route
           render={({ location: locationProps }) => {
