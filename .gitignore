@@ -55,3 +55,7 @@ AGENTS.md
 # dist compare migration
 .dist-compare
 .opencode/
+
+# superpowers process docs live locally, never in the repo
+docs/superpowers/
+.superpowers/

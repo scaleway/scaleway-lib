@@ -1,7 +1,7 @@
 // oxlint-disable typescript/no-deprecated
-import { act, renderHook } from '@testing-library/react'
 import { createMemoryHistory } from 'history'
 import { describe, expect, it, vi } from 'vitest'
+import { renderHook } from 'vitest-browser-react'
 import { MemoryRouter, Route, useQueryParams } from '../index'
 import { Router } from '../Router'
 
@@ -12,8 +12,8 @@ const wrapper = ({ children }: { children: React.ReactNode }) => (
 )
 
 describe(useQueryParams, () => {
-  it('returns queryParams, replaceQueryParams, and setQueryParams', () => {
-    const { result } = renderHook(() => useQueryParams(), { wrapper })
+  it('returns queryParams, replaceQueryParams, and setQueryParams', async () => {
+    const { result } = await renderHook(() => useQueryParams(), { wrapper })
 
     expect(result.current).toHaveProperty('queryParams')
     expect(result.current).toHaveProperty('replaceQueryParams')
@@ -22,8 +22,8 @@ describe(useQueryParams, () => {
     expect(result.current.setQueryParams).toBeTypeOf('function')
   })
 
-  it('parses query params from URL', () => {
-    const { result } = renderHook(() => useQueryParams(), {
+  it('parses query params from URL', async () => {
+    const { result } = await renderHook(() => useQueryParams(), {
       wrapper: ({ children }) => (
         <MemoryRouter initialEntries={['/test?name=john&age=30']}>
           <Route>{children}</Route>
@@ -39,8 +39,8 @@ describe(useQueryParams, () => {
     )
   })
 
-  it('parses comma-separated arrays', () => {
-    const { result } = renderHook(() => useQueryParams(), {
+  it('parses comma-separated arrays', async () => {
+    const { result } = await renderHook(() => useQueryParams(), {
       wrapper: ({ children }) => (
         <MemoryRouter initialEntries={['/test?tags=admin,user,mod']}>
           <Route>{children}</Route>
@@ -55,8 +55,8 @@ describe(useQueryParams, () => {
     )
   })
 
-  it('parses boolean values', () => {
-    const { result } = renderHook(() => useQueryParams(), {
+  it('parses boolean values', async () => {
+    const { result } = await renderHook(() => useQueryParams(), {
       wrapper: ({ children }) => (
         <MemoryRouter initialEntries={['/test?active=true&disabled=false']}>
           <Route>{children}</Route>
@@ -72,8 +72,8 @@ describe(useQueryParams, () => {
     )
   })
 
-  it('parses number values', () => {
-    const { result } = renderHook(() => useQueryParams(), {
+  it('parses number values', async () => {
+    const { result } = await renderHook(() => useQueryParams(), {
       wrapper: ({ children }) => (
         <MemoryRouter initialEntries={['/test?count=42&price=19.99']}>
           <Route>{children}</Route>
@@ -89,8 +89,8 @@ describe(useQueryParams, () => {
     )
   })
 
-  it('handles empty query string', () => {
-    const { result } = renderHook(() => useQueryParams(), {
+  it('handles empty query string', async () => {
+    const { result } = await renderHook(() => useQueryParams(), {
       wrapper: ({ children }) => (
         <MemoryRouter initialEntries={['/test']}>
           <Route>{children}</Route>
@@ -101,8 +101,8 @@ describe(useQueryParams, () => {
     expect(JSON.stringify(result.current.queryParams)).toBe('{}')
   })
 
-  it('setQueryParams merges with existing params', () => {
-    const { result } = renderHook(() => useQueryParams(), {
+  it('setQueryParams merges with existing params', async () => {
+    const { result, act } = await renderHook(() => useQueryParams(), {
       wrapper: ({ children }) => (
         <MemoryRouter initialEntries={['/test?name=john&age=30']}>
           <Route>{children}</Route>
@@ -110,7 +110,7 @@ describe(useQueryParams, () => {
       ),
     })
 
-    act(() => {
+    await act(() => {
       result.current.setQueryParams({ age: 31, city: 'paris' })
     })
 
@@ -123,8 +123,8 @@ describe(useQueryParams, () => {
     )
   })
 
-  it('replaceQueryParams replaces all params', () => {
-    const { result } = renderHook(() => useQueryParams(), {
+  it('replaceQueryParams replaces all params', async () => {
+    const { result, act } = await renderHook(() => useQueryParams(), {
       wrapper: ({ children }) => (
         <MemoryRouter initialEntries={['/test?name=john&age=30']}>
           <Route>{children}</Route>
@@ -132,7 +132,7 @@ describe(useQueryParams, () => {
       ),
     })
 
-    act(() => {
+    await act(() => {
       result.current.replaceQueryParams({ city: 'paris' })
     })
 
@@ -143,12 +143,12 @@ describe(useQueryParams, () => {
     )
   })
 
-  it('push option uses history.push', () => {
+  it('push option uses history.push', async () => {
     const history = createMemoryHistory({ initialEntries: ['/test?name=john'] })
     const pushSpy = vi.spyOn(history, 'push')
     const replaceSpy = vi.spyOn(history, 'replace')
 
-    const { result } = renderHook(() => useQueryParams(), {
+    const { result, act } = await renderHook(() => useQueryParams(), {
       wrapper: ({ children }) => (
         <Router history={history}>
           <Route>{children}</Route>
@@ -156,7 +156,7 @@ describe(useQueryParams, () => {
       ),
     })
 
-    act(() => {
+    await act(() => {
       result.current.setQueryParams({ name: 'jane' }, { push: true })
     })
 
@@ -164,12 +164,12 @@ describe(useQueryParams, () => {
     expect(replaceSpy).not.toHaveBeenCalledTimes(1)
   })
 
-  it('default option uses history.replace', () => {
+  it('default option uses history.replace', async () => {
     const history = createMemoryHistory({ initialEntries: ['/test?name=john'] })
     const pushSpy = vi.spyOn(history, 'push')
     const replaceSpy = vi.spyOn(history, 'replace')
 
-    const { result } = renderHook(() => useQueryParams(), {
+    const { result, act } = await renderHook(() => useQueryParams(), {
       wrapper: ({ children }) => (
         <Router history={history}>
           <Route>{children}</Route>
@@ -177,7 +177,7 @@ describe(useQueryParams, () => {
       ),
     })
 
-    act(() => {
+    await act(() => {
       result.current.setQueryParams({ name: 'jane' })
     })
 
@@ -185,12 +185,12 @@ describe(useQueryParams, () => {
     expect(pushSpy).not.toHaveBeenCalledTimes(1)
   })
 
-  it('does not update URL when params have not changed', () => {
+  it('does not update URL when params have not changed', async () => {
     const history = createMemoryHistory({ initialEntries: ['/test?name=john'] })
     const pushSpy = vi.spyOn(history, 'push')
     const replaceSpy = vi.spyOn(history, 'replace')
 
-    const { result } = renderHook(() => useQueryParams(), {
+    const { result, act } = await renderHook(() => useQueryParams(), {
       wrapper: ({ children }) => (
         <Router history={history}>
           <Route>{children}</Route>
@@ -198,7 +198,7 @@ describe(useQueryParams, () => {
       ),
     })
 
-    act(() => {
+    await act(() => {
       result.current.setQueryParams({ name: 'john' })
     })
 
@@ -206,8 +206,8 @@ describe(useQueryParams, () => {
     expect(replaceSpy).not.toHaveBeenCalledTimes(1)
   })
 
-  it('handles null values by omitting them', () => {
-    const { result } = renderHook(() => useQueryParams(), {
+  it('handles null values by omitting them', async () => {
+    const { result, act } = await renderHook(() => useQueryParams(), {
       wrapper: ({ children }) => (
         <MemoryRouter initialEntries={['/test?name=john']}>
           <Route>{children}</Route>
@@ -215,15 +215,15 @@ describe(useQueryParams, () => {
       ),
     })
 
-    act(() => {
+    await act(() => {
       result.current.setQueryParams({ name: null })
     })
 
     expect(JSON.stringify(result.current.queryParams)).toBe('{}')
   })
 
-  it('handles undefined values by omitting them', () => {
-    const { result } = renderHook(() => useQueryParams(), {
+  it('handles undefined values by omitting them', async () => {
+    const { result, act } = await renderHook(() => useQueryParams(), {
       wrapper: ({ children }) => (
         <MemoryRouter initialEntries={['/test?name=john']}>
           <Route>{children}</Route>
@@ -231,15 +231,15 @@ describe(useQueryParams, () => {
       ),
     })
 
-    act(() => {
+    await act(() => {
       result.current.setQueryParams({ name: undefined })
     })
 
     expect(JSON.stringify(result.current.queryParams)).toBe('{}')
   })
 
-  it('updates when location changes', () => {
-    const { result } = renderHook(() => useQueryParams(), {
+  it('updates when location changes', async () => {
+    const { result, act } = await renderHook(() => useQueryParams(), {
       wrapper: ({ children }) => (
         <MemoryRouter initialEntries={['/test?name=john']}>
           <Route>{children}</Route>
@@ -249,15 +249,15 @@ describe(useQueryParams, () => {
 
     expect(result.current.queryParams['name']).toBe('john')
 
-    act(() => {
+    await act(() => {
       result.current.setQueryParams({ name: 'jane' })
     })
 
     expect(result.current.queryParams['name']).toBe('jane')
   })
 
-  it('handles array params correctly', () => {
-    const { result } = renderHook(() => useQueryParams(), {
+  it('handles array params correctly', async () => {
+    const { result, act } = await renderHook(() => useQueryParams(), {
       wrapper: ({ children }) => (
         <MemoryRouter initialEntries={['/test?tags=admin']}>
           <Route>{children}</Route>
@@ -265,18 +265,18 @@ describe(useQueryParams, () => {
       ),
     })
 
-    act(() => {
+    await act(() => {
       result.current.setQueryParams({ tags: ['admin', 'user'] })
     })
 
     expect(result.current.queryParams['tags']).toStrictEqual(['admin', 'user'])
   })
 
-  it('setQueryParams with push option', () => {
+  it('setQueryParams with push option', async () => {
     const history = createMemoryHistory({ initialEntries: ['/test'] })
     const pushSpy = vi.spyOn(history, 'push')
 
-    const { result } = renderHook(() => useQueryParams(), {
+    const { result, act } = await renderHook(() => useQueryParams(), {
       wrapper: ({ children }) => (
         <Router history={history}>
           <Route>{children}</Route>
@@ -284,18 +284,18 @@ describe(useQueryParams, () => {
       ),
     })
 
-    act(() => {
+    await act(() => {
       result.current.setQueryParams({ name: 'john' }, { push: true })
     })
 
     expect(pushSpy).toHaveBeenCalledWith('/test?name=john')
   })
 
-  it('replaceQueryParams with push option', () => {
+  it('replaceQueryParams with push option', async () => {
     const history = createMemoryHistory({ initialEntries: ['/test'] })
     const pushSpy = vi.spyOn(history, 'push')
 
-    const { result } = renderHook(() => useQueryParams(), {
+    const { result, act } = await renderHook(() => useQueryParams(), {
       wrapper: ({ children }) => (
         <Router history={history}>
           <Route>{children}</Route>
@@ -303,18 +303,18 @@ describe(useQueryParams, () => {
       ),
     })
 
-    act(() => {
+    await act(() => {
       result.current.replaceQueryParams({ name: 'john' }, { push: true })
     })
 
     expect(pushSpy).toHaveBeenCalledWith('/test?name=john')
   })
 
-  it('replaceQueryParams with replace option', () => {
+  it('replaceQueryParams with replace option', async () => {
     const history = createMemoryHistory({ initialEntries: ['/test'] })
     const replaceSpy = vi.spyOn(history, 'replace')
 
-    const { result } = renderHook(() => useQueryParams(), {
+    const { result, act } = await renderHook(() => useQueryParams(), {
       wrapper: ({ children }) => (
         <Router history={history}>
           <Route>{children}</Route>
@@ -322,7 +322,7 @@ describe(useQueryParams, () => {
       ),
     })
 
-    act(() => {
+    await act(() => {
       result.current.replaceQueryParams({ name: 'john' }, { push: false })
     })
 

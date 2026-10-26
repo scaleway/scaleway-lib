@@ -1,12 +1,12 @@
 // oxlint-disable typescript/promise-function-async
-import { act, renderHook } from '@testing-library/react'
 import { assert, describe, expect, it } from 'vitest'
+import { renderHook } from 'vitest-browser-react'
 import type { Location } from '../index'
 import { MemoryRouter, Route, useLocation, useNavigate } from '../index'
 
 describe(useNavigate, () => {
-  it('returns navigate function', () => {
-    const { result } = renderHook(() => useNavigate(), {
+  it('returns navigate function', async () => {
+    const { result } = await renderHook(() => useNavigate(), {
       wrapper: ({ children }) => (
         <MemoryRouter>
           <Route>{children}</Route>
@@ -17,10 +17,10 @@ describe(useNavigate, () => {
     expect(result.current).toBeTypeOf('function')
   })
 
-  it('navigate with string path', () => {
+  it('navigate with string path', async () => {
     let location: Partial<Location> = {}
 
-    const { result } = renderHook(
+    const { result, act } = await renderHook(
       () => {
         const navigate = useNavigate()
         return { navigate }
@@ -41,7 +41,7 @@ describe(useNavigate, () => {
       },
     )
 
-    act(() => {
+    await act(() => {
       result.current.navigate('/target')
     })
 
@@ -49,10 +49,10 @@ describe(useNavigate, () => {
     expect(location.pathname).toBe('/target')
   })
 
-  it('navigate with object', () => {
+  it('navigate with object', async () => {
     let location: Partial<Location> = {}
 
-    const { result } = renderHook(
+    const { result, act } = await renderHook(
       () => {
         const navigate = useNavigate()
         return { navigate }
@@ -73,7 +73,7 @@ describe(useNavigate, () => {
       },
     )
 
-    act(() => {
+    await act(() => {
       result.current.navigate({ pathname: '/target', search: '?foo=bar' })
     })
 
@@ -82,8 +82,8 @@ describe(useNavigate, () => {
     expect(location.search).toBe('?foo=bar')
   })
 
-  it('navigate updates location', () => {
-    const { result } = renderHook(
+  it('navigate updates location', async () => {
+    const { result, act } = await renderHook(
       () => {
         const navigate = useNavigate()
         const location = useLocation()
@@ -100,17 +100,17 @@ describe(useNavigate, () => {
 
     expect(result.current.location.pathname).toBe('/initial')
 
-    act(() => {
+    await act(() => {
       result.current.navigate('/updated')
     })
 
     expect(result.current.location.pathname).toBe('/updated')
   })
 
-  it('navigate with state', () => {
+  it('navigate with state', async () => {
     let location: Partial<Location> = {}
 
-    const { result } = renderHook(
+    const { result, act } = await renderHook(
       () => {
         const navigate = useNavigate()
         return { navigate }
@@ -131,7 +131,7 @@ describe(useNavigate, () => {
       },
     )
 
-    act(() => {
+    await act(() => {
       result.current.navigate({ pathname: '/target' }, { state: { from: 'home' } })
     })
 
@@ -139,10 +139,10 @@ describe(useNavigate, () => {
     expect(location.state).toStrictEqual({ from: 'home' })
   })
 
-  it('navigate with hash', () => {
+  it('navigate with hash', async () => {
     let location: Partial<Location> = {}
 
-    const { result } = renderHook(
+    const { result, act } = await renderHook(
       () => {
         const navigate = useNavigate()
         return { navigate }
@@ -163,7 +163,7 @@ describe(useNavigate, () => {
       },
     )
 
-    act(() => {
+    await act(() => {
       result.current.navigate({ pathname: '/target', hash: '#section' })
     })
 
@@ -171,10 +171,10 @@ describe(useNavigate, () => {
     expect(location.hash).toBe('#section')
   })
 
-  it('navigate with replace=true uses history.replace', () => {
+  it('navigate with replace=true uses history.replace', async () => {
     let location: Partial<Location> = {}
 
-    const { result } = renderHook(
+    const { result, act } = await renderHook(
       () => {
         const navigate = useNavigate()
         return { navigate }
@@ -195,7 +195,7 @@ describe(useNavigate, () => {
       },
     )
 
-    act(() => {
+    await act(() => {
       result.current.navigate('/target', { replace: true })
     })
 
@@ -203,10 +203,10 @@ describe(useNavigate, () => {
     expect(location.pathname).toBe('/target')
   })
 
-  it('navigate with replace=false uses history.push', () => {
+  it('navigate with replace=false uses history.push', async () => {
     let location: Partial<Location> = {}
 
-    const { result } = renderHook(
+    const { result, act } = await renderHook(
       () => {
         const navigate = useNavigate()
         return { navigate }
@@ -227,7 +227,7 @@ describe(useNavigate, () => {
       },
     )
 
-    act(() => {
+    await act(() => {
       result.current.navigate('/target', { replace: false })
     })
 
@@ -235,10 +235,10 @@ describe(useNavigate, () => {
     expect(location.pathname).toBe('/target')
   })
 
-  it('navigate with state option', () => {
+  it('navigate with state option', async () => {
     let location: Partial<Location> = {}
 
-    const { result } = renderHook(
+    const { result, act } = await renderHook(
       () => {
         const navigate = useNavigate()
         return { navigate }
@@ -259,7 +259,7 @@ describe(useNavigate, () => {
       },
     )
 
-    act(() => {
+    await act(() => {
       result.current.navigate('/target', { state: { key: 'value' } })
     })
 
@@ -267,10 +267,10 @@ describe(useNavigate, () => {
     expect(location.state).toStrictEqual({ key: 'value' })
   })
 
-  it('navigate with replace and state', () => {
+  it('navigate with replace and state', async () => {
     let location: Partial<Location> = {}
 
-    const { result } = renderHook(
+    const { result, act } = await renderHook(
       () => {
         const navigate = useNavigate()
         return { navigate }
@@ -291,7 +291,7 @@ describe(useNavigate, () => {
       },
     )
 
-    act(() => {
+    await act(() => {
       result.current.navigate('/target', { replace: true, state: { replaced: true } })
     })
 

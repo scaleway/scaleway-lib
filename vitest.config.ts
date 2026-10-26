@@ -1,4 +1,5 @@
 import react from '@vitejs/plugin-react'
+import { playwright } from '@vitest/browser-playwright'
 import { defineConfig } from 'vitest/config'
 
 export const defaultConfig = defineConfig({
@@ -31,12 +32,18 @@ export const defaultConfig = defineConfig({
     name: 'lib',
     reporters: ['default'],
     restoreMocks: true,
+    browser: {
+      // shared browser-mode setup; a package opts in with `browser.enabled: true` in its own vitest.config.ts
+      provider: playwright(),
+      // always headless: local runs must not open browser windows (CI is headless anyway)
+      headless: true,
+      instances: [{ browser: 'chromium' }],
+    },
     server: {
       deps: {
         inline: true,
       },
     },
-    setupFiles: ['vitest-localstorage-mock'],
 
     typecheck: {
       enabled: true,

@@ -1,7 +1,7 @@
 import { API, createClient } from '@scaleway/sdk-client'
-import { act, renderHook, waitFor } from '@testing-library/react'
 import type { ReactNode } from 'react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { renderHook } from 'vitest-browser-react'
 import { MOCK_AUDIENCE_ID, MOCK_ENCODED_JWT_COOKIE } from '../../mocks/index'
 import { AuthScwProvider, useAuthScw } from '../useAuthScw/AuthScwProvider'
 import type { AuthProviderParamType } from '../useAuthScw/AuthScwProvider'
@@ -49,7 +49,8 @@ const createWrapper =
 
 const Wrapper = createWrapper()
 
-const { location } = globalThis
+// captured before any test: the real replaceState (a test below mocks it) and the initial URL
+const replaceState = globalThis.history.replaceState.bind(globalThis.history)
 const defaultURL = new URL(globalThis.location.href)
 
 const resetStorage = () => {
@@ -67,15 +68,15 @@ const localStorageStore = () =>
 describe('useauthscw provider', () => {
   beforeEach(() => {
     resetStorage()
-    // Allow reset of the url, as globalThis.replaceState is not trully mocked
-    // type force is resolving a typescript bug
-    globalThis.location = location
-    globalThis.location.href = defaultURL.href
+    // restore the real replaceState a previous test may have mocked, then reset the URL
+    // without the iframe navigation a location.href assignment would cause in a real browser
+    globalThis.history.replaceState = replaceState
+    globalThis.history.replaceState({}, '', defaultURL)
   })
 
   describe('useauthscwscw hook', () => {
-    it('should check initialvalues', () => {
-      const { result } = renderHook(useAuthScw, { wrapper: Wrapper })
+    it('should check initialvalues', async () => {
+      const { result } = await renderHook(useAuthScw, { wrapper: Wrapper })
 
       expect(result.current.audienceId).toBeUndefined()
       expect(result.current.authenticated).toBe(false)
@@ -88,13 +89,13 @@ describe('useauthscw provider', () => {
 
       currentUrl.searchParams.set('token', btoa(JSON.stringify(MOCK_ENCODED_JWT_COOKIE)))
 
-      globalThis.location.href = currentUrl.href
+      // replaceState injects the token param without the real navigation a location.href assignment causes
+      globalThis.history.replaceState({}, '', currentUrl)
 
-      // @note replaceState doesn't work on jsdom / happy-dom.
       // TODO: Need to find a proper mock to test that replaceState remove token params
       globalThis.history.replaceState = mockReplaceStateHistory
 
-      const { result } = renderHook(useAuthScw, { wrapper: Wrapper })
+      const { result } = await renderHook(useAuthScw, { wrapper: Wrapper })
 
       expect(mockReplaceStateHistory).toHaveBeenCalledTimes(1)
 
@@ -115,7 +116,7 @@ describe('useauthscw provider', () => {
       const store = createAuthStoreManager({ storageType: 'cookie', suffixKey: DEFAULT_COOKIE_SUFFIX })
       store.setJwt({ jwtInfo: MOCK_ENCODED_JWT_COOKIE })
 
-      const { result } = renderHook(useAuthScw, { wrapper: Wrapper })
+      const { result } = await renderHook(useAuthScw, { wrapper: Wrapper })
 
       expect(result.current.audienceId).toStrictEqual(MOCK_AUDIENCE_ID)
       expect(result.current.authenticated).toBe(true)
@@ -128,8 +129,8 @@ describe('useauthscw provider', () => {
     })
 
     it('should setjwt correctly', async () => {
-      const { result } = renderHook(useAuthScw, { wrapper: Wrapper })
-      act(() => {
+      const { result, act } = await renderHook(useAuthScw, { wrapper: Wrapper })
+      await act(() => {
         result.current.setJWT(MOCK_ENCODED_JWT_COOKIE)
       })
 
@@ -152,9 +153,9 @@ describe('useauthscw provider', () => {
         },
       })
 
-      const { result } = renderHook(useAuthScw, { wrapper: Wrapper })
+      const { result } = await renderHook(useAuthScw, { wrapper: Wrapper })
 
-      await waitFor(async () => {
+      await vi.waitFor(async () => {
         const currentJWT = await result.current.getJWT()
         expect(currentJWT?.source).toBe('refreshSession')
       })
@@ -176,9 +177,9 @@ describe('useauthscw provider', () => {
         },
       })
 
-      const { result } = renderHook(useAuthScw, { wrapper: Wrapper })
+      const { result } = await renderHook(useAuthScw, { wrapper: Wrapper })
 
-      await waitFor(async () => {
+      await vi.waitFor(async () => {
         const currentJWT = await result.current.getJWT()
         expect(currentJWT).toBeUndefined()
       })
@@ -201,17 +202,17 @@ describe('useauthscw provider', () => {
       })
       mockDeleteJwt.mockResolvedValue()
 
-      const { result } = renderHook(useAuthScw, { wrapper: Wrapper })
+      const { result, act } = await renderHook(useAuthScw, { wrapper: Wrapper })
 
-      act(() => {
+      await act(() => {
         result.current.logout()
       })
 
-      await waitFor(() => {
+      await vi.waitFor(() => {
         expect(result.current.authenticated).toBe(false)
       })
       expect(mockDeleteJwt).toHaveBeenCalledTimes(1)
-      await waitFor(() => {
+      await vi.waitFor(() => {
         expect(result.current.audienceId).toBeUndefined()
       })
     })
@@ -221,9 +222,9 @@ describe('useauthscw provider', () => {
     it('should work with localStorage as storage backend', async () => {
       const wrapper = createWrapper({ storageType: 'localStorage' })
 
-      const { result } = renderHook(useAuthScw, { wrapper })
+      const { result, act } = await renderHook(useAuthScw, { wrapper })
 
-      act(() => {
+      await act(() => {
         result.current.setJWT(MOCK_ENCODED_JWT_COOKIE)
       })
 
@@ -237,7 +238,7 @@ describe('useauthscw provider', () => {
       expect(localStorageStore().getJwt(MOCK_AUDIENCE_ID)).not.toBeNull()
     })
 
-    it('should migrate from cookie to localStorage on init when migrateFromCookie is true', () => {
+    it('should migrate from cookie to localStorage on init when migrateFromCookie is true', async () => {
       // Seed cookie before mounting the provider
       cookieStore().setJwt({ jwtInfo: MOCK_ENCODED_JWT_COOKIE })
 
@@ -246,7 +247,7 @@ describe('useauthscw provider', () => {
       expect(localStorageStore().getJwt(MOCK_AUDIENCE_ID)).toBeNull()
 
       const wrapper = createWrapper({ storageType: 'localStorage', migrateFromCookie: true })
-      const { result } = renderHook(useAuthScw, { wrapper })
+      const { result } = await renderHook(useAuthScw, { wrapper })
 
       // The provider should have migrated the JWT to localStorage
       expect(result.current.audienceId).toStrictEqual(MOCK_AUDIENCE_ID)
@@ -260,11 +261,11 @@ describe('useauthscw provider', () => {
       expect(cookieStore().getAudienceId()).toBeNull()
     })
 
-    it('should not migrate when migrateFromCookie is false', () => {
+    it('should not migrate when migrateFromCookie is false', async () => {
       cookieStore().setJwt({ jwtInfo: MOCK_ENCODED_JWT_COOKIE })
 
       const wrapper = createWrapper({ storageType: 'localStorage', migrateFromCookie: false })
-      const { result } = renderHook(useAuthScw, { wrapper })
+      const { result } = await renderHook(useAuthScw, { wrapper })
 
       // No migration, the provider does not know about the cookie JWT
       expect(result.current.audienceId).toBeUndefined()
