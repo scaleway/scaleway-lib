@@ -1,26 +1,26 @@
 // oxlint-disable vitest/require-top-level-describe
-import { render, renderHook, screen } from '@testing-library/react'
 import { assert, expect, test } from 'vitest'
+import { render, renderHook } from 'vitest-browser-react'
 import type { Location, Match } from '../index'
 import { MemoryRouter, Route, useHistory } from '../index'
 
-test('renders children', () => {
+test('renders children', async () => {
   const text = 'Hello MemoryRouter'
 
-  render(
+  const screen = await render(
     <MemoryRouter>
       <div>{text}</div>
     </MemoryRouter>,
   )
 
-  expect(screen.getByText(text)).toBeInTheDocument()
+  expect(screen.getByText(text).element()).toBeDefined()
 })
 
-test('creates history with initialEntries', () => {
+test('creates history with initialEntries', async () => {
   const initialEntries = ['/initial-path']
   let location: Partial<Location> = {}
 
-  render(
+  await render(
     <MemoryRouter initialEntries={initialEntries}>
       <Route
         path="/"
@@ -36,12 +36,12 @@ test('creates history with initialEntries', () => {
   expect(location.pathname).toBe('/initial-path')
 })
 
-test('creates history with initialIndex', () => {
+test('creates history with initialIndex', async () => {
   const initialEntries = ['/first', '/second', '/third']
   const initialIndex = 1
   let location: Partial<Location> = {}
 
-  render(
+  await render(
     <MemoryRouter initialEntries={initialEntries} initialIndex={initialIndex}>
       <Route
         path="/"
@@ -57,10 +57,10 @@ test('creates history with initialIndex', () => {
   expect(location.pathname).toBe('/second')
 })
 
-test('provides default initialEntries when not specified', () => {
+test('provides default initialEntries when not specified', async () => {
   let location: Partial<Location> = {}
 
-  render(
+  await render(
     <MemoryRouter>
       <Route
         path="/"
@@ -76,21 +76,21 @@ test('provides default initialEntries when not specified', () => {
   expect(location.pathname).toBe('/')
 })
 
-test('history is stable across re-renders', () => {
-  const { result, rerender } = renderHook(() => useHistory(), {
+test('history is stable across re-renders', async () => {
+  const { result, rerender } = await renderHook(() => useHistory(), {
     wrapper: MemoryRouter,
   })
 
   const firstHistory = result.current
-  rerender()
+  await rerender()
 
   expect(result.current).toBe(firstHistory)
 })
 
-test('provides root route context', () => {
+test('provides root route context', async () => {
   let match: Partial<Match> = {}
 
-  render(
+  await render(
     <MemoryRouter>
       <Route
         render={({ match: matchProps }) => {

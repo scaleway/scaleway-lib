@@ -1,3 +1,4 @@
+// oxlint-disable react/only-export-components -- test mock: mixes mock functions with a mock component
 import type { ReactNode } from 'react'
 import { vi } from 'vitest'
 

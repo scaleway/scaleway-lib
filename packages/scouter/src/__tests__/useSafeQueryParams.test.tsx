@@ -1,6 +1,6 @@
-import { act, renderHook } from '@testing-library/react'
 import { createMemoryHistory } from 'history'
 import { describe, expect, it, vi } from 'vitest'
+import { renderHook } from 'vitest-browser-react'
 import { z } from 'zod'
 import { MemoryRouter, Route, useSafeQueryParams } from '../index'
 import { Router } from '../Router'
@@ -18,16 +18,16 @@ describe(useSafeQueryParams, () => {
     tags: z.array(z.string()).optional(),
   })
 
-  it('returns queryParams and setQueryParams', () => {
-    const { result } = renderHook(() => useSafeQueryParams({ schema }), { wrapper })
+  it('returns queryParams and setQueryParams', async () => {
+    const { result } = await renderHook(() => useSafeQueryParams({ schema }), { wrapper })
 
     expect(result.current).toHaveProperty('queryParams')
     expect(result.current).toHaveProperty('setQueryParams')
     expect(result.current.setQueryParams).toBeTypeOf('function')
   })
 
-  it('parses valid query params', () => {
-    const { result } = renderHook(() => useSafeQueryParams({ schema }), {
+  it('parses valid query params', async () => {
+    const { result } = await renderHook(() => useSafeQueryParams({ schema }), {
       wrapper: ({ children }) => (
         <MemoryRouter initialEntries={['/test?name=john&age=30']}>
           <Route>{children}</Route>
@@ -41,7 +41,7 @@ describe(useSafeQueryParams, () => {
     })
   })
 
-  it('setQueryParams with keepExisting=true (default)', () => {
+  it('setQueryParams with keepExisting=true (default)', async () => {
     const history = createMemoryHistory({
       initialEntries: [
         {
@@ -51,7 +51,7 @@ describe(useSafeQueryParams, () => {
       ],
     })
 
-    const { result } = renderHook(() => useSafeQueryParams({ schema }), {
+    const { result, act } = await renderHook(() => useSafeQueryParams({ schema }), {
       wrapper: ({ children }) => (
         <Router history={history}>
           <Route>{children}</Route>
@@ -59,7 +59,7 @@ describe(useSafeQueryParams, () => {
       ),
     })
 
-    act(() => {
+    await act(() => {
       result.current.setQueryParams({ name: 'john' }, { keepExisting: true })
     })
 
@@ -67,10 +67,10 @@ describe(useSafeQueryParams, () => {
     expect(history.location.search).toContain('name=john')
   })
 
-  it('setQueryParams with keepExisting=false', () => {
+  it('setQueryParams with keepExisting=false', async () => {
     const history = createMemoryHistory({ initialEntries: ['/test?existing=value'] })
 
-    const { result } = renderHook(() => useSafeQueryParams({ schema }), {
+    const { result, act } = await renderHook(() => useSafeQueryParams({ schema }), {
       wrapper: ({ children }) => (
         <Router history={history}>
           <Route>{children}</Route>
@@ -78,7 +78,7 @@ describe(useSafeQueryParams, () => {
       ),
     })
 
-    act(() => {
+    await act(() => {
       result.current.setQueryParams({ name: 'john' }, { keepExisting: false })
     })
 
@@ -86,12 +86,12 @@ describe(useSafeQueryParams, () => {
     expect(history.location.search).toContain('name=john')
   })
 
-  it('setQueryParams with push=true', () => {
+  it('setQueryParams with push=true', async () => {
     const history = createMemoryHistory({ initialEntries: ['/test'] })
     const pushSpy = vi.spyOn(history, 'push')
     const replaceSpy = vi.spyOn(history, 'replace')
 
-    const { result } = renderHook(() => useSafeQueryParams({ schema }), {
+    const { result, act } = await renderHook(() => useSafeQueryParams({ schema }), {
       wrapper: ({ children }) => (
         <Router history={history}>
           <Route>{children}</Route>
@@ -99,7 +99,7 @@ describe(useSafeQueryParams, () => {
       ),
     })
 
-    act(() => {
+    await act(() => {
       result.current.setQueryParams({ name: 'john' }, { push: true })
     })
 
@@ -107,12 +107,12 @@ describe(useSafeQueryParams, () => {
     expect(replaceSpy).not.toHaveBeenCalledTimes(1)
   })
 
-  it('setQueryParams with push=false (default)', () => {
+  it('setQueryParams with push=false (default)', async () => {
     const history = createMemoryHistory({ initialEntries: ['/test'] })
     const pushSpy = vi.spyOn(history, 'push')
     const replaceSpy = vi.spyOn(history, 'replace')
 
-    const { result } = renderHook(() => useSafeQueryParams({ schema }), {
+    const { result, act } = await renderHook(() => useSafeQueryParams({ schema }), {
       wrapper: ({ children }) => (
         <Router history={history}>
           <Route>{children}</Route>
@@ -120,7 +120,7 @@ describe(useSafeQueryParams, () => {
       ),
     })
 
-    act(() => {
+    await act(() => {
       result.current.setQueryParams({ name: 'john' })
     })
 
@@ -128,14 +128,14 @@ describe(useSafeQueryParams, () => {
     expect(pushSpy).not.toHaveBeenCalledTimes(1)
   })
 
-  it('handles array values in setQueryParams', () => {
+  it('handles array values in setQueryParams', async () => {
     const history = createMemoryHistory({ initialEntries: ['/test'] })
 
     const arraySchema = z.object({
       tags: z.array(z.string()).optional(),
     })
 
-    const { result } = renderHook(() => useSafeQueryParams({ schema: arraySchema }), {
+    const { result, act } = await renderHook(() => useSafeQueryParams({ schema: arraySchema }), {
       wrapper: ({ children }) => (
         <Router history={history}>
           <Route>{children}</Route>
@@ -143,7 +143,7 @@ describe(useSafeQueryParams, () => {
       ),
     })
 
-    act(() => {
+    await act(() => {
       result.current.setQueryParams({ tags: ['admin', 'user'] })
     })
 
@@ -151,10 +151,10 @@ describe(useSafeQueryParams, () => {
     expect(history.location.search).toContain('tags=user')
   })
 
-  it('handles null values by omitting them', () => {
+  it('handles null values by omitting them', async () => {
     const history = createMemoryHistory({ initialEntries: ['/test?name=john'] })
 
-    const { result } = renderHook(() => useSafeQueryParams({ schema }), {
+    const { result, act } = await renderHook(() => useSafeQueryParams({ schema }), {
       wrapper: ({ children }) => (
         <Router history={history}>
           <Route>{children}</Route>
@@ -162,7 +162,7 @@ describe(useSafeQueryParams, () => {
       ),
     })
 
-    act(() => {
+    await act(() => {
       // @ts-expect-error we try with null
       result.current.setQueryParams({ name: null })
     })
@@ -170,10 +170,10 @@ describe(useSafeQueryParams, () => {
     expect(history.location.search).not.toContain('name=')
   })
 
-  it('handles undefined values by omitting them', () => {
+  it('handles undefined values by omitting them', async () => {
     const history = createMemoryHistory({ initialEntries: ['/test?name=john'] })
 
-    const { result } = renderHook(() => useSafeQueryParams({ schema }), {
+    const { result, act } = await renderHook(() => useSafeQueryParams({ schema }), {
       wrapper: ({ children }) => (
         <Router history={history}>
           <Route>{children}</Route>
@@ -181,17 +181,17 @@ describe(useSafeQueryParams, () => {
       ),
     })
 
-    act(() => {
+    await act(() => {
       result.current.setQueryParams({ name: undefined })
     })
 
     expect(history.location.search).not.toContain('name=')
   })
 
-  it('deletes existing key before setting new value', () => {
+  it('deletes existing key before setting new value', async () => {
     const history = createMemoryHistory({ initialEntries: ['/test?name=john'] })
 
-    const { result } = renderHook(() => useSafeQueryParams({ schema }), {
+    const { result, act } = await renderHook(() => useSafeQueryParams({ schema }), {
       wrapper: ({ children }) => (
         <Router history={history}>
           <Route>{children}</Route>
@@ -199,7 +199,7 @@ describe(useSafeQueryParams, () => {
       ),
     })
 
-    act(() => {
+    await act(() => {
       result.current.setQueryParams({ name: 'jane' })
     })
 
@@ -208,8 +208,8 @@ describe(useSafeQueryParams, () => {
     expect(nameValues).toStrictEqual(['jane'])
   })
 
-  it('updates when location changes', () => {
-    const { result } = renderHook(() => useSafeQueryParams({ schema }), {
+  it('updates when location changes', async () => {
+    const { result, act } = await renderHook(() => useSafeQueryParams({ schema }), {
       wrapper: ({ children }) => (
         <MemoryRouter initialEntries={['/test?name=john']}>
           <Route>{children}</Route>
@@ -219,17 +219,17 @@ describe(useSafeQueryParams, () => {
 
     expect(result.current.queryParams.name).toBe('john')
 
-    act(() => {
+    await act(() => {
       result.current.setQueryParams({ name: 'jane' })
     })
 
     expect(result.current.queryParams.name).toBe('jane')
   })
 
-  it('handles empty schema', () => {
+  it('handles empty schema', async () => {
     const emptySchema = z.object({})
 
-    const { result } = renderHook(() => useSafeQueryParams({ schema: emptySchema }), {
+    const { result } = await renderHook(() => useSafeQueryParams({ schema: emptySchema }), {
       wrapper: ({ children }) => (
         <MemoryRouter initialEntries={['/test?name=john']}>
           <Route>{children}</Route>
@@ -240,7 +240,7 @@ describe(useSafeQueryParams, () => {
     expect(result.current.queryParams).toStrictEqual({})
   })
 
-  it('handles complex nested schema validation', () => {
+  it('handles complex nested schema validation', async () => {
     const complexSchema = z.object({
       search: z.string().optional(),
       page: z.string().optional(),
@@ -248,7 +248,7 @@ describe(useSafeQueryParams, () => {
       filters: z.array(z.string()).optional(),
     })
 
-    const { result } = renderHook(() => useSafeQueryParams({ schema: complexSchema }), {
+    const { result } = await renderHook(() => useSafeQueryParams({ schema: complexSchema }), {
       wrapper: ({ children }) => (
         <MemoryRouter initialEntries={['/test?search=test&page=1&limit=10&filters=a&filters=b']}>
           <Route>{children}</Route>
@@ -264,11 +264,11 @@ describe(useSafeQueryParams, () => {
     })
   })
 
-  it('setQueryParams with all options combined', () => {
+  it('setQueryParams with all options combined', async () => {
     const history = createMemoryHistory({ initialEntries: ['/test?existing=value'] })
     const pushSpy = vi.spyOn(history, 'push')
 
-    const { result } = renderHook(() => useSafeQueryParams({ schema }), {
+    const { result, act } = await renderHook(() => useSafeQueryParams({ schema }), {
       wrapper: ({ children }) => (
         <Router history={history}>
           <Route>{children}</Route>
@@ -276,7 +276,7 @@ describe(useSafeQueryParams, () => {
       ),
     })
 
-    act(() => {
+    await act(() => {
       result.current.setQueryParams({ name: 'john' }, { keepExisting: false, push: true })
     })
 

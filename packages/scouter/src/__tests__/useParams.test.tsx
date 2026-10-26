@@ -1,12 +1,12 @@
-import { renderHook } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
+import { renderHook } from 'vitest-browser-react'
 import { MemoryRouter, Route, useParams } from '../index'
 
 describe('when the path has no params', () => {
-  it('returns an empty object', () => {
+  it('returns an empty object', async () => {
     expect.hasAssertions()
 
-    const { result } = renderHook(() => useParams(), {
+    const { result } = await renderHook(() => useParams(), {
       wrapper: ({ children }) => (
         <MemoryRouter initialEntries={['/home']}>
           <Route path="/home">{children}</Route>
@@ -20,10 +20,10 @@ describe('when the path has no params', () => {
 })
 
 describe('when the path has some params', () => {
-  it('returns a hash of the URL params and their values', () => {
+  it('returns a hash of the URL params and their values', async () => {
     expect.hasAssertions()
 
-    const { result } = renderHook(() => useParams(), {
+    const { result } = await renderHook(() => useParams(), {
       wrapper: ({ children }) => (
         <MemoryRouter initialEntries={['/blog/cupcakes']}>
           <Route path="/blog/:slug">{children}</Route>
@@ -38,10 +38,10 @@ describe('when the path has some params', () => {
   })
 
   describe('a child route', () => {
-    it('returns a combined hash of the parent and child params', () => {
+    it('returns a combined hash of the parent and child params', async () => {
       expect.hasAssertions()
 
-      const { result } = renderHook(() => useParams(), {
+      const { result } = await renderHook(() => useParams(), {
         wrapper: ({ children }) => (
           <MemoryRouter initialEntries={['/users/mjackson/courses/react-router']}>
             <Route path="/users/:username">
@@ -61,10 +61,10 @@ describe('when the path has some params', () => {
 })
 
 describe('with typed params', () => {
-  it('returns typed params', () => {
+  it('returns typed params', async () => {
     expect.hasAssertions()
 
-    const { result } = renderHook(() => useParams<{ id: string; name: string }>(), {
+    const { result } = await renderHook(() => useParams<{ id: string; name: string }>(), {
       wrapper: ({ children }) => (
         <MemoryRouter initialEntries={['/item/123/john']}>
           <Route path="/item/:id/:name">{children}</Route>
@@ -80,10 +80,10 @@ describe('with typed params', () => {
 })
 
 describe('updates when params change', () => {
-  it('reflects new params when navigating', () => {
+  it('reflects new params when navigating', async () => {
     expect.hasAssertions()
 
-    const { result } = renderHook(() => useParams(), {
+    const { result } = await renderHook(() => useParams(), {
       wrapper: ({ children }) => (
         <MemoryRouter initialEntries={['/user/first']}>
           <Route path="/user/:id">{children}</Route>
@@ -96,10 +96,10 @@ describe('updates when params change', () => {
 })
 
 describe('when match is undefined', () => {
-  it('returns empty object when no Route context provides match', () => {
+  it('returns empty object when no Route context provides match', async () => {
     expect.hasAssertions()
 
-    const { result } = renderHook(() => useParams(), {
+    const { result } = await renderHook(() => useParams(), {
       wrapper: ({ children }) => <MemoryRouter initialEntries={['/home']}>{children}</MemoryRouter>,
     })
 

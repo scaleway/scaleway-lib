@@ -1,5 +1,5 @@
-import { act, renderHook } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { renderHook } from 'vitest-browser-react'
 import { useVisualPersistence } from '../'
 
 describe('usevisualpersistence', () => {
@@ -12,42 +12,42 @@ describe('usevisualpersistence', () => {
     localStorage.clear()
   })
 
-  it('should work', () => {
+  it('should work', async () => {
     const key = 'key.example'
 
-    const { result } = renderHook(() => useVisualPersistence(key))
+    const { result, act } = await renderHook(() => useVisualPersistence(key))
     expect(result.current.isHidden).toBe(false)
-    act(() => {
+    await act(() => {
       result.current.hide()
     })
     expect(result.current.isHidden).toBe(true)
     expect(localStorage.getItem(`visualPersistency.${key}`)).toBe('true')
   })
 
-  it('should handle initialvalue and restore', () => {
+  it('should handle initialvalue and restore', async () => {
     const key = 'key.example'
     localStorage.setItem(`visualPersistency.${key}`, 'true')
 
-    const { result } = renderHook(() => useVisualPersistence(key))
+    const { result, act } = await renderHook(() => useVisualPersistence(key))
 
     expect(result.current.isHidden).toBe(true)
-    act(() => {
+    await act(() => {
       result.current.restore()
     })
     expect(localStorage.getItem(`visualPersistency.${key}`)).toBe('false')
     expect(result.current.isHidden).toBe(false)
   })
 
-  it('should work without prefix', () => {
+  it('should work without prefix', async () => {
     const key = 'key.example'
 
-    const { result } = renderHook(() =>
+    const { result, act } = await renderHook(() =>
       useVisualPersistence(key, {
         usePrefix: false,
       }),
     )
     expect(result.current.isHidden).toBe(false)
-    act(() => {
+    await act(() => {
       result.current.hide()
     })
     expect(result.current.isHidden).toBe(true)
