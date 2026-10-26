@@ -88,6 +88,11 @@ scaleway-lib is a set of NPM packages used at Scaleway.
   ![npm](https://img.shields.io/npm/dm/@scaleway/scouter)
   ![npm](https://img.shields.io/npm/v/@scaleway/scouter)
 
+- [`@scaleway/use-state-reset`](./packages/use-state-reset/README.md): A small react hook to reset state to its initial value when one of the dependencies changes
+
+  ![npm](https://img.shields.io/npm/dm/@scaleway/use-state-reset)
+  ![npm](https://img.shields.io/npm/v/@scaleway/use-state-reset)
+
 - [`@scaleway/use-storage`](./packages/use-storage/README.md): A React hook to interact with local/session storage in reactive way with the same API as setState
 
   ![npm](https://img.shields.io/npm/dm/@scaleway/use-storage)

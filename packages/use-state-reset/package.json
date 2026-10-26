@@ -1,0 +1,43 @@
+{
+  "name": "@scaleway/use-state-reset",
+  "version": "0.0.1",
+  "description": "A small react hook to reset state to its initial value when one of the dependencies changes",
+  "homepage": "https://github.com/scaleway/scaleway-lib/tree/main/packages/use-state-reset",
+  "bugs": {
+    "url": "https://github.com/scaleway/scaleway-lib/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scaleway/scaleway-lib.git",
+    "directory": "packages/use-state-reset"
+  },
+  "files": [
+    "dist/"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "tsdown",
+    "test:unit": "vitest --run",
+    "test:unit:coverage": "pnpm test:unit --coverage"
+  },
+  "devDependencies": {
+    "react": "catalog:"
+  },
+  "peerDependencies": {
+    "react": ">=16.8"
+  },
+  "engines": {
+    "node": "24.x || 25.x || 26.x"
+  }
+}

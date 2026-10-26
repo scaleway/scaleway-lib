@@ -649,6 +649,12 @@ importers:
         specifier: 'catalog:'
         version: 19.3.1
 
+  packages/use-state-reset:
+    devDependencies:
+      react:
+        specifier: 'catalog:'
+        version: 19.3.1
+
   packages/use-storage:
     devDependencies:
       react:
