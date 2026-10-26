@@ -48,7 +48,7 @@ catalog:
   read-pkg: 10.1.0
   regexparam: 3.0.0
   simple-git: 4.0.2
-  tsdown: 0.23.1
+  tsdown: 0.23.2
   turbo: 2.11.10
   typescript: 7.0.2
   use-deep-compare-effect: 1.8.1
