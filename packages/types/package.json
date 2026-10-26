@@ -33,9 +33,6 @@
     "test:unit": "vitest --run",
     "test:unit:coverage": "pnpm test:unit --coverage"
   },
-  "devDependencies": {
-    "typescript": "7.0.2"
-  },
   "peerDependencies": {
     "typescript": ">=4.1"
   }
