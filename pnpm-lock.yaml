@@ -195,8 +195,8 @@ catalogs:
       specifier: 2.16.0
       version: 2.16.0
     '@scaleway/sdk-iam':
-      specifier: 2.21.3
-      version: 2.21.3
+      specifier: 2.22.0
+      version: 2.22.0
     '@segment/analytics-next':
       specifier: 1.84.3
       version: 1.84.3
@@ -441,7 +441,7 @@ importers:
     dependencies:
       '@scaleway/sdk-iam':
         specifier: 'catalog:'
-        version: 2.21.3(@scaleway/sdk-client@2.16.0)
+        version: 2.22.0(@scaleway/sdk-client@2.16.0)
       cookie:
         specifier: 'catalog:'
         version: 2.0.1
@@ -1509,8 +1509,8 @@ packages:
   '@scaleway/sdk-client@2.16.0':
     resolution: {integrity: sha512-ZUoMPWY8b0YVD8hCvKVhyjJQwkwHmTKJQaGC6fWjexu7JF2LnYnWlVamZlImbyrThskhUvFP2VGEaYKbVLmCiw==}
 
-  '@scaleway/sdk-iam@2.21.3':
-    resolution: {integrity: sha512-sLEAsczl955/tHprJDvrQtaFL4e5xe9onjxRya49MrZBJTpoN+g5vwTO/dGBqvyS0dwP0HmYDYl8wkhTj3h31g==}
+  '@scaleway/sdk-iam@2.22.0':
+    resolution: {integrity: sha512-Gia0mIdDztl7YvDMJS+iDe13kG+/NqKs5M19oKlu0BeDhrg6q11Er2ykfzx2I3fcKdxfQtZvNUcFLEkIOAcCuQ==}
     peerDependencies:
       '@scaleway/sdk-client': ^2.16.0
 
@@ -3715,7 +3715,7 @@ snapshots:
 
   '@scaleway/sdk-client@2.16.0': {}
 
-  '@scaleway/sdk-iam@2.21.3(@scaleway/sdk-client@2.16.0)':
+  '@scaleway/sdk-iam@2.22.0(@scaleway/sdk-client@2.16.0)':
     dependencies:
       '@scaleway/random-name': 6.0.2
       '@scaleway/sdk-client': 2.16.0
