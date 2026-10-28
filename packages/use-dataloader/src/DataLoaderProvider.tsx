@@ -1,9 +1,9 @@
 import type { ComponentType, Context, ReactNode } from 'react'
-import { createContext, useCallback, useContext, useMemo, useRef } from 'react'
+import { createContext, useCallback, useContext, useEffect, useMemo, useRef } from 'react'
 import { DEFAULT_MAX_CONCURRENT_REQUESTS } from './constants'
 import DataLoader from './dataloader'
 import { marshalQueryKey } from './helpers'
-import type { DataLoaderMethodFn, KeyType, OnErrorFn } from './types'
+import type { DataLoaderMethodFn, KeyType, OnErrorFn, RefetchOnType } from './types'
 
 type PromiseVoidFunc = (() => Promise<unknown>) | (() => void)
 
@@ -38,6 +38,8 @@ export type IDataLoaderContext = {
   computeKey: (key: KeyType) => string
   cacheKeyPrefix?: string
   defaultDatalifetime?: number
+  defaultRefetchOnFocus?: RefetchOnType
+  defaultRefetchOnReconnect?: RefetchOnType
   onError?: (error: Error) => void | Promise<void>
   clearAllCachedData: () => void
   clearCachedData: (key: KeyType) => void
@@ -55,6 +57,47 @@ export const DataLoaderContext: Context<IDataLoaderContext> =
   // @ts-expect-error we force the context to undefined, should be corrected with default values
   createContext<IDataLoaderContext>(undefined)
 
+type RefetchEvent = 'focus' | 'reconnect'
+
+/**
+ * A request must be refetched on the given event when any of its refetch
+ * policies opts in: 'always' unconditionally, true only if the cached data is
+ * stale. Staleness mirrors the mount behavior of useDataLoader: without
+ * dataLifetime data is always considered outdated, a settled request is stale
+ * once its dataLifetime expired and a request that never settled (e.g. it
+ * errored) is refetched as a retry.
+ */
+const shouldRefetchOn = (request: DataLoader<unknown, unknown>, event: RefetchEvent, now: number): boolean => {
+  for (const policy of request.refetchPolicies) {
+    // A disabled hook never asks for a refetch
+    if (!policy.enabled) {
+      continue
+    }
+
+    const setting = event === 'focus' ? policy.onFocus : policy.onReconnect
+
+    // 'always' refetches regardless of staleness
+    if (setting === 'always') {
+      return true
+    }
+    // setting is false: the hook opted out
+    if (!setting) {
+      continue
+    }
+
+    // The request never settled, e.g. it errored: refetch acts as a retry
+    if (request.dataUpdatedAt === undefined) {
+      return true
+    }
+    // Without dataLifetime the data is always considered outdated, like on mount
+    if (policy.dataLifetime === undefined || request.dataUpdatedAt + policy.dataLifetime < now) {
+      return true
+    }
+  }
+
+  return false
+}
+
 type DataLoaderProviderProps = {
   children: ReactNode
   cacheKeyPrefix?: string
@@ -64,6 +107,16 @@ type DataLoaderProviderProps = {
    * Default request lifetime in milliseconds. It doesnt override values passed to hooks
    */
   defaultDatalifetime?: number
+  /**
+   * Default refetchOnFocus for the hooks, overridable per hook
+   * @default false
+   */
+  defaultRefetchOnFocus?: RefetchOnType
+  /**
+   * Default refetchOnReconnect for the hooks, overridable per hook
+   * @default true
+   */
+  defaultRefetchOnReconnect?: RefetchOnType
 }
 
 const DataLoaderProvider: ComponentType<DataLoaderProviderProps> = ({
@@ -72,6 +125,8 @@ const DataLoaderProvider: ComponentType<DataLoaderProviderProps> = ({
   onError,
   maxConcurrentRequests = DEFAULT_MAX_CONCURRENT_REQUESTS,
   defaultDatalifetime,
+  defaultRefetchOnFocus,
+  defaultRefetchOnReconnect,
 }) => {
   const requestsRef = useRef<Requests>({})
 
@@ -168,6 +223,55 @@ const DataLoaderProvider: ComponentType<DataLoaderProviderProps> = ({
     )
   }, [])
 
+  const refetchRequests = useCallback((event: RefetchEvent) => {
+    const now = Date.now()
+
+    for (const request of Object.values(requestsRef.current)) {
+      // Only requests observed by mounted hooks are refetched, not every cached entry
+      if (request.observers.length === 0) {
+        continue
+      }
+
+      if (shouldRefetchOn(request, event, now)) {
+        // Non-forced load() dedupes: a request already in flight is not relaunched
+        request.load().catch(() => undefined)
+      }
+    }
+  }, [])
+
+  // A single listener at provider level is cheaper than one per hook: it
+  // iterates active requests instead of each useDataLoader adding its own.
+  // Refetch errors are swallowed here: the request status and error still
+  // update the hooks state via notifyChanges, like react-query does.
+  useEffect(() => {
+    // SSR-safe: no DOM event to listen to on the server
+    if (typeof document === 'undefined') {
+      return undefined
+    }
+
+    const refetchOnFocus = () => {
+      refetchRequests('focus')
+    }
+    const refetchOnVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        refetchRequests('focus')
+      }
+    }
+    const refetchOnOnline = () => {
+      refetchRequests('reconnect')
+    }
+
+    globalThis.addEventListener('focus', refetchOnFocus)
+    document.addEventListener('visibilitychange', refetchOnVisibilityChange)
+    globalThis.addEventListener('online', refetchOnOnline)
+
+    return () => {
+      globalThis.removeEventListener('focus', refetchOnFocus)
+      document.removeEventListener('visibilitychange', refetchOnVisibilityChange)
+      globalThis.removeEventListener('online', refetchOnOnline)
+    }
+  }, [refetchRequests])
+
   const getCachedData = useCallback(
     (key?: KeyType) => {
       if (key !== undefined) {
@@ -199,6 +303,8 @@ const DataLoaderProvider: ComponentType<DataLoaderProviderProps> = ({
       clearCachedData,
       computeKey,
       defaultDatalifetime,
+      defaultRefetchOnFocus,
+      defaultRefetchOnReconnect,
       getCachedData: getCachedData as IDataLoaderContext['getCachedData'],
       getOrAddRequest: getOrAddRequest as IDataLoaderContext['getOrAddRequest'],
       getReloads: getReloads as IDataLoaderContext['getReloads'],
@@ -225,6 +331,8 @@ const DataLoaderProvider: ComponentType<DataLoaderProviderProps> = ({
       reloadGroup,
       computeKey,
       defaultDatalifetime,
+      defaultRefetchOnFocus,
+      defaultRefetchOnReconnect,
       reloadAllActive,
       reloadGroupActive,
     ],
