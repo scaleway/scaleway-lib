@@ -1,6 +1,6 @@
 import { DEFAULT_MAX_CONCURRENT_REQUESTS, StatusEnum } from './constants'
 import { isAbortError } from './helpers'
-import type { DataLoaderMethodFn, PromiseType } from './types'
+import type { DataLoaderMethodFn, PromiseType, RefetchPolicy } from './types'
 
 export type DataLoaderConstructorArgs<ResultType> = {
   key: string
@@ -33,6 +33,13 @@ class DataLoader<ResultType, ErrorType> {
   public data?: ResultType
 
   public observers: (() => void)[] = []
+
+  /**
+   * Refetch preferences of the mounted hooks observing this request, used by
+   * the DataLoaderProvider focus/reconnect listeners to decide whether the
+   * request must be refetched on window focus or network reconnection.
+   */
+  public refetchPolicies = new Set<RefetchPolicy>()
 
   public timeout?: number
 

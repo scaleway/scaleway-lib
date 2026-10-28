@@ -10,6 +10,26 @@ export type OnSuccessFn<ResultType> = ((result: ResultType) => void | Promise<vo
 export type OnCancelFn = (() => void | Promise<void>) | undefined
 export type NeedPollingType<ResultType> = boolean | ((data?: ResultType) => boolean)
 
+/**
+ * Whether a request is refetched on window focus or network reconnection
+ * - `true`: refetch only if the cached data is stale (see `dataLifetime`)
+ * - `'always'`: refetch even if the cached data is fresh
+ * - `false`: never refetch
+ */
+export type RefetchOnType = boolean | 'always'
+
+/**
+ * Refetch preference of a mounted hook, registered on its DataLoader so the
+ * DataLoaderProvider focus/reconnect listeners know if the request must be
+ * refetched. `dataLifetime` mirrors the resolved `dataLifetime` of the hook.
+ */
+export type RefetchPolicy = {
+  dataLifetime?: number
+  enabled: boolean
+  onFocus: RefetchOnType
+  onReconnect: RefetchOnType
+}
+
 export type UseDataLoaderConfig<ResultType, ErrorType> = {
   /**
    * Launch request automatically on mount
@@ -47,6 +67,20 @@ export type UseDataLoaderConfig<ResultType, ErrorType> = {
    * @default true
    */
   needPolling?: NeedPollingType<ResultType>
+  /**
+   * Refetch the request when the window regains focus, if the cached data is
+   * stale per dataLifetime. 'always' refetches even if the data is fresh.
+   * Overridable globally with the DataLoaderProvider defaultRefetchOnFocus
+   * @default false
+   */
+  refetchOnFocus?: RefetchOnType
+  /**
+   * Refetch the request when the network reconnects, if the cached data is
+   * stale per dataLifetime. 'always' refetches even if the data is fresh.
+   * Overridable globally with the DataLoaderProvider defaultRefetchOnReconnect
+   * @default true
+   */
+  refetchOnReconnect?: RefetchOnType
 }
 
 export type DataLoaderMethodOptions = { signal?: AbortSignal }
@@ -105,7 +139,11 @@ export type UseInfiniteDataLoaderConfig<
   ErrorType extends Error,
   ParamsType extends Record<string, unknown>,
   ParamsKey extends keyof ParamsType,
-> = Omit<UseDataLoaderConfig<ResultType, ErrorType>, 'initialData'> & {
+> = Omit<
+  // refetch on focus/reconnect is not supported yet by useInfiniteDataLoader
+  UseDataLoaderConfig<ResultType, ErrorType>,
+  'initialData' | 'refetchOnFocus' | 'refetchOnReconnect'
+> & {
   /**
    * If return undefined it consider that there are no remaining page to load
    */

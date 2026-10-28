@@ -108,6 +108,29 @@ ReactDOM.render(
 )
 ```
 
+#### `defaultRefetchOnFocus` / `defaultRefetchOnReconnect`
+
+You can refetch data automatically when the window regains focus (or becomes visible) and when the network reconnects.
+
+Both are enabled globally on the `DataLoaderProvider` and overridable per hook with the `refetchOnFocus` and `refetchOnReconnect` options:
+
+- `false` (default of `refetchOnFocus`): never refetch on focus
+- `true` (default of `refetchOnReconnect`): refetch only stale data — data is stale when its `dataLifetime` expired, or when there is no `dataLifetime` (like a mount)
+- `'always'`: refetch even if the data is fresh
+
+Only requests with mounted hooks are refetched, never every cached entry, and a request already in flight is not launched twice. A request that errored is retried on reconnect.
+
+```js
+ReactDOM.render(
+  <React.StrictMode>
+    <DataLoaderProvider defaultRefetchOnFocus defaultRefetchOnReconnect="always">
+      <App />
+    </DataLoaderProvider>
+  </React.StrictMode>,
+  document.getElementById('root'),
+)
+```
+
 ### useDataLoader
 
 ```js
@@ -233,6 +256,8 @@ const useDataLoader = (
     enabled = true, // Launch request automatically
     keepPreviousData = true, // Do we need to keep the previous data after reload
     dataLifetime, // Max time before previous success data is outdated (in millisecond). By default refetch on every mount
+    refetchOnFocus = false, // Refetch on window focus if the data is stale per dataLifetime, 'always' to refetch even fresh data
+    refetchOnReconnect = true, // Refetch on network reconnection if the data is stale per dataLifetime, 'always' to refetch even fresh data
   } = {},
 )
 ```

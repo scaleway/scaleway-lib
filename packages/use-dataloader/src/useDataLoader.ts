@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { StatusEnum } from './constants'
+import { DEFAULT_REFETCH_ON_FOCUS, DEFAULT_REFETCH_ON_RECONNECT, StatusEnum } from './constants'
 import { useDataLoaderContext } from './DataLoaderProvider'
 import { createTokenGuardedHandlers } from './helpers'
-import type { DataLoaderMethodFn, KeyType, UseDataLoaderConfig, UseDataLoaderResult } from './types'
+import type { DataLoaderMethodFn, KeyType, RefetchPolicy, UseDataLoaderConfig, UseDataLoaderResult } from './types'
 
 const noop = () => undefined
 
@@ -20,10 +20,29 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
     pollingInterval,
     initialData,
     dataLifetime,
+    refetchOnFocus,
+    refetchOnReconnect,
   } = config ?? {}
 
-  const { getOrAddRequest, onError: onGlobalError, defaultDatalifetime } = useDataLoaderContext()
+  const {
+    getOrAddRequest,
+    onError: onGlobalError,
+    defaultDatalifetime,
+    defaultRefetchOnFocus,
+    defaultRefetchOnReconnect,
+  } = useDataLoaderContext()
   const computedDatalifetime = dataLifetime ?? defaultDatalifetime
+  const computedRefetchOnFocus = refetchOnFocus ?? defaultRefetchOnFocus ?? DEFAULT_REFETCH_ON_FOCUS
+  const computedRefetchOnReconnect = refetchOnReconnect ?? defaultRefetchOnReconnect ?? DEFAULT_REFETCH_ON_RECONNECT
+  const refetchPolicy = useMemo<RefetchPolicy>(
+    () => ({
+      dataLifetime: computedDatalifetime,
+      enabled,
+      onFocus: computedRefetchOnFocus,
+      onReconnect: computedRefetchOnReconnect,
+    }),
+    [computedDatalifetime, computedRefetchOnFocus, computedRefetchOnReconnect, enabled],
+  )
   const methodRef = useRef(method)
   const onSuccessRef = useRef(onSuccess)
   const onErrorRef = useRef(onError ?? onGlobalError)
@@ -54,6 +73,16 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
       }
     }
   }, [request, forceRerender])
+
+  // Registered on its own effect: a policy change must not remove the
+  // observer, which would cancel an in-flight request
+  useEffect(() => {
+    request.refetchPolicies.add(refetchPolicy)
+
+    return () => {
+      request.refetchPolicies.delete(refetchPolicy)
+    }
+  }, [request, refetchPolicy])
 
   const needLoad = useMemo(
     () =>
