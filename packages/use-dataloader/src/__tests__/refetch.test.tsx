@@ -13,6 +13,23 @@ const fakeSuccessPromise = async () =>
     }, PROMISE_TIMEOUT)
   })
 
+/**
+ * Returns a distinct value per call: waiting for the second value proves the
+ * refetch completed, where isSuccess/isFetching can be satisfied by a stale
+ * render while the refetch is still in flight
+ */
+const createSuccessiveValuesPromise = () => {
+  let callIndex = 0
+  return vi.fn<() => Promise<string>>(async () => {
+    callIndex += 1
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(`value-${callIndex}`)
+      }, PROMISE_TIMEOUT)
+    })
+  })
+}
+
 const fakeErrorPromise = async () =>
   new Promise((_resolve, reject) => {
     setTimeout(() => {
@@ -60,14 +77,14 @@ describe('refetchOnFocus', () => {
   })
 
   it('should refetch stale data on focus when refetchOnFocus is true', async () => {
-    const method = vi.fn<typeof fakeSuccessPromise>(fakeSuccessPromise)
+    const method = createSuccessiveValuesPromise()
     const { result } = renderHook(
       () => useDataLoader('focus-stale', method, { dataLifetime: 0, refetchOnFocus: true }),
       { wrapper },
     )
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBe(true)
+      expect(result.current.data).toBe('value-1')
     })
     expect(method).toHaveBeenCalledTimes(1)
 
@@ -75,9 +92,10 @@ describe('refetchOnFocus', () => {
 
     expect(method).toHaveBeenCalledTimes(2)
     await waitFor(() => {
-      expect(result.current.isSuccess).toBe(true)
+      expect(result.current.data).toBe('value-2')
     })
     expect(result.current.isFetching).toBe(false)
+    expect(result.current.isSuccess).toBe(true)
   })
 
   it('should not refetch fresh data on focus when refetchOnFocus is true', async () => {
@@ -167,13 +185,13 @@ describe('refetchOnFocus', () => {
 
 describe('refetchOnReconnect', () => {
   it('should refetch data on reconnect by default', async () => {
-    const method = vi.fn<typeof fakeSuccessPromise>(fakeSuccessPromise)
+    const method = createSuccessiveValuesPromise()
     const { result } = renderHook(() => useDataLoader('reconnect-default', method), {
       wrapper,
     })
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBe(true)
+      expect(result.current.data).toBe('value-1')
     })
     expect(method).toHaveBeenCalledTimes(1)
 
@@ -181,8 +199,9 @@ describe('refetchOnReconnect', () => {
 
     expect(method).toHaveBeenCalledTimes(2)
     await waitFor(() => {
-      expect(result.current.isFetching).toBe(false)
+      expect(result.current.data).toBe('value-2')
     })
+    expect(result.current.isFetching).toBe(false)
   })
 
   it('should not refetch fresh data on reconnect', async () => {
@@ -342,14 +361,14 @@ describe('refetch scoping', () => {
   })
 
   it('should not launch an already in flight request twice on repeated focus', async () => {
-    const method = vi.fn<typeof fakeSuccessPromise>(fakeSuccessPromise)
+    const method = createSuccessiveValuesPromise()
     const { result } = renderHook(
       () => useDataLoader('scope-in-flight', method, { dataLifetime: 0, refetchOnFocus: 'always' }),
       { wrapper },
     )
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBe(true)
+      expect(result.current.data).toBe('value-1')
     })
     expect(method).toHaveBeenCalledTimes(1)
 
@@ -358,7 +377,9 @@ describe('refetch scoping', () => {
 
     expect(method).toHaveBeenCalledTimes(2)
     await waitFor(() => {
-      expect(result.current.isFetching).toBe(false)
+      // a duplicated launch would produce value-3
+      expect(result.current.data).toBe('value-2')
     })
+    expect(result.current.isFetching).toBe(false)
   })
 })
