@@ -2,7 +2,8 @@ import { render, renderHook, screen, waitFor } from '@testing-library/react'
 import type { ReactNode } from 'react'
 import { assert, describe, expect, it, vi } from 'vitest'
 import { StatusEnum } from '../constants'
-import DataLoaderProvider, { useDataLoaderContext } from '../DataLoaderProvider'
+import DataLoaderProvider from '../DataLoaderProvider'
+import { useDataLoaderContext } from '../useDataLoaderContext'
 
 const TEST_KEY = 'test'
 const PROMISE_TIMEOUT = 5

@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { StatusEnum } from './constants'
 import type DataLoader from './dataloader'
-import { useDataLoaderContext } from './DataLoaderProvider'
 import { createTokenGuardedHandlers, marshalQueryKey } from './helpers'
 import type {
   DataLoaderMethodOptions,
@@ -10,6 +9,7 @@ import type {
   UseInfiniteDataLoaderConfig,
   UseInfiniteDataLoaderResult,
 } from './types'
+import { useDataLoaderContext } from './useDataLoaderContext'
 
 /**
  * This hook can be used for promises that have a "Load More" so page change but we want to keep the previous data and append the next one

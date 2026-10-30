@@ -1,7 +1,7 @@
 import type { SerializeOptions } from 'cookie'
 import { parseCookie, stringifySetCookie } from 'cookie'
 import type { ComponentType, PropsWithChildren } from 'react'
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useDestinations } from '../analytics/useDestinations'
 import {
   CATEGORIES,
@@ -16,26 +16,7 @@ import { IS_CLIENT } from '../helpers/isClient'
 import { stringToHash } from '../helpers/misc'
 import type { Config, Consent, Destination, Destinations } from '../types'
 import { isCategoryKind } from '../types'
-
-type Context = {
-  destinations: Destinations
-  needConsent: boolean
-  isDestinationsLoaded: boolean
-  categories: typeof CATEGORIES
-  categoriesConsent: Partial<Consent>
-  saveConsent: (categoriesConsent: Partial<Consent>) => void
-}
-
-const CookieConsentContext = createContext<Context | undefined>(undefined)
-
-export const useCookieConsent = (): Context => {
-  const context = useContext(CookieConsentContext)
-  if (context === undefined) {
-    throw new Error('useCookieConsent must be used within a CookieConsentProvider')
-  }
-
-  return context
-}
+import { CookieConsentContext } from './useCookieConsent'
 
 type CookieConsentProviderProps = PropsWithChildren<{
   isConsentRequired: boolean
