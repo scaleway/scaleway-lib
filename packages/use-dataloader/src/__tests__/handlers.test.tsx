@@ -1,8 +1,9 @@
 import { act, renderHook, waitFor } from '@testing-library/react'
 import type { ReactNode } from 'react'
 import { describe, expect, it, vi } from 'vitest'
-import DataLoaderProvider, { useDataLoaderContext } from '../DataLoaderProvider'
+import DataLoaderProvider from '../DataLoaderProvider'
 import { useDataLoader } from '../useDataLoader'
+import { useDataLoaderContext } from '../useDataLoaderContext'
 
 const PROMISE_TIMEOUT = 10
 

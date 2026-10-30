@@ -1,7 +1,8 @@
 import { render, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { getAllowedConsents, getDeniedConsents } from '../cookies-consent/consents'
-import { CookieConsentProvider, useCookieConsent } from '../cookies-consent/CookieConsentProvider'
+import { CookieConsentProvider } from '../cookies-consent/CookieConsentProvider'
+import { useCookieConsent } from '../cookies-consent/useCookieConsent'
 import type { Config } from '../types'
 
 // Mock dependencies
