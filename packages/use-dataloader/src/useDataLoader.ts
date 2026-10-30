@@ -177,8 +177,14 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
 
       const { onSuccessCallback, onErrorCallback } = createTokenGuardedHandlers(
         loadTokenRef,
-        async (result: ResultType) => (onSuccessRef.current ?? clearOptimisticLoading)(result),
-        async (error: ErrorType & Error) => (onErrorRef.current ?? clearOptimisticLoading)(error),
+        async (result: ResultType) => {
+          clearOptimisticLoading()
+          return onSuccessRef.current?.(result)
+        },
+        async (error: ErrorType & Error) => {
+          clearOptimisticLoading()
+          return onErrorRef.current?.(error)
+        },
       )
 
       request.load().then(onSuccessCallback).catch(onErrorCallback)
