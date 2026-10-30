@@ -108,6 +108,29 @@ ReactDOM.render(
 )
 ```
 
+#### `defaultRefetchOnFocus` / `defaultRefetchOnReconnect`
+
+You can refetch data automatically when the window regains focus (or becomes visible) and when the network reconnects.
+
+Both are enabled globally on the `DataLoaderProvider` and overridable per hook with the `refetchOnFocus` and `refetchOnReconnect` options:
+
+- `false` (default of `refetchOnFocus`): never refetch on focus
+- `true` (default of `refetchOnReconnect`): refetch only stale data — data is stale when its `dataLifetime` expired, or when there is no `dataLifetime` (like a mount)
+- `'always'`: refetch even if the data is fresh
+
+Only requests with mounted hooks are refetched, never every cached entry, and a request already in flight is not launched twice. A request that errored is retried on reconnect.
+
+```js
+ReactDOM.render(
+  <React.StrictMode>
+    <DataLoaderProvider defaultRefetchOnFocus defaultRefetchOnReconnect="always">
+      <App />
+    </DataLoaderProvider>
+  </React.StrictMode>,
+  document.getElementById('root'),
+)
+```
+
 ### useDataLoader
 
 ```js
@@ -233,24 +256,27 @@ const useDataLoader = (
     enabled = true, // Launch request automatically
     keepPreviousData = true, // Do we need to keep the previous data after reload
     dataLifetime, // Max time before previous success data is outdated (in millisecond). By default refetch on every mount
+    refetchOnFocus = false, // Refetch on window focus if the data is stale per dataLifetime, 'always' to refetch even fresh data
+    refetchOnReconnect = true, // Refetch on network reconnection if the data is stale per dataLifetime, 'always' to refetch even fresh data
   } = {},
 )
 ```
 
 The hook returns an object with the following properties:
 
-|   Property   |                                                                 Description                                                                  |
-| :----------: | :------------------------------------------------------------------------------------------------------------------------------------------: |
-|    isIdle    |                                                    `true` if the request is not launched                                                     |
-|  isLoading   |                                       `true` only during the initial fetch when there's no cached data                                       |
-|  isFetching  |                                  `true` when there is an active request in progress (initial or subsequent)                                  |
-|  isSuccess   |                                                  `true`if the request finished successfully                                                  |
-|   isError    |                                                     `true` if the request throw an error                                                     |
-|  isPolling   | `true` if the request if `enabled` is true, `pollingInterval` is defined and the status is `isLoading`,`isSuccess` or during the first fetch |
-| previousData |                                        if `keepPreviousData` is true it return the last data fetched                                         |
-|     data     |                 return the `initialData` if no data is fetched or not present in the cache otherwise return the data fetched                 |
-|    error     |                                                 return the error occured during the request                                                  |
-|    reload    |                                       allow you to reload the data (it doesn't clear the actual data)                                        |
+|   Property    |                                                                 Description                                                                  |
+| :-----------: | :------------------------------------------------------------------------------------------------------------------------------------------: |
+|    isIdle     |                                                    `true` if the request is not launched                                                     |
+|   isLoading   |                                       `true` only during the initial fetch when there's no cached data                                       |
+|  isFetching   |                                  `true` when there is an active request in progress (initial or subsequent)                                  |
+|   isSuccess   |                                                  `true`if the request finished successfully                                                  |
+|    isError    |                                                     `true` if the request throw an error                                                     |
+|   isPolling   | `true` if the request if `enabled` is true, `pollingInterval` is defined and the status is `isLoading`,`isSuccess` or during the first fetch |
+| previousData  |                                        if `keepPreviousData` is true it return the last data fetched                                         |
+|     data      |                 return the `initialData` if no data is fetched or not present in the cache otherwise return the data fetched                 |
+| dataUpdatedAt |                               the timestamp of the last successful fetch, `undefined` until the first success                                |
+|     error     |                                                 return the error occured during the request                                                  |
+|    reload     |                                       allow you to reload the data (it doesn't clear the actual data)                                        |
 
 ### Abort signal
 
