@@ -29,8 +29,6 @@ describe(useNavigate, () => {
         wrapper: ({ children }) => (
           <MemoryRouter initialEntries={['/initial']}>
             <Route
-              // false positive
-              // oxlint-disable-next-line typescript/promise-function-async
               render={({ location: locationProps }) => {
                 location = locationProps
                 return children
@@ -61,8 +59,6 @@ describe(useNavigate, () => {
         wrapper: ({ children }) => (
           <MemoryRouter initialEntries={['/initial']}>
             <Route
-              // false positive
-              // oxlint-disable-next-line typescript/promise-function-async
               render={({ location: locationProps }) => {
                 location = locationProps
                 return children
@@ -119,8 +115,6 @@ describe(useNavigate, () => {
         wrapper: ({ children }) => (
           <MemoryRouter initialEntries={['/initial']}>
             <Route
-              // false positive
-              // oxlint-disable-next-line typescript/promise-function-async
               render={({ location: locationProps }) => {
                 location = locationProps
                 return children
@@ -151,8 +145,6 @@ describe(useNavigate, () => {
         wrapper: ({ children }) => (
           <MemoryRouter initialEntries={['/initial']}>
             <Route
-              // false positive
-              // oxlint-disable-next-line typescript/promise-function-async
               render={({ location: locationProps }) => {
                 location = locationProps
                 return children
@@ -183,8 +175,6 @@ describe(useNavigate, () => {
         wrapper: ({ children }) => (
           <MemoryRouter initialEntries={['/initial']}>
             <Route
-              // false positive
-              // oxlint-disable-next-line typescript/promise-function-async
               render={({ location: locationProps }) => {
                 location = locationProps
                 return children
@@ -215,8 +205,6 @@ describe(useNavigate, () => {
         wrapper: ({ children }) => (
           <MemoryRouter initialEntries={['/initial']}>
             <Route
-              // false positive
-              // oxlint-disable-next-line typescript/promise-function-async
               render={({ location: locationProps }) => {
                 location = locationProps
                 return children
@@ -247,8 +235,6 @@ describe(useNavigate, () => {
         wrapper: ({ children }) => (
           <MemoryRouter initialEntries={['/initial']}>
             <Route
-              // false positive
-              // oxlint-disable-next-line typescript/promise-function-async
               render={({ location: locationProps }) => {
                 location = locationProps
                 return children
@@ -279,8 +265,6 @@ describe(useNavigate, () => {
         wrapper: ({ children }) => (
           <MemoryRouter initialEntries={['/initial']}>
             <Route
-              // false positive
-              // oxlint-disable-next-line typescript/promise-function-async
               render={({ location: locationProps }) => {
                 location = locationProps
                 return children

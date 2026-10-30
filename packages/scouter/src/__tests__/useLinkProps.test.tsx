@@ -34,10 +34,7 @@ test('onClick navigates with push by default', () => {
     wrapper: ({ children }) => (
       <MemoryRouter initialEntries={['/initial']}>
         <Route
-          // false positive
-          // oxlint-disable-next-line typescript/promise-function-async
           render={({ history }) => {
-            // oxlint-disable-next-line typescript/unbound-method
             const originalPush = history.push
             history.push = (...args: Parameters<typeof originalPush>) => {
               navigateCalled = true
@@ -68,10 +65,7 @@ test('onClick navigates with replace when replace=true', () => {
     wrapper: ({ children }) => (
       <MemoryRouter initialEntries={['/initial']}>
         <Route
-          // false positive
-          // oxlint-disable-next-line typescript/promise-function-async
           render={({ history }) => {
-            // oxlint-disable-next-line typescript/unbound-method
             const originalReplace = history.replace
             history.replace = (...args: Parameters<typeof originalReplace>) => {
               replaceCalled = true
@@ -260,8 +254,6 @@ test('uses replace when navigating to same location (duplicate navigation)', () 
     wrapper: ({ children }) => (
       <MemoryRouter initialEntries={['/current']}>
         <Route
-          // false positive
-          // oxlint-disable-next-line typescript/promise-function-async
           render={({ history }) => {
             const originalReplace = history.replace
             const originalPush = history.push
@@ -299,8 +291,6 @@ test('uses replace when navigating to same location with search', () => {
     wrapper: ({ children }) => (
       <MemoryRouter initialEntries={['/current?foo=bar']}>
         <Route
-          // false positive
-          // oxlint-disable-next-line typescript/promise-function-async
           render={({ history }) => {
             const originalReplace = history.replace
             history.replace = (...args: Parameters<typeof originalReplace>) => {
@@ -332,8 +322,6 @@ test('uses push when navigating to different location even with replace=false', 
     wrapper: ({ children }) => (
       <MemoryRouter initialEntries={['/current']}>
         <Route
-          // false positive
-          // oxlint-disable-next-line typescript/promise-function-async
           render={({ history }) => {
             const originalPush = history.push
             history.push = (...args: Parameters<typeof originalPush>) => {
@@ -365,8 +353,6 @@ test('respects replace option even for duplicate navigation', () => {
     wrapper: ({ children }) => (
       <MemoryRouter initialEntries={['/current']}>
         <Route
-          // false positive
-          // oxlint-disable-next-line typescript/promise-function-async
           render={({ history }) => {
             const originalReplace = history.replace
             history.replace = (...args: Parameters<typeof originalReplace>) => {
