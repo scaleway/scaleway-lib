@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { StatusEnum } from './constants'
-import { useDataLoaderContext } from './DataLoaderProvider'
 import { createTokenGuardedHandlers } from './helpers'
 import type { DataLoaderMethodFn, KeyType, UseDataLoaderConfig, UseDataLoaderResult } from './types'
+import { useDataLoaderContext } from './useDataLoaderContext'
 
 const noop = () => undefined
 

@@ -1,7 +1,8 @@
 import { act, render, screen, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { AnalyticsProvider } from '../analytics/AnalyticsProvider'
 import type { Analytics } from '../analytics/useAnalytics'
-import { AnalyticsProvider, useAnalytics } from '../analytics/useAnalytics'
+import { useAnalytics } from '../analytics/useAnalytics'
 import type { CategoryKind } from '../types'
 
 const rudder = vi.hoisted(() => {

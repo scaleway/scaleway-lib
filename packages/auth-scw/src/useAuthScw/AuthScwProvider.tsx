@@ -1,12 +1,13 @@
 import type { SingleXOR } from '@scaleway/types'
 import type { ReactNode } from 'react'
-import { createContext, useCallback, useContext, useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { isExpired } from '../isExpired'
 import type { AuthScwContextType, ConfigAuthProvider, CookieOptions, EncodedJWT, OnError } from '../types'
 import { createAuthStoreManager } from './authStoreManager'
 import { clientSingleton } from './createClient'
 import { decodeToken, encodeToken, getStoredJWT, refreshSession } from './helpers'
 import { proxyJwt } from './proxyJwt'
+import { AuthScwContext } from './useAuthScw'
 
 type CookieStorageOptions = {
   storageType?: 'cookie'
@@ -31,10 +32,6 @@ export type AuthProviderParamType = ConfigAuthProvider & {
    */
   migrateFromCookie?: boolean
 } & SingleXOR<CookieStorageOptions, LocalStorageOptions>
-
-const AuthScwContext = createContext<AuthScwContextType>({} as AuthScwContextType)
-
-export const useAuthScw = () => useContext(AuthScwContext)
 
 export const AuthScwProvider = ({
   clientSettings,

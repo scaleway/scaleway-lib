@@ -1,4 +1,5 @@
 export { CATEGORIES } from '../constants'
 export type { AnalyticsIntegration, CategoryKind, Consents } from '../types'
-export { CookieConsentProvider, useCookieConsent } from './CookieConsentProvider'
+export { CookieConsentProvider } from './CookieConsentProvider'
+export { useCookieConsent } from './useCookieConsent'
 export { getAllowedConsents, getDeniedConsents } from './consents'
