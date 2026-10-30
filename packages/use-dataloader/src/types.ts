@@ -97,6 +97,10 @@ export type UseDataLoaderResult<ResultType, ErrorType> = {
    */
   data?: ResultType
   /**
+   * The timestamp of the last successful fetch, undefined until the first success
+   */
+  dataUpdatedAt?: number
+  /**
    * The error occured during the request
    */
   error?: ErrorType

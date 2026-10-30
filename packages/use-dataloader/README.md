@@ -264,18 +264,19 @@ const useDataLoader = (
 
 The hook returns an object with the following properties:
 
-|   Property   |                                                                 Description                                                                  |
-| :----------: | :------------------------------------------------------------------------------------------------------------------------------------------: |
-|    isIdle    |                                                    `true` if the request is not launched                                                     |
-|  isLoading   |                                       `true` only during the initial fetch when there's no cached data                                       |
-|  isFetching  |                                  `true` when there is an active request in progress (initial or subsequent)                                  |
-|  isSuccess   |                                                  `true`if the request finished successfully                                                  |
-|   isError    |                                                     `true` if the request throw an error                                                     |
-|  isPolling   | `true` if the request if `enabled` is true, `pollingInterval` is defined and the status is `isLoading`,`isSuccess` or during the first fetch |
-| previousData |                                        if `keepPreviousData` is true it return the last data fetched                                         |
-|     data     |                 return the `initialData` if no data is fetched or not present in the cache otherwise return the data fetched                 |
-|    error     |                                                 return the error occured during the request                                                  |
-|    reload    |                                       allow you to reload the data (it doesn't clear the actual data)                                        |
+|   Property    |                                                                 Description                                                                  |
+| :-----------: | :------------------------------------------------------------------------------------------------------------------------------------------: |
+|    isIdle     |                                                    `true` if the request is not launched                                                     |
+|   isLoading   |                                       `true` only during the initial fetch when there's no cached data                                       |
+|  isFetching   |                                  `true` when there is an active request in progress (initial or subsequent)                                  |
+|   isSuccess   |                                                  `true`if the request finished successfully                                                  |
+|    isError    |                                                     `true` if the request throw an error                                                     |
+|   isPolling   | `true` if the request if `enabled` is true, `pollingInterval` is defined and the status is `isLoading`,`isSuccess` or during the first fetch |
+| previousData  |                                        if `keepPreviousData` is true it return the last data fetched                                         |
+|     data      |                 return the `initialData` if no data is fetched or not present in the cache otherwise return the data fetched                 |
+| dataUpdatedAt |                               the timestamp of the last successful fetch, `undefined` until the first success                                |
+|     error     |                                                 return the error occured during the request                                                  |
+|    reload     |                                       allow you to reload the data (it doesn't clear the actual data)                                        |
 
 ### Abort signal
 
