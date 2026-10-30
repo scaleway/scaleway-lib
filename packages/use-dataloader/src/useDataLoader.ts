@@ -213,6 +213,7 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
 
   return {
     data: computedData,
+    dataUpdatedAt: request.dataUpdatedAt,
     error: request.error,
     isError,
     isFetching,
