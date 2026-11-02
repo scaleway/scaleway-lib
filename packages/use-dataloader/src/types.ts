@@ -154,7 +154,16 @@ export type UseInfiniteDataLoaderConfig<
   ParamsType extends Record<string, unknown>,
   ParamsKey extends keyof ParamsType,
 > = Omit<
-  // refetch on focus/reconnect is not supported yet by useInfiniteDataLoader
+  // refetchOnFocus and refetchOnReconnect are intentionally not supported for useInfiniteDataLoader.
+  // Rationale:
+  // - Infinite lists manage multiple page requests (one per loaded page). Auto-refetching all pages
+  //   on focus/reconnect would be expensive and often unwanted (users expect scrolled pages to stay cached).
+  //   Refetching only the first page is ambiguous and inconsistent with the hook's append semantics.
+  // - Each page has its own dataUpdatedAt, making staleness checks complex (does one stale page trigger
+  //   refetch of all pages?).
+  // - The common pattern for infinite lists is manual refresh (e.g., pull-to-refresh) via reload(),
+  //   not automatic background refetches.
+  // If you need this, open an issue with your use case.
   UseDataLoaderConfig<ResultType, ErrorType>,
   'initialData' | 'refetchOnFocus' | 'refetchOnReconnect'
 > & {

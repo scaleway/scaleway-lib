@@ -11,7 +11,7 @@ import type {
   UseDataLoaderResult,
 } from './types'
 
-export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
+export const useDataLoader = <ResultType = unknown, ErrorType extends Error = Error>(
   key: KeyType,
   method: DataLoaderMethodFn<ResultType>,
   config?: UseDataLoaderConfig<ResultType, ErrorType>,
@@ -50,8 +50,7 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
   )
   const methodRef = useRef(method)
   const onSuccessRef = useRef(onSuccess)
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
-  const onErrorRef = useRef<OnErrorFn<ErrorType>>(onError ?? (onGlobalError as OnErrorFn<ErrorType>))
+  const onErrorRef = useRef<OnErrorFn<ErrorType>>(onError ?? onGlobalError)
   const needPollingRef = useRef(needPolling)
   const [, setCounter] = useState(0)
 
@@ -162,8 +161,7 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
   }, [onSuccess])
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
-    onErrorRef.current = onError ?? (onGlobalError as OnErrorFn<ErrorType>)
+    onErrorRef.current = onError ?? onGlobalError
   }, [onError, onGlobalError])
 
   useEffect(() => {
