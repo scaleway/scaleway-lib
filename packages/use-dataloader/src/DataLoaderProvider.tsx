@@ -69,7 +69,6 @@ type RefetchEvent = 'focus' | 'reconnect'
  */
 const shouldRefetchOn = (request: DataLoader<unknown, unknown>, event: RefetchEvent, now: number): boolean => {
   for (const policy of request.refetchPolicies) {
-    // A disabled hook never asks for a refetch
     if (!policy.enabled) {
       continue
     }
@@ -227,13 +226,11 @@ const DataLoaderProvider: ComponentType<DataLoaderProviderProps> = ({
     const now = Date.now()
 
     for (const request of Object.values(requestsRef.current)) {
-      // Only requests observed by mounted hooks are refetched, not every cached entry
       if (request.observers.length === 0) {
         continue
       }
 
       if (shouldRefetchOn(request, event, now)) {
-        // Non-forced load() dedupes: a request already in flight is not relaunched
         request.load().catch(() => undefined)
       }
     }

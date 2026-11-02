@@ -118,7 +118,7 @@ Both are enabled globally on the `DataLoaderProvider` and overridable per hook w
 - `true` (default of `refetchOnReconnect`): refetch only stale data — data is stale when its `dataLifetime` expired, or when there is no `dataLifetime` (like a mount)
 - `'always'`: refetch even if the data is fresh
 
-Only requests with mounted hooks are refetched, never every cached entry, and a request already in flight is not launched twice. A request that errored is retried on reconnect.
+Only requests with mounted hooks are refetched, never every cached entry, and a request already in flight is not launched twice. A request that errored is retried on reconnect **and on focus when enabled** (same staleness rules apply).
 
 ```js
 ReactDOM.render(

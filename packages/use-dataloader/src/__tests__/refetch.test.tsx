@@ -382,4 +382,64 @@ describe('refetch scoping', () => {
     })
     expect(result.current.isFetching).toBe(false)
   })
+
+  it('should refetch when at least one mounted hook opts in (multi-hook policy merge)', async () => {
+    // Separate methods per key to avoid shared counter issues
+    const methodOptIn = createSuccessiveValuesPromise()
+    const methodOptOut = vi.fn<typeof fakeSuccessPromise>(fakeSuccessPromise)
+
+    const { result: resultOptIn } = renderHook(
+      () => useDataLoader('scope-multi-in', methodOptIn, { dataLifetime: 10_000, refetchOnFocus: 'always' }),
+      { wrapper },
+    )
+    const { result: resultOptOut } = renderHook(
+      () => useDataLoader('scope-multi-out', methodOptOut, { dataLifetime: 10_000, refetchOnFocus: false }),
+      { wrapper },
+    )
+
+    await waitFor(() => {
+      expect(resultOptIn.current.data).toBe('value-1')
+    })
+    await waitFor(() => {
+      expect(resultOptOut.current.isSuccess).toBe(true)
+    })
+    expect(methodOptIn).toHaveBeenCalledTimes(1)
+    expect(methodOptOut).toHaveBeenCalledTimes(1)
+
+    focusWindow()
+
+    // Only the opt-in request refetches
+    expect(methodOptIn).toHaveBeenCalledTimes(2)
+    expect(methodOptOut).toHaveBeenCalledTimes(1)
+    await waitFor(() => {
+      expect(resultOptIn.current.data).toBe('value-2')
+    })
+  })
+
+  it('should not refetch when all mounted hooks opt out (multi-hook policy merge)', async () => {
+    const method = vi.fn<typeof fakeSuccessPromise>(fakeSuccessPromise)
+    // Two hooks on different keys, both opt out of refetch
+    renderHook(() => useDataLoader('scope-multi-optout-a', method, { dataLifetime: 0, refetchOnFocus: false }), {
+      wrapper,
+    })
+    renderHook(() => useDataLoader('scope-multi-optout-b', method, { dataLifetime: 0, refetchOnFocus: false }), {
+      wrapper,
+    })
+
+    await waitFor(() => {
+      expect(method).toHaveBeenCalledTimes(2)
+    })
+
+    // simulate time to allow refetch/focus to compare dataLifetime with a diff
+    await waitFor(async () => {
+      await fakeSuccessPromise()
+    })
+
+    focusWindow()
+    goOnline()
+
+    await waitFor(() => {
+      expect(method).toHaveBeenCalledTimes(4)
+    })
+  })
 })
