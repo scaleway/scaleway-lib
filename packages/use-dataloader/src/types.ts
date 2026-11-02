@@ -30,6 +30,16 @@ export type RefetchPolicy = {
   onReconnect: RefetchOnType
 }
 
+/**
+ * Handlers of a mounted hook, registered on its DataLoader. Fired once per
+ * observing hook whenever the request settles (mount, reload, polling,
+ * focus/reconnect refetch, provider reload APIs). Handler errors are swallowed.
+ */
+export type RequestHandlers<ResultType = unknown, ErrorType = Error> = {
+  onSuccess: (data: ResultType) => unknown
+  onError: (error: ErrorType) => unknown
+}
+
 export type UseDataLoaderConfig<ResultType, ErrorType> = {
   /**
    * Launch request automatically on mount

@@ -1,6 +1,6 @@
 import { DEFAULT_MAX_CONCURRENT_REQUESTS, StatusEnum } from './constants'
 import { isAbortError } from './helpers'
-import type { DataLoaderMethodFn, PromiseType, RefetchPolicy } from './types'
+import type { DataLoaderMethodFn, PromiseType, RefetchPolicy, RequestHandlers } from './types'
 
 export type DataLoaderConstructorArgs<ResultType> = {
   key: string
@@ -40,6 +40,14 @@ class DataLoader<ResultType, ErrorType> {
    * request must be refetched on window focus or network reconnection.
    */
   public refetchPolicies = new Set<RefetchPolicy>()
+
+  /**
+   * Handlers of mounted hooks, fired whenever the request settles. Each
+   * observing hook registers its own handlers; all fire on every settle
+   * (mount load, reload, polling, focus/reconnect refetch, provider reload).
+   * Handler errors are swallowed (documented behavior).
+   */
+  public handlers = new Set<RequestHandlers<ResultType, ErrorType>>()
 
   public timeout?: number
 
@@ -141,7 +149,24 @@ class DataLoader<ResultType, ErrorType> {
         DataLoader.queue.delete(this.key)
         this.notifyChanges()
       }
+      // Decrement started BEFORE firing handlers: a handler that triggers
+      // another load would deadlock at maxConcurrent otherwise.
       DataLoader.started -= 1
+
+      // Fire onSuccess handlers for the live launch. Handler errors are
+      // swallowed (documented behavior) — they don't affect request state.
+      // Fire in parallel to avoid sequential delays.
+      if (generation === this.generation) {
+        await Promise.all(
+          [...this.handlers].map(async ({ onSuccess }) => {
+            try {
+              await onSuccess(data)
+            } catch {
+              // swallow
+            }
+          }),
+        )
+      }
 
       return data
     } catch (error) {
@@ -156,9 +181,21 @@ class DataLoader<ResultType, ErrorType> {
         DataLoader.queue.delete(this.key)
         this.notifyChanges()
       }
+      // Decrement started BEFORE firing handlers (same reason as success path).
       DataLoader.started -= 1
 
+      // Fire onError handlers for the live launch. Handler errors are swallowed.
+      // Fire in parallel to avoid sequential delays.
       if (isLive && !isAbortError(error)) {
+        await Promise.all(
+          [...this.handlers].map(async ({ onError }) => {
+            try {
+              await onError(error as ErrorType)
+            } catch {
+              // swallow
+            }
+          }),
+        )
         throw error
       }
 

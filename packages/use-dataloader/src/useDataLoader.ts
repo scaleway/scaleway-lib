@@ -1,10 +1,15 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { DEFAULT_REFETCH_ON_FOCUS, DEFAULT_REFETCH_ON_RECONNECT, StatusEnum } from './constants'
 import { useDataLoaderContext } from './DataLoaderProvider'
-import { createTokenGuardedHandlers } from './helpers'
-import type { DataLoaderMethodFn, KeyType, RefetchPolicy, UseDataLoaderConfig, UseDataLoaderResult } from './types'
-
-const noop = () => undefined
+import type {
+  DataLoaderMethodFn,
+  KeyType,
+  OnErrorFn,
+  RefetchPolicy,
+  RequestHandlers,
+  UseDataLoaderConfig,
+  UseDataLoaderResult,
+} from './types'
 
 export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
   key: KeyType,
@@ -45,13 +50,10 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
   )
   const methodRef = useRef(method)
   const onSuccessRef = useRef(onSuccess)
-  const onErrorRef = useRef(onError ?? onGlobalError)
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
+  const onErrorRef = useRef<OnErrorFn<ErrorType>>(onError ?? (onGlobalError as OnErrorFn<ErrorType>))
   const needPollingRef = useRef(needPolling)
   const [, setCounter] = useState(0)
-  // Monotonic token bumped on every auto-load or reload initiation: a settled
-  // load (e.g. a launch cancelled by a React StrictMode remount) whose token
-  // is no longer current must not fire user handlers nor reset optimistic state.
-  const loadTokenRef = useRef(0)
 
   const forceRerender = useCallback(() => {
     setCounter(current => current + 1)
@@ -97,6 +99,25 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
 
   const optimisticIsLoadingRef = useRef(needLoad)
 
+  // Register handlers on the request so they fire on every settle (mount,
+  // reload, polling, refetch). Stable identity via refs; unmount cleans up.
+  useEffect(() => {
+    const handlers: RequestHandlers<ResultType, ErrorType> = {
+      onSuccess: async result => {
+        optimisticIsLoadingRef.current = false
+        return onSuccessRef.current?.(result)
+      },
+      onError: async error => {
+        optimisticIsLoadingRef.current = false
+        return onErrorRef.current?.(error)
+      },
+    }
+    request.handlers.add(handlers)
+    return () => {
+      request.handlers.delete(handlers)
+    }
+  }, [request])
+
   const previousDataRef = useRef(request.data)
 
   // Compute the data that will be returned to the user
@@ -122,26 +143,10 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
   )
 
   const reload: () => Promise<void> = useCallback(async () => {
-    // Set optimistic loading state to true when reload is called
+    // Handlers registered on the request will fire on settle and clear
+    // the optimistic loading flag. Errors are swallowed after handlers fire.
     optimisticIsLoadingRef.current = true
-
-    const clearOptimisticLoading = () => {
-      optimisticIsLoadingRef.current = false
-    }
-
-    const { onSuccessCallback, onErrorCallback } = createTokenGuardedHandlers(
-      loadTokenRef,
-      async (result: ResultType) => {
-        clearOptimisticLoading()
-        return onSuccessRef.current?.(result)
-      },
-      async (error: ErrorType & Error) => {
-        clearOptimisticLoading()
-        return onErrorRef.current?.(error)
-      },
-    )
-
-    return request.load(true).then(onSuccessCallback).catch(onErrorCallback)
+    await request.load(true).catch(() => undefined)
   }, [request])
 
   useEffect(() => {
@@ -157,7 +162,8 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
   }, [onSuccess])
 
   useEffect(() => {
-    onErrorRef.current = onError ?? onGlobalError
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
+    onErrorRef.current = onError ?? (onGlobalError as OnErrorFn<ErrorType>)
   }, [onError, onGlobalError])
 
   useEffect(() => {
@@ -168,26 +174,8 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
 
   useEffect(() => {
     if (needLoad) {
-      // Set optimistic loading state to true when auto-loading is triggered
       optimisticIsLoadingRef.current = true
-
-      const clearOptimisticLoading = () => {
-        optimisticIsLoadingRef.current = false
-      }
-
-      const { onSuccessCallback, onErrorCallback } = createTokenGuardedHandlers(
-        loadTokenRef,
-        async (result: ResultType) => {
-          clearOptimisticLoading()
-          return onSuccessRef.current?.(result)
-        },
-        async (error: ErrorType & Error) => {
-          clearOptimisticLoading()
-          return onErrorRef.current?.(error)
-        },
-      )
-
-      request.load().then(onSuccessCallback).catch(onErrorCallback)
+      request.load().catch(() => undefined)
     }
   }, [needLoad, request])
 
@@ -202,10 +190,7 @@ export const useDataLoader = <ResultType = unknown, ErrorType = Error>(
             needPollingRef.current(request.data)) ||
           (typeof needPollingRef.current !== 'function' && needPollingRef.current && !request.isCalled)
         ) {
-          const onSuccessLoad = onSuccessRef.current ?? noop
-          const onFailedLoad = onErrorRef.current ?? noop
-
-          request.load(true).then(onSuccessLoad).catch(onFailedLoad)
+          request.load(true).catch(() => undefined)
         }
       }, pollingInterval)
     }
