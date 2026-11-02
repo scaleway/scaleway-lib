@@ -7,6 +7,7 @@ export type {
   OnErrorFn,
   OnSuccessFn,
   PromiseType,
+  RefetchOnType,
   UseDataLoaderConfig,
   UseDataLoaderResult,
   UseInfiniteDataLoaderConfig,

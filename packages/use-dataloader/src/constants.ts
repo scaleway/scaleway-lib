@@ -11,6 +11,10 @@ export enum StatusEnum {
 
 export const DEFAULT_MAX_CONCURRENT_REQUESTS = 20 as const
 
+export const DEFAULT_REFETCH_ON_FOCUS = false as const
+
+export const DEFAULT_REFETCH_ON_RECONNECT = true as const
+
 export type KeyPolling = '3S' | '5S' | '10S'
 export type TimeMapPolling = Record<KeyPolling, number>
 
