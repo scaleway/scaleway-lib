@@ -1,59 +1,13 @@
-import type { ComponentType, Context, ReactNode } from 'react'
-import { createContext, useCallback, useContext, useMemo, useRef } from 'react'
+import type { ComponentType, ReactNode } from 'react'
+import { useCallback, useMemo, useRef } from 'react'
 import { DEFAULT_MAX_CONCURRENT_REQUESTS } from './constants'
 import DataLoader from './dataloader'
 import { marshalQueryKey } from './helpers'
-import type { DataLoaderMethodFn, KeyType, OnErrorFn } from './types'
+import type { KeyType, OnErrorFn } from './types'
+import type { CachedData, IDataLoaderContext, Reloads, UseDataLoaderInitializerArgs } from './useDataLoaderContext'
+import { DataLoaderContext } from './useDataLoaderContext'
 
-type PromiseVoidFunc = (() => Promise<unknown>) | (() => void)
-
-type CachedData = Record<string, unknown>
-type Reloads = Record<string, PromiseVoidFunc>
 type Requests = Record<string, DataLoader<unknown, unknown>>
-
-type UseDataLoaderInitializerArgs<ResultType = unknown> = {
-  method: DataLoaderMethodFn<ResultType>
-  enabled?: boolean
-}
-
-type GetCachedDataFn = {
-  (): CachedData
-  (key?: KeyType): unknown
-}
-
-type GetReloadsFn = {
-  (): Reloads
-  (key?: KeyType): PromiseVoidFunc | undefined
-}
-
-export type IDataLoaderContext = {
-  addRequest: <ResultType, ErrorType>(
-    key: KeyType,
-    args: UseDataLoaderInitializerArgs<ResultType>,
-  ) => DataLoader<ResultType, ErrorType>
-  getOrAddRequest: <ResultType, ErrorType>(
-    key: KeyType,
-    args: UseDataLoaderInitializerArgs<ResultType>,
-  ) => DataLoader<ResultType, ErrorType>
-  computeKey: (key: KeyType) => string
-  cacheKeyPrefix?: string
-  defaultDatalifetime?: number
-  onError?: (error: Error) => void | Promise<void>
-  clearAllCachedData: () => void
-  clearCachedData: (key: KeyType) => void
-  getCachedData: GetCachedDataFn
-  getReloads: GetReloadsFn
-  getRequest: <ResultType, ErrorType>(key: KeyType) => DataLoader<ResultType, ErrorType>
-  reload: (key: KeyType) => Promise<void>
-  reloadAll: () => Promise<void>
-  reloadAllActive: () => Promise<void>
-  reloadGroup: (startKey: KeyType) => Promise<void>
-  reloadGroupActive: (startKey: KeyType) => Promise<void>
-}
-
-export const DataLoaderContext: Context<IDataLoaderContext> =
-  // @ts-expect-error we force the context to undefined, should be corrected with default values
-  createContext<IDataLoaderContext>(undefined)
 
 type DataLoaderProviderProps = {
   children: ReactNode
@@ -232,7 +186,5 @@ const DataLoaderProvider: ComponentType<DataLoaderProviderProps> = ({
 
   return <DataLoaderContext.Provider value={value}>{children}</DataLoaderContext.Provider>
 }
-
-export const useDataLoaderContext = (): IDataLoaderContext => useContext(DataLoaderContext)
 
 export default DataLoaderProvider

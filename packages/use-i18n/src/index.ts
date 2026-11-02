@@ -19,4 +19,4 @@ export type {
 // Hook exports
 export { useI18n, useTranslation } from './usei18n'
 
-export { default } from './usei18n'
+export { default } from './I18nContextProvider'

@@ -3,9 +3,10 @@ import { act, renderHook, waitFor } from '@testing-library/react'
 import type { ReactNode } from 'react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { MOCK_AUDIENCE_ID, MOCK_ENCODED_JWT_COOKIE } from '../../mocks/index'
-import { AuthScwProvider, useAuthScw } from '../useAuthScw/AuthScwProvider'
+import { AuthScwProvider } from '../useAuthScw/AuthScwProvider'
 import type { AuthProviderParamType } from '../useAuthScw/AuthScwProvider'
 import { createAuthStoreManager } from '../useAuthScw/authStoreManager'
+import { useAuthScw } from '../useAuthScw/useAuthScw'
 
 const mockDeleteJwt = vi.fn<() => Promise<void>>()
 const mockRenewJwt = vi.fn<() => Promise<typeof MOCK_ENCODED_JWT_COOKIE>>()

@@ -1,5 +1,5 @@
 export { DATALIFE_TIME, POLLING_INTERVAL } from './constants'
-export { default as DataLoaderProvider, useDataLoaderContext } from './DataLoaderProvider'
+export { default as DataLoaderProvider } from './DataLoaderProvider'
 export type {
   KeyType,
   NeedPollingType,
@@ -13,4 +13,5 @@ export type {
   UseInfiniteDataLoaderResult,
 } from './types'
 export { useDataLoader } from './useDataLoader'
+export { useDataLoaderContext } from './useDataLoaderContext'
 export { useInfiniteDataLoader } from './useInfiniteDataLoader'

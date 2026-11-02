@@ -19,7 +19,6 @@ export default defineConfig({
       rules: {
         'react/hook-use-state': ['warn', { allowDestructuredState: true }],
         'react/immutability': 'warn',
-        'react/only-export-components': 'warn',
         'react/refs': 'warn',
         'react/set-state-in-effect': 'warn',
 
