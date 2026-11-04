@@ -1,5 +1,11 @@
 # @scaleway/scouter
 
+## 1.1.2
+
+### Patch Changes
+
+- [#4055](https://github.com/scaleway/scaleway-lib/pull/4055) [`854926c`](https://github.com/scaleway/scaleway-lib/commit/854926c92a525c52cfe1bf4e516d5063792dfa52) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `query-string` to `10.0.0`.
+
 ## 1.1.1
 
 ### Patch Changes

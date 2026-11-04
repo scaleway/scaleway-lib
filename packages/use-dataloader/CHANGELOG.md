@@ -1,5 +1,24 @@
 # Change Log
 
+## 7.3.0
+
+### Minor Changes
+
+- [#4087](https://github.com/scaleway/scaleway-lib/pull/4087) [`13dde3a`](https://github.com/scaleway/scaleway-lib/commit/13dde3ab1eb8a5401a74dc52a6a882f124c1d5dd) Thanks [@philibea](https://github.com/philibea)! - feat: fire onSuccess and onError on every request settle
+  
+  - `onSuccess` and `onError` callbacks now fire on every settle path: mount loads, `reload()`, polling ticks, focus/reconnect refetches, and provider reload APIs (`reload`, `reloadAll`, `reloadAllActive`, `reloadGroup`, `reloadGroupActive`)
+  - handlers are registered per mounted hook on the request; all observing hooks' handlers fire once per settle
+  - handler errors are swallowed (documented) — they no longer affect request state or propagate to error boundaries
+  - internal cleanup: removed `loadTokenRef` and `createTokenGuardedHandlers` usage from `useDataLoader`; request generation guard handles superseded launches
+
+- [#4068](https://github.com/scaleway/scaleway-lib/pull/4068) [`cd246e0`](https://github.com/scaleway/scaleway-lib/commit/cd246e0d36dae6c2778f9acbeadc591bd389294c) Thanks [@philibea](https://github.com/philibea)! - feat: add refetch on window focus and network reconnection
+  
+  - new `refetchOnFocus` (default `false`) and `refetchOnReconnect` (default `true`) options on `useDataLoader`, also settable globally with `defaultRefetchOnFocus` / `defaultRefetchOnReconnect` on `DataLoaderProvider`
+  - `true` refetches only stale data per `dataLifetime` (no `dataLifetime` means stale, like a mount), `'always'` refetches regardless of freshness, and an errored request is retried on reconnection **and on focus when enabled**
+  - only requests with mounted hooks are refetched, not every cached entry, and a request already in flight is never launched twice
+  - a single listener at provider level iterates the active requests, instead of one listener per hook
+  - **note:** with the new `refetchOnReconnect: true` default, consumers without `dataLifetime` now refetch all observed requests on every `online` event
+
 ## 7.2.2
 
 ### Patch Changes
