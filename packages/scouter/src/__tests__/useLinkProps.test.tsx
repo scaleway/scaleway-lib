@@ -38,7 +38,7 @@ test('onClick navigates with push by default', () => {
             const originalPush = history.push
             history.push = (...args: Parameters<typeof originalPush>) => {
               navigateCalled = true
-              return originalPush.call(history, ...args)
+              originalPush.call(history, ...args)
             }
             return children
           }}
@@ -69,7 +69,7 @@ test('onClick navigates with replace when replace=true', () => {
             const originalReplace = history.replace
             history.replace = (...args: Parameters<typeof originalReplace>) => {
               replaceCalled = true
-              return originalReplace.call(history, ...args)
+              originalReplace.call(history, ...args)
             }
             return children
           }}
@@ -259,11 +259,11 @@ test('uses replace when navigating to same location (duplicate navigation)', () 
             const originalPush = history.push
             history.replace = (...args: Parameters<typeof originalReplace>) => {
               replaceCalled = true
-              return originalReplace.call(history, ...args)
+              originalReplace.call(history, ...args)
             }
             history.push = (...args: Parameters<typeof originalPush>) => {
               pushCalled = true
-              return originalPush.call(history, ...args)
+              originalPush.call(history, ...args)
             }
             return children
           }}
@@ -295,7 +295,7 @@ test('uses replace when navigating to same location with search', () => {
             const originalReplace = history.replace
             history.replace = (...args: Parameters<typeof originalReplace>) => {
               replaceCalled = true
-              return originalReplace.call(history, ...args)
+              originalReplace.call(history, ...args)
             }
             return children
           }}
@@ -326,7 +326,7 @@ test('uses push when navigating to different location even with replace=false', 
             const originalPush = history.push
             history.push = (...args: Parameters<typeof originalPush>) => {
               pushCalled = true
-              return originalPush.call(history, ...args)
+              originalPush.call(history, ...args)
             }
             return children
           }}
@@ -357,7 +357,7 @@ test('respects replace option even for duplicate navigation', () => {
             const originalReplace = history.replace
             history.replace = (...args: Parameters<typeof originalReplace>) => {
               replaceCalled = true
-              return originalReplace.call(history, ...args)
+              originalReplace.call(history, ...args)
             }
             return children
           }}

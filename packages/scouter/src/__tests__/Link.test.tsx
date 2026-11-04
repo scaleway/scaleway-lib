@@ -170,7 +170,12 @@ test('onClick with event.defaultPrevented does not navigate', () => {
             originalPush.call(history, '/initial')
           }
           return (
-            <Link to="/target" onClick={e => e.preventDefault()}>
+            <Link
+              to="/target"
+              onClick={e => {
+                e.preventDefault()
+              }}
+            >
               Link
             </Link>
           )
