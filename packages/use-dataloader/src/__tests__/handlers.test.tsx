@@ -210,7 +210,9 @@ describe('onSuccess/onError handlers', () => {
 
     // Wait a bit to ensure no handler call
     await new Promise<void>(resolve => {
-      setTimeout(() => resolve(), 50)
+      setTimeout(() => {
+        resolve()
+      }, 50)
     })
     expect(onSuccess).toHaveBeenCalledTimes(1)
   })
