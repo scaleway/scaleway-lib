@@ -1,9 +1,7 @@
 import { defineConfig } from 'tsdown'
 
 export const defaultConfig = defineConfig({
-  dts: {
-    generator: 'tsgo',
-  },
+  dts: true,
   target: 'baseline-widely-available',
   platform: 'neutral',
   entry: 'src/index.ts',
