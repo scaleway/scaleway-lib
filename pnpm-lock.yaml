@@ -243,8 +243,8 @@ catalogs:
       specifier: 8.0.2
       version: 8.0.2
     filesize:
-      specifier: 11.0.29
-      version: 11.0.29
+      specifier: 11.0.30
+      version: 11.0.30
     happy-dom:
       specifier: 21.0.4
       version: 21.0.4
@@ -618,7 +618,7 @@ importers:
         version: 3.1.7
       filesize:
         specifier: 'catalog:'
-        version: 11.0.29
+        version: 11.0.30
       intl-messageformat:
         specifier: 'catalog:'
         version: 12.1.4
@@ -2073,8 +2073,8 @@ packages:
   fflate@0.8.3:
     resolution: {integrity: sha512-tbZNuJrLwGUp3zshBtdy4W+ORxZuIh8a5ilyIEQDC5rY1f3U20JMry0Ll3WBzU58EZKsEuJFXhb5gwv8CsPvgA==}
 
-  filesize@11.0.29:
-    resolution: {integrity: sha512-+Mkmp8keoklLzAnvP/RQGDUEWEpjGmhvm4d4U739C1ZnkqxqoSqdLHnjv9/4QX6lltKSRk6qzQI7+94JVDtuCA==}
+  filesize@11.0.30:
+    resolution: {integrity: sha512-qaIUqg5pU4bdTZQG8w+v5IhPAlOHm/ifT+1NlBuPTlmIAKeBwG1CEYkaLYNLJCfDOGWb7QqXUyQnsYlIC7pAwA==}
     engines: {node: '>= 10.8.0'}
 
   filter-obj@6.1.0:
@@ -4095,7 +4095,7 @@ snapshots:
 
   fflate@0.8.3: {}
 
-  filesize@11.0.29: {}
+  filesize@11.0.30: {}
 
   filter-obj@6.1.0: {}
 
