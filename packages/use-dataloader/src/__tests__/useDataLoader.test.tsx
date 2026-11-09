@@ -3,9 +3,10 @@ import { render, renderHook, waitFor } from '@testing-library/react'
 import { act, StrictMode } from 'react'
 import type { ReactNode } from 'react'
 import { describe, expect, it, vi } from 'vitest'
-import DataLoaderProvider, { useDataLoaderContext } from '../DataLoaderProvider'
+import DataLoaderProvider from '../DataLoaderProvider'
 import type { DataLoaderMethodFn, KeyType, UseDataLoaderConfig } from '../types'
 import { useDataLoader } from '../useDataLoader'
+import { useDataLoaderContext } from '../useDataLoaderContext'
 
 type UseDataLoaderHookProps = {
   config: UseDataLoaderConfig<unknown, unknown>
