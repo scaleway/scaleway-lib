@@ -234,8 +234,8 @@ catalogs:
       specifier: 4.29.5
       version: 4.29.5
     cookie:
-      specifier: 2.0.1
-      version: 2.0.1
+      specifier: 2.0.2
+      version: 2.0.2
     date-fns:
       specifier: 4.4.0
       version: 4.4.0
@@ -444,7 +444,7 @@ importers:
         version: 2.22.0(@scaleway/sdk-client@2.16.0)
       cookie:
         specifier: 'catalog:'
-        version: 2.0.1
+        version: 2.0.2
       date-fns:
         specifier: 'catalog:'
         version: 4.4.0
@@ -574,7 +574,7 @@ importers:
         version: 1.84.3
       cookie:
         specifier: 'catalog:'
-        version: 2.0.1
+        version: 2.0.2
       use-deep-compare-effect:
         specifier: 'catalog:'
         version: 1.8.1(react@19.3.1)
@@ -1990,8 +1990,8 @@ packages:
   convert-source-map@2.0.0:
     resolution: {integrity: sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==}
 
-  cookie@2.0.1:
-    resolution: {integrity: sha512-yuToqVvRrj6pfDXREyQAAv8SkAEk/8GS3jQRTiUMm66TVtBYmqQeoEjL2Lmq8Rpo6271vH76InTChTitEAm65w==}
+  cookie@2.0.2:
+    resolution: {integrity: sha512-SL0cVuEdETEp7pN0FuZb01toc3vnODEfVUCooxG1SJN0yIirh7JMb9X9bvfCFf0vzzbT68RdbKDHYTiWy7a7iw==}
     engines: {node: '>=22'}
 
   css-tree@3.2.1:
@@ -4097,7 +4097,7 @@ snapshots:
 
   convert-source-map@2.0.0: {}
 
-  cookie@2.0.1: {}
+  cookie@2.0.2: {}
 
   css-tree@3.2.1:
     dependencies:
