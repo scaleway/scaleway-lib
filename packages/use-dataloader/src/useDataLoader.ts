@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { DEFAULT_REFETCH_ON_FOCUS, DEFAULT_REFETCH_ON_RECONNECT, StatusEnum } from './constants'
-import { useDataLoaderContext } from './DataLoaderProvider'
 import type {
   DataLoaderMethodFn,
   KeyType,
@@ -10,6 +9,7 @@ import type {
   UseDataLoaderConfig,
   UseDataLoaderResult,
 } from './types'
+import { useDataLoaderContext } from './useDataLoaderContext'
 
 export const useDataLoader = <ResultType = unknown, ErrorType extends Error = Error>(
   key: KeyType,
