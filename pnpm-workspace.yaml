@@ -40,7 +40,7 @@ catalog:
   lint-staged: 17.6.0
   oxfmt: 0.76.0
   oxlint: 1.91.0
-  oxlint-tsgolint: 7.0.2005
+  oxlint-tsgolint: 7.0.2006
   publint: 0.3.25
   query-string: 10.0.0
   react: 19.3.1
