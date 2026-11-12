@@ -1,16 +1,18 @@
 import { z } from 'zod'
 import type { Iamv1alpha1 } from './types/iam/index'
 
+type OptionalDate = string | Date | null | undefined
+
 type TransformJWT = Omit<Iamv1alpha1.JWT, 'createdAt' | 'updatedAt' | 'expiresAt' | 'srn'> & {
   // As we stock de jwt into a cookie
-  createdAt?: string | Date
-  updatedAt?: string | Date
-  expiresAt?: string | Date
-  srn?: string
+  createdAt?: OptionalDate
+  updatedAt?: OptionalDate
+  expiresAt?: OptionalDate
+  srn?: string | null
 }
 
 type ValidateJWTSchema = {
-  jwt?: TransformJWT
+  jwt?: TransformJWT | null
   token: string
   renewToken: string
 }
