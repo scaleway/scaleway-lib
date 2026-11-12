@@ -447,11 +447,7 @@ importers:
     dependencies:
       '@scaleway/sdk-iam':
         specifier: 'catalog:'
-<<<<<<< HEAD
-        version: 2.22.0(@scaleway/sdk-client@2.18.0)
-=======
-        version: 2.23.0(@scaleway/sdk-client@2.17.0)
->>>>>>> 1444233b (chore(deps): update dependency @scaleway/sdk-iam to v2.23.0)
+        version: 2.23.0(@scaleway/sdk-client@2.18.0)
       cookie:
         specifier: 'catalog:'
         version: 2.0.2
@@ -3611,23 +3607,13 @@ snapshots:
 
   '@scaleway/sdk-client@2.18.0': {}
 
-<<<<<<< HEAD
-  '@scaleway/sdk-iam@2.22.0(@scaleway/sdk-client@2.18.0)':
+  '@scaleway/sdk-iam@2.23.0(@scaleway/sdk-client@2.18.0)':
     dependencies:
       '@scaleway/random-name': 6.0.2
       '@scaleway/sdk-client': 2.18.0
-      '@scaleway/sdk-std': 2.9.5(@scaleway/sdk-client@2.18.0)
+      '@scaleway/sdk-std': 2.9.6(@scaleway/sdk-client@2.18.0)
 
-  '@scaleway/sdk-std@2.9.5(@scaleway/sdk-client@2.18.0)':
-=======
-  '@scaleway/sdk-iam@2.23.0(@scaleway/sdk-client@2.17.0)':
-    dependencies:
-      '@scaleway/random-name': 6.0.2
-      '@scaleway/sdk-client': 2.17.0
-      '@scaleway/sdk-std': 2.9.6(@scaleway/sdk-client@2.17.0)
-
-  '@scaleway/sdk-std@2.9.6(@scaleway/sdk-client@2.17.0)':
->>>>>>> 1444233b (chore(deps): update dependency @scaleway/sdk-iam to v2.23.0)
+  '@scaleway/sdk-std@2.9.6(@scaleway/sdk-client@2.18.0)':
     dependencies:
       '@scaleway/sdk-client': 2.18.0
 
