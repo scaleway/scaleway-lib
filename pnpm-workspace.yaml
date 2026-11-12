@@ -25,7 +25,7 @@ catalog:
   '@types/node': 26.6.6
   '@types/react-dom': 19.3.0
   '@types/react': 19.3.0
-  '@vitejs/plugin-react': 6.2.1
+  '@vitejs/plugin-react': 6.3.0
   '@vitest/coverage-istanbul': 4.1.12
   awesome-phonenumber: 7.8.0
   browserslist: 4.29.5
