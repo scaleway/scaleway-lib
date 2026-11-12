@@ -204,8 +204,8 @@ catalogs:
       specifier: 2.18.0
       version: 2.18.0
     '@scaleway/sdk-iam':
-      specifier: 2.22.0
-      version: 2.22.0
+      specifier: 2.23.0
+      version: 2.23.0
     '@segment/analytics-next':
       specifier: 1.84.3
       version: 1.84.3
@@ -447,7 +447,11 @@ importers:
     dependencies:
       '@scaleway/sdk-iam':
         specifier: 'catalog:'
+<<<<<<< HEAD
         version: 2.22.0(@scaleway/sdk-client@2.18.0)
+=======
+        version: 2.23.0(@scaleway/sdk-client@2.17.0)
+>>>>>>> 1444233b (chore(deps): update dependency @scaleway/sdk-iam to v2.23.0)
       cookie:
         specifier: 'catalog:'
         version: 2.0.2
@@ -1543,15 +1547,15 @@ packages:
   '@scaleway/sdk-client@2.18.0':
     resolution: {integrity: sha512-3UBm/glXDASfIjJVB5F+Hx5AS3bkjBBAc9wyUaicUSprcV0iTfpmHs135bdJY9VjHYZrFzqCpHcbyqbwvTRSfA==}
 
-  '@scaleway/sdk-iam@2.22.0':
-    resolution: {integrity: sha512-Gia0mIdDztl7YvDMJS+iDe13kG+/NqKs5M19oKlu0BeDhrg6q11Er2ykfzx2I3fcKdxfQtZvNUcFLEkIOAcCuQ==}
+  '@scaleway/sdk-iam@2.23.0':
+    resolution: {integrity: sha512-6wx2CPcV7CSiNJPhxLXYKod2Zk6qi7jP8vmTtU+5t+9KvOdOCxyZxMAtHVCCw4p9XD0rz2QkhsHNrFYw0SLECw==}
     peerDependencies:
-      '@scaleway/sdk-client': ^2.16.0
+      '@scaleway/sdk-client': ^2.17.0
 
-  '@scaleway/sdk-std@2.9.5':
-    resolution: {integrity: sha512-BajSiMBG+/vVDkXjKq2JfsIvrRcJQ5EJpsfpjXMHV9JhGBro0IAh3zawsgbcTrBLnu7E7fRw9els7TNgOXPdyw==}
+  '@scaleway/sdk-std@2.9.6':
+    resolution: {integrity: sha512-TdtiEYl7WgySRkzAIgstP/cp3UGvC5goS8rErFZQnAANfjAP4hto/D2Nfj0KSoGmkC7YBLVPhVa0FGaNmxRz7w==}
     peerDependencies:
-      '@scaleway/sdk-client': 2.16.0
+      '@scaleway/sdk-client': 2.17.0
 
   '@segment/analytics-core@1.8.3':
     resolution: {integrity: sha512-63X8e2DWb2ZnJ9S3H8iSOFnbeDXMkTGhA8kZG4eFAO07QBwBVyWo5BCpv6vmuOMEkv2le6t2FMg1p6ZeJQA/4A==}
@@ -3607,6 +3611,7 @@ snapshots:
 
   '@scaleway/sdk-client@2.18.0': {}
 
+<<<<<<< HEAD
   '@scaleway/sdk-iam@2.22.0(@scaleway/sdk-client@2.18.0)':
     dependencies:
       '@scaleway/random-name': 6.0.2
@@ -3614,6 +3619,15 @@ snapshots:
       '@scaleway/sdk-std': 2.9.5(@scaleway/sdk-client@2.18.0)
 
   '@scaleway/sdk-std@2.9.5(@scaleway/sdk-client@2.18.0)':
+=======
+  '@scaleway/sdk-iam@2.23.0(@scaleway/sdk-client@2.17.0)':
+    dependencies:
+      '@scaleway/random-name': 6.0.2
+      '@scaleway/sdk-client': 2.17.0
+      '@scaleway/sdk-std': 2.9.6(@scaleway/sdk-client@2.17.0)
+
+  '@scaleway/sdk-std@2.9.6(@scaleway/sdk-client@2.17.0)':
+>>>>>>> 1444233b (chore(deps): update dependency @scaleway/sdk-iam to v2.23.0)
     dependencies:
       '@scaleway/sdk-client': 2.18.0
 
