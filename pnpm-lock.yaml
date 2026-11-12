@@ -192,8 +192,8 @@ catalogs:
       specifier: 3.36.0
       version: 3.36.0
     '@scaleway/sdk-client':
-      specifier: 2.16.0
-      version: 2.16.0
+      specifier: 2.17.0
+      version: 2.17.0
     '@scaleway/sdk-iam':
       specifier: 2.22.0
       version: 2.22.0
@@ -441,7 +441,7 @@ importers:
     dependencies:
       '@scaleway/sdk-iam':
         specifier: 'catalog:'
-        version: 2.22.0(@scaleway/sdk-client@2.16.0)
+        version: 2.22.0(@scaleway/sdk-client@2.17.0)
       cookie:
         specifier: 'catalog:'
         version: 2.0.2
@@ -454,7 +454,7 @@ importers:
     devDependencies:
       '@scaleway/sdk-client':
         specifier: 'catalog:'
-        version: 2.16.0
+        version: 2.17.0
       '@scaleway/types':
         specifier: workspace:*
         version: link:../types
@@ -531,7 +531,7 @@ importers:
     devDependencies:
       '@scaleway/sdk-client':
         specifier: 'catalog:'
-        version: 2.16.0
+        version: 2.17.0
       '@types/react':
         specifier: 'catalog:'
         version: 19.3.0
@@ -546,7 +546,7 @@ importers:
     devDependencies:
       '@scaleway/sdk-client':
         specifier: 'catalog:'
-        version: 2.16.0
+        version: 2.17.0
 
   packages/sync-peer-deps:
     devDependencies:
@@ -1578,8 +1578,8 @@ packages:
     resolution: {integrity: sha512-fhR2aCzxoZlOZcCM42srbALdpdqMy79LwOK5mVf4sGG1uknn095mr5PQ/0/zwfk/FX2KycZwbKJzr4zP6CG3Zg==}
     engines: {node: '>=24.x'}
 
-  '@scaleway/sdk-client@2.16.0':
-    resolution: {integrity: sha512-ZUoMPWY8b0YVD8hCvKVhyjJQwkwHmTKJQaGC6fWjexu7JF2LnYnWlVamZlImbyrThskhUvFP2VGEaYKbVLmCiw==}
+  '@scaleway/sdk-client@2.17.0':
+    resolution: {integrity: sha512-FZow6b4BSgiVduTaLkXssX1BEaP4TAG9crUsRi2oVNZjFmGahcaxbmySWqPzZQOqbtu8Gq0HJvM/CnJfDFKBYQ==}
 
   '@scaleway/sdk-iam@2.22.0':
     resolution: {integrity: sha512-Gia0mIdDztl7YvDMJS+iDe13kG+/NqKs5M19oKlu0BeDhrg6q11Er2ykfzx2I3fcKdxfQtZvNUcFLEkIOAcCuQ==}
@@ -3788,17 +3788,17 @@ snapshots:
 
   '@scaleway/random-name@6.0.2': {}
 
-  '@scaleway/sdk-client@2.16.0': {}
+  '@scaleway/sdk-client@2.17.0': {}
 
-  '@scaleway/sdk-iam@2.22.0(@scaleway/sdk-client@2.16.0)':
+  '@scaleway/sdk-iam@2.22.0(@scaleway/sdk-client@2.17.0)':
     dependencies:
       '@scaleway/random-name': 6.0.2
-      '@scaleway/sdk-client': 2.16.0
-      '@scaleway/sdk-std': 2.9.5(@scaleway/sdk-client@2.16.0)
+      '@scaleway/sdk-client': 2.17.0
+      '@scaleway/sdk-std': 2.9.5(@scaleway/sdk-client@2.17.0)
 
-  '@scaleway/sdk-std@2.9.5(@scaleway/sdk-client@2.16.0)':
+  '@scaleway/sdk-std@2.9.5(@scaleway/sdk-client@2.17.0)':
     dependencies:
-      '@scaleway/sdk-client': 2.16.0
+      '@scaleway/sdk-client': 2.17.0
 
   '@segment/analytics-core@1.8.3':
     dependencies:
