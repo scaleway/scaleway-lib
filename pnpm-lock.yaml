@@ -222,8 +222,8 @@ catalogs:
       specifier: 19.3.0
       version: 19.3.0
     '@vitejs/plugin-react':
-      specifier: 6.2.1
-      version: 6.2.1
+      specifier: 6.3.0
+      version: 6.3.0
     '@vitest/coverage-istanbul':
       specifier: 4.1.12
       version: 4.1.12
@@ -384,7 +384,7 @@ importers:
         version: typescript@7.0.2
       '@vitejs/plugin-react':
         specifier: 'catalog:'
-        version: 6.2.1(vite@8.3.5(@types/node@26.6.6)(yaml@2.9.1))
+        version: 6.3.0(vite@8.3.5(@types/node@26.6.6)(yaml@2.9.1))
       '@vitest/coverage-istanbul':
         specifier: 'catalog:'
         version: 4.1.12(supports-color@7.2.0)(vitest@4.1.12)
@@ -1886,8 +1886,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@vitejs/plugin-react@6.2.1':
-    resolution: {integrity: sha512-9KyWCij3r0+qLG3Q62vBmv0VyevmYibAtxaCIVK9o0k6CXgaajZRIe8tpfchQcdZArJ5b/7OrIz4W3b2uxVRDA==}
+  '@vitejs/plugin-react@6.3.0':
+    resolution: {integrity: sha512-H9E955aVvD2F4zNHCw4eIZbIfF6xKldlh7MNu+hSU7xwQzh65lI/N+CJWqmfhi0PEjDXIt/H7T7J/4wU63KJiw==}
     engines: {node: ^20.19.0 || >=22.12.0}
     peerDependencies:
       '@rolldown/plugin-babel': ^0.1.7 || ^0.2.0 || ^0.3.0
@@ -2746,6 +2746,7 @@ packages:
 
   tldts-core@7.4.20:
     resolution: {integrity: sha512-C630TWXZCZmLq0F2bW4QqwnaaxCQ/svpAqvJwnC4JvgEM5ohhBnGsEzTLSOXcN+xjz+kEaHS5uoWIw2klnqd0A==}
+    deprecated: Partial release, see https://github.com/remusao/tldts/issues/2735. Use >=7.4.22.
 
   tldts@7.4.19:
     resolution: {integrity: sha512-48dH6aSpQnpbzDUc4vIQZ1VjB8tkK+e8c1yx05/SZK+rkssgjEOlxDd/yU8/a4vGYQ9vRgJr9dwMq9TJ0b3X2Q==}
@@ -4027,7 +4028,7 @@ snapshots:
   '@typescript/typescript-win32-x64@7.1.0-dev.20261108.1':
     optional: true
 
-  '@vitejs/plugin-react@6.2.1(vite@8.3.5(@types/node@26.6.6)(yaml@2.9.1))':
+  '@vitejs/plugin-react@6.3.0(vite@8.3.5(@types/node@26.6.6)(yaml@2.9.1))':
     dependencies:
       '@rolldown/pluginutils': 1.0.1
       vite: 8.3.5(@types/node@26.6.6)(yaml@2.9.1)
