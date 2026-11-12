@@ -1,5 +1,13 @@
 # @scaleway/auth-scw
 
+## 1.2.6
+
+### Patch Changes
+
+- [#4114](https://github.com/scaleway/scaleway-lib/pull/4114) [`672c0e6`](https://github.com/scaleway/scaleway-lib/commit/672c0e64275befa92485ded2b41fb50529457fa8) Thanks [@philibea](https://github.com/philibea)! - follow sdk types
+
+- [#4102](https://github.com/scaleway/scaleway-lib/pull/4102) [`96739af`](https://github.com/scaleway/scaleway-lib/commit/96739af1fcf792de1b1b6ce8535bcb1e28599b4b) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `cookie` to `2.0.2`.
+
 ## 1.2.5
 
 ### Patch Changes
