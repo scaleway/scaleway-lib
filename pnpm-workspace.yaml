@@ -12,7 +12,7 @@ catalog:
   '@changesets/cli': 3.0.3
   '@changesets/config': 4.0.1
   '@formatjs/fast-memoize': 3.1.7
-  '@formatjs/icu-messageformat-parser': 3.5.22
+  '@formatjs/icu-messageformat-parser': 3.5.23
   '@growthbook/growthbook-react': 2.0.0
   '@manypkg/cli': 0.25.1
   '@rudderstack/analytics-js': 3.36.0
@@ -25,7 +25,7 @@ catalog:
   '@types/node': 26.6.6
   '@types/react-dom': 19.3.0
   '@types/react': 19.3.0
-  '@vitejs/plugin-react': 6.2.1
+  '@vitejs/plugin-react': 6.3.0
   '@vitest/coverage-istanbul': 4.1.12
   awesome-phonenumber: 7.8.0
   browserslist: 4.29.5
@@ -35,7 +35,7 @@ catalog:
   filesize: 11.0.30
   happy-dom: 21.0.4
   history: 5.3.0
-  intl-messageformat: 12.1.4
+  intl-messageformat: 12.1.5
   jsdom: 31.0.0
   lint-staged: 17.6.0
   oxfmt: 0.77.0
@@ -50,7 +50,7 @@ catalog:
   simple-git: 4.0.2
   tsdown: 0.23.7
   turbo: 2.11.10
-  typescript: 7.1.0-dev.20261106.1
+  typescript: 7.1.0-dev.20261108.1
   use-deep-compare-effect: 1.8.1
   vitest: 4.1.12
   vitest-localstorage-mock: 0.1.3
