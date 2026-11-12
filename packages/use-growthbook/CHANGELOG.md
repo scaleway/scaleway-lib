@@ -1,5 +1,11 @@
 # @scaleway/use-growthbook
 
+## 3.0.6
+
+### Patch Changes
+
+- [#4084](https://github.com/scaleway/scaleway-lib/pull/4084) [`44afb6d`](https://github.com/scaleway/scaleway-lib/commit/44afb6dbf43c3239eebc8190e52c7ea054a68516) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@growthbook/growthbook-react` to `2.0.0`.
+
 ## 3.0.5
 
 ### Patch Changes

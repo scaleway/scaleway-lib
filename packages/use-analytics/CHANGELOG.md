@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.0.22
+
+### Patch Changes
+
+- [#4093](https://github.com/scaleway/scaleway-lib/pull/4093) [`1b927a4`](https://github.com/scaleway/scaleway-lib/commit/1b927a41c37137dec0aa7e7f5c6e45da76515754) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@rudderstack/analytics-js` to `3.36.0`.
+
+- [#4102](https://github.com/scaleway/scaleway-lib/pull/4102) [`96739af`](https://github.com/scaleway/scaleway-lib/commit/96739af1fcf792de1b1b6ce8535bcb1e28599b4b) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `cookie` to `2.0.2`.
+
 ## 2.0.21
 
 ### Patch Changes
