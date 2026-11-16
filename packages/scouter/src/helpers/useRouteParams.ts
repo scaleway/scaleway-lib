@@ -8,5 +8,5 @@ type OverrideLocationTypes<Obj> = { [K in keyof Obj]: K extends 'region' ? Regio
 export function useRouteParams<Route extends RouteObjAny = RouteObjAny>(
   _route: Route,
 ): OverrideLocationTypes<RouteParams<Route['path']>> {
-  return useParams() as OverrideLocationTypes<RouteParams<Route['path']>>
+  return useParams<OverrideLocationTypes<RouteParams<Route['path']>>>()
 }
