@@ -264,8 +264,8 @@ catalogs:
       specifier: 12.1.5
       version: 12.1.5
     jsdom:
-      specifier: 31.0.0
-      version: 31.0.0
+      specifier: 31.0.1
+      version: 31.0.1
     lint-staged:
       specifier: 17.6.0
       version: 17.6.0
@@ -405,7 +405,7 @@ importers:
         version: 21.0.4
       jsdom:
         specifier: 'catalog:'
-        version: 31.0.0
+        version: 31.0.1
       lint-staged:
         specifier: 'catalog:'
         version: 17.6.0
@@ -441,7 +441,7 @@ importers:
         version: 7.1.0-dev.20261112.1
       vitest:
         specifier: 'catalog:'
-        version: 4.1.12(@types/node@26.6.6)(@vitest/coverage-istanbul@4.1.12)(happy-dom@21.0.4)(jsdom@31.0.0)(vite@8.3.5(@types/node@26.6.6)(yaml@2.9.1))
+        version: 4.1.12(@types/node@26.6.6)(@vitest/coverage-istanbul@4.1.12)(happy-dom@21.0.4)(jsdom@31.0.1)(vite@8.3.5(@types/node@26.6.6)(yaml@2.9.1))
       vitest-localstorage-mock:
         specifier: 'catalog:'
         version: 0.1.3(vitest@4.1.12)
@@ -2286,8 +2286,8 @@ packages:
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
 
-  jsdom@31.0.0:
-    resolution: {integrity: sha512-xAkhD9z1eyFC5+QUi9K24CaZJgdCQ2GOGLW1GdVDoQvkp/AxEH9TQ0pAplPOlIiV92hfcgnFOADZypbjgbBT6Q==}
+  jsdom@31.0.1:
+    resolution: {integrity: sha512-CbhJL8ZQg3eKswxSZth4QO9tW0jPIhmR0vtSXQSbKSfWbwIT6hoRc17wdHIVTQ43KI0mdV5iTJr3281IDgVZ5g==}
     engines: {node: ^22.22.2 || ^24.15.0 || >=26.0.0}
     peerDependencies:
       '@napi-rs/canvas': ^1.0.13
@@ -3886,7 +3886,7 @@ snapshots:
       picocolors: 1.1.1
       redent: 3.0.0
     optionalDependencies:
-      vitest: 4.1.12(@types/node@26.6.6)(@vitest/coverage-istanbul@4.1.12)(happy-dom@21.0.4)(jsdom@31.0.0)(vite@8.3.5(@types/node@26.6.6)(yaml@2.9.1))
+      vitest: 4.1.12(@types/node@26.6.6)(@vitest/coverage-istanbul@4.1.12)(happy-dom@21.0.4)(jsdom@31.0.1)(vite@8.3.5(@types/node@26.6.6)(yaml@2.9.1))
 
   '@testing-library/react@16.3.3(@testing-library/dom@10.4.2)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
@@ -4054,7 +4054,7 @@ snapshots:
       magicast: 0.5.5
       obug: 2.2.1
       tinyrainbow: 3.2.0
-      vitest: 4.1.12(@types/node@26.6.6)(@vitest/coverage-istanbul@4.1.12)(happy-dom@21.0.4)(jsdom@31.0.0)(vite@8.3.5(@types/node@26.6.6)(yaml@2.9.1))
+      vitest: 4.1.12(@types/node@26.6.6)(@vitest/coverage-istanbul@4.1.12)(happy-dom@21.0.4)(jsdom@31.0.1)(vite@8.3.5(@types/node@26.6.6)(yaml@2.9.1))
     transitivePeerDependencies:
       - supports-color
 
@@ -4352,7 +4352,7 @@ snapshots:
 
   js-tokens@4.0.0: {}
 
-  jsdom@31.0.0:
+  jsdom@31.0.1:
     dependencies:
       '@exodus/bytes': 1.16.0
       bcp-47: 2.1.2
@@ -4979,9 +4979,9 @@ snapshots:
 
   vitest-localstorage-mock@0.1.3(vitest@4.1.12):
     dependencies:
-      vitest: 4.1.12(@types/node@26.6.6)(@vitest/coverage-istanbul@4.1.12)(happy-dom@21.0.4)(jsdom@31.0.0)(vite@8.3.5(@types/node@26.6.6)(yaml@2.9.1))
+      vitest: 4.1.12(@types/node@26.6.6)(@vitest/coverage-istanbul@4.1.12)(happy-dom@21.0.4)(jsdom@31.0.1)(vite@8.3.5(@types/node@26.6.6)(yaml@2.9.1))
 
-  vitest@4.1.12(@types/node@26.6.6)(@vitest/coverage-istanbul@4.1.12)(happy-dom@21.0.4)(jsdom@31.0.0)(vite@8.3.5(@types/node@26.6.6)(yaml@2.9.1)):
+  vitest@4.1.12(@types/node@26.6.6)(@vitest/coverage-istanbul@4.1.12)(happy-dom@21.0.4)(jsdom@31.0.1)(vite@8.3.5(@types/node@26.6.6)(yaml@2.9.1)):
     dependencies:
       '@vitest/expect': 4.1.12
       '@vitest/mocker': 4.1.12(vite@8.3.5(@types/node@26.6.6)(yaml@2.9.1))
@@ -5007,7 +5007,7 @@ snapshots:
       '@types/node': 26.6.6
       '@vitest/coverage-istanbul': 4.1.12(supports-color@7.2.0)(vitest@4.1.12)
       happy-dom: 21.0.4
-      jsdom: 31.0.0
+      jsdom: 31.0.1
     transitivePeerDependencies:
       - msw
 
