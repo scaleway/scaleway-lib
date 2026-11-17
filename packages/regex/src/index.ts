@@ -103,3 +103,6 @@ export const kafkaUsernameRegex: RegExp = /^[a-z0-9](?:[\-a-z0-9]*[a-z0-9])?(?:\
 
 // The username cannot begin or end with a period, cannot contain two consecutive periods, and can only contain letters, numbers, periods, hyphens, and underscores. Example: "test", "test_test", "test-test"
 export const webhostingUsernameEmailRegex: RegExp = /^(?!.*\.\.)[a-zA-Z0-9_\-][a-zA-Z0-9._\-]*[a-zA-Z0-9_\-]$/v
+
+// The identifier must begin with a letter or an underscore, and can only contain letters, numbers, and underscores. Example: "test", "_test", "test_1", "été"
+export const annotationsKeyValueRegex: RegExp = /^[_\p{L}][_\p{L}0-9]*$/v
