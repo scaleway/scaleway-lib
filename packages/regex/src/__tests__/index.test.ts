@@ -26,6 +26,7 @@ import {
   alphanumLowercase,
   alphanumPlusDashUnderscore,
   alphaUpperUnderscore,
+  annotationsKeyValueRegex,
   ascii,
   backupKey,
   basicDomain,
@@ -1594,6 +1595,28 @@ describe('@regex', () => {
       ['test@test', false],
     ])('should match regex %s to be %s', (string, expected) => {
       expect(webhostingUsernameEmailRegex.test(string)).toBe(expected)
+    })
+  })
+
+  describe('regex annotationsKeyValueRegex', () => {
+    it.each([
+      ['test', true],
+      ['_test', true],
+      ['test_test', true],
+      ['test_1', true],
+      ['_', true],
+      ['a', true],
+      ['été', true],
+      ['名前2', true],
+      ['Test123', true],
+      ['1test', false],
+      ['test-test', false],
+      ['test.test', false],
+      ['test test', false],
+      ['test@test', false],
+      ['', false],
+    ])('should match regex %s to be %s', (string, expected) => {
+      expect(annotationsKeyValueRegex.test(string)).toBe(expected)
     })
   })
 
