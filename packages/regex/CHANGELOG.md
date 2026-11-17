@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.3.0
+
+### Minor Changes
+
+- [#4137](https://github.com/scaleway/scaleway-lib/pull/4137) [`1fbc4b4`](https://github.com/scaleway/scaleway-lib/commit/1fbc4b45b723c162f16d2076efae163379512bb0) Thanks [@BABAK0T0](https://github.com/BABAK0T0)! - feat(regex): add annotationsKeyValueRegex
+
 ## 6.2.0
 
 ### Minor Changes
