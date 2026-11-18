@@ -62,8 +62,11 @@ const complexFormatOptions = {
 type FormatOptions = keyof typeof formatOptions
 type ComplexFormatOptions = keyof typeof complexFormatOptions
 
-const keyFormatOptions = Object.keys(formatOptions) as FormatOptions[]
-const keyComplexFormatOptions = Object.keys(complexFormatOptions) as ComplexFormatOptions[]
+const isFormatOption = (format: string): format is FormatOptions => format in formatOptions
+const isComplexFormatOption = (format: string): format is ComplexFormatOptions => format in complexFormatOptions
+
+const keyFormatOptions = Object.keys(formatOptions).filter(isFormatOption)
+const keyComplexFormatOptions = Object.keys(complexFormatOptions).filter(isComplexFormatOption)
 
 export const supportedFormats: (FormatOptions | ComplexFormatOptions)[] = [
   ...new Set([...keyFormatOptions, ...keyComplexFormatOptions]),
@@ -85,11 +88,11 @@ const formatDate = (locale: string, date: Date | number | string, format: Format
 
   const properDate: Date = typeof date === 'string' || typeof date === 'number' ? new Date(date) : date
 
-  if (typeof format === 'string' && format in complexFormatOptions) {
-    return complexFormatOptions[format as keyof typeof complexFormatOptions](properDate, locale)
+  if (typeof format === 'string' && isComplexFormatOption(format)) {
+    return complexFormatOptions[format](properDate, locale)
   }
 
-  const options = typeof format === 'string' ? formatOptions[format as keyof typeof formatOptions] : format
+  const options = typeof format === 'string' && isFormatOption(format) ? formatOptions[format] : format
 
   if (properDate instanceof Date) {
     return formatters.getDateTimeFormat(locale, options).format(properDate)

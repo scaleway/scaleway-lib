@@ -28,7 +28,7 @@ export const getCurrentLocale = <LocalSupportedType extends string>({
     const { languages: browserLocales } = globalThis.navigator
     const currentLocalFromLocalStorage = globalThis.localStorage.getItem(localeItemStorage)
 
-    if (currentLocalFromLocalStorage) {
+    if (typeof currentLocalFromLocalStorage === 'string' && currentLocalFromLocalStorage !== '') {
       const sanitized = sanitizeLocale(currentLocalFromLocalStorage)
 
       if (isLocaleSupported(sanitized)) {

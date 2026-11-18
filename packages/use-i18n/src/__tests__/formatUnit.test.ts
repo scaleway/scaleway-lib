@@ -6,7 +6,9 @@ const locales = ['en', 'fr', 'ro']
 
 type TestType = [string, FormatUnitOptions, string, number]
 
-const SUPPORTED_UNITS = Object.keys(supportedUnits) as FormatUnitOptions['unit'][]
+const isSupportedUnit = (unit: string): unit is FormatUnitOptions['unit'] => unit in supportedUnits
+
+const SUPPORTED_UNITS = Object.keys(supportedUnits).filter(isSupportedUnit)
 
 const tests: TestType[] = [
   ...SUPPORTED_UNITS.map<TestType>(unit => ['should work with', { unit }, 'fr', 12.56]),

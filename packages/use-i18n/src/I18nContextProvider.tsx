@@ -199,7 +199,7 @@ const I18nContextProvider = <LocalSupportedType extends string>({
           onTranslateError?.({
             currentLocale,
             defaultLocale,
-            error: error as Error,
+            error: error instanceof Error ? error : new Error(String(error)),
             key,
             value,
           })

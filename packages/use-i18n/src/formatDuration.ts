@@ -12,7 +12,7 @@ const formatDuration = (locale: string, durationInSeconds: number, format?: Form
     // This method has not floating point issue
     // While number % 1 has
     const parts = durationInSeconds.toString().split('.')
-    const decimal = parts[1] ? Number(`0.${parts[1]}`) : 0
+    const decimal = parts[1] !== undefined ? Number(`0.${parts[1]}`) : 0
     const milliseconds = decimal * 1000
 
     return `${padNumberWithZeros(Math.trunc(totalSeconds / 3600) % 24)}:${padNumberWithZeros(
