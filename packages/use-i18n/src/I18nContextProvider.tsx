@@ -259,7 +259,7 @@ const I18nContextProvider = <LocalSupportedType extends string>({
         // This method has not floiating point issue
         // While number % 1 has
         const parts = durationInSeconds.toString().split('.')
-        const decimal = parts[1] ? Number(`0.${parts[1]}`) : 0
+        const decimal = parts[1] !== undefined ? Number(`0.${parts[1]}`) : 0
         const milliseconds = decimal * 1000
 
         return `${padNumberWithZeros(duration.hours ?? 0)}:${padNumberWithZeros(duration.minutes ?? 0)}:${padNumberWithZeros(duration.seconds ?? 0)}:${padNumberWithZeros(milliseconds, 3)}`
@@ -312,7 +312,7 @@ const I18nContextProvider = <LocalSupportedType extends string>({
           onTranslateError?.({
             currentLocale,
             defaultLocale,
-            error: error as Error,
+            error: error instanceof Error ? error : new Error(String(error)),
             key,
             value,
           })

@@ -1,5 +1,5 @@
 import { filesize } from 'filesize'
-import formatters from './formatters'
+import formatters, { formatToString } from './formatters'
 
 // We are on base 10, so we should use IEC standard here ...
 const exponents = [
@@ -57,11 +57,14 @@ const compoundUnitsSymbols = {
 type Unit = 'bit' | 'byte'
 type CompoundUnit = 'second'
 
+const isOctetLocale = (locale: string): locale is keyof typeof localesWhoFavorOctetOverByte =>
+  Object.keys(localesWhoFavorOctetOverByte).includes(locale)
+
 // oxlint-disable-next-line max-params
 const formatShortUnit = (locale: string, exponent: Exponent, unit: Unit, compoundUnit?: CompoundUnit) => {
   let shortenedUnit = symbols.short[unit]
 
-  if (unit === 'byte' && Object.keys(localesWhoFavorOctetOverByte).includes(locale)) {
+  if (unit === 'byte' && isOctetLocale(locale)) {
     shortenedUnit = symbols.short.octet
   }
 
@@ -72,22 +75,22 @@ const formatShortUnit = (locale: string, exponent: Exponent, unit: Unit, compoun
 const formatLongUnit = (locale: string, exponent: Exponent, unit: Unit, amount: number) => {
   let translation = symbols.long[unit]
 
-  if (unit === 'byte' && Object.keys(localesWhoFavorOctetOverByte).includes(locale)) {
-    translation = localesWhoFavorOctetOverByte[locale as keyof typeof localesWhoFavorOctetOverByte]
+  if (unit === 'byte' && isOctetLocale(locale)) {
+    translation = localesWhoFavorOctetOverByte[locale]
   }
 
-  return `${exponent.name}${
-    formatters
-      .getTranslationFormat(
-        `{amount, plural,
+  const formatted = formatters
+    .getTranslationFormat(
+      `{amount, plural,
       =0 {${translation.singular}}
       =1 {${translation.singular}}
       other {${translation.plural}}
   }`,
-        locale,
-      )
-      .format({ amount }) as string
-  }`
+      locale,
+    )
+    .format({ amount })
+
+  return `${exponent.name}${formatToString(formatted)}`
 }
 
 const format =

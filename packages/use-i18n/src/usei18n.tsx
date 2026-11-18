@@ -74,12 +74,17 @@ export function useI18n<
   LocaleParam extends BaseLocale = BaseLocale,
   LocalSupportedType extends string = '',
 >(): RequiredGenericContext<LocaleParam, LocalSupportedType> {
-  const context = useContext(I18nContext)
+  // Here we force the generic onto the useContext because the context is a global
+  // variable and cannot be generic, same as useAnalytics
+  const context = useContext<RequiredGenericContext<LocaleParam, LocalSupportedType> | undefined>(
+    // @ts-expect-error required to pass the generic onto the global context
+    I18nContext,
+  )
   if (context === undefined) {
     throw new Error('useI18n must be used within a I18nProvider')
   }
 
-  return context as unknown as RequiredGenericContext<LocaleParam, LocalSupportedType>
+  return context
 }
 
 export function useTranslation<LocaleParam extends BaseLocale = BaseLocale, LocalSupportedType extends string = ''>(
@@ -88,7 +93,14 @@ export function useTranslation<LocaleParam extends BaseLocale = BaseLocale, Loca
 ): RequiredGenericContext<LocaleParam, LocalSupportedType> & {
   isLoaded: boolean
 } {
-  const context = useContext(I18nContext)
+  // Here we force the generic onto the useContext because the context is a global
+  // variable and cannot be generic, same as useAnalytics
+  const context = useContext<
+    (RequiredGenericContext<LocaleParam, LocalSupportedType> & { isLoaded: boolean }) | undefined
+  >(
+    // @ts-expect-error required to pass the generic onto the global context
+    I18nContext,
+  )
   if (context === undefined) {
     throw new Error('useTranslation must be used within a I18nProvider')
   }
@@ -107,7 +119,5 @@ export function useTranslation<LocaleParam extends BaseLocale = BaseLocale, Loca
   return {
     ...context,
     isLoaded,
-  } as unknown as RequiredGenericContext<LocaleParam, LocalSupportedType> & {
-    isLoaded: boolean
   }
 }
