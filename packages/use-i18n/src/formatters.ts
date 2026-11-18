@@ -81,4 +81,9 @@ const formatters: Formatters = {
   ),
 }
 
+// format() can return a rich-text array when message values contain callbacks;
+// plain messages always format to a string, and the rare array joins back to text.
+export const formatToString = (formatted: unknown): string =>
+  Array.isArray(formatted) ? formatted.join('') : String(formatted)
+
 export default formatters
