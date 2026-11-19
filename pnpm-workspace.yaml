@@ -39,7 +39,7 @@ catalog:
   jsdom: 31.0.1
   lint-staged: 17.6.1
   oxfmt: 0.78.0
-  oxlint: 1.93.0
+  oxlint: 1.94.0
   oxlint-tsgolint: 7.0.2007
   publint: 0.3.25
   react: 19.3.1
