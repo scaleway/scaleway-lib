@@ -1,5 +1,6 @@
 import type { z } from 'zod'
 import { getQueryParamsFromSearchString } from './getQueryParamsFromSearchString'
+import { transformStringIntoArrayAccordingToSchema } from './transformStringIntoArrayAccordingToSchema'
 
 type SafeQueryParamError = { path: string; message: string }
 
@@ -9,7 +10,8 @@ const EMPTY_OBJECT_STABLE_REF = {}
 export const getSafeQueryParams = <T extends z.ZodObject<any>>({ search, schema }: { search: string; schema: T }) => {
   const partialSchema = schema.partial()
 
-  const searchParamsValues = getQueryParamsFromSearchString(search)
+  const searchParamsValuesRaw = getQueryParamsFromSearchString(search)
+  const searchParamsValues = transformStringIntoArrayAccordingToSchema(partialSchema, searchParamsValuesRaw)
   const zodParseRes = partialSchema.safeParse(searchParamsValues)
 
   if (zodParseRes.success) {
