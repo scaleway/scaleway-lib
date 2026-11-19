@@ -33,7 +33,6 @@
   },
   "dependencies": {
     "history": "catalog:",
-    "query-string": "catalog:",
     "regexparam": "catalog:"
   },
   "devDependencies": {

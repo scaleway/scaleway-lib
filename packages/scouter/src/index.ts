@@ -30,6 +30,3 @@ export { useBlockNavigation, type ShouldBlockCallback } from './helpers/useBlock
 export { useNavigate } from './helpers/useNavigate'
 export { useRouteParams } from './helpers/useRouteParams'
 export { useSafeQueryParams } from './helpers/useSafeQueryParams'
-
-// oxlint-disable-next-line typescript/no-deprecated
-export { useQueryParams } from './helpers/useQueryParams'

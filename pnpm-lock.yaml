@@ -287,9 +287,6 @@ catalogs:
     publint:
       specifier: 0.3.25
       version: 0.3.25
-    query-string:
-      specifier: 10.0.0
-      version: 10.0.0
     react:
       specifier: 19.3.1
       version: 19.3.1
@@ -531,9 +528,6 @@ importers:
       history:
         specifier: 'catalog:'
         version: 5.3.0
-      query-string:
-        specifier: 'catalog:'
-        version: 10.0.0
       regexparam:
         specifier: 'catalog:'
         version: 3.0.0
@@ -2175,10 +2169,6 @@ packages:
     resolution: {integrity: sha512-XDm8d3VpwwIknUHaO+eZ79opT+do/j4jeST4JD4ip3QMncAy7UK1Qc+Bifly4FVkeXylM4wvKVAJrcsA0Hbm4A==}
     engines: {node: '>= 10.8.0'}
 
-  filter-obj@6.1.0:
-    resolution: {integrity: sha512-xdMtCAODmPloU9qtmPcdBV9Kd27NtMse+4ayThxqIHUES5Z2S6bGpap5PpdmNM56ub7y3i1eyr+vJJIIgWGKmA==}
-    engines: {node: '>=18'}
-
   fsevents@2.3.3:
     resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
@@ -2573,10 +2563,6 @@ packages:
   quansync@1.0.0:
     resolution: {integrity: sha512-5xZacEEufv3HSTPQuchrvV6soaiACMFnq1H8wkVioctoH3TRha9Sz66lOxRwPK/qZj7HPiSveih9yAyh98gvqA==}
 
-  query-string@10.0.0:
-    resolution: {integrity: sha512-QYodx/Ywk8lCcOmsyupXVN91yWPAdjq0xVqE2FE2BHFYnma71C8txR8JCBptjzoUpkfAK7Qjua9VjYRTru4LYg==}
-    engines: {node: '>=22'}
-
   rc@1.2.8:
     resolution: {integrity: sha512-y3bGgqKj3QBdxLbLkomlohkvsA8gdAiUQlSBJnBhfn+BPxg4bc62d8TcBW15wavDfgexCgccckhcZvywyQYPOw==}
     hasBin: true
@@ -2700,10 +2686,6 @@ packages:
 
   spdx-license-ids@3.0.24:
     resolution: {integrity: sha512-cLS9TtWkIQFyLkJ3/5aFQAOHOSKTlOs/7WDut/XPSdjom1fJhUdkepeJAKXa9Y05+FabHd0sti+Et559vDtkpQ==}
-
-  split-on-first@4.0.0:
-    resolution: {integrity: sha512-pyrgNqiEBHA9KlEtg9quYGagtrlTyukL3ryQ+RmjRn9SYmcNQmfa+sWIsI+hlcL4WrmFdrt7IfM6o8ktBAooDQ==}
-    engines: {node: '>=20'}
 
   stackback@0.0.2:
     resolution: {integrity: sha512-1XMJE5fQo1jGH6Y/7ebnwPOBEkIEnT4QF32d5R1+VXdXveM0IBMJt8zfaxX1P3QhVwrYe+576+jkANtSS2mBbw==}
@@ -4264,8 +4246,6 @@ snapshots:
 
   filesize@11.0.32: {}
 
-  filter-obj@6.1.0: {}
-
   fsevents@2.3.3:
     optional: true
 
@@ -4649,11 +4629,6 @@ snapshots:
 
   quansync@1.0.0: {}
 
-  query-string@10.0.0:
-    dependencies:
-      filter-obj: 6.1.0
-      split-on-first: 4.0.0
-
   rc@1.2.8:
     dependencies:
       deep-extend: 0.6.0
@@ -4801,8 +4776,6 @@ snapshots:
       spdx-license-ids: 3.0.24
 
   spdx-license-ids@3.0.24: {}
-
-  split-on-first@4.0.0: {}
 
   stackback@0.0.2: {}
 
