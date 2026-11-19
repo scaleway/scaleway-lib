@@ -11,7 +11,10 @@ export const getSafeQueryParams = <T extends z.ZodObject<any>>({ search, schema 
   const partialSchema = schema.partial()
 
   const searchParamsValuesRaw = getQueryParamsFromSearchString(search)
-  const searchParamsValues = transformStringIntoArrayAccordingToSchema(partialSchema, searchParamsValuesRaw)
+  const searchParamsValues = transformStringIntoArrayAccordingToSchema({
+    schema: partialSchema,
+    values: searchParamsValuesRaw,
+  })
   const zodParseRes = partialSchema.safeParse(searchParamsValues)
 
   if (zodParseRes.success) {
