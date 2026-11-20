@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useMemo } from 'react'
 import type { FormatDateOptions } from './formatDate'
+import type { FormatDurationOptions } from './formatDuration'
 import type { FormatUnitOptions } from './formatUnit'
 import type { BaseLocale } from './international-types'
 import type { RelativeTimeOptions, RelativeTimeStrictOptions } from './relativeTime'
@@ -29,8 +30,6 @@ export type RequiredGenericContext<
 
 const areNamespacesLoaded = (namespaces: string[], loadedNamespaces: string[] = []) =>
   namespaces.every(n => loadedNamespaces.includes(n))
-
-export type FormatDurationOptions = 'clock' | 'clock-milliseconds' | Intl.DurationFormatOptions
 
 export type Context<LocaleParam extends BaseLocale, LocalSupportedType extends string> = {
   currentLocale: LocalSupportedType
