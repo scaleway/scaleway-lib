@@ -300,8 +300,8 @@ catalogs:
       specifier: 3.0.0
       version: 3.0.0
     simple-git:
-      specifier: 4.0.2
-      version: 4.0.2
+      specifier: 4.1.0
+      version: 4.1.0
     tsdown:
       specifier: 0.23.7
       version: 0.23.7
@@ -478,7 +478,7 @@ importers:
         version: 4.0.1
       simple-git:
         specifier: 'catalog:'
-        version: 4.0.2(supports-color@7.2.0)
+        version: 4.1.0(supports-color@7.2.0)
       yaml:
         specifier: 'catalog:'
         version: 2.9.1
@@ -1580,8 +1580,8 @@ packages:
   '@simple-git/args-pathspec@1.0.4':
     resolution: {integrity: sha512-EtMX6XjRWSastG2SdkmSQByPtJ9dx/NIjnHbpQPCYt62j4RmSx5rgLTGpw0YCjF5h191gZOmBfheOT23cRSFdw==}
 
-  '@simple-git/argv-parser@2.0.1':
-    resolution: {integrity: sha512-M++IaVWrN+vYalilOHfwvT2IL3wYZtVEBQpmX6DLSOJLtxbZ+SUeIDE3IiPogzhPACLajwtxfa5rp+ZX1FczzQ==}
+  '@simple-git/argv-parser@3.0.0':
+    resolution: {integrity: sha512-MhLm6/9J7PiVZghJnaJG4tOc+rTotsSINJkjbUqZA7lYmYklOXdk+d0UZ8Pm8WFcMuxafx3oSUIYYYnPY92GTQ==}
 
   '@testing-library/dom@10.4.2':
     resolution: {integrity: sha512-yzr2S9HyAIdhz2/6qHgbs665Q7PKVcDF05vsOlHPxG1mo36gKVesdYVeDLnXgfjJ03CrKRk08knc6+E/9m8v2Q==}
@@ -2563,8 +2563,8 @@ packages:
     resolution: {integrity: sha512-PcByqNyT/38F2kDNi006HAMRJaULuBzq/FOsw3qdZvX/GA9W/jamDaRskgHjubHiftXK5sIFxLNkvrXUwcof6Q==}
     engines: {node: '>= 0.4'}
 
-  simple-git@4.0.2:
-    resolution: {integrity: sha512-l0sIsv9VrPwovKELFDBOj/lhmIcbMvxBk2B+hRhsMM4/VL3gKtuZvYnBNixVo+N/0HnqQx2cBdLvxnAbygHpqA==}
+  simple-git@4.1.0:
+    resolution: {integrity: sha512-FZJESy4Vxahk4eOadmRsWF5TjhCrfpDP563j8jAMbMEi/phIHPDgzN/tDkRIZ2GyQdLKEeXMPXqA8hhWjAdQZA==}
 
   sisteransi@2.0.0:
     resolution: {integrity: sha512-2WCqLdt12eN6ehLI50S2/ZxoowXU3DD1KVPRyVP0WEsFahrGZZmCdq1K59qjJljMRIDTwx1D9YaRK+hDneBUMg==}
@@ -3667,7 +3667,7 @@ snapshots:
 
   '@simple-git/args-pathspec@1.0.4': {}
 
-  '@simple-git/argv-parser@2.0.1':
+  '@simple-git/argv-parser@3.0.0':
     dependencies:
       '@simple-git/args-pathspec': 1.0.4
 
@@ -4508,12 +4508,12 @@ snapshots:
 
   shell-quote@1.12.0: {}
 
-  simple-git@4.0.2(supports-color@7.2.0):
+  simple-git@4.1.0(supports-color@7.2.0):
     dependencies:
       '@kwsites/file-exists': 1.1.1(supports-color@7.2.0)
       '@kwsites/promise-deferred': 1.1.1
       '@simple-git/args-pathspec': 1.0.4
-      '@simple-git/argv-parser': 2.0.1
+      '@simple-git/argv-parser': 3.0.0
       debug: 4.4.3(supports-color@7.2.0)
     transitivePeerDependencies:
       - supports-color
