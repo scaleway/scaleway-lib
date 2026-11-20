@@ -121,8 +121,7 @@ const I18nContextProvider = <LocalSupportedType extends string>({
   )
 
   const switchLocale = useCallback(
-    // oxlint-disable-next-line typescript/require-await -- kept async: the public API returns a Promise
-    async (locale: LocalSupportedType): Promise<void> => {
+    (locale: LocalSupportedType): void => {
       if (isLocaleSupported(locale)) {
         localStorage.setItem(localeItemStorage, locale)
         setLangAttribute(locale, rootElement)
