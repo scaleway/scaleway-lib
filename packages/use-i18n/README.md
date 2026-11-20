@@ -31,7 +31,6 @@ your loaders will be:
 
 ```js
 const load = ({ locale, namespace }) => import(`./locales/${locale}/${namespace}`)
-const loadDateLocale = locale => import(`date-fns/locale/${locale}/index`)
 ```
 
 Inside your app you will need to use useTranslation to load namespace locales.
@@ -43,12 +42,7 @@ import I18n from '@scaleway/use-i18n'
 import defaultTranslations from './locales/en/common'
 
 const App = () => (
-  <I18n
-    loadDateLocale={loadDateLocale}
-    defaultLocale="en"
-    supportedLocales={['en']}
-    defaultTranslations={defaultTranslations}
-  >
+  <I18n defaultLocale="en" supportedLocales={['en']} defaultTranslations={defaultTranslations}>
     <App />
   </I18n>
 )
@@ -148,31 +142,6 @@ import { useI18n } from '@scaleway/use-i18n'
 
 const { namespaceTranslation } = useI18n()
 const t = namespaceTranslation('namespace.home.users.table.header')
-```
-
-### use locales from date-fns
-
-You will need sometimes to give locales to somes compoent
-In this example, we will use react-date-picker.js
-
-```js
-import { DateInput } from '@scaleway/ui'
-import { useI18n } from '@scaleway/use-i18n'
-
-const App = () => {
-  const { t, currentLocale, dateFnsLocale } = useI18n()
-
-  return (
-    <div>
-      <DateInput
-        currentLocale={currentLocale}
-        locale={dateFnsLocale}
-        label={t('form.fields.date.label')}
-        placeholder={t('form.fields.date.placeholder')}
-      />
-    </div>
-  )
-}
 ```
 
 ### formatDate

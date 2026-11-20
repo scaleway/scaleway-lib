@@ -9,6 +9,8 @@ type BaseFormatters = {
   getDateTimeFormat: (...args: ConstructorParameters<typeof Intl.DateTimeFormat>) => Intl.DateTimeFormat
   getPluralRules: (...args: ConstructorParameters<typeof Intl.PluralRules>) => Intl.PluralRules
   getListFormat: (...args: ConstructorParameters<typeof Intl.ListFormat>) => Intl.ListFormat
+  getRelativeTimeFormat: (...args: ConstructorParameters<typeof Intl.RelativeTimeFormat>) => Intl.RelativeTimeFormat
+  getDurationFormat: (...args: ConstructorParameters<typeof Intl.DurationFormat>) => Intl.DurationFormat
 }
 
 function createFastMemoizeCache<V>(): Cache<string, V> {
@@ -52,6 +54,20 @@ const baseFormatters: BaseFormatters = {
     cache: createFastMemoizeCache<Intl.PluralRules>(),
     strategy: strategies.variadic,
   }),
+  getRelativeTimeFormat: memoize(
+    (...args: ConstructorParameters<typeof Intl.RelativeTimeFormat>) => new Intl.RelativeTimeFormat(...args),
+    {
+      cache: createFastMemoizeCache<Intl.RelativeTimeFormat>(),
+      strategy: strategies.variadic,
+    },
+  ),
+  getDurationFormat: memoize(
+    (...args: ConstructorParameters<typeof Intl.DurationFormat>) => new Intl.DurationFormat(...args),
+    {
+      cache: createFastMemoizeCache<Intl.DurationFormat>(),
+      strategy: strategies.variadic,
+    },
+  ),
 }
 
 type Formatters = BaseFormatters & {

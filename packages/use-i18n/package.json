@@ -46,12 +46,10 @@
     "intl-messageformat": "catalog:"
   },
   "devDependencies": {
-    "date-fns": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:"
   },
   "peerDependencies": {
-    "date-fns": "3.x || 4.x",
     "react": "18.x || 19.x",
     "react-dom": "18.x || 19.x"
   },

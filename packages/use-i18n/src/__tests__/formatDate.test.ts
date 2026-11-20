@@ -52,4 +52,9 @@ describe(formatDate, () => {
       'format "not a valid format" should be one of hour, hourOnly, long, second, short, shortWithoutDay, numeric, numericHour or a valid Intl.DateTimeFormat options object',
     )
   })
+
+  it('should throw if date is invalid for numeric formats', () => {
+    expect(() => formatDate('fr', 'not a valid date', 'numeric')).toThrow('Invalid time value')
+    expect(() => formatDate('fr', 'not a valid date', 'numericHour')).toThrow('Invalid time value')
+  })
 })
