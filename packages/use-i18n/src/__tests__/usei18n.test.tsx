@@ -854,12 +854,16 @@ describe('i18n hook', () => {
     expect(result.current.relativeTime(date)).toBe('21 years ago')
     expect(result.current.relativeTime(new Date('4/13/2021').getTime() - 60_000)).toBe('1 minute ago')
     expect(result.current.relativeTime(new Date('4/15/2021'))).toBe('in 2 days')
+    expect(result.current.relativeTime(date, { noSuffix: true })).toBe('21 years')
+    expect(result.current.relativeTime(date, { noSuffix: true, style: 'narrow' })).toBe('21y')
+    expect(result.current.relativeTime(new Date('4/15/2021'), { noSuffix: true })).toBe('2 days')
 
     act(() => {
       result.current.switchLocale('fr')
     })
 
     expect(result.current.relativeTime(date)).toBe('il y a 21 ans')
+    expect(result.current.relativeTime(date, { noSuffix: true })).toBe('21 ans')
   })
 
   it('should formatDuration', () => {
@@ -908,11 +912,16 @@ describe('i18n hook', () => {
     const date = new Date('September 13, 2011 15:15:00')
 
     expect(result.current.relativeTimeStrict(date)).toBe('3,499 days ago')
+    expect(result.current.relativeTimeStrict(date, { noSuffix: true })).toBe('3,499 days')
+    expect(() => result.current.relativeTimeStrict(date, { unit: 'quarter', noSuffix: true })).toThrow(
+      "noSuffix is not supported with the 'quarter' unit",
+    )
     act(() => {
       result.current.switchLocale('fr')
     })
 
     expect(result.current.relativeTimeStrict(date)).toBe('il y a 3\u202F499 jours')
+    expect(result.current.relativeTimeStrict(date, { noSuffix: true })).toBe('3\u202F499\u00A0jours')
   })
 
   it('should formatUnit', async () => {
