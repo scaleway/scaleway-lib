@@ -1,19 +1,31 @@
 import { execFileSync, execSync } from 'node:child_process'
+import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import path from 'node:path'
 import { vol } from 'memfs'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { createChangesetForPackages, createTags, findWorkspaceRoot } from '../utils.js'
+import { createChangesetForPackages, createTags, findWorkspaceRoot, publishPackages } from '../utils.js'
 
 vi.mock(import('node:child_process'))
 
-// findWorkspaceRoot reads through memfs so its tests stay hermetic
+// findWorkspaceRoot reads through memfs so its tests stay hermetic; the
+// registry-auth tests read real temp files, so a vol miss falls back to the real fs
 vi.mock(import('node:fs'), async importOriginal => {
   const actual = await importOriginal()
   const memfs = await import('memfs')
   return {
     ...actual,
-    // memfs' option types allow null, node:fs' do not
+    // single signature must satisfy every fs.readFileSync overload
     // oxlint-disable-next-line typescript/no-unsafe-type-assertion
-    readFileSync: memfs.vol.readFileSync as typeof actual.readFileSync,
+    readFileSync: ((...args: Parameters<typeof actual.readFileSync>) => {
+      try {
+        // memfs' option types allow null, node:fs' do not
+        // oxlint-disable-next-line typescript/no-unsafe-type-assertion
+        return (memfs.vol.readFileSync as typeof actual.readFileSync)(...args)
+      } catch {
+        return actual.readFileSync(...args)
+      }
+    }) as typeof actual.readFileSync,
   }
 })
 
@@ -145,5 +157,91 @@ describe(findWorkspaceRoot, () => {
 
   it('terminates the walk and returns the start when no root is found', () => {
     expect(findWorkspaceRoot('/nowhere/deep/dir')).toBe('/nowhere/deep/dir')
+  })
+})
+
+const lastExecOpts = (): { env?: Record<string, string | undefined> } | undefined => {
+  const lastCall = mockedExecSync.mock.calls.at(-1)
+  expect(lastCall).toBeDefined()
+  return lastCall?.[1]
+}
+
+const userconfigFrom = (opts: { env?: Record<string, string | undefined> } | undefined): string => {
+  const userconfig = opts?.env?.['NPM_CONFIG_USERCONFIG']
+  expect(userconfig).toBeDefined()
+  return userconfig ?? ''
+}
+
+const makeWorkspaceRoot = (): string => mkdtempSync(path.join(tmpdir(), 'fake-workspace-'))
+
+describe('publishPackages registry auth', () => {
+  beforeEach(() => {
+    mockedExecSync.mockClear()
+    mockedExecSync.mockReturnValue('')
+  })
+
+  afterEach(() => {
+    vi.unstubAllEnvs()
+  })
+
+  it('writes registry auth to a temp file outside the repo and removes it after publish', () => {
+    const root = makeWorkspaceRoot()
+    writeFileSync(path.join(root, '.npmrc'), 'registry=https://registry.npmjs.org/\n')
+    vi.stubEnv('NPM_REGISTRY_USER', 'deploy')
+    vi.stubEnv('NPM_REGISTRY_PASSWD', 's3cret')
+
+    let authContent: string | undefined = undefined
+    mockedExecSync.mockImplementation((_cmd, opts) => {
+      authContent = readFileSync(userconfigFrom(opts), 'utf8')
+      return ''
+    })
+
+    publishPackages(root, { skipPublish: false, provenance: false, registry: 'https://registry.npmjs.org' })
+
+    // (a) workspace .npmrc untouched
+    expect(readFileSync(path.join(root, '.npmrc'), 'utf8')).toBe('registry=https://registry.npmjs.org/\n')
+    // (b) auth line in a temp file outside the repo, passed via NPM_CONFIG_USERCONFIG
+    const userconfig = userconfigFrom(lastExecOpts())
+    expect(userconfig.startsWith(root)).toBe(false)
+    expect(authContent).toBe(`//registry.npmjs.org/:_auth=${Buffer.from('deploy:s3cret').toString('base64')}\n`)
+    // (c) temp file removed after publish
+    expect(existsSync(userconfig)).toBe(false)
+    expect(existsSync(path.dirname(userconfig))).toBe(false)
+    rmSync(root, { recursive: true, force: true })
+  })
+
+  it('removes the temp auth file even when publish fails', () => {
+    const root = makeWorkspaceRoot()
+    vi.stubEnv('NPM_REGISTRY_USER', 'deploy')
+    vi.stubEnv('NPM_REGISTRY_PASSWD', 's3cret')
+    mockedExecSync.mockImplementation(() => {
+      throw new Error('publish failed')
+    })
+
+    expect(() => {
+      publishPackages(root, { skipPublish: false, provenance: false, registry: 'https://registry.npmjs.org' })
+    }).toThrow('publish failed')
+
+    expect(existsSync(userconfigFrom(lastExecOpts()))).toBe(false)
+    rmSync(root, { recursive: true, force: true })
+  })
+
+  it('publishes without a userconfig override when registry credentials are not set', () => {
+    const root = makeWorkspaceRoot()
+    vi.stubEnv('NPM_REGISTRY_USER', undefined)
+    vi.stubEnv('NPM_REGISTRY_PASSWD', undefined)
+
+    publishPackages(root, { skipPublish: false, provenance: false, registry: 'https://registry.npmjs.org' })
+
+    expect(mockedExecSync).toHaveBeenCalledTimes(1)
+    expect(lastExecOpts()?.env?.['NPM_CONFIG_USERCONFIG']).toBeUndefined()
+    rmSync(root, { recursive: true, force: true })
+  })
+
+  it('does not publish when skipPublish is set', () => {
+    const root = makeWorkspaceRoot()
+    publishPackages(root, { skipPublish: true, provenance: false, registry: 'https://registry.npmjs.org' })
+    expect(mockedExecSync).not.toHaveBeenCalled()
+    rmSync(root, { recursive: true, force: true })
   })
 })
