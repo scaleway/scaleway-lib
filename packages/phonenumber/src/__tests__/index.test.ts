@@ -113,6 +113,64 @@ describe(parsePhoneValue, () => {
     expect(result.e164).toBe('+14155552671')
     expect(result.country).toBe('US')
   })
+
+  it('should expose all formats for a valid French phone number', () => {
+    const result = parsePhoneValue('+33607080910')
+    expect(result.valid).toBe(true)
+    expect(result.country).toBe('FR')
+    expect(result.formatted).toBe('+33 6 07 08 09 10')
+    expect(result.e164).toBe('+33607080910')
+    expect(result.international).toBe('+33 6 07 08 09 10')
+    expect(result.national).toBe('06 07 08 09 10')
+  })
+
+  it('should parse a local French mobile number without country prefix', () => {
+    const result = parsePhoneValue('0607080910')
+    expect(result.valid).toBe(true)
+    expect(result.country).toBe('FR')
+    expect(result.formatted).toBe('+33 6 07 08 09 10')
+    expect(result.e164).toBe('+33607080910')
+    expect(result.international).toBe('+33 6 07 08 09 10')
+    expect(result.national).toBe('06 07 08 09 10')
+  })
+
+  it('should detect GB country for a UK phone number', () => {
+    const result = parsePhoneValue('+441234567890')
+    expect(result.valid).toBe(true)
+    expect(result.country).toBe('GB')
+    expect(result.formatted).toBe('+44 1234 567890')
+    expect(result.e164).toBe('+441234567890')
+    expect(result.international).toBe('+44 1234 567890')
+    expect(result.national).toBe('01234 567890')
+  })
+
+  it('should return invalid with fallback country for a too short input', () => {
+    const result = parsePhoneValue('12')
+    expect(result.valid).toBe(false)
+    expect(result.country).toBe('FR')
+    expect(result.formatted).toBe('12')
+    expect(result.e164).toBeNull()
+    expect(result.international).toBeNull()
+    expect(result.national).toBeNull()
+  })
+
+  it('should return invalid with fallback country for garbage input', () => {
+    const result = parsePhoneValue('abc')
+    expect(result.valid).toBe(false)
+    expect(result.country).toBe('FR')
+    expect(result.formatted).toBe('abc')
+    expect(result.e164).toBeNull()
+    expect(result.international).toBeNull()
+    expect(result.national).toBeNull()
+  })
+
+  it('should not throw for any input', () => {
+    expect(() => parsePhoneValue('+33607080910')).not.toThrow()
+    expect(() => parsePhoneValue('0607080910')).not.toThrow()
+    expect(() => parsePhoneValue('+441234567890')).not.toThrow()
+    expect(() => parsePhoneValue('12')).not.toThrow()
+    expect(() => parsePhoneValue('abc')).not.toThrow()
+  })
 })
 
 describe(formatPhoneNumber, () => {
