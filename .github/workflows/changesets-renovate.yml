@@ -22,7 +22,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          fetch-depth: 2
+          # Full history so origin/<base branch> exists for the PR-base diff
+          fetch-depth: 0
           ref: ${{ github.head_ref }}
       - name: Git Identity
         run: |

@@ -2,7 +2,7 @@ import type { SimpleGit } from 'simple-git'
 import { simpleGit } from 'simple-git'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { parse } from 'yaml'
-import { findChangedDependenciesFromGit, loadCatalogFromGit } from '../git-utils.js'
+import { findChangedDependenciesFromGit, getBumpsFromGit, loadCatalogFromGit } from '../git-utils.js'
 
 // Mock all external dependencies
 vi.mock(import('yaml'))
@@ -128,6 +128,56 @@ catalog:
       expect(packages).toContain('package-c')
       expect(packages).not.toContain('package-b') // Unchanged
       expect(packages).not.toContain('package-d') // New package
+    })
+  })
+
+  describe(getBumpsFromGit, () => {
+    it('should find bumps from any commit of the PR when a base is provided', async () => {
+      // Two-commit PR: the bump lives in the first commit, the HEAD commit does not touch it
+      const diff = vi.fn<() => string>().mockReturnValue(`
++++ b/test/package.json
++ "package": "version"
+`)
+      const show = vi.fn<() => string>().mockReturnValue('')
+      vi.mocked(simpleGit).mockReturnValue({
+        add: vi.fn<() => void>(),
+        branch: vi.fn<() => { current: string }>(),
+        commit: vi.fn<() => void>(),
+        diff,
+        diffSummary: vi.fn<() => Record<string, unknown>>(),
+        push: vi.fn<() => void>(),
+        revparse: vi.fn<() => string>(),
+        show,
+      } as unknown as SimpleGit)
+
+      const result = await getBumpsFromGit(['test/package.json'], 'origin/main')
+
+      expect(result.get('package')).toBe('version')
+      expect(diff).toHaveBeenCalledWith(['origin/main...HEAD', '--', 'test/package.json'])
+      expect(show).not.toHaveBeenCalled()
+    })
+
+    it('should read bumps from the last commit only when no base is provided', async () => {
+      const diff = vi.fn<() => string>().mockReturnValue('')
+      const show = vi.fn<() => string>().mockReturnValue(`
++ "package": "version"
+`)
+      vi.mocked(simpleGit).mockReturnValue({
+        add: vi.fn<() => void>(),
+        branch: vi.fn<() => { current: string }>(),
+        commit: vi.fn<() => void>(),
+        diff,
+        diffSummary: vi.fn<() => Record<string, unknown>>(),
+        push: vi.fn<() => void>(),
+        revparse: vi.fn<() => string>(),
+        show,
+      } as unknown as SimpleGit)
+
+      const result = await getBumpsFromGit(['test/package.json'])
+
+      expect(result.get('package')).toBe('version')
+      expect(show).toHaveBeenCalledWith(['test/package.json'])
+      expect(diff).not.toHaveBeenCalled()
     })
   })
 })

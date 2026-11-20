@@ -6,7 +6,7 @@ import { findAffectedPackages } from './utils.ts'
 /**
  * Handle pnpm workspace catalog changes
  */
-export async function handleCatalogChanges(diffFiles: string[]): Promise<void> {
+export async function handleCatalogChanges(diffFiles: string[], base = 'HEAD~1'): Promise<void> {
   const workspaceFiles = diffFiles.filter(file => file.includes('pnpm-workspace.yaml'))
 
   if (workspaceFiles.length === 0) {
@@ -15,11 +15,11 @@ export async function handleCatalogChanges(diffFiles: string[]): Promise<void> {
 
   console.log('🔍 Detected pnpm workspace changes, checking for catalog updates...')
 
-  // Compare catalogs between HEAD~1 and HEAD
-  console.log('🔍 Comparing catalogs: HEAD~1 -> HEAD')
+  // Compare catalogs between the base and HEAD
+  console.log(`🔍 Comparing catalogs: ${base} -> HEAD`)
 
   // Step 1: Find changed deps using git history
-  const changedDeps = await findChangedDependenciesFromGit('HEAD~1', 'HEAD', 'pnpm-workspace.yaml')
+  const changedDeps = await findChangedDependenciesFromGit(base, 'HEAD', 'pnpm-workspace.yaml')
 
   if (changedDeps.size === 0) {
     console.log('✅ No catalog dependency changes.', { changedDeps })

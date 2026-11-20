@@ -18,7 +18,11 @@ async function run(): Promise<void> {
     return
   }
 
-  const diffOutput = await simpleGit().diffSummary(['--name-only', 'HEAD~1'])
+  // GITHUB_BASE_REF is set by GitHub Actions on pull_request events. Without it
+  // (local runs), fall back to the previous commit, which only sees single-commit PRs.
+  const base = env['GITHUB_BASE_REF'] === undefined ? undefined : `origin/${env['GITHUB_BASE_REF']}`
+
+  const diffOutput = await simpleGit().diffSummary(['--name-only', `${base ?? 'HEAD~1'}...HEAD`])
   const diffFiles = diffOutput.files.map(file => file.file)
 
   console.log('Found changed files:', diffFiles)
@@ -42,13 +46,13 @@ async function run(): Promise<void> {
   // Handle catalog changes
   if (hasWorkspaceChanges) {
     console.log('📚 Processing pnpm workspace catalog changes...')
-    await handleCatalogChanges(diffFiles)
+    await handleCatalogChanges(diffFiles, base)
   }
 
   // Handle package.json changes
   if (hasPackageChanges) {
     console.log('📦 Processing package.json changes...')
-    await handlePackageChanges(diffFiles)
+    await handlePackageChanges(diffFiles, base)
   }
 }
 

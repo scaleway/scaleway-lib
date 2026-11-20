@@ -6,7 +6,7 @@ import { getPackagesNames } from './utils.ts'
 /**
  * Handle package.json changes (original Renovate flow)
  */
-export async function handlePackageChanges(diffFiles: string[]): Promise<void> {
+export async function handlePackageChanges(diffFiles: string[], base?: string): Promise<void> {
   const files = diffFiles.filter(file => file.includes('package.json'))
 
   if (files.length === 0) {
@@ -15,7 +15,7 @@ export async function handlePackageChanges(diffFiles: string[]): Promise<void> {
     return
   }
 
-  const packageBumps = await getBumpsFromGit(files)
+  const packageBumps = await getBumpsFromGit(files, base)
   const packageNames = await getPackagesNames(files, packageBumps)
 
   if (packageNames.length === 0) {

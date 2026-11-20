@@ -49,7 +49,7 @@ describe('handle-packages', () => {
 
     await handlePackageChanges(diffFiles)
 
-    expect(getBumpsFromGit).toHaveBeenCalledWith(['package.json'])
+    expect(getBumpsFromGit).toHaveBeenCalledWith(['package.json'], undefined)
     expect(getPackagesNames).toHaveBeenCalledWith(['package.json'], undefined)
     expect(createChangeset).not.toHaveBeenCalledTimes(1)
   })
@@ -79,7 +79,10 @@ describe('handle-packages', () => {
 
     await handlePackageChanges(diffFiles)
 
-    expect(getBumpsFromGit).toHaveBeenCalledWith(['packages/pkg-a/package.json', 'packages/pkg-b/package.json'])
+    expect(getBumpsFromGit).toHaveBeenCalledWith(
+      ['packages/pkg-a/package.json', 'packages/pkg-b/package.json'],
+      undefined,
+    )
     expect(getPackagesNames).toHaveBeenCalledWith(
       ['packages/pkg-a/package.json', 'packages/pkg-b/package.json'],
       new Map([
@@ -90,5 +93,14 @@ describe('handle-packages', () => {
     expect(vi.mocked(revparseMock)).toHaveBeenCalledWith(['--short', 'HEAD'])
     expect(createChangeset).toHaveBeenCalledWith('.changeset/renovate-def456.md', packageBumps, ['pkg-a', 'pkg-b'])
     expect(handleChangesetFile).toHaveBeenCalledWith('.changeset/renovate-def456.md')
+  })
+
+  it('should pass the diff base through to getBumpsFromGit', async () => {
+    vi.mocked(getBumpsFromGit).mockResolvedValue(new Map())
+    vi.mocked(getPackagesNames).mockResolvedValue([])
+
+    await handlePackageChanges(['packages/pkg-a/package.json'], 'origin/main')
+
+    expect(getBumpsFromGit).toHaveBeenCalledWith(['packages/pkg-a/package.json'], 'origin/main')
   })
 })

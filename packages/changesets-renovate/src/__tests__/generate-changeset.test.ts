@@ -36,6 +36,7 @@ describe('generate changeset file', () => {
     vi.stubEnv('SKIP_COMMIT', undefined)
     vi.stubEnv('BRANCH_PREFIX', undefined)
     vi.stubEnv('SORT_CHANGESETS', undefined)
+    vi.stubEnv('GITHUB_BASE_REF', undefined)
   })
 
   it('should skip if not in renovate branch', async () => {
@@ -439,5 +440,54 @@ describe('generate changeset file', () => {
     await run()
 
     expect(console.log).toHaveBeenCalledWith('No packages modified, skipping')
+  })
+
+  it('should diff against the PR base when GITHUB_BASE_REF is set', async () => {
+    const rev = 'test'
+    const fileName = `.changeset/renovate-${rev}.md`
+    const file = 'test/package.json'
+    const revparse = vi.fn<() => string>().mockReturnValue(rev)
+    const add = vi.fn<() => void>()
+    const commit = vi.fn<() => void>()
+    const push = vi.fn<() => void>()
+    const diffSummary = vi.fn<() => Record<string, unknown>>().mockReturnValue({
+      files: [
+        {
+          file,
+        },
+      ],
+    })
+    // The bump was introduced by an earlier commit: only the PR-wide diff sees it
+    const diff = vi.fn<() => string>().mockReturnValue(`
++++ b/test/package.json
++ "package": "version"
+`)
+
+    vi.mocked(simpleGit).mockReturnValue({
+      add,
+      branch: () => ({
+        current: 'renovate/test',
+      }),
+      commit,
+      diff,
+      diffSummary,
+      push,
+      revparse,
+      show: () => '',
+    } as unknown as SimpleGit)
+
+    vol.fromJSON({
+      'test/package.json': `{"name":"packageName","version":"1.0.0","dependencies": { "package": "1.0.0" }}`,
+    })
+
+    vi.stubEnv('GITHUB_BASE_REF', 'main')
+    vi.stubEnv('SKIP_COMMIT', 'true')
+    await run()
+
+    expect(diffSummary).toHaveBeenCalledWith(['--name-only', 'origin/main...HEAD'])
+    expect(diff).toHaveBeenCalledWith(['origin/main...HEAD', '--', file])
+    expect(vol.readFileSync(fileName, 'utf8')).toBe(
+      `---\n'packageName': patch\n---\n\nUpdated dependency \`package\` to \`version\`.\n`,
+    )
   })
 })

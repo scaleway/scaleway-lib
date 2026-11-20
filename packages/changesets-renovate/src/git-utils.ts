@@ -62,13 +62,20 @@ export async function findChangedDependenciesFromGit(
   return bumps
 }
 
-export async function getBumpsFromGit(files: string[]): Promise<Map<string, string>> {
+export async function getBumpsFromGit(files: string[], base?: string): Promise<Map<string, string>> {
   const bumps = new Map()
 
-  const promises = files.map(async file => {
-    const changes = await simpleGit().show([file])
+  // One diff over the whole PR (merge-base of base and HEAD) when a base is given, so
+  // bumps introduced by earlier commits are not missed. Without a base (local runs):
+  // last commit only — assumes the PR is a single commit.
+  const diffs =
+    base !== undefined
+      ? [await simpleGit().diff([`${base}...HEAD`, '--', ...files])]
+      : await Promise.all(files.map(async file => simpleGit().show([file])))
 
-    for (const change of changes.split('\n')) {
+  for (const diff of diffs) {
+    // '+ ' also skips '+++' file headers
+    for (const change of diff.split('\n')) {
       if (change.startsWith('+ ')) {
         const match = change.match(/"(?:.*?)"/gv)
 
@@ -77,9 +84,7 @@ export async function getBumpsFromGit(files: string[]): Promise<Map<string, stri
         }
       }
     }
-  })
-
-  await Promise.all(promises)
+  }
 
   return bumps
 }
