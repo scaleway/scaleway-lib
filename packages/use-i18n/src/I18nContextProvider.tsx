@@ -1,17 +1,5 @@
-import {
-  formatDistanceToNow,
-  formatDistanceToNowStrict,
-  formatDuration as formatDurationFns,
-  intervalToDuration,
-} from 'date-fns'
-import type {
-  Locale as DateFnsLocale,
-  Duration,
-  FormatDistanceToNowOptions,
-  FormatDistanceToNowStrictOptions,
-} from 'date-fns'
 import type { ReactElement, ReactNode } from 'react'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import type { FormatDateOptions } from './formatDate'
 import dateFormat from './formatDate'
 import formatters from './formatters'
@@ -19,15 +7,10 @@ import type { FormatUnitOptions } from './formatUnit'
 import unitFormat from './formatUnit'
 import { getCurrentLocale, setLangAttribute } from './helpers'
 import type { BaseLocale } from './international-types'
+import { relativeTime as relativeTimeFormat, relativeTimeStrict as relativeTimeStrictFormat } from './relativeTime'
+import type { RelativeTimeOptions, RelativeTimeStrictOptions } from './relativeTime'
 import type { ReactParamsObject, SupportedLocalesType } from './types'
-import type {
-  FormatDurationOptions,
-  LoadDateLocaleError,
-  LoadLocaleFn,
-  LoadLocaleFnAsync,
-  LoadTranslationsFn,
-  TranslationsByLocales,
-} from './usei18n'
+import type { FormatDurationOptions, LoadTranslationsFn, TranslationsByLocales } from './usei18n'
 import { I18nContext } from './usei18n'
 
 const LOCALE_ITEM_STORAGE = 'locale'
@@ -44,10 +27,7 @@ const I18nContextProvider = <LocalSupportedType extends string>({
   defaultTranslations = initialDefaultTranslations,
   enableDebugKey = false,
   enableDefaultLocale = false,
-  loadDateLocale,
-  loadDateLocaleAsync,
   localeItemStorage = LOCALE_ITEM_STORAGE,
-  onLoadDateLocaleError,
   onTranslateError,
   onLoadTranslationError,
   isLocaleSupported,
@@ -55,9 +35,6 @@ const I18nContextProvider = <LocalSupportedType extends string>({
   children: ReactNode
   rootElement?: Element
   defaultLoad: LoadTranslationsFn<LocalSupportedType>
-  loadDateLocale?: LoadLocaleFn<LocalSupportedType>
-  loadDateLocaleAsync: LoadLocaleFnAsync<LocalSupportedType>
-  onLoadDateLocaleError?: LoadDateLocaleError
   defaultLocale: LocalSupportedType
   defaultTranslations?: TranslationsByLocales
   enableDefaultLocale?: boolean
@@ -88,42 +65,6 @@ const I18nContextProvider = <LocalSupportedType extends string>({
   )
   const [translations, setTranslations] = useState<TranslationsByLocales>(defaultTranslations)
   const [namespaces, setNamespaces] = useState<string[]>([])
-
-  const [dateFnsLocale, setDateFnsLocale] = useState<DateFnsLocale | undefined>(
-    loadDateLocale?.(currentLocale) ?? undefined,
-  )
-
-  const loadDateFNS = loadDateLocale ?? loadDateLocaleAsync
-
-  const setDateFns = useCallback(
-    async (locale: LocalSupportedType) => {
-      try {
-        const dateFns = await loadDateFNS(locale)
-        setDateFnsLocale(dateFns)
-      } catch (error) {
-        if (error instanceof Error && onLoadDateLocaleError) {
-          onLoadDateLocaleError(error)
-        }
-
-        setDateFnsLocale(dateFnsLocale)
-      }
-    },
-    [loadDateFNS, setDateFnsLocale, onLoadDateLocaleError, dateFnsLocale],
-  )
-
-  /**
-   *  At first render when we find a local on the localStorage which is not the same as the default,
-   *  we should switch also the date-fns local related to the current local.
-   *  As the method is async, we obviously need a useEffect to apply this change...
-   */
-
-  useEffect(() => {
-    if (!dateFnsLocale) {
-      setDateFns(currentLocale)
-        .then()
-        .catch(() => null)
-    }
-  }, [currentLocale, dateFnsLocale, setDateFns])
 
   const loadTranslations = useCallback(
     async (namespace: string, load: LoadTranslationsFn<LocalSupportedType> = defaultLoad) => {
@@ -180,15 +121,15 @@ const I18nContextProvider = <LocalSupportedType extends string>({
   )
 
   const switchLocale = useCallback(
-    async (locale: LocalSupportedType) => {
+    // oxlint-disable-next-line typescript/require-await -- kept async: the public API returns a Promise
+    async (locale: LocalSupportedType): Promise<void> => {
       if (isLocaleSupported(locale)) {
         localStorage.setItem(localeItemStorage, locale)
         setLangAttribute(locale, rootElement)
         setCurrentLocale(locale)
-        await setDateFns(locale)
       }
     },
-    [setDateFns, localeItemStorage, setCurrentLocale, isLocaleSupported, rootElement],
+    [localeItemStorage, setCurrentLocale, isLocaleSupported, rootElement],
   )
 
   const formatNumber = useCallback(
@@ -223,73 +164,58 @@ const I18nContextProvider = <LocalSupportedType extends string>({
   )
 
   const relativeTimeStrict = useCallback(
-    (
-      date: Date | number,
-      { addSuffix = true, unit = 'day', ...otherOptions }: FormatDistanceToNowStrictOptions = {},
-    ) => {
-      const finalDate = new Date(date)
-
-      return formatDistanceToNowStrict(finalDate, {
-        locale: dateFnsLocale,
-        addSuffix,
-        unit,
-        ...otherOptions,
-      })
-    },
-    [dateFnsLocale],
+    (date: Date | number, options?: RelativeTimeStrictOptions) =>
+      relativeTimeStrictFormat(currentLocale, date, options),
+    [currentLocale],
   )
 
   const formatDuration = useCallback(
     (durationInSeconds: number, format?: FormatDurationOptions): string => {
-      const duration: Duration = {
-        years: 0,
-        months: 0,
-        weeks: 0,
-        days: 0,
-        hours: 0,
-        minutes: 0,
-        seconds: 0,
-        ...intervalToDuration({
-          end: durationInSeconds * 1000,
-          start: 0,
-        }),
-      }
+      // Non-finite inputs format like an empty duration instead of crashing, as date-fns did
+      const totalSeconds = Number.isFinite(durationInSeconds) ? Math.trunc(durationInSeconds) : 0
 
       if (format === 'clock-milliseconds') {
-        // This method has not floiating point issue
+        // This method has not floating point issue
         // While number % 1 has
         const parts = durationInSeconds.toString().split('.')
         const decimal = parts[1] ? Number(`0.${parts[1]}`) : 0
         const milliseconds = decimal * 1000
 
-        return `${padNumberWithZeros(duration.hours ?? 0)}:${padNumberWithZeros(duration.minutes ?? 0)}:${padNumberWithZeros(duration.seconds ?? 0)}:${padNumberWithZeros(milliseconds, 3)}`
+        return `${padNumberWithZeros(Math.trunc(totalSeconds / 3600) % 24)}:${padNumberWithZeros(
+          Math.trunc(totalSeconds / 60) % 60,
+        )}:${padNumberWithZeros(totalSeconds % 60)}:${padNumberWithZeros(milliseconds, 3)}`
       }
 
       if (format === 'clock') {
-        return `${padNumberWithZeros(duration.hours ?? 0)}:${padNumberWithZeros(duration.minutes ?? 0)}:${padNumberWithZeros(duration.seconds ?? 0)}`
+        return `${padNumberWithZeros(Math.trunc(totalSeconds / 3600) % 24)}:${padNumberWithZeros(
+          Math.trunc(totalSeconds / 60) % 60,
+        )}:${padNumberWithZeros(totalSeconds % 60)}`
       }
 
-      // date-fns does not handle milliseconds yet
-      // https://github.com/date-fns/date-fns/issues/3958
-      return formatDurationFns(duration, {
-        locale: dateFnsLocale,
-        ...format,
-      })
+      // Fixed 24 hours days, not calendar months like the previous date-fns implementation
+      const duration = {
+        days: Math.trunc(totalSeconds / 86_400),
+        hours: Math.trunc(totalSeconds / 3600) % 24,
+        minutes: Math.trunc(totalSeconds / 60) % 60,
+        seconds: totalSeconds % 60,
+      }
+
+      // Zero fields are omitted and an empty duration formats to an empty string,
+      // as Intl.DurationFormat throws on a duration without any non-zero field
+      const fields = Object.fromEntries(Object.entries(duration).filter(([, value]) => value !== 0))
+
+      if (Object.keys(fields).length === 0) {
+        return ''
+      }
+
+      return formatters.getDurationFormat(currentLocale, { style: 'long', ...format }).format(fields)
     },
-    [dateFnsLocale],
+    [currentLocale],
   )
 
   const relativeTime = useCallback(
-    (date: Date | number, { addSuffix = true, ...otherOptions }: FormatDistanceToNowOptions = {}) => {
-      const finalDate = new Date(date)
-
-      return formatDistanceToNow(finalDate, {
-        locale: dateFnsLocale,
-        addSuffix,
-        ...otherOptions,
-      })
-    },
-    [dateFnsLocale],
+    (date: Date | number, options?: RelativeTimeOptions) => relativeTimeFormat(currentLocale, date, options),
+    [currentLocale],
   )
 
   const translate = useCallback(
@@ -340,7 +266,6 @@ const I18nContextProvider = <LocalSupportedType extends string>({
   const value = useMemo(
     () => ({
       currentLocale,
-      dateFnsLocale,
       datetime,
       formatDate,
       formatList,
@@ -359,7 +284,6 @@ const I18nContextProvider = <LocalSupportedType extends string>({
     }),
     [
       currentLocale,
-      dateFnsLocale,
       datetime,
       formatDate,
       formatList,

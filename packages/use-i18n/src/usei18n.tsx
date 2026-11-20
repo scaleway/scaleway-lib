@@ -1,13 +1,8 @@
-import type {
-  Locale as DateFnsLocale,
-  FormatDurationOptions as FnsFormatDurationOptions,
-  FormatDistanceToNowOptions,
-  FormatDistanceToNowStrictOptions,
-} from 'date-fns'
 import { createContext, useContext, useEffect, useMemo } from 'react'
 import type { FormatDateOptions } from './formatDate'
 import type { FormatUnitOptions } from './formatUnit'
 import type { BaseLocale } from './international-types'
+import type { RelativeTimeOptions, RelativeTimeStrictOptions } from './relativeTime'
 import type { ScopedTranslateFn, TranslateFn } from './types'
 
 // Export types that are used in the public API
@@ -22,14 +17,6 @@ export type LoadTranslationsFn<LocalSupportedType extends string> = ({
   locale: LocalSupportedType
 }) => Promise<{ default: BaseLocale }>
 
-export type LoadLocaleFn<LocalSupportedType extends string> = (locale: LocalSupportedType) => DateFnsLocale
-
-export type LoadLocaleFnAsync<LocalSupportedType extends string> = (
-  locale: LocalSupportedType,
-) => Promise<DateFnsLocale>
-
-export type LoadDateLocaleError = (error: Error) => void
-
 export type RequiredGenericContext<
   LocaleParam extends BaseLocale,
   LocalSupportedType extends string,
@@ -43,11 +30,10 @@ export type RequiredGenericContext<
 const areNamespacesLoaded = (namespaces: string[], loadedNamespaces: string[] = []) =>
   namespaces.every(n => loadedNamespaces.includes(n))
 
-export type FormatDurationOptions = Omit<FnsFormatDurationOptions, 'locale'> | 'clock' | 'clock-milliseconds'
+export type FormatDurationOptions = 'clock' | 'clock-milliseconds' | Intl.DurationFormatOptions
 
 export type Context<LocaleParam extends BaseLocale, LocalSupportedType extends string> = {
   currentLocale: LocalSupportedType
-  dateFnsLocale?: DateFnsLocale
   datetime: (date: Date | number, options?: Intl.DateTimeFormatOptions) => string
   formatDate: (value: Date | number | string, options?: FormatDateOptions) => string
   formatList: (listFormat: string[], options?: Intl.ListFormatOptions) => string
@@ -57,8 +43,8 @@ export type Context<LocaleParam extends BaseLocale, LocalSupportedType extends s
   loadTranslations: (namespace: string, load?: LoadTranslationsFn<LocalSupportedType>) => Promise<string>
   namespaces: string[]
   namespaceTranslation: ScopedTranslateFn<LocaleParam>
-  relativeTime: (date: Date | number, options?: FormatDistanceToNowOptions) => string
-  relativeTimeStrict: (date: Date | number, options?: FormatDistanceToNowStrictOptions) => string
+  relativeTime: (date: Date | number, options?: RelativeTimeOptions) => string
+  relativeTimeStrict: (date: Date | number, options?: RelativeTimeStrictOptions) => string
   setTranslations: React.Dispatch<React.SetStateAction<TranslationsByLocales>>
   switchLocale: (locale: LocalSupportedType) => Promise<void>
   t: TranslateFn<LocaleParam>
