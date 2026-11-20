@@ -130,7 +130,9 @@ export type SRN<P extends string = string, R extends string = string, L extends 
 const SRN_RE = /^srn:\/\/(?<product>[^.]+)\.(?<platform>[^\/]+)\/(?<path>.*)$/sv
 
 // Matches an optional locality prefix: <zones|regions>/<name>/
-const LOCALITY_RE = /^(?<loc>[^\/]+)\/(?<locName>[^\/]+)\//v
+// Only `zones`/`regions` mark a locality prefix; any other leading pair
+// (e.g. `organizations/1234`) belongs to the resource path.
+const LOCALITY_RE = /^(?<loc>zones|regions)\/(?<locName>[^\/]+)\//v
 
 /**
  * Error thrown when an SRN string cannot be parsed.
