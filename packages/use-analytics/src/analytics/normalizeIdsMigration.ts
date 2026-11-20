@@ -19,7 +19,7 @@ export const normalizeIdsMigration = (rudderAnalytics: RudderAnalytics): void =>
   const groupId = rudderAnalytics.getGroupId()
   const normalizeGroupId = groupId ? normalizeId(groupId) : null
 
-  if (userId !== normalizeGroupId && normalizeGroupId) {
+  if (groupId !== normalizeGroupId && normalizeGroupId) {
     rudderAnalytics.group(normalizeGroupId)
   }
 }
