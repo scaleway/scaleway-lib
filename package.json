@@ -6,7 +6,7 @@
     "preinstall": "git config --local include.path $PWD/.gitconfig",
     "lint:catalog": "pnpm check-catalog-usage",
     "lint": "oxlint",
-    "lint:fix": "pnpm lint:fix -- --fix",
+    "lint:fix": "oxlint --fix",
     "build": "pnpm turbo build",
     "typecheck": "pnpm turbo typecheck",
     "format": "oxfmt --write .",
