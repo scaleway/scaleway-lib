@@ -187,6 +187,107 @@ describe('useauthscw provider', () => {
       expect(mockRenewJwt).toHaveBeenCalledTimes(1)
     })
 
+    it('should renew each audience jwt when two audiences call getJWT concurrently', async () => {
+      const otherAudienceId = '6e58880d-cd6d-4f4f-9d75-8e2c2e4f97be'
+      const renewedJwtA = {
+        ...MOCK_ENCODED_JWT_COOKIE,
+        token: 'tokenAudienceA',
+        jwt: {
+          ...MOCK_ENCODED_JWT_COOKIE.jwt,
+          expiresAt: new Date(Date.now() + 60 * 60 * 1000),
+        },
+      }
+      const renewedJwtB = {
+        ...MOCK_ENCODED_JWT_COOKIE,
+        renewToken: 'renewTokenB',
+        token: 'tokenAudienceB',
+        jwt: {
+          ...MOCK_ENCODED_JWT_COOKIE.jwt,
+          audienceId: otherAudienceId,
+          jti: 'jtiB',
+          expiresAt: new Date(Date.now() + 60 * 60 * 1000),
+        },
+      }
+
+      const store = createAuthStoreManager({ storageType: 'cookie', suffixKey: DEFAULT_COOKIE_SUFFIX })
+      store.setJwt({
+        jwtInfo: {
+          ...MOCK_ENCODED_JWT_COOKIE,
+          jwt: {
+            ...MOCK_ENCODED_JWT_COOKIE.jwt,
+            expiresAt: new Date(),
+          },
+        },
+      })
+      store.setJwt({
+        jwtInfo: {
+          ...MOCK_ENCODED_JWT_COOKIE,
+          renewToken: 'renewTokenB',
+          jwt: {
+            ...MOCK_ENCODED_JWT_COOKIE.jwt,
+            audienceId: otherAudienceId,
+            jti: 'jtiB',
+            expiresAt: new Date(),
+          },
+        },
+      })
+      // getJWT(audienceA) is evaluated first, so renewJWT receives audienceA request first
+      mockRenewJwt.mockResolvedValueOnce(renewedJwtA).mockResolvedValueOnce(renewedJwtB)
+
+      const { result } = renderHook(useAuthScw, { wrapper: Wrapper })
+
+      const jwtAudienceAPromise = result.current.getJWT(MOCK_AUDIENCE_ID)
+      const jwtAudienceBPromise = result.current.getJWT(otherAudienceId)
+
+      await act(async () => {
+        await Promise.all([jwtAudienceAPromise, jwtAudienceBPromise])
+      })
+
+      const jwtAudienceA = await jwtAudienceAPromise
+      const jwtAudienceB = await jwtAudienceBPromise
+
+      expect(jwtAudienceA?.token).toBe('tokenAudienceA')
+      expect(jwtAudienceA?.jwt?.audienceId).toBe(MOCK_AUDIENCE_ID)
+      expect(jwtAudienceB?.token).toBe('tokenAudienceB')
+      expect(jwtAudienceB?.jwt?.audienceId).toBe(otherAudienceId)
+      expect(mockRenewJwt).toHaveBeenCalledTimes(2)
+      expect(mockRenewJwt).toHaveBeenCalledWith({
+        jti: MOCK_ENCODED_JWT_COOKIE.jwt.jti,
+        renewToken: MOCK_ENCODED_JWT_COOKIE.renewToken,
+      })
+      expect(mockRenewJwt).toHaveBeenCalledWith({ jti: 'jtiB', renewToken: 'renewTokenB' })
+    })
+
+    it('should call renewJWT once when the same audience calls getJWT twice concurrently', async () => {
+      mockRenewJwt.mockResolvedValue(MOCK_ENCODED_JWT_COOKIE)
+      const store = createAuthStoreManager({ storageType: 'cookie', suffixKey: DEFAULT_COOKIE_SUFFIX })
+      store.setJwt({
+        jwtInfo: {
+          ...MOCK_ENCODED_JWT_COOKIE,
+          jwt: {
+            ...MOCK_ENCODED_JWT_COOKIE.jwt,
+            expiresAt: new Date(),
+          },
+        },
+      })
+
+      const { result } = renderHook(useAuthScw, { wrapper: Wrapper })
+
+      const firstJWTPromise = result.current.getJWT(MOCK_AUDIENCE_ID)
+      const secondJWTPromise = result.current.getJWT(MOCK_AUDIENCE_ID)
+
+      await act(async () => {
+        await Promise.all([firstJWTPromise, secondJWTPromise])
+      })
+
+      const firstJWT = await firstJWTPromise
+      const secondJWT = await secondJWTPromise
+
+      expect(mockRenewJwt).toHaveBeenCalledTimes(1)
+      expect(firstJWT?.token).toStrictEqual(MOCK_ENCODED_JWT_COOKIE.token)
+      expect(secondJWT?.token).toStrictEqual(MOCK_ENCODED_JWT_COOKIE.token)
+    })
+
     it('should logout and clear all', async () => {
       const store = createAuthStoreManager({ storageType: 'cookie', suffixKey: DEFAULT_COOKIE_SUFFIX })
       store.setJwt({ jwtInfo: MOCK_ENCODED_JWT_COOKIE })

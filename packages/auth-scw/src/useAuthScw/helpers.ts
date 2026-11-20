@@ -3,16 +3,18 @@ import type { EncodedJWT, RefreshSessionType } from '../types'
 import type { AuthStoreManagerInstance } from './authStoreManager'
 import { clientSingleton } from './createClient'
 
-let refreshSessionPromise: Promise<EncodedJWT | undefined> | undefined = undefined
+// Keyed by jti so concurrent renewals of different audiences each get their own audience token.
+const refreshSessionPromises = new Map<string, Promise<EncodedJWT | undefined>>()
 
 export const refreshSession = async ({ paramsRenewRequest, setJWT, onError }: RefreshSessionType) => {
-  if (refreshSessionPromise !== undefined) {
-    return refreshSessionPromise
+  const inFlightPromise = refreshSessionPromises.get(paramsRenewRequest.jti)
+  if (inFlightPromise !== undefined) {
+    return inFlightPromise
   }
 
   const { renewJWT } = clientSingleton.createClient({})
 
-  refreshSessionPromise = renewJWT(paramsRenewRequest)
+  const refreshPromise = renewJWT(paramsRenewRequest)
     .then(jwtInfo => {
       setJWT(jwtInfo)
 
@@ -35,10 +37,12 @@ export const refreshSession = async ({ paramsRenewRequest, setJWT, onError }: Re
       return undefined
     })
     .finally(() => {
-      refreshSessionPromise = undefined
+      refreshSessionPromises.delete(paramsRenewRequest.jti)
     })
 
-  return refreshSessionPromise
+  refreshSessionPromises.set(paramsRenewRequest.jti, refreshPromise)
+
+  return refreshPromise
 }
 
 export const decodeToken = (encodedToken: string, storeManager: AuthStoreManagerInstance) => {
