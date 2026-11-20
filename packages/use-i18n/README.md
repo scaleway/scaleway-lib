@@ -227,7 +227,6 @@ This hook exposes a `relativeTime` function which formats a date relative to now
 The first parameter is a Date or a timestamp. The second is an options object: the native `Intl.RelativeTimeFormat` options (`numeric`, `style`, `localeMatcher`) plus:
 
 - `noSuffix`: drops the "ago"/"in" and returns the bare distance
-- `roundingMode`: `'halfExpand'` (default), `'ceil'`, `'floor'` or `'trunc'` — how the distance is rounded
 
 ```js
 import { useI18n } from '@scaleway/use-i18n'
@@ -241,7 +240,6 @@ const App = () => {
     relativeTime(new Date(Date.now() - 86_400_000)), // "yesterday" — numeric: "auto" renders CLDR specials
     relativeTime(new Date(Date.now() - 3600_000), { style: 'narrow' }), // "1h ago"
     relativeTime(new Date(Date.now() - 3600_000), { noSuffix: true }), // "1 hour"
-    relativeTime(new Date(Date.now() - 2.5 * 86_400_000), { roundingMode: 'floor' }), // "2 days ago"
   ]
 
   return <div>{dates}</div>
