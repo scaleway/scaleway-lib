@@ -1,5 +1,11 @@
 # @scaleway/srn
 
+## 0.0.4
+
+### Patch Changes
+
+- [#4159](https://github.com/scaleway/scaleway-lib/pull/4159) [`ed7a30b`](https://github.com/scaleway/scaleway-lib/commit/ed7a30b3ef21d7a1e590ded5e0b91b0bc4019455) Thanks [@chambo-e](https://github.com/chambo-e)! - Fixed `parseSRN` silently dropping the first key/value pair of global SRNs with nested paths (e.g. `srn://iam.scw.eu/organizations/1234/users/5678`). Only `zones/` or `regions/` prefixes are now treated as a locality.
+
 ## 0.0.3
 
 ### Patch Changes

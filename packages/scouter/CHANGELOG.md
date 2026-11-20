@@ -1,5 +1,13 @@
 # @scaleway/scouter
 
+## 2.0.0
+
+### Major Changes
+
+- [#4144](https://github.com/scaleway/scaleway-lib/pull/4144) [`56fbdb8`](https://github.com/scaleway/scaleway-lib/commit/56fbdb8e7f27fb6c371a2e86547f6c463ae47769) Thanks [@radhi-nasser-scaleway](https://github.com/radhi-nasser-scaleway)! - feat(scouter)!: remove deprecated useQueryParams
+  
+  useQueryParams has been removed. Replace all usages with useSafeQueryParams.
+
 ## 1.1.2
 
 ### Patch Changes

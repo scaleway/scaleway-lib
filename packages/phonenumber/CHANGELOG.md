@@ -1,5 +1,11 @@
 # @scaleway/phonenumber
 
+## 1.0.2
+
+### Patch Changes
+
+- [#4167](https://github.com/scaleway/scaleway-lib/pull/4167) [`c63e533`](https://github.com/scaleway/scaleway-lib/commit/c63e533d4bf24406bc1d0a9b3c016a73e0f45444) Thanks [@chambo-e](https://github.com/chambo-e)! - `parsePhoneValue` now parses each phone value once instead of redundantly re-parsing the same value up to three times per keystroke.
+
 ## 1.0.1
 
 ### Patch Changes

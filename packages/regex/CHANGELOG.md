@@ -1,5 +1,13 @@
 # Change Log
 
+## 6.3.1
+
+### Patch Changes
+
+- [#4168](https://github.com/scaleway/scaleway-lib/pull/4168) [`6c1917d`](https://github.com/scaleway/scaleway-lib/commit/6c1917d21073b2bfd659a06f8529b26ecc3bcc4b) Thanks [@chambo-e](https://github.com/chambo-e)! - fix(regex)!: anchor phone regex and require digits — BEHAVIOR CHANGE
+  
+  The `phone` regex now requires a `+` followed by 6 or more digits to the end of the string (E.164-style). Previously it matched any string merely starting with `+` (even `+` alone with zero digits, or `+abc`), because it was neither anchored with `$` nor required any digit.
+
 ## 6.3.0
 
 ### Minor Changes

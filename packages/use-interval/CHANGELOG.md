@@ -1,5 +1,11 @@
 # @scaleway/use-interval
 
+## 1.0.5
+
+### Patch Changes
+
+- [#4169](https://github.com/scaleway/scaleway-lib/pull/4169) [`8f00660`](https://github.com/scaleway/scaleway-lib/commit/8f0066046b6c2f3332e10c3ad743e9ecb6203795) Thanks [@chambo-e](https://github.com/chambo-e)! - Pause the interval when `delay` is `undefined`, as it already does for `null`. Previously `undefined` was passed through to `setInterval`, coercing to a ~0ms busy loop.
+
 ## 1.0.4
 
 ### Patch Changes
