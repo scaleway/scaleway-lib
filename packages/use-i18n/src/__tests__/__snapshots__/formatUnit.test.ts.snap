@@ -114,8 +114,6 @@ exports[`formatUnit > should work with { unit: 'yottabit-humanized' } 1`] = `"0 
 
 exports[`formatUnit > should work with { unit: 'yottabit-per-second' } 1`] = `"12,56 Ybps"`;
 
-exports[`formatUnit > should work with { unit: 'yottabit-per-second-humanized' } 1`] = `"0 Ybps"`;
-
 exports[`formatUnit > should work with { unit: 'yottabyte' } 1`] = `"12,56 Yo"`;
 
 exports[`formatUnit > should work with { unit: 'yottabyte-humanized' } 1`] = `"0 Yo"`;
@@ -128,13 +126,15 @@ exports[`formatUnit > should work with { unit: 'zettabit-humanized' } 1`] = `"0 
 
 exports[`formatUnit > should work with { unit: 'zettabit-per-second' } 1`] = `"12,56 Zbps"`;
 
-exports[`formatUnit > should work with { unit: 'zettabit-per-second-humanized' } 1`] = `"0 Zbps"`;
-
 exports[`formatUnit > should work with { unit: 'zettabyte' } 1`] = `"12,56 Zo"`;
 
 exports[`formatUnit > should work with { unit: 'zettabyte-humanized' } 1`] = `"0 Zo"`;
 
 exports[`formatUnit > should work with { unit: 'zettabyte-per-second' } 1`] = `"12,56 Zops"`;
+
+exports[`formatUnit > should work with { …(1) } 1`] = `"0 Zbps"`;
+
+exports[`formatUnit > should work with { …(1) } 2`] = `"0 Ybps"`;
 
 exports[`formatUnit > should work with base { base: 2, unit: 'bit' } 1`] = `"4,294,967,296 b"`;
 
@@ -142,11 +142,7 @@ exports[`formatUnit > should work with base { base: 2, unit: 'bit-humanized' } 1
 
 exports[`formatUnit > should work with base { base: 2, unit: 'bit-per-second' } 1`] = `"4,294,967,296 bps"`;
 
-exports[`formatUnit > should work with base { base: 2, unit: 'bit-per-second-humanized' } 1`] = `"4,294,967,296 bps"`;
-
 exports[`formatUnit > should work with base { base: 2, unit: 'bits-humanized' } 1`] = `"4 Gb"`;
-
-exports[`formatUnit > should work with base { base: 2, unit: 'bits-per-second-humanized' } 1`] = `"4 Gbps"`;
 
 exports[`formatUnit > should work with base { base: 2, unit: 'byte' } 1`] = `"4,294,967,296 B"`;
 
@@ -156,15 +152,11 @@ exports[`formatUnit > should work with base { base: 2, unit: 'byte-per-second' }
 
 exports[`formatUnit > should work with base { base: 2, unit: 'bytes-humanized' } 1`] = `"4 GB"`;
 
-exports[`formatUnit > should work with base { base: 2, unit: 'bytes-per-second-humanized' } 1`] = `"4 GBps"`;
-
 exports[`formatUnit > should work with base { base: 2, unit: 'exabit' } 1`] = `"4,294,967,296 Eb"`;
 
 exports[`formatUnit > should work with base { base: 2, unit: 'exabit-humanized' } 1`] = `"0 Eb"`;
 
 exports[`formatUnit > should work with base { base: 2, unit: 'exabit-per-second' } 1`] = `"4,294,967,296 Ebps"`;
-
-exports[`formatUnit > should work with base { base: 2, unit: 'exabit-per-second-humanized' } 1`] = `"0 Ebps"`;
 
 exports[`formatUnit > should work with base { base: 2, unit: 'exabyte' } 1`] = `"4,294,967,296 EB"`;
 
@@ -178,8 +170,6 @@ exports[`formatUnit > should work with base { base: 2, unit: 'gigabit-humanized'
 
 exports[`formatUnit > should work with base { base: 2, unit: 'gigabit-per-second' } 1`] = `"4,294,967,296 Gbps"`;
 
-exports[`formatUnit > should work with base { base: 2, unit: 'gigabit-per-second-humanized' } 1`] = `"4 Gbps"`;
-
 exports[`formatUnit > should work with base { base: 2, unit: 'gigabyte' } 1`] = `"4,294,967,296 GB"`;
 
 exports[`formatUnit > should work with base { base: 2, unit: 'gigabyte-humanized' } 1`] = `"4 GB"`;
@@ -191,8 +181,6 @@ exports[`formatUnit > should work with base { base: 2, unit: 'kilobit' } 1`] = `
 exports[`formatUnit > should work with base { base: 2, unit: 'kilobit-humanized' } 1`] = `"4,194,304 Kb"`;
 
 exports[`formatUnit > should work with base { base: 2, unit: 'kilobit-per-second' } 1`] = `"4,294,967,296 Kbps"`;
-
-exports[`formatUnit > should work with base { base: 2, unit: 'kilobit-per-second-humanized' } 1`] = `"4,194,304 Kbps"`;
 
 exports[`formatUnit > should work with base { base: 2, unit: 'kilobyte' } 1`] = `"4,294,967,296 KB"`;
 
@@ -206,8 +194,6 @@ exports[`formatUnit > should work with base { base: 2, unit: 'megabit-humanized'
 
 exports[`formatUnit > should work with base { base: 2, unit: 'megabit-per-second' } 1`] = `"4,294,967,296 Mbps"`;
 
-exports[`formatUnit > should work with base { base: 2, unit: 'megabit-per-second-humanized' } 1`] = `"4,096 Mbps"`;
-
 exports[`formatUnit > should work with base { base: 2, unit: 'megabyte' } 1`] = `"4,294,967,296 MB"`;
 
 exports[`formatUnit > should work with base { base: 2, unit: 'megabyte-humanized' } 1`] = `"4,096 MB"`;
@@ -219,8 +205,6 @@ exports[`formatUnit > should work with base { base: 2, unit: 'petabit' } 1`] = `
 exports[`formatUnit > should work with base { base: 2, unit: 'petabit-humanized' } 1`] = `"0 Pb"`;
 
 exports[`formatUnit > should work with base { base: 2, unit: 'petabit-per-second' } 1`] = `"4,294,967,296 Pbps"`;
-
-exports[`formatUnit > should work with base { base: 2, unit: 'petabit-per-second-humanized' } 1`] = `"0 Pbps"`;
 
 exports[`formatUnit > should work with base { base: 2, unit: 'petabyte' } 1`] = `"4,294,967,296 PB"`;
 
@@ -234,8 +218,6 @@ exports[`formatUnit > should work with base { base: 2, unit: 'terabit-humanized'
 
 exports[`formatUnit > should work with base { base: 2, unit: 'terabit-per-second' } 1`] = `"4,294,967,296 Tbps"`;
 
-exports[`formatUnit > should work with base { base: 2, unit: 'terabit-per-second-humanized' } 1`] = `"0 Tbps"`;
-
 exports[`formatUnit > should work with base { base: 2, unit: 'terabyte' } 1`] = `"4,294,967,296 TB"`;
 
 exports[`formatUnit > should work with base { base: 2, unit: 'terabyte-humanized' } 1`] = `"0 TB"`;
@@ -248,13 +230,9 @@ exports[`formatUnit > should work with base { base: 2, unit: 'yottabit-humanized
 
 exports[`formatUnit > should work with base { base: 2, unit: 'yottabit-per-second' } 1`] = `"4,294,967,296 Ybps"`;
 
-exports[`formatUnit > should work with base { base: 2, unit: 'yottabit-per-second-humanized' } 1`] = `"0 Ybps"`;
-
 exports[`formatUnit > should work with base { base: 2, unit: 'yottabyte' } 1`] = `"4,294,967,296 YB"`;
 
 exports[`formatUnit > should work with base { base: 2, unit: 'yottabyte-humanized' } 1`] = `"0 YB"`;
-
-exports[`formatUnit > should work with base { base: 2, unit: 'yottabyte-per-second' } 1`] = `"4,294,967,296 YBps"`;
 
 exports[`formatUnit > should work with base { base: 2, unit: 'zettabit' } 1`] = `"4,294,967,296 Zb"`;
 
@@ -262,13 +240,35 @@ exports[`formatUnit > should work with base { base: 2, unit: 'zettabit-humanized
 
 exports[`formatUnit > should work with base { base: 2, unit: 'zettabit-per-second' } 1`] = `"4,294,967,296 Zbps"`;
 
-exports[`formatUnit > should work with base { base: 2, unit: 'zettabit-per-second-humanized' } 1`] = `"0 Zbps"`;
-
 exports[`formatUnit > should work with base { base: 2, unit: 'zettabyte' } 1`] = `"4,294,967,296 ZB"`;
 
 exports[`formatUnit > should work with base { base: 2, unit: 'zettabyte-humanized' } 1`] = `"0 ZB"`;
 
-exports[`formatUnit > should work with base { base: 2, unit: 'zettabyte-per-second' } 1`] = `"4,294,967,296 ZBps"`;
+exports[`formatUnit > should work with base { base: 2, …(1) } 1`] = `"4 Gbps"`;
+
+exports[`formatUnit > should work with base { base: 2, …(1) } 2`] = `"4,294,967,296 bps"`;
+
+exports[`formatUnit > should work with base { base: 2, …(1) } 3`] = `"4,194,304 Kbps"`;
+
+exports[`formatUnit > should work with base { base: 2, …(1) } 4`] = `"4,096 Mbps"`;
+
+exports[`formatUnit > should work with base { base: 2, …(1) } 5`] = `"4 Gbps"`;
+
+exports[`formatUnit > should work with base { base: 2, …(1) } 6`] = `"0 Tbps"`;
+
+exports[`formatUnit > should work with base { base: 2, …(1) } 7`] = `"0 Pbps"`;
+
+exports[`formatUnit > should work with base { base: 2, …(1) } 8`] = `"0 Ebps"`;
+
+exports[`formatUnit > should work with base { base: 2, …(1) } 9`] = `"0 Zbps"`;
+
+exports[`formatUnit > should work with base { base: 2, …(1) } 10`] = `"0 Ybps"`;
+
+exports[`formatUnit > should work with base { base: 2, …(1) } 11`] = `"4 GBps"`;
+
+exports[`formatUnit > should work with base { base: 2, …(1) } 12`] = `"4,294,967,296 ZBps"`;
+
+exports[`formatUnit > should work with base { base: 2, …(1) } 13`] = `"4,294,967,296 YBps"`;
 
 exports[`formatUnit > should work with locale en and { unit: 'bit' } 1`] = `"12.56 b"`;
 
@@ -382,8 +382,6 @@ exports[`formatUnit > should work with locale en and { unit: 'yottabit-humanized
 
 exports[`formatUnit > should work with locale en and { unit: 'yottabit-per-second' } 1`] = `"12.56 Ybps"`;
 
-exports[`formatUnit > should work with locale en and { unit: 'yottabit-per-second-humanized' } 1`] = `"0 Ybps"`;
-
 exports[`formatUnit > should work with locale en and { unit: 'yottabyte' } 1`] = `"12.56 YB"`;
 
 exports[`formatUnit > should work with locale en and { unit: 'yottabyte-humanized' } 1`] = `"0 YB"`;
@@ -396,13 +394,15 @@ exports[`formatUnit > should work with locale en and { unit: 'zettabit-humanized
 
 exports[`formatUnit > should work with locale en and { unit: 'zettabit-per-second' } 1`] = `"12.56 Zbps"`;
 
-exports[`formatUnit > should work with locale en and { unit: 'zettabit-per-second-humanized' } 1`] = `"0 Zbps"`;
-
 exports[`formatUnit > should work with locale en and { unit: 'zettabyte' } 1`] = `"12.56 ZB"`;
 
 exports[`formatUnit > should work with locale en and { unit: 'zettabyte-humanized' } 1`] = `"0 ZB"`;
 
 exports[`formatUnit > should work with locale en and { unit: 'zettabyte-per-second' } 1`] = `"12.56 ZBps"`;
+
+exports[`formatUnit > should work with locale en and { …(1) } 1`] = `"0 Zbps"`;
+
+exports[`formatUnit > should work with locale en and { …(1) } 2`] = `"0 Ybps"`;
 
 exports[`formatUnit > should work with locale fr and { unit: 'bit' } 1`] = `"12,56 b"`;
 
@@ -516,8 +516,6 @@ exports[`formatUnit > should work with locale fr and { unit: 'yottabit-humanized
 
 exports[`formatUnit > should work with locale fr and { unit: 'yottabit-per-second' } 1`] = `"12,56 Ybps"`;
 
-exports[`formatUnit > should work with locale fr and { unit: 'yottabit-per-second-humanized' } 1`] = `"0 Ybps"`;
-
 exports[`formatUnit > should work with locale fr and { unit: 'yottabyte' } 1`] = `"12,56 Yo"`;
 
 exports[`formatUnit > should work with locale fr and { unit: 'yottabyte-humanized' } 1`] = `"0 Yo"`;
@@ -530,13 +528,15 @@ exports[`formatUnit > should work with locale fr and { unit: 'zettabit-humanized
 
 exports[`formatUnit > should work with locale fr and { unit: 'zettabit-per-second' } 1`] = `"12,56 Zbps"`;
 
-exports[`formatUnit > should work with locale fr and { unit: 'zettabit-per-second-humanized' } 1`] = `"0 Zbps"`;
-
 exports[`formatUnit > should work with locale fr and { unit: 'zettabyte' } 1`] = `"12,56 Zo"`;
 
 exports[`formatUnit > should work with locale fr and { unit: 'zettabyte-humanized' } 1`] = `"0 Zo"`;
 
 exports[`formatUnit > should work with locale fr and { unit: 'zettabyte-per-second' } 1`] = `"12,56 Zops"`;
+
+exports[`formatUnit > should work with locale fr and { …(1) } 1`] = `"0 Zbps"`;
+
+exports[`formatUnit > should work with locale fr and { …(1) } 2`] = `"0 Ybps"`;
 
 exports[`formatUnit > should work with locale ro and { unit: 'bit' } 1`] = `"12,56 b"`;
 
@@ -650,8 +650,6 @@ exports[`formatUnit > should work with locale ro and { unit: 'yottabit-humanized
 
 exports[`formatUnit > should work with locale ro and { unit: 'yottabit-per-second' } 1`] = `"12,56 Ybps"`;
 
-exports[`formatUnit > should work with locale ro and { unit: 'yottabit-per-second-humanized' } 1`] = `"0 Ybps"`;
-
 exports[`formatUnit > should work with locale ro and { unit: 'yottabyte' } 1`] = `"12,56 Yo"`;
 
 exports[`formatUnit > should work with locale ro and { unit: 'yottabyte-humanized' } 1`] = `"0 Yo"`;
@@ -664,13 +662,15 @@ exports[`formatUnit > should work with locale ro and { unit: 'zettabit-humanized
 
 exports[`formatUnit > should work with locale ro and { unit: 'zettabit-per-second' } 1`] = `"12,56 Zbps"`;
 
-exports[`formatUnit > should work with locale ro and { unit: 'zettabit-per-second-humanized' } 1`] = `"0 Zbps"`;
-
 exports[`formatUnit > should work with locale ro and { unit: 'zettabyte' } 1`] = `"12,56 Zo"`;
 
 exports[`formatUnit > should work with locale ro and { unit: 'zettabyte-humanized' } 1`] = `"0 Zo"`;
 
 exports[`formatUnit > should work with locale ro and { unit: 'zettabyte-per-second' } 1`] = `"12,56 Zops"`;
+
+exports[`formatUnit > should work with locale ro and { …(1) } 1`] = `"0 Zbps"`;
+
+exports[`formatUnit > should work with locale ro and { …(1) } 2`] = `"0 Ybps"`;
 
 exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'bit' } 1`] = `"12.56 bits"`;
 
@@ -678,133 +678,133 @@ exports[`formatUnit > should work with long format, locale en and { short: false
 
 exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'bit-per-second' } 1`] = `"12.56 bits"`;
 
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'bit-per-second-humanized' } 1`] = `"13 bits"`;
-
 exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'bits-humanized' } 1`] = `"13 bits"`;
-
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'bits-per-second-humanized' } 1`] = `"13 bits"`;
 
 exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'byte' } 1`] = `"12.56 bytes"`;
 
 exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'byte-humanized' } 1`] = `"13 bytes"`;
 
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'byte-per-second' } 1`] = `"12.56 bytes"`;
-
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'bytes-humanized' } 1`] = `"13 bytes"`;
-
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'bytes-per-second-humanized' } 1`] = `"13 bytes"`;
-
 exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'exabit' } 1`] = `"12.56 exabits"`;
-
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'exabit-humanized' } 1`] = `"0 exabit"`;
-
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'exabit-per-second' } 1`] = `"12.56 exabits"`;
-
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'exabit-per-second-humanized' } 1`] = `"0 exabit"`;
 
 exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'exabyte' } 1`] = `"12.56 exabytes"`;
 
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'exabyte-humanized' } 1`] = `"0 exabyte"`;
-
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'exabyte-per-second' } 1`] = `"12.56 exabytes"`;
-
 exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'gigabit' } 1`] = `"12.56 gigabits"`;
-
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'gigabit-humanized' } 1`] = `"0 gigabit"`;
-
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'gigabit-per-second' } 1`] = `"12.56 gigabits"`;
-
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'gigabit-per-second-humanized' } 1`] = `"0 gigabit"`;
 
 exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'gigabyte' } 1`] = `"12.56 gigabytes"`;
 
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'gigabyte-humanized' } 1`] = `"0 gigabyte"`;
-
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'gigabyte-per-second' } 1`] = `"12.56 gigabytes"`;
-
 exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'kilobit' } 1`] = `"12.56 kilobits"`;
-
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'kilobit-humanized' } 1`] = `"0.01 kilobits"`;
-
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'kilobit-per-second' } 1`] = `"12.56 kilobits"`;
-
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'kilobit-per-second-humanized' } 1`] = `"0.01 kilobits"`;
 
 exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'kilobyte' } 1`] = `"12.56 kilobytes"`;
 
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'kilobyte-humanized' } 1`] = `"0.01 kilobytes"`;
-
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'kilobyte-per-second' } 1`] = `"12.56 kilobytes"`;
-
 exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'megabit' } 1`] = `"12.56 megabits"`;
-
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'megabit-humanized' } 1`] = `"0 megabit"`;
-
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'megabit-per-second' } 1`] = `"12.56 megabits"`;
-
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'megabit-per-second-humanized' } 1`] = `"0 megabit"`;
 
 exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'megabyte' } 1`] = `"12.56 megabytes"`;
 
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'megabyte-humanized' } 1`] = `"0 megabyte"`;
-
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'megabyte-per-second' } 1`] = `"12.56 megabytes"`;
-
 exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'petabit' } 1`] = `"12.56 petabits"`;
-
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'petabit-humanized' } 1`] = `"0 petabit"`;
-
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'petabit-per-second' } 1`] = `"12.56 petabits"`;
-
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'petabit-per-second-humanized' } 1`] = `"0 petabit"`;
 
 exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'petabyte' } 1`] = `"12.56 petabytes"`;
 
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'petabyte-humanized' } 1`] = `"0 petabyte"`;
-
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'petabyte-per-second' } 1`] = `"12.56 petabytes"`;
-
 exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'terabit' } 1`] = `"12.56 terabits"`;
-
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'terabit-humanized' } 1`] = `"0 terabit"`;
-
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'terabit-per-second' } 1`] = `"12.56 terabits"`;
-
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'terabit-per-second-humanized' } 1`] = `"0 terabit"`;
 
 exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'terabyte' } 1`] = `"12.56 terabytes"`;
 
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'terabyte-humanized' } 1`] = `"0 terabyte"`;
-
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'terabyte-per-second' } 1`] = `"12.56 terabytes"`;
-
 exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'yottabit' } 1`] = `"12.56 yottabits"`;
-
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'yottabit-humanized' } 1`] = `"0 yottabit"`;
-
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'yottabit-per-second' } 1`] = `"12.56 yottabits"`;
-
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'yottabit-per-second-humanized' } 1`] = `"0 yottabit"`;
 
 exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'yottabyte' } 1`] = `"12.56 yottabytes"`;
 
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'yottabyte-humanized' } 1`] = `"0 yottabyte"`;
-
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'yottabyte-per-second' } 1`] = `"12.56 yottabytes"`;
-
 exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'zettabit' } 1`] = `"12.56 zettabits"`;
-
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'zettabit-humanized' } 1`] = `"0 zettabit"`;
-
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'zettabit-per-second' } 1`] = `"12.56 zettabits"`;
-
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'zettabit-per-second-humanized' } 1`] = `"0 zettabit"`;
 
 exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'zettabyte' } 1`] = `"12.56 zettabytes"`;
 
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'zettabyte-humanized' } 1`] = `"0 zettabyte"`;
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 1`] = `"13 bits"`;
 
-exports[`formatUnit > should work with long format, locale en and { short: false, unit: 'zettabyte-per-second' } 1`] = `"12.56 zettabytes"`;
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 2`] = `"13 bits"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 3`] = `"12.56 kilobits"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 4`] = `"0.01 kilobits"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 5`] = `"0.01 kilobits"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 6`] = `"12.56 megabits"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 7`] = `"0 megabit"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 8`] = `"0 megabit"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 9`] = `"12.56 gigabits"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 10`] = `"0 gigabit"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 11`] = `"0 gigabit"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 12`] = `"12.56 terabits"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 13`] = `"0 terabit"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 14`] = `"0 terabit"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 15`] = `"12.56 petabits"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 16`] = `"0 petabit"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 17`] = `"0 petabit"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 18`] = `"12.56 exabits"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 19`] = `"0 exabit"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 20`] = `"0 exabit"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 21`] = `"12.56 zettabits"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 22`] = `"0 zettabit"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 23`] = `"0 zettabit"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 24`] = `"12.56 yottabits"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 25`] = `"0 yottabit"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 26`] = `"0 yottabit"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 27`] = `"13 bytes"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 28`] = `"13 bytes"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 29`] = `"12.56 bytes"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 30`] = `"12.56 kilobytes"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 31`] = `"0.01 kilobytes"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 32`] = `"12.56 megabytes"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 33`] = `"0 megabyte"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 34`] = `"12.56 gigabytes"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 35`] = `"0 gigabyte"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 36`] = `"12.56 terabytes"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 37`] = `"0 terabyte"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 38`] = `"12.56 petabytes"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 39`] = `"0 petabyte"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 40`] = `"12.56 exabytes"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 41`] = `"0 exabyte"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 42`] = `"12.56 zettabytes"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 43`] = `"0 zettabyte"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 44`] = `"12.56 yottabytes"`;
+
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 45`] = `"0 yottabyte"`;
 
 exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'bit' } 1`] = `"12,56 bits"`;
 
@@ -812,133 +812,133 @@ exports[`formatUnit > should work with long format, locale fr and { short: false
 
 exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'bit-per-second' } 1`] = `"12,56 bits"`;
 
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'bit-per-second-humanized' } 1`] = `"13 bits"`;
-
 exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'bits-humanized' } 1`] = `"13 bits"`;
-
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'bits-per-second-humanized' } 1`] = `"13 bits"`;
 
 exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'byte' } 1`] = `"12,56 octets"`;
 
 exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'byte-humanized' } 1`] = `"13 octets"`;
 
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'byte-per-second' } 1`] = `"12,56 octets"`;
-
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'bytes-humanized' } 1`] = `"13 octets"`;
-
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'bytes-per-second-humanized' } 1`] = `"13 octets"`;
-
 exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'exabit' } 1`] = `"12,56 exabits"`;
-
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'exabit-humanized' } 1`] = `"0 exabit"`;
-
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'exabit-per-second' } 1`] = `"12,56 exabits"`;
-
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'exabit-per-second-humanized' } 1`] = `"0 exabit"`;
 
 exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'exabyte' } 1`] = `"12,56 exaoctets"`;
 
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'exabyte-humanized' } 1`] = `"0 exaoctet"`;
-
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'exabyte-per-second' } 1`] = `"12,56 exaoctets"`;
-
 exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'gigabit' } 1`] = `"12,56 gigabits"`;
-
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'gigabit-humanized' } 1`] = `"0 gigabit"`;
-
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'gigabit-per-second' } 1`] = `"12,56 gigabits"`;
-
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'gigabit-per-second-humanized' } 1`] = `"0 gigabit"`;
 
 exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'gigabyte' } 1`] = `"12,56 gigaoctets"`;
 
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'gigabyte-humanized' } 1`] = `"0 gigaoctet"`;
-
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'gigabyte-per-second' } 1`] = `"12,56 gigaoctets"`;
-
 exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'kilobit' } 1`] = `"12,56 kilobits"`;
-
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'kilobit-humanized' } 1`] = `"0,01 kilobits"`;
-
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'kilobit-per-second' } 1`] = `"12,56 kilobits"`;
-
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'kilobit-per-second-humanized' } 1`] = `"0,01 kilobits"`;
 
 exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'kilobyte' } 1`] = `"12,56 kilooctets"`;
 
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'kilobyte-humanized' } 1`] = `"0,01 kilooctets"`;
-
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'kilobyte-per-second' } 1`] = `"12,56 kilooctets"`;
-
 exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'megabit' } 1`] = `"12,56 megabits"`;
-
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'megabit-humanized' } 1`] = `"0 megabit"`;
-
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'megabit-per-second' } 1`] = `"12,56 megabits"`;
-
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'megabit-per-second-humanized' } 1`] = `"0 megabit"`;
 
 exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'megabyte' } 1`] = `"12,56 megaoctets"`;
 
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'megabyte-humanized' } 1`] = `"0 megaoctet"`;
-
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'megabyte-per-second' } 1`] = `"12,56 megaoctets"`;
-
 exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'petabit' } 1`] = `"12,56 petabits"`;
-
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'petabit-humanized' } 1`] = `"0 petabit"`;
-
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'petabit-per-second' } 1`] = `"12,56 petabits"`;
-
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'petabit-per-second-humanized' } 1`] = `"0 petabit"`;
 
 exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'petabyte' } 1`] = `"12,56 petaoctets"`;
 
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'petabyte-humanized' } 1`] = `"0 petaoctet"`;
-
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'petabyte-per-second' } 1`] = `"12,56 petaoctets"`;
-
 exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'terabit' } 1`] = `"12,56 terabits"`;
-
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'terabit-humanized' } 1`] = `"0 terabit"`;
-
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'terabit-per-second' } 1`] = `"12,56 terabits"`;
-
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'terabit-per-second-humanized' } 1`] = `"0 terabit"`;
 
 exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'terabyte' } 1`] = `"12,56 teraoctets"`;
 
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'terabyte-humanized' } 1`] = `"0 teraoctet"`;
-
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'terabyte-per-second' } 1`] = `"12,56 teraoctets"`;
-
 exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'yottabit' } 1`] = `"12,56 yottabits"`;
-
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'yottabit-humanized' } 1`] = `"0 yottabit"`;
-
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'yottabit-per-second' } 1`] = `"12,56 yottabits"`;
-
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'yottabit-per-second-humanized' } 1`] = `"0 yottabit"`;
 
 exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'yottabyte' } 1`] = `"12,56 yottaoctets"`;
 
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'yottabyte-humanized' } 1`] = `"0 yottaoctet"`;
-
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'yottabyte-per-second' } 1`] = `"12,56 yottaoctets"`;
-
 exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'zettabit' } 1`] = `"12,56 zettabits"`;
-
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'zettabit-humanized' } 1`] = `"0 zettabit"`;
-
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'zettabit-per-second' } 1`] = `"12,56 zettabits"`;
-
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'zettabit-per-second-humanized' } 1`] = `"0 zettabit"`;
 
 exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'zettabyte' } 1`] = `"12,56 zettaoctets"`;
 
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'zettabyte-humanized' } 1`] = `"0 zettaoctet"`;
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 1`] = `"13 bits"`;
 
-exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'zettabyte-per-second' } 1`] = `"12,56 zettaoctets"`;
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 2`] = `"13 bits"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 3`] = `"12,56 kilobits"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 4`] = `"0,01 kilobits"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 5`] = `"0,01 kilobits"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 6`] = `"12,56 megabits"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 7`] = `"0 megabit"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 8`] = `"0 megabit"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 9`] = `"12,56 gigabits"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 10`] = `"0 gigabit"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 11`] = `"0 gigabit"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 12`] = `"12,56 terabits"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 13`] = `"0 terabit"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 14`] = `"0 terabit"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 15`] = `"12,56 petabits"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 16`] = `"0 petabit"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 17`] = `"0 petabit"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 18`] = `"12,56 exabits"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 19`] = `"0 exabit"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 20`] = `"0 exabit"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 21`] = `"12,56 zettabits"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 22`] = `"0 zettabit"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 23`] = `"0 zettabit"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 24`] = `"12,56 yottabits"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 25`] = `"0 yottabit"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 26`] = `"0 yottabit"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 27`] = `"13 octets"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 28`] = `"13 octets"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 29`] = `"12,56 octets"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 30`] = `"12,56 kilooctets"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 31`] = `"0,01 kilooctets"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 32`] = `"12,56 megaoctets"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 33`] = `"0 megaoctet"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 34`] = `"12,56 gigaoctets"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 35`] = `"0 gigaoctet"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 36`] = `"12,56 teraoctets"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 37`] = `"0 teraoctet"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 38`] = `"12,56 petaoctets"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 39`] = `"0 petaoctet"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 40`] = `"12,56 exaoctets"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 41`] = `"0 exaoctet"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 42`] = `"12,56 zettaoctets"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 43`] = `"0 zettaoctet"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 44`] = `"12,56 yottaoctets"`;
+
+exports[`formatUnit > should work with long format, locale fr and { short: false, …(1) } 45`] = `"0 yottaoctet"`;
 
 exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'bit' } 1`] = `"12,56 bits"`;
 
@@ -946,398 +946,398 @@ exports[`formatUnit > should work with long format, locale ro and { short: false
 
 exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'bit-per-second' } 1`] = `"12,56 bits"`;
 
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'bit-per-second-humanized' } 1`] = `"13 bits"`;
-
 exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'bits-humanized' } 1`] = `"13 bits"`;
-
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'bits-per-second-humanized' } 1`] = `"13 bits"`;
 
 exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'byte' } 1`] = `"12,56 octeți"`;
 
 exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'byte-humanized' } 1`] = `"13 octeți"`;
 
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'byte-per-second' } 1`] = `"12,56 octeți"`;
-
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'bytes-humanized' } 1`] = `"13 octeți"`;
-
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'bytes-per-second-humanized' } 1`] = `"13 octeți"`;
-
 exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'exabit' } 1`] = `"12,56 exabits"`;
-
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'exabit-humanized' } 1`] = `"0 exabit"`;
-
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'exabit-per-second' } 1`] = `"12,56 exabits"`;
-
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'exabit-per-second-humanized' } 1`] = `"0 exabit"`;
 
 exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'exabyte' } 1`] = `"12,56 exaocteți"`;
 
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'exabyte-humanized' } 1`] = `"0 exaoctet"`;
-
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'exabyte-per-second' } 1`] = `"12,56 exaocteți"`;
-
 exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'gigabit' } 1`] = `"12,56 gigabits"`;
-
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'gigabit-humanized' } 1`] = `"0 gigabit"`;
-
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'gigabit-per-second' } 1`] = `"12,56 gigabits"`;
-
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'gigabit-per-second-humanized' } 1`] = `"0 gigabit"`;
 
 exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'gigabyte' } 1`] = `"12,56 gigaocteți"`;
 
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'gigabyte-humanized' } 1`] = `"0 gigaoctet"`;
-
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'gigabyte-per-second' } 1`] = `"12,56 gigaocteți"`;
-
 exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'kilobit' } 1`] = `"12,56 kilobits"`;
-
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'kilobit-humanized' } 1`] = `"0,01 kilobits"`;
-
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'kilobit-per-second' } 1`] = `"12,56 kilobits"`;
-
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'kilobit-per-second-humanized' } 1`] = `"0,01 kilobits"`;
 
 exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'kilobyte' } 1`] = `"12,56 kiloocteți"`;
 
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'kilobyte-humanized' } 1`] = `"0,01 kiloocteți"`;
-
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'kilobyte-per-second' } 1`] = `"12,56 kiloocteți"`;
-
 exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'megabit' } 1`] = `"12,56 megabits"`;
-
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'megabit-humanized' } 1`] = `"0 megabit"`;
-
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'megabit-per-second' } 1`] = `"12,56 megabits"`;
-
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'megabit-per-second-humanized' } 1`] = `"0 megabit"`;
 
 exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'megabyte' } 1`] = `"12,56 megaocteți"`;
 
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'megabyte-humanized' } 1`] = `"0 megaoctet"`;
-
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'megabyte-per-second' } 1`] = `"12,56 megaocteți"`;
-
 exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'petabit' } 1`] = `"12,56 petabits"`;
-
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'petabit-humanized' } 1`] = `"0 petabit"`;
-
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'petabit-per-second' } 1`] = `"12,56 petabits"`;
-
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'petabit-per-second-humanized' } 1`] = `"0 petabit"`;
 
 exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'petabyte' } 1`] = `"12,56 petaocteți"`;
 
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'petabyte-humanized' } 1`] = `"0 petaoctet"`;
-
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'petabyte-per-second' } 1`] = `"12,56 petaocteți"`;
-
 exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'terabit' } 1`] = `"12,56 terabits"`;
-
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'terabit-humanized' } 1`] = `"0 terabit"`;
-
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'terabit-per-second' } 1`] = `"12,56 terabits"`;
-
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'terabit-per-second-humanized' } 1`] = `"0 terabit"`;
 
 exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'terabyte' } 1`] = `"12,56 teraocteți"`;
 
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'terabyte-humanized' } 1`] = `"0 teraoctet"`;
-
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'terabyte-per-second' } 1`] = `"12,56 teraocteți"`;
-
 exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'yottabit' } 1`] = `"12,56 yottabits"`;
-
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'yottabit-humanized' } 1`] = `"0 yottabit"`;
-
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'yottabit-per-second' } 1`] = `"12,56 yottabits"`;
-
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'yottabit-per-second-humanized' } 1`] = `"0 yottabit"`;
 
 exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'yottabyte' } 1`] = `"12,56 yottaocteți"`;
 
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'yottabyte-humanized' } 1`] = `"0 yottaoctet"`;
-
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'yottabyte-per-second' } 1`] = `"12,56 yottaocteți"`;
-
 exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'zettabit' } 1`] = `"12,56 zettabits"`;
-
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'zettabit-humanized' } 1`] = `"0 zettabit"`;
-
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'zettabit-per-second' } 1`] = `"12,56 zettabits"`;
-
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'zettabit-per-second-humanized' } 1`] = `"0 zettabit"`;
 
 exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'zettabyte' } 1`] = `"12,56 zettaocteți"`;
 
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'zettabyte-humanized' } 1`] = `"0 zettaoctet"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 1`] = `"13 bits"`;
 
-exports[`formatUnit > should work with long format, locale ro and { short: false, unit: 'zettabyte-per-second' } 1`] = `"12,56 zettaocteți"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 2`] = `"13 bits"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'bit' } 1`] = `"12,56 b"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 3`] = `"12,56 kilobits"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'bit-humanized' } 1`] = `"13 b"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 4`] = `"0,01 kilobits"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'bit-per-second' } 1`] = `"12,56 bps"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 5`] = `"0,01 kilobits"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'bit-per-second-humanized' } 1`] = `"13 bps"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 6`] = `"12,56 megabits"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'bits-humanized' } 1`] = `"13 b"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 7`] = `"0 megabit"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'bits-per-second-humanized' } 1`] = `"13 bps"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 8`] = `"0 megabit"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'byte' } 1`] = `"12,56 o"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 9`] = `"12,56 gigabits"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'byte-humanized' } 1`] = `"13 o"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 10`] = `"0 gigabit"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'byte-per-second' } 1`] = `"12,56 ops"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 11`] = `"0 gigabit"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'bytes-humanized' } 1`] = `"13 o"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 12`] = `"12,56 terabits"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'bytes-per-second-humanized' } 1`] = `"13 ops"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 13`] = `"0 terabit"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'exabit' } 1`] = `"12,56 Eb"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 14`] = `"0 terabit"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'exabit-humanized' } 1`] = `"0 Eb"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 15`] = `"12,56 petabits"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'exabit-per-second' } 1`] = `"12,56 Ebps"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 16`] = `"0 petabit"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'exabit-per-second-humanized' } 1`] = `"0 Ebps"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 17`] = `"0 petabit"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'exabyte' } 1`] = `"12,56 Eo"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 18`] = `"12,56 exabits"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'exabyte-humanized' } 1`] = `"0 Eo"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 19`] = `"0 exabit"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'exabyte-per-second' } 1`] = `"12,56 Eops"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 20`] = `"0 exabit"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'gigabit' } 1`] = `"12,56 Gb"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 21`] = `"12,56 zettabits"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'gigabit-humanized' } 1`] = `"0 Gb"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 22`] = `"0 zettabit"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'gigabit-per-second' } 1`] = `"12,56 Gbps"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 23`] = `"0 zettabit"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'gigabit-per-second-humanized' } 1`] = `"0 Gbps"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 24`] = `"12,56 yottabits"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'gigabyte' } 1`] = `"12,56 Go"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 25`] = `"0 yottabit"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'gigabyte-humanized' } 1`] = `"0 Go"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 26`] = `"0 yottabit"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'gigabyte-per-second' } 1`] = `"12,56 Gops"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 27`] = `"13 octeți"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'kilobit' } 1`] = `"12,56 Kb"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 28`] = `"13 octeți"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'kilobit-humanized' } 1`] = `"0,013 Kb"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 29`] = `"12,56 octeți"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'kilobit-per-second' } 1`] = `"12,56 Kbps"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 30`] = `"12,56 kiloocteți"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'kilobit-per-second-humanized' } 1`] = `"0,013 Kbps"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 31`] = `"0,01 kiloocteți"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'kilobyte' } 1`] = `"12,56 Ko"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 32`] = `"12,56 megaocteți"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'kilobyte-humanized' } 1`] = `"0,013 Ko"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 33`] = `"0 megaoctet"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'kilobyte-per-second' } 1`] = `"12,56 Kops"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 34`] = `"12,56 gigaocteți"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'megabit' } 1`] = `"12,56 Mb"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 35`] = `"0 gigaoctet"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'megabit-humanized' } 1`] = `"0 Mb"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 36`] = `"12,56 teraocteți"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'megabit-per-second' } 1`] = `"12,56 Mbps"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 37`] = `"0 teraoctet"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'megabit-per-second-humanized' } 1`] = `"0 Mbps"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 38`] = `"12,56 petaocteți"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'megabyte' } 1`] = `"12,56 Mo"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 39`] = `"0 petaoctet"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'megabyte-humanized' } 1`] = `"0 Mo"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 40`] = `"12,56 exaocteți"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'megabyte-per-second' } 1`] = `"12,56 Mops"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 41`] = `"0 exaoctet"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'petabit' } 1`] = `"12,56 Pb"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 42`] = `"12,56 zettaocteți"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'petabit-humanized' } 1`] = `"0 Pb"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 43`] = `"0 zettaoctet"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'petabit-per-second' } 1`] = `"12,56 Pbps"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 44`] = `"12,56 yottaocteți"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'petabit-per-second-humanized' } 1`] = `"0 Pbps"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 45`] = `"0 yottaoctet"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'petabyte' } 1`] = `"12,56 Po"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 1`] = `"13 b"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'petabyte-humanized' } 1`] = `"0 Po"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 2`] = `"13 bps"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'petabyte-per-second' } 1`] = `"12,56 Pops"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 3`] = `"12,56 b"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'terabit' } 1`] = `"12,56 Tb"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 4`] = `"12,56 bps"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'terabit-humanized' } 1`] = `"0 Tb"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 5`] = `"13 b"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'terabit-per-second' } 1`] = `"12,56 Tbps"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 6`] = `"13 bps"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'terabit-per-second-humanized' } 1`] = `"0 Tbps"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 7`] = `"12,56 Kb"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'terabyte' } 1`] = `"12,56 To"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 8`] = `"12,56 Kbps"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'terabyte-humanized' } 1`] = `"0 To"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 9`] = `"0,013 Kb"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'terabyte-per-second' } 1`] = `"12,56 Tops"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 10`] = `"0,013 Kbps"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'yottabit' } 1`] = `"12,56 Yb"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 11`] = `"12,56 Mb"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'yottabit-humanized' } 1`] = `"0 Yb"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 12`] = `"12,56 Mbps"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'yottabit-per-second' } 1`] = `"12,56 Ybps"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 13`] = `"0 Mb"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'yottabit-per-second-humanized' } 1`] = `"0 Ybps"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 14`] = `"0 Mbps"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'yottabyte' } 1`] = `"12,56 Yo"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 15`] = `"12,56 Gb"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'yottabyte-humanized' } 1`] = `"0 Yo"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 16`] = `"12,56 Gbps"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'yottabyte-per-second' } 1`] = `"12,56 Yops"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 17`] = `"0 Gb"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'zettabit' } 1`] = `"12,56 Zb"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 18`] = `"0 Gbps"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'zettabit-humanized' } 1`] = `"0 Zb"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 19`] = `"12,56 Tb"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'zettabit-per-second' } 1`] = `"12,56 Zbps"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 20`] = `"12,56 Tbps"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'zettabit-per-second-humanized' } 1`] = `"0 Zbps"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 21`] = `"0 Tb"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'zettabyte' } 1`] = `"12,56 Zo"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 22`] = `"0 Tbps"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'zettabyte-humanized' } 1`] = `"0 Zo"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 23`] = `"12,56 Pb"`;
 
-exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, unit: 'zettabyte-per-second' } 1`] = `"12,56 Zops"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 24`] = `"12,56 Pbps"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'bit' } 1`] = `"12,000 b"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 25`] = `"0 Pb"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'bit-humanized' } 1`] = `"12,000 b"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 26`] = `"0 Pbps"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'bit-per-second' } 1`] = `"12,000 bps"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 27`] = `"12,56 Eb"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'bit-per-second-humanized' } 1`] = `"12,000 bps"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 28`] = `"12,56 Ebps"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'bits-humanized' } 1`] = `"12,000 b"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 29`] = `"0 Eb"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'bits-per-second-humanized' } 1`] = `"12,000 bps"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 30`] = `"0 Ebps"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'byte' } 1`] = `"12,000 o"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 31`] = `"12,56 Zb"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'byte-humanized' } 1`] = `"12,000 o"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 32`] = `"12,56 Zbps"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'byte-per-second' } 1`] = `"12,000 ops"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 33`] = `"0 Zb"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'bytes-humanized' } 1`] = `"12,000 o"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 34`] = `"0 Zbps"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'bytes-per-second-humanized' } 1`] = `"12,000 ops"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 35`] = `"12,56 Yb"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'exabit' } 1`] = `"12,000 Eb"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 36`] = `"12,56 Ybps"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'exabit-humanized' } 1`] = `"0,000 Eb"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 37`] = `"0 Yb"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'exabit-per-second' } 1`] = `"12,000 Ebps"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 38`] = `"0 Ybps"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'exabit-per-second-humanized' } 1`] = `"0,000 Ebps"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 39`] = `"13 o"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'exabyte' } 1`] = `"12,000 Eo"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 40`] = `"13 ops"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'exabyte-humanized' } 1`] = `"0,000 Eo"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 41`] = `"12,56 o"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'exabyte-per-second' } 1`] = `"12,000 Eops"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 42`] = `"12,56 ops"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'gigabit' } 1`] = `"12,000 Gb"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 43`] = `"13 o"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'gigabit-humanized' } 1`] = `"0,000 Gb"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 44`] = `"12,56 Ko"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'gigabit-per-second' } 1`] = `"12,000 Gbps"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 45`] = `"12,56 Kops"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'gigabit-per-second-humanized' } 1`] = `"0,000 Gbps"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 46`] = `"0,013 Ko"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'gigabyte' } 1`] = `"12,000 Go"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 47`] = `"12,56 Mo"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'gigabyte-humanized' } 1`] = `"0,000 Go"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 48`] = `"12,56 Mops"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'gigabyte-per-second' } 1`] = `"12,000 Gops"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 49`] = `"0 Mo"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'kilobit' } 1`] = `"12,000 Kb"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 50`] = `"12,56 Go"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'kilobit-humanized' } 1`] = `"0,010 Kb"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 51`] = `"12,56 Gops"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'kilobit-per-second' } 1`] = `"12,000 Kbps"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 52`] = `"0 Go"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'kilobit-per-second-humanized' } 1`] = `"0,010 Kbps"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 53`] = `"12,56 To"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'kilobyte' } 1`] = `"12,000 Ko"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 54`] = `"12,56 Tops"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'kilobyte-humanized' } 1`] = `"0,010 Ko"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 55`] = `"0 To"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'kilobyte-per-second' } 1`] = `"12,000 Kops"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 56`] = `"12,56 Po"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'megabit' } 1`] = `"12,000 Mb"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 57`] = `"12,56 Pops"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'megabit-humanized' } 1`] = `"0,000 Mb"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 58`] = `"0 Po"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'megabit-per-second' } 1`] = `"12,000 Mbps"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 59`] = `"12,56 Eo"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'megabit-per-second-humanized' } 1`] = `"0,000 Mbps"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 60`] = `"12,56 Eops"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'megabyte' } 1`] = `"12,000 Mo"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 61`] = `"0 Eo"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'megabyte-humanized' } 1`] = `"0,000 Mo"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 62`] = `"12,56 Zo"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'megabyte-per-second' } 1`] = `"12,000 Mops"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 63`] = `"12,56 Zops"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'petabit' } 1`] = `"12,000 Pb"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 64`] = `"0 Zo"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'petabit-humanized' } 1`] = `"0,000 Pb"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 65`] = `"12,56 Yo"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'petabit-per-second' } 1`] = `"12,000 Pbps"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 66`] = `"12,56 Yops"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'petabit-per-second-humanized' } 1`] = `"0,000 Pbps"`;
+exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 67`] = `"0 Yo"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'petabyte' } 1`] = `"12,000 Po"`;
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 1`] = `"12,000 b"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'petabyte-humanized' } 1`] = `"0,000 Po"`;
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 2`] = `"12,000 bps"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'petabyte-per-second' } 1`] = `"12,000 Pops"`;
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 3`] = `"12,000 b"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'terabit' } 1`] = `"12,000 Tb"`;
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 4`] = `"12,000 bps"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'terabit-humanized' } 1`] = `"0,000 Tb"`;
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 5`] = `"12,000 b"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'terabit-per-second' } 1`] = `"12,000 Tbps"`;
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 6`] = `"12,000 bps"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'terabit-per-second-humanized' } 1`] = `"0,000 Tbps"`;
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 7`] = `"12,000 Kb"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'terabyte' } 1`] = `"12,000 To"`;
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 8`] = `"12,000 Kbps"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'terabyte-humanized' } 1`] = `"0,000 To"`;
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 9`] = `"0,010 Kb"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'terabyte-per-second' } 1`] = `"12,000 Tops"`;
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 10`] = `"0,010 Kbps"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'yottabit' } 1`] = `"12,000 Yb"`;
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 11`] = `"12,000 Mb"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'yottabit-humanized' } 1`] = `"0,000 Yb"`;
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 12`] = `"12,000 Mbps"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'yottabit-per-second' } 1`] = `"12,000 Ybps"`;
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 13`] = `"0,000 Mb"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'yottabit-per-second-humanized' } 1`] = `"0,000 Ybps"`;
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 14`] = `"0,000 Mbps"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'yottabyte' } 1`] = `"12,000 Yo"`;
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 15`] = `"12,000 Gb"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'yottabyte-humanized' } 1`] = `"0,000 Yo"`;
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 16`] = `"12,000 Gbps"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'yottabyte-per-second' } 1`] = `"12,000 Yops"`;
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 17`] = `"0,000 Gb"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'zettabit' } 1`] = `"12,000 Zb"`;
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 18`] = `"0,000 Gbps"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'zettabit-humanized' } 1`] = `"0,000 Zb"`;
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 19`] = `"12,000 Tb"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'zettabit-per-second' } 1`] = `"12,000 Zbps"`;
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 20`] = `"12,000 Tbps"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'zettabit-per-second-humanized' } 1`] = `"0,000 Zbps"`;
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 21`] = `"0,000 Tb"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'zettabyte' } 1`] = `"12,000 Zo"`;
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 22`] = `"0,000 Tbps"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'zettabyte-humanized' } 1`] = `"0,000 Zo"`;
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 23`] = `"12,000 Pb"`;
 
-exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, unit: 'zettabyte-per-second' } 1`] = `"12,000 Zops"`;
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 24`] = `"12,000 Pbps"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 25`] = `"0,000 Pb"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 26`] = `"0,000 Pbps"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 27`] = `"12,000 Eb"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 28`] = `"12,000 Ebps"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 29`] = `"0,000 Eb"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 30`] = `"0,000 Ebps"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 31`] = `"12,000 Zb"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 32`] = `"12,000 Zbps"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 33`] = `"0,000 Zb"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 34`] = `"0,000 Zbps"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 35`] = `"12,000 Yb"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 36`] = `"12,000 Ybps"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 37`] = `"0,000 Yb"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 38`] = `"0,000 Ybps"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 39`] = `"12,000 o"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 40`] = `"12,000 ops"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 41`] = `"12,000 o"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 42`] = `"12,000 ops"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 43`] = `"12,000 o"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 44`] = `"12,000 Ko"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 45`] = `"12,000 Kops"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 46`] = `"0,010 Ko"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 47`] = `"12,000 Mo"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 48`] = `"12,000 Mops"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 49`] = `"0,000 Mo"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 50`] = `"12,000 Go"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 51`] = `"12,000 Gops"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 52`] = `"0,000 Go"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 53`] = `"12,000 To"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 54`] = `"12,000 Tops"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 55`] = `"0,000 To"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 56`] = `"12,000 Po"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 57`] = `"12,000 Pops"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 58`] = `"0,000 Po"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 59`] = `"12,000 Eo"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 60`] = `"12,000 Eops"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 61`] = `"0,000 Eo"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 62`] = `"12,000 Zo"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 63`] = `"12,000 Zops"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 64`] = `"0,000 Zo"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 65`] = `"12,000 Yo"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 66`] = `"12,000 Yops"`;
+
+exports[`formatUnit > should work with minimumFractionDigits { minimumFractionDigits: 3, …(1) } 67`] = `"0,000 Yo"`;
