@@ -1,10 +1,8 @@
 import formatters from './formatters'
 
-export type RelativeTimeOptions = {
-  numeric?: 'always' | 'auto'
-  style?: 'long' | 'short' | 'narrow'
-}
+export type RelativeTimeOptions = Intl.RelativeTimeFormatOptions
 
+// Intl.RelativeTimeFormat.format() types its unit as a plain string, so the unit union is ours
 export type RelativeTimeStrictOptions = RelativeTimeOptions & {
   unit?: 'second' | 'minute' | 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year'
 }
@@ -33,7 +31,7 @@ const relativeStrictUnitMilliseconds = {
 export const relativeTime = (
   locale: string,
   date: Date | number,
-  { numeric = 'auto', style = 'long' }: RelativeTimeOptions = {},
+  { numeric = 'auto', style = 'long', localeMatcher }: RelativeTimeOptions = {},
 ): string => {
   const seconds = (new Date(date).getTime() - Date.now()) / 1000
 
@@ -48,15 +46,15 @@ export const relativeTime = (
     }
   }
 
-  return formatters.getRelativeTimeFormat(locale, { numeric, style }).format(value, unit)
+  return formatters.getRelativeTimeFormat(locale, { numeric, style, localeMatcher }).format(value, unit)
 }
 
 export const relativeTimeStrict = (
   locale: string,
   date: Date | number,
-  { unit = 'day', numeric = 'auto', style = 'long' }: RelativeTimeStrictOptions = {},
+  { unit = 'day', numeric = 'auto', style = 'long', localeMatcher }: RelativeTimeStrictOptions = {},
 ): string => {
   const value = Math.round((new Date(date).getTime() - Date.now()) / relativeStrictUnitMilliseconds[unit])
 
-  return formatters.getRelativeTimeFormat(locale, { numeric, style }).format(value, unit)
+  return formatters.getRelativeTimeFormat(locale, { numeric, style, localeMatcher }).format(value, unit)
 }
