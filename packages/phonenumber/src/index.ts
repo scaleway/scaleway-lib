@@ -20,25 +20,18 @@ export type ParsedPhoneNumber = {
 
 const parsePhoneValue = (inputValue: string, defaultCountry = 'FR'): ParsedPhoneNumber => {
   try {
-    const parsed = parsePhoneNumber(inputValue)
-    const country = parsed.regionCode
-    const phoneNumber = inputValue
-
-    const isValid =
-      phoneNumber.length > 4 && parsePhoneNumber(phoneNumber, { regionCode: country ?? defaultCountry }).valid
-
-    const parsedValid = parsePhoneNumber(phoneNumber, {
-      regionCode: country ?? defaultCountry,
-    })
+    const country = parsePhoneNumber(inputValue).regionCode
+    const parsedValid = parsePhoneNumber(inputValue, { regionCode: country ?? defaultCountry })
+    const isValid = inputValue.length > 4 && parsedValid.valid
 
     return {
       inputValue,
-      formatted: isValid ? (parsedValid.number?.international ?? inputValue) : inputValue,
+      formatted: isValid ? parsedValid.number.international : inputValue,
       country: country ?? defaultCountry,
       valid: isValid,
-      e164: isValid ? (parsedValid.number?.e164 ?? null) : null,
-      international: isValid ? (parsedValid.number?.international ?? null) : null,
-      national: isValid ? (parsedValid.number?.national ?? null) : null,
+      e164: isValid ? parsedValid.number.e164 : null,
+      international: isValid ? parsedValid.number.international : null,
+      national: isValid ? parsedValid.number.national : null,
     }
   } catch {
     return {
