@@ -1,6 +1,7 @@
 import type { Cache } from '@formatjs/fast-memoize'
 import { memoize, strategies } from '@formatjs/fast-memoize'
 import IntlTranslationFormat from 'intl-messageformat'
+import type { Formatters as IntlFormatters } from 'intl-messageformat'
 
 // Deeply inspired by https://github.com/formatjs/formatjs/blob/7406e526a9c5666cee22cc2316dad1fa1d88697c/packages/intl-messageformat/src/core.ts
 
@@ -71,7 +72,9 @@ const formatters: Formatters = {
       opts: TranslationFormatParameter[3],
     ) =>
       new IntlTranslationFormat(message, locales, overrideFormats, {
-        formatters: baseFormatters,
+        // shortcut: intl-messageformat's Formatters drifts from lib's Intl types (trailingZeroDisplay, useGrouping), drop the cast and lint-disable when they align
+        // oxlint-disable-next-line no-unnecessary-type-assertion -- the assertion is unnecessary with the pinned 12.1.x, required with 12.2.x
+        formatters: baseFormatters as IntlFormatters,
         ...opts,
       }),
     {
