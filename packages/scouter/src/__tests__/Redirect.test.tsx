@@ -47,16 +47,15 @@ describe('that always renders', () => {
 })
 
 describe('inside a <Switch>', () => {
-  // RRv5 allow this but we don't
-  it('does not automatically interpolates params', () => {
+  it('interpolates matched params into the `to` string', () => {
     let params: any = undefined
 
     render(
-      <MemoryRouter initialEntries={['/users/mjackson/messages/123']}>
+      <MemoryRouter initialEntries={['/users/42']}>
         <Switch>
-          <Redirect from="/users/:username/messages/:messageId" to="/:username/messages/:messageId" />
+          <Redirect from="/users/:id" to="/profiles/:id" />
           <Route
-            path="/:username/messages/:messageId"
+            path="/profiles/:id"
             render={({ match: { params: paramsProps } }) => {
               params = paramsProps
               return null
@@ -66,10 +65,28 @@ describe('inside a <Switch>', () => {
       </MemoryRouter>,
     )
 
-    expect(params).toMatchObject({
-      username: ':username',
-      messageId: ':messageId',
-    })
+    expect(params).toMatchObject({ id: '42' })
+  })
+
+  it('interpolates matched params into the `to` object pathname', () => {
+    let params: any = undefined
+
+    render(
+      <MemoryRouter initialEntries={['/users/42']}>
+        <Switch>
+          <Redirect from="/users/:id" to={{ pathname: '/profiles/:id' }} />
+          <Route
+            path="/profiles/:id"
+            render={({ match: { params: paramsProps } }) => {
+              params = paramsProps
+              return null
+            }}
+          />
+        </Switch>
+      </MemoryRouter>,
+    )
+
+    expect(params).toMatchObject({ id: '42' })
   })
 })
 

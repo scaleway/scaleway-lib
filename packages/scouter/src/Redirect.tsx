@@ -1,5 +1,6 @@
 import type { To } from 'history'
 import { useLayoutEffect, useMemo } from 'react'
+import { generatePath } from './generatePath'
 import type { MaybeMatch } from './matchPath'
 import { matchPaths } from './matchPath'
 import { useHistory } from './useHistory'
@@ -33,10 +34,16 @@ export const RedirectInternal = ({ from: path, computedMatch, exact, push, to }:
     if (!match) {
       return
     }
+    let target: To = to
+    if (typeof to === 'string') {
+      target = generatePath(to, match.params)
+    } else if (to.pathname !== undefined) {
+      target = { ...to, pathname: generatePath(to.pathname, match.params) }
+    }
     if (push === true) {
-      history.push(to)
+      history.push(target)
     } else {
-      history.replace(to)
+      history.replace(target)
     }
   }, [match, history, to, push])
 
