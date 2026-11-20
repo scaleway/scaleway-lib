@@ -563,7 +563,7 @@ importers:
     devDependencies:
       typescript:
         specifier: 'catalog:'
-        version: 7.1.0-dev.20261116.1
+        version: 7.1.0-dev.20261117.1
 
   packages/units: {}
 
