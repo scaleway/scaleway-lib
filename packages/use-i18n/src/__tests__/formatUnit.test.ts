@@ -52,4 +52,22 @@ describe(formatUnit, () => {
   it.for(tests)('%s %o', ([, options, locale, amount]) => {
     expect(formatUnit(locale, amount, options)).toMatchSnapshot()
   })
+
+  it('should use octet wording for region-tagged French locales', () => {
+    expect(formatUnit('fr-FR', 12, { short: false, unit: 'byte' })).toBe('12 octets')
+    expect(formatUnit('fr-FR', 12, { unit: 'byte' })).toBe('12 o')
+  })
+
+  it('should keep octet wording for language-only locales', () => {
+    expect(formatUnit('fr', 12, { short: false, unit: 'byte' })).toBe('12 octets')
+  })
+
+  it('should use the plural form for zero in plural-zero languages', () => {
+    expect(formatUnit('en', 0, { short: false, unit: 'byte' })).toBe('0 bytes')
+    expect(formatUnit('ro', 0, { short: false, unit: 'byte' })).toBe('0 octeți')
+  })
+
+  it('should keep the singular form for zero in French', () => {
+    expect(formatUnit('fr', 0, { short: false, unit: 'byte' })).toBe('0 octet')
+  })
 })

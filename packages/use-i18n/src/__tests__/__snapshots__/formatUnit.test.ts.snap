@@ -728,45 +728,45 @@ exports[`formatUnit > should work with long format, locale en and { short: false
 
 exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 6`] = `"12.56 megabits"`;
 
-exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 7`] = `"0 megabit"`;
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 7`] = `"0 megabits"`;
 
-exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 8`] = `"0 megabit"`;
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 8`] = `"0 megabits"`;
 
 exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 9`] = `"12.56 gigabits"`;
 
-exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 10`] = `"0 gigabit"`;
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 10`] = `"0 gigabits"`;
 
-exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 11`] = `"0 gigabit"`;
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 11`] = `"0 gigabits"`;
 
 exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 12`] = `"12.56 terabits"`;
 
-exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 13`] = `"0 terabit"`;
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 13`] = `"0 terabits"`;
 
-exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 14`] = `"0 terabit"`;
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 14`] = `"0 terabits"`;
 
 exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 15`] = `"12.56 petabits"`;
 
-exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 16`] = `"0 petabit"`;
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 16`] = `"0 petabits"`;
 
-exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 17`] = `"0 petabit"`;
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 17`] = `"0 petabits"`;
 
 exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 18`] = `"12.56 exabits"`;
 
-exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 19`] = `"0 exabit"`;
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 19`] = `"0 exabits"`;
 
-exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 20`] = `"0 exabit"`;
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 20`] = `"0 exabits"`;
 
 exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 21`] = `"12.56 zettabits"`;
 
-exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 22`] = `"0 zettabit"`;
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 22`] = `"0 zettabits"`;
 
-exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 23`] = `"0 zettabit"`;
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 23`] = `"0 zettabits"`;
 
 exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 24`] = `"12.56 yottabits"`;
 
-exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 25`] = `"0 yottabit"`;
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 25`] = `"0 yottabits"`;
 
-exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 26`] = `"0 yottabit"`;
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 26`] = `"0 yottabits"`;
 
 exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 27`] = `"13 bytes"`;
 
@@ -780,31 +780,31 @@ exports[`formatUnit > should work with long format, locale en and { short: false
 
 exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 32`] = `"12.56 megabytes"`;
 
-exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 33`] = `"0 megabyte"`;
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 33`] = `"0 megabytes"`;
 
 exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 34`] = `"12.56 gigabytes"`;
 
-exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 35`] = `"0 gigabyte"`;
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 35`] = `"0 gigabytes"`;
 
 exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 36`] = `"12.56 terabytes"`;
 
-exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 37`] = `"0 terabyte"`;
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 37`] = `"0 terabytes"`;
 
 exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 38`] = `"12.56 petabytes"`;
 
-exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 39`] = `"0 petabyte"`;
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 39`] = `"0 petabytes"`;
 
 exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 40`] = `"12.56 exabytes"`;
 
-exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 41`] = `"0 exabyte"`;
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 41`] = `"0 exabytes"`;
 
 exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 42`] = `"12.56 zettabytes"`;
 
-exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 43`] = `"0 zettabyte"`;
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 43`] = `"0 zettabytes"`;
 
 exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 44`] = `"12.56 yottabytes"`;
 
-exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 45`] = `"0 yottabyte"`;
+exports[`formatUnit > should work with long format, locale en and { short: false, …(1) } 45`] = `"0 yottabytes"`;
 
 exports[`formatUnit > should work with long format, locale fr and { short: false, unit: 'bit' } 1`] = `"12,56 bits"`;
 
@@ -996,45 +996,45 @@ exports[`formatUnit > should work with long format, locale ro and { short: false
 
 exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 6`] = `"12,56 megabits"`;
 
-exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 7`] = `"0 megabit"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 7`] = `"0 megabits"`;
 
-exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 8`] = `"0 megabit"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 8`] = `"0 megabits"`;
 
 exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 9`] = `"12,56 gigabits"`;
 
-exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 10`] = `"0 gigabit"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 10`] = `"0 gigabits"`;
 
-exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 11`] = `"0 gigabit"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 11`] = `"0 gigabits"`;
 
 exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 12`] = `"12,56 terabits"`;
 
-exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 13`] = `"0 terabit"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 13`] = `"0 terabits"`;
 
-exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 14`] = `"0 terabit"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 14`] = `"0 terabits"`;
 
 exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 15`] = `"12,56 petabits"`;
 
-exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 16`] = `"0 petabit"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 16`] = `"0 petabits"`;
 
-exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 17`] = `"0 petabit"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 17`] = `"0 petabits"`;
 
 exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 18`] = `"12,56 exabits"`;
 
-exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 19`] = `"0 exabit"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 19`] = `"0 exabits"`;
 
-exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 20`] = `"0 exabit"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 20`] = `"0 exabits"`;
 
 exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 21`] = `"12,56 zettabits"`;
 
-exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 22`] = `"0 zettabit"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 22`] = `"0 zettabits"`;
 
-exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 23`] = `"0 zettabit"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 23`] = `"0 zettabits"`;
 
 exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 24`] = `"12,56 yottabits"`;
 
-exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 25`] = `"0 yottabit"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 25`] = `"0 yottabits"`;
 
-exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 26`] = `"0 yottabit"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 26`] = `"0 yottabits"`;
 
 exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 27`] = `"13 octeți"`;
 
@@ -1048,31 +1048,31 @@ exports[`formatUnit > should work with long format, locale ro and { short: false
 
 exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 32`] = `"12,56 megaocteți"`;
 
-exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 33`] = `"0 megaoctet"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 33`] = `"0 megaocteți"`;
 
 exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 34`] = `"12,56 gigaocteți"`;
 
-exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 35`] = `"0 gigaoctet"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 35`] = `"0 gigaocteți"`;
 
 exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 36`] = `"12,56 teraocteți"`;
 
-exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 37`] = `"0 teraoctet"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 37`] = `"0 teraocteți"`;
 
 exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 38`] = `"12,56 petaocteți"`;
 
-exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 39`] = `"0 petaoctet"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 39`] = `"0 petaocteți"`;
 
 exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 40`] = `"12,56 exaocteți"`;
 
-exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 41`] = `"0 exaoctet"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 41`] = `"0 exaocteți"`;
 
 exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 42`] = `"12,56 zettaocteți"`;
 
-exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 43`] = `"0 zettaoctet"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 43`] = `"0 zettaocteți"`;
 
 exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 44`] = `"12,56 yottaocteți"`;
 
-exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 45`] = `"0 yottaoctet"`;
+exports[`formatUnit > should work with long format, locale ro and { short: false, …(1) } 45`] = `"0 yottaocteți"`;
 
 exports[`formatUnit > should work with maximumFractionDigits { maximumFractionDigits: 3, …(1) } 1`] = `"13 b"`;
 
