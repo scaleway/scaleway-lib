@@ -1,5 +1,11 @@
 # @scaleway/types
 
+## 1.2.1
+
+### Patch Changes
+
+- [#4165](https://github.com/scaleway/scaleway-lib/pull/4165) [`a1515ef`](https://github.com/scaleway/scaleway-lib/commit/a1515ef5160c7f96d6093c72a315fa01268c0e65) Thanks [@chambo-e](https://github.com/chambo-e)! - Add typescript as a devDependency so `manypkg check` and the pre-commit hook pass
+
 ## 1.2.0
 
 ### Minor Changes

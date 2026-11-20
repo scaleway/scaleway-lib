@@ -1,5 +1,15 @@
 # Change Log
 
+## 9.0.8
+
+### Patch Changes
+
+- [#4148](https://github.com/scaleway/scaleway-lib/pull/4148) [`65708dc`](https://github.com/scaleway/scaleway-lib/commit/65708dc3e40cbe987cacb8e190ef0f252fdaaf99) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `filesize` to `11.0.33`.
+
+- [#4151](https://github.com/scaleway/scaleway-lib/pull/4151) [`4e3b097`](https://github.com/scaleway/scaleway-lib/commit/4e3b097e763f44597aca8ea86c5cb381941d4c6a) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `filesize` to `11.0.34`.
+
+- [#4164](https://github.com/scaleway/scaleway-lib/pull/4164) [`d43c643`](https://github.com/scaleway/scaleway-lib/commit/d43c643f2f3ca4b80fa01d82ded819a9f2193bb1) Thanks [@chambo-e](https://github.com/chambo-e)! - Normalize the locale before matching octet wording, so region-tagged locales like `fr-FR` get "octets" instead of "bytes". Zero now uses the CLDR plural form in English and Romanian ("0 bytes", "0 octeți"); French keeps the singular ("0 octet").
+
 ## 9.0.7
 
 ### Patch Changes
