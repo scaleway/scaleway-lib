@@ -1,10 +1,24 @@
-import { execFileSync } from 'node:child_process'
+import { execFileSync, execSync } from 'node:child_process'
+import { vol } from 'memfs'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { createChangesetForPackages } from '../utils.js'
+import { createChangesetForPackages, createTags, findWorkspaceRoot } from '../utils.js'
 
 vi.mock(import('node:child_process'))
 
+// findWorkspaceRoot reads through memfs so its tests stay hermetic
+vi.mock(import('node:fs'), async importOriginal => {
+  const actual = await importOriginal()
+  const memfs = await import('memfs')
+  return {
+    ...actual,
+    // memfs' option types allow null, node:fs' do not
+    // oxlint-disable-next-line typescript/no-unsafe-type-assertion
+    readFileSync: memfs.vol.readFileSync as typeof actual.readFileSync,
+  }
+})
+
 const mockedExecFileSync = vi.mocked(execFileSync)
+const mockedExecSync = vi.mocked(execSync)
 
 const basePackage = {
   name: '@scaleway/sdk-instance',
@@ -34,7 +48,9 @@ const getSummaryFromLastCall = (): string => {
 describe('pnpm-auto-release utils', () => {
   beforeEach(() => {
     mockedExecFileSync.mockClear()
+    mockedExecSync.mockClear()
     mockedExecFileSync.mockReturnValue('')
+    vol.reset()
   })
 
   afterEach(() => {
@@ -83,5 +99,51 @@ describe('pnpm-auto-release utils', () => {
 
     expect(getLastCallArgs()).toContain('@scaleway/sdk-instance')
     expect(getLastCallArgs()).toContain('@scaleway/sdk-iam')
+  })
+})
+
+describe(createTags, () => {
+  it('runs git tag commands via execFile with metacharacters kept in one argv element', () => {
+    const name = 'evil" ; echo pwned; #'
+    const tag = `${name}@1.0.0`
+    const pkg = { ...basePackage, name }
+    const newPkg = { ...basePackage, name, version: '1.0.0' }
+
+    mockedExecFileSync.mockImplementationOnce(() => {
+      throw new Error('refs/tags does not exist')
+    })
+
+    const newTags = createTags({
+      root: '/fake/path',
+      affectedPackages: [pkg],
+      updatedPackages: [newPkg],
+    })
+
+    expect(mockedExecSync).not.toHaveBeenCalled()
+    expect(newTags).toStrictEqual([tag])
+    const gitArgs = mockedExecFileSync.mock.calls.map(call => {
+      expect(call[0]).toBe('git')
+      const [, args] = call
+      expect(Array.isArray(args)).toBe(true)
+      // oxlint-disable-next-line typescript/no-unsafe-type-assertion
+      return args as readonly string[]
+    })
+    expect(gitArgs).toStrictEqual([
+      ['rev-parse', '-q', '--verify', `refs/tags/${tag}`],
+      ['ls-remote', '--tags', 'origin', `refs/tags/${tag}`],
+      ['tag', tag, '-m', tag],
+    ])
+  })
+})
+
+describe(findWorkspaceRoot, () => {
+  it('walks up from a nested directory to the one holding pnpm-workspace.yaml', () => {
+    vol.fromJSON({ '/repo/pnpm-workspace.yaml': 'packages:\n', '/repo/packages/a/src': null })
+
+    expect(findWorkspaceRoot('/repo/packages/a/src')).toBe('/repo')
+  })
+
+  it('terminates the walk and returns the start when no root is found', () => {
+    expect(findWorkspaceRoot('/nowhere/deep/dir')).toBe('/nowhere/deep/dir')
   })
 })
