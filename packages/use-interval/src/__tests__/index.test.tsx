@@ -23,6 +23,16 @@ describe('useinterval', () => {
     expect(callback).toHaveBeenCalledTimes(3)
   })
 
+  it('should not start interval if delay is undefined', () => {
+    const callback = vi.fn<() => void>()
+    renderHook(() => {
+      useInterval(callback, undefined as number | null | undefined)
+    })
+    vi.advanceTimersByTime(300)
+    expect(setInterval).toHaveBeenCalledTimes(0)
+    expect(callback).toHaveBeenCalledTimes(0)
+  })
+
   it('should not start interval if null is passed', () => {
     const callback = vi.fn<() => void>()
     renderHook(() => {

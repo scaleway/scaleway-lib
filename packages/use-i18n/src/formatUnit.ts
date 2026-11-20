@@ -24,13 +24,17 @@ const frOctet = {
 
 const localesWhoFavorOctetOverByte = {
   fr: frOctet,
-  'fr-ca': frOctet,
-  'fr-fr': frOctet,
   ro: {
     plural: 'octeți',
     singular: 'octet',
   },
 }
+
+// CLDR: these languages use the plural form for zero ("0 bytes"), unlike French ("0 octet")
+const languagesWhoUsePluralForZero = new Set(['en', 'ro'])
+
+// 'fr-FR' and 'ro-RO' must resolve to their language, not be matched as exact strings
+const getLanguage = (locale: string) => new Intl.Locale(locale).language
 
 const symbols = {
   long: {
@@ -61,7 +65,7 @@ type CompoundUnit = 'second'
 const formatShortUnit = (locale: string, exponent: Exponent, unit: Unit, compoundUnit?: CompoundUnit) => {
   let shortenedUnit = symbols.short[unit]
 
-  if (unit === 'byte' && Object.keys(localesWhoFavorOctetOverByte).includes(locale)) {
+  if (unit === 'byte' && Object.keys(localesWhoFavorOctetOverByte).includes(getLanguage(locale))) {
     shortenedUnit = symbols.short.octet
   }
 
@@ -70,17 +74,18 @@ const formatShortUnit = (locale: string, exponent: Exponent, unit: Unit, compoun
 
 // oxlint-disable-next-line max-params
 const formatLongUnit = (locale: string, exponent: Exponent, unit: Unit, amount: number) => {
+  const language = getLanguage(locale)
   let translation = symbols.long[unit]
 
-  if (unit === 'byte' && Object.keys(localesWhoFavorOctetOverByte).includes(locale)) {
-    translation = localesWhoFavorOctetOverByte[locale as keyof typeof localesWhoFavorOctetOverByte]
+  if (unit === 'byte' && Object.keys(localesWhoFavorOctetOverByte).includes(language)) {
+    translation = localesWhoFavorOctetOverByte[language as keyof typeof localesWhoFavorOctetOverByte]
   }
 
   return `${exponent.name}${
     formatters
       .getTranslationFormat(
         `{amount, plural,
-      =0 {${translation.singular}}
+      =0 {${languagesWhoUsePluralForZero.has(language) ? translation.plural : translation.singular}}
       =1 {${translation.singular}}
       other {${translation.plural}}
   }`,

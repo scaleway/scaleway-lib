@@ -43,7 +43,7 @@ export const macAddress: RegExp = /^(?:[0-9a-fA-F][0-9a-fA-F]:){5}(?:[0-9a-fA-F]
 // Used by W3C
 export const email: RegExp = /^[&a-zA-Z0-9.!#$%’*+\/=?^_`\{\|\}~\-]+@[a-zA-Z0-9\-]+(?:\.[a-zA-Z0-9\-]+)*$/v
 export const fourDigitsCode: RegExp = /^[0-9]{4}$/v
-export const phone: RegExp = /^\+[0-9]*/v
+export const phone: RegExp = /^\+[0-9]{6,}$/v
 export const spaces: RegExp = /^\s*$/v
 export const sixDigitsCode: RegExp = /^[0-9]{6}$/v
 export const nineDigitsCode: RegExp = /^[0-9]{9}$/v
