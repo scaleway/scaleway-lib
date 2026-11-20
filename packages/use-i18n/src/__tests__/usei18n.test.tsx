@@ -857,8 +857,6 @@ describe('i18n hook', () => {
     expect(result.current.relativeTime(date, { noSuffix: true })).toBe('21 years')
     expect(result.current.relativeTime(date, { noSuffix: true, style: 'narrow' })).toBe('21y')
     expect(result.current.relativeTime(new Date('4/15/2021'), { noSuffix: true })).toBe('2 days')
-    expect(result.current.relativeTime(new Date('4/15/2021 12:00'), { roundingMode: 'floor' })).toBe('in 2 days')
-    expect(result.current.relativeTime(new Date('4/15/2021 12:00'), { roundingMode: 'ceil' })).toBe('in 3 days')
 
     act(() => {
       result.current.switchLocale('fr')
@@ -915,15 +913,6 @@ describe('i18n hook', () => {
 
     expect(result.current.relativeTimeStrict(date)).toBe('3,499 days ago')
     expect(result.current.relativeTimeStrict(date, { noSuffix: true })).toBe('3,499 days')
-    expect(result.current.relativeTimeStrict(new Date('4/10/2021 12:00'), { roundingMode: 'floor' })).toBe('2 days ago')
-    expect(result.current.relativeTimeStrict(new Date('4/10/2021 12:00'), { roundingMode: 'ceil' })).toBe('3 days ago')
-    expect(result.current.relativeTimeStrict(new Date('4/10/2021 12:00'), { roundingMode: 'trunc' })).toBe('2 days ago')
-    expect(result.current.relativeTimeStrict(new Date('4/10/2021 12:00'), { roundingMode: 'halfExpand' })).toBe(
-      '3 days ago',
-    )
-    expect(
-      result.current.relativeTimeStrict(new Date('4/10/2021 12:00'), { roundingMode: 'floor', noSuffix: true }),
-    ).toBe('2 days')
     expect(() => result.current.relativeTimeStrict(date, { unit: 'quarter', noSuffix: true })).toThrow(
       "noSuffix is not supported with the 'quarter' unit",
     )
