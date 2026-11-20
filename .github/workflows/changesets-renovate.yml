@@ -17,6 +17,11 @@ jobs:
     runs-on: ubuntu-latest
     env:
       EXCLUDE_DEVDEPS: true
+    # WARNING: this job is pull_request_target with contents:write and runs code from the
+    # PR branch (github.head_ref) — i.e. arbitrary code with a write token. The actor and
+    # same-repo checks in the `if` below are the ONLY thing preventing untrusted code from
+    # getting that token: never widen the actor check or remove the repository checks.
+    # The commented-out branches: filter is deliberate.
     if: github.actor == 'renovate[bot]' && github.repository == 'scaleway/scaleway-lib' && github.event.pull_request.head.repo.full_name == 'scaleway/scaleway-lib'
     steps:
       - name: Checkout

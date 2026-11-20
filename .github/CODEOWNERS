@@ -1,0 +1,3 @@
+# changesets-renovate.yml is pull_request_target with contents:write running PR-branch
+# code — changes to it must get an explicit review (see the warning inside the file).
+.github/workflows/changesets-renovate.yml @chambo-e @philibea @QuiiBz
