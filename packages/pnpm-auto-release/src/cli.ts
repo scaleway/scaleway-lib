@@ -1,6 +1,5 @@
 #!/usr/bin/env node
-import { appendFileSync, realpathSync } from 'node:fs'
-import path from 'node:path'
+import { realpathSync } from 'node:fs'
 import { env } from 'node:process'
 import { parseArgs } from 'node:util'
 import { CHANGESET_MESSAGE, RELEASE_SUBJECT } from './constants.ts'
@@ -11,6 +10,7 @@ import {
   exec,
   findWorkspaceRoot,
   listWorkspacePackages,
+  publishPackages,
 } from './utils.ts'
 
 type WorkspacePackage = ReturnType<typeof listWorkspacePackages>[number]
@@ -99,31 +99,6 @@ const gatherAffectedPackages = (root: string, dryRun: boolean): { affected: Work
     console.log(`  - ${pkg.name}: ${pkg.version}`)
   }
   return { affected, range }
-}
-
-const writeNpmrcAuth = (root: string, registry: string): void => {
-  const user = env['NPM_REGISTRY_USER']
-  const passwd = env['NPM_REGISTRY_PASSWD']
-  if (user === undefined || passwd === undefined) {
-    return
-  }
-  const host = registry.replace(/^https?:\/\//v, '')
-  const auth = Buffer.from(`${user}:${passwd}`).toString('base64')
-  appendFileSync(path.join(root, '.npmrc'), `\n//${host}/:_auth=${auth}\n`)
-  console.log(`[release] authenticated to ${host}`)
-}
-
-const publishPackages = (root: string, options: ReleaseOptions): void => {
-  if (options.skipPublish) {
-    return
-  }
-  if (options.registry !== undefined) {
-    writeNpmrcAuth(root, options.registry)
-  }
-  const flag = options.registry !== undefined ? ` --registry ${options.registry}` : ''
-  const provenanceFlag = options.provenance ? ' --provenance' : ''
-  exec(`pnpm publish -r --no-git-checks --access public${provenanceFlag}${flag}`, { cwd: root, stdio: 'inherit' })
-  console.log('[release] published')
 }
 
 const bumpAndPublish = (

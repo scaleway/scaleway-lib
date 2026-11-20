@@ -1,5 +1,6 @@
 import { execFileSync, execSync } from 'node:child_process'
-import { readFileSync } from 'node:fs'
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
+import { tmpdir } from 'node:os'
 import path from 'node:path'
 import { env } from 'node:process'
 
@@ -24,11 +25,15 @@ export const findWorkspaceRoot = (start: string): string => {
   return start
 }
 
-export const exec = (cmd: string, opts: { cwd?: string; stdio?: 'pipe' | 'inherit' } = {}): string => {
+export const exec = (
+  cmd: string,
+  opts: { cwd?: string; stdio?: 'pipe' | 'inherit'; env?: Record<string, string> } = {},
+): string => {
   const out = execSync(cmd, {
     cwd: opts.cwd,
     encoding: 'utf8',
     stdio: opts.stdio === 'inherit' ? 'inherit' : ['ignore', 'pipe', 'pipe'],
+    env: opts.env === undefined ? undefined : { ...env, ...opts.env },
     maxBuffer: 50 * 1024 * 1024,
   }) as string | null
   return (out ?? '').trim()
@@ -213,4 +218,43 @@ export const createChangesets = ({
   for (const line of commits.split('\n').filter(Boolean)) {
     processCommit(root, line, { packages, defaultSummary })
   }
+}
+
+// Credentials must never land inside the repo: the release commit runs `git add -A`
+const writeNpmrcAuth = (registry: string): string | undefined => {
+  const user = env['NPM_REGISTRY_USER']
+  const passwd = env['NPM_REGISTRY_PASSWD']
+  if (user === undefined || passwd === undefined) {
+    return undefined
+  }
+  const host = registry.replace(/^https?:\/\//v, '')
+  const auth = Buffer.from(`${user}:${passwd}`).toString('base64')
+  const file = path.join(mkdtempSync(path.join(tmpdir(), 'pnpm-auto-release-')), '.npmrc')
+  writeFileSync(file, `//${host}/:_auth=${auth}\n`, { mode: 0o600 })
+  console.log(`[release] authenticated to ${host}`)
+  return file
+}
+
+export const publishPackages = (
+  root: string,
+  { skipPublish, provenance, registry }: { skipPublish: boolean; provenance: boolean; registry?: string },
+): void => {
+  if (skipPublish) {
+    return
+  }
+  const userconfig = registry === undefined ? undefined : writeNpmrcAuth(registry)
+  try {
+    const flag = registry !== undefined ? ` --registry ${registry}` : ''
+    const provenanceFlag = provenance ? ' --provenance' : ''
+    exec(`pnpm publish -r --no-git-checks --access public${provenanceFlag}${flag}`, {
+      cwd: root,
+      stdio: 'inherit',
+      env: userconfig === undefined ? undefined : { NPM_CONFIG_USERCONFIG: userconfig },
+    })
+  } finally {
+    if (userconfig !== undefined) {
+      rmSync(path.dirname(userconfig), { recursive: true, force: true })
+    }
+  }
+  console.log('[release] published')
 }
