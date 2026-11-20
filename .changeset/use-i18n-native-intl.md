@@ -12,6 +12,7 @@ Remove the `date-fns` dependency: every date, duration and relative-time format 
 - The `date-fns` type re-exports `FormatDistanceToNowOptions` and `FormatDistanceToNowStrictOptions` are no longer exported from `@scaleway/use-i18n`.
 - `formatDuration` options are now `Intl.DurationFormatOptions` (e.g. `{ style: 'narrow' }`) instead of date-fns format options; `'clock'` and `'clock-milliseconds'` are unchanged.
 - `date-fns` is no longer a peer dependency.
+- `switchLocale` now returns `void` instead of `Promise<void>` — with the date-fns locale loading gone there is nothing asynchronous left. Drop any `.then()` calls; `await switchLocale(...)` keeps working unchanged.
 - Runtime floor: `formatDuration` now needs `Intl.DurationFormat` (Baseline 2025 — Chrome/Edge 129+, Firefox 136+, Safari 16.4+, Node 23+ per MDN). Polyfill `@formatjs/intl-durationformat` if you must support older browsers. `relativeTime` needs `Intl.RelativeTimeFormat` (available everywhere since 2020).
 - TypeScript floor: the published types reference `Intl.DurationFormatOptions`, which ships in TypeScript 6.0+ (`lib.es2025.intl`); on older TypeScript the `.d.ts` will not compile.
 

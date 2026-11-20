@@ -135,16 +135,16 @@ describe('i18n hook', () => {
       expect(result.current.t('title')).toStrictEqual(en.title)
     })
 
-    await act(async () => {
-      await result.current.switchLocale('fr')
+    act(() => {
+      result.current.switchLocale('fr')
     })
 
     await vi.waitFor(() => {
       expect(result.current.t('title')).toStrictEqual(fr.title)
     })
 
-    await act(async () => {
-      await result.current.switchLocale('es')
+    act(() => {
+      result.current.switchLocale('es')
     })
 
     await vi.waitFor(() => {
@@ -174,8 +174,8 @@ describe('i18n hook', () => {
     expect(result.current.t('lastName')).toBe('Last Name')
     expect(result.current.t('languages')).toBe('Languages')
 
-    await act(async () => {
-      await result.current.switchLocale('fr')
+    act(() => {
+      result.current.switchLocale('fr')
     })
 
     await vi.waitFor(() => {
@@ -208,8 +208,8 @@ describe('i18n hook', () => {
 
     // current local will be 'en' based on navigator
     // await load of locales
-    await act(async () => {
-      await result.current.switchLocale('fr')
+    act(() => {
+      result.current.switchLocale('fr')
     })
 
     await vi.waitFor(() => {
@@ -478,8 +478,8 @@ describe('i18n hook', () => {
     expect(result.current.currentLocale).toBe('en')
     expect(localStorage.getItem(LOCALE_ITEM_STORAGE)).toBe('en')
 
-    await act(async () => {
-      await result.current.switchLocale('fr')
+    act(() => {
+      result.current.switchLocale('fr')
     })
 
     await vi.waitFor(() => {
@@ -487,8 +487,8 @@ describe('i18n hook', () => {
     })
     expect(localStorage.getItem(LOCALE_ITEM_STORAGE)).toBe('fr')
 
-    await act(async () => {
-      await result.current.switchLocale('es')
+    act(() => {
+      result.current.switchLocale('es')
     })
 
     await vi.waitFor(() => {
@@ -496,11 +496,11 @@ describe('i18n hook', () => {
     })
     expect(localStorage.getItem(LOCALE_ITEM_STORAGE)).toBe('es')
 
-    await act(async () => {
+    act(() => {
       // we test even if an incorrect typescript value is being passed to the function
 
       // @ts-expect-error expected error
-      await result.current.switchLocale('test')
+      result.current.switchLocale('test')
     })
 
     await vi.waitFor(() => {
@@ -577,8 +577,8 @@ describe('i18n hook', () => {
         expect(rootElement.getAttribute('lang')).toBe('en')
       })
 
-      await act(async () => {
-        await result.current.switchLocale('fr')
+      act(() => {
+        result.current.switchLocale('fr')
       })
 
       await vi.waitFor(() => {
@@ -621,8 +621,8 @@ describe('i18n hook', () => {
       }),
     })
 
-    await act(async () => {
-      await result.current.switchLocale('fr')
+    act(() => {
+      result.current.switchLocale('fr')
     })
 
     await vi.waitFor(() => {
@@ -694,8 +694,8 @@ describe('i18n hook', () => {
       }),
     ).toBe('$2.00')
 
-    await act(async () => {
-      await result.current.switchLocale('fr')
+    act(() => {
+      result.current.switchLocale('fr')
     })
 
     // https://stackoverflow.com/questions/58769806/identical-strings-not-matching-in-vi
@@ -742,8 +742,8 @@ describe('i18n hook', () => {
       }),
     ).toBe('Motorcycle Bus Car')
 
-    await act(async () => {
-      await result.current.switchLocale('fr')
+    act(() => {
+      result.current.switchLocale('fr')
     })
 
     await vi.waitFor(() => {
@@ -816,8 +816,8 @@ describe('i18n hook', () => {
       }),
     ).toBe('12/17/1995')
 
-    await act(async () => {
-      await result.current.switchLocale('fr')
+    act(() => {
+      result.current.switchLocale('fr')
     })
 
     await vi.waitFor(() => {
@@ -842,7 +842,7 @@ describe('i18n hook', () => {
     ).toBe('17 décembre 1995 après Jésus-Christ')
   })
 
-  it('should relativeTime', async () => {
+  it('should relativeTime', () => {
     const { result } = renderHook(() => useI18n<Locale, Locales>(), {
       wrapper: wrapper({
         defaultLocale: 'en',
@@ -855,14 +855,14 @@ describe('i18n hook', () => {
     expect(result.current.relativeTime(new Date('4/13/2021').getTime() - 60_000)).toBe('1 minute ago')
     expect(result.current.relativeTime(new Date('4/15/2021'))).toBe('in 2 days')
 
-    await act(async () => {
-      await result.current.switchLocale('fr')
+    act(() => {
+      result.current.switchLocale('fr')
     })
 
     expect(result.current.relativeTime(date)).toBe('il y a 21 ans')
   })
 
-  it('should formatDuration', async () => {
+  it('should formatDuration', () => {
     const { result } = renderHook(() => useI18n<Locale, Locales>(), {
       wrapper: wrapper({
         defaultLocale: 'en',
@@ -887,8 +887,8 @@ describe('i18n hook', () => {
     expect(result.current.formatDuration(Number.NaN, 'clock-milliseconds')).toBe('00:00:00:000')
     expect(result.current.formatDuration(Number.POSITIVE_INFINITY)).toBe('')
 
-    await act(async () => {
-      await result.current.switchLocale('fr')
+    act(() => {
+      result.current.switchLocale('fr')
     })
 
     expect(result.current.formatDuration(13_250)).toBe('3\u00A0heures, 40 minutes et 50\u00A0secondes')
@@ -898,7 +898,7 @@ describe('i18n hook', () => {
     expect(result.current.formatDuration(0, 'clock')).toBe('00:00:00')
   })
 
-  it('should relativeTimeStrict', async () => {
+  it('should relativeTimeStrict', () => {
     const { result } = renderHook(() => useI18n<Locale, Locales>(), {
       wrapper: wrapper({
         defaultLocale: 'en',
@@ -908,8 +908,8 @@ describe('i18n hook', () => {
     const date = new Date('September 13, 2011 15:15:00')
 
     expect(result.current.relativeTimeStrict(date)).toBe('3,499 days ago')
-    await act(async () => {
-      await result.current.switchLocale('fr')
+    act(() => {
+      result.current.switchLocale('fr')
     })
 
     expect(result.current.relativeTimeStrict(date)).toBe('il y a 3\u202F499 jours')
@@ -923,8 +923,8 @@ describe('i18n hook', () => {
     })
 
     expect(result.current.formatUnit(12, { short: false, unit: 'byte' })).toBe('12 bytes')
-    await act(async () => {
-      await result.current.switchLocale('fr')
+    act(() => {
+      result.current.switchLocale('fr')
     })
 
     await vi.waitFor(() => {
@@ -940,8 +940,8 @@ describe('i18n hook', () => {
     })
 
     expect(result.current.formatDate(new Date(2020, 1, 13, 16, 28), 'numericHour')).toBe('2020-02-13 4:28 PM')
-    await act(async () => {
-      await result.current.switchLocale('fr')
+    act(() => {
+      result.current.switchLocale('fr')
     })
 
     await vi.waitFor(() => {
@@ -1083,8 +1083,8 @@ describe('i18n hook', () => {
         expect(result.current.t('title')).toBe('English Title')
       })
 
-      await act(async () => {
-        await result.current.switchLocale('fr')
+      act(() => {
+        result.current.switchLocale('fr')
       })
 
       await vi.waitFor(() => {

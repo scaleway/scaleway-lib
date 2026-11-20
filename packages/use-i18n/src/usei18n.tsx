@@ -46,7 +46,7 @@ export type Context<LocaleParam extends BaseLocale, LocalSupportedType extends s
   relativeTime: (date: Date | number, options?: RelativeTimeOptions) => string
   relativeTimeStrict: (date: Date | number, options?: RelativeTimeStrictOptions) => string
   setTranslations: React.Dispatch<React.SetStateAction<TranslationsByLocales>>
-  switchLocale: (locale: LocalSupportedType) => Promise<void>
+  switchLocale: (locale: LocalSupportedType) => void
   t: TranslateFn<LocaleParam>
   translations: TranslationsByLocales
 }
