@@ -29,6 +29,29 @@ describe('parseSRN function', () => {
     expect(s.resourcePath).toBe('organizations/1234')
   })
 
+  it('parses a global SRN with a nested path without stripping the leading pair', () => {
+    const s = parseSRN('srn://iam.scw.eu/organizations/1234/users/5678')
+    expect(s.locality.type).toBe('global')
+    expect(s.locality.name).toBe('')
+    expect(s.resourcePath).toBe('organizations/1234/users/5678')
+    expect(s.resourceIdentifier?.name).toBe('users')
+    expect(s.resourceIdentifier?.value).toBe('5678')
+    const root = s.resourceIdentifier?.root()
+    expect(root?.name).toBe('organizations')
+    expect(root?.value).toBe('1234')
+    expect(s.singletonSegment).toBe('')
+  })
+
+  it('keeps the leading pair of a non-zones/regions path in the resource path', () => {
+    const s = parseSRN('srn://x.scw.eu/foo/bar/baz')
+    expect(s.locality.type).toBe('global')
+    expect(s.locality.name).toBe('')
+    expect(s.resourcePath).toBe('foo/bar/baz')
+    expect(s.resourceIdentifier?.name).toBe('foo')
+    expect(s.resourceIdentifier?.value).toBe('bar')
+    expect(s.singletonSegment).toBe('baz')
+  })
+
   it('parses nested resource identifiers', () => {
     const s = parseSRN('srn://dummy.scw.eu/zones/it-mil-1/resources/2222/nestedresource/1234')
     const leaf = s.resourceIdentifier
@@ -56,6 +79,26 @@ describe('parseSRN function', () => {
   it('round-trips a global SRN', () => {
     const input = 'srn://iam.scw.eu/organizations/1234'
     expect(stringifySRN(parseSRN(input))).toBe(input)
+  })
+
+  it('round-trips a global SRN with a nested path', () => {
+    const input = 'srn://iam.scw.eu/organizations/1234/users/5678'
+    expect(stringifySRN(parseSRN(input))).toBe(input)
+  })
+
+  it('round-trips representative SRNs', () => {
+    const inputs = [
+      'srn://block.scw.eu/zones/it-mil-1/snapshots/22222222-3333-4444-5555-666666666666',
+      'srn://k8s.scw.eu/regions/fr-par/clusters/abc',
+      'srn://iam.scw.eu/organizations/1234',
+      'srn://iam.scw.eu/organizations/1234/users/5678',
+      'srn://x.scw.eu/foo/bar/baz',
+      'srn://dummy.scw.eu/zones/it-mil-1/resources/2222/nestedresource/1234',
+      'srn://x.scw.eu/zones/fr-par-1/resources/2222/singleton',
+    ]
+    for (const input of inputs) {
+      expect(stringifySRN(parseSRN(input))).toBe(input)
+    }
   })
 
   it('throws on invalid input', () => {
