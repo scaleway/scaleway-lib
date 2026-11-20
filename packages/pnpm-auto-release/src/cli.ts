@@ -9,6 +9,7 @@ import {
   createGithubReleases,
   createTags,
   exec,
+  execFile,
   findWorkspaceRoot,
   listWorkspacePackages,
 } from './utils.ts'
@@ -145,11 +146,11 @@ const pushRelease = (root: string, skipPush: boolean, newTags: string[]): void =
   }
   exec('git push origin HEAD --no-verify', { cwd: root })
   for (const tag of newTags) {
-    if (exec(`git ls-remote --tags origin "refs/tags/${tag}"`, { cwd: root }).length > 0) {
+    if (execFile('git', ['ls-remote', '--tags', 'origin', `refs/tags/${tag}`], { cwd: root }).length > 0) {
       console.log(`[release] tag already on remote, skipping push: ${tag}`)
       continue
     }
-    exec(`git push origin "refs/tags/${tag}" --no-verify`, { cwd: root })
+    execFile('git', ['push', 'origin', `refs/tags/${tag}`, '--no-verify'], { cwd: root })
   }
   console.log('[release] pushed')
 }
