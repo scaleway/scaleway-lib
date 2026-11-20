@@ -489,7 +489,11 @@ importers:
 
   packages/fuzzy-search: {}
 
-  packages/npm-trust: {}
+  packages/npm-trust:
+    devDependencies:
+      vitest:
+        specifier: 'catalog:'
+        version: 5.1.1(@types/node@26.6.6)(@vitest/coverage-istanbul@5.1.1)(happy-dom@21.0.4)(jsdom@31.0.1)(vite@8.3.8(@types/node@26.6.6)(yaml@2.9.1))
 
   packages/oxfmt-config:
     dependencies:

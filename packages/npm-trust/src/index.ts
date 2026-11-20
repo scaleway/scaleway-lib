@@ -120,7 +120,7 @@ async function publishUnpublished(packages: Package[], options: Options): Promis
   }
 }
 
-function configureTrust(packages: Package[], options: Options) {
+function configureTrust(packages: Package[], options: Options): { applied: number; skipped: number; failed: number } {
   let applied = 0
   let skipped = 0
   let failed = 0
@@ -147,9 +147,10 @@ function configureTrust(packages: Package[], options: Options) {
   }
 
   console.log(`[trust] done: ${applied} applied, ${skipped} skipped, ${failed} failed`)
+  return { applied, skipped, failed }
 }
 
-async function main(): Promise<void> {
+export async function main(): Promise<void> {
   const options = parseArgs_()
   if (!options) {
     return
@@ -183,7 +184,10 @@ async function main(): Promise<void> {
     await publishUnpublished(unpublished, options)
   }
 
-  configureTrust(packages, options)
+  const { failed } = configureTrust(packages, options)
+  if (failed > 0) {
+    process.exitCode = 1
+  }
 }
 
 if (process.argv[1] && realpathSync(process.argv[1]) === realpathSync(import.meta.filename)) {
