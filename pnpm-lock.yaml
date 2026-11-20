@@ -560,10 +560,10 @@ importers:
   packages/tsconfig: {}
 
   packages/types:
-    dependencies:
+    devDependencies:
       typescript:
-        specifier: '>=4.1'
-        version: 7.0.2
+        specifier: 'catalog:'
+        version: 7.1.0-dev.20261116.1
 
   packages/units: {}
 
