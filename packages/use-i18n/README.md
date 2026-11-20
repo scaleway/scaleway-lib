@@ -8,6 +8,11 @@
 pnpm add @scaleway/use-i18n
 ```
 
+## Requirements
+
+- Browsers: non-clock `formatDuration` uses `Intl.DurationFormat` (Chrome/Edge 129+, Firefox 136+, Safari 16.4+) — polyfill `@formatjs/intl-durationformat` if you support older browsers. `relativeTime` uses `Intl.RelativeTimeFormat`, available everywhere since 2020.
+- TypeScript 6.0+ — the published types reference `Intl.DurationFormatOptions`.
+
 ## Usage
 
 ### Loading locales
@@ -31,7 +36,6 @@ your loaders will be:
 
 ```js
 const load = ({ locale, namespace }) => import(`./locales/${locale}/${namespace}`)
-const loadDateLocale = locale => import(`date-fns/locale/${locale}/index`)
 ```
 
 Inside your app you will need to use useTranslation to load namespace locales.
@@ -43,12 +47,7 @@ import I18n from '@scaleway/use-i18n'
 import defaultTranslations from './locales/en/common'
 
 const App = () => (
-  <I18n
-    loadDateLocale={loadDateLocale}
-    defaultLocale="en"
-    supportedLocales={['en']}
-    defaultTranslations={defaultTranslations}
-  >
+  <I18n defaultLocale="en" supportedLocales={['en']} defaultTranslations={defaultTranslations}>
     <App />
   </I18n>
 )
@@ -150,27 +149,27 @@ const { namespaceTranslation } = useI18n()
 const t = namespaceTranslation('namespace.home.users.table.header')
 ```
 
-### use locales from date-fns
+### Use date-fns locales in your components
 
-You will need sometimes to give locales to somes compoent
-In this example, we will use react-date-picker.js
+`use-i18n` no longer loads date-fns locales for you. If a component needs one — for example `@scaleway/ui`'s `DateInput` — import it in your own app:
 
 ```js
 import { DateInput } from '@scaleway/ui'
 import { useI18n } from '@scaleway/use-i18n'
+import { fr } from 'date-fns/locale'
+
+const dateLocales = { fr }
 
 const App = () => {
-  const { t, currentLocale, dateFnsLocale } = useI18n()
+  const { t, currentLocale } = useI18n()
 
   return (
-    <div>
-      <DateInput
-        currentLocale={currentLocale}
-        locale={dateFnsLocale}
-        label={t('form.fields.date.label')}
-        placeholder={t('form.fields.date.placeholder')}
-      />
-    </div>
+    <DateInput
+      currentLocale={currentLocale}
+      locale={dateLocales[currentLocale]}
+      label={t('form.fields.date.label')}
+      placeholder={t('form.fields.date.placeholder')}
+    />
   )
 }
 ```
@@ -220,6 +219,81 @@ const App = () => {
   return <div>{units}</div>
 }
 ```
+
+### relativeTime
+
+This hook exposes a `relativeTime` function which formats a date relative to now.
+
+The first parameter is a Date or a timestamp. The second is an options object: the native `Intl.RelativeTimeFormat` options (`numeric`, `style`, `localeMatcher`) plus:
+
+- `noSuffix`: drops the "ago"/"in" and returns the bare distance
+
+```js
+import { useI18n } from '@scaleway/use-i18n'
+
+const App = () => {
+  const { relativeTime } = useI18n()
+
+  const dates = [
+    relativeTime(new Date(Date.now() - 3600_000)), // "1 hour ago"
+    relativeTime(new Date(Date.now() + 48 * 3600_000)), // "in 2 days"
+    relativeTime(new Date(Date.now() - 86_400_000)), // "yesterday" — numeric: "auto" renders CLDR specials
+    relativeTime(new Date(Date.now() - 3600_000), { style: 'narrow' }), // "1h ago"
+    relativeTime(new Date(Date.now() - 3600_000), { noSuffix: true }), // "1 hour"
+  ]
+
+  return <div>{dates}</div>
+}
+```
+
+### relativeTimeStrict
+
+Same as `relativeTime`, but you pick the unit instead of getting the largest one. It accepts the same options plus:
+
+- `unit`: `'second'`, `'minute'`, `'hour'`, `'day'` (default), `'week'`, `'month'`, `'quarter'` or `'year'`
+
+```js
+import { useI18n } from '@scaleway/use-i18n'
+
+const App = () => {
+  const { relativeTimeStrict } = useI18n()
+
+  const dates = [
+    relativeTimeStrict(new Date(Date.now() - 3499 * 86_400_000)), // "3,499 days ago"
+    relativeTimeStrict(new Date(Date.now() - 3499 * 86_400_000), { noSuffix: true }), // "3,499 days"
+  ]
+
+  return <div>{dates}</div>
+}
+```
+
+`noSuffix` is not supported with `unit: 'quarter'` — there is no native unsuffixed form for quarters.
+
+### formatDuration
+
+This hook exposes a `formatDuration` function which formats a number of seconds as a localized duration.
+
+The second parameter can be `'clock'` (`"03:40:50"`), `'clock-milliseconds'` (`"00:00:00:030"`) or any `Intl.DurationFormat` options object — defaulting to `{ style: 'long' }`.
+
+```js
+import { useI18n } from '@scaleway/use-i18n'
+
+const App = () => {
+  const { formatDuration } = useI18n()
+
+  const durations = [
+    formatDuration(13_250), // "3 hours, 40 minutes, 50 seconds"
+    formatDuration(13_250, { style: 'narrow' }), // "3h 40m 50s"
+    formatDuration(13_250, 'clock'), // "03:40:50"
+    formatDuration(0.03, 'clock-milliseconds'), // "00:00:00:030"
+    formatDuration(45 * 86_400), // "45 days" — fixed 24h days, not calendar months
+  ]
+
+  return <div>{durations}</div>
+}
+```
+
+Non-finite inputs format like an empty duration: `formatDuration(NaN)` → `''`, `formatDuration(NaN, 'clock')` → `'00:00:00'`.
 
 ### formatList
 
