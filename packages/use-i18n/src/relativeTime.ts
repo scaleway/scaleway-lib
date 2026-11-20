@@ -1,6 +1,9 @@
 import formatters from './formatters'
 
-export type RelativeTimeOptions = Intl.RelativeTimeFormatOptions
+// Intl.RelativeTimeFormat always emits ago/in, so noSuffix formats the bare distance instead
+export type RelativeTimeOptions = Intl.RelativeTimeFormatOptions & {
+  noSuffix?: boolean
+}
 
 // Intl.RelativeTimeFormat.format() types its unit as a plain string, so the unit union is ours
 export type RelativeTimeStrictOptions = RelativeTimeOptions & {
@@ -31,7 +34,7 @@ const relativeStrictUnitMilliseconds = {
 export const relativeTime = (
   locale: string,
   date: Date | number,
-  { numeric = 'auto', style = 'long', localeMatcher }: RelativeTimeOptions = {},
+  { numeric = 'auto', style = 'long', localeMatcher, noSuffix }: RelativeTimeOptions = {},
 ): string => {
   const seconds = (new Date(date).getTime() - Date.now()) / 1000
 
@@ -46,15 +49,28 @@ export const relativeTime = (
     }
   }
 
+  if (noSuffix) {
+    return formatters.getNumberFormat(locale, { style: 'unit', unit, unitDisplay: style }).format(Math.abs(value))
+  }
+
   return formatters.getRelativeTimeFormat(locale, { numeric, style, localeMatcher }).format(value, unit)
 }
 
 export const relativeTimeStrict = (
   locale: string,
   date: Date | number,
-  { unit = 'day', numeric = 'auto', style = 'long', localeMatcher }: RelativeTimeStrictOptions = {},
+  { unit = 'day', numeric = 'auto', style = 'long', localeMatcher, noSuffix }: RelativeTimeStrictOptions = {},
 ): string => {
   const value = Math.round((new Date(date).getTime() - Date.now()) / relativeStrictUnitMilliseconds[unit])
+
+  if (noSuffix) {
+    // quarter is not a sanctioned Intl.NumberFormat unit, so it has no unsuffixed form
+    if (unit === 'quarter') {
+      throw new RangeError("noSuffix is not supported with the 'quarter' unit")
+    }
+
+    return formatters.getNumberFormat(locale, { style: 'unit', unit, unitDisplay: style }).format(Math.abs(value))
+  }
 
   return formatters.getRelativeTimeFormat(locale, { numeric, style, localeMatcher }).format(value, unit)
 }

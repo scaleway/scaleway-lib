@@ -8,7 +8,7 @@ Remove the `date-fns` dependency: every date, duration and relative-time format 
 
 - The `I18n` provider no longer accepts `loadDateLocale`, `loadDateLocaleAsync` and `onLoadDateLocaleError`: native `Intl` only needs the current locale string, so there is nothing to load. Remove these props from your setup.
 - `dateFnsLocale` is removed from the context. If you passed it to a component that needs a date-fns locale object (e.g. `@scaleway/ui`'s `DateInput`), import date-fns yourself and load the locale in your app.
-- `relativeTime` and `relativeTimeStrict` options are now `RelativeTimeOptions`/`RelativeTimeStrictOptions` instead of date-fns types: `RelativeTimeOptions` is the native `Intl.RelativeTimeFormatOptions` (`localeMatcher?`, `numeric?`, `style?`) and the strict variant adds `unit?`. `addSuffix` is gone — relative times are always suffixed ("ago"/"in").
+- `relativeTime` and `relativeTimeStrict` options are now `RelativeTimeOptions`/`RelativeTimeStrictOptions` instead of date-fns types: the native `Intl.RelativeTimeFormatOptions` (`localeMatcher?`, `numeric?`, `style?`) plus `noSuffix?` on both and `unit?` on the strict variant. Relative times are suffixed by default ("ago"/"in"); `noSuffix: true` returns the bare distance ("21 years"), and is not supported with the `quarter` unit.
 - The `date-fns` type re-exports `FormatDistanceToNowOptions` and `FormatDistanceToNowStrictOptions` are no longer exported from `@scaleway/use-i18n`.
 - `formatDuration` options are now `Intl.DurationFormatOptions` (e.g. `{ style: 'narrow' }`) instead of date-fns format options; `'clock'` and `'clock-milliseconds'` are unchanged.
 - `date-fns` is no longer a peer dependency.
