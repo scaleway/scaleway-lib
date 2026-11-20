@@ -1053,13 +1053,16 @@ describe('@regex', () => {
       [whitespace, false],
       [cronTest, false],
       [macAddress1, false],
-      ['+', true],
-      ['+1', true],
+      ['+', false],
+      ['+1', false],
       ['+33607080910', true],
+      ['+123456789', true],
       ['', false],
       ['33607080910', false],
-      ['+33 6', true],
-      ['+abc', true],
+      ['+33 6', false],
+      ['+abc', false],
+      ['+123abc', false],
+      ['+1234', false],
     ])('should match regex %s to be %s', (string, expected) => {
       expect(phone.test(string)).toBe(expected)
     })
