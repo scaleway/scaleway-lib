@@ -207,8 +207,8 @@ catalogs:
       specifier: 2.23.1
       version: 2.23.1
     '@segment/analytics-next':
-      specifier: 1.84.3
-      version: 1.84.3
+      specifier: 1.84.4
+      version: 1.84.4
     '@testing-library/dom':
       specifier: 10.4.2
       version: 10.4.2
@@ -578,7 +578,7 @@ importers:
         version: 3.36.1
       '@segment/analytics-next':
         specifier: 'catalog:'
-        version: 1.84.3
+        version: 1.84.4
       cookie:
         specifier: 'catalog:'
         version: 2.0.2
@@ -1563,8 +1563,8 @@ packages:
   '@segment/analytics-generic-utils@1.2.0':
     resolution: {integrity: sha512-DfnW6mW3YQOLlDQQdR89k4EqfHb0g/3XvBXkovH1FstUN93eL1kfW9CsDcVQyH3bAC5ZsFyjA/o/1Q2j0QeoWw==}
 
-  '@segment/analytics-next@1.84.3':
-    resolution: {integrity: sha512-5l7cPBzScxhfJ0zdcKQI4daDvMIWWUk7hClT1xGRelnHUltIEoQ9w8+ZpFPoWJMpX8D7IA1nVAfJbpiKi3XaKw==}
+  '@segment/analytics-next@1.84.4':
+    resolution: {integrity: sha512-rfeEykGXXXonNReVa0i5JWvwIYA1OXq3RDQTNXg5PQjJwGTUpxkaW1R6IJ0x+EGIp+QFJ/pmAV5who2CyZQ4CA==}
 
   '@segment/analytics-page-tools@1.0.0':
     resolution: {integrity: sha512-o9OVB91qLB9qb0Bw1HfjmWm5AnrMNULRjx++4lBqLt8InKRX1urrRBparVlpj+yJA0sckN5ZcsfazRLuPgBYDQ==}
@@ -3632,7 +3632,7 @@ snapshots:
     dependencies:
       tslib: 2.9.1
 
-  '@segment/analytics-next@1.84.3':
+  '@segment/analytics-next@1.84.4':
     dependencies:
       '@lukeed/uuid': 2.0.1
       '@segment/analytics-core': 1.8.3

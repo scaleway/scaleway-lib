@@ -18,7 +18,7 @@ catalog:
   '@rudderstack/analytics-js': 3.36.1
   '@scaleway/sdk-client': 2.18.0
   '@scaleway/sdk-iam': 2.23.1
-  '@segment/analytics-next': 1.84.3
+  '@segment/analytics-next': 1.84.4
   '@testing-library/jest-dom': 8.0.0
   '@testing-library/react': 16.3.3
   '@testing-library/user-event': 14.6.13
