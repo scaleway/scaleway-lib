@@ -1,8 +1,8 @@
-import { formatISO, intlFormat } from 'date-fns'
+import formatters from './formatters'
 
 const formatOptions = {
+  // Expected output format: February 13, 2020, 4:28 PM
   hour: {
-    // Expected output format: February 13, 2020, 4:28 PM
     day: 'numeric',
     hour: 'numeric',
     minute: 'numeric',
@@ -42,14 +42,21 @@ const formatOptions = {
   } as const,
 } as const
 
+// Formats in the date local timezone, like date-fns formatISO did
+const toISODate = (date: Date) => {
+  if (Number.isNaN(date.getTime())) {
+    throw new RangeError('Invalid time value')
+  }
+
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
+}
+
 const complexFormatOptions = {
   // Expected output format: 2020-02-13
-  numeric: (date: Date): string => formatISO(date, { representation: 'date' }),
+  numeric: (date: Date): string => toISODate(date),
   // Expected output format: 2020-02-13 4:28 PM
   numericHour: (date: Date, locale: string): string =>
-    `${formatISO(date, { representation: 'date' })} ${intlFormat(date, formatOptions.hourOnly, {
-      locale,
-    })}`,
+    `${toISODate(date)} ${formatters.getDateTimeFormat(locale, formatOptions.hourOnly).format(date)}`,
 } as const
 
 type FormatOptions = keyof typeof formatOptions
@@ -85,9 +92,7 @@ const formatDate = (locale: string, date: Date | number | string, format: Format
   const options = typeof format === 'string' ? formatOptions[format as keyof typeof formatOptions] : format
 
   if (properDate instanceof Date) {
-    return intlFormat(properDate, options as Parameters<typeof intlFormat>[1], {
-      locale,
-    })
+    return formatters.getDateTimeFormat(locale, options).format(properDate)
   }
 
   return properDate
