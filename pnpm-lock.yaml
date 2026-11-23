@@ -185,9 +185,6 @@ catalogs:
     '@changesets/config':
       specifier: 4.0.1
       version: 4.0.1
-    '@formatjs/fast-memoize':
-      specifier: 3.1.7
-      version: 3.1.7
     '@formatjs/icu-messageformat-parser':
       specifier: 3.5.23
       version: 3.5.23
@@ -620,9 +617,6 @@ importers:
 
   packages/use-i18n:
     dependencies:
-      '@formatjs/fast-memoize':
-        specifier: 'catalog:'
-        version: 3.1.7
       filesize:
         specifier: 'catalog:'
         version: 11.0.35

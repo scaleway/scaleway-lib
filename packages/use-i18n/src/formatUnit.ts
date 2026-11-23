@@ -1,5 +1,6 @@
 import { filesize } from 'filesize'
 import formatters, { formatToString } from './formatters'
+import { memoize } from './memoize'
 
 // We are on base 10, so we should use IEC standard here ...
 const exponents = [
@@ -34,7 +35,7 @@ const localesWhoFavorOctetOverByte = {
 const languagesWhoUsePluralForZero = new Set(['en', 'ro'])
 
 // 'fr-FR' and 'ro-RO' must resolve to their language, not be matched as exact strings
-const getLanguage = (locale: string) => new Intl.Locale(locale).language
+const getLanguage = memoize((locale: string) => new Intl.Locale(locale).language)
 
 const symbols = {
   long: {
@@ -152,10 +153,12 @@ const format =
 
     const exp = computedExponent ?? { symbol: '', name: '' }
 
-    return `${new Intl.NumberFormat(locale, {
-      maximumFractionDigits,
-      minimumFractionDigits,
-    }).format(computedValue)} ${
+    return `${formatters
+      .getNumberFormat(locale, {
+        maximumFractionDigits,
+        minimumFractionDigits,
+      })
+      .format(computedValue)} ${
       short ? formatShortUnit(locale, exp, unit, compoundUnit) : formatLongUnit(locale, exp, unit, computedValue)
     }`
   }

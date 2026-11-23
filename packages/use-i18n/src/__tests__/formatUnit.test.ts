@@ -2,6 +2,9 @@ import { describe, expect, it } from 'vitest'
 import type { FormatUnitOptions } from '../formatUnit'
 import formatUnit, { supportedUnits } from '../formatUnit'
 
+const patchIntl = (name: 'NumberFormat' | 'Locale', impl: unknown) =>
+  Object.defineProperty(Intl, name, { configurable: true, value: impl, writable: true })
+
 const locales = ['en', 'fr', 'ro']
 
 type TestType = [string, FormatUnitOptions, string, number]
@@ -71,5 +74,54 @@ describe(formatUnit, () => {
 
   it('should keep the singular form for zero in French', () => {
     expect(formatUnit('fr', 0, { short: false, unit: 'byte' })).toBe('0 octet')
+  })
+
+  describe('Intl construction caching', () => {
+    it('should construct Intl.NumberFormat and Intl.Locale once per distinct input', () => {
+      let numberFormatConstructions = 0
+      let localeConstructions = 0
+
+      class CountingNumberFormat extends Intl.NumberFormat {
+        public constructor(...args: ConstructorParameters<typeof Intl.NumberFormat>) {
+          super(...args)
+          numberFormatConstructions += 1
+        }
+      }
+
+      class CountingLocale extends Intl.Locale {
+        public constructor(...args: ConstructorParameters<typeof Intl.Locale>) {
+          super(...args)
+          localeConstructions += 1
+        }
+      }
+
+      patchIntl('NumberFormat', CountingNumberFormat)
+      patchIntl('Locale', CountingLocale)
+      try {
+        // fresh locale and options, untouched by the table tests above, so the
+        // module cache starts cold and every construction is attributable here
+        const runBatch = () => {
+          numberFormatConstructions = 0
+          localeConstructions = 0
+          for (let i = 0; i < 50; i++) {
+            formatUnit('de', 1536, { maximumFractionDigits: 7, unit: 'byte' })
+            formatUnit('de', 1536, { maximumFractionDigits: 7, short: false, unit: 'byte' })
+          }
+        }
+
+        runBatch()
+        // guards against the patch not being in the call path at all
+        expect(numberFormatConstructions).toBeGreaterThan(0)
+        expect(localeConstructions).toBeGreaterThan(0)
+
+        runBatch()
+        // repeated inputs must never construct again, in either path
+        expect(numberFormatConstructions).toBe(0)
+        expect(localeConstructions).toBe(0)
+      } finally {
+        patchIntl('NumberFormat', Intl.NumberFormat)
+        patchIntl('Locale', Intl.Locale)
+      }
+    })
   })
 })

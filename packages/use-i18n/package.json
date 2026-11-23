@@ -41,7 +41,6 @@
     "test:types": "pnpm test:unit --typecheck.only"
   },
   "dependencies": {
-    "@formatjs/fast-memoize": "catalog:",
     "filesize": "catalog:",
     "intl-messageformat": "catalog:"
   },
