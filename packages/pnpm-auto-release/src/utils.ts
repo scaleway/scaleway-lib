@@ -13,7 +13,8 @@ type Package = {
 
 export const findWorkspaceRoot = (start: string): string => {
   let dir = start
-  while (dir !== '/') {
+  // On Windows the walk must stop at the drive root: path.join('C:\\', '..') stays 'C:\\', so comparing to '/' would loop forever
+  while (dir !== path.parse(dir).root) {
     try {
       readFileSync(path.join(dir, 'pnpm-workspace.yaml'), 'utf8')
       return dir
@@ -71,12 +72,15 @@ export const listWorkspacePackages = (root: string) => {
 
 const tagExists = (root: string, tag: string): boolean => {
   try {
-    exec(`git rev-parse -q --verify refs/tags/${tag}`, { cwd: root })
+    execFile('git', ['rev-parse', '-q', '--verify', `refs/tags/${tag}`], { cwd: root })
     return true
   } catch {
     // local tag does not exist, fall through to remote check
   }
-  const remoteExists = exec(`git ls-remote --tags origin "refs/tags/${tag}"`, { cwd: root }).length > 0
+  const remoteExists =
+    execFile('git', ['ls-remote', '--tags', 'origin', `refs/tags/${tag}`], {
+      cwd: root,
+    }).length > 0
   return remoteExists
 }
 
@@ -90,7 +94,7 @@ const createTagForPackage = (
     console.log(`[release] tag already exists, skipping: ${tag}`)
     return
   }
-  exec(`git tag "${tag}" -m "${tag}"`, { cwd: root })
+  execFile('git', ['tag', tag, '-m', tag], { cwd: root })
   newTags.push(tag)
   console.log(`[release] tag: ${tag}`)
 }
@@ -127,11 +131,12 @@ const createReleaseForPackage = (root: string, pkg: Package, newPkg: Package): v
   const tag = `${pkg.name}@${newPkg.version}`
   const releaseNotes = `Release ${tag}`
   try {
-    exec(`gh release view ${tag} --repo ${getRepoFromRemote(root)} >/dev/null 2>&1`, { cwd: root })
+    execFile('gh', ['release', 'view', tag, '--repo', getRepoFromRemote(root)], { cwd: root })
     console.log(`[release] github release already exists: ${tag}`)
   } catch {
-    exec(
-      `echo "${releaseNotes}" | gh release create ${tag} --title ${tag} --notes-file - --repo ${getRepoFromRemote(root)}`,
+    execFile(
+      'gh',
+      ['release', 'create', tag, '--title', tag, '--notes', releaseNotes, '--repo', getRepoFromRemote(root)],
       { cwd: root },
     )
     console.log(`[release] github release created: ${tag}`)
