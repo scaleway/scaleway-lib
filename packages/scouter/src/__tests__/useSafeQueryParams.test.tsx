@@ -151,6 +151,24 @@ describe(useSafeQueryParams, () => {
     expect(history.location.search).toContain('tags=user')
   })
 
+  it('wraps a single value in an array for keys listed in treatKeysAsArray', () => {
+    const arraySchema = z.object({
+      tags: z.array(z.string()).optional(),
+    })
+
+    const { result } = renderHook(() => useSafeQueryParams({ schema: arraySchema, treatKeysAsArray: ['tags'] }), {
+      wrapper: ({ children }) => (
+        <MemoryRouter initialEntries={['/test?tags=admin']}>
+          <Route>{children}</Route>
+        </MemoryRouter>
+      ),
+    })
+
+    expect(result.current.queryParams).toStrictEqual({
+      tags: ['admin'],
+    })
+  })
+
   it('handles null values by omitting them', () => {
     const history = createMemoryHistory({ initialEntries: ['/test?name=john'] })
 

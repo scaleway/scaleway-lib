@@ -46,13 +46,21 @@ type UseSafeQueryParamsReturnType<T extends z.ZodObject<any>> = ReturnType<typeo
 // oxlint-disable-next-line typescript-eslint/no-explicit-any
 export const useSafeQueryParams = <T extends z.ZodObject<any>>({
   schema,
+  treatKeysAsArray,
 }: {
   schema: T
+  /**
+   * Query param keys that must always be treated as arrays, so a single value is returned as `[value]`.
+   */
+  treatKeysAsArray?: Extract<keyof z.infer<T>, string>[]
 }): UseSafeQueryParamsReturnType<T> => {
   const history = useHistory()
   const { search } = useLocation()
 
-  const safeQueryParamsRes = useMemo(() => getSafeQueryParams({ schema, search }), [search, schema])
+  const safeQueryParamsRes = useMemo(
+    () => getSafeQueryParams({ schema, search, treatKeysAsArray }),
+    [search, schema, treatKeysAsArray],
+  )
 
   const setQueryParams = useCallback(
     (partialData: Partial<z.infer<T>>, options: SetQueryParamsOptions = DEFAULT_SETQUERYPARAMS_OPTIONS) => {

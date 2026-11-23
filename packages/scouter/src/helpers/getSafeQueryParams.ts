@@ -1,20 +1,26 @@
 import type { z } from 'zod'
 import { getQueryParamsFromSearchString } from './getQueryParamsFromSearchString'
-import { transformStringIntoArrayAccordingToSchema } from './transformStringIntoArrayAccordingToSchema'
 
 type SafeQueryParamError = { path: string; message: string }
 
 const EMPTY_OBJECT_STABLE_REF = {}
 
 // oxlint-disable-next-line typescript-eslint/no-explicit-any
-export const getSafeQueryParams = <T extends z.ZodObject<any>>({ search, schema }: { search: string; schema: T }) => {
+export const getSafeQueryParams = <T extends z.ZodObject<any>>({
+  search,
+  schema,
+  treatKeysAsArray = [],
+}: {
+  search: string
+  schema: T
+  /**
+   * Query param keys that must always be treated as arrays, so a single value is returned as `[value]`.
+   */
+  treatKeysAsArray?: Extract<keyof z.infer<T>, string>[]
+}) => {
   const partialSchema = schema.partial()
 
-  const searchParamsValuesRaw = getQueryParamsFromSearchString(search)
-  const searchParamsValues = transformStringIntoArrayAccordingToSchema({
-    schema: partialSchema,
-    values: searchParamsValuesRaw,
-  })
+  const searchParamsValues = getQueryParamsFromSearchString(search, treatKeysAsArray)
   const zodParseRes = partialSchema.safeParse(searchParamsValues)
 
   if (zodParseRes.success) {
