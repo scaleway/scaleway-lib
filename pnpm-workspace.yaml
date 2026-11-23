@@ -11,7 +11,6 @@ catalog:
   '@changesets/changelog-github': 1.0.1
   '@changesets/cli': 3.0.3
   '@changesets/config': 4.0.1
-  '@formatjs/fast-memoize': 3.1.7
   '@formatjs/icu-messageformat-parser': 3.5.23
   '@growthbook/growthbook-react': 2.2.0
   '@manypkg/cli': 0.25.1
