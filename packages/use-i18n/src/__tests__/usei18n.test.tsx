@@ -854,6 +854,8 @@ describe('i18n hook', () => {
     expect(result.current.relativeTime(date)).toBe('21 years ago')
     expect(result.current.relativeTime(new Date('4/13/2021').getTime() - 60_000)).toBe('1 minute ago')
     expect(result.current.relativeTime(new Date('4/15/2021'))).toBe('in 2 days')
+    expect(result.current.relativeTime(new Date('4/13/2021').getTime() - 90_000)).toBe('2 minutes ago')
+    expect(result.current.relativeTime(new Date('4/13/2021').getTime() + 90_000)).toBe('in 2 minutes')
     expect(result.current.relativeTime(date, { noSuffix: true })).toBe('21 years')
     expect(result.current.relativeTime(date, { noSuffix: true, style: 'narrow' })).toBe('21y')
     expect(result.current.relativeTime(new Date('4/15/2021'), { noSuffix: true })).toBe('2 days')
@@ -913,6 +915,8 @@ describe('i18n hook', () => {
 
     expect(result.current.relativeTimeStrict(date)).toBe('3,499 days ago')
     expect(result.current.relativeTimeStrict(date, { noSuffix: true })).toBe('3,499 days')
+    expect(result.current.relativeTimeStrict(new Date('4/11/2021 12:00'))).toBe('2 days ago')
+    expect(result.current.relativeTimeStrict(new Date('4/12/2020 12:00'))).toBe('366 days ago')
     expect(() => result.current.relativeTimeStrict(date, { unit: 'quarter', noSuffix: true })).toThrow(
       "noSuffix is not supported with the 'quarter' unit",
     )

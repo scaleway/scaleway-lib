@@ -39,21 +39,24 @@ export const relativeTime = (
   const seconds = (new Date(date).getTime() - Date.now()) / 1000
 
   let unit: RelativeTimeStrictOptions['unit'] = 'second'
-  let value = Math.round(seconds)
+  let value = seconds
 
   for (const relativeUnit of ['year', 'month', 'day', 'hour', 'minute'] as const) {
     if (Math.abs(seconds) >= relativeUnitSeconds[relativeUnit]) {
       unit = relativeUnit
-      value = Math.round(seconds / relativeUnitSeconds[relativeUnit])
+      value = seconds / relativeUnitSeconds[relativeUnit]
       break
     }
   }
 
+  // Round the absolute distance, as date-fns did: half ties never depend on direction
+  const rounded = Math.round(Math.abs(value)) * Math.sign(seconds)
+
   if (noSuffix) {
-    return formatters.getNumberFormat(locale, { style: 'unit', unit, unitDisplay: style }).format(Math.abs(value))
+    return formatters.getNumberFormat(locale, { style: 'unit', unit, unitDisplay: style }).format(Math.abs(rounded))
   }
 
-  return formatters.getRelativeTimeFormat(locale, { numeric, style, localeMatcher }).format(value, unit)
+  return formatters.getRelativeTimeFormat(locale, { numeric, style, localeMatcher }).format(rounded, unit)
 }
 
 export const relativeTimeStrict = (
@@ -61,7 +64,9 @@ export const relativeTimeStrict = (
   date: Date | number,
   { unit = 'day', numeric = 'auto', style = 'long', localeMatcher, noSuffix }: RelativeTimeStrictOptions = {},
 ): string => {
-  const value = Math.round((new Date(date).getTime() - Date.now()) / relativeStrictUnitMilliseconds[unit])
+  const milliseconds = new Date(date).getTime() - Date.now()
+  // Round the absolute distance, as date-fns did: half ties never depend on direction
+  const value = Math.round(Math.abs(milliseconds / relativeStrictUnitMilliseconds[unit])) * Math.sign(milliseconds)
 
   if (noSuffix) {
     // quarter is not a sanctioned Intl.NumberFormat unit, so it has no unsuffixed form
