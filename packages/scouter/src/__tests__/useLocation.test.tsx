@@ -1,10 +1,10 @@
-import { renderHook } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
+import { renderHook } from 'vitest-browser-react'
 import { MemoryRouter, Route, useLocation } from '../index'
 
 describe(useLocation, () => {
-  it('returns current location', () => {
-    const { result } = renderHook(() => useLocation(), {
+  it('returns current location', async () => {
+    const { result } = await renderHook(() => useLocation(), {
       wrapper: ({ children }) => (
         <MemoryRouter initialEntries={['/test-path']}>
           <Route>{children}</Route>
@@ -16,8 +16,8 @@ describe(useLocation, () => {
     expect(result.current.pathname).toBe('/test-path')
   })
 
-  it('location has correct properties', () => {
-    const { result } = renderHook(() => useLocation(), {
+  it('location has correct properties', async () => {
+    const { result } = await renderHook(() => useLocation(), {
       wrapper: ({ children }) => (
         <MemoryRouter
           initialEntries={[
@@ -40,8 +40,8 @@ describe(useLocation, () => {
     expect(result.current.state).toStrictEqual({ from: 'home' })
   })
 
-  it('updates when location changes', () => {
-    const { result } = renderHook(() => useLocation(), {
+  it('updates when location changes', async () => {
+    const { result } = await renderHook(() => useLocation(), {
       wrapper: ({ children }) => (
         <MemoryRouter initialEntries={['/first']}>
           <Route>{children}</Route>
@@ -52,8 +52,8 @@ describe(useLocation, () => {
     expect(result.current.pathname).toBe('/first')
   })
 
-  it('works without explicit Route', () => {
-    const { result } = renderHook(() => useLocation(), {
+  it('works without explicit Route', async () => {
+    const { result } = await renderHook(() => useLocation(), {
       wrapper: ({ children }) => <MemoryRouter initialEntries={['/path']}>{children}</MemoryRouter>,
     })
 

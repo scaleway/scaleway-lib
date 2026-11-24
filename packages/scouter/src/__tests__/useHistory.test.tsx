@@ -1,7 +1,7 @@
 // oxlint-disable vitest/require-top-level-describe
-import { render, renderHook } from '@testing-library/react'
 import { createMemoryHistory as createHistory } from 'history'
 import { assert, describe, expect, it, test } from 'vitest'
+import { render, renderHook } from 'vitest-browser-react'
 import { MemoryRouter, Route, useHistory } from '../index'
 import { Router } from '../Router'
 
@@ -11,19 +11,19 @@ const TestComponent = () => {
 }
 
 describe('without a <Router>', () => {
-  it('throws an error', () => {
-    expect(() => {
+  it('throws an error', async () => {
+    await expect(
       render(
         <div>
           <TestComponent />
         </div>,
-      )
-    }).toThrow(/Missing RouterContext/v)
+      ),
+    ).rejects.toThrow(/Missing RouterContext/v)
   })
 })
 
-test('returns history object from context', () => {
-  const { result } = renderHook(() => useHistory(), {
+test('returns history object from context', async () => {
+  const { result } = await renderHook(() => useHistory(), {
     wrapper: ({ children }) => (
       <MemoryRouter>
         <Route>{children}</Route>
@@ -43,8 +43,8 @@ test('returns history object from context', () => {
   // oxlint-enable typescript/unbound-method
 })
 
-test('history object has location property', () => {
-  const { result } = renderHook(() => useHistory(), {
+test('history object has location property', async () => {
+  const { result } = await renderHook(() => useHistory(), {
     wrapper: ({ children }) => (
       <MemoryRouter initialEntries={['/test']}>
         <Route>{children}</Route>
@@ -56,8 +56,8 @@ test('history object has location property', () => {
   expect(result.current.location.pathname).toBe('/test')
 })
 
-test('history object is stable across re-renders', () => {
-  const { result, rerender } = renderHook(() => useHistory(), {
+test('history object is stable across re-renders', async () => {
+  const { result, rerender } = await renderHook(() => useHistory(), {
     wrapper: ({ children }) => (
       <MemoryRouter>
         <Route>{children}</Route>
@@ -66,16 +66,16 @@ test('history object is stable across re-renders', () => {
   })
 
   const firstHistory = result.current
-  rerender()
+  await rerender()
   const secondHistory = result.current
 
   expect(firstHistory).toBe(secondHistory)
 })
 
-test('works with Router component', () => {
+test('works with Router component', async () => {
   const customHistory = createHistory()
 
-  const { result } = renderHook(() => useHistory(), {
+  const { result } = await renderHook(() => useHistory(), {
     wrapper: ({ children }) => (
       <Router history={customHistory}>
         <Route>{children}</Route>

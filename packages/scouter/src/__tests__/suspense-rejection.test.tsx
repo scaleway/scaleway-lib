@@ -2,17 +2,17 @@
 // how it recovers (error boundaries, redirects, navigation) around suspended
 // routes.
 
-// oxlint-disable import/no-unassigned-import typescript/only-throw-error
+// require-unicode-regexp's `v` flag breaks the browser locator selector engine
+// oxlint-disable require-unicode-regexp typescript/only-throw-error
 
-// https://github.com/testing-library/jest-dom/issues/515
-import '@testing-library/jest-dom/vitest'
-import { act, render, screen } from '@testing-library/react'
 import { createMemoryHistory } from 'history'
 import { Component, Suspense } from 'react'
 import type { ReactNode } from 'react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { render } from 'vitest-browser-react'
 import { MemoryRouter, Redirect, Route, Switch } from '../index'
 import { Router } from '../Router'
+import { act } from './utils/reactAct'
 import type { Deferred } from './utils/suspense'
 import { createDeferred, isResolved } from './utils/suspense'
 import { Suspender } from './utils/suspenseComponents'
@@ -72,7 +72,7 @@ describe('scouter with a rejecting Suspense promise', () => {
     const deferred = createDeferred<string>()
     const onError = vi.fn<(error: unknown) => void>()
 
-    render(
+    const screen = await render(
       <MemoryRouter initialEntries={['/broken']}>
         <ErrorBoundary onError={onError}>
           <Route path="/broken">
@@ -84,7 +84,7 @@ describe('scouter with a rejecting Suspense promise', () => {
       </MemoryRouter>,
     )
 
-    expect(screen.getByText('loading')).toBeInTheDocument()
+    expect(screen.getByText('loading').element()).toBeDefined()
 
     await act(async () => {
       await Promise.resolve()
@@ -92,7 +92,7 @@ describe('scouter with a rejecting Suspense promise', () => {
     })
 
     expect(onError).toHaveBeenCalledWith(expect.any(Error))
-    expect(screen.getByText(/Error boundary caught: boom/v)).toBeInTheDocument()
+    expect(screen.getByText(/Error boundary caught: boom/).element()).toBeDefined()
   })
 
   it('the router keeps working after a suspended route rejects', async () => {
@@ -100,7 +100,7 @@ describe('scouter with a rejecting Suspense promise', () => {
     const history = createMemoryHistory({ initialEntries: ['/broken'] })
     const onError = vi.fn<(error: unknown) => void>()
 
-    render(
+    const screen = await render(
       <Router history={history}>
         <Switch>
           <Route path="/broken">
@@ -115,7 +115,7 @@ describe('scouter with a rejecting Suspense promise', () => {
       </Router>,
     )
 
-    expect(screen.getByText('loading')).toBeInTheDocument()
+    expect(screen.getByText('loading').element()).toBeDefined()
 
     await act(async () => {
       await Promise.resolve()
@@ -123,13 +123,13 @@ describe('scouter with a rejecting Suspense promise', () => {
     })
 
     expect(onError).toHaveBeenCalledWith(expect.any(Error))
-    expect(screen.getByText(/Error boundary caught: boom/v)).toBeInTheDocument()
+    expect(screen.getByText(/Error boundary caught: boom/).element()).toBeDefined()
 
-    act(() => {
+    await act(() => {
       history.push('/ok')
     })
 
-    expect(screen.getByText('ok content')).toBeInTheDocument()
+    expect(screen.getByText('ok content').element()).toBeDefined()
     expect(history.location.pathname).toBe('/ok')
   })
 
@@ -138,7 +138,7 @@ describe('scouter with a rejecting Suspense promise', () => {
     const history = createMemoryHistory({ initialEntries: ['/broken'] })
     const onError = vi.fn<(error: unknown) => void>()
 
-    render(
+    const screen = await render(
       <Router history={history}>
         <Switch>
           <Route path="/broken">
@@ -153,13 +153,13 @@ describe('scouter with a rejecting Suspense promise', () => {
       </Router>,
     )
 
-    expect(screen.getByText('loading')).toBeInTheDocument()
+    expect(screen.getByText('loading').element()).toBeDefined()
 
-    act(() => {
+    await act(() => {
       history.push('/fast')
     })
 
-    expect(screen.getByText('fast content')).toBeInTheDocument()
+    expect(screen.getByText('fast content').element()).toBeDefined()
 
     // Rejecting the old route's promise after it was unmounted must not
     // surface the error anywhere or break the router.
@@ -169,7 +169,7 @@ describe('scouter with a rejecting Suspense promise', () => {
     })
 
     expect(onError).not.toHaveBeenCalled()
-    expect(screen.getByText('fast content')).toBeInTheDocument()
+    expect(screen.getByText('fast content').element()).toBeDefined()
     expect(history.location.pathname).toBe('/fast')
   })
 
@@ -179,7 +179,7 @@ describe('scouter with a rejecting Suspense promise', () => {
     const history = createMemoryHistory({ initialEntries: ['/broken'] })
     const onError = vi.fn<(error: unknown) => void>()
 
-    render(
+    const screen = await render(
       <Router history={history}>
         <Switch>
           <Route path="/broken">
@@ -203,21 +203,21 @@ describe('scouter with a rejecting Suspense promise', () => {
       brokenDeferred.reject(new Error('boom'))
     })
 
-    expect(screen.getByText(/Error boundary caught: boom/v)).toBeInTheDocument()
+    expect(screen.getByText(/Error boundary caught: boom/).element()).toBeDefined()
 
     // Navigate to another suspending route and resolve it as expected.
-    act(() => {
+    await act(() => {
       history.replace('/next')
     })
 
-    expect(screen.getByText('next loading')).toBeInTheDocument()
+    expect(screen.getByText('next loading').element()).toBeDefined()
 
     await act(async () => {
       await Promise.resolve()
       nextDeferred.resolve('ok')
     })
 
-    expect(screen.getByText('next loaded: ok')).toBeInTheDocument()
+    expect(screen.getByText('next loaded: ok').element()).toBeDefined()
     expect(history.location.pathname).toBe('/next')
   })
 })
@@ -227,7 +227,7 @@ describe('scouter with redirects around Suspense', () => {
     const deferred = createDeferred<string>()
     const history = createMemoryHistory({ initialEntries: ['/old'] })
 
-    render(
+    const screen = await render(
       <Router history={history}>
         <Switch>
           <Route path="/old">
@@ -240,14 +240,14 @@ describe('scouter with redirects around Suspense', () => {
       </Router>,
     )
 
-    expect(screen.getByText('old loading')).toBeInTheDocument()
+    expect(screen.getByText('old loading').element()).toBeDefined()
 
     // A redirect (or any imperative navigation) while the route is suspended.
-    act(() => {
+    await act(() => {
       history.replace('/target')
     })
 
-    expect(screen.getByText('target content')).toBeInTheDocument()
+    expect(screen.getByText('target content').element()).toBeDefined()
     expect(history.location.pathname).toBe('/target')
 
     // Late resolution of the suspended route must not bring it back.
@@ -256,15 +256,15 @@ describe('scouter with redirects around Suspense', () => {
       deferred.resolve('late')
     })
 
-    expect(screen.queryByText(/old loaded/v)).not.toBeInTheDocument()
-    expect(screen.getByText('target content')).toBeInTheDocument()
+    expect(screen.getByText(/old loaded/).query()).toBeNull()
+    expect(screen.getByText('target content').element()).toBeDefined()
   })
 
   it('redirecting right after a suspense retry reaches the target', async () => {
     const deferred = createDeferred<string>()
     const history = createMemoryHistory({ initialEntries: ['/login'] })
 
-    render(
+    const screen = await render(
       <Router history={history}>
         <Switch>
           <Route path="/login">
@@ -277,7 +277,7 @@ describe('scouter with redirects around Suspense', () => {
       </Router>,
     )
 
-    expect(screen.getByText('checking auth')).toBeInTheDocument()
+    expect(screen.getByText('checking auth').element()).toBeDefined()
 
     await act(async () => {
       await Promise.resolve()
@@ -285,6 +285,6 @@ describe('scouter with redirects around Suspense', () => {
     })
 
     expect(history.location.pathname).toBe('/dashboard')
-    expect(screen.getByText('dashboard content')).toBeInTheDocument()
+    expect(screen.getByText('dashboard content').element()).toBeDefined()
   })
 })

@@ -1,13 +1,13 @@
 // oxlint-disable vitest/require-top-level-describe
-import { render } from '@testing-library/react'
 import { assert, expect, test } from 'vitest'
+import { render } from 'vitest-browser-react'
 import type { Location, Match } from '../index'
 import { MemoryRouter, Route } from '../index'
 
-test('provides match to render prop', () => {
+test('provides match to render prop', async () => {
   let match: Partial<Match> = {}
 
-  render(
+  await render(
     <MemoryRouter initialEntries={['/test']}>
       <Route
         path="/test"
@@ -24,10 +24,10 @@ test('provides match to render prop', () => {
   expect(match.isExact).toBeDefined()
 })
 
-test('provides location to render prop', () => {
+test('provides location to render prop', async () => {
   let location: Partial<Location> = {}
 
-  render(
+  await render(
     <MemoryRouter initialEntries={['/test?foo=bar']}>
       <Route
         path="/test"
@@ -44,11 +44,11 @@ test('provides location to render prop', () => {
   expect(location.search).toBe('?foo=bar')
 })
 
-test('match has isExact flag', () => {
+test('match has isExact flag', async () => {
   let exactMatch: Match | undefined = undefined
   let looseMatch: Partial<Match> = {}
 
-  render(
+  await render(
     <MemoryRouter initialEntries={['/test/extra']}>
       <Route
         exact
@@ -74,10 +74,10 @@ test('match has isExact flag', () => {
   expect(looseMatch.isExact).toBe(false)
 })
 
-test('match params are decoded', () => {
+test('match params are decoded', async () => {
   let match: Partial<Match> = {}
 
-  render(
+  await render(
     <MemoryRouter initialEntries={['/test/hello%20world']}>
       <Route
         path="/test/:param"

@@ -49,7 +49,7 @@ class DataLoader<ResultType, ErrorType> {
    */
   public handlers = new Set<RequestHandlers<ResultType, ErrorType>>()
 
-  public timeout?: number
+  public timeout?: ReturnType<typeof setTimeout>
 
   public loadCount = 0
 

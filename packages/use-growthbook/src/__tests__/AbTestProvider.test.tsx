@@ -1,11 +1,14 @@
 import type { Attributes, InitResponse } from '@growthbook/growthbook-react'
 import { GrowthBook } from '@growthbook/growthbook-react'
-import { act, render } from '@testing-library/react'
 import type { ComponentProps } from 'react'
-import { assert, beforeEach, describe, expect, it, vi } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { render } from 'vitest-browser-react'
 import { AbTestProvider } from '../AbTestProvider'
 
 // Import mock functions from our mocks
+
+// Activates the manual mock in __mocks__ (used to live in the deleted vitest.setup.ts)
+vi.mock(import('@growthbook/growthbook-react'))
 
 type TrackingCallback = ComponentProps<typeof AbTestProvider>['trackingCallback']
 
@@ -16,8 +19,6 @@ const errorCallback: ErrorCallback = vi.fn<() => void>()
 const getAttributes = vi.fn<() => Record<string, unknown>>()
 const setAttributes = vi.fn<(attr: Attributes) => Promise<void>>()
 const init = vi.fn<() => Promise<InitResponse>>()
-
-const defaultFn = () => undefined
 
 describe('abTestProvider', () => {
   const trackingCallback: TrackingCallback = vi.fn<() => void>()
@@ -43,8 +44,8 @@ describe('abTestProvider', () => {
 
   // })
 
-  it('should create GrowthBook instance', () => {
-    render(
+  it('should create GrowthBook instance', async () => {
+    await render(
       <AbTestProvider
         attributes={{
           anonymousId: 'foo',
@@ -67,24 +68,22 @@ describe('abTestProvider', () => {
   })
 
   it('should call growthbook.init when clientKey is provided', async () => {
-    act(() => {
-      render(
-        <AbTestProvider
-          attributes={{
-            anonymousId: 'foo',
-          }}
-          config={{
-            apiHost: 'host',
-            clientKey: 'clientKey',
-            enableDevMode: true,
-          }}
-          errorCallback={errorCallback}
-          trackingCallback={trackingCallback}
-        >
-          Children
-        </AbTestProvider>,
-      )
-    })
+    await render(
+      <AbTestProvider
+        attributes={{
+          anonymousId: 'foo',
+        }}
+        config={{
+          apiHost: 'host',
+          clientKey: 'clientKey',
+          enableDevMode: true,
+        }}
+        errorCallback={errorCallback}
+        trackingCallback={trackingCallback}
+      >
+        Children
+      </AbTestProvider>,
+    )
 
     // Wait for useEffect to run
     await new Promise(resolve => {
@@ -95,24 +94,22 @@ describe('abTestProvider', () => {
   })
 
   it('should not call growthbook.init when clientKey is empty', async () => {
-    act(() => {
-      render(
-        <AbTestProvider
-          attributes={{
-            anonymousId: 'foo',
-          }}
-          config={{
-            apiHost: 'host',
-            clientKey: '',
-            enableDevMode: true,
-          }}
-          errorCallback={errorCallback}
-          trackingCallback={trackingCallback}
-        >
-          Children
-        </AbTestProvider>,
-      )
-    })
+    await render(
+      <AbTestProvider
+        attributes={{
+          anonymousId: 'foo',
+        }}
+        config={{
+          apiHost: 'host',
+          clientKey: '',
+          enableDevMode: true,
+        }}
+        errorCallback={errorCallback}
+        trackingCallback={trackingCallback}
+      >
+        Children
+      </AbTestProvider>,
+    )
 
     // Wait for useEffect to run
     await new Promise(resolve => {
@@ -126,24 +123,22 @@ describe('abTestProvider', () => {
     // Mock init to throw an error
     init.mockRejectedValueOnce(new Error('Init failed'))
 
-    act(() => {
-      render(
-        <AbTestProvider
-          attributes={{
-            anonymousId: 'foo',
-          }}
-          config={{
-            apiHost: 'host',
-            clientKey: 'clientKey',
-            enableDevMode: true,
-          }}
-          errorCallback={errorCallback}
-          trackingCallback={trackingCallback}
-        >
-          Children
-        </AbTestProvider>,
-      )
-    })
+    await render(
+      <AbTestProvider
+        attributes={{
+          anonymousId: 'foo',
+        }}
+        config={{
+          apiHost: 'host',
+          clientKey: 'clientKey',
+          enableDevMode: true,
+        }}
+        errorCallback={errorCallback}
+        trackingCallback={trackingCallback}
+      >
+        Children
+      </AbTestProvider>,
+    )
 
     // Wait for useEffect to run and for promise rejection to be handled
     await new Promise(resolve => {
@@ -155,52 +150,43 @@ describe('abTestProvider', () => {
   })
 
   it('should update attributes when they change', async () => {
-    let rerenderFn: (element: React.ReactElement) => void = defaultFn
-
-    act(() => {
-      const result = render(
-        <AbTestProvider
-          attributes={{
-            anonymousId: 'foo',
-          }}
-          config={{
-            apiHost: 'host',
-            clientKey: 'clientKey',
-            enableDevMode: true,
-          }}
-          errorCallback={errorCallback}
-          trackingCallback={trackingCallback}
-        >
-          Children
-        </AbTestProvider>,
-      )
-
-      rerenderFn = result.rerender
-    })
+    const { rerender } = await render(
+      <AbTestProvider
+        attributes={{
+          anonymousId: 'foo',
+        }}
+        config={{
+          apiHost: 'host',
+          clientKey: 'clientKey',
+          enableDevMode: true,
+        }}
+        errorCallback={errorCallback}
+        trackingCallback={trackingCallback}
+      >
+        Children
+      </AbTestProvider>,
+    )
 
     // Mock getAttributes to return different values
     getAttributes.mockReturnValue({ anonymousId: 'foo' })
 
     // Re-render with different attributes
-    assert.exists(rerenderFn)
-    act(() => {
-      rerenderFn(
-        <AbTestProvider
-          attributes={{
-            anonymousId: 'bar',
-          }}
-          config={{
-            apiHost: 'host',
-            clientKey: 'clientKey',
-            enableDevMode: true,
-          }}
-          errorCallback={errorCallback}
-          trackingCallback={trackingCallback}
-        >
-          Children
-        </AbTestProvider>,
-      )
-    })
+    await rerender(
+      <AbTestProvider
+        attributes={{
+          anonymousId: 'bar',
+        }}
+        config={{
+          apiHost: 'host',
+          clientKey: 'clientKey',
+          enableDevMode: true,
+        }}
+        errorCallback={errorCallback}
+        trackingCallback={trackingCallback}
+      >
+        Children
+      </AbTestProvider>,
+    )
 
     // Wait for useEffect to run
     await new Promise(resolve => {
@@ -223,39 +209,31 @@ describe('abTestProvider', () => {
       enableDevMode: true,
     }
 
-    let rerenderFn: (element: React.ReactElement) => void = defaultFn
-
-    act(() => {
-      const result = render(
-        <AbTestProvider
-          attributes={sharedAttributes}
-          config={config}
-          errorCallback={errorCallback}
-          trackingCallback={trackingCallback}
-        >
-          Children
-        </AbTestProvider>,
-      )
-
-      rerenderFn = result.rerender
-    })
+    const { rerender } = await render(
+      <AbTestProvider
+        attributes={sharedAttributes}
+        config={config}
+        errorCallback={errorCallback}
+        trackingCallback={trackingCallback}
+      >
+        Children
+      </AbTestProvider>,
+    )
 
     // Mock getAttributes to return the same object reference initially
     getAttributes.mockReturnValue(getAttributesReturn)
 
     // Re-render with the SAME EXACT object references
-    act(() => {
-      rerenderFn(
-        <AbTestProvider
-          attributes={sharedAttributes} // Same config object
-          config={config} // Same attributes object
-          errorCallback={errorCallback}
-          trackingCallback={trackingCallback}
-        >
-          Children
-        </AbTestProvider>,
-      )
-    })
+    await rerender(
+      <AbTestProvider
+        attributes={sharedAttributes} // Same config object
+        config={config} // Same attributes object
+        errorCallback={errorCallback}
+        trackingCallback={trackingCallback}
+      >
+        Children
+      </AbTestProvider>,
+    )
 
     // Mock getAttributes to return the same object reference on re-render
     getAttributes.mockReturnValue(getAttributesReturn)

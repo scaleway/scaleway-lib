@@ -1,6 +1,6 @@
-import { renderHook, waitFor } from '@testing-library/react'
 import type { ReactNode } from 'react'
 import { describe, expect, it, vi } from 'vitest'
+import { renderHook } from 'vitest-browser-react'
 import DataLoaderProvider from '../DataLoaderProvider'
 import { useDataLoader } from '../useDataLoader'
 
@@ -62,11 +62,11 @@ const goOnline = () => {
 describe('refetchOnFocus', () => {
   it('should not refetch on focus by default even when the data is stale', async () => {
     const method = vi.fn<typeof fakeSuccessPromise>(fakeSuccessPromise)
-    const { result } = renderHook(() => useDataLoader('focus-default', method, { dataLifetime: 0 }), {
+    const { result } = await renderHook(() => useDataLoader('focus-default', method, { dataLifetime: 0 }), {
       wrapper,
     })
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
     expect(method).toHaveBeenCalledTimes(1)
@@ -78,12 +78,12 @@ describe('refetchOnFocus', () => {
 
   it('should refetch stale data on focus when refetchOnFocus is true', async () => {
     const method = createSuccessiveValuesPromise()
-    const { result } = renderHook(
+    const { result } = await renderHook(
       () => useDataLoader('focus-stale', method, { dataLifetime: 0, refetchOnFocus: true }),
       { wrapper },
     )
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.data).toBe('value-1')
     })
     expect(method).toHaveBeenCalledTimes(1)
@@ -91,7 +91,7 @@ describe('refetchOnFocus', () => {
     focusWindow()
 
     expect(method).toHaveBeenCalledTimes(2)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.data).toBe('value-2')
     })
     expect(result.current.isFetching).toBe(false)
@@ -100,12 +100,12 @@ describe('refetchOnFocus', () => {
 
   it('should not refetch fresh data on focus when refetchOnFocus is true', async () => {
     const method = vi.fn<typeof fakeSuccessPromise>(fakeSuccessPromise)
-    const { result } = renderHook(
+    const { result } = await renderHook(
       () => useDataLoader('focus-fresh', method, { dataLifetime: 10_000, refetchOnFocus: true }),
       { wrapper },
     )
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
 
@@ -116,11 +116,11 @@ describe('refetchOnFocus', () => {
 
   it('should refetch data on focus without dataLifetime when refetchOnFocus is true', async () => {
     const method = vi.fn<typeof fakeSuccessPromise>(fakeSuccessPromise)
-    const { result } = renderHook(() => useDataLoader('focus-no-lifetime', method, { refetchOnFocus: true }), {
+    const { result } = await renderHook(() => useDataLoader('focus-no-lifetime', method, { refetchOnFocus: true }), {
       wrapper,
     })
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
 
@@ -131,12 +131,12 @@ describe('refetchOnFocus', () => {
 
   it("should refetch fresh data on focus when refetchOnFocus is 'always'", async () => {
     const method = vi.fn<typeof fakeSuccessPromise>(fakeSuccessPromise)
-    const { result } = renderHook(
+    const { result } = await renderHook(
       () => useDataLoader('focus-always', method, { dataLifetime: 10_000, refetchOnFocus: 'always' }),
       { wrapper },
     )
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
 
@@ -147,12 +147,12 @@ describe('refetchOnFocus', () => {
 
   it('should refetch stale data when the document becomes visible', async () => {
     const method = vi.fn<typeof fakeSuccessPromise>(fakeSuccessPromise)
-    const { result } = renderHook(
+    const { result } = await renderHook(
       () => useDataLoader('focus-visible', method, { dataLifetime: 0, refetchOnFocus: true }),
       { wrapper },
     )
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
 
@@ -163,12 +163,12 @@ describe('refetchOnFocus', () => {
 
   it('should not refetch when the document becomes hidden', async () => {
     const method = vi.fn<typeof fakeSuccessPromise>(fakeSuccessPromise)
-    const { result } = renderHook(
+    const { result } = await renderHook(
       () => useDataLoader('focus-hidden', method, { dataLifetime: 0, refetchOnFocus: 'always' }),
       { wrapper },
     )
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
 
@@ -186,11 +186,11 @@ describe('refetchOnFocus', () => {
 describe('refetchOnReconnect', () => {
   it('should refetch data on reconnect by default', async () => {
     const method = createSuccessiveValuesPromise()
-    const { result } = renderHook(() => useDataLoader('reconnect-default', method), {
+    const { result } = await renderHook(() => useDataLoader('reconnect-default', method), {
       wrapper,
     })
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.data).toBe('value-1')
     })
     expect(method).toHaveBeenCalledTimes(1)
@@ -198,7 +198,7 @@ describe('refetchOnReconnect', () => {
     goOnline()
 
     expect(method).toHaveBeenCalledTimes(2)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.data).toBe('value-2')
     })
     expect(result.current.isFetching).toBe(false)
@@ -206,11 +206,11 @@ describe('refetchOnReconnect', () => {
 
   it('should not refetch fresh data on reconnect', async () => {
     const method = vi.fn<typeof fakeSuccessPromise>(fakeSuccessPromise)
-    const { result } = renderHook(() => useDataLoader('reconnect-fresh', method, { dataLifetime: 10_000 }), {
+    const { result } = await renderHook(() => useDataLoader('reconnect-fresh', method, { dataLifetime: 10_000 }), {
       wrapper,
     })
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
 
@@ -221,11 +221,11 @@ describe('refetchOnReconnect', () => {
 
   it('should retry an errored request on reconnect by default', async () => {
     const method = vi.fn<typeof fakeErrorPromise>(fakeErrorPromise)
-    const { result } = renderHook(() => useDataLoader('reconnect-error', method), {
+    const { result } = await renderHook(() => useDataLoader('reconnect-error', method), {
       wrapper,
     })
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isError).toBe(true)
     })
     expect(method).toHaveBeenCalledTimes(1)
@@ -233,19 +233,19 @@ describe('refetchOnReconnect', () => {
     goOnline()
 
     expect(method).toHaveBeenCalledTimes(2)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isError).toBe(true)
     })
   })
 
   it('should not refetch on reconnect when refetchOnReconnect is false', async () => {
     const method = vi.fn<typeof fakeSuccessPromise>(fakeSuccessPromise)
-    const { result } = renderHook(
+    const { result } = await renderHook(
       () => useDataLoader('reconnect-disabled', method, { dataLifetime: 0, refetchOnReconnect: false }),
       { wrapper },
     )
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
 
@@ -258,11 +258,11 @@ describe('refetchOnReconnect', () => {
 describe('refetch defaults and overrides', () => {
   it('should use the provider defaultRefetchOnFocus when the hook does not define it', async () => {
     const method = vi.fn<typeof fakeSuccessPromise>(fakeSuccessPromise)
-    const { result } = renderHook(() => useDataLoader('default-focus', method, { dataLifetime: 0 }), {
+    const { result } = await renderHook(() => useDataLoader('default-focus', method, { dataLifetime: 0 }), {
       wrapper: wrapperWithDefaultRefetchOnFocus,
     })
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
 
@@ -273,12 +273,12 @@ describe('refetch defaults and overrides', () => {
 
   it('should let the hook override the provider defaultRefetchOnFocus', async () => {
     const method = vi.fn<typeof fakeSuccessPromise>(fakeSuccessPromise)
-    const { result } = renderHook(
+    const { result } = await renderHook(
       () => useDataLoader('default-focus-override', method, { dataLifetime: 0, refetchOnFocus: false }),
       { wrapper: wrapperWithDefaultRefetchOnFocus },
     )
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
 
@@ -289,11 +289,11 @@ describe('refetch defaults and overrides', () => {
 
   it('should use the provider defaultRefetchOnReconnect when the hook does not define it', async () => {
     const method = vi.fn<typeof fakeSuccessPromise>(fakeSuccessPromise)
-    const { result } = renderHook(() => useDataLoader('default-reconnect', method, { dataLifetime: 0 }), {
+    const { result } = await renderHook(() => useDataLoader('default-reconnect', method, { dataLifetime: 0 }), {
       wrapper: wrapperWithoutRefetchOnReconnect,
     })
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
 
@@ -304,12 +304,12 @@ describe('refetch defaults and overrides', () => {
 
   it('should let the hook override the provider defaultRefetchOnReconnect', async () => {
     const method = vi.fn<typeof fakeSuccessPromise>(fakeSuccessPromise)
-    const { result } = renderHook(
+    const { result } = await renderHook(
       () => useDataLoader('default-reconnect-override', method, { dataLifetime: 0, refetchOnReconnect: true }),
       { wrapper: wrapperWithoutRefetchOnReconnect },
     )
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
 
@@ -322,26 +322,26 @@ describe('refetch defaults and overrides', () => {
 describe('refetch scoping', () => {
   it('should not refetch requests without mounted hooks', async () => {
     const method = vi.fn<typeof fakeSuccessPromise>(fakeSuccessPromise)
-    const { result, unmount } = renderHook(
+    const { result, unmount } = await renderHook(
       () => useDataLoader('scope-unmounted', method, { dataLifetime: 0, refetchOnFocus: 'always' }),
       { wrapper },
     )
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
     expect(method).toHaveBeenCalledTimes(1)
 
-    unmount()
+    await unmount()
     focusWindow()
     goOnline()
 
     expect(method).toHaveBeenCalledTimes(1)
   })
 
-  it('should not refetch disabled hooks', () => {
+  it('should not refetch disabled hooks', async () => {
     const method = vi.fn<typeof fakeSuccessPromise>(fakeSuccessPromise)
-    const { result } = renderHook(
+    const { result } = await renderHook(
       () =>
         useDataLoader('scope-disabled', method, {
           enabled: false,
@@ -362,12 +362,12 @@ describe('refetch scoping', () => {
 
   it('should not launch an already in flight request twice on repeated focus', async () => {
     const method = createSuccessiveValuesPromise()
-    const { result } = renderHook(
+    const { result } = await renderHook(
       () => useDataLoader('scope-in-flight', method, { dataLifetime: 0, refetchOnFocus: 'always' }),
       { wrapper },
     )
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.data).toBe('value-1')
     })
     expect(method).toHaveBeenCalledTimes(1)
@@ -376,7 +376,7 @@ describe('refetch scoping', () => {
     focusWindow()
 
     expect(method).toHaveBeenCalledTimes(2)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       // a duplicated launch would produce value-3
       expect(result.current.data).toBe('value-2')
     })
@@ -388,19 +388,19 @@ describe('refetch scoping', () => {
     const methodOptIn = createSuccessiveValuesPromise()
     const methodOptOut = vi.fn<typeof fakeSuccessPromise>(fakeSuccessPromise)
 
-    const { result: resultOptIn } = renderHook(
+    const { result: resultOptIn } = await renderHook(
       () => useDataLoader('scope-multi-in', methodOptIn, { dataLifetime: 10_000, refetchOnFocus: 'always' }),
       { wrapper },
     )
-    const { result: resultOptOut } = renderHook(
+    const { result: resultOptOut } = await renderHook(
       () => useDataLoader('scope-multi-out', methodOptOut, { dataLifetime: 10_000, refetchOnFocus: false }),
       { wrapper },
     )
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(resultOptIn.current.data).toBe('value-1')
     })
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(resultOptOut.current.isSuccess).toBe(true)
     })
     expect(methodOptIn).toHaveBeenCalledTimes(1)
@@ -411,7 +411,7 @@ describe('refetch scoping', () => {
     // Only the opt-in request refetches
     expect(methodOptIn).toHaveBeenCalledTimes(2)
     expect(methodOptOut).toHaveBeenCalledTimes(1)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(resultOptIn.current.data).toBe('value-2')
     })
   })
@@ -419,26 +419,30 @@ describe('refetch scoping', () => {
   it('should not refetch when all mounted hooks opt out (multi-hook policy merge)', async () => {
     const method = vi.fn<typeof fakeSuccessPromise>(fakeSuccessPromise)
     // Two hooks on different keys, both opt out of refetch
-    renderHook(() => useDataLoader('scope-multi-optout-a', method, { dataLifetime: 0, refetchOnFocus: false }), {
-      wrapper,
-    })
-    renderHook(() => useDataLoader('scope-multi-optout-b', method, { dataLifetime: 0, refetchOnFocus: false }), {
-      wrapper,
-    })
+    const { result: resultA } = await renderHook(
+      () => useDataLoader('scope-multi-optout-a', method, { dataLifetime: 0, refetchOnFocus: false }),
+      { wrapper },
+    )
+    const { result: resultB } = await renderHook(
+      () => useDataLoader('scope-multi-optout-b', method, { dataLifetime: 0, refetchOnFocus: false }),
+      { wrapper },
+    )
 
-    await waitFor(() => {
-      expect(method).toHaveBeenCalledTimes(2)
+    // Wait for both requests to settle, not just for their methods to be
+    // called: firing the events while a request is still in flight gets the
+    // launch deduplicated and the refetch silently dropped.
+    await vi.waitFor(() => {
+      expect(resultA.current.isSuccess).toBe(true)
     })
-
-    // simulate time to allow refetch/focus to compare dataLifetime with a diff
-    await waitFor(async () => {
-      await fakeSuccessPromise()
+    await vi.waitFor(() => {
+      expect(resultB.current.isSuccess).toBe(true)
     })
+    expect(method).toHaveBeenCalledTimes(2)
 
     focusWindow()
     goOnline()
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(method).toHaveBeenCalledTimes(4)
     })
   })

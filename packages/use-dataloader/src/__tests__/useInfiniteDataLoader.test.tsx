@@ -1,8 +1,7 @@
 // oxlint-disable max-lines
-import { renderHook, waitFor } from '@testing-library/react'
 import type { ReactNode } from 'react'
-import { act } from 'react'
 import { describe, expect, it, vi } from 'vitest'
+import { renderHook } from 'vitest-browser-react'
 import DataLoaderProvider from '../DataLoaderProvider'
 import type { UseInfiniteDataLoaderConfig } from '../types'
 import { useInfiniteDataLoader } from '../useInfiniteDataLoader'
@@ -81,8 +80,9 @@ const createSignalCapturingMethod = (signals: AbortSignal[]) =>
 describe('useInfinitDataLoader', () => {
   it('should get the first page on mount while enabled', async () => {
     const { setCanResolve, initialProps } = getPrerequisite('test1')
-    const { result } = renderHook(
-      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
+    const { result } = await renderHook(
+      (props: typeof initialProps = initialProps) =>
+        useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
       {
         initialProps,
         wrapper,
@@ -93,7 +93,7 @@ describe('useInfinitDataLoader', () => {
     expect(result.current.isFetching).toBe(true)
     expect(initialProps.method).toHaveBeenCalledTimes(1)
     setCanResolve(true)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
     expect(initialProps.method).toHaveBeenCalledTimes(1)
@@ -105,8 +105,9 @@ describe('useInfinitDataLoader', () => {
 
   it('should get the first and loadMore one page on mount while enabled', async () => {
     const { setCanResolve, initialProps } = getPrerequisite('test2')
-    const { result } = renderHook(
-      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
+    const { result, act } = await renderHook(
+      (props: typeof initialProps = initialProps) =>
+        useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
       {
         initialProps,
         wrapper,
@@ -121,7 +122,7 @@ describe('useInfinitDataLoader', () => {
     expect(callArgs?.[0]).toStrictEqual(expect.objectContaining({ page: 1 }))
     expect(callArgs?.[1]?.signal).toBeInstanceOf(AbortSignal)
     setCanResolve(true)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
     expect(initialProps.method).toHaveBeenCalledTimes(1)
@@ -129,11 +130,11 @@ describe('useInfinitDataLoader', () => {
     expect(result.current.isLoading).toBe(false)
     expect(result.current.isFetching).toBe(false)
     setCanResolve(false)
-    act(() => {
+    await act(() => {
       result.current.loadMore()
     })
     expect(result.current.data).toStrictEqual([{ data: 'Page 1 data', nextPage: 2 }])
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isFetching).toBe(true)
     })
     expect(initialProps.method).toHaveBeenCalledTimes(2)
@@ -141,13 +142,13 @@ describe('useInfinitDataLoader', () => {
     expect(secondCallArgs?.[0]).toStrictEqual(expect.objectContaining({ page: 2 }))
     expect(secondCallArgs?.[1]?.signal).toBeInstanceOf(AbortSignal)
     setCanResolve(true)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isFetching).toBe(true)
     })
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isFetching).toBe(false)
     })
     expect(result.current.data).toStrictEqual([
@@ -158,8 +159,9 @@ describe('useInfinitDataLoader', () => {
 
   it('should get the first and loadMore one page on mount while enabled then reload', async () => {
     const { setCanResolve, initialProps, resetCounter } = getPrerequisite('test3')
-    const { result } = renderHook(
-      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
+    const { result, act } = await renderHook(
+      (props: typeof initialProps = initialProps) =>
+        useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
       {
         initialProps,
         wrapper,
@@ -173,7 +175,7 @@ describe('useInfinitDataLoader', () => {
     expect(firstCallArgs?.[0]).toStrictEqual(expect.objectContaining({ page: 1 }))
     expect(firstCallArgs?.[1]?.signal).toBeInstanceOf(AbortSignal)
     setCanResolve(true)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
     setCanResolve(false)
@@ -181,10 +183,10 @@ describe('useInfinitDataLoader', () => {
     expect(result.current.data).toStrictEqual([{ data: 'Page 1 data', nextPage: 2 }])
     expect(result.current.isLoading).toBe(false)
     expect(result.current.isFetching).toBe(false)
-    act(() => {
+    await act(() => {
       result.current.loadMore()
     })
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isFetching).toBe(true)
     })
     expect(result.current.data).toStrictEqual([{ data: 'Page 1 data', nextPage: 2 }])
@@ -193,7 +195,7 @@ describe('useInfinitDataLoader', () => {
     expect(secondCallArgs?.[0]).toStrictEqual(expect.objectContaining({ page: 2 }))
     expect(secondCallArgs?.[1]?.signal).toBeInstanceOf(AbortSignal)
     setCanResolve(true)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
     expect(result.current.data).toStrictEqual([
@@ -202,14 +204,14 @@ describe('useInfinitDataLoader', () => {
     ])
     setCanResolve(false)
     resetCounter()
-    act(() => {
+    await act(() => {
       result.current.reload().catch(() => null)
     })
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isFetching).toBe(true)
     })
     setCanResolve(true)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
     expect(result.current.data).toStrictEqual([
@@ -227,8 +229,9 @@ describe('useInfinitDataLoader', () => {
         enabled: false,
       },
     }
-    const { result, rerender } = renderHook(
-      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', props.config),
+    const { result, rerender, act } = await renderHook(
+      (props: typeof localInitialProps = localInitialProps) =>
+        useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', props.config),
       {
         initialProps: localInitialProps,
         wrapper,
@@ -238,14 +241,14 @@ describe('useInfinitDataLoader', () => {
     expect(result.current.isLoading).toBe(false)
     expect(result.current.isFetching).toBe(false)
     expect(initialProps.method).toHaveBeenCalledTimes(0)
-    rerender(localInitialProps)
+    await rerender(localInitialProps)
     expect(result.current.data).toBeUndefined()
     expect(result.current.isLoading).toBe(false)
     expect(result.current.isFetching).toBe(false)
     expect(initialProps.method).toHaveBeenCalledTimes(0)
-    rerender({ ...localInitialProps, config: { ...config, enabled: true } })
+    await rerender({ ...localInitialProps, config: { ...config, enabled: true } })
     expect(result.current.data).toBeUndefined()
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isFetching).toBe(true)
     })
     expect(initialProps.method).toHaveBeenCalledTimes(1)
@@ -253,7 +256,7 @@ describe('useInfinitDataLoader', () => {
     expect(firstCallArgs?.[0]).toStrictEqual(expect.objectContaining({ page: 1 }))
     expect(firstCallArgs?.[1]?.signal).toBeInstanceOf(AbortSignal)
     setCanResolve(true)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
     setCanResolve(false)
@@ -261,10 +264,10 @@ describe('useInfinitDataLoader', () => {
     expect(result.current.data).toStrictEqual([{ data: 'Page 1 data', nextPage: 2 }])
     expect(result.current.isLoading).toBe(false)
     expect(result.current.isFetching).toBe(false)
-    act(() => {
+    await act(() => {
       result.current.loadMore()
     })
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isFetching).toBe(true)
     })
     expect(result.current.data).toStrictEqual([{ data: 'Page 1 data', nextPage: 2 }])
@@ -273,13 +276,13 @@ describe('useInfinitDataLoader', () => {
     expect(secondCallArgs?.[0]).toStrictEqual(expect.objectContaining({ page: 2 }))
     expect(secondCallArgs?.[1]?.signal).toBeInstanceOf(AbortSignal)
     setCanResolve(true)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isFetching).toBe(true)
     })
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isLoading).toBe(false)
     })
     // After loadMore completes, we should still have only 2 calls
@@ -291,14 +294,14 @@ describe('useInfinitDataLoader', () => {
     ])
     setCanResolve(false)
     resetCounter()
-    act(() => {
+    await act(() => {
       result.current.reload().catch(() => null)
     })
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isFetching).toBe(true)
     })
     setCanResolve(true)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isFetching).toBe(false)
     })
     expect(result.current.data).toStrictEqual([
@@ -310,8 +313,9 @@ describe('useInfinitDataLoader', () => {
   it('should differentiate between isLoading and isFetching', async () => {
     const { setCanResolve, initialProps } = getPrerequisite('test-isLoading-vs-isFetching')
 
-    const { result } = renderHook(
-      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
+    const { result, act } = await renderHook(
+      (props: typeof initialProps = initialProps) =>
+        useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
       {
         initialProps,
         wrapper,
@@ -323,7 +327,7 @@ describe('useInfinitDataLoader', () => {
     expect(result.current.data).toBeUndefined()
 
     setCanResolve(true)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
 
@@ -332,18 +336,18 @@ describe('useInfinitDataLoader', () => {
     expect(result.current.data).toStrictEqual([{ data: 'Page 1 data', nextPage: 2 }])
 
     setCanResolve(false)
-    act(() => {
+    await act(() => {
       result.current.loadMore()
     })
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isFetching).toBe(true)
     })
     expect(result.current.isLoading).toBe(false)
     expect(result.current.data).toStrictEqual([{ data: 'Page 1 data', nextPage: 2 }])
 
     setCanResolve(true)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
 
@@ -372,15 +376,16 @@ describe('useInfinitDataLoader', () => {
       method: failingMethod,
     }
 
-    const { result } = renderHook(
-      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', localConfig),
+    const { result } = await renderHook(
+      (props: typeof localInitialProps = localInitialProps) =>
+        useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', localConfig),
       {
         initialProps: localInitialProps,
         wrapper,
       },
     )
 
-    await waitFor(
+    await vi.waitFor(
       () => {
         expect(result.current.isError).toBe(true)
       },
@@ -398,8 +403,9 @@ describe('useInfinitDataLoader', () => {
       onSuccess: onSuccessMock,
     }
 
-    const { result } = renderHook(
-      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', localConfig),
+    const { result } = await renderHook(
+      (props: typeof initialProps = initialProps) =>
+        useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', localConfig),
       {
         initialProps,
         wrapper,
@@ -407,7 +413,7 @@ describe('useInfinitDataLoader', () => {
     )
 
     setCanResolve(true)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
 
@@ -424,8 +430,9 @@ describe('useInfinitDataLoader', () => {
       },
     }
 
-    const { result } = renderHook(
-      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', props.config),
+    const { result } = await renderHook(
+      (props: typeof localInitialProps = localInitialProps) =>
+        useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', props.config),
       {
         initialProps: localInitialProps,
         wrapper,
@@ -436,7 +443,7 @@ describe('useInfinitDataLoader', () => {
     expect(result.current.isLoading).toBe(false)
 
     setCanResolve(true)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
 
@@ -467,8 +474,9 @@ describe('useInfinitDataLoader', () => {
       method: localMethod,
     }
 
-    const { result } = renderHook(
-      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', noNextPageConfig),
+    const { result } = await renderHook(
+      (props: typeof localInitialProps = localInitialProps) =>
+        useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', noNextPageConfig),
       {
         initialProps: localInitialProps,
         wrapper,
@@ -476,7 +484,7 @@ describe('useInfinitDataLoader', () => {
     )
 
     setCanResolve(true)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
 
@@ -487,8 +495,9 @@ describe('useInfinitDataLoader', () => {
   it('should reset page when baseKey changes', async () => {
     const { setCanResolve, initialProps } = getPrerequisite('test-key-change')
 
-    const { result, rerender } = renderHook(
-      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
+    const { result, rerender, act } = await renderHook(
+      (props: typeof initialProps = initialProps) =>
+        useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
       {
         initialProps,
         wrapper,
@@ -496,18 +505,18 @@ describe('useInfinitDataLoader', () => {
     )
 
     setCanResolve(true)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
 
-    act(() => {
+    await act(() => {
       result.current.loadMore()
     })
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isFetching).toBe(true)
     })
     setCanResolve(true)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
 
@@ -519,21 +528,21 @@ describe('useInfinitDataLoader', () => {
       baseParams: { page: 1 },
     }
 
-    rerender(newInitialProps)
+    await rerender(newInitialProps)
 
     // Page should be reset
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isFetching).toBe(true)
     })
     setCanResolve(true)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
 
     expect(result.current.data).toHaveLength(1)
   })
 
-  it('should set isIdle when enabled is false', () => {
+  it('should set isIdle when enabled is false', async () => {
     const { initialProps } = getPrerequisite('test-idle')
     const localInitialProps = {
       ...initialProps,
@@ -543,8 +552,9 @@ describe('useInfinitDataLoader', () => {
       },
     }
 
-    const { result } = renderHook(
-      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', props.config),
+    const { result } = await renderHook(
+      (props: typeof localInitialProps = localInitialProps) =>
+        useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', props.config),
       {
         initialProps: localInitialProps,
         wrapper,
@@ -560,8 +570,9 @@ describe('useInfinitDataLoader', () => {
   it('should handle multiple loadMore calls in sequence', async () => {
     const { setCanResolve, initialProps } = getPrerequisite('test-multiple-load-more')
 
-    const { result } = renderHook(
-      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
+    const { result, act } = await renderHook(
+      (props: typeof initialProps = initialProps) =>
+        useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
       {
         initialProps,
         wrapper,
@@ -569,32 +580,32 @@ describe('useInfinitDataLoader', () => {
     )
 
     setCanResolve(true)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
 
     // Load multiple pages
     setCanResolve(false)
-    act(() => {
+    await act(() => {
       result.current.loadMore()
     })
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isFetching).toBe(true)
     })
     setCanResolve(true)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
 
     setCanResolve(false)
-    act(() => {
+    await act(() => {
       result.current.loadMore()
     })
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isFetching).toBe(true)
     })
     setCanResolve(true)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
 
@@ -607,8 +618,9 @@ describe('useInfinitDataLoader', () => {
   it('should handle reload after error', async () => {
     const { setCanResolve, initialProps, resetCounter } = getPrerequisite('test-reload-error')
 
-    const { result } = renderHook(
-      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
+    const { result, act } = await renderHook(
+      (props: typeof initialProps = initialProps) =>
+        useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
       {
         initialProps,
         wrapper,
@@ -616,7 +628,7 @@ describe('useInfinitDataLoader', () => {
     )
 
     setCanResolve(true)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
 
@@ -624,16 +636,16 @@ describe('useInfinitDataLoader', () => {
 
     resetCounter()
     setCanResolve(false)
-    act(() => {
+    await act(() => {
       result.current.reload().catch(() => undefined)
     })
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isFetching).toBe(true)
     })
 
     setCanResolve(true)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
 
@@ -647,8 +659,9 @@ describe('useInfinitDataLoader', () => {
       keepPreviousData: true,
     }
 
-    const { result } = renderHook(
-      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', localConfig),
+    const { result, act } = await renderHook(
+      (props: typeof initialProps = initialProps) =>
+        useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', localConfig),
       {
         initialProps,
         wrapper,
@@ -656,24 +669,24 @@ describe('useInfinitDataLoader', () => {
     )
 
     setCanResolve(true)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
 
     const firstData = result.current.data
 
     setCanResolve(false)
-    act(() => {
+    await act(() => {
       result.current.loadMore()
     })
 
     expect(result.current.data).toStrictEqual(firstData)
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isFetching).toBe(true)
     })
     setCanResolve(true)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
 
@@ -683,8 +696,9 @@ describe('useInfinitDataLoader', () => {
   it('should handle stale page scenario when baseKey changes', async () => {
     const { setCanResolve, initialProps, resetCounter } = getPrerequisite('test-stale-page')
 
-    const { result, rerender } = renderHook(
-      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
+    const { result, rerender, act } = await renderHook(
+      (props: typeof initialProps = initialProps) =>
+        useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
       {
         initialProps,
         wrapper,
@@ -692,7 +706,7 @@ describe('useInfinitDataLoader', () => {
     )
 
     setCanResolve(true)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
 
@@ -700,14 +714,14 @@ describe('useInfinitDataLoader', () => {
     expect(result.current.hasNextPage).toBe(true)
 
     setCanResolve(false)
-    act(() => {
+    await act(() => {
       result.current.loadMore()
     })
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isFetching).toBe(true)
     })
     setCanResolve(true)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
 
@@ -722,9 +736,9 @@ describe('useInfinitDataLoader', () => {
       baseParams: { page: 1 },
     }
 
-    rerender(newInitialProps)
+    await rerender(newInitialProps)
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isFetching).toBe(true)
     })
 
@@ -733,7 +747,7 @@ describe('useInfinitDataLoader', () => {
 
     // Resolve the new first page
     setCanResolve(true)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
 
@@ -746,8 +760,9 @@ describe('useInfinitDataLoader', () => {
     const { setCanResolve, initialProps, resetCounter } = getPrerequisite('test-remount-load-more')
 
     // First mount - load page 1 then loadMore page 2
-    const { result, unmount } = renderHook(
-      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
+    const { result, unmount, act } = await renderHook(
+      (props: typeof initialProps = initialProps) =>
+        useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
       {
         initialProps,
         wrapper,
@@ -755,19 +770,19 @@ describe('useInfinitDataLoader', () => {
     )
 
     setCanResolve(true)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
 
     setCanResolve(false)
-    act(() => {
+    await act(() => {
       result.current.loadMore()
     })
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isFetching).toBe(true)
     })
     setCanResolve(true)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
 
@@ -775,14 +790,15 @@ describe('useInfinitDataLoader', () => {
     expect(result.current.hasNextPage).toBe(true)
 
     // Unmount the hook (simulates navigating away)
-    unmount()
+    await unmount()
 
     // Reset counter to simulate fresh data for the remount
     resetCounter()
 
     // Second mount - should restore nextPageRef from cached data
-    const { result: result2 } = renderHook(
-      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
+    const { result: result2 } = await renderHook(
+      (props: typeof initialProps = initialProps) =>
+        useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
       {
         initialProps,
         wrapper,
@@ -790,7 +806,7 @@ describe('useInfinitDataLoader', () => {
     )
 
     // Should have cached data restored
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result2.current.isSuccess).toBe(true)
     })
 
@@ -800,10 +816,10 @@ describe('useInfinitDataLoader', () => {
     // loadMore should work - it should trigger a new method call
     const callsBeforeLoadMore = initialProps.method.mock.calls.length
     setCanResolve(false)
-    act(() => {
+    await act(() => {
       result2.current.loadMore()
     })
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result2.current.isFetching).toBe(true)
     })
 
@@ -815,8 +831,9 @@ describe('useInfinitDataLoader', () => {
     const { setCanResolve, initialProps } = getPrerequisite('test-remount-fresh-cache')
     const wrapperFresh = wrapperWithLifetime(10_000)
 
-    const { result, unmount } = renderHook(
-      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
+    const { result, unmount, act } = await renderHook(
+      (props: typeof initialProps = initialProps) =>
+        useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
       {
         initialProps,
         wrapper: wrapperFresh,
@@ -824,31 +841,32 @@ describe('useInfinitDataLoader', () => {
     )
 
     setCanResolve(true)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
 
-    act(() => {
+    await act(() => {
       result.current.loadMore()
     })
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.data).toHaveLength(2)
     })
 
     expect(result.current.hasNextPage).toBe(true)
 
-    unmount()
+    await unmount()
 
     // Remount with fresh cache (within 10s lifetime) - nextPage should be restored from cached data
-    const { result: result2 } = renderHook(
-      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
+    const { result: result2 } = await renderHook(
+      (props: typeof initialProps = initialProps) =>
+        useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
       {
         initialProps,
         wrapper: wrapperFresh,
       },
     )
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result2.current.isSuccess).toBe(true)
     })
 
@@ -856,10 +874,10 @@ describe('useInfinitDataLoader', () => {
 
     // loadMore should trigger exactly one new method call for the next page
     const callsBeforeLoadMore = initialProps.method.mock.calls.length
-    act(() => {
+    await act(() => {
       result2.current.loadMore()
     })
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result2.current.isFetching).toBe(true)
     })
 
@@ -870,8 +888,9 @@ describe('useInfinitDataLoader', () => {
     const { setCanResolve, initialProps } = getPrerequisite('test-remount-hasNextPage-accurate')
     const wrapperFresh = wrapperWithLifetime(10_000)
 
-    const { result, unmount } = renderHook(
-      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
+    const { result, unmount } = await renderHook(
+      (props: typeof initialProps = initialProps) =>
+        useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
       {
         initialProps,
         wrapper: wrapperFresh,
@@ -879,22 +898,23 @@ describe('useInfinitDataLoader', () => {
     )
 
     setCanResolve(true)
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
 
     expect(result.current.hasNextPage).toBe(true)
-    unmount()
+    await unmount()
 
-    const { result: result2 } = renderHook(
-      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
+    const { result: result2 } = await renderHook(
+      (props: typeof initialProps = initialProps) =>
+        useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
       {
         initialProps,
         wrapper: wrapperFresh,
       },
     )
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result2.current.isSuccess).toBe(true)
     })
 
@@ -919,29 +939,30 @@ describe('useInfinitDataLoader', () => {
       method: controlledMethod,
     }
 
-    const { result, rerender, unmount } = renderHook(
-      props => useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
+    const { result, rerender, unmount } = await renderHook(
+      (props: typeof baseInitialProps = baseInitialProps) =>
+        useInfiniteDataLoader(props.key, props.method, props.baseParams, 'page', config),
       {
         initialProps: baseInitialProps,
         wrapper,
       },
     )
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(result.current.isLoading).toBe(true)
     })
     expect(signals).toHaveLength(1)
 
     // Change the key — this orphans the first request (removeObserver +
     // filter it out of requestRefs), then a new request starts.
-    rerender({ ...baseInitialProps, key: 'test-unmount-cancel-2' })
+    await rerender({ ...baseInitialProps, key: 'test-unmount-cancel-2' })
 
-    await waitFor(() => {
+    await vi.waitFor(() => {
       expect(signals).toHaveLength(2)
     })
 
     // Unmount — the orphaned first request (now with 0 observers) gets cancelled.
-    unmount()
+    await unmount()
 
     expect(signals[0]?.aborted).toBe(true)
   })
