@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useMemo } from 'react'
+import { createContext, useContext, useEffect, useMemo, useRef } from 'react'
 import type { FormatDateOptions } from './formatDate'
 import type { FormatDurationOptions } from './formatDuration'
 import type { FormatUnitOptions } from './formatUnit'
@@ -28,7 +28,7 @@ export type RequiredGenericContext<
     }
   : Context<LocaleParam, LocalSupportedType>
 
-const areNamespacesLoaded = (namespaces: string[], loadedNamespaces: string[] = []) =>
+const areNamespacesLoaded = (namespaces: string[], loadedNamespaces: string[]) =>
   namespaces.every(n => loadedNamespaces.includes(n))
 
 export type Context<LocaleParam extends BaseLocale, LocalSupportedType extends string> = {
@@ -93,11 +93,22 @@ export function useTranslation<LocaleParam extends BaseLocale = BaseLocale, Loca
 
   // here we generate a key string from the array of namespace in order to only trigger the use effect
   // when the passed keys change and not when the ref of the array change
-  const key = namespaces.join(',')
+  // JSON.stringify: strings are quoted, so a namespace containing a comma is not split in two
+  const key = JSON.stringify(namespaces)
+
+  // an inline `load` prop changes identity on every render and would restart the
+  // load effect endlessly; the ref carries the latest one without joining the deps
+  const loadRef = useRef(load)
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    key.split(',').map(async (namespace: string) => loadTranslations(namespace, load))
-  }, [loadTranslations, key, load])
+    loadRef.current = load
+  })
+
+  useEffect(() => {
+    for (const namespace of JSON.parse(key) as string[]) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      loadTranslations(namespace, loadRef.current)
+    }
+  }, [loadTranslations, key])
 
   const isLoaded = useMemo(() => areNamespacesLoaded(namespaces, loadedNamespaces), [loadedNamespaces, namespaces])
 
