@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useMemo, useRef } from 'react'
+import { createContext, useContext, useEffect, useMemo } from 'react'
 import type { FormatDateOptions } from './formatDate'
 import type { FormatDurationOptions } from './formatDuration'
 import type { FormatUnitOptions } from './formatUnit'
@@ -96,19 +96,14 @@ export function useTranslation<LocaleParam extends BaseLocale = BaseLocale, Loca
   // JSON.stringify: strings are quoted, so a namespace containing a comma is not split in two
   const key = JSON.stringify(namespaces)
 
-  // an inline `load` prop changes identity on every render and would restart the
-  // load effect endlessly; the ref carries the latest one without joining the deps
-  const loadRef = useRef(load)
-  useEffect(() => {
-    loadRef.current = load
-  })
-
+  // `load` is a dependency on purpose: callers must keep its reference stable
+  // (module scope or useCallback) — see the README.
   useEffect(() => {
     for (const namespace of JSON.parse(key) as string[]) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      loadTranslations(namespace, loadRef.current)
+      loadTranslations(namespace, load)
     }
-  }, [loadTranslations, key])
+  }, [loadTranslations, key, load])
 
   const isLoaded = useMemo(() => areNamespacesLoaded(namespaces, loadedNamespaces), [loadedNamespaces, namespaces])
 

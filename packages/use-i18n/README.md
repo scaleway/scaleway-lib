@@ -130,6 +130,8 @@ const App = () => {
 }
 ```
 
+If you pass a custom `load` to `useTranslation`, keep its reference stable — define it at module scope or wrap it in `useCallback`. A `load` written inline in the component is re-created on every render and restarts the loading effect on each one. The `namespaces` array needs no such care: only its content drives the effect.
+
 ```js
 import { useI18n } from '@scaleway/use-i18n'
 
