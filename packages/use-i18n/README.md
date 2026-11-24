@@ -356,30 +356,24 @@ We currently support two units:
 
 Every unit name exists in a singular and a plural form, which are equivalent: `bits` ≡ `bit`, `kilobytes` ≡ `kilobyte`, `bytes-per-second` ≡ `byte-per-second`.
 
-With each some variants :
+The form of the unit name decides how your number is interpreted:
 
-- `(kilo|mega|giga|tera|peta|exa|zetta|yotta)(bit|byte)`: This is the bare unit
+- **bare unit** — `(kilo|mega|giga|tera|peta|exa|zetta|yotta)(bit|byte)`: the number is already a count in that unit; it is labeled and formatted, never converted
   - `formatUnit(12, { unit: 'megabyte' })` => `"12 MB"` or `"12 Mo"` (in fr/ro)
   - `formatUnit(12, { unit: 'kilobit' })` => `"12 Kb"`
-  - `formatUnit(12, { unit: 'gigabit' })` => `"12 Gb"`
   - `formatUnit(12, { unit: 'byte' })` => `"12 B"` or `"12 o"` (in fr/ro)
-- `(byte|bit)s-humanized`: This is an automated unit which will print a human readable value
-  - `formatUnit(1234567, { unit: 'bytes-humanized' })` => `"1.23 MB"` or `"1.23 Mo"` (in fr/ro)
-- `(kilo|mega|giga|tera|peta|exa|zetta|yotta)(bit|byte)-humanized`: This is also an automated unit which will print a human readable value but in the unit specified
+- **pinned `-humanized`** — `(kilo|mega|giga|tera|peta|exa|zetta|yotta)(bit|byte)-humanized`: the number is a raw bit/byte count, converted to the named unit. Use it when the displayed unit is fixed — a table where every row must read in the same unit — but the data is stored in bits or bytes
+  - `formatUnit(12, { unit: 'kilobyte-humanized' })` => `"0.01 KB"` — twelve bytes, expressed in kilobytes
   - `formatUnit(123456789, { unit: 'gigabyte-humanized' })` => `"0.12 GB"` or `"0.12 Go"` (in fr/ro)
-  - `formatUnit(123456789, { unit: 'kilobyte-humanized' })` => `"123456.78 KB"` or `"123456.78 Ko"` (in fr/ro)
+- **auto `-humanized`** — `(byte|bit)s-humanized`: the number is a raw bit/byte count and the best unit is picked for you. Use it when the unit should follow the magnitude
+  - `formatUnit(12, { unit: 'bytes-humanized' })` => `"12 B"` — small input, small unit
+  - `formatUnit(1234567, { unit: 'bytes-humanized' })` => `"1.23 MB"` or `"1.23 Mo"` (in fr/ro)
 
-There is also a compound `-per-second` variant, which works with both bits and bytes:
+The same three forms exist as `-per-second` compounds:
 
-- `(kilo|mega|giga|tera|peta|exa|zetta|yotta)(bit|byte)-per-second`
-  - `formatUnit(1.6, { unit: 'gigabit-per-second' })` => `1.6 Gbps`
-  - `formatUnit(1.6, { unit: 'byte-per-second' })` => `1.6 Bps`
-- `(byte|bit)s-per-second-humanized`: Automated unit
-  - `formatUnit(123456789, { unit: 'bits-per-second-humanized' })` => `123.46 Mbps`
-  - `formatUnit(123456789, { unit: 'bytes-per-second-humanized' })` => `123.46 MBps`
-- `(kilo|mega|giga|tera|peta|exa|zetta|yotta)(bit|byte)-per-second-humanized`: Human readable value in the unit specified
-  - `formatUnit(123456789, { unit: 'gigabyte-per-second-humanized' })` => `0.12 GBps`
-  - `formatUnit(123456789, { unit: 'kilobit-per-second-humanized' })` => `123456.78 Kbps`
+- `(kilo|mega|giga|tera|peta|exa|zetta|yotta)(bit|byte)-per-second` — bare: `formatUnit(1.6, { unit: 'gigabit-per-second' })` => `"1.6 Gbps"`
+- `(kilo|mega|giga|tera|peta|exa|zetta|yotta)(bit|byte)-per-second-humanized` — pinned: `formatUnit(12, { unit: 'kilobit-per-second-humanized' })` => `"0.01 Kbps"`
+- `(byte|bit)s-per-second-humanized` — auto: `formatUnit(123456789, { unit: 'bytes-per-second-humanized' })` => `"123.46 MBps"`
 
 Here is the full list of available units:
 
