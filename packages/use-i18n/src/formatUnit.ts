@@ -126,14 +126,16 @@ const format =
       base?: 2 | 10
     },
   ): string => {
-    let computedExponent = exponent
+    // `exponents[0]` is the identity exponent (no name, no symbol): a formatter
+    // registered with neither an exponent nor humanize formats the base unit
+    let computedExponent = exponent ?? exponents[0]
     let computedValue = amount
 
     if (humanize) {
-      if (computedExponent) {
+      if (exponent) {
         const val = filesize(amount, {
           base,
-          exponent: exponents.findIndex(exp => exp.name === computedExponent?.name),
+          exponent: exponents.findIndex(exp => exp.name === exponent.name),
           output: 'object',
           round: maximumFractionDigits,
         })
@@ -151,15 +153,15 @@ const format =
       }
     }
 
-    const exp = computedExponent ?? { symbol: '', name: '' }
-
     return `${formatters
       .getNumberFormat(locale, {
         maximumFractionDigits,
         minimumFractionDigits,
       })
       .format(computedValue)} ${
-      short ? formatShortUnit(locale, exp, unit, compoundUnit) : formatLongUnit(locale, exp, unit, computedValue)
+      short
+        ? formatShortUnit(locale, computedExponent, unit, compoundUnit)
+        : formatLongUnit(locale, computedExponent, unit, computedValue)
     }`
   }
 
@@ -170,23 +172,30 @@ type PerSecondUnit = `${ExponentName | ''}${'bit' | 'byte'}${'s' | ''}${'-per-se
 type SupportedUnits = SimpleUnits | ComplexUnits | PerSecondUnit
 
 export const supportedUnits: Partial<Record<SupportedUnits, ReturnType<typeof format>>> = {
+  // singular and plural unit names are aliases: one formatter serves both,
+  // generated for every exponent
   // bits
-  'bits-humanized': format({ humanize: true, unit: 'bit' }),
-  'bits-per-second-humanized': format({
-    compoundUnit: 'second',
-    humanize: true,
-    unit: 'bit',
-  }),
   ...exponents.reduce(
     (acc, exponent) =>
       Object.assign(acc, {
         [`${exponent.name}bit`]: format({ exponent, unit: 'bit' }),
+        [`${exponent.name}bits`]: format({ exponent, unit: 'bit' }),
         [`${exponent.name}bit-per-second`]: format({
           compoundUnit: 'second',
           exponent,
           unit: 'bit',
         }),
+        [`${exponent.name}bits-per-second`]: format({
+          compoundUnit: 'second',
+          exponent,
+          unit: 'bit',
+        }),
         [`${exponent.name}bit-humanized`]: format({
+          exponent,
+          humanize: true,
+          unit: 'bit',
+        }),
+        [`${exponent.name}bits-humanized`]: format({
           exponent,
           humanize: true,
           unit: 'bit',
@@ -197,22 +206,28 @@ export const supportedUnits: Partial<Record<SupportedUnits, ReturnType<typeof fo
           humanize: true,
           unit: 'bit',
         }),
+        [`${exponent.name}bits-per-second-humanized`]: format({
+          compoundUnit: 'second',
+          exponent,
+          humanize: true,
+          unit: 'bit',
+        }),
       }),
     {},
   ),
 
   // bytes
-  'bytes-humanized': format({ humanize: true, unit: 'byte' }),
-  'bytes-per-second-humanized': format({
-    compoundUnit: 'second',
-    humanize: true,
-    unit: 'byte',
-  }),
   ...exponents.reduce(
     (acc, exponent) =>
       Object.assign(acc, {
         [`${exponent.name}byte`]: format({ exponent, unit: 'byte' }),
+        [`${exponent.name}bytes`]: format({ exponent, unit: 'byte' }),
         [`${exponent.name}byte-per-second`]: format({
+          compoundUnit: 'second',
+          exponent,
+          unit: 'byte',
+        }),
+        [`${exponent.name}bytes-per-second`]: format({
           compoundUnit: 'second',
           exponent,
           unit: 'byte',
@@ -222,9 +237,42 @@ export const supportedUnits: Partial<Record<SupportedUnits, ReturnType<typeof fo
           humanize: true,
           unit: 'byte',
         }),
+        [`${exponent.name}bytes-humanized`]: format({
+          exponent,
+          humanize: true,
+          unit: 'byte',
+        }),
+        [`${exponent.name}byte-per-second-humanized`]: format({
+          compoundUnit: 'second',
+          exponent,
+          humanize: true,
+          unit: 'byte',
+        }),
+        [`${exponent.name}bytes-per-second-humanized`]: format({
+          compoundUnit: 'second',
+          exponent,
+          humanize: true,
+          unit: 'byte',
+        }),
       }),
     {},
   ),
+
+  // exponent-less humanized plural keys scale to the best unit instead of
+  // staying on the base exponent: they must come after the spreads, which
+  // register these same keys pinned to `exponents[0]`
+  'bits-humanized': format({ humanize: true, unit: 'bit' }),
+  'bits-per-second-humanized': format({
+    compoundUnit: 'second',
+    humanize: true,
+    unit: 'bit',
+  }),
+  'bytes-humanized': format({ humanize: true, unit: 'byte' }),
+  'bytes-per-second-humanized': format({
+    compoundUnit: 'second',
+    humanize: true,
+    unit: 'byte',
+  }),
 }
 
 export type FormatUnitOptions = {

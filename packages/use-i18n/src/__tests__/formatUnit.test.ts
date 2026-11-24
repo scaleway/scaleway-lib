@@ -14,32 +14,34 @@ const isSupportedUnit = (unit: string): unit is FormatUnitOptions['unit'] => uni
 const SUPPORTED_UNITS = Object.keys(supportedUnits).filter(isSupportedUnit)
 
 const tests: TestType[] = [
-  ...SUPPORTED_UNITS.map<TestType>(unit => ['should work with', { unit }, 'fr', 12.56]),
+  // the unit name leads the title: long names would otherwise truncate to the
+  // same positional snapshot keys and shift whenever a unit is added
+  ...SUPPORTED_UNITS.map<TestType>(unit => [`should format ${unit} with`, { unit }, 'fr', 12.56]),
   ...SUPPORTED_UNITS.flatMap(unit =>
-    locales.map<TestType>(locale => [`should work with locale ${locale} and`, { unit }, locale, 12.56]),
+    locales.map<TestType>(locale => [`should format ${unit} with locale ${locale}`, { unit }, locale, 12.56]),
   ),
   ...SUPPORTED_UNITS.flatMap(unit =>
     locales.map<TestType>(locale => [
-      `should work with long format, locale ${locale} and`,
+      `should format ${unit} long with locale ${locale}`,
       { short: false, unit },
       locale,
       12.56,
     ]),
   ),
   ...SUPPORTED_UNITS.map<TestType>(unit => [
-    'should work with maximumFractionDigits',
+    `should format ${unit} with maximumFractionDigits`,
     { maximumFractionDigits: 3, unit },
     'fr',
     12.56,
   ]),
   ...SUPPORTED_UNITS.map<TestType>(unit => [
-    'should work with minimumFractionDigits',
+    `should format ${unit} with minimumFractionDigits`,
     { minimumFractionDigits: 3, unit },
     'fr',
     12,
   ]),
   ...SUPPORTED_UNITS.map<TestType>(unit => [
-    'should work with base',
+    `should format ${unit} with base`,
     { base: 2, unit },
     'en',
     4_294_967_296, // 4 GB
@@ -54,7 +56,25 @@ describe(formatUnit, () => {
     ).toMatchSnapshot()
   })
 
-  it.for(tests)('%s %o', ([, options, locale, amount]) => {
+  it('should format the plural unit names accepted by the types', () => {
+    expect(formatUnit('en', 12, { unit: 'bits' })).toBe('12 b')
+    expect(formatUnit('en', 12, { unit: 'bytes' })).toBe('12 B')
+    expect(formatUnit('en', 12, { unit: 'bits-per-second' })).toBe('12 bps')
+    expect(formatUnit('en', 12, { unit: 'bytes-per-second' })).toBe('12 Bps')
+  })
+
+  it('should format the byte-per-second-humanized family', () => {
+    expect(formatUnit('en', 12, { unit: 'byte-per-second-humanized' })).toBe('12 Bps')
+    // the pinned kilo exponent converts the amount to the kilo scale
+    expect(formatUnit('en', 12, { unit: 'kilobyte-per-second-humanized' })).toBe('0.01 KBps')
+  })
+
+  it('should format exponent-prefixed plural unit names', () => {
+    expect(formatUnit('en', 12, { unit: 'kilobits' })).toBe('12 Kb')
+    expect(formatUnit('en', 12, { unit: 'megabytes-per-second' })).toBe('12 MBps')
+  })
+
+  it.for(tests)('%s', ([, options, locale, amount]) => {
     expect(formatUnit(locale, amount, options)).toMatchSnapshot()
   })
 
