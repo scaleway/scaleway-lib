@@ -60,25 +60,25 @@ describe(getQueryParamsFromSearchString, () => {
   })
 
   it('returns a single value as an array when its key is in treatKeysAsArray', () => {
-    expect(getQueryParamsFromSearchString('?tags=admin', ['tags'])).toStrictEqual({
+    expect(getQueryParamsFromSearchString('?tags=admin', { treatKeysAsArray: ['tags'] })).toStrictEqual({
       tags: ['admin'],
     })
   })
 
   it('returns a single value as a string when its key is not in treatKeysAsArray', () => {
-    expect(getQueryParamsFromSearchString('?tags=admin', ['other'])).toStrictEqual({
+    expect(getQueryParamsFromSearchString('?tags=admin', { treatKeysAsArray: ['other'] })).toStrictEqual({
       tags: 'admin',
     })
   })
 
   it('returns multiple values as an array when its key is in treatKeysAsArray', () => {
-    expect(getQueryParamsFromSearchString('?tags=admin&tags=user', ['tags'])).toStrictEqual({
+    expect(getQueryParamsFromSearchString('?tags=admin&tags=user', { treatKeysAsArray: ['tags'] })).toStrictEqual({
       tags: ['admin', 'user'],
     })
   })
 
   it('returns an empty value as an array when its key is in treatKeysAsArray', () => {
-    expect(getQueryParamsFromSearchString('?tags=', ['tags'])).toStrictEqual({
+    expect(getQueryParamsFromSearchString('?tags=', { treatKeysAsArray: ['tags'] })).toStrictEqual({
       tags: [''],
     })
   })
