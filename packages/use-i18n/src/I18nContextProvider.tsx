@@ -7,7 +7,7 @@ import type { FormatDurationOptions } from './formatDuration'
 import formatters from './formatters'
 import type { FormatUnitOptions } from './formatUnit'
 import unitFormat from './formatUnit'
-import { getCurrentLocale, setLangAttribute } from './helpers'
+import { getCurrentLocale, setLangAttribute, setStoredLocale } from './helpers'
 import type { BaseLocale } from './international-types'
 import { relativeTime as relativeTimeFormat, relativeTimeStrict as relativeTimeStrictFormat } from './relativeTime'
 import type { RelativeTimeOptions, RelativeTimeStrictOptions } from './relativeTime'
@@ -123,7 +123,7 @@ const I18nContextProvider = <LocalSupportedType extends string>({
   const switchLocale = useCallback(
     (locale: LocalSupportedType): void => {
       if (isLocaleSupported(locale)) {
-        localStorage.setItem(localeItemStorage, locale)
+        setStoredLocale(localeItemStorage, locale)
         setLangAttribute(locale, rootElement)
         setCurrentLocale(locale)
       }
