@@ -62,7 +62,7 @@ export const getCurrentLocale = <LocalSupportedType extends string>({
           return sanitized
         }
 
-        const [language] = sanitized.split('-')
+        const [language = ''] = sanitized.split('-')
 
         if (language !== sanitized && isLocaleSupported(language)) {
           return language
