@@ -623,6 +623,64 @@ describe('i18n hook', () => {
     ).toBe(`onTranslateError fonction sera appelé car il manque une variable en français ${oldFrenchVariable}`)
   })
 
+  it('should not crash when the fallback key is also missing in the default locale', async () => {
+    expect.hasAssertions()
+    const mockOnTranslateError = vi.fn<NonNullable<OnTranslateError>>()
+    const { result } = renderHook(() => useI18n<{ broken: 'Broken {missing}' }, Locales>(), {
+      wrapper: wrapper({
+        defaultLocale: 'en',
+        defaultTranslations: { fr: { broken: 'Cassé {missing}' } },
+        isLocaleSupported: isDefaultLocalesSupported,
+        onTranslateError: mockOnTranslateError,
+      }),
+    })
+
+    act(() => {
+      result.current.switchLocale('fr')
+    })
+
+    await vi.waitFor(() => {
+      expect(result.current.currentLocale).toBe('fr')
+    })
+
+    expect(
+      result.current.t('broken', {
+        // @ts-expect-error the context intentionally omits the placeholder the message expects
+        present: 'value',
+      }),
+    ).toBe('')
+    expect(mockOnTranslateError).toHaveBeenCalledTimes(1)
+  })
+
+  it('should report the fallback failure and return empty string when the default locale message is also broken', async () => {
+    expect.hasAssertions()
+    const mockOnTranslateError = vi.fn<NonNullable<OnTranslateError>>()
+    const { result } = renderHook(() => useI18n<{ broken: 'Broken {missing}' }, Locales>(), {
+      wrapper: wrapper({
+        defaultLocale: 'en',
+        defaultTranslations: { en: { broken: 'Broken {missingToo}' }, fr: { broken: 'Cassé {missing}' } },
+        isLocaleSupported: isDefaultLocalesSupported,
+        onTranslateError: mockOnTranslateError,
+      }),
+    })
+
+    act(() => {
+      result.current.switchLocale('fr')
+    })
+
+    await vi.waitFor(() => {
+      expect(result.current.currentLocale).toBe('fr')
+    })
+
+    expect(
+      result.current.t('broken', {
+        // @ts-expect-error the context intentionally omits the placeholder the message expects
+        present: 'value',
+      }),
+    ).toBe('')
+    expect(mockOnTranslateError).toHaveBeenCalledTimes(2)
+  })
+
   it('should use namespaceTranslation', async () => {
     const { result } = renderHook(() => useI18n<Locale>(), {
       wrapper: wrapper({

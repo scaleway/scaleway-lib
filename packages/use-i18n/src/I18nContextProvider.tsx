@@ -204,10 +204,26 @@ const I18nContextProvider = <LocalSupportedType extends string>({
             value,
           })
 
-          // with default locale nothing should break or it's normal to not ignore it.
           const defaultValue = translations[defaultLocale]?.[key] as string
 
-          return formatters.getTranslationFormat(defaultValue, defaultLocale).format(context) as string
+          // the fallback itself can fail (key missing or message broken) and
+          // must never crash the render; a second failure is reported too
+          if (defaultValue) {
+            try {
+              return formatters.getTranslationFormat(defaultValue, defaultLocale).format(context) as string
+            } catch (fallbackError) {
+              onTranslateError?.({
+                // names the locale of the message that failed, like the first report above
+                currentLocale: defaultLocale,
+                defaultLocale,
+                error: fallbackError instanceof Error ? fallbackError : new Error(String(fallbackError)),
+                key,
+                value: defaultValue,
+              })
+            }
+          }
+
+          return ''
         }
       }
 
