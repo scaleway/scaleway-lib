@@ -80,6 +80,17 @@ const Component = () => {
 }
 ```
 
+`treatKeysAsArray` lists query params that must always be arrays, so a single value is parsed as `[value]` for array schemas:
+
+```tsx
+const Schema = z.object({
+  tag: z.array(z.string()),
+})
+
+const { queryParams } = useSafeQueryParams({ schema: Schema, treatKeysAsArray: ['tag'] })
+// /?tag=admin -> { tag: ['admin'] }
+```
+
 ### useNavigate
 
 A polyfill of [useNavigate](https://reactrouter.com/6.30.3/hooks/use-navigate) with the same interface.

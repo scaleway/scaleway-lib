@@ -175,4 +175,58 @@ describe(getSafeQueryParams, () => {
       tags: ['valid', 'other'],
     })
   })
+
+  it('wraps a single value in an array for keys listed in treatKeysAsArray', () => {
+    const result = getSafeQueryParams({
+      search: '?tags=admin',
+      schema,
+      treatKeysAsArray: ['tags'],
+    })
+
+    expect(result.errors).toBeNull()
+    expect(result.queryParams).toStrictEqual({
+      tags: ['admin'],
+    })
+  })
+
+  it('does not wrap a single value when the key is not listed in treatKeysAsArray', () => {
+    const result = getSafeQueryParams({
+      search: '?tags=admin',
+      schema,
+      treatKeysAsArray: ['name'],
+    })
+
+    expect(result.errors).toBeDefined()
+    expect(result.queryParams).toStrictEqual({})
+  })
+
+  it('keeps multiple values as an array even when the key is listed in treatKeysAsArray', () => {
+    const result = getSafeQueryParams({
+      search: '?tags=admin&tags=user',
+      schema,
+      treatKeysAsArray: ['tags'],
+    })
+
+    expect(result.errors).toBeNull()
+    expect(result.queryParams).toStrictEqual({
+      tags: ['admin', 'user'],
+    })
+  })
+
+  it('wraps a single value in an array for nested optional array fields', () => {
+    const nestedSchema = z.object({
+      filters: z.array(z.string()).optional(),
+    })
+
+    const result = getSafeQueryParams({
+      search: '?filters=active',
+      schema: nestedSchema,
+      treatKeysAsArray: ['filters'],
+    })
+
+    expect(result.errors).toBeNull()
+    expect(result.queryParams).toStrictEqual({
+      filters: ['active'],
+    })
+  })
 })
