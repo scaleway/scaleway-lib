@@ -148,7 +148,7 @@ const format =
           round: maximumFractionDigits,
         })
 
-        computedExponent = exponents[value.exponent]
+        computedExponent = exponents[value.exponent] ?? exponents[0]
         computedValue = Number(value.value.toString())
       }
     }
