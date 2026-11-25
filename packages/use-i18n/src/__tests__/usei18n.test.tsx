@@ -921,6 +921,7 @@ describe('i18n hook', () => {
     })
 
     expect(result.current.formatDate(new Date(2020, 1, 13, 16, 28), 'numericHour')).toBe('2020-02-13 4:28 PM')
+    expect(result.current.formatDate('not a valid date')).toBe('')
     act(() => {
       result.current.switchLocale('fr')
     })
