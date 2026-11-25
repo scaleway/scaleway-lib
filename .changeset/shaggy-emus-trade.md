@@ -1,5 +1,5 @@
 ---
-"@scaleway/scouter": feature
+"@scaleway/scouter": minor
 ---
 
 useSafeQueryParams issue when parsing an array schema should return array of string instead of just string.
