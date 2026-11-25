@@ -27,6 +27,10 @@ type OnLoadTranslationError = Exclude<ComponentProps<typeof I18n>['onLoadTransla
 
 const isDefaultLocalesSupported = (locale: string): locale is Locales => ListLocales.some(item => item === locale)
 
+// `fr-FR` is a valid `Locales` but this predicate deliberately doesn't support it
+const isLanguageOnlyLocalesSupported = (locale: string): locale is Locales =>
+  locale === 'en' || locale === 'es' || locale === 'fr'
+
 const load = async ({ locale, namespace }: { locale: string; namespace: string }) =>
   // oxlint-disable-next-line typescript/no-unsafe-return
   import(`./locales/namespaces/${locale}/${namespace}.json`)
@@ -433,6 +437,87 @@ describe('i18n hook', () => {
         expect(result.current.currentLocale).toBe('en')
         expect(mockSetItem).toHaveBeenCalledWith(LOCALE_ITEM_STORAGE, 'en')
       })
+      localStorageMock.mockRestore()
+    })
+
+    it('should reduce an unsupported region locale to its language', async () => {
+      vi.spyOn(globalThis.navigator, 'languages', 'get').mockReturnValueOnce(['fr-FR'])
+      const mockGetItem = vi.fn<Storage['getItem']>()
+      const mockSetItem = vi.fn<() => void>()
+      const mockRemoveItem = vi.fn<() => void>()
+      const localStorageMock = vi
+        .spyOn(globalThis, 'localStorage', 'get')
+        .mockReturnValue(mockStorage(mockGetItem, mockSetItem, mockRemoveItem))
+
+      const { result } = renderHook(() => useI18n(), {
+        wrapper: wrapper({
+          defaultLocale: 'en',
+          isLocaleSupported: isLanguageOnlyLocalesSupported,
+        }),
+      })
+
+      await vi.waitFor(() => {
+        expect(result.current.currentLocale).toBe('fr')
+        expect(mockSetItem).toHaveBeenCalledWith(LOCALE_ITEM_STORAGE, 'fr')
+      })
+      localStorageMock.mockRestore()
+    })
+
+    it('should not crash the provider when localStorage.setItem throws (Safari private mode)', async () => {
+      vi.spyOn(globalThis.navigator, 'languages', 'get').mockReturnValueOnce(['fr'])
+      const mockGetItem = vi.fn<Storage['getItem']>()
+      const mockSetItem = vi.fn<() => void>().mockImplementation(() => {
+        throw new Error('QuotaExceededError')
+      })
+      const mockRemoveItem = vi.fn<() => void>()
+      const localStorageMock = vi
+        .spyOn(globalThis, 'localStorage', 'get')
+        .mockReturnValue(mockStorage(mockGetItem, mockSetItem, mockRemoveItem))
+
+      const spy = vi.spyOn(console, 'error')
+      spy.mockReturnValue(undefined)
+
+      const { result } = renderHook(() => useI18n(), {
+        wrapper: wrapper({
+          defaultLocale: 'es',
+          isLocaleSupported: isDefaultLocalesSupported,
+        }),
+      })
+
+      await vi.waitFor(() => {
+        expect(result.current.currentLocale).toBe('fr')
+      })
+      spy.mockRestore()
+      localStorageMock.mockRestore()
+    })
+
+    it('should not crash switchLocale when localStorage.setItem throws (Safari private mode)', async () => {
+      vi.spyOn(globalThis.navigator, 'languages', 'get').mockReturnValueOnce(['en'])
+      // a valid stored locale skips every initializer write: switchLocale's is the only one firing
+      const mockGetItem = vi.fn<Storage['getItem']>().mockReturnValue('en')
+      const mockSetItem = vi.fn<() => void>().mockImplementation(() => {
+        throw new Error('QuotaExceededError')
+      })
+      const mockRemoveItem = vi.fn<() => void>()
+      const localStorageMock = vi
+        .spyOn(globalThis, 'localStorage', 'get')
+        .mockReturnValue(mockStorage(mockGetItem, mockSetItem, mockRemoveItem))
+
+      const { result } = renderHook(() => useI18n<Locale, Locales>(), {
+        wrapper: wrapper({
+          defaultLocale: 'en',
+          isLocaleSupported: isDefaultLocalesSupported,
+        }),
+      })
+
+      await vi.waitFor(() => {
+        expect(result.current.currentLocale).toBe('en')
+      })
+
+      act(() => {
+        result.current.switchLocale('fr')
+      })
+      expect(result.current.currentLocale).toBe('fr')
       localStorageMock.mockRestore()
     })
 

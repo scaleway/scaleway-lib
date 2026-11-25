@@ -13,6 +13,16 @@ export const setLangAttribute = (locale: string, rootElement?: Element) => {
   }
 }
 
+// Safari private mode throws on setItem: the persisted locale is a best-effort
+// cache that must never crash the provider
+export const setStoredLocale = (localeItemStorage: string, locale: string): void => {
+  try {
+    globalThis.localStorage.setItem(localeItemStorage, locale)
+  } catch {
+    // storage unavailable — detection goes on without the cache
+  }
+}
+
 export const getCurrentLocale = <LocalSupportedType extends string>({
   defaultLocale,
   isLocaleSupported,
@@ -34,7 +44,7 @@ export const getCurrentLocale = <LocalSupportedType extends string>({
       if (isLocaleSupported(sanitized)) {
         // fix corrupted values in localStorage on next load
         if (sanitized !== currentLocalFromLocalStorage) {
-          globalThis.localStorage.setItem(localeItemStorage, sanitized)
+          setStoredLocale(localeItemStorage, sanitized)
         }
 
         return sanitized
@@ -42,21 +52,37 @@ export const getCurrentLocale = <LocalSupportedType extends string>({
     }
     globalThis.localStorage.removeItem(localeItemStorage)
 
-    const foundBrowserLocale = browserLocales.find(locale => isLocaleSupported(sanitizeLocale(locale)))
+    // a browser locale may carry a region the app does not support (`fr-FR`
+    // when only `fr` is): fall back to its language part before giving up on it
+    const matchBrowserLocale = (): LocalSupportedType | undefined => {
+      for (const browserLocale of browserLocales) {
+        const sanitized = sanitizeLocale(browserLocale)
+
+        if (isLocaleSupported(sanitized)) {
+          return sanitized
+        }
+
+        const [language = ''] = sanitized.split('-')
+
+        if (language !== sanitized && isLocaleSupported(language)) {
+          return language
+        }
+      }
+
+      return undefined
+    }
+
+    const foundBrowserLocale = matchBrowserLocale()
 
     if (foundBrowserLocale !== undefined) {
-      const sanitized = sanitizeLocale(foundBrowserLocale)
+      setStoredLocale(localeItemStorage, foundBrowserLocale)
+      setLangAttribute(foundBrowserLocale, rootElement)
 
-      globalThis.localStorage.setItem(localeItemStorage, sanitized)
-      setLangAttribute(sanitized, rootElement)
-
-      if (isLocaleSupported(sanitized)) {
-        return sanitized
-      }
+      return foundBrowserLocale
     }
 
     if (defaultLocale && isLocaleSupported(defaultLocale)) {
-      globalThis.localStorage.setItem(localeItemStorage, defaultLocale)
+      setStoredLocale(localeItemStorage, defaultLocale)
       setLangAttribute(defaultLocale, rootElement)
 
       return defaultLocale
