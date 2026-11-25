@@ -36,4 +36,22 @@ describe('validate-icu-locales CLI', () => {
     expect(result.stderr).not.toContain('UNCLOSED_TAG')
     expect(result.stderr).toContain('EXPECT_ARGUMENT_CLOSING_BRACE')
   })
+
+  it('should exit 1 on malformed files', () => {
+    const malformed = spawnSync('node', ['dist/index.mjs', 'src/__tests__/locales/en-no-default.ts'], {
+      encoding: 'utf8',
+    })
+
+    expect(malformed.status).toBe(1)
+    expect(malformed.stderr).toContain('MISSING_DEFAULT_EXPORT')
+  })
+
+  it('should exit 1 on an apostrophe-escaped placeholder', () => {
+    const apostrophe = spawnSync('node', ['dist/index.mjs', 'src/__tests__/locales/fr-apostrophe.ts'], {
+      encoding: 'utf8',
+    })
+
+    expect(apostrophe.status).toBe(1)
+    expect(apostrophe.stderr).toContain('APOSTROPHE_ESCAPES_PLACEHOLDER')
+  })
 })
