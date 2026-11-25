@@ -1,5 +1,15 @@
 # Change Log
 
+## 2.0.24
+
+### Patch Changes
+
+- [#4175](https://github.com/scaleway/scaleway-lib/pull/4175) [`85dd35d`](https://github.com/scaleway/scaleway-lib/commit/85dd35de5c89a1e7b1de734fd89e6c2cad0f4bd8) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `@segment/analytics-next` to `1.84.4`.
+
+- [#4163](https://github.com/scaleway/scaleway-lib/pull/4163) [`958bb46`](https://github.com/scaleway/scaleway-lib/commit/958bb46218311de38d5449580ae5d4a261d592b2) Thanks [@chambo-e](https://github.com/chambo-e)! - fix(use-analytics): compare group id in ids migration
+  
+  The group-migration condition compared the user id instead of the group id, so a JSON-encoded group id was never migrated and a redundant group() analytics event fired on every page load.
+
 ## 2.0.23
 
 ### Patch Changes

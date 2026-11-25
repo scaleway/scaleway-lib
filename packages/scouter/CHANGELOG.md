@@ -1,5 +1,19 @@
 # @scaleway/scouter
 
+## 2.0.0
+
+### Major Changes
+
+- [#4144](https://github.com/scaleway/scaleway-lib/pull/4144) [`56fbdb8`](https://github.com/scaleway/scaleway-lib/commit/56fbdb8e7f27fb6c371a2e86547f6c463ae47769) Thanks [@radhi-nasser-scaleway](https://github.com/radhi-nasser-scaleway)! - feat(scouter)!: remove deprecated useQueryParams
+  
+  useQueryParams has been removed. Replace all usages with useSafeQueryParams.
+
+### Minor Changes
+
+- [#4149](https://github.com/scaleway/scaleway-lib/pull/4149) [`7cc1d1c`](https://github.com/scaleway/scaleway-lib/commit/7cc1d1cda8585a59051bdcc012fdcc3bdc1061c3) Thanks [@alexandre-combemorel](https://github.com/alexandre-combemorel)! - useSafeQueryParams issue when parsing an array schema should return array of string instead of just string.
+  
+  `useSafeQueryParams` and `getSafeQueryParams` now accept a `treatKeysAsArray` option listing the query param keys that must be parsed as arrays, so a single value like `?tags=admin` becomes `['admin']`.
+
 ## 1.1.2
 
 ### Patch Changes
