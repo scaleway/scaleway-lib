@@ -239,6 +239,25 @@ describe('i18n hook', () => {
     })
   })
 
+  it('should support a namespace containing a comma', async () => {
+    expect.hasAssertions()
+    const mockLoad = vi.fn<LoadTranslationsFn<Locales>>().mockResolvedValue({
+      default: { title: 'Comma Namespace Title' },
+    })
+
+    const { result } = renderHook(
+      () => useTranslation<{ title: 'Comma Namespace Title' }, Locales>(['common,errors'], mockLoad),
+      {
+        wrapper: wrapper({ defaultLocale: 'en' }),
+      },
+    )
+
+    await vi.waitFor(() => {
+      expect(result.current.isLoaded).toBe(true)
+    })
+    expect(mockLoad).toHaveBeenCalledWith({ locale: 'en', namespace: 'common,errors' })
+  })
+
   it('should set current locale from defaultLocale', async () => {
     expect.hasAssertions()
     const { result } = renderHook(() => useI18n(), {

@@ -28,7 +28,7 @@ export type RequiredGenericContext<
     }
   : Context<LocaleParam, LocalSupportedType>
 
-const areNamespacesLoaded = (namespaces: string[], loadedNamespaces: string[] = []) =>
+const areNamespacesLoaded = (namespaces: string[], loadedNamespaces: string[]) =>
   namespaces.every(n => loadedNamespaces.includes(n))
 
 export type Context<LocaleParam extends BaseLocale, LocalSupportedType extends string> = {
@@ -93,10 +93,16 @@ export function useTranslation<LocaleParam extends BaseLocale = BaseLocale, Loca
 
   // here we generate a key string from the array of namespace in order to only trigger the use effect
   // when the passed keys change and not when the ref of the array change
-  const key = namespaces.join(',')
+  // JSON.stringify: strings are quoted, so a namespace containing a comma is not split in two
+  const key = JSON.stringify(namespaces)
+
+  // `load` is a dependency on purpose: callers must keep its reference stable
+  // (module scope or useCallback) — see the README.
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    key.split(',').map(async (namespace: string) => loadTranslations(namespace, load))
+    for (const namespace of JSON.parse(key) as string[]) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      loadTranslations(namespace, load)
+    }
   }, [loadTranslations, key, load])
 
   const isLoaded = useMemo(() => areNamespacesLoaded(namespaces, loadedNamespaces), [loadedNamespaces, namespaces])
