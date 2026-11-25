@@ -14,12 +14,13 @@ type ErrorICU = {
 
 export type ErrorsICU = ErrorICU[]
 
-const isObject = (obj: unknown): obj is Record<string, unknown> => {
-  //
-  const newObj = new Object(obj)
+// A single apostrophe is ICU's escape character: one directly before a
+// placeholder ('{count}) makes it literal text and the variable never
+// substitutes. Doubling it ('') displays a real apostrophe instead.
+const escapedPlaceholderRE = /(?<!')'\{/v
 
-  return obj === newObj
-}
+const isObject = (obj: unknown): obj is Record<string, unknown> =>
+  typeof obj === 'object' && obj !== null && !Array.isArray(obj)
 
 const findICUErrors = (locales: Record<string, string>, filePath: string, ignoreTag: boolean): ErrorsICU => {
   const errors = Object.entries(locales)
@@ -28,6 +29,16 @@ const findICUErrors = (locales: Record<string, string>, filePath: string, ignore
         parse(value, {
           ignoreTag,
         })
+
+        if (escapedPlaceholderRE.test(value)) {
+          return {
+            filePath,
+            key,
+            message:
+              "APOSTROPHE_ESCAPES_PLACEHOLDER: double the apostrophe ('') to display a literal one, or remove it to keep the placeholder",
+            value,
+          }
+        }
 
         return undefined
       } catch (error) {
@@ -54,57 +65,62 @@ const findICUErrors = (locales: Record<string, string>, filePath: string, ignore
   return errors
 }
 
-export const isLocales = (value: unknown): value is Locales => {
-  if (typeof value !== 'object' || value === null) {
-    return false
-  }
+const isStringRecord = (value: Record<string, unknown>): value is Locales =>
+  Object.values(value).every(entry => typeof entry === 'string')
 
-  return true
-}
+export const isLocales = (value: unknown): value is Locales => isObject(value) && isStringRecord(value)
 
-const handleJson = async (file: string, ignoreTag: boolean) => {
+const errorMessage = (error: unknown): string => (error instanceof Error ? error.message : String(error))
+
+const fileError = (file: string, message: string): ErrorICU => ({
+  filePath: file,
+  key: '',
+  message,
+  value: '',
+})
+
+// The returned string is the error message; a valid locales record means success
+const readJsonLocale = async (file: string): Promise<string | Locales> => {
   try {
     const data = await readFile(file)
-    const jsonFile = data.toString()
+    const parsed: unknown = JSON.parse(data.toString())
 
-    const locales: unknown = JSON.parse(jsonFile)
-
-    if (!isLocales(locales)) {
-      throw new TypeError(`invalid locales file in ${file}`)
-    }
-
-    const ICUErrors = findICUErrors(locales, file, ignoreTag)
-    return ICUErrors
+    return isLocales(parsed) ? parsed : 'INVALID_LOCALES_FILE: expected an object of string values'
   } catch (error) {
-    console.error({ error, file })
-    return []
+    return `INVALID_JSON: ${errorMessage(error)}`
   }
 }
 
-const handleFile = async (file: string, ignoreTag: boolean) => {
+// Same contract as readJsonLocale
+const readModuleLocale = async (file: string): Promise<string | Locales> => {
   try {
     const data: unknown = await import(file)
 
-    if (isObject(data)) {
-      if ('default' in data) {
-        const { default: locales } = data
-
-        if (!isLocales(locales)) {
-          throw new TypeError(`invalid locales file in ${file}`)
-        }
-
-        const ICUErrors = findICUErrors(locales, file, ignoreTag)
-        return ICUErrors
-      }
-      console.error('export default from:', file, 'is not an object')
-    } else {
-      console.error(file, 'is not an object')
+    if (!isObject(data)) {
+      return 'NOT_AN_OBJECT: the module is not an object'
     }
-    return []
+    if (!('default' in data)) {
+      return 'MISSING_DEFAULT_EXPORT: the module has no default export'
+    }
+
+    const { default: locales } = data
+
+    return isLocales(locales) ? locales : 'INVALID_LOCALES_FILE: expected an object of string values'
   } catch (error) {
-    console.error({ error, file })
-    return []
+    return `IMPORT_FAILED: ${errorMessage(error)}`
   }
+}
+
+const handleJson = async (file: string, ignoreTag: boolean): Promise<ErrorsICU> => {
+  const result = await readJsonLocale(file)
+
+  return typeof result === 'string' ? [fileError(file, result)] : findICUErrors(result, file, ignoreTag)
+}
+
+const handleFile = async (file: string, ignoreTag: boolean): Promise<ErrorsICU> => {
+  const result = await readModuleLocale(file)
+
+  return typeof result === 'string' ? [fileError(file, result)] : findICUErrors(result, file, ignoreTag)
 }
 
 const readFiles = async (files: string[], ignoreTag: boolean): Promise<ErrorsICU> => {

@@ -1,4 +1,4 @@
-import { rmSync, symlinkSync } from 'node:fs'
+import { rmSync, symlinkSync, writeFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 import { run } from '../validate'
 import type { ErrorsICU } from '../validate'
@@ -82,5 +82,56 @@ describe('validate', () => {
     const { files } = await run('dist/**')
 
     expect(files).toStrictEqual([])
+  })
+
+  it('should fail on broken JSON instead of exiting 0', async () => {
+    // written at test time: committed, it would break the repo formatter
+    const brokenFile = 'src/__tests__/locales/broken.json'
+    writeFileSync(brokenFile, '{"units.days.label": "{count')
+
+    try {
+      const { errors } = await run(brokenFile)
+
+      expect(hasErrorWith(errors, 'INVALID_JSON')).toBe(true)
+    } finally {
+      rmSync(brokenFile)
+    }
+  })
+
+  it('should fail on non-string values with a clear error', async () => {
+    const { errors } = await run('src/__tests__/locales/non-string.json')
+
+    expect(hasErrorWith(errors, 'INVALID_LOCALES_FILE')).toBe(true)
+  })
+
+  it('should fail on a top-level JSON array of messages', async () => {
+    const { errors } = await run('src/__tests__/locales/array.json')
+
+    expect(hasErrorWith(errors, 'INVALID_LOCALES_FILE')).toBe(true)
+  })
+
+  it('should fail on an array default export', async () => {
+    const { errors } = await run('src/__tests__/locales/array.ts')
+
+    expect(hasErrorWith(errors, 'INVALID_LOCALES_FILE')).toBe(true)
+  })
+
+  it('should fail on a module without a default export', async () => {
+    const { errors } = await run('src/__tests__/locales/en-no-default.ts')
+
+    expect(hasErrorWith(errors, 'MISSING_DEFAULT_EXPORT')).toBe(true)
+  })
+
+  it('should detect an apostrophe escaping a placeholder', async () => {
+    const { errors } = await run('src/__tests__/locales/fr-apostrophe.ts')
+
+    expect(hasErrorWith(errors, 'APOSTROPHE_ESCAPES_PLACEHOLDER')).toBe(true)
+    expect(errors.some(error => error.key === 'articles.selected')).toBe(true)
+  })
+
+  it('should keep a doubled apostrophe a literal and the placeholder alive', async () => {
+    const { errors } = await run('src/__tests__/locales/fr-apostrophe.ts')
+
+    expect(errors.some(error => error.key === 'articles.validDoubled')).toBe(false)
   })
 })
