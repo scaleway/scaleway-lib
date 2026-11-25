@@ -276,19 +276,58 @@ export const supportedUnits: Partial<Record<SupportedUnits, ReturnType<typeof fo
 }
 
 export type FormatUnitOptions = {
+  /**
+   * The unit to format with — its form decides how the number is interpreted:
+   * a bare name (`kilobyte`) means the number is already a count in that unit,
+   * a pinned `-humanized` name (`kilobyte-humanized`) converts a raw bit/byte
+   * count to that unit, and an auto `-humanized` name (`bytes-humanized`)
+   * converts it to the best unit. See the README for the full list of names.
+   */
   unit: SupportedUnits
   /**
-    default: true
-  */
+   * Whether to output the short or the long form of the unit
+   * (think `Kb` vs `kilobits`).
+   * @default true
+   */
   short?: boolean
+  /** The maximum number of fraction digits to use. */
   maximumFractionDigits?: number
+  /** The minimum number of fraction digits to use. */
   minimumFractionDigits?: number
   /**
-    default: 10
-  */
+   * The base the `-humanized` forms use to convert a raw bit/byte count:
+   * `10` means one kilo is 1000, `2` means one kilo is 1024. Bare units never
+   * convert, so they ignore this option.
+   * @default 10
+   */
   base?: 2 | 10
 }
 
+/**
+ * Formats a number of bits or bytes with an SI unit (kilo, mega, giga, …)
+ * following the IEC base-10 standard, until
+ * [ECMA-402 Unit Preferences](https://github.com/tc39/proposal-smart-unit-preferences)
+ * is standardised.
+ *
+ * The form of `unit` decides how `number` is interpreted:
+ *
+ * - **bare** — `formatUnit('en', 12, { unit: 'kilobyte' })` → `'12 KB'`:
+ *   the number is already a count in that unit, it is labeled, never converted
+ * - **pinned `-humanized`** — `formatUnit('en', 12, { unit: 'kilobyte-humanized' })` → `'0.01 KB'`:
+ *   the number is a raw bit/byte count, converted to the named unit — use it
+ *   when the displayed unit is fixed (a table where every row reads in the
+ *   same unit) but the data is stored in bits or bytes
+ * - **auto `-humanized`** — `formatUnit('en', 1234567, { unit: 'bytes-humanized' })` → `'1.23 MB'`:
+ *   the number is a raw bit/byte count and the best unit is picked
+ *
+ * The same three forms exist as `-per-second` compounds, and every unit name
+ * also exists in a plural form (`bits` ≡ `bit`).
+ *
+ * @param locale - a BCP 47 language tag, e.g. `en` or `fr-FR`
+ * @param number - the value to format, interpreted according to `unit`
+ * @param options - see {@link FormatUnitOptions}
+ * @returns the formatted string, or `''` when the unit is not supported
+ */
 const formatUnit = (locale: string, number: number, { unit, ...options }: FormatUnitOptions): string =>
   supportedUnits[unit]?.(locale, number, options) ?? ''
 
