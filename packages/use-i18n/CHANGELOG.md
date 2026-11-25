@@ -1,5 +1,70 @@
 # Change Log
 
+## 10.0.0
+
+### Major Changes
+
+- [#4173](https://github.com/scaleway/scaleway-lib/pull/4173) [`54d87e8`](https://github.com/scaleway/scaleway-lib/commit/54d87e8d78ba96b5dd6e63634a94115cf47dd66c) Thanks [@chambo-e](https://github.com/chambo-e)! - Remove the `date-fns` dependency: every date, duration and relative-time format now uses native `Intl` APIs (`Intl.DateTimeFormat`, `Intl.RelativeTimeFormat`, `Intl.DurationFormat`) with CLDR data instead of date-fns locale bundles.
+  
+  **Added**
+  
+  - `noSuffix` option on `relativeTime`/`relativeTimeStrict`: returns the bare distance (`"21 years"`, `"3,499 days"`) instead of `"21 years ago"`. Not supported with the `quarter` unit.
+  
+  **Breaking changes**
+  
+  - The `I18n` provider no longer accepts `loadDateLocale`, `loadDateLocaleAsync` and `onLoadDateLocaleError`: native `Intl` only needs the current locale string, so there is nothing to load. Remove these props from your setup.
+  - `dateFnsLocale` is removed from the context. If you passed it to a component that needs a date-fns locale object (e.g. `@scaleway/ui`'s `DateInput`), import and load date-fns in your app.
+  - `relativeTime` and `relativeTimeStrict` options are `RelativeTimeOptions`/`RelativeTimeStrictOptions` instead of date-fns types: the native `Intl.RelativeTimeFormatOptions` (`localeMatcher?`, `numeric?`, `style?`) plus `noSuffix?`, and `unit?` for the strict variant. `addSuffix` is gone — relative times are suffixed by default ("ago"/"in"). `roundingMethod` is gone as well, with no replacement — distances round half away from "now" on the absolute value, exactly as date-fns did (`Intl.RelativeTimeFormat` exposes no rounding control).
+  - The `date-fns` type re-exports `FormatDistanceToNowOptions` and `FormatDistanceToNowStrictOptions` are no longer exported from `@scaleway/use-i18n`.
+  - `formatDuration` options are now `Intl.DurationFormatOptions` (e.g. `{ style: 'narrow' }`) instead of date-fns format options; `'clock'` and `'clock-milliseconds'` are unchanged.
+  - `switchLocale` is now synchronous and returns `void` instead of `Promise<void>` — with the date-fns locale loading gone there is nothing asynchronous left. Drop any `.then()` calls; `await switchLocale(...)` keeps working unchanged.
+  - `date-fns` is no longer a peer dependency.
+  
+  **Requirements**
+  
+  - Runtime: non-clock `formatDuration` needs `Intl.DurationFormat` — Baseline 2025 (Chrome/Edge 129+, Firefox 136+, Safari 16.4+, Node 23+ per MDN). Polyfill `@formatjs/intl-durationformat` if you support older browsers. `relativeTime` needs `Intl.RelativeTimeFormat` (available everywhere since 2020). Node is already covered by the `engines` field (`>=24`).
+  - TypeScript: the published types reference `Intl.DurationFormatOptions`, which first ships in TypeScript 6.0 (`lib.es2025.intl`); on older versions the `.d.ts` will not compile.
+  
+  **Output changes** (CLDR wording):
+  
+  - Durations gain list separators in English and "et" in French ("3 hours, 40 minutes, 50 seconds", "3 heures, 40 minutes et 50 secondes"), and durations above 24h are plain days instead of calendar months ("45 days", not "1 month 14 days").
+  - Relative times use CLDR rounding ("21 years ago" instead of "over 20 years ago", "3,499 days ago") and, with the default `numeric: 'auto'`, the full set of CLDR specials — "now", "yesterday"/"hier", "last week", "last month", "last quarter", "last year" and their future forms. Pass `numeric: 'always'` to keep plain output.
+  - Granularity goes down to seconds: spans under a minute render "45 seconds ago" where date-fns said "less than a minute ago" (30–59s said "1 minute"), and the 45–59-minute window renders in minutes where date-fns said "about 1 hour ago".
+  - Distances are elapsed time, not wall-clock time: date-fns normalized daylight-saving transitions for day/month/year buckets, so a span crossing a DST shift can now differ by one unit from date-fns.
+  - `relativeTimeStrict` uses average unit lengths (30.44-day months, 365.25-day years) instead of date-fns's 30/365-day ones, so large counts differ slightly (3499 days is "115 months" where date-fns said "117"). `unit: 'week'` and `unit: 'quarter'` now format in their own unit, where date-fns silently computed years.
+  - Legacy date-fns options that no longer exist (`includeSeconds`, `format`, `zero`, `delimiter`) are ignored rather than rejected; TypeScript flags them for TS callers.
+  
+  `formatDate` output is unchanged.
+
+### Patch Changes
+
+- [#4196](https://github.com/scaleway/scaleway-lib/pull/4196) [`3628957`](https://github.com/scaleway/scaleway-lib/commit/3628957acd965a5009d848461effe77ac18beb58) Thanks [@chambo-e](https://github.com/chambo-e)! - Fix README examples so they compile against the real `I18nContextProvider` props: replace the non-existent `supportedLocales` prop with `isLocaleSupported`, pass the required `defaultLoad`, fix the `useTranlation` typo, key `defaultTranslations` by locale, move `useI18n()` out of module scope, and remove stray JSX and self-rendering `<App />`.
+
+- [#4148](https://github.com/scaleway/scaleway-lib/pull/4148) [`65708dc`](https://github.com/scaleway/scaleway-lib/commit/65708dc3e40cbe987cacb8e190ef0f252fdaaf99) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `filesize` to `11.0.33`.
+
+- [#4151](https://github.com/scaleway/scaleway-lib/pull/4151) [`4e3b097`](https://github.com/scaleway/scaleway-lib/commit/4e3b097e763f44597aca8ea86c5cb381941d4c6a) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `filesize` to `11.0.34`.
+
+- [#4179](https://github.com/scaleway/scaleway-lib/pull/4179) [`cdae454`](https://github.com/scaleway/scaleway-lib/commit/cdae454f59bbcb8fa8c698298477d624d5719370) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `filesize` to `11.0.35`.
+
+- [#4172](https://github.com/scaleway/scaleway-lib/pull/4172) [`1e507fc`](https://github.com/scaleway/scaleway-lib/commit/1e507fc98c6e8e778ccc5a25d03f58e25dd6e637) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependency `intl-messageformat` to `12.2.0`.
+
+- [#4164](https://github.com/scaleway/scaleway-lib/pull/4164) [`d43c643`](https://github.com/scaleway/scaleway-lib/commit/d43c643f2f3ca4b80fa01d82ded819a9f2193bb1) Thanks [@chambo-e](https://github.com/chambo-e)! - Normalize the locale before matching octet wording, so region-tagged locales like `fr-FR` get "octets" instead of "bytes". Zero now uses the CLDR plural form in English and Romanian ("0 bytes", "0 octeți"); French keeps the singular ("0 octet").
+
+- [#4188](https://github.com/scaleway/scaleway-lib/pull/4188) [`d3f0711`](https://github.com/scaleway/scaleway-lib/commit/d3f07118a329187b7065a7a07af0854d49cf614e) Thanks [@chambo-e](https://github.com/chambo-e)! - Every unit name accepted by `FormatUnitOptions['unit']` now formats instead of silently returning `''`: the plural forms (`bits`, `bytes`, `bits-per-second`, `bytes-per-second` and their exponent-prefixed variants like `kilobits`) alias the singular keys, and the missing `byte-per-second-humanized` family (all exponent forms) is registered. Previously-working unit names are unchanged — verified value-by-value against the previous snapshots.
+
+- [#4186](https://github.com/scaleway/scaleway-lib/pull/4186) [`20d86ca`](https://github.com/scaleway/scaleway-lib/commit/20d86ca9369e9877aa0f3f003ea38b1340e52c7f) Thanks [@chambo-e](https://github.com/chambo-e)! - `getCurrentLocale` now reduces a region locale to its language when the full tag isn't supported (`fr-FR` → `fr` when only `fr` is) instead of falling straight to the default locale. `localStorage` writes are also guarded: Safari private mode throws on `setItem`, which crashed the provider on first render and on every `switchLocale` — the cached locale is now best-effort.
+
+- [#4183](https://github.com/scaleway/scaleway-lib/pull/4183) [`94d4d0b`](https://github.com/scaleway/scaleway-lib/commit/94d4d0b868a5736f8c3d9e66cb5a342aec7ef8bc) Thanks [@chambo-e](https://github.com/chambo-e)! - Faster formatting with no output or API change:
+  
+  - the direct `@formatjs/fast-memoize` dependency is replaced by a small local memoize helper (same behavior, better generics; `intl-messageformat` still depends on `@formatjs/fast-memoize` transitively)
+  - `formatUnit` reuses memoized `Intl.NumberFormat` instances and caches the `Intl.Locale` language lookup instead of constructing both on every call
+  
+  Measured on Node 26: memoized calls are ~2.5–3× faster, repeated `formatUnit` calls drop from ~9.6µs to ~0.35µs, and a mixed formatting workload runs ~3× faster.
+
+- [#4184](https://github.com/scaleway/scaleway-lib/pull/4184) [`d446b00`](https://github.com/scaleway/scaleway-lib/commit/d446b00d26105082496d371d01d784d0997ad4ab) Thanks [@chambo-e](https://github.com/chambo-e)! - The default-locale fallback inside `t()`'s ICU formatting path is guarded: when the primary format fails, a default-locale key that is missing or itself malformed no longer crashes the render — the second failure is reported through `onTranslateError` and `''` is returned.
+
+- [#4185](https://github.com/scaleway/scaleway-lib/pull/4185) [`48ba584`](https://github.com/scaleway/scaleway-lib/commit/48ba584099525cbe5b4eaf192ad2641cbe671afa) Thanks [@chambo-e](https://github.com/chambo-e)! - `useTranslation` now supports a namespace whose name contains a comma — `['common,errors']` was previously split into two nonexistent namespaces and never marked loaded. The `load` reference contract is now documented: keep it stable (module scope or `useCallback`); an inline `load` restarts the loading effect on every render.
+
 ## 9.0.7
 
 ### Patch Changes

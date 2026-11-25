@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/types",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A set of shared TypeScript utility types used across Scaleway projects",
   "keywords": [
     "shared-types",
