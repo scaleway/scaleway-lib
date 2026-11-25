@@ -295,6 +295,8 @@ const App = () => {
 
 Non-finite inputs format like an empty duration: `formatDuration(NaN)` → `''`, `formatDuration(NaN, 'clock')` → `'00:00:00'`.
 
+Negative durations format with a leading sign on the whole duration: `formatDuration(-90)` → `'-1 minute, 30 seconds'`, `formatDuration(-90, 'clock')` → `'-00:01:30'`.
+
 ### formatList
 
 This hook exposes a `formatList` function which can be used to format lists of strings.

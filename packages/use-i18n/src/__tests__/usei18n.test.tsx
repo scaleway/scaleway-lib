@@ -861,6 +861,15 @@ describe('i18n hook', () => {
     expect(result.current.formatDuration(Number.NaN, 'clock-milliseconds')).toBe('00:00:00:000')
     expect(result.current.formatDuration(Number.POSITIVE_INFINITY)).toBe('')
 
+    expect(result.current.formatDuration(-3600)).toBe('-1 hour')
+    expect(result.current.formatDuration(-90)).toBe('-1 minute, 30 seconds')
+    expect(result.current.formatDuration(-0.5)).toBe('')
+    expect(result.current.formatDuration(-90, 'clock')).toBe('-00:01:30')
+    expect(result.current.formatDuration(-3661, 'clock')).toBe('-01:01:01')
+    expect(result.current.formatDuration(-0.5, 'clock')).toBe('-00:00:00')
+    expect(result.current.formatDuration(-90.5, 'clock-milliseconds')).toBe('-00:01:30:500')
+    expect(result.current.formatDuration(-0.5, 'clock-milliseconds')).toBe('-00:00:00:500')
+
     act(() => {
       result.current.switchLocale('fr')
     })
@@ -868,6 +877,8 @@ describe('i18n hook', () => {
     expect(result.current.formatDuration(13_250)).toBe('3\u00A0heures, 40 minutes et 50\u00A0secondes')
     expect(result.current.formatDuration(13_250, { style: 'narrow' })).toBe('3h 40min 50s')
     expect(result.current.formatDuration(13_250, 'clock')).toBe('03:40:50')
+    expect(result.current.formatDuration(-13_250)).toBe('-3\u00A0heures, 40 minutes et 50\u00A0secondes')
+    expect(result.current.formatDuration(-13_250, 'clock')).toBe('-03:40:50')
     expect(result.current.formatDuration(0)).toBe('')
     expect(result.current.formatDuration(0, 'clock')).toBe('00:00:00')
   })
