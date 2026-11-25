@@ -88,6 +88,12 @@ const formatDate = (locale: string, date: Date | number | string, format: Format
 
   const properDate: Date = typeof date === 'string' || typeof date === 'number' ? new Date(date) : date
 
+  // Invalid dates format as an empty string, like formatDuration's non-finite inputs,
+  // instead of throwing a RangeError in both the Intl and the numeric formats
+  if (properDate instanceof Date && Number.isNaN(properDate.getTime())) {
+    return ''
+  }
+
   if (typeof format === 'string' && isComplexFormatOption(format)) {
     return complexFormatOptions[format](properDate, locale)
   }

@@ -222,6 +222,8 @@ const App = () => {
 }
 ```
 
+An invalid date formats as an empty string: `formatDate('not a valid date')` → `''`.
+
 ### relativeTime
 
 This hook exposes a `relativeTime` function which formats a date relative to now.

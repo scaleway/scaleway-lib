@@ -62,8 +62,12 @@ describe(formatDate, () => {
     )
   })
 
-  it('should throw if date is invalid for numeric formats', () => {
-    expect(() => formatDate('fr', 'not a valid date', 'numeric')).toThrow('Invalid time value')
-    expect(() => formatDate('fr', 'not a valid date', 'numericHour')).toThrow('Invalid time value')
+  it('should format invalid dates as an empty string', () => {
+    expect(formatDate('fr', 'not a valid date')).toBe('')
+    expect(formatDate('fr', 'not a valid date', 'numeric')).toBe('')
+    expect(formatDate('fr', 'not a valid date', 'numericHour')).toBe('')
+    expect(formatDate('en', new Date(Number.NaN))).toBe('')
+    expect(formatDate('fr', Number.NaN)).toBe('')
+    expect(formatDate('en', new Date(Number.NaN), { day: 'numeric' })).toBe('')
   })
 })
