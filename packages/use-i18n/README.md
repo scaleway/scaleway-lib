@@ -44,40 +44,41 @@ if you want to have pre-load locales you can use defaultTranslations.
 
 ```js
 import I18n from '@scaleway/use-i18n'
-import defaultTranslations from './locales/en/common'
 
 const App = () => (
-  <I18n defaultLocale="en" supportedLocales={['en']} defaultTranslations={defaultTranslations}>
-    <App />
+  <I18n
+    defaultLocale="en"
+    isLocaleSupported={locale => locale === 'en'}
+    defaultLoad={({ locale, namespace }) => import(`./locales/${locale}/${namespace}`)}
+    defaultTranslations={{ en: { title: 'Welcome to I18n hooks' } }}
+  >
+    <Page />
   </I18n>
 )
 ```
 
 ```js
-import I18n from '@scaleway/use-i18n'
+import I18n, { useTranslation } from '@scaleway/use-i18n'
 import React from 'react'
 
 const Page = () => {
   // this will load locales based on `./locales/${currentLocale}/common.json`
-  const { t } = useTranlation(['common'])
+  const { t } = useTranslation(['common'])
 
   return <h1>{t('title')}</h1>
 }
 
-const App = () => {
-  const defaultLocales = ['fr', 'en']
-  const defaultTranslations = {
-    title: 'Welcome to I18n hooks',
-  }
+const locales = ['fr', 'en']
 
-  const load = ({ locale, namespace }) => import(`./locales/${locale}/${namespace}`)
-
-  return (
-    <I18n defaultLocale="en" supportedLocales={defaultLocales} defaultTranslations={defaultTranslations}>
-      <Page />
-    </I18n>
-  )
-}
+const App = () => (
+  <I18n
+    defaultLocale="en"
+    isLocaleSupported={locale => locales.includes(locale)}
+    defaultLoad={({ locale, namespace }) => import(`./locales/${locale}/${namespace}`)}
+  >
+    <Page />
+  </I18n>
+)
 ```
 
 ### Set the `lang` attribute
@@ -86,16 +87,22 @@ const App = () => {
 
 By default the attribute is set on `document.documentElement`. You can provide your own root element (for example when rendering into a portal or a specific container) through the `rootElement` prop:
 
-```ts
+```tsx
 import I18n from '@scaleway/use-i18n'
+import { createRoot } from 'react-dom/client'
 
 const rootElement = document.querySelector('#app-root')!
 const root = createRoot(rootElement)
 
 root.render(
-  <I18n defaultLocale="en" rootElement={rootElement}>
+  <I18n
+    defaultLocale="en"
+    isLocaleSupported={(locale: string): locale is 'en' | 'fr' => ['en', 'fr'].includes(locale)}
+    defaultLoad={({ locale, namespace }) => import(`./locales/${locale}/${namespace}`)}
+    rootElement={rootElement}
+  >
     <Page />
-  </I18n>
+  </I18n>,
 )
 ```
 
@@ -113,7 +120,7 @@ import { useTranslation } from '@scaleway/use-i18n'
 const App = () => {
   const i18n = useTranslation(['app', 'common'])
 
-  return <>{i18n.t('app.user')}(</>
+  return <>{i18n.t('app.user')}</>
 }
 ```
 
@@ -123,21 +130,13 @@ In a case you will need to avoid somes useless re-render. you can wait that all 
 import { useTranslation } from '@scaleway/use-i18n'
 
 const App = () => {
-  const namespaces = ['app', 'common']
-  const { t, isLoaded } = useTranslation(namespaces)
+  const { t, isLoaded } = useTranslation(['app', 'common'])
 
-  return isLoaded ? <>{t('app.user')}(</> : null
+  return isLoaded ? t('app.user') : null
 }
 ```
 
 If you pass a custom `load` to `useTranslation`, keep its reference stable — define it at module scope or wrap it in `useCallback`. A `load` written inline in the component is re-created on every render and restarts the loading effect on each one. The `namespaces` array needs no such care: only its content drives the effect.
-
-```js
-import { useI18n } from '@scaleway/use-i18n'
-
-const { namespaceTranslation } = useI18n()
-const t = namespaceTranslation('namespace.home.users.table.header')
-```
 
 ### use namespaceTranslation
 
@@ -147,8 +146,13 @@ Exemple of your locale key: `namespace.home.users.table.header.link`
 ```js
 import { useI18n } from '@scaleway/use-i18n'
 
-const { namespaceTranslation } = useI18n()
-const t = namespaceTranslation('namespace.home.users.table.header')
+const Header = () => {
+  const { namespaceTranslation } = useI18n()
+  const t = namespaceTranslation('namespace.home.users.table.header')
+
+  // resolves the `namespace.home.users.table.header.link` key
+  return <a href="/users">{t('link')}</a>
+}
 ```
 
 ### Use date-fns locales in your components
