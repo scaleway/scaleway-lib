@@ -48,7 +48,7 @@ catalog:
   simple-git: 4.1.0
   tsdown: 0.23.7
   turbo: 2.11.13
-  typescript: 7.1.0-dev.20261121.1
+  typescript: 7.1.0-dev.20261123.1
   use-deep-compare-effect: 1.8.1
   vitest: 5.1.1
   vitest-localstorage-mock: 0.1.3
