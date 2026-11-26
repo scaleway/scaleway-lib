@@ -124,6 +124,23 @@ describe(matchPath, () => {
       expect(match).not.toBeNull()
       expect(match?.params).toStrictEqual({ id: 'a dynamic segment' })
     })
+
+    it('returns the raw value when decoding a malformed percent sequence', () => {
+      expect(() => matchPath('/files/100%', '/files/:id')).not.toThrow()
+      expect(matchPath('/files/100%', '/files/:id')?.params).toStrictEqual({ id: '100%' })
+    })
+
+    it('decodes %2F in params', () => {
+      const match = matchPath('/x/a%2Fb', '/x/:id')
+      expect(match).not.toBeNull()
+      expect(match?.params).toStrictEqual({ id: 'a/b' })
+    })
+
+    it('decodes %23 in params', () => {
+      const match = matchPath('/x/a%23b', '/x/:id')
+      expect(match).not.toBeNull()
+      expect(match?.params).toStrictEqual({ id: 'a#b' })
+    })
   })
 
   describe('null/undefined handling', () => {

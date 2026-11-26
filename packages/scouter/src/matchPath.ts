@@ -2,6 +2,15 @@ import type { RouteParams } from 'regexparam'
 import type { CompiledRoute } from './compileRoute'
 import { compileRoute } from './compileRoute'
 
+function decodeParam(value: string): string {
+  try {
+    return decodeURIComponent(value)
+  } catch {
+    // Malformed percent sequences (e.g. "100%") must not crash matching
+    return value
+  }
+}
+
 function execCompiled(path: CompiledRoute, pathname: string): false | MatchParams {
   const matches = path.pattern.exec(pathname)
   if (!matches) {
@@ -9,7 +18,7 @@ function execCompiled(path: CompiledRoute, pathname: string): false | MatchParam
   }
   return path.keys.reduce<Record<string, string | undefined>>((acc, key, index) => {
     const value = matches[index + 1] ?? undefined
-    acc[key] = value ? decodeURI(value) : value
+    acc[key] = value ? decodeParam(value) : value
     return acc
   }, {}) as MatchParams
 }
