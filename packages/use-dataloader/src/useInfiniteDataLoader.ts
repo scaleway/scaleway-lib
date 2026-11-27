@@ -148,6 +148,7 @@ export const useInfiniteDataLoader = <
       Boolean(
         enabled &&
         (!(request.dataUpdatedAt && computedDatalifetime) ||
+          // oxlint-disable-next-line react/purity
           (request.dataUpdatedAt && computedDatalifetime && request.dataUpdatedAt + computedDatalifetime < Date.now())),
       ),
     [enabled, request.dataUpdatedAt, computedDatalifetime],
@@ -197,11 +198,12 @@ export const useInfiniteDataLoader = <
         return nextPage
       })
     }
+    // oxlint-disable-next-line react/preserve-manual-memoization
   }, [nextPage, baseQueryKey, baseParams, pageParamKey])
 
   useEffect(() => {
     request.method = async (options: DataLoaderMethodOptions) => method(paramsArgs, options)
-    // oxlint-disable-next-line react-hooks/exhaustive-deps
+    // oxlint-disable-next-line react-hooks/exhaustive-deps react/exhaustive-effect-dependencies
   }, [method, request])
 
   useEffect(() => {
@@ -219,7 +221,7 @@ export const useInfiniteDataLoader = <
     setNextPage(undefined)
     loadMoreBaseKeyRef.current = undefined
     lastSyncedBaseKeyRef.current = baseQueryKey
-    // oxlint-disable-next-line react-hooks/exhaustive-deps
+    // oxlint-disable-next-line react-hooks/exhaustive-deps react/exhaustive-effect-dependencies
   }, [baseQueryKey])
 
   useEffect(() => {
